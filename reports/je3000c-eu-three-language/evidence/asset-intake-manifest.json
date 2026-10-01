@@ -1,0 +1,6673 @@
+{
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 152
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "default_scale": 0.25,
+      "page_scale": {},
+      "path_pattern": "archive/previews/page-{page:04d}.png"
+    }
+  },
+  "artifacts": [
+    {
+      "build_eligible": false,
+      "byte_size": 52622,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0001.pdf",
+      "sha256": "ad1f5eba906f2ddbe3715f5cde8e14f68885949e58f343d284b7d021a947dd4a",
+      "source_page": 1,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 25410,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0002.pdf",
+      "sha256": "edfdc07631ae0257feec1a5d144e9458c84a084a99a54b89ccea2504373cc3db",
+      "source_page": 2,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 64495,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0003.pdf",
+      "sha256": "5677ab7182a274aa9ecb0b754dc608e562942fcf82700dda9c05a75b396d95d7",
+      "source_page": 3,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 25755,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0004.pdf",
+      "sha256": "2b34ee5fb66bde1822e735b1ea8bac8da93f110b37ba8c78c2352cfdf6290d4c",
+      "source_page": 4,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 30744,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0005.pdf",
+      "sha256": "b2859b5c51e8cac4722ff999ef346408b40205d6d13c5acaf055a82b7f448e35",
+      "source_page": 5,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 30828,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0006.pdf",
+      "sha256": "ebcdfc6cbcfb637ba2833872744bbdbb79695d29494843fb40ce86ea817c8c62",
+      "source_page": 6,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 41875,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0007.pdf",
+      "sha256": "bc34f693d4afac4e01737cf1567cf440c1df88a9d32f9a05dce0a8b305ff1494",
+      "source_page": 7,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26296,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0008.pdf",
+      "sha256": "41029f0e77ac6972687364cddf4a5fa65fde7b3318474b53e061e8cdf0eff9a0",
+      "source_page": 8,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 74080,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0009.pdf",
+      "sha256": "59b7e8a2f2bce70f4058aea54b4561aa92fa0fae59b49543f0fda8e1874ee1f7",
+      "source_page": 9,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62783,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0010.pdf",
+      "sha256": "61332b5b3297788e546792735c50019be32abf256eaf2dbf86cca498a8ea19d2",
+      "source_page": 10,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50779,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0011.pdf",
+      "sha256": "c1fe8d9f9bd6019b1bfd170b61450f408a5ffacda4763dd88ef2f8f21056df4d",
+      "source_page": 11,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46014,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0012.pdf",
+      "sha256": "095f507330bb5dbb6d0c9b88b60da473430422b2e28d9ea4669a5adfc0050205",
+      "source_page": 12,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 82888,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0013.pdf",
+      "sha256": "987867c48619ef7d1536f9d06e62decb79e6419112faefa82a7d03f5a1f0951e",
+      "source_page": 13,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62493,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0014.pdf",
+      "sha256": "3640cf59162242b1d891fcefbf8f84eb9db67ac48d751e0bce252606877e7a5c",
+      "source_page": 14,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 87469,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0015.pdf",
+      "sha256": "2b6086b27a5d81fc8bd2e74485d08e3943a9f7330bb7ce9a9660c92c4527c243",
+      "source_page": 15,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 76700,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0016.pdf",
+      "sha256": "76d39621f0a813161d3d7fa0baf9ef81106f9c6e8b7d34cb9ed7536c79fdebb4",
+      "source_page": 16,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90393,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0017.pdf",
+      "sha256": "f8f1d41ee85b85cbc1c383e84be8a81a687238f7089df2d53e2c41616f2cccc5",
+      "source_page": 17,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 254302,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0018.pdf",
+      "sha256": "6bfe5effe39cd5a2605a17801adc70c094bc3dbb845c5b01d864745b5d3dcaf6",
+      "source_page": 18,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26161,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0019.pdf",
+      "sha256": "f91507fbd9de84a1bacaedd9da7e10137800ca24c03a44e1b31d5aaa9382dffc",
+      "source_page": 19,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48548,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0020.pdf",
+      "sha256": "2d419e9e43347bb8e8540201d9559bd0f6c2a065bc5f4cb070050c9cd4f237ee",
+      "source_page": 20,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29046,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0021.pdf",
+      "sha256": "a0915d9953b95ec1217bbd5e61bd14c12567f6b88282cdb23fbb58badf9744ca",
+      "source_page": 21,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327745,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0022.pdf",
+      "sha256": "2f38256a31d9b142704be435d94c056169f4c979b9827becb1d45386121ae4ec",
+      "source_page": 22,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461333,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0023.pdf",
+      "sha256": "b399804a5f70512e09765067e07f436abc42ab55a4180709f9e147efbddff485",
+      "source_page": 23,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26570,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0024.pdf",
+      "sha256": "7e9ed96f34dd451e244545d27652eb13f5b727a59856a596d787b5e59e020301",
+      "source_page": 24,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 71753,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0025.pdf",
+      "sha256": "4b9600ae9ea3a0c77ab1e3815ee033f66200959aeeb7f7f55b2ae06acb933a9c",
+      "source_page": 25,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63793,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0026.pdf",
+      "sha256": "1acd8328870aadf5b0270de55f9c15436f05efbad36d27f19cbd0a119fa9a43a",
+      "source_page": 26,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50904,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0027.pdf",
+      "sha256": "fa105a2c5bcaae2b9253163afb79ebbbca8b060d68803d1c1710aa50ea12d357",
+      "source_page": 27,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46473,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0028.pdf",
+      "sha256": "50d1335792918108ea80b213fdd09b1ca48b3e9bcdc3f472ee389293589cde5e",
+      "source_page": 28,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 84532,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0029.pdf",
+      "sha256": "0af02411dc3261137beddb2537e29046a594b36010a55c404bc3f6b954585df8",
+      "source_page": 29,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63295,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0030.pdf",
+      "sha256": "9c884abab87b5cc0e29752a1117ec88dd6f561a84e0ba991caa812c826d22798",
+      "source_page": 30,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 89035,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0031.pdf",
+      "sha256": "80de2d87deded03af96c71df3a9e68f0f4c13979bcf14396938fb30f24623173",
+      "source_page": 31,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 77048,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0032.pdf",
+      "sha256": "dc70fe0b86695bc7f33e45f6ebbc3b9135b4a623a944c713e4356a8e63ce54ca",
+      "source_page": 32,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90809,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0033.pdf",
+      "sha256": "b5f00aae6e43f4cc8f0ca1e04fc9c836c274f607f3f5b0da3a37c838680cbeaf",
+      "source_page": 33,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 257536,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0034.pdf",
+      "sha256": "6b1627cc5881b7c54f667e8be3a36397ea5dc630bbe242a80c2d392af68da471",
+      "source_page": 34,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26514,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0035.pdf",
+      "sha256": "e797400eee77a59e7fdf8ddf0f79fba75ce133b9eaec8ff1b4afede6a97a4b25",
+      "source_page": 35,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48588,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0036.pdf",
+      "sha256": "01a7718ad1419bc49246854568aa56825ad7e787bafd9456b4e0c0decb6cd767",
+      "source_page": 36,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29232,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0037.pdf",
+      "sha256": "0e34691e4501824285596cac2c29b84c93abc500d34c63126f4b5678e90ff664",
+      "source_page": 37,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 328013,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0038.pdf",
+      "sha256": "4362308234e8b9a2e385ac2a500fae6829405e0cb3a193c05caa8e1068f12e29",
+      "source_page": 38,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461667,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0039.pdf",
+      "sha256": "429e2585e4795ab47b31a2f2cc61b4d3133bc13d47e1d0d5c03fc0f9a212f3dd",
+      "source_page": 39,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26483,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0040.pdf",
+      "sha256": "b6c33f7a5ea428fca48fbc3b890a184dcf2ae1ad744ad714b72e991b6df04062",
+      "source_page": 40,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 71656,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0041.pdf",
+      "sha256": "b345beed0f1dc9145fae56b878b08c2c65fcf4e0b3d3c564122323072b0ea9b2",
+      "source_page": 41,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63818,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0042.pdf",
+      "sha256": "d1227d7b702e4edc4c555a8178ab41f720137e25c5bfe90b780fdec0caa6dade",
+      "source_page": 42,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50669,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0043.pdf",
+      "sha256": "165b6de33aad5f6a01ac6bec7aa0724d7b4c325510981c8f671c845d3836f8ca",
+      "source_page": 43,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46243,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0044.pdf",
+      "sha256": "828da40bbb40cca172b1fe852b9c6a544f7d35773db4269f31d329817b8dc5a9",
+      "source_page": 44,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 84464,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0045.pdf",
+      "sha256": "a3455df0064b8fee34e02eef07ba0ed269dbe4cf80bac2eb05ec135bacc90840",
+      "source_page": 45,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63140,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0046.pdf",
+      "sha256": "fcf995a5614f2ba2851da12931d6e4c76121d3fb1bc51a50e3553580f1276a16",
+      "source_page": 46,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 88855,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0047.pdf",
+      "sha256": "5525ce75412a24a7ae04a36a5209fb0b83d2a6bd02a4259acffdf0460235f393",
+      "source_page": 47,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 76657,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0048.pdf",
+      "sha256": "ecc321be1f6ee6f8c79e39bf1f232e6a2dfd09297569792f90e842c5220ae628",
+      "source_page": 48,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 89923,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0049.pdf",
+      "sha256": "0197865d735dbe3b97dd8fadcfe70f266742a561203ce2eddd0c7b805ac557dc",
+      "source_page": 49,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 256923,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0050.pdf",
+      "sha256": "6e58dcfe4025c8d0415bb33c2910b16184d08b9f81a002b1a688fb02887f919d",
+      "source_page": 50,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26561,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0051.pdf",
+      "sha256": "262360e33c58018deb36079933abfad0b22864836b4326c201ca8942465df4dd",
+      "source_page": 51,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48550,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0052.pdf",
+      "sha256": "288daafb5b8b173e25d5983ffafb94b393f23dee722c8a1183f23e5714238e38",
+      "source_page": 52,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29146,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0053.pdf",
+      "sha256": "e03cf0552e1b3c099e2f132e32139b73c7ff27d1c00fadde249ecd006f63d680",
+      "source_page": 53,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327899,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0054.pdf",
+      "sha256": "0e108604911e293ea8d89d00fdf5ac6e346a1914f990f57c148bd20c8243041c",
+      "source_page": 54,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461691,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0055.pdf",
+      "sha256": "aeac3a0e9d8e3a93e897962bb017cc0ba60394a07b463a809780ac4b3db177ab",
+      "source_page": 55,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26631,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0056.pdf",
+      "sha256": "196dbe80def3309b64a480a256644e91c19f8fd87dd535217b5e203192fe9419",
+      "source_page": 56,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 71721,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0057.pdf",
+      "sha256": "0b56e5bf958670d13af8f92a85b50f19a9453859505bdc3964f624edbac1b9f1",
+      "source_page": 57,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63834,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0058.pdf",
+      "sha256": "6fce0c1df2ec9cac4ba3a5161bfe0c1063b48cc3dcd332f4e31c7875a8f858c9",
+      "source_page": 58,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50730,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0059.pdf",
+      "sha256": "9f77f5933ec19148fcba8fbfa2c222c677da9e10c61c19a2f0d6024e84671fe2",
+      "source_page": 59,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46217,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0060.pdf",
+      "sha256": "7bcd9e4137abe4b0f7e7938827c6ac64b1befec492359e9230270e289513b22e",
+      "source_page": 60,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 84580,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0061.pdf",
+      "sha256": "e354c81287379c98a002a2f7d8590423ea433658a6dac4f4d11db4268f891c4f",
+      "source_page": 61,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62843,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0062.pdf",
+      "sha256": "d09ecbde577cb37cb82ae9f8e8a7cde8fb0809d30eeb0dd83ee3461fa97c7cd5",
+      "source_page": 62,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 88741,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0063.pdf",
+      "sha256": "4dbe61344b9e45a5d9bc9c70a4bf9ce6dc200f5df37647b00b0b3a1a9cb6ddf3",
+      "source_page": 63,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 76858,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0064.pdf",
+      "sha256": "aa43198a7027b6ffe7b21861f133d7b4097d7e6b9eb21c3782e419ff17980292",
+      "source_page": 64,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90324,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0065.pdf",
+      "sha256": "428046dc6c402a616adf065b0450bf89b268f5570f6d6c11e679be2b5169e59b",
+      "source_page": 65,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 257400,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0066.pdf",
+      "sha256": "0d11ff536aeeadc47b767a40335cd21040c7d45b7cf0ce8c3cc80c18d0b2b91e",
+      "source_page": 66,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26630,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0067.pdf",
+      "sha256": "94824fb1033c2902450e100d3e88f15377b14b9ccb8c72465874f2cc75b1a71f",
+      "source_page": 67,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48650,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0068.pdf",
+      "sha256": "fcdbc18c5e8ed67b836c6539afdca0e7adb51af001241af27f7e8ccc6c45b04d",
+      "source_page": 68,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29235,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0069.pdf",
+      "sha256": "1853f782ec4c63237019dc6c8e009ad8de64abc0dca6f9d42da262b2aeb7a1b3",
+      "source_page": 69,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 328086,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0070.pdf",
+      "sha256": "45e22296a958440240def05813a8507bce440208f88fb719ee18036d47b43828",
+      "source_page": 70,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461716,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0071.pdf",
+      "sha256": "7f686ad33b7419c4711a13b47e44606ba31d9c7a003fa41bad9c2ec7ef0fe19a",
+      "source_page": 71,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26548,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0072.pdf",
+      "sha256": "359c4a94c0e12b45e8b3ef098423f0631a8e85b15bef5b5db01ab348ff3afb6b",
+      "source_page": 72,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 71603,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0073.pdf",
+      "sha256": "fbc9ee8e30407cd43b907bd5538fa379e975e5c45abf47f9426385ab6fb8608f",
+      "source_page": 73,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63777,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0074.pdf",
+      "sha256": "d4bebb7f7615d7c29f44c92f5afc9cb53a6760b57db7f450cc38bb569288336c",
+      "source_page": 74,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50703,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0075.pdf",
+      "sha256": "07ae5358601f819b7c0f0c566364eff457c6f9c551924b76fcdbf699abef7c67",
+      "source_page": 75,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46466,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0076.pdf",
+      "sha256": "7b65ac864bd00eb26e9104dc3ecebce849391db586f18b053398529aadd6d3ed",
+      "source_page": 76,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 84516,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0077.pdf",
+      "sha256": "e8dbd53cd2f5a067eb52029972f47bab4085f9de1c59e3df8c06be6ade8bfa8d",
+      "source_page": 77,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63150,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0078.pdf",
+      "sha256": "6c55aceae4133de024fa71388928b409186b1a0c9f508c336dfbe9b5be984384",
+      "source_page": 78,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 88937,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0079.pdf",
+      "sha256": "6cb7610867235981787d987ec7b09f5ee02f4b1cb110ce06f37af3601ac52c3d",
+      "source_page": 79,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 76960,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0080.pdf",
+      "sha256": "6e01c0b6f1419d210585454e94036a8701c17bca135091b28e2fc4f7edd2421a",
+      "source_page": 80,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90246,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0081.pdf",
+      "sha256": "03166a9661b9d94eeea11c2bd3f693757bd691938cb1ba1a933a9409107fe669",
+      "source_page": 81,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 257434,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0082.pdf",
+      "sha256": "7f6da01aba1c827099effb92f50909ebfb4526316ab6b17180a8481c5d86b121",
+      "source_page": 82,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26656,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0083.pdf",
+      "sha256": "ca8224fc883ab8a41002eb8a916be33b73622fd447eba8142ba3de99e302c484",
+      "source_page": 83,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48582,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0084.pdf",
+      "sha256": "3d475585d0261d3610acd78ae5298f4850797e55e5510678e11840587e3b6146",
+      "source_page": 84,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29254,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0085.pdf",
+      "sha256": "b033076104c12ea08babd66cd91632e1c2a27f3725f04a9d255b115d37dd5b2e",
+      "source_page": 85,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327924,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0086.pdf",
+      "sha256": "a753cf8dcd78170de4d7ce2c2634d55ad9ba242f08848ddf5967c8400af97547",
+      "source_page": 86,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461729,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0087.pdf",
+      "sha256": "ec8ddb96174172208bd5494a6925b62e89d67b849d046db60aa5414832a4d148",
+      "source_page": 87,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26722,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0088.pdf",
+      "sha256": "6c3fc2d3b3013654d0a3f5d68ebab399a235414b54019104624bafc65c030dad",
+      "source_page": 88,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 71780,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0089.pdf",
+      "sha256": "ade5a7397e5aab58f3dca9c30ab052cdab070fbe9a60a2b0cfe136b0b3b7c841",
+      "source_page": 89,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63721,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0090.pdf",
+      "sha256": "fa9c9b770f06b4618f9da995682399ce058162fc2cee143ba8e106b98bc4f095",
+      "source_page": 90,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50731,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0091.pdf",
+      "sha256": "ca9f33fd742d6c6265c7a0fb1cc492e285c4281fa387111f636565619d2d0b29",
+      "source_page": 91,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46502,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0092.pdf",
+      "sha256": "cdfa458e10bdd9a425d9d13f7f58dda932e8b9064e025d2da14088728991257e",
+      "source_page": 92,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 84544,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0093.pdf",
+      "sha256": "37e2a9f4bc91eda88248defe41d5958cfbfa5529d6cf9cc5a49d8252deea0fd9",
+      "source_page": 93,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 63024,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0094.pdf",
+      "sha256": "ab3d710a83e486143a7699584b972695e2cb19713b4eb413336086d95af0de9d",
+      "source_page": 94,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 89236,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0095.pdf",
+      "sha256": "1b71b486c60e67eb66075dcbb188c4376ae2d88e45064075e71608b1a568b079",
+      "source_page": 95,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 76765,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0096.pdf",
+      "sha256": "a8c7d35f06f33a0adc9ada25b5fd5ad1500afe8d5883d1afece1d27d41f38f74",
+      "source_page": 96,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90149,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0097.pdf",
+      "sha256": "2f0efb0b1bb97bc33850e7e1aea7295445b8452dff407b0cda7d3083f451b320",
+      "source_page": 97,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 257861,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0098.pdf",
+      "sha256": "0e4e525ac71ac0e09b7e3773ecc1eee1b911fce7423293c96e30d2a41d91bece",
+      "source_page": 98,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26822,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0099.pdf",
+      "sha256": "afd1b18b9450b0dc16a7beb8783933eebb1a6c323daf24ce24f25623d3ce7afd",
+      "source_page": 99,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48950,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0100.pdf",
+      "sha256": "6f1dd718c013fa90c54eae689328e0bbbca6b579ebe2f42b7ac81913b9b9dc0a",
+      "source_page": 100,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29411,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0101.pdf",
+      "sha256": "6eb7798debb0fc59167c402ae83b400ca2aedd2b3a7fc56a771f204267818745",
+      "source_page": 101,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327904,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0102.pdf",
+      "sha256": "88ccb6e95d986f270ed3b04e9dd0bde5280051a02f17624f9c2446b594fc42ad",
+      "source_page": 102,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461746,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0103.pdf",
+      "sha256": "91447f89489d87586bb17667542b7c7c8b475ff7a371b75f2ca242fb6f1bb168",
+      "source_page": 103,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26575,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0104.pdf",
+      "sha256": "d8b894a715dc9de0fac57e711580d8a46d2c48cd705d6ec58049037e178df9ad",
+      "source_page": 104,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 74262,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0105.pdf",
+      "sha256": "03d142f6ecd0b427c70ac5deddcb3a899d34a9b5b8c835c772f85c857921f213",
+      "source_page": 105,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62932,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0106.pdf",
+      "sha256": "48187d41caf71e8da6783004d47b3a4c1a61b76d0ea851fa7d3ec16a0a86db0d",
+      "source_page": 106,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 51170,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0107.pdf",
+      "sha256": "e3ec82219298e129f3b05d68fdb49bded7657f7afacbcd6e2266941416ce58a8",
+      "source_page": 107,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46383,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0108.pdf",
+      "sha256": "f7e35c0cccd4f9dc68105ace2055dd119655269dd0e4e713467b722cf454b439",
+      "source_page": 108,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 83004,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0109.pdf",
+      "sha256": "8d2d772a773071f9772dbb0da936094dadbc56985d9304d5fe5542c353ca6d8b",
+      "source_page": 109,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 60881,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0110.pdf",
+      "sha256": "2887e59e18e37a48625f4ee449fc12933206bcabbb2ef67f8514dbdc971dcfbd",
+      "source_page": 110,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 87883,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0111.pdf",
+      "sha256": "08a56117e39266cd9de41dd5b76abab5977ba7f21747a2d816422c804823fb4b",
+      "source_page": 111,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 75050,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0112.pdf",
+      "sha256": "a60d5be9580dd59272a49f7d45661260ec6abecbfd75af2eedb7935956546b24",
+      "source_page": 112,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90250,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0113.pdf",
+      "sha256": "9a3287c4ce945a605e2c686e0496dc4f7dd0b10ee9fd523f567bdecb37b0a560",
+      "source_page": 113,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 254834,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0114.pdf",
+      "sha256": "6ac1a2bd8f8f4da1d719fee36b35eb5f196a565a4a7c83e472f314427f37b9f0",
+      "source_page": 114,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 25724,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0115.pdf",
+      "sha256": "3b4aaf880e52df5fc599c9f0b3e6fb54002976975f7c3526591a04373a308420",
+      "source_page": 115,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 58037,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0116.pdf",
+      "sha256": "ef44a371ed3b8011ac1d9eb5c59d22feaf0f4e75270face41f6aae81d448c8c7",
+      "source_page": 116,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29227,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0117.pdf",
+      "sha256": "85595a62b09249ce2696208b4f3dc561f88545291e87d983f25c1ff0bbcf688a",
+      "source_page": 117,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327912,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0118.pdf",
+      "sha256": "0e9a471274b2a8b5fe4317f898a9d77351f815c5c6ba8fedb352f0d36f2b8b61",
+      "source_page": 118,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461541,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0119.pdf",
+      "sha256": "3a752e947d81e029900b9d7c073f280211c94c7c450e4f2675a3a50eba8097ad",
+      "source_page": 119,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26540,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0120.pdf",
+      "sha256": "cfee10a5f4d95c1096e43c29ed33665d54b2699437ddfd1665added2570c2b7a",
+      "source_page": 120,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 74299,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0121.pdf",
+      "sha256": "2266aec56d5478cd8d0d19f4c5f9b4ecb08919893c3ed779cd9f728e766cb677",
+      "source_page": 121,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62722,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0122.pdf",
+      "sha256": "c6e0836ddf958e556fc8320d4e89b190cf9e2e7417843f63ecb3e5adcee16cd4",
+      "source_page": 122,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50840,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0123.pdf",
+      "sha256": "99787f1744624255539c23081cbd1583e1eb575efaf86e5cb643890221423b6f",
+      "source_page": 123,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46259,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0124.pdf",
+      "sha256": "a41cb0cbd79acd4bd96f555786e1538b12c5c5dd93031e408d64462c19d9185e",
+      "source_page": 124,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 82985,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0125.pdf",
+      "sha256": "8efd1f6d943fd1e7a045827cf7892da650f793fe11d6a8f6e482931d813c3487",
+      "source_page": 125,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 60789,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0126.pdf",
+      "sha256": "105f1907ce8467bfefbf42ac0c5d2f2b986c74d3b449a8e7bc44b4964f4dc6b2",
+      "source_page": 126,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 87793,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0127.pdf",
+      "sha256": "cac39582a1cce0b307418b7fb283b3d62016c8e1d637ace8d255fb0b01aaec94",
+      "source_page": 127,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 74940,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0128.pdf",
+      "sha256": "f3268a7ad00463515d10021bd7d2edaab5db219afa67b117d2fc0012fab7183e",
+      "source_page": 128,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90115,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0129.pdf",
+      "sha256": "2f251c92905a2f403e41ae8fd8df1e5e497e596efefee379c7d5e71bebff7fe6",
+      "source_page": 129,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 254680,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0130.pdf",
+      "sha256": "118f2b6f8096024c2c0e6b041ee90de42a3faf10c8dff8fef3a42799d38f5c8d",
+      "source_page": 130,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 25626,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0131.pdf",
+      "sha256": "8fb7fca570f391f5cd78681007a2a019660e2c0bb601ee7df1d964c3d0a99189",
+      "source_page": 131,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 50173,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0132.pdf",
+      "sha256": "32ea267d2cbc2f0f4888960dab60a5cbf63c61e7ff81185e198aa38655ed926c",
+      "source_page": 132,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29167,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0133.pdf",
+      "sha256": "1e4a78b0c99acafffd1a0429228974c0ae77aaed6474cc33304a77cc8d37edae",
+      "source_page": 133,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327784,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0134.pdf",
+      "sha256": "ec102894fd673a4da4e8d0b88f6857f2a4577776becb1f10676bfbda74f1583a",
+      "source_page": 134,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461418,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0135.pdf",
+      "sha256": "eeb6c1587c2d922d48c946e1e97abd3ad2e4613bbdc99b829ace457f0c4cb10a",
+      "source_page": 135,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26909,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0136.pdf",
+      "sha256": "97fc8ada8c84445f3fc51a639390ca62531a85525755e3c0297ca5cd74aed3bb",
+      "source_page": 136,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 74637,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0137.pdf",
+      "sha256": "53c86c67f734d528fd4f1f80c0a2837d0ec7bbc3e8a316086657e7ea404c6316",
+      "source_page": 137,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 62971,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0138.pdf",
+      "sha256": "064b561091d0ea6a327075279795c0262f538cbc5c506cd025eeab35c7a9a4f7",
+      "source_page": 138,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 51345,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0139.pdf",
+      "sha256": "f248e644b410200a04e7671a45775828f77f90dbe1cd779eda689a0e33d69115",
+      "source_page": 139,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 46820,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0140.pdf",
+      "sha256": "10da78b7160ef8303a86aa1a844424f9539078f97de43e1655860e59be36d76c",
+      "source_page": 140,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 83076,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0141.pdf",
+      "sha256": "53ccc58bbc7970fe34f516a0dce49eb49365ad94198db24f9bf43cc9a602639f",
+      "source_page": 141,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 61273,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0142.pdf",
+      "sha256": "909943f42d0309464d44ba907f8998cdc4b9d7627c304b4b910ffa22dcada26a",
+      "source_page": 142,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 88235,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0143.pdf",
+      "sha256": "ef1c62a53d46a5c8026e9d18071efb4ca3e4afa5ab3713ce62e7e7f93adfa2f8",
+      "source_page": 143,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 75251,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0144.pdf",
+      "sha256": "65926f3ba6c325b738c7cb19bb6887c232d8166701fe31bbfea07c08a0740641",
+      "source_page": 144,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 90580,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0145.pdf",
+      "sha256": "97ab4e2a21e59a3839aa243c68baa66e8fc62da3e5abb5a8ac87f6a69f7fb5f0",
+      "source_page": 145,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 255107,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0146.pdf",
+      "sha256": "de21f554078389b8d35faa6f80f49a42403feabe8305871d55a40eea2fd5848b",
+      "source_page": 146,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 26044,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0147.pdf",
+      "sha256": "2e3e8f0fb2a852b49106137ff5b92b84e884825ef2e1a070e10c31067b244bbf",
+      "source_page": 147,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 48823,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0148.pdf",
+      "sha256": "0c76d631c5806f794b5069ac8fe361cf70e0c6afc38d4b17854df7f7de78028c",
+      "source_page": 148,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 29707,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0149.pdf",
+      "sha256": "728c71ac0cfab75230d379585b07d7255883d8f2dfcd866c591d85bbf23d346b",
+      "source_page": 149,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 327934,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0150.pdf",
+      "sha256": "cf3cdd641c5e5cddae7e9c8927fd8dbbb9bb916c79d873281e96e4c8a3850064",
+      "source_page": 150,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 461760,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0151.pdf",
+      "sha256": "a727d110de2b2066295ad0bf552605357c521d32a2ac2f8f3304ab86eee926e3",
+      "source_page": 151,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 44192,
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0152.pdf",
+      "sha256": "578522c64e18c5781240836f104e7bf56feaf8c8a931e16cf226969456ad6ac3",
+      "source_page": 152,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5218,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0001.png",
+      "sha256": "c79d1a8b454757540a23d4f87990e7de004c60a91a393a6dffe9f08955ca163b",
+      "source_page": 1,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6662,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0002.png",
+      "sha256": "fada97a1636dcd3c712597870acd618d758d884887c252712e5c1a4ec4432447",
+      "source_page": 2,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7651,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0003.png",
+      "sha256": "c223ed10e295f7d17b789dbc092b5c9f6dc0d2a7dae0d72e53ba62053e668213",
+      "source_page": 3,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7083,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0004.png",
+      "sha256": "b0062cfc48dcbea70e37202676f497d35d17141f3e01e8552740a2edde0b0b70",
+      "source_page": 4,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4893,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0005.png",
+      "sha256": "5a797995f0d6ba89cd641a0dfbdfdb8e6d27313a6e9551e4bf76f00fc1002fc2",
+      "source_page": 5,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4444,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0006.png",
+      "sha256": "898a94d87d54b03e75cf8203712c7e31a7cdca64b7e46445befd5e4a75fa608d",
+      "source_page": 6,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4735,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0007.png",
+      "sha256": "2bf48abee7efaa2abfc41708df9110ec408eee61b65c6bae40ac0882cb20d39d",
+      "source_page": 7,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6704,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0008.png",
+      "sha256": "75cbf0b3e1f92b263f4055ceb158bb595c85029bc0ded589e17c230918e07285",
+      "source_page": 8,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5551,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0009.png",
+      "sha256": "2940032832ec5dbcb4e2ec218e6b614e9999bff2c48d11c2298cb35b55c5fcdf",
+      "source_page": 9,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3861,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0010.png",
+      "sha256": "2917bc512adf8dddb97d342d1ddd156ad52d91680772653d1de54a228c338e34",
+      "source_page": 10,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7842,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0011.png",
+      "sha256": "e177f511eff4951d6804e4f9df199db80bc0f9cc868dfad7f9340d5efd18f561",
+      "source_page": 11,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6034,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0012.png",
+      "sha256": "755b2f97bcf2b209469e5c7f0f24978d58de2b42b8ae9ef137df2c10b1a46d35",
+      "source_page": 12,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5480,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0013.png",
+      "sha256": "f3aaa5454f8fce11d7822ad9def16b8b7cff8276d408016cfb4671c0c26c7539",
+      "source_page": 13,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7513,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0014.png",
+      "sha256": "0e82818a66466773ef64daa19fc0d93a0af5e43fe44751b8fb19428c91b4d7bd",
+      "source_page": 14,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7315,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0015.png",
+      "sha256": "bed7458cef531355b9ec2758cc9ac5f1354c2868710011617bd637631b8d572b",
+      "source_page": 15,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6801,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0016.png",
+      "sha256": "94a6318bfbb81d8fc47e002b4f7e92864513466d2cd91562cc6cb3355dd2787c",
+      "source_page": 16,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7283,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0017.png",
+      "sha256": "8f31c340e708412f3846905152835cc431c98ade3ada4a2659f39e2d3bd2b240",
+      "source_page": 17,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8541,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0018.png",
+      "sha256": "b20a3b90ba41dd7c9d1ecdcf0d95aec1b946e344f7914ae5584ebe4ab94af47c",
+      "source_page": 18,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5809,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0019.png",
+      "sha256": "3e06ecd0df1db10f58466678a86bb1b38dc18eafbc77ff103cf72e95c6371ea0",
+      "source_page": 19,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4376,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0020.png",
+      "sha256": "dcf763b8c316f3ce68f53f9efc8114beeea50abd3b03f1620ced145f754179b1",
+      "source_page": 20,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6760,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0021.png",
+      "sha256": "c57f12c8a2ed6d20c4daac74a0bbba172a90b67e05b6c094c0fc2f304b636c26",
+      "source_page": 21,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5520,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0022.png",
+      "sha256": "4f0b4f4cfdbc0d31a22a7de7cd27861ad0cf327705e61f9b2d8cc5f4b82da685",
+      "source_page": 22,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6765,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0023.png",
+      "sha256": "b4d3e710b6149aa44012b4849ace25535686a8147fb82f33926bac30510afee6",
+      "source_page": 23,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7547,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0024.png",
+      "sha256": "106c520cddf4a6b8c28258b28ec18272ab7b8ab6615106b6df646b46d22adaf6",
+      "source_page": 24,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5800,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0025.png",
+      "sha256": "50155c1de2161dfc1130900b90a435c69df31631ef8b82fd56544194ee1c58a5",
+      "source_page": 25,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3908,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0026.png",
+      "sha256": "cd44a56d11254732e075585bedfafed65b1ace85900b30488fd9998ca3947fae",
+      "source_page": 26,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8259,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0027.png",
+      "sha256": "eefc328ed3ec7c1e7f81a6efce3b93eb65376886c2803126db12743d935c9bda",
+      "source_page": 27,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6701,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0028.png",
+      "sha256": "d785065c82fe57c26feb8394a2fb4952f6731e4aaad39d86bfac72ee22952e96",
+      "source_page": 28,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5765,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0029.png",
+      "sha256": "5d6b1389533f3a62e767d1b34585810f2744d826714de3e2b403e74939f614ca",
+      "source_page": 29,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8056,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0030.png",
+      "sha256": "29ac826662db30422d7c368b6c8b4bf2ad7e4b74fc57f869076537628b146f2b",
+      "source_page": 30,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7909,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0031.png",
+      "sha256": "c310acad618d02d560016af07dc0a201c7e3226e5ebb58ca6b70751002466d08",
+      "source_page": 31,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7440,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0032.png",
+      "sha256": "6b14b19f9b9391ecf0064ad2120d6482253e2274fca6460047315b266aaec137",
+      "source_page": 32,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7710,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0033.png",
+      "sha256": "b7a71c28ccb7df9973285cea2a5b9f3358d3b1a772af33194e4bafb3a8641507",
+      "source_page": 33,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8961,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0034.png",
+      "sha256": "17e4c0021827ad913420414a7343209eb035d10a7b2d54ab862827231cf45158",
+      "source_page": 34,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6185,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0035.png",
+      "sha256": "cf3f2faf573e72d08dd80f72c1b18451fa58d7290e80d8c52e4898c7540d921e",
+      "source_page": 35,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4527,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0036.png",
+      "sha256": "8b5f6f0ac7005ae459723975253ae58e082d10dec645e123212c166b4d90a9ff",
+      "source_page": 36,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7173,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0037.png",
+      "sha256": "22c530adc805f37f12af903777d8c4e692b48e21783e3568bed06a7a17ed5578",
+      "source_page": 37,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6284,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0038.png",
+      "sha256": "e411025909be4d632cfcf87f709cbaa426770b57366e069730816281a45eb22d",
+      "source_page": 38,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7331,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0039.png",
+      "sha256": "74fa77198460993e10e871faef07a7869b8267a11cecf34b727323cec10a8ed0",
+      "source_page": 39,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7759,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0040.png",
+      "sha256": "f0bdb078bc0c60189732f5d814458a0ca2aac16b3962fdc5dc0270107fd6675e",
+      "source_page": 40,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5792,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0041.png",
+      "sha256": "b65899c7a21de921c2935fcdd2c5c266a10ba7e014ed8a2b9b93c5b0f841faef",
+      "source_page": 41,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4118,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0042.png",
+      "sha256": "2bfcec09ce0d56cec583a8fd863a2bbff780433b2af9463e719771a0b00640d7",
+      "source_page": 42,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8183,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0043.png",
+      "sha256": "16fd65bf2027ea12ec0839434427e3bdf02dd5e489f23b9f4852a88501bfd43e",
+      "source_page": 43,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6659,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0044.png",
+      "sha256": "4c516b94be5fb40a0527cf2d81226d601a7b281ec8861e8d33766b4682ff7fd5",
+      "source_page": 44,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5787,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0045.png",
+      "sha256": "2a67d4f9a2df035ae759e0912d0de56be83a56177aaa6f62558254ab024a4147",
+      "source_page": 45,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8290,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0046.png",
+      "sha256": "7e21243634e2fcb8eddcc599c2a9471ce5ba961c2504d7d1401582305b689f90",
+      "source_page": 46,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8028,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0047.png",
+      "sha256": "11f0d8a09ea66c3b66120d2a541f6717cbfe011c90a9e3f18487f3c68ef8b73e",
+      "source_page": 47,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7560,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0048.png",
+      "sha256": "a0b083ee25920f38e1a2d8197e59eaac5992deb80e1960f25e3e1ed78beb6911",
+      "source_page": 48,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7629,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0049.png",
+      "sha256": "22ff036ed4d814b43f9d04ba508eaf765bc8ecac40b338c6cc279c8c2f1936de",
+      "source_page": 49,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8958,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0050.png",
+      "sha256": "da6614a0b6d8ff1f3f22dc785514f5eea8d74524b0d77f905f2cac907b04595f",
+      "source_page": 50,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6599,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0051.png",
+      "sha256": "38040c3ae60d879a9efc95a0adbe10409eb1d1a19434bb07e05b19c0580573da",
+      "source_page": 51,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4730,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0052.png",
+      "sha256": "5072b0a929c4d8c7d23c2ebed35d4ec4a40c1cb059b3a190452c717166d7e579",
+      "source_page": 52,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6964,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0053.png",
+      "sha256": "cd6fd78a7580f8b2993fdd39bf0ff59d99a97f4b7946b21f50ae7830dca50846",
+      "source_page": 53,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6168,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0054.png",
+      "sha256": "d480f87b91f616ecf39ec7e5eaa679018c88172b0aeec018ecb96361f74cf63e",
+      "source_page": 54,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7436,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0055.png",
+      "sha256": "dd84f25a7994a47d1f0677333861b7b465b150fecb9effb5522c2f4998523048",
+      "source_page": 55,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7781,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0056.png",
+      "sha256": "1123d12b2dd426d8b48b62201903cad3f3d39909de3adcb98baec8a06c00f4f1",
+      "source_page": 56,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5990,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0057.png",
+      "sha256": "559e904f02f933dc5ea4622d315d2dfa58fca2127c2aa8f4600b568edb40fabc",
+      "source_page": 57,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4042,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0058.png",
+      "sha256": "f482990cfbd724c61e6eedb895a985a98fe011429cd74bdd0893713273e683c2",
+      "source_page": 58,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8040,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0059.png",
+      "sha256": "121b7930c5382b80876bd67933927fa41de6b2e5c9ba5430f3edbc6838f9dbfd",
+      "source_page": 59,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6648,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0060.png",
+      "sha256": "14ca1e4a35af10fc808a324e20e8729ca10ebefa2be30224c64d83a19aa6158a",
+      "source_page": 60,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5854,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0061.png",
+      "sha256": "3924e2f3eb9430e90153b911b7bd3e41c111cdad73fcf0a07fe3e3eba018c806",
+      "source_page": 61,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7548,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0062.png",
+      "sha256": "c2151865d453795855b916573d5ce3c5a83cebe85fc4a5925fdc0ad2babec1cc",
+      "source_page": 62,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8151,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0063.png",
+      "sha256": "ab192d4ba7cfec14100e184341d113ce4cce11f4270e03aa652a124bfcaf2351",
+      "source_page": 63,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7776,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0064.png",
+      "sha256": "7c1b1de7ebd34075b2efa95b81ed44c95c055f33387531667f4185ba47fa9fc6",
+      "source_page": 64,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7663,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0065.png",
+      "sha256": "dc9619ea2a7763b5631718fb4c18394172ba1dd63a9f3c46579eee133974ef1a",
+      "source_page": 65,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 9038,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0066.png",
+      "sha256": "22c6d830130c14bfc78ebd070cedfab45c9e70f61eb3157739013a02312cc22c",
+      "source_page": 66,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6929,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0067.png",
+      "sha256": "074ae086e025dc161a9de1d23b35a0bccfa5183057ede7bd6adbb878eb849259",
+      "source_page": 67,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4835,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0068.png",
+      "sha256": "5e66238a98cc8b2470103469755ff1c238000c54e21951d34925afcf7949d8a6",
+      "source_page": 68,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6938,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0069.png",
+      "sha256": "7252ad0f49b3534381551ce8b3d768a90f819739fcc0fc6095f56fdf139d4641",
+      "source_page": 69,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6129,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0070.png",
+      "sha256": "1d9accd1bd70d2e6523f2f2ab8b582f8d6df4e37339e72e185c3bb64a2bb985e",
+      "source_page": 70,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7679,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0071.png",
+      "sha256": "fc27b930d76fcd60850293613a5b7d35d305721db6dfd39465490e592cf9f5f9",
+      "source_page": 71,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7248,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0072.png",
+      "sha256": "c4e065af6af2c6082296883bc11761db1b3d41d9bf40430df7e21f4275debc57",
+      "source_page": 72,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5953,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0073.png",
+      "sha256": "0dc634b4afc5350b5c978927847d79b0184b64df0f158b63223905d68f49fb8c",
+      "source_page": 73,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4137,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0074.png",
+      "sha256": "c1aab08fe3136dfeaab948b7ced2f462c1812739928d8079773a1c67079d05d1",
+      "source_page": 74,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7648,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0075.png",
+      "sha256": "177220eab76cab7361b0dd131440d7623d8c3977be36d7476be578db6025b0b9",
+      "source_page": 75,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6565,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0076.png",
+      "sha256": "029baf9877c0b090f3bb0c553cd1c647a96885c72fd24f7fea6c70ac17bd4e47",
+      "source_page": 76,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5849,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0077.png",
+      "sha256": "6dc8d5f84d877897585fd6bf18a2fbd365d8eb7af949a9ae29fc24491f07372d",
+      "source_page": 77,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7933,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0078.png",
+      "sha256": "d50a25d1116879d43e7540b5322fd03c3349af64c390492d151fed686f85c32c",
+      "source_page": 78,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8182,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0079.png",
+      "sha256": "2c73403f1cd339832c7bbb68c6a6c95f21294058876c635ec092fbe3df1f90a3",
+      "source_page": 79,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7810,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0080.png",
+      "sha256": "d9d72435f78a7ef1f429f325f9b670f35498f156533169ee4a6bf779fee00fb5",
+      "source_page": 80,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7323,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0081.png",
+      "sha256": "491b6f0c1cb5d591362e2548828ecd6f47f57ebf79c18db064683f194f15e97f",
+      "source_page": 81,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8913,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0082.png",
+      "sha256": "839529a937a8c18181f6475901b893068f1593f8500f37a30e9797d6d5ebf842",
+      "source_page": 82,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6322,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0083.png",
+      "sha256": "7d42da0f7bd6c70482841f55e572f96586fae2348729022174c65db6a58fafce",
+      "source_page": 83,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4623,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0084.png",
+      "sha256": "2def8694942de5552be7ed760c59394311549599815d9def850c19426ad47161",
+      "source_page": 84,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6638,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0085.png",
+      "sha256": "283125e19ca6958ec8ee16fbf6b16cef4b92a05a6a2da3ec5e1b21aaca2ea6bd",
+      "source_page": 85,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6081,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0086.png",
+      "sha256": "e9b9e96cf9c7275e43d3d427302b3771101ec337224c1e1b6ed7d75dbf375deb",
+      "source_page": 86,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7449,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0087.png",
+      "sha256": "6c93b9f98e8729b2e8bc8dafb2208551f1ca731243e2ee5bb27224392836bfe2",
+      "source_page": 87,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7720,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0088.png",
+      "sha256": "076fec0497a4f2ee8e201477f64d4999e53b1ba58794351b59041ced2b679ba9",
+      "source_page": 88,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5972,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0089.png",
+      "sha256": "718bb89c5d0399bf6f3b9d8ea9ad10fb186c32dbcd86012da8c6c9e89ea582c4",
+      "source_page": 89,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4050,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0090.png",
+      "sha256": "c4cef6a3194c12a963dc2eb860dc9e0ff9abb786959548974746280b2daf1545",
+      "source_page": 90,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8110,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0091.png",
+      "sha256": "4f6bfdac590261c0c81f67b7a256abf03315df1cb6d21dd9be28f9f64497b159",
+      "source_page": 91,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6852,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0092.png",
+      "sha256": "1391d50eec3551b5c84f73e615b43eea4c4fa7368a7c7facb50dbd11599217ee",
+      "source_page": 92,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5787,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0093.png",
+      "sha256": "a69d5452f3c230c1e6670d3190a1f483e3c1c58a8bddb52c95471ccaff440f9e",
+      "source_page": 93,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8025,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0094.png",
+      "sha256": "55401f9c56365a227c55a8a0de9e56d192a050373ca5bacb85425963818c1f3f",
+      "source_page": 94,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7876,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0095.png",
+      "sha256": "460db0f1229fec665ba7b41017360d5087300375a1092a11cc9b77ace5de0a1b",
+      "source_page": 95,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7785,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0096.png",
+      "sha256": "4578bf0cc93db59c035bdeb965a6d2a0c4361b767e2df96ab48cf55afcdc0f88",
+      "source_page": 96,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7722,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0097.png",
+      "sha256": "90ba2286247a33eb5eb7f0548c3d1adc6d60b7ab1c3d8c0674f9eb055c68842d",
+      "source_page": 97,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 9178,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0098.png",
+      "sha256": "5c44449394364f3b740bd9667bbb7ce1c5fff8dfcef729e15258e441884900db",
+      "source_page": 98,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6599,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0099.png",
+      "sha256": "5564a14d689de31131d426c6bf559e1f936e0e73cf26644125fd520a39dc7860",
+      "source_page": 99,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5202,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0100.png",
+      "sha256": "b05b5a41037f53c2e7815cdf8e01ff62a1cbfd7660592b30d91afea4e5f44035",
+      "source_page": 100,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6806,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0101.png",
+      "sha256": "b54bec2080ffeb74cdbc043fe29939d99efa5f4c4bb0b9638ada8a3b3b59941e",
+      "source_page": 101,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5816,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0102.png",
+      "sha256": "696883adb1600a47b0da3ee46f409c1eadd2d3cc8ee5cea093ac5a31d34558fe",
+      "source_page": 102,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7051,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0103.png",
+      "sha256": "4007b2aa6c592f3796dfdb35f4c2c5a00965ec461afa9ae1ca9b2cd56f28ba1b",
+      "source_page": 103,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7295,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0104.png",
+      "sha256": "6d0aabfea16c69aab949e1fa874f40fc3711b88bfd2660943e7980545b5359f4",
+      "source_page": 104,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5572,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0105.png",
+      "sha256": "8c0d2f3cc5c8772804756c38fb2870ee6409e363d1a192a238df02b568c1207d",
+      "source_page": 105,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3960,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0106.png",
+      "sha256": "d7ce66f75774db0098e20b0188ad67ba9f76eac8c047f87bcaac04480b731b35",
+      "source_page": 106,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7444,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0107.png",
+      "sha256": "8a4b9e63c0aad991a1baa3c7ddafa1721a0f5851ff117fb0ef1e732a12559376",
+      "source_page": 107,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5587,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0108.png",
+      "sha256": "40cd80d5ec1dcee224593e3c996b15aa46d92e19fea182bab5eb1049664e39df",
+      "source_page": 108,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5740,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0109.png",
+      "sha256": "642312a3ea0120f984800781dbbed8731a9336afd63f713e4b9846b93b3a68c1",
+      "source_page": 109,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7760,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0110.png",
+      "sha256": "23834c1a9868adef34cfc5c0d3d94c587e497cd7dfcd6ff276f5afa1b09ea8c5",
+      "source_page": 110,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6563,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0111.png",
+      "sha256": "70409a77b910ab5ccac9aca8937242ffca774a10e977e39d49e4dabf10414043",
+      "source_page": 111,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7216,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0112.png",
+      "sha256": "f49e5df3fd937eaeff1f092f0885fd940344678c0c1d05d335219ee9aeaa717a",
+      "source_page": 112,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7044,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0113.png",
+      "sha256": "f5996187ea7f1047014b65bf5de7fabee49c57b78c82bab85624c7d2de7212ff",
+      "source_page": 113,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8866,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0114.png",
+      "sha256": "43bed9d6a10c1284522a60ed9fd0aa8a581ef44ce7b0637403cda83270534bff",
+      "source_page": 114,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5016,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0115.png",
+      "sha256": "45f13027b2de78dd3a5fbee501f5de6794ef02fc9277c89ccb76109292583e12",
+      "source_page": 115,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4679,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0116.png",
+      "sha256": "5e7cc4b6d6abf7d0e93ee57f8e28b7c7ce5cf0abc4f6810cdd7203d486654184",
+      "source_page": 116,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7037,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0117.png",
+      "sha256": "4458a5efef1b1bcda70d3364d53f6dbc072e104f30c831946023eca28c802e06",
+      "source_page": 117,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5865,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0118.png",
+      "sha256": "46d66c03de7aec52964b5178b4dc821d891f96d620d9aff054d4ad85b0d6e21b",
+      "source_page": 118,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7311,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0119.png",
+      "sha256": "129bf71302f6d92c5cb8a7135d840efe4f6683badf1493d58aab7d664a9bcbfc",
+      "source_page": 119,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6935,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0120.png",
+      "sha256": "a4e7cfbdd478d88c44a2697a9f1bcb3e0ff05c4bf492490a6fa27d67609f593a",
+      "source_page": 120,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5560,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0121.png",
+      "sha256": "7ec15eb9ae1a4318ccb7f8c8a804e746ee54b1357d3db0d974425b35a17770d3",
+      "source_page": 121,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3971,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0122.png",
+      "sha256": "dac28e8575945222d4ae6705c048cf18ab88bccba057980c3e6648cb3476d372",
+      "source_page": 122,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7363,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0123.png",
+      "sha256": "58ff13eeaf95be0f08f2bee38d675da8a15e9d826e32b0a597b3216d1d37352c",
+      "source_page": 123,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5604,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0124.png",
+      "sha256": "e5be229638308638d9446c37f1468abf926aea18f84f7b5496d3c2d206b6cc64",
+      "source_page": 124,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5598,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0125.png",
+      "sha256": "69f5a6ceee8d9ffcab70cfcc55d8d590f92683ec55ea0d2d77cd7d8d83a6bccb",
+      "source_page": 125,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7843,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0126.png",
+      "sha256": "127fa4af40e2130f8bfc707d78acd1bc5611e9a3de44c0031e6f9b523505028f",
+      "source_page": 126,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6720,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0127.png",
+      "sha256": "134af267189a482eda43e83ae4f3b3b517017f0db1ac65a085e2e7c95012d244",
+      "source_page": 127,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7294,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0128.png",
+      "sha256": "d8e6c64acc0efb9ab7205720c42bc7dcd33286338c90d07353c1074f30115c11",
+      "source_page": 128,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6966,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0129.png",
+      "sha256": "9a39f6e00aead6081b7baae70a2d2c77cf71ed45182865a46b360205021d79de",
+      "source_page": 129,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 8881,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0130.png",
+      "sha256": "3e9318433e9985bd9b02f4bb83b8db72a52f8c2aac51e6f06c4524b704595321",
+      "source_page": 130,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4938,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0131.png",
+      "sha256": "276625cf0a79e2621128c3d9f7e1c8d2e3914cae285bc4f6a779e6397a6ff753",
+      "source_page": 131,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4529,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0132.png",
+      "sha256": "482fbfdd1008bb9f0f67c3e59d41304b960c1987f7a2f226b99c7c8e5774b267",
+      "source_page": 132,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6864,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0133.png",
+      "sha256": "a7a76278333f294fbbb71768df69171cd1e857ad9ef515dd1686b822be0c012a",
+      "source_page": 133,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5766,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0134.png",
+      "sha256": "6dca6b3b227f1973e6c210afa400766f1c48ae38f690c833aca15f41b3f92750",
+      "source_page": 134,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7425,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0135.png",
+      "sha256": "2c846657ee81106309bed9b4ceff0a41f309b27ba9c20942277bb1453c5834f8",
+      "source_page": 135,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7309,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0136.png",
+      "sha256": "d83846b91a15ab4f0ca8550dd82ab7188893c623198c542384a9aa6b117996f6",
+      "source_page": 136,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5682,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0137.png",
+      "sha256": "5ce4c6022b3648661fb82f656cad5fdad35df56552d02b33f90b5455acf8488a",
+      "source_page": 137,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4116,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0138.png",
+      "sha256": "0f93e08a6fc3d39eef01f091b6f38e469b99c60ecced72a91a54d0532aa2d0d4",
+      "source_page": 138,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7458,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0139.png",
+      "sha256": "0ff5b1c6e9c152f98077273b838b946b9fa61183bce138b22ee177a3b7834c71",
+      "source_page": 139,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5669,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0140.png",
+      "sha256": "cf9589718eea058e3151056a7733a78f89be2b9613315ab329667f091a43085f",
+      "source_page": 140,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5598,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0141.png",
+      "sha256": "d544e5f118989f3544c02016e50ab4b51dfa2944cf9a067bec3d36af5fc565be",
+      "source_page": 141,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7938,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0142.png",
+      "sha256": "7bd10ecaaac730b01a1fea96d135078be300c9a2e16d214729b773e563de8b1d",
+      "source_page": 142,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6808,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0143.png",
+      "sha256": "7e9681ecb6874bb51a2c3daae889bec1d35ea653c1f7df26320e5c057a2aaa3c",
+      "source_page": 143,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7355,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0144.png",
+      "sha256": "5f54e83ae551acd5bc740f6d12568aa1b36d2947fbde0f4c4eae68b1978cf8bf",
+      "source_page": 144,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7307,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0145.png",
+      "sha256": "8356f993ad2bc13bace2b604c5380f216276d9f2f78bf94b24c33f243d671754",
+      "source_page": 145,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 9172,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0146.png",
+      "sha256": "11c7ea5646c60fdf57a7b0af7c8829b6db05a182f0c776c49f2bdbb3c4bfe0b8",
+      "source_page": 146,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5437,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0147.png",
+      "sha256": "bff797643067c695bf78b773599c53eb97811aff17a207cf673bc65f688df1ba",
+      "source_page": 147,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4887,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0148.png",
+      "sha256": "d461a51369cb80624dfe30c9be6cc58fe2becb89d54b97637742fe89be2b9334",
+      "source_page": 148,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7504,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0149.png",
+      "sha256": "c8eedf3319741d03547d89b4b60616b360eb6f9e1a7948cae01964841593edf5",
+      "source_page": 149,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5889,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0150.png",
+      "sha256": "dbb68144290e58a875c78a542fd2ea2370cbdf9405190fce66afcbd2fb1645ab",
+      "source_page": 150,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7211,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0151.png",
+      "sha256": "b9b23ddc48d38f03996c302d298e046e311835c58d35055442dff91f417f4a70",
+      "source_page": 151,
+      "visual_review_required": true
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 4610,
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0152.png",
+      "sha256": "1f19107002e7a0505932d8ae6acaa17d7a6b3a13caf0e8d34c48e53fbaeebd95",
+      "source_page": 152,
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-nl",
+      "build_eligible": false,
+      "byte_size": 90210,
+      "expected_sha256": "c037c858fe766ca9a3ba1afb6239236620047a1cc89909ade24a5bc5e6b35d04",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/nl/reference-overview_front_view-nl.png",
+      "repo_path": "artwork/nl/reference-overview_front_view-nl.png",
+      "sha256": "c037c858fe766ca9a3ba1afb6239236620047a1cc89909ade24a5bc5e6b35d04",
+      "source_page": 122,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-nl",
+      "build_eligible": false,
+      "byte_size": 37793,
+      "expected_sha256": "70e824fe0b2339c324cc520d2599bc5f27eef73c9b8809b2c546636f72cbb7de",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/nl/reference-overview_right_view-nl.png",
+      "repo_path": "artwork/nl/reference-overview_right_view-nl.png",
+      "sha256": "70e824fe0b2339c324cc520d2599bc5f27eef73c9b8809b2c546636f72cbb7de",
+      "source_page": 122,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-pl",
+      "build_eligible": false,
+      "byte_size": 93670,
+      "expected_sha256": "9461003c66580a1f7188e03eac4190a189fdbd90b0698360f911bb72c80f415e",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/pl/reference-overview_front_view-pl.png",
+      "repo_path": "artwork/pl/reference-overview_front_view-pl.png",
+      "sha256": "9461003c66580a1f7188e03eac4190a189fdbd90b0698360f911bb72c80f415e",
+      "source_page": 138,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-pl",
+      "build_eligible": false,
+      "byte_size": 44735,
+      "expected_sha256": "0e4c751969caa90f585ae1bd441b49d9651f92b04c9bb36511f07e53263eb913",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/pl/reference-overview_right_view-pl.png",
+      "repo_path": "artwork/pl/reference-overview_right_view-pl.png",
+      "sha256": "0e4c751969caa90f585ae1bd441b49d9651f92b04c9bb36511f07e53263eb913",
+      "source_page": 138,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-pt",
+      "build_eligible": false,
+      "byte_size": 88143,
+      "expected_sha256": "b7edc6e663213bb9e5c1b434d1c8948844fd9625361e4f5cfa33f74648a3c1b1",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/pt/reference-overview_front_view-pt.png",
+      "repo_path": "artwork/pt/reference-overview_front_view-pt.png",
+      "sha256": "b7edc6e663213bb9e5c1b434d1c8948844fd9625361e4f5cfa33f74648a3c1b1",
+      "source_page": 106,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-pt",
+      "build_eligible": false,
+      "byte_size": 40394,
+      "expected_sha256": "1a91d6d7799d3abeb9a7b53c924e3fb5879fd4a628a0bcd332cb513990ec1e8a",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/pt/reference-overview_right_view-pt.png",
+      "repo_path": "artwork/pt/reference-overview_right_view-pt.png",
+      "sha256": "1a91d6d7799d3abeb9a7b53c924e3fb5879fd4a628a0bcd332cb513990ec1e8a",
+      "source_page": 106,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-control",
+      "build_eligible": false,
+      "byte_size": 15568,
+      "expected_sha256": "4653c9cd4faf5f9add373894c9776b9e3028a9a2eeb9938fdea2956762c17885",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/app-control.png",
+      "repo_path": "artwork/shared/app-control.png",
+      "sha256": "4653c9cd4faf5f9add373894c9776b9e3028a9a2eeb9938fdea2956762c17885",
+      "source_page": 118,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-phone",
+      "build_eligible": false,
+      "byte_size": 93224,
+      "expected_sha256": "eba70d2cac9d117d5e53bf7572da12548d08f23ee824a473b652eb839bb93f77",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/app-phone.png",
+      "repo_path": "artwork/shared/app-phone.png",
+      "sha256": "eba70d2cac9d117d5e53bf7572da12548d08f23ee824a473b652eb839bb93f77",
+      "source_page": 118,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-result",
+      "build_eligible": false,
+      "byte_size": 80377,
+      "expected_sha256": "123ee64484e222f7565742843818885dc4e5520c47b8f5fcb60c362b04a562f7",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/app-result.png",
+      "repo_path": "artwork/shared/app-result.png",
+      "sha256": "123ee64484e222f7565742843818885dc4e5520c47b8f5fcb60c362b04a562f7",
+      "source_page": 119,
+      "text_policy": "localized-full-page",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "lcd-mode",
+      "build_eligible": false,
+      "byte_size": 60245,
+      "expected_sha256": "3a01e09d603ddc83289b3869304c7f45909dec2aaa650d4a84306e4dc4b8b55a",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/lcd-mode.png",
+      "repo_path": "artwork/shared/lcd-mode.png",
+      "sha256": "3a01e09d603ddc83289b3869304c7f45909dec2aaa650d4a84306e4dc4b8b55a",
+      "source_page": 111,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "operation-ac-output",
+      "build_eligible": false,
+      "byte_size": 82831,
+      "expected_sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/operation-ac-output.png",
+      "repo_path": "artwork/shared/operation-ac-output.png",
+      "sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12",
+      "source_page": 109,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "operation-dc-usb-output",
+      "build_eligible": false,
+      "byte_size": 91000,
+      "expected_sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/operation-dc-usb-output.png",
+      "repo_path": "artwork/shared/operation-dc-usb-output.png",
+      "sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d",
+      "source_page": 110,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "operation-main-power",
+      "build_eligible": false,
+      "byte_size": 52877,
+      "expected_sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/operation-main-power.png",
+      "repo_path": "artwork/shared/operation-main-power.png",
+      "sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd",
+      "source_page": 109,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-car_charging",
+      "build_eligible": false,
+      "byte_size": 113385,
+      "expected_sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/reference-car_charging.png",
+      "repo_path": "artwork/shared/reference-car_charging.png",
+      "sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+      "source_page": 114,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-energy_saving",
+      "build_eligible": false,
+      "byte_size": 70577,
+      "expected_sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/reference-energy_saving.png",
+      "repo_path": "artwork/shared/reference-energy_saving.png",
+      "sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27",
+      "source_page": 111,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-solar_four",
+      "build_eligible": false,
+      "byte_size": 175480,
+      "expected_sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/artwork/shared/reference-solar_four.png",
+      "repo_path": "artwork/shared/reference-solar_four.png",
+      "sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda",
+      "source_page": 114,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "operation-main-power",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd",
+          "format": "png",
+          "path": "artwork/shared/operation-main-power.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 109,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            38.0,
+            78.0,
+            340.0,
+            157.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            180.0,
+            145.0,
+            181.0,
+            146.0
+          ],
+          "graphics": "remove_if_touched",
+          "images": "preserve",
+          "op": "redact_text_region"
+        },
+        {
+          "bbox_pt": [
+            200.0,
+            151.0,
+            201.0,
+            152.0
+          ],
+          "graphics": "remove_if_touched",
+          "images": "preserve",
+          "op": "redact_text_region"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "operation-ac-output",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12",
+          "format": "png",
+          "path": "artwork/shared/operation-ac-output.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 109,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            35.0,
+            272.0,
+            340.0,
+            467.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            60.0,
+            280.0,
+            61.0,
+            281.0
+          ],
+          "graphics": "remove_if_touched",
+          "images": "preserve",
+          "op": "redact_text_region"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "operation-dc-usb-output",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d",
+          "format": "png",
+          "path": "artwork/shared/operation-dc-usb-output.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 110,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            35.0,
+            47.0,
+            341.0,
+            210.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            60.0,
+            55.0,
+            61.0,
+            56.0
+          ],
+          "graphics": "remove_if_touched",
+          "images": "preserve",
+          "op": "redact_text_region"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-energy_saving",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27",
+          "format": "png",
+          "path": "artwork/shared/reference-energy_saving.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 111,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            35.0,
+            36.0,
+            337.0,
+            130.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            200.0,
+            117.0,
+            201.0,
+            118.0
+          ],
+          "graphics": "remove_if_touched",
+          "images": "preserve",
+          "op": "redact_text_region"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "lcd-mode",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "3a01e09d603ddc83289b3869304c7f45909dec2aaa650d4a84306e4dc4b8b55a",
+          "format": "png",
+          "path": "artwork/shared/lcd-mode.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 111,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            37.0,
+            201.0,
+            333.0,
+            280.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-solar_four",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda",
+          "format": "png",
+          "path": "artwork/shared/reference-solar_four.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 114,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            28.0,
+            28.0,
+            342.0,
+            160.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-car_charging",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+          "format": "png",
+          "path": "artwork/shared/reference-car_charging.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 114,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            28.0,
+            306.0,
+            341.0,
+            437.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            185.5,
+            416.4,
+            324.8,
+            430.8
+          ],
+          "op": "copy_pdf_region",
+          "other_bbox_pt": [
+            180.0,
+            309.0,
+            319.3,
+            323.4
+          ]
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-phone",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "eba70d2cac9d117d5e53bf7572da12548d08f23ee824a473b652eb839bb93f77",
+          "format": "png",
+          "path": "artwork/shared/app-phone.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 118,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            100.0,
+            215.5,
+            269.0,
+            366.5
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-result",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "123ee64484e222f7565742843818885dc4e5520c47b8f5fcb60c362b04a562f7",
+          "format": "png",
+          "path": "artwork/shared/app-result.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 119,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            54.0,
+            145.0,
+            320.0,
+            294.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "app-control",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "4653c9cd4faf5f9add373894c9776b9e3028a9a2eeb9938fdea2956762c17885",
+          "format": "png",
+          "path": "artwork/shared/app-control.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 118,
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ],
+      "scope": {
+        "locales": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            28.0,
+            379.0,
+            341.0,
+            471.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-pt",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "b7edc6e663213bb9e5c1b434d1c8948844fd9625361e4f5cfa33f74648a3c1b1",
+          "format": "png",
+          "path": "artwork/pt/reference-overview_front_view-pt.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 106,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "pt"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            76.0,
+            344.0,
+            289.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-pt",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "1a91d6d7799d3abeb9a7b53c924e3fb5879fd4a628a0bcd332cb513990ec1e8a",
+          "format": "png",
+          "path": "artwork/pt/reference-overview_right_view-pt.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 106,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "pt"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            328.0,
+            344.0,
+            444.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-nl",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "c037c858fe766ca9a3ba1afb6239236620047a1cc89909ade24a5bc5e6b35d04",
+          "format": "png",
+          "path": "artwork/nl/reference-overview_front_view-nl.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 122,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "nl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            76.0,
+            344.0,
+            289.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-nl",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "70e824fe0b2339c324cc520d2599bc5f27eef73c9b8809b2c546636f72cbb7de",
+          "format": "png",
+          "path": "artwork/nl/reference-overview_right_view-nl.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 122,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "nl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            328.0,
+            344.0,
+            444.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_front_view-pl",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "9461003c66580a1f7188e03eac4190a189fdbd90b0698360f911bb72c80f415e",
+          "format": "png",
+          "path": "artwork/pl/reference-overview_front_view-pl.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 138,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            76.0,
+            344.0,
+            289.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "reference-overview_right_view-pl",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Frozen target package; no live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "0e4c751969caa90f585ae1bd441b49d9651f92b04c9bb36511f07e53263eb913",
+          "format": "png",
+          "path": "artwork/pl/reference-overview_right_view-pl.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 138,
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized"
+      ],
+      "scope": {
+        "locales": [
+          "pl"
+        ],
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "transforms": [
+        {
+          "bbox_pt": [
+            25.0,
+            328.0,
+            344.0,
+            444.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    }
+  ],
+  "coordinate_contract": {
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page",
+    "bbox_units": "pt",
+    "page_numbering": "pdf-1-based"
+  },
+  "indexes": {
+    "artifacts_csv": {
+      "path": "artifacts.csv",
+      "sha256": "cdbdc017aa06ab7a965a145c3f1a2435e8b3c787e25fee8d020444678588cf5c"
+    }
+  },
+  "manifest_version": 1,
+  "normalization": {
+    "engine": "pymupdf",
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000,
+    "pdf_save": {
+      "clean": true,
+      "deflate": true,
+      "garbage": 4,
+      "no_new_id": true
+    },
+    "validated_mupdf_version": "1.29.0",
+    "validated_version": "1.28.0"
+  },
+  "page_catalog": [
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 1,
+      "page_key": "native_source_001",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 2,
+      "page_key": "native_source_002",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 3,
+      "page_key": "native_source_003",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 4,
+      "page_key": "native_source_004",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 5,
+      "page_key": "native_source_005",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 6,
+      "page_key": "native_source_006",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 7,
+      "page_key": "native_source_007",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 8,
+      "page_key": "native_source_008",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 9,
+      "page_key": "native_source_009",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 10,
+      "page_key": "native_source_010",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 11,
+      "page_key": "native_source_011",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 12,
+      "page_key": "native_source_012",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 13,
+      "page_key": "native_source_013",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 14,
+      "page_key": "native_source_014",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 15,
+      "page_key": "native_source_015",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 16,
+      "page_key": "native_source_016",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 17,
+      "page_key": "native_source_017",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 18,
+      "page_key": "native_source_018",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 19,
+      "page_key": "native_source_019",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 20,
+      "page_key": "native_source_020",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 21,
+      "page_key": "native_source_021",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 22,
+      "page_key": "native_source_022",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 23,
+      "page_key": "native_source_023",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 24,
+      "page_key": "native_source_024",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 25,
+      "page_key": "native_source_025",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 26,
+      "page_key": "native_source_026",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 27,
+      "page_key": "native_source_027",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 28,
+      "page_key": "native_source_028",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 29,
+      "page_key": "native_source_029",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 30,
+      "page_key": "native_source_030",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 31,
+      "page_key": "native_source_031",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 32,
+      "page_key": "native_source_032",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 33,
+      "page_key": "native_source_033",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 34,
+      "page_key": "native_source_034",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 35,
+      "page_key": "native_source_035",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 36,
+      "page_key": "native_source_036",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 37,
+      "page_key": "native_source_037",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 38,
+      "page_key": "native_source_038",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 39,
+      "page_key": "native_source_039",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 40,
+      "page_key": "native_source_040",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 41,
+      "page_key": "native_source_041",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 42,
+      "page_key": "native_source_042",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 43,
+      "page_key": "native_source_043",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 44,
+      "page_key": "native_source_044",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 45,
+      "page_key": "native_source_045",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 46,
+      "page_key": "native_source_046",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 47,
+      "page_key": "native_source_047",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 48,
+      "page_key": "native_source_048",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 49,
+      "page_key": "native_source_049",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 50,
+      "page_key": "native_source_050",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 51,
+      "page_key": "native_source_051",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 52,
+      "page_key": "native_source_052",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 53,
+      "page_key": "native_source_053",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 54,
+      "page_key": "native_source_054",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 55,
+      "page_key": "native_source_055",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 56,
+      "page_key": "native_source_056",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 57,
+      "page_key": "native_source_057",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 58,
+      "page_key": "native_source_058",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 59,
+      "page_key": "native_source_059",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 60,
+      "page_key": "native_source_060",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 61,
+      "page_key": "native_source_061",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 62,
+      "page_key": "native_source_062",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 63,
+      "page_key": "native_source_063",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 64,
+      "page_key": "native_source_064",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 65,
+      "page_key": "native_source_065",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 66,
+      "page_key": "native_source_066",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 67,
+      "page_key": "native_source_067",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 68,
+      "page_key": "native_source_068",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 69,
+      "page_key": "native_source_069",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 70,
+      "page_key": "native_source_070",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 71,
+      "page_key": "native_source_071",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 72,
+      "page_key": "native_source_072",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 73,
+      "page_key": "native_source_073",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 74,
+      "page_key": "native_source_074",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 75,
+      "page_key": "native_source_075",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 76,
+      "page_key": "native_source_076",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 77,
+      "page_key": "native_source_077",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 78,
+      "page_key": "native_source_078",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 79,
+      "page_key": "native_source_079",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 80,
+      "page_key": "native_source_080",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 81,
+      "page_key": "native_source_081",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 82,
+      "page_key": "native_source_082",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 83,
+      "page_key": "native_source_083",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 84,
+      "page_key": "native_source_084",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 85,
+      "page_key": "native_source_085",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 86,
+      "page_key": "native_source_086",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 87,
+      "page_key": "native_source_087",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 88,
+      "page_key": "native_source_088",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 89,
+      "page_key": "native_source_089",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 90,
+      "page_key": "native_source_090",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 91,
+      "page_key": "native_source_091",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 92,
+      "page_key": "native_source_092",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 93,
+      "page_key": "native_source_093",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 94,
+      "page_key": "native_source_094",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 95,
+      "page_key": "native_source_095",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 96,
+      "page_key": "native_source_096",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 97,
+      "page_key": "native_source_097",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 98,
+      "page_key": "native_source_098",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 99,
+      "page_key": "native_source_099",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 100,
+      "page_key": "native_source_100",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 101,
+      "page_key": "native_source_101",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 102,
+      "page_key": "native_source_102",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 103,
+      "page_key": "native_source_103",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 104,
+      "page_key": "native_source_104",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 105,
+      "page_key": "native_source_105",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 106,
+      "page_key": "native_source_106",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 107,
+      "page_key": "native_source_107",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 108,
+      "page_key": "native_source_108",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 109,
+      "page_key": "native_source_109",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 110,
+      "page_key": "native_source_110",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 111,
+      "page_key": "native_source_111",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 112,
+      "page_key": "native_source_112",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 113,
+      "page_key": "native_source_113",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 114,
+      "page_key": "native_source_114",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 115,
+      "page_key": "native_source_115",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 116,
+      "page_key": "native_source_116",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 117,
+      "page_key": "native_source_117",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 118,
+      "page_key": "native_source_118",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 119,
+      "page_key": "native_source_119",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 120,
+      "page_key": "native_source_120",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 121,
+      "page_key": "native_source_121",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 122,
+      "page_key": "native_source_122",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 123,
+      "page_key": "native_source_123",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 124,
+      "page_key": "native_source_124",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 125,
+      "page_key": "native_source_125",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 126,
+      "page_key": "native_source_126",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 127,
+      "page_key": "native_source_127",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 128,
+      "page_key": "native_source_128",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 129,
+      "page_key": "native_source_129",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 130,
+      "page_key": "native_source_130",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 131,
+      "page_key": "native_source_131",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 132,
+      "page_key": "native_source_132",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 133,
+      "page_key": "native_source_133",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 134,
+      "page_key": "native_source_134",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 135,
+      "page_key": "native_source_135",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 136,
+      "page_key": "native_source_136",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 137,
+      "page_key": "native_source_137",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 138,
+      "page_key": "native_source_138",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 139,
+      "page_key": "native_source_139",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 140,
+      "page_key": "native_source_140",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 141,
+      "page_key": "native_source_141",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 142,
+      "page_key": "native_source_142",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 143,
+      "page_key": "native_source_143",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 144,
+      "page_key": "native_source_144",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 145,
+      "page_key": "native_source_145",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 146,
+      "page_key": "native_source_146",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 147,
+      "page_key": "native_source_147",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 148,
+      "page_key": "native_source_148",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 149,
+      "page_key": "native_source_149",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 150,
+      "page_key": "native_source_150",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 151,
+      "page_key": "native_source_151",
+      "risk_tags": [],
+      "role": "manual_page"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ],
+        "status": "quarantine"
+      },
+      "locale": "mul",
+      "page": 152,
+      "page_key": "native_source_152",
+      "risk_tags": [],
+      "role": "manual_page"
+    }
+  ],
+  "recipe_sha256": "6ea6a22d085ca5c9ed17fa5f3237bf606c1d1c058a6ef4c5da496033d740ffc0",
+  "runtime": {
+    "mupdf_version": "1.29.0",
+    "pymupdf_version": "1.28.0"
+  },
+  "source": {
+    "ai_metadata_count": 1,
+    "ai_private_data_count": 521,
+    "page_count": 152,
+    "piece_info_count": 152,
+    "sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+    "source_key": "source/je3000c-eu-three-locales-native"
+  }
+}

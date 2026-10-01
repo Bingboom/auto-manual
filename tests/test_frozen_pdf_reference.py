@@ -37,6 +37,75 @@ def fixture():
 
 
 class FrozenPdfReferenceTests(unittest.TestCase):
+    def test_je3000c_caption_box_is_css_without_empty_box_in_shared_raster(self):
+        from PIL import Image
+        import hashlib
+        from urllib.parse import unquote, urlsplit
+
+        source = (Path(__file__).resolve().parents[1] / 'manual_sources/JE-3000C/EU/'
+                  'three-language/git-20261001-45219a6e-native-web/web')
+        image_hashes = set()
+        with TemporaryDirectory() as directory:
+            for language in ('pt', 'nl', 'pl'):
+                target = Path(directory) / language
+                shutil.copytree(source / language, target)
+                soup = BeautifulSoup(''.join(replay_package(target)), 'html.parser')
+                panel = soup.select_one('[data-reference-id="car_charging"]')
+                self.assertEqual(1, len(panel.select('.hb-reference-live-pill')))
+                self.assertTrue(panel.select_one('.hb-reference-live-pill').get_text(strip=True))
+                self.assertEqual(2, len(panel.select('.hb-reference-live-label')))
+                image_path = Path(unquote(urlsplit(panel.img['src']).path))
+                if not image_path.is_absolute():
+                    image_path = target / image_path
+                image = Image.open(image_path).convert('RGB')
+                # This used to contain the empty white source capsule. Its
+                # textless art is now uniformly the native gray panel tone.
+                pixels = list(image.crop((634, 448, 1180, 497)).getdata())
+                self.assertTrue(all(max(abs(c - expected) for c, expected in
+                                        zip(pixel, (242, 243, 243))) <= 1 for pixel in pixels))
+                image_hashes.add(hashlib.sha256(image_path.read_bytes()).hexdigest())
+        self.assertEqual(1, len(image_hashes))
+
+    def test_native_geometry_splits_merged_labels_and_rejects_wrong_provenance(self):
+        book, bindings = fixture()
+        book.source['pages'][0]['blocks_visual_order'][0]['text'] = 'Main button\nAC button'
+        book.records = {'reference_captions': {'solar': {
+            'physical_page': 5, 'labels': [
+                {'text': 'Main button', 'bbox': [220, 160, 270, 174]},
+                {'text': 'AC button', 'bbox': [280, 160, 330, 174]},
+            ],
+        }}}
+        bindings['solar'].pop('live_labels')
+        bindings['solar']['native_captions'] = True
+        bindings['solar']['base_art_layout']['labels'] = [
+            {'line': 0, 'rect': [60, 80, 18, 10]},
+            {'line': 1, 'rect': [80, 80, 18, 10]},
+        ]
+        original = deepcopy(book.records)
+        bind_reference_labels(book, bindings)
+        self.assertEqual(original, book.records)
+        self.assertEqual(['Main button', 'AC button'],
+                         [item['text'] for item in book.figures[0]['live_captions']])
+        self.assertEqual(2, len(reference_label_regions(book.figures)))
+        spec, = component_specs_in_flow((labeled_artwork_node(book.figures[0], 'assets/a.png', 'pl'),))
+        self.assertEqual(2, len(spec.slot('captions').content))
+        for mode in ('wrong-page', 'outside', 'duplicate', 'empty', 'mixed'):
+            with self.subTest(mode=mode):
+                changed, binding = deepcopy(book), deepcopy(bindings)
+                record = changed.records['reference_captions']['solar']
+                if mode == 'wrong-page':
+                    record['physical_page'] = 6
+                elif mode == 'outside':
+                    record['labels'][1]['bbox'][2] = 341
+                elif mode == 'duplicate':
+                    record['labels'][1] = deepcopy(record['labels'][0])
+                elif mode == 'empty':
+                    record['labels'][1]['text'] = ' '
+                else:
+                    binding['solar']['live_labels'] = ['Other']
+                with self.assertRaises(ValueError):
+                    bind_reference_labels(changed, binding)
+
     def test_finished_caption_panel_keeps_native_copy_without_duplicate_caption_row(self):
         book = object.__new__(PdfBook)
         book.language = 'pt'

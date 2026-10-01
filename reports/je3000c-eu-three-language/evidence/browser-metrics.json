@@ -1,0 +1,74 @@
+[
+  {
+    "lang": "pt",
+    "width": 1280,
+    "broken": [],
+    "carLabels": [
+      "Veículo",
+      "*O cabo de carregamento veicular é vendido separadamente."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 1280
+  },
+  {
+    "lang": "pt",
+    "width": 390,
+    "broken": [],
+    "carLabels": [
+      "Veículo",
+      "*O cabo de carregamento veicular é vendido separadamente."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 390
+  },
+  {
+    "lang": "nl",
+    "width": 1280,
+    "broken": [],
+    "carLabels": [
+      "Voertuig",
+      "*De oplaadkabel voor de auto is apart verkrijgbaar."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 1280
+  },
+  {
+    "lang": "nl",
+    "width": 390,
+    "broken": [],
+    "carLabels": [
+      "Voertuig",
+      "*De oplaadkabel voor de auto is apart verkrijgbaar."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 390
+  },
+  {
+    "lang": "pl",
+    "width": 1280,
+    "broken": [],
+    "carLabels": [
+      "Pojazd",
+      "* Przewód samochodowy do ładowania jest sprzedawany osobno."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 1280
+  },
+  {
+    "lang": "pl",
+    "width": 390,
+    "broken": [],
+    "carLabels": [
+      "Pojazd",
+      "* Przewód samochodowy do ładowania jest sprzedawany osobno."
+    ],
+    "carPills": 1,
+    "images": 55,
+    "scrollWidth": 390
+  }
+]
