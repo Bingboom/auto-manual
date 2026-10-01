@@ -361,9 +361,28 @@ are unaffected.
 
 ## Deliverables page
 
-`/workspace/deliverables/` (交付物) gathers the links to what the pipeline has
-delivered in one table. It is grouped by model, with one row per region and one
-column per format:
+`/workspace/deliverables/` (说明书工作台) is the production navigation surface.
+The stable URL is retained. Its compact work map follows the README:
+**structured data + templates/skeletons → build/publish → multi-format outputs**.
+Selecting a node reveals its work destinations, operating guides and next step.
+The data/template inputs visibly converge before the build stage. The system
+workspace remains the capability/progress view; this page links to it.
+
+`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
+using business destinations from `user-guide/two_plane_map.md` and the README's
+existing authoritative guides. Templates/configuration link to auto-manual;
+business Actions and PRs link to Hello-Docs. Feishu links require the user's
+existing access. This is navigation only: it does not launch jobs, access live
+APIs, invent per-target review links or duplicate capability status. Changes to
+business coordinates must update the authoritative topology and this entry map.
+
+All links and panels are rendered at build time. `manual-workbench.js` only
+switches the selected panel, using native buttons and `aria-pressed`; without
+JavaScript, every panel stays visible. Styling is scoped to the workbench and
+reuses the workspace shell. The hero provides a direct matrix anchor.
+
+Below the map, the unchanged delivery data is grouped by model, with one row
+per region and one column per format:
 
 | Column | What it links to | Source |
 | --- | --- | --- |
@@ -375,8 +394,9 @@ column per format:
   whole-book document that carries all its languages in one file.
 - The PDF has no link of its own: it ships inside the handoff ZIP, and the
   publish tree refuses PDF files.
-- Two selects filter the table by model and by region. On a phone, each region
-  becomes a card with the formats stacked.
+- Two selects filter the table by model and by region. On a phone, the table
+  remains a matrix in a keyboard-focusable horizontal scroll region, with the
+  region column pinned. Long version identifiers wrap instead of widening the page.
 - Product names come from the manual center. A model that the manual center
   does not list shows its code only. The build table's own product names are
   not used, because some of them are wrong or empty.
