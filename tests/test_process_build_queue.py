@@ -2,15 +2,21 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+from dataclasses import replace
 from datetime import datetime, timedelta
 from pathlib import Path
 from unittest import mock
 
-from tools import process_build_queue
-from tools import process_build_queue_main
 from tests.test_helpers import temp_test_root
+from tools import process_build_queue, process_build_queue_main
+from tools.process_build_queue_deps import QueueDeps, default_queue_deps
 
 _IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
+
+
+def _queue_deps(**overrides: object) -> QueueDeps:
+    """Run-scoped collaborators; built inside the test body so defaults see active patches."""
+    return replace(default_queue_deps(process_build_queue), **overrides)  # type: ignore[arg-type]
 
 
 def _write_minimal_production_idml(path: Path) -> None:
@@ -1644,47 +1650,44 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-                sync_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_config_path_for_task",
-                return_value=Path("configs/config.us-en.yaml"),
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "upload_word_to_drive",
-                return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_wiki_destination",
-                return_value=process_build_queue.WikiDestination(
-                    space_id="space_123",
-                    parent_wiki_token="wiki_parent",
+            with (
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_config_path_for_task",
+                    return_value=Path("configs/config.us-en.yaml"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "move_drive_file_to_wiki",
-                return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="bot",
+                mock.patch.object(
+                    process_build_queue,
+                    "upload_word_to_drive",
+                    return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+                ),
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_wiki_destination",
+                    return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    ),
+                ),
+                mock.patch.object(
+                    process_build_queue,
+                    "move_drive_file_to_wiki",
+                    return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                ),
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
                     config_path=Path("config.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
+                    deps=_queue_deps(
+                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                        source_factory=mock.MagicMock(return_value=FakeSource()),
+                        sync_phase2_snapshot_before_queue=sync_mock,
+                        build_document_for_task=build_document_mock,
+                        phase2_identity=mock.MagicMock(return_value="bot"),
+                    ),
                 )
 
         self.assertEqual(0, exit_code)
@@ -1794,54 +1797,36 @@ class TestProcessBuildQueue(unittest.TestCase):
                 finalize_calls.append(kwargs)
                 return str(kwargs["cloud_doc_url"])
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                return_value=process_build_queue.BuiltDocumentOutputs(
-                    word_output_path=word_path,
-                    upload_output_path=word_path,
-                    md_output_path=md_path,
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    build_document_for_task=mock.MagicMock(return_value=process_build_queue.BuiltDocumentOutputs(
+                        word_output_path=word_path,
+                        upload_output_path=word_path,
+                        md_output_path=md_path,
+                    )),
+                    resolve_artifact_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    )),
+                    publish_word_artifact=mock.MagicMock(return_value=process_build_queue.ArtifactPublishResult(
+                        provider="lark_drive",
+                        reference_id="file_token_123",
+                        latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                        document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                        status_notes=("published_artifact=docx",),
+                    )),
+                    import_markdown_to_cloud_doc=mock.MagicMock(side_effect=fake_import_markdown_to_cloud_doc),
+                    finalize_cloud_doc=mock.MagicMock(side_effect=fake_finalize_cloud_doc),
+                    phase2_identity=mock.MagicMock(return_value="bot"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=process_build_queue.WikiDestination(
-                    space_id="space_123",
-                    parent_wiki_token="wiki_parent",
-                ),
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                return_value=process_build_queue.ArtifactPublishResult(
-                    provider="lark_drive",
-                    reference_id="file_token_123",
-                    latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
-                    document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-                    status_notes=("published_artifact=docx",),
-                ),
-            ), mock.patch.object(
-                process_build_queue,
-                "import_markdown_to_cloud_doc",
-                side_effect=fake_import_markdown_to_cloud_doc,
-            ), mock.patch.object(
-                process_build_queue,
-                "finalize_cloud_doc",
-                side_effect=fake_finalize_cloud_doc,
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="bot",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            )
 
         self.assertEqual(0, exit_code)
         # two imports: the editable cloud doc + the frozen baseline. Both import the
@@ -1939,50 +1924,35 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                return_value=process_build_queue.BuiltDocumentOutputs(
-                    word_output_path=word_path,
-                    upload_output_path=word_path,
-                    md_output_path=md_path,
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    build_document_for_task=mock.MagicMock(return_value=process_build_queue.BuiltDocumentOutputs(
+                        word_output_path=word_path,
+                        upload_output_path=word_path,
+                        md_output_path=md_path,
+                    )),
+                    resolve_artifact_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    )),
+                    publish_word_artifact=mock.MagicMock(return_value=process_build_queue.ArtifactPublishResult(
+                        provider="lark_drive",
+                        reference_id="file_token_123",
+                        latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
+                        document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                        status_notes=("published_artifact=docx",),
+                    )),
+                    import_markdown_to_cloud_doc=mock.MagicMock(side_effect=RuntimeError("cloud import failed")),
+                    phase2_identity=mock.MagicMock(return_value="bot"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=process_build_queue.WikiDestination(
-                    space_id="space_123",
-                    parent_wiki_token="wiki_parent",
-                ),
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                return_value=process_build_queue.ArtifactPublishResult(
-                    provider="lark_drive",
-                    reference_id="file_token_123",
-                    latest_link_url="https://test-degwga5x6ex8.feishu.cn/file/file_token_123",
-                    document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-                    status_notes=("published_artifact=docx",),
-                ),
-            ), mock.patch.object(
-                process_build_queue,
-                "import_markdown_to_cloud_doc",
-                side_effect=RuntimeError("cloud import failed"),
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="bot",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            )
 
         self.assertEqual(1, exit_code)
         failure_payload = captured_upserts[-1]["record"]
@@ -2051,47 +2021,44 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-                sync_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_config_path_for_task",
-                return_value=Path("configs/config.ja.yaml"),
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "upload_word_to_drive",
-                return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_wiki_destination",
-                return_value=process_build_queue.WikiDestination(
-                    space_id="space_123",
-                    parent_wiki_token="wiki_parent",
+            with (
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_config_path_for_task",
+                    return_value=Path("configs/config.ja.yaml"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "move_drive_file_to_wiki",
-                side_effect=RuntimeError("permission | Permission denied [99991679]"),
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
+                mock.patch.object(
+                    process_build_queue,
+                    "upload_word_to_drive",
+                    return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+                ),
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_wiki_destination",
+                    return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    ),
+                ),
+                mock.patch.object(
+                    process_build_queue,
+                    "move_drive_file_to_wiki",
+                    side_effect=RuntimeError("permission | Permission denied [99991679]"),
+                ),
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
                     config_path=Path("configs/config.ja.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
+                    deps=_queue_deps(
+                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                        source_factory=mock.MagicMock(return_value=FakeSource()),
+                        sync_phase2_snapshot_before_queue=sync_mock,
+                        build_document_for_task=build_document_mock,
+                        phase2_identity=mock.MagicMock(return_value="user"),
+                    ),
                 )
 
         self.assertEqual(0, exit_code)
@@ -2171,39 +2138,34 @@ class TestProcessBuildQueue(unittest.TestCase):
                 _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
-        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-            process_build_queue,
-            "resolve_document_link_binding",
-            return_value=binding,
-        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-            process_build_queue,
-            "sync_phase2_snapshot_before_queue",
-            sync_mock,
-        ), mock.patch.object(
-            process_build_queue,
-            "resolve_config_path_for_task",
-            return_value=Path("configs/config.ja.yaml"),
-        ), mock.patch.object(
-            process_build_queue,
-            "build_document_for_task",
-            build_document_mock,
-        ), mock.patch.object(
-            process_build_queue,
-            "resolve_wiki_destination",
-            return_value=process_build_queue.WikiDestination(
-                space_id="space_123",
-                parent_wiki_token="wiki_parent",
+        with (
+            mock.patch.object(
+                process_build_queue,
+                "resolve_config_path_for_task",
+                return_value=Path("configs/config.ja.yaml"),
             ),
-        ), mock.patch.object(
-            process_build_queue,
-            "_phase2_identity",
-            return_value="bot",
+            mock.patch.object(
+                process_build_queue,
+                "resolve_wiki_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ),
         ):
             exit_code = process_build_queue.process_build_queue(
                 cfg=cfg,
                 config_path=Path("config.yaml"),
                 data_root="data/phase2",
                 dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                    build_document_for_task=build_document_mock,
+                    phase2_identity=mock.MagicMock(return_value="bot"),
+                ),
             )
 
         self.assertEqual(1, exit_code)
@@ -2275,47 +2237,44 @@ class TestProcessBuildQueue(unittest.TestCase):
                 _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
-        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-            process_build_queue,
-            "resolve_document_link_binding",
-            return_value=binding,
-        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-            process_build_queue,
-            "sync_phase2_snapshot_before_queue",
-            sync_mock,
-        ), mock.patch.object(
-            process_build_queue,
-            "resolve_config_path_for_task",
-            return_value=Path("configs/config.us-en.yaml"),
-        ), mock.patch.object(
-            process_build_queue,
-            "build_document_for_task",
-            build_document_mock,
-        ), mock.patch.object(
-            process_build_queue,
-            "upload_word_to_drive",
-            return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
-        ), mock.patch.object(
-            process_build_queue,
-            "resolve_wiki_destination",
-            return_value=process_build_queue.WikiDestination(
-                space_id="space_123",
-                parent_wiki_token="wiki_parent",
+        with (
+            mock.patch.object(
+                process_build_queue,
+                "resolve_config_path_for_task",
+                return_value=Path("configs/config.us-en.yaml"),
             ),
-        ), mock.patch.object(
-            process_build_queue,
-            "move_drive_file_to_wiki",
-            return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-        ), mock.patch.object(
-            process_build_queue,
-            "_phase2_identity",
-            return_value="user",
+            mock.patch.object(
+                process_build_queue,
+                "upload_word_to_drive",
+                return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
+            ),
+            mock.patch.object(
+                process_build_queue,
+                "resolve_wiki_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
+            ),
+            mock.patch.object(
+                process_build_queue,
+                "move_drive_file_to_wiki",
+                return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+            ),
         ):
             exit_code = process_build_queue.process_build_queue(
                 cfg=cfg,
                 config_path=Path("config.yaml"),
                 data_root="data/phase2",
                 dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                    build_document_for_task=build_document_mock,
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
             )
 
         self.assertEqual(0, exit_code)
@@ -2386,31 +2345,28 @@ class TestProcessBuildQueue(unittest.TestCase):
                 _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
-        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-            process_build_queue,
-            "resolve_document_link_binding",
-            return_value=binding,
-        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-            process_build_queue,
-            "sync_phase2_snapshot_before_queue",
-            sync_mock,
-        ), mock.patch.object(
-            process_build_queue,
-            "resolve_wiki_destination",
-            return_value=process_build_queue.WikiDestination(
-                space_id="space_123",
-                parent_wiki_token="wiki_parent",
+        with (
+            mock.patch.object(
+                process_build_queue,
+                "resolve_wiki_destination",
+                return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                ),
             ),
-        ), mock.patch.object(
-            process_build_queue,
-            "_phase2_identity",
-            return_value="user",
         ):
             exit_code = process_build_queue.process_build_queue(
                 cfg=cfg,
                 config_path=Path("config.yaml"),
                 data_root="data/phase2",
                 dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
             )
 
         self.assertEqual(1, exit_code)
@@ -2497,42 +2453,39 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "upload_word_to_drive",
-                return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_wiki_destination",
-                return_value=process_build_queue.WikiDestination(
-                    space_id="space_123",
-                    parent_wiki_token="wiki_parent",
+            with (
+                mock.patch.object(
+                    process_build_queue,
+                    "upload_word_to_drive",
+                    return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "move_drive_file_to_wiki",
-                return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="bot",
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_wiki_destination",
+                    return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    ),
+                ),
+                mock.patch.object(
+                    process_build_queue,
+                    "move_drive_file_to_wiki",
+                    return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
+                ),
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
                     config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
+                    deps=_queue_deps(
+                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                        source_factory=mock.MagicMock(return_value=FakeSource()),
+                        sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                        build_document_for_task=build_document_mock,
+                        phase2_identity=mock.MagicMock(return_value="bot"),
+                    ),
                 )
 
         self.assertEqual(0, exit_code)
@@ -2790,43 +2743,24 @@ class TestProcessBuildQueue(unittest.TestCase):
                     status_notes=("dingtalk_sync=ok",),
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=wiki_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_dingtalk_mirror_destination",
-                return_value=dingtalk_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(return_value=wiki_destination),
+                    resolve_dingtalk_mirror_destination=mock.MagicMock(return_value=dingtalk_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    ensure_dingtalk_session_ready=mock.MagicMock(),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         # Draft no longer uploads the artifact (nor mirrors it to DingTalk), so the
@@ -2925,48 +2859,28 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=wiki_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_dingtalk_mirror_destination",
-                return_value=dingtalk_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-                side_effect=RuntimeError(
-                    "No AliDocs session found for operator_union_id=alice. "
-                    "Expected session file C:/Users/Administrator/.auto-manual/dingtalk-sessions/alice.json "
-                    "or environment variables DINGTALK_DOCS_A_TOKEN, DINGTALK_DOCS_XSRF_TOKEN, DINGTALK_DOCS_COOKIE."
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(return_value=wiki_destination),
+                    resolve_dingtalk_mirror_destination=mock.MagicMock(return_value=dingtalk_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    ensure_dingtalk_session_ready=mock.MagicMock(side_effect=RuntimeError(
+                        "No AliDocs session found for operator_union_id=alice. "
+                        "Expected session file C:/Users/Administrator/.auto-manual/dingtalk-sessions/alice.json "
+                        "or environment variables DINGTALK_DOCS_A_TOKEN, DINGTALK_DOCS_XSRF_TOKEN, DINGTALK_DOCS_COOKIE."
+                    )),
+                    phase2_identity=mock.MagicMock(return_value="user"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            )
 
         self.assertEqual(0, exit_code)
         build_document_mock.assert_called_once()
@@ -3064,40 +2978,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=wiki_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_dingtalk_mirror_destination",
-                side_effect=RuntimeError("Invalid DingTalk workspace URL: -"),
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(return_value=wiki_destination),
+                    resolve_dingtalk_mirror_destination=mock.MagicMock(side_effect=RuntimeError("Invalid DingTalk workspace URL: -")),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         build_document_mock.assert_called_once()
@@ -3191,36 +3088,22 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=wiki_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(return_value=wiki_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         # Draft no longer uploads the artifact, so the idml_file field stays empty.
@@ -3295,50 +3178,34 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=process_build_queue.ArtifactDestination(
-                    provider="dingtalk_alidocs_session",
-                    label="DingTalk docs target",
-                    details={"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"},
-                    runtime_target="https://alidocs.dingtalk.com/i/nodes/NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY",
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(return_value=process_build_queue.ArtifactDestination(
+                        provider="dingtalk_alidocs_session",
+                        label="DingTalk docs target",
+                        details={"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"},
+                        runtime_target="https://alidocs.dingtalk.com/i/nodes/NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY",
+                    )),
+                    publish_word_artifact=mock.MagicMock(return_value=process_build_queue.ArtifactPublishResult(
+                        provider="dingtalk_alidocs_session",
+                        reference_id="Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+                        latest_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+                        document_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+                        document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
+                    )),
+                    ensure_dingtalk_session_ready=mock.MagicMock(),
+                    phase2_identity=mock.MagicMock(return_value="user"),
                 ),
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                return_value=process_build_queue.ArtifactPublishResult(
-                    provider="dingtalk_alidocs_session",
-                    reference_id="Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-                    latest_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-                    document_link_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-                    document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/Amq4vjg890BMY9ZRFQN6MoXmJ3kdP0wQ",
-                ),
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            )
 
         self.assertEqual(0, exit_code)
         self.assertEqual(2, len(captured_upserts))
@@ -3450,39 +3317,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowTargetNode",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                side_effect=fake_resolve_artifact_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(side_effect=fake_resolve_artifact_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    ensure_dingtalk_session_ready=mock.MagicMock(),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         # Draft no longer uploads the artifact, so the publish artifact is never invoked
@@ -3586,39 +3437,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/UploadedRowOnlyTargetNode",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                side_effect=fake_resolve_artifact_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(side_effect=fake_resolve_artifact_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    ensure_dingtalk_session_ready=mock.MagicMock(),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         # Draft no longer uploads the artifact, so the publish artifact is never invoked
@@ -3722,39 +3557,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_dd_url="https://alidocs.dingtalk.com/i/nodes/UploadedDefaultAliasNode",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                side_effect=fake_resolve_artifact_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "ensure_dingtalk_session_ready",
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.us.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                )
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.us.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                    build_document_for_task=build_document_mock,
+                    resolve_artifact_destination=mock.MagicMock(side_effect=fake_resolve_artifact_destination),
+                    publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                    ensure_dingtalk_session_ready=mock.MagicMock(),
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                ),
+            )
 
         self.assertEqual(0, exit_code)
         # Draft no longer uploads the artifact, so the publish artifact is never invoked
@@ -3849,39 +3668,28 @@ class TestProcessBuildQueue(unittest.TestCase):
                     document_link_url="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123",
                 )
 
-            with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-                process_build_queue,
-                "resolve_document_link_binding",
-                return_value=binding,
-            ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-                process_build_queue,
-                "sync_phase2_snapshot_before_queue",
-            ), mock.patch.object(
-                process_build_queue,
-                "build_document_for_task",
-                build_document_mock,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_artifact_destination",
-                return_value=dingtalk_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_wiki_destination",
-                return_value=wiki_destination,
-            ), mock.patch.object(
-                process_build_queue,
-                "publish_word_artifact",
-                side_effect=fake_publish_word_artifact,
-            ), mock.patch.object(
-                process_build_queue,
-                "_phase2_identity",
-                return_value="user",
+            with (
+                mock.patch.object(
+                    process_build_queue,
+                    "resolve_wiki_destination",
+                    return_value=wiki_destination,
+                ),
             ):
                 exit_code = process_build_queue.process_build_queue(
                     cfg=cfg,
                     config_path=Path("configs/config.us.yaml"),
                     data_root="data/phase2",
                     dry_run=False,
+                    deps=_queue_deps(
+                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                        source_factory=mock.MagicMock(return_value=FakeSource()),
+                        sync_phase2_snapshot_before_queue=mock.MagicMock(),
+                        build_document_for_task=build_document_mock,
+                        resolve_artifact_destination=mock.MagicMock(return_value=dingtalk_destination),
+                        publish_word_artifact=mock.MagicMock(side_effect=fake_publish_word_artifact),
+                        phase2_identity=mock.MagicMock(return_value="user"),
+                    ),
                 )
 
         self.assertEqual(0, exit_code)

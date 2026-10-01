@@ -156,3 +156,58 @@ class TestBuildQueueInjectedBoundaries(unittest.TestCase):
             )
         self.assertEqual(17, result)
         self.assertEqual(["sync-data", "check"], [call.args[0][2] for call in runner.call_args_list])
+
+    def test_queue_forwards_each_optional_override_and_keeps_facade_defaults(self) -> None:
+        overrides = {
+            name: mock.Mock(name=name)
+            for name in (
+                "sync_phase2_snapshot_before_queue", "build_document_for_task",
+                "resolve_dingtalk_mirror_destination", "ensure_dingtalk_session_ready",
+                "publish_word_artifact", "import_markdown_to_cloud_doc", "finalize_cloud_doc",
+            )
+        }
+        resolve_artifact = mock.Mock(name="resolve_artifact_destination")
+        deps = replace(default_queue_deps(process_build_queue), resolve_artifact_destination=resolve_artifact, **overrides)
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        for name, value in overrides.items():
+            self.assertIs(value, captured[name], name)
+        self.assertIs(resolve_artifact, captured["resolve_wiki_destination"])
+        self.assertIs(resolve_artifact, captured["resolve_row_artifact_destination"])
+        self.assertIs(process_build_queue.resolve_wiki_destination, captured["resolve_lark_wiki_destination"])
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(process_build_queue.publish_word_artifact, captured["publish_word_artifact"])
+        self.assertIs(process_build_queue.build_document_for_task, captured["build_document_for_task"])
+
+    def test_bootstrap_uses_session_overrides(self) -> None:
+        preflight = mock.Mock(return_value=["blocked"])
+        deps = replace(
+            default_queue_deps(process_build_queue),
+            collect_queue_preflight_errors=preflight,
+            resolve_document_link_binding=mock.Mock(),
+            phase2_identity=mock.Mock(return_value="bot"),
+        )
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_bootstrap_queue_session_impl", side_effect=capture):
+            process_build_queue_services._bootstrap_queue_session(process_build_queue, deps=deps, cfg={})
+        self.assertIs(preflight, captured["collect_queue_preflight_errors"])
+        self.assertIs(deps.resolve_document_link_binding, captured["resolve_document_link_binding"])
+        self.assertIs(deps.phase2_identity, captured["phase2_identity"])
