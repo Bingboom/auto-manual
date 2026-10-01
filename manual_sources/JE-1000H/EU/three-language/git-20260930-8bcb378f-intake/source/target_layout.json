@@ -125,7 +125,11 @@
     },
     {
       "number": 23,
-      "icon_id": "temperature"
+      "icon_id": "high-temperature"
+    },
+    {
+      "number": 23,
+      "icon_id": "low-temperature"
     },
     {
       "number": 24,

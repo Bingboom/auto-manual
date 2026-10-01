@@ -8,7 +8,7 @@
     "filename": "HTE159-EU-9国说明书-0928(1).ai",
     "sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb"
   },
-  "technical_version": "git-20260930-8bcb378f-three-locales-web",
+  "technical_version": "git-20261001-8bcb378f-temperature-web",
   "assets": {
     "inbox.main": {
       "path": "artwork/shared/inbox-main.png",
@@ -757,22 +757,6 @@
         }
       ]
     },
-    "lcd.icon.temperature": {
-      "path": "artwork/shared/lcd-temperature.png",
-      "sha256": "16f29f08d0fbec3ec265d051e4d57e9d7de4d7cdf5029be966884f72e10ddafc",
-      "content_mode": "textless",
-      "source_kind": "same-model committed LCD attachments matched by semantic identity; two temperature pictograms grouped for one source row",
-      "source_files": [
-        {
-          "path": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/23_high_temperature_indicator.png",
-          "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
-        },
-        {
-          "path": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/24_low_temperature_indicator.png",
-          "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
-        }
-      ]
-    },
     "lcd.icon.fault-code": {
       "path": "artwork/shared/lcd-fault-code.png",
       "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
@@ -825,6 +809,20 @@
       "transform_policy": "crop only; preserve native panel background, border, product geometry, labels and caption alignment per operator request",
       "language": "nl",
       "captions_embedded": true
+    },
+    "lcd.icon.high-temperature": {
+      "path": "artwork/shared/lcd-high-temperature-reused.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "content_mode": "fixed-product-markings",
+      "origin": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/23_high_temperature_indicator.png",
+      "reuse_decision": "Same-model shared semantic LCD icon, reused byte-for-byte; source number 23 has separate high and low subrows."
+    },
+    "lcd.icon.low-temperature": {
+      "path": "artwork/shared/lcd-low-temperature-reused.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "content_mode": "fixed-product-markings",
+      "origin": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/24_low_temperature_indicator.png",
+      "reuse_decision": "Same-model shared semantic LCD icon, reused byte-for-byte; source number 23 has separate high and low subrows."
     }
   },
   "figures": [
