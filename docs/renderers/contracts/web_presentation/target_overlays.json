@@ -697,6 +697,536 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "je2000f-cn-v1",
+      "target": {
+        "model": "JE-2000F",
+        "region": "CN"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "reference_figures": {
+          "source_patterns": [
+            "*12_app_setup_placeholder",
+            "*08_charging_methods",
+            "*05_operation_guide_placeholder"
+          ],
+          "figures": [
+            {
+              "id": "app-add-device",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/add_device",
+              "capture_following_lines": 3,
+              "presentation": "shared-art-live-labels",
+              "captions_embedded": false,
+              "phone_artwork": "docs/renderers/contracts/assets/app/je2000f_cn_add_device.png",
+              "label_roles": [
+                "main-power",
+                "dc-usb",
+                "ac-power"
+              ],
+              "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+              "asset_scope": "shared",
+              "control_image_key": "overview/front_controls",
+              "step_captions": [
+                {
+                  "role": "step-2-1",
+                  "html": "2.1",
+                  "text": "2.1"
+                },
+                {
+                  "role": "step-2-2",
+                  "html": "2.2",
+                  "text": "2.2"
+                }
+              ],
+              "phone_max_width_rem": 30,
+              "caption_centers_pct": [
+                19.2494,
+                80.6295
+              ]
+            },
+            {
+              "id": "charging-solar-direct",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/solar_direct",
+              "capture_following_lines": 1,
+              "web_replace_key": "reference.charging-solar-direct",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a09a3f9a66bd56e55aa338f274f316d0965185bdc6dea7fde1137089a74fb4bf",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.1107,
+                      85.4962,
+                      21.5252,
+                      8.0153
+                    ]
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "charging-solar-adapter",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/solar_adapter",
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.charging-solar-adapter",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a574f6bd2e7e28ac2a249b40ad39b0d76f146ebdd4fd93f7b497f53269174c41",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.0031,
+                      81.83,
+                      22.9315,
+                      7.1382
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      39.0146,
+                      86.3725,
+                      26.96,
+                      7.1382
+                    ]
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "charging-car",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/car_charge",
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.charging-car",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "5a6efede4cb77251a80892f97303dd6ccaf906bd10f8e459720036536ce042d6",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.5029,
+                      12.2047,
+                      10.182,
+                      9.4488
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      61.4008,
+                      79.9213,
+                      28.3863,
+                      12.2047
+                    ],
+                    "fill": "#ffffff"
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "app-connect-result",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "semantic_source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/connect_result",
+              "caption_labels": [
+                "2.3",
+                "2.4",
+                "2.5"
+              ],
+              "caption_layout": "equal",
+              "web_replace_key": "reference.app-connect-result",
+              "captions_embedded": false,
+              "caption_centers_pct": [
+                14.5937,
+                49.9171,
+                85.4892
+              ]
+            },
+            {
+              "id": "cn-operation-main-power",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/main_power",
+              "capture_following_lines": 5,
+              "web_replace_key": "reference.cn-operation-main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a4e4dfda3feedffa658ea4d0c84559fd18c0bc5c7b0a6bfce5306c7acae6ae62",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      81.8792,
+                      1.1765,
+                      16.7785,
+                      11.7647
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      81.8792,
+                      14.1176,
+                      16.7785,
+                      9.4118
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      81.8792,
+                      25.8824,
+                      16.7785,
+                      11.7647
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      81.8792,
+                      38.8235,
+                      16.7785,
+                      9.4118
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      86.5772,
+                      50.5882,
+                      9.7315,
+                      10.5882
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-ac-output",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/ac_output",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-ac-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "8f6cf74342d5d4fd595190103c3dff98327a6274ce1a5d6b9f19780b1442769c",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      86.0544,
+                      1.3514,
+                      13.2653,
+                      6.7568
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.0544,
+                      8.7838,
+                      13.2653,
+                      5.4054
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      86.0544,
+                      15.5405,
+                      13.2653,
+                      6.7568
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.0544,
+                      22.973,
+                      13.2653,
+                      5.4054
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-dc-usb-output",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/dc_usb_output",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-dc-usb-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "e58ff4e828d13939a4b08273e5157a8f6aca97fab1e0d9759947b79eb6ce34e8",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      86.0544,
+                      0.6289,
+                      13.2653,
+                      6.2893
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.0544,
+                      7.5472,
+                      13.2653,
+                      5.0314
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      86.0544,
+                      13.8365,
+                      13.2653,
+                      6.2893
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.0544,
+                      20.7547,
+                      13.2653,
+                      5.0314
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-energy-saving",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/energy_saving",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-energy-saving",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "cbcb116fad01583c869ed10a99ab33ba2ed0a1605c56a1017faa6296f6192eb9",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      46.4789,
+                      56.9892,
+                      18.662,
+                      10.7527
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      74.6479,
+                      56.9892,
+                      22.8873,
+                      10.7527
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      65.1408,
+                      79.5699,
+                      19.3662,
+                      9.6774
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      65.1408,
+                      90.3226,
+                      20.7746,
+                      9.6774
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-led-light",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/led_light",
+              "capture_following_lines": 3,
+              "web_replace_key": "reference.cn-operation-led-light",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a1dae34eabe7bc96364d4c9709a7fdae8da326d9d3c509647b12aa78df980238",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      73.4483,
+                      2.4691,
+                      25.5172,
+                      25.9259
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      73.4483,
+                      35.8025,
+                      25.5172,
+                      24.6914
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      73.4483,
+                      69.1358,
+                      25.5172,
+                      20.9877
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            }
+          ]
+        },
+        "app_download": {
+          "presentation": "qr-only",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/download"
+        },
+        "app_inline_controls": {
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "semantic_source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "add_device_paragraph_prefix": "2.1"
+        }
+      },
+      "figure_coverage": {
+        "policy_id": "je2000f-cn-live-charging-v1",
+        "locales": [
+          "zh"
+        ],
+        "required_slots": [
+          "reference.charging-solar-direct",
+          "reference.charging-solar-adapter",
+          "reference.charging-car",
+          "reference.cn-operation-main-power",
+          "reference.cn-operation-ac-output",
+          "reference.cn-operation-dc-usb-output",
+          "reference.cn-operation-energy-saving",
+          "reference.cn-operation-led-light"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ],
+        "slot_status_overrides": {
+          "reference.charging-solar-direct": [
+            "base-art-live-copy"
+          ],
+          "reference.charging-solar-adapter": [
+            "base-art-live-copy"
+          ],
+          "reference.charging-car": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-main-power": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-ac-output": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-dc-usb-output": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-energy-saving": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-led-light": [
+            "base-art-live-copy"
+          ]
+        }
+      }
     }
   ]
 }

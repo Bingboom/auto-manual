@@ -1,5 +1,7 @@
 # Web Publish locale queue contract
 
+Status: active
+
 Web queue routing accepts an explicit `Lang` only with a matching single-language
 `Build_family`: one configured language, `include_lang_in_output_path=true`,
 and `queue_by_document_key=false`. For example, EU English and French use

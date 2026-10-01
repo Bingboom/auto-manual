@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup, Tag
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.reference_figure_adapters import web_reference_figure_projection
 from tools.manual_ir.hashing import file_sha256
+from tools.web_figure_captions import align_caption_centers
 from tools.web_composite_manifest import WebCompositeEntry, WebCompositeManifest
 from tools.web_composite_presentation import WebCompositeContext
 
@@ -150,6 +151,7 @@ def render_reference_figure_component(
     ):
         raise ValueError(f"{spec.source_ref}: reference source-fragment hash disagrees")
     figure["data-component-id"] = spec.component_id
+    align_caption_centers(figure, spec.metadata.get("caption_centers_pct"))
     return str(figure)
 
 

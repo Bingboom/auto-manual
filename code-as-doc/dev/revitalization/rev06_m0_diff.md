@@ -1,5 +1,7 @@
 # REV-06 / M0 存量对账 — 已知历史差异清单（差异表）
 
+Status: done
+
 - 任务：PR #1188 0-30 天批次 REV-06（M0 存量对账）。前置 REV-01/02/04/05 证据全部复用；本轮新抓取 2 项（构建表全量复读 + 撤下目标 URL 探测），均只读。
 - 本轮新抓取窗口（UTC）：**2026-09-19T03:40:47Z – 2026-09-19T03:46:11Z**；前置证据窗口 2026-09-19T03:10Z–03:37Z（同日，视为同一时点面）。
 - 全程只读：lark-cli 仅 `+record-list`（bot，profile `cli_aaa0db0d4b39dcca`，CLI 1.0.69）；仓库仅 `git show/ls-tree/log origin/main`；公网仅 HTTPS GET。未写任何飞书表、未动 RTD、未合并 PR、未在主 checkout 切分支。

@@ -112,7 +112,7 @@ class LanguageRegistryTest(unittest.TestCase):
                 )
 
     def test_manual_copy_source_language_surfaces_match_registry(self) -> None:
-        specs = lang_registry.LANGUAGE_REGISTRY
+        specs = lang_registry.sync_language_specs()
         expected_tm = {
             alias.casefold(): spec.tm_column
             for spec in specs
@@ -201,6 +201,28 @@ class LanguageRegistryTest(unittest.TestCase):
                         msg=f"signal_words has no label columns for {alias!r}",
                     )
 
+    def test_offline_output_languages_do_not_expand_live_sync_columns(self) -> None:
+        for code in ("pt", "nl", "pl"):
+            with self.subTest(language=code):
+                self.assertEqual(lang_registry.canonical_language(code), code)
+                self.assertFalse(lang_registry.language_spec(code).sync_enabled)
+                self.assertNotIn(code, TM_LANGUAGE_FIELDS)
+                self.assertNotIn(code, STATUS_WORD_COLUMNS)
+                self.assertNotIn(f"text_{code}", LOCALIZED_COPY_COLUMNS)
+                self.assertNotIn(f"title_{code}", SPEC_TITLE_COLUMNS)
+                for table in lang_registry.CORE_TABLE_NAMES:
+                    self.assertFalse(any(
+                        column.endswith(f"_{code}")
+                        for column in TABLE_SCHEMAS[table].columns
+                    ))
+        # Offline registration must not reinterpret existing live queue aliases.
+        from tools.queue_query_languages import SUPPORTED_LANGS, canonical_query_lang
+
+        self.assertEqual(canonical_query_lang("pt"), "pt-BR")
+        self.assertFalse({"pt", "nl", "pl"}.intersection(SUPPORTED_LANGS))
+        self.assertEqual(lang_registry.canonical_language("pt-BR"), "pt-BR")
+        self.assertTrue(lang_registry.language_spec("pt-BR").sync_enabled)
+
     def test_alias_resolution_is_explicit_and_non_mutating(self) -> None:
         for spec in lang_registry.LANGUAGE_REGISTRY:
             for alias in spec.aliases:
@@ -209,6 +231,17 @@ class LanguageRegistryTest(unittest.TestCase):
                     self.assertIs(lang_registry.language_spec(alias), spec)
         self.assertIsNone(lang_registry.canonical_language("xx"))
         self.assertIsNone(lang_registry.language_spec("xx"))
+
+    def test_spec_source_validation_accepts_registered_languages_and_legacy_names(self) -> None:
+        from tools.validate_spec_master_shared import _supported_source_language
+
+        for spec in lang_registry.LANGUAGE_REGISTRY:
+            for alias in spec.aliases:
+                self.assertTrue(_supported_source_language(alias), alias)
+        for legacy in ("English", "日语", "中文"):
+            self.assertTrue(_supported_source_language(legacy), legacy)
+        self.assertFalse(_supported_source_language("xx"))
+        self.assertFalse(_supported_source_language(""))
 
     def test_committed_bundle_languages_are_registered(self) -> None:
         unknown: list[str] = []

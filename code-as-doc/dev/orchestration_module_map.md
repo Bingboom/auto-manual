@@ -337,6 +337,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - FCC document/web renderer preflight using the resolved target language
 - [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
   - generated-page rule helpers
+- [`tools/validate_spec_master_shared.py`](../../tools/validate_spec_master_shared.py)
+  owns shared validation predicates, including source-language recognition from
+  the canonical registry plus legacy display aliases. This validation boundary
+  does not change Spec_Master value lookup precedence.
 - [`tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
   - runtime Spec_Master validation rules
 - [`tools/page_contracts.py`](../../tools/page_contracts.py)
@@ -415,6 +419,14 @@ Quality and release logic should follow concern-specific modules instead of drif
   - CLI bootstrap and data-root normalization for the queue entrypoint
 - [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
   - wrapper-compatible service grouping for queue entrypoint helpers
+  - optional queue dependencies are forwarded to existing session/build callbacks; omitted dependencies preserve facade compatibility lookups
+- [`tools/process_build_queue_deps.py`](../../tools/process_build_queue_deps.py)
+  - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
+  - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
+- [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+  - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation
+- [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)
+  - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)
   - canonical queue contract constants
   - shared queue dataclasses
@@ -719,3 +731,5 @@ Prepared Web admission: `tools/web_component_admission.py` owns fresh-publicatio
 `tools/component_specs/plain_inventory.py` owns recognition of complete, text-only packing inventories and their `HB-TABLE-REFERENCE/plain-inventory` spec. Word reuses the same source-shape check; whole-document Web IR claims the table and preserves sibling notes. Illustrated Inbox parsing remains strict.
 
 `component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.
+
+`component_specs/lcd_mode_source.py` owns standalone LCD image/action-matrix recognition, preserving authored headers through the shared reference table. `plain_inventory.py` admits complete three-item lists as well as one-row inventories. `app_label_source.py` preserves a separating note outside the explicitly bound shared panel.

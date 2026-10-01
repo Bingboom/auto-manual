@@ -6,6 +6,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.lcd_mode import lcd_mode_component_spec
+from tools.component_specs.lcd_mode_source import standalone_lcd_actions
 
 
 def _matches_image(image: Tag, image_key: str) -> bool:
@@ -44,7 +45,8 @@ def parse_lcd_mode_html(
     image = images[0]
     table = image.find_parent("table")
     if not isinstance(table, Tag):
-        raise ValueError(f"{source_path}: LCD Mode artwork has no table")
+        return standalone_lcd_actions(image, source_path=source_path,
+                                      expected_body_rows=expected_body_rows, language=language)
     rows = [row for row in table.find_all("tr") if isinstance(row, Tag)]
     cells = [
         [cell for cell in row.find_all("td", recursive=False) if isinstance(cell, Tag)]

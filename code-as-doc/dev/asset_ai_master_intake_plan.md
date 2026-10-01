@@ -1,5 +1,7 @@
 # AI 母版资产入库实施计划
 
+Status: active
+
 Updated: 2026-07-15
 
 ## 1. 目标

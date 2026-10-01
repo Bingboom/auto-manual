@@ -1,6 +1,6 @@
 # ManualIR v2: LCD, Troubleshooting, and Symbols ComponentSpec Plan
 
-Status: complete
+Status: done · Recorded detail: complete
 
 Date: 2026-09-05
 Branch: `feat/manual-ir-lcd-troubleshooting-symbols`

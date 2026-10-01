@@ -12,7 +12,6 @@ from tools.utils.spec_master import (
     collect_referenced_matching_footnote_rows,
     collect_spec_value_matches_from_rows,
     iter_footnote_ref_ids,
-    normalize_source_lang,
     preferred_source_langs_for_rows,
     read_spec_master_rows,
 )
@@ -31,6 +30,7 @@ from tools.validate_spec_master_shared import (
     _read_optional_rows,
     _row_matches_target,
     _should_require_value_source,
+    _supported_source_language,
     SpecMasterValidationIssue,
     load_config,
 )
@@ -200,7 +200,7 @@ def _collect_latest_row_issues(
 
         line_no = _pick_line_number(row)
         raw_source_lang = _first_non_empty(row, ("Source_lang", "source_lang"))
-        normalized_source_lang = normalize_source_lang(raw_source_lang)
+        normalized_source_lang = _supported_source_language(raw_source_lang)
         if not raw_source_lang:
             issues.append(
                 _target_issue(
@@ -335,7 +335,7 @@ def _collect_footnote_definition_issues(
                     target=target,
                 )
             )
-        elif not normalize_source_lang(raw_source_lang):
+        elif not _supported_source_language(raw_source_lang):
             issues.append(
                 _target_issue(
                     code="INVALID_FOOTNOTE_SOURCE_LANG",

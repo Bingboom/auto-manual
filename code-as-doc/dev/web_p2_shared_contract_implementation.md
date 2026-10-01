@@ -1,6 +1,6 @@
 # Web P2 shared contracts: variable Inbox and declared entry page
 
-Status: implemented and locally verified. This record covers only the shared P2
+Status: done · Recorded detail: implemented and locally verified. This record covers only the shared P2
 contracts required by the first solar-panel and charger Web manuals; it does
 not claim that either target is built or published.
 

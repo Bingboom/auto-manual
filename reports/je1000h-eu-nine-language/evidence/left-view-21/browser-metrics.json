@@ -1,0 +1,86 @@
+[
+  {
+    "language": "pt",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 840,
+    "rect": {
+      "height": 218.578125,
+      "width": 683.609375,
+      "x": 78.1953125,
+      "y": 340.8984375
+    },
+    "viewport": 840
+  },
+  {
+    "language": "pt",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 390,
+    "rect": {
+      "height": 114.46875,
+      "width": 358,
+      "x": 16,
+      "y": 392.7578125
+    },
+    "viewport": 390
+  },
+  {
+    "language": "nl",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 840,
+    "rect": {
+      "height": 218.578125,
+      "width": 683.609375,
+      "x": 78.1953125,
+      "y": 340.6875
+    },
+    "viewport": 840
+  },
+  {
+    "language": "nl",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 390,
+    "rect": {
+      "height": 114.46875,
+      "width": 358,
+      "x": 16,
+      "y": 392.9140625
+    },
+    "viewport": 390
+  },
+  {
+    "language": "pl",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 840,
+    "rect": {
+      "height": 218.578125,
+      "width": 683.609375,
+      "x": 78.1953125,
+      "y": 340.546875
+    },
+    "viewport": 840
+  },
+  {
+    "language": "pl",
+    "loaded": true,
+    "naturalHeight": 408,
+    "naturalWidth": 1276,
+    "pageWidth": 390,
+    "rect": {
+      "height": 114.46875,
+      "width": 358,
+      "x": 16,
+      "y": 392.546875
+    },
+    "viewport": 390
+  }
+]

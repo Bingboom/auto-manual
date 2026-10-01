@@ -1,6 +1,6 @@
 # ManualIR v2 Neutral Flow — Discovery And Implementation Plan
 
-Status: implementation and local acceptance complete; PR pending
+Status: done · Recorded detail: implementation and local acceptance complete; PR pending
 
 Branch: `feat/manual-ir-v2-neutral-flow`
 

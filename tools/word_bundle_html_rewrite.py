@@ -398,7 +398,7 @@ def _row_cells(row: ET.Element) -> list[ET.Element]:
 
 def _extract_alert_cell_label(cell: ET.Element, alert_labels: dict[str, SignalLabel]) -> str | None:
     text = _normalize_alert_label_text("".join(cell.itertext()))
-    if text not in alert_labels and text != "NOTES":
+    if text not in alert_labels and variant_for_label(text) is None:
         return None
 
     direct_text = _normalize_inline_text(cell.text or "")

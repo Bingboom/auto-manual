@@ -1,6 +1,6 @@
 # 骨架库产线拓展执行方案（Skeleton Library Expansion Plan）
 
-Status: **决策记录（decision record）** · Owner: 夏冰 · 2026-08-21
+Status: done · Recorded detail: **决策记录（decision record）** · Owner: 夏冰 · 2026-08-21
 
 > **本文件不是执行真相源。** 执行的唯一真相源是
 > [`../next_optimization_checklist.md`](../next_optimization_checklist.md) 的

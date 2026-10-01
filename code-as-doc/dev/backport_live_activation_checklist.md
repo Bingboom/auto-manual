@@ -1,6 +1,6 @@
 # Backport Live-Activation Checklist (F6 / F8)
 
-Status: operator checklist · Owner: 夏冰 · Created: 2026-06-19
+Status: active · Recorded detail: operator checklist · Owner: 夏冰 · Created: 2026-06-19
 
 Milestone F (F1–F8) is implemented in-repo. **F1–F5 and F7 are fully live.**
 **F6** (approval-gated source-table writes) and **F8** (`QC_Report` writeback) are

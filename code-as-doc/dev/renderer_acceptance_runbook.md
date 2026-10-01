@@ -1,6 +1,6 @@
 # 四渲染栈验收 runbook（S5）
 
-Status: 可执行 · Owner: 夏冰 · 2026-08-21
+Status: active · Recorded detail: 可执行 · Owner: 夏冰 · 2026-08-21
 
 骨架库纵向切片第 6 步的操作手册。工具是
 [`../../tools/renderer_acceptance.py`](../../tools/renderer_acceptance.py)，

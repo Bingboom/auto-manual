@@ -13,27 +13,44 @@ recipe can violate an immutable promotion contract. This skill encodes the
 judgment; `references/operator-playbook.md` holds the full decision tree,
 traps, and closing checklist — keep it open.
 
-## Transparent background requirement
+## Reuse before extraction
 
-- **Standalone illustrations and icons must have a transparent background.**
-  Do not retain the PDF/AI page's gray panels, table-cell shading, surrounding
-  borders or other layout backdrops in the extracted asset. Reuse a matching
-  transparent shared asset first, including POWER / AC / DC/USB / LIGHT buttons.
-- Preserve actual product colors, material shading, circular button faces,
-  markings and screen/App content. Remove only identified layout backgrounds;
-  never delete all gray or white objects indiscriminately. Dense leader diagrams
-  may retain labels, but that exception does not authorize a gray backdrop.
-- Prefer original vector paths with no backdrop, or a PNG with real alpha.
-  A white rectangle, CSS background or blend mode is not transparent artwork.
-  Verify the asset itself at 12x on white and gray/checkerboard surfaces, then
-  inspect it in the target Web component before delivery.
-- The shared Web contract is
-  [共用图标优先](../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+Follow the shared [Web artwork selection contract](../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+before choosing any transform. Inventory target assets, same-model/region
+assets in other languages, then shared/template assets. Open candidate images
+and verify identity, content, language and quality. Record the candidates,
+decision, source/hash and background policy in the target's existing review
+record using the contract's table. A new language, PDF or page number alone
+does not justify another extraction.
+
+If a matching asset exists, reuse it unchanged and stop extraction work.
+Frozen-package copies must remain byte-identical with source path/hash recorded.
+If only external labels change, reuse the artwork and update native labels.
+Extract only after documenting a missing suitable asset, insufficient quality,
+or a concrete target difference. Do not invent a new registry/schema for this
+review record or treat the record as an implemented build gate.
+
+## Classify the artwork before removing backgrounds
+
+- **Small standalone icons (LCD/status icons and individual button symbols):** remove identified page/cell
+  backdrops and export real transparency. Preserve product shading, button
+  faces and markings. White fill or CSS blending is not transparency.
+- **Complete panels, including text-free App control panels:** preserve native
+  gray backgrounds, white caption bands, rounded borders, badges and complete
+  leader geometry. Removing labels does not authorize removing the panel.
+- **App screenshots:** prefer matching existing screenshots; preserve all phone
+  edges, corners, status bars and bottom UI. Do not crop to interior content.
+- Never delete gray/white objects by color alone. Compare any new extraction
+  with all four source edges at 12x, then verify the target Web component on
+  desktop and mobile. Transparency checks apply only to these small icons. Classify by semantic role,
+  not display size: shrinking a complete diagram does not turn it into an icon.
 
 ## Core rules
 
 1. **Choose the operator from the drawing's structure, not from habit.**
-   Default is pure text stripping (`redact_text`, graphics preserved). Escalate
+   After the reuse check and classification, default for needed text stripping
+   is `redact_text`, graphics preserved. Complete finished panels use crop only.
+   Escalate
    to `remove_if_touched` only when leader lines touch label text; to
    `drop_leader_strokes` only for paired halo+stroke leaders drawn over
    artwork; and **leave the asset alone when evidence says the structure

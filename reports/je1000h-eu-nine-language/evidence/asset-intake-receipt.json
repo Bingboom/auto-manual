@@ -1,0 +1,20 @@
+{
+  "recipe_sha256": "ef119167201d684ae7723945e8c8a16656674c470ce7032ada0d134e87a6f9cb",
+  "source_pages": 161,
+  "native_asset_exports": 38,
+  "qa": "Every native PDF rendered at 12x onto white/checker, summarized in contact sheets; original-scale focused before/after details saved separately.",
+  "outputs": {
+    "manifest.json": {
+      "sha256": "5f683895bab55c8d3a9f546857ef95bcd9b43c51b8eeabc0e7fbb15ffae38731",
+      "size": 251884
+    },
+    "artifacts.csv": {
+      "sha256": "0dfd04b5d4906e2d7a37a8b258445c9d7218e1cb58cfd4c84e15ebf62ad0fd00",
+      "size": 62905
+    },
+    "asset-package.zip": {
+      "sha256": "5db8a5550036090050f0736753ea4d2577d73dcb01a7833cf35212d48659ad76",
+      "size": 33669529
+    }
+  }
+}

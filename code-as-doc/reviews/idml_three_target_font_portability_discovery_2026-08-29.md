@@ -1,5 +1,7 @@
 # IDML three-target font-portability discovery — 2026-08-29
 
+Status: done
+
 ## Decision
 
 The 2026-08-29 three-target structural build is not a visual acceptance. Fix

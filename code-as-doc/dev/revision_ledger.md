@@ -1,5 +1,7 @@
 # Revision Ledger
 
+Status: active
+
 The revision ledger turns reviewer corrections — already captured per run by the
 cloud-doc backport — into a single, accumulating, queryable record. It is the
 data foundation for measuring and improving generation quality: the

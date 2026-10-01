@@ -1,0 +1,41 @@
+/* Product-registration panels: authored content preserved through Manual IR. */
+.hb-registration-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  gap: .55rem;
+  margin: .65rem 0;
+}
+.hb-registration-benefits,
+.hb-registration-steps {
+  border: 1px solid #777;
+  padding: .55rem .7rem;
+  min-width: 0;
+  color: inherit;
+  background: transparent;
+}
+.hb-registration-benefits .line-block,
+.hb-registration-steps ol {
+  margin: 0;
+}
+.hb-registration-steps ol {
+  padding-left: 1.2em;
+}
+.hb-registration-steps li,
+.hb-registration-steps li p {
+  margin: 0 0 .12em;
+}
+.hb-registration-panel img.hb-registration-qr {
+  float: right;
+  width: 6rem;
+  max-width: 30%;
+  height: auto;
+  margin: 0 0 0 .65rem;
+}
+.hb-registration-steps::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+@media (max-width: 40rem) {
+  .hb-registration-panel { grid-template-columns: minmax(0, 1fr); }
+}

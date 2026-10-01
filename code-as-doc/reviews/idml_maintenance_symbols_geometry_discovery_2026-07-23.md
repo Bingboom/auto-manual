@@ -1,5 +1,7 @@
 # IDML maintenance and symbols geometry discovery (2026-07-23)
 
+Status: active
+
 ## Scope
 
 Continue the approved JE-1000F US V2.0 editable-IDML parity work after the LCD

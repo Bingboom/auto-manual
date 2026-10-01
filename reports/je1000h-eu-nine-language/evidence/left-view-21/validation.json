@@ -1,0 +1,10 @@
+{
+  "native_builds": 3,
+  "strict_sphinx_builds": 3,
+  "native_pdf_pins_verified": 39,
+  "source_asset_pins": "passed",
+  "cold_replays": 3,
+  "browser_checks": 6,
+  "existing_six_language_files_unchanged": 46,
+  "shared_code_css_changes": false
+}

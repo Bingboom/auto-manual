@@ -1,0 +1,66 @@
+{
+  "scope": [
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "technical_version": "git-20260930-8bcb378f-three-locales-web",
+  "files": {
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/source_manifest.json": {
+      "sha256": "d2c3e3ae0801568a8821dae8232bf26bbc73b2414f0c89992686595a2185b71e",
+      "size_bytes": 3439
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/nl_assets_manifest.json": {
+      "sha256": "55e17c6be9b0f79921adf84a6ff2340e122de6646ebb19f88f259c8a4c0b3b0a",
+      "size_bytes": 52635
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/pt_assets_manifest.json": {
+      "sha256": "549a819bb4e869296dfabe7fd1958f56a1a3bcd54bc56b88f1cbdf561c6627d4",
+      "size_bytes": 52635
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/pl_assets_manifest.json": {
+      "sha256": "aab3b86d94f895d16d244d9aeb64389b23f18a6261731220e4496a54c6013217",
+      "size_bytes": 52635
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/extraction_recipes/je1000h_eu_native.json": {
+      "sha256": "ef119167201d684ae7723945e8c8a16656674c470ce7032ada0d134e87a6f9cb",
+      "size_bytes": 112410
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/pt/manual.ir.json": {
+      "sha256": "a94ce60f1fc51aa9649359a722048ba250c2df7affde32b35195842e8bf1384b",
+      "size_bytes": 642496
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/pt/manual_je1000h_eu_pt.md": {
+      "sha256": "a6589c621bf83194dac430bf43ab1a4a184481cc69a36726c06c58c6f936f00b",
+      "size_bytes": 76650
+    },
+    "reports/je1000h-eu-nine-language/preview-09/pt/manual_je1000h_eu_pt.html": {
+      "sha256": "519f7fc2805aaef24d02c62be3beb675db4ea6b941c1187686e388debb85d96f",
+      "size_bytes": 98869
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/nl/manual.ir.json": {
+      "sha256": "4dac3335ce34e05fe9c9b95779bacf4f7fe0e7639de8f78d19f8c576e0a2ace5",
+      "size_bytes": 639933
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/nl/manual_je1000h_eu_nl.md": {
+      "sha256": "402df2619696ba71225fc2c3ee112065a8e4cbbecdeb56a0fd0cca397c0ea976",
+      "size_bytes": 76103
+    },
+    "reports/je1000h-eu-nine-language/preview-09/nl/manual_je1000h_eu_nl.html": {
+      "sha256": "7e3c3402c54d0d6c667a68c0eb2c3ed4676d2893c88d02d23b38ceabd009b625",
+      "size_bytes": 97929
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/pl/manual.ir.json": {
+      "sha256": "972b22b87098259d225f06822124d52024fa25dc46dc91dff38ac92c42ef8122",
+      "size_bytes": 646209
+    },
+    "reports/je1000h-eu-nine-language/candidate-09/pl/manual_je1000h_eu_pl.md": {
+      "sha256": "6012a50c190d70548a655cf7f3b1c6374ad7f634226ff18396cf1fa3d62d0f94",
+      "size_bytes": 79179
+    },
+    "reports/je1000h-eu-nine-language/preview-09/pl/manual_je1000h_eu_pl.html": {
+      "sha256": "74bf4abc1f1352548a06f37857ce56f6bed45b4eeda90050cfa0c94ef813c09f",
+      "size_bytes": 101290
+    }
+  }
+}

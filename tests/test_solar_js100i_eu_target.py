@@ -192,10 +192,10 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             "hello.eu@jackery.com",
         ):
             self.assertIn(required, self.markdown)
-        self.assertEqual(13, len(self.ir.asset_refs))
+        self.assertEqual(22, len(self.ir.asset_refs))
         provenance = self.ir.metadata["illustration_provenance"]
         self.assertEqual("web-illustrations/v1", provenance["schema_version"])
-        self.assertEqual(13, len(provenance["illustrations"]))
+        self.assertEqual(22, len(provenance["illustrations"]))
 
     def test_illustration_manifest_binds_target_source_and_exact_asset_hashes(self) -> None:
         payload = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
@@ -204,16 +204,35 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             (payload["model"], payload["region"], payload["language"]),
         )
         self.assertEqual(
-            "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
-            payload["source_pdf_sha256"],
+            {
+                "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+                "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+            },
+            {source["master_sha256"] for source in payload["sources"]},
         )
+        legacy = ROOT / "data/asset_recipes/manual_js100i_eu_en_web.json"
         self.assertEqual(
-            "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
-            payload["source_master_sha256"],
+            "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+            hashlib.sha256(legacy.read_bytes()).hexdigest(),
         )
         for entry in payload["illustrations"]:
             asset = ILLUSTRATIONS.parent / entry["path"]
             self.assertEqual(entry["sha256"], hashlib.sha256(asset.read_bytes()).hexdigest())
+
+    def test_operation_figures_keep_selectable_numbered_captions(self) -> None:
+        from bs4 import BeautifulSoup
+
+        markup = "".join(render_document_fragments(self.ir, package_root=self.package))
+        soup = BeautifulSoup(markup, "html.parser")
+        figures = soup.select("figure.manual-step-figure")
+        self.assertEqual(len(figures), 16)
+        captions = [f.select_one("figcaption").get_text(" ", strip=True) for f in figures]
+        self.assertEqual([c[:2] for c in captions[:7]], ["1.", "2.", "3.", "4.", "1.", "2.", "3."])
+        for entry in self.ir.metadata["illustration_provenance"]["illustrations"]:
+            self.assertIn(entry["source_master_sha256"], {
+                s["master_sha256"]
+                for s in self.ir.metadata["illustration_provenance"]["sources"]
+            })
 
     def test_public_ir_cold_replays_without_rst_or_csv_reads(self) -> None:
         relocated = Path(self.temp.name) / "relocated"

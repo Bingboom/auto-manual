@@ -1,5 +1,7 @@
 # JE-1000F US reference-copy parity discovery (2026-07-26)
 
+Status: active
+
 ## Objective
 
 Align the frozen `JE-1000F/US` review copy with the approved 58-page V2.0

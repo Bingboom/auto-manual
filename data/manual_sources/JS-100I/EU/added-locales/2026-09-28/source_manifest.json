@@ -1,0 +1,767 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "model": "JS-100I",
+  "region": "EU",
+  "languages": [
+    "fr",
+    "es",
+    "de",
+    "it",
+    "uk",
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "status": "candidate-no-publication",
+  "source_master": {
+    "name": "HTS006-EU-9国语言-0928(1).ai",
+    "sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "pages": 87
+  },
+  "pages_by_language": {
+    "fr": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "es": [
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "de": [
+      32,
+      33,
+      34,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "it": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "uk": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "pt": [
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "nl": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77
+    ],
+    "pl": [
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86
+    ]
+  },
+  "duplicate_pages": {
+    "de": {
+      "kept": 34,
+      "omitted": 35
+    }
+  },
+  "build_input": {
+    "config": "configs/config.solar-eu-multilingual.yaml",
+    "data_roots": {
+      "fr": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr",
+      "es": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es",
+      "de": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de",
+      "it": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it",
+      "uk": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk",
+      "pt": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt",
+      "nl": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl",
+      "pl": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl"
+    },
+    "language_projection_required": true,
+    "shared_legal_page": 87
+  },
+  "files": [
+    {
+      "path": "configs/config.solar-eu-multilingual.yaml",
+      "sha256": "d750d79ddc78e16f0eb8ee9803b6446e805d2460fdb03493ff90779182d3c281"
+    },
+    {
+      "path": "data/asset_recipes/manual_js100i_eu_shared_web.json",
+      "sha256": "da990417982853677b85a24212a9761f507c72e06cfdf36793c4291fe33fa39a"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/README.md",
+      "sha256": "6c9dfe31119a8160c99f262a121234169ce83f47e6c4e7d245b20318bfc0ea13"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/Spec_Master.csv",
+      "sha256": "d0d6783726acc78c740367c49b621098d9361f2e75418b7c24a7df0b523e3fd0"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/Spec_Notes.csv",
+      "sha256": "c769d7e560d5b745f6f6b4c2bd2f10b9e4a37f67f6f90eacf92bc90e44f899dd"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es/Spec_Master.csv",
+      "sha256": "64eb72d2b223f1c5d4880c16772eb8eb22449209e693ef6036ac70f9f879459e"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es/Spec_Notes.csv",
+      "sha256": "0becf69206851bd85b2eaa71cb2cb75497ed7fdd7edff04a2be1b9547e073631"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/es/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr/Spec_Master.csv",
+      "sha256": "2efa210b7db63d00f09b263cb4fdb5361dcefa4515f73ee2fd85cf4fb33ae392"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr/Spec_Notes.csv",
+      "sha256": "787f1257b0da581a320d769ad0ad995f0387e6685072b106bae1c48a411b8c6b"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it/Spec_Master.csv",
+      "sha256": "f236886830d35ec28258d53e15ead711f83f6ee5f7f66c25527a4671b058754a"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it/Spec_Notes.csv",
+      "sha256": "10b41eaba33ef07f0dc7d89a12298466c357cb2084d2182451c81db01b5a514f"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/it/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl/Spec_Master.csv",
+      "sha256": "fd42f6ce4cd5de58e8fe6ad58655e0ee9432921b949f839fd66b1d28d3cf48f4"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl/Spec_Notes.csv",
+      "sha256": "e44832708a265680e719bf0055d71debedd19d11db36d8333661d2ec51ed935e"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/nl/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl/Spec_Master.csv",
+      "sha256": "91c2c7a98ca73d4140062068e1568fa7f92506824e47ba95c636bb084cef89cb"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl/Spec_Notes.csv",
+      "sha256": "35656a2a4d08fd9c5e3cf1dce83d86163103d06aa094270bd6d61f1a824b8f51"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pl/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt/Spec_Master.csv",
+      "sha256": "dd742dc5b594581d93c8c0d56631107cc240c1636cb6f1fffcf547b6614c5629"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt/Spec_Notes.csv",
+      "sha256": "8f1abf23e7d49cc823e190ac2b8cd20c9f9c5e22b8359e46540b720f095a65f3"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/pt/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk/Spec_Master.csv",
+      "sha256": "e6c014117719c9d9e3579a8a0ab20e32a4116185c58d5de051985a28d62ac8ea"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk/Spec_Notes.csv",
+      "sha256": "b818dbcf9e0f1b3de271211ae10714024d01723194c1dbd5065d659f4bf9e0f3"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk/page_registry.csv",
+      "sha256": "1ceb033fadeeb36e04d983f7f6628c84be90a6d987bf85bc9d8a0b0f3535ba09"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/uk/spec_titles.csv",
+      "sha256": "18f358b871c306c30ad794ed84973ab392c2722be8574301cca3b492e39cb808"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/backdrop_paths.json",
+      "sha256": "6ff58f723a90d5de6a62437d27a32deb61ed7a70e100cf141f47839a58fbd264"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/encode_webp.py",
+      "sha256": "590577287814874ff1c16031151f5e173003c760f2c43a11a35d57096d574153"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/export_artwork.py",
+      "sha256": "f5902b3906f73d7c4d0e7d875b4c53262837da5080983d1fa97d347e9a3562ce"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/export_receipt.json",
+      "sha256": "5d971f6f0266877a075cdb88d01551fabf9bd3087595bfd40b41f7e79c06115b"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/extract_copy.py",
+      "sha256": "c54dd96ab33762d934fb12cdb046c6be1726daea54f3165dd01fb53554baee4f"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/lossless_encoding_receipt.json",
+      "sha256": "e2b507f16a46a6e0f0e7b8ba7f9e9d2386594220b08db8deb01cb881d11af977"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/rasterize.cjs",
+      "sha256": "e027f5af12c2cc54e91d10869fab38702479af95245c846c109410d000a1ec58"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/de.json",
+      "sha256": "cc9d71573729da75b547acc4f849c6cf69bc1fb9c81cd3785c178e8e4122fadf"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/es.json",
+      "sha256": "1c681bcd160c1fa3184b90e4fe10099134421ffaa3fc0d18071d865f132b0602"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/fr.json",
+      "sha256": "ab3c199d90157f9664b828bfe776f22ac134f9ca295870dad3326470f3d22c69"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/it.json",
+      "sha256": "0687cc4d7eacd7edcc775f7c20f81f347e6b1ba143583a450104d8cfde677bad"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/nl.json",
+      "sha256": "3f83ce37f5169e85adeac96913fa20acc2d853ac50253e673cf84ff02da3bd81"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/pl.json",
+      "sha256": "8fe06d543038d834904ad427272932d0efadf6c8d179f8e1390343b396abdbcc"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/positioned_copy.json",
+      "sha256": "b8e8f2d6dc671e58efdec30027f6437d5ab0ef92fed09dd03cfc23abc48964e1"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/pt.json",
+      "sha256": "1c49e7a6bc6f2e197e9fae0c4c88432d3d93f39dba7a08981618d2000d880e39"
+    },
+    {
+      "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/uk.json",
+      "sha256": "acc6c195c22fe70d237594bfc0f3023bd40f993bd60aa0194375c16c319356b5"
+    },
+    {
+      "path": "docs/manifests/manual_solar-eu-multilingual.yaml",
+      "sha256": "a50c46bc1a360e5276e2618860f50dce5c0b6cb5776dc9b18c5d11fc97ee3d28"
+    },
+    {
+      "path": "docs/manifests/region_profiles/solar-eu-multilingual.yaml",
+      "sha256": "4ebeb8a00b343201b4e6fcb2794287c2ae1ae9ae13093f3b4316b987031130de"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_de.webp",
+      "sha256": "0aa32f6ba18b1a5c8b713e313e39d8b7a54a9290cc5623121e9fba5143f72dd7"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_es.webp",
+      "sha256": "bb9d649b9fcf7cff96a0bc56393c04fa386f90f7591d0d2504a9d0f71f5960fb"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_fr.webp",
+      "sha256": "1443cc69c9f359f442b8deaedc8456ae937c4564912c44d7d59df619f8309625"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_it.webp",
+      "sha256": "f0a26a565939b86d41773bed4b142a9b74ea0492aa2074f5838d23685c99c75d"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_nl.webp",
+      "sha256": "1b5de4ce4efd3185ef77791fe595d09805b66b036b61bcdfc8e5248f9d472b95"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_pl.webp",
+      "sha256": "50d5a11972b16fa56e15b2ace304e74d191ded06955515318711204f147ba926"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_pt.webp",
+      "sha256": "68ddda1e3bedb75f5da6d6e99681b3020b7207d082ff32261e3118e40f8822d7"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_added/views_uk.webp",
+      "sha256": "93a3de6a6390a17524bd89434918d1adfba09530cd10e5fb48bdd717714a55ac"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/angle.webp",
+      "sha256": "bedd52c58091deb67341f02b59de719cdbe76c05bfa97d0abd3a38d14d1d86ef"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/angle_choice_1.webp",
+      "sha256": "8caee0f50e73788f656225a957b2ba572e70ac7a2596f7a07fcdaf4b9f306cd4"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/angle_choice_2.webp",
+      "sha256": "74f035fcc2e1a639e0509050180749e9f96dfbb088c3bc03a44c6d452f4dc300"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/dc7909.webp",
+      "sha256": "a776ae4cd9c75049e1a7c90af46d9f7c516405a22db9673e7d241244c1b6dc54"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/dc8020.webp",
+      "sha256": "a88db73d9e99e88dff32b6b26a379e7d9274aa225a4fe536adce1247ff9dfe3c"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/device.webp",
+      "sha256": "0ce34b25f210e2f613d02065d94c38a6da5486c8a2489ff8d56b68a76050f964"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/dust.webp",
+      "sha256": "0997cc2b9e06f3c1918f9642ae4584aa414b048e2390ae60aded8ae9838cb3c0"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/fold_1.webp",
+      "sha256": "be742038fa9a9ff674b4f611bfb6d49bf7fcadcd81ecd1bacafe1425276c92aa"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/fold_2.webp",
+      "sha256": "26b95182a38ecb9bf511836e2bfd68dd610c7851c72d60ae5a5859592bfb3436"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/fold_3.webp",
+      "sha256": "288e5f59b6beefb7e2c1e6909b0ad475097bb4978e979141407f766292312393"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/parallel.webp",
+      "sha256": "2977a072c670a6a493bcdc26a6361550a9cc150d415408b7e8708ed1dbbbe6a6"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/unfold_1.webp",
+      "sha256": "0f4d89c7f408129289be1e345c6ba2cb6454fc6832c194760aca5e3960e08a71"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/unfold_2.webp",
+      "sha256": "242b8980eadbe223778dba581a398aab1a6621291ad8488c5043aa11274a5cd2"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/unfold_3.webp",
+      "sha256": "3c96fec73a8f9ddcf64e38810437627cb1a0f9195c0209a202a6c958e8debcaa"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/unfold_4.webp",
+      "sha256": "13704bc9c2c6b32464c9be9843a9dae885f0f4f4e368f23aa459a8acae1200dc"
+    },
+    {
+      "path": "docs/renderers/web/assets/js100i_eu_shared/usbc.webp",
+      "sha256": "1ac48d98ab994ed7dfdfaa77293a39cb7944cd14274a0621e9edb17302bd823d"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_de_illustrations.json",
+      "sha256": "085f921e622092ecb0ff3b177b347d0657c5efa0e80085fa01a7f5b455cb0516"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_es_illustrations.json",
+      "sha256": "6bbd6ace6956f3f7624dd5a8246893d53ca6d44ecb4ee8fc77d323116d1511a4"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_fr_illustrations.json",
+      "sha256": "86b71d43c0e8a7cfbf65d79d1b9299b6a4a834f56152dd51fcda785598442a7b"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_it_illustrations.json",
+      "sha256": "e513fdc6ef28d365b181ef7261015d37fa1b784c3cc1216bd321a7871e39c288"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_nl_illustrations.json",
+      "sha256": "d5e423ae8a67e79e96768f8162dc0088882a5a5832f433d5346fad9fc761dc0c"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_pl_illustrations.json",
+      "sha256": "1de504c9c357e156b54f4ddbaf52aeef75e9b040b3f748758900b34e39770874"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_pt_illustrations.json",
+      "sha256": "d26cee315957db6c7462d3a34dfafd40281879aa877180f520b2b03be741b012"
+    },
+    {
+      "path": "docs/renderers/web/js100i_eu_uk_illustrations.json",
+      "sha256": "1faef92b1f5b2794a135c85f62fe7959e288f58da4d218c40384bd87b677e5b7"
+    },
+    {
+      "path": "docs/templates/page_solar/de/01_safety_tips.rst",
+      "sha256": "6a5edecb2fdd72a8ebd24d3505c34f88c5393116a09b0080835a607b62875089"
+    },
+    {
+      "path": "docs/templates/page_solar/de/02_whats_in_the_box.rst",
+      "sha256": "9189a94599d228bfdce409cec0318f9b11770f86c9a1193dd487a243cd434d89"
+    },
+    {
+      "path": "docs/templates/page_solar/de/03_product_views.rst",
+      "sha256": "ba2fa05078e701e8eca9e54f2fe2f5811776cacb3214ad546de6327a5f6052a1"
+    },
+    {
+      "path": "docs/templates/page_solar/de/04_unfolding.rst",
+      "sha256": "09965262c73dacb0ec8dac8f4c5be93714d68f848979d6e180b9a4930dba4c5a"
+    },
+    {
+      "path": "docs/templates/page_solar/de/05_folding.rst",
+      "sha256": "7ca1a0f11834dad97b62ee122c6d09918225aa119265f149e2690dbd7e56c163"
+    },
+    {
+      "path": "docs/templates/page_solar/de/06_charging_connections.rst",
+      "sha256": "52e74ddb59940649dc755f72a5a96203451ec87c4f5c1ef37972683225263723"
+    },
+    {
+      "path": "docs/templates/page_solar/de/07_angle_and_device.rst",
+      "sha256": "52912cbe91dc6b04b2e8bf4a03cd9ed06f9e92a8c7cd1912dae5ca650c882ce1"
+    },
+    {
+      "path": "docs/templates/page_solar/de/09_warranty.rst",
+      "sha256": "908d108ccda9eea6831c83ac8aadec25e9b2c10d1dc6b27b1aadc7133ad83111"
+    },
+    {
+      "path": "docs/templates/page_solar/es/01_safety_tips.rst",
+      "sha256": "88554f42bd53928f97eeecf3f36ee717a0d9648bc55296429b6449d0eafd3251"
+    },
+    {
+      "path": "docs/templates/page_solar/es/02_whats_in_the_box.rst",
+      "sha256": "d5322eb3104e5ded105e1e627e9697233f3bc36a6f350825d9327d1e3fc725d6"
+    },
+    {
+      "path": "docs/templates/page_solar/es/03_product_views.rst",
+      "sha256": "b1a158c8b90e964a32fbe586146dc80acaa0bda7e40ea112a447afbaa0c281a4"
+    },
+    {
+      "path": "docs/templates/page_solar/es/04_unfolding.rst",
+      "sha256": "0b01b87e085d9ec065ee0a4b9f2cccee1bf83042352675060e71dcd8275a2c03"
+    },
+    {
+      "path": "docs/templates/page_solar/es/05_folding.rst",
+      "sha256": "25ec55489c6ed839bf1c998cb6950277825b2874d5959fbffcc5aed1ed9c3ad8"
+    },
+    {
+      "path": "docs/templates/page_solar/es/06_charging_connections.rst",
+      "sha256": "ef359848b5102b19f89f2a1234bf59c5ffca27279fb87b200f8f30a2dd0f88eb"
+    },
+    {
+      "path": "docs/templates/page_solar/es/07_angle_and_device.rst",
+      "sha256": "615e5ba8409266bb8be5d8983bb53ea5d4f7488dca704aeae2cbd62ff77221f4"
+    },
+    {
+      "path": "docs/templates/page_solar/es/09_warranty.rst",
+      "sha256": "0ffbd39b82268ed0986bd8f2f133361b78dedee5810b136c1ae0e3df14b6db69"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/01_safety_tips.rst",
+      "sha256": "789a829a92ba7e84cb6280db8e32f98b0999772d714d18cee5f1b2c808987634"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/02_whats_in_the_box.rst",
+      "sha256": "61ef5b920b5ddf85b3829d9b3ac18cc1c8316c3323ea231944adca5fe2478b44"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/03_product_views.rst",
+      "sha256": "359bcc21292d9485ac6226b7ea2879652eb750fb5f9add9c14a223101836d7bf"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/04_unfolding.rst",
+      "sha256": "beea40381e42697e8e5f8534668835293c0c317cb4748fd0aa00cdc607f2d82e"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/05_folding.rst",
+      "sha256": "66ac6e99259a050dbd5b81a920095d27b04fb51cf453b526d5fd08b5faa91b96"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/06_charging_connections.rst",
+      "sha256": "f8ef5784e979b04c4f55e124106c4a7860d6533579007b969b44f67cdbf029cc"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/07_angle_and_device.rst",
+      "sha256": "2ab071913d7ebe60a4b396f4e4013b7c56314ceeeae96fec19a20769f0d4ce35"
+    },
+    {
+      "path": "docs/templates/page_solar/fr/09_warranty.rst",
+      "sha256": "f36f8352f38bbfaedcbea687a89c22e48c53733d3c920bf6276a513f2c7e9dad"
+    },
+    {
+      "path": "docs/templates/page_solar/it/01_safety_tips.rst",
+      "sha256": "c8e0a459039e351eca4651d32c2996d06f6050bfe4b5bcf87f1a7e679a1b9f82"
+    },
+    {
+      "path": "docs/templates/page_solar/it/02_whats_in_the_box.rst",
+      "sha256": "8aba20190d92a09a917a03c25309345b23b20b765e495f34b3ed4fcc18b5f5f8"
+    },
+    {
+      "path": "docs/templates/page_solar/it/03_product_views.rst",
+      "sha256": "7ef76d0b819eb34071240d2fc536ff7eb1b4cb604a5eee46b6e23b4dc589e5dc"
+    },
+    {
+      "path": "docs/templates/page_solar/it/04_unfolding.rst",
+      "sha256": "b2429d3ed9524c45f270aa377f1fe66ae4559fb3983ac4d7686e593c44101878"
+    },
+    {
+      "path": "docs/templates/page_solar/it/05_folding.rst",
+      "sha256": "91a68c51586ebf870bbed9ae7bc1416aab02b630665abc72c1eee94b82811dd1"
+    },
+    {
+      "path": "docs/templates/page_solar/it/06_charging_connections.rst",
+      "sha256": "60fb57f183b7b5384b2cc3efcc3036cc56b7a9ddba53d7c11c7bc35896c09e5a"
+    },
+    {
+      "path": "docs/templates/page_solar/it/07_angle_and_device.rst",
+      "sha256": "b98456f68b47525dac78589db806f9acf6a99a7c42b193c304048af79b7c9401"
+    },
+    {
+      "path": "docs/templates/page_solar/it/09_warranty.rst",
+      "sha256": "8285b6c4fd5e1ac7d7ded62f4147c2b77191198b8978fb1e351317322f191d68"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/01_safety_tips.rst",
+      "sha256": "c2bdc141bcb797cbf9f038bc73bd6040099f1c8cd1eb884c28b5601f4226cf09"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/02_whats_in_the_box.rst",
+      "sha256": "37d6332e6e03180f0cdc862e7e8318f1eb96d37b63050c6c9e90e18df7205c25"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/03_product_views.rst",
+      "sha256": "aa8e8fa20834404bff89ef093918ec90ca0683e56a1a11a3fc49a386dfa97a82"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/04_unfolding.rst",
+      "sha256": "1ba501ac12874d6f18579f28a45c37e8198ac20517dd847d2e6244ed6056bf61"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/05_folding.rst",
+      "sha256": "91abfdf824e903ac885da3f715b47c622fa57871c2a095e7301ca5e54be947f3"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/06_charging_connections.rst",
+      "sha256": "4fe6a13cd24a96b1fa4c00f87575ad64db64bfbc32af04527464395b194d4f0b"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/07_angle_and_device.rst",
+      "sha256": "c9a36b31cf796395aa3455a3fcf89137914bd478caae9c6d4f9edf9f745f3fca"
+    },
+    {
+      "path": "docs/templates/page_solar/nl/09_warranty.rst",
+      "sha256": "9084e7e34290101d8cc43cdbfcaf2210080c8822b9aa49a98f6ddad2e54ea6b3"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/01_safety_tips.rst",
+      "sha256": "e68caedd83e0dc8a8be038c9d444816e96ab914eddf93956b4e35db1fbd0f142"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/02_whats_in_the_box.rst",
+      "sha256": "1ce72691b75b143b304459f2cb144e301f44b88b70aaeb54c63bdbb07ba45298"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/03_product_views.rst",
+      "sha256": "d71adc8d1f31246d965774e07c52925aaa704e6d84c5590c2e553f82291415e9"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/04_unfolding.rst",
+      "sha256": "e0676f755f1b6a35a75ad98430de3bc19811cc8f7252da80a42971d2daf11f82"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/05_folding.rst",
+      "sha256": "477843ab7db6358bef44466fc5925d7878a8abbebf34cddcd894531dd407829b"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/06_charging_connections.rst",
+      "sha256": "89208130c11985d5e1956c901397ce707e8089e0295dd3293e344f1c64dde76f"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/07_angle_and_device.rst",
+      "sha256": "fbf4f5de38f526b5d68c8c60bbfb8dd7b2449070803f9543020db6aceaebc971"
+    },
+    {
+      "path": "docs/templates/page_solar/pl/09_warranty.rst",
+      "sha256": "e3dd8e197f08850e05be87d781a9934ff713790ece29de0dba234159474e37ca"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/01_safety_tips.rst",
+      "sha256": "16b5e9fe3b7bbcee21704ebcacfde3415ce50b892005132d39e998aa4cf2d23e"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/02_whats_in_the_box.rst",
+      "sha256": "02affd1dbfedc087a596a87baf4754b3591d93835e814ecb805d237afd475ae6"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/03_product_views.rst",
+      "sha256": "b1256305dc8b12b9cd35a7ca6154be65b48fcc9a8cebf05cffe3e85c2bf4ccb7"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/04_unfolding.rst",
+      "sha256": "7d1869c2b5e32d13c9c1029220073475ff93e19cab010f91b033d3eafb3380f8"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/05_folding.rst",
+      "sha256": "19fc109ebb9021e716aea81ced8bce6a9ae53cdb7856ddf382fbf0b704c42c53"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/06_charging_connections.rst",
+      "sha256": "819f76fd17c56d2caeb68d3e81533513c46ac1afd021a62779b52d1e6ff72e8e"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/07_angle_and_device.rst",
+      "sha256": "0358b8c7714b6233c5f4350375a7023a676606bfc524ebb3944ec05386a5bb2c"
+    },
+    {
+      "path": "docs/templates/page_solar/pt/09_warranty.rst",
+      "sha256": "102a986ea1020b497f7f75498930c54494e050e8d13a738f0e11f543bb7abc56"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/01_safety_tips.rst",
+      "sha256": "a76654da52c8b0f864953fc4109bed6babace8f29bc133751e3fe6ae468eb027"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/02_whats_in_the_box.rst",
+      "sha256": "49be26f5413e724c2962f3180064c167b1c42c6b83c86ea0e3f26cf0f37d2199"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/03_product_views.rst",
+      "sha256": "b589b33b3e12580f4c331a9b89cf2e60e8d417da73d2cf7415bf5293e3be6774"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/04_unfolding.rst",
+      "sha256": "9a6993db31ed35ba2f1a57a32ffd7f2d5f76e120f7733b09edc619915139f775"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/05_folding.rst",
+      "sha256": "6815f5e2fc80f236ba11e76b6f38ea3360241816933dbe9361fa41a5ab0b2610"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/06_charging_connections.rst",
+      "sha256": "4777d669a2e8df02160f2d72da326a26d9ada9700e5a9b0e2ba12ba643b17a37"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/07_angle_and_device.rst",
+      "sha256": "06465d40365efe406ef1994af89a59e0a34b14f5dfc39139d84feac6295fb1ff"
+    },
+    {
+      "path": "docs/templates/page_solar/uk/09_warranty.rst",
+      "sha256": "b6f22a9659fdb6c8dbe5393dce13d0545e11ed30f350687d4d7c65a7f1f4eb31"
+    }
+  ],
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false
+  }
+}

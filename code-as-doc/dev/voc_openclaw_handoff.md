@@ -1,5 +1,7 @@
 # VOC to local OpenClaw handoff
 
+Status: active
+
 This optional post-intake command lets an operator send one already verified
 product suggestion to the local HT-Docs OpenClaw `main` agent. It is deliberately
 separate from HTTP intake: the receiver never invokes a model, and this command

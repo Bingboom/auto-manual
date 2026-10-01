@@ -1,5 +1,7 @@
 # Workstream W close-out evidence — 2026-07-31
 
+Status: done
+
 ## Authorization and scope
 
 The operator released the remaining implementation gates with:

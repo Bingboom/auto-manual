@@ -1,5 +1,7 @@
 # Manual Template Intake Checklist
 
+Status: active
+
 Updated: 2026-04-06
 
 Use this checklist when onboarding a new external Markdown manual into the shared template library.

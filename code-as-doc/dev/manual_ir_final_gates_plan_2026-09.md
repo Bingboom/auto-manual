@@ -1,5 +1,7 @@
 # ManualIR 最终入口闸门与旧 DOM 退役计划（第 7 刀）
 
+Status: done
+
 日期：2026-09-05
 分支：`refactor/web-ir-final-gates`
 基线：`e67e9be3`（第 6 刀 target-layered Web presentation 已合入）

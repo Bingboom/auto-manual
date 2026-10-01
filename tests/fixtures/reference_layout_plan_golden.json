@@ -1,0 +1,8 @@
+{
+  "variant_count": 3652,
+  "exception_count": 33,
+  "plan_digests": {
+    "approved": "0c7013dfde0dcd8cba3e664750ac71e59ea7086a40372b7d1494afcd474c7e91",
+    "fixture-with-flow-split": "8898128eb71069d5a7d7607aea1f1e488610893befbfa54b45a74b0f3cbba624"
+  }
+}

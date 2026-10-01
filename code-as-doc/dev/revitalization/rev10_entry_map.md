@@ -1,5 +1,7 @@
 # REV-10 · M4 稳定入口映射表 v1
 
+Status: active
+
 - 版本：**v1**（首版立表）；生成（UTC）：2026-09-19T03:36Z
 - 数据时点：Hello-Docs `main` tip **b8c09fd9a953f2dd386e912507c5e478fbdb2b6f**（2026-09-17T10:51:09Z；publish_manifest built_at 2026-09-17T07:23:17Z）；auto-manual `origin/main` = **58767931ba8f8b5d35fff2a725febce8fba66c28**
 - 表结构约定：每行一个稳定入口；「历史变更记录」栏本期为空（立表结构）——今后每次入口指向变化在该栏追加 `日期 | 旧目标 → 新目标 | 依据(PR/HD#)`，不覆盖旧行。

@@ -1,0 +1,2325 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_js100i_eu_nine_language_master",
+    "expected_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "expected_page_count": 87
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 87
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "physical_1",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "physical_2",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "physical_3",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "physical_4",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "physical_5",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "physical_6",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "physical_7",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "physical_8",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "physical_9",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "physical_10",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "physical_11",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "physical_12",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "physical_13",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "physical_14",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "physical_15",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "physical_16",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "physical_17",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "physical_18",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "physical_19",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "physical_20",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "physical_21",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "physical_22",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "physical_23",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "physical_24",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "physical_25",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "physical_26",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "physical_27",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "physical_28",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "physical_29",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "physical_30",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "physical_31",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "physical_32",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "physical_33",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "physical_34",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "physical_35",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "physical_36",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "physical_37",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "physical_38",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "physical_39",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "physical_40",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "physical_41",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "physical_42",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "physical_43",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "physical_44",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "physical_45",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "physical_46",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "physical_47",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "physical_48",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "physical_49",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "physical_50",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "physical_51",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "physical_52",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "physical_53",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "physical_54",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "physical_55",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "physical_56",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "physical_57",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "physical_58",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "physical_59",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "physical_60",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "physical_61",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "physical_62",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "physical_63",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "physical_64",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "physical_65",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "physical_66",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "physical_67",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "physical_68",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "physical_69",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "physical_70",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "physical_71",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "physical_72",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "physical_73",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "physical_74",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "physical_75",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "physical_76",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "physical_77",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "physical_78",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "physical_79",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "physical_80",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "physical_81",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "physical_82",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "physical_83",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "physical_84",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "physical_85",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "physical_86",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "physical_87",
+      "role": "manual_page",
+      "locale": "und",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js100i/eu/shared/unfold_1",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            80,
+            335,
+            169
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/unfold_1.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/unfold_2",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            198,
+            335,
+            356
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/unfold_2.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/unfold_3",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            387,
+            335,
+            487
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/unfold_3.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/unfold_4",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            49,
+            334,
+            134
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/unfold_4.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/fold_1",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            198,
+            334,
+            267
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/fold_1.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/fold_2",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            295,
+            334,
+            380
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/fold_2.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/fold_3",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            411,
+            334,
+            484
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/fold_3.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/dc8020",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            94,
+            341,
+            247
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/dc8020.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/dc7909",
+      "page": 9,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            303,
+            341,
+            438
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/dc7909.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/usbc",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            56,
+            341,
+            192
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/usbc.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/parallel",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            278,
+            341,
+            432
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/parallel.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/angle",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            68,
+            341,
+            184
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/angle.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/angle_choice_1",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            36,
+            223,
+            116,
+            267
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/angle_choice_1.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/angle_choice_2",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            193,
+            223,
+            272,
+            267
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/angle_choice_2.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/device",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            340,
+            341,
+            482
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/device.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/shared/dust",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            29,
+            340,
+            120
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_shared/dust.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Native figure candidate: local visual verification; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/fr/views",
+      "page": 15,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_fr.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/es/views",
+      "page": 24,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_es.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/de/views",
+      "page": 33,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_de.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/it/views",
+      "page": 43,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_it.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/uk/views",
+      "page": 52,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_uk.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/pt/views",
+      "page": 61,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_pt.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/nl/views",
+      "page": 70,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_nl.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/js100i/eu/pl/views",
+      "page": 79,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JS-100I"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            57,
+            344,
+            405
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "assets/js100i_eu_added/views_pl.pdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local Web candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}
