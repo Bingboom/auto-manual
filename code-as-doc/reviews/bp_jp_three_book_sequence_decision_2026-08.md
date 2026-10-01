@@ -1,5 +1,7 @@
 # BP@JP three-book sequence decision (R3a, 2026-08)
 
+Status: done
+
 ## 1. Decision
 
 The three shipped Japanese battery-pack books stay in one `BP@JP` skeleton

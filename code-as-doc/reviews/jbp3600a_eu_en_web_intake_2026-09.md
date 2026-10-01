@@ -1,5 +1,7 @@
 # JBP-3600A EU/en Web intake and acceptance
 
+Status: active
+
 Date: 2026-09-06
 
 Implementation baseline: `ef45a0df4582e89b0edabbb26d529ecec9d65bf3`

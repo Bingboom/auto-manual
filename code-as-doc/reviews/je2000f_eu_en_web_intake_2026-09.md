@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-2000F / EU / en` (`HTE154`, Jackery Explorer 2000)
 
-Status: implementation complete and ready for engineering review. Repository,
+Status: active · Recorded detail: implementation complete and ready for engineering review. Repository,
 target-build, semantic-IR, asset-provenance, image-reference, strict-Sphinx, and
 localhost desktop-browser checks pass. The operator approved all eleven
 corrective full-frame crops at 12x. Mobile layout remains a publication-stage
