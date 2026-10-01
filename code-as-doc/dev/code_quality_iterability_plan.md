@@ -213,6 +213,10 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
+  - [x] 计数棘轮（2026-10-01；`tools/check_broad_except_ratchet.py` + `data/broad_except_baseline.tsv`，
+    已接入 `check_maintainability_guardrails.py`；扫描 `build.py`、`tools/`、`scripts/`、`integrations/`，
+    基线 56 个文件 89 处，含 `except BaseException` 与包含二者的元组）
+  - [ ] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误），每族一个 PR
 - [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
   （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给
@@ -250,8 +254,11 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
 - [ ] **CQ-6.4 并行执行。** 评估两种方案：`pytest` + `pytest-xdist`（兼容 unittest 写法，
   但属于新增依赖，**需操作者确认**），或按模块在 CI 中分片（改 workflow，**需操作者确认**）。
   先用数据说明收益，再决定。
-- [ ] **CQ-6.5 黄金文件浮点数稳定化。** 几何类黄金对比改为按固定精度取整或给出容差
+- [x] **CQ-6.5 黄金文件浮点数稳定化。** 几何类黄金对比改为按固定精度取整或给出容差
   （先处理 `tests.test_idml_symbols_panel` 的三语言视觉契约）。
+  （2026-10-01；根因是 Python 3.12 的 `sum()` 改为补偿求和，同一布局在 3.11 得 `117.89999999999999`、
+  3.12 得 `117.9`。两个符号面板黄金对比改为比较前把浮点数取整到 6 位小数，黄金文件不变；3.11 与 3.12 均通过。
+  其余环境类失败（缺 `jinja2`、PyMuPDF 版本）由 CQ-6.2 的安装脚本解决，不是浮点问题）
 
 **验收。** 环境不符时 `build.py doctor` 给出单条明确诊断；`make test-fast` 在本地 ≤3 分钟；
 CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。
