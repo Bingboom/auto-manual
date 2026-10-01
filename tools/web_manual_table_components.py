@@ -39,13 +39,15 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
             "data-component-id": spec.component_id,
         },
     )
+    numbered = spec.variant == "icon-catalog"
     table = soup.new_tag("table", attrs={"class": "hb-lcd-icon-table"})
     table.append(
         _colgroup(
             soup,
             tuple(
                 f"hb-lcd-col-{role}"
-                for role in ("number", "icon", "name", "description")
+                for role in (("number", "icon", "name", "description") if numbered
+                             else ("icon", "name", "description"))
             ),
         )
     )
@@ -60,7 +62,7 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
             spans.extend([count] + [0] * (count - 1))
     for row, span in zip(projection["rows"], spans, strict=True):
         tr = soup.new_tag("tr")
-        if span:
+        if numbered and span:
             number = soup.new_tag("td", attrs={"class": "hb-lcd-number"})
             if span > 1:
                 number["rowspan"] = str(span)
@@ -181,7 +183,7 @@ def _render_signal(spec: ComponentSpec, projection: dict) -> str:
         icon.string = "⚠"
         label = soup.new_tag("span", attrs={"class": "hb-signal-label"})
         label.string = row["label"]
-        badge.extend((icon, label))
+        badge.extend((icon, label) if row.get("show_icon", True) else (label,))
         label_cell.append(badge)
         meaning = soup.new_tag("td", attrs={"class": "hb-symbol-signal-meaning-cell"})
         _append_html(meaning, row["meaning_html"])

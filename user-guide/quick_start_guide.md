@@ -841,3 +841,10 @@ python build.py html \
 
 JBP-2000B 欧规英文单语的可执行示例见
 [版本化结构源](../manual_sources/JBP-2000B/EU/en/2.0/README.md)。
+
+
+JE-100C/EU 九语 Web 的本地示例见[构建指南](../code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)：
+`--config configs/config.eu-fr.yaml --model JE-100C --region EU --lang fr`，
+并显式指定 `--data-root manual_sources/JE-100C/EU/en/2.0/phase2`。
+其余可用语言为 `en/es/de/it/uk/pt/nl/pl`，配置文件后缀与 `--lang` 同步替换。
+这些产物是本地候选，未修改线上构建表或发布链接。

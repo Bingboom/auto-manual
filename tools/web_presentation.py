@@ -136,7 +136,24 @@ def protect_web_figures_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]
         protected[token] = match.group(0)
         return f"<p>{token}</p>"
 
-    return _WEB_FIGURE_RE.sub(replace, html_text), protected
+    # Declared source layouts can contain registered figures. Protect the
+    # outer boundary first so Pandoc cannot flatten their shared frame.
+    soup = BeautifulSoup(html_text, "html.parser")
+    source_classes = {
+        "hb-device-actions", "hb-source-operation", "hb-source-warranty",
+        "hb-source-purchase", "hb-source-safety-heading",
+    }
+    blocks = soup.find_all("div", class_=lambda value: value in source_classes)
+    for node in blocks:
+        if any(set(parent.get("class", [])) & source_classes
+               for parent in node.parents if isinstance(parent, Tag)):
+            continue
+        token = f"AUTOMANUALWEBFIGURE{len(protected) + 1:04d}PLACEHOLDER"
+        protected[token] = str(node)
+        placeholder = soup.new_tag("p")
+        placeholder.string = token
+        node.replace_with(placeholder)
+    return _WEB_FIGURE_RE.sub(replace, str(soup) if blocks else html_text), protected
 
 
 def restore_web_figures_after_pandoc(
