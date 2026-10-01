@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_de,Enabled
+note1,EU,JS-100I,de,TRUE,specifications,2,"* STC (Standard-Testbedingungen, 1000 W/m2, 25 °C, AM 1,5)",TRUE
+note2,EU,JS-100I,de,TRUE,specifications,3,"* BNPI (Bifacial Nameplate Irradiance, Vorderseite 1000 W/m2, Rückseite 135 W/m2, 25 °C, AM 1,5) Klappen Sie die Halterung auf und legen Sie sie auf eine ebene Fläche. Die Bemessungslast beträgt 1600 Pa und der Sicherheitsfaktor ist 1,5 mal.",TRUE

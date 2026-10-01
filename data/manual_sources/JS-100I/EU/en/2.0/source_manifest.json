@@ -45,12 +45,15 @@
     }
   ],
   "assets": {
-    "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
-    "recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+    "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json",
+    "recipe_sha256": "da990417982853677b85a24212a9761f507c72e06cfdf36793c4291fe33fa39a",
+    "legacy_recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+    "legacy_recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
     "illustration_manifest": "docs/renderers/web/js100i_eu_en_illustrations.json",
-    "illustration_manifest_sha256": "d2d63eac57d98272c6367a133b82a22d7831ce0d263867e458b79b039f700e52",
-    "semantic_asset_count": 13,
-    "text_policy": "localized-full-image"
+    "illustration_manifest_sha256": "67d7dc6d55edd7bb1eca78f81dc4bcdcef405085fe1be06ac1ce4aa933a10227",
+    "semantic_asset_count": 22,
+    "text_policy": "selectable operation copy with native shared drawings; legacy labelled product view",
+    "source_note": "English structured facts and prose retain published authority; operation layout and figures use the pinned nine-language native master."
   },
   "online_dependencies": {
     "bitable_read_required": false,

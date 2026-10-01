@@ -8,8 +8,9 @@ from tools import lang_registry
 
 
 _REGISTRY_LANG_ALIASES = {
-    alias.casefold(): code
-    for alias, code in lang_registry.LANGUAGE_BY_ALIAS.items()
+    alias.casefold(): spec.code
+    for spec in lang_registry.sync_language_specs()
+    for alias in spec.aliases
 }
 
 LANG_CODES = frozenset(
@@ -56,7 +57,7 @@ LANG_ALIASES = {
     "zh_tw": "zh-TW",
     "zh-hant": "zh-TW",
 }
-SUPPORTED_LANGS = frozenset(spec.code for spec in lang_registry.LANGUAGE_REGISTRY)
+SUPPORTED_LANGS = frozenset(spec.code for spec in lang_registry.sync_language_specs())
 LANG_NAME_PATTERN = re.compile(
     "|".join(re.escape(name) for name in sorted(LANG_ALIASES, key=len, reverse=True)),
     re.IGNORECASE,
@@ -74,7 +75,7 @@ def canonical_query_lang(value: object) -> str:
     token = str(value or "").strip().casefold()
     normalized = LANG_ALIASES.get(token, token)
     spec = lang_registry.language_spec(normalized)
-    if spec is not None:
+    if spec is not None and spec.sync_enabled:
         return spec.code
     if normalized in {"pt", "br", "pt-br", "pt_br"}:
         return "pt-BR"
