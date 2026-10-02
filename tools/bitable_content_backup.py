@@ -73,7 +73,7 @@ def export_content(manifest: dict, base_token: str, label: str, out_dir: Path, l
         with path.open("w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["_record_id", *cols])
-            for row, rid in zip(rows, rids):
+            for row, rid in zip(rows, rids, strict=True):
                 w.writerow([rid, *[bs._serialize_cell(row.get(c), ftypes[c]) for c in cols]])
         report["tables"].append({
             "name": name, "table_id": tid, "csv": path.name, "rows": len(rows),

@@ -8,6 +8,7 @@ positioned field read; AI identity remains separate from PDF text authority.
 """
 from __future__ import annotations
 
+from itertools import pairwise
 from collections import defaultdict
 import hashlib
 import json
@@ -191,7 +192,7 @@ def _specifications(reader, number, layout=None):
     extract = reader.lines if layout.get("selection") == "lines" else reader.box
     for group, edges in layout.get("edges", _SPEC_EDGES).items():
         rows = []
-        for index, (top, bottom) in enumerate(zip(edges, edges[1:])):
+        for index, (top, bottom) in enumerate(pairwise(edges)):
             rows.append({
                 key: _clean(extract(number, (left, top - .5, right, bottom + .5),
                                        f"specifications/{group}/{index}/{key}"))
@@ -214,7 +215,7 @@ def _faults(reader, number, layout=None):
             raise ValueError(f"page {number}: troubleshooting code coverage changed")
         return {"physical_page": number, "rows": rows}
     edges = (layout or {}).get("edges", _FAULT_EDGES)
-    for index, (top, bottom) in enumerate(zip(edges, edges[1:])):
+    for index, (top, bottom) in enumerate(pairwise(edges)):
         rows.append({key: _clean(reader.box(number, (left, top, right, bottom),
                                            f"troubleshooting/{index}/{key}"))
                      for key, left, right in (("code", 26, 64.18), ("action", 64.18, 338))})

@@ -161,7 +161,8 @@ UPS_TEMPLATES = {lang: TEMPLATES / "page_shared" / lang / "06_ups_mode.rst" for 
 JE1000F_EU_REVIEW_UPS = {
     lang: ROOT / "docs/_review/JE-1000F/EU/page" / name
     for lang, name in zip(LANGS[:5], ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
-                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"))
+                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"),
+                                          strict=True)
 }
 JE500A_UPS = TEMPLATES / "page_je500a_eu-en" / "06_ups_mode.rst"
 

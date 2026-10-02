@@ -185,14 +185,14 @@ web、IDML、队列、回写这几块目前最大的代码面。
   与 CQ-2.4 协调：两边都会碰门面文件，同一个门面只在一个 PR 里改。
   （#1322，2026-09-29；`tools/process_build_queue.py` 通过 `_service_module()` 被辅助模块在运行时
   读取，静态分析看不到，暂按文件豁免 `F401`，留到 CQ-2.4 删除转发时处理）
-- [ ] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
+- [x] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
   `check=`）；`B905`（45，给 `zip` 加 `strict=`）要先确认每处长度确实应该相等，再决定是否启用。
   每条规则要么清零后加入 `select`，要么用 `per-file-ignores` 记录基线后加入。
   - [x] `B904`、`PLW1510` 清零并加入 `select`（2026-09-30）。实际扫描范围含 `tests/`、`scripts/`，
     共 5 处 `B904`、39 处 `PLW1510`；所有调用都按原行为显式写 `check=False`（默认值不变，零行为变化）。
-  - [x] `B905` 计数棘轮（2026-10-02；`tools/check_zip_strict_ratchet.py` + `data/zip_strict_baseline.tsv`，
-    已接入 guardrails，用 `ast` 计数，与 ruff `B905` 逐处一致：43 个文件 64 处，较 9-30 的 62 处回升 2 处）
-  - [ ] `B905` 逐处确认长度、清零后加入 `select`
+  - [x] `B905` 清零并加入 `select`（2026-10-02）：64 处逐一判断——长度在附近已校验或同源构造的 28 处改 `strict=True`；
+    `zip(a, a[1:])` 的 5 处改 `itertools.pairwise`；外部数据（lark-cli 行可能短于字段表）、版式输入、源数据长度不保证的 31 处
+    写 `strict=False` 并在上一行注明原因，保留原有截断行为。先前的计数棘轮随之删除。
 - [ ] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
   `tools.component_specs.*`、`tools.csv_pages.*` 逐个增加严格 override。**CI 命令目前固定为
   `python -m mypy tools/utils`，扩大检查路径需要改 workflow，须操作者确认。**

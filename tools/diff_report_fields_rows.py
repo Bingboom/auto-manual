@@ -288,7 +288,7 @@ def collect_field_diff_rows(
             ]
             if not old_indexes or len(old_indexes) != len(new_indexes):
                 continue
-            for old_index, new_index in zip(old_indexes, new_indexes):
+            for old_index, new_index in zip(old_indexes, new_indexes, strict=True):
                 append_pair(old_index, new_index)
 
         for index, _entry in enumerate(old_entries):

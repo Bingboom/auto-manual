@@ -152,7 +152,7 @@ class RtdPortalTests(unittest.TestCase):
                     if beacon_token:
                         instant = forward_markers(target, delayed=False)
                         delayed = forward_markers(target, delayed=True)
-                        for wanted, original in zip(delayed, instant):
+                        for wanted, original in zip(delayed, instant, strict=True):
                             self.assertIn(wanted, after_text, path)
                             after_text = after_text.replace(wanted, original, 1)
                 self.assertEqual(without_beacon(before_bytes).decode("utf-8"), after_text, path)

@@ -100,7 +100,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                 rows = table.select("tbody tr")
                 self.assertEqual([2, 2, 1, 2], [len(r.select("td")) for r in rows])
                 self.assertEqual("2", rows[1].select_one("td")["rowspan"])
-                for column, role in zip(record["columns"], ("left", "right")):
+                for column, role in zip(record["columns"], ("left", "right"), strict=True):
                     expected = [v["text"] for v in column["items"]]
                     self.assertEqual(expected, [c.get_text() for c in table.select(f"tbody .hb-auto-resume-{role}")])
                 spec = ComponentSpec.from_dict(nodes[-1]["component_spec"])
