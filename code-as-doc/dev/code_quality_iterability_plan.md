@@ -194,14 +194,14 @@ web、IDML、队列、回写这几块目前最大的代码面。
   - [x] `B905` 计数棘轮（2026-10-02；`tools/check_zip_strict_ratchet.py` + `data/zip_strict_baseline.tsv`，
     已接入 guardrails，用 `ast` 计数，与 ruff `B905` 逐处一致：43 个文件 64 处，较 9-30 的 62 处回升 2 处）
   - [ ] `B905` 逐处确认长度、清零后加入 `select`
-- [ ] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
+- [x] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
   `tools.component_specs.*`、`tools.csv_pages.*` 逐个增加严格 override。**CI 命令目前固定为
   `python -m mypy tools/utils`，扩大检查路径需要改 workflow，须操作者确认。**
   - [x] 计数棘轮（2026-10-02，操作者确认改 workflow）：`tools/check_mypy_ratchet.py` +
     `data/mypy_untyped_baseline.tsv`，按文件统计三个子包内 `mypy --disallow-untyped-defs` 错误（不计导入的
     包外文件；`--no-site-packages`，本地结果与 CI 一致），在 `type-check` job 运行，mypy 锁定 2.3.1。
     基线 22 个文件 68 处（manual_ir 29、component_specs 18、csv_pages 21）。本轮业务合入曾使错误回升，#1375、#1379 修回。
-  - [ ] 逐个子包清零后加严格 override
+  - [x] 三个子包清零（68 → 0，2026-10-02）：只补注解、`cast`、改名消除变量复用，`component_specs` 各 `parse_*_html` 的组件返回类型由 `object` 收紧为 `ComponentSpec`，无运行行为变化；`pyproject.toml` 为三个子包加 `disallow_untyped_defs` override，基线清空后由 mypy 棘轮在 CI `type-check` job 保持为 0
 
 **验收。** `pyproject.toml` 的 ruff `select` 至少包含 `E722, F, B023, B904, PLW1510`；CI 绿色；
 测试输出中没有 `ResourceWarning`；mypy 严格模式覆盖 ≥4 个子包。

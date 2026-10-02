@@ -220,7 +220,7 @@ def _validate_variant_shape(spec: ComponentSpec) -> None:
 
 def reference_figure_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
     _validate_variant_shape(spec)
-    captions = next(
+    captions: Any = next(
         (slot.content for slot in spec.slots if slot.role == "captions"),
         [],
     )

@@ -1,6 +1,8 @@
 """Prepared App download copy/art bindings and their public IR contract."""
 from __future__ import annotations
 
+from typing import Any
+
 from pathlib import Path
 import re
 
@@ -13,7 +15,7 @@ from tools.manual_ir.web_source import make_web_source
 from tools.utils.path_utils import get_paths
 
 
-def _download_payload(label, image_html, copies, artwork):
+def _download_payload(label: Any, image_html: Any, copies: Any, artwork: Any) -> dict[str, Any]:
     """Canonicalize only the owned data, never consult source/config on replay."""
     if not isinstance(label, str) or not label.strip():
         raise ValueError("App download section requires a nonempty heading")
