@@ -1335,7 +1335,11 @@ class TestCsvPageRenderers(unittest.TestCase):
 
     def test_explicit_lcd_descriptions_reject_real_icons(self) -> None:
         template = self._lcd_template().replace("lcd_icons_table_rst", "lcd_descriptions_table_rst")
-        blocks = self._lcd_blocks()
+        blocks = [{
+            "No.": "1", "Model": "JE-1000F", "Is_latest": "TRUE",
+            "icon_en": "Energy Saving Mode", "icon_desc_en": "Display status.",
+            "figure": "icon.png",
+        }]
         with self.assertRaisesRegex(ValueError, "text-only source rows"):
             renderers.render_lcd_icons_page(
                 template=template, blocks=blocks, sku_id="", lang="en",
