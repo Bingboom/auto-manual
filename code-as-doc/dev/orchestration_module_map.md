@@ -402,7 +402,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/check_facade_patch_ratchet.py`](../../tools/check_facade_patch_ratchet.py)
   - per-test-file count of patches on facade modules against `data/facade_patch_baseline.tsv`: unlisted files may not patch a facade, recorded counts may not grow, a lower count must be written back
 - [`tools/check_broad_except_ratchet.py`](../../tools/check_broad_except_ratchet.py)
-  - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back
+  - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back. Audited handlers are not counted: one whose body ends in `raise`, or whose `except` line carries `# noqa: BLE001 - <reason>`. The baseline is empty since the CQ-5.3 audit
 - [`tools/check_mypy_ratchet.py`](../../tools/check_mypy_ratchet.py)
   - per-file count of `mypy --disallow-untyped-defs` errors in `tools/manual_ir`, `tools/component_specs`, `tools/csv_pages` against `data/mypy_untyped_baseline.tsv`; runs in the CI `type-check` job (not in the guardrails, which have no mypy)
 - [`tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)

@@ -41,7 +41,7 @@ def collect_fcc_renderer_contract_issues(
                         region=region,
                         language=lang,
                     )
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - a renderer failure becomes a contract issue
                 issues.append(
                     issue_cls(
                         code="FCC_RENDER_CONTRACT",

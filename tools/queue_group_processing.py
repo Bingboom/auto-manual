@@ -259,7 +259,7 @@ def process_queue_record_group(
                         cfg=cfg,
                         operator_union_id=dingtalk_operator_union_id,
                     )
-                except Exception as exc:
+                except Exception as exc:  # noqa: BLE001 - DingTalk mirror is a side channel recorded in status notes
                     message = str(exc).strip()
                     deferred_status_notes = (
                         *deferred_status_notes,
@@ -505,7 +505,7 @@ def process_queue_record_group(
             + (f" -> {document_link_url}" if document_link_url else "")
         )
         return QueueGroupProcessingResult(processed_rows=row_count)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - group boundary: failure is written back to the row
         latest_link_url = getattr(exc, "latest_link_url", None) or latest_link_url
         message = str(exc).strip()
         failure_message = (
@@ -548,7 +548,7 @@ def process_queue_record_group(
                 result_field=result_field,
                 claim_token=claim_token,
             )
-        except Exception as writeback_exc:
+        except Exception as writeback_exc:  # noqa: BLE001 - writeback failure is appended to the reported failure
             failure_message = append_writeback_failed(failure_message, writeback_exc)
             print(
                 f"[build-queue] ERROR writeback failed for {group_key}: {writeback_exc}",

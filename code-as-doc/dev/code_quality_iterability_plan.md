@@ -235,15 +235,15 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   `cloud-doc-backport`，#1337，2026-09-30）：只迁移 stderr 上的 21 处诊断行（报错、GATE FAIL、跳过提示）；
   stdout 上的 `WROTE`/`BRANCH`/`APPLIED`/JSON 汇总是命令结果，PR 创建失败时的手工操作指引
   （`PR_CREATE_FAILED`…`PR_BODY`）也是结果，均保留 `print`。
-- [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
+- [x] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
   - [x] 计数棘轮（2026-10-01；`tools/check_broad_except_ratchet.py` + `data/broad_except_baseline.tsv`，
     已接入 `check_maintainability_guardrails.py`；扫描 `build.py`、`tools/`、`scripts/`、`integrations/`，
     基线 56 个文件 89 处，含 `except BaseException` 与包含二者的元组）
-  - [ ] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误），每族一个 PR
+  - [x] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误）
     - [x] `csv_pages`（#1358，2026-10-01；89 → 86）
-    - [ ] 其余各族（#1366 `ops_catalog` 因落后 main 关闭，待重开）
+    - [x] 其余 86 处一次审完（2026-10-02）：棘轮不再计入已审计的处理器——函数体以 `raise` 结尾（清理后重抛或包装后重抛，27 处），或 `except` 行带 `# noqa: BLE001 - <理由>`（CLI 入口、逐行批处理、尽力而为的旁路、诊断探针，51 处，含原有 6 处）；8 处收窄为具体异常（`build_dispatch`、`build_doctor` 格式化、`flow_dashboard` / `toolchain_provenance` / `derived_surface_push_check` 的子进程、`plistlib`、`validate_layout_params` 两处数值解析）。基线 86 → 0，此后任何未审计的宽泛处理器都会使门禁失败
 - [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
   （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给

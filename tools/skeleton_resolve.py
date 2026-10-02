@@ -695,7 +695,7 @@ def _yaml_scalar(value: Any) -> str:
         import yaml
 
         reparsed = yaml.safe_load(text)
-    except Exception:
+    except Exception:  # noqa: BLE001 - any reparse failure means the scalar must be quoted
         reparsed = None
     if isinstance(reparsed, str) and reparsed == text and "\n" not in text:
         return text

@@ -275,7 +275,7 @@ def _configured_category(config_path: Path) -> str:
 
     try:
         build = load_config_mapping(config_path).get("build", {})
-    except Exception:
+    except RuntimeError:
         return resolve_category(None)
     return resolve_category(build)
 

@@ -295,7 +295,7 @@ def _joined_string_text(node: ast.JoinedStr) -> str:
         elif isinstance(value, ast.FormattedValue):
             try:
                 expr = ast.unparse(value.value)
-            except Exception:  # pragma: no cover - ast.unparse is best-effort context only.
+            except Exception:  # noqa: BLE001 - ast.unparse is best-effort context only
                 expr = "expr"
             parts.append(f"{{{expr}}}")
     return "".join(parts)

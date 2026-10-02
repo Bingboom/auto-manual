@@ -44,6 +44,35 @@ class CountFileTest(unittest.TestCase):
             path = _write(Path(tmp), "tools/x.py", source)
             self.assertEqual((3, 9), ratchet.count_file(path))
 
+    def test_reraising_and_reasoned_handlers_are_audited(self) -> None:
+        source = """
+            try:
+                pass
+            except BaseException:
+                cleanup()
+                raise
+            try:
+                pass
+            except Exception as exc:
+                raise RuntimeError("wrapped") from exc
+            try:
+                pass
+            except Exception:  # noqa: BLE001 - CLI boundary
+                pass
+            try:
+                pass
+            except Exception:  # noqa: BLE001
+                pass
+            try:
+                pass
+            except Exception:
+                raise_later = True
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            path = _write(Path(tmp), "tools/x.py", source)
+            # Only the reasonless noqa and the handler that merely mentions raise count.
+            self.assertEqual((2, 17), ratchet.count_file(path))
+
 
 class CompareTest(unittest.TestCase):
     def test_new_grown_improved_cleared_and_stale(self) -> None:
@@ -86,7 +115,7 @@ class RepositoryTest(unittest.TestCase):
             self.assertIn("build.py\t1\n", baseline.read_text(encoding="utf-8"))
             self.assertEqual(0, ratchet.check_repository(root, baseline_path=baseline, printer=lines.append).exit_code)
 
-            _write(root, "scripts/ok.py", "try:\n    pass\nexcept BaseException:\n    raise\n")
+            _write(root, "scripts/ok.py", "try:\n    pass\nexcept BaseException:\n    x = 0\n")
             self.assertEqual(1, ratchet.check_repository(root, baseline_path=baseline, printer=lines.append).exit_code)
             self.assertTrue(any("NEW scripts/ok.py:3" in line for line in lines))
 
