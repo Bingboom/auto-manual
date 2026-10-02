@@ -1,0 +1,35 @@
+{% set engineering = 'https://github.com/Bingboom/auto-manual' %}
+{% set manuals = production.overview|selectattr('id', 'equalto', 'manuals')|first %}
+{% set variants = production.overview|selectattr('id', 'equalto', 'variants')|first %}
+{% set output_names = {'variants': '网页入口', 'word': 'Word 入口', 'print': '印刷包入口'} %}
+{% set outputs = production.overview|selectattr('id', 'in', output_names)|list %}
+{% set scale = outputs|rejectattr('value', 'none')|map(attribute='value')|max|default(0) %}
+<nav class="ws-shortcuts" aria-label="常用工作入口">
+  <b>工作入口</b><a href="#deliverables">查说明书 ↗</a><a href="https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje?table=tblbnRHjpJeCVTtj" target="_blank" rel="noopener">构建任务 ↗</a><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">运行记录 ↗</a><a href="#work-entries">更多入口 ↓</a>
+</nav>
+<section class="ws-results" aria-labelledby="ws-results-title">
+  <div class="ws-conclusion"><span class="pe-step">01 · 生产规模</span><h2 id="ws-results-title">{% if manuals.value is not none %}已积累 <strong>{{ manuals.display|e }}</strong> 本网页说明书{% else %}网页说明书规模暂时无法读取{% endif %}</h2>
+    <p>{% if variants.value is not none %}覆盖 {{ variants.display|e }} 个语言版本。{% endif %}一处查阅网页、Word 和印刷交付。</p>
+    <a class="ws-primary" href="#deliverables">查看交付物 →</a>
+    <small>按型号 × 区域计本数；显示当前存量，不代表本周新增。</small>
+  </div>
+  <figure class="ws-chart" aria-label="当前各格式交付入口数量，不同格式不相加">
+    <figcaption>交付入口分布 <span>个</span></figcaption>
+    {% for item in outputs %}<div class="ws-bar-row"><span>{{ output_names[item.id] }}</span><div class="ws-bar-track" aria-hidden="true"><i style="width:{{ (item.value / scale * 100) if item.value is not none and scale else 0 }}%"></i></div><b>{{ item.display if item.value is not none else '未知' }}</b></div>{% endfor %}
+  </figure>
+</section>
+<div class="ws-update"><span>目录最近构建：{{ last_published|default('暂不可读', true)|e }} · 交付快照：{{ snapshot_date|default('暂不可读', true)|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看持续构建记录 ↗</a></div>
+{% if production.alerts %}<details class="ws-alert"><summary>有 {{ production.alerts|length }} 项数据需要复核</summary><ul>{% for alert in production.alerts %}<li>{{ alert|e }}</li>{% endfor %}</ul></details>{% endif %}
+<section class="ws-assets" aria-labelledby="ws-assets-title">
+  <header><div><span class="pe-step">02 · 资产管理与消费</span><h2 id="ws-assets-title">三类共享资产，支撑说明书生产</h2></div><a href="#reuse">查看使用情况 →</a></header>
+  <div class="ws-asset-flow">
+    <article><span class="ws-symbol" aria-hidden="true">文</span><h3>语料库</h3><p>复用译文与术语</p><a href="https://xcn57j1urbe6.feishu.cn/wiki/FRUywcjrPiMoPrkxnadcQhhenmb" target="_blank" rel="noopener">管理语料 ↗</a></article>
+    <article><span class="ws-symbol" aria-hidden="true">Aa</span><h3>样式库</h3><p>复用版式与组件</p><a href="{{ engineering }}/blob/main/docs/renderers/contracts/STYLE_DEFINITION.md" target="_blank" rel="noopener">查看样式 ↗</a></article>
+    <article><span class="ws-symbol" aria-hidden="true">▤</span><h3>模板与骨架</h3><p>复用章节与结构</p><a href="{{ engineering }}/tree/main/docs/templates" target="_blank" rel="noopener">模板 ↗</a><a href="{{ engineering }}/tree/main/docs/manifests/skeletons" target="_blank" rel="noopener">骨架 ↗</a></article>
+  </div>
+  <div class="ws-flow-result"><span aria-hidden="true">↓</span><b>说明书生产与交付</b><small>{% if production.reference_metric.value is not none %}已确认：产品总览组件配置绑定 {{ production.reference_metric.display|e }} 个型号／区域{% else %}组件引用情况暂不可读{% endif %} · 实际采用仍需交付证据</small></div>
+</section>
+<section class="ws-followup" aria-label="生产投入与回流再利用">
+  <div><span class="pe-step">03 · 生产投入</span><h3>跟进任务与人工处理</h3><p>投入变化尚无可比记录。</p><a href="https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje?table=tblbnRHjpJeCVTtj" target="_blank" rel="noopener">查看构建任务 ↗</a></div>
+  <div><span class="pe-step">04 · 回流再利用</span><h3>让修订回到共享资产</h3><p>修订 → 资产更新 → 后续采用；完整关联尚未记录。</p><a href="{{ engineering }}/blob/main/user-guide/closed_loop_ops_guide.md" target="_blank" rel="noopener">查看评审与回写流程 ↗</a></div>
+</section>
