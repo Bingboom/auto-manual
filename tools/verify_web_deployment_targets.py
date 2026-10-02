@@ -38,7 +38,6 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
-import sys
 from typing import Any
 from urllib.parse import urlsplit
 from urllib.request import Request, build_opener
@@ -54,6 +53,9 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools import rtd_deployment_receipt as receipt  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("verify-web-deploy", stream="stderr")
 
 REPORT_SCHEMA = "auto-manual-web-deployment-verification/v1"
 MANIFEST_SCHEMA = "auto-manual-web-publish-branch/v2"
@@ -443,8 +445,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         exit_code, report = run(args)
-    except Exception as exc:  # noqa: BLE001 - CLI boundary prints the error and exits non-zero
-        print(f"[verify-web-deploy] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[verify-web-deploy] ERROR: {exc}")
         return EXIT_FAILED
     if args.report_json is not None:
         Path(args.report_json).write_text(

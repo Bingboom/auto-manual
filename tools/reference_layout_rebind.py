@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
 from typing import Sequence
 
 try:
@@ -20,6 +19,9 @@ from tools.idml.reference_layout_plan import ReferenceLayoutPlanError  # noqa: E
 from tools.idml.reference_layout_rebind import rebind_reference_layout_plan  # noqa: E402
 from tools.manual_ir import ManualIR, read_manual_ir  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("reference-layout-rebind", stream="stderr")
 
 
 REGISTRY_PATH = (
@@ -86,7 +88,7 @@ def _run_all_registered(manual_ir: Path, registry_path: Path) -> int:
         ir = read_manual_ir(manual_ir.resolve())
         plan_paths = _registered_plan_paths(registry_path.resolve())
     except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
-        print(f"[reference-layout-rebind] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[reference-layout-rebind] ERROR: {exc}")
         return 1
 
     passed = 0
@@ -179,7 +181,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             content_approval=content_approval,
         )
     except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
-        print(f"[reference-layout-rebind] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[reference-layout-rebind] ERROR: {exc}")
         return 1
     if not ok:
         return 1

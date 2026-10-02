@@ -52,6 +52,9 @@ from tools.source_table_contract import (  # noqa: E402
     validate_source_table_contract,
 )
 from tools.sync_data_models import TABLE_SCHEMAS  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("schema-drift", stream="stderr")
 
 _DERIVED_REQUIRED_CSV_HEADERS: dict[str, tuple[str, ...]] = {
     "spec_titles": ("title_en", "title_ko", "section_order"),
@@ -633,7 +636,7 @@ def run(argv: list[str] | None = None) -> int:
                 source_table_contract_path=source_table_contract_path,
             )
         except RuntimeError as exc:
-            print(f"[schema-drift] ERROR {exc}", file=sys.stderr)
+            _ERR.error(f"[schema-drift] ERROR {exc}")
             return 1
         print(render_schema_drift_report(result), file=sys.stderr if not result.valid else sys.stdout)
         return 0 if result.valid else 1
@@ -656,12 +659,12 @@ def run(argv: list[str] | None = None) -> int:
             source_table_contract_path=source_table_contract_path,
         )
     except RuntimeError as exc:
-        print(f"[schema-drift] ERROR {exc}", file=sys.stderr)
+        _ERR.error(f"[schema-drift] ERROR {exc}")
         return 1
 
     if issues:
         for issue in issues:
-            print(f"[schema-drift] ERROR {issue.format()}", file=sys.stderr)
+            _ERR.error(f"[schema-drift] ERROR {issue.format()}")
         return 1
     print("[schema-drift] OK")
     return 0

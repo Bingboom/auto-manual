@@ -38,6 +38,9 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.cloud_doc_backport_model import _normalize_inline, parse_blocks  # noqa: E402
 from tools.utils.path_utils import PathSegments, get_paths, revision_ledger_of  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("revision-ledger", stream="stderr")
 
 LEDGER_SCHEMA_VERSION = 1
 
@@ -981,7 +984,7 @@ def main(argv: list[str] | None = None) -> int:
         transport = None
         if args.write:
             if not args.tm_binding:
-                print("revision-ledger: --write requires --tm-binding BASE:TABLE_ID", file=sys.stderr)
+                _ERR.error("revision-ledger: --write requires --tm-binding BASE:TABLE_ID")
                 return 2
             from tools.cloud_doc_backport_transports import _tm_transport
 

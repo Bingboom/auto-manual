@@ -7,7 +7,6 @@ import csv
 import io
 import json
 import re
-import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -45,6 +44,9 @@ from tools.source_record_index import (
     record_count as source_record_index_count,
 )
 from tools.sync_schema_sensor import append_missing_columns_warning, append_missing_columns_warning_for_sources
+from tools.utils.log import get_logger
+
+_ERR = get_logger("sync-data", stream="stderr")
 
 # Tables fetched with record ids: footnotes plus source_record_index tables (F1).
 # Other tables keep the id-free fetch so observable sync behavior is unchanged.
@@ -360,20 +362,14 @@ def _materialized_attachment_display_path(
         target_display_path = _display_path(target_path, repo_root=repo_root)
         if cached_path is not None:
             cached_display_path = _display_path(cached_path, repo_root=repo_root)
-            print(
-                f"[sync-data] WARNING: Failed to download {label} attachment "
+            _ERR.warning(f"[sync-data] WARNING: Failed to download {label} attachment "
                 f"{file_token} to {target_display_path}: {exc}. "
-                f"Using cached attachment {cached_display_path}.",
-                file=sys.stderr,
-            )
+                f"Using cached attachment {cached_display_path}.")
             return _logical_attachment_path(cached_path)
 
-        print(
-            f"[sync-data] WARNING: Failed to download {label} attachment "
+        _ERR.warning(f"[sync-data] WARNING: Failed to download {label} attachment "
             f"{file_token} to {target_display_path}: {exc}. "
-            "Clearing optional image reference for this row.",
-            file=sys.stderr,
-        )
+            "Clearing optional image reference for this row.")
         return ""
 
     return _logical_attachment_path(target_path)

@@ -65,6 +65,9 @@ from tools.content_lint_languages import (  # noqa: E402
 )
 from tools.source_record_index import resolve_findings  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("content-lint", stream="stderr")
 
 FINDING_SCHEMA_VERSION = "content-qc-finding/v1"
 REPORT_SCHEMA_VERSION = "content-qc-report/v1"
@@ -756,12 +759,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     unsupported = [lang for lang in langs if lang not in SUPPORTED_LANGS]
     if unsupported:
-        print(
-            f"content_lint: unsupported --langs {unsupported}; supported: "
+        _ERR.error(f"content_lint: unsupported --langs {unsupported}; supported: "
             f"{', '.join(SUPPORTED_LANGS)}. Add the language's column suffix to the "
-            "per-file maps in content_lint.py to lint it.",
-            file=sys.stderr,
-        )
+            "per-file maps in content_lint.py to lint it.")
         return 2
     started_at = _utc_now()
     checks = _check_specs(root, langs)
@@ -784,7 +784,7 @@ def main(argv: list[str] | None = None) -> int:
         try:
             written = _write_local_reports(report, report_dir)
         except OSError as exc:
-            print(f"WARNING: failed to write QC report: {exc}", file=sys.stderr)
+            _ERR.warning(f"WARNING: failed to write QC report: {exc}")
         else:
             if not args.json:
                 print(f"REPORT: {written['json']} ; {written['markdown']}")

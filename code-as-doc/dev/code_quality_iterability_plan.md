@@ -235,6 +235,11 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   `cloud-doc-backport`，#1337，2026-09-30）：只迁移 stderr 上的 21 处诊断行（报错、GATE FAIL、跳过提示）；
   stdout 上的 `WROTE`/`BRANCH`/`APPLIED`/JSON 汇总是命令结果，PR 创建失败时的手工操作指引
   （`PR_CREATE_FAILED`…`PR_BODY`）也是结果，均保留 `print`。
+  其余 `tools/` 的 stderr 诊断行（2026-10-02）：25 个文件 46 处 `print(<字面量>, file=sys.stderr)` 改为
+  `get_logger(<前缀>, stream="stderr")`，文本逐字不变；含 WARN 的用 `warning`，沙箱写入提示用 `info`，其余报错用 `error`。
+  保留 `print` 的：回写的 `COMPARE`/`PR_TITLE`/`PR_BODY` 手工指引、`flow_dashboard` 的 `WROTE` 路径（命令结果），
+  转发子进程输出或多参数的调用、`scripts/` 下的钩子与接收器，可直接 `python tools/<x>.py` 运行、不依赖 `tools` 包的 9 个独立脚本（加入 `tools.utils.log` 导入会让它们在 CI 里找不到包），以及 `spec_master_rebuild.py` 的 1 处（迁移会超出热点行数上限）。
+  stdout 上其余约 500 处 `print` 绝大多数是命令结果（报告、JSON、路径），按上面的规则不迁移。
 - [x] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。

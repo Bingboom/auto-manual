@@ -23,6 +23,9 @@ if __package__ in (None, ""):
 
 from tools import build_docs  # noqa: E402
 from tools.config_loader import load_config_mapping  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("ci-check-targets", stream="stderr")
 
 
 @dataclass(frozen=True)
@@ -312,11 +315,8 @@ def run_driver(
     ratchet = report["skip_ratchet"]
     assert isinstance(ratchet, dict)
     if not ratchet["passed"]:
-        print(
-            f"[ci-check-targets] SKIP ratchet failed: current={ratchet['current']} "
-            f"baseline={ratchet['baseline']}",
-            file=sys.stderr,
-        )
+        _ERR.error(f"[ci-check-targets] SKIP ratchet failed: current={ratchet['current']} "
+            f"baseline={ratchet['baseline']}")
     fail_ratchet = report.get("fail_ratchet")
     fail_ratchet_failed = False
     if isinstance(fail_ratchet, dict) and not fail_ratchet["passed"]:

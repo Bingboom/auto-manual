@@ -59,6 +59,9 @@ from tools.cloud_doc_backport import (  # noqa: E402
 )
 from tools.source_table_sync import apply_change_requests, load_sidecar_index  # noqa: E402
 from tools.token_resolution_map import build_value_index  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("backport-live-check", stream="stderr")
 
 
 def run_live(
@@ -172,10 +175,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.write:
         if not bindings:
-            print("ERROR: --write requires a sandbox --table-binding TABLE=BASE:TABLE_ID", file=sys.stderr)
+            _ERR.error("ERROR: --write requires a sandbox --table-binding TABLE=BASE:TABLE_ID")
             return 2
         for table, (base, table_id) in bindings.items():
-            print(f"[live-write] sandbox target: {table} -> base={base} table={table_id}", file=sys.stderr)
+            _ERR.info(f"[live-write] sandbox target: {table} -> base={base} table={table_id}")
 
     result = run_live(
         cloud_doc=args.cloud_doc,

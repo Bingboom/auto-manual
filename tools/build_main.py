@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import argparse
 import subprocess
-import sys
 from pathlib import Path
 from typing import Callable
 
 from tools.local_env import load_local_env_file
+from tools.utils.log import get_logger
+
+_ERR = get_logger("build-main", stream="stderr")
 
 
 def run_main(
@@ -89,7 +91,7 @@ def run_main(
     except subprocess.CalledProcessError as exc:
         return exc.returncode or 1
     except RuntimeError as exc:
-        print(f"[build.py] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[build.py] ERROR: {exc}")
         return 1
 
     return 0

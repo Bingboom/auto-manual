@@ -8,7 +8,6 @@ import json
 import os
 import shutil
 import subprocess
-import sys
 import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -31,6 +30,9 @@ from tools.safe_copy import (  # noqa: E402
     copytree_replace_no_symlinks,
 )
 from tools.utils.path_utils import Paths  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("review", stream="stderr")
 
 
 @dataclass(frozen=True)
@@ -400,7 +402,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"action='{action}', path='{review_bundle.review_dir}'"
             )
     except RuntimeError as exc:
-        print(f"[review] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[review] ERROR: {exc}")
         return 1
 
     return 0

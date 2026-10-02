@@ -7,7 +7,6 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 import subprocess
-import sys
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -21,6 +20,9 @@ from tools.release_reproducibility import (  # noqa: E402
     review_overlay_from_environment,
     source_date_epoch_from_environment,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("release-manifest", stream="stderr")
 
 
 def _read_git_sha() -> str | None:
@@ -123,7 +125,7 @@ def main(argv: list[str] | None = None) -> int:
             release_version=args.version,
         )
     except RuntimeError as exc:
-        print(f"[release-manifest] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[release-manifest] ERROR: {exc}")
         return 1
 
     print(f"[release-manifest] JSON: {json_path}")

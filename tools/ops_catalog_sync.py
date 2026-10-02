@@ -35,7 +35,6 @@ import csv
 import io
 import json
 import re
-import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -61,6 +60,9 @@ from tools.verify_web_deployment_targets import (  # noqa: E402
     fetch_manifest_bytes,
     manifest_targets,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("ops-catalog-sync", stream="stderr")
 
 REPORT_SCHEMA = "auto-manual-ops-catalog-sync/v1"
 WHITELIST_SCHEMA = "auto-manual-ops-catalog-reconcile-whitelist/v1"
@@ -933,13 +935,10 @@ def run_sync(args: argparse.Namespace, ops: LarkOps) -> tuple[int, dict[str, Any
     for item in outcome["applied"]:
         print(f"{prefix} WROTE {item['action']} row {item['row']} {item['doc_id']} (readback ok)")
     for item in outcome["failures"]:
-        print(f"{prefix} FAILED {item['action']} {item['doc_id']}: {item['error']}", file=sys.stderr)
+        _ERR.error(f"{prefix} FAILED {item['action']} {item['doc_id']}: {item['error']}")
     if outcome["failures"]:
-        print(
-            f"{prefix} {len(outcome['failures'])} row(s) failed; rerun sync to retry just those rows "
-            "(the plan is idempotent)",
-            file=sys.stderr,
-        )
+        _ERR.error(f"{prefix} {len(outcome['failures'])} row(s) failed; rerun sync to retry just those rows "
+            "(the plan is idempotent)")
         return EXIT_DIFF, report
     return EXIT_OK, report
 
@@ -990,8 +989,8 @@ def main(argv: list[str] | None = None) -> int:
             exit_code, report = run_sync(args, ops)
         else:
             exit_code, report = run_reconcile(args, ops)
-    except Exception as exc:  # noqa: BLE001 - CLI boundary prints the error and exits non-zero
-        print(f"[ops-catalog-sync] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[ops-catalog-sync] ERROR: {exc}")
         return EXIT_ERROR
     _emit_report(args, report)
     return exit_code
