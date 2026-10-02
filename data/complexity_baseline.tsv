@@ -252,10 +252,8 @@ tools/web_presentation.py	_transform_auto_resume_table	25
 tools/web_presentation.py	_transform_operation_figure	22
 tools/web_presentation.py	transform_web_fragment	93
 tools/web_presentation_contract.py	_base_art_live_copy_slots	21
-tools/web_presentation_contract.py	_derived_figure_slots	23
 tools/web_presentation_contract.py	_load_cached	25
 tools/web_presentation_contract.py	_load_target_overlays	22
-tools/web_presentation_contract.py	_normalize_coverage_policy	21
 tools/web_presentation_contract.py	_validate_base_art_layout	24
 tools/web_presentation_contract.py	_validate_reference_base_art_layout	21
 tools/word_bundle_docx_images.py	embed_external_docx_images	30

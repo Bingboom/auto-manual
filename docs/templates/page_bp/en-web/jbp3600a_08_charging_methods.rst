@@ -11,7 +11,7 @@ When charging from the wall, this product must be used with |BP_HOST_PRODUCT_NAM
    :widths: 12 88
 
    * - **WARNING**
-     - Ensure all products are powered off before connecting |BP_HOST_PRODUCT_SHORT_NAME| to |PRODUCT_NAME|.
+     - Ensure all products are powered off before connecting the |BP_HOST_PRODUCT_NAME| to the |PRODUCT_NAME|.
 
 .. image:: |BP_CHARGING_AC_ASSET|
    :alt: AC wall charging connection through |BP_HOST_PRODUCT_NAME|.

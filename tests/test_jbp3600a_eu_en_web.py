@@ -141,7 +141,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
 
         source_manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual("auto-manual-git-source/v1", source_manifest["schema_version"])
-        self.assertEqual("formal-published-source-audited-git-input", source_manifest["source_role"])
+        self.assertEqual("operator-designated-native-artwork-git-input", source_manifest["source_role"])
         self.assertEqual(
             "manual_sources/JBP-3600A/EU/en/phase2",
             source_manifest["data_root"],
@@ -184,8 +184,9 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         for entry in provenance["illustrations"]:
             self.assertTrue(any(entry["sha256"] in src for src in image_sources), entry["path"])
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertEqual(6, len(coverage["slots"]))
-        self.assertTrue(all(slot["status"] == "finished-panel" for slot in coverage["slots"]))
+        self.assertGreaterEqual(len(coverage["slots"]), 6)
+        self.assertEqual({"finished-panel", "base-art-live-copy"},
+                         {slot["status"] for slot in coverage["slots"]})
         self.assertIn("Jackery Explorer 3600 Plus", self.html)
         self.assertIn("F6-F9, FA, FC, FE", self.html)
         self.assertNotIn("Jackery Battery Pack 2000", self.html)
@@ -195,7 +196,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         headings = [h.get_text(" ", strip=True) for h in soup.select("h1,h2,h3,h4")]
         self.assertEqual(1, headings.count("FRONT VIEW"))
         self.assertEqual(1, headings.count("LEFT SIDE VIEW"))
-        for stem in ("overview_front", "overview_left", "lcd_annotated", "power_annotated", "lcd_control_clean", "clearance_clean", "stacking_clean", "locking_clean"):
+        for stem in ("overview_front", "overview_left", "lcd_annotated", "power_native", "lcd_control_clean", "clearance_native", "stacking_clean", "locking_native"):
             images = soup.select(f'img[data-web-finished-panel-path$="/{stem}.png"]')
             self.assertEqual(1, len(images), stem)
         self.assertFalse(any(
@@ -225,6 +226,28 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             block.get_text(" ", strip=True) == "On Press once Off Press and hold for 3 seconds"
             for block in soup.select(".line-block")
         ))
+
+    def test_native_labels_and_css_clock_survive_component_binding(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        operation = soup.select_one('[data-web-replace-key="operation.main-power"]')
+        self.assertIsNotNone(operation)
+        self.assertEqual(["On", "Off"], [item.get_text(strip=True) for item in
+                                        operation.select(".hb-operation-step-label")])
+        duration = operation.select_one('.hb-operation-duration[data-duration-icon="clock"]')
+        self.assertEqual("3s", duration.get_text(strip=True))
+        self.assertFalse(duration.select("img,svg"))
+        for key, labels in (
+            ("reference.clearance", ["≥0.66 ft (≈200 mm)"] * 2),
+            ("reference.locking", ["Lock", "Unlock", "1", "2", "1", "2"]),
+        ):
+            figure = soup.select_one(f'[data-web-replace-key="{key}"]')
+            self.assertEqual(labels, [item.get_text(strip=True) for item in
+                                     figure.select(".hb-reference-live-label")])
+        slots = {item["slot_id"]: item["status"]
+                 for item in self.ir.metadata["web_figure_coverage"]["slots"]}
+        for key in ("operation.main-power", "reference.clearance", "reference.locking"):
+            self.assertEqual("base-art-live-copy", slots[key])
+        self.assertFalse(soup.select(".hb-auto-resume-table,.hb-key-combination-table"))
 
     def test_warranty_uses_shared_native_components(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
@@ -256,6 +279,9 @@ with patch.object(Path, "open", guarded):
         read_manual_ir(package / "manual.ir.json"), package_root=package
     )
     assert len(result) == 15
+    markup = "\n".join(result)
+    assert 'data-duration-icon="clock"' in markup
+    assert 'data-web-replace-key="reference.locking"' in markup
 '''
         subprocess.run(
             [sys.executable, "-c", script, str(self.package)],

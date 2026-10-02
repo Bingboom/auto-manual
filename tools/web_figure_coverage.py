@@ -22,7 +22,7 @@ WEB_FIGURE_STATUSES = (
     "editable-fallback",
     "missing",
 )
-_FIGURE_SECTIONS = ("overview", "operation", "charging")
+_FIGURE_SECTIONS = ("overview", "operation", "charging", "reference")
 _FINAL_FIGURE_STATUSES = frozenset({"finished-panel", "approved-composite"})
 # Statuses added after v1 reports were first frozen. Their counts appear in a
 # summary only when non-zero, so every report without such a slot keeps the
@@ -75,6 +75,12 @@ def _figure_section(
     for section, marker in slot_markers:
         if marker in normalized_slot:
             return section
+    for figure in contract.get("reference_figures", {}).get("figures", []):
+        if (
+            figure.get("presentation_mode") == "base-art-live-copy"
+            and _matches_source(page_id, figure.get("source_patterns", []))
+        ):
+            return "reference"
     return None
 
 

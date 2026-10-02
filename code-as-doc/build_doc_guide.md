@@ -920,11 +920,16 @@ Web Publish / Read the Docs note:
   A local Sphinx acceptance build must report zero broken images; opening only
   the intermediate `manual_bundle.html` is not sufficient Web verification.
 - `JBP-3600A / EU / en` uses the BP skeleton through
-  [`config.bp-eu-en-web.yaml`](../configs/config.bp-eu-en-web.yaml). Its target
-  fixture and approved source-AI illustration hashes support engineering
-  acceptance only until the corresponding live phase2/build/asset rows are
-  created and read back. See the
-  [intake and acceptance record](reviews/jbp3600a_eu_en_web_intake_2026-09.md).
+  [`config.bp-eu-en-web.yaml`](../configs/config.bp-eu-en-web.yaml) and its
+  [Git-only input](../manual_sources/JBP-3600A/EU/en/README.md). HTP011 source
+  wording follows the HTP017 chapter structure. The shared Operation component
+  permits battery packs to omit host-only auto-resume, key-combination and LCD
+  mode tables. Its opt-in `base_art_layout.duration_icon: clock` draws a CSS
+  clock beside live duration text after the source glyph is removed.
+  Governed reference figures and hash-locked finished panels may coexist in
+  coverage. Apply label-bearing illustration replacements before ComponentSpec
+  discovery (`consume_before_presentation`) so cold replay hashes the same
+  carrier. See the [source and acceptance record](reviews/jbp3600a-eu-en-htp011-20261002.md).
 - For an approved PDF artwork correction, `swap_pdf_regions` exchanges two
   equal-size, disjoint native regions on white backgrounds, inside the asset
   crop. Freeze source/output hashes and visually verify the final PNG. JBP-2000B

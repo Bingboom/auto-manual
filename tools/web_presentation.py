@@ -880,19 +880,21 @@ def _transform_operations(
     operation_panel_copy: Sequence[Mapping[str, Any]] = (),
 ) -> None:
     operation_contract = contract["operations"]
-    _ensure_auto_resume_table(
-        soup,
-        source_path=source_path,
-        expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
-    )
-    _ensure_key_combination_table(
-        soup,
-        source_path=source_path,
-        minimum_body_rows=int(
-            operation_contract["key_combination_table"]["minimum_body_rows"]
-        ),
-    )
-    if "HB-TABLE-LCD-MODE" not in resolved_component_ids:
+    if operation_contract.get("auto_resume_table"):
+        _ensure_auto_resume_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
+        )
+    if operation_contract.get("key_combination_table"):
+        _ensure_key_combination_table(
+            soup,
+            source_path=source_path,
+            minimum_body_rows=int(
+                operation_contract["key_combination_table"]["minimum_body_rows"]
+            ),
+        )
+    if operation_contract.get("lcd_mode_table") and "HB-TABLE-LCD-MODE" not in resolved_component_ids:
         _ensure_lcd_mode_table(
             soup,
             source_path=source_path,

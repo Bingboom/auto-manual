@@ -1937,6 +1937,8 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
 
+HTP011（0924）英文原稿更新使用[Git-only 结构源](../manual_sources/JBP-3600A/EU/en/README.md)，章节参考 HTP017。开关说明、间距与锁扣标注为可选择文字，时钟从底图移除后用公共 CSS 绘制。使用原有 BP 配置构建，无需写飞书；工程 PR、本地预览验收和正式上线分别确认。见[本轮原稿及验收记录](../code-as-doc/reviews/jbp3600a-eu-en-htp011-20261002.md)。
+
 ### JBP-2000B 欧规英文网页
 
 现行 V2.0 的英文网页使用独立的

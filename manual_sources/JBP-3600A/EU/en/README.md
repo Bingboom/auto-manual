@@ -1,10 +1,13 @@
 # JBP-3600A EU/en formal Git source
 
-This directory is the reviewed, target-scoped build input for the Git-only Web
+This directory is the target-scoped build input for the Git-only Web
 release of `JBP-3600A / EU / en`, version `2.0`.
 
-- Authority: the current published manual `V2.0-2026-08-04` and the matching
-  Illustrator source identified in [`source_manifest.json`](source_manifest.json).
+- Authority: operator-supplied `HTP011-EU-9国语言-0924.ai`, English pages 7–14,
+  frontmatter 1/2/4 and regulations 79, identified in
+  [`source_manifest.json`](source_manifest.json). The prior published authority is
+  retained there as history. [`native-source-20260924.json`](native-source-20260924.json)
+  records native PDF text; outlined passages were checked visually.
 - Structured source: [`phase2/`](phase2) contains only the target rows plus the
   shared dictionaries required to render them.
 - Artwork: source-derived, hash-locked panels remain in the repository renderer
@@ -36,3 +39,8 @@ Both DC expansion rows now sit in one `INPUT/OUTPUT PORTS` section as
 title, with the fr/es/de/it wording from PDF pages 19/27/35/43. This print has no
 uk block, so the uk cell reuses the JBP-2000B print's `ВХІДНІ/ВИХІДНІ ПОРТИ`.
 `source_manifest.json` re-locks the four files.
+
+The chapter structure follows the existing HTP017 battery-pack Web manual.
+Power controls use the shared Operation component, including the CSS clock and
+selectable `3s`; clearance and locking use shared ReferenceFigure labels.
+This intake is a local engineering candidate; it does not publish version 2.0.

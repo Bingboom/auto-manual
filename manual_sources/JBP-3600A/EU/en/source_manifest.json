@@ -6,15 +6,25 @@
     "lang": "en",
     "version": "2.0"
   },
-  "source_role": "formal-published-source-audited-git-input",
+  "source_role": "operator-designated-native-artwork-git-input",
   "authority": {
-    "published_revision": "V2.0-2026-08-04",
-    "published_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
-    "source_artwork_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
-    "source_list_record_id": "hgXiHot5Ow",
-    "audit_record": "code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md"
+    "source_artwork_name": "HTP011-EU-9国语言-0924.ai",
+    "source_artwork_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "source_page_count": 79,
+    "english_body_pages": [
+      7,
+      14
+    ],
+    "frontmatter_pages": [
+      1,
+      2,
+      4
+    ],
+    "regulatory_page": 79,
+    "native_text_snapshot": "native-source-20260924.json",
+    "audit_record": "code-as-doc/reviews/jbp3600a-eu-en-htp011-20261002.md"
   },
-  "engineering_content_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+  "engineering_content_commit": "6bd85d39f7f7dba2aa751a69f82f258c63eab9c3",
   "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
@@ -22,7 +32,7 @@
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",
-    "sha256": "d2f9a40ff0c5c9b7d42ce1f9a3c5d537bacc06d7de7ea90f71907fb480ec6621"
+    "sha256": "bc89212b47850a8a6442eca6ad2b2698a525c8b0988a5875336367ba1ea7c28d"
   },
   "files": [
     {
@@ -112,8 +122,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 873,
-      "sha256": "8659a7585cb1db8350d34160e8e8b9a7340d4593b5f31cc60596d4634641ae2f"
+      "size": 912,
+      "sha256": "e5f5fab403d67fef0db8a3fbe82c406edfe2518128aaad810bf849e11b55ef37"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -137,20 +147,38 @@
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
-      "size": 1490,
-      "sha256": "6e44243dd70a16785f2e20d5544a40fc038581e3bbb01ba1d0a90617e1f5483d"
+      "size": 1475,
+      "sha256": "bc76b724217e1ae5dad8e1db74c4bd51f55adc64e1c77977ad0f13afc1b71f15"
     },
     {
       "path": "phase2/web_composite_manifest.json",
       "size": 116,
       "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
+    },
+    {
+      "path": "native-source-20260924.json",
+      "size": 15754,
+      "sha256": "ad3b8563da4c05ed306e782447036ac415f10c7cab0c01f74ba51300478e8dc9"
     }
   ],
-  "files_inventory_sha256": "09aa79c7f46abf5562ff8d7a74fe712946934ae2231334ccbb996e83a91d9b33",
+  "files_inventory_sha256": "2aa525831a6d34217d8bdafe081b3cb36c97672e73eb8c8919617ce1789a327c",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
     "rule": "*.csv text eol=lf",
     "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
-  }
+  },
+  "previous_authority": {
+    "published_revision": "V2.0-2026-08-04",
+    "published_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+    "source_artwork_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+    "source_list_record_id": "hgXiHot5Ow",
+    "audit_record": "code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md"
+  },
+  "supplemental_asset_recipes": [
+    {
+      "path": "data/asset_recipes/manual_jbp3600a_eu_0924_web_labels.json",
+      "sha256": "86423c293566b8d0fa50126e4e1e28f14e25b6188ea5017b89db0beb546e4345"
+    }
+  ]
 }

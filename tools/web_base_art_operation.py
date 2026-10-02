@@ -299,6 +299,7 @@ def arrange_base_art_operation(
                 error_type=error_type,
             )
             duration = _duration_tag(soup, token)
+            duration["data-duration-icon"] = str(layout.get("duration_icon", "none"))
             duration["style"] = f"--hb-x:{_css_number(x)}%;--hb-y:{_css_number(y)}%"
             art_box.append(duration)
         footer = None
