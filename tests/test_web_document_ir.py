@@ -152,13 +152,17 @@ class WebDocumentIRTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "changed or ambiguous"):
                 _consume_covered_annotations(soup, entry, soup.img)
 
-    def build(self, root, manifest=None):
+    def build(self, root, manifest=None, extra_images=()):
         pages = root / "source"
         pages.mkdir()
         (pages / "figure.png").write_bytes(b"frozen illustration")
         (pages / "03_product_overview_placeholder.rst").write_text(
             "日語文書\n========\n\n説明 **重要**。\n\n.. image:: figure.png\n   :alt: 帯字図\n"
         )
+        for name in extra_images:
+            (pages / name).write_bytes(b"frozen illustration")
+            with (pages / "03_product_overview_placeholder.rst").open("a") as page:
+                page.write(f"\n.. image:: {name}\n   :alt: additional source\n")
         (pages / "spec_ja.rst").write_text(
             "仕様\n====\n\n.. list-table::\n\n   * - 容量\n     - 2042.8Wh\n"
         )
@@ -205,6 +209,27 @@ class WebDocumentIRTests(unittest.TestCase):
                     self.assertEqual(1, coverage["summary"]["total"])
                     self.assertEqual(1, coverage["summary"]["by_status"]["finished-panel"])
                     self.assertEqual(["figure.png"], coverage["slots"][0]["replaces"])
+
+    def test_finished_panel_consumes_secondary_sources_and_requires_explicit_reuse(self):
+        for reuse in (None, False, "true", True):
+            with self.subTest(reuse=reuse), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                art = root / "finished.png"
+                art.write_bytes(b"approved combined panel")
+                entry = {"path": art.name, "replaces": ["figure.png", "secondary.png"],
+                         "sha256": hashlib.sha256(art.read_bytes()).hexdigest(), "allow_reuse": reuse}
+                path = root / "illustrations.json"
+                path.write_text(json.dumps({"schema_version": "web-illustrations/v1", "model": "BP",
+                                            "region": "JP", "language": "ja", "illustrations": [entry]}))
+                extra = ("secondary.png",) if reuse is None else ("secondary.png", "figure.png")
+                if reuse is not None and reuse is not True:
+                    with self.assertRaisesRegex(ValueError, "repeated Web illustration source"):
+                        self.build(root, path, extra_images=extra)
+                else:
+                    ir, package, _ = self.build(root, path, extra_images=extra)
+                    markup = "".join(render_document_fragments(ir, package_root=package))
+                    self.assertNotIn("secondary.png", markup)
+                    self.assertEqual(markup.count('class="manual-finished-illustration"'), 2 if reuse else 1)
 
     def test_whole_document_replays_after_source_removed_and_package_moved(self):
         with tempfile.TemporaryDirectory() as td:

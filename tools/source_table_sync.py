@@ -93,7 +93,7 @@ def _resolve_written_value(old_normalized: Any, new_normalized: Any, matched_val
     new_subs = _atomic_values(new_normalized)
     if not old_subs or len(old_subs) != len(new_subs):
         return None
-    changed = [new for old, new in zip(old_subs, new_subs) if old != new and old == matched]
+    changed = [new for old, new in zip(old_subs, new_subs, strict=True) if old != new and old == matched]
     if len(changed) == 1:
         return changed[0]
     return None

@@ -143,7 +143,8 @@ def _records(run, base_token: str, table_id: str, required: tuple[str, ...]) -> 
         ids = data.get("record_id_list") or []
         for index, row in enumerate(page):
             if isinstance(row, list):
-                records.append((str(ids[index]) if index < len(ids) else "", dict(zip(names, row))))
+                # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+                records.append((str(ids[index]) if index < len(ids) else "", dict(zip(names, row, strict=False))))
         if len(page) < 200:
             break
         offset += 200

@@ -4,11 +4,16 @@ OPERATIONS
 OUTPUT ON/OFF
 -------------
 
-.. image:: renderers/web/assets/je100c_eu_en/operation_output.png
-   :alt: Output on and off operation panel
-   :width: 100%
+.. container:: hb-source-operation hb-output-operation
 
-.. caution::
+   Connect to a load to start output.
+
+   .. image:: renderers/web/assets/je100c_eu_en/operation_output.png
+      :alt: Output on and off operation panel
+      :width: 100%
+
+.. admonition:: CAUTION
+   :class: caution
 
    - USB-C 140W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.
    - Only connect the 100D to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).
@@ -17,39 +22,49 @@ OUTPUT ON/OFF
 ENERGY SAVING MODE
 ------------------
 
-The Energy Saving Mode is disabled by default. To prevent unnecessary battery drain caused by forgetting to turn off the output, press and hold the DISPLAY button to enable Energy Saving Mode.
+.. container:: hb-source-operation
 
-If no device is connected or the connected device's power consumption is below 2W for 2 hours, the product automatically turns off the outputs. When the output is on, the icon "2H" will appear on the screen.
+   The Energy Saving Mode is disabled by default. To prevent unnecessary battery drain caused by forgetting to turn off the output, press and hold the DISPLAY button to enable Energy Saving Mode.
 
-.. image:: renderers/web/assets/je100c_eu_en/operation_energy.png
-   :alt: Energy Saving Mode operation panel
-   :width: 100%
+   If no device is connected or the connected device's power consumption is below 2W for 2 hours, the product automatically turns off the outputs. When the output is on, the icon "2H" will appear on the screen.
 
-.. note::
+   .. container:: hb-operation-diagram
+
+      .. image:: renderers/web/assets/je100c_eu_en/operation_energy.png
+         :alt: Energy Saving Mode operation panel
+         :width: 100%
+
+      Press and hold 3s to enable/disable Energy Saving Mode
+
+.. admonition:: NOTE
+   :class: note
 
    Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
 
 LCD SCREEN
 ----------
 
-.. image:: renderers/web/assets/je100c_eu_en/operation_lcd.png
-   :alt: DISPLAY button device art
-   :width: 38%
+.. container:: hb-device-actions
 
-.. list-table::
-   :class: hb-source-lcd-actions-compact
-   :header-rows: 1
-   :widths: 30 70
+   .. image:: renderers/web/assets/je100c_eu_en/operation_lcd.png
+      :alt: DISPLAY button device art
+      :class: hb-device-control-art
+      :width: 100%
 
-   * - Function
-     - Description
-   * - Screen Wake-Up
-     - Lights up when the DISPLAY button is briefly pressed, or automatically during charging or discharging.
-   * - Screen Always On
-     - While the screen is lit, double-press the DISPLAY button.
-   * - Screen Switching
-     - After the screen lights up, briefly press the DISPLAY button to switch pages.
-   * - Turn Off Screen Always-On
-     - Double-press the DISPLAY button again.
-   * - Auto Screen Off
-     - 10 seconds after lighting up with no operation, or 2 hours after entering always-on mode.
+   .. list-table::
+      :class: hb-source-lcd-actions-compact
+      :header-rows: 1
+      :widths: 30 70
+
+      * - Function
+        - Description
+      * - Screen Wake-Up
+        - Lights up when the DISPLAY button is briefly pressed, or automatically during charging or discharging.
+      * - Screen Always On
+        - While the screen is lit, double-press the DISPLAY button.
+      * - Screen Switching
+        - After the screen lights up, briefly press the DISPLAY button to switch pages.
+      * - Turn Off Screen Always-On
+        - Double-press the DISPLAY button again.
+      * - Auto Screen Off
+        - 10 seconds after lighting up with no operation, or 2 hours after entering always-on mode.

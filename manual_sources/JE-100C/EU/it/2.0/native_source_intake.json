@@ -1,0 +1,2096 @@
+{
+  "language": "it",
+  "source": {
+    "file": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+    "sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+    "pages": [
+      52,
+      63
+    ]
+  },
+  "fields": {
+    "signal_label_76.91641235351562": {
+      "page": 53,
+      "bbox": [
+        20,
+        76.91641235351562,
+        76,
+        91.91641235351562
+      ],
+      "lines": [
+        "AVVERTENZA"
+      ]
+    },
+    "signal_body_76.91641235351562": {
+      "page": 53,
+      "bbox": [
+        76,
+        76.91641235351562,
+        239,
+        91.91641235351562
+      ],
+      "lines": [
+        "Pratiche pericolose che possono causare gravi lesioni, morte e/o danni",
+        "materiali."
+      ]
+    },
+    "signal_label_91.91641235351562": {
+      "page": 53,
+      "bbox": [
+        20,
+        91.91641235351562,
+        76,
+        106.91641235351562
+      ],
+      "lines": [
+        "ATTENZIONE"
+      ]
+    },
+    "signal_body_91.91641235351562": {
+      "page": 53,
+      "bbox": [
+        76,
+        91.91641235351562,
+        239,
+        106.91641235351562
+      ],
+      "lines": [
+        "Pratiche pericolose che possono causare lesioni personali e/o danni materiali."
+      ]
+    },
+    "signal_label_106.91641235351562": {
+      "page": 53,
+      "bbox": [
+        20,
+        106.91641235351562,
+        76,
+        121.91641235351562
+      ],
+      "lines": [
+        "NOTA"
+      ]
+    },
+    "signal_body_106.91641235351562": {
+      "page": 53,
+      "bbox": [
+        76,
+        106.91641235351562,
+        239,
+        121.91641235351562
+      ],
+      "lines": [
+        "Pratiche pericolose che possono causare danni all'apparecchiatura, perdita di dati,",
+        "deterioramento delle prestazioni o risultati imprevisti."
+      ]
+    },
+    "signal_label_121.91641235351562": {
+      "page": 53,
+      "bbox": [
+        20,
+        121.91641235351562,
+        76,
+        137.91641235351562
+      ],
+      "lines": [
+        "SUGGERIMENTO"
+      ]
+    },
+    "signal_body_121.91641235351562": {
+      "page": 53,
+      "bbox": [
+        76,
+        121.91641235351562,
+        239,
+        137.91641235351562
+      ],
+      "lines": [
+        "Integra le informazioni importanti o i consigli operativi presenti nel testo."
+      ]
+    },
+    "symbol_header": {
+      "page": 53,
+      "bbox": [
+        20,
+        68.91641235351562,
+        76,
+        77.91641235351562
+      ],
+      "lines": [
+        "Simbolo"
+      ]
+    },
+    "meaning_header": {
+      "page": 53,
+      "bbox": [
+        76,
+        68.91641235351562,
+        239,
+        77.91641235351562
+      ],
+      "lines": [
+        "Significato"
+      ]
+    },
+    "safety_title": {
+      "page": 52,
+      "bbox": [
+        18,
+        15,
+        240,
+        39
+      ],
+      "lines": [
+        "PRECAUZIONI DI SICUREZZA"
+      ]
+    },
+    "safety_strip": {
+      "page": 52,
+      "bbox": [
+        40,
+        40,
+        240,
+        67
+      ],
+      "lines": [
+        "ISTRUZIONI RELATIVE AI RISCHI DI INCENDIO, SCOSSA",
+        "ELETTRICA O LESIONI ALLE PERSONE"
+      ]
+    },
+    "safety_warning": {
+      "page": 52,
+      "bbox": [
+        45,
+        67,
+        240,
+        81
+      ],
+      "lines": [
+        "AVVERTENZA"
+      ]
+    },
+    "safety_intro": {
+      "page": 52,
+      "bbox": [
+        45,
+        81,
+        240,
+        98
+      ],
+      "lines": [
+        "Seguire sempre queste precauzioni di base durante l’utilizzo di",
+        "questo prodotto."
+      ]
+    },
+    "safety_bullets": {
+      "page": 52,
+      "bbox": [
+        18,
+        98,
+        240,
+        266.2333984375
+      ],
+      "lines": [
+        "•",
+        "Leggere tutte le istruzioni prima di utilizzare il prodotto.",
+        "•",
+        "Per ridurre il rischio di lesioni, è necessaria una stretta supervisione quando il prodotto viene",
+        "utilizzato vicino a bambini.",
+        "•",
+        "Non introdurre le dita o le mani nel prodotto.",
+        "•",
+        "Non esporre il power bank alla pioggia o alla neve.",
+        "•",
+        "Non esporre il power bank al calore o al fuoco. Non conservarlo alla luce diretta del sole o",
+        "all'interno di un veicolo.",
+        "•",
+        "L'uso di un alimentatore o di un caricabatterie non raccomandato o non venduto dal",
+        "produttore del power bank può comportare il rischio di incendio o di lesioni alle persone.",
+        "•",
+        "Non utilizzare il power bank oltre la sua potenza di uscita nominale. Il sovraccarico delle",
+        "uscite oltre il valore nominale può comportare il rischio di incendio o di lesioni alle persone.",
+        "•",
+        "Non utilizzare un power bank danneggiato o modificato. Le batterie danneggiate o",
+        "modificate possono presentare comportamenti imprevedibili, con conseguente rischio di",
+        "incendio, esplosione o lesioni.",
+        "•",
+        "Non smontare il power bank. Rivolgersi a un tecnico qualificato quando sono necessari",
+        "interventi di manutenzione o riparazione. Un riassemblaggio errato può comportare il rischio",
+        "di incendio o di lesioni alle persone.",
+        "•",
+        "Non esporre il power bank al fuoco o a temperature eccessive. L’esposizione al fuoco o a",
+        "temperature superiori a 60 °C può causare un’esplosione.",
+        "•",
+        "Fare eseguire la manutenzione da un tecnico qualificato utilizzando esclusivamente parti di",
+        "ricambio identiche. In questo modo si garantisce il mantenimento della sicurezza del",
+        "prodotto.",
+        "•",
+        "Spegnere il power bank quando non è in uso."
+      ]
+    },
+    "safety_caution_label": {
+      "page": 52,
+      "bbox": [
+        20,
+        280.8994140625,
+        66,
+        307
+      ],
+      "lines": [
+        "ATTENZIONE"
+      ]
+    },
+    "safety_caution": {
+      "page": 52,
+      "bbox": [
+        66,
+        280.8994140625,
+        240,
+        307
+      ],
+      "lines": [
+        "Rischio di incendio e ustioni. Non aprire, schiacciare, riscaldare oltre 60 °C",
+        "né incenerire. Seguire le istruzioni del produttore."
+      ]
+    },
+    "safety_disposal": {
+      "page": 52,
+      "bbox": [
+        18,
+        307,
+        240,
+        351
+      ],
+      "lines": [
+        "Lo smaltimento di una batteria nel fuoco o in un forno caldo, oppure lo schiacciamento o il taglio",
+        "meccanico di una batteria, che può provocare un'esplosione;",
+        "lasciare una batteria in un ambiente a temperatura estremamente elevata, che può provocare",
+        "un'esplosione o la fuoriuscita di liquidi o gas infiammabili; e",
+        "una batteria sottoposta a una pressione dell'aria estremamente bassa, che può provocare",
+        "un'esplosione o la fuoriuscita di liquidi o gas infiammabili."
+      ]
+    },
+    "maintenance_title": {
+      "page": 53,
+      "bbox": [
+        18,
+        15,
+        240,
+        30
+      ],
+      "lines": [
+        "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL’UTENTE"
+      ]
+    },
+    "maintenance_body": {
+      "page": 53,
+      "bbox": [
+        18,
+        30,
+        240,
+        55.916412353515625
+      ],
+      "lines": [
+        "Durante il ciclo di vita dei prodotti per l’accumulo di energia, è previsto un certo grado di degrado della",
+        "capacità e dell’energia. Con l’aumentare dei cicli di carica e scarica e il prolungarsi del tempo di",
+        "immagazzinamento, tale degrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale,",
+        "coerente con il naturale invecchiamento delle celle della batteria."
+      ]
+    },
+    "symbol_warning": {
+      "page": 53,
+      "bbox": [
+        48,
+        150.5506134033203,
+        126,
+        171.11851501464844
+      ],
+      "lines": [
+        "Simboli di avvertenza e cautela. Da",
+        "leggere assolutamente per avvisare le",
+        "persone di potenziali pericoli o rischi."
+      ]
+    },
+    "symbol_dismantle": {
+      "page": 53,
+      "bbox": [
+        159,
+        150.5506134033203,
+        239,
+        171.11851501464844
+      ],
+      "lines": [
+        "Vermeiden Sie Hitze."
+      ]
+    },
+    "symbol_manual": {
+      "page": 53,
+      "bbox": [
+        48,
+        171.11851501464844,
+        126,
+        186.15411376953125
+      ],
+      "lines": [
+        "Prima dell’utilizzo, leggere il manuale",
+        "d’istruzioni."
+      ]
+    },
+    "symbol_fire": {
+      "page": 53,
+      "bbox": [
+        159,
+        171.11851501464844,
+        239,
+        188.5141143798828
+      ],
+      "lines": [
+        "Tenere il prodotto lontano da",
+        "fiamme."
+      ]
+    },
+    "symbol_weee": {
+      "page": 53,
+      "bbox": [
+        48,
+        186.15411376953125,
+        126,
+        243.64010620117188
+      ],
+      "lines": [
+        "Questo simbolo indica che il prodotto",
+        "non va smaltito come rifiuto",
+        "domestico e deve essere consegnato",
+        "per il riciclaggio a un centro di",
+        "raccolta designato.",
+        "Smaltire adeguatamente e riciclare",
+        "aiuta a proteggere l’ambiente. Per",
+        "maggiori informazioni riguardo lo",
+        "smaltimento e il riciclaggio di questo",
+        "prodotto, contattare la propria",
+        "comunità locale, i servizi di",
+        "smaltimento o il proprio fornitore."
+      ]
+    },
+    "symbol_children": {
+      "page": 53,
+      "bbox": [
+        159,
+        188.5141143798828,
+        239,
+        204.99571228027344
+      ],
+      "lines": [
+        "Tenere lontano dalla portata dei",
+        "bambini."
+      ]
+    },
+    "symbol_battery_weee": {
+      "page": 53,
+      "bbox": [
+        48,
+        243.64010620117188,
+        126,
+        338.2606201171875
+      ],
+      "lines": [
+        "Batterie e accumulatori non devono",
+        "essere smaltiti insieme ai rifiuti",
+        "domestici.",
+        "In qualità di consumatore, sei",
+        "legalmente tenuto a smaltire tutte le",
+        "batterie e gli accumulatori presso",
+        "punti di raccolta designati,",
+        "indipendentemente dal fatto che",
+        "contengano sostanze pericolose.",
+        "Restituisci le batterie e gli",
+        "accumulatori usati a un punto di",
+        "raccolta locale, a un centro di riciclo",
+        "o al rivenditore presso il quale sono",
+        "stati acquistati. Uno smaltimento",
+        "corretto garantisce un riciclo",
+        "rispettoso dell'ambiente e previene",
+        "potenziali danni alla salute umana e",
+        "all'ambiente."
+      ]
+    },
+    "symbol_li_ion": {
+      "page": 53,
+      "bbox": [
+        159,
+        204.99571228027344,
+        239,
+        246.7414093017578
+      ],
+      "lines": [
+        "Questo simbolo indica che",
+        "all’interno del prodotto è",
+        "presente una batteria agli ioni",
+        "di litio (Li-ion), la quale va",
+        "smaltita o riciclata",
+        "adeguatamente."
+      ]
+    },
+    "inbox_label_0": {
+      "page": 54,
+      "bbox": [
+        18,
+        118,
+        90,
+        135
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "inbox_label_1": {
+      "page": 54,
+      "bbox": [
+        91,
+        118,
+        163,
+        135
+      ],
+      "lines": [
+        "Cavo USB-C"
+      ]
+    },
+    "inbox_label_2": {
+      "page": 54,
+      "bbox": [
+        164,
+        118,
+        236,
+        135
+      ],
+      "lines": [
+        "Manuale d'uso"
+      ]
+    },
+    "inbox_title": {
+      "page": 54,
+      "bbox": [
+        18,
+        15,
+        240,
+        40
+      ],
+      "lines": [
+        "CONTENUTO DELLA CONFEZIONE"
+      ]
+    },
+    "overview_title": {
+      "page": 54,
+      "bbox": [
+        18,
+        140,
+        240,
+        163
+      ],
+      "lines": [
+        "PANORAMICA DEL PRODOTTO"
+      ]
+    },
+    "strap_notice": {
+      "page": 54,
+      "bbox": [
+        28,
+        324,
+        240,
+        346
+      ],
+      "lines": [
+        "È possibile acquistare cinghie aggiuntive e fissarle ai lati del prodotto."
+      ]
+    },
+    "lcd_title": {
+      "page": 55,
+      "bbox": [
+        18,
+        15,
+        240,
+        36
+      ],
+      "lines": [
+        "DISPLAY LCD"
+      ]
+    },
+    "interface1": {
+      "page": 55,
+      "bbox": [
+        18,
+        36,
+        240,
+        48
+      ],
+      "lines": [
+        "INTERFACCIA 1"
+      ]
+    },
+    "lcd_name_input": {
+      "page": 55,
+      "bbox": [
+        58,
+        126.49061584472656,
+        108,
+        144.01400756835938
+      ],
+      "lines": [
+        "Potenza in",
+        "ingresso"
+      ]
+    },
+    "lcd_body_input": {
+      "page": 55,
+      "bbox": [
+        108,
+        126.49061584472656,
+        239,
+        144.01400756835938
+      ],
+      "lines": [
+        "Visualizza la potenza di ingresso in watt."
+      ]
+    },
+    "lcd_name_charge_time": {
+      "page": 55,
+      "bbox": [
+        58,
+        144.01400756835938,
+        108,
+        161.56961059570312
+      ],
+      "lines": [
+        "Tempo di carica",
+        "rimanente"
+      ]
+    },
+    "lcd_body_charge_time": {
+      "page": 55,
+      "bbox": [
+        108,
+        144.01400756835938,
+        239,
+        161.56961059570312
+      ],
+      "lines": [
+        "Visualizza il tempo residuo di carica."
+      ]
+    },
+    "lcd_name_steady": {
+      "page": 55,
+      "bbox": [
+        58,
+        161.56961059570312,
+        108,
+        187.03530883789062
+      ],
+      "lines": [
+        "Modalità sempre",
+        "attiva"
+      ]
+    },
+    "lcd_body_steady": {
+      "page": 55,
+      "bbox": [
+        108,
+        161.56961059570312,
+        239,
+        187.03530883789062
+      ],
+      "lines": [
+        "On: la modalità sempre attiva è abilitata.",
+        "Off: la modalità sempre attiva è disabilitata."
+      ]
+    },
+    "lcd_name_thermal": {
+      "page": 55,
+      "bbox": [
+        58,
+        187.03530883789062,
+        108,
+        211.3334197998047
+      ],
+      "lines": [
+        "Limitazione",
+        "termica della",
+        "potenza"
+      ]
+    },
+    "lcd_body_thermal": {
+      "page": 55,
+      "bbox": [
+        108,
+        187.03530883789062,
+        239,
+        211.3334197998047
+      ],
+      "lines": [
+        "On: la temperatura della batteria è elevata. Il limite",
+        "di potenza in scarica è abilitato.",
+        "Off: il limite di potenza in scarica è disabilitato."
+      ]
+    },
+    "lcd_name_energy": {
+      "page": 55,
+      "bbox": [
+        58,
+        211.3334197998047,
+        108,
+        230.5557098388672
+      ],
+      "lines": [
+        "Modalità di",
+        "risparmio",
+        "energetico"
+      ]
+    },
+    "lcd_body_energy": {
+      "page": 55,
+      "bbox": [
+        108,
+        211.3334197998047,
+        239,
+        230.5557098388672
+      ],
+      "lines": [
+        "Acceso: La modalità di risparmio energetico è attivata.",
+        "Spento: La modalità di risparmio energetico è",
+        "disattivata."
+      ]
+    },
+    "lcd_name_ring": {
+      "page": 55,
+      "bbox": [
+        58,
+        230.5557098388672,
+        108,
+        258.1838073730469
+      ],
+      "lines": [
+        "Indicatore di",
+        "carica della",
+        "batteria"
+      ]
+    },
+    "lcd_body_ring": {
+      "page": 55,
+      "bbox": [
+        108,
+        230.5557098388672,
+        239,
+        258.1838073730469
+      ],
+      "lines": [
+        "Quando il prodotto è in carica, il cerchio arancione",
+        "attorno alla percentuale della batteria si accende in",
+        "sequenza. Durante la ricarica di altri dispositivi, il",
+        "cerchio arancione rimarrà acceso."
+      ]
+    },
+    "lcd_name_low_battery": {
+      "page": 55,
+      "bbox": [
+        58,
+        258.1838073730469,
+        108,
+        278.97802734375
+      ],
+      "lines": [
+        "Indicatore di",
+        "batteria scarica"
+      ]
+    },
+    "lcd_body_low_battery": {
+      "page": 55,
+      "bbox": [
+        108,
+        258.1838073730469,
+        239,
+        278.97802734375
+      ],
+      "lines": [
+        "Acceso: il livello della batteria è inferiore al 20%.",
+        "Lampeggiante: il livello della batteria è inferiore al 5%.",
+        "Spento: il livello della batteria non è inferiore al 20%",
+        "oppure il prodotto è in carica."
+      ]
+    },
+    "lcd_name_percentage": {
+      "page": 55,
+      "bbox": [
+        58,
+        278.97802734375,
+        108,
+        299.7720947265625
+      ],
+      "lines": [
+        "Percentuale di",
+        "batteria",
+        "residua"
+      ]
+    },
+    "lcd_body_percentage": {
+      "page": 55,
+      "bbox": [
+        108,
+        278.97802734375,
+        239,
+        299.7720947265625
+      ],
+      "lines": [
+        "Mostra la percentuale residua della batteria."
+      ]
+    },
+    "lcd_name_discharge_time": {
+      "page": 55,
+      "bbox": [
+        58,
+        299.7720947265625,
+        108,
+        320.5663146972656
+      ],
+      "lines": [
+        "Tempo di scarica",
+        "rimanente"
+      ]
+    },
+    "lcd_body_discharge_time": {
+      "page": 55,
+      "bbox": [
+        108,
+        299.7720947265625,
+        239,
+        320.5663146972656
+      ],
+      "lines": [
+        "Visualizza il tempo residuo di scarica."
+      ]
+    },
+    "lcd_name_output": {
+      "page": 55,
+      "bbox": [
+        58,
+        320.5663146972656,
+        108,
+        342.005615234375
+      ],
+      "lines": [
+        "Potenza in uscita"
+      ]
+    },
+    "lcd_body_output": {
+      "page": 55,
+      "bbox": [
+        108,
+        320.5663146972656,
+        239,
+        342.005615234375
+      ],
+      "lines": [
+        "Visualizza la potenza di uscita in watt."
+      ]
+    },
+    "lcd_name_fault": {
+      "page": 56,
+      "bbox": [
+        59,
+        20.4425048828125,
+        103,
+        43.378997802734375
+      ],
+      "lines": [
+        "Codice di errore"
+      ]
+    },
+    "lcd_body_fault": {
+      "page": 56,
+      "bbox": [
+        103,
+        20.4425048828125,
+        239,
+        43.378997802734375
+      ],
+      "lines": [
+        "Rimuovere il carico o scollegare la spina di ricarica.",
+        "Se il problema persiste, contattare l’assistenza clienti",
+        "Jackery."
+      ]
+    },
+    "lcd_name_high_temperature": {
+      "page": 56,
+      "bbox": [
+        59,
+        43.378997802734375,
+        103,
+        64.17312622070312
+      ],
+      "lines": [
+        "Indicatore di",
+        "temperatura",
+        "elevata"
+      ]
+    },
+    "lcd_body_high_temperature": {
+      "page": 56,
+      "bbox": [
+        103,
+        43.378997802734375,
+        239,
+        64.17312622070312
+      ],
+      "lines": [
+        "La protezione da alta temperatura è stata attivata.",
+        "Il prodotto potrebbe smettere di funzionare finché la",
+        "temperatura non rientra nel normale intervallo",
+        "operativo."
+      ]
+    },
+    "lcd_name_low_temperature": {
+      "page": 56,
+      "bbox": [
+        59,
+        64.17312622070312,
+        103,
+        89.60430908203125
+      ],
+      "lines": [
+        "Indicatore di",
+        "bassa",
+        "temperatura"
+      ]
+    },
+    "lcd_body_low_temperature": {
+      "page": 56,
+      "bbox": [
+        103,
+        64.17312622070312,
+        239,
+        89.60430908203125
+      ],
+      "lines": [
+        "È stata attivata la protezione da bassa temperatura.",
+        "Il prodotto potrebbe smettere di funzionare finché la",
+        "temperatura non rientra nel normale intervallo",
+        "operativo."
+      ]
+    },
+    "lcd_name_discharging": {
+      "page": 56,
+      "bbox": [
+        61,
+        188.11351013183594,
+        121,
+        206.76011657714844
+      ],
+      "lines": [
+        "Indicatore di scarica"
+      ]
+    },
+    "lcd_body_discharging": {
+      "page": 56,
+      "bbox": [
+        121,
+        188.11351013183594,
+        239,
+        206.76011657714844
+      ],
+      "lines": [
+        "Questa porta USB è in scarica."
+      ]
+    },
+    "lcd_name_charging": {
+      "page": 56,
+      "bbox": [
+        61,
+        206.76011657714844,
+        121,
+        223.76011657714844
+      ],
+      "lines": [
+        "Indicatore di",
+        "carica"
+      ]
+    },
+    "lcd_body_charging": {
+      "page": 56,
+      "bbox": [
+        121,
+        206.76011657714844,
+        239,
+        223.76011657714844
+      ],
+      "lines": [
+        "Questa porta USB è in carica."
+      ]
+    },
+    "lcd_name_watts": {
+      "page": 56,
+      "bbox": [
+        61,
+        223.76011657714844,
+        121,
+        240.74850463867188
+      ],
+      "lines": [
+        "Potenza in carica o",
+        "in scarica"
+      ]
+    },
+    "lcd_body_watts": {
+      "page": 56,
+      "bbox": [
+        121,
+        223.76011657714844,
+        239,
+        240.74850463867188
+      ],
+      "lines": [
+        "Visualizza la potenza in carica o in scarica",
+        "della porta corrispondente."
+      ]
+    },
+    "lcd_name_health": {
+      "page": 57,
+      "bbox": [
+        59,
+        20.326515197753906,
+        116,
+        76.24551391601562
+      ],
+      "lines": [
+        "Stato della",
+        "batteria e numero",
+        "di cicli"
+      ]
+    },
+    "lcd_body_health": {
+      "page": 57,
+      "bbox": [
+        116,
+        20.326515197753906,
+        239,
+        76.24551391601562
+      ],
+      "lines": [
+        "Visualizza la percentuale attuale dello stato di",
+        "salute della batteria e il numero di cicli di",
+        "carica/scarica.",
+        "•",
+        "Verde: lo stato di salute della batteria è",
+        "ottimale.",
+        "•",
+        "Giallo: lo stato di salute della batteria è",
+        "moderato.",
+        "•",
+        "Rosso: lo stato di salute della batteria è basso."
+      ]
+    },
+    "lcd_name_temperature": {
+      "page": 57,
+      "bbox": [
+        59,
+        76.24551391601562,
+        116,
+        95.89651489257812
+      ],
+      "lines": [
+        "Temperatura",
+        "della batteria"
+      ]
+    },
+    "lcd_body_temperature": {
+      "page": 57,
+      "bbox": [
+        116,
+        76.24551391601562,
+        239,
+        95.89651489257812
+      ],
+      "lines": [
+        "Visualizza la temperatura attuale della",
+        "batteria."
+      ]
+    },
+    "output_connect": {
+      "page": 57,
+      "bbox": [
+        27,
+        142.7759246826172,
+        239,
+        172.7759246826172
+      ],
+      "lines": [
+        "Collegare un carico per attivare l’uscita."
+      ]
+    },
+    "output_notice": {
+      "page": 57,
+      "bbox": [
+        18,
+        240,
+        239,
+        340
+      ],
+      "lines": [
+        "•",
+        "USB-C 140W MAX è una porta di uscita ad alta potenza USB-PD",
+        "Power Source 3 (PS3). Se il dispositivo o l'accessorio collegato non",
+        "soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio.",
+        "Prima di utilizzare queste porte, assicurarsi che il dispositivo o",
+        "l'accessorio collegato sia dotato di protezione antincendio.",
+        "ATTENZIONE",
+        "•",
+        "Collegare Jackery Explorer 100D solo a dispositivi o accessori conformi",
+        "alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o altre",
+        "norme equivalenti).",
+        "•",
+        "Per ottenere la massima potenza in uscita, utilizzare il cavo ufficiale",
+        "Jackery USB-C to USB-C 5A (20V CC/5A, 100W; 28V DC/5A, 140W)."
+      ]
+    },
+    "energy_title": {
+      "page": 58,
+      "bbox": [
+        18,
+        12,
+        240,
+        28
+      ],
+      "lines": [
+        "MODALITÀ DI RISPARMIO ENERGETICO"
+      ]
+    },
+    "energy_body": {
+      "page": 58,
+      "bbox": [
+        20,
+        28,
+        240,
+        76
+      ],
+      "lines": [
+        "La Modalità risparmio energetico è disabilitata per impostazione predefinita. Per",
+        "evitare un inutile consumo della batteria causato dal mancato spegnimento",
+        "dell’uscita, tenere premuto il Pulsante DISPLAY per abilitare la Modalità risparmio",
+        "energetico",
+        "Se non è collegato alcun dispositivo o se il consumo energetico del dispositivo",
+        "collegato rimane inferiore a 2 W per 2 ore, il prodotto disattiva automaticamente le",
+        "uscite.",
+        "Quando l’uscita è attiva, sullo schermo compare l'icona \"2H\"."
+      ]
+    },
+    "energy_action": {
+      "page": 58,
+      "bbox": [
+        174,
+        77,
+        239,
+        143
+      ],
+      "lines": [
+        "Tenere premuto per",
+        "3 secondi per",
+        "abilitare/disabilitare",
+        "la Modalità risparmio",
+        "energetico"
+      ]
+    },
+    "energy_note": {
+      "page": 58,
+      "bbox": [
+        18,
+        147,
+        239,
+        179
+      ],
+      "lines": [
+        "La Modalità di risparmio energetico ripristina lo stato precedente dopo",
+        "NOTA",
+        "l'accensione. Per cambiare modalità è necessario un intervento manuale."
+      ]
+    },
+    "screen_title": {
+      "page": 58,
+      "bbox": [
+        18,
+        179,
+        240,
+        191
+      ],
+      "lines": [
+        "ACCENSIONE/SPEGNIMENTO SCHERMO LCD"
+      ]
+    },
+    "screen_function_191.5782928466797": {
+      "page": 58,
+      "bbox": [
+        103,
+        191.5782928466797,
+        148,
+        208.13291931152344
+      ],
+      "lines": [
+        "Funzione"
+      ]
+    },
+    "screen_description_191.5782928466797": {
+      "page": 58,
+      "bbox": [
+        148,
+        191.5782928466797,
+        239,
+        208.13291931152344
+      ],
+      "lines": [
+        "Descrizione"
+      ]
+    },
+    "screen_function_208.13291931152344": {
+      "page": 58,
+      "bbox": [
+        103,
+        208.13291931152344,
+        148,
+        235.46861267089844
+      ],
+      "lines": [
+        "Attivazione",
+        "dello schermo"
+      ]
+    },
+    "screen_description_208.13291931152344": {
+      "page": 58,
+      "bbox": [
+        148,
+        208.13291931152344,
+        239,
+        235.46861267089844
+      ],
+      "lines": [
+        "Si accende premendo brevemente",
+        "il pulsante DISPLAY, oppure",
+        "automaticamente durante la carica",
+        "o la scarica."
+      ]
+    },
+    "screen_function_235.46861267089844": {
+      "page": 58,
+      "bbox": [
+        103,
+        235.46861267089844,
+        148,
+        262.80419921875
+      ],
+      "lines": [
+        "Schermo",
+        "sempre acceso"
+      ]
+    },
+    "screen_description_235.46861267089844": {
+      "page": 58,
+      "bbox": [
+        148,
+        235.46861267089844,
+        239,
+        262.80419921875
+      ],
+      "lines": [
+        "Quando lo schermo è acceso,",
+        "premere due volte il pulsante",
+        "DISPLAY."
+      ]
+    },
+    "screen_function_262.80419921875": {
+      "page": 58,
+      "bbox": [
+        103,
+        262.80419921875,
+        148,
+        290.1399230957031
+      ],
+      "lines": [
+        "Cambio",
+        "schermata"
+      ]
+    },
+    "screen_description_262.80419921875": {
+      "page": 58,
+      "bbox": [
+        148,
+        262.80419921875,
+        239,
+        290.1399230957031
+      ],
+      "lines": [
+        "Dopo l'accensione dello schermo,",
+        "premere brevemente il pulsante",
+        "DISPLAY per cambiare pagina."
+      ]
+    },
+    "screen_function_290.1399230957031": {
+      "page": 58,
+      "bbox": [
+        103,
+        290.1399230957031,
+        148,
+        317.47552490234375
+      ],
+      "lines": [
+        "Disattivare lo",
+        "schermo sempre",
+        "acceso"
+      ]
+    },
+    "screen_description_290.1399230957031": {
+      "page": 58,
+      "bbox": [
+        148,
+        290.1399230957031,
+        239,
+        317.47552490234375
+      ],
+      "lines": [
+        "Premere di nuovo due volte il",
+        "pulsante DISPLAY."
+      ]
+    },
+    "screen_function_317.47552490234375": {
+      "page": 58,
+      "bbox": [
+        103,
+        317.47552490234375,
+        148,
+        345.24530029296875
+      ],
+      "lines": [
+        "Spegnimento",
+        "automatico",
+        "dello schermo"
+      ]
+    },
+    "screen_description_317.47552490234375": {
+      "page": 58,
+      "bbox": [
+        148,
+        317.47552490234375,
+        239,
+        345.24530029296875
+      ],
+      "lines": [
+        "10 secondi dopo l'accensione senza",
+        "alcuna operazione, oppure 2 ore",
+        "dopo l'attivazione della modalità",
+        "sempre acceso."
+      ]
+    },
+    "charging_title": {
+      "page": 59,
+      "bbox": [
+        18,
+        12,
+        239,
+        30
+      ],
+      "lines": [
+        "RICARICA"
+      ]
+    },
+    "charging_intro": {
+      "page": 59,
+      "bbox": [
+        18,
+        30,
+        239,
+        42
+      ],
+      "lines": [
+        "Caricare completamente il dispositivo prima del primo utilizzo."
+      ]
+    },
+    "charging_notice": {
+      "page": 59,
+      "bbox": [
+        18,
+        42,
+        239,
+        92
+      ],
+      "lines": [
+        "•",
+        "La temperatura consigliata per caricare il prodotto è compresa tra 0",
+        "°C e 45 °C, e la temperatura di scarica è anch’essa compresa tra -20",
+        "°C e 45 °C. Utilizzare il prodotto al di fuori di questo intervallo di",
+        "temperatura può limitare le capacità di carica e scarica, o persino",
+        "NOTA",
+        "impedire la carica o la scarica.",
+        "•",
+        "La potenza di carica e la capacità della batteria del prodotto possono",
+        "variare a causa delle fluttuazioni di temperatura."
+      ]
+    },
+    "ac_title": {
+      "page": 59,
+      "bbox": [
+        18,
+        92,
+        239,
+        105
+      ],
+      "lines": [
+        "RICARICA TRAMITE CARICATORE USB-C"
+      ]
+    },
+    "ac_purchase": {
+      "page": 59,
+      "bbox": [
+        30,
+        181,
+        239,
+        205
+      ],
+      "lines": [
+        "Caricatore USB-C venduto separatamente."
+      ]
+    },
+    "solar_intro": {
+      "page": 59,
+      "bbox": [
+        18,
+        218.9149169921875,
+        239,
+        234.25791931152344
+      ],
+      "lines": [
+        "Questo prodotto supporta una potenza massima di ricarica solare di 100 W ed è compatibile",
+        "con i pannelli solari della serie Jackery SolarSaga."
+      ]
+    },
+    "solar_panel_charge": {
+      "page": 59,
+      "bbox": [
+        18,
+        234.25791931152344,
+        239,
+        241.76172790527343
+      ],
+      "lines": [
+        "Ricarica tramite un pannello solare da 40 W o 100 W:"
+      ]
+    },
+    "solar_purchase": {
+      "page": 59,
+      "bbox": [
+        29,
+        319.567724609375,
+        239,
+        348
+      ],
+      "lines": [
+        "Il cavo da DC8020 a USB-C è venduto separatamente."
+      ]
+    },
+    "solar_recommendation": {
+      "page": 60,
+      "bbox": [
+        18,
+        30,
+        239,
+        68
+      ],
+      "lines": [
+        "Si consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 100D. Assicurarsi che la",
+        "tensione a circuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso",
+        "CC dell’Explorer 100D  (10 V–30 V). Jackery non è responsabile per eventuali danni o perdite",
+        "derivanti dall’uso di pannelli solari di terze parti."
+      ]
+    },
+    "car_title": {
+      "page": 60,
+      "bbox": [
+        18,
+        68,
+        239,
+        78
+      ],
+      "lines": [
+        "RICARICA TRAMITE CARICATORE DA AUTO (VENDUTI SEPARATAMENTE)"
+      ]
+    },
+    "car_intro": {
+      "page": 60,
+      "bbox": [
+        18,
+        78,
+        239,
+        99
+      ],
+      "lines": [
+        "Questo prodotto può essere ricaricato utilizzando caricabatterie per auto da 12 V e 24 V.",
+        "Assicurarsi che il caricabatterie e l'accendisigari dell'auto siano ben collegati."
+      ]
+    },
+    "car_purchase": {
+      "page": 60,
+      "bbox": [
+        28,
+        209,
+        239,
+        229
+      ],
+      "lines": [
+        "Il cavo di ricarica per auto e il cavo da DC8020 a USB-C sono venduti",
+        "separatamente."
+      ]
+    },
+    "car_notice": {
+      "page": 60,
+      "bbox": [
+        18,
+        229,
+        239,
+        340
+      ],
+      "lines": [
+        "•",
+        "Avviare il veicolo prima di caricare il prodotto.",
+        "•",
+        "Se il veicolo si trova su strade dissestate, è vietato utilizzare il",
+        "ATTENZIONE",
+        "caricabatterie per auto per evitare il rischio di surriscaldamento",
+        "dovuto a un cattivo collegamento. L’ azienda non sarà responsabile",
+        "per eventuali danni causati da un utilizzo non conforme."
+      ]
+    },
+    "storage_title": {
+      "page": 61,
+      "bbox": [
+        18,
+        14,
+        239,
+        35
+      ],
+      "lines": [
+        "STOCCAGGIO"
+      ]
+    },
+    "spec_title": {
+      "page": 62,
+      "bbox": [
+        18,
+        12,
+        239,
+        32
+      ],
+      "lines": [
+        "SPECIFICHE TECNICHE"
+      ]
+    },
+    "spec_section_32": {
+      "page": 62,
+      "bbox": [
+        18,
+        32,
+        239,
+        45
+      ],
+      "lines": [
+        "INFORMAZIONI GENERALI"
+      ]
+    },
+    "spec_label_46": {
+      "page": 62,
+      "bbox": [
+        18,
+        46,
+        100,
+        59
+      ],
+      "lines": [
+        "Nome del prodotto"
+      ]
+    },
+    "spec_value_46": {
+      "page": 62,
+      "bbox": [
+        100,
+        46,
+        239,
+        59
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "spec_label_59": {
+      "page": 62,
+      "bbox": [
+        18,
+        59,
+        100,
+        70
+      ],
+      "lines": [
+        "Modello n."
+      ]
+    },
+    "spec_value_59": {
+      "page": 62,
+      "bbox": [
+        100,
+        59,
+        239,
+        70
+      ],
+      "lines": [
+        "JE-100C"
+      ]
+    },
+    "spec_label_70": {
+      "page": 62,
+      "bbox": [
+        18,
+        70,
+        100,
+        81
+      ],
+      "lines": [
+        "Capacità"
+      ]
+    },
+    "spec_value_70": {
+      "page": 62,
+      "bbox": [
+        100,
+        70,
+        239,
+        81
+      ],
+      "lines": [
+        "96 Wh (5 Ah/19,2 V DC)"
+      ]
+    },
+    "spec_label_81": {
+      "page": 62,
+      "bbox": [
+        18,
+        81,
+        100,
+        92
+      ],
+      "lines": [
+        "Chimica celle batteria"
+      ]
+    },
+    "spec_value_81": {
+      "page": 62,
+      "bbox": [
+        100,
+        81,
+        239,
+        92
+      ],
+      "lines": [
+        "Li-ion LFP"
+      ]
+    },
+    "spec_label_92": {
+      "page": 62,
+      "bbox": [
+        18,
+        92,
+        100,
+        103
+      ],
+      "lines": [
+        "Peso"
+      ]
+    },
+    "spec_value_92": {
+      "page": 62,
+      "bbox": [
+        100,
+        92,
+        239,
+        103
+      ],
+      "lines": [
+        "855 g ± 10 g"
+      ]
+    },
+    "spec_label_103": {
+      "page": 62,
+      "bbox": [
+        18,
+        103,
+        100,
+        114
+      ],
+      "lines": [
+        "Dimensioni"
+      ]
+    },
+    "spec_value_103": {
+      "page": 62,
+      "bbox": [
+        100,
+        103,
+        239,
+        114
+      ],
+      "lines": [
+        "(118,7 ± 1) × (82,6 ± 0,5) × (85,68 ± 0,8) mm"
+      ]
+    },
+    "spec_label_114": {
+      "page": 62,
+      "bbox": [
+        18,
+        114,
+        100,
+        126
+      ],
+      "lines": [
+        "Durata del ciclo"
+      ]
+    },
+    "spec_value_114": {
+      "page": 62,
+      "bbox": [
+        100,
+        114,
+        239,
+        126
+      ],
+      "lines": [
+        "3000 cicli fino all'80% di capacità"
+      ]
+    },
+    "spec_section_126": {
+      "page": 62,
+      "bbox": [
+        18,
+        126,
+        239,
+        139
+      ],
+      "lines": [
+        "PORTE IN INGRESSO"
+      ]
+    },
+    "spec_label_139": {
+      "page": 62,
+      "bbox": [
+        18,
+        139,
+        100,
+        189
+      ],
+      "lines": [
+        "USB-C1"
+      ]
+    },
+    "spec_value_139": {
+      "page": 62,
+      "bbox": [
+        100,
+        139,
+        239,
+        189
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A,",
+        "15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A, 140 W max",
+        "Auto: 12 V⎓5 A max, 24 V⎓5 A max",
+        "PV: 10 V-30 V⎓, 5 A max, 100 W max"
+      ]
+    },
+    "spec_input_part_0": {
+      "page": 62,
+      "bbox": [
+        100,
+        139,
+        239,
+        162.8404083251953
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A,",
+        "15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A, 140 W max"
+      ]
+    },
+    "spec_input_part_1": {
+      "page": 62,
+      "bbox": [
+        100,
+        162.8404083251953,
+        239,
+        175.99221801757812
+      ],
+      "lines": [
+        "Auto: 12 V⎓5 A max, 24 V⎓5 A max"
+      ]
+    },
+    "spec_input_part_2": {
+      "page": 62,
+      "bbox": [
+        100,
+        175.99221801757812,
+        239,
+        189
+      ],
+      "lines": [
+        "PV: 10 V-30 V⎓, 5 A max, 100 W max"
+      ]
+    },
+    "spec_section_189": {
+      "page": 62,
+      "bbox": [
+        18,
+        189,
+        239,
+        200
+      ],
+      "lines": [
+        "PORTE IN USCITA"
+      ]
+    },
+    "spec_label_200": {
+      "page": 62,
+      "bbox": [
+        18,
+        200,
+        100,
+        215
+      ],
+      "lines": [
+        "USB-A"
+      ]
+    },
+    "spec_value_200": {
+      "page": 62,
+      "bbox": [
+        100,
+        200,
+        239,
+        215
+      ],
+      "lines": [
+        "5 V⎓2 A, 9 V⎓2 A, 12 V⎓1,5 A, 18 W max"
+      ]
+    },
+    "spec_label_215": {
+      "page": 62,
+      "bbox": [
+        18,
+        215,
+        100,
+        237
+      ],
+      "lines": [
+        "USB-C1 / USB-C2"
+      ]
+    },
+    "spec_value_215": {
+      "page": 62,
+      "bbox": [
+        100,
+        215,
+        239,
+        237
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A,",
+        "20 V⎓5 A, 28 V⎓5 A, 140 W max"
+      ]
+    },
+    "spec_section_237": {
+      "page": 62,
+      "bbox": [
+        18,
+        237,
+        239,
+        249
+      ],
+      "lines": [
+        "POTENZA TOTALE IN USCITA"
+      ]
+    },
+    "spec_label_249": {
+      "page": 62,
+      "bbox": [
+        18,
+        249,
+        100,
+        263.9
+      ],
+      "lines": [
+        "USB-C1 + USB-C2"
+      ]
+    },
+    "spec_value_249": {
+      "page": 62,
+      "bbox": [
+        100,
+        249,
+        239,
+        263.9
+      ],
+      "lines": [
+        "( 70W + 70W ) max"
+      ]
+    },
+    "spec_label_263.9": {
+      "page": 62,
+      "bbox": [
+        18,
+        263.9,
+        100,
+        277
+      ],
+      "lines": [
+        "USB-C1 + USB-A / USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_263.9": {
+      "page": 62,
+      "bbox": [
+        100,
+        263.9,
+        239,
+        277
+      ],
+      "lines": [
+        "( 140W + 18W ) max"
+      ]
+    },
+    "spec_label_277": {
+      "page": 62,
+      "bbox": [
+        18,
+        277,
+        100,
+        289.5
+      ],
+      "lines": [
+        "USB-C1 + USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_277": {
+      "page": 62,
+      "bbox": [
+        100,
+        277,
+        239,
+        289.5
+      ],
+      "lines": [
+        "( 70W + 70W + 18W ) max"
+      ]
+    },
+    "spec_section_289.5": {
+      "page": 62,
+      "bbox": [
+        18,
+        289.5,
+        239,
+        306
+      ],
+      "lines": [
+        "TEMPERATURA DI FUNZIONAMENTO"
+      ]
+    },
+    "spec_label_306": {
+      "page": 62,
+      "bbox": [
+        18,
+        306,
+        100,
+        322
+      ],
+      "lines": [
+        "Temperatura di carica"
+      ]
+    },
+    "spec_value_306": {
+      "page": 62,
+      "bbox": [
+        100,
+        306,
+        239,
+        322
+      ],
+      "lines": [
+        "tra 0°C e 45°C"
+      ]
+    },
+    "spec_label_322": {
+      "page": 62,
+      "bbox": [
+        18,
+        322,
+        100,
+        336
+      ],
+      "lines": [
+        "Temperatura di scarica"
+      ]
+    },
+    "spec_value_322": {
+      "page": 62,
+      "bbox": [
+        100,
+        322,
+        239,
+        336
+      ],
+      "lines": [
+        "tra -20°C e 45°C"
+      ]
+    },
+    "spec_footnote": {
+      "page": 62,
+      "bbox": [
+        18,
+        336,
+        239,
+        350
+      ],
+      "lines": [
+        "®",
+        "®",
+        "※ USB Type-C   e USB-C   sono marchi registrati di USB Implementers Forum."
+      ]
+    },
+    "warranty_title": {
+      "page": 63,
+      "bbox": [
+        18,
+        12,
+        240,
+        32
+      ],
+      "lines": [
+        "GARANZIA"
+      ]
+    },
+    "contact_title": {
+      "page": 63,
+      "bbox": [
+        20,
+        37,
+        239,
+        52
+      ],
+      "lines": [
+        "Contattaci"
+      ]
+    },
+    "contact_body": {
+      "page": 63,
+      "bbox": [
+        20,
+        52,
+        239,
+        89
+      ],
+      "lines": [
+        "Per qualsiasi domanda o commento sui nostri prodotti, inviare un'email a",
+        "hello.eu@jackery.com e risponderemo il prima possibile. Se si verifica un problema",
+        "relativo alla qualità del prodotto, è possibile richiedere una sostituzione o un rimborso",
+        "compilando un modulo di richiesta all'indirizzo www.jackery.com."
+      ]
+    },
+    "customer_title": {
+      "page": 63,
+      "bbox": [
+        20,
+        90,
+        239,
+        103
+      ],
+      "lines": [
+        "Servizio clienti"
+      ]
+    }
+  },
+  "assets": [
+    {
+      "key": "overview",
+      "path": "docs/renderers/web/assets/je100c_eu_it/overview.svg",
+      "source_page": 54,
+      "bbox_pt": [
+        16,
+        164,
+        240,
+        323
+      ],
+      "removed_layout_paths": [],
+      "sha256": "29942f351ac342bb225ffa477fce7f44a460679ea2c33e5057609d31e2db68e0"
+    },
+    {
+      "key": "lcd1",
+      "path": "docs/renderers/web/assets/je100c_eu_it/lcd1.svg",
+      "source_page": 55,
+      "bbox_pt": [
+        37,
+        48,
+        213,
+        123
+      ],
+      "removed_layout_paths": [],
+      "sha256": "aad2afd2b064f669c160b34edf15cd537e204d8bd48227990dff03e274ec2ca8"
+    },
+    {
+      "key": "lcd2",
+      "path": "docs/renderers/web/assets/je100c_eu_it/lcd2.svg",
+      "source_page": 56,
+      "bbox_pt": [
+        18,
+        104.57019805908203,
+        238,
+        184.11351013183594
+      ],
+      "removed_layout_paths": [],
+      "sha256": "b441e2675513a2e06157612c5c6d1630b127294ae2537757fecbc315e4b47618"
+    },
+    {
+      "key": "lcd3",
+      "path": "docs/renderers/web/assets/je100c_eu_it/lcd3.svg",
+      "source_page": 56,
+      "bbox_pt": [
+        43,
+        264.4881896972656,
+        207,
+        339
+      ],
+      "removed_layout_paths": [],
+      "sha256": "3853daa2718e82c24aa256220aba0609af45264c1e6455d36c73fd267ac374ab"
+    },
+    {
+      "key": "charging_solar",
+      "path": "docs/renderers/web/assets/je100c_eu_it/charging_solar.svg",
+      "source_page": 59,
+      "bbox_pt": [
+        18.32239685058594,
+        241.76172790527343,
+        235.63139953613282,
+        319.567724609375
+      ],
+      "removed_layout_paths": [],
+      "sha256": "4deeb006575d6b1a343d0181ebc040a8e38286c1ccaf094486d053afde299482"
+    },
+    {
+      "key": "charging_car",
+      "path": "docs/renderers/web/assets/je100c_eu_it/charging_car.svg",
+      "source_page": 60,
+      "bbox_pt": [
+        18.06240234375,
+        99.19741973876953,
+        235.37039794921876,
+        205.51541748046876
+      ],
+      "removed_layout_paths": [],
+      "sha256": "93f8ca608fc0fcdf6149bc5865d96aa9d9da8c5ded242e363650135ae860d0c3"
+    }
+  ],
+  "status": "local-source-intake-candidate"
+}

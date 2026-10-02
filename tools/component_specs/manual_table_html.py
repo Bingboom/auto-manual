@@ -5,6 +5,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.manual_tables import (
     lcd_icon_component_spec,
     symbol_icon_component_spec,
@@ -32,25 +33,26 @@ def parse_lcd_icon_html(
     source_path: Path,
     declared_page: bool,
     language: str,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
-    tables = declared_tables(soup, "lcd", declared_page)
+    table: Tag | None = None,
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
+    tables = [table] if table is not None else declared_tables(soup, "lcd", declared_page)
     if len(tables) != 1:
         raise ValueError(f"{source_path}: LCD component requires exactly one table")
     table = tables[0]
     _, _, rows = decode_table(table, "lcd", f"{source_path}#lcd-icons")
+    numbered = "lcd-unnumbered" not in table.get("class", [])
     values = []
     images = []
     for index, row in enumerate(rows):
-        number, icon, name, description = row.find_all(
-            ["th", "td"], recursive=False
-        )
+        cells = row.find_all(["th", "td"], recursive=False)
+        icon, name, description = cells[-3:]
         image = icon.find("img")
         if not isinstance(image, Tag):
             raise ValueError(f"{source_path}: LCD row {index + 1} has no icon")
         images.append(image)
         values.append(
             {
-                **_content(number, "number"),
+                **(_content(cells[0], "number") if numbered else {}),
                 **_content(name, "name"),
                 **_content(description, "description"),
                 "icon_alt": str(image.get("alt") or name.get_text(" ", strip=True)),
@@ -61,6 +63,7 @@ def parse_lcd_icon_html(
     spec = lcd_icon_component_spec(
         accessibility_label=str(boundary.get("aria-label") or "LCD icon meanings"),
         rows=values,
+        numbered=numbered,
         icon_refs=[str(image.get("src") or "") for image in images],
         source_ref=f"{source_path}#lcd-icons",
         language=language,
@@ -74,7 +77,7 @@ def parse_troubleshooting_html(
     source_path: Path,
     declared_page: bool,
     language: str,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     tables = declared_tables(soup, "troubleshooting", declared_page)
     if len(tables) != 1:
         raise ValueError(
@@ -107,8 +110,8 @@ def parse_symbol_tables_html(
     expected_signal_rows: int,
     language: str,
 ) -> tuple[
-    tuple[object, Tag, tuple[Tag, ...]],
-    tuple[object, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
 ]:
     signal_payload, signal_table, signal_headers, signal_rows = decode_signal_table(
         soup,
@@ -129,6 +132,15 @@ def parse_symbol_tables_html(
         language=language,
     )
 
+    return (
+        (signal_spec, signal_table, ()),
+        parse_symbol_icon_html(soup, source_path=source_path, language=language),
+    )
+
+
+def parse_symbol_icon_html(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     _, icon_table, icon_headers, icon_rows = decode_pair_table(
         soup, source_path=source_path
     )
@@ -161,10 +173,8 @@ def parse_symbol_tables_html(
         source_ref=f"{source_path}#symbol-icons",
         language=language,
     )
-    return (
-        (signal_spec, signal_table, ()),
-        (icon_spec, icon_table, tuple(images)),
-    )
+    return icon_spec, icon_table, tuple(images)
+
 
 
 __all__ = [

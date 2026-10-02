@@ -8,6 +8,7 @@ headings while the caller owns the outer chapter title.
 """
 from __future__ import annotations
 
+from itertools import pairwise
 from collections.abc import Mapping, Sequence
 from html import escape
 import re
@@ -45,7 +46,7 @@ def _measures_pair(value: str) -> dict[str, str]:
             or [int(m[1]) for m in starts] != list(range(1, len(starts) + 1))):
         return _pair("measures", value)
     offsets = [m.start() for m in starts] + [len(value)]
-    parts = [value[a:b].rstrip() for a, b in zip(offsets, offsets[1:])]
+    parts = [value[a:b].rstrip() for a, b in pairwise(offsets)]
     return {"measures_text": value, "measures_html": "<br />".join(escape(p) for p in parts)}
 
 
@@ -115,6 +116,26 @@ def troubleshooting_flow(
     return [component_flow_node(spec, root=True)]
 
 
+def _spec_value(value: str, breaks: Sequence[str]) -> str:
+    for marker in breaks:
+        if not marker or value.count(marker) != 1:
+            raise ValueError("specification break marker must match exactly once")
+        left, right = value.split(marker)
+        if not left or not left[-1].isspace():
+            raise ValueError("specification break must follow whitespace")
+        value = left.rstrip() + "\n" + marker + right
+    return value
+
+
+def _spec_cell(text: str) -> list[dict[str, Any]]:
+    nodes: list[dict[str, Any]] = []
+    for index, line in enumerate(text.split("\n")):
+        if index:
+            nodes.append({"kind": "line_break"})
+        nodes.append(_text(line))
+    return nodes
+
+
 def _spec_carrier(title: str, rows: Sequence[Sequence[str]]) -> list[dict[str, Any]]:
     # These are the existing renderer's carrier hooks, not a new presentation.
     heading = {
@@ -129,7 +150,7 @@ def _spec_carrier(title: str, rows: Sequence[Sequence[str]]) -> list[dict[str, A
     body = {"kind": "table_body", "children": [
         {"kind": "table_row", "children": [
             {"kind": "table_cell", "header": index == 0,
-             "children": [_text(cell)]} for index, cell in enumerate(row)
+             "children": _spec_cell(cell)} for index, cell in enumerate(row)
         ]} for row in rows
     ]}
     return [heading, {"kind": "table", "children": [body]}]
@@ -143,9 +164,16 @@ def specification_flow(
     groups = record["groups"]
     if len(group_headings) != len(groups):
         raise ValueError("specifications require a heading for every group")
+    breaks: dict[tuple[str, int], list[str]] = {}
+    for entry in record.get("value_breaks", []):
+        group, row = entry["group"], entry["row"]
+        if group not in groups or not isinstance(row, int) or not 0 <= row < len(groups[group]):
+            raise ValueError("specification break must name an existing row")
+        breaks.setdefault((group, row), []).append(entry["before"])
     nodes = []
     for title, (group_id, records) in zip(group_headings, groups.items(), strict=True):
-        rows = [(row["label"], row["value"]) for row in records]
+        rows = [(row["label"], _spec_value(row["value"], breaks.get((group_id, index), [])))
+                for index, row in enumerate(records)]
         spec = spec_table_component_spec(
             section_title=title, rows=rows, source_ref=f"{source_ref}#{group_id}",
             language=language,

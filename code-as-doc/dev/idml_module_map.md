@@ -10,9 +10,14 @@ golden byte-comparison test at every phase).
 ## Layers (imports point downward only)
 
 ```
-tools/export_idml.py          façade + CLI: main()'s page-composition state machine,
-                              IdmlWriter (state: params/geometry + stories/spreads sinks;
-                              every method is a thin delegate), full re-export surface
+tools/export_idml.py          façade + CLI: main() parses and dispatches to _cmd_check /
+                              _cmd_flow / _cmd_reference; _cmd_reference prepares the
+                              same-source IR and page plan
+tools/idml/reference_export.py
+                              ReferenceExport: the production page-composition pass
+                              (cursor, pending prose/FCC/safety prefix, emitted pages
+                              as instance state; one method per page kind), then
+                              TOC/folio/package/self-check in finish()
 tools/bundle_asset_manifest.py
                               fail-closed renderer boundary for semantic bundle assets:
                               schema/target/consumer/format/path/hash validation;

@@ -6,6 +6,8 @@ presentation hints during the migration.
 """
 from __future__ import annotations
 
+from typing import Any
+
 import re
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
@@ -28,7 +30,7 @@ CONTENT_TAGS = frozenset("section div span p h1 h2 h3 h4 h5 h6 table thead tbody
 
 
 def content_tree(markup: str) -> list[dict]:
-    def encode(node):
+    def encode(node: object) -> dict[str, Any]:
         if isinstance(node, Comment):
             return {"type": "comment", "text": str(node)}
         if isinstance(node, NavigableString):

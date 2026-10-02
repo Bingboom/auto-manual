@@ -457,7 +457,7 @@ GitHub validation note:
 - the maintainability gate also includes `python tools/check_complexity_ratchet.py check`: `data/complexity_baseline.tsv` records every function above complexity 20; a new function may not exceed 20, a recorded one may not grow, and a lower value must be written back with `python tools/check_complexity_ratchet.py update` in the same PR
 - the maintainability gate also includes `python tools/check_facade_patch_ratchet.py check`: `data/facade_patch_baseline.tsv` records, per test file, how often tests patch names on the facade modules (`build_docs`, `process_build_queue`, `process_review_start_queue`, `cloud_doc_backport`); a new test file may not patch a facade, a recorded count may not grow, and a lower count must be written back with `python tools/check_facade_patch_ratchet.py update`
 - the maintainability gate also includes `python tools/check_broad_except_ratchet.py check`: `data/broad_except_baseline.tsv` records, per source file in `build.py`, `tools/`, `scripts/` and `integrations/`, how many `except Exception` / `except BaseException` handlers it has; a new file may not add one, a recorded count may not grow, and a lower count must be written back with `python tools/check_broad_except_ratchet.py update`
-- the maintainability gate also includes `python tools/check_zip_strict_ratchet.py check`: `data/zip_strict_baseline.tsv` records, per file in the ruff lint scope, how many `zip()` calls lack `strict=` (ruff `B905`); same rules, write a drop back with `python tools/check_zip_strict_ratchet.py update`
+- ruff `B905` is enabled: every `zip()` passes `strict=`; `strict=False` carries a `# zip(strict=False): <reason>` comment on the line above
 - the `type-check` CI job (mypy pinned to 2.3.1) also runs `python tools/check_mypy_ratchet.py check`: `data/mypy_untyped_baseline.tsv` records, per file in `tools/manual_ir`, `tools/component_specs` and `tools/csv_pages`, how many `mypy --disallow-untyped-defs` errors it has; same rules, write a drop back with `python tools/check_mypy_ratchet.py update` (needs `pip install mypy==2.3.1`, which `requirements.lock` does not include)
 - `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
 - `build.py check` preflights every prepared FCC page through the document and web renderer profiles with the resolved target language. FCC language coverage is derived from manifest entries in tests, so a new FCC locale must add its governed right-column marker and keep the required opening line-block structure before it can pass validation.
@@ -2415,6 +2415,84 @@ App 下载段如果只有一张二维码，使用显式 `app_download.presentati
 
 中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。
 
+### Native RST notices in Web output
+
+Native RST `note`, `tip`, `warning`, `caution` and `danger` directives pass through the existing `HB-CALLOUT-STRIP` component before Pandoc. Their explicit body boundary, rich paragraphs and lists survive Markdown/Sphinx export; adjacent prose stays outside the box. Docutils titles such as `Caution!` retain their displayed punctuation and registered semantic variant. This also applies to the shared Word HTML adapter.
+
+### Preserve source-authored Web layouts
+
+`hb-lcd-icon-table` is a headerless four-column number/icon/name/description
+source. Multiple declared LCD tables on a page retain separate boundaries.
+Add `lcd-unnumbered` only for a source table with three actual
+icon/name/description columns; do not synthesize a number or an empty numbered
+cell. `hb-source-symbol-icons` admits the authored four-column symbol/meaning
+matrix into the existing two-panel symbol component. Signal badges preserve
+source label text without copying the Word adapter's decorative glyph.
+
+For source compositions around existing components, RST containers
+`hb-device-actions`, `hb-source-operation`, `hb-source-warranty`,
+`hb-source-purchase`, and `hb-source-safety-heading` preserve the complete
+outer boundary through Pandoc. Their responsive styles live in
+`docs/renderers/contracts/web_source_panels.css`; the contained tables still
+use registered ComponentSpecs and all text remains source-authored. Native
+admonition titles retain their explicit punctuation independently of their
+semantic type. Verify the final Sphinx DOM and browser rendering, since an
+intact intermediate HTML container does not prove it survives Markdown.
+
+Complete charging-panel assets retain the source gray backdrops, rounded
+boundaries and in-figure labels when the operator requests PDF parity. Do not
+replace shaped backgrounds with a generic CSS gray rectangle. A finished
+illustration manifest can explicitly set `allow_reuse: true` for one
+hash-verified shared icon used in several source notices; repeated source
+identities without that opt-in still fail.
+
+### JE-100C/EU nine-language Web source
+
+JE-100C/EU has authored Web sources for `en/fr/es/de/it/uk/pt/nl/pl`. Use the
+EU language-family config (`config.eu-<lang>.yaml`) with the matching `--lang`.
+The model identity snapshot remains shared at
+`manual_sources/JE-100C/EU/en/2.0/phase2`; localized copy lives in each
+`docs/templates/page_je100c_eu-<lang>/` and is source/hash bound by that locale's
+`manual_sources/JE-100C/EU/<lang>/2.0/source_manifest.json`.
+
+```bash
+AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off AUTO_MANUAL_PRESENTATION_PROFILE=web \
+python3 build.py md --config configs/config.eu-fr.yaml \
+  --model JE-100C --region EU --lang fr \
+  --data-root manual_sources/JE-100C/EU/en/2.0/phase2 \
+  --staging-root reports/je100c-web-fr --no-clean --skip-root-index
+python3 -m sphinx -b html -W --keep-going -D language=fr \
+  reports/je100c-web-fr/docs/_build/JE-100C/EU/fr/md \
+  reports/je100c-web-fr/preview
+```
+
+French, Spanish, German and Italian use the newer operator-supplied PDF. The
+Ukrainian, Portuguese, Dutch and Polish AI sources are aligned to its English
+revision under the operator's explicit instruction; `newer_english_alignment.json`
+records USB-C charging, car overheating wording, cycle-life, chemistry and
+battery-disposal deltas and their translation-memory/source evidence. This
+is local candidate intake, not a new source-table approval or publication.
+
+`pt` is distinct from `pt-BR`; its live TM field is `eu-pt`. The central
+language registry enables authored Web routes for pt/nl/pl without claiming
+provisioned phase2 core-table columns or a governed IDML language pack.
+The language-family configs presently onboard JE-100C only for those three
+new locales. No live Base schema or records are changed by this build.
+
+Authored signal-word rows may declare `hb-signal-warning`,
+`hb-signal-caution`, `hb-signal-note`, or `hb-signal-tip` RST roles on their
+labels. These roles retain the source's warning-triangle semantics independently
+of whether the displayed label is in a shared translation fixture. Conflicting
+roles fail; existing unmarked sources retain label-based recognition.
+
+Authored-only Web locales retain the shared `content-lint` column fallbacks for
+local snapshots without enabling live synchronization or IDML support. For
+JE-100C, whose localized copy is authored RST rather than core phase2 columns,
+verify the source-bound RST, asset hashes, builds and rendered pages directly;
+an empty source-table observation is not a localized-copy audit.
+
 ### 原生 PDF 的已确认勘误
 
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
+
+冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。

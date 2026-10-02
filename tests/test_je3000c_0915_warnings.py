@@ -161,7 +161,8 @@ UPS_TEMPLATES = {lang: TEMPLATES / "page_shared" / lang / "06_ups_mode.rst" for 
 JE1000F_EU_REVIEW_UPS = {
     lang: ROOT / "docs/_review/JE-1000F/EU/page" / name
     for lang, name in zip(LANGS[:5], ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
-                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"))
+                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"),
+                                          strict=True)
 }
 JE500A_UPS = TEMPLATES / "page_je500a_eu-en" / "06_ups_mode.rst"
 
@@ -645,15 +646,15 @@ class Je500aRenderedWarningTests(unittest.TestCase):
                 break
             section.append(sibling)
         ups = BeautifulSoup("".join(str(node) for node in section), "html.parser")
-        warnings = ups.select(".admonition.warning")
-        cautions = ups.select(".admonition.caution")
+        warnings = ups.select('[data-callout-variant="warning"]')
+        cautions = ups.select('[data-callout-variant="caution"]')
         self.assertEqual((1, 1), (len(warnings), len(cautions)))
         first, second, items, last = PRINT["en"]["ups"]
-        paragraphs = [p.get_text(" ", strip=True) for p in warnings[0].find_all("p", recursive=False)
-                      if "admonition-title" not in (p.get("class") or [])]
+        body = warnings[0].select_one(".manual-callout-body")
+        paragraphs = [p.get_text(" ", strip=True) for p in body.find_all("p", recursive=False)]
         self.assertEqual([first, second, last], paragraphs)
         self.assertEqual(list(items), [li.get_text(" ", strip=True) for li in warnings[0].select("li")])
-        self.assertIs(warnings[0].find_next(class_="admonition"), cautions[0])
+        self.assertIs(warnings[0].find_next(class_="manual-callout-table"), cautions[0])
         bullets = [li.get_text(" ", strip=True) for li in cautions[0].select("li")]
         self.assertEqual(4, len(bullets))
         self.assertEqual(PRINT["en"]["bullet"], bullets[3])

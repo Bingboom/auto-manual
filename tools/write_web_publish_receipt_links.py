@@ -383,7 +383,8 @@ def run(
     report["verify_status"] = status
     report["verify_attempts"] = attempts
     verified_targets: list[dict[str, Any]] = []
-    for target, result in zip(targets, results):
+    # zip(strict=False): source data may differ in length; keep the existing truncation
+    for target, result in zip(targets, results, strict=False):
         entry: dict[str, Any] = {
             "model": target["model"],
             "region": target["region"],

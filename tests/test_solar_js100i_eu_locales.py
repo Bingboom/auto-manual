@@ -91,7 +91,7 @@ class SolarJs100iEuLocalesTest(unittest.TestCase):
                             self.assertIn(normalized(caption), text, caption)
                     rows = soup.select('table.hb-spec-table tr')
                     self.assertEqual(len(rows), 21)
-                    for rendered, expected in zip(rows, source['spec_rows']):
+                    for rendered, expected in zip(rows, source['spec_rows'], strict=True):
                         cells = rendered.select('th, td')
                         self.assertEqual(
                             [normalized(cell.get_text()) for cell in cells],

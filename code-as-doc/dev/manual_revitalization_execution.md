@@ -1,5 +1,7 @@
 # 说明书产线盘活执行台账
 
+Status: active
+
 状态：规划登记，尚未启动实施。关联 [方案 v3.1](../manual_production_revitalization_plan.md)、
 [执行优先级](../optimization_project.md)及 [PR #1188](https://github.com/Bingboom/auto-manual/pull/1188)。
 
