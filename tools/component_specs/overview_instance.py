@@ -107,6 +107,202 @@ def _resolve_instance_definition(
     return materialized
 
 
+def _validate_composite_locales(view: Mapping[str, Any], view_prefix: str) -> None:
+    locales = view.get("composite_locales")
+    if not isinstance(locales, list) or not locales:
+        raise ComponentSpecError(
+            f"{view_prefix}.composite_locales must be a non-empty list"
+        )
+    locale_ids: set[str] = set()
+    for locale_index, mapping in enumerate(locales):
+        locale_prefix = f"{view_prefix}.composite_locales[{locale_index}]"
+        if not isinstance(mapping, Mapping):
+            raise ComponentSpecError(f"{locale_prefix} must be a mapping")
+        locale = _non_empty(mapping.get("locale"), field=f"{locale_prefix}.locale")
+        if locale in locale_ids:
+            raise ComponentSpecError(
+                f"{view_prefix}: duplicate composite locale {locale!r}"
+            )
+        locale_ids.add(locale)
+        patterns = mapping.get("source_patterns", [])
+        if not isinstance(patterns, list):
+            raise ComponentSpecError(
+                f"{locale_prefix}.source_patterns must be a list"
+            )
+        for pattern_index, pattern in enumerate(patterns):
+            _non_empty(
+                pattern,
+                field=f"{locale_prefix}.source_patterns[{pattern_index}]",
+            )
+
+
+
+def _validate_view_geometry(view: Mapping[str, Any], view_prefix: str) -> None:
+    web = view.get("web")
+    idml = view.get("idml")
+    if not isinstance(web, Mapping) or not isinstance(idml, Mapping):
+        raise ComponentSpecError(f"{view_prefix} requires web and idml mappings")
+    aspect_ratio = web.get("aspect_ratio")
+    if isinstance(aspect_ratio, bool) or not isinstance(aspect_ratio, (int, float)):
+        raise ComponentSpecError(f"{view_prefix}.web.aspect_ratio must be numeric")
+    decorative = web.get("decorative_leaders")
+    if not isinstance(decorative, list):
+        raise ComponentSpecError(
+            f"{view_prefix}.web.decorative_leaders must be a list"
+        )
+    for leader_index, points in enumerate(decorative):
+        _point_list(
+            points,
+            field=f"{view_prefix}.web.decorative_leaders[{leader_index}]",
+        )
+    _number_list(idml.get("art_rect"), length=4, field=f"{view_prefix}.idml.art_rect")
+    if isinstance(idml.get("heading_text_y"), bool) or not isinstance(
+        idml.get("heading_text_y"), (int, float)
+    ):
+        raise ComponentSpecError(
+            f"{view_prefix}.idml.heading_text_y must be numeric"
+        )
+    _number_list(
+        idml.get("heading_bullet_rect"),
+        length=4,
+        field=f"{view_prefix}.idml.heading_bullet_rect",
+    )
+    if "heading_text_rect" in idml:
+        _number_list(
+            idml.get("heading_text_rect"),
+            length=4,
+            field=f"{view_prefix}.idml.heading_text_rect",
+        )
+
+
+
+def _validate_callout(
+    callout: Any,
+    callout_prefix: str,
+    *,
+    prefix: str,
+    view_id: str,
+    view_prefix: str,
+    all_callout_ids: set[str],
+    source_slots: set[str],
+) -> None:
+    if not isinstance(callout, Mapping):
+        raise ComponentSpecError(f"{callout_prefix} must be a mapping")
+    callout_id = _non_empty(callout.get("id"), field=f"{callout_prefix}.id")
+    qualified_id = f"{view_id}.{callout_id}"
+    if qualified_id in all_callout_ids:
+        raise ComponentSpecError(
+            f"{prefix}: duplicate qualified callout id {qualified_id!r}"
+        )
+    all_callout_ids.add(qualified_id)
+    source_slot = _non_empty(
+        callout.get("source_slot"), field=f"{callout_prefix}.source_slot"
+    )
+    if source_slot in source_slots:
+        raise ComponentSpecError(
+            f"{view_prefix}: duplicate source slot {source_slot!r}"
+        )
+    source_slots.add(source_slot)
+    web_geometry = callout.get("web")
+    idml_geometry = callout.get("idml")
+    if not isinstance(web_geometry, Mapping) or not isinstance(
+        idml_geometry, Mapping
+    ):
+        raise ComponentSpecError(
+            f"{callout_prefix} requires web and idml geometry"
+        )
+    _number_list(
+        web_geometry.get("rect"),
+        length=4,
+        field=f"{callout_prefix}.web.rect",
+    )
+    if web_geometry.get("align") not in {"left", "right"}:
+        raise ComponentSpecError(f"{callout_prefix}.web.align is invalid")
+    _point_list(
+        web_geometry.get("leader"), field=f"{callout_prefix}.web.leader"
+    )
+    _number_list(
+        idml_geometry.get("rect"),
+        length=4,
+        field=f"{callout_prefix}.idml.rect",
+    )
+    if idml_geometry.get("align") not in {"LeftAlign", "RightAlign"}:
+        raise ComponentSpecError(f"{callout_prefix}.idml.align is invalid")
+    if idml_geometry.get("anchor", "natural") not in {
+        "natural",
+        "above-leader",
+    }:
+        raise ComponentSpecError(f"{callout_prefix}.idml.anchor is invalid")
+    _point_list(
+        idml_geometry.get("leader"), field=f"{callout_prefix}.idml.leader"
+    )
+
+
+
+def _validate_view(
+    view: Any,
+    view_index: int,
+    *,
+    prefix: str,
+    view_ids: set[str],
+    asset_roles: set[str],
+    all_callout_ids: set[str],
+) -> None:
+    view_prefix = f"{prefix}.views[{view_index}]"
+    if not isinstance(view, Mapping):
+        raise ComponentSpecError(f"{view_prefix} must be a mapping")
+    view_id = _non_empty(view.get("id"), field=f"{view_prefix}.id")
+    if view_id in view_ids:
+        raise ComponentSpecError(f"{prefix}: duplicate view id {view_id!r}")
+    view_ids.add(view_id)
+    asset_role = _non_empty(
+        view.get("asset_role"), field=f"{view_prefix}.asset_role"
+    )
+    if asset_role in asset_roles:
+        raise ComponentSpecError(f"{prefix}: duplicate asset role {asset_role!r}")
+    asset_roles.add(asset_role)
+    _non_empty(view.get("image_key"), field=f"{view_prefix}.image_key")
+    _non_empty(
+        view.get("web_replace_key"), field=f"{view_prefix}.web_replace_key"
+    )
+    _validate_composite_locales(view, view_prefix)
+    _validate_view_geometry(view, view_prefix)
+    callouts = view.get("callouts")
+    if not isinstance(callouts, list) or not callouts:
+        raise ComponentSpecError(f"{view_prefix}.callouts must be non-empty")
+    source_slots: set[str] = set()
+    for callout_index, callout in enumerate(callouts):
+        _validate_callout(
+            callout,
+            f"{view_prefix}.callouts[{callout_index}]",
+            prefix=prefix,
+            view_id=view_id,
+            view_prefix=view_prefix,
+            all_callout_ids=all_callout_ids,
+            source_slots=source_slots,
+        )
+
+
+def _validate_decorative_leaders(instance: dict[str, Any], prefix: str) -> set[str]:
+    decorative_idml = instance.get("idml_decorative_leaders")
+    if not isinstance(decorative_idml, list):
+        raise ComponentSpecError(f"{prefix}.idml_decorative_leaders must be a list")
+    decorative_ids: set[str] = set()
+    for index, leader in enumerate(decorative_idml):
+        leader_prefix = f"{prefix}.idml_decorative_leaders[{index}]"
+        if not isinstance(leader, Mapping):
+            raise ComponentSpecError(f"{leader_prefix} must be a mapping")
+        leader_id = _non_empty(leader.get("id"), field=f"{leader_prefix}.id")
+        if leader_id in decorative_ids:
+            raise ComponentSpecError(f"{prefix}: duplicate decorative leader {leader_id!r}")
+        decorative_ids.add(leader_id)
+        _point_list(leader.get("points"), field=f"{leader_prefix}.points")
+        stroke = leader.get("stroke_weight")
+        if isinstance(stroke, bool) or not isinstance(stroke, (int, float)):
+            raise ComponentSpecError(f"{leader_prefix}.stroke_weight must be numeric")
+    return decorative_ids
+
+
 def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
     prefix = f"instances.{instance_id}"
     if not isinstance(raw, Mapping):
@@ -137,142 +333,14 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
     asset_roles: set[str] = set()
     all_callout_ids: set[str] = set()
     for view_index, view in enumerate(views):
-        view_prefix = f"{prefix}.views[{view_index}]"
-        if not isinstance(view, Mapping):
-            raise ComponentSpecError(f"{view_prefix} must be a mapping")
-        view_id = _non_empty(view.get("id"), field=f"{view_prefix}.id")
-        if view_id in view_ids:
-            raise ComponentSpecError(f"{prefix}: duplicate view id {view_id!r}")
-        view_ids.add(view_id)
-        asset_role = _non_empty(
-            view.get("asset_role"), field=f"{view_prefix}.asset_role"
+        _validate_view(
+            view,
+            view_index,
+            prefix=prefix,
+            view_ids=view_ids,
+            asset_roles=asset_roles,
+            all_callout_ids=all_callout_ids,
         )
-        if asset_role in asset_roles:
-            raise ComponentSpecError(f"{prefix}: duplicate asset role {asset_role!r}")
-        asset_roles.add(asset_role)
-        _non_empty(view.get("image_key"), field=f"{view_prefix}.image_key")
-        _non_empty(
-            view.get("web_replace_key"), field=f"{view_prefix}.web_replace_key"
-        )
-        locales = view.get("composite_locales")
-        if not isinstance(locales, list) or not locales:
-            raise ComponentSpecError(
-                f"{view_prefix}.composite_locales must be a non-empty list"
-            )
-        locale_ids: set[str] = set()
-        for locale_index, mapping in enumerate(locales):
-            locale_prefix = f"{view_prefix}.composite_locales[{locale_index}]"
-            if not isinstance(mapping, Mapping):
-                raise ComponentSpecError(f"{locale_prefix} must be a mapping")
-            locale = _non_empty(mapping.get("locale"), field=f"{locale_prefix}.locale")
-            if locale in locale_ids:
-                raise ComponentSpecError(
-                    f"{view_prefix}: duplicate composite locale {locale!r}"
-                )
-            locale_ids.add(locale)
-            patterns = mapping.get("source_patterns", [])
-            if not isinstance(patterns, list):
-                raise ComponentSpecError(
-                    f"{locale_prefix}.source_patterns must be a list"
-                )
-            for pattern_index, pattern in enumerate(patterns):
-                _non_empty(
-                    pattern,
-                    field=f"{locale_prefix}.source_patterns[{pattern_index}]",
-                )
-
-        web = view.get("web")
-        idml = view.get("idml")
-        if not isinstance(web, Mapping) or not isinstance(idml, Mapping):
-            raise ComponentSpecError(f"{view_prefix} requires web and idml mappings")
-        aspect_ratio = web.get("aspect_ratio")
-        if isinstance(aspect_ratio, bool) or not isinstance(aspect_ratio, (int, float)):
-            raise ComponentSpecError(f"{view_prefix}.web.aspect_ratio must be numeric")
-        decorative = web.get("decorative_leaders")
-        if not isinstance(decorative, list):
-            raise ComponentSpecError(
-                f"{view_prefix}.web.decorative_leaders must be a list"
-            )
-        for leader_index, points in enumerate(decorative):
-            _point_list(
-                points,
-                field=f"{view_prefix}.web.decorative_leaders[{leader_index}]",
-            )
-        _number_list(idml.get("art_rect"), length=4, field=f"{view_prefix}.idml.art_rect")
-        if isinstance(idml.get("heading_text_y"), bool) or not isinstance(
-            idml.get("heading_text_y"), (int, float)
-        ):
-            raise ComponentSpecError(
-                f"{view_prefix}.idml.heading_text_y must be numeric"
-            )
-        _number_list(
-            idml.get("heading_bullet_rect"),
-            length=4,
-            field=f"{view_prefix}.idml.heading_bullet_rect",
-        )
-        if "heading_text_rect" in idml:
-            _number_list(
-                idml.get("heading_text_rect"),
-                length=4,
-                field=f"{view_prefix}.idml.heading_text_rect",
-            )
-
-        callouts = view.get("callouts")
-        if not isinstance(callouts, list) or not callouts:
-            raise ComponentSpecError(f"{view_prefix}.callouts must be non-empty")
-        source_slots: set[str] = set()
-        for callout_index, callout in enumerate(callouts):
-            callout_prefix = f"{view_prefix}.callouts[{callout_index}]"
-            if not isinstance(callout, Mapping):
-                raise ComponentSpecError(f"{callout_prefix} must be a mapping")
-            callout_id = _non_empty(callout.get("id"), field=f"{callout_prefix}.id")
-            qualified_id = f"{view_id}.{callout_id}"
-            if qualified_id in all_callout_ids:
-                raise ComponentSpecError(
-                    f"{prefix}: duplicate qualified callout id {qualified_id!r}"
-                )
-            all_callout_ids.add(qualified_id)
-            source_slot = _non_empty(
-                callout.get("source_slot"), field=f"{callout_prefix}.source_slot"
-            )
-            if source_slot in source_slots:
-                raise ComponentSpecError(
-                    f"{view_prefix}: duplicate source slot {source_slot!r}"
-                )
-            source_slots.add(source_slot)
-            web_geometry = callout.get("web")
-            idml_geometry = callout.get("idml")
-            if not isinstance(web_geometry, Mapping) or not isinstance(
-                idml_geometry, Mapping
-            ):
-                raise ComponentSpecError(
-                    f"{callout_prefix} requires web and idml geometry"
-                )
-            _number_list(
-                web_geometry.get("rect"),
-                length=4,
-                field=f"{callout_prefix}.web.rect",
-            )
-            if web_geometry.get("align") not in {"left", "right"}:
-                raise ComponentSpecError(f"{callout_prefix}.web.align is invalid")
-            _point_list(
-                web_geometry.get("leader"), field=f"{callout_prefix}.web.leader"
-            )
-            _number_list(
-                idml_geometry.get("rect"),
-                length=4,
-                field=f"{callout_prefix}.idml.rect",
-            )
-            if idml_geometry.get("align") not in {"LeftAlign", "RightAlign"}:
-                raise ComponentSpecError(f"{callout_prefix}.idml.align is invalid")
-            if idml_geometry.get("anchor", "natural") not in {
-                "natural",
-                "above-leader",
-            }:
-                raise ComponentSpecError(f"{callout_prefix}.idml.anchor is invalid")
-            _point_list(
-                idml_geometry.get("leader"), field=f"{callout_prefix}.idml.leader"
-            )
 
     if view_ids != {"front", "right"}:
         raise ComponentSpecError(f"{prefix}.views must define front and right")
@@ -281,22 +349,7 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
             f"{prefix}.views must bind front_art and right_art asset roles"
         )
 
-    decorative_idml = instance.get("idml_decorative_leaders")
-    if not isinstance(decorative_idml, list):
-        raise ComponentSpecError(f"{prefix}.idml_decorative_leaders must be a list")
-    decorative_ids: set[str] = set()
-    for index, leader in enumerate(decorative_idml):
-        leader_prefix = f"{prefix}.idml_decorative_leaders[{index}]"
-        if not isinstance(leader, Mapping):
-            raise ComponentSpecError(f"{leader_prefix} must be a mapping")
-        leader_id = _non_empty(leader.get("id"), field=f"{leader_prefix}.id")
-        if leader_id in decorative_ids:
-            raise ComponentSpecError(f"{prefix}: duplicate decorative leader {leader_id!r}")
-        decorative_ids.add(leader_id)
-        _point_list(leader.get("points"), field=f"{leader_prefix}.points")
-        stroke = leader.get("stroke_weight")
-        if isinstance(stroke, bool) or not isinstance(stroke, (int, float)):
-            raise ComponentSpecError(f"{leader_prefix}.stroke_weight must be numeric")
+    decorative_ids = _validate_decorative_leaders(instance, prefix)
     leader_order = instance.get("idml_leader_order")
     if (
         not isinstance(leader_order, list)

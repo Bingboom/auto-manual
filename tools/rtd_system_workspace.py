@@ -280,131 +280,163 @@ def _entries(contract: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
     return found
 
 
-def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list[Finding]:
-    """Authoring errors that make the contract unrenderable, plus text warnings."""
-    out: list[Finding] = []
+def _error(out: list[Finding], where: str, message: str) -> None:
+    out.append(Finding("error", where, message))
 
-    def error(where: str, message: str) -> None:
-        out.append(Finding("error", where, message))
 
+def _header_findings(contract: dict[str, Any], out: list[Finding]) -> tuple[set[str], set[str], dict[str, Any]]:
+    """Schema, vocabulary, repositories and date; returns the vocabularies and repositories."""
     if contract.get("schema") != SCHEMA:
-        error("schema", f"expected {SCHEMA}, found {contract.get('schema')!r}")
+        _error(out, "schema", f"expected {SCHEMA}, found {contract.get('schema')!r}")
     vocabulary = contract.get("vocabulary") or {}
     statuses = set((vocabulary.get("status") or {}))
     modes = set((vocabulary.get("mode") or {}))
     if not statuses or not statuses <= set(STATUS_ORDER):
-        error("vocabulary.status", f"must be a subset of {sorted(STATUS_ORDER)}")
+        _error(out, "vocabulary.status", f"must be a subset of {sorted(STATUS_ORDER)}")
     if not modes or not modes <= set(MODE_LABELS):
-        error("vocabulary.mode", f"must be a subset of {sorted(MODE_LABELS)}")
+        _error(out, "vocabulary.mode", f"must be a subset of {sorted(MODE_LABELS)}")
     repositories = contract.get("repositories") or {}
     for name, url in repositories.items():
         if urlsplit(str(url)).scheme != "https":
-            error(f"repositories.{name}", "must be an https URL")
+            _error(out, f"repositories.{name}", "must be an https URL")
     if not isinstance(contract.get("verified_on"), dt.date):
-        error("verified_on", "must be an ISO date")
+        _error(out, "verified_on", "must be an ISO date")
+    return statuses, modes, repositories
 
+
+def _evidence_kinds(where: str, evidence: list[Any], repositories: dict[str, Any], out: list[Finding]) -> list[str]:
+    kinds = []
+    for ref in evidence:
+        try:
+            kind, first, _ = parse_evidence(ref)
+        except ContractError as exc:
+            _error(out, where, str(exc))
+            continue
+        kinds.append(kind)
+        if kind in {"pr", "file"} and first not in repositories:
+            _error(out, where, f"unknown repository {first!r} in {ref!r}")
+    return kinds
+
+
+def _entry_findings(contract: dict[str, Any], statuses: set[str], repositories: dict[str, Any],
+                    out: list[Finding]) -> None:
     for where, entry in _entries(contract):
         evidence = entry.get("evidence") or []
         if not evidence:
-            error(where, "no evidence")
+            _error(out, where, "no evidence")
             continue
-        kinds = []
-        for ref in evidence:
-            try:
-                kind, first, _ = parse_evidence(ref)
-            except ContractError as exc:
-                error(where, str(exc))
-                continue
-            kinds.append(kind)
-            if kind in {"pr", "file"} and first not in repositories:
-                error(where, f"unknown repository {first!r} in {ref!r}")
+        kinds = _evidence_kinds(where, evidence, repositories, out)
         if kinds and set(kinds) == {"ack"}:
-            error(where, "an operator ack cannot be the only evidence")
+            _error(out, where, "an operator ack cannot be the only evidence")
         if where not in _UNSTATUSED:
             status = entry.get("status")
             if status not in statuses:
-                error(where, f"status {status!r} not in vocabulary")
+                _error(out, where, f"status {status!r} not in vocabulary")
             if status == "planned" and "rev" not in kinds:
-                error(where, "planned needs a rev: reference")
+                _error(out, where, "planned needs a rev: reference")
             if status == "retired":
-                error(where, "retired entries do not belong on the public page")
+                _error(out, where, "retired entries do not belong on the public page")
         for field in ("label", "note", "summary", "subtitle"):
             if _QUANTITY.search(str(entry.get(field) or "")):
                 out.append(Finding("warning", where, f"{field} states a quantity; counts must come from the snapshot"))
 
+
+def _card_findings(contract: dict[str, Any], statuses: set[str], out: list[Finding]) -> dict[str, set[str]]:
     card_ids: dict[str, set[str]] = {}
     for card in contract.get("capabilities") or []:
         cid = str(card.get("id"))
         if cid in card_ids:
-            error(cid, "duplicate card id")
+            _error(out, cid, "duplicate card id")
         items = card.get("items") or []
         if not items:
-            error(cid, "card has no items")
+            _error(out, cid, "card has no items")
         card_ids[cid] = {str(item.get("id")) for item in items}
         if not isinstance(card.get("fold", False), bool):
-            error(cid, "fold must be true or false")
+            _error(out, cid, "fold must be true or false")
         if card.get("status") not in statuses:
-            error(cid, f"card status {card.get('status')!r} not in vocabulary")
+            _error(out, cid, f"card status {card.get('status')!r} not in vocabulary")
             continue
         implemented = [i.get("status") for i in items if i.get("status") in IMPLEMENTED]
         if implemented:
             ceiling = min(implemented, key=STATUS_ORDER.__getitem__)
             if STATUS_ORDER[card["status"]] > STATUS_ORDER[ceiling]:
-                error(cid, f"card status {card['status']} is above its weakest implemented item ({ceiling})")
+                _error(out, cid, f"card status {card['status']} is above its weakest implemented item ({ceiling})")
         if _QUANTITY.search(str(card.get("summary") or "")):
             out.append(Finding("warning", cid, "summary states a quantity; counts must come from the snapshot"))
+    return card_ids
 
-    for index, link in enumerate(contract.get("flow") or [], 1):
-        if link.get("mode") not in modes:
-            error(f"flow#{index}", f"mode {link.get('mode')!r} not in vocabulary")
 
+def _gate_findings(gate: dict[str, Any], ledger: Ledger | None, out: list[Finding]) -> None:
+    gid = str(gate.get("id"))
+    if not isinstance(gate.get("fold", False), bool):
+        _error(out, f"gate {gid}", "fold must be true or false")
+    try:
+        revs = expand_revs(gate.get("revs"))
+    except ContractError as exc:
+        _error(out, f"gate {gid}", str(exc))
+        return
+    if ledger is None:
+        return
+    unknown = [rev for rev in revs if rev not in ledger.statuses]
+    if unknown:
+        _error(out, f"gate {gid}", f"REV ids missing from the ledger: {unknown}")
+    named = ledger.gates.get(gid)
+    if named is None:
+        _error(out, f"gate {gid}", "the ledger's gate table has no such gate")
+    elif not set(revs) <= named:
+        _error(out, f"gate {gid}", f"REV ids the ledger's gate row does not name: {sorted(set(revs) - named)}")
+
+
+def _now_next_findings(contract: dict[str, Any], ledger: Ledger | None, out: list[Finding]) -> dict[str, Any]:
     now_next = contract.get("now_next") or {}
     try:
         ledger_ref(contract)
     except ContractError as exc:
-        error("now_next.source", str(exc))
+        _error(out, "now_next.source", str(exc))
     for gate in now_next.get("gates") or []:
-        gid = str(gate.get("id"))
-        if not isinstance(gate.get("fold", False), bool):
-            error(f"gate {gid}", "fold must be true or false")
-        try:
-            revs = expand_revs(gate.get("revs"))
-        except ContractError as exc:
-            error(f"gate {gid}", str(exc))
-            continue
-        if ledger is None:
-            continue
-        unknown = [rev for rev in revs if rev not in ledger.statuses]
-        if unknown:
-            error(f"gate {gid}", f"REV ids missing from the ledger: {unknown}")
-        named = ledger.gates.get(gid)
-        if named is None:
-            error(f"gate {gid}", "the ledger's gate table has no such gate")
-        elif not set(revs) <= named:
-            error(f"gate {gid}", f"REV ids the ledger's gate row does not name: {sorted(set(revs) - named)}")
+        _gate_findings(gate, ledger, out)
     for rev in now_next.get("now_labels") or {}:
         if ledger is not None and rev not in ledger.statuses:
-            error("now_labels", f"{rev} is not in the ledger")
+            _error(out, "now_labels", f"{rev} is not in the ledger")
+    return now_next
 
+
+def _working_today_findings(contract: dict[str, Any], out: list[Finding]) -> None:
     for entry in contract.get("working_today") or []:
         where = f"working_today.{entry.get('id')}"
         has_page, has_publication = "page" in entry, "publication" in entry
         if has_page == has_publication:
-            error(where, "needs exactly one of page / publication")
+            _error(out, where, "needs exactly one of page / publication")
         elif has_page and not _is_docname(entry["page"]):
-            error(where, f"page must be a site docname: {entry['page']!r}")
+            _error(out, where, f"page must be a site docname: {entry['page']!r}")
         elif has_publication:
             publication = entry["publication"] or {}
             if not all(publication.get(k) for k in ("model", "region", "lang")):
-                error(where, "publication needs model, region and lang")
+                _error(out, where, "publication needs model, region and lang")
 
+
+def _corpus_findings(corpus: Any, out: list[Finding]) -> None:
+    languages = corpus.get("languages") if isinstance(corpus, dict) else None
+    codes = [str(lang.get("code")) for lang in languages or [] if isinstance(lang, dict)]
+    if not codes or len(set(codes)) != len(codes) or not all(
+            isinstance(lang, dict) and lang.get("label") for lang in languages or []):
+        _error(out, "corpus.languages", "needs unique codes, each with a label")
+
+
+def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list[Finding]:
+    """Authoring errors that make the contract unrenderable, plus text warnings."""
+    out: list[Finding] = []
+    statuses, modes, repositories = _header_findings(contract, out)
+    _entry_findings(contract, statuses, repositories, out)
+    card_ids = _card_findings(contract, statuses, out)
+    for index, link in enumerate(contract.get("flow") or [], 1):
+        if link.get("mode") not in modes:
+            _error(out, f"flow#{index}", f"mode {link.get('mode')!r} not in vocabulary")
+    now_next = _now_next_findings(contract, ledger, out)
+    _working_today_findings(contract, out)
     corpus = contract.get("corpus")
     if corpus is not None:
-        languages = corpus.get("languages") if isinstance(corpus, dict) else None
-        codes = [str(lang.get("code")) for lang in languages or [] if isinstance(lang, dict)]
-        if not codes or len(set(codes)) != len(codes) or not all(
-                isinstance(lang, dict) and lang.get("label") for lang in languages or []):
-            error("corpus.languages", "needs unique codes, each with a label")
+        _corpus_findings(corpus, out)
 
     if "focus" in contract:
         gate_ids = {str(gate.get("id")) for gate in now_next.get("gates") or []}
@@ -925,6 +957,76 @@ def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | No
     return [_metric("产品骨架", len(skeletons), "个", sub)]
 
 
+def _lane_tag(lane: dict[str, Any]) -> dict[str, str]:
+    return {"title": lane["title"], "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]]}
+
+
+def _gate_and_now_views(contract: dict[str, Any], ledger: Ledger | None, lanes: list[dict[str, Any]],
+                        ledger_url: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    gates: list[dict[str, Any]] = []
+    now: list[dict[str, Any]] = []
+    if ledger is None:
+        return gates, now
+    for gate in contract["now_next"]["gates"]:
+        gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
+                      "lanes": [_lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
+                      **_progress(expand_revs(gate["revs"]), ledger)})
+    for rev, label in (contract["now_next"].get("now_labels") or {}).items():
+        state = ledger.statuses.get(rev, "planned")
+        now.append({"rev": rev, "label": label, "status": state,
+                    "status_label": LEDGER_LABELS.get(state, state), "href": f"{ledger_url}#{rev.lower()}"})
+    return gates, now
+
+
+def _working_view(entry: dict[str, Any], facts: dict[str, Any] | None) -> dict[str, Any]:
+    view = {"label": entry["label"], "note": entry.get("note") or "", "docname": "", "meta": ""}
+    if "page" in entry:
+        view["docname"] = entry["page"]
+        return view
+    wanted = entry["publication"]
+    match = next((t for t in (facts or {}).get("targets", [])
+                  if (t.get("model"), t.get("region"), t.get("lang"))
+                  == (wanted["model"], wanted["region"], wanted["lang"])), None)
+    if match and match.get("route") and match.get("manual"):
+        view["docname"] = f"{match['route']}/{PurePosixPath(match['manual']).stem}"
+        view["meta"] = f"版本 {match.get('version') or '未标注'}"
+    return view
+
+
+def _lane_view(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict[str, Any], ledger_url: str,
+               focus: dict[str, Any], facts: dict[str, Any] | None, corpus_block: dict[str, Any] | None,
+               skeletons: list[dict[str, str]] | None, items_by_ref: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    tracked = bool(lane.get("gates") or lane.get("revs"))
+    progress: list[dict[str, Any]] = []
+    if ledger is not None:
+        for gid in lane.get("gates") or []:
+            if gid in gates_by_id:
+                progress.append({"kind": "gate", **gates_by_id[gid]})
+        if lane.get("revs"):
+            revs = expand_revs(lane["revs"])
+            rows = []
+            for rev in revs:
+                state = ledger.statuses.get(rev, "planned")
+                rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
+                             "href": f"{ledger_url}#{rev.lower()}"})
+            progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
+                             **_progress(revs, ledger)})
+    return {
+        "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
+        "action": lane.get("action") or "",
+        "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
+        "card": lane.get("card") or "",
+        "metrics": [metric for name in lane.get("metrics") or []
+                    for metric in lane_metrics(name, focus=focus, facts=facts,
+                                               corpus=corpus_block, skeletons=skeletons)],
+        # Not "items": Jinja resolves lane.items to the dict method.
+        "entries": [items_by_ref[ref] for ref in lane.get("items") or []],
+        "progress": progress,
+        "untracked": not tracked and lane["horizon"] != "deferred",
+        "ledger_missing": tracked and ledger is None,
+    }
+
+
 def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None,
                   facts: dict[str, Any] | None, today: dt.date,
                   registry: Registry, assets: Path,
@@ -948,9 +1050,6 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             "evidence": [evidence_view(ref, repositories, ledger_url) for ref in entry["evidence"]],
         }
 
-    def lane_tag(lane: dict[str, Any]) -> dict[str, str]:
-        return {"title": lane["title"], "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]]}
-
     cards = []
     items_by_ref: dict[str, dict[str, Any]] = {}
     for card in contract["capabilities"]:
@@ -961,77 +1060,27 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             entries.append(view)
         cards.append({"id": card["id"], "title": card["title"], "en": card.get("en") or "",
                       "summary": card.get("summary") or "", "entries": entries, "fold": bool(card.get("fold")),
-                      "lanes": [lane_tag(lane) for lane in lanes if lane.get("card") == card["id"]],
+                      "lanes": [_lane_tag(lane) for lane in lanes if lane.get("card") == card["id"]],
                       **_status_view(card["status"])})
 
     flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"],
              "mode_label": MODE_LABELS[link["mode"]], **entry_view(link)} for link in contract["flow"]]
 
-    gates, now = [], []
-    if ledger is not None:
-        for gate in contract["now_next"]["gates"]:
-            gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
-                          "lanes": [lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
-                          **_progress(expand_revs(gate["revs"]), ledger)})
-        for rev, label in (contract["now_next"].get("now_labels") or {}).items():
-            state = ledger.statuses.get(rev, "planned")
-            now.append({"rev": rev, "label": label, "status": state,
-                        "status_label": LEDGER_LABELS.get(state, state), "href": f"{ledger_url}#{rev.lower()}"})
+    gates, now = _gate_and_now_views(contract, ledger, lanes, ledger_url)
 
-    working = []
-    for entry in contract.get("working_today") or []:
-        view = {"label": entry["label"], "note": entry.get("note") or "", "docname": "", "meta": ""}
-        if "page" in entry:
-            view["docname"] = entry["page"]
-        else:
-            wanted = entry["publication"]
-            match = next((t for t in (facts or {}).get("targets", [])
-                          if (t.get("model"), t.get("region"), t.get("lang"))
-                          == (wanted["model"], wanted["region"], wanted["lang"])), None)
-            if match and match.get("route") and match.get("manual"):
-                view["docname"] = f"{match['route']}/{PurePosixPath(match['manual']).stem}"
-                view["meta"] = f"版本 {match.get('version') or '未标注'}"
-        working.append(view)
+    working = [_working_view(entry, facts) for entry in contract.get("working_today") or []]
 
     corpus_block = corpus_view(contract, corpus, today, int(registry["corpus"]["stale_after_days"])) if corpus else None
     gates_by_id = {gate["id"]: gate for gate in gates}
-
-    def lane_view(lane: dict[str, Any]) -> dict[str, Any]:
-        tracked = bool(lane.get("gates") or lane.get("revs"))
-        progress: list[dict[str, Any]] = []
-        if ledger is not None:
-            for gid in lane.get("gates") or []:
-                if gid in gates_by_id:
-                    progress.append({"kind": "gate", **gates_by_id[gid]})
-            if lane.get("revs"):
-                revs = expand_revs(lane["revs"])
-                rows = []
-                for rev in revs:
-                    state = ledger.statuses.get(rev, "planned")
-                    rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
-                                 "href": f"{ledger_url}#{rev.lower()}"})
-                progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
-                                 **_progress(revs, ledger)})
-        return {
-            "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
-            "action": lane.get("action") or "",
-            "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
-            "card": lane.get("card") or "",
-            "metrics": [metric for name in lane.get("metrics") or []
-                        for metric in lane_metrics(name, focus=focus, facts=facts,
-                                                   corpus=corpus_block, skeletons=skeletons)],
-            # Not "items": Jinja resolves lane.items to the dict method.
-            "entries": [items_by_ref[ref] for ref in lane.get("items") or []],
-            "progress": progress,
-            "untracked": not tracked and lane["horizon"] != "deferred",
-            "ledger_missing": tracked and ledger is None,
-        }
 
     focus_view = None
     if lanes:
         groups = []
         for horizon, label in HORIZON_LABELS.items():
-            views = [lane_view(lane) for lane in lanes if lane["horizon"] == horizon]
+            views = [_lane_view(lane, ledger=ledger, gates_by_id=gates_by_id, ledger_url=ledger_url, focus=focus,
+                                facts=facts, corpus_block=corpus_block, skeletons=skeletons,
+                                items_by_ref=items_by_ref)
+                     for lane in lanes if lane["horizon"] == horizon]
             if views:
                 groups.append({"horizon": horizon, "label": label, "lanes": views})
         focus_view = {
@@ -1045,7 +1094,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
     tooling = None
     if contract.get("tooling"):
         tooling = tooling_view(contract["tooling"], skills or [], hooks or [],
-                               {lane["id"]: lane_tag(lane) for lane in lanes})
+                               {lane["id"]: _lane_tag(lane) for lane in lanes})
 
     status_vocabulary = contract["vocabulary"]["status"]
     return {
