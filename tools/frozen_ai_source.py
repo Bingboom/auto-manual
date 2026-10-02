@@ -193,7 +193,8 @@ class FrozenBook:
 
     def starts(self):
         starts = []
-        for section_id, title in zip(self.index["section_ids"], self.locale["titles"]):
+        # zip(strict=False): source data may differ in length; keep the existing truncation
+        for section_id, title in zip(self.index["section_ids"], self.locale["titles"], strict=False):
             page_no = next(s["physical_pages"][0] for s in self.source["sections"] if s["id"] == section_id)
             matches = [(page_no, b["bbox"][1], section_id) for b in self.page(page_no)["blocks_visual_order"]
                        if _key(b["text"]) == _key(title)]
@@ -302,6 +303,7 @@ class FrozenBook:
 
     def callouts(self, blocks, number):
         """Bind left-hand notice labels to their adjacent source body rectangles."""
-        labels = {row["label"].casefold(): variant for row, variant in zip(self.records["symbols"]["rows"], ("warning", "caution", "note", "tip"))}
+        # zip(strict=False): source data may differ in length; keep the existing truncation
+        labels = {row["label"].casefold(): variant for row, variant in zip(self.records["symbols"]["rows"], ("warning", "caution", "note", "tip"), strict=False)}
         result, consumed = _positioned_callouts(self, blocks, number, labels)
         return _inferred_callouts(self, blocks, number, labels, result, consumed)

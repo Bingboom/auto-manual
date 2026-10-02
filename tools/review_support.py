@@ -603,7 +603,7 @@ def _render_placeholder_values(template_line: str, values: tuple[str, ...]) -> s
 
     rendered_parts: list[str] = []
     last = 0
-    for value, match in zip(values, matches):
+    for value, match in zip(values, matches, strict=True):
         rendered_parts.append(template_line[last:match.start()])
         rendered_parts.append(value)
         last = match.end()

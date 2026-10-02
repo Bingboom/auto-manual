@@ -8,6 +8,7 @@ headings while the caller owns the outer chapter title.
 """
 from __future__ import annotations
 
+from itertools import pairwise
 from collections.abc import Mapping, Sequence
 from html import escape
 import re
@@ -45,7 +46,7 @@ def _measures_pair(value: str) -> dict[str, str]:
             or [int(m[1]) for m in starts] != list(range(1, len(starts) + 1))):
         return _pair("measures", value)
     offsets = [m.start() for m in starts] + [len(value)]
-    parts = [value[a:b].rstrip() for a, b in zip(offsets, offsets[1:])]
+    parts = [value[a:b].rstrip() for a, b in pairwise(offsets)]
     return {"measures_text": value, "measures_html": "<br />".join(escape(p) for p in parts)}
 
 

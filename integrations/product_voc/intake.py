@@ -86,7 +86,8 @@ class BotWriter:
         data = self.call("+record-get", "--record-id", record_id)
         if data.get("record_id_list") != [record_id] or len(data.get("data", [])) != 1:
             raise RuntimeError("Record readback missing")
-        actual = dict(zip(data["fields"], data["data"][0]))
+        # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+        actual = dict(zip(data["fields"], data["data"][0], strict=False))
         if any((actual.get(name) or "") != value for name, value in fields.items()):
             raise RuntimeError("Record readback mismatch")
 

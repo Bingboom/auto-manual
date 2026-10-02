@@ -134,8 +134,10 @@ def lark_dump(base_token: str, table_id: str) -> list[dict[str, object]]:
             check=False,
         )
         data = json.loads(proc.stdout)["data"]
-        for rid, vals in zip(data["record_id_list"], data["data"]):
-            rows.append({"record_id": rid, **dict(zip(data["fields"], vals))})
+        # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+        for rid, vals in zip(data["record_id_list"], data["data"], strict=False):
+            # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+            rows.append({"record_id": rid, **dict(zip(data["fields"], vals, strict=False))})
         if len(data["data"]) < 200:
             break
         offset += 200
@@ -222,7 +224,7 @@ def collect_template_entries(repo_root: Path, entries):
                 skipped += 1
                 continue
             paired += 1
-            for eh, xh in zip(en_heads, heads):
+            for eh, xh in zip(en_heads, heads, strict=True):
                 if eh and xh:
                     entries.append((f"模板:{fam}/{fname}", rel, eh, lang, xh))
     return paired, skipped

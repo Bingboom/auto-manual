@@ -1063,7 +1063,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         ]
         effective_bottoms = [
             top + max(18.0, ((len(step) + 23) // 24) * 7.5)
-            for (_left, top, _right, _bottom), step in zip(bounds, steps)
+            for (_left, top, _right, _bottom), step in zip(bounds, steps, strict=True)
         ]
         self.assertLessEqual(effective_bottoms[0] + 1.0, bounds[1][1])
         self.assertLessEqual(effective_bottoms[1] + 1.0, bounds[2][1])

@@ -440,9 +440,10 @@ class LarkCliSource:
                 raise RuntimeError("Lark CLI record list response has invalid field list")
             if len(field_ids) != len(display_field_names):
                 raise RuntimeError("Lark CLI record list response field metadata is misaligned")
+            # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
             field_names = [
                 field_name_map.get(field_id, display_name)
-                for field_id, display_name in zip(field_ids, display_field_names)
+                for field_id, display_name in zip(field_ids, display_field_names, strict=False)
             ]
             rows = data.get("data", [])
             if not isinstance(rows, list):
