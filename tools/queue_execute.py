@@ -304,7 +304,7 @@ def _asset_preflight_for_row(row: QueueQueryRow, *, repo_root: Path) -> dict[str
             language=row.lang or None,
             build_family=row.build_family,
         ).to_dict()
-    except Exception as exc:  # advisory only; never block an accepted dispatch
+    except Exception as exc:  # noqa: BLE001 - advisory only; never block an accepted dispatch
         return {
             "mode": "advisory",
             "model": model,

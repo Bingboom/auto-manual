@@ -287,7 +287,7 @@ def apply_change_requests(
         expected_old = entry.get("old_value")
         try:
             current_before = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
-        except Exception as exc:  # isolate one request's failure from the batch
+        except Exception as exc:  # noqa: BLE001 - isolate one request's failure from the batch
             applied.append({**entry, "status": "error", "error": str(exc)})
             continue
         if _norm(current_before) == _norm(target):
@@ -304,7 +304,7 @@ def apply_change_requests(
                 table=entry["table"], record_id=entry["record_id"], field=entry["field"], value=target
             )
             current = transport.get(table=entry["table"], record_id=entry["record_id"], field=entry["field"])
-        except Exception as exc:  # isolate one request's failure from the batch
+        except Exception as exc:  # noqa: BLE001 - isolate one request's failure from the batch
             applied.append({**entry, "status": "error", "error": str(exc)})
             continue
         verified = _norm(current) == _norm(target)

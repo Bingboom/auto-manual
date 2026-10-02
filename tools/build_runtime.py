@@ -90,7 +90,7 @@ def should_run_spec_master_validation(
             model=model,
             region=region,
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 - an unresolvable snapshot means a sync is needed
         return True
 
     if snapshot_paths.spec_master_csv.exists():

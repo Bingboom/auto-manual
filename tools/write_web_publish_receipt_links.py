@@ -482,7 +482,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         exit_code, report = run(args)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - CLI boundary prints the error and exits non-zero
         print(f"[web-receipt] ERROR: {exc}", file=sys.stderr)
         return EXIT_FAILED
     if args.report_json is not None:

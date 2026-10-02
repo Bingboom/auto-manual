@@ -21,7 +21,7 @@ class SafeFormatDict(dict[str, str]):
 def doctor_import(module_name: str) -> tuple[bool, str]:
     try:
         importlib.import_module(module_name)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - doctor reports any import-time failure
         return False, str(exc)
     return True, ""
 
@@ -46,7 +46,7 @@ def render_config_tokenized_value(value: str, model: str | None, region: str | N
     )
     try:
         return value.format_map(context)
-    except Exception:
+    except (AttributeError, IndexError, KeyError, TypeError, ValueError):
         return value
 
 
@@ -205,7 +205,7 @@ def collect_doctor_findings(
 
     try:
         cfg = load_validate_yaml(config_path)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - doctor reports any config load failure as a finding
         doctor_add(findings, "ERROR", "config", f"failed to load {config_path}: {exc}")
         return findings
 
