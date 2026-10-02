@@ -1,0 +1,57 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "validated_main": "ab70aeb3102592a0a039bff2c713f133b304942d",
+  "chapters": 16,
+  "assets": 55,
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 14,
+    "HB-SPECIAL-APP": 3,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-OPERATION": 2,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "strict_ir_validation": "pass",
+  "replay_markdown_byte_identical": true,
+  "asset_hashes": "all verified",
+  "critical_source_facts": [
+    "3584 Wh",
+    "6000 cycles to 70%+ capacity",
+    "3600W Rated",
+    "7200W Surge peak",
+    "36.4V-50.4V⎓100A Max",
+    "36.4V-50.4V⎓60A Max",
+    "up to 5 battery packs",
+    "at least 200 mm",
+    "within 10 ms",
+    "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+    "0°C to 25°C",
+    "hello.eu@jackery.com"
+  ],
+  "source_overview_policy": "Dense callouts retained in exact native crops, no visible text duplication.",
+  "native_component_admission": "Prepared-document construction from native text plus visually transcribed outlined copy. Engineering candidate; automatic native publication admission is not claimed.",
+  "source_boundary": {
+    "Git_only": true,
+    "live_Bitable_dependency": false,
+    "publication_eligible": false
+  },
+  "checks": {
+    "targeted_shared_components": "50 tests passed",
+    "strict_sphinx": "passed with -W --keep-going",
+    "guardrails": "passed",
+    "logic_suite": "not applicable: no production Python or renderer changes",
+    "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md"
+  },
+  "warnings": [
+    "Local Python package versions differ from requirements.lock; dependencies were not changed."
+  ]
+}

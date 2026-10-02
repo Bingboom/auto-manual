@@ -1,0 +1,188 @@
+[
+  {
+    "chapter": "introduction",
+    "source_ref": "en/pdf-2/introduction",
+    "headings_and_prose": [
+      "Jackery Explorer 3600 Plus",
+      "IMPORTANT",
+      "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+      "Please kindly notice that no further notifications will be given in case of any update, revision or termination."
+    ]
+  },
+  {
+    "chapter": "safety",
+    "source_ref": "en/pdf-8/safety",
+    "headings_and_prose": [
+      "IMPORTANT SAFETY INFORMATION",
+      "Always follow these basic precautions when using this product.",
+      "Read all the instructions before using the product.",
+      "Do not allow children to play with the product. Close supervision of children is necessary when the product is used near children.",
+      "Risk of electric shock may occur if using accessories that are not recommended or sold by professional product manufacturers.",
+      "When the product is not in use, unplug the power plug from the product's socket.",
+      "Do not dismantle the product, as this may lead to unpredictable risks such as fire, explosion, or electric shock.",
+      "Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.",
+      "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating. -Charging in damp or poorly ventilated spaces may cause safety hazards. -Water can cause short circuits or damage to the charger, leading to safety risks.",
+      "Do not expose the product to fire, high temperatures, direct sunlight, or high-heat environments such as inside a parked vehicle. Such exposure may result in fire or explosion.",
+      "USER MAINTENANCE INSTRUCTIONS",
+      "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells."
+    ]
+  },
+  {
+    "chapter": "symbols",
+    "source_ref": "en/pdf-8-9/symbols",
+    "headings_and_prose": [
+      "MEANING OF SYMBOLS"
+    ]
+  },
+  {
+    "chapter": "in_the_box",
+    "source_ref": "en/pdf-9/in_the_box",
+    "headings_and_prose": [
+      "WHAT'S IN THE BOX"
+    ]
+  },
+  {
+    "chapter": "product_overview",
+    "source_ref": "en/pdf-10/product_overview",
+    "headings_and_prose": [
+      "PRODUCT OVERVIEW",
+      "FRONT VIEW",
+      "RIGHT SIDE VIEW"
+    ]
+  },
+  {
+    "chapter": "lcd_display",
+    "source_ref": "en/pdf-11-12/lcd_display",
+    "headings_and_prose": [
+      "LCD DISPLAY"
+    ]
+  },
+  {
+    "chapter": "operations",
+    "source_ref": "en/pdf-13-15/operations",
+    "headings_and_prose": [
+      "OPERATIONS",
+      "POWER ON/OFF",
+      "USB OUTPUT ON/OFF",
+      "AC OUTPUT ON/OFF",
+      "ENERGY SAVING MODE",
+      "LCD SCREEN",
+      "You can also set the screen display mode in the Jackery App.",
+      "KEY COMBINATION"
+    ]
+  },
+  {
+    "chapter": "ups",
+    "source_ref": "en/pdf-16/ups",
+    "headings_and_prose": [
+      "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your appliances at the same time.",
+      "In UPS mode, the unit's peak output reaches 10A before power outages. As simultaneous charging/discharging is enabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to rated output power during outages."
+    ]
+  },
+  {
+    "chapter": "connections",
+    "source_ref": "en/pdf-17/connections",
+    "headings_and_prose": [
+      "CONNECTIONS",
+      "CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)",
+      "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual."
+    ]
+  },
+  {
+    "chapter": "charging",
+    "source_ref": "en/pdf-18-19/charging",
+    "headings_and_prose": [
+      "CHARGING",
+      "Green energy first: We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+      "Fully charge the product before its first use.",
+      "CHARGING VIA AC WALL OUTLET",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "Jackery Explorer 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).",
+      "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of the Explorer 3600 Plus. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
+      "CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)",
+      "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection."
+    ]
+  },
+  {
+    "chapter": "storage",
+    "source_ref": "en/pdf-20/storage",
+    "headings_and_prose": [
+      "STORAGE",
+      "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:",
+      "1 month: -20°C to 45°C (0-60%RH)",
+      "3 months: 0°C to 45°C (0-60%RH)",
+      "12 months: 0°C to 25°C (0-60%RH)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+    ]
+  },
+  {
+    "chapter": "troubleshooting",
+    "source_ref": "en/pdf-20/troubleshooting",
+    "headings_and_prose": [
+      "TROUBLESHOOTING",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, please contact Jackery Customer Support."
+    ]
+  },
+  {
+    "chapter": "specifications",
+    "source_ref": "en/pdf-21/specifications",
+    "headings_and_prose": [
+      "SPECIFICATIONS",
+      "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+      "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+      "② Indicates that two or more AC output ports work together."
+    ]
+  },
+  {
+    "chapter": "warranty",
+    "source_ref": "en/pdf-22/warranty",
+    "headings_and_prose": [
+      "WARRANTY",
+      "Limited Warranty",
+      "Warranty Period",
+      "Exchange",
+      "Limited to Original Consumer Buyer",
+      "Exclusions",
+      "Interpretation Rights"
+    ]
+  },
+  {
+    "chapter": "app_setup",
+    "source_ref": "en/pdf-23-24/app_setup",
+    "headings_and_prose": [
+      "APP SETUP",
+      "1. Download the App and log in",
+      "2. Add device",
+      "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+      "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.",
+      "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.",
+      "2.5 After the device is successfully added on the App, the Wi-Fi icon on the device will be always on.",
+      "The above screenshots are for reference only.",
+      "3. Unbind the device",
+      "Click the Settings icon in the upper right corner of the main interface of the device to enter the settings page, and click the Unbind button at the bottom of the page to unbind the device.",
+      "4. Notes",
+      "4.1 To turn on Wi-Fi & Bluetooth:",
+      "Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.",
+      "Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen light up.",
+      "4.2 To turn off Wi-Fi & Bluetooth:",
+      "Hold the USB power button and AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen are off.",
+      "Wi-Fi and Bluetooth will be automatically turned off if no device is connected within 2 hours.",
+      "4.3 To reset Wi-Fi & Bluetooth:",
+      "Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi & Bluetooth to factory settings and reboot the system. The connected App account will be unbound."
+    ]
+  },
+  {
+    "chapter": "eu-declaration",
+    "source_ref": "en/pdf-161/eu-declaration",
+    "headings_and_prose": [
+      "EU Regulations",
+      "RED Declaration of Conformity",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with Bluetooth and Wi-Fi JE-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is available at the following internet address: https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "sales@hello-tech.com +86 400 668 9293 www.hello-tech.com"
+    ]
+  }
+]

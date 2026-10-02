@@ -1,0 +1,97 @@
+# JE-3600A / EU / English — Git-only Web candidate
+
+This candidate transcribes `HTE139-EU-9国说明书-0924.ai` into the existing
+`manual-ir/v2 → ComponentSpec → shared Web renderer` pipeline. It is an
+engineering review candidate, with `publication_eligible: false`.
+
+- Product: Jackery Explorer 3600 Plus, JE-3600A, EU, English.
+- Source: 161 physical pages; English preface p2, body p8–24, shared regulatory
+  content p161. SHA-256:
+  `47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043`.
+- No live Bitable/queue dependency, source-table writes, merge or publication.
+- The historical `../2026-05-25` package and existing model configuration stay
+  unchanged. This directory is the new version's reviewable Git artifact.
+
+## Contents and replay
+
+- `source/text-ledger.json`: native rectangles/raw text and explicit visual
+  transcription of outlined copy.
+- `source/native-pages.json`: native text and block coordinates for source review.
+- `source/chapters.json`: 16 prepared chapters, with neutral flow and registered
+  component bindings. `source/normalization-notes.json` explains reading-order
+  recovery and layout-only labels.
+- `asset_recipe.json`, `assets_manifest.json`: source hashes, crops, exact shared
+  asset reuse and redaction decisions. The small ×5 LCD icon has its own
+  retained-path recipe and transparent export; the CE/contact QR export settings
+  are in the manifest. Frames, backgrounds, engravings, phone UI and leaders are
+  preserved. Only external native text is removed from ordinary illustrations.
+- `web/en/manual.ir.json`: frozen public IR, shared component registry/theme,
+  target artwork geometry and shared stylesheet hashes.
+- `web/en/manual_je3600a_eu_en.md`: deterministic shared-renderer output.
+- `source/validation.json` and `source/browser-audit.json`: verification receipts.
+
+From the repository root, replay from Git inputs only:
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+from tools.frozen_ai_web import replay_package
+replay_package(Path('manual_sources/JE-3600A/EU/en/git-20261002-47a346dc/web/en'))
+PY
+python3 -m sphinx -W --keep-going -b html \
+  manual_sources/JE-3600A/EU/en/git-20261002-47a346dc/web/en \
+  reports/je3600a-native/preview
+python3 -m http.server 18963 --bind 127.0.0.1 \
+  --directory reports/je3600a-native/preview
+```
+
+Open `http://127.0.0.1:18963/manual_je3600a_eu_en.html`. Replay needs neither the
+original AI file nor live business data. Source re-extraction requires the exact
+AI file and its pinned SHA-256.
+
+## Reuse and source differences
+
+| Area | Shared structure reused | JE-3600A source binding |
+| --- | --- | --- |
+| Inbox, symbols, LCD | Existing semantic tables/cards/icons | 23 LCD rows; numbers 4 and 18 each span two rows; ×5 battery indicator |
+| Operations | Shared Operation, reference figure, LCD mode and key-combination components | USB/AC use Operation; main-power/energy panels use source-bound reference labels to retain complete backgrounds and instruction boxes |
+| Connections/charging | Shared base-art reference figure | Five battery packs maximum, 200 mm ventilation, EU sockets and this source's cable topology |
+| Specifications | Shared spec tables | 3584 Wh; 3600 W rated / 7200 W surge; 100 A expansion input and 60 A output |
+| Warranty/App | Shared warranty and App components | 3+2 years; source phone UI and live captions; positioned selectable control labels |
+| Regulatory back | Shared reference figure and native text | Shenzhen Hello Tech manufacturer/address, original CE/contact QR |
+
+JE-2000E supplied the shared chapter/component pattern, not product facts.
+No automatic-output-restore table appears in this English source and none was
+invented. This is a prepared-document intake because some source copy is outlined
+and was visually transcribed; it does not claim native publication admission.
+
+## Review evidence
+
+The candidate passed strict IR validation, deterministic Markdown replay, all
+packaged asset hashes, strict Sphinx, 50 targeted shared-component tests, and the
+repository maintainability guardrails. Browser checks cover 1440×1000 and
+390×844, 56 loaded image elements, 23 LCD rows, correct rowspans, zero missing
+images, page errors or document overflow. Wide semantic tables remain horizontally
+scrollable on mobile; reaching their last columns was checked. Mobile long figure
+labels follow the shared renderer's readable stacked treatment.
+
+All 15 newly cropped/redacted panels match the source outside removed native text
+at 4×. Their four edges are byte-identical to the source at 12×. Detailed receipts
+are in `source/artwork-pixel-audit.json` and `source/artwork-edge-audit.json`.
+Local complete chapter screenshots are retained in
+`reports/je3600a-native/browser-final-{1440,390}`; their digests are in the browser
+receipt. Local Python versions differ from `requirements.lock`; no dependencies
+were changed. No production renderer, Python logic or shared CSS was changed, so
+full logic/build-behavior suites were not applicable to this source-only PR.
+
+## Source errata awaiting product review
+
+1. P2 English preface/TOC carries “US” although this source and target are EU.
+   The source banner is recorded, and this candidate retains the EU identity.
+2. P14 energy-saving paragraph says “AC or DC output” although the operation
+   chapter describes USB output. Native wording is preserved.
+3. P20 FA remedy refers to “both units” without a corresponding two-unit
+   connection procedure in the English source. Native wording is preserved.
+
+These are review notes, not silently approved source corrections. Publication,
+other languages and default-target replacement require a subsequent decision.

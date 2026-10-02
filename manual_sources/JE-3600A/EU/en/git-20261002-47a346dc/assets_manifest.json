@@ -1,0 +1,770 @@
+{
+  "inbox-main": {
+    "path": "assets/inbox-main.png",
+    "sha256": "8a16c28d2a7b054188481e51fb8c8ed177c8a750b53fd7b0a8e41951ad2239ac",
+    "source_path": "docs/renderers/web/assets/je3600a_eu_en/inbox_unit.png",
+    "source_sha256": "8a16c28d2a7b054188481e51fb8c8ed177c8a750b53fd7b0a8e41951ad2239ac",
+    "policy": "byte-identical reuse",
+    "reason": "Same JE-3600A EU illustration and fixed device markings match source p9,11,15; no external prose"
+  },
+  "inbox-cable": {
+    "path": "assets/inbox-cable.png",
+    "sha256": "2ee9c4e13b8089a03296a1e3f87ad70218fd1321f1c7b71c6915b3494c3b61b9",
+    "source_path": "docs/renderers/web/assets/je3600a_eu_en/inbox_cable.png",
+    "source_sha256": "2ee9c4e13b8089a03296a1e3f87ad70218fd1321f1c7b71c6915b3494c3b61b9",
+    "policy": "byte-identical reuse",
+    "reason": "Same JE-3600A EU illustration and fixed device markings match source p9,11,15; no external prose"
+  },
+  "inbox-manual": {
+    "path": "assets/inbox-manual.png",
+    "sha256": "4efee5bcfcb4493aa60527526dc67652096718e5f6ba6578b31600584705e6a7",
+    "source_path": "docs/renderers/web/assets/je3600a_eu_en/inbox_manual.png",
+    "source_sha256": "4efee5bcfcb4493aa60527526dc67652096718e5f6ba6578b31600584705e6a7",
+    "policy": "byte-identical reuse",
+    "reason": "Same JE-3600A EU illustration and fixed device markings match source p9,11,15; no external prose"
+  },
+  "lcd-mode": {
+    "path": "assets/lcd-mode.png",
+    "sha256": "e6c56996348f010fbdda97a3eb656bc5bd859d93e6ae671e085bc238b5c9d49a",
+    "source_path": "docs/renderers/web/assets/je3600a_eu_en/lcd_mode_device.png",
+    "source_sha256": "e6c56996348f010fbdda97a3eb656bc5bd859d93e6ae671e085bc238b5c9d49a",
+    "policy": "byte-identical reuse",
+    "reason": "Same JE-3600A EU illustration and fixed device markings match source p9,11,15; no external prose"
+  },
+  "lcd-map": {
+    "path": "assets/lcd-map.png",
+    "sha256": "37ef74780972edcdb0cf2dbdd4ec8ccaa4ee898f615b1daa5fa89616cb5ec15f",
+    "source_path": "docs/renderers/web/assets/je3600a_eu_en/lcd_map.png",
+    "source_sha256": "37ef74780972edcdb0cf2dbdd4ec8ccaa4ee898f615b1daa5fa89616cb5ec15f",
+    "policy": "byte-identical reuse",
+    "reason": "Same JE-3600A EU illustration and fixed device markings match source p9,11,15; no external prose"
+  },
+  "lcd-icon-wifi": {
+    "path": "assets/lcd-icon-wifi.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-wifi.png",
+    "source_sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-bluetooth": {
+    "path": "assets/lcd-icon-bluetooth.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-bluetooth.png",
+    "source_sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-quiet-charging": {
+    "path": "assets/lcd-icon-quiet-charging.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-quiet-charging.png",
+    "source_sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-charging-plan": {
+    "path": "assets/lcd-icon-charging-plan.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-charging-plan.png",
+    "source_sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-self-powered": {
+    "path": "assets/lcd-icon-self-powered.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-self-powered.png",
+    "source_sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-tou": {
+    "path": "assets/lcd-icon-tou.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-tou.png",
+    "source_sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-ups": {
+    "path": "assets/lcd-icon-ups.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ups.png",
+    "source_sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-ac-power": {
+    "path": "assets/lcd-icon-ac-power.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ac-power.png",
+    "source_sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-output-voltage-frequency": {
+    "path": "assets/lcd-icon-output-voltage-frequency.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-output-voltage-frequency.png",
+    "source_sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-input-power": {
+    "path": "assets/lcd-icon-input-power.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-input-power.png",
+    "source_sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-remaining-charge-time": {
+    "path": "assets/lcd-icon-remaining-charge-time.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-charge-time.png",
+    "source_sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-ac-wall-charging": {
+    "path": "assets/lcd-icon-ac-wall-charging.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ac-wall-charging.png",
+    "source_sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-car-charging": {
+    "path": "assets/lcd-icon-car-charging.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-car-charging.png",
+    "source_sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-solar-charging": {
+    "path": "assets/lcd-icon-solar-charging.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-solar-charging.png",
+    "source_sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-battery-saving": {
+    "path": "assets/lcd-icon-battery-saving.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-battery-saving.png",
+    "source_sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-charging-power-limit": {
+    "path": "assets/lcd-icon-charging-power-limit.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-charging-power-limit.png",
+    "source_sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-battery-power": {
+    "path": "assets/lcd-icon-battery-power.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-battery-power.png",
+    "source_sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-low-battery": {
+    "path": "assets/lcd-icon-low-battery.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-low-battery.png",
+    "source_sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-remaining-battery-percentage": {
+    "path": "assets/lcd-icon-remaining-battery-percentage.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-battery-percentage.png",
+    "source_sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-discharge-timer": {
+    "path": "assets/lcd-icon-discharge-timer.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-discharge-timer.png",
+    "source_sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-energy-saving": {
+    "path": "assets/lcd-icon-energy-saving.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-energy-saving.png",
+    "source_sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-fault-code": {
+    "path": "assets/lcd-icon-fault-code.png",
+    "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-fault-code.png",
+    "source_sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-output-power": {
+    "path": "assets/lcd-icon-output-power.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-output-power.png",
+    "source_sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-remaining-discharge-time": {
+    "path": "assets/lcd-icon-remaining-discharge-time.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-discharge-time.png",
+    "source_sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-high-temperature": {
+    "path": "assets/lcd-icon-high-temperature.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-high-temperature-reused.png",
+    "source_sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "lcd-icon-low-temperature": {
+    "path": "assets/lcd-icon-low-temperature.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "source_path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-low-temperature-reused.png",
+    "source_sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "policy": "byte-identical reuse",
+    "reason": "Shared semantic LCD icon matches JE-3600A p11-12; numbering is independently bound"
+  },
+  "symbol-warning_triangle": {
+    "path": "assets/symbol-warning_triangle.png",
+    "sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/warning_triangle.png",
+    "source_sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-read_manual": {
+    "path": "assets/symbol-read_manual.png",
+    "sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/read_manual.png",
+    "source_sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-do_not_dismantle": {
+    "path": "assets/symbol-do_not_dismantle.png",
+    "sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/do_not_dismantle.png",
+    "source_sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-no_open_flame": {
+    "path": "assets/symbol-no_open_flame.png",
+    "sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/no_open_flame.png",
+    "source_sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-keep_away_from_children": {
+    "path": "assets/symbol-keep_away_from_children.png",
+    "sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/keep_away_from_children.png",
+    "source_sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-li_ion": {
+    "path": "assets/symbol-li_ion.png",
+    "sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/li_ion.png",
+    "source_sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-battery_disposal": {
+    "path": "assets/symbol-battery_disposal.png",
+    "sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/battery_disposal.png",
+    "source_sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "symbol-weee": {
+    "path": "assets/symbol-weee.png",
+    "sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
+    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/weee.png",
+    "source_sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
+    "policy": "byte-identical reuse",
+    "reason": "Existing same-model symbol matches p9"
+  },
+  "app-store": {
+    "path": "assets/app-store.png",
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "source_path": "docs/renderers/contracts/assets/app/app_store_badges.png",
+    "source_sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "policy": "byte-identical reuse",
+    "reason": "Existing shared marketplace marks/Jackery QR; verify against source p23"
+  },
+  "app-qr": {
+    "path": "assets/app-qr.png",
+    "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "source_path": "docs/renderers/contracts/assets/app/app_download_qr.png",
+    "source_sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "policy": "byte-identical reuse",
+    "reason": "Existing shared marketplace marks/Jackery QR; verify against source p23"
+  },
+  "overview-front": {
+    "path": "assets/overview-front.png",
+    "physical_page": 10,
+    "bbox_pt": [
+      26,
+      69,
+      342,
+      234
+    ],
+    "content_mode": "source-finished-panel",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": null,
+    "sha256": "44891b626c4ae6d964a20cc605cb2e366aeb4b4739102b2b7835d09acde372fd",
+    "extraction": "native crop"
+  },
+  "overview-right": {
+    "path": "assets/overview-right.png",
+    "physical_page": 10,
+    "bbox_pt": [
+      26,
+      259,
+      342,
+      497
+    ],
+    "content_mode": "source-finished-panel",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": null,
+    "sha256": "3052666974175662494861c95a0b6a19901ccc6e5d092f67e4648ee071cc4126",
+    "extraction": "native crop"
+  },
+  "operation-main-power": {
+    "path": "assets/operation-main-power.png",
+    "physical_page": 13,
+    "bbox_pt": [
+      27,
+      74,
+      342,
+      248
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        259,
+        85,
+        325,
+        145
+      ],
+      [
+        170,
+        168,
+        320,
+        201
+      ],
+      [
+        45,
+        215,
+        326,
+        234
+      ]
+    ],
+    "sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "operation-dc-usb-output": {
+    "path": "assets/operation-dc-usb-output.png",
+    "physical_page": 13,
+    "bbox_pt": [
+      27,
+      266,
+      342,
+      425
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        43,
+        273,
+        162,
+        286
+      ],
+      [
+        269,
+        282,
+        329,
+        328
+      ]
+    ],
+    "sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "operation-ac-output": {
+    "path": "assets/operation-ac-output.png",
+    "physical_page": 14,
+    "bbox_pt": [
+      27,
+      45,
+      342,
+      230
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        43,
+        51,
+        163,
+        66
+      ],
+      [
+        274,
+        90,
+        331,
+        140
+      ]
+    ],
+    "sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "operation-energy-saving": {
+    "path": "assets/operation-energy-saving.png",
+    "physical_page": 14,
+    "bbox_pt": [
+      27,
+      254,
+      342,
+      460
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        46,
+        271,
+        328,
+        324
+      ],
+      [
+        170,
+        392,
+        320,
+        409
+      ],
+      [
+        190,
+        426,
+        290,
+        448
+      ]
+    ],
+    "sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "ups": {
+    "path": "assets/ups.png",
+    "physical_page": 16,
+    "bbox_pt": [
+      24,
+      88,
+      340,
+      326
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        129,
+        260,
+        335,
+        309
+      ]
+    ],
+    "sha256": "370b2ae2e50dbbea4b1b1be1f0efefbd0447850d40ee3ba613ca5a97975b23a0",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "battery": {
+    "path": "assets/battery.png",
+    "physical_page": 17,
+    "bbox_pt": [
+      27,
+      104,
+      342,
+      307
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        110,
+        261,
+        253,
+        273
+      ]
+    ],
+    "sha256": "3683c9a448c2f8326ef436d54ae1b401b6c24f96064df70048004f8aae2645f9",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "battery-accessories": {
+    "path": "assets/battery-accessories.png",
+    "physical_page": 17,
+    "bbox_pt": [
+      27,
+      383,
+      342,
+      466
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        47,
+        446,
+        254,
+        457
+      ],
+      [
+        290,
+        412,
+        326,
+        432
+      ]
+    ],
+    "sha256": "4d320b9cd3273dc56cbc3a4a09512e2e4d412839d84c739c17d2cec8b51f5950",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "charging-ac": {
+    "path": "assets/charging-ac.png",
+    "physical_page": 18,
+    "bbox_pt": [
+      30,
+      178,
+      345,
+      283
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        191,
+        257,
+        330,
+        276
+      ]
+    ],
+    "sha256": "7158b73fd15a8c8ffdd3dc71ee330039577a6b23eff598697dfd5a4a84f965af",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "charging-solar": {
+    "path": "assets/charging-solar.png",
+    "physical_page": 18,
+    "bbox_pt": [
+      30,
+      364,
+      345,
+      497
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        253,
+        483,
+        307,
+        493
+      ]
+    ],
+    "sha256": "27b0c1c319fb90235403c082194b1cc26c434d88d78bb6992cf4a30a675b8665",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "charging-car": {
+    "path": "assets/charging-car.png",
+    "physical_page": 19,
+    "bbox_pt": [
+      27,
+      194,
+      342,
+      324
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        243,
+        206,
+        273,
+        216
+      ],
+      [
+        184,
+        298,
+        329,
+        310
+      ]
+    ],
+    "sha256": "7a15e884aeffaaaa6bc92fb8523e93825d18b14939970ea1b4665b02bbdeeb8d",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "app-phone": {
+    "path": "assets/app-phone.png",
+    "physical_page": 23,
+    "bbox_pt": [
+      106,
+      214,
+      268,
+      366
+    ],
+    "content_mode": "app-ui",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": null,
+    "sha256": "a1b7f5e1d2113acd9a063349fe6dacb4be5e03dd3651ee47c76e696222c1e649",
+    "extraction": "native crop"
+  },
+  "app-control": {
+    "path": "assets/app-control.png",
+    "physical_page": 23,
+    "bbox_pt": [
+      27,
+      379,
+      342,
+      463
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [
+      [
+        33,
+        399,
+        77,
+        411
+      ],
+      [
+        32,
+        428,
+        66,
+        443
+      ],
+      [
+        301,
+        429,
+        335,
+        442
+      ]
+    ],
+    "sha256": "136582ee35aaed68dfbcd475e72272cd0e7f433a93267d8736a06d202b8e10c0",
+    "extraction": "crop + native text redaction with graphics/images preserved"
+  },
+  "app-result": {
+    "path": "assets/app-result.png",
+    "physical_page": 24,
+    "bbox_pt": [
+      61,
+      140,
+      311,
+      280
+    ],
+    "content_mode": "app-ui",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": null,
+    "sha256": "96042a20ebb56283dcad5aa85c5977be6fefd52fa0db9731f12f5470e04f550d",
+    "extraction": "native crop"
+  },
+  "lcd-icon-connected-batteries": {
+    "path": "assets/lcd-icon-connected-batteries.png",
+    "physical_page": 12,
+    "bbox_pt": [
+      54,
+      255,
+      83,
+      277
+    ],
+    "content_mode": "fixed-product-markings",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "removed_text_regions": [],
+    "sha256": "336c1ec5b3fa7e84e58bab85bfd4b4ab8c9300f114b46a557d866de167ae1b0b",
+    "export": {
+      "recipe": "source/lcd-icon-recipe.json",
+      "intermediate": "source/lcd-icon-connected-batteries.pdf",
+      "scale": 12,
+      "alpha": true,
+      "excluded_drawing_indices": [
+        172,
+        174,
+        176
+      ],
+      "exclusion_reason": "Clipped paint rectangles; retain underlying native icon paths 169,170,171,173,175."
+    }
+  },
+  "ce-mark": {
+    "path": "assets/ce-mark.png",
+    "physical_page": 161,
+    "bbox_pt": [
+      310,
+      365,
+      342,
+      388
+    ],
+    "sha256": "64a2fd0d77155e7944548e866b2441059bc4ac814d155319b1c8cd5d486af04b",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "content_mode": "regulatory-mark",
+    "export": {
+      "scale": 6,
+      "alpha": true
+    },
+    "reason": "Source regulatory mark and contact QR, exact native crop without re-drawing"
+  },
+  "contact-qr": {
+    "path": "assets/contact-qr.png",
+    "physical_page": 161,
+    "bbox_pt": [
+      301,
+      458,
+      341,
+      497
+    ],
+    "sha256": "1bec2a4d798ac2046b88ee3c9aef8dd1f61c0349ab93f16178c02f14f17e88ab",
+    "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+    "content_mode": "source-qr",
+    "export": {
+      "scale": 6,
+      "alpha": false
+    },
+    "reason": "Source regulatory mark and contact QR, exact native crop without re-drawing"
+  }
+}

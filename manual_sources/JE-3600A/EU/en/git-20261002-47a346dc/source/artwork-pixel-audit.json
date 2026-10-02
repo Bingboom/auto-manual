@@ -1,0 +1,137 @@
+[
+  {
+    "asset": "overview-front",
+    "size": [
+      1264,
+      660
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 834240
+  },
+  {
+    "asset": "overview-right",
+    "size": [
+      1264,
+      952
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 1203328
+  },
+  {
+    "asset": "operation-main-power",
+    "size": [
+      1260,
+      696
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 716170
+  },
+  {
+    "asset": "operation-dc-usb-output",
+    "size": [
+      1260,
+      636
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 764851
+  },
+  {
+    "asset": "operation-ac-output",
+    "size": [
+      1260,
+      740
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 896217
+  },
+  {
+    "asset": "operation-energy-saving",
+    "size": [
+      1260,
+      824
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 809524
+  },
+  {
+    "asset": "ups",
+    "size": [
+      1264,
+      952
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 1100784
+  },
+  {
+    "asset": "battery",
+    "size": [
+      1260,
+      812
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 1008144
+  },
+  {
+    "asset": "battery-accessories",
+    "size": [
+      1260,
+      332
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 392704
+  },
+  {
+    "asset": "charging-ac",
+    "size": [
+      1260,
+      420
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 493455
+  },
+  {
+    "asset": "charging-solar",
+    "size": [
+      1260,
+      532
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 662957
+  },
+  {
+    "asset": "charging-car",
+    "size": [
+      1260,
+      520
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 624708
+  },
+  {
+    "asset": "app-phone",
+    "size": [
+      648,
+      608
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 393984
+  },
+  {
+    "asset": "app-control",
+    "size": [
+      1260,
+      336
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 404676
+  },
+  {
+    "asset": "app-result",
+    "size": [
+      1000,
+      560
+    ],
+    "outside_text_differing_pixels": 0,
+    "protected_pixels": 560000
+  }
+]

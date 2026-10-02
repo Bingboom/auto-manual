@@ -1,0 +1,359 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "scrollWidth": 1440,
+    "brokenImages": [],
+    "imageCount": 56,
+    "duplicateIds": [],
+    "sectionHeadings": [
+      "IMPORTANT SAFETY INFORMATION",
+      "MEANING OF SYMBOLS",
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "LCD DISPLAY",
+      "OPERATIONS",
+      "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "CONNECTIONS",
+      "CHARGING",
+      "STORAGE",
+      "TROUBLESHOOTING",
+      "SPECIFICATIONS",
+      "GENERAL INFO",
+      "INPUT PORTS",
+      "OUTPUT PORTS",
+      "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "WARRANTY",
+      "APP SETUP",
+      "EU REGULATIONS"
+    ],
+    "tableScrolls": [],
+    "lcdRows": 23,
+    "lcdRowspans": [
+      "4",
+      "18"
+    ],
+    "appLabels": [
+      {
+        "text": "POWER Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 322.75,
+          "right": 445.296875,
+          "top": 435.984375,
+          "bottom": 455.984375
+        }
+      },
+      {
+        "text": "USB Power Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 322.75,
+          "right": 453.46875,
+          "top": 521.84375,
+          "bottom": 561.84375
+        }
+      },
+      {
+        "text": "AC Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 1033.578125,
+          "right": 1123.4375,
+          "top": 531.84375,
+          "bottom": 551.84375
+        }
+      }
+    ],
+    "errors": [],
+    "text_sha256": "2aeab5d033ae433db95095a0637e0dc5599488d15fad4031a6e328f72e0586b1",
+    "screenshots": [
+      {
+        "name": "01-important-safety-information.png",
+        "sha256": "ad503d303264cc4a5cbbcac9a96a8a4245454b63d0d7131b576bd049b2cfd501"
+      },
+      {
+        "name": "02-meaning-of-symbols.png",
+        "sha256": "936207e419b1a4ad58f29987cb99bb16cd26c3851a006044c5e5abfbf0979a3f"
+      },
+      {
+        "name": "03-what-s-in-the-box.png",
+        "sha256": "538d8dc62b43a21452d790abe49293d1800c6a046d4f4cddc17ac07a89a2b533"
+      },
+      {
+        "name": "04-product-overview.png",
+        "sha256": "5f81d3fce2c9ce3a42eda005325ff4d7aa2d38cac08633db5ff9d01008e19ab0"
+      },
+      {
+        "name": "05-lcd-display.png",
+        "sha256": "53fbcec94a58b825a9871525d594d60f18a1557b518da7c597e4d4e3ece81c7c"
+      },
+      {
+        "name": "06-operations.png",
+        "sha256": "cfea3e307da8ee28a31ee3d871cbe6c74a4c07e824ea2084c07ecbb3cf5aa162"
+      },
+      {
+        "name": "07-uninterruptible-power-supply-ups.png",
+        "sha256": "6cf5a9497eaadf1f987f1b62fe9993b5dc90ccb6e0831beb6333df137486c0f4"
+      },
+      {
+        "name": "08-connections.png",
+        "sha256": "ddf4dfb2fac9deb3b2178bb1ea2d8a1b265dc74be7c988e2f38b50348ea8eee1"
+      },
+      {
+        "name": "09-charging.png",
+        "sha256": "fec899faf346d9522e0390ff5ffdd308cbf260a929822674147b811e30ed3009"
+      },
+      {
+        "name": "10-storage.png",
+        "sha256": "73a05e16de1855bafe32b613341cddfd72e7573f69bdae2f2143fec6f760313a"
+      },
+      {
+        "name": "11-troubleshooting.png",
+        "sha256": "1d00c60d607cd6f283b9e126fa9f3f1a434240d2489e7129d82db168a778fa2d"
+      },
+      {
+        "name": "12-specifications.png",
+        "sha256": "2eae5f64e1f97a45563dc896a3cca29f834f24b1f62cb02bb7e31344a9d4e289"
+      },
+      {
+        "name": "13-general-info.png",
+        "sha256": "3c80e2d3610af9b922b43d3205fbe60b9ebeff45f1be75a66e73881890b93830"
+      },
+      {
+        "name": "13-warranty.png",
+        "sha256": "e3edfa022719917a3ae4cd08e4176b65b46c636d3fca6436f4452b325cd7746f"
+      },
+      {
+        "name": "14-app-setup.png",
+        "sha256": "d98353ddbd2257f514d22169985c7bacb026652db8c44d7409da3f842ece66b2"
+      },
+      {
+        "name": "14-input-ports.png",
+        "sha256": "48fba846aea66849b3c50ec80b5e58c5ab1cb5dd389f9d40cdf4b0d5ae097017"
+      },
+      {
+        "name": "15-eu-regulations.png",
+        "sha256": "1b09b857f6e21053e40eb4dd5eea3c544ff245dde19968ac44fa77ca03472b44"
+      },
+      {
+        "name": "15-output-ports.png",
+        "sha256": "709f6167b55c2617b7554e5145ed83eb6f7023eb1698ecc6615f2d0d1c026c7a"
+      },
+      {
+        "name": "16-environmental-operating-temperature.png",
+        "sha256": "f06aee4523cd44bb69b8a465f4442c90ffda473a1ed99af9e20a0f3d2daa2f40"
+      },
+      {
+        "name": "17-warranty.png",
+        "sha256": "257226cef1f3ff3c30835616c3a2166519f401981ebc6db61cff704789946c4c"
+      },
+      {
+        "name": "18-app-setup.png",
+        "sha256": "ef1c0c813cdcfc7f70848ffcc3356b53b6b1623452941a90727a99854bc1edc9"
+      },
+      {
+        "name": "19-eu-regulations.png",
+        "sha256": "28bcc8127d9d857b714d8c9fd390eda4fde8ea009c29c783002a03641ad53ff1"
+      },
+      {
+        "name": "app-controls.png",
+        "sha256": "b78ec3e88292caaa496de849f26ea4412daacfe881b6173e6f04876b8fb6089f"
+      },
+      {
+        "name": "full.png",
+        "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollWidth": 390,
+    "brokenImages": [],
+    "imageCount": 56,
+    "duplicateIds": [],
+    "sectionHeadings": [
+      "IMPORTANT SAFETY INFORMATION",
+      "MEANING OF SYMBOLS",
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "LCD DISPLAY",
+      "OPERATIONS",
+      "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "CONNECTIONS",
+      "CHARGING",
+      "STORAGE",
+      "TROUBLESHOOTING",
+      "SPECIFICATIONS",
+      "GENERAL INFO",
+      "INPUT PORTS",
+      "OUTPUT PORTS",
+      "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "WARRANTY",
+      "APP SETUP",
+      "EU REGULATIONS"
+    ],
+    "tableScrolls": [
+      {
+        "class": "hb-lcd-table-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      },
+      {
+        "class": "hb-key-combination-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      },
+      {
+        "class": "hb-troubleshooting-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      }
+    ],
+    "lcdRows": 23,
+    "lcdRowspans": [
+      "4",
+      "18"
+    ],
+    "appLabels": [
+      {
+        "text": "POWER Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 19.578125,
+          "right": 73.265625,
+          "top": 383.015625,
+          "bottom": 413.015625
+        }
+      },
+      {
+        "text": "USB Power Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 19.578125,
+          "right": 76.84375,
+          "top": 417.515625,
+          "bottom": 462.515625
+        }
+      },
+      {
+        "text": "AC Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 331.03125,
+          "right": 370.40625,
+          "top": 425.015625,
+          "bottom": 455.015625
+        }
+      }
+    ],
+    "errors": [],
+    "text_sha256": "046c73c2e3861bbf3721196ab0a3623dfcaa3aa4905ddfa23a0f020826a3903f",
+    "screenshots": [
+      {
+        "name": "01-important-safety-information.png",
+        "sha256": "07acbf522c3c8dd6240541994ed26e41bf4851663c134b5f1928fad8110c8ab7"
+      },
+      {
+        "name": "02-meaning-of-symbols.png",
+        "sha256": "bb50c3a8d3945417fc67e14fcb6f4dbb4026a087177bc274a7019d7f21feccfc"
+      },
+      {
+        "name": "03-what-s-in-the-box.png",
+        "sha256": "a1530bc5caafe3222341d3efc8ceaf6779415557b02a32a21207c85b81c4700b"
+      },
+      {
+        "name": "04-product-overview.png",
+        "sha256": "e136c2271b8389e7d08ed7cf8509ae222a3dafc2063355533a9fae45774b73ac"
+      },
+      {
+        "name": "05-lcd-display.png",
+        "sha256": "0c82e78f8fb14b8fa002713ab0cca784626e274cd9db566f14168b64c2e156eb"
+      },
+      {
+        "name": "06-operations.png",
+        "sha256": "510f07a7f20796336b1b13ba1ab05e3c2866bc3f4d1047c6c101986ad2a4ad92"
+      },
+      {
+        "name": "07-uninterruptible-power-supply-ups.png",
+        "sha256": "385cf3634b7b08230421a2025a2a1cbfd8afd2832f700e5a016bbc9b1870f2ba"
+      },
+      {
+        "name": "08-connections.png",
+        "sha256": "5f879eef93ca6f0db6625121a4d9a8dbfa7384b15cf7f9af68d000b69e3fcf9e"
+      },
+      {
+        "name": "09-charging.png",
+        "sha256": "12dee54eb731bd0e7a55e02232a75ae26b77f5911469e4083e2e81b9136dbef4"
+      },
+      {
+        "name": "10-storage.png",
+        "sha256": "2a29ed2f9ee5e9949c3d40d71a851dd9d5242c52a7a3c5b863ede549bea74de0"
+      },
+      {
+        "name": "11-troubleshooting.png",
+        "sha256": "6058fa3747c1481573aa2af6ebdf92d331a6327e5c1956b4d9c008b57603e390"
+      },
+      {
+        "name": "12-specifications.png",
+        "sha256": "a6b003fc3fbd3a083517d583b31db43a9275f05a615d2863941a72789410d685"
+      },
+      {
+        "name": "13-general-info.png",
+        "sha256": "7c45b19c62349f10e6438d0638aa3b77a67d03ba948be7881e82ee9ac9d40d9c"
+      },
+      {
+        "name": "13-warranty.png",
+        "sha256": "1c5c0d75e8ae0ec9765a244779da27f4e5f475fc73a5e0231fa8372e169e6558"
+      },
+      {
+        "name": "14-app-setup.png",
+        "sha256": "84859f796fa900a033a85919d8346e58194fcf08d16bf86d0f17a17cae485483"
+      },
+      {
+        "name": "14-input-ports.png",
+        "sha256": "91cf83edb9afd61bbc575f32524e0e78ece30c5c8feb72d33667a92a9236a273"
+      },
+      {
+        "name": "15-eu-regulations.png",
+        "sha256": "dd248fad227120ec497dde135ce306680bfcd62d024a9ad3c58b89abcb8456e3"
+      },
+      {
+        "name": "15-output-ports.png",
+        "sha256": "e6373839d09663bb7c82ebb8c8c2d58fc6dda3f910d349caaf222e921e969298"
+      },
+      {
+        "name": "16-environmental-operating-temperature.png",
+        "sha256": "82140fcdf4c9acfa5d381f3ad88268ba69bb0af7a1b6b9164f57eb20559b4dac"
+      },
+      {
+        "name": "17-warranty.png",
+        "sha256": "c58438a0c622e4c13fc98fb9994cb021da89e8999d47a176385dbfad5bc44dd8"
+      },
+      {
+        "name": "18-app-setup.png",
+        "sha256": "cfc8f39be72838d38f9765fc255004d146f46429bb23b0ecdd18c95f677c922a"
+      },
+      {
+        "name": "19-eu-regulations.png",
+        "sha256": "2478c4c8b30e4fffb3d2f641dbc0c0629b13f31ae7e02051631fb967fe2ecef7"
+      },
+      {
+        "name": "app-controls.png",
+        "sha256": "611e56bb154c03aabc1cf3efe5cae21fad643396392cfd67c09d115dc3dfe2ec"
+      },
+      {
+        "name": "full.png",
+        "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
+      }
+    ]
+  }
+]
