@@ -201,7 +201,7 @@ ranking, filtering, repair and cache owners are unchanged. Table fallback and
 empty-cell policies are recorded in
 [`external_table_contracts.md`](external_table_contracts.md#localized-columns-in-frozen-snapshots).
 
-[`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade and delegate to:
+[`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade. Its public names are listed in `__all__`; a wrapper or re-export that no code or test references is deleted rather than kept for symmetry. It delegates to:
 
 - [`tools/build_docs_main.py`](../../tools/build_docs_main.py)
   - CLI bootstrap for the low-level build entrypoint
@@ -424,7 +424,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 ## 5. Build Queue Modules
 
-[`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
+[`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
 
 - [`tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
   - CLI bootstrap and data-root normalization for the queue entrypoint
