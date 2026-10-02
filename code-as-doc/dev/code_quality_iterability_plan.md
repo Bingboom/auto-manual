@@ -304,15 +304,16 @@ CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。
 - [x] **CQ-7.2 状态检查棘轮。** 扩展 [`../../tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
   或新增一个检查：以当前缺少状态行的文档为基线，新文档必须带状态行。
   （#1320，2026-09-29；评审中收紧：`superseded-by` 必须带替代文档的链接）
-- [ ] **CQ-7.3 补状态并建索引。** 为存量文档补状态行，在 [`../README.md`](../README.md) §5 列出已归档
+- [x] **CQ-7.3 补状态并建索引。** 为存量文档补状态行，在 [`../README.md`](../README.md) §5 列出已归档
   文档。第一步只标状态、不移动文件；如需移动到 `code-as-doc/archive/`，**另开 PR 并经操作者确认**
   （由链接检查保证没有断链）。
   - [x] 补状态行：`reviews/`（#1354）、`dev/`（#1359），基线 174 → 5（2026-10-01）
-  - [ ] 剩余 5 篇与 `../README.md` §5 已归档索引
+  - [x] 剩余 5 篇（2026-10-02），基线清空；`../README.md` §5 已列出全部标为 archived 的文档
 - [x] **CQ-7.4 刷新边界文档。** 更新 `code_style_guide.md` §2 与 `orchestration_module_map.md`
   （与 CQ-1.1 同一个 PR）。（#1331，2026-09-30；同时补登 phase 1 新增的三个辅助模块）
-- [ ] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
+- [x] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
   [`../code_optimization_log.md`](../code_optimization_log.md)，§4 只保留指针；目标 ≤600 行。
+  （2026-10-02：§4 与 12 个已完成工作流 A–H、J、R、W、X 原文移入日志"Archived roadmap sections"一节，994 → 572 行）
 - [x] **CQ-7.6 精简 `AGENTS.md` §7。** 把每个技能的长描述移到技能索引，§7 只保留一行名称和
   触发条件。**修改 `AGENTS.md` 需要走 `config-review` 技能，并经操作者确认。**（#1321，2026-09-29）
 
