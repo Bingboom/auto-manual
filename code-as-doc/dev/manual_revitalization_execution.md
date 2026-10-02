@@ -79,7 +79,7 @@ PR/报告保存证据；不在多份文件分别勾选同一任务。既有 OPS 
 | <a id="rev-36"></a>REV-36 | 语料建设 | — | 按操作者指定的下一批网页化目标（型号×区域×语言）列出缺译句对；补译经语言负责人审核后入库并回读；无语言资源的语言保持阻塞，不以未审译文冒充 | planned | 待指派 / — |
 | <a id="rev-37"></a>REV-37 | 语料管理 | — | 草稿句对与术语按语言分批审核，批准、拒绝、待定分开记录；用途标签、适用型号、内容属性的填写规则经语言负责人确认，先补构建实际取用的句对；授权写入逐条回读，不按推断批量回填 | planned | 待指派 / — |
 | <a id="rev-38"></a>REV-38 | 语料治理 | — | `tools/lang_asset_sweep.py` 每月复跑（含术语规则比对），结果与上期对照；实质分叉逐组裁决（方向由语言负责人定），处理结果在册 | planned | 待指派 / — |
-| <a id="rev-39"></a>REV-39 | IR 共享 | — | 公共语义边界发现与冻结（迁移计划 P1）：列清哪些信息属于公共语义、哪些属于输出端，冻结契约后再开发；计划见 [PR #1083](https://github.com/Bingboom/auto-manual/pull/1083)（未合入） | planned | 执行=Claude 2026-09-25 起多 agent 只读摸底；证据=待交付（契约表草稿） |
+| <a id="rev-39"></a>REV-39 | IR 共享 | — | 公共语义边界发现与冻结（迁移计划 P1）：列清哪些信息属于公共语义、哪些属于输出端，冻结契约后再开发；计划见 [PR #1083](https://github.com/Bingboom/auto-manual/pull/1083)（未合入） | planned | 执行=Claude（桌面窗口）2026-09-25 起；分支=docs/ir-p1-boundary-draft；证据=[契约表草稿](manual_ir_p1_boundary_2026-09.md)（多 agent 只读摸底，待操作者答复 §6 后冻结；冻结演示 REV-45 的交接与续接） |
 | <a id="rev-40"></a>REV-40 | IR 共享 | REV-39, REV-20 | 一个目标的网页与 IDML 从同一份冻结整本包生产（迁移计划 P2–P3，试点 JBP-2000B/JP/ja）：停用旧源解析后仍能出产物，IDML 经 InDesign 实际验收；只报“一个目标闭环”，不扩大表述 | planned | 待指派 / — |
 | <a id="rev-41"></a>REV-41 | 骨架拓展 | — | 骨架库设计（Product_Skeleton_Library_Design，Phase B，2026-08-20 起待批）得到操作者决定：批准、修改或暂缓，决定在册 | planned | 待指派 / — |
 | <a id="rev-42"></a>REV-42 | 骨架拓展 | REV-41 | 便携电源 MAIN@INTL 骨架：[PR #1101](https://github.com/Bingboom/auto-manual/pull/1101) 在当前主线重做基线后合入；JE-2000F/EU/en 的清单由骨架生成，已验收的网页输出不变 | planned | 待指派 / — |
