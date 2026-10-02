@@ -34,6 +34,7 @@ try:
     from tools.idml.only_expr import matches_only_expr
     from tools.idml.semantic_containers import append_semantic_container
     from tools.idml_rst_extract_latex import _detex as _detex, _extract_raw_latex
+    from tools.idml_rst_line_blocks import class_section, consume_line_structure, indented_body
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
@@ -46,6 +47,7 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from idml.only_expr import matches_only_expr  # type: ignore
     from idml.semantic_containers import append_semantic_container  # type: ignore
     from idml_rst_extract_latex import _detex as _detex, _extract_raw_latex  # type: ignore
+    from idml_rst_line_blocks import class_section, consume_line_structure, indented_body  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
@@ -142,39 +144,85 @@ def _is_signal_word_definition_table(rows: list[list[str]]) -> bool:
     return all(label is not None for label in labels) and len(set(labels)) == len(labels)
 
 
-_ENUMERATED_ITEM = re.compile(r"^\d{1,2}[.)]\s+\S")
-
-# An RST comment is explicit markup (``..`` then whitespace, or a bare ``..``)
-# that is not a footnote, citation, hyperlink target, substitution definition
-# or directive -- the same patterns docutils' ``Body.explicit_construct`` tries
-# before falling back to ``Body.comment``.
-_SIMPLENAME = r"(?:(?!_)\w)+(?:[-._+:](?:(?!_)\w)+)*"
-_EXPLICIT_MARKUP = re.compile(r"\.\.(?:[ \t]+|$)")
-_NOT_A_COMMENT = re.compile(
-    r"\.\.[ \t]+(?:"
-    rf"\[(?:[0-9]+|#(?:{_SIMPLENAME})?|\*|{_SIMPLENAME})\](?:[ \t]+|$)"  # footnote, citation
-    r"|_(?![ \t]|$)"  # hyperlink target, anonymous ``.. __:`` included
-    r"|\|(?![ \t]|$)"  # substitution definition
-    rf"|{_SIMPLENAME}[ \t]?::(?:[ \t]+|$)"  # directive
-    r")"
-)
-
-
-def _is_rst_comment(stripped: str) -> bool:
-    """True when a stripped line opens an RST comment."""
-    return bool(_EXPLICIT_MARKUP.match(stripped)) and not _NOT_A_COMMENT.match(stripped)
-
-
 # ---------------------------------------------------------------------------
 # page parser
 # ---------------------------------------------------------------------------
 
-_UNDERLINES = {"=": "h1", "-": "h2", "~": "h3", "^": "h3"}
-
-
 def _only_matches(expr: str, tags: set[str]) -> bool:
     """Evaluate Sphinx-style bare-tag boolean expressions without ``eval``."""
     return matches_only_expr(expr, tags)
+
+
+_DIRECTIVE = re.compile(r"\.\.\s+(class|container|only|raw|image|list-table)::\s*(.*)")
+
+
+def _append_manual_ir(body: list[str], result: ExtractResult) -> None:
+    try:
+        payload = json.loads("\n".join(line.strip() for line in body))
+    except json.JSONDecodeError:
+        result.skipped_raw += 1
+    else:
+        if isinstance(payload, dict) and payload.get("kind"):
+            result.blocks.append(("data", json.dumps(payload, ensure_ascii=False)))
+        else:
+            result.skipped_raw += 1
+
+
+def _append_only_body(arg: str, body: list[str], tags: set[str], result: ExtractResult) -> None:
+    if not _only_matches(arg, tags):
+        return  # non-matching branches are the PDF-skipped side: drop
+    # re-parse the body as page content (dedented)
+    dedent = min((len(b) - len(b.lstrip()) for b in body if b.strip()), default=0)
+    sub = "\n".join(b[dedent:] for b in body)
+    inner = _parse_text(sub, tags)
+    result.blocks.extend(inner.blocks)
+    result.skipped_raw += inner.skipped_raw
+    result.twocol = result.twocol or inner.twocol
+
+
+def _append_list_table(body: list[str], result: ExtractResult) -> None:
+    rows = _parse_list_table(body)
+    notice = _notice_from_list_table(rows)
+    if notice is not None:
+        result.blocks.append(("component", json.dumps(notice, ensure_ascii=False)))
+    elif rows:
+        first_cell = _clean_rst_text(rows[0][0]) if rows[0] else ""
+        if (
+            notice_label_variant(first_cell) is not None
+            and not _is_signal_word_definition_table(rows)
+        ):
+            raise ValueError(
+                "known notice label cannot fall back to a generic "
+                f"table: {first_cell!r}"
+            )
+        result.blocks.append(("table", json.dumps(rows, ensure_ascii=False)))
+    else:
+        result.skipped_raw += 1
+
+
+def _consume_directive(
+    lines: list[str], i: int, directive: str, arg: str, tags: set[str], result: ExtractResult,
+) -> int:
+    """Handle a top-level directive at ``lines[i]``; return the index after its body."""
+    body, i2 = indented_body(lines, i + 1, 0)
+    if directive == "raw" and arg == "latex":
+        _extract_raw_latex("\n".join(body), result)
+    elif directive == "raw" and arg == "manual-ir":
+        _append_manual_ir(body, result)
+    elif directive == "only":
+        _append_only_body(arg, body, tags, result)
+    elif directive == "container":
+        append_semantic_container(result, arg, body, tags, _parse_text)
+    elif directive == "class":
+        section, section_end = class_section(lines, i + 1)
+        if section:
+            append_semantic_container(result, arg, section, tags, _parse_text)
+            i2 = section_end
+    elif directive == "image":
+        result.blocks.append(("image", arg))
+    elif directive == "list-table":
+        _append_list_table(body, result)
+    return i2
 
 
 def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
@@ -186,258 +234,14 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
         active_lines(path.read_text(encoding="utf-8").splitlines(), tags)
     )
     i = 0
-    n = len(lines)
-
-    def indented_body(start: int, base_indent: int) -> tuple[list[str], int]:
-        out: list[str] = []
-        k = start
-        while k < n:
-            line = lines[k]
-            if not line.strip():
-                out.append("")
-                k += 1
-                continue
-            ind = len(line) - len(line.lstrip())
-            if ind <= base_indent:
-                break
-            out.append(line)
-            k += 1
-        while out and not out[-1].strip():
-            out.pop()
-        return out, k
-
-    def class_section(start: int) -> tuple[list[str], int]:
-        """Return the top-level section targeted by an RST ``class`` directive.
-
-        Docutils applies ``.. class::`` to the next element.  Warranty sources
-        use that standard form so their headings remain real section nodes for
-        every renderer, while the IDML extractor preserves the same semantic
-        component payload previously carried by a container directive.
-        """
-
-        k = start
-        while k < n and not lines[k].strip():
-            k += 1
-        if k + 1 >= n:
-            return [], k
-        title = lines[k]
-        underline = lines[k + 1].strip()
-        if (
-            len(title) != len(title.lstrip())
-            or not underline
-            or len(set(underline)) != 1
-            or underline[0] not in _UNDERLINES
-        ):
-            return [], k
-        level = {"=": 1, "-": 2, "~": 3, "^": 3}[underline[0]]
-        end = k + 2
-        while end < n:
-            candidate = lines[end]
-            stripped_candidate = candidate.strip()
-            candidate_indent = len(candidate) - len(candidate.lstrip())
-            if candidate_indent == 0 and stripped_candidate.startswith(
-                ".. class::"
-            ):
-                break
-            if candidate_indent == 0 and stripped_candidate and end + 1 < n:
-                next_underline = lines[end + 1].strip()
-                if (
-                    next_underline
-                    and len(set(next_underline)) == 1
-                    and next_underline[0] in _UNDERLINES
-                    and {"=": 1, "-": 2, "~": 3, "^": 3}[
-                        next_underline[0]
-                    ]
-                    <= level
-                ):
-                    break
-            end += 1
-        return lines[k:end], end
-
-    while i < n:
+    while i < len(lines):
         line = lines[i]
-        stripped = line.strip()
-        indent = len(line) - len(line.lstrip())
+        m = _DIRECTIVE.match(line.strip())
+        if m and len(line) == len(line.lstrip()):
+            i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        else:
+            i = consume_line_structure(lines, i, result.blocks)
 
-        # directives
-        m = re.match(
-            r"\.\.\s+(class|container|only|raw|image|list-table)::\s*(.*)",
-            stripped,
-        )
-        if m and indent == 0:
-            directive, arg = m.group(1), m.group(2).strip()
-            body, i2 = indented_body(i + 1, indent)
-            if directive == "raw" and arg == "latex":
-                _extract_raw_latex("\n".join(body), result)
-            elif directive == "raw" and arg == "manual-ir":
-                try:
-                    payload = json.loads("\n".join(line.strip() for line in body))
-                except json.JSONDecodeError:
-                    result.skipped_raw += 1
-                else:
-                    if isinstance(payload, dict) and payload.get("kind"):
-                        result.blocks.append(("data", json.dumps(payload, ensure_ascii=False)))
-                    else:
-                        result.skipped_raw += 1
-            elif directive == "only":
-                if _only_matches(arg, tags):
-                    # re-parse the body as page content (dedented)
-                    dedent = min((len(b) - len(b.lstrip()) for b in body if b.strip()), default=0)
-                    sub = "\n".join(b[dedent:] for b in body)
-                    inner = _parse_text(sub, tags)
-                    result.blocks.extend(inner.blocks)
-                    result.skipped_raw += inner.skipped_raw
-                    result.twocol = result.twocol or inner.twocol
-                # non-matching branches are the PDF-skipped side: drop
-            elif directive == "container":
-                append_semantic_container(result, arg, body, tags, _parse_text)
-            elif directive == "class":
-                section, section_end = class_section(i + 1)
-                if section:
-                    append_semantic_container(
-                        result,
-                        arg,
-                        section,
-                        tags,
-                        _parse_text,
-                    )
-                    i2 = section_end
-            elif directive == "image":
-                result.blocks.append(("image", arg))
-            elif directive == "list-table":
-                import json as _json
-                rows = _parse_list_table(body)
-                notice = _notice_from_list_table(rows)
-                if notice is not None:
-                    result.blocks.append(("component", _json.dumps(notice, ensure_ascii=False)))
-                elif rows:
-                    first_cell = _clean_rst_text(rows[0][0]) if rows[0] else ""
-                    if (
-                        notice_label_variant(first_cell) is not None
-                        and not _is_signal_word_definition_table(rows)
-                    ):
-                        raise ValueError(
-                            "known notice label cannot fall back to a generic "
-                            f"table: {first_cell!r}"
-                        )
-                    result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
-                else:
-                    result.skipped_raw += 1
-            i = i2
-            continue
-
-        # RST comments. A comment's body is every following line that is blank
-        # or indented deeper than its ``..`` marker; it ends at the first
-        # non-blank line at or left of the marker (docutils ``Body.comment``).
-        # Skipping only the marker line let the indented body fall through to
-        # the paragraph branch and ship as body copy. A bare ``..`` followed by
-        # a blank line is an empty comment that ends there, so an indented
-        # block after it stays content (docutils' "tiny but practical wart").
-        if _is_rst_comment(stripped):
-            i += 1
-            if stripped != ".." or (i < n and lines[i].strip()):
-                while i < n and (
-                    not lines[i].strip()
-                    or len(lines[i]) - len(lines[i].lstrip()) > indent
-                ):
-                    i += 1
-            continue
-
-        # section titles (underline on the next line)
-        if stripped and i + 1 < n:
-            under = lines[i + 1].strip()
-            if under and len(under) >= max(3, len(stripped) - 2) \
-                    and len(set(under)) == 1 and under[0] in _UNDERLINES:
-                result.blocks.append((_UNDERLINES[under[0]], stripped))
-                i += 2
-                continue
-
-        # rst grid tables (+---+ borders) -> ("table", json rows)
-        if re.match(r"\+-[-+]*-\+$", stripped):
-            import json as _json
-            grid = [line.rstrip()]
-            k = i + 1
-            while k < n and (lines[k].strip().startswith("|") or
-                             re.match(r"\+[=+| \-]+[+|]$", lines[k].strip())):
-                grid.append(lines[k].rstrip())
-                k += 1
-            rows = _parse_grid_table(grid)
-            if rows:
-                result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
-                i = k
-                continue
-
-        # line blocks
-        if stripped.startswith("| "):
-            buf = []
-            while i < n and lines[i].strip().startswith("|"):
-                buf.append(lines[i].strip()[1:].strip())
-                i += 1
-            text = "\n".join(b for b in buf if b)
-            if text:
-                result.blocks.append(("body", text))
-            continue
-
-        # bullet lists
-        if stripped.startswith("- "):
-            indent = len(line) - len(line.lstrip())
-            item = [stripped[2:]]
-            i += 1
-            while i < n and lines[i].strip() and not lines[i].strip().startswith("- ") \
-                    and (len(lines[i]) - len(lines[i].lstrip())) >= 2:
-                item.append(lines[i].strip())
-                i += 1
-            nested = indent >= 2
-            result.blocks.append((
-                "sublist" if nested else "list",
-                ("– " if nested else "• ") + " ".join(item),
-            ))
-            continue
-
-        # enumerated lists
-        #
-        # Without this branch `1. ` falls into the paragraph branch below,
-        # which greedily absorbs any following line that does not start with
-        # a bullet, a line block or a directive -- so `2. ` joins the first
-        # item and the whole list ships as one paragraph. The printed books
-        # set these as separate numbered lines, and the enumerator is part of
-        # the copy, so it is kept rather than replaced with a marker.
-        enumerated = _ENUMERATED_ITEM.match(stripped)
-        if enumerated:
-            indent = len(line) - len(line.lstrip())
-            item = [stripped]
-            i += 1
-            while (
-                i < n
-                and lines[i].strip()
-                and not _ENUMERATED_ITEM.match(lines[i].strip())
-                and not lines[i].strip().startswith(("- ", "|", ".."))
-                and (len(lines[i]) - len(lines[i].lstrip())) >= 2
-            ):
-                item.append(lines[i].strip())
-                i += 1
-            result.blocks.append((
-                "sublist" if indent >= 2 else "list",
-                " ".join(item),
-            ))
-            continue
-
-        # plain paragraph
-        if stripped and not stripped.startswith(".."):
-            para = [stripped]
-            i += 1
-            while i < n and lines[i].strip() and not lines[i].strip().startswith(("|", "- ", "..")):
-                nxt_line = lines[i].strip()
-                if i + 1 < n:
-                    under = lines[i + 1].strip()
-                    if under and len(set(under)) == 1 and under[0] in _UNDERLINES:
-                        break
-                para.append(nxt_line)
-                i += 1
-            result.blocks.append(("body", " ".join(para)))
-            continue
-
-        i += 1
     result.blocks = [(k, _unescape_rst_stars(k, t)) for k, t in result.blocks if t.strip()]
     result.blocks = [(k, json.dumps(expand_payload(json.loads(t), substitutions), ensure_ascii=False)
                       if k in _JSON_BLOCK_KINDS else expand_payload(t, substitutions))

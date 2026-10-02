@@ -172,6 +172,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
       `_run_review_branch_baseline` 58 → 35、`_run_review_branch` 50 → 31（`process_queue_record_group` 体量大，暂缓）
     - [x] C 批（解析/加载）：`resolve_manifest_asset` 72 → 4、`load_web_document` 68 → 35、
       `ordered_pages` 59 → 36、`_extract_raw_latex` 75 → 28（宏到块改为规则表）；CC≥50 24 → 10（`extract_page` 属渲染热点，暂缓）
+    - [x] D 批（纯输入热点，2026-10-02）：`transform_web_fragment` 93 → 33、`_parse_spec_master_sections` 81 → 25、`extract_page` 80 → 9（行结构步骤移到 `tools/idml_rst_line_blocks.py`，`idml_rst_extract.py` 上限 520 → 300）、`discover_registered_components` 62 → 1（按组件族原样拆成 `_claim_*`）。前三个用新旧实现差分验证（真实数据与随机变异输入），第四个是逐字搬移，并用 AST 检查确认没有名字被改绑
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。
