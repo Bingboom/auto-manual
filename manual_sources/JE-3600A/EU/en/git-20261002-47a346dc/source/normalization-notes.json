@@ -11,7 +11,7 @@
   "layout_only_labels": [
     "Car/PV distinguish the two DC8020 input rows; voltage/current values and source order unchanged.",
     "The three App control labels retain source positions with a 12px minimum carried by shared App rich-text spans.",
-    "Spec group headings remain in the specifications container with aria-level 3."
+    "Spec group headings remain in the specifications container with aria-level 2."
   ],
   "source_omissions_not_inferred": [
     "No automatic output restore table exists in p8-24; no sibling-model table was imported."

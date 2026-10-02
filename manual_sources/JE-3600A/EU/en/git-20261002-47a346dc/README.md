@@ -120,6 +120,19 @@ shared reference figure's existing rich captions. They follow the long-press
 copy on desktop and mobile, are hidden from assistive technology, and require
 no image asset, SVG, JavaScript or target stylesheet.
 
+The source-style correction is recorded under `style_restoration_review` at both
+sizes. All 16 chapters are peer H1 sections using the shared dark title band;
+subsections use H2, keeping the App numbering exception inside the App chapter.
+Three rich H2 headings retain their stable anchors and use selectable
+`SOLD SEPARATELY` badges. The first-charge reminder uses a matching capsule,
+`Green energy first:` is bold, and the storage prose/list share one rounded
+light-gray panel. These source decorations use existing neutral-flow HTML
+presentation hints and shared color tokens; no renderer or stylesheet is forked.
+The three editorial parentheses around `SOLD SEPARATELY` are removed to match
+the native standalone badges. All words, technical values, chapter order,
+native text ledger and artwork remain unchanged. Local screenshots are
+`reports/je3600a-native/style-*.png`.
+
 ## Source errata awaiting product review
 
 1. P2 English preface/TOC carries “US” although this source and target are EU.

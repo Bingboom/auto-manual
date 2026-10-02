@@ -87,7 +87,8 @@
     "source_ref": "en/pdf-17/connections",
     "headings_and_prose": [
       "CONNECTIONS",
-      "CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)",
+      "CONNECT TO BATTERY PACK(S) ",
+      "SOLD SEPARATELY",
       "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual."
     ]
   },
@@ -96,13 +97,16 @@
     "source_ref": "en/pdf-18-19/charging",
     "headings_and_prose": [
       "CHARGING",
-      "Green energy first: We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+      "Green energy first:",
+      " We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
       "Fully charge the product before its first use.",
       "CHARGING VIA AC WALL OUTLET",
-      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "CHARGING VIA SOLAR PANELS ",
+      "SOLD SEPARATELY",
       "Jackery Explorer 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).",
       "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (Voc) of the solar panel is within the DC input range (16V-60V) of the Explorer 3600 Plus. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.",
-      "CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)",
+      "CHARGING VIA A CAR CHARGER ",
+      "SOLD SEPARATELY",
       "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection."
     ]
   },

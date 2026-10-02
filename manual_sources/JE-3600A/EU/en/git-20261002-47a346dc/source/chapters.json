@@ -73,7 +73,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -321,7 +321,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -358,7 +358,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -599,7 +599,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -835,7 +835,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -849,7 +849,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -921,7 +921,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -1003,7 +1003,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -1628,7 +1628,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -1642,7 +1642,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -1906,7 +1906,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2246,7 +2246,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2444,7 +2444,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2802,7 +2802,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2915,7 +2915,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2990,7 +2990,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -3300,7 +3300,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -3314,13 +3314,43 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
-              "kind": "text",
-              "text": "CONNECT TO BATTERY PACK(S) (SOLD SEPARATELY)"
+              "kind": "inline_group",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CONNECT TO BATTERY PACK(S) "
+                },
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-heading-badge",
+                        "style": "display:inline-block;box-sizing:border-box;max-width:100%;padding:0.22em 0.7em;border-radius:1.2em;background:var(--hb-brand-dark);color:var(--hb-paper);font-weight:700;line-height:1.35;vertical-align:middle;font-size:0.82em;white-space:nowrap;margin-block:0.15em"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "SOLD SEPARATELY"
+                    }
+                  ]
+                }
+              ]
             }
           ],
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-subbar"
+              }
+            }
+          },
+          "anchor": "connect-to-battery-packs-sold-separately",
           "schema_version": "manual-flow/v2"
         }
       ],
@@ -3834,7 +3864,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -3850,8 +3880,17 @@
           "kind": "paragraph",
           "children": [
             {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Green energy first:"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Green energy first: We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
+              "text": " We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -3863,7 +3902,15 @@
           "kind": "paragraph",
           "children": [
             {
-              "kind": "strong",
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-first-charge",
+                    "style": "display:inline-block;box-sizing:border-box;max-width:100%;padding:0.22em 0.7em;border-radius:1.2em;background:var(--hb-brand-dark);color:var(--hb-paper);font-weight:700;line-height:1.35;vertical-align:middle"
+                  }
+                }
+              },
               "children": [
                 {
                   "kind": "text",
@@ -4006,7 +4053,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -4232,13 +4279,43 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
-              "kind": "text",
-              "text": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)"
+              "kind": "inline_group",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CHARGING VIA SOLAR PANELS "
+                },
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-heading-badge",
+                        "style": "display:inline-block;box-sizing:border-box;max-width:100%;padding:0.22em 0.7em;border-radius:1.2em;background:var(--hb-brand-dark);color:var(--hb-paper);font-weight:700;line-height:1.35;vertical-align:middle;font-size:0.82em;white-space:nowrap;margin-block:0.15em"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "SOLD SEPARATELY"
+                    }
+                  ]
+                }
+              ]
             }
           ],
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-subbar"
+              }
+            }
+          },
+          "anchor": "charging-via-solar-panels-sold-separately",
           "schema_version": "manual-flow/v2"
         }
       ],
@@ -4626,13 +4703,43 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
-              "kind": "text",
-              "text": "CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)"
+              "kind": "inline_group",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CHARGING VIA A CAR CHARGER "
+                },
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-heading-badge",
+                        "style": "display:inline-block;box-sizing:border-box;max-width:100%;padding:0.22em 0.7em;border-radius:1.2em;background:var(--hb-brand-dark);color:var(--hb-paper);font-weight:700;line-height:1.35;vertical-align:middle;font-size:0.82em;white-space:nowrap;margin-block:0.15em"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "SOLD SEPARATELY"
+                    }
+                  ]
+                }
+              ]
             }
           ],
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-subbar"
+              }
+            }
+          },
+          "anchor": "charging-via-a-car-charger-sold-separately",
           "schema_version": "manual-flow/v2"
         }
       ],
@@ -4953,7 +5060,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -4966,76 +5073,154 @@
       [
         "flow",
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:"
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-source-storage-panel",
+                "style": "box-sizing:border-box;max-width:var(--hb-reading-width);padding:1rem 1.15rem;border-radius:1.25rem;background:var(--hb-surface)"
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        }
-      ],
-      [
-        "flow",
-        {
-          "kind": "list",
-          "ordered": false,
+          },
           "children": [
             {
-              "kind": "list_item",
+              "kind": "paragraph",
               "children": [
                 {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "1 month: -20°C to 45°C (0-60%RH)"
-                    }
-                  ]
+                  "kind": "text",
+                  "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:"
                 }
-              ]
+              ],
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-storage-copy",
+                    "style": "margin:0"
+                  }
+                }
+              }
             },
             {
-              "kind": "list_item",
+              "kind": "list",
+              "ordered": false,
               "children": [
                 {
-                  "kind": "paragraph",
+                  "kind": "list_item",
                   "children": [
                     {
-                      "kind": "text",
-                      "text": "3 months: 0°C to 45°C (0-60%RH)"
+                      "kind": "paragraph",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "1 month: -20°C to 45°C (0-60%RH)"
+                        }
+                      ],
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "hb-source-storage-line",
+                            "style": "margin:0"
+                          }
+                        }
+                      }
                     }
-                  ]
+                  ],
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-storage-item",
+                        "style": "margin:0"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "list_item",
+                  "children": [
+                    {
+                      "kind": "paragraph",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "3 months: 0°C to 45°C (0-60%RH)"
+                        }
+                      ],
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "hb-source-storage-line",
+                            "style": "margin:0"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-storage-item",
+                        "style": "margin:0"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "list_item",
+                  "children": [
+                    {
+                      "kind": "paragraph",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "12 months: 0°C to 25°C (0-60%RH)"
+                        }
+                      ],
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "hb-source-storage-line",
+                            "style": "margin:0"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-source-storage-item",
+                        "style": "margin:0"
+                      }
+                    }
+                  }
                 }
-              ]
+              ],
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-storage-copy",
+                    "style": "margin:0"
+                  }
+                }
+              }
             },
             {
-              "kind": "list_item",
+              "kind": "paragraph",
               "children": [
                 {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "12 months: 0°C to 25°C (0-60%RH)"
-                    }
-                  ]
+                  "kind": "text",
+                  "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
                 }
-              ]
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        }
-      ],
-      [
-        "flow",
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+              ],
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-storage-copy",
+                    "style": "margin:0"
+                  }
+                }
+              }
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -5055,7 +5240,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -5205,7 +5390,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -5347,7 +5532,7 @@
                           "hb-spec-section"
                         ],
                         "role": "heading",
-                        "aria-level": "3"
+                        "aria-level": "2"
                       }
                     }
                   },
@@ -5681,7 +5866,7 @@
                           "hb-spec-section"
                         ],
                         "role": "heading",
-                        "aria-level": "3"
+                        "aria-level": "2"
                       }
                     }
                   },
@@ -5951,7 +6136,7 @@
                           "hb-spec-section"
                         ],
                         "role": "heading",
-                        "aria-level": "3"
+                        "aria-level": "2"
                       }
                     }
                   },
@@ -6198,7 +6383,7 @@
                           "hb-spec-section"
                         ],
                         "role": "heading",
-                        "aria-level": "3"
+                        "aria-level": "2"
                       }
                     }
                   },
@@ -6342,7 +6527,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -6393,7 +6578,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6449,7 +6634,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6509,7 +6694,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6565,7 +6750,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6621,7 +6806,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6687,7 +6872,7 @@
         {
           "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6752,7 +6937,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -6766,7 +6951,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6863,7 +7048,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7704,7 +7889,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7731,7 +7916,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7745,7 +7930,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 4,
+          "level": 3,
           "children": [
             {
               "kind": "text",
@@ -7797,7 +7982,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 4,
+          "level": 3,
           "children": [
             {
               "kind": "text",
@@ -7849,7 +8034,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 4,
+          "level": 3,
           "children": [
             {
               "kind": "text",
@@ -7886,7 +8071,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -7965,7 +8150,7 @@
         "flow",
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
