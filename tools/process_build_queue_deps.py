@@ -31,6 +31,27 @@ class QueueDeps:
     publish_word_artifact: Callable[..., Any] | None = None
     import_markdown_to_cloud_doc: Callable[..., Any] | None = None
     finalize_cloud_doc: Callable[..., Any] | None = None
+    # Also looked up inside other facade services (artifact destination and
+    # publish), so a set value is routed through ``FacadeOverrides`` as well.
+    resolve_wiki_destination: Callable[..., Any] | None = None
+    upload_word_to_drive: Callable[..., Any] | None = None
+    move_drive_file_to_wiki: Callable[..., Any] | None = None
+
+
+NESTED_FIELDS = ("resolve_wiki_destination", "upload_word_to_drive", "move_drive_file_to_wiki")
+
+
+class FacadeOverrides:
+    """A facade module with some names replaced, for services that take ``module``."""
+
+    def __init__(self, module: Any, overrides: dict[str, Any]) -> None:
+        self._module = module
+        self._overrides = overrides
+
+    def __getattr__(self, name: str) -> Any:
+        if name in self._overrides:
+            return self._overrides[name]
+        return getattr(self._module, name)
 
 
 def default_queue_deps(module: Any) -> QueueDeps:
@@ -41,6 +62,13 @@ def default_queue_deps(module: Any) -> QueueDeps:
         prepare_git_ref_worktree=module._prepare_git_ref_worktree,
         remove_worktree=module._remove_worktree,
     )
+
+
+def nested_overrides(deps: QueueDeps | None) -> dict[str, Any]:
+    """The nested-lookup fields ``deps`` sets, keyed by their facade name."""
+    if deps is None:
+        return {}
+    return {name: getattr(deps, name) for name in NESTED_FIELDS if getattr(deps, name) is not None}
 
 
 def queue_dep(deps: QueueDeps | None, field: str, module: Any, facade_name: str) -> Any:

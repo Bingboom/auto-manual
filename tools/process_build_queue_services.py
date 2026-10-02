@@ -7,7 +7,7 @@ from functools import partial
 from pathlib import Path
 from typing import Any
 
-from tools.process_build_queue_deps import QueueDeps, queue_dep
+from tools.process_build_queue_deps import FacadeOverrides, QueueDeps, nested_overrides, queue_dep
 from tools.queue_build_execution import (
     build_document_for_task as _build_document_for_task_impl,
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
@@ -689,6 +689,19 @@ def process_build_queue(
             sync_snapshot = deps.sync_phase2_snapshot_before_queue
         if deps.build_document_for_task is not None:
             build_document = deps.build_document_for_task
+    nested = nested_overrides(deps)
+    if nested:
+        view = FacadeOverrides(module, nested)
+        default_artifact_destination = partial(resolve_artifact_destination, view)
+        default_publish_word_artifact = partial(publish_word_artifact, view)
+    else:
+        default_artifact_destination = module.resolve_artifact_destination
+        default_publish_word_artifact = module.publish_word_artifact
+    artifact_destination = (
+        deps.resolve_artifact_destination
+        if deps is not None and deps.resolve_artifact_destination is not None
+        else default_artifact_destination
+    )
     return _process_build_queue_impl(
         cfg=cfg,
         config_path=config_path,
@@ -732,15 +745,19 @@ def process_build_queue(
         workflow_action_label=module.workflow_action_label,
         queue_record_action_source=module.queue_record_action_source,
         queue_record_legacy_doc_phase=module.queue_record_legacy_doc_phase,
-        resolve_wiki_destination=queue_dep(deps, "resolve_artifact_destination", module, "resolve_artifact_destination"),
-        resolve_lark_wiki_destination=module.resolve_wiki_destination,
-        resolve_row_artifact_destination=queue_dep(deps, "resolve_artifact_destination", module, "resolve_artifact_destination"),
+        resolve_wiki_destination=artifact_destination,
+        resolve_lark_wiki_destination=queue_dep(deps, "resolve_wiki_destination", module, "resolve_wiki_destination"),
+        resolve_row_artifact_destination=artifact_destination,
         resolve_artifact_mirror_provider=module.resolve_artifact_mirror_provider,
         resolve_dingtalk_mirror_destination=queue_dep(deps, "resolve_dingtalk_mirror_destination", module, "resolve_dingtalk_mirror_destination"),
         ensure_dingtalk_session_ready=queue_dep(deps, "ensure_dingtalk_session_ready", module, "ensure_dingtalk_session_ready"),
         build_started_fields=module.build_started_fields,
         build_document_for_task=build_document,
-        publish_word_artifact=queue_dep(deps, "publish_word_artifact", module, "publish_word_artifact"),
+        publish_word_artifact=(
+            deps.publish_word_artifact
+            if deps is not None and deps.publish_word_artifact is not None
+            else default_publish_word_artifact
+        ),
         import_markdown_to_cloud_doc=queue_dep(deps, "import_markdown_to_cloud_doc", module, "import_markdown_to_cloud_doc"),
         finalize_cloud_doc=queue_dep(deps, "finalize_cloud_doc", module, "finalize_cloud_doc"),
         build_success_fields=module.build_success_fields,
