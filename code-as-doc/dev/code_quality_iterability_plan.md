@@ -111,7 +111,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [ ] `resolve_wiki_destination`、`upload_word_to_drive` 等在其它门面服务内部再次查找的名字，需先把内部调用改成经 deps 传递
     - [x] `process_review_start_queue`：直接调用 `process_review_start_queue()` 的 9 个测试块改为传 `deps=replace(default_review_start_deps(), ...)`（已有 `ReviewStartRuntimeDeps`，8 个字段），87 → 21，合计 226 → 160（2026-10-02）
     - [x] `build_docs` 门面：`test_build_docs_review_compat.py` 改为直接调用 `build_docs_bundle.prepare_manual_bundle` 并显式传入协作者，只留 1 处检查门面自身转发的 patch，22 → 1，合计 160 → 139（2026-10-02）。`test_target_resolution.py` 的 6 处 patch 的是 `build_docs` 自己定义的函数，属于在查找处 patch，保留
-    - [ ] 余下 139 处（目标 ≤73）：`test_process_build_queue.py` 70（多为在其它门面服务内部再次查找的名字）、`test_process_build_queue_routing.py` 25（`ROOT`、`load_config`）、review-start 21、`test_web_publish_queue.py` 15
+    - [x] 内部再次查找的名字：`QueueDeps` 增加 `resolve_wiki_destination`、`upload_word_to_drive`、`move_drive_file_to_wiki`，设置后产物目标与发布两个服务改在 `FacadeOverrides`（替换了这些名字的门面）上运行；`build_document_for_task` 的测试改为直接调用 `queue_build_execution.build_document_for_task` 并显式传入协作者，发布与 wiki 目标的测试改为把 `FacadeOverrides` 作为 `module` 传给服务。`test_process_build_queue.py` 70 → 17，合计 139 → 86（2026-10-02）
+    - [ ] 余下 86 处（目标 ≤73）：routing 25（`ROOT`、`load_config`）、review-start 21、`test_process_build_queue.py` 17（`ROOT`、`_run_lark_cli_json`、`resolve_config_path_for_task` 等）、`test_web_publish_queue.py` 15
 - [ ] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
