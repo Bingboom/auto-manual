@@ -78,6 +78,7 @@ def lcd_icon_component_spec(
     source_ref: str,
     language: str,
     icon_locale_policy: str = "shared",
+    numbered: bool = True,
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
@@ -100,7 +101,7 @@ def lcd_icon_component_spec(
             )
         normalized.append(
             {
-                **_text_pair(raw, "number", LCD_ICON_COMPONENT_ID),
+                **(_text_pair(raw, "number", LCD_ICON_COMPONENT_ID) if numbered else {}),
                 **_text_pair(raw, "name", LCD_ICON_COMPONENT_ID),
                 **_text_pair(raw, "description", LCD_ICON_COMPONENT_ID),
                 "icon_alt": icon_alt,
@@ -115,7 +116,7 @@ def lcd_icon_component_spec(
         raise ComponentSpecError(f"{LCD_ICON_COMPONENT_ID}: icon refs must be non-empty")
     return _finish(
         LCD_ICON_COMPONENT_ID,
-        "icon-catalog",
+        "icon-catalog" if numbered else "icon-catalog-unnumbered",
         (
             ComponentSlot("accessibility_label", "inline_text", label),
             ComponentSlot("rows", "ordered_rows", normalized),
@@ -185,8 +186,12 @@ def symbol_signal_component_spec(
         label = str(raw.get("label") or "").strip()
         if not label:
             raise ComponentSpecError(f"{SYMBOL_SIGNAL_COMPONENT_ID}: label is required")
+        show_icon = raw.get("show_icon", True)
+        if not isinstance(show_icon, bool):
+            raise ComponentSpecError(f"{SYMBOL_SIGNAL_COMPONENT_ID}: show_icon must be boolean")
         normalized_rows.append(
-            {"label": label, **_text_pair(raw, "meaning", SYMBOL_SIGNAL_COMPONENT_ID)}
+            {"label": label, "show_icon": show_icon,
+             **_text_pair(raw, "meaning", SYMBOL_SIGNAL_COMPONENT_ID)}
         )
     if not normalized_rows:
         raise ComponentSpecError(f"{SYMBOL_SIGNAL_COMPONENT_ID}: rows are required")
