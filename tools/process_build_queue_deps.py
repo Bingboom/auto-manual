@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
@@ -36,6 +37,9 @@ class QueueDeps:
     resolve_wiki_destination: Callable[..., Any] | None = None
     upload_word_to_drive: Callable[..., Any] | None = None
     move_drive_file_to_wiki: Callable[..., Any] | None = None
+    # The group processor's clock: returns an aware UTC ``datetime`` for the
+    # started-at stamp, claim expiry and built-at time.
+    clock: Callable[[], datetime] | None = None
 
 
 NESTED_FIELDS = ("resolve_wiki_destination", "upload_word_to_drive", "move_drive_file_to_wiki")

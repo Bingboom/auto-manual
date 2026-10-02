@@ -105,7 +105,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
   - [x] 依赖对象骨架（#1362，2026-10-02）：`QueueDeps`（client factory、command runner、Git worktree
     prepare/remove）传入现有 session/build callback，review-start 接受已有 `ReviewStartRuntimeDeps`；
     默认值在调用时按门面名查找，运行行为不变。
-  - [ ] 时钟接缝（`queue_group_processing.py`、`queue_claims.py`、`queue_bound_records.py`、`queue_session.py`）
+  - [x] 时钟接缝（2026-10-02）：`process_queue_record_group` 增加 `clock` 参数（默认 `utc_now`），开始时间、认领到期和构建时间都取自它；`QueueDeps.clock` 可在单次运行中替换。核对后 `queue_claims.py`、`queue_bound_records.py`、`queue_session.py` 不读时钟，`queue_transitions` 已接受 `now=`
   - [ ] 按测试文件迁移门面 patch：
     - [x] `QueueDeps` 增加 11 个可选的单次运行覆盖项（会话预检、链接绑定、身份、快照同步、构建、产物目标、钉钉镜像、产物发布、云文档导入/收尾），`test_process_build_queue.py` 203 → 70、`test_process_build_queue_routing.py` 29 → 25，合计 363 → 226（2026-10-02，用脚本按 AST 机械改写，测试断言不变）
     - [x] `process_review_start_queue`：直接调用 `process_review_start_queue()` 的 9 个测试块改为传 `deps=replace(default_review_start_deps(), ...)`（已有 `ReviewStartRuntimeDeps`，8 个字段），87 → 21，合计 226 → 160（2026-10-02）
