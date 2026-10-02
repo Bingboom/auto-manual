@@ -48,7 +48,7 @@ def parse_number(val: str) -> bool:
     try:
         float(val)
         return True
-    except Exception:
+    except (TypeError, ValueError):
         return False
 
 
@@ -94,7 +94,7 @@ def validate(csv_path: Path) -> list[Issue]:
             elif unit == "int":
                 try:
                     int(val)
-                except Exception:
+                except (TypeError, ValueError):
                     issues.append(Issue("ERROR", f"Integer value expected for '{key}' line {idx}"))
             elif unit == "cmyk":
                 parts = val.strip('"').split(",")

@@ -328,7 +328,7 @@ def write_publish_html_links(
                 )
                 for _payload, record_ids, target_url in target_rows
             )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - fallback writeback failure is reported, not fatal
             _ERR.error(f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}")
 
     print(
@@ -351,7 +351,7 @@ def main(argv: list[str] | None = None) -> int:
             explicit_record_ids=_clean_texts(tuple(args.record_id)),
             **({} if args.single_target else {"multi_target": True}),
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
         _ERR.error(f"[publish-html-link] ERROR: {exc}")
         return 1
     print(f"[publish-html-link] Completed HTML_link writeback for {written} record(s).")

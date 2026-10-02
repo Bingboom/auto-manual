@@ -13,7 +13,14 @@ keeps the count from growing, per source file:
   change, so the gain cannot be silently spent later.
 
 Counted: ``except Exception``, ``except BaseException`` and tuples containing
-either (bare ``except:`` is already rejected by ruff ``E722``).  Scanned:
+either (bare ``except:`` is already rejected by ruff ``E722``), unless the
+handler is audited:
+
+- its body ends in ``raise`` (cleanup-and-reraise or wrap-and-reraise), so it
+  does not swallow the error; or
+- its ``except`` line carries ``# noqa: BLE001 - <reason>``, naming why this
+  is a boundary that must absorb any failure (a CLI ``main``, a per-row batch,
+  a best-effort side channel, a diagnostic probe).  Scanned:
 ``build.py``, ``tools/``, ``scripts/`` and ``integrations/``.  Baseline entries
 for files that no longer exist are reported as stale and do not fail::
 
@@ -25,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -35,6 +43,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASELINE = REPO_ROOT / "data" / "broad_except_baseline.tsv"
 SOURCE_DIRS = ("tools", "scripts", "integrations")
 BROAD_NAMES = frozenset({"Exception", "BaseException"})
+AUDITED_MARKER = re.compile(r"#\s*noqa:\s*BLE001\s+-\s+\S")
 
 
 @dataclass(frozen=True)
@@ -70,17 +79,29 @@ def _is_broad(handler_type: ast.expr | None) -> bool:
     return False
 
 
+def _is_audited(handler: ast.ExceptHandler, source_lines: list[str]) -> bool:
+    """A handler that re-raises, or whose ``except`` line names its reason."""
+
+    if handler.body and isinstance(handler.body[-1], ast.Raise):
+        return True
+    return bool(AUDITED_MARKER.search(source_lines[handler.lineno - 1]))
+
+
 def count_file(path: Path) -> tuple[int, int]:
     """Return (broad handler count, first such line) for one source file."""
 
     try:
-        tree = ast.parse(path.read_text(encoding="utf-8-sig"), filename=str(path))
+        source = path.read_text(encoding="utf-8-sig")
+        tree = ast.parse(source, filename=str(path))
     except (OSError, SyntaxError) as exc:
         raise RuntimeError(f"Cannot inspect Python source: {path}") from exc
+    source_lines = source.splitlines()
     lines = sorted(
         node.lineno
         for node in ast.walk(tree)
-        if isinstance(node, ast.ExceptHandler) and _is_broad(node.type)
+        if isinstance(node, ast.ExceptHandler)
+        and _is_broad(node.type)
+        and not _is_audited(node, source_lines)
     )
     return len(lines), (lines[0] if lines else 0)
 

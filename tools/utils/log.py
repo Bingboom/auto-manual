@@ -65,7 +65,7 @@ class _ConsoleHandler(logging.Handler):
             target = self._target()
             target.write(self.format(record) + "\n")
             target.flush()
-        except Exception:
+        except Exception:  # noqa: BLE001 - mirrors logging.Handler.emit, which routes to handleError
             self.handleError(record)
 
 

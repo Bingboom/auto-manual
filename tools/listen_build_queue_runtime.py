@@ -49,7 +49,7 @@ class BuildQueueWorker:
                 )
                 if exit_code:
                     print(f"[build-queue-listener] Queue run finished with exit_code={exit_code}", file=self._stderr)
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - the listener must survive a failed queue run
                 print(f"[build-queue-listener] Queue run failed: {exc}", file=self._stderr)
 
             with self._lock:

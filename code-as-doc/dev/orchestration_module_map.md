@@ -402,7 +402,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/check_facade_patch_ratchet.py`](../../tools/check_facade_patch_ratchet.py)
   - per-test-file count of patches on facade modules against `data/facade_patch_baseline.tsv`: unlisted files may not patch a facade, recorded counts may not grow, a lower count must be written back
 - [`tools/check_broad_except_ratchet.py`](../../tools/check_broad_except_ratchet.py)
-  - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back
+  - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back. Audited handlers are not counted: one whose body ends in `raise`, or whose `except` line carries `# noqa: BLE001 - <reason>`. The baseline is empty since the CQ-5.3 audit
 - [`tools/check_mypy_ratchet.py`](../../tools/check_mypy_ratchet.py)
   - per-file count of `mypy --disallow-untyped-defs` errors in `tools/manual_ir`, `tools/component_specs`, `tools/csv_pages` against `data/mypy_untyped_baseline.tsv`; runs in the CI `type-check` job (not in the guardrails, which have no mypy)
 - [`tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
@@ -435,6 +435,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
   - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
   - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. `resolve_wiki_destination`, `upload_word_to_drive` and `move_drive_file_to_wiki` are also looked up inside the artifact-destination and publish services, so when `deps` sets one of them those two services run against `FacadeOverrides(module, ...)` (the facade with the names replaced) instead of the facade itself
+  - `QueueDeps.clock` (optional) is the group processor's clock: `process_queue_record_group(clock=...)` takes the started-at stamp, claim expiry and built-at time from it (default `queue_group_processing.utc_now`). `queue_claims`, `queue_bound_records` and `queue_session` read no clock; `queue_transitions` already takes `now=`
 - [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
   - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
 - [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)

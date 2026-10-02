@@ -358,7 +358,7 @@ def _materialized_attachment_display_path(
             output_path=target_path,
             overwrite=False,
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - falls back to the cached attachment or clears the optional image
         target_display_path = _display_path(target_path, repo_root=repo_root)
         if cached_path is not None:
             cached_display_path = _display_path(cached_path, repo_root=repo_root)

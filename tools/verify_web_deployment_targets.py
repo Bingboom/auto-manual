@@ -214,7 +214,7 @@ def verify_targets_against_source(
             web_root, base_url, routes, expected_project_slug=project_slug, session=session,
             include_dependency=include_dependency,
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 - falls back to per-target verification
         results = []
         for target in targets:
             if session.budget_exhausted:
@@ -230,7 +230,7 @@ def verify_targets_against_source(
                     expected_project_slug=project_slug, session=session,
                     include_dependency=include_dependency,
                 )
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - one target's failure is recorded
                 results.append(_failure(target, mode=mode, exc=exc))
             else:
                 results.append(_result(target, mode=mode))
@@ -276,7 +276,7 @@ def verify_targets_live_slug(
                     "page never declared the expected RTD project slug "
                     f"{project_slug}: no readthedocs-project-slug meta observed"
                 )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one target's failure is recorded
             results.append(_failure(target, mode=mode, exc=exc))
         else:
             results.append(_result(target, mode=mode))
@@ -445,7 +445,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         exit_code, report = run(args)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
         _ERR.error(f"[verify-web-deploy] ERROR: {exc}")
         return EXIT_FAILED
     if args.report_json is not None:

@@ -610,7 +610,7 @@ def apply_sync_plan(
                     "human columns changed during a machine-column update: "
                     f"{after[MACHINE_COL_COUNT:]!r} != {expected_human!r}"
                 )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one row's failure is recorded, the batch continues
             failures.append({**entry, "error": f"{type(exc).__name__}: {exc}"})
         else:
             applied.append({**entry, "readback": after})
@@ -638,7 +638,7 @@ def apply_sync_plan(
             after = _readback_row(ops, spreadsheet_token, sheet_id, row_number)
             if after != full_values:
                 raise RuntimeError(f"readback mismatch on appended row: {after!r}")
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one row's failure is recorded, the batch continues
             failures.append({**entry, "error": f"{type(exc).__name__}: {exc}"})
         else:
             applied.append({**entry, "readback": after})
@@ -989,7 +989,7 @@ def main(argv: list[str] | None = None) -> int:
             exit_code, report = run_sync(args, ops)
         else:
             exit_code, report = run_reconcile(args, ops)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
         _ERR.error(f"[ops-catalog-sync] ERROR: {exc}")
         return EXIT_ERROR
     _emit_report(args, report)

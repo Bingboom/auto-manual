@@ -12,7 +12,7 @@ from types import SimpleNamespace
 import unittest
 from unittest import mock
 
-from tools import process_build_queue, process_build_queue_services, queue_bound_runtime
+from tools import process_build_queue, process_build_queue_services, queue_bound_runtime, queue_group_processing
 from tools.process_build_queue_deps import default_queue_deps
 from tools.phase2_support import LarkCliSource
 from tools.utils.path_utils import PathSegments, review_dir_of
@@ -191,6 +191,30 @@ class TestBuildQueueInjectedBoundaries(unittest.TestCase):
             )
         self.assertIs(process_build_queue.publish_word_artifact, captured["publish_word_artifact"])
         self.assertIs(process_build_queue.build_document_for_task, captured["build_document_for_task"])
+
+    def test_clock_override_reaches_the_group_processor(self) -> None:
+        clock = mock.Mock(name="clock")
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+                deps=replace(default_queue_deps(process_build_queue), clock=clock),
+            )
+        processor = captured["process_queue_record_group"]
+        self.assertIs(queue_group_processing.process_queue_record_group, processor.func)  # type: ignore[attr-defined]
+        self.assertEqual({"clock": clock}, processor.keywords)  # type: ignore[attr-defined]
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(queue_group_processing.process_queue_record_group, captured["process_queue_record_group"])
 
     def test_bootstrap_uses_session_overrides(self) -> None:
         preflight = mock.Mock(return_value=["blocked"])

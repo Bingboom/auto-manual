@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import io
 import json
 from pathlib import Path
 import tempfile
+from typing import Callable
 import unittest
 from unittest import mock
 
@@ -200,6 +201,8 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
         *,
         workflow_action: str,
         environ: dict[str, str],
+        clock: Callable[[], datetime] | None = None,
+        started_calls: list[dict[str, object]] | None = None,
     ) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
         from tools import queue_group_processing
 
@@ -276,6 +279,9 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
         def fake_build_started_fields(**kwargs: object) -> dict[str, object]:
             from tools.queue_transitions import format_queue_result
 
+            if started_calls is not None:
+                started_calls.append(kwargs)
+
             return {
                 "构建结果": format_queue_result(
                     prefix="RUNNING",
@@ -338,6 +344,7 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
                 build_failure_writeback_fields=lambda **_kw: {},
                 best_effort_queue_workflow_action=lambda _record: workflow_action,
                 stderr=io.StringIO(),
+                **({"clock": clock} if clock is not None else {}),
             )
         return drop_calls, success_calls
 
@@ -372,6 +379,20 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
         self.assertEqual(1, len(drop_calls))
         notes = success_calls[0]["status_notes"]
         self.assertFalse([note for note in notes if str(note).startswith("delivery_outbox")])
+
+    def test_injected_clock_stamps_claim_and_build_times(self) -> None:
+        started_calls: list[dict[str, object]] = []
+        drop_calls, success_calls = self._run_group(
+            workflow_action="publish",
+            environ={delivery_outbox.DELIVERY_OUTBOX_ROOT_ENV: ""},
+            clock=lambda: BUILT_AT,
+            started_calls=started_calls,
+        )
+
+        self.assertEqual(BUILT_AT, started_calls[0]["started_at"])
+        self.assertEqual(BUILT_AT + timedelta(seconds=7200), started_calls[0]["claim_expires_at"])
+        self.assertEqual(BUILT_AT.astimezone(), success_calls[0]["built_at"])
+        self.assertEqual(BUILT_AT.astimezone(), drop_calls[0]["built_at"])
 
     def test_draft_never_drops(self) -> None:
         drop_calls, _success_calls = self._run_group(

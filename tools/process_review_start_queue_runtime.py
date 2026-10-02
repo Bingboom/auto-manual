@@ -272,7 +272,7 @@ def process_review_start_queue(
                 f"[review-start] {deps.review_action_label} updated {deps.record_key_fn(record)}: "
                 f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
             )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one group's failure is recorded, the batch continues
             failures.append(f"{deps.record_key_fn(record)}: {exc}")
             failure_summaries.append(
                 deps.build_failure_summary_fn(

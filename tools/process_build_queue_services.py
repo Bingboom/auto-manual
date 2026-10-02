@@ -343,7 +343,7 @@ def publish_word_artifact(
             drive_url=drive_url,
             destination=artifact_destination,
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - non-permission errors re-raise; permission falls back to Drive
         recovered_message = str(exc).strip()
         if "permission denied" not in recovered_message.lower():
             raise ArtifactPublishError(recovered_message, latest_link_url=drive_url) from exc
@@ -387,7 +387,7 @@ def publish_word_artifact(
             file_path=resolved_artifact_output_path,
             parent_node_url=target_node_url,
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - DingTalk mirror is a side channel recorded in status notes
         message = str(exc).strip()
         status_notes = (*result.status_notes, "dingtalk_sync=failed", f"dingtalk_sync_error={message}")
         return ArtifactPublishResult(
@@ -718,7 +718,11 @@ def process_build_queue(
         print_dry_run_groups=_print_dry_run_groups_impl,
         sync_phase2_snapshot_before_queue=sync_snapshot,
         resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
-        process_queue_record_group=_process_queue_record_group_impl,
+        process_queue_record_group=(
+            partial(_process_queue_record_group_impl, clock=deps.clock)
+            if deps is not None and deps.clock is not None
+            else _process_queue_record_group_impl
+        ),
         acquire_queue_claim=_acquire_verified_queue_claim_impl,
         result_field=module.RESULT_FIELD,
         queue_claim_ttl_seconds=module.QUEUE_CLAIM_TTL_SECONDS,

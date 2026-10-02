@@ -157,7 +157,7 @@ def _pdf_page_count(pdf_path: Path) -> int | None:
 
         with fitz.open(pdf_path) as document:
             return document.page_count
-    except Exception:
+    except Exception:  # noqa: BLE001 - optional page-count probe
         return None
 
 

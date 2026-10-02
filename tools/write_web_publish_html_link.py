@@ -197,7 +197,7 @@ def main(argv: list[str] | None = None) -> int:
             explicit_record_ids=tuple(str(item).strip() for item in args.record_id if str(item).strip()),
             pending=bool(args.pending),
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
         _ERR.error(f"[web-publish-link] ERROR: {exc}")
         return 1
     if args.pending:

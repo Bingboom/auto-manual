@@ -72,7 +72,7 @@ def command_version(
             text=True,
             timeout=_VERSION_TIMEOUT_SECONDS,
         )
-    except Exception:
+    except (OSError, subprocess.SubprocessError):
         return "unknown"
     line = _first_line((proc.stdout or "") + "\n" + (proc.stderr or ""))
     return line or "unknown"
@@ -116,7 +116,7 @@ def indesign_version(
     try:
         with newest.open("rb") as handle:
             info = plistlib.load(handle)
-    except Exception:
+    except (OSError, ValueError, plistlib.InvalidFileException):
         return "unknown"
     app_name = newest.parents[1].stem
     version = str(info.get("CFBundleShortVersionString") or "unknown")

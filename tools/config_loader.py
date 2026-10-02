@@ -80,5 +80,5 @@ def try_load_config_mapping(config_path: Path) -> dict[str, Any]:
 
     try:
         return _load_yaml_mapping(config_path)
-    except Exception:
+    except Exception:  # noqa: BLE001 - the try_ loader returns {} for any unreadable config
         return {}

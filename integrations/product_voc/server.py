@@ -100,7 +100,7 @@ def make_handler(intake: Intake, origins: set[str], preview: bool = False, cloud
                 self.send(exc.status, json.dumps({"ok": False, "error": exc.code}).encode())
             except (ValueError, UnicodeError):
                 self.send(400, b'{"ok":false,"error":"invalid_json"}')
-            except Exception:
+            except Exception:  # noqa: BLE001 - HTTP boundary answers 503 for any failure
                 self.send(503, b'{"ok":false,"error":"unavailable"}')
 
         def do_GET(self):

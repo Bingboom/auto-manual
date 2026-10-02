@@ -213,7 +213,7 @@ def check_liveness(rows: list[dict[str, str]], *, timeout: float = 10.0, printer
             if level == "DEAD":
                 failures += 1
             printer(f"[printed-urls] {level} {exc.code} {target}")
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - any network failure marks the URL dead
             failures += 1
             printer(f"[printed-urls] DEAD {target} ({exc})")
     printer(f"[printed-urls] liveness: {failures} failure(s)")

@@ -68,7 +68,7 @@ def collect_data_plane_findings(
             data_root=data_root,
             source_mode="runtime",
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - doctor reports any validation failure as a finding
         findings.append(("ERROR", "data_plane.spec_master", f"validation failed: {exc}"))
         return findings
 
