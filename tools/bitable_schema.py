@@ -279,7 +279,8 @@ def parity(
     if len(aliased_names) != len(set(aliased_names)):
         raise ValueError("table aliases map multiple source tables to the same target name")
     source_by_target = {target: source for source, target in zip(
-        (t["name"] for t in src["tables"]), aliased_names
+        (t["name"] for t in src["tables"]), aliased_names,
+        strict=True
     )}
     aliased_src = {
         **src,
@@ -445,8 +446,9 @@ def _read_records(base_token: str, tid: str, lark_cli: str) -> tuple[list[dict],
                 for i, fid in enumerate(field_ids)
             ]
         else:
+            # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
             col_names = display  # older CLI without field_id_list: display names as-is
-        page_rows = [dict(zip(col_names, row)) for row in raw_rows]
+        page_rows = [dict(zip(col_names, row, strict=False)) for row in raw_rows]
         rows.extend(page_rows)
         rids.extend(data.get("record_id_list") or [])
     return rows, rids
@@ -488,7 +490,7 @@ def seed_import(base_token: str, table_name: str, seed_rows: list[dict], key: st
 
     rows, rids = _read_records(base_token, tid, lark_cli)
     existing: dict = {}
-    for r, rid in zip(rows, rids):
+    for r, rid in zip(rows, rids, strict=True):
         kv = _kv(r)
         if kv in existing:
             plan["dup_keys"].append(_disp(kv))

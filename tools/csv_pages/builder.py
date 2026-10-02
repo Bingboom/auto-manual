@@ -12,7 +12,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
 except ImportError:  # pragma: no cover - direct script execution fallback
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from script_bootstrap import bootstrap_repo_root
+    from script_bootstrap import bootstrap_repo_root  # type: ignore[no-redef]
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 

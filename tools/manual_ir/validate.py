@@ -87,7 +87,7 @@ def _structure_issues(raw: Any) -> list[str]:
         for field in ("page_count", "block_count", "skipped_raw"):
             if field in metadata:
                 count(metadata[field], f"metadata.{field}")
-    pages = raw.get("pages")
+    pages: Any = raw.get("pages")
     if not sequence(pages, "pages"):
         return issues
     for index, page in enumerate(pages):
@@ -100,7 +100,7 @@ def _structure_issues(raw: Any) -> list[str]:
         text(page.get("language"), f"{loc}.language", empty=True)
         digest(page.get("source_sha256"), f"{loc}.source_sha256")
         count(page.get("skipped_raw", 0), f"{loc}.skipped_raw")
-        blocks = page.get("blocks")
+        blocks: Any = page.get("blocks")
         if not sequence(blocks, f"{loc}.blocks"):
             continue
         for block_index, block in enumerate(blocks):

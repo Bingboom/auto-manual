@@ -238,7 +238,7 @@ def _dict_value_key(node: ast.AST, parents: dict[ast.AST, ast.AST]) -> str | Non
     parent = parents.get(node)
     if not isinstance(parent, ast.Dict):
         return None
-    for key, value in zip(parent.keys, parent.values):
+    for key, value in zip(parent.keys, parent.values, strict=True):
         if value is not node:
             continue
         if isinstance(key, ast.Constant) and isinstance(key.value, str):
@@ -252,7 +252,7 @@ def _dict_value_key_path(node: ast.AST, parents: dict[ast.AST, ast.AST]) -> list
     while child in parents:
         parent = parents[child]
         if isinstance(parent, ast.Dict):
-            for key, value in zip(parent.keys, parent.values):
+            for key, value in zip(parent.keys, parent.values, strict=True):
                 if value is not child:
                     continue
                 if isinstance(key, ast.Constant) and isinstance(key.value, str):

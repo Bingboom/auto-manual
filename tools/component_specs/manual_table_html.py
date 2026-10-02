@@ -34,7 +34,7 @@ def parse_lcd_icon_html(
     declared_page: bool,
     language: str,
     table: Tag | None = None,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     tables = [table] if table is not None else declared_tables(soup, "lcd", declared_page)
     if len(tables) != 1:
         raise ValueError(f"{source_path}: LCD component requires exactly one table")
@@ -77,7 +77,7 @@ def parse_troubleshooting_html(
     source_path: Path,
     declared_page: bool,
     language: str,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     tables = declared_tables(soup, "troubleshooting", declared_page)
     if len(tables) != 1:
         raise ValueError(
@@ -110,8 +110,8 @@ def parse_symbol_tables_html(
     expected_signal_rows: int,
     language: str,
 ) -> tuple[
-    tuple[object, Tag, tuple[Tag, ...]],
-    tuple[object, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
 ]:
     signal_payload, signal_table, signal_headers, signal_rows = decode_signal_table(
         soup,

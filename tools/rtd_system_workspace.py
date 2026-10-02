@@ -725,7 +725,8 @@ def _table_rows(run, base_token: str, table_id: str) -> tuple[list[str], list[di
         names = [_field_name(item) for item in data.get("fields") or []]
         header = header or names
         page = data.get("data") or []
-        rows += [dict(zip(names, row)) for row in page if isinstance(row, list)]
+        # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+        rows += [dict(zip(names, row, strict=False)) for row in page if isinstance(row, list)]
         if len(page) < 200:
             return header, rows
         offset += 200
