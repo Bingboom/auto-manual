@@ -26,6 +26,8 @@ def _add_class(tag: Tag, value: str) -> None:
 
 def _render_lcd(soup: BeautifulSoup, table: Tag, rows: list[Tag]) -> None:
     roles = ("number", "icon", "name", "description")
+    if "lcd-unnumbered" in table.get("class", []):
+        roles = roles[1:]
     for colgroup in table.find_all("colgroup", recursive=False):
         colgroup.decompose()
     colgroup = soup.new_tag("colgroup")
@@ -36,7 +38,7 @@ def _render_lcd(soup: BeautifulSoup, table: Tag, rows: list[Tag]) -> None:
     for row in rows:
         for role, cell in zip(roles, row.find_all(["th", "td"], recursive=False)):
             _add_class(cell, f"hb-lcd-{role}")
-        image = row.find_all(["th", "td"], recursive=False)[1].img
+        image = row.find_all(["th", "td"], recursive=False)[roles.index("icon")].img
         if image is not None:
             _add_class(image, "hb-lcd-icon-art")
             for attribute in ("style", "width", "height"):

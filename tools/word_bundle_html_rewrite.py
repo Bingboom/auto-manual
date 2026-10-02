@@ -559,6 +559,28 @@ def _warning_box_table_parts(
     return label, body_nodes
 
 
+def _rewrite_admonition(element: ET.Element, *, language: str | None) -> ET.Element:
+    """Keep docutils admonition boundaries through the Pandoc handoff."""
+    classes = _html_class_names(element)
+    if _html_tag_name(element) not in {"aside", "div"} or "admonition" not in classes:
+        return element
+    children = list(element)
+    if not children or "admonition-title" not in _html_class_names(children[0]):
+        return element
+    label = _normalize_inline_text("".join(children[0].itertext()))
+    variant = next((item for item in ("warning", "danger", "caution", "note", "tip")
+                    if item in classes), None) or variant_for_label(label)
+    if variant is None or len(children) < 2:
+        return element
+    table = _build_alert_table(label, children[1:], variant=variant, language=language)
+    table.set("data-callout-variant", variant)
+    table.set("lang", language or "und")
+    if element.get("id"):
+        table.set("id", element.attrib["id"])
+    table.tail = element.tail
+    return table
+
+
 def _rewrite_word_friendly_children(
     children: list[ET.Element],
     *,
@@ -567,7 +589,7 @@ def _rewrite_word_friendly_children(
 ) -> list[ET.Element]:
     normalized_children: list[ET.Element] = []
     for child in children:
-        rewritten_child = deepcopy(child)
+        rewritten_child = _rewrite_admonition(deepcopy(child), language=lang)
         if list(rewritten_child):
             _set_element_children(
                 rewritten_child,
