@@ -249,67 +249,83 @@
   },
   "symbol-warning_triangle": {
     "path": "assets/symbol-warning_triangle.png",
-    "sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/warning_triangle.png",
-    "source_sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+    "source_sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.general_warning"
   },
   "symbol-read_manual": {
     "path": "assets/symbol-read_manual.png",
-    "sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/read_manual.png",
-    "source_sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+    "source_sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.read_manual"
   },
   "symbol-do_not_dismantle": {
     "path": "assets/symbol-do_not_dismantle.png",
-    "sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/do_not_dismantle.png",
-    "source_sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+    "source_sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.do_not_disassemble"
   },
   "symbol-no_open_flame": {
     "path": "assets/symbol-no_open_flame.png",
-    "sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/no_open_flame.png",
-    "source_sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+    "source_sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.keep_away_from_fire"
   },
   "symbol-keep_away_from_children": {
     "path": "assets/symbol-keep_away_from_children.png",
-    "sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/keep_away_from_children.png",
-    "source_sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+    "source_sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.keep_away_from_children"
   },
   "symbol-li_ion": {
     "path": "assets/symbol-li_ion.png",
-    "sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/li_ion.png",
-    "source_sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+    "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+    "source_sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.lithium_battery"
   },
   "symbol-battery_disposal": {
     "path": "assets/symbol-battery_disposal.png",
-    "sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/battery_disposal.png",
-    "source_sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+    "source_path": "docs/templates/word_template/common_assets/symbols/weee2.png",
+    "source_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.battery_separate_collection"
   },
   "symbol-weee": {
     "path": "assets/symbol-weee.png",
-    "sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
-    "source_path": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2/_attachments/symbols/weee.png",
-    "source_sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
-    "policy": "byte-identical reuse",
-    "reason": "Existing same-model symbol matches p9"
+    "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+    "source_path": "docs/templates/word_template/common_assets/symbols/weee.png",
+    "source_sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+    "policy": "byte-identical shared semantic symbol reuse",
+    "reason": "Shared Symbols artwork visually matches p9 meaning and shape; transparent background, no source-cell background. Battery separate collection has no bottom bar; product WEEE has a bottom bar.",
+    "shared_binding_manifest": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/pt_assets_manifest.json",
+    "semantic_key": "symbol.weee"
   },
   "app-store": {
     "path": "assets/app-store.png",

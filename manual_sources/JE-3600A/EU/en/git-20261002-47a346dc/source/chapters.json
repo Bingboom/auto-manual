@@ -14,25 +14,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "Jackery Explorer 3600 Plus"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        }
-      ],
-      [
-        "flow",
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "strong",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "IMPORTANT"
-                }
-              ]
+              "text": "IMPORTANT"
             }
           ],
           "schema_version": "manual-flow/v2"

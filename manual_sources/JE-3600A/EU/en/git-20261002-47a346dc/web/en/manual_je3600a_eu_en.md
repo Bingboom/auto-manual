@@ -1,6 +1,4 @@
-# Jackery Explorer 3600 Plus
-
-<p><strong>IMPORTANT</strong></p>
+# IMPORTANT
 
 <p>Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.</p>
 

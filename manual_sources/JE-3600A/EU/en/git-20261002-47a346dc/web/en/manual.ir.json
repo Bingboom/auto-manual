@@ -57,8 +57,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "b061327ea0fa351c79d919eb7872d525333b38cbc1f637c9c6c70811c9f60929",
-  "content_sha256": "7aafa1e413eecc03a669dbe4dcdc1d8c5ff9127b78b7e972eb023f8ec5dd39ca",
+  "bundle_sha256": "754dc173974f8e7a986e823cd84bfc905b601bac099db80d3b35c1e18a08cf16",
+  "content_sha256": "660a804a8d99faa17d8e1124ad4635105df22c76e9f9d832e77b0aba4b66a487",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -109,17 +109,17 @@
       "assets/operation-main-power.png": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
       "assets/overview-front.png": "44891b626c4ae6d964a20cc605cb2e366aeb4b4739102b2b7835d09acde372fd",
       "assets/overview-right.png": "3052666974175662494861c95a0b6a19901ccc6e5d092f67e4648ee071cc4126",
-      "assets/symbol-battery_disposal.png": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
-      "assets/symbol-do_not_dismantle.png": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
-      "assets/symbol-keep_away_from_children.png": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
-      "assets/symbol-li_ion.png": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
-      "assets/symbol-no_open_flame.png": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
-      "assets/symbol-read_manual.png": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
-      "assets/symbol-warning_triangle.png": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
-      "assets/symbol-weee.png": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
+      "assets/symbol-battery_disposal.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "assets/symbol-do_not_dismantle.png": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+      "assets/symbol-keep_away_from_children.png": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "assets/symbol-li_ion.png": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+      "assets/symbol-no_open_flame.png": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "assets/symbol-read_manual.png": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "assets/symbol-warning_triangle.png": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "assets/symbol-weee.png": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
       "assets/ups.png": "370b2ae2e50dbbea4b1b1be1f0efefbd0447850d40ee3ba613ca5a97975b23a0"
     },
-    "block_count": 127,
+    "block_count": 126,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 14,
       "HB-SPECIAL-APP": 3,
@@ -1399,7 +1399,7 @@
         "region": "EU",
         "technical_version": "git-20261002-47a346dc"
       },
-      "validated_main": "00a3fb44"
+      "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62"
     },
     "frozen_stylesheet_sha256": "8d62bec04b9a3390648d02ba372987d573a8f5cf4905e3d4ff8d1df35779cf2a",
     "manual_theme": {
@@ -2250,13 +2250,13 @@
         {
           "asset_refs": [],
           "block_id": "introduction:block-0001",
-          "content_sha256": "8173fe8e999184cbad12fe72f43f142b825728fc77c2f322e29240a12039c561",
+          "content_sha256": "aab68775b7fc6c1e500076fd68d3ccc854d9a7bc962d7093ac9a5b21225b754d",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "Jackery Explorer 3600 Plus"
+                "text": "IMPORTANT"
               }
             ],
             "kind": "heading",
@@ -2268,28 +2268,6 @@
         {
           "asset_refs": [],
           "block_id": "introduction:block-0002",
-          "content_sha256": "590e8ce8adf3d93b200d1d1b892be1c729ba002ac84b832c9c1d082912b43d28",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "IMPORTANT"
-                  }
-                ],
-                "kind": "strong"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "en/pdf-2/introduction#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "introduction:block-0003",
           "content_sha256": "c98d50a4cf6abbfd3e4c2f087b98bb6aede9c91b99810ca1373420e23584540a",
           "kind": "flow",
           "payload": {
@@ -2302,11 +2280,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-2/introduction#block-3"
+          "source_ref": "en/pdf-2/introduction#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "introduction:block-0004",
+          "block_id": "introduction:block-0003",
           "content_sha256": "c0e7780f3843ff23ced83c9e28e75eb58ab5d06c70df6db4bf863e61ca95785a",
           "kind": "flow",
           "payload": {
@@ -2319,11 +2297,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-2/introduction#block-4"
+          "source_ref": "en/pdf-2/introduction#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "introduction:block-0005",
+          "block_id": "introduction:block-0004",
           "content_sha256": "f460363725e122f621a7cbc3a072cffe70b431966cf7b466b8ba7833bc497da1",
           "kind": "flow",
           "payload": {
@@ -2336,7 +2314,7 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-2/introduction#block-5"
+          "source_ref": "en/pdf-2/introduction#block-4"
         }
       ],
       "language": "en",

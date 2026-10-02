@@ -1,6 +1,6 @@
 {
   "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-  "validated_main": "ab70aeb3102592a0a039bff2c713f133b304942d",
+  "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62",
   "chapters": 16,
   "assets": 55,
   "component_inventory": {
@@ -45,13 +45,22 @@
     "publication_eligible": false
   },
   "checks": {
-    "targeted_shared_components": "50 tests passed",
+    "targeted_shared_components": "56 tests passed",
     "strict_sphinx": "passed with -W --keep-going",
     "guardrails": "passed",
     "logic_suite": "not applicable: no production Python or renderer changes",
-    "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md"
+    "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md",
+    "review_correction": "IMPORTANT heading and eight byte-identical shared Symbols passed at 1440x1000 and 390x844"
   },
   "warnings": [
     "Local Python package versions differ from requirements.lock; dependencies were not changed."
-  ]
+  ],
+  "shared_symbol_reuse": {
+    "count": 8,
+    "source_hashes_verified": true,
+    "byte_identical": true,
+    "transparent_backgrounds_verified": true,
+    "battery_collection": "no bottom bar",
+    "product_weee": "with bottom bar"
+  }
 }

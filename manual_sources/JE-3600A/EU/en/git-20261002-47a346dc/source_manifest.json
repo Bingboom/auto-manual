@@ -51,12 +51,12 @@
     }
   ],
   "baseline_main": "6bd85d39f7f7dba2aa751a69f82f258c63eab9c3",
-  "validated_main": "ab70aeb3102592a0a039bff2c713f133b304942d",
+  "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62",
   "inputs": [
     {
       "path": "README.md",
-      "sha256": "ab9c5253ba6fbb148734fbc6e69176b86376a7bd68f262669d9c402d463c19be",
-      "size": 5697
+      "sha256": "c493ff98f186fa3e12eac716ee7d39129d385c4670854754b4f29c2d7060a366",
+      "size": 6576
     },
     {
       "path": "asset_recipe.json",
@@ -315,43 +315,43 @@
     },
     {
       "path": "assets/symbol-battery_disposal.png",
-      "sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
-      "size": 3423
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "size": 19806
     },
     {
       "path": "assets/symbol-do_not_dismantle.png",
-      "sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
-      "size": 2699
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+      "size": 6737
     },
     {
       "path": "assets/symbol-keep_away_from_children.png",
-      "sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
-      "size": 3143
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "size": 7645
     },
     {
       "path": "assets/symbol-li_ion.png",
-      "sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
-      "size": 3419
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+      "size": 7367
     },
     {
       "path": "assets/symbol-no_open_flame.png",
-      "sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
-      "size": 3534
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "size": 8901
     },
     {
       "path": "assets/symbol-read_manual.png",
-      "sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
-      "size": 1204
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "size": 3794
     },
     {
       "path": "assets/symbol-warning_triangle.png",
-      "sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
-      "size": 2093
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "size": 4482
     },
     {
       "path": "assets/symbol-weee.png",
-      "sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
-      "size": 2528
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "size": 2150
     },
     {
       "path": "assets/ups.png",
@@ -360,8 +360,8 @@
     },
     {
       "path": "assets_manifest.json",
-      "sha256": "b245e54a5f39f5873a0403b234a273a48b7b8d670756e92fb1646e2e32648d35",
-      "size": 33244
+      "sha256": "d8de5966315ea000c0e603ccfc591538f7b467ee5f08a92c7113dd041e40c91a",
+      "size": 36260
     },
     {
       "path": "source/artwork-edge-audit.json",
@@ -375,18 +375,18 @@
     },
     {
       "path": "source/browser-audit.json",
-      "sha256": "8969667f49c8af1eebbaf1f8295f7849c1bdd476fb78ede21fa6530c26f94b41",
-      "size": 10487
+      "sha256": "e758c27831de749a21d41474cbf0f20f26d3031d97441998cd04c476b43633fc",
+      "size": 15069
     },
     {
       "path": "source/chapter-copy-index.json",
-      "sha256": "3d8517741d456dd856d45592f6f2e9e8acf2028b56da18be5ea171c934e7f5e3",
-      "size": 10472
+      "sha256": "ef903c7be116b77bd0518cd442fd0f5a850db15672a9f7db25d51938162a35a6",
+      "size": 10436
     },
     {
       "path": "source/chapters.json",
-      "sha256": "f05f70f2cb2b0f67075dc9a04193f35318dce0990b1dd95f08fa62116463d4fc",
-      "size": 287198
+      "sha256": "4646f2cea123fed9153f5d04608cf74d87a2991082c82bd9c080f7daf1b69d0f",
+      "size": 286803
     },
     {
       "path": "source/lcd-icon-connected-batteries.pdf",
@@ -415,8 +415,8 @@
     },
     {
       "path": "source/validation.json",
-      "sha256": "157430a826dfa57aa6822fbadcf24ccd4838913f3a65194dc6172ee34f844589",
-      "size": 2032
+      "sha256": "a3fd284cf1a1e65a6d191775310afd2a8499fcb579ddfaebf0380c0ad0dbadee",
+      "size": 2389
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -655,43 +655,43 @@
     },
     {
       "path": "web/en/assets/symbol-battery_disposal.png",
-      "sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe",
-      "size": 3423
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "size": 19806
     },
     {
       "path": "web/en/assets/symbol-do_not_dismantle.png",
-      "sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9",
-      "size": 2699
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+      "size": 6737
     },
     {
       "path": "web/en/assets/symbol-keep_away_from_children.png",
-      "sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea",
-      "size": 3143
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "size": 7645
     },
     {
       "path": "web/en/assets/symbol-li_ion.png",
-      "sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea",
-      "size": 3419
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+      "size": 7367
     },
     {
       "path": "web/en/assets/symbol-no_open_flame.png",
-      "sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e",
-      "size": 3534
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "size": 8901
     },
     {
       "path": "web/en/assets/symbol-read_manual.png",
-      "sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e",
-      "size": 1204
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "size": 3794
     },
     {
       "path": "web/en/assets/symbol-warning_triangle.png",
-      "sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f",
-      "size": 2093
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "size": 4482
     },
     {
       "path": "web/en/assets/symbol-weee.png",
-      "sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0",
-      "size": 2528
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "size": 2150
     },
     {
       "path": "web/en/assets/ups.png",
@@ -710,13 +710,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "sha256": "ce937f25009222383af6ad9c139c9def2e530d51095cb79c9898b86f4d21b5a0",
-      "size": 403390
+      "sha256": "f53b6b2fcd3efc84222c44a7078e41bbd39fcfef6e44635d8328ec8038198c7a",
+      "size": 402742
     },
     {
       "path": "web/en/manual_je3600a_eu_en.md",
-      "sha256": "3516835a4b8048283c2a41d29dd7e43868057cf46e77c2cb818ec94f859c15e4",
-      "size": 64613
+      "sha256": "4cc1a01b4c4ce99a3031721684a4cf38dbc3182460f4cf155894741de0f1b3f4",
+      "size": 64561
     }
   ]
 }

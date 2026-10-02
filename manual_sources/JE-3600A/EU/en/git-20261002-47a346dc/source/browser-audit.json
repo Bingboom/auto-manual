@@ -166,7 +166,87 @@
         "name": "full.png",
         "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
       }
-    ]
+    ],
+    "audit_scope": "Initial full-manual browser audit; introduction and Symbols are superseded by review_correction",
+    "review_correction": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "scrollWidth": 1440,
+      "symbolImages": [
+        {
+          "height": 161,
+          "src": "assets/symbol-warning_triangle.png",
+          "width": 183
+        },
+        {
+          "height": 132,
+          "src": "assets/symbol-read_manual.png",
+          "width": 179
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-do_not_dismantle.png",
+          "width": 162
+        },
+        {
+          "height": 161,
+          "src": "assets/symbol-no_open_flame.png",
+          "width": 162
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-keep_away_from_children.png",
+          "width": 162
+        },
+        {
+          "height": 170,
+          "src": "assets/symbol-li_ion.png",
+          "width": 148
+        },
+        {
+          "height": 519,
+          "src": "assets/symbol-battery_disposal.png",
+          "width": 492
+        },
+        {
+          "height": 200,
+          "src": "assets/symbol-weee.png",
+          "width": 135
+        }
+      ],
+      "symbolTables": [
+        {
+          "height": 627.1171875,
+          "left": 316.59375,
+          "top": -16288.09375,
+          "width": 396.515625
+        },
+        {
+          "height": 612.7578125,
+          "left": 733.109375,
+          "top": -16288.09375,
+          "width": 396.515625
+        }
+      ],
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "text_sha256": "ce2189075620d549dad2fb00aaef5640eb480c9c7447beec0eb74caa524e6384",
+      "screenshots": [
+        {
+          "name": "review-introduction-1440.png",
+          "sha256": "32603d2a17671d860291165dda4499a91a55a429ccbae061ddb6c622aa2ead3e"
+        },
+        {
+          "name": "review-symbols-1440.png",
+          "sha256": "bde996e05ba307435c232b5caa12dbe0d2414151b2931deb2508a817d9eb4d74"
+        }
+      ],
+      "scope": "IMPORTANT chapter title and eight shared semantic Symbols; whole-document load, text and overflow checks"
+    }
   },
   {
     "viewport": {
@@ -354,6 +434,90 @@
         "name": "full.png",
         "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
       }
-    ]
+    ],
+    "audit_scope": "Initial full-manual browser audit; introduction and Symbols are superseded by review_correction",
+    "review_correction": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "scrollWidth": 390,
+      "symbolImages": [
+        {
+          "height": 161,
+          "src": "assets/symbol-warning_triangle.png",
+          "width": 183
+        },
+        {
+          "height": 132,
+          "src": "assets/symbol-read_manual.png",
+          "width": 179
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-do_not_dismantle.png",
+          "width": 162
+        },
+        {
+          "height": 161,
+          "src": "assets/symbol-no_open_flame.png",
+          "width": 162
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-keep_away_from_children.png",
+          "width": 162
+        },
+        {
+          "height": 170,
+          "src": "assets/symbol-li_ion.png",
+          "width": 148
+        },
+        {
+          "height": 519,
+          "src": "assets/symbol-battery_disposal.png",
+          "width": 492
+        },
+        {
+          "height": 200,
+          "src": "assets/symbol-weee.png",
+          "width": 135
+        }
+      ],
+      "symbolTables": [
+        {
+          "height": 521.140625,
+          "left": 18,
+          "top": -15590.3828125,
+          "width": 354
+        },
+        {
+          "height": 559.8203125,
+          "left": 18,
+          "top": -15051.6484375,
+          "width": 354
+        }
+      ],
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "text_sha256": "0224397ad99c7a614784ffcffa4ee79d9707f63a6357fc648dfc17e13d486644",
+      "screenshots": [
+        {
+          "name": "review-disposal-390.png",
+          "sha256": "184107f366da3cf505940720ec9ed6104ddc94ce6b935fab03a343f46233849b"
+        },
+        {
+          "name": "review-introduction-390.png",
+          "sha256": "fef6d2e5df430b92dbbbe49171c3f8fdf2f66aabc4be03797f8c96b79be95d04"
+        },
+        {
+          "name": "review-symbols-390.png",
+          "sha256": "3c38eb0fa186b0143cc628ecc0a1ce032809a4d8917be73786444fee1592ae1c"
+        }
+      ],
+      "scope": "IMPORTANT chapter title and eight shared semantic Symbols; whole-document load, text and overflow checks"
+    }
   }
 ]

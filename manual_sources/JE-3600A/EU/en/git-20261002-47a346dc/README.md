@@ -60,6 +60,14 @@ AI file and its pinned SHA-256.
 | Warranty/App | Shared warranty and App components | 3+2 years; source phone UI and live captions; positioned selectable control labels |
 | Regulatory back | Shared reference figure and native text | Shenzhen Hello Tech manufacturer/address, original CE/contact QR |
 
+The opening chapter is `IMPORTANT`; the product name remains in site metadata
+and navigation. All eight Symbols pictograms reuse existing clean shared artwork
+byte-for-byte, with source paths and hashes in `assets_manifest.json`. The first
+six use the shared phase2 Symbols attachments frozen with JE-2000F/EU; battery
+separate collection uses common `symbols/weee2.png` (no bottom bar), and product
+WEEE uses common `symbols/weee.png` (with bottom bar). All eight have transparent
+backgrounds; the older JE-3600A snapshot's cell-background crops are not selected.
+
 JE-2000E supplied the shared chapter/component pattern, not product facts.
 No automatic-output-restore table appears in this English source and none was
 invented. This is a prepared-document intake because some source copy is outlined
@@ -68,7 +76,7 @@ and was visually transcribed; it does not claim native publication admission.
 ## Review evidence
 
 The candidate passed strict IR validation, deterministic Markdown replay, all
-packaged asset hashes, strict Sphinx, 50 targeted shared-component tests, and the
+packaged asset hashes, strict Sphinx, 56 targeted shared-component tests, and the
 repository maintainability guardrails. Browser checks cover 1440×1000 and
 390×844, 56 loaded image elements, 23 LCD rows, correct rowspans, zero missing
 images, page errors or document overflow. Wide semantic tables remain horizontally
@@ -83,6 +91,11 @@ Local complete chapter screenshots are retained in
 receipt. Local Python versions differ from `requirements.lock`; no dependencies
 were changed. No production renderer, Python logic or shared CSS was changed, so
 full logic/build-behavior suites were not applicable to this source-only PR.
+
+The introduction and Symbols correction was rechecked in the in-app browser at
+both sizes. `source/browser-audit.json` retains the initial full-manual audit and
+adds the correction checks and screenshot digests under `review_correction`.
+Current correction screenshots are `reports/je3600a-native/review-*.png`.
 
 ## Source errata awaiting product review
 
