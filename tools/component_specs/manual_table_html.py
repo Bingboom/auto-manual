@@ -5,6 +5,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.manual_tables import (
     lcd_icon_component_spec,
     symbol_icon_component_spec,
@@ -32,7 +33,7 @@ def parse_lcd_icon_html(
     source_path: Path,
     declared_page: bool,
     language: str,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     tables = declared_tables(soup, "lcd", declared_page)
     if len(tables) != 1:
         raise ValueError(f"{source_path}: LCD component requires exactly one table")
@@ -74,7 +75,7 @@ def parse_troubleshooting_html(
     source_path: Path,
     declared_page: bool,
     language: str,
-) -> tuple[object, Tag, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, Tag, tuple[Tag, ...]]:
     tables = declared_tables(soup, "troubleshooting", declared_page)
     if len(tables) != 1:
         raise ValueError(
@@ -107,8 +108,8 @@ def parse_symbol_tables_html(
     expected_signal_rows: int,
     language: str,
 ) -> tuple[
-    tuple[object, Tag, tuple[Tag, ...]],
-    tuple[object, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
+    tuple[ComponentSpec, Tag, tuple[Tag, ...]],
 ]:
     signal_payload, signal_table, signal_headers, signal_rows = decode_signal_table(
         soup,

@@ -35,7 +35,7 @@ def _merge_instance_value(base: Any, override: Any) -> Any:
     ``id`` fields merge in place and preserve the base order.
     """
     if isinstance(base, Mapping) and isinstance(override, Mapping):
-        merged = deepcopy(dict(base))
+        merged: Any = deepcopy(dict(base))
         for key, value in override.items():
             merged[key] = (
                 _merge_instance_value(merged[key], value)

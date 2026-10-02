@@ -57,7 +57,7 @@ def parse_operation_tables_html(
     return claims
 
 
-def _auto_resume(headers, cells, source_ref, language):
+def _auto_resume(headers: list[str], cells: list[list[Tag]], source_ref: str, language: str) -> ComponentSpec:
     if ([len(row) for row in cells] != [2, 2, 1, 2]
             or str(cells[1][0].get("rowspan", "")) != "2"):
         raise ValueError(f"{source_ref}: auto-resume lost its middle condition span")
@@ -68,7 +68,7 @@ def _auto_resume(headers, cells, source_ref, language):
     )
 
 
-def _key_combinations(headers, cells, source_ref, language):
+def _key_combinations(headers: list[str], cells: list[list[Tag]], source_ref: str, language: str) -> ComponentSpec:
     if any(str(cell.get(attr, "1")) != "1"
            for row in cells for cell in row for attr in ("rowspan", "colspan")):
         raise ValueError(f"{source_ref}: key-combinations must have unspanned cells")
