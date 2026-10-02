@@ -1692,7 +1692,7 @@
                     "text": "On: Press once"
                   },
                   {
-                    "html": "Off: Press and hold for 3s",
+                    "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>Off: Press and hold for 3s</span></span>",
                     "text": "Off: Press and hold for 3s"
                   },
                   {
@@ -1724,7 +1724,7 @@
                 "panel_top": 0,
                 "panel_fill": "#ffffff",
                 "preserve_frame": true,
-                "art_sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
+                "art_sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
                 "labels": [
                   {
                     "line": 0,
@@ -1766,7 +1766,7 @@
               },
               "image_key": "operation-main-power",
               "web_replace_key": "",
-              "source_fragment_sha256": "d073aa5ff702a79d3c7bd79fe491172e42bf6fde3936cdb35899e1cf4d09f41f"
+              "source_fragment_sha256": "1c75a4a929d7ce689fd991ea7533bf8ad89cfa72c30e2ea36b2e92239ad8c48e"
             },
             "schema_version": "component-spec/v1"
           },
@@ -1816,8 +1816,50 @@
                   },
                   "children": [
                     {
-                      "kind": "text",
-                      "text": "Off: Press and hold for 3s"
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "style": "display:inline-flex;align-items:center;gap:0.35em"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "hidden": true,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "hb-inline-hold-clock",
+                                "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                  }
+                                }
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Off: Press and hold for 3s"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -1869,6 +1911,19 @@
             {
               "kind": "text",
               "text": "USB OUTPUT ON/OFF"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ],
+      [
+        "flow",
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Prerequisite: The product is turned on."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -1930,11 +1985,6 @@
                     ]
                   }
                 ]
-              },
-              {
-                "role": "prerequisite",
-                "content_kind": "rich_text",
-                "content": "<p>Prerequisite: The product is turned on.</p>"
               }
             ],
             "assets": [
@@ -1951,15 +2001,6 @@
             "schema_version": "component-spec/v1"
           },
           "carrier_flow": [
-            {
-              "kind": "paragraph",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Prerequisite: The product is turned on."
-                }
-              ]
-            },
             {
               "kind": "image",
               "source": "assets/operation-dc-usb-output.png",
@@ -2218,6 +2259,19 @@
       [
         "flow",
         {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Prerequisite: The product is turned on."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ],
+      [
+        "flow",
+        {
           "schema_version": "manual-flow/v2",
           "kind": "component",
           "component_spec": {
@@ -2271,11 +2325,6 @@
                     ]
                   }
                 ]
-              },
-              {
-                "role": "prerequisite",
-                "content_kind": "rich_text",
-                "content": "<p>Prerequisite: The product is turned on.</p>"
               }
             ],
             "assets": [
@@ -2292,15 +2341,6 @@
             "schema_version": "component-spec/v1"
           },
           "carrier_flow": [
-            {
-              "kind": "paragraph",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Prerequisite: The product is turned on."
-                }
-              ]
-            },
             {
               "kind": "image",
               "source": "assets/operation-ac-output.png",
@@ -2450,7 +2490,7 @@
                 "content_kind": "ordered_labels",
                 "content": [
                   {
-                    "html": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device&#x27;s power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output.",
+                    "html": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output.",
                     "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output."
                   },
                   {
@@ -2462,7 +2502,7 @@
                     "text": "AC power button"
                   },
                   {
-                    "html": "On/Off: Press and hold for 3s",
+                    "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>On/Off: Press and hold for 3s</span></span>",
                     "text": "On/Off: Press and hold for 3s"
                   }
                 ]
@@ -2486,7 +2526,7 @@
                 "panel_top": 0,
                 "panel_fill": "#ffffff",
                 "preserve_frame": true,
-                "art_sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
+                "art_sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
                 "labels": [
                   {
                     "line": 0,
@@ -2528,7 +2568,7 @@
               },
               "image_key": "operation-energy-saving",
               "web_replace_key": "",
-              "source_fragment_sha256": "639e09fb9c176bb85f3a23cdd355fca20c7cdf7279f49fd55b01ac8fc82bba04"
+              "source_fragment_sha256": "4888e4c371a6dd7b5de4d55f0a7f9934d909c05c01b1b3eaffdeff8e8048a24a"
             },
             "schema_version": "component-spec/v1"
           },
@@ -2612,8 +2652,50 @@
                   },
                   "children": [
                     {
-                      "kind": "text",
-                      "text": "On/Off: Press and hold for 3s"
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "style": "display:inline-flex;align-items:center;gap:0.35em"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "hidden": true,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "hb-inline-hold-clock",
+                                "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                  }
+                                }
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "On/Off: Press and hold for 3s"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }

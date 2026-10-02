@@ -2101,6 +2101,33 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            161.8,
+            159.0,
+            329.0,
+            204.8
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            39.3,
+            210.0,
+            331.1,
+            237.6
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            263.0,
+            133.8,
+            274.9,
+            145.7
+          ]
         }
       ],
       "outputs": [
@@ -2113,7 +2140,7 @@
       "gate": {
         "status": "quarantine",
         "reasons": [
-          "Git-only candidate; source-geometry review before public asset registration"
+          "Git-only candidate; operator requested removal of explanatory gray text boxes; preserve device art, button circles, leaders and outer frame"
         ]
       },
       "risk_tags": [
@@ -2153,6 +2180,15 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            38.0,
+            273.0,
+            167.8,
+            288.2
+          ]
         }
       ],
       "outputs": [
@@ -2165,7 +2201,7 @@
       "gate": {
         "status": "quarantine",
         "reasons": [
-          "Git-only candidate; source-geometry review before public asset registration"
+          "Git-only candidate; operator requested removal of explanatory gray text boxes; preserve device art, button circles, leaders and outer frame"
         ]
       },
       "risk_tags": [
@@ -2205,6 +2241,15 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            39.3,
+            52.4,
+            169.1,
+            67.6
+          ]
         }
       ],
       "outputs": [
@@ -2217,7 +2262,7 @@
       "gate": {
         "status": "quarantine",
         "reasons": [
-          "Git-only candidate; source-geometry review before public asset registration"
+          "Git-only candidate; operator requested removal of explanatory gray text boxes; preserve device art, button circles, leaders and outer frame"
         ]
       },
       "risk_tags": [
@@ -2257,6 +2302,24 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            39.7,
+            269.4,
+            331.5,
+            330.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            193.5,
+            431.5,
+            205.5,
+            443.5
+          ]
         }
       ],
       "outputs": [
@@ -2269,7 +2332,7 @@
       "gate": {
         "status": "quarantine",
         "reasons": [
-          "Git-only candidate; source-geometry review before public asset registration"
+          "Git-only candidate; operator requested removal of explanatory gray text boxes; preserve device art, button circles, leaders and outer frame"
         ]
       },
       "risk_tags": [

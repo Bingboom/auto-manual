@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "754dc173974f8e7a986e823cd84bfc905b601bac099db80d3b35c1e18a08cf16",
-  "content_sha256": "660a804a8d99faa17d8e1124ad4635105df22c76e9f9d832e77b0aba4b66a487",
+  "content_sha256": "da8c1168990f806226b100f8279491b820c06bc2561704206eaa54aefb5c5a54",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -103,10 +103,10 @@
       "assets/lcd-icon-wifi.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
       "assets/lcd-map.png": "37ef74780972edcdb0cf2dbdd4ec8ccaa4ee898f615b1daa5fa89616cb5ec15f",
       "assets/lcd-mode.png": "e6c56996348f010fbdda97a3eb656bc5bd859d93e6ae671e085bc238b5c9d49a",
-      "assets/operation-ac-output.png": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
-      "assets/operation-dc-usb-output.png": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
-      "assets/operation-energy-saving.png": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
-      "assets/operation-main-power.png": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
+      "assets/operation-ac-output.png": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+      "assets/operation-dc-usb-output.png": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+      "assets/operation-energy-saving.png": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
+      "assets/operation-main-power.png": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
       "assets/overview-front.png": "44891b626c4ae6d964a20cc605cb2e366aeb4b4739102b2b7835d09acde372fd",
       "assets/overview-right.png": "3052666974175662494861c95a0b6a19901ccc6e5d092f67e4648ee071cc4126",
       "assets/symbol-battery_disposal.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
@@ -119,7 +119,7 @@
       "assets/symbol-weee.png": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
       "assets/ups.png": "370b2ae2e50dbbea4b1b1be1f0efefbd0447850d40ee3ba613ca5a97975b23a0"
     },
-    "block_count": 126,
+    "block_count": 128,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 14,
       "HB-SPECIAL-APP": 3,
@@ -2082,15 +2082,7 @@
         "figures": [
           {
             "base_art_layout": {
-              "art_sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
-              "prerequisite_fill": "#ebebec",
-              "prerequisite_max_width": 52,
-              "prerequisite_rect": [
-                4,
-                4,
-                47,
-                8
-              ],
+              "art_sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
               "step_anchors": [
                 [
                   83,
@@ -2104,7 +2096,7 @@
               "step_width": 16
             },
             "capture_following_lines": 0,
-            "capture_prerequisite": true,
+            "capture_prerequisite": false,
             "composite_locales": [],
             "id": "dc-usb-output",
             "image_key": "operation/dc_usb_output",
@@ -2118,15 +2110,7 @@
           },
           {
             "base_art_layout": {
-              "art_sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
-              "prerequisite_fill": "#ebebec",
-              "prerequisite_max_width": 52,
-              "prerequisite_rect": [
-                4,
-                3,
-                47,
-                8
-              ],
+              "art_sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
               "step_anchors": [
                 [
                   80,
@@ -2140,7 +2124,7 @@
               "step_width": 19
             },
             "capture_following_lines": 0,
-            "capture_prerequisite": true,
+            "capture_prerequisite": false,
             "composite_locales": [],
             "id": "ac-output",
             "image_key": "operation/ac_output",
@@ -4041,7 +4025,7 @@
             "assets/operation-main-power.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "ce351dd69d24ca2625b303700ac4cb1b8569316a6fb711304de1c2f7e26ecf5e",
+          "content_sha256": "175ad55c004ccff37de36504ac4ef5798097d7b50e9732d8af6b2486a321a7aa",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4072,8 +4056,50 @@
                   {
                     "children": [
                       {
-                        "kind": "text",
-                        "text": "Off: Press and hold for 3s"
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [],
+                                "kind": "inline_group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "hidden": true,
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-inline-hold-clock",
+                                  "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Off: Press and hold for 3s"
+                              }
+                            ],
+                            "kind": "inline_group"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:inline-flex;align-items:center;gap:0.35em"
+                            }
+                          }
+                        }
                       }
                     ],
                     "kind": "group",
@@ -4144,7 +4170,7 @@
               "language": "en",
               "metadata": {
                 "base_art_layout": {
-                  "art_sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
+                  "art_sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
                   "labels": [
                     {
                       "line": 0,
@@ -4191,7 +4217,7 @@
                 "capture_following_lines": 4,
                 "image_key": "operation-main-power",
                 "presentation_mode": "base-art-live-copy",
-                "source_fragment_sha256": "d073aa5ff702a79d3c7bd79fe491172e42bf6fde3936cdb35899e1cf4d09f41f",
+                "source_fragment_sha256": "1c75a4a929d7ce689fd991ea7533bf8ad89cfa72c30e2ea36b2e92239ad8c48e",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
@@ -4223,7 +4249,7 @@
                       "text": "On: Press once"
                     },
                     {
-                      "html": "Off: Press and hold for 3s",
+                      "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>Off: Press and hold for 3s</span></span>",
                       "text": "Off: Press and hold for 3s"
                     },
                     {
@@ -4269,23 +4295,31 @@
           "source_ref": "en/pdf-13-15/operations#block-4"
         },
         {
+          "asset_refs": [],
+          "block_id": "operations:block-0005",
+          "content_sha256": "ec62a9d6a101ea16ac0beb9366463ff4ff63bc54bde9da5343d15a4144c56564",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Prerequisite: The product is turned on."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "en/pdf-13-15/operations#block-5"
+        },
+        {
           "asset_refs": [
             "assets/operation-dc-usb-output.png"
           ],
-          "block_id": "operations:block-0005",
-          "content_sha256": "505e5eb559c7c9b8e3f39c3fe71310a03c2fd958eee8532a04f745062ee8b0f3",
+          "block_id": "operations:block-0006",
+          "content_sha256": "09b06763cb48d0a260ca9a5678ba89f269ba11e1226a97ec23413a92576290fa",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Prerequisite: The product is turned on."
-                  }
-                ],
-                "kind": "paragraph"
-              },
               {
                 "alt": "USB OUTPUT ON/OFF",
                 "kind": "image",
@@ -4441,11 +4475,6 @@
                   ],
                   "content_kind": "ordered_steps",
                   "role": "steps"
-                },
-                {
-                  "content": "<p>Prerequisite: The product is turned on.</p>",
-                  "content_kind": "rich_text",
-                  "role": "prerequisite"
                 }
               ],
               "source_ref": "en/pdf-13/dc-usb-output",
@@ -4457,11 +4486,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-5"
+          "source_ref": "en/pdf-13-15/operations#block-6"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0006",
+          "block_id": "operations:block-0007",
           "content_sha256": "6cba858507a5ff3b8494df6ba28498e438962089f9c0ac7e3f892f7b353449ae",
           "kind": "flow",
           "payload": {
@@ -4603,11 +4632,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-6"
+          "source_ref": "en/pdf-13-15/operations#block-7"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0007",
+          "block_id": "operations:block-0008",
           "content_sha256": "c628f77b0eb0777c778c2626c953103b025e611c3904ef6ebca398fb768cb61c",
           "kind": "flow",
           "payload": {
@@ -4621,26 +4650,34 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-7"
+          "source_ref": "en/pdf-13-15/operations#block-8"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "operations:block-0009",
+          "content_sha256": "ec62a9d6a101ea16ac0beb9366463ff4ff63bc54bde9da5343d15a4144c56564",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Prerequisite: The product is turned on."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "en/pdf-13-15/operations#block-9"
         },
         {
           "asset_refs": [
             "assets/operation-ac-output.png"
           ],
-          "block_id": "operations:block-0008",
-          "content_sha256": "6c7601e8a3914dfffc3a9ee81ee46bd4835c0c5182d6c202424754a682d29f99",
+          "block_id": "operations:block-0010",
+          "content_sha256": "1fd2ab281b43b8dec8e0dcf6139654af53a652fec92b433cfefcf1076bd744c8",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Prerequisite: The product is turned on."
-                  }
-                ],
-                "kind": "paragraph"
-              },
               {
                 "alt": "AC OUTPUT ON/OFF",
                 "kind": "image",
@@ -4796,11 +4833,6 @@
                   ],
                   "content_kind": "ordered_steps",
                   "role": "steps"
-                },
-                {
-                  "content": "<p>Prerequisite: The product is turned on.</p>",
-                  "content_kind": "rich_text",
-                  "role": "prerequisite"
                 }
               ],
               "source_ref": "en/pdf-14/ac-output",
@@ -4812,11 +4844,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-8"
+          "source_ref": "en/pdf-13-15/operations#block-10"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0009",
+          "block_id": "operations:block-0011",
           "content_sha256": "9367b6b9e6b8a1fa523342b6d045fa075b22e146de4ee484ec7ad5a65736e012",
           "kind": "flow",
           "payload": {
@@ -4830,14 +4862,14 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-9"
+          "source_ref": "en/pdf-13-15/operations#block-11"
         },
         {
           "asset_refs": [
             "assets/operation-energy-saving.png"
           ],
-          "block_id": "operations:block-0010",
-          "content_sha256": "4a126e3a4f8493314246c6b1181970a5ccefd3da8a83f06d86ac4c81a66c24f6",
+          "block_id": "operations:block-0012",
+          "content_sha256": "8385d079fbe1c77cb4094f0f10c6308844bf1c13f7fbbb1b39701877c4dac17a",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4902,8 +4934,50 @@
                   {
                     "children": [
                       {
-                        "kind": "text",
-                        "text": "On/Off: Press and hold for 3s"
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [],
+                                "kind": "inline_group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "hidden": true,
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-inline-hold-clock",
+                                  "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "On/Off: Press and hold for 3s"
+                              }
+                            ],
+                            "kind": "inline_group"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:inline-flex;align-items:center;gap:0.35em"
+                            }
+                          }
+                        }
                       }
                     ],
                     "kind": "group",
@@ -4940,7 +5014,7 @@
               "language": "en",
               "metadata": {
                 "base_art_layout": {
-                  "art_sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
+                  "art_sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
                   "labels": [
                     {
                       "line": 0,
@@ -4987,7 +5061,7 @@
                 "capture_following_lines": 4,
                 "image_key": "operation-energy-saving",
                 "presentation_mode": "base-art-live-copy",
-                "source_fragment_sha256": "639e09fb9c176bb85f3a23cdd355fca20c7cdf7279f49fd55b01ac8fc82bba04",
+                "source_fragment_sha256": "4888e4c371a6dd7b5de4d55f0a7f9934d909c05c01b1b3eaffdeff8e8048a24a",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
@@ -5015,7 +5089,7 @@
                 {
                   "content": [
                     {
-                      "html": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device&#x27;s power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output.",
+                      "html": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output.",
                       "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output."
                     },
                     {
@@ -5027,7 +5101,7 @@
                       "text": "AC power button"
                     },
                     {
-                      "html": "On/Off: Press and hold for 3s",
+                      "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>On/Off: Press and hold for 3s</span></span>",
                       "text": "On/Off: Press and hold for 3s"
                     }
                   ],
@@ -5044,11 +5118,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-10"
+          "source_ref": "en/pdf-13-15/operations#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0011",
+          "block_id": "operations:block-0013",
           "content_sha256": "923a067acdf28db97d137834501af9fac96e93837c35e47481c088a1d9cd30fe",
           "kind": "flow",
           "payload": {
@@ -5142,11 +5216,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-11"
+          "source_ref": "en/pdf-13-15/operations#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0012",
+          "block_id": "operations:block-0014",
           "content_sha256": "5329933c18e677e27f0a0f1f72f77c92548702e049bb94459e30576af0207fea",
           "kind": "flow",
           "payload": {
@@ -5160,13 +5234,13 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-12"
+          "source_ref": "en/pdf-13-15/operations#block-14"
         },
         {
           "asset_refs": [
             "assets/lcd-mode.png"
           ],
-          "block_id": "operations:block-0013",
+          "block_id": "operations:block-0015",
           "content_sha256": "ac59da64133c3dc14a70578c74a6ee20fe9ad78d2fd34e0297cac6c77ee6ccf4",
           "kind": "flow",
           "payload": {
@@ -5252,11 +5326,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-13"
+          "source_ref": "en/pdf-13-15/operations#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0014",
+          "block_id": "operations:block-0016",
           "content_sha256": "4c1d87e680bbb7ffc6bacc9027417274eda28c24628f86f22aee0c9aebce83c0",
           "kind": "flow",
           "payload": {
@@ -5269,11 +5343,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-14"
+          "source_ref": "en/pdf-13-15/operations#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0015",
+          "block_id": "operations:block-0017",
           "content_sha256": "d176b3d35186edb47a89aa5b13db0eeda302bda877fde4e8cf7f76d5b9a10e35",
           "kind": "flow",
           "payload": {
@@ -5287,11 +5361,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-15"
+          "source_ref": "en/pdf-13-15/operations#block-17"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0016",
+          "block_id": "operations:block-0018",
           "content_sha256": "a6f7d25d9014f13c2edbae5ba1570cd28e77af81477dcf223174c4414d244620",
           "kind": "flow",
           "payload": {
@@ -5342,7 +5416,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-16"
+          "source_ref": "en/pdf-13-15/operations#block-18"
         }
       ],
       "language": "en",
@@ -10850,5 +10924,5 @@
   "schema_version": "manual-ir/v2",
   "snapshot_sha256": null,
   "source": "prepared-document",
-  "style_contract_sha256": "b73339ba11fe696ec9658c8963c8796c9f87f8a50ebb3681dc62e3fdb77bde88"
+  "style_contract_sha256": "24d98b76c3a883d0362f8ba1b911c9885c4fc88d8eb4fa94d4254e14537a7b2d"
 }

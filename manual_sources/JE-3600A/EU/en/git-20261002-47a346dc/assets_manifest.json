@@ -386,7 +386,7 @@
     ],
     "content_mode": "fixed-product-markings",
     "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "reason": "Native JE-3600A EU panel with selectable external copy; operator-requested removal of gray explanatory boxes on white canvas.",
     "removed_text_regions": [
       [
         259,
@@ -407,8 +407,100 @@
         234
       ]
     ],
-    "sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
-    "extraction": "crop + native text redaction with graphics/images preserved"
+    "sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
+    "extraction": "crop + native text redaction with graphics/images preserved",
+    "background_policy": "Remove only the operator-identified explanatory gray text boxes on white canvas; preserve outer frame, button circles, device shading and leader geometry.",
+    "removed_background_regions": [
+      [
+        161.8,
+        159.0,
+        329.0,
+        204.8
+      ],
+      [
+        39.3,
+        210.0,
+        331.1,
+        237.6
+      ]
+    ],
+    "removed_background_drawings": [
+      {
+        "drawing_index": 457,
+        "bbox_pt": [
+          162.5330047607422,
+          167.373779296875,
+          328.2430114746094,
+          204.04177856445312
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      },
+      {
+        "drawing_index": 458,
+        "bbox_pt": [
+          173.57090759277344,
+          159.71688842773438,
+          191.84690856933594,
+          169.3798828125
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      },
+      {
+        "drawing_index": 989,
+        "bbox_pt": [
+          40.018585205078125,
+          210.7705078125,
+          330.3105773925781,
+          236.843505859375
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "reuse_review": {
+      "candidate": "docs/renderers/web/assets/je3600a_eu_en/operation_power.png",
+      "decision": "Existing same-model artwork embeds the same gray explanatory boxes and text; re-extract pinned current native source with scoped recipe operators."
+    },
+    "removed_clock_regions": [
+      [
+        263.0,
+        133.8,
+        274.9,
+        145.7
+      ]
+    ],
+    "removed_clock_drawings": [
+      {
+        "drawing_index": 450,
+        "bbox_pt": [
+          263.6824035644531,
+          134.52369689941406,
+          274.13641357421875,
+          144.9777069091797
+        ]
+      },
+      {
+        "drawing_index": 451,
+        "bbox_pt": [
+          268.430908203125,
+          136.4010009765625,
+          272.03790283203125,
+          139.75100708007812
+        ]
+      }
+    ],
+    "clock_policy": "Operator requested CSS clocks beside live long-press copy; remove both native circle/hand pairs from the white canvas."
   },
   "operation-dc-usb-output": {
     "path": "assets/operation-dc-usb-output.png",
@@ -421,7 +513,7 @@
     ],
     "content_mode": "fixed-product-markings",
     "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "reason": "Native JE-3600A EU panel with selectable external copy; operator-requested removal of gray explanatory boxes on white canvas.",
     "removed_text_regions": [
       [
         43,
@@ -436,8 +528,37 @@
         328
       ]
     ],
-    "sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
-    "extraction": "crop + native text redaction with graphics/images preserved"
+    "sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+    "extraction": "crop + native text redaction with graphics/images preserved",
+    "background_policy": "Remove only the operator-identified explanatory gray text boxes on white canvas; preserve outer frame, button circles, device shading and leader geometry.",
+    "removed_background_regions": [
+      [
+        38.0,
+        273.0,
+        167.8,
+        288.2
+      ]
+    ],
+    "removed_background_drawings": [
+      {
+        "drawing_index": 558,
+        "bbox_pt": [
+          38.76909637451172,
+          273.755615234375,
+          166.99009704589844,
+          287.4486083984375
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "reuse_review": {
+      "candidate": "docs/renderers/web/assets/je3600a_eu_en/operation_usb.png",
+      "decision": "Existing same-model artwork embeds the same gray explanatory boxes and text; re-extract pinned current native source with scoped recipe operators."
+    }
   },
   "operation-ac-output": {
     "path": "assets/operation-ac-output.png",
@@ -450,7 +571,7 @@
     ],
     "content_mode": "fixed-product-markings",
     "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "reason": "Native JE-3600A EU panel with selectable external copy; operator-requested removal of gray explanatory boxes on white canvas.",
     "removed_text_regions": [
       [
         43,
@@ -465,8 +586,37 @@
         140
       ]
     ],
-    "sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
-    "extraction": "crop + native text redaction with graphics/images preserved"
+    "sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+    "extraction": "crop + native text redaction with graphics/images preserved",
+    "background_policy": "Remove only the operator-identified explanatory gray text boxes on white canvas; preserve outer frame, button circles, device shading and leader geometry.",
+    "removed_background_regions": [
+      [
+        39.3,
+        52.4,
+        169.1,
+        67.6
+      ]
+    ],
+    "removed_background_drawings": [
+      {
+        "drawing_index": 471,
+        "bbox_pt": [
+          40.05870819091797,
+          53.120689392089844,
+          168.29071044921875,
+          66.81369018554688
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "reuse_review": {
+      "candidate": "docs/renderers/web/assets/je3600a_eu_en/operation_ac.png",
+      "decision": "Existing same-model artwork embeds the same gray explanatory boxes and text; re-extract pinned current native source with scoped recipe operators."
+    }
   },
   "operation-energy-saving": {
     "path": "assets/operation-energy-saving.png",
@@ -479,7 +629,7 @@
     ],
     "content_mode": "fixed-product-markings",
     "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-    "reason": "Old asset contains embedded external labels or does not match this source; use complete native panel with labels as live component copy",
+    "reason": "Native JE-3600A EU panel with selectable external copy; operator-requested removal of gray explanatory boxes on white canvas.",
     "removed_text_regions": [
       [
         46,
@@ -500,8 +650,66 @@
         448
       ]
     ],
-    "sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
-    "extraction": "crop + native text redaction with graphics/images preserved"
+    "sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
+    "extraction": "crop + native text redaction with graphics/images preserved",
+    "background_policy": "Remove only the operator-identified explanatory gray text boxes on white canvas; preserve outer frame, button circles, device shading and leader geometry.",
+    "removed_background_regions": [
+      [
+        39.7,
+        269.4,
+        331.5,
+        330.1
+      ]
+    ],
+    "removed_background_drawings": [
+      {
+        "drawing_index": 506,
+        "bbox_pt": [
+          40.40399169921875,
+          270.13189697265625,
+          330.6960144042969,
+          329.2698974609375
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "reuse_review": {
+      "candidate": "docs/renderers/web/assets/je3600a_eu_en/operation_energy.png",
+      "decision": "Existing same-model artwork embeds the same gray explanatory boxes and text; re-extract pinned current native source with scoped recipe operators."
+    },
+    "removed_clock_regions": [
+      [
+        193.5,
+        431.5,
+        205.5,
+        443.5
+      ]
+    ],
+    "removed_clock_drawings": [
+      {
+        "drawing_index": 469,
+        "bbox_pt": [
+          194.27020263671875,
+          432.2633056640625,
+          204.7241973876953,
+          442.71728515625
+        ]
+      },
+      {
+        "drawing_index": 470,
+        "bbox_pt": [
+          199.01870727539062,
+          434.1405944824219,
+          202.62570190429688,
+          437.4906005859375
+        ]
+      }
+    ],
+    "clock_policy": "Operator requested CSS clocks beside live long-press copy; remove both native circle/hand pairs from the white canvas."
   },
   "ups": {
     "path": "assets/ups.png",

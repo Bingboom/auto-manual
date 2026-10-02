@@ -50,7 +50,8 @@
     "guardrails": "passed",
     "logic_suite": "not applicable: no production Python or renderer changes",
     "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md",
-    "review_correction": "IMPORTANT heading and eight byte-identical shared Symbols passed at 1440x1000 and 390x844"
+    "review_correction": "IMPORTANT heading and eight byte-identical shared Symbols passed at 1440x1000 and 390x844",
+    "operation_background_review": "Passed at 1440x1000 and 390x844: five gray boxes and two baked clocks removed, two CSS-only clocks, two native prerequisite paragraphs, 56 loaded images, no overflow or page errors"
   },
   "warnings": [
     "Local Python package versions differ from requirements.lock; dependencies were not changed."
@@ -62,5 +63,13 @@
     "transparent_backgrounds_verified": true,
     "battery_collection": "no bottom bar",
     "product_weee": "with bottom bar"
+  },
+  "operation_artwork_correction": {
+    "panels": 4,
+    "removed_gray_boxes": 5,
+    "removed_baked_clocks": 2,
+    "css_clocks": 2,
+    "protected_pixels_unchanged": true,
+    "four_edges_identical_at_12x": true
   }
 }

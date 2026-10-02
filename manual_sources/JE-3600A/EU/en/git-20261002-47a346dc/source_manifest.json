@@ -55,13 +55,13 @@
   "inputs": [
     {
       "path": "README.md",
-      "sha256": "c493ff98f186fa3e12eac716ee7d39129d385c4670854754b4f29c2d7060a366",
-      "size": 6576
+      "sha256": "dd47a7daaf525a9ac5c4c37cde581472e13637c6ee66c4bad4867e7aa5f387e2",
+      "size": 8235
     },
     {
       "path": "asset_recipe.json",
-      "sha256": "60bf4086e3c78d965db5b1dfc93341ebf04f60da284a38a1171fe1a9e40cd6f2",
-      "size": 56703
+      "sha256": "38266d58dbc7e6d011a03089a0677c68677e13adece432b1b7a9582fec39aa8a",
+      "size": 58066
     },
     {
       "path": "assets/app-control.png",
@@ -285,23 +285,23 @@
     },
     {
       "path": "assets/operation-ac-output.png",
-      "sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
-      "size": 73696
+      "sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+      "size": 72827
     },
     {
       "path": "assets/operation-dc-usb-output.png",
-      "sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
-      "size": 71666
+      "sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+      "size": 70743
     },
     {
       "path": "assets/operation-energy-saving.png",
-      "sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
-      "size": 74524
+      "sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
+      "size": 72014
     },
     {
       "path": "assets/operation-main-power.png",
-      "sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
-      "size": 64554
+      "sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
+      "size": 61552
     },
     {
       "path": "assets/overview-front.png",
@@ -360,8 +360,13 @@
     },
     {
       "path": "assets_manifest.json",
-      "sha256": "d8de5966315ea000c0e603ccfc591538f7b467ee5f08a92c7113dd041e40c91a",
-      "size": 36260
+      "sha256": "37b560cb3de653340a43ef522d326d3429ac07bd49207e9fe6bf1f0aae2550e0",
+      "size": 41996
+    },
+    {
+      "path": "source/artwork-background-removal-audit.json",
+      "sha256": "646ee1d5e8decf05009048737fc55dab5a37e0491cfbdc53b701873a995f6273",
+      "size": 3512
     },
     {
       "path": "source/artwork-edge-audit.json",
@@ -370,23 +375,23 @@
     },
     {
       "path": "source/artwork-pixel-audit.json",
-      "sha256": "5b3faab54a9a78b7ce42fd688a9c20cdda16ce384a1e839b68bdae41f04c9c90",
-      "size": 2314
+      "sha256": "cd7b3900d34b62de711d77f3da858ae48957428569540f18a5b9e69b38a967e5",
+      "size": 3921
     },
     {
       "path": "source/browser-audit.json",
-      "sha256": "e758c27831de749a21d41474cbf0f20f26d3031d97441998cd04c476b43633fc",
-      "size": 15069
+      "sha256": "dee6265a801edf03e31d4a980a4d314c9bfb633bc2f83902da747e618c643c87",
+      "size": 22631
     },
     {
       "path": "source/chapter-copy-index.json",
-      "sha256": "ef903c7be116b77bd0518cd442fd0f5a850db15672a9f7db25d51938162a35a6",
-      "size": 10436
+      "sha256": "f101d2a5f0c74c87fba2c31afb17e68aae78e41b97775dd4aa641ab433c52304",
+      "size": 10534
     },
     {
       "path": "source/chapters.json",
-      "sha256": "4646f2cea123fed9153f5d04608cf74d87a2991082c82bd9c080f7daf1b69d0f",
-      "size": 286803
+      "sha256": "9a74c903e173a7b1327eddf631b0da211b03e5118a269515a42588d73072e085",
+      "size": 291160
     },
     {
       "path": "source/lcd-icon-connected-batteries.pdf",
@@ -415,8 +420,8 @@
     },
     {
       "path": "source/validation.json",
-      "sha256": "a3fd284cf1a1e65a6d191775310afd2a8499fcb579ddfaebf0380c0ad0dbadee",
-      "size": 2389
+      "sha256": "b25ae5bf10f6a4e33c54a82db0790cbdd1b2d98a78ad014d4f0ef3e86c266310",
+      "size": 2827
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -625,23 +630,23 @@
     },
     {
       "path": "web/en/assets/operation-ac-output.png",
-      "sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
-      "size": 73696
+      "sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+      "size": 72827
     },
     {
       "path": "web/en/assets/operation-dc-usb-output.png",
-      "sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
-      "size": 71666
+      "sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+      "size": 70743
     },
     {
       "path": "web/en/assets/operation-energy-saving.png",
-      "sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
-      "size": 74524
+      "sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
+      "size": 72014
     },
     {
       "path": "web/en/assets/operation-main-power.png",
-      "sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
-      "size": 64554
+      "sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
+      "size": 61552
     },
     {
       "path": "web/en/assets/overview-front.png",
@@ -710,13 +715,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "sha256": "f53b6b2fcd3efc84222c44a7078e41bbd39fcfef6e44635d8328ec8038198c7a",
-      "size": 402742
+      "sha256": "4994deb35d205801d44262ab2ad7f7740384bdaf3d70a4dc6570b626afc1ddaa",
+      "size": 407325
     },
     {
       "path": "web/en/manual_je3600a_eu_en.md",
-      "sha256": "4cc1a01b4c4ce99a3031721684a4cf38dbc3182460f4cf155894741de0f1b3f4",
-      "size": 64561
+      "sha256": "d268fbc497c05bf8388dc7976ff9d1992c8961d84cf7b9a5eeb4f22b3f1204df",
+      "size": 65051
     }
   ]
 }

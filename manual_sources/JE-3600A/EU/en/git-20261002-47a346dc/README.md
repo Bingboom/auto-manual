@@ -23,8 +23,11 @@ engineering review candidate, with `publication_eligible: false`.
 - `asset_recipe.json`, `assets_manifest.json`: source hashes, crops, exact shared
   asset reuse and redaction decisions. The small ×5 LCD icon has its own
   retained-path recipe and transparent export; the CE/contact QR export settings
-  are in the manifest. Frames, backgrounds, engravings, phone UI and leaders are
-  preserved. Only external native text is removed from ordinary illustrations.
+  are in the manifest. Frames, device shading, engravings, phone UI and leaders
+  are preserved. External native text becomes live copy; five explanatory gray
+  boxes in four operation panels are removed at the operator's request. The two
+  standalone clocks are removed from the art and drawn with CSS beside the live
+  long-press instructions.
 - `web/en/manual.ir.json`: frozen public IR, shared component registry/theme,
   target artwork geometry and shared stylesheet hashes.
 - `web/en/manual_je3600a_eu_en.md`: deterministic shared-renderer output.
@@ -54,7 +57,7 @@ AI file and its pinned SHA-256.
 | Area | Shared structure reused | JE-3600A source binding |
 | --- | --- | --- |
 | Inbox, symbols, LCD | Existing semantic tables/cards/icons | 23 LCD rows; numbers 4 and 18 each span two rows; ×5 battery indicator |
-| Operations | Shared Operation, reference figure, LCD mode and key-combination components | USB/AC use Operation; main-power/energy panels use source-bound reference labels to retain complete backgrounds and instruction boxes |
+| Operations | Shared Operation, reference figure, LCD mode and key-combination components | USB/AC prerequisites are native paragraphs above the artwork; main-power/energy panels retain live reference labels and CSS clocks. Explanatory gray boxes and baked clock glyphs are removed; devices, button circles and frames remain intact |
 | Connections/charging | Shared base-art reference figure | Five battery packs maximum, 200 mm ventilation, EU sockets and this source's cable topology |
 | Specifications | Shared spec tables | 3584 Wh; 3600 W rated / 7200 W surge; 100 A expansion input and 60 A output |
 | Warranty/App | Shared warranty and App components | 3+2 years; source phone UI and live captions; positioned selectable control labels |
@@ -84,8 +87,18 @@ scrollable on mobile; reaching their last columns was checked. Mobile long figur
 labels follow the shared renderer's readable stacked treatment.
 
 All 15 newly cropped/redacted panels match the source outside removed native text
-at 4×. Their four edges are byte-identical to the source at 12×. Detailed receipts
-are in `source/artwork-pixel-audit.json` and `source/artwork-edge-audit.json`.
+and explicitly approved background-removal regions at 4×. Their four edges are
+byte-identical to the source at 12×. Detailed receipts are in
+`source/artwork-pixel-audit.json` and `source/artwork-edge-audit.json`.
+`source/artwork-background-removal-audit.json` separately verifies the five gray
+boxes and two standalone clocks removed from power, USB, AC and energy-saving
+artwork: no pixels changed outside the scoped rectangles, no dark device strokes
+changed outside the approved clock regions, and the removal
+interiors are pure white at 12×. The existing recipe's `whiteout` operator covers
+whole identified boxes surrounded by white canvas; it does not select by color
+or reconstruct the device. Source drawing indices and geometry are recorded in
+`assets_manifest.json`. Older same-model assets contain the same boxes and are
+therefore unsuitable for unchanged reuse.
 Local complete chapter screenshots are retained in
 `reports/je3600a-native/browser-final-{1440,390}`; their digests are in the browser
 receipt. Local Python versions differ from `requirements.lock`; no dependencies
@@ -96,6 +109,16 @@ The introduction and Symbols correction was rechecked in the in-app browser at
 both sizes. `source/browser-audit.json` retains the initial full-manual audit and
 adds the correction checks and screenshot digests under `review_correction`.
 Current correction screenshots are `reports/je3600a-native/review-*.png`.
+
+The gray-box correction is checked separately under `operation_background_review`
+in the browser receipt at both sizes. USB and AC prerequisite text remains
+selectable above the figures without a capsule overlay. The four operation
+panels, IMPORTANT heading and shared Symbols were rechecked; local screenshots
+are `reports/je3600a-native/operation-background-*.png`.
+The two decorative clocks use CSS circles and border-drawn hands inside the
+shared reference figure's existing rich captions. They follow the long-press
+copy on desktop and mobile, are hidden from assistive technology, and require
+no image asset, SVG, JavaScript or target stylesheet.
 
 ## Source errata awaiting product review
 
