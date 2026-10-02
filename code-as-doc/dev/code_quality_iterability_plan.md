@@ -172,6 +172,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
       `_run_review_branch_baseline` 58 → 35、`_run_review_branch` 50 → 31（`process_queue_record_group` 体量大，暂缓）
     - [x] C 批（解析/加载）：`resolve_manifest_asset` 72 → 4、`load_web_document` 68 → 35、
       `ordered_pages` 59 → 36、`_extract_raw_latex` 75 → 28（宏到块改为规则表）；CC≥50 24 → 10（`extract_page` 属渲染热点，暂缓）
+    - [x] 补做（2026-10-02）：`process_queue_record_group` 55 → 21。拆出上传目标解析（钉钉主目标/镜像）、phase2 同步、构建产物记录、发布上传、评审云文档与基线、Web 发布元数据、失败回写；失败回写读取的中间进度收进 `_GroupRunState`。新旧实现用 60,000 组随机依赖（每个调用点都可能抛错）对比调用序列、日志、stderr 和返回值，零差异
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。
