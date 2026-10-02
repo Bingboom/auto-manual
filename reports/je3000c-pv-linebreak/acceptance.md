@@ -9,3 +9,5 @@
 - Aggregate publication Sphinx build passed with -W --keep-going. The publication diff is 28 files, all three target locales plus publish_manifest.json; unchanged six original languages and other targets.
 
 Source snapshot commit: 29cd41011ca4069d31e7d2809dc16e6577906753. Publication and live acceptance are tracked separately; these are local verification results.
+
+Full local unittest: 5,043 tests passed, 24 skipped (3176.396s). After merging main dfa2bd7f, 83 queue-dependency/shared-component tests passed; lint, guardrails and doc links passed again.
