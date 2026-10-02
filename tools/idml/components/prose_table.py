@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 import re
+from typing import Any
 
 from ..character_metrics import with_character_metrics
 from ..language_contract import governed_languages, layout_override_languages
@@ -977,64 +978,73 @@ def _body_data_table(
     return table, sum(applied_heights) + (0.0 if row_heights else 3.0)
 
 
-def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
-                       terminal: bool, span_columns: bool = True,
-                       troubleshooting: bool = False) -> tuple[str, float]:
-    if has_inline_images(raw_rows):
-        return render_image_table(raw_rows, ctx, tid=tid, terminal=terminal,
-                                  span_columns=span_columns)
-    n_cols = max(len(r) for r in raw_rows)
-    first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
-    is_overview = first_cell in {"POWER Button", "Total Output", "Handle"}
-    # The caller declares this table's semantic; it is never re-derived from
-    # the printed header. Matching localized copy is what STYLE_DEFINITION
-    # §0.5 forbids, and the header set only ever held EN/FR/ES spellings, so
-    # ja/zh/de/it/uk/pt-BR/ko all fell through to the legacy square table
-    # while manual_style.yaml declared HB-TABLE-TROUBLESHOOTING `aligned`.
-    is_troubleshooting = n_cols == 2 and troubleshooting
-    body_kind = body_data_table_kind(raw_rows)
-    is_auto_resume = body_kind == "auto_resume"
-    is_key_combinations = body_kind == "key_combinations"
-    auto_language = auto_resume_language(raw_rows) if is_auto_resume else None
-    auto_geometry = _AUTO_RESUME_GEOMETRY.get(auto_language or "")
-    if auto_geometry is not None and len(raw_rows) != len(auto_geometry.row_heights):
-        auto_geometry = None
-    data_table_before = param_pt(ctx.params, "comp_data_table_before", 3.4)
-    data_table_after = param_pt(ctx.params, "comp_data_table_after", 3.4)
-    default_table_before = param_pt(
-        ctx.params, "idml_data_table_space_before", 5.67,
-    )
-    default_table_after = param_pt(
-        ctx.params, "idml_data_table_space_after", 4.25,
-    )
-    auto_space_before = (
-        auto_geometry.space_before
-        if auto_geometry is not None else data_table_before
-    )
-    troubleshooting_style: TroubleshootingTableStyle | None = None
-    troubleshooting_estimate: float | None = None
-    if (
-        is_key_combinations
-        and ctx.add_story is not None
-        and is_key_combinations_rows(raw_rows)
-    ):
-        xml, framed_h = render_key_combinations(
-            raw_rows,
-            ctx,
-            tid=tid,
-            terminal=terminal,
+@dataclass(frozen=True)
+class _TableKind:
+    """Caller-declared and structural semantics of one prose table block."""
+
+    n_cols: int
+    first_cell: str
+    is_overview: bool
+    is_troubleshooting: bool
+    is_auto_resume: bool
+    is_key_combinations: bool
+    auto_geometry: Any
+
+    @classmethod
+    def classify(cls, raw_rows: list[list], *, troubleshooting: bool) -> _TableKind:
+        n_cols = max(len(r) for r in raw_rows)
+        first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
+        # The caller declares this table's semantic; it is never re-derived from
+        # the printed header. Matching localized copy is what STYLE_DEFINITION
+        # §0.5 forbids, and the header set only ever held EN/FR/ES spellings, so
+        # ja/zh/de/it/uk/pt-BR/ko all fell through to the legacy square table
+        # while manual_style.yaml declared HB-TABLE-TROUBLESHOOTING `aligned`.
+        body_kind = body_data_table_kind(raw_rows)
+        is_auto_resume = body_kind == "auto_resume"
+        auto_language = auto_resume_language(raw_rows) if is_auto_resume else None
+        auto_geometry = _AUTO_RESUME_GEOMETRY.get(auto_language or "")
+        if auto_geometry is not None and len(raw_rows) != len(auto_geometry.row_heights):
+            auto_geometry = None
+        return cls(
+            n_cols=n_cols,
+            first_cell=first_cell,
+            is_overview=first_cell in {"POWER Button", "Total Output", "Handle"},
+            is_troubleshooting=n_cols == 2 and troubleshooting,
+            is_auto_resume=is_auto_resume,
+            is_key_combinations=body_kind == "key_combinations",
+            auto_geometry=auto_geometry,
         )
-        if xml:
-            after = param_pt(ctx.params, "comp_data_table_after", 3.4)
-            xml = xml.replace(
-                "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange SpaceAfter="{after:g}" ',
-                1,
-            )
-            return xml, framed_h + after
-    if is_overview:
-        table = _overview_table(raw_rows, ctx, tid)
-    elif is_troubleshooting:
+
+    @property
+    def is_body_data(self) -> bool:
+        return self.is_auto_resume or self.is_key_combinations
+
+
+def _n_column_table(raw_rows: list[list], ctx: RenderContext, tid: str, n_cols: int) -> str:
+    # N-column prose tables (e.g. KEY COMBINATIONS): first
+    # column narrow-ish, rest evenly split
+    body_w2 = ctx.page_w - ctx.m_l - ctx.m_r
+    cols = [body_w2 * 0.3] + [body_w2 * 0.7 / (n_cols - 1)] * (n_cols - 1)
+    cells = []
+    for ri, r in enumerate(raw_rows):
+        for ci in range(n_cols):
+            txt = str(r[ci]) if ci < len(r) else ""
+            style = "HB Spec Label" if ri == 0 else "HB Spec Value"
+            cells.append(cell(
+                f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
+                psr(style, txt, terminal=True)))
+    return component_table(tid, cols, cells, n_rows=len(raw_rows),
+                           role="data")
+
+
+def _build_prose_table(
+    raw_rows: list[list], ctx: RenderContext, tid: str, kind: _TableKind,
+) -> tuple[str, float | None, TroubleshootingTableStyle | None]:
+    """Return ``(table XML, framed height when measured, troubleshooting style)``."""
+    auto_geometry = kind.auto_geometry
+    if kind.is_overview:
+        return _overview_table(raw_rows, ctx, tid), None, None
+    if kind.is_troubleshooting:
         troubleshooting_style = TroubleshootingTableStyle.from_context(
             ctx,
             language=_troubleshooting_language(ctx.language),
@@ -1045,10 +1055,11 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             tid,
             troubleshooting_style,
         )
-    elif is_auto_resume or is_key_combinations:
+        return table, framed_h, troubleshooting_style
+    if kind.is_body_data:
         table, framed_h = _body_data_table(
             raw_rows, ctx, tid,
-            "auto_resume" if is_auto_resume else "key_combinations",
+            "auto_resume" if kind.is_auto_resume else "key_combinations",
             panel_width=(
                 min(_AUTO_RESUME_WIDTH, ctx.text_measure)
                 if auto_geometry is not None else None
@@ -1066,109 +1077,191 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                 if auto_geometry is not None else None
             ),
         )
-    elif n_cols <= 2:
+        return table, framed_h, None
+    if kind.n_cols <= 2:
         rows2 = [(r[0], r[1] if len(r) > 1 else "") for r in raw_rows]
         table = spec_table(tid, [(str(a), str(b)) for a, b in rows2],
                            params=ctx.params, page_w=ctx.page_w,
                            m_l=ctx.m_l, m_r=ctx.m_r,
                            role="data")
-    else:
-        # N-column prose tables (e.g. KEY COMBINATIONS): first
-        # column narrow-ish, rest evenly split
-        body_w2 = ctx.page_w - ctx.m_l - ctx.m_r
-        cols = [body_w2 * 0.3] + [body_w2 * 0.7 / (n_cols - 1)] * (n_cols - 1)
-        cells = []
-        for ri, r in enumerate(raw_rows):
-            for ci in range(n_cols):
-                txt = str(r[ci]) if ci < len(r) else ""
-                style = "HB Spec Label" if ri == 0 else "HB Spec Value"
-                cells.append(cell(
-                    f"{tid}c{ri}_{ci}", f"{ci}:{ri}",
-                    psr(style, txt, terminal=True)))
-        table = component_table(tid, cols, cells, n_rows=len(raw_rows),
-                                role="data")
-    if (is_auto_resume or is_key_combinations) and ctx.add_story is not None:
-        table_width = (
-            min(_AUTO_RESUME_WIDTH, ctx.text_measure)
-            if auto_geometry is not None else ctx.text_measure
+        return table, None, None
+    return _n_column_table(raw_rows, ctx, tid, kind.n_cols), None, None
+
+
+def _body_data_panel(
+    table: str,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    kind: _TableKind,
+    framed_h: float,
+    terminal: bool,
+    auto_space_before: float,
+    data_table_before: float,
+    data_table_after: float,
+) -> str:
+    auto_geometry = kind.auto_geometry
+    table_width = (
+        min(_AUTO_RESUME_WIDTH, ctx.text_measure)
+        if auto_geometry is not None else ctx.text_measure
+    )
+    table_before = auto_space_before if kind.is_auto_resume else data_table_before
+    xml = rounded_table_panel(
+        ctx.add_story,
+        ctx.params,
+        sid=f"st_anchor_data_{tid}",
+        title="body data table",
+        table_xml=table,
+        width=table_width,
+        height=framed_h,
+        n_cols=kind.n_cols,
+        terminal=terminal,
+        fill="Color/Paper",
+        stroke="Color/HB Brand Dark",
+        # InDesign ignores the nested inline Group transform. The host
+        # paragraph below owns the measured first-line offset instead.
+        left_indent=0.0,
+        space_before=table_before,
+        space_after=(
+            max(0.0, data_table_after - _AUTO_RESUME_FRAME_SLACK)
+            if kind.is_auto_resume else data_table_after
+        ),
+        content_bottom_bleed=(
+            _AUTO_RESUME_FRAME_SLACK if kind.is_auto_resume else 0.0
+        ),
+    )
+    if auto_geometry is not None:
+        paragraph_indent = (
+            auto_geometry.first_line_indent - ctx.inline_origin_shift
         )
-        table_before = auto_space_before if is_auto_resume else data_table_before
-        xml = rounded_table_panel(
-            ctx.add_story,
-            ctx.params,
-            sid=f"st_anchor_data_{tid}",
-            title="body data table",
-            table_xml=table,
-            width=table_width,
-            height=framed_h,
-            n_cols=n_cols,
-            terminal=terminal,
-            fill="Color/Paper",
-            stroke="Color/HB Brand Dark",
-            # InDesign ignores the nested inline Group transform. The host
-            # paragraph below owns the measured first-line offset instead.
-            left_indent=0.0,
-            space_before=table_before,
-            space_after=(
-                max(0.0, data_table_after - _AUTO_RESUME_FRAME_SLACK)
-                if is_auto_resume else data_table_after
-            ),
-            content_bottom_bleed=(
-                _AUTO_RESUME_FRAME_SLACK if is_auto_resume else 0.0
-            ),
+        xml = xml.replace(
+            "<ParagraphStyleRange ",
+            '<ParagraphStyleRange LeftIndent="0" '
+            f'FirstLineIndent="{paragraph_indent:g}" ',
+            1,
         )
-        if auto_geometry is not None:
-            paragraph_indent = (
-                auto_geometry.first_line_indent - ctx.inline_origin_shift
-            )
-            xml = xml.replace(
-                "<ParagraphStyleRange ",
-                '<ParagraphStyleRange LeftIndent="0" '
-                f'FirstLineIndent="{paragraph_indent:g}" ',
-                1,
-            )
-    elif is_troubleshooting and ctx.add_story is not None:
-        if troubleshooting_style is None:
-            raise RuntimeError("troubleshooting style was not resolved")
-        xml = rounded_table_panel(
-            ctx.add_story,
-            ctx.params,
-            sid=f"st_anchor_trouble_{tid}",
-            title="troubleshooting table",
-            table_xml=table,
-            width=ctx.text_measure - 0.75,
-            height=framed_h,
-            n_cols=2,
+    return xml
+
+
+def _troubleshooting_panel(
+    table: str,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    raw_rows: list[list],
+    framed_h: float,
+    terminal: bool,
+    troubleshooting_style: TroubleshootingTableStyle | None,
+) -> str:
+    if troubleshooting_style is None:
+        raise RuntimeError("troubleshooting style was not resolved")
+    return rounded_table_panel(
+        ctx.add_story,
+        ctx.params,
+        sid=f"st_anchor_trouble_{tid}",
+        title="troubleshooting table",
+        table_xml=table,
+        width=ctx.text_measure - 0.75,
+        height=framed_h,
+        n_cols=2,
+        terminal=terminal,
+        fill="Color/Paper",
+        stroke="Color/HB Brand Dark",
+        stroke_weight=troubleshooting_style.outer_rule,
+        radius=(
+            troubleshooting_style.compact_outer_radius
+            if len(raw_rows) < len(troubleshooting_style.row_minima)
+            else troubleshooting_style.outer_radius
+        ),
+        terminal_carrier_height=(
+            troubleshooting_style.native_carrier_allowance
+        ),
+    )
+
+
+def _overview_spacing(xml: str, first_cell: str) -> str:
+    if first_cell == "Total Output":
+        return xml.replace(
+            "<ParagraphStyleRange ",
+            '<ParagraphStyleRange SpaceAfter="2.6" ',
+            1,
+        )
+    return xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="1.14" '
+        f'SpaceAfter="{12.97 if first_cell == "POWER Button" else 0:g}" ',
+        1,
+    )
+
+
+def _key_combinations_block(
+    raw_rows: list[list], ctx: RenderContext, *, tid: str, terminal: bool,
+) -> tuple[str, float] | None:
+    """The dedicated key-combination component, or ``None`` to fall back to a table."""
+    xml, framed_h = render_key_combinations(
+        raw_rows,
+        ctx,
+        tid=tid,
+        terminal=terminal,
+    )
+    if not xml:
+        return None
+    after = param_pt(ctx.params, "comp_data_table_after", 3.4)
+    xml = xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceAfter="{after:g}" ',
+        1,
+    )
+    return xml, framed_h + after
+
+
+def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
+                       terminal: bool, span_columns: bool = True,
+                       troubleshooting: bool = False) -> tuple[str, float]:
+    if has_inline_images(raw_rows):
+        return render_image_table(raw_rows, ctx, tid=tid, terminal=terminal,
+                                  span_columns=span_columns)
+    kind = _TableKind.classify(raw_rows, troubleshooting=troubleshooting)
+    data_table_before = param_pt(ctx.params, "comp_data_table_before", 3.4)
+    data_table_after = param_pt(ctx.params, "comp_data_table_after", 3.4)
+    default_table_before = param_pt(
+        ctx.params, "idml_data_table_space_before", 5.67,
+    )
+    default_table_after = param_pt(
+        ctx.params, "idml_data_table_space_after", 4.25,
+    )
+    auto_space_before = (
+        kind.auto_geometry.space_before
+        if kind.auto_geometry is not None else data_table_before
+    )
+    if (
+        kind.is_key_combinations
+        and ctx.add_story is not None
+        and is_key_combinations_rows(raw_rows)
+    ):
+        dedicated = _key_combinations_block(raw_rows, ctx, tid=tid, terminal=terminal)
+        if dedicated is not None:
+            return dedicated
+    table, framed_h, troubleshooting_style = _build_prose_table(raw_rows, ctx, tid, kind)
+    if kind.is_body_data and ctx.add_story is not None:
+        xml = _body_data_panel(
+            table, ctx, tid=tid, kind=kind, framed_h=framed_h,
             terminal=terminal,
-            fill="Color/Paper",
-            stroke="Color/HB Brand Dark",
-            stroke_weight=troubleshooting_style.outer_rule,
-            radius=(
-                troubleshooting_style.compact_outer_radius
-                if len(raw_rows) < len(troubleshooting_style.row_minima)
-                else troubleshooting_style.outer_radius
-            ),
-            terminal_carrier_height=(
-                troubleshooting_style.native_carrier_allowance
-            ),
+            auto_space_before=auto_space_before,
+            data_table_before=data_table_before,
+            data_table_after=data_table_after,
+        )
+    elif kind.is_troubleshooting and ctx.add_story is not None:
+        xml = _troubleshooting_panel(
+            table, ctx, tid=tid, raw_rows=raw_rows, framed_h=framed_h,
+            terminal=terminal, troubleshooting_style=troubleshooting_style,
         )
     else:
         xml = wrap_table_paragraph(table, terminal, span_columns=span_columns)
-    if is_overview:
-        if first_cell == "Total Output":
-            xml = xml.replace(
-                "<ParagraphStyleRange ",
-                '<ParagraphStyleRange SpaceAfter="2.6" ',
-                1,
-            )
-        else:
-            xml = xml.replace(
-                "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange SpaceBefore="1.14" '
-                f'SpaceAfter="{12.97 if first_cell == "POWER Button" else 0:g}" ',
-                1,
-            )
-    if is_troubleshooting:
+    if kind.is_overview:
+        xml = _overview_spacing(xml, kind.first_cell)
+    troubleshooting_estimate: float | None = None
+    if kind.is_troubleshooting:
         if troubleshooting_style is None:
             raise RuntimeError("troubleshooting style was not resolved")
         # LaTeX's HBDataTableFrame has a dedicated before gap.  Keep it on
@@ -1182,18 +1275,18 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             1,
         )
         troubleshooting_estimate = framed_h + table_space_before
-    if not any((is_overview, is_troubleshooting, is_auto_resume, is_key_combinations)):
+    if not (kind.is_overview or kind.is_troubleshooting or kind.is_body_data):
         xml = xml.replace(
             "<ParagraphStyleRange ",
             f'<ParagraphStyleRange SpaceBefore="{default_table_before:g}" '
             f'SpaceAfter="{default_table_after:g}" ',
             1,
         )
-    if is_auto_resume:
+    if kind.is_auto_resume:
         return xml, framed_h + auto_space_before + data_table_after
-    if is_key_combinations:
+    if kind.is_key_combinations:
         return xml, framed_h + 2 * param_pt(ctx.params, "comp_data_table_before", 3.4)
-    if is_troubleshooting:
+    if kind.is_troubleshooting:
         if troubleshooting_estimate is None:
             raise RuntimeError("troubleshooting estimate was not resolved")
         return xml, troubleshooting_estimate

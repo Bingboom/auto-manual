@@ -89,12 +89,11 @@ tools/idml/components/lcdmode.py	_editable_lcdmode_panel	31
 tools/idml/components/oppanel.py	render_oppanel	37
 tools/idml/components/prose_table.py	_body_data_table	41
 tools/idml/components/prose_table.py	_troubleshooting_table	23
-tools/idml/components/prose_table.py	render_table_block	53
+tools/idml/components/prose_table.py	render_table_block	21
 tools/idml/components/symbols_panel.py	SymbolsPanel.render	23
 tools/idml/components/warranty.py	render_warrantysection	25
 tools/idml/composition_plan.py	build_composition_plan	23
 tools/idml/control_labels.py	validate_app_control_label_contract	21
-tools/idml/data_stories.py	add_lcd_story	60
 tools/idml/data_stories.py	add_spec_story	25
 tools/idml/delivery.py	build_delivery_package	39
 tools/idml/flow_idml.py	_parse_flow_fence	22
