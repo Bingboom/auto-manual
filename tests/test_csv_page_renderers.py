@@ -1333,6 +1333,25 @@ class TestCsvPageRenderers(unittest.TestCase):
             },
         ]
 
+    def test_explicit_lcd_descriptions_reject_real_icons(self) -> None:
+        template = self._lcd_template().replace("lcd_icons_table_rst", "lcd_descriptions_table_rst")
+        blocks = self._lcd_blocks()
+        with self.assertRaisesRegex(ValueError, "text-only source rows"):
+            renderers.render_lcd_icons_page(
+                template=template, blocks=blocks, sku_id="", lang="en",
+                vars_map=self._localized_copy_vars(model="JE-1000F"),
+            )
+        for row in blocks:
+            row["figure"] = ""
+        out = renderers.render_lcd_icons_page(
+            template=template, blocks=blocks, sku_id="", lang="en",
+            vars_map=self._localized_copy_vars(model="JE-1000F"),
+        )
+        self.assertIn(":class: hb-source-lcd-descriptions", out)
+        self.assertIn(":widths: 35 65", out)
+        self.assertNotIn("lcd-text-only", out)
+        self.assertIn("Energy Saving Mode", out)
+
     def test_render_lcd_icons_page_resolves_model_default_variables(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             defaults = Path(td) / "Variable_Defaults.csv"

@@ -127,8 +127,8 @@
     },
     {
       "path": "phase2/page_registry.csv",
-      "size": 515,
-      "sha256": "ded23f8869e52538cfd318c105fa688d00df8455f39745ee6a62b3021399dcc0"
+      "size": 522,
+      "sha256": "245f506549c77c161537c50e1f6bc9d5926a38fbf7380ba9420618e3bdb03f6a"
     },
     {
       "path": "phase2/row_key_mapping.csv",
@@ -161,7 +161,7 @@
       "sha256": "ad3b8563da4c05ed306e782447036ac415f10c7cab0c01f74ba51300478e8dc9"
     }
   ],
-  "files_inventory_sha256": "aa0a16339e32d9e01afc42e2c94d8ff76fcf40aee4929dd30aa47cbf361b9d9b",
+  "files_inventory_sha256": "c89427fa138772105595c72352ad48f6d3dc464b4a3310326c7a75a40b8a791b",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

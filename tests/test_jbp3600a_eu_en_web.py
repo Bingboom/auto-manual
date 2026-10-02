@@ -24,6 +24,7 @@ from tools.skeleton_resolve import (
     resolve_plan,
 )
 from tools.web_document_ir import render_document_fragments
+from tools.web_component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -108,6 +109,12 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
+
+    def test_actual_package_passes_fresh_publication_admission(self) -> None:
+        report = require_fresh_component_admission(
+            self.package, model="JBP-3600A", region="EU", language="en",
+        )
+        self.assertEqual([], report["issues"])
 
     def test_exact_target_uses_bp_intl_single_english_profile(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
@@ -199,7 +206,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             {"inbox_unit_clean.png", "inbox_cable_clean.png", "inbox_manual_clean.png"},
             {Path(image["src"]).name for image in soup.select(".hb-inbox-art")},
         )
-        self.assertIsNotNone(soup.select_one("table.lcd-text-only"))
+        self.assertIsNotNone(soup.select_one(".hb-reference-lcd-descriptions table"))
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
         # The print (PDF page 11) sets one INPUT/OUTPUT PORTS table, so the
         # specification page has three compositions, not four.
@@ -234,10 +241,12 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             t.get_text(" ", strip=True).startswith("Handle DC Expansion Port A")
             for t in soup.select("table")
         ))
-        lcd = soup.select_one("table.lcd-text-only")
+        lcd = soup.select_one(".hb-reference-lcd-descriptions table")
         self.assertIsNotNone(lcd)
         self.assertEqual(2, len(lcd.select("tbody tr")))
         self.assertFalse(lcd.select("img"))
+        self.assertFalse(lcd.select("thead"))
+        self.assertTrue(all(len(row.select("td")) == 2 for row in lcd.select("tbody tr")))
         self.assertIn("Power Percentage/Fault Code", lcd.get_text())
         self.assertIn("Charging Indicator", lcd.get_text())
         self.assertIn("FF code", lcd.get_text())

@@ -449,7 +449,7 @@ components:
   HB-TABLE-REFERENCE:
     style_id: HB-TABLE-REFERENCE
     source_kinds: [table_reference]
-    variants: [lcd-legend, lcd-actions, lcd-actions-compact, symbol-meanings, plain-inventory]
+    variants: [lcd-descriptions, lcd-legend, lcd-actions, lcd-actions-compact, symbol-meanings, plain-inventory]
     slots:
       accessibility_label: {required: true, content_kinds: [inline_text]}
       headers: {required: true, content_kinds: [ordered_headers]}

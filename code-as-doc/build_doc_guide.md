@@ -2501,3 +2501,7 @@ an empty source-table observation is not a localized-copy audit.
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
 
 冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。
+
+HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
+`HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
+发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。
