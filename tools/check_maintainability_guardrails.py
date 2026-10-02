@@ -39,7 +39,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/check_docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,
     "tools/word_bundle_docx_styles.py": 1080,
-    "tools/queue_query.py": 1200,
+    # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into
+    # action / scope / prefix / task-id helpers; the growth is their signatures.
+    "tools/queue_query.py": 1240,
     "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
     "tools/queue_lark_ops.py": 360,
