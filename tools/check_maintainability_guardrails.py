@@ -131,7 +131,8 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # story builders and composed-page assemblers out (1260 -> 647); P4 moved
     # package assembly (spread chain / designmap / zip) out (647 -> 563).
     "tools/export_idml.py": 230,  # the production pass lives in tools/idml/reference_export.py
-    "tools/idml_rst_extract.py": 520,
+    # CQ-3.4 moved the scanner's line-structure steps to idml_rst_line_blocks.py (478 -> 282).
+    "tools/idml_rst_extract.py": 300,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,
     # loaders 220 -> 290: the spec footnote ①-marker mirror (PDF-renderer
