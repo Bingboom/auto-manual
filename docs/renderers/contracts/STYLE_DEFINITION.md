@@ -1411,3 +1411,36 @@ after its authored H2; it reuses `HB-TABLE-SPEC`. `hb-source-signals` reuses
 troubleshooting component. These declarations belong in source RST, not
 hand-edited generated HTML. The CSV assembly plan also passes the semantic
 `symbols` page role even when a slot renames the generated filename.
+
+### Source-authored LCD and panel boundaries
+
+A declared `hb-lcd-icon-table` may occur more than once in a page. The
+`lcd-unnumbered` declaration maps a true three-column icon/name/description
+source to `HB-TABLE-LCD-ICON/icon-catalog-unnumbered`; numbered sources retain
+four columns and circles. Neither variant fabricates a header row.
+
+The `web_source_panels.css` source containers preserve PDF grouping around
+registered components: `hb-device-actions` pairs device art with an authored
+function table, `hb-source-operation` groups illustration and source copy,
+`hb-source-warranty` keeps a caption on the card border, and
+`hb-source-purchase` / `hb-source-safety-heading` keep original icon/text strips.
+Only these explicit boundaries bypass Pandoc flattening; ordinary paragraphs
+continue through normal Markdown conversion. Narrow displays stack device art
+above its function table without adding manual text. Both function-table column
+headers retain bold type across languages; normal first-column weight applies
+only to body cells. Function and description cells are vertically centered
+within each row, including when localized text wraps across multiple lines.
+
+When the operator requests preservation of original panel backgrounds, retain
+the complete source panel (including gray shapes and rounded edges). The
+standalone-device crop and the complete illustration panel are different
+presentation assets. Avoid duplicate live captions when the original panel
+already contains them.
+
+
+Within `hb-source-signals`, the source may explicitly mark a label using the
+RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
+`hb-signal-note`, or `hb-signal-tip`. This binds icon presence to authored
+semantics while retaining the exact localized label. At most one such role
+may occur in a label cell; conflicting roles are rejected. Unmarked legacy
+labels keep the existing language-data lookup behavior.

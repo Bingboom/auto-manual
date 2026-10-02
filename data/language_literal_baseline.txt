@@ -38,10 +38,6 @@ tools/idml/components/safety_panel.py	set	es,fr	f4c071528243d993
 tools/idml/data_stories.py	dict	es,fr	996f8eb7bf75cc40
 tools/idml/data_stories.py	set	es,fr	f4c071528243d993
 tools/idml/loaders.py	dict	ja,jp,ko,uk,ukr	ea8a41b8c53e3afc
-tools/idml/loaders.py	dict	jp,pt-BR,uk,zh	855fb99be85153ca
-tools/idml/loaders.py	tuple	br,pt-BR	2c1238232e5d6cb8
-tools/idml/loaders.py	tuple	ja,jp	ec18e4dd0701f0f4
-tools/idml/loaders.py	tuple	uk,ukr	c1324a3d4902f55e
 tools/idml/page_objects.py	dict	en,es,fr	83bad58adfe19df6
 tools/idml/prose_flow.py	dict	en,es,fr	459bcb129e8bccb9
 tools/idml/prose_flow.py	dict	en,es,fr	8dfa4a7e054f6a37
@@ -70,8 +66,6 @@ tools/translation_memory.py	dict	en,es,fr,ja,zh	96b3b27d136310c2
 tools/translation_memory.py	dict	es,fr	58a2e4e662644abb
 tools/translation_memory.py	dict	es,fr	88b7c11a12479f63
 tools/translation_memory.py	dict	es,fr	8d86232f8fbb5448
-tools/utils/spec_master_lookup.py	list	br,pt-BR,pt-br,pt_BR,pt_br	ec6eea741244cd24
-tools/utils/spec_master_lookup.py	set	br,pt-br,pt_br	527f3c004b071054
 tools/utils/spec_master_row_helpers.py	list	br,pt-BR,pt-br,pt_BR,pt_br	ec6eea741244cd24
 tools/utils/spec_master_row_helpers.py	set	br,pt-br,pt_br	527f3c004b071054
 tools/utils/spec_master_shared.py	dict	br,en,es,fr,ja,jp,pt,pt-br,pt_br,zh	91845c1461f66d5f

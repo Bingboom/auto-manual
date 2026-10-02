@@ -306,6 +306,23 @@ class ManualTableComponentSpecTests(unittest.TestCase):
         self.assertEqual([LCD_ICON_COMPONENT_ID], [claim.spec.component_id for claim in lcd_claims])
         self.assertEqual([TROUBLESHOOTING_COMPONENT_ID], [claim.spec.component_id for claim in trouble_claims])
 
+    def test_multiple_numbered_and_unnumbered_lcd_tables_keep_separate_ownership(self):
+        numbered = _lcd_html(rows=1).replace('<table>', '<table class="hb-lcd-icon-table">')
+        unnumbered = numbered.replace('hb-lcd-icon-table', 'hb-lcd-icon-table lcd-unnumbered').replace('<td>1</td>', '')
+        soup = BeautifulSoup(numbered + '<p>Between</p>' + unnumbered, 'html.parser')
+        claims = discover_registered_components(
+            soup, source_path=Path('display.rst'), contract=load_web_manual_contract(),
+            model='OTHER', region='EU', language='en',
+        )
+        self.assertEqual(['icon-catalog', 'icon-catalog-unnumbered'], [c.spec.variant for c in claims])
+        self.assertIs(claims[0].owned_nodes[0], soup.select('table')[0])
+        self.assertIs(claims[1].owned_nodes[0], soup.select('table')[1])
+        self.assertNotIn('number_text', claims[1].spec.slot('rows').content[0])
+        self.assertEqual('', idml_manual_table_payload(claims[1].spec)['rows'][0]['no'])
+        with self.assertRaises(ValueError):
+            parse_lcd_icon_html(BeautifulSoup(unnumbered.replace(' lcd-unnumbered', ''), 'html.parser'),
+                               source_path=Path('display.rst'), declared_page=False, language='en')
+
     def test_text_only_lcd_table_stays_neutral_flow_even_when_declared(self) -> None:
         markup = (
             '<table class="hb-lcd-icon-table lcd-text-only"><tbody><tr>'

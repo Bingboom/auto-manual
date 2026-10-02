@@ -163,3 +163,35 @@ entries:
     base: docs/manifests/manual_solar-eu-en.yaml
     manifest: docs/manifests/manual_solar-eu-multilingual.yaml
     diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_solar-eu-multilingual.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-fr.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-fr.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-es.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-es.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-de.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-de.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-it.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-it.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-uk.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-uk.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-pt.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-pt.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-nl.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-nl.json
+  - family_id: je100c-eu
+    base: docs/manifests/manual_je100c_eu-en.yaml
+    manifest: docs/manifests/manual_je100c_eu-pl.yaml
+    diff: docs/manifests/family/diffs/manual_je100c_eu-en__manual_je100c_eu-pl.json

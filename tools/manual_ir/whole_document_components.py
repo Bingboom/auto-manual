@@ -29,6 +29,7 @@ from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
 from tools.component_specs.manual_table_html import (
     parse_lcd_icon_html,
     parse_symbol_tables_html,
+    parse_symbol_icon_html,
     parse_troubleshooting_html,
 )
 from tools.component_specs.model import ComponentSpec
@@ -235,6 +236,12 @@ def _claim_lcd_mode(
     claims.append(lcd_claim)
 
 
+def _declared_lcd_tables(soup: BeautifulSoup, declared_role: str | None) -> list[Tag | None]:
+    if declared_role == "lcd_icons" and soup.select_one("table.lcd-text-only") is None:
+        return [None]  # Declared pages enforce the one-table contract.
+    return soup.select("table.hb-lcd-icon-table:not(.lcd-text-only)")
+
+
 def discover_registered_components(
     soup: BeautifulSoup,
     *,
@@ -255,22 +262,24 @@ def discover_registered_components(
 
     claims.extend(_authored_claims(soup, source_path, language, claimed))
 
-    lcd_icon_table = soup.select_one("table.hb-lcd-icon-table")
-    lcd_text_only = soup.select_one("table.lcd-text-only")
-    if lcd_text_only is None and (
-        declared_role == "lcd_icons"
-        or lcd_icon_table is not None
-        and lcd_icon_table.select_one("img") is not None
-    ):
+    for table in _declared_lcd_tables(soup, declared_role):
         spec, boundary, images = parse_lcd_icon_html(
-            soup,
-            source_path=source_path,
-            declared_page=declared_role == "lcd_icons",
-            language=language,
+            soup, source_path=source_path, language=language,
+            declared_page=declared_role == "lcd_icons", table=table,
         )
         claim = ComponentClaim(
-            spec=spec,
-            owned_nodes=(boundary,),
+            spec=spec, owned_nodes=(boundary,),
+            asset_tags=tuple(("icons", image) for image in images),
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
+    if soup.select_one("table.hb-source-symbol-icons") is not None:
+        spec, boundary, images = parse_symbol_icon_html(
+            soup, source_path=source_path, language=language,
+        )
+        claim = ComponentClaim(
+            spec=spec, owned_nodes=(boundary,),
             asset_tags=tuple(("icons", image) for image in images),
         )
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
