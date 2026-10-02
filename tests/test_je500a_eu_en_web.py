@@ -175,10 +175,10 @@ class Je500aEuEnWebTests(unittest.TestCase):
                 break
             operation_nodes.append(sibling)
         operation = BeautifulSoup("".join(str(node) for node in operation_nodes), "html.parser")
-        self.assertEqual(1, len(operation.select("table")))
+        self.assertEqual(1, len(operation.select("table:not(.manual-callout-table)")))
         self.assertIn("Always-on Display Mode", operation.get_text(" ", strip=True))
-        self.assertGreaterEqual(len(soup.select(".admonition.note")), 2)
-        self.assertGreaterEqual(len(soup.select(".admonition.caution")), 5)
+        self.assertGreaterEqual(len(soup.select('[data-callout-variant="note"]')), 2)
+        self.assertGreaterEqual(len(soup.select('[data-callout-variant="caution"]')), 5)
 
     def test_illustrations_are_hash_locked_and_recipe_approved(self) -> None:
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))

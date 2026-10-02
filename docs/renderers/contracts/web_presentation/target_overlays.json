@@ -89,7 +89,15 @@
       "figure_coverage": {
         "policy_id": "je100c-eu-en-finished-figures-v1",
         "locales": [
-          "en"
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
         ],
         "required_slots": [
           "finished-panel.overview",

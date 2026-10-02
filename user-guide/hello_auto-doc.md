@@ -2039,6 +2039,24 @@ JE-2000F/CN 沿用 `configs/config.zh.yaml` 中规共享配置与现有审核源
 正文只显示一次。技术事实矛盾记录为待确认，预览可以打开，但发布封存会阻止该语种。
 范围、来源和验收见[三语录入记录](../reports/je3000c-eu-three-language/README.md)。
 
+### 原生 RST 提示框的 Web 保留
+
+Native RST `note`, `tip`, `warning`, `caution` and `danger` directives pass through the existing `HB-CALLOUT-STRIP` component before Pandoc. Their explicit body boundary, rich paragraphs and lists survive Markdown/Sphinx export; adjacent prose stays outside the box. Docutils titles such as `Caution!` retain their displayed punctuation and registered semantic variant. This also applies to the shared Word HTML adapter.
+
+PDF 对照修正时，表头、圈号、图标、提示标签和说明文字都以操作员提供的原稿为准。
+不要补写滚动提示或把购买提示改成 NOTE。LCD 图标表可分别声明有编号四列或
+无编号三列；设备图与操作表、保修卡片等原稿组合使用受保护的 RST 容器，
+需在实际 Sphinx 页面检查桌面和手机显示。独立设备图应排除误截的表格边框；充电等完整成图应保留原稿的灰底、分区、
+圆角及图内标签。保留设备、手指、引线及产品标记，并单独记录来源、页码、裁切范围和哈希。
+
+
+JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌、葡、荷、波，共九语。
+按语种选择 `configs/config.eu-<lang>.yaml`，复用英文冻结包中的产品身份数据，
+正文和插图由各自语言的原稿及修订记录绑定；[示例命令与来源边界](../code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)。
+乌、葡、荷、波的旧版 AC 充电等差异已按操作者指示对齐新版英文，原始来源和修订依据均保留。
+葡语代码为 `pt`，区别于巴西葡语 `pt-BR`。本地构建通过不等于线上发布；
+正式发布仍走既有审核、冻结快照、Hello-Docs 和 RTD 流程。
+
 ### 原生 PDF 的已确认勘误
 
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
