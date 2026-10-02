@@ -13,6 +13,10 @@ release of `JBP-3600A / EU / en`, version `2.0`.
 - Artwork: source-derived, hash-locked panels remain in the repository renderer
   asset tree and are bound by the recipe and illustration manifest named in
   `source_manifest.json`.
+- Symbols: all eight table icons directly reuse existing transparent assets in
+  `docs/renderers/web/assets/je100c_eu_shared/`, visually matched to HTP011 page 7.
+  Their original paths and byte hashes are locked in `shared_symbol_assets`;
+  the old attachment files remain historical inputs and are no longer rendered.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:

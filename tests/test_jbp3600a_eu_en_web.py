@@ -10,8 +10,10 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup
+from PIL import Image
 import yaml
 
 from tools.manual_ir import read_manual_ir
@@ -149,7 +151,8 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         self.assertFalse(source_manifest["live_bitable_dependency"])
         for binding in [source_manifest["asset_recipe"],
                         source_manifest["web_illustration_manifest"],
-                        *source_manifest["supplemental_asset_recipes"]]:
+                        *source_manifest["supplemental_asset_recipes"],
+                        *source_manifest["shared_symbol_assets"]]:
             self.assertEqual(binding["sha256"],
                              hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest())
         for record in source_manifest["files"]:
@@ -167,6 +170,26 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             source_manifest["files_inventory_sha256"],
             hashlib.sha256(inventory).hexdigest(),
         )
+
+    def test_packaged_symbols_reuse_transparent_shared_assets(self) -> None:
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        expected = {entry["sha256"] for entry in manifest["shared_symbol_assets"]}
+        soup = BeautifulSoup(self.html, "html.parser")
+        images = soup.select(".hb-symbol-art")
+        self.assertEqual(8, len(images))
+        actual = set()
+        for image in images:
+            path = self.package / unquote(urlparse(image["src"]).path)
+            self.assertTrue(path.resolve().is_relative_to(self.package.resolve()))
+            actual.add(hashlib.sha256(path.read_bytes()).hexdigest())
+            with Image.open(path) as icon:
+                self.assertEqual("RGBA", icon.mode)
+                alpha = icon.getchannel("A")
+                self.assertEqual((0, 255), alpha.getextrema())
+                for corner in ((0, 0), (icon.width - 1, 0),
+                               (0, icon.height - 1), (icon.width - 1, icon.height - 1)):
+                    self.assertEqual(0, alpha.getpixel(corner))
+        self.assertEqual(expected, actual)
 
     def test_web_output_has_real_components_and_finished_target_art(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")

@@ -142,8 +142,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 8786,
-      "sha256": "34238740cd4253456f53a58f5b72e508ff0c642823b71fb5099bf3e5d9d20752"
+      "size": 8070,
+      "sha256": "abb05b761f8664b8877d1148f1d3dc391a6e264b20c6bedec49cf06a0e4cbf11"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -161,7 +161,7 @@
       "sha256": "ad3b8563da4c05ed306e782447036ac415f10c7cab0c01f74ba51300478e8dc9"
     }
   ],
-  "files_inventory_sha256": "2aa525831a6d34217d8bdafe081b3cb36c97672e73eb8c8919617ce1789a327c",
+  "files_inventory_sha256": "aa0a16339e32d9e01afc42e2c94d8ff76fcf40aee4929dd30aa47cbf361b9d9b",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
@@ -180,5 +180,59 @@
       "path": "data/asset_recipes/manual_jbp3600a_eu_0924_web_labels.json",
       "sha256": "86423c293566b8d0fa50126e4e1e28f14e25b6188ea5017b89db0beb546e4345"
     }
-  ]
+  ],
+  "shared_symbol_assets": [
+    {
+      "symbol_key": "warning_triangle",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_warning.png",
+      "sha256": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "size": 3993
+    },
+    {
+      "symbol_key": "read_manual",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_manual.png",
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+      "size": 3494
+    },
+    {
+      "symbol_key": "do_not_dismantle",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_dismantle.png",
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "size": 5822
+    },
+    {
+      "symbol_key": "no_open_flame",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_fire.png",
+      "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "size": 7490
+    },
+    {
+      "symbol_key": "keep_away_from_children",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_children.png",
+      "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
+      "size": 6530
+    },
+    {
+      "symbol_key": "li_ion",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_li_ion.png",
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+      "size": 9270
+    },
+    {
+      "symbol_key": "weee",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "size": 7672
+    },
+    {
+      "symbol_key": "weee2",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png",
+      "sha256": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+      "size": 7320
+    }
+  ],
+  "shared_symbol_provenance": {
+    "path": "manual_sources/JE-100C/EU/en/2.0/web_source_corrections.json",
+    "verification": "Eight model-neutral symbols visually matched against HTP011 PDF page 7; existing transparent RGBA bytes reused unchanged."
+  }
 }
