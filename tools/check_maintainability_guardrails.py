@@ -39,7 +39,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/check_docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,
     "tools/word_bundle_docx_styles.py": 1080,
-    "tools/queue_query.py": 1200,
+    # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into
+    # action / scope / prefix / task-id helpers; the growth is their signatures.
+    "tools/queue_query.py": 1240,
     "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
     "tools/queue_lark_ops.py": 360,
@@ -56,7 +58,10 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # 880 -> 950: the cross-page-ambiguity plan pass and the per-page gate check
     # (apply-safety fixes) are correctness guards that belong next to the apply
     # loops they protect.
-    "tools/cloud_doc_backport_orchestration.py": 950,
+    # 950 -> 1000: CQ-3.4 split _run_review_branch (50 -> 31) and
+    # _run_review_branch_baseline (58 -> 35) into seed / plan / apply / per-page
+    # worker helpers; the growth is their signatures.
+    "tools/cloud_doc_backport_orchestration.py": 1000,
     # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
     # fix) is a correctness guard that belongs next to the verify verdicts.
     "tools/cloud_doc_backport_reports.py": 900,

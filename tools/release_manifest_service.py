@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 from tools.build_docs import (
     build_root_for_target,
@@ -61,6 +62,131 @@ def file_info(path: Path, *, repo_root: Path) -> dict[str, object]:
     }
 
 
+def _output_names(
+    build_cfg: dict[str, Any], *, model: str, region: str, lang: str
+) -> tuple[str, str, str]:
+    """Word, PDF and Markdown output file names from the build templates."""
+    word_output_name = render_build_template(
+        str(build_cfg.get("word_output", "manual_demo.docx")),
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    pdf_output_name = render_build_template(
+        str(build_cfg.get("output_pdf", "manual_demo.pdf")),
+        model=model,
+        region=region,
+        lang=lang,
+    )
+    md_output_template = build_cfg.get("md_output")
+    if isinstance(md_output_template, str) and md_output_template.strip():
+        md_output_name = render_build_template(
+            md_output_template,
+            model=model,
+            region=region,
+            lang=lang,
+        )
+    else:
+        md_output_name = Path(word_output_name).with_suffix(".md").as_posix()
+
+    return word_output_name, pdf_output_name, md_output_name
+
+
+def _reproducibility_columns(reproducibility: dict[str, Any]) -> dict[str, str]:
+    return {
+        "reproducibility_schema_version": str(reproducibility["schema_version"]),
+        "reproducibility_policy": str(reproducibility["policy"]),
+        "source_date_epoch": str(
+            reproducibility["source_date_epoch"]
+            if reproducibility["source_date_epoch"] is not None
+            else ""
+        ),
+        "review_overlay_ref": str(
+            (reproducibility.get("review_overlay") or {}).get("source_ref") or ""
+        ),
+        "review_overlay_sha": str(
+            (reproducibility.get("review_overlay") or {}).get("source_sha") or ""
+        ),
+        "review_overlay_path": str(
+            (reproducibility.get("review_overlay") or {}).get("target_path") or ""
+        ),
+        "review_overlay_tree_sha": str(
+            (reproducibility.get("review_overlay") or {}).get("tree_sha") or ""
+        ),
+    }
+
+
+def _snapshot_columns(snapshot_record: dict[str, object] | None) -> dict[str, str]:
+    return {
+        "snapshot_path": str((snapshot_record or {}).get("path") or ""),
+        "snapshot_identity_path": str((snapshot_record or {}).get("identity_path") or ""),
+        "snapshot_sha256": str((snapshot_record or {}).get("snapshot_sha256") or ""),
+        "snapshot_frozen_at": str((snapshot_record or {}).get("frozen_at") or ""),
+        "snapshot_source_revision": json.dumps(
+            (snapshot_record or {}).get("source_revision") or {},
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
+        "snapshot_target_matrix": json.dumps(
+            (snapshot_record or {}).get("target_matrix") or [],
+            ensure_ascii=False,
+            sort_keys=True,
+        ),
+    }
+
+
+def _output_columns(manifest: dict[str, Any]) -> dict[str, str]:
+    columns: dict[str, str] = {}
+    for key in ("word_output", "md_output", "html_output", "pdf_output"):
+        columns[key] = manifest[key]["path"] or ""
+        columns[f"{key}_exists"] = str(manifest[key]["exists"]).lower()
+        columns[f"{key}_sha256"] = manifest[key]["sha256"] or ""
+    return columns
+
+
+def _release_csv_row(
+    manifest: dict[str, Any],
+    *,
+    toolchain_record: dict[str, object],
+    asset_record: Any,
+    indesign_record: Any,
+    model: str,
+    region: str,
+    langs: list[str],
+    product_name: str | None,
+    release_version: str | None,
+    release_tag: str,
+    snapshot_record: dict[str, object] | None,
+) -> dict[str, str]:
+    """The one-row CSV twin of the JSON manifest."""
+    csv_row = {
+        "git_sha": manifest["git_sha"] or "",
+        "built_at": manifest["built_at"],
+        "toolchain_python": str(toolchain_record.get("python") or ""),
+        "toolchain_xelatex": str(toolchain_record.get("xelatex") or ""),
+        "toolchain_pandoc": str(toolchain_record.get("pandoc") or ""),
+        **asset_csv_columns(asset_record),
+        **indesign_csv_columns(indesign_record),
+        "config_path": manifest["config_path"] or "",
+        "model": model,
+        "region": region,
+        "build_languages": ",".join(langs),
+        "product_name": product_name or "",
+        "release_version": release_version or "",
+        "release_tag": release_tag,
+        **_reproducibility_columns(manifest["reproducibility"]),
+        **_snapshot_columns(snapshot_record),
+        "spec_master_csv": manifest["spec_master_csv"] or "",
+        "spec_footnotes_csv": manifest["spec_footnotes_csv"] or "",
+        "spec_notes_csv": manifest["spec_notes_csv"] or "",
+        "spec_titles_csv": manifest["spec_titles_csv"] or "",
+        "tracked_review_dir": manifest["tracked_review_dir"] or "",
+        "runtime_bundle_dir": manifest["runtime_bundle_dir"] or "",
+        **_output_columns(manifest),
+    }
+    return csv_row
+
+
 def build_release_manifest(
     *,
     repo_root: Path,
@@ -114,29 +240,9 @@ def build_release_manifest(
         else ""
     )
 
-    word_output_name = render_build_template(
-        str(build_cfg.get("word_output", "manual_demo.docx")),
-        model=model,
-        region=region,
-        lang=primary_lang,
+    word_output_name, pdf_output_name, md_output_name = _output_names(
+        build_cfg, model=model, region=region, lang=primary_lang
     )
-    pdf_output_name = render_build_template(
-        str(build_cfg.get("output_pdf", "manual_demo.pdf")),
-        model=model,
-        region=region,
-        lang=primary_lang,
-    )
-    md_output_template = build_cfg.get("md_output")
-    if isinstance(md_output_template, str) and md_output_template.strip():
-        md_output_name = render_build_template(
-            md_output_template,
-            model=model,
-            region=region,
-            lang=primary_lang,
-        )
-    else:
-        md_output_name = Path(word_output_name).with_suffix(".md").as_posix()
-
     word_output = resolve_output_path(build_root / "word", word_output_name)
     pdf_output = resolve_output_path(build_root / "pdf", pdf_output_name)
     md_output = resolve_output_path(build_root / "md", md_output_name)
@@ -261,73 +367,19 @@ def build_release_manifest(
     }
     json_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    csv_row = {
-        "git_sha": manifest["git_sha"] or "",
-        "built_at": manifest["built_at"],
-        "toolchain_python": str(toolchain_record.get("python") or ""),
-        "toolchain_xelatex": str(toolchain_record.get("xelatex") or ""),
-        "toolchain_pandoc": str(toolchain_record.get("pandoc") or ""),
-        **asset_csv_columns(asset_record),
-        **indesign_csv_columns(indesign_record),
-        "config_path": manifest["config_path"] or "",
-        "model": model,
-        "region": region,
-        "build_languages": ",".join(langs),
-        "product_name": product_name or "",
-        "release_version": release_version or "",
-        "release_tag": release_tag,
-        "reproducibility_schema_version": str(manifest["reproducibility"]["schema_version"]),
-        "reproducibility_policy": str(manifest["reproducibility"]["policy"]),
-        "source_date_epoch": str(
-            manifest["reproducibility"]["source_date_epoch"]
-            if manifest["reproducibility"]["source_date_epoch"] is not None
-            else ""
-        ),
-        "review_overlay_ref": str(
-            (manifest["reproducibility"].get("review_overlay") or {}).get("source_ref") or ""
-        ),
-        "review_overlay_sha": str(
-            (manifest["reproducibility"].get("review_overlay") or {}).get("source_sha") or ""
-        ),
-        "review_overlay_path": str(
-            (manifest["reproducibility"].get("review_overlay") or {}).get("target_path") or ""
-        ),
-        "review_overlay_tree_sha": str(
-            (manifest["reproducibility"].get("review_overlay") or {}).get("tree_sha") or ""
-        ),
-        "snapshot_path": str((snapshot_record or {}).get("path") or ""),
-        "snapshot_identity_path": str((snapshot_record or {}).get("identity_path") or ""),
-        "snapshot_sha256": str((snapshot_record or {}).get("snapshot_sha256") or ""),
-        "snapshot_frozen_at": str((snapshot_record or {}).get("frozen_at") or ""),
-        "snapshot_source_revision": json.dumps(
-            (snapshot_record or {}).get("source_revision") or {},
-            ensure_ascii=False,
-            sort_keys=True,
-        ),
-        "snapshot_target_matrix": json.dumps(
-            (snapshot_record or {}).get("target_matrix") or [],
-            ensure_ascii=False,
-            sort_keys=True,
-        ),
-        "spec_master_csv": manifest["spec_master_csv"] or "",
-        "spec_footnotes_csv": manifest["spec_footnotes_csv"] or "",
-        "spec_notes_csv": manifest["spec_notes_csv"] or "",
-        "spec_titles_csv": manifest["spec_titles_csv"] or "",
-        "tracked_review_dir": manifest["tracked_review_dir"] or "",
-        "runtime_bundle_dir": manifest["runtime_bundle_dir"] or "",
-        "word_output": manifest["word_output"]["path"] or "",
-        "word_output_exists": str(manifest["word_output"]["exists"]).lower(),
-        "word_output_sha256": manifest["word_output"]["sha256"] or "",
-        "md_output": manifest["md_output"]["path"] or "",
-        "md_output_exists": str(manifest["md_output"]["exists"]).lower(),
-        "md_output_sha256": manifest["md_output"]["sha256"] or "",
-        "html_output": manifest["html_output"]["path"] or "",
-        "html_output_exists": str(manifest["html_output"]["exists"]).lower(),
-        "html_output_sha256": manifest["html_output"]["sha256"] or "",
-        "pdf_output": manifest["pdf_output"]["path"] or "",
-        "pdf_output_exists": str(manifest["pdf_output"]["exists"]).lower(),
-        "pdf_output_sha256": manifest["pdf_output"]["sha256"] or "",
-    }
+    csv_row = _release_csv_row(
+        manifest,
+        toolchain_record=toolchain_record,
+        asset_record=asset_record,
+        indesign_record=indesign_record,
+        model=model,
+        region=region,
+        langs=langs,
+        product_name=product_name,
+        release_version=release_version,
+        release_tag=release_tag,
+        snapshot_record=snapshot_record,
+    )
     import csv
 
     with csv_path.open("w", encoding="utf-8", newline="") as handle:

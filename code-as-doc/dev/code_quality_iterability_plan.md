@@ -168,7 +168,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [x] A 批（校验类）：`structural_findings` 92 → 14、`build_context` 50 → 34、
       `enforce_required_web_figure_coverage` 79 → 15、`_validate_instance` 56 → 20、
       `validate_component_registry` 51 → 19、`normalize_target_assembly_plan` 52 → 16；CC≥50 24 → 18
-    - [ ] B 批（队列/编排）：`infer_queue_query_from_text`、`process_queue_record_group`、`_run_review_branch(_baseline)`、`build_release_manifest`
+    - [x] B 批（队列/编排）：`infer_queue_query_from_text` 68 → 21、`build_release_manifest` 59 → 15、
+      `_run_review_branch_baseline` 58 → 35、`_run_review_branch` 50 → 31（`process_queue_record_group` 体量大，暂缓）
     - [ ] C 批（解析/加载）：`resolve_manifest_asset`、`load_web_document`、`ordered_pages`、`_extract_raw_latex`、`extract_page`
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到

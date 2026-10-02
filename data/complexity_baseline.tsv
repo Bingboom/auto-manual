@@ -37,8 +37,8 @@ tools/check_identity_drift.py	find_identity_drift_matches	29
 tools/cloud_doc_backport_apply.py	_rewrite_review_block	22
 tools/cloud_doc_backport_commands.py	_run_apply_source_table	21
 tools/cloud_doc_backport_commands.py	_run_review	23
-tools/cloud_doc_backport_orchestration.py	_run_review_branch	50
-tools/cloud_doc_backport_orchestration.py	_run_review_branch_baseline	58
+tools/cloud_doc_backport_orchestration.py	_run_review_branch	31
+tools/cloud_doc_backport_orchestration.py	_run_review_branch_baseline	35
 tools/cloud_doc_backport_render.py	markdown_review_run_report	21
 tools/cloud_doc_backport_reports.py	_verify_delta	30
 tools/cloud_doc_backport_reports.py	build_review_run_report	28
@@ -179,11 +179,10 @@ tools/queue_group_processing.py	process_queue_record_group	55
 tools/queue_outputs.py	write_web_publish_metadata	22
 tools/queue_query.py	_matches_queue_query_row	24
 tools/queue_query.py	apply_inferred_queue_query	42
-tools/queue_query.py	infer_queue_query_from_text	68
+tools/queue_query.py	infer_queue_query_from_text	21
 tools/queue_query.py	render_queue_query_rows	33
 tools/queue_resolve_action.py	resolve_queue_action	26
 tools/queue_runtime.py	command_failure_message	25
-tools/release_manifest_service.py	build_release_manifest	59
 tools/render_contract.py	validate_render_contract	34
 tools/renderer_acceptance.py	run_acceptance	25
 tools/review_start_failure_summary.py	build_review_start_failure_summary	23
