@@ -1,6 +1,6 @@
 # JE-1000F US base art on the Web
 
-Status: implemented for Web. The IDML counterpart is described in
+Status: done · Web implemented. The IDML counterpart is described in
 [`idml_component_targets.md`](idml_component_targets.md).
 
 ## 1. Scope
