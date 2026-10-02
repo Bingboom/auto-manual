@@ -7,7 +7,6 @@ import argparse
 import json
 from pathlib import Path
 import re
-import sys
 from typing import Any
 
 try:
@@ -27,6 +26,9 @@ from tools.process_docs.build_publish_latest_site import (  # noqa: E402
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
 from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.queue_contract import HTML_LINK_FIELD  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("publish-html-link", stream="stderr")
 
 HTML_LINK_FIELD_ALIASES = (
     HTML_LINK_FIELD,
@@ -327,10 +329,7 @@ def write_publish_html_links(
                 for _payload, record_ids, target_url in target_rows
             )
         except Exception as exc:
-            print(
-                f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}",
-                file=sys.stderr,
-            )
+            _ERR.error(f"[publish-html-link] Fallback writeback via {fallback_field_name} failed: {exc}")
 
     print(
         "[publish-html-link] Document_link table does not expose a writable HTML link field; "
@@ -353,7 +352,7 @@ def main(argv: list[str] | None = None) -> int:
             **({} if args.single_target else {"multi_target": True}),
         )
     except Exception as exc:
-        print(f"[publish-html-link] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[publish-html-link] ERROR: {exc}")
         return 1
     print(f"[publish-html-link] Completed HTML_link writeback for {written} record(s).")
     return 0

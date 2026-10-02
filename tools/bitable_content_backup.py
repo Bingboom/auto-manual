@@ -35,6 +35,9 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from tools.utils.log import get_logger
+
+_ERR = get_logger("bitable-content-backup", stream="stderr")
 
 try:
     from tools import bitable_schema as bs
@@ -260,7 +263,7 @@ def main(argv: list[str] | None = None) -> int:
         import os
         token = os.environ.get(args.base_token_env, "")
         if not token:
-            print(f"bitable-content-backup: ${args.base_token_env} is empty", file=sys.stderr)
+            _ERR.error(f"bitable-content-backup: ${args.base_token_env} is empty")
             return 2
         manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
         report = export_content(manifest, token, args.label, Path(args.out), args.lark_cli)

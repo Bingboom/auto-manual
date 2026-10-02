@@ -36,6 +36,9 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from tools.check_broad_except_ratchet import FileCount, RatchetResult, compare, load_baseline
+from tools.utils.log import get_logger
+
+_ERR = get_logger("mypy-ratchet", stream="stderr")
 
 
 REPO_ROOT = _REPO_ROOT
@@ -178,7 +181,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         return check_repository(repo_root, baseline_path=baseline).exit_code
     except RuntimeError as exc:
-        print(f"[mypy-ratchet] ERROR {exc}", file=sys.stderr)
+        _ERR.error(f"[mypy-ratchet] ERROR {exc}")
         return 2
 
 

@@ -44,6 +44,9 @@ from tools.phase2_support import (  # noqa: E402
     parse_json_payload as _parse_json_payload,
     resolved_cli_command_parts as _resolved_cli_command_parts,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("build-queue-listener", stream="stderr")
 
 EVENT_TYPE = "drive.file.bitable_record_changed_v1"
 FILE_TYPE = "bitable"
@@ -197,7 +200,7 @@ def main(argv: list[str] | None = None) -> int:
             data_root=resolved_data_root,
         )
     except RuntimeError as exc:
-        print(f"[build-queue-listener] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[build-queue-listener] ERROR: {exc}")
         return 1
 
 

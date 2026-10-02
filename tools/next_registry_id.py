@@ -27,6 +27,9 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Callable, NamedTuple
+from tools.utils.log import get_logger
+
+_ERR = get_logger("next-registry-id", stream="stderr")
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -111,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         nxt, why = report(args.kind, run=_run, root=_REPO_ROOT, fetch=not args.no_fetch)
     except (subprocess.CalledProcessError, OSError, ValueError) as exc:
-        print(f"ERROR   {exc}", file=sys.stderr)
+        _ERR.error(f"ERROR   {exc}")
         return 1
     print(nxt)
     print(why, file=sys.stderr)

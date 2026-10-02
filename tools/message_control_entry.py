@@ -3,9 +3,11 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any, Callable
+from tools.utils.log import get_logger
+
+_ERR = get_logger("message-control-dry-run", stream="stderr")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -57,7 +59,7 @@ def run_main(
             confirmed=bool(args.confirmed),
         )
     except (RuntimeError, subprocess.CalledProcessError) as exc:
-        print(f"[message-control-dry-run] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[message-control-dry-run] ERROR: {exc}")
         return 1
 
     print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False, sort_keys=True))

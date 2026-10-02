@@ -7,7 +7,6 @@ import argparse
 import hashlib
 import json
 import re
-import sys
 from pathlib import Path
 
 try:
@@ -32,6 +31,9 @@ from tools.review_support import (  # noqa: E402
 from tools.safe_copy import assert_source_tree_no_symlinks  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("sync-review", stream="stderr")
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
 WEB_LANGUAGE_PROJECTION_SCHEMA = "web-language-bundle/v1"
@@ -425,7 +427,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"scope='{args.sync_scope}', files='{len(copied)}', path='{review_dir}'"
             )
     except RuntimeError as exc:
-        print(f"[sync-review] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[sync-review] ERROR: {exc}")
         return 1
 
     return 0

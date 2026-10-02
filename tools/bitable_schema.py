@@ -25,7 +25,6 @@ import argparse
 import csv
 import json
 import os
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -37,6 +36,9 @@ except ImportError:  # pragma: no cover - direct execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.feishu_record_transport import iter_lark_pages  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("bitable-schema", stream="stderr")
 
 # Field types this tool can create in a target tenant. Anything else (link / formula /
 # lookup / button / auto_number ...) is recorded but flagged for manual setup, because
@@ -645,7 +647,7 @@ def _parser() -> argparse.ArgumentParser:
 
 def _cmd_export(args: argparse.Namespace) -> int:
     if not args.base_token:
-        print("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required", file=sys.stderr)
+        _ERR.error("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required")
         return 2
     manifest = export(args.base_token, [t.strip() for t in args.tables.split(",")] if args.tables else None, args.lark_cli)
     out = Path(args.out)
@@ -690,7 +692,7 @@ def _cmd_parity(args: argparse.Namespace) -> int:
                      ignore_prefixes=args.ignore_table_prefix, ignore_names=args.ignore_table,
                      table_aliases=aliases, ignore_fields=args.ignore_field)
     except ValueError as exc:
-        print(f"bitable-schema parity: {exc}", file=sys.stderr)
+        _ERR.error(f"bitable-schema parity: {exc}")
         return 2
     missing = bool(res["missing_tables"] or res["missing_fields"])
     fail = (not res["in_parity"]) if args.fail_on == "any" else missing
@@ -715,7 +717,7 @@ def _cmd_parity(args: argparse.Namespace) -> int:
 
 def _cmd_seed_export(args: argparse.Namespace) -> int:
     if not args.base_token:
-        print("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required", file=sys.stderr)
+        _ERR.error("bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required")
         return 2
     cols, rows = seed_export(args.base_token, args.table, args.lark_cli)
     out = Path(args.out)
@@ -735,7 +737,7 @@ def _cmd_seed_import(args: argparse.Namespace) -> int:
     write = bool(args.write and args.yes)
     plan = seed_import(args.base_token, args.table, seed_rows, key, write, args.lark_cli, prune=args.prune)
     if plan.get("error"):
-        print(f"seed-import: {plan['error']}", file=sys.stderr)
+        _ERR.error(f"seed-import: {plan['error']}")
         return 2
     if args.write and not args.yes:
         print("⚠ --write ignored: re-run with --write --yes once you've confirmed the TARGET base.")

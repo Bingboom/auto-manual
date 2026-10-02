@@ -36,7 +36,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
 import time
 from typing import Any
 
@@ -71,6 +70,9 @@ from tools.verify_web_deployment_targets import (  # noqa: E402
     verify_targets_against_source,
 )
 from tools.write_publish_html_link import resolve_html_link_field_name  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("web-receipt", stream="stderr")
 
 
 REPORT_SCHEMA = "auto-manual-web-publish-receipt/v1"
@@ -483,7 +485,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         exit_code, report = run(args)
     except Exception as exc:
-        print(f"[web-receipt] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[web-receipt] ERROR: {exc}")
         return EXIT_FAILED
     if args.report_json is not None:
         report_path = Path(args.report_json)

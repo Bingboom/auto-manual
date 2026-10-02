@@ -16,7 +16,6 @@ import io
 import json
 import os
 import re
-import sys
 import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -29,6 +28,9 @@ from tools.app_ui_promotion import (
     validate_reviewed_promotion,
 )
 from tools.utils.path_utils import PathSegments
+from tools.utils.log import get_logger
+
+_ERR = get_logger("asset-registry", stream="stderr")
 
 REGISTRY_RELATIVE_PATH = Path(PathSegments.DATA) / "asset_registry.csv"
 APPROVED_STATUS = "✅成品"
@@ -873,12 +875,12 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.action == "resolve" and not args.asset_key:
-        print("resolve requires --asset-key", file=sys.stderr)
+        _ERR.error("resolve requires --asset-key")
         return 2
     try:
         run_asset_check(args, repo_root=Path(__file__).resolve().parents[1])
     except (AssetRegistryError, RuntimeError) as exc:
-        print(f"[asset_registry] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[asset_registry] ERROR: {exc}")
         return 1
     return 0
 

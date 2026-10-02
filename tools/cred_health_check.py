@@ -36,6 +36,9 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Sequence
+from tools.utils.log import get_logger
+
+_ERR = get_logger("cred-health-check", stream="stderr")
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -225,7 +228,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 handle.write(render_table(results))
                 handle.write("\n")
         except OSError as exc:
-            print(f"[cred-health-check] could not write summary {args.summary}: {exc}", file=sys.stderr)
+            _ERR.error(f"[cred-health-check] could not write summary {args.summary}: {exc}")
 
     failures = [r for r in results if r.is_failure]
     return 1 if failures else 0

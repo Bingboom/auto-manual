@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 from tools.validate_spec_master_runtime import collect_spec_master_validation_issues
 from tools.validate_spec_master_shared import ROOT, _repo_relative
+from tools.utils.log import get_logger
+
+_ERR = get_logger("validate_spec_master", stream="stderr")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -45,7 +47,7 @@ def main(argv: list[str] | None = None) -> int:
             source_mode=args.source,
         )
     except RuntimeError as exc:
-        print(f"[validate_spec_master] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[validate_spec_master] ERROR: {exc}")
         return 1
 
     if issues:
@@ -56,7 +58,7 @@ def main(argv: list[str] | None = None) -> int:
             path_text = f" path={_repo_relative(issue.path)}" if issue.path else ""
             line_text = f" line={issue.line}" if issue.line is not None else ""
             print(f"[validate_spec_master] {issue.code} target={target_text}{lang_text}{path_text}{line_text}: {issue.message}")
-        print(f"[validate_spec_master] FAILED with {len(issues)} issue(s)", file=sys.stderr)
+        _ERR.error(f"[validate_spec_master] FAILED with {len(issues)} issue(s)")
         return 1
 
     print("[validate_spec_master] OK")

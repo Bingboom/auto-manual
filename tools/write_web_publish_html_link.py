@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
 from typing import Any
 
 try:
@@ -30,6 +29,9 @@ from tools.write_publish_html_link import (  # noqa: E402
     target_record_ids_from_publish_meta,
     write_html_link_records,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("web-publish-link", stream="stderr")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -196,7 +198,7 @@ def main(argv: list[str] | None = None) -> int:
             pending=bool(args.pending),
         )
     except Exception as exc:
-        print(f"[web-publish-link] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[web-publish-link] ERROR: {exc}")
         return 1
     if args.pending:
         print(f"[web-publish-link] Recorded {written} pending HTML_link registration(s).")

@@ -10,7 +10,6 @@ apply-source-table`` / ``tools.source_table_sync``.
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 try:
@@ -37,6 +36,9 @@ from tools.source_intake_runtime import (  # noqa: E402
     write_intake_outputs,
 )
 from tools.utils.path_utils import get_paths  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("source-intake", stream="stderr")
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -192,7 +194,7 @@ def _run(args: argparse.Namespace) -> int:
             data_root=data_root,
         )
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
 
     for label, path in sorted(paths.items()):
@@ -216,7 +218,7 @@ def _approval(args: argparse.Namespace) -> int:
         )
         paths = write_approval_report(approval, out_dir)
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
     for label, path in sorted(paths.items()):
         print(f"WROTE {label} {path}")
@@ -255,7 +257,7 @@ def _apply(args: argparse.Namespace) -> int:
         )
         paths = write_apply_report(apply_report, out_dir)
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
     for label, path in sorted(paths.items()):
         print(f"WROTE {label} {path}")
@@ -284,7 +286,7 @@ def _verify(args: argparse.Namespace) -> int:
         )
         paths = write_closure_report(closure, out_dir)
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
     for label, path in sorted(paths.items()):
         print(f"WROTE {label} {path}")
@@ -305,11 +307,8 @@ def _spec_extract(args: argparse.Namespace) -> int:
         # The gate silently not running is exactly the QC gap this guards
         # against (a candidate set can look complete while missing whole
         # sibling rows). Skipping must be an explicit decision.
-        print(
-            "source-intake: spec-extract requires --reference <sibling_rows.json> "
-            "for the completeness gate; pass --skip-completeness to run without it.",
-            file=sys.stderr,
-        )
+        _ERR.error("source-intake: spec-extract requires --reference <sibling_rows.json> "
+            "for the completeness gate; pass --skip-completeness to run without it.")
         return 2
     out_dir = Path(args.out).resolve() if args.out else _default_out_dir(str(args.document_key))
     report = None
@@ -332,7 +331,7 @@ def _spec_extract(args: argparse.Namespace) -> int:
                 "field_gaps": report.field_gaps,
             }, ensure_ascii=False, indent=2), encoding="utf-8")
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
     print(f"WROTE candidates {out_dir / 'spec_intake_candidates.json'}")
     print(f"CANDIDATES {len(candidates)}  {dict(collections.Counter(c['status'] for c in candidates))}")
@@ -364,7 +363,7 @@ def _stage_plan(args: argparse.Namespace) -> int:
         )
         paths = write_staging_outputs(plan, out_dir)
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"source-intake: {exc}", file=sys.stderr)
+        _ERR.error(f"source-intake: {exc}")
         return 2
     for label, path in sorted(paths.items()):
         print(f"WROTE {label} {path}")

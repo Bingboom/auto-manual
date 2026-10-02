@@ -16,9 +16,11 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from tools.utils.log import get_logger
+
+_ERR = get_logger("cwa-report", stream="stderr")
 
 _API = "https://api.cloudflare.com/client/v4/graphql"
 _QUERY = """
@@ -121,7 +123,7 @@ def main(argv: list[str] | None = None, *, fetch=fetch_payload) -> int:
         ("CLOUDFLARE_API_TOKEN", token), ("CLOUDFLARE_ACCOUNT_ID", account), ("CLOUDFLARE_SITE_TAG", site),
     ) if not value]
     if missing:
-        print(f"missing: {', '.join(missing)} (token needs Account Analytics: Read)", file=sys.stderr)
+        _ERR.error(f"missing: {', '.join(missing)} (token needs Account Analytics: Read)")
         return 2
 
     until = datetime.now(timezone.utc).replace(microsecond=0)
