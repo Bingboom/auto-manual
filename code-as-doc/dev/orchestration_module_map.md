@@ -1,5 +1,7 @@
 # Orchestration Module Map
 
+Status: active
+
 Updated: 2026-09-30
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
