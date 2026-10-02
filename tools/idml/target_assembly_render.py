@@ -231,418 +231,606 @@ class TargetAssemblyRenderer:
         ]
         skipped_raw = sum(item.skipped_raw for item in composition_pages)
         lang = normalize_lang(composition.language)
-        if composition.composition_type == "symbols":
-            symbol_data = self.symbol_data_for(lang)
-            if symbol_data is None:
-                raise ValueError(f"{composition.composition_id}: missing Symbols data")
-            self.toc.note(symbol_data.title, page_cursor, lang)
-            shared_page.add_symbols_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                symbol_data=symbol_data,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-            self.emitted.add(f"symbols:{lang}")
-        elif composition.composition_type == "symbols_icons":
-            symbol_data = self.symbol_data_for(lang)
-            if symbol_data is None:
-                raise ValueError(f"{composition.composition_id}: missing Symbols data")
-            self.toc.note(symbol_data.title, page_cursor, lang)
-            shared_page.add_symbol_icons_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                symbol_data=symbol_data,
-                page_index=page_cursor,
-                language=lang,
-            )
-            self.emitted.add(f"symbols:{lang}")
-        elif composition.composition_type == "safety_signals":
-            safety = composition_pages[0]
-            symbol_data = self.symbol_data_for(lang)
-            if symbol_data is None:
-                raise ValueError(f"{composition.composition_id}: missing Symbols data")
-            self.toc.note_h1s(list(safety.blocks), page_cursor)
-            shared_page.add_safety_signals_page(
-                self.writer,
-                safety_sid="st_" + self.slug_stem(Path(safety.path).stem),
-                safety_title=Path(safety.path).stem,
-                safety_blocks=list(safety.blocks),
-                symbol_data=symbol_data,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-            )
-        elif composition.composition_type == "safety_symbols":
-            safety, _symbols = composition_pages
-            symbol_data = self.symbol_data_for(lang)
-            if symbol_data is None:
-                raise ValueError(f"{composition.composition_id}: missing Symbols data")
-            self.toc.note_h1s(list(safety.blocks), page_cursor)
-            self.toc.note(symbol_data.title, page_cursor, lang)
-            shared_page.add_safety_symbols_page(
-                self.writer,
-                safety_sid="st_" + self.slug_stem(Path(safety.path).stem),
-                safety_title=Path(safety.path).stem,
-                safety_blocks=list(safety.blocks),
-                symbol_data=symbol_data,
-                bundle_root=self.bundle_root,
-                data_root=self.data_root,
-                page_index=page_cursor,
-                language=lang,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[1]
-                ].get("composition_data"),
-            )
-            self.emitted.add(f"symbols:{lang}")
-        elif composition.composition_type == "inbox_overview":
-            inbox, overview = composition_pages
-            for projected in composition_pages:
-                self.toc.note_h1s(list(projected.blocks), page_cursor)
-            inbox_data = self.plan_entry_by_ref[
-                composition.source_refs[0]
-            ].get("composition_data")
-            overview_data = self.plan_entry_by_ref[
-                composition.source_refs[1]
-            ].get("composition_data")
-            shared_page.add_inbox_overview_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                inbox_blocks=list(inbox.blocks),
-                overview_blocks=list(overview.blocks),
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                composition_data={
-                    **(inbox_data if isinstance(inbox_data, dict) else {}),
-                    **(overview_data if isinstance(overview_data, dict) else {}),
-                },
-            )
-        elif composition.composition_type == "fcc_inbox_overview":
-            fcc, inbox, overview = composition_pages
-            for projected in composition_pages:
-                self.toc.note_h1s(list(projected.blocks), page_cursor)
-            shared_page.add_fcc_inbox_overview_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                fcc_blocks=list(fcc.blocks),
-                inbox_blocks=list(inbox.blocks),
-                overview_blocks=list(overview.blocks),
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-            )
-        elif composition.composition_type == "lcd_operations":
-            _lcd, operation = composition_pages
-            lcd_data = ir_projection.lcd_page_data(
-                self.manual_ir,
-                lang,
-                root=self.root,
-                data_root=self.data_root,
-                reference_plan=self.page_plan,
-            )
-            if lcd_data is None:
-                raise ValueError(f"{composition.composition_id}: missing LCD data")
-            operation_blocks = list(operation.blocks)
-            if lang == self.output_lang:
-                self.lcd_rows[:] = list(lcd_data.rows)
-            self.toc.note(lcd_data.title, page_cursor, lang)
-            self.toc.note_h1s(operation_blocks, page_cursor)
-            hero_path = (
-                self.writer._resolve_bundle_image(
-                    self.bundle_root, lcd_data.hero_reference,
-                )
-                if lcd_data.hero_reference
-                else None
-            )
-            shared_page.add_lcd_operations_page(
-                self.writer,
-                lcd_data=lcd_data,
-                operation_sid="st_" + self.slug_stem(Path(operation.path).stem),
-                operation_title=Path(operation.path).stem,
-                operation_blocks=operation_blocks,
-                bundle_root=self.bundle_root,
-                data_root=self.data_root,
-                page_index=page_cursor,
-                language=lang,
-                hero_path=hero_path,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-            self.emitted.add(f"lcd:{lang}")
-        elif composition.composition_type == "connections":
-            connection = composition_pages[0]
-            entry = self.plan_entry_by_ref[composition.source_refs[0]]
-            split = entry.get("flow_split")
-            connection_blocks = list(connection.blocks)
-            if not isinstance(split, dict):
-                self.toc.note_h1s(connection_blocks, page_cursor)
-                shared_page.add_connections_page(
-                    self.writer,
-                    sid="st_" + self.slug_stem(Path(connection.path).stem),
-                    title=Path(connection.path).stem,
-                    blocks=connection_blocks,
-                    bundle_root=self.bundle_root,
-                    page_index=page_cursor,
-                    language=lang,
-                    page_count=composition.page_count,
-                    composition_data=entry.get("composition_data"),
-                )
-                return RenderDelta(
-                    page_count=composition.page_count,
-                    skipped_raw=skipped_raw,
-                )
-            occurrence = int(split["occurrence"])
-            seen = 0
-            split_at = None
-            for block_index, (kind, _value) in enumerate(connection_blocks):
-                if kind == split["at_kind"]:
-                    seen += 1
-                    if seen == occurrence:
-                        split_at = block_index
-                        break
-            if split_at is None:
-                raise ValueError(
-                    f"{composition.composition_id}: flow_split cannot be applied"
-                )
-            tail_id = str(split["tail_composition_id"])
-            self.routed_tail_blocks[tail_id] = connection_blocks[split_at:]
-            head = connection_blocks[:split_at]
-            self.toc.note_h1s(head, page_cursor)
-            shared_page.add_connections_page(
-                self.writer,
-                sid="st_" + self.slug_stem(Path(connection.path).stem),
-                title=Path(connection.path).stem,
-                blocks=head,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                page_count=1,
-                composition_data=entry.get("composition_data"),
-            )
-        elif composition.composition_type == "troubleshooting":
-            trouble = composition_pages[0]
-            trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
-            tail = self.routed_tail_blocks.pop(composition.composition_id, None)
-            if trouble_data is None or tail is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing routed connection tail "
-                    "or Troubleshooting data"
-                )
-            if lang == self.output_lang:
-                self.trouble_rows[:] = list(trouble_data.rows)
-            self.toc.note(trouble_data.title, page_cursor, lang)
-            shared_page.add_connection_tail_troubleshooting_page(
-                self.writer,
-                connection_sid=(
-                    "st_" + self.slug_stem(composition.composition_id) + "_tail"
-                ),
-                connection_title=composition.composition_id,
-                connection_blocks=tail,
-                trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
-                trouble_title=Path(trouble.path).stem,
-                trouble_blocks=list(trouble.blocks),
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-            self.emitted.add(f"trouble:{lang}")
-        elif composition.composition_type == "charging":
-            charging = composition_pages[0]
-            charging_blocks = list(charging.blocks)
-            self.toc.note_h1s(charging_blocks, page_cursor)
-            shared_page.add_charging_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                title=composition.composition_id,
-                charging_blocks=charging_blocks,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-        elif composition.composition_type == "charging_storage":
-            charging, storage = composition_pages
-            charging_blocks = list(charging.blocks)
-            storage_blocks = list(storage.blocks)
-            self.toc.note_h1s(charging_blocks, page_cursor)
-            self.toc.note_h1s(storage_blocks, page_cursor)
-            shared_page.add_charging_storage_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                title=composition.composition_id,
-                charging_blocks=charging_blocks,
-                storage_blocks=storage_blocks,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-            )
-        elif composition.composition_type == "app":
-            app_page = composition_pages[0]
-            app_blocks = list(app_page.blocks)
-            self.toc.note_h1s(app_blocks, page_cursor)
-            shared_page.add_app_composition(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                title=composition.composition_id,
-                blocks=app_blocks,
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                page_count=composition.page_count,
-                language=lang,
-                page_plan=self.page_plan,
-                source_stem=Path(app_page.path).stem,
-            )
-        elif composition.composition_type == "storage_troubleshooting":
-            storage, trouble = composition_pages
-            registered = (
-                (self.page_plan or {}).get("plan_source") == "registered-component"
-            )
-            trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
-            if trouble_data is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing Troubleshooting data"
-                )
-            if lang == self.output_lang:
-                self.trouble_rows[:] = list(trouble_data.rows)
-            self.toc.note_h1s(list(storage.blocks), page_cursor)
-            self.toc.note(trouble_data.title, page_cursor, lang)
-            shared_page.add_storage_troubleshooting_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                storage_blocks=list(storage.blocks),
-                trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
-                trouble_title=Path(trouble.path).stem,
-                trouble_blocks=list(trouble.blocks),
-                bundle_root=self.bundle_root,
-                page_index=page_cursor,
-                language=lang,
-                split_leading_notice=registered,
-            )
-            self.emitted.add(f"trouble:{lang}")
-            if registered:
-                self.emitted.add("trouble")
-        elif composition.composition_type == "troubleshooting_specifications":
-            _trouble, _spec = composition_pages
-            trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
-            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
-            if trouble_data is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing Troubleshooting data"
-                )
-            if spec_data is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing Specifications data"
-                )
-            if lang == self.output_lang:
-                self.trouble_rows[:] = list(trouble_data.rows)
-                self.spec_sections[:] = list(spec_data.sections)
-            self.toc.note(trouble_data.title, page_cursor, lang)
-            self.toc.note(spec_data.title, page_cursor, lang)
-            composition_data = self.plan_entry_by_ref[
-                composition.source_refs[1]
-            ].get("composition_data")
-            _trouble_sid, _spec_sid, grouped_sections = (
-                shared_page.add_troubleshooting_specifications_page(
-                    self.writer,
-                    trouble_data=trouble_data,
-                    spec_data=spec_data,
-                    page_index=page_cursor,
-                    language=lang,
-                    composition_data=composition_data,
-                )
-            )
-            if lang == self.output_lang:
-                self.spec_sections[:] = grouped_sections
-            self.emitted.add(f"trouble:{lang}")
-            self.emitted.add(f"spec:{lang}")
-        elif composition.composition_type == "specifications":
-            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
-            if spec_data is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing Specifications data"
-                )
-            self.toc.note(spec_data.title, page_cursor, lang)
-            _spec_sid, rendered_sections = shared_page.add_specifications_page(
-                self.writer,
-                spec_data=spec_data,
-                page_index=page_cursor,
-                language=lang,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-            if lang == self.output_lang:
-                self.spec_sections[:] = rendered_sections
-            self.emitted.add(f"spec:{lang}")
-        elif composition.composition_type == "storage_specifications":
-            storage, _spec = composition_pages
-            storage_blocks = list(storage.blocks)
-            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
-            if spec_data is None:
-                raise ValueError(
-                    f"{composition.composition_id}: missing Specifications data"
-                )
-            self.toc.note_h1s(storage_blocks, page_cursor)
-            self.toc.note(spec_data.title, page_cursor, lang)
-            composition_data = self.plan_entry_by_ref[
-                composition.source_refs[1]
-            ].get("composition_data")
-            _storage_sid, _spec_sid, grouped_sections = (
-                shared_page.add_storage_specifications_page(
-                    self.writer,
-                    sid="st_" + self.slug_stem(composition.composition_id),
-                    storage_blocks=storage_blocks,
-                    spec_data=spec_data,
-                    bundle_root=self.bundle_root,
-                    page_index=page_cursor,
-                    language=lang,
-                    composition_data=composition_data,
-                )
-            )
-            if lang == self.output_lang:
-                self.spec_sections[:] = grouped_sections
-            self.emitted.add(f"spec:{lang}")
-        elif composition.composition_type == "regulatory_compliance":
-            regulatory = composition_pages[0]
-            regulatory_blocks = list(regulatory.blocks)
-            self.toc.note_h1s(regulatory_blocks, page_cursor)
-            shared_page.add_regulatory_compliance_page(
-                self.writer,
-                sid="st_" + self.slug_stem(composition.composition_id),
-                blocks=regulatory_blocks,
-                page_index=page_cursor,
-                language=lang,
-                root=self.root,
-                composition_data=self.plan_entry_by_ref[
-                    composition.source_refs[0]
-                ].get("composition_data"),
-            )
-        elif composition.composition_type == "back_cover":
-            self.back_cover_added = page_placed.add_preferred_back_cover_page(
-                self.writer,
-                self.writer.region,
-                lang,
-                self.root / "docs",
-                page_cursor,
-                ir_projection.back_cover_data(self.manual_ir),
-                reference_plan=self.page_plan,
-            )
-            if not self.back_cover_added:
-                raise ValueError(
-                    f"{composition.composition_id}: back cover was not rendered"
-                )
+        handler = self._COMPOSITION_RENDERERS.get(composition.composition_type)
+        if handler is not None:
+            early = handler(self, composition, composition_pages, page_cursor, lang, skipped_raw)
+            if early is not None:
+                return early
         return RenderDelta(
             page_count=composition.page_count,
             skipped_raw=skipped_raw,
         )
+
+    def _render_symbols(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        symbol_data = self.symbol_data_for(lang)
+        if symbol_data is None:
+            raise ValueError(f"{composition.composition_id}: missing Symbols data")
+        self.toc.note(symbol_data.title, page_cursor, lang)
+        shared_page.add_symbols_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            symbol_data=symbol_data,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        self.emitted.add(f"symbols:{lang}")
+        return None
+
+    def _render_symbols_icons(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        symbol_data = self.symbol_data_for(lang)
+        if symbol_data is None:
+            raise ValueError(f"{composition.composition_id}: missing Symbols data")
+        self.toc.note(symbol_data.title, page_cursor, lang)
+        shared_page.add_symbol_icons_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            symbol_data=symbol_data,
+            page_index=page_cursor,
+            language=lang,
+        )
+        self.emitted.add(f"symbols:{lang}")
+        return None
+
+    def _render_safety_signals(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        safety = composition_pages[0]
+        symbol_data = self.symbol_data_for(lang)
+        if symbol_data is None:
+            raise ValueError(f"{composition.composition_id}: missing Symbols data")
+        self.toc.note_h1s(list(safety.blocks), page_cursor)
+        shared_page.add_safety_signals_page(
+            self.writer,
+            safety_sid="st_" + self.slug_stem(Path(safety.path).stem),
+            safety_title=Path(safety.path).stem,
+            safety_blocks=list(safety.blocks),
+            symbol_data=symbol_data,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+        )
+        return None
+
+    def _render_safety_symbols(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        safety, _symbols = composition_pages
+        symbol_data = self.symbol_data_for(lang)
+        if symbol_data is None:
+            raise ValueError(f"{composition.composition_id}: missing Symbols data")
+        self.toc.note_h1s(list(safety.blocks), page_cursor)
+        self.toc.note(symbol_data.title, page_cursor, lang)
+        shared_page.add_safety_symbols_page(
+            self.writer,
+            safety_sid="st_" + self.slug_stem(Path(safety.path).stem),
+            safety_title=Path(safety.path).stem,
+            safety_blocks=list(safety.blocks),
+            symbol_data=symbol_data,
+            bundle_root=self.bundle_root,
+            data_root=self.data_root,
+            page_index=page_cursor,
+            language=lang,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[1]
+            ].get("composition_data"),
+        )
+        self.emitted.add(f"symbols:{lang}")
+        return None
+
+    def _render_inbox_overview(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        inbox, overview = composition_pages
+        for projected in composition_pages:
+            self.toc.note_h1s(list(projected.blocks), page_cursor)
+        inbox_data = self.plan_entry_by_ref[
+            composition.source_refs[0]
+        ].get("composition_data")
+        overview_data = self.plan_entry_by_ref[
+            composition.source_refs[1]
+        ].get("composition_data")
+        shared_page.add_inbox_overview_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            inbox_blocks=list(inbox.blocks),
+            overview_blocks=list(overview.blocks),
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            composition_data={
+                **(inbox_data if isinstance(inbox_data, dict) else {}),
+                **(overview_data if isinstance(overview_data, dict) else {}),
+            },
+        )
+        return None
+
+    def _render_fcc_inbox_overview(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        fcc, inbox, overview = composition_pages
+        for projected in composition_pages:
+            self.toc.note_h1s(list(projected.blocks), page_cursor)
+        shared_page.add_fcc_inbox_overview_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            fcc_blocks=list(fcc.blocks),
+            inbox_blocks=list(inbox.blocks),
+            overview_blocks=list(overview.blocks),
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+        )
+        return None
+
+    def _render_lcd_operations(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        _lcd, operation = composition_pages
+        lcd_data = ir_projection.lcd_page_data(
+            self.manual_ir,
+            lang,
+            root=self.root,
+            data_root=self.data_root,
+            reference_plan=self.page_plan,
+        )
+        if lcd_data is None:
+            raise ValueError(f"{composition.composition_id}: missing LCD data")
+        operation_blocks = list(operation.blocks)
+        if lang == self.output_lang:
+            self.lcd_rows[:] = list(lcd_data.rows)
+        self.toc.note(lcd_data.title, page_cursor, lang)
+        self.toc.note_h1s(operation_blocks, page_cursor)
+        hero_path = (
+            self.writer._resolve_bundle_image(
+                self.bundle_root, lcd_data.hero_reference,
+            )
+            if lcd_data.hero_reference
+            else None
+        )
+        shared_page.add_lcd_operations_page(
+            self.writer,
+            lcd_data=lcd_data,
+            operation_sid="st_" + self.slug_stem(Path(operation.path).stem),
+            operation_title=Path(operation.path).stem,
+            operation_blocks=operation_blocks,
+            bundle_root=self.bundle_root,
+            data_root=self.data_root,
+            page_index=page_cursor,
+            language=lang,
+            hero_path=hero_path,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        self.emitted.add(f"lcd:{lang}")
+        return None
+
+    def _render_connections(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        connection = composition_pages[0]
+        entry = self.plan_entry_by_ref[composition.source_refs[0]]
+        split = entry.get("flow_split")
+        connection_blocks = list(connection.blocks)
+        if not isinstance(split, dict):
+            self.toc.note_h1s(connection_blocks, page_cursor)
+            shared_page.add_connections_page(
+                self.writer,
+                sid="st_" + self.slug_stem(Path(connection.path).stem),
+                title=Path(connection.path).stem,
+                blocks=connection_blocks,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+                page_count=composition.page_count,
+                composition_data=entry.get("composition_data"),
+            )
+            return RenderDelta(
+                page_count=composition.page_count,
+                skipped_raw=skipped_raw,
+            )
+        occurrence = int(split["occurrence"])
+        seen = 0
+        split_at = None
+        for block_index, (kind, _value) in enumerate(connection_blocks):
+            if kind == split["at_kind"]:
+                seen += 1
+                if seen == occurrence:
+                    split_at = block_index
+                    break
+        if split_at is None:
+            raise ValueError(
+                f"{composition.composition_id}: flow_split cannot be applied"
+            )
+        tail_id = str(split["tail_composition_id"])
+        self.routed_tail_blocks[tail_id] = connection_blocks[split_at:]
+        head = connection_blocks[:split_at]
+        self.toc.note_h1s(head, page_cursor)
+        shared_page.add_connections_page(
+            self.writer,
+            sid="st_" + self.slug_stem(Path(connection.path).stem),
+            title=Path(connection.path).stem,
+            blocks=head,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            page_count=1,
+            composition_data=entry.get("composition_data"),
+        )
+        return None
+
+    def _render_troubleshooting(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        trouble = composition_pages[0]
+        trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
+        tail = self.routed_tail_blocks.pop(composition.composition_id, None)
+        if trouble_data is None or tail is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing routed connection tail "
+                "or Troubleshooting data"
+            )
+        if lang == self.output_lang:
+            self.trouble_rows[:] = list(trouble_data.rows)
+        self.toc.note(trouble_data.title, page_cursor, lang)
+        shared_page.add_connection_tail_troubleshooting_page(
+            self.writer,
+            connection_sid=(
+                "st_" + self.slug_stem(composition.composition_id) + "_tail"
+            ),
+            connection_title=composition.composition_id,
+            connection_blocks=tail,
+            trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
+            trouble_title=Path(trouble.path).stem,
+            trouble_blocks=list(trouble.blocks),
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        self.emitted.add(f"trouble:{lang}")
+        return None
+
+    def _render_charging(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        charging = composition_pages[0]
+        charging_blocks = list(charging.blocks)
+        self.toc.note_h1s(charging_blocks, page_cursor)
+        shared_page.add_charging_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            title=composition.composition_id,
+            charging_blocks=charging_blocks,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        return None
+
+    def _render_charging_storage(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        charging, storage = composition_pages
+        charging_blocks = list(charging.blocks)
+        storage_blocks = list(storage.blocks)
+        self.toc.note_h1s(charging_blocks, page_cursor)
+        self.toc.note_h1s(storage_blocks, page_cursor)
+        shared_page.add_charging_storage_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            title=composition.composition_id,
+            charging_blocks=charging_blocks,
+            storage_blocks=storage_blocks,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+        )
+        return None
+
+    def _render_app(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        app_page = composition_pages[0]
+        app_blocks = list(app_page.blocks)
+        self.toc.note_h1s(app_blocks, page_cursor)
+        shared_page.add_app_composition(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            title=composition.composition_id,
+            blocks=app_blocks,
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            page_count=composition.page_count,
+            language=lang,
+            page_plan=self.page_plan,
+            source_stem=Path(app_page.path).stem,
+        )
+        return None
+
+    def _render_storage_troubleshooting(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        storage, trouble = composition_pages
+        registered = (
+            (self.page_plan or {}).get("plan_source") == "registered-component"
+        )
+        trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
+        if trouble_data is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing Troubleshooting data"
+            )
+        if lang == self.output_lang:
+            self.trouble_rows[:] = list(trouble_data.rows)
+        self.toc.note_h1s(list(storage.blocks), page_cursor)
+        self.toc.note(trouble_data.title, page_cursor, lang)
+        shared_page.add_storage_troubleshooting_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            storage_blocks=list(storage.blocks),
+            trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
+            trouble_title=Path(trouble.path).stem,
+            trouble_blocks=list(trouble.blocks),
+            bundle_root=self.bundle_root,
+            page_index=page_cursor,
+            language=lang,
+            split_leading_notice=registered,
+        )
+        self.emitted.add(f"trouble:{lang}")
+        if registered:
+            self.emitted.add("trouble")
+        return None
+
+    def _render_troubleshooting_specifications(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        _trouble, _spec = composition_pages
+        trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
+        spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+        if trouble_data is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing Troubleshooting data"
+            )
+        if spec_data is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing Specifications data"
+            )
+        if lang == self.output_lang:
+            self.trouble_rows[:] = list(trouble_data.rows)
+            self.spec_sections[:] = list(spec_data.sections)
+        self.toc.note(trouble_data.title, page_cursor, lang)
+        self.toc.note(spec_data.title, page_cursor, lang)
+        composition_data = self.plan_entry_by_ref[
+            composition.source_refs[1]
+        ].get("composition_data")
+        _trouble_sid, _spec_sid, grouped_sections = (
+            shared_page.add_troubleshooting_specifications_page(
+                self.writer,
+                trouble_data=trouble_data,
+                spec_data=spec_data,
+                page_index=page_cursor,
+                language=lang,
+                composition_data=composition_data,
+            )
+        )
+        if lang == self.output_lang:
+            self.spec_sections[:] = grouped_sections
+        self.emitted.add(f"trouble:{lang}")
+        self.emitted.add(f"spec:{lang}")
+        return None
+
+    def _render_specifications(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+        if spec_data is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing Specifications data"
+            )
+        self.toc.note(spec_data.title, page_cursor, lang)
+        _spec_sid, rendered_sections = shared_page.add_specifications_page(
+            self.writer,
+            spec_data=spec_data,
+            page_index=page_cursor,
+            language=lang,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        if lang == self.output_lang:
+            self.spec_sections[:] = rendered_sections
+        self.emitted.add(f"spec:{lang}")
+        return None
+
+    def _render_storage_specifications(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        storage, _spec = composition_pages
+        storage_blocks = list(storage.blocks)
+        spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+        if spec_data is None:
+            raise ValueError(
+                f"{composition.composition_id}: missing Specifications data"
+            )
+        self.toc.note_h1s(storage_blocks, page_cursor)
+        self.toc.note(spec_data.title, page_cursor, lang)
+        composition_data = self.plan_entry_by_ref[
+            composition.source_refs[1]
+        ].get("composition_data")
+        _storage_sid, _spec_sid, grouped_sections = (
+            shared_page.add_storage_specifications_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                storage_blocks=storage_blocks,
+                spec_data=spec_data,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+                composition_data=composition_data,
+            )
+        )
+        if lang == self.output_lang:
+            self.spec_sections[:] = grouped_sections
+        self.emitted.add(f"spec:{lang}")
+        return None
+
+    def _render_regulatory_compliance(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        regulatory = composition_pages[0]
+        regulatory_blocks = list(regulatory.blocks)
+        self.toc.note_h1s(regulatory_blocks, page_cursor)
+        shared_page.add_regulatory_compliance_page(
+            self.writer,
+            sid="st_" + self.slug_stem(composition.composition_id),
+            blocks=regulatory_blocks,
+            page_index=page_cursor,
+            language=lang,
+            root=self.root,
+            composition_data=self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data"),
+        )
+        return None
+
+    def _render_back_cover(
+        self,
+        composition: Any,
+        composition_pages: list[ir_projection.ProjectedPage],
+        page_cursor: int,
+        lang: str,
+        skipped_raw: int,
+    ) -> RenderDelta | None:
+        self.back_cover_added = page_placed.add_preferred_back_cover_page(
+            self.writer,
+            self.writer.region,
+            lang,
+            self.root / "docs",
+            page_cursor,
+            ir_projection.back_cover_data(self.manual_ir),
+            reference_plan=self.page_plan,
+        )
+        if not self.back_cover_added:
+            raise ValueError(
+                f"{composition.composition_id}: back cover was not rendered"
+            )
+        return None
+
+    _COMPOSITION_RENDERERS: dict[str, Callable[..., RenderDelta | None]] = {
+        "symbols": _render_symbols,
+        "symbols_icons": _render_symbols_icons,
+        "safety_signals": _render_safety_signals,
+        "safety_symbols": _render_safety_symbols,
+        "inbox_overview": _render_inbox_overview,
+        "fcc_inbox_overview": _render_fcc_inbox_overview,
+        "lcd_operations": _render_lcd_operations,
+        "connections": _render_connections,
+        "troubleshooting": _render_troubleshooting,
+        "charging": _render_charging,
+        "charging_storage": _render_charging_storage,
+        "app": _render_app,
+        "storage_troubleshooting": _render_storage_troubleshooting,
+        "troubleshooting_specifications": _render_troubleshooting_specifications,
+        "specifications": _render_specifications,
+        "storage_specifications": _render_storage_specifications,
+        "regulatory_compliance": _render_regulatory_compliance,
+        "back_cover": _render_back_cover,
+    }
