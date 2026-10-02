@@ -5,7 +5,7 @@
 #   python tools/check_facade_patch_ratchet.py update
 tests/test_build_docs_review_compat.py	1
 tests/test_build_review_preview.py	1
-tests/test_process_build_queue.py	70
+tests/test_process_build_queue.py	17
 tests/test_process_build_queue_routing.py	25
 tests/test_process_review_start_queue.py	21
 tests/test_target_resolution.py	6
