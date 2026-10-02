@@ -227,7 +227,7 @@ def _parse_spec_master_sections(
 
     for idx, raw in enumerate(blocks):
         row = dict(raw)
-        overflow = row.get(None)
+        overflow = cast(dict[str | None, object], row).get(None)
         if isinstance(overflow, list) and any(str(x).strip() for x in overflow):
             line = (row.get("__line__") or str(idx + 2)).strip()
             raise ValueError(
@@ -440,18 +440,18 @@ def _parse_spec_master_sections(
 
     if referenced_footnote_ids_by_page:
         existing_footnote_ids = {footnote_id for _order, footnote_id, _text in footnote_defs}
-        for row in collect_matching_footnote_rows(
+        for footnote_row in collect_matching_footnote_rows(
             blocks,
             model=var_model or raw_var_model,
             region=var_region,
             referenced_ids_by_page=referenced_footnote_ids_by_page,
             preferred_source_langs=target_source_langs,
         ):
-            footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
+            footnote_id = _first_non_empty(footnote_row, ["Footnote_id", "footnote_id"])
             if not footnote_id or footnote_id in existing_footnote_ids:
                 continue
             footnote_text = _pick_spec_lang_text(
-                row,
+                footnote_row,
                 base="footnote_text",
                 lang=lang,
                 default_keys=["footnote", "Footnote"],
@@ -459,8 +459,8 @@ def _parse_spec_master_sections(
             if not footnote_text:
                 continue
             footnote_order = _to_float(
-                _first_non_empty(row, ["footnote_order", "Footnote_order"]),
-                _to_float(_first_non_empty(row, ["row_order", "Row_order"]), 0.0),
+                _first_non_empty(footnote_row, ["footnote_order", "Footnote_order"]),
+                _to_float(_first_non_empty(footnote_row, ["row_order", "Row_order"]), 0.0),
             )
             footnote_defs.append(
                 (
@@ -472,10 +472,10 @@ def _parse_spec_master_sections(
             existing_footnote_ids.add(footnote_id)
 
     if section_title_overrides:
-        for row in rows:
-            key = str(row.get("section_key") or "")
+        for spec_row in rows:
+            key = str(spec_row.get("section_key") or "")
             if key in section_title_overrides:
-                row["section_title"] = section_title_overrides[key]
+                spec_row["section_title"] = section_title_overrides[key]
 
     footnote_marker_by_id = {
         footnote_id: _footnote_marker_for_order(order)
@@ -490,57 +490,57 @@ def _parse_spec_master_sections(
 
     section_dict: dict[str, dict[str, object]] = {}
     group_source_orders: dict[tuple[str, str], int] = {}
-    for row in sorted(rows, key=lambda x: (x["section_order"], x["source_order"])):
-        section_key = str(row["section_key"])
+    for spec_row in sorted(rows, key=lambda x: (x["section_order"], x["source_order"])):
+        section_key = str(spec_row["section_key"])
         section = section_dict.setdefault(
             section_key,
             {
-                "title": row["section_title"] or row["section_key"],
-                "order": row["section_order"],
+                "title": spec_row["section_title"] or spec_row["section_key"],
+                "order": spec_row["section_order"],
                 "rows": {},
-                "source_order": row["source_order"],
+                "source_order": spec_row["source_order"],
             },
         )
         rows_map = section["rows"]
         assert isinstance(rows_map, dict)
         group_source_order = group_source_orders.setdefault(
-            (section_key, str(row["row_key"])), int(row["source_order"])
+            (section_key, str(spec_row["row_key"])), int(cast(int, spec_row["source_order"]))
         )
         # A shared semantic key may contain separately labelled ports. Do not
         # discard their localized labels or attach one port's notes to another.
-        row_key = (str(row["row_key"]), str(row["row_label"]), tuple(row["row_label_refs"]))
+        row_group_key = (str(spec_row["row_key"]), str(spec_row["row_label"]), tuple(cast(list[str], spec_row["row_label_refs"])))
         item = rows_map.setdefault(
-            row_key,
+            row_group_key,
             {
-                "label": row["row_label"],
-                "label_refs": row["row_label_refs"],
-                "order": row["row_order"],
-                "source_order": row["source_order"],
+                "label": spec_row["row_label"],
+                "label_refs": spec_row["row_label_refs"],
+                "order": spec_row["row_order"],
+                "source_order": spec_row["source_order"],
                 "group_source_order": group_source_order,
-                "line_order": row["line_order"],
+                "line_order": spec_row["line_order"],
                 "lines": [],
             },
         )
         lines = item["lines"]
         assert isinstance(lines, list)
-        item["line_order"] = min(float(item["line_order"]), float(row["line_order"]))
+        item["line_order"] = min(float(cast(float, item["line_order"])), float(cast(float, spec_row["line_order"])))
         lines.append(
             (
-                float(row["line_order"]),
-                int(row["source_order"]),
-                str(row["line_text"]),
-                str(row["param_text"]),
-                str(row["value_text"]),
-                str(row["param_value_sep"]),
-                cast(list[str], row["param_refs"]),
-                cast(list[str], row["value_refs"]),
+                float(cast(float, spec_row["line_order"])),
+                int(cast(int, spec_row["source_order"])),
+                str(spec_row["line_text"]),
+                str(spec_row["param_text"]),
+                str(spec_row["value_text"]),
+                str(spec_row["param_value_sep"]),
+                cast(list[str], spec_row["param_refs"]),
+                cast(list[str], spec_row["value_refs"]),
             )
         )
 
     sections: list[dict[str, object]] = []
     for section in sorted(
         section_dict.values(),
-        key=lambda x: (float(x["order"]), int(x["source_order"])),
+        key=lambda x: (float(cast(float, x["order"])), int(cast(int, x["source_order"]))),
     ):
         rows_map = section["rows"]
         assert isinstance(rows_map, dict)
@@ -662,9 +662,10 @@ def collect_spec_content(
                 return r["text"]
         raise ValueError(f"Missing required block_type='{block_type}' sku={sku_id} lang={lang}")
 
-    sections: list[dict[str, object]] = []
-    notes: list[str] = []
-    footnotes: list[str] = []
+    # Same types as the Spec_Master branch above, which returns early.
+    sections = []
+    notes = []
+    footnotes = []
     current_section: dict[str, object] | None = None
 
     for r in sorted(use, key=sort_key):

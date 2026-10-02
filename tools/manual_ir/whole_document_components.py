@@ -153,7 +153,9 @@ def _claim_nodes(
         claimed.update(id(descendant) for descendant in node.find_all(True))
 
 
-def _claim_operation_tables(soup, source_path, language, claimed, claims):
+def _claim_operation_tables(
+    soup: BeautifulSoup, source_path: Path, language: str, claimed: set[int], claims: list[ComponentClaim],
+) -> None:
     for spec, boundary in parse_operation_tables_html(
         soup, source_path=source_path, language=language,
     ):
@@ -162,8 +164,10 @@ def _claim_operation_tables(soup, source_path, language, claimed, claims):
         claims.append(claim)
 
 
-def _authored_claims(soup, source_path, language, claimed):
-    claims = []
+def _authored_claims(
+    soup: BeautifulSoup, source_path: Path, language: str, claimed: set[int],
+) -> list[ComponentClaim]:
+    claims: list[ComponentClaim] = []
     normalize_declared_specifications(soup, source_path)
     for spec, table in parse_authored_tables(soup, source_path=source_path, language=language):
         claim = ComponentClaim(spec=spec, owned_nodes=(table,))
@@ -172,7 +176,10 @@ def _authored_claims(soup, source_path, language, claimed):
     return claims
 
 
-def _claim_inbox(soup, source_path, language, contract, claimed, claims):
+def _claim_inbox(
+    soup: BeautifulSoup, source_path: Path, language: str, contract: Mapping[str, Any],
+    claimed: set[int], claims: list[ComponentClaim],
+) -> None:
     inbox_config = contract["in_the_box"]
     semantic_inbox = isinstance(inbox_config, Mapping) and _matches_source(
         source_path, inbox_config.get("semantic_source_patterns", [])
@@ -368,7 +375,7 @@ def discover_registered_components(
         if isinstance(lcd_config, Mapping):
             _claim_lcd_mode(soup, source_path, language, lcd_config, claimed, claims)
 
-    reference_config = contract["reference_figures"]
+    reference_config: Any = contract["reference_figures"]
     supports_figures = supports_figure_contract(source_path, dict(contract))
     for raw_reference in reference_config.get("figures", []):
         if (
@@ -443,17 +450,17 @@ def discover_registered_components(
         supports_figures=supports_figures,
     ):
         image_key = str(raw_reference.get("image_key") or "")
-        images = [
+        reference_images = [
             image
             for image in soup.find_all("img")
             if _matches_asset_source(str(image.get("src") or ""), image_key)
         ]
-        if len(images) != 1:
+        if len(reference_images) != 1:
             raise ValueError(
                 f"{source_path}: reference {raw_reference.get('id')!r} needs one "
-                f"governed image; found {len(images)}"
+                f"governed image; found {len(reference_images)}"
             )
-        image = images[0]
+        image = reference_images[0]
         if raw_reference.get("presentation") == "shared-art-live-labels":
             spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
                 soup,
@@ -535,7 +542,7 @@ def discover_registered_components(
         and _matches_source(source_path, fcc_config.get("source_patterns", []))
         and supports_preface_contract(source_path, dict(contract))
     ):
-        parsed = parse_fcc_html(
+        fcc_parsed = parse_fcc_html(
             soup,
             source_path=source_path,
             config=fcc_config,
@@ -546,9 +553,9 @@ def discover_registered_components(
         if not mark_path.is_absolute():
             mark_path = repo_root() / mark_path
         claim = ComponentClaim(
-            spec=parsed.spec,
-            owned_nodes=parsed.consumed_nodes,
-            asset_paths=((parsed.spec.assets[0].role, mark_path),),
+            spec=fcc_parsed.spec,
+            owned_nodes=fcc_parsed.consumed_nodes,
+            asset_paths=((fcc_parsed.spec.assets[0].role, mark_path),),
             consume_interstitial=True,
         )
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
@@ -690,7 +697,7 @@ def embed_component_claims(
         for parent in discard_parents:
             if parent.parent is not None and not parent.get_text(" ", strip=True):
                 parent.decompose()
-        carrier_nodes: list[object]
+        carrier_nodes: list[Any]
         if claim.consume_interstitial:
             parent = claim.owned_nodes[0].parent
             if parent is None or claim.owned_nodes[-1].parent is not parent:
