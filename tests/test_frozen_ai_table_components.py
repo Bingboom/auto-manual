@@ -251,6 +251,23 @@ class FrozenAITableComponentTests(unittest.TestCase):
                     [heading.get_text() for heading in soup.select("h3")],
                 )
 
+    def test_declared_spec_break_survives_source_free_replay(self):
+        value = "Auto: 12-16 V 8 A PV: 16-60 V 12 A"
+        record = {"groups": {"inputs": [{"label": "DC", "value": value}]},
+                  "value_breaks": [{"group": "inputs", "row": 0, "before": "PV:"}]}
+        nodes = specification_flow(record, group_headings=["Input"], source_ref="spec", language="nl")
+        soup = self._roundtrip(nodes, "nl")
+        cell = soup.select_one("td")
+        self.assertEqual(1, len(soup.select("tbody tr")))
+        self.assertEqual(1, len(cell.select("br")))
+        self.assertEqual(value.replace(" PV:", "\nPV:"), cell.get_text("\n"))
+        self.assertEqual(value, record["groups"]["inputs"][0]["value"])
+        for changed in ({"row": 2}, {"before": "missing"}, {"before": "V"}, {"before": "uto:"}):
+            invalid = deepcopy(record)
+            invalid["value_breaks"][0].update(changed)
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                specification_flow(invalid, group_headings=["Input"], source_ref="spec", language="nl")
+
     def test_escaping_and_carrier_semantics_stay_consistent(self):
         record = {"groups": {"one": [{"label": "Voltage <maximum>", "value": '5 & 10 "V"'}]}}
         nodes = specification_flow(record, group_headings=["Input & output"], source_ref="spec", language="nl")

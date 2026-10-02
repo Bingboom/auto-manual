@@ -186,7 +186,8 @@ def _specifications(reader, number, layout=None):
                               f"specifications/{group}/{index}/{key}"))
                               for key in ("label", "value")}
                              for index, record in enumerate(records)]
-        return {"physical_page": number, "groups": groups}
+        return {"physical_page": number, "groups": groups,
+                "value_breaks": layout.get("value_breaks", [])}
     columns = layout.get("columns", {"label": [26, 123.5], "value": [125, 338]})
     extract = reader.lines if layout.get("selection") == "lines" else reader.box
     for group, edges in layout.get("edges", _SPEC_EDGES).items():
@@ -198,7 +199,8 @@ def _specifications(reader, number, layout=None):
                 for key, (left, right) in columns.items()
             })
         groups[group] = rows
-    return {"physical_page": number, "groups": groups}
+    return {"physical_page": number, "groups": groups,
+            "value_breaks": layout.get("value_breaks", [])}
 
 
 def _faults(reader, number, layout=None):
