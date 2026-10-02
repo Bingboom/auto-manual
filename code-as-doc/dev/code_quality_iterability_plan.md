@@ -164,6 +164,12 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `structural_findings`（92）、`promote_reference_figures`（87）、
   `_parse_spec_master_sections`（85）、`extract_page`（81）：不单独立项；业务 PR 改到这些函数时，
   必须顺带降低复杂度（由 CQ-3.1 的棘轮保证不会升高）。
+  - 2026-10-02 操作者确认改为主动清理（CC≥50 的函数 24 → ≤10，分 A/B/C 三批，每个函数用新旧实现的随机差分验证行为不变）：
+    - [x] A 批（校验类）：`structural_findings` 92 → 14、`build_context` 50 → 34、
+      `enforce_required_web_figure_coverage` 79 → 15、`_validate_instance` 56 → 20、
+      `validate_component_registry` 51 → 19、`normalize_target_assembly_plan` 52 → 16；CC≥50 24 → 18
+    - [ ] B 批（队列/编排）：`infer_queue_query_from_text`、`process_queue_record_group`、`_run_review_branch(_baseline)`、`build_release_manifest`
+    - [ ] C 批（解析/加载）：`resolve_manifest_asset`、`load_web_document`、`ordered_pages`、`_extract_raw_latex`、`extract_page`
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。
