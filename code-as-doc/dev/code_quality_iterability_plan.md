@@ -148,12 +148,12 @@ web、IDML、队列、回写这几块目前最大的代码面。
     `_parse_generated_page` 27）
   - [x] `tools/manual_ir/validate.py::_payload_issues`（71）（#1361，2026-10-01；文件内最高
     `_validate_embedded_overview` 27）
-- [ ] **CQ-3.3 `main()` 拆成子命令处理函数。** `tools/lang_asset_sweep.py`（71）、
+- [x] **CQ-3.3 `main()` 拆成子命令处理函数。** `tools/lang_asset_sweep.py`（71）、
   `tools/bitable_schema.py`（71）、`tools/export_idml.py`（68）：按子命令拆成独立处理函数，
   参数解析保持不变。
   - [x] `lang_asset_sweep.py`（#1356，2026-10-01；`_cmd_sweep` 29）
   - [x] `bitable_schema.py`（#1360，2026-10-01；最高 `apply` 31）
-  - [ ] `export_idml.py`（`main` 仍为 68）
+  - [x] `export_idml.py`（2026-10-02）：`main` 只解析参数并分派 `_cmd_check` / `_cmd_flow` / `_cmd_reference`；正式导出的有状态单遍流程从嵌套闭包改为 `tools/idml/reference_export.py::ReferenceExport` 的方法（`render_page` 再拆为数据页、内容页、FCC/收货清单页、符号页、流式页几个方法，两处重复的安全符号页合并为一个方法），最高复杂度 68 → 19；`export_idml.py` 604 → 178 行，热点上限下调到 230
 - [ ] **CQ-3.4 渲染与变换热点随改随降。** `transform_web_fragment`（93）、
   `structural_findings`（92）、`promote_reference_figures`（87）、
   `_parse_spec_master_sections`（85）、`extract_page`（81）：不单独立项；业务 PR 改到这些函数时，
