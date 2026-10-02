@@ -38,3 +38,8 @@ warn_redundant_casts = true
 module = "tools.utils.*"
 disallow_untyped_defs = true
 warn_return_any = true
+
+# CQ-4.5: these packages have no untyped defs; tools/check_mypy_ratchet.py keeps it so in CI.
+[[tool.mypy.overrides]]
+module = ["tools.manual_ir.*", "tools.component_specs.*", "tools.csv_pages.*"]
+disallow_untyped_defs = true

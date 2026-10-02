@@ -1,5 +1,6 @@
 """Explicit RST table declarations into existing and text-reference components."""
 from pathlib import Path
+from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
@@ -11,7 +12,7 @@ from tools.component_specs.reference_table import reference_table_component_spec
 DECLARATIONS = {f"hb-source-{variant}": variant for variant in VARIANTS}
 
 
-def _cell(cell):
+def _cell(cell: Tag) -> dict[str, str]:
     if cell.find(["img", "table", "script", "style"]):
         raise ValueError("authored text table contains unsupported cell markup")
     return {"html": cell.decode_contents().strip(), "text": cell.get_text("\n", strip=True)}
@@ -34,7 +35,9 @@ def _signal_row(row: list[dict[str, str]]) -> dict[str, str | bool]:
             "meaning_html": row[1]["html"], "meaning_text": row[1]["text"]}
 
 
-def _rows(table, columns, has_headers, source_path):
+def _rows(
+    table: Tag, columns: int, has_headers: bool, source_path: Path
+) -> tuple[list[dict[str, str]], list[list[dict[str, str]]]]:
     if table.find("table") or table.select("[rowspan], [colspan]"):
         raise ValueError(f"{source_path}: authored table cannot contain nested tables or spans")
     rows = table.find_all("tr")
@@ -50,7 +53,7 @@ def _rows(table, columns, has_headers, source_path):
     return (values[0], values[1:]) if has_headers else ([], values)
 
 
-def normalize_declared_specifications(soup: BeautifulSoup, source_path: Path):
+def normalize_declared_specifications(soup: BeautifulSoup, source_path: Path) -> None:
     for table in soup.select("table.hb-source-specification"):
         heading = table.find_previous_sibling()
         if not isinstance(heading, Tag) or heading.name != "h2":
@@ -64,8 +67,10 @@ def normalize_declared_specifications(soup: BeautifulSoup, source_path: Path):
         table["class"] = list(dict.fromkeys([*table.get("class", []), "hb-spec-table"]))
 
 
-def parse_authored_tables(soup: BeautifulSoup, *, source_path: Path, language: str):
-    claims = []
+def parse_authored_tables(
+    soup: BeautifulSoup, *, source_path: Path, language: str
+) -> tuple[tuple[Any, Tag], ...]:
+    claims: list[tuple[Any, Tag]] = []
     for index, table in enumerate(soup.find_all("table"), start=1):
         declarations = set(table.get("class", [])) & (set(DECLARATIONS) | {"hb-source-signals"})
         if not declarations:
