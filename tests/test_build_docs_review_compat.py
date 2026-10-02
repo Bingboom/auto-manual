@@ -9,8 +9,47 @@ from unittest import mock
 from tools import build_docs, build_docs_bundle
 from tools.gen_index_bundle import MaterializedBundle
 
+_BUNDLE_COLLABORATORS = (
+    "materialize_bundle",
+    "review_bundle_exists",
+    "overlay_review_onto_bundle",
+    "review_content_exists",
+    "overlay_review_content_onto_bundle",
+    "finalize_materialized_bundle",
+    "trim_bundle_language_blocks",
+    "trim_bundle_language_pages",
+)
+
+
+def _prepare_manual_bundle(cfg: dict, *, docs_dir: Path, **kwargs: object) -> object:
+    """Call the bundle step with the facade's collaborators, overriding any passed in."""
+    collaborators: dict[str, object] = {name: getattr(build_docs, name) for name in _BUNDLE_COLLABORATORS}
+    collaborators.update({name: kwargs.pop(name) for name in list(kwargs) if name in collaborators})
+    return build_docs_bundle.prepare_manual_bundle(
+        cfg,
+        valid_source_modes=build_docs.VALID_SOURCE_MODES,
+        docs_dir=docs_dir,
+        repo_root=build_docs.ROOT,
+        **collaborators,  # type: ignore[arg-type]
+        **kwargs,  # type: ignore[arg-type]
+    )
+
 
 class TestBuildDocsReviewCompat(unittest.TestCase):
+    def test_facade_forwards_its_bundle_collaborators(self) -> None:
+        # The one facade patch left here: it checks the facade's own wiring.
+        with mock.patch.object(build_docs, "_prepare_manual_bundle_impl", return_value="bundle") as impl:
+            result = build_docs.prepare_manual_bundle(
+                {"doc_type": "manual_bundle"}, model="M1", region="US", source_mode="review-asis",
+            )
+        self.assertEqual("bundle", result)
+        kwargs = impl.call_args.kwargs
+        for name in _BUNDLE_COLLABORATORS:
+            self.assertIs(getattr(build_docs, name), kwargs[name], name)
+        self.assertEqual(build_docs.paths.docs_dir, kwargs["docs_dir"])
+        self.assertEqual(build_docs.VALID_SOURCE_MODES, kwargs["valid_source_modes"])
+        self.assertEqual("review-asis", kwargs["source_mode"])
+
     def test_web_language_source_uses_full_shared_review_with_target_identity(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             docs_dir = Path(td) / "docs"
@@ -140,24 +179,21 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 lang="es",
             )
 
-            with (
-                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
-                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
-                mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
-                mock.patch.object(build_docs, "overlay_review_content_onto_bundle") as overlay_review_content,
-                mock.patch.object(
-                    build_docs,
-                    "finalize_materialized_bundle",
-                    return_value=bundle,
-                ) as finalize_bundle,
-            ):
-                result = build_docs.prepare_manual_bundle(
-                    {"doc_type": "manual_bundle"},
-                    model="JE-1000F",
-                    region="US",
-                    lang="es",
-                    source_mode="review",
-                )
+            overlay_review_bundle = mock.MagicMock()
+            overlay_review_content = mock.MagicMock()
+            finalize_bundle = mock.MagicMock(return_value=bundle)
+            result = _prepare_manual_bundle(
+                {"doc_type": "manual_bundle"},
+                model="JE-1000F",
+                region="US",
+                lang="es",
+                source_mode="review",
+                docs_dir=docs_dir,
+                materialize_bundle=mock.MagicMock(return_value=bundle),
+                overlay_review_onto_bundle=overlay_review_bundle,
+                overlay_review_content_onto_bundle=overlay_review_content,
+                finalize_materialized_bundle=finalize_bundle,
+            )
 
         self.assertEqual(bundle, result)
         overlay_review_bundle.assert_not_called()
@@ -203,23 +239,21 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 lang=None,
             )
 
-            with (
-                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
-                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle) as materialize,
-                mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
-                mock.patch.object(build_docs, "overlay_review_content_onto_bundle") as overlay_review_content,
-                mock.patch.object(
-                    build_docs,
-                    "finalize_materialized_bundle",
-                    return_value=bundle,
-                ) as finalize_bundle,
-            ):
-                result = build_docs.prepare_manual_bundle(
-                    {"doc_type": "manual_bundle"},
-                    model="JE-1800B",
-                    region="JP",
-                    source_mode="review-asis",
-                )
+            materialize = mock.MagicMock(return_value=bundle)
+            overlay_review_bundle = mock.MagicMock()
+            overlay_review_content = mock.MagicMock()
+            finalize_bundle = mock.MagicMock(return_value=bundle)
+            result = _prepare_manual_bundle(
+                {"doc_type": "manual_bundle"},
+                model="JE-1800B",
+                region="JP",
+                source_mode="review-asis",
+                docs_dir=docs_dir,
+                materialize_bundle=materialize,
+                overlay_review_onto_bundle=overlay_review_bundle,
+                overlay_review_content_onto_bundle=overlay_review_content,
+                finalize_materialized_bundle=finalize_bundle,
+            )
 
         self.assertEqual(bundle, result)
         # Skeleton-only materialization: no page is rendered from the data-root.
@@ -275,29 +309,25 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 lang="en",
             )
 
-            with (
-                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
-                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
-                mock.patch.object(build_docs, "overlay_review_onto_bundle") as overlay_review_bundle,
-                mock.patch.object(
-                    build_docs,
-                    "finalize_materialized_bundle",
-                    return_value=bundle,
-                ) as finalize_bundle,
-            ):
-                result = build_docs.prepare_manual_bundle(
-                    {"doc_type": "manual_bundle"},
-                    model="JE-1000F",
-                    region="US",
-                    lang="en",
-                    source_mode="review-asis",
-                )
-                preface_text = (bundle_dir / "page" / "00_preface.rst").read_text(
-                    encoding="utf-8"
-                )
-                spec_text = (bundle_dir / "page" / "spec_en.rst").read_text(
-                    encoding="utf-8"
-                )
+            overlay_review_bundle = mock.MagicMock()
+            finalize_bundle = mock.MagicMock(return_value=bundle)
+            result = _prepare_manual_bundle(
+                {"doc_type": "manual_bundle"},
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                source_mode="review-asis",
+                docs_dir=docs_dir,
+                materialize_bundle=mock.MagicMock(return_value=bundle),
+                overlay_review_onto_bundle=overlay_review_bundle,
+                finalize_materialized_bundle=finalize_bundle,
+            )
+            preface_text = (bundle_dir / "page" / "00_preface.rst").read_text(
+                encoding="utf-8"
+            )
+            spec_text = (bundle_dir / "page" / "spec_en.rst").read_text(
+                encoding="utf-8"
+            )
 
         self.assertEqual(bundle, result)
         overlay_review_bundle.assert_not_called()
@@ -347,21 +377,15 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 languages=("en", "fr", "es", "de", "it"),
             )
 
-            with (
-                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
-                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
-                mock.patch.object(
-                    build_docs,
-                    "finalize_materialized_bundle",
-                    return_value=bundle,
-                ),
-            ):
-                build_docs.prepare_manual_bundle(
-                    {"doc_type": "manual_bundle"},
-                    model="JE-1000F",
-                    region="EU",
-                    source_mode="review-asis",
-                )
+            _prepare_manual_bundle(
+                {"doc_type": "manual_bundle"},
+                model="JE-1000F",
+                region="EU",
+                source_mode="review-asis",
+                docs_dir=docs_dir,
+                materialize_bundle=mock.MagicMock(return_value=bundle),
+                finalize_materialized_bundle=mock.MagicMock(return_value=bundle),
+            )
 
             index = (bundle_dir / "index.rst").read_text(encoding="utf-8")
             self.assertIn("p66_03_product_overview_placeholder.rst", index)
@@ -404,32 +428,18 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                 lang_block_pages=(("00_preface.rst", "en"),),
             )
 
-            with (
-                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
-                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
-                mock.patch.object(
-                    build_docs,
-                    "review_bundle_exists",
-                    side_effect=lambda **kwargs: kwargs["lang"] is None,
-                ),
-                mock.patch.object(
-                    build_docs,
-                    "overlay_review_content_onto_bundle",
-                    return_value=bundle_dir,
-                ),
-                mock.patch.object(
-                    build_docs,
-                    "finalize_materialized_bundle",
-                    return_value=bundle,
-                ),
-            ):
-                build_docs.prepare_manual_bundle(
-                    {"doc_type": "manual_bundle"},
-                    model="JE-1000F",
-                    region="US",
-                    lang="fr",
-                    source_mode="review-asis",
-                )
+            _prepare_manual_bundle(
+                {"doc_type": "manual_bundle"},
+                model="JE-1000F",
+                region="US",
+                lang="fr",
+                source_mode="review-asis",
+                docs_dir=docs_dir,
+                materialize_bundle=mock.MagicMock(return_value=bundle),
+                review_bundle_exists=mock.MagicMock(side_effect=lambda **kwargs: kwargs["lang"] is None),
+                overlay_review_content_onto_bundle=mock.MagicMock(return_value=bundle_dir),
+                finalize_materialized_bundle=mock.MagicMock(return_value=bundle),
+            )
 
             self.assertIn(
                 "page/00_preface.rst",
