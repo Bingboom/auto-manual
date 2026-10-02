@@ -642,6 +642,104 @@ def _normalize_query_workflow_action(value: str | None) -> str | None:
     )
 
 
+def _infer_workflow_action(
+    text: str, normalized_text: str, task_workflow_action: str, successful_link_query: bool
+) -> tuple[str, str]:
+    """The requested workflow action and the queue scope it implies."""
+    if task_workflow_action:
+        return task_workflow_action, "review-init" if task_workflow_action == "start-review" else "document-link"
+    if any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
+        return "build-draft-package", "document-link"
+    if "web publish" in normalized_text or "网页发布" in text:
+        return "web-publish", "document-link"
+    if "publish" in normalized_text or "发布" in text:
+        return "publish", "document-link"
+    if not successful_link_query and (
+        any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text
+    ):
+        return "build-draft-package", "document-link"
+    if _has_start_review_intent(text, normalized_text):
+        return "start-review", "review-init"
+    return "", "all"
+
+
+def _infer_result_scope(
+    text: str,
+    normalized_text: str,
+    queue_scope: str,
+    successful_link_query: bool,
+    inventory_link_query: bool,
+) -> tuple[str, str, bool, int]:
+    """Scope, result filter, latest-per-key flag and recommended limit for link/result asks."""
+    result_contains = ""
+    latest_per_document_key = False
+    recommended_limit = 0
+    if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
+        queue_scope = "document-link"
+    if successful_link_query:
+        queue_scope = "document-link"
+        result_contains = "success"
+        latest_per_document_key = not inventory_link_query
+        if inventory_link_query:
+            recommended_limit = _BUILT_LINK_INVENTORY_LIMIT
+    if queue_scope == "document-link" and ("最新" in text or "latest" in normalized_text):
+        latest_per_document_key = True
+    if any(needle in normalized_text for needle in ("failed", "failure")) or "失败" in text:
+        result_contains = "fail"
+        queue_scope = "document-link"
+    return queue_scope, result_contains, latest_per_document_key, recommended_limit
+
+
+def _infer_batch_tokens(text: str, workflow_action: str) -> tuple[str, ...]:
+    if workflow_action == "start-review":
+        return _infer_document_key_tokens(text)
+    if workflow_action in ("build-draft-package", "publish", "web-publish"):
+        return _infer_document_id_tokens(text)
+    return ()
+
+
+def _draft_task_prefix(
+    document_id: str, document_key: str, document_version: str
+) -> tuple[str, str, str, str]:
+    """A multi-target draft ask widens an exact ID or key into a task-ID prefix."""
+    task_id_prefix = ""
+    if document_id:
+        model_token, region, version = _split_region_version_document_id(document_id)
+        if model_token and region:
+            task_id_prefix = f"{model_token}_{region}_"
+            document_version = document_version or version
+            document_id = ""
+    if not document_id and document_key:
+        key_parts = document_key.split("_")
+        if len(key_parts) == 2:
+            task_id_prefix = f"{document_key}_"
+            document_key = ""
+    return task_id_prefix, document_id, document_key, document_version
+
+
+def _model_scope_filters(
+    text: str, market_group: str, workflow_action: str, allow_multiple: bool
+) -> tuple[str, str]:
+    """Task-ID prefix or document key from a bare model token, when no ID was given."""
+    model_token = _infer_model_token(text)
+    if model_token and market_group and allow_multiple:
+        return f"{model_token}_{market_group}_", ""
+    if model_token and workflow_action == "build-draft-package" and allow_multiple:
+        return f"{model_token}_", ""
+    if model_token and market_group:
+        return "", f"{model_token}_{market_group}"
+    return "", ""
+
+
+def _derived_task_id(workflow_action: str, document_id: str, document_key: str) -> str:
+    action_label = _canonical_query_action_label(workflow_action)
+    if document_id and action_label:
+        return f"{document_id}_{action_label}"
+    if document_key and workflow_action == "start-review" and action_label:
+        return f"{document_key}_{action_label}"
+    return ""
+
+
 def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     text = _text(raw_text).replace("\\_", "_")
     if not text:
@@ -658,48 +756,14 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
         "",
     )
     normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
-    workflow_action = ""
-    queue_scope = "all"
-    result_contains = ""
-    latest_per_document_key = False
-    recommended_limit = 0
     successful_link_query = _has_successful_document_link_query_intent(text, normalized_text)
     inventory_link_query = successful_link_query and _has_inventory_query_intent(text, normalized_text)
-
-    if task_workflow_action:
-        workflow_action = task_workflow_action
-        queue_scope = "review-init" if task_workflow_action == "start-review" else "document-link"
-    elif any(needle in normalized_text for needle in ("build draft package", "build draft", "draft package")) or "草稿" in text:
-        workflow_action = "build-draft-package"
-        queue_scope = "document-link"
-    elif "web publish" in normalized_text or "网页发布" in text:
-        workflow_action = "web-publish"
-        queue_scope = "document-link"
-    elif "publish" in normalized_text or "发布" in text:
-        workflow_action = "publish"
-        queue_scope = "document-link"
-    elif not successful_link_query and (
-        any(token in text for token in _BUILD_DRAFT_INTENT_KEYWORDS) or "manual copy" in normalized_text
-    ):
-        workflow_action = "build-draft-package"
-        queue_scope = "document-link"
-    elif _has_start_review_intent(text, normalized_text):
-        workflow_action = "start-review"
-        queue_scope = "review-init"
-
-    if any(needle in normalized_text for needle in ("document link", "latest link")) or "链接" in text:
-        queue_scope = "document-link"
-    if successful_link_query:
-        queue_scope = "document-link"
-        result_contains = "success"
-        latest_per_document_key = not inventory_link_query
-        if inventory_link_query:
-            recommended_limit = _BUILT_LINK_INVENTORY_LIMIT
-    if queue_scope == "document-link" and ("最新" in text or "latest" in normalized_text):
-        latest_per_document_key = True
-    if any(needle in normalized_text for needle in ("failed", "failure")) or "失败" in text:
-        result_contains = "fail"
-        queue_scope = "document-link"
+    workflow_action, queue_scope = _infer_workflow_action(
+        text, normalized_text, task_workflow_action, successful_link_query
+    )
+    queue_scope, result_contains, latest_per_document_key, recommended_limit = _infer_result_scope(
+        text, normalized_text, queue_scope, successful_link_query, inventory_link_query
+    )
 
     document_id, document_key, lang, document_version = _infer_document_filters(text)
     if not lang and len(inferred_langs) == 1:
@@ -714,47 +778,26 @@ def infer_queue_query_from_text(raw_text: str | None) -> InferredQueueQuery:
     # >1 forces allow_multiple, so resolve_queue_action returns N candidates that the
     # deterministic batch dispatch fans out per record.
     document_keys: tuple[str, ...] = ()
-    if workflow_action == "start-review":
-        batch_tokens = _infer_document_key_tokens(text)
-    elif workflow_action in ("build-draft-package", "publish", "web-publish"):
-        batch_tokens = _infer_document_id_tokens(text)
-    else:
-        batch_tokens = ()
+    batch_tokens = _infer_batch_tokens(text, workflow_action)
     if len(batch_tokens) > 1:
         document_keys = batch_tokens
         document_id = document_key = lang = document_version = task_id = task_document_id = ""
         allow_multiple = True
     if workflow_action == "build-draft-package" and allow_multiple:
-        if document_id:
-            model_token, region, version = _split_region_version_document_id(document_id)
-            if model_token and region:
-                task_id_prefix = f"{model_token}_{region}_"
-                document_version = document_version or version
-                document_id = ""
-        if not document_id and document_key:
-            key_parts = document_key.split("_")
-            if len(key_parts) == 2:
-                task_id_prefix = f"{document_key}_"
-                document_key = ""
+        task_id_prefix, document_id, document_key, document_version = _draft_task_prefix(
+            document_id, document_key, document_version
+        )
     if not document_id and not document_key and not task_id_prefix and not document_keys:
-        model_token = _infer_model_token(text)
-        if model_token and market_group and allow_multiple:
-            task_id_prefix = f"{model_token}_{market_group}_"
-        elif model_token and workflow_action == "build-draft-package" and allow_multiple:
-            task_id_prefix = f"{model_token}_"
-        elif model_token and market_group:
-            document_key = f"{model_token}_{market_group}"
+        task_id_prefix, document_key = _model_scope_filters(
+            text, market_group, workflow_action, allow_multiple
+        )
     if not document_id and task_document_id:
         document_id = task_document_id
     build_family = ""
     if not document_id and not document_key and not document_keys:
         build_family = _infer_build_family(text)
     if not task_id and workflow_action:
-        action_label = _canonical_query_action_label(workflow_action)
-        if document_id and action_label:
-            task_id = f"{document_id}_{action_label}"
-        elif document_key and workflow_action == "start-review" and action_label:
-            task_id = f"{document_key}_{action_label}"
+        task_id = _derived_task_id(workflow_action, document_id, document_key)
 
     return InferredQueueQuery(
         record_id=record_id,

@@ -56,7 +56,10 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # 880 -> 950: the cross-page-ambiguity plan pass and the per-page gate check
     # (apply-safety fixes) are correctness guards that belong next to the apply
     # loops they protect.
-    "tools/cloud_doc_backport_orchestration.py": 950,
+    # 950 -> 1000: CQ-3.4 split _run_review_branch (50 -> 31) and
+    # _run_review_branch_baseline (58 -> 35) into seed / plan / apply / per-page
+    # worker helpers; the growth is their signatures.
+    "tools/cloud_doc_backport_orchestration.py": 1000,
     # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
     # fix) is a correctness guard that belongs next to the verify verdicts.
     "tools/cloud_doc_backport_reports.py": 900,

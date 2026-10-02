@@ -407,6 +407,100 @@ def _open_backport_pr(
     finally:
         _run_pr_command([git_bin, "switch", git_ref], root=Path(worktree))
 
+def _seed_review_baseline(
+    args: argparse.Namespace, *, git_ref: str, worktree: str, review_dir: str, doc_tok: str
+) -> int:
+    # Store the current cloud-doc as the render baseline (approach C). Used
+    # to declare "the current state is already reviewed"; subsequent backports
+    # diff against this. Refuses to clobber an existing baseline unless --reseed.
+    if not doc_tok:
+        raise RuntimeError("--seed needs a resolvable cloud-doc token in --cloud-doc")
+    if load_baseline(worktree, review_dir, doc_tok) is not None and not args.reseed:
+        raise RuntimeError("a render baseline already exists for this doc; pass --reseed to overwrite")
+    baseline_rel = store_baseline(worktree, review_dir, doc_tok, fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli))
+    pushed = False
+    if args.push:
+        _run_pr_command([args.git_bin, "add", baseline_rel], root=Path(worktree))
+        if _run_pr_command([args.git_bin, "status", "--porcelain", baseline_rel], root=Path(worktree)).strip():
+            _run_pr_command([args.git_bin, "commit", "-m", f"backport: seed render baseline for {git_ref}"], root=Path(worktree))
+            _run_pr_command([args.git_bin, "push"], root=Path(worktree))
+            pushed = True
+    print(json.dumps(
+        {"seeded": True, "git_ref": git_ref, "baseline": baseline_rel, "worktree": worktree, "pushed": pushed},
+        ensure_ascii=False, sort_keys=True,
+    ))
+    return 0
+
+
+def _page_review_command(
+    args: argparse.Namespace, *, source_rel: str, source_abs: Path, fixture: Path, run_id: str, page_out: Path
+) -> list[str]:
+    review_cmd = [
+        sys.executable, str(Path(__file__).resolve()), "run-review",
+        "--doc-url", str(fixture), "--source-path", str(source_abs),
+        "--run-id", f"{run_id}-{Path(source_rel).stem}", "--out", str(page_out), "--lark-cli", args.lark_cli,
+        # Internal per-page worker: the source path is DERIVED from the resolved
+        # review dir and the whole-doc no-baseline --write is already refused above
+        # (#417), so the RST-baseline guard would be redundant here — bypass it.
+        "--allow-rst-baseline",
+    ]
+    # F2 (Class D) for the per-page worker too: forward the resolved data-root + lang.
+    page_lang = (getattr(args, "lang", None) or _lang_from_doc_name(getattr(args, "doc_name", "") or "")).strip()
+    if args.data_root and page_lang:
+        review_cmd += ["--data-root", args.data_root, "--lang", page_lang]
+    # F3 (Class T): forward the auto-resolved (or explicit) family-scope siblings so
+    # the per-page worker flags shared-template prose as Class T. Resolved against
+    # the worker's cwd (repo root); repeatable.
+    for sibling_rel in (getattr(args, "sibling", None) or []):
+        review_cmd += ["--sibling", sibling_rel]
+    if args.write:
+        review_cmd.append("--write")
+    return review_cmd
+
+
+def _run_page_workers(
+    args: argparse.Namespace,
+    *,
+    source_rels: list[str],
+    worktree: str,
+    out_dir: Path,
+    fixture: Path,
+    run_id: str,
+) -> tuple[list[str], bool]:
+    """Run the per-page run-review worker; return the changed pages and whether any failed."""
+    changed_rels: list[str] = []
+    failed = False
+    for source_rel in source_rels:
+        source_abs = Path(worktree) / source_rel
+        if not source_abs.is_file():
+            continue
+        page_out = out_dir / Path(source_rel).stem
+        review_cmd = _page_review_command(
+            args, source_rel=source_rel, source_abs=source_abs, fixture=fixture, run_id=run_id, page_out=page_out
+        )
+        proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True, check=False)
+        if proc.returncode not in (0, 1):  # run-review returns 1 on a FAIL result
+            failed = True
+            _ERR.error(f"  ERROR {source_rel} (rc {proc.returncode})")
+            continue
+        # rc 1 covers two FAIL shapes: residual pending deltas (partial apply — still
+        # push what landed cleanly) and a rebuild+rediff gate failure (the apply
+        # corrupted the RST — never commit or push that page; parity with the
+        # baseline path's refusal).
+        if args.write and proc.returncode == 1 and not _page_gate_passed(page_out):
+            failed = True
+            _ERR.error(
+                f"  GATE FAIL {source_rel}: the apply changed more than the intended "
+                "deltas — page excluded from the backport PR; inspect the worktree."
+            )
+            continue
+        deltas = _diff_delta_count(page_out)
+        if deltas > 0:
+            changed_rels.append(source_rel)
+            print(f"  CHANGED {source_rel}  deltas={deltas}")
+    return changed_rels, failed
+
+
 def _run_review_branch(args: argparse.Namespace) -> int:
     worktrees_root = Path(args.worktrees_root) if args.worktrees_root else _default_worktrees_root()
     try:
@@ -429,26 +523,9 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         )
         doc_tok = doc_token(args.cloud_doc)
         if args.seed:
-            # Store the current cloud-doc as the render baseline (approach C). Used
-            # to declare "the current state is already reviewed"; subsequent backports
-            # diff against this. Refuses to clobber an existing baseline unless --reseed.
-            if not doc_tok:
-                raise RuntimeError("--seed needs a resolvable cloud-doc token in --cloud-doc")
-            if load_baseline(worktree, review_dir, doc_tok) is not None and not args.reseed:
-                raise RuntimeError("a render baseline already exists for this doc; pass --reseed to overwrite")
-            baseline_rel = store_baseline(worktree, review_dir, doc_tok, fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli))
-            pushed = False
-            if args.push:
-                _run_pr_command([args.git_bin, "add", baseline_rel], root=Path(worktree))
-                if _run_pr_command([args.git_bin, "status", "--porcelain", baseline_rel], root=Path(worktree)).strip():
-                    _run_pr_command([args.git_bin, "commit", "-m", f"backport: seed render baseline for {git_ref}"], root=Path(worktree))
-                    _run_pr_command([args.git_bin, "push"], root=Path(worktree))
-                    pushed = True
-            print(json.dumps(
-                {"seeded": True, "git_ref": git_ref, "baseline": baseline_rel, "worktree": worktree, "pushed": pushed},
-                ensure_ascii=False, sort_keys=True,
-            ))
-            return 0
+            return _seed_review_baseline(
+                args, git_ref=git_ref, worktree=worktree, review_dir=review_dir, doc_tok=doc_tok
+            )
         # Approach C: diff the cloud-doc against a render baseline (render-vs-render →
         # only the reviewer's real edits) instead of the RST-source-vs-rendered per-page
         # diff. Whole-doc only — the baseline is the whole doc, so --page falls through
@@ -534,53 +611,9 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     print(f"BRANCH {git_ref}  WORKTREE {worktree}  PAGES {len(source_rels)}")
-    changed_rels: list[str] = []
-    failed = False
-    for source_rel in source_rels:
-        source_abs = Path(worktree) / source_rel
-        if not source_abs.is_file():
-            continue
-        page_out = out_dir / Path(source_rel).stem
-        review_cmd = [
-            sys.executable, str(Path(__file__).resolve()), "run-review",
-            "--doc-url", str(fixture), "--source-path", str(source_abs),
-            "--run-id", f"{run_id}-{Path(source_rel).stem}", "--out", str(page_out), "--lark-cli", args.lark_cli,
-            # Internal per-page worker: the source path is DERIVED from the resolved
-            # review dir and the whole-doc no-baseline --write is already refused above
-            # (#417), so the RST-baseline guard would be redundant here — bypass it.
-            "--allow-rst-baseline",
-        ]
-        # F2 (Class D) for the per-page worker too: forward the resolved data-root + lang.
-        page_lang = (getattr(args, "lang", None) or _lang_from_doc_name(getattr(args, "doc_name", "") or "")).strip()
-        if args.data_root and page_lang:
-            review_cmd += ["--data-root", args.data_root, "--lang", page_lang]
-        # F3 (Class T): forward the auto-resolved (or explicit) family-scope siblings so
-        # the per-page worker flags shared-template prose as Class T. Resolved against
-        # the worker's cwd (repo root); repeatable.
-        for sibling_rel in (getattr(args, "sibling", None) or []):
-            review_cmd += ["--sibling", sibling_rel]
-        if args.write:
-            review_cmd.append("--write")
-        proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True, check=False)
-        if proc.returncode not in (0, 1):  # run-review returns 1 on a FAIL result
-            failed = True
-            _ERR.error(f"  ERROR {source_rel} (rc {proc.returncode})")
-            continue
-        # rc 1 covers two FAIL shapes: residual pending deltas (partial apply — still
-        # push what landed cleanly) and a rebuild+rediff gate failure (the apply
-        # corrupted the RST — never commit or push that page; parity with the
-        # baseline path's refusal).
-        if args.write and proc.returncode == 1 and not _page_gate_passed(page_out):
-            failed = True
-            _ERR.error(
-                f"  GATE FAIL {source_rel}: the apply changed more than the intended "
-                "deltas — page excluded from the backport PR; inspect the worktree."
-            )
-            continue
-        deltas = _diff_delta_count(page_out)
-        if deltas > 0:
-            changed_rels.append(source_rel)
-            print(f"  CHANGED {source_rel}  deltas={deltas}")
+    changed_rels, failed = _run_page_workers(
+        args, source_rels=source_rels, worktree=worktree, out_dir=out_dir, fixture=fixture, run_id=run_id
+    )
     pushed = False
     backport_pr_url = ""
     if args.write and args.push and changed_rels:
@@ -621,6 +654,97 @@ def _review_bundle_pages(worktree: str, review_dir: str) -> list[Path]:
             if nested.is_dir():
                 page_dirs.append(nested)
     return [page for page_dir in page_dirs for page in sorted(page_dir.glob("*.rst"))]
+
+
+def _plan_delta_pages(
+    report: dict[str, Any], bundle_pages: list[Path]
+) -> tuple[dict[str, list[Path]], set[str]]:
+    # Plan pass: find which page(s) each delta would land on. The reviewer edited
+    # ONE instance in the cloud doc, so a delta that applies cleanly in more than
+    # one page (shared boilerplate) is cross-page ambiguous — abstain instead of
+    # fanning the edit out to every page that happens to contain the same text.
+    plan_pages: dict[str, list[Path]] = {}
+    for page in bundle_pages:
+        plan_rep = build_review_apply_report(
+            report, source_path=page, write=False,
+            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-plan"],
+        )
+        for op in plan_rep.get("operations") or []:
+            if op.get("status") == "planned" and op.get("delta_hash"):
+                plan_pages.setdefault(str(op["delta_hash"]), []).append(page)
+    cross_page_ambiguous = {h for h, hits in plan_pages.items() if len(hits) > 1}
+    if cross_page_ambiguous:
+        _ERR.warning(
+            f"  SKIP {len(cross_page_ambiguous)} delta(s): old text applies cleanly in "
+            "more than one _review page (cross-page ambiguous) — route manually to the "
+            "intended page."
+        )
+    return plan_pages, cross_page_ambiguous
+
+
+def _apply_review_deltas(
+    report: dict[str, Any],
+    all_deltas: list[dict[str, Any]],
+    *,
+    worktree: str,
+    review_dir: str,
+    run_id: str,
+) -> tuple[list[str], set[str], dict[str, str], list[dict[str, Any]], bool]:
+    """Guarded Class R apply across the _review bundle, gated per page by rebuild+rediff.
+
+    Returns the changed page paths, the applied delta hashes, the page each applied
+    delta landed on, the per-page gate records and whether every gate passed.
+    """
+    changed_rels: list[str] = []
+    applied_hashes: set[str] = set()
+    delta_pages: dict[str, str] = {}
+    gate_pages: list[dict[str, Any]] = []
+    gate_passed = True
+    bundle_root = Path(worktree) / review_dir
+    bundle_pages = _review_bundle_pages(worktree, review_dir)
+    plan_pages, cross_page_ambiguous = _plan_delta_pages(report, bundle_pages)
+    for page in bundle_pages:
+        page_deltas = [
+            delta
+            for delta in all_deltas
+            if str(delta.get("delta_hash")) not in cross_page_ambiguous
+            and plan_pages.get(str(delta.get("delta_hash")), [None])[0] == page
+        ]
+        if not page_deltas:
+            continue
+        pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
+        apply_rep = build_review_apply_report(
+            {**report, "deltas": page_deltas}, source_path=page, write=True,
+            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
+        )
+        page_applied = {
+            str(op["delta_hash"])
+            for op in (apply_rep.get("operations") or [])
+            if op.get("status") == "applied" and op.get("delta_hash")
+        }
+        applied_hashes |= page_applied
+        page_rel = f"{review_dir}/{page.relative_to(bundle_root).as_posix()}"
+        for delta_hash in page_applied:
+            delta_pages[delta_hash] = page_rel
+        if apply_rep["summary"].get("changed"):
+            changed_rels.append(page_rel)
+            gate = _rebuild_rediff_gate(
+                baseline_text=pre_text,
+                edited_text=page.read_text(encoding="utf-8"),
+                deltas=[d for d in all_deltas if str(d.get("delta_hash")) in page_applied],
+                run_id=f"{run_id}-{page.stem}",
+            )
+            gate["page"] = page.name
+            gate_pages.append(gate)
+            if gate["passed"]:
+                print(f"  APPLIED (Class R) {page.name}  [rebuild+rediff gate OK]")
+            else:
+                gate_passed = False
+                _ERR.error(
+                    f"  GATE FAIL {page.name}: the apply changed more than the intended "
+                    f"deltas (unexpected={gate['unexpected']} missing={gate['missing']})"
+                )
+    return changed_rels, applied_hashes, delta_pages, gate_pages, gate_passed
 
 
 def _run_review_branch_baseline(
@@ -747,69 +871,9 @@ def _run_review_branch_baseline(
     gate_pages: list[dict[str, Any]] = []
     gate_passed = True
     if args.write and review_bound:
-        bundle_root = Path(worktree) / review_dir
-        bundle_pages = _review_bundle_pages(worktree, review_dir)
-        # Plan pass: find which page(s) each delta would land on. The reviewer edited
-        # ONE instance in the cloud doc, so a delta that applies cleanly in more than
-        # one page (shared boilerplate) is cross-page ambiguous — abstain instead of
-        # fanning the edit out to every page that happens to contain the same text.
-        plan_pages: dict[str, list[Path]] = {}
-        for page in bundle_pages:
-            plan_rep = build_review_apply_report(
-                report, source_path=page, write=False,
-                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-plan"],
-            )
-            for op in plan_rep.get("operations") or []:
-                if op.get("status") == "planned" and op.get("delta_hash"):
-                    plan_pages.setdefault(str(op["delta_hash"]), []).append(page)
-        cross_page_ambiguous = {h for h, hits in plan_pages.items() if len(hits) > 1}
-        if cross_page_ambiguous:
-            _ERR.warning(
-                f"  SKIP {len(cross_page_ambiguous)} delta(s): old text applies cleanly in "
-                "more than one _review page (cross-page ambiguous) — route manually to the "
-                "intended page."
-            )
-        for page in bundle_pages:
-            page_deltas = [
-                delta
-                for delta in all_deltas
-                if str(delta.get("delta_hash")) not in cross_page_ambiguous
-                and plan_pages.get(str(delta.get("delta_hash")), [None])[0] == page
-            ]
-            if not page_deltas:
-                continue
-            pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
-            apply_rep = build_review_apply_report(
-                {**report, "deltas": page_deltas}, source_path=page, write=True,
-                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
-            )
-            page_applied = {
-                str(op["delta_hash"])
-                for op in (apply_rep.get("operations") or [])
-                if op.get("status") == "applied" and op.get("delta_hash")
-            }
-            applied_hashes |= page_applied
-            page_rel = f"{review_dir}/{page.relative_to(bundle_root).as_posix()}"
-            for delta_hash in page_applied:
-                delta_pages[delta_hash] = page_rel
-            if apply_rep["summary"].get("changed"):
-                changed_rels.append(page_rel)
-                gate = _rebuild_rediff_gate(
-                    baseline_text=pre_text,
-                    edited_text=page.read_text(encoding="utf-8"),
-                    deltas=[d for d in all_deltas if str(d.get("delta_hash")) in page_applied],
-                    run_id=f"{run_id}-{page.stem}",
-                )
-                gate["page"] = page.name
-                gate_pages.append(gate)
-                if gate["passed"]:
-                    print(f"  APPLIED (Class R) {page.name}  [rebuild+rediff gate OK]")
-                else:
-                    gate_passed = False
-                    _ERR.error(
-                        f"  GATE FAIL {page.name}: the apply changed more than the intended "
-                        f"deltas (unexpected={gate['unexpected']} missing={gate['missing']})"
-                    )
+        changed_rels, applied_hashes, delta_pages, gate_pages, gate_passed = _apply_review_deltas(
+            report, all_deltas, worktree=worktree, review_dir=review_dir, run_id=run_id
+        )
         if not changed_rels:
             print("NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).")
         # Cursor advance (§6): only on a clean gate AND a FULL apply — every reported delta
