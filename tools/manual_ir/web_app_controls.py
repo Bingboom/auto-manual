@@ -1,6 +1,8 @@
 """Prepared App control paragraphs and their owned public IR contract."""
 from __future__ import annotations
 
+from typing import Any
+
 from pathlib import Path
 import re
 
@@ -13,7 +15,7 @@ from tools.manual_ir.web_source import make_web_source
 from tools.utils.path_utils import get_paths
 
 
-def _control_payload(paragraph_html):
+def _control_payload(paragraph_html: Any) -> dict[str, Any]:
     if not isinstance(paragraph_html, str):
         raise ValueError("App add-device paragraph must be HTML")
     soup = BeautifulSoup(paragraph_html, "html.parser")

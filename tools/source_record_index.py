@@ -181,7 +181,8 @@ def _required_key_present(table: str, key_fields: Sequence[str], values: Sequenc
     every other key field must be present, else the row cannot be safely keyed.
     """
     optional = TABLE_OPTIONAL_KEY_FIELDS.get(table, frozenset())
-    return all(value for field, value in zip(key_fields, values) if field not in optional)
+    # zip(strict=False): source data may differ in length; keep the existing truncation
+    return all(value for field, value in zip(key_fields, values, strict=False) if field not in optional)
 
 
 def _clean(value: Any) -> str:
@@ -451,7 +452,8 @@ def resolve_row_record_ids(
     out: list[str] = []
     seen: set[str] = set()
     for composite, record_id in (table_index.get("records") or {}).items():
-        parts = dict(zip(key_fields, composite.split(_KEY_SEP)))
+        # zip(strict=False): source data may differ in length; keep the existing truncation
+        parts = dict(zip(key_fields, composite.split(_KEY_SEP), strict=False))
         if all(parts.get(key_field) == value for key_field, value in want.items()):
             if record_id not in seen:
                 seen.add(record_id)

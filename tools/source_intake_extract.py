@@ -64,7 +64,7 @@ def parse_markdown_tables(text: str) -> list[MarkdownTable]:
                 cells = [_clean_cell(cell) for cell in _split_markdown_row(lines[index])]
                 if len(cells) < len(headers):
                     cells.extend([""] * (len(headers) - len(cells)))
-                parsed_rows.append(dict(zip(headers, cells[: len(headers)])))
+                parsed_rows.append(dict(zip(headers, cells[: len(headers)], strict=True)))
                 index += 1
             if headers and parsed_rows:
                 tables.append(

@@ -4,10 +4,11 @@ import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from typing import Callable
 from unittest import mock
 
 from tests.test_helpers import temp_test_root, write_text
-from tools import document_link_queue, process_build_queue
+from tools import document_link_queue, process_build_queue, queue_bound_records, queue_config_resolution
 from tools.process_build_queue_deps import QueueDeps, default_queue_deps
 
 
@@ -16,7 +17,25 @@ def _queue_deps(**overrides: object) -> QueueDeps:
     return replace(default_queue_deps(process_build_queue), **overrides)  # type: ignore[arg-type]
 
 
+def _resolve_config_path(*, root: Path, config_loader: Callable[[Path], dict], **kwargs: object) -> Path:
+    """The config-path rule with its repo root and loader passed in, not patched on the facade."""
+    return queue_config_resolution.resolve_config_path_for_task(
+        repo_root=root, config_loader=config_loader, **kwargs,  # type: ignore[arg-type]
+    )
+
+
 class TestProcessBuildQueueRouting(unittest.TestCase):
+    def test_facade_resolve_config_path_passes_repo_root_and_loader(self) -> None:
+        with mock.patch.object(
+            queue_bound_records, "_resolve_config_path_for_task_impl", return_value=Path("c.yaml"),
+        ) as rule:
+            result = process_build_queue.resolve_config_path_for_task(region="US", lang="en")
+        self.assertEqual(Path("c.yaml"), result)
+        kwargs = rule.call_args.kwargs
+        self.assertEqual(process_build_queue.ROOT, kwargs["repo_root"])
+        self.assertIs(process_build_queue.load_config, kwargs["config_loader"])
+        self.assertEqual(("US", "en"), (kwargs["region"], kwargs["lang"]))
+
     def test_parse_document_key_should_split_model_and_region(self) -> None:
         model, region = process_build_queue.parse_document_key("JE-1000F_US")
 
@@ -133,12 +152,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="en")
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], region="US", lang="en")
 
         self.assertEqual(root / "configs" / "config.us-en.yaml", config_path)
 
@@ -165,12 +179,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="fr")
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], region="US", lang="fr")
 
         self.assertEqual(root / "configs" / "config.yaml", config_path)
 
@@ -204,12 +213,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="")
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], region="US", lang="")
 
         self.assertEqual(root / "configs" / "config.us.yaml", config_path)
 
@@ -246,12 +250,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(region="EU", lang="")
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], region="EU", lang="")
 
         self.assertEqual(root / "configs" / "config.eu.yaml", config_path)
 
@@ -279,15 +278,13 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ), self.assertRaisesRegex(
+            with self.assertRaisesRegex(
                 RuntimeError,
                 "No config family matches region='EU' and lang=''",
             ):
-                process_build_queue.resolve_config_path_for_task(region="EU", lang="")
+                _resolve_config_path(
+                    root=root, config_loader=lambda path: configs[path.name], region="EU", lang="",
+                )
 
     def test_resolve_config_path_for_task_should_prefer_build_family_when_present(self) -> None:
         with temp_test_root() as root:
@@ -322,16 +319,11 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(
-                    region="US",
-                    lang="fr",
-                    build_family="us-merged",
-                )
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], 
+                region="US",
+                lang="fr",
+                build_family="us-merged",
+            )
 
         self.assertEqual(root / "configs" / "config.us.yaml", config_path)
 
@@ -361,12 +353,7 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(region="US", lang="en")
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], region="US", lang="en")
 
         self.assertEqual(root / "configs" / "config.us-en.yaml", config_path)
 
@@ -386,17 +373,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 }
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                with self.assertRaisesRegex(RuntimeError, "conflicts with Lang"):
-                    process_build_queue.resolve_config_path_for_task(
-                        region="US",
-                        lang="fr",
-                        build_family="us-en",
-                    )
+            with self.assertRaisesRegex(RuntimeError, "conflicts with Lang"):
+                _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], 
+                    region="US",
+                    lang="fr",
+                    build_family="us-en",
+                )
 
     def test_resolve_config_path_for_task_should_reject_conflicting_build_family_and_region(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -414,17 +396,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 }
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                with self.assertRaisesRegex(RuntimeError, "routes to region"):
-                    process_build_queue.resolve_config_path_for_task(
-                        region="JP",
-                        lang="en",
-                        build_family="us-en",
-                    )
+            with self.assertRaisesRegex(RuntimeError, "routes to region"):
+                _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], 
+                    region="JP",
+                    lang="en",
+                    build_family="us-en",
+                )
 
     def test_resolve_config_path_for_task_should_reject_publish_single_language_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -442,18 +419,13 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 }
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                with self.assertRaisesRegex(RuntimeError, "whole-book Build_family"):
-                    process_build_queue.resolve_config_path_for_task(
-                        region="US",
-                        lang="",
-                        build_family="us-en",
-                        workflow_action="publish",
-                    )
+            with self.assertRaisesRegex(RuntimeError, "whole-book Build_family"):
+                _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], 
+                    region="US",
+                    lang="",
+                    build_family="us-en",
+                    workflow_action="publish",
+                )
 
     def test_resolve_config_path_for_task_should_allow_draft_lang_against_document_key_family(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -472,17 +444,12 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
                 }
             }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "load_config",
-                side_effect=lambda path: configs[path.name],
-            ):
-                config_path = process_build_queue.resolve_config_path_for_task(
-                    region="pt-br",
-                    lang="br",
-                    build_family="pt-br",
-                    workflow_action="draft",
-                )
+            config_path = _resolve_config_path(root=root, config_loader=lambda path: configs[path.name], 
+                region="pt-br",
+                lang="br",
+                build_family="pt-br",
+                workflow_action="draft",
+            )
 
         self.assertEqual(root / "configs" / "config.pt-br.yaml", config_path)
 

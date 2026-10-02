@@ -274,7 +274,8 @@ class LarkOps:
             for index, row in enumerate(rows):
                 if not isinstance(row, list):
                     continue
-                entry = dict(zip(fields, row))
+                # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+                entry = dict(zip(fields, row, strict=False))
                 if index < len(record_ids):
                     entry["_record_id"] = record_ids[index]
                 records.append(entry)

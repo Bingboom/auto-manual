@@ -100,7 +100,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                 rows = table.select("tbody tr")
                 self.assertEqual([2, 2, 1, 2], [len(r.select("td")) for r in rows])
                 self.assertEqual("2", rows[1].select_one("td")["rowspan"])
-                for column, role in zip(record["columns"], ("left", "right")):
+                for column, role in zip(record["columns"], ("left", "right"), strict=True):
                     expected = [v["text"] for v in column["items"]]
                     self.assertEqual(expected, [c.get_text() for c in table.select(f"tbody .hb-auto-resume-{role}")])
                 spec = ComponentSpec.from_dict(nodes[-1]["component_spec"])
@@ -250,6 +250,23 @@ class FrozenAITableComponentTests(unittest.TestCase):
                      ("limited", "period", "exchange", "buyer", "exclusions", "interpretation")],
                     [heading.get_text() for heading in soup.select("h3")],
                 )
+
+    def test_declared_spec_break_survives_source_free_replay(self):
+        value = "Auto: 12-16 V 8 A PV: 16-60 V 12 A"
+        record = {"groups": {"inputs": [{"label": "DC", "value": value}]},
+                  "value_breaks": [{"group": "inputs", "row": 0, "before": "PV:"}]}
+        nodes = specification_flow(record, group_headings=["Input"], source_ref="spec", language="nl")
+        soup = self._roundtrip(nodes, "nl")
+        cell = soup.select_one("td")
+        self.assertEqual(1, len(soup.select("tbody tr")))
+        self.assertEqual(1, len(cell.select("br")))
+        self.assertEqual(value.replace(" PV:", "\nPV:"), cell.get_text("\n"))
+        self.assertEqual(value, record["groups"]["inputs"][0]["value"])
+        for changed in ({"row": 2}, {"before": "missing"}, {"before": "V"}, {"before": "uto:"}):
+            invalid = deepcopy(record)
+            invalid["value_breaks"][0].update(changed)
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                specification_flow(invalid, group_headings=["Input"], source_ref="spec", language="nl")
 
     def test_escaping_and_carrier_semantics_stay_consistent(self):
         record = {"groups": {"one": [{"label": "Voltage <maximum>", "value": '5 & 10 "V"'}]}}
