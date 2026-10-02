@@ -111,6 +111,108 @@ def _selected_illustration_manifests(single, by_language, target_language, *, pr
     return {target_language: by_language[target_language]}
 
 
+def _bind_illustration_entries(loaded: dict, manifest_path: Path, declared: str, replacements: dict,
+                                illustration_entries: dict) -> None:
+    for entry in loaded["illustrations"]:
+        file = (manifest_path.parent / entry["path"]).resolve()
+        if not file.is_relative_to(manifest_path.parent.resolve()) or file_sha256(file) != entry["sha256"]:
+            raise ValueError(f"Web illustration changed: {entry['path']}")
+        for index, name in enumerate(entry["replaces"]):
+            if (declared, name) in replacements:
+                raise ValueError("ambiguous Web illustration replacement")
+            replacements[(declared, name)] = file if index == 0 else None
+            if index == 0:
+                illustration_entries[(declared, name)] = entry
+
+
+def _load_illustration_manifests(
+    manifest_by_language: dict[str, Path],
+    *,
+    materialized,
+    target_language: str,
+    languages: tuple,
+    single_manifest: bool,
+) -> tuple[dict, dict, list, dict | None]:
+    """Replacements, entries, text corrections and provenance from the illustration manifests."""
+    replacements: dict = {}
+    illustration_entries: dict = {}
+    text_corrections: list = []
+    provenance = None
+    for manifest_language, manifest_path in manifest_by_language.items():
+        loaded = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if loaded.get("schema_version") != "web-illustrations/v1":
+            raise ValueError("unsupported Web illustration manifest")
+        declared = loaded["language"]
+        allowed = {target_language} if single_manifest else set(languages)
+        if (loaded["model"], loaded["region"]) != (materialized.model, materialized.region) \
+                or declared != manifest_language or declared not in allowed:
+            raise ValueError("Web illustration manifest does not match document target")
+        if provenance is None:
+            # One manifest keeps the manifest verbatim. Several manifests merge
+            # into one provenance record so that coverage can resolve a finished
+            # panel from any language by its (path, sha256).
+            provenance = loaded if len(manifest_by_language) == 1 else {
+                "schema_version": loaded["schema_version"],
+                "model": loaded["model"],
+                "region": loaded["region"],
+                "languages": sorted(manifest_by_language),
+                "illustrations": [],
+            }
+        if len(manifest_by_language) > 1:
+            provenance["illustrations"].extend(loaded["illustrations"])
+        _bind_illustration_entries(loaded, manifest_path, declared, replacements, illustration_entries)
+        for correction in loaded.get("text_corrections", []):
+            text_corrections.append((declared, correction))
+        for _declared, correction in text_corrections:
+            if not all(
+                isinstance(correction.get(field), str)
+                and correction[field].strip()
+                for field in ("selector", "expected", "replacement")
+            ):
+                raise ValueError(
+                    "Web illustration text correction requires selector, expected, and replacement"
+                )
+
+    return replacements, illustration_entries, text_corrections, provenance
+
+
+def _apply_text_corrections(soup, text_corrections: list, used_text_corrections: set, lang: str) -> None:
+    for index, (correction_language, correction) in enumerate(text_corrections):
+        if index in used_text_corrections or correction_language != lang:
+            continue
+        expected = " ".join(correction["expected"].split())
+        matches = [
+            node
+            for node in soup.select(correction["selector"])
+            if " ".join(node.get_text(" ", strip=True).split()) == expected
+        ]
+        if len(matches) > 1:
+            raise ValueError(
+                f"ambiguous Web illustration text correction: {correction['expected']}"
+            )
+        if matches:
+            node = matches[0]
+            if node.string is None:
+                raise ValueError(
+                    f"Web illustration text correction is not a text-only node: {correction['expected']}"
+                )
+            node.string.replace_with(correction["replacement"])
+            used_text_corrections.add(index)
+
+
+def _check_bindings_used(replacements: dict, used_replacements: set, text_corrections: list,
+                         used_text_corrections: set) -> None:
+    if set(replacements) != used_replacements:
+        raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
+    if len(used_text_corrections) != len(text_corrections):
+        unused = [
+            f'{correction_language}/{correction["expected"]}'
+            for index, (correction_language, correction) in enumerate(text_corrections)
+            if index not in used_text_corrections
+        ]
+        raise ValueError(f"unused Web illustration text corrections: {unused}")
+
+
 def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
                       output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
                       illustration_manifests: dict[str, Path] | None = None,
@@ -143,57 +245,17 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     # Replacements are keyed by (language, filename). A merged document repeats
     # the same source filename once per language, so the filename alone cannot
     # say which finished panel belongs to which language block.
-    replacements = {}
-    illustration_entries = {}
-    text_corrections = []
-    provenance = None
     manifest_by_language = _selected_illustration_manifests(
         illustration_manifest, illustration_manifests, target_language,
         projected=bool(materialized.lang),
     )
-    for manifest_language, manifest_path in manifest_by_language.items():
-        loaded = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if loaded.get("schema_version") != "web-illustrations/v1":
-            raise ValueError("unsupported Web illustration manifest")
-        declared = loaded["language"]
-        allowed = {target_language} if illustration_manifest is not None else set(languages)
-        if (loaded["model"], loaded["region"]) != (materialized.model, materialized.region) \
-                or declared != manifest_language or declared not in allowed:
-            raise ValueError("Web illustration manifest does not match document target")
-        if provenance is None:
-            # One manifest keeps the manifest verbatim. Several manifests merge
-            # into one provenance record so that coverage can resolve a finished
-            # panel from any language by its (path, sha256).
-            provenance = loaded if len(manifest_by_language) == 1 else {
-                "schema_version": loaded["schema_version"],
-                "model": loaded["model"],
-                "region": loaded["region"],
-                "languages": sorted(manifest_by_language),
-                "illustrations": [],
-            }
-        if len(manifest_by_language) > 1:
-            provenance["illustrations"].extend(loaded["illustrations"])
-        for entry in loaded["illustrations"]:
-            file = (manifest_path.parent / entry["path"]).resolve()
-            if not file.is_relative_to(manifest_path.parent.resolve()) or file_sha256(file) != entry["sha256"]:
-                raise ValueError(f"Web illustration changed: {entry['path']}")
-            for index, name in enumerate(entry["replaces"]):
-                if (declared, name) in replacements:
-                    raise ValueError("ambiguous Web illustration replacement")
-                replacements[(declared, name)] = file if index == 0 else None
-                if index == 0:
-                    illustration_entries[(declared, name)] = entry
-        for correction in loaded.get("text_corrections", []):
-            text_corrections.append((declared, correction))
-        for _declared, correction in text_corrections:
-            if not all(
-                isinstance(correction.get(field), str)
-                and correction[field].strip()
-                for field in ("selector", "expected", "replacement")
-            ):
-                raise ValueError(
-                    "Web illustration text correction requires selector, expected, and replacement"
-                )
+    replacements, illustration_entries, text_corrections, provenance = _load_illustration_manifests(
+        manifest_by_language,
+        materialized=materialized,
+        target_language=target_language,
+        languages=languages,
+        single_manifest=illustration_manifest is not None,
+    )
 
     def package_asset(file: Path) -> str:
         digest = file_sha256(file)
@@ -263,27 +325,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             region=materialized.region,
         )
         soup = BeautifulSoup(markup, "html.parser")
-        for index, (correction_language, correction) in enumerate(text_corrections):
-            if index in used_text_corrections or correction_language != lang:
-                continue
-            expected = " ".join(correction["expected"].split())
-            matches = [
-                node
-                for node in soup.select(correction["selector"])
-                if " ".join(node.get_text(" ", strip=True).split()) == expected
-            ]
-            if len(matches) > 1:
-                raise ValueError(
-                    f"ambiguous Web illustration text correction: {correction['expected']}"
-                )
-            if matches:
-                node = matches[0]
-                if node.string is None:
-                    raise ValueError(
-                        f"Web illustration text correction is not a text-only node: {correction['expected']}"
-                    )
-                node.string.replace_with(correction["replacement"])
-                used_text_corrections.add(index)
+        _apply_text_corrections(soup, text_corrections, used_text_corrections, lang)
         claims = discover_registered_components(
             soup,
             source_path=path,
@@ -339,15 +381,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             source_sha256=hashlib.sha256(source_bytes).hexdigest(),
             blocks=tuple(("flow", node) for node in flow_nodes),
         ))
-    if set(replacements) != used_replacements:
-        raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
-    if len(used_text_corrections) != len(text_corrections):
-        unused = [
-            f'{correction_language}/{correction["expected"]}'
-            for index, (correction_language, correction) in enumerate(text_corrections)
-            if index not in used_text_corrections
-        ]
-        raise ValueError(f"unused Web illustration text corrections: {unused}")
+    _check_bindings_used(replacements, used_replacements, text_corrections, used_text_corrections)
     composites = []
     if composite_manifest:
         for entry in composite_manifest.entries:

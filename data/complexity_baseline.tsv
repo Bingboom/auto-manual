@@ -30,7 +30,6 @@ tools/build_entry_commands.py	message_control_dry_run_command	22
 tools/build_paths.py	resolve_idml_assembly_plan	25
 tools/build_paths.py	resolve_idml_layout_param_overlays	30
 tools/bundle_asset_finalize.py	finalize_materialized_bundle	23
-tools/bundle_asset_manifest.py	resolve_manifest_asset	72
 tools/check_docs_contracts.py	collect_page_contract_issues	37
 tools/check_docs_lang_parity.py	collect_lang_parity_issues	30
 tools/check_identity_drift.py	find_identity_drift_matches	29
@@ -77,7 +76,7 @@ tools/document_link_queue.py	select_pending_queue_records	25
 tools/document_link_queue.py	validate_queue_record_group	26
 tools/feishu_record_transport.py	run_lark_cli_json	23
 tools/flow_dashboard.py	_metric_card_html	21
-tools/frozen_ai_document.py	ordered_pages	59
+tools/frozen_ai_document.py	ordered_pages	36
 tools/frozen_pdf_document.py	ordered_pages	28
 tools/gen_index_bundle_assets.py	rewrite_single_asset_path	21
 tools/gen_index_bundle_page_render.py	materialize_planned_page	25
@@ -139,7 +138,7 @@ tools/idml/target_assembly_plan.py	_validate_lcd_composition	35
 tools/idml/target_assembly_plan.py	_validate_specifications_composition	42
 tools/idml/target_assembly_render.py	TargetAssemblyRenderer.render	58
 tools/idml_rst_extract.py	extract_page	80
-tools/idml_rst_extract_latex.py	_extract_raw_latex	75
+tools/idml_rst_extract_latex.py	_extract_raw_latex	28
 tools/idml_rst_tables.py	parse_grid_table	24
 tools/indesign_finalize.py	_collect_finalize_result	28
 tools/lang_asset_sweep.py	_cmd_sweep	29
@@ -234,7 +233,7 @@ tools/validate_config.py	_validate_sync	42
 tools/web_base_art_operation.py	arrange_base_art_operation	35
 tools/web_composite_presentation.py	WebCompositeContext.resolve_locale	23
 tools/web_document_ir.py	_render_document_fragments	22
-tools/web_document_source.py	load_web_document	68
+tools/web_document_source.py	load_web_document	35
 tools/web_embedded_components.py	render_embedded_web_component	22
 tools/web_figure_coverage.py	build_web_figure_coverage	45
 tools/web_figure_coverage.py	validate_web_figure_coverage	36

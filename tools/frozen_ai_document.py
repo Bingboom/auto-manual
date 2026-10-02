@@ -46,6 +46,43 @@ def _introduction(book):
                    heading("Contents", level=2), node("list", links, ordered=False)]
 
 
+def _emit_operation_tables(book: FrozenBook, number: int, y: float, body: list, operations_seen: set,
+                           figures_seen: set) -> bool:
+    """Insert each operation table once at its region; True when the block lies inside one."""
+    skip = False
+    for part, record in book.records["operation_tables"].items():
+        if not isinstance(record, dict) or "source_region" not in record:
+            continue
+        if number == record["physical_page"] and y >= record["source_region"][1] and part not in operations_seen:
+            body.extend(book.operation(part))
+            operations_seen.add(part)
+            if part == "lcd_mode":
+                figures_seen.add("lcd_mode_art")
+        skip |= number == record["physical_page"] and record["source_region"][1] <= y < record["source_region"][3]
+    return skip
+
+
+def _structured_region(book: FrozenBook, section: str, number: int, y: float) -> bool:
+    """True for a block that a structured record (table, columns, pictograms) already renders."""
+    symbols = book.records["symbols"]
+    return (section in {"lcd_display", "app_setup"}
+            or section == "warranty" and number == book.records["warranty_columns"]["physical_page"]
+            or section == "troubleshooting" and number == book.source["tables"][section]["physical_page"] and y >= 250
+            or section == "specifications" and number == book.source["tables"][section]["physical_page"]
+            or section == "symbols" and (number == symbols["physical_page"] and y >= 370
+                                        or number == symbols["pictogram_page"] and y < 180))
+
+
+def _page_table_flow(book: FrozenBook, section: str, number: int) -> list:
+    """The troubleshooting or specification table flow that closes its source page."""
+    if section not in {"troubleshooting", "specifications"} or number != book.source["tables"][section]["physical_page"]:
+        return []
+    args = {"language": book.language, "source_ref": f"{book.language}/{section}"}
+    record = book.source["tables"][section]
+    return (troubleshooting_flow(record, headings=book.headers(section), **args) if section == "troubleshooting"
+            else [*specification_flow(record, group_headings=book.headers(section), **args), *book.footnotes()])
+
+
 def ordered_pages(book: FrozenBook) -> tuple[str, tuple[SourcePage, ...]]:
     """Interpret extraction coordinates only at intake, never during replay."""
     title, intro = _introduction(book)
@@ -90,29 +127,15 @@ def ordered_pages(book: FrozenBook) -> tuple[str, tuple[SourcePage, ...]]:
             if chapter < 0:
                 raise ValueError(f"unexpected text before first chapter on {number}")
             section = starts[chapter][2]
-            skip = False
-            if section == "operations":
-                for part, record in book.records["operation_tables"].items():
-                    if not isinstance(record, dict) or "source_region" not in record:
-                        continue
-                    if number == record["physical_page"] and y >= record["source_region"][1] and part not in operations_seen:
-                        body.extend(book.operation(part))
-                        operations_seen.add(part)
-                        if part == "lcd_mode":
-                            figures_seen.add("lcd_mode_art")
-                    skip |= number == record["physical_page"] and record["source_region"][1] <= y < record["source_region"][3]
+            skip = (_emit_operation_tables(book, number, y, body, operations_seen, figures_seen)
+                    if section == "operations" else False)
             symbols = book.records["symbols"]
             if section == "symbols" and number == symbols["pictogram_page"] and not pictograms_seen:
                 body.extend(symbol_pictogram_flow(symbols, headings=book.headers("symbols"),
                             accessibility_label=book.locale["titles"][chapter], icon_refs=book.icon_refs,
                             language=book.language, source_ref=f"{book.language}/symbols/pictograms"))
                 pictograms_seen = True
-            if (skip or section in {"lcd_display", "app_setup"}
-                    or section == "warranty" and number == book.records["warranty_columns"]["physical_page"]
-                    or section == "troubleshooting" and number == book.source["tables"][section]["physical_page"] and y >= 250
-                    or section == "specifications" and number == book.source["tables"][section]["physical_page"]
-                    or section == "symbols" and (number == symbols["physical_page"] and y >= 370
-                                                or number == symbols["pictogram_page"] and y < 180)):
+            if skip or _structured_region(book, section, number, y):
                 continue
             if index in notices:
                 body.append(notices[index])
@@ -122,12 +145,7 @@ def ordered_pages(book: FrozenBook) -> tuple[str, tuple[SourcePage, ...]]:
             if figure["section_id"] != starts[chapter][2]:
                 raise ValueError(f"figure in wrong chapter: {figure['slug']}")
             emit_figure(figure)
-        section = starts[chapter][2]
-        if section in {"troubleshooting", "specifications"} and number == book.source["tables"][section]["physical_page"]:
-            args = {"language": book.language, "source_ref": f"{book.language}/{section}"}
-            record = book.source["tables"][section]
-            body.extend(troubleshooting_flow(record, headings=book.headers(section), **args) if section == "troubleshooting"
-                        else [*specification_flow(record, group_headings=book.headers(section), **args), *book.footnotes()])
+        body.extend(_page_table_flow(book, starts[chapter][2], number))
     if (sections != book.index["section_ids"] or figures_seen != {f["slug"] for f in book.figures}
             or operations_seen != {"lcd_mode", "restore", "shortcuts"} or not pictograms_seen):
         raise ValueError("incomplete frozen document mapping")
