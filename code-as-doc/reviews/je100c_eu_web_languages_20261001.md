@@ -27,6 +27,16 @@ all nine locales. The observation gate passes with 60 PASS, 16 SKIP and the
 same two pre-existing FAIL rows; neither ratchet baseline was relaxed.
 All nine Web/MyST and strict Sphinx rebuilds pass after the integration.
 
+Publication admission is also explicitly enrolled for all nine reviewed sources.
+The old English reference-table expectations are replaced by the actual shared
+symbol-icon component and the three numbered plus one unnumbered LCD catalogs.
+The policy requires all six notices and retains each source's semantic variants
+(FR/ES/DE/IT charging begins with NOTE). The exact source-authored warranty
+chapters remain hash-bound migration debt; no full warranty clauses are invented.
+Tests exercise the real generated packages at publication admission and reject
+missing LCD content or altered warranty chapters.
+
+
 ## Discovery and implementation plan
 
 - Engineering base: `bee0226379a7c593f4735405146ba0e7295c3731` (live fetch and GitHub API agree).

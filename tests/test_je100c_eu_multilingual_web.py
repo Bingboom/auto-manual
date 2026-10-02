@@ -1,6 +1,7 @@
 """Source-bound nine-language JE-100C Web acceptance through the normal build lane."""
 from __future__ import annotations
 
+from copy import deepcopy
 import hashlib
 import json
 import os
@@ -15,6 +16,9 @@ from bs4 import BeautifulSoup
 from tools import lang_registry
 from tools.content_lint_languages import SUPPORTED_LANGS
 from tools.manual_ir import read_manual_ir
+from tools.prepared_component_coverage import audit_prepared_component_coverage
+from tools.prepared_component_policy import resolve_prepared_component_policy
+from tools.web_component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +42,7 @@ class Je100cEuMultilingualWebTests(unittest.TestCase):
         )
         pandoc.chmod(0o755)
         cls.outputs = {}
+        cls.packages = {}
         for lang in LANGUAGES:
             result = subprocess.run(
                 [sys.executable, "build.py", "md", "--config", f"configs/config.eu-{lang}.yaml",
@@ -52,6 +57,7 @@ class Je100cEuMultilingualWebTests(unittest.TestCase):
             if result.returncode:
                 raise AssertionError(f"{lang} Web build failed\n{result.stdout}\n{result.stderr}")
             package = staging / lang / "docs" / "_build" / "JE-100C" / "EU" / lang / "md"
+            cls.packages[lang] = package
             cls.outputs[lang] = (
                 read_manual_ir(package / "manual.ir.json"),
                 BeautifulSoup((package / "manual_bundle.html").read_text(), "html.parser"),
@@ -81,6 +87,25 @@ class Je100cEuMultilingualWebTests(unittest.TestCase):
                 self.assertFalse(any(t.select("thead") for t in lcd_tables))
                 rows = lcd_tables[0].select("tbody > tr")
                 self.assertEqual([2, 2, 2, 3], [len(rows[i].select("td:last-child p")) for i in (2, 3, 4, 6)])
+
+    def test_publication_admission_accepts_source_review_and_rejects_missing_lcd(self):
+        for lang, (ir, _) in self.outputs.items():
+            with self.subTest(lang=lang):
+                report = require_fresh_component_admission(
+                    self.packages[lang], model="JE-100C", region="EU", language=lang,
+                )
+                self.assertEqual([], report["issues"])
+                raw = deepcopy(ir.to_dict())
+                page = next(p for p in raw["pages"] if p["page_id"] == f"lcd_display_{lang}.rst")
+                page["blocks"] = []
+                policy = resolve_prepared_component_policy(model="JE-100C", region="EU", language=lang)
+                rejected = audit_prepared_component_coverage(raw, policy)
+                self.assertTrue(any("HB-TABLE-LCD-ICON" in issue for issue in rejected["issues"]))
+                raw = deepcopy(ir.to_dict())
+                page = next(p for p in raw["pages"] if p["page_id"] == f"warranty_{lang}.rst")
+                page["blocks"] = []
+                rejected = audit_prepared_component_coverage(raw, policy)
+                self.assertTrue(any("warranty" in issue for issue in rejected["issues"]))
 
     def test_source_bindings_and_authorized_alignment_are_hash_locked(self):
         for lang in LANGUAGES:
