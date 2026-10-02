@@ -7,6 +7,7 @@ from typing import Any, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.reference_figure import reference_figure_component_spec
 from tools.manual_ir.hashing import file_sha256
 from tools.web_composite_hashing import reference_source_fragment_sha256
@@ -68,7 +69,7 @@ def parse_reference_figure_html(
     approved_entry: WebCompositeEntry | None,
     approved_path: Path | None,
 ) -> tuple[
-    object,
+    ComponentSpec,
     tuple[Tag, ...],
     tuple[tuple[str, Tag], ...],
     tuple[tuple[str, Path], ...],

@@ -191,9 +191,9 @@ class ShippedContractsAreUnaffected(unittest.TestCase):
             [(50.5, 242.9), (199.6, 243.7)],
             [(37.6, 463.4), (285.6, 427.2)],
         ]
-        for figure, (ox, oy, w, h), wanted in zip(figures, boxes, expected):
+        for figure, (ox, oy, w, h), wanted in zip(figures, boxes, expected, strict=True):
             self.assertEqual(len(wanted), len(figure))
-            for callout, (ref_x, ref_top) in zip(figure, wanted):
+            for callout, (ref_x, ref_top) in zip(figure, wanted, strict=True):
                 self.assertAlmostEqual(ref_x, ox + callout["x"] * w, delta=0.1)
                 self.assertAlmostEqual(
                     ref_top, oy + callout["y"] * h - 3.0, delta=0.1

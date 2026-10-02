@@ -7,6 +7,7 @@ from typing import Any, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation import operation_component_spec
 
 # Source `operation_panel_copy` blocks name the IDML panel layout; this maps a
@@ -108,7 +109,7 @@ def parse_operation_components(
     config: Mapping[str, Any],
     language: str,
     panel_copy: Sequence[Mapping[str, Any]] = (),
-) -> tuple[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]], ...]:
+) -> tuple[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]], ...]:
     """Return specs, carrier nodes, artwork, and semantic-only source nodes.
 
     ``panel_copy`` holds the page's ``operation_panel_copy`` source blocks, which
@@ -116,7 +117,7 @@ def parse_operation_components(
     other figure keeps its frozen spec byte for byte.
     """
 
-    parsed: list[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]]] = []
+    parsed: list[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]]] = []
     for raw_figure in config.get("figures", []):
         if not isinstance(raw_figure, Mapping):
             raise ValueError(f"{source_path}: operation figure contract must be a mapping")

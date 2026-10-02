@@ -774,3 +774,5 @@ JE-2000F_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temp
 JE-2000F_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,2,3个月,,0℃~45℃（0~60%RH）,,,,,,JE-2000F,,,,,,,,,,,,zh,,,
 JE-2000F_CN,CN,TRUE,storage,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,storage_temperature,,存储温度,,3,12个月,,0℃~25℃（0~60%RH）,,,,,,JE-2000F,,,,,,,,,,,,zh,,,
 JE-2000F_CN,CN,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,UPS Transfer Time,,1,,,10 ms,,,,,,JE-2000F,,,,,,,,,,,,en,,,
+JE-100C_EU,EU,TRUE,specifications,GENERAL INFO,1,1,product_name,,Product Name,,1,,,Jackery Explorer 100D,,,,,,JE-100C,,,,,,,,,,,,en,,,
+JE-100C_EU,EU,TRUE,specifications,GENERAL INFO,1,2,model_no,,Model No.,,1,,,JE-100C,,,,,,JE-100C,,,,,,,,,,,,en,,,

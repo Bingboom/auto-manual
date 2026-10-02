@@ -1,6 +1,6 @@
 {
   "schema_version": "prepared-component-admission/v1",
-  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters",
+  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters",
   "debt_reasons": {
     "diagram-labels": "Source illustration labels; not an operation UI table. Preserve complete labels until the annotated-figure adapter owns this layout.",
     "regulatory-radio": "Regulatory radio-frequency declaration; not an LCD or operation table. Preserve exact source rows.",
@@ -2276,7 +2276,10 @@
       "pages": {
         "safety_en.rst": {
           "slot": "templates/page_je100c_eu-en/safety_en.rst",
-          "components": {}
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
         },
         "01_user_maintenance_instructions.rst": {
           "slot": "templates/page_shared/en/01_user_maintenance_instructions.rst",
@@ -2286,7 +2289,7 @@
           "slot": "templates/page_je100c_eu-en/symbol_meaning_en.rst",
           "components": {
             "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
-            "HB-TABLE-REFERENCE/symbol-meanings": 1
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
           }
         },
         "02_whats_in_the_box.rst": {
@@ -2302,18 +2305,23 @@
         "lcd_display_en.rst": {
           "slot": "templates/page_je100c_eu-en/lcd_display_en.rst",
           "components": {
-            "HB-TABLE-REFERENCE/lcd-legend": 3
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
           }
         },
         "operation_en.rst": {
           "slot": "templates/page_je100c_eu-en/operation_en.rst",
           "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
             "HB-TABLE-REFERENCE/lcd-actions-compact": 1
           }
         },
         "charging_en.rst": {
           "slot": "templates/page_je100c_eu-en/charging_en.rst",
-          "components": {}
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 2
+          }
         },
         "storage_en.rst": {
           "slot": "templates/page_je100c_eu-en/storage_en.rst",
@@ -2333,7 +2341,7 @@
             {
               "location": "",
               "kind": "chapter",
-              "sha256": "148fcf6da03e08ceaaac0fa797c0e8a07f578053d21dc05b87ea0a3ea04264e6",
+              "sha256": "e12d53f661ca2c752b7af5f516133889331dfea05cdf9f65772f704bc822036a",
               "category": "warranty-intake",
               "asset_sha256": {}
             }
@@ -5766,6 +5774,626 @@
               "location": "",
               "kind": "chapter",
               "sha256": "1c88e390b3b32d40933095911b2183fa4f02accce38bd70d93113a8a121390bc",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/fr": {
+      "pages": {
+        "safety_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/safety_fr.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-fr/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/symbol_meaning_fr.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-fr/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-fr/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/lcd_display_fr.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/operation_fr.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/charging_fr.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "storage_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/storage_fr.rst",
+          "components": {}
+        },
+        "spec_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/spec_fr.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_fr.rst": {
+          "slot": "templates/page_je100c_eu-fr/warranty_fr.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "619de17fa1d4073b352026d938c4459f56205982334de9349f2e96a1353eedb8",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/es": {
+      "pages": {
+        "safety_es.rst": {
+          "slot": "templates/page_je100c_eu-es/safety_es.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-es/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_es.rst": {
+          "slot": "templates/page_je100c_eu-es/symbol_meaning_es.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-es/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-es/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_es.rst": {
+          "slot": "templates/page_je100c_eu-es/lcd_display_es.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_es.rst": {
+          "slot": "templates/page_je100c_eu-es/operation_es.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_es.rst": {
+          "slot": "templates/page_je100c_eu-es/charging_es.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "storage_es.rst": {
+          "slot": "templates/page_je100c_eu-es/storage_es.rst",
+          "components": {}
+        },
+        "spec_es.rst": {
+          "slot": "templates/page_je100c_eu-es/spec_es.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_es.rst": {
+          "slot": "templates/page_je100c_eu-es/warranty_es.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "c04775704c39b73bfd5cf0431521a6027efbbaf394e878f9dd40a065a9bb61f3",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/de": {
+      "pages": {
+        "safety_de.rst": {
+          "slot": "templates/page_je100c_eu-de/safety_de.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-de/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_de.rst": {
+          "slot": "templates/page_je100c_eu-de/symbol_meaning_de.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-de/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-de/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_de.rst": {
+          "slot": "templates/page_je100c_eu-de/lcd_display_de.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_de.rst": {
+          "slot": "templates/page_je100c_eu-de/operation_de.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_de.rst": {
+          "slot": "templates/page_je100c_eu-de/charging_de.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "storage_de.rst": {
+          "slot": "templates/page_je100c_eu-de/storage_de.rst",
+          "components": {}
+        },
+        "spec_de.rst": {
+          "slot": "templates/page_je100c_eu-de/spec_de.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_de.rst": {
+          "slot": "templates/page_je100c_eu-de/warranty_de.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "a35aba59a3683f51fd80509dc389d95f5053985751faf8be2529fdf05fb5eae5",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/it": {
+      "pages": {
+        "safety_it.rst": {
+          "slot": "templates/page_je100c_eu-it/safety_it.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-it/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_it.rst": {
+          "slot": "templates/page_je100c_eu-it/symbol_meaning_it.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-it/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-it/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_it.rst": {
+          "slot": "templates/page_je100c_eu-it/lcd_display_it.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_it.rst": {
+          "slot": "templates/page_je100c_eu-it/operation_it.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_it.rst": {
+          "slot": "templates/page_je100c_eu-it/charging_it.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "storage_it.rst": {
+          "slot": "templates/page_je100c_eu-it/storage_it.rst",
+          "components": {}
+        },
+        "spec_it.rst": {
+          "slot": "templates/page_je100c_eu-it/spec_it.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_it.rst": {
+          "slot": "templates/page_je100c_eu-it/warranty_it.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "575e3b801c298efe533742eb06c1d07937577ac8716e43d21155c21d78c54d00",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/uk": {
+      "pages": {
+        "safety_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/safety_uk.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-uk/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/symbol_meaning_uk.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-uk/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-uk/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/lcd_display_uk.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/operation_uk.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/charging_uk.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 2
+          }
+        },
+        "storage_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/storage_uk.rst",
+          "components": {}
+        },
+        "spec_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/spec_uk.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_uk.rst": {
+          "slot": "templates/page_je100c_eu-uk/warranty_uk.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "e9d05b67e22a3006e2bc73aea88d5991f10c0a58b2bfe6cff7b121851d17cbf0",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/pt": {
+      "pages": {
+        "safety_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/safety_pt.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-pt/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/symbol_meaning_pt.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-pt/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-pt/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/lcd_display_pt.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/operation_pt.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/charging_pt.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 2
+          }
+        },
+        "storage_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/storage_pt.rst",
+          "components": {}
+        },
+        "spec_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/spec_pt.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_pt.rst": {
+          "slot": "templates/page_je100c_eu-pt/warranty_pt.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "2e1221b8356f42aa9e32278a2afce5be7de075ef86508e1eae2c237e6a14e70c",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/nl": {
+      "pages": {
+        "safety_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/safety_nl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-nl/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/symbol_meaning_nl.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-nl/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-nl/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/lcd_display_nl.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/operation_nl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/charging_nl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 2
+          }
+        },
+        "storage_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/storage_nl.rst",
+          "components": {}
+        },
+        "spec_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/spec_nl.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_nl.rst": {
+          "slot": "templates/page_je100c_eu-nl/warranty_nl.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "078fad543df64221156cae62fb2a52367dc0a172470589acc5a873ee420e706e",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JE-100C/EU/pl": {
+      "pages": {
+        "safety_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/safety_pl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-CALLOUT-STRIP/caution": 1
+          }
+        },
+        "01_user_maintenance_instructions.rst": {
+          "slot": "templates/page_je100c_eu-pl/01_user_maintenance_instructions.rst",
+          "components": {}
+        },
+        "symbol_meaning_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/symbol_meaning_pl.rst",
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+          }
+        },
+        "02_whats_in_the_box.rst": {
+          "slot": "templates/page_je100c_eu-pl/02_whats_in_the_box.rst",
+          "components": {
+            "HB-SPECIAL-INBOX/three-card-responsive": 1
+          }
+        },
+        "03_product_overview.rst": {
+          "slot": "templates/page_je100c_eu-pl/03_product_overview.rst",
+          "components": {}
+        },
+        "lcd_display_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/lcd_display_pl.rst",
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 3,
+            "HB-TABLE-LCD-ICON/icon-catalog-unnumbered": 1
+          }
+        },
+        "operation_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/operation_pl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1,
+            "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+          }
+        },
+        "charging_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/charging_pl.rst",
+          "components": {
+            "HB-CALLOUT-STRIP/caution": 2
+          }
+        },
+        "storage_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/storage_pl.rst",
+          "components": {}
+        },
+        "spec_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/spec_pl.rst",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 5
+          }
+        },
+        "warranty_pl.rst": {
+          "slot": "templates/page_je100c_eu-pl/warranty_pl.rst",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "cddbcd26eda13d96e6257c42f15c667e0277a4cf884e38e9bcbe556d0b74b782",
               "category": "warranty-intake",
               "asset_sha256": {}
             }

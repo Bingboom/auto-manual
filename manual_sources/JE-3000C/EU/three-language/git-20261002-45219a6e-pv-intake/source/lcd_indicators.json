@@ -1,0 +1,1354 @@
+{
+  "locales": {
+    "pt": {
+      "pages": [
+        107,
+        108
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            202.81,
+            143,
+            224.91
+          ],
+          "meaning_bbox": [
+            144,
+            202.81,
+            342,
+            224.91
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 2,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            224.91,
+            143,
+            247.95
+          ],
+          "meaning_bbox": [
+            144,
+            224.91,
+            342,
+            247.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 3,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            247.95,
+            143,
+            283.88
+          ],
+          "meaning_bbox": [
+            144,
+            247.95,
+            342,
+            283.88
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 4,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            283.88,
+            143,
+            325.63
+          ],
+          "meaning_bbox": [
+            144,
+            283.88,
+            342,
+            325.63
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 5,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            325.63,
+            143,
+            360.51
+          ],
+          "meaning_bbox": [
+            144,
+            325.63,
+            342,
+            360.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 6,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            360.51,
+            143,
+            381.73
+          ],
+          "meaning_bbox": [
+            144,
+            360.51,
+            342,
+            381.73
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 7,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            381.73,
+            143,
+            425.51
+          ],
+          "meaning_bbox": [
+            144,
+            381.73,
+            342,
+            425.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 8,
+          "physical_page": 107,
+          "label_bbox": [
+            74,
+            425.51,
+            143,
+            495.58
+          ],
+          "meaning_bbox": [
+            144,
+            425.51,
+            342,
+            495.58
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 9,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            31.46,
+            145,
+            55.95
+          ],
+          "meaning_bbox": [
+            147,
+            31.46,
+            342,
+            55.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 10,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            55.95,
+            145,
+            74.67
+          ],
+          "meaning_bbox": [
+            147,
+            55.95,
+            342,
+            74.67
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 11,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            74.67,
+            145,
+            92.32
+          ],
+          "meaning_bbox": [
+            147,
+            74.67,
+            342,
+            92.32
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 12,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            92.32,
+            145,
+            112.15
+          ],
+          "meaning_bbox": [
+            147,
+            92.32,
+            342,
+            112.15
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 13,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            112.15,
+            145,
+            128.96
+          ],
+          "meaning_bbox": [
+            147,
+            112.15,
+            342,
+            128.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 14,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            128.96,
+            145,
+            147.23
+          ],
+          "meaning_bbox": [
+            147,
+            128.96,
+            342,
+            147.23
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 15,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            147.23,
+            145,
+            167.39
+          ],
+          "meaning_bbox": [
+            147,
+            147.23,
+            342,
+            167.39
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 16,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            167.39,
+            145,
+            189.96
+          ],
+          "meaning_bbox": [
+            147,
+            167.39,
+            342,
+            189.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 17,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            189.96,
+            145,
+            211.27
+          ],
+          "meaning_bbox": [
+            147,
+            189.96,
+            342,
+            211.27
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 18,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            211.27,
+            145,
+            232.81
+          ],
+          "meaning_bbox": [
+            147,
+            211.27,
+            342,
+            232.81
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 19,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            232.81,
+            145,
+            264.42
+          ],
+          "meaning_bbox": [
+            147,
+            232.81,
+            342,
+            264.42
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 20,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            264.42,
+            145,
+            292.66
+          ],
+          "meaning_bbox": [
+            147,
+            264.42,
+            342,
+            292.66
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 108,
+          "label_bbox": [
+            92,
+            292.66,
+            145,
+            314.11
+          ],
+          "meaning_bbox": [
+            147,
+            292.66,
+            342,
+            314.11
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 108,
+          "label_bbox": [
+            92,
+            314.11,
+            145,
+            334.04
+          ],
+          "meaning_bbox": [
+            147,
+            314.11,
+            342,
+            334.04
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 22,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            334.04,
+            145,
+            351.12
+          ],
+          "meaning_bbox": [
+            147,
+            334.04,
+            342,
+            351.12
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 23,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            351.12,
+            145,
+            373.62
+          ],
+          "meaning_bbox": [
+            147,
+            351.12,
+            342,
+            373.62
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 24,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            373.62,
+            145,
+            393.26
+          ],
+          "meaning_bbox": [
+            147,
+            373.62,
+            342,
+            393.26
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 25,
+          "physical_page": 108,
+          "label_bbox": [
+            83,
+            393.26,
+            145,
+            411.91
+          ],
+          "meaning_bbox": [
+            147,
+            393.26,
+            342,
+            411.91
+          ],
+          "selection": "lines"
+        }
+      ]
+    },
+    "nl": {
+      "pages": [
+        123,
+        124
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            202.81,
+            143,
+            224.91
+          ],
+          "meaning_bbox": [
+            144,
+            202.81,
+            342,
+            224.91
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 2,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            224.91,
+            143,
+            247.95
+          ],
+          "meaning_bbox": [
+            144,
+            224.91,
+            342,
+            247.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 3,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            247.95,
+            143,
+            283.88
+          ],
+          "meaning_bbox": [
+            144,
+            247.95,
+            342,
+            283.88
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 4,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            283.88,
+            143,
+            325.63
+          ],
+          "meaning_bbox": [
+            144,
+            283.88,
+            342,
+            325.63
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 5,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            325.63,
+            143,
+            360.51
+          ],
+          "meaning_bbox": [
+            144,
+            325.63,
+            342,
+            360.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 6,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            360.51,
+            143,
+            381.73
+          ],
+          "meaning_bbox": [
+            144,
+            360.51,
+            342,
+            381.73
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 7,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            381.73,
+            143,
+            425.51
+          ],
+          "meaning_bbox": [
+            144,
+            381.73,
+            342,
+            425.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 8,
+          "physical_page": 123,
+          "label_bbox": [
+            74,
+            425.51,
+            143,
+            495.58
+          ],
+          "meaning_bbox": [
+            144,
+            425.51,
+            342,
+            495.58
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 9,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            31.46,
+            145,
+            55.95
+          ],
+          "meaning_bbox": [
+            147,
+            31.46,
+            342,
+            55.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 10,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            55.95,
+            145,
+            74.67
+          ],
+          "meaning_bbox": [
+            147,
+            55.95,
+            342,
+            74.67
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 11,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            74.67,
+            145,
+            92.32
+          ],
+          "meaning_bbox": [
+            147,
+            74.67,
+            342,
+            92.32
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 12,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            92.32,
+            145,
+            112.15
+          ],
+          "meaning_bbox": [
+            147,
+            92.32,
+            342,
+            112.15
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 13,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            112.15,
+            145,
+            128.96
+          ],
+          "meaning_bbox": [
+            147,
+            112.15,
+            342,
+            128.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 14,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            128.96,
+            145,
+            147.23
+          ],
+          "meaning_bbox": [
+            147,
+            128.96,
+            342,
+            147.23
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 15,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            147.23,
+            145,
+            167.39
+          ],
+          "meaning_bbox": [
+            147,
+            147.23,
+            342,
+            167.39
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 16,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            167.39,
+            145,
+            189.96
+          ],
+          "meaning_bbox": [
+            147,
+            167.39,
+            342,
+            189.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 17,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            189.96,
+            145,
+            211.27
+          ],
+          "meaning_bbox": [
+            147,
+            189.96,
+            342,
+            211.27
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 18,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            211.27,
+            145,
+            232.81
+          ],
+          "meaning_bbox": [
+            147,
+            211.27,
+            342,
+            232.81
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 19,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            232.81,
+            145,
+            264.42
+          ],
+          "meaning_bbox": [
+            147,
+            232.81,
+            342,
+            264.42
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 20,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            264.42,
+            145,
+            292.66
+          ],
+          "meaning_bbox": [
+            147,
+            264.42,
+            342,
+            292.66
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 124,
+          "label_bbox": [
+            92,
+            292.66,
+            145,
+            314.11
+          ],
+          "meaning_bbox": [
+            147,
+            292.66,
+            342,
+            314.11
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 124,
+          "label_bbox": [
+            92,
+            314.11,
+            145,
+            334.04
+          ],
+          "meaning_bbox": [
+            147,
+            314.11,
+            342,
+            334.04
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 22,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            334.04,
+            145,
+            351.12
+          ],
+          "meaning_bbox": [
+            147,
+            334.04,
+            342,
+            351.12
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 23,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            351.12,
+            145,
+            373.62
+          ],
+          "meaning_bbox": [
+            147,
+            351.12,
+            342,
+            373.62
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 24,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            373.62,
+            145,
+            393.26
+          ],
+          "meaning_bbox": [
+            147,
+            373.62,
+            342,
+            393.26
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 25,
+          "physical_page": 124,
+          "label_bbox": [
+            83,
+            393.26,
+            145,
+            411.91
+          ],
+          "meaning_bbox": [
+            147,
+            393.26,
+            342,
+            411.91
+          ],
+          "selection": "lines"
+        }
+      ]
+    },
+    "pl": {
+      "pages": [
+        139,
+        140
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            202.81,
+            143,
+            224.91
+          ],
+          "meaning_bbox": [
+            144,
+            202.81,
+            342,
+            224.91
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 2,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            224.91,
+            143,
+            247.95
+          ],
+          "meaning_bbox": [
+            144,
+            224.91,
+            342,
+            247.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 3,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            247.95,
+            143,
+            283.88
+          ],
+          "meaning_bbox": [
+            144,
+            247.95,
+            342,
+            283.88
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 4,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            283.88,
+            143,
+            325.63
+          ],
+          "meaning_bbox": [
+            144,
+            283.88,
+            342,
+            325.63
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 5,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            325.63,
+            143,
+            360.51
+          ],
+          "meaning_bbox": [
+            144,
+            325.63,
+            342,
+            360.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 6,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            360.51,
+            143,
+            381.73
+          ],
+          "meaning_bbox": [
+            144,
+            360.51,
+            342,
+            381.73
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 7,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            381.73,
+            143,
+            425.51
+          ],
+          "meaning_bbox": [
+            144,
+            381.73,
+            342,
+            425.51
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 8,
+          "physical_page": 139,
+          "label_bbox": [
+            74,
+            425.51,
+            143,
+            495.58
+          ],
+          "meaning_bbox": [
+            144,
+            425.51,
+            342,
+            495.58
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 9,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            31.46,
+            145,
+            55.95
+          ],
+          "meaning_bbox": [
+            147,
+            31.46,
+            342,
+            55.95
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 10,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            55.95,
+            145,
+            74.67
+          ],
+          "meaning_bbox": [
+            147,
+            55.95,
+            342,
+            74.67
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 11,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            74.67,
+            145,
+            92.32
+          ],
+          "meaning_bbox": [
+            147,
+            74.67,
+            342,
+            92.32
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 12,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            92.32,
+            145,
+            112.15
+          ],
+          "meaning_bbox": [
+            147,
+            92.32,
+            342,
+            112.15
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 13,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            112.15,
+            145,
+            128.96
+          ],
+          "meaning_bbox": [
+            147,
+            112.15,
+            342,
+            128.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 14,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            128.96,
+            145,
+            147.23
+          ],
+          "meaning_bbox": [
+            147,
+            128.96,
+            342,
+            147.23
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 15,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            147.23,
+            145,
+            167.39
+          ],
+          "meaning_bbox": [
+            147,
+            147.23,
+            342,
+            167.39
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 16,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            167.39,
+            145,
+            189.96
+          ],
+          "meaning_bbox": [
+            147,
+            167.39,
+            342,
+            189.96
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 17,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            189.96,
+            145,
+            211.27
+          ],
+          "meaning_bbox": [
+            147,
+            189.96,
+            342,
+            211.27
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 18,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            211.27,
+            145,
+            232.81
+          ],
+          "meaning_bbox": [
+            147,
+            211.27,
+            342,
+            232.81
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 19,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            232.81,
+            145,
+            264.42
+          ],
+          "meaning_bbox": [
+            147,
+            232.81,
+            342,
+            264.42
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 20,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            264.42,
+            145,
+            292.66
+          ],
+          "meaning_bbox": [
+            147,
+            264.42,
+            342,
+            292.66
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 140,
+          "label_bbox": [
+            92,
+            292.66,
+            145,
+            314.11
+          ],
+          "meaning_bbox": [
+            147,
+            292.66,
+            342,
+            314.11
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 21,
+          "physical_page": 140,
+          "label_bbox": [
+            92,
+            314.11,
+            145,
+            334.04
+          ],
+          "meaning_bbox": [
+            147,
+            314.11,
+            342,
+            334.04
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 22,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            334.04,
+            145,
+            351.12
+          ],
+          "meaning_bbox": [
+            147,
+            334.04,
+            342,
+            351.12
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 23,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            351.12,
+            145,
+            373.62
+          ],
+          "meaning_bbox": [
+            147,
+            351.12,
+            342,
+            373.62
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 24,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            373.62,
+            145,
+            393.26
+          ],
+          "meaning_bbox": [
+            147,
+            373.62,
+            342,
+            393.26
+          ],
+          "selection": "lines"
+        },
+        {
+          "number": 25,
+          "physical_page": 140,
+          "label_bbox": [
+            83,
+            393.26,
+            145,
+            411.91
+          ],
+          "meaning_bbox": [
+            147,
+            393.26,
+            342,
+            411.91
+          ],
+          "selection": "lines"
+        }
+      ]
+    }
+  }
+}

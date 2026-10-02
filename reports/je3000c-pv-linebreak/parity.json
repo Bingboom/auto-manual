@@ -1,0 +1,20 @@
+{
+  "pt": {
+    "text_unchanged": true,
+    "pv_cell": "Veicular: 12-16 V⎓8 A máx., duplicável para 8 A máx.\nPV: 16-60 V⎓12 A máx., duplicável para 24 A / 1000 W máx.",
+    "breaks": 1,
+    "assets_unchanged": true
+  },
+  "nl": {
+    "text_unchanged": true,
+    "pv_cell": "Auto: 12-16 V⎓8A max, verdubbeld naar 8A max\nPV: 16-60 V⎓12A max, verdubbeld naar 24A / 1000W max",
+    "breaks": 1,
+    "assets_unchanged": true
+  },
+  "pl": {
+    "text_unchanged": true,
+    "pv_cell": "Samochód: 12–16 V ⎓ maks. 8 A, w trybie podwójnym do maks. 8 A\nFotowoltaika: 16–60 V ⎓ maks. 12 A, w trybie podwójnym do maks. 24A / 1000W",
+    "breaks": 1,
+    "assets_unchanged": true
+  }
+}

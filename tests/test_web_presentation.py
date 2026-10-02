@@ -257,6 +257,22 @@ class WebPresentationTests(unittest.TestCase):
         self.assertIn('data-callout-id="demo.label"', restored)
         self.assertIn('<svg class="hb-leader-layer">', restored)
 
+    def test_source_layout_guard_owns_nested_figures_and_preserves_neighbors(self):
+        markup = ('<h2>Screen</h2><div class="hb-device-actions">'
+                  '<img src="device.png"><figure class="hb-reference-composition">'
+                  '<table><tr><td>Screen Wake-Up</td></tr></table></figure>'
+                  '</div><p>After</p>')
+        protected, replacements = protect_web_figures_for_pandoc(markup)
+        self.assertEqual(1, len(replacements))
+        self.assertNotIn("Screen Wake-Up", protected)
+        token = next(iter(replacements))
+        pandoc_output = f"<h2>Screen</h2>\n{token}\n<p>After</p>"
+        restored = BeautifulSoup(restore_web_figures_after_pandoc(pandoc_output, replacements), "html.parser")
+        group = restored.select_one(".hb-device-actions")
+        self.assertIsNotNone(group.select_one("img"))
+        self.assertEqual("Screen Wake-Up", group.select_one("td").text)
+        self.assertEqual("After", group.find_next_sibling("p").text)
+
     def test_pandoc_guard_restores_inbox_composition(self) -> None:
         figure = (
             '<figure class="hb-inbox-composition"><ol class="hb-inbox-grid">'

@@ -192,7 +192,7 @@ class PlanApplyGateMatrixTests(unittest.TestCase):
 
     def test_full_gate_matrix(self) -> None:
         for combo in itertools.product((False, True), repeat=len(_GATES)):
-            flags = dict(zip(_GATES, combo))
+            flags = dict(zip(_GATES, combo, strict=True))
             with self.subTest(**flags):
                 request = self._request_for(flags)
                 approved = {"h1"} if flags["approved"] else set()

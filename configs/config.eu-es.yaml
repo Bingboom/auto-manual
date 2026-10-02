@@ -4,6 +4,8 @@ build:
   family_id: eu-es
   languages: [es]
   targets:
+    - model: JE-100C
+      region: EU
     - model: JE-1000F
       region: EU
     - model: JE-1000H
@@ -20,7 +22,10 @@ build:
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-es.yaml
+  page_manifests:
+    JE-100C_EU: docs/manifests/manual_je100c_eu-es.yaml
   web_illustration_manifests:
+    JE-100C_EU: docs/renderers/web/je100c_eu_es_illustrations.json
     JE-1000H_EU: docs/renderers/web/je1000h_eu_es_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_es_illustrations.json
     JE-3000C_EU: docs/renderers/web/je3000c_eu_es_illustrations.json

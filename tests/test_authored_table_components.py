@@ -25,8 +25,21 @@ def _source(model, stem):
 
 
 class AuthoredTableComponentsTests(unittest.TestCase):
-    def test_all_28_real_tables_are_bound_and_reference_cells_preserved(self):
-        for model, expected in (("JE-100C", 11), ("JE-300D", 9), ("JE-500A", 8)):
+    def test_authored_signal_roles_preserve_unregistered_printed_labels(self):
+        markup = '<h1>Symbols</h1><table class="hb-source-signals"><thead><tr><th>Label</th><th>Meaning</th></tr></thead><tbody>'
+        for variant in ("warning", "caution", "note", "tip"):
+            markup += f'<tr><td><span class="hb-signal-{variant}">Source label</span></td><td>Meaning</td></tr>'
+        markup += '</tbody></table>'
+        soup = BeautifulSoup(markup, "html.parser")
+        spec = parse_authored_tables(soup, source_path=Path("symbols.rst"), language="pl")[0][0]
+        self.assertEqual([True, True, False, False], [r["show_icon"] for r in spec.slot("rows").content])
+        self.assertTrue(all(r["label"] == "Source label" for r in spec.slot("rows").content))
+        soup.select_one("span")["class"].append("hb-signal-note")
+        with self.assertRaisesRegex(ValueError, "conflicting semantic roles"):
+            parse_authored_tables(soup, source_path=Path("symbols.rst"), language="pl")
+
+    def test_all_real_tables_are_bound_and_reference_cells_preserved(self):
+        for model, expected in (("JE-100C", 12), ("JE-300D", 9), ("JE-500A", 8)):
             with self.subTest(model=model):
                 total = 0
                 for stem in ("spec", "lcd_display", "operation", "symbol_meaning", "troubleshooting"):
@@ -52,13 +65,17 @@ class AuthoredTableComponentsTests(unittest.TestCase):
                             self.assertEqual(claim.spec.variant, reference_table_projection(claim.spec, renderer)["variant"])
                 self.assertEqual(expected, total)
 
-    def test_blank_lcd_numbers_remain_blank(self):
+    def test_source_fault_table_has_three_columns_and_no_fabricated_numbers(self):
         path, soup = _source("JE-100C", "lcd_display")
-        claims = parse_authored_tables(soup, source_path=path, language="en")
-        rows = claims[0][0].slot("rows").content
-        self.assertEqual(["", "", ""], [row[0]["text"] for row in rows[-3:]])
-        self.assertEqual(3, len(claims))
-        self.assertFalse(any(spec.assets for spec, _ in claims))
+        claims = discover_registered_components(
+            soup, source_path=path, model="JE-100C", region="EU", language="en",
+            contract=load_web_manual_contract(model="JE-100C", region="EU"),
+        )
+        self.assertEqual(4, len(claims))
+        fault = claims[1].spec
+        self.assertEqual("icon-catalog-unnumbered", fault.variant)
+        self.assertEqual(3, len(fault.assets))
+        self.assertTrue(all("number_text" not in row for row in fault.slot("rows").content))
 
     def test_undeclared_tables_are_not_classified_by_shape(self):
         markup = '<h1>LCD</h1><table><tr><td>1</td><td>Name</td><td>Meaning</td></tr></table>'
@@ -67,7 +84,7 @@ class AuthoredTableComponentsTests(unittest.TestCase):
     def test_malformed_declared_table_fails_without_mutating_source(self):
         for change in ("span", "extra-cell", "missing-head", "conflicting-role", "image"):
             with self.subTest(change=change):
-                path, soup = _source("JE-100C", "lcd_display")
+                path, soup = _source("JE-500A", "lcd_display")
                 if change == "span":
                     soup.td["rowspan"] = "2"
                 elif change == "extra-cell":
@@ -84,7 +101,7 @@ class AuthoredTableComponentsTests(unittest.TestCase):
                 self.assertEqual(before, str(soup))
 
     def test_replay_rejects_drifted_cells_and_column_geometry(self):
-        path, soup = _source("JE-100C", "lcd_display")
+        path, soup = _source("JE-500A", "lcd_display")
         spec = parse_authored_tables(soup, source_path=path, language="en")[0][0]
         for mutation in ("text", "columns"):
             data = deepcopy(spec.to_dict())

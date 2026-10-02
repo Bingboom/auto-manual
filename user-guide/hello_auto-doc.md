@@ -672,7 +672,7 @@ GitHub note:
 - the same guard applies a per-function complexity ratchet (`data/complexity_baseline.tsv`): new functions stay at complexity 20 or below, recorded ones may only get simpler, and a simplification is locked in by rerunning `python tools/check_complexity_ratchet.py update`
 - the same guard counts test patches on facade modules (`data/facade_patch_baseline.tsv`): tests should patch the module that looks a name up, so the count may only fall; a drop is locked in with `python tools/check_facade_patch_ratchet.py update`
 - the same guard counts broad exception handlers (`except Exception` / `except BaseException`, `data/broad_except_baseline.tsv`): new code catches the specific exception, so the count may only fall; a drop is locked in with `python tools/check_broad_except_ratchet.py update`
-- it also counts `zip()` calls without `strict=` (`data/zip_strict_baseline.tsv`): pass `strict=True`, or `strict=False` with a comment when truncation is intended; lock a drop in with `python tools/check_zip_strict_ratchet.py update`
+- ruff `B905` requires `strict=` on every `zip()`: use `strict=True` when the lengths must match, or `strict=False` with a `# zip(strict=False): <reason>` comment when truncation is intended
 - CI's `type-check` job counts untyped-def mypy errors in `tools/manual_ir`, `tools/component_specs` and `tools/csv_pages` (`data/mypy_untyped_baseline.tsv`); annotate new functions there, and after fixing errors run `python tools/check_mypy_ratchet.py update` (with `mypy==2.3.1` installed)
 - `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `build.py check` also renders every prepared FCC page with the target language in both document and web profiles. A missing FCC opening line block, an unregistered localized right-column marker, or a runtime filename remap that loses language context now fails during `check`, before Word generation.
@@ -2039,6 +2039,26 @@ JE-2000F/CN 沿用 `configs/config.zh.yaml` 中规共享配置与现有审核源
 正文只显示一次。技术事实矛盾记录为待确认，预览可以打开，但发布封存会阻止该语种。
 范围、来源和验收见[三语录入记录](../reports/je3000c-eu-three-language/README.md)。
 
+### 原生 RST 提示框的 Web 保留
+
+Native RST `note`, `tip`, `warning`, `caution` and `danger` directives pass through the existing `HB-CALLOUT-STRIP` component before Pandoc. Their explicit body boundary, rich paragraphs and lists survive Markdown/Sphinx export; adjacent prose stays outside the box. Docutils titles such as `Caution!` retain their displayed punctuation and registered semantic variant. This also applies to the shared Word HTML adapter.
+
+PDF 对照修正时，表头、圈号、图标、提示标签和说明文字都以操作员提供的原稿为准。
+不要补写滚动提示或把购买提示改成 NOTE。LCD 图标表可分别声明有编号四列或
+无编号三列；设备图与操作表、保修卡片等原稿组合使用受保护的 RST 容器，
+需在实际 Sphinx 页面检查桌面和手机显示。独立设备图应排除误截的表格边框；充电等完整成图应保留原稿的灰底、分区、
+圆角及图内标签。保留设备、手指、引线及产品标记，并单独记录来源、页码、裁切范围和哈希。
+
+
+JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌、葡、荷、波，共九语。
+按语种选择 `configs/config.eu-<lang>.yaml`，复用英文冻结包中的产品身份数据，
+正文和插图由各自语言的原稿及修订记录绑定；[示例命令与来源边界](../code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)。
+乌、葡、荷、波的旧版 AC 充电等差异已按操作者指示对齐新版英文，原始来源和修订依据均保留。
+葡语代码为 `pt`，区别于巴西葡语 `pt-BR`。本地构建通过不等于线上发布；
+正式发布仍走既有审核、冻结快照、Hello-Docs 和 RTD 流程。
+
 ### 原生 PDF 的已确认勘误
 
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
+
+冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。

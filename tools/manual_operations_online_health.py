@@ -87,7 +87,7 @@ def build_online_health_report(
     if len(set(urls)) != len(urls):
         raise ValueError("Duplicate frozen publication URLs")
     entries = []
-    for record, url in zip(records, urls):
+    for record, url in zip(records, urls, strict=True):
         entries.append({
             "model": record["model"], "market": record["region"],
             "language": record["lang"] if record["language_scope"] == "single" else None,
