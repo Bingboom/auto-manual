@@ -299,9 +299,9 @@ LANGUAGE_REGISTRY = (
             aliases=(code,),
             column_suffixes=(code,),
             table_columns=(),
-            tm_column=code,
+            tm_column=tm_column,
             localized_copy_column=f"text_{code}",
-            status_word_column=code,
+            status_word_column=tm_column,
             spec_title_column=None,
             display_name=display_name,
             native_name=native_name,
@@ -309,10 +309,10 @@ LANGUAGE_REGISTRY = (
             separator=": ",
             sync_enabled=False,
         )
-        for code, display_name, native_name in (
-            ("pt", "Portuguese", "Português"),
-            ("nl", "Dutch", "Nederlands"),
-            ("pl", "Polish", "Polski"),
+        for code, tm_column, display_name, native_name in (
+            ("pt", "eu-pt", "Portuguese", "Português"),
+            ("nl", "nl", "Dutch", "Nederlands"),
+            ("pl", "pl", "Polish", "Polski"),
         )
     ),
 )

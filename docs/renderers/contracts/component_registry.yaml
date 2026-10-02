@@ -296,7 +296,7 @@ components:
   HB-TABLE-LCD-ICON:
     style_id: HB-TABLE-LCD-ICON
     source_kinds: [table_lcd_icon, lcd-icons]
-    variants: [icon-catalog]
+    variants: [icon-catalog, icon-catalog-unnumbered]
     slots:
       accessibility_label:
         required: true

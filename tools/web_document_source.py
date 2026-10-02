@@ -220,14 +220,14 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     used_text_corrections = set()
 
     def apply_illustration_replacement(soup, image, name, lang):
-        if (lang, name) in used_replacements:
+        entry = illustration_entries.get((lang, name), {})
+        if (lang, name) in used_replacements and entry.get("allow_reuse") is not True:
             raise ValueError(f"repeated Web illustration source: {lang}/{name}")
         used_replacements.add((lang, name))
         replacement = replacements[(lang, name)]
         if replacement is None:
             image.decompose()
             return
-        entry = illustration_entries[(lang, name)]
         image["src"] = replacement.as_uri()
         image["class"] = [*image.get("class", []), "manual-finished-illustration"]
         image["data-web-finished-panel-path"] = entry["path"]

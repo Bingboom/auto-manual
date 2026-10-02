@@ -12,6 +12,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
+from tools.web_component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -82,6 +83,12 @@ class Je100cEuEnWebTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
 
+    def test_corrected_english_is_admitted_for_publication(self) -> None:
+        report = require_fresh_component_admission(
+            self.package, model="JE-100C", region="EU", language="en",
+        )
+        self.assertEqual([], report["issues"])
+
     def test_source_manifest_locks_formal_inputs(self) -> None:
         manifest = json.loads((FORMAL_SOURCE / "source_manifest.json").read_text(encoding="utf-8"))
         self.assertFalse(manifest["live_bitable_dependency"])
@@ -117,10 +124,22 @@ class Je100cEuEnWebTests(unittest.TestCase):
         self.assertIsNotNone(inbox)
         self.assertEqual(3, len(inbox.select(".hb-inbox-card")))
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertEqual(7, coverage["summary"]["total"])
+        self.assertEqual(11, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
-        self.assertEqual(7, coverage["summary"]["by_status"]["finished-panel"])
-        self.assertEqual(13, len(soup.select("img.manual-finished-illustration")))
+        self.assertEqual(11, coverage["summary"]["by_status"]["finished-panel"])
+        self.assertEqual(17, len(soup.select("img.manual-finished-illustration")))
+
+    def test_source_notices_reach_the_protected_web_component(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        boxes = soup.select("table.manual-callout-table")
+        self.assertEqual(
+            ["warning", "caution", "caution", "note", "caution", "caution"],
+            [box.get("data-callout-variant") for box in boxes],
+        )
+        self.assertIsNone(soup.select_one("aside.admonition, div.admonition"))
+        for box in boxes:
+            self.assertTrue(box.select_one(".manual-callout-label").get_text(strip=True))
+            self.assertTrue(box.select_one(".manual-callout-body").get_text(strip=True))
 
     def test_lcd_remains_device_art_plus_semantic_tables(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
@@ -137,10 +156,27 @@ class Je100cEuEnWebTests(unittest.TestCase):
         fragment = BeautifulSoup("".join(str(node) for node in nodes), "html.parser")
         self.assertGreaterEqual(len(fragment.select("img.manual-finished-illustration")), 3)
         tables = fragment.select("table")
-        self.assertEqual(3, len(tables))
+        self.assertEqual([10, 3, 3, 2], [len(table.select("tbody > tr")) for table in tables])
+        self.assertEqual(18, len(fragment.select("img.hb-lcd-icon-art")))
+        self.assertFalse(fragment.select("thead"))
+        self.assertEqual(3, len(tables[1].select_one("tr").find_all("td", recursive=False)))
         text = " ".join(table.get_text(" ", strip=True) for table in tables)
         self.assertIn("Fault code", text)
         self.assertIn("Battery Health and Cycle Count", text)
+
+    def test_supplied_pdf_copy_and_source_compositions(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        screen = soup.select_one(".hb-device-actions")
+        self.assertIsNotNone(screen.select_one("img.hb-device-control-art"))
+        self.assertEqual(5, len(screen.select("tbody > tr")))
+        self.assertEqual(8, len(soup.select(".hb-symbol-pair-composition img")))
+        self.assertEqual(4, len(soup.select(".hb-source-purchase")))
+        for copy in ("CHARGING VIA A USB-C CHARGER", "3000 cycles to 80%+ capacity",
+                     "Do not put fingers or hands into the product.", "Li-ion LFP"):
+            self.assertIn(copy, self.html)
+        for copy in ("Swipe or scroll", "AC CHARGING CABLE", "Signal word", "Caution!"):
+            self.assertNotIn(copy, self.html)
+        self.assertEqual("WARNING:", soup.select_one(".manual-callout-label").get_text(strip=True))
 
 
 if __name__ == "__main__":
