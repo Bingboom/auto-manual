@@ -334,27 +334,7 @@ def _target_requirement_matches(
     )
 
 
-def enforce_required_web_figure_coverage(
-    ir: ManualIR,
-    coverage: dict[str, Any],
-) -> None:
-    """Fail when a contract-governed target retains required figure debt."""
-
-    if (
-        str(coverage.get("model") or "").casefold() != ir.model.casefold()
-        or str(coverage.get("region") or "").casefold() != ir.region.casefold()
-    ):
-        raise ValueError("Web figure coverage target does not match document target")
-    contract = ir.metadata.get("web_contract")
-    if not isinstance(contract, dict):
-        raise ValueError("Web figure coverage requirements need a presentation contract")
-    policy = contract.get("figure_coverage") or {}
-    if not isinstance(policy, dict):
-        raise ValueError("Web figure coverage policy must be an object")
-    requirements = policy.get("requirements") or []
-    if not isinstance(requirements, list):
-        raise ValueError("Web figure coverage requirements must be a list")
-
+def _matching_requirement(requirements: list[Any], ir: ManualIR) -> dict[str, Any] | None:
     matching: list[dict[str, Any]] = []
     for requirement in requirements:
         if not isinstance(requirement, dict):
@@ -370,9 +350,36 @@ def enforce_required_web_figure_coverage(
             f"multiple Web figure coverage requirements match {ir.model}/{ir.region}"
         )
     if not matching:
-        return
+        return None
 
-    requirement = matching[0]
+    return matching[0]
+
+
+def _slot_status_overrides(
+    raw_slot_status_overrides: dict[Any, Any],
+    normalized_slots: list[str],
+) -> dict[str, set[str]]:
+    slot_status_overrides: dict[str, set[str]] = {}
+    for raw_slot, raw_statuses in raw_slot_status_overrides.items():
+        slot = str(raw_slot).strip()
+        if (
+            slot not in normalized_slots
+            or not isinstance(raw_statuses, list)
+            or {str(value).strip() for value in raw_statuses}
+            != {"base-art-live-copy"}
+        ):
+            raise ValueError(
+                "Web figure coverage slot_status_overrides must grant only "
+                "base-art-live-copy to required slots"
+            )
+        slot_status_overrides[slot] = {"base-art-live-copy"}
+    return slot_status_overrides
+
+
+def _requirement_policy(
+    requirement: dict[str, Any],
+) -> tuple[list[str], list[str], set[str], dict[str, set[str]]]:
+    """Validated locales, required slots, final statuses and per-slot overrides."""
     locales = requirement.get("locales")
     required_slots = requirement.get("required_slots")
     allowed_statuses = requirement.get("allowed_statuses")
@@ -403,21 +410,16 @@ def enforce_required_web_figure_coverage(
         raise ValueError(
             "Web figure coverage allowed_statuses must contain only finished artwork"
         )
-    slot_status_overrides: dict[str, set[str]] = {}
-    for raw_slot, raw_statuses in raw_slot_status_overrides.items():
-        slot = str(raw_slot).strip()
-        if (
-            slot not in normalized_slots
-            or not isinstance(raw_statuses, list)
-            or {str(value).strip() for value in raw_statuses}
-            != {"base-art-live-copy"}
-        ):
-            raise ValueError(
-                "Web figure coverage slot_status_overrides must grant only "
-                "base-art-live-copy to required slots"
-            )
-        slot_status_overrides[slot] = {"base-art-live-copy"}
+    slot_status_overrides = _slot_status_overrides(raw_slot_status_overrides, normalized_slots)
 
+    return normalized_locales, normalized_slots, normalized_statuses, slot_status_overrides
+
+
+def _known_debt(
+    requirement: dict[str, Any],
+    normalized_locales: list[str],
+    normalized_slots: list[str],
+) -> dict[tuple[str, str], str]:
     raw_debt = requirement.get("known_debt", [])
     if not isinstance(raw_debt, list):
         raise ValueError("Web figure coverage known_debt must be a list")
@@ -445,6 +447,10 @@ def enforce_required_web_figure_coverage(
             )
         debt[identity] = status
 
+    return debt
+
+
+def _active_locales(ir: ManualIR, normalized_locales: list[str]) -> list[str]:
     declared_languages = ir.metadata.get("declared_languages")
     if isinstance(declared_languages, list) and declared_languages:
         active_languages = {
@@ -461,14 +467,20 @@ def enforce_required_web_figure_coverage(
             for locale in normalized_locales
             if locale == ir.language.strip().casefold()
         ]
-    if not normalized_locales:
-        return
+    return normalized_locales
 
+
+def _slot_findings(
+    slots: list[Any],
+    normalized_locales: list[str],
+    normalized_slots: list[str],
+    normalized_statuses: set[str],
+    slot_status_overrides: dict[str, set[str]],
+    debt: dict[tuple[str, str], str],
+) -> tuple[list[str], list[str]]:
+    """Failures and stale debt entries, in locale then slot order."""
     failures: list[str] = []
     stale_debt: list[str] = []
-    slots = coverage.get("slots")
-    if not isinstance(slots, list):
-        raise ValueError("Web figure coverage slots must be a list")
     for locale in normalized_locales:
         for required_slot in normalized_slots:
             matches = [
@@ -507,6 +519,55 @@ def enforce_required_web_figure_coverage(
                 failures.append(
                     f"{locale}/{required_slot}={status or 'missing'}{suffix}"
                 )
+    return failures, stale_debt
+
+
+def enforce_required_web_figure_coverage(
+    ir: ManualIR,
+    coverage: dict[str, Any],
+) -> None:
+    """Fail when a contract-governed target retains required figure debt."""
+
+    if (
+        str(coverage.get("model") or "").casefold() != ir.model.casefold()
+        or str(coverage.get("region") or "").casefold() != ir.region.casefold()
+    ):
+        raise ValueError("Web figure coverage target does not match document target")
+    contract = ir.metadata.get("web_contract")
+    if not isinstance(contract, dict):
+        raise ValueError("Web figure coverage requirements need a presentation contract")
+    policy = contract.get("figure_coverage") or {}
+    if not isinstance(policy, dict):
+        raise ValueError("Web figure coverage policy must be an object")
+    requirements = policy.get("requirements") or []
+    if not isinstance(requirements, list):
+        raise ValueError("Web figure coverage requirements must be a list")
+
+    requirement = _matching_requirement(requirements, ir)
+    if requirement is None:
+        return
+    (
+        normalized_locales,
+        normalized_slots,
+        normalized_statuses,
+        slot_status_overrides,
+    ) = _requirement_policy(requirement)
+    debt = _known_debt(requirement, normalized_locales, normalized_slots)
+    normalized_locales = _active_locales(ir, normalized_locales)
+    if not normalized_locales:
+        return
+
+    slots = coverage.get("slots")
+    if not isinstance(slots, list):
+        raise ValueError("Web figure coverage slots must be a list")
+    failures, stale_debt = _slot_findings(
+        slots,
+        normalized_locales,
+        normalized_slots,
+        normalized_statuses,
+        slot_status_overrides,
+        debt,
+    )
     if stale_debt:
         raise ValueError(
             f"stale debt baseline for {ir.model}/{ir.region}: "
