@@ -3,7 +3,7 @@
 # No file may grow, unlisted files may not patch facades, and a lower
 # count must be written back. Regenerate intentionally with:
 #   python tools/check_facade_patch_ratchet.py update
-tests/test_build_docs_review_compat.py	22
+tests/test_build_docs_review_compat.py	1
 tests/test_build_review_preview.py	1
 tests/test_process_build_queue.py	70
 tests/test_process_build_queue_routing.py	25
