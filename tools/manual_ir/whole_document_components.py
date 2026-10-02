@@ -249,25 +249,16 @@ def _declared_lcd_tables(soup: BeautifulSoup, declared_role: str | None) -> list
     return soup.select("table.hb-lcd-icon-table:not(.lcd-text-only)")
 
 
-def discover_registered_components(
+def _claim_icon_tables(
     soup: BeautifulSoup,
     *,
     source_path: Path,
-    contract: Mapping[str, object],
-    model: str,
-    region: str,
     language: str,
-    declared_role: str | None = None,
-    composite_manifest: WebCompositeManifest | None = None,
-    overview_instance: Mapping[str, object] | None = None,
-    operation_panel_copy: Sequence[Mapping[str, Any]] = (),
-) -> tuple[ComponentClaim, ...]:
-    """Discover registered families in deterministic ownership order."""
-
-    claims: list[ComponentClaim] = []
-    claimed: set[int] = set()
-
-    claims.extend(_authored_claims(soup, source_path, language, claimed))
+    declared_role: str | None,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
+    """LCD-icon, symbol-icon and troubleshooting tables."""
 
     for table in _declared_lcd_tables(soup, declared_role):
         spec, boundary, images = parse_lcd_icon_html(
@@ -310,6 +301,17 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
+
+def _claim_meaning_symbols(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    declared_role: str | None,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     meaning_symbols = contract["meaning_symbols"]
     if isinstance(meaning_symbols, Mapping) and (
         declared_role == "symbols"
@@ -330,6 +332,16 @@ def discover_registered_components(
             _claim_nodes(claim, claimed=claimed, source_path=source_path)
             claims.append(claim)
 
+
+def _claim_warranty(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     warranty_config = contract["warranty"]
     if isinstance(warranty_config, Mapping) and _matches_source(
         source_path, warranty_config.get("source_patterns", [])
@@ -344,6 +356,19 @@ def discover_registered_components(
             claim = ComponentClaim(spec=spec, owned_nodes=owned_nodes)
             _claim_nodes(claim, claimed=claimed, source_path=source_path)
             claims.append(claim)
+
+
+def _claim_operations(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    operation_panel_copy: Sequence[Mapping[str, Any]],
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
+    """Operation tables, panel figures (when the figure contract applies) and the LCD mode table."""
 
     operation_config = contract["operations"]
     if isinstance(operation_config, Mapping) and _matches_source(
@@ -375,8 +400,18 @@ def discover_registered_components(
         if isinstance(lcd_config, Mapping):
             _claim_lcd_mode(soup, source_path, language, lcd_config, claimed, claims)
 
-    reference_config: Any = contract["reference_figures"]
-    supports_figures = supports_figure_contract(source_path, dict(contract))
+
+def _claim_shared_art_references(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    reference_config: Any,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
+    """Shared-art reference figures with live labels, unless already finished illustrations."""
+
     for raw_reference in reference_config.get("figures", []):
         if (
             not isinstance(raw_reference, Mapping)
@@ -407,6 +442,19 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
+
+def _claim_app_components(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    model: str,
+    region: str,
+    supports_figures: bool,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     app_download = contract["app_download"]
     if _matches_app_download(app_download, source_path=source_path, supports_figures=supports_figures):
         spec, owned, asset_tags, asset_paths = parse_app_download_html(
@@ -437,6 +485,22 @@ def discover_registered_components(
         claim = ComponentClaim(spec=spec, owned_nodes=owned)
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
+
+
+def _claim_reference_figures(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    reference_config: Any,
+    composite_manifest: WebCompositeManifest | None,
+    model: str,
+    region: str,
+    supports_figures: bool,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
+    """Bound reference figures: each needs exactly one governed image."""
 
     reference_context = WebCompositeContext(
         composite_manifest,
@@ -506,6 +570,19 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
+
+def _claim_overview(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    model: str,
+    region: str,
+    overview_instance: Mapping[str, object] | None,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     overview_config = contract["product_overview"]
     if (
         isinstance(overview_config, Mapping)
@@ -536,6 +613,16 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
+
+def _claim_fcc(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    contract: Mapping[str, object],
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     fcc_config = contract["fcc"]
     if (
         isinstance(fcc_config, Mapping)
@@ -561,7 +648,18 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
-    _claim_inbox(soup, source_path, language, contract, claimed, claims)
+
+def _claim_specifications(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str,
+    model: str,
+    region: str,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
+    """Declared specification headings, each with its adjacent table."""
 
     specification_index = 0
     for heading in list(soup.select("h2.hb-spec-section")):
@@ -596,6 +694,14 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
+
+def _claim_callouts(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    claimed: set[int],
+    claims: list[ComponentClaim],
+) -> None:
     callout_index = 0
     for table in list(soup.select("table.manual-callout-table")):
         if _is_claimed(table, claimed):
@@ -609,6 +715,141 @@ def discover_registered_components(
         claim = ComponentClaim(spec=spec, owned_nodes=(table,))
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
+
+
+def discover_registered_components(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    contract: Mapping[str, object],
+    model: str,
+    region: str,
+    language: str,
+    declared_role: str | None = None,
+    composite_manifest: WebCompositeManifest | None = None,
+    overview_instance: Mapping[str, object] | None = None,
+    operation_panel_copy: Sequence[Mapping[str, Any]] = (),
+) -> tuple[ComponentClaim, ...]:
+    """Discover registered families in deterministic ownership order."""
+
+    claims: list[ComponentClaim] = []
+    claimed: set[int] = set()
+
+    claims.extend(_authored_claims(soup, source_path, language, claimed))
+
+    _claim_icon_tables(
+        soup,
+        source_path=source_path,
+        language=language,
+        declared_role=declared_role,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_meaning_symbols(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        declared_role=declared_role,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_warranty(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_operations(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        operation_panel_copy=operation_panel_copy,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    reference_config: Any = contract["reference_figures"]
+    supports_figures = supports_figure_contract(source_path, dict(contract))
+    _claim_shared_art_references(
+        soup,
+        source_path=source_path,
+        language=language,
+        reference_config=reference_config,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_app_components(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        model=model,
+        region=region,
+        supports_figures=supports_figures,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_reference_figures(
+        soup,
+        source_path=source_path,
+        language=language,
+        reference_config=reference_config,
+        composite_manifest=composite_manifest,
+        model=model,
+        region=region,
+        supports_figures=supports_figures,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_overview(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        model=model,
+        region=region,
+        overview_instance=overview_instance,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_fcc(
+        soup,
+        source_path=source_path,
+        language=language,
+        contract=contract,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_inbox(soup, source_path, language, contract, claimed, claims)
+
+    _claim_specifications(
+        soup,
+        source_path=source_path,
+        language=language,
+        model=model,
+        region=region,
+        claimed=claimed,
+        claims=claims,
+    )
+
+    _claim_callouts(
+        soup,
+        source_path=source_path,
+        claimed=claimed,
+        claims=claims,
+    )
 
     return tuple(claims)
 

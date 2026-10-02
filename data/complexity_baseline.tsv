@@ -59,7 +59,7 @@ tools/config_pages.py	_parse_page_options	23
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_footnote_rows	25
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_note_rows	23
 tools/csv_pages/builder.py	CsvPageBuilder.build	35
-tools/csv_pages/renderers_spec_parser.py	_parse_spec_master_sections	81
+tools/csv_pages/renderers_spec_parser.py	_parse_spec_master_sections	25
 tools/csv_pages/renderers_spec_parser.py	collect_spec_content	26
 tools/csv_pages/renderers_symbols.py	_collect_icon_rows	21
 tools/csv_pages/renderers_symbols.py	_collect_signal_rows	21
@@ -137,7 +137,6 @@ tools/idml/target_assembly_plan.py	_validate_app_composition	25
 tools/idml/target_assembly_plan.py	_validate_lcd_composition	35
 tools/idml/target_assembly_plan.py	_validate_specifications_composition	42
 tools/idml/target_assembly_render.py	TargetAssemblyRenderer.render	58
-tools/idml_rst_extract.py	extract_page	80
 tools/idml_rst_extract_latex.py	_extract_raw_latex	28
 tools/idml_rst_tables.py	parse_grid_table	24
 tools/indesign_finalize.py	_collect_finalize_result	28
@@ -158,7 +157,6 @@ tools/manual_ir/web_app_download.py	_download_payload	22
 tools/manual_ir/web_callouts.py	decode_callout_payload	31
 tools/manual_ir/web_symbols.py	decode_pair_table	35
 tools/manual_ir/web_symbols.py	decode_signal_table	45
-tools/manual_ir/whole_document_components.py	discover_registered_components	62
 tools/manual_ir/whole_document_components.py	embed_component_claims	21
 tools/manual_operations_health.py	build_health_report	33
 tools/page_plan/model.py	PagePlan.physical_pages	21
@@ -174,7 +172,7 @@ tools/queue_build_execution.py	build_document_for_task	45
 tools/queue_config_resolution.py	resolve_config_path_for_task	26
 tools/queue_config_resolution.py	validate_family_config_request	25
 tools/queue_execute.py	render_queue_execute_result	26
-tools/queue_group_processing.py	process_queue_record_group	55
+tools/queue_group_processing.py	process_queue_record_group	21
 tools/queue_outputs.py	write_web_publish_metadata	22
 tools/queue_query.py	_matches_queue_query_row	24
 tools/queue_query.py	apply_inferred_queue_query	42
@@ -243,7 +241,7 @@ tools/web_language_bundle.py	split_web_bundle	39
 tools/web_language_release_evidence.py	verify_release_evidence	39
 tools/web_presentation.py	_transform_auto_resume_table	25
 tools/web_presentation.py	_transform_operation_figure	22
-tools/web_presentation.py	transform_web_fragment	93
+tools/web_presentation.py	transform_web_fragment	33
 tools/web_presentation_contract.py	_base_art_live_copy_slots	21
 tools/web_presentation_contract.py	_load_cached	25
 tools/web_presentation_contract.py	_load_target_overlays	22

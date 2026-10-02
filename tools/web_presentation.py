@@ -9,6 +9,7 @@ geometry: editable/searchable callouts, SVG leaders, and responsive fallbacks.
 from __future__ import annotations
 
 import fnmatch
+from dataclasses import dataclass
 import re
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -1402,6 +1403,277 @@ def normalize_web_source_fragment(
     return str(soup)
 
 
+@dataclass(frozen=True)
+class _WebPageKinds:
+    """Which contract-declared page families a Web source fragment belongs to."""
+
+    preface: bool
+    overview: bool
+    operations: bool
+    fcc: bool
+    meaning_symbols: bool
+    warranty: bool
+    in_the_box: bool
+    reference_page: bool
+    app_download: bool
+    app_inline_controls: bool
+
+    @classmethod
+    def for_source(cls, source_path: Path, data: Mapping[str, Any]) -> _WebPageKinds:
+        def matches(key: str) -> bool:
+            return _matches_source(source_path, list(data[key]["source_patterns"]))
+
+        return cls(
+            preface=matches("preface"),
+            overview=matches("product_overview"),
+            operations=matches("operations"),
+            fcc=matches("fcc"),
+            meaning_symbols=matches("meaning_symbols"),
+            warranty=matches("warranty"),
+            in_the_box=matches("in_the_box"),
+            reference_page=matches("reference_figures"),
+            app_download=matches("app_download"),
+            app_inline_controls=matches("app_inline_controls"),
+        )
+
+    def any_component_page(self) -> bool:
+        return (
+            self.preface
+            or self.overview
+            or self.operations
+            or self.fcc
+            or self.meaning_symbols
+            or self.warranty
+            or self.in_the_box
+            or self.reference_page
+            or self.app_download
+            or self.app_inline_controls
+        )
+
+    def keeps_embedded_page(self) -> bool:
+        """Pages that still need adapter work when every component is embedded."""
+
+        return (
+            self.preface
+            or self.operations
+            or self.meaning_symbols
+            or self.warranty
+            or self.reference_page
+            or self.app_download
+            or self.app_inline_controls
+        )
+
+
+@dataclass(frozen=True)
+class _WebFragmentTarget:
+    """The per-call inputs every Web fragment transform step shares."""
+
+    source_path: Path
+    data: Mapping[str, Any]
+    model: str | None
+    region: str | None
+    language: str | None
+    resolved: frozenset[str]
+    embedded_components_complete: bool
+
+
+def _transform_semantic_tables(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    model: str | None,
+    region: str | None,
+    language: str | None,
+    resolved: frozenset[str],
+    embedded: bool,
+    declared_troubleshooting: bool,
+    declared_lcd_icons: bool,
+) -> tuple[bool, bool, bool]:
+    """Render spec / troubleshooting / LCD-icon tables not already resolved as components."""
+
+    has_specifications = "HB-TABLE-SPEC" in resolved
+    if not has_specifications and not embedded:
+        has_specifications = transform_specification_tables(
+            soup, source_path=source_path, language=language, error_type=WebPresentationError,
+            model=model, region=region,
+        )
+    has_troubleshooting = "HB-TABLE-TROUBLESHOOTING" in resolved
+    if not has_troubleshooting and not embedded:
+        has_troubleshooting = transform_troubleshooting_tables(
+            soup, source_path=source_path, declared_page=declared_troubleshooting,
+            language=language, model=model, region=region,
+            error_type=WebPresentationError,
+        )
+    has_lcd = "HB-TABLE-LCD-ICON" in resolved
+    if not has_lcd and not embedded:
+        has_lcd = transform_lcd_icon_tables(
+            soup, source_path=source_path, declared_page=declared_lcd_icons,
+            language=language, model=model, region=region,
+            error_type=WebPresentationError,
+        )
+    return has_specifications, has_troubleshooting, has_lcd
+
+
+def _ensure_operations_tables(soup: BeautifulSoup, target: _WebFragmentTarget) -> bool:
+    """Ensure the operations page's contract tables; return whether the soup changed."""
+
+    operations = target.data["operations"]
+    source_path = target.source_path
+    changed = False
+    if operations.get("auto_resume_table") and "HB-TABLE-AUTO-RESUME" not in target.resolved:
+        _ensure_auto_resume_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(operations["auto_resume_table"]["body_rows"]),
+        )
+        changed = True
+    if operations.get("key_combination_table"):
+        _ensure_key_combination_table(
+            soup,
+            source_path=source_path,
+            minimum_body_rows=int(
+                operations["key_combination_table"]["minimum_body_rows"]
+            ),
+        )
+        changed = True
+    if (
+        operations.get("lcd_mode_table")
+        and "HB-TABLE-LCD-MODE" not in target.resolved
+        and not target.embedded_components_complete
+    ):
+        _ensure_lcd_mode_table(
+            soup,
+            source_path=source_path,
+            image_key=str(operations["lcd_mode_table"]["image_key"]),
+            expected_body_rows=int(operations["lcd_mode_table"]["body_rows"]),
+        )
+        changed = True
+    return changed
+
+
+def _transform_meaning_symbols(soup: BeautifulSoup, target: _WebFragmentTarget) -> None:
+    common = {
+        "source_path": target.source_path,
+        "error_type": WebPresentationError,
+        "language": target.language,
+        "model": target.model,
+        "region": target.region,
+    }
+    if "HB-TABLE-SYMBOL-SIGNAL" not in target.resolved:
+        transform_symbol_signal_table(
+            soup,
+            expected_body_rows=int(target.data["meaning_symbols"]["signal_row_count"]),
+            **common,
+        )
+    if "HB-TABLE-SYMBOL-ICON" not in target.resolved:
+        transform_symbol_pairs(soup, **common)
+
+
+def _transform_legacy_target_pages(
+    soup: BeautifulSoup,
+    target: _WebFragmentTarget,
+    kinds: _WebPageKinds,
+    *,
+    has_inbox: bool,
+    supports_legacy: bool,
+) -> None:
+    """FCC, symbol, inbox and app components (shared copy, target-gated adapters)."""
+
+    source_path, language = target.source_path, target.language
+    model, region = target.model, target.region
+    embedded = target.embedded_components_complete
+    if kinds.fcc and supports_legacy and "HB-SPECIAL-FCC" not in target.resolved and not embedded:
+        transform_fcc(
+            soup,
+            source_path=source_path,
+            config=target.data["fcc"],
+            error_type=WebPresentationError,
+            language=language,
+            model=model, region=region,
+        )
+    if kinds.meaning_symbols and supports_legacy and not embedded:
+        _transform_meaning_symbols(soup, target)
+    if (
+        kinds.in_the_box
+        and not has_inbox
+        and "HB-SPECIAL-INBOX" not in target.resolved
+        and not embedded
+    ):
+        transform_inbox(
+            soup, source_path=source_path, language=language or "und",
+            model=model, region=region, error_type=WebPresentationError,
+        )
+    if kinds.app_download and supports_legacy and not embedded:
+        transform_app_download(
+            soup, source_path=source_path, config=target.data["app_download"],
+            error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
+    if kinds.app_inline_controls and supports_legacy and not embedded:
+        transform_app_control(
+            soup, source_path=source_path, config=target.data["app_inline_controls"],
+            error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
+
+
+def _transform_component_pages(
+    soup: BeautifulSoup,
+    target: _WebFragmentTarget,
+    kinds: _WebPageKinds,
+    *,
+    composite_manifest: WebCompositeManifest | None,
+    operation_panel_copy: Sequence[Mapping[str, Any]],
+    has_inbox: bool,
+    supports_figures: bool,
+    supports_legacy: bool,
+) -> None:
+    """Apply page components in contract order: preface, overview, operations, legacy, reference."""
+
+    source_path, data = target.source_path, target.data
+    embedded = target.embedded_components_complete
+    composites = WebCompositeContext(
+        composite_manifest,
+        target.model,
+        target.region,
+        target.language,
+        WebPresentationError,
+    )
+    if kinds.preface and supports_legacy:
+        _transform_preface(soup, source_path=source_path)
+    if (
+        kinds.overview
+        and supports_figures
+        and "HB-SPECIAL-OVERVIEW" not in target.resolved
+        and not embedded
+    ):
+        _transform_product_overview(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+        )
+    if kinds.operations and supports_figures:
+        _transform_operations(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+            resolved_component_ids=target.resolved,
+            operation_panel_copy=operation_panel_copy,
+        )
+    _transform_legacy_target_pages(
+        soup, target, kinds, has_inbox=has_inbox, supports_legacy=supports_legacy
+    )
+    if kinds.reference_page and supports_figures and not embedded:
+        _transform_reference_figures(
+            soup,
+            source_path=source_path,
+            contract=data,
+            composites=composites,
+        )
+
+
 def transform_web_fragment(
     html_fragment: str,
     *,
@@ -1420,38 +1692,27 @@ def transform_web_fragment(
     """Render declared semantics, then apply target-governed figure composition."""
     soup = BeautifulSoup(html_fragment, "html.parser")
     resolved = frozenset(resolved_component_ids)
-    has_specifications = "HB-TABLE-SPEC" in resolved
-    if not has_specifications and not embedded_components_complete:
-        has_specifications = transform_specification_tables(
-            soup, source_path=source_path, language=language, error_type=WebPresentationError,
-            model=model, region=region,
-        )
-    has_troubleshooting = "HB-TABLE-TROUBLESHOOTING" in resolved
-    if not has_troubleshooting and not embedded_components_complete:
-        has_troubleshooting = transform_troubleshooting_tables(
-            soup, source_path=source_path, declared_page=declared_troubleshooting,
-            language=language, model=model, region=region,
-            error_type=WebPresentationError,
-        )
-    has_lcd = "HB-TABLE-LCD-ICON" in resolved
-    if not has_lcd and not embedded_components_complete:
-        has_lcd = transform_lcd_icon_tables(
-            soup, source_path=source_path, declared_page=declared_lcd_icons,
-            language=language, model=model, region=region,
-            error_type=WebPresentationError,
-        )
+    embedded = embedded_components_complete
+    has_specifications, has_troubleshooting, has_lcd = _transform_semantic_tables(
+        soup,
+        source_path=source_path,
+        model=model,
+        region=region,
+        language=language,
+        resolved=resolved,
+        embedded=embedded,
+        declared_troubleshooting=declared_troubleshooting,
+        declared_lcd_icons=declared_lcd_icons,
+    )
     data = contract or load_web_manual_contract(model=model, region=region)
+    target = _WebFragmentTarget(source_path, data, model, region, language, resolved, embedded)
     has_inbox = "HB-SPECIAL-INBOX" in resolved or (
-        not embedded_components_complete
+        not embedded
         and _matches_source(
             source_path, list(data["in_the_box"].get("semantic_source_patterns", []))
         )
     )
-    if (
-        has_inbox
-        and "HB-SPECIAL-INBOX" not in resolved
-        and not embedded_components_complete
-    ):
+    if has_inbox and "HB-SPECIAL-INBOX" not in resolved and not embedded:
         transform_inbox(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
@@ -1460,44 +1721,17 @@ def transform_web_fragment(
         str(soup)
         if has_troubleshooting
         or has_lcd
-        or (has_specifications and not embedded_components_complete)
-        or (has_inbox and not embedded_components_complete)
+        or ((has_specifications or has_inbox) and not embedded)
         else html_fragment
     )
-    preface = data["preface"]
-    overview = data["product_overview"]
-    operations = data["operations"]
-    fcc = data["fcc"]
-    meaning_symbols = data["meaning_symbols"]
-    warranty = data["warranty"]
-    in_the_box = data["in_the_box"]
-    reference_figures = data["reference_figures"]
-    app_download = data["app_download"]
-    app_inline_controls = data["app_inline_controls"]
-    is_preface = _matches_source(source_path, list(preface["source_patterns"]))
-    is_overview = _matches_source(source_path, list(overview["source_patterns"]))
-    is_operations = _matches_source(source_path, list(operations["source_patterns"]))
-    is_fcc = _matches_source(source_path, list(fcc["source_patterns"]))
-    is_meaning_symbols = _matches_source(
-        source_path,
-        list(meaning_symbols["source_patterns"]),
-    )
-    is_warranty = _matches_source(source_path, list(warranty["source_patterns"]))
-    is_in_the_box = _matches_source(source_path, list(in_the_box["source_patterns"]))
-    is_reference_page = _matches_source(
-        source_path, list(reference_figures["source_patterns"])
-    )
-    is_app_download = _matches_source(source_path, list(app_download["source_patterns"]))
-    is_app_inline_controls = _matches_source(
-        source_path, list(app_inline_controls["source_patterns"])
-    )
+    kinds = _WebPageKinds.for_source(source_path, data)
     has_target_context = bool(model and region) or supports_figure_contract(
         source_path, data
     )
     if (
-        is_reference_page
+        kinds.reference_page
         and has_target_context
-        and not embedded_components_complete
+        and not embedded
         and _transform_shared_reference_figures(
             soup,
             source_path=source_path,
@@ -1505,46 +1739,9 @@ def transform_web_fragment(
         )
     ):
         semantic_fragment = str(soup)
-    if is_operations and operations.get("auto_resume_table") and "HB-TABLE-AUTO-RESUME" not in resolved:
-        _ensure_auto_resume_table(
-            soup,
-            source_path=source_path,
-            expected_body_rows=int(operations["auto_resume_table"]["body_rows"]),
-        )
+    if kinds.operations and _ensure_operations_tables(soup, target):
         semantic_fragment = str(soup)
-    if is_operations and operations.get("key_combination_table"):
-        _ensure_key_combination_table(
-            soup,
-            source_path=source_path,
-            minimum_body_rows=int(
-                operations["key_combination_table"]["minimum_body_rows"]
-            ),
-        )
-        semantic_fragment = str(soup)
-    if (
-        is_operations
-        and operations.get("lcd_mode_table")
-        and "HB-TABLE-LCD-MODE" not in resolved
-        and not embedded_components_complete
-    ):
-        _ensure_lcd_mode_table(
-            soup,
-            source_path=source_path,
-            image_key=str(operations["lcd_mode_table"]["image_key"]),
-            expected_body_rows=int(operations["lcd_mode_table"]["body_rows"]),
-        )
-        semantic_fragment = str(soup)
-    if embedded_components_complete and not (
-        is_preface
-        or is_operations
-        or is_meaning_symbols
-        or is_warranty
-        or is_reference_page
-        or is_app_download
-        or is_app_inline_controls
-        or has_troubleshooting
-        or has_lcd
-    ):
+    if embedded and not (kinds.keeps_embedded_page() or has_troubleshooting or has_lcd):
         return semantic_fragment
     # Warranty is a shared semantic component: its copy and localized unit stay
     # source-owned, while the Web adapter only supplies the reusable card and
@@ -1555,7 +1752,8 @@ def transform_web_fragment(
         "HB-WARRANTY-SECTION",
         "HB-WARRANTY-YEARS",
     }
-    if is_warranty and has_target_context and not (resolved & warranty_component_ids):
+    if kinds.warranty and has_target_context and not (resolved & warranty_component_ids):
+        warranty = data["warranty"]
         _transform_warranty(
             soup,
             source_path=source_path,
@@ -1563,128 +1761,26 @@ def transform_web_fragment(
             expected_years=[str(value) for value in warranty["period_years"]],
         )
         semantic_fragment = str(soup)
-    if not (
-        is_preface
-        or is_overview
-        or is_operations
-        or is_fcc
-        or is_meaning_symbols
-        or is_warranty
-        or is_in_the_box
-        or is_reference_page
-        or is_app_download
-        or is_app_inline_controls
-    ):
+    if not kinds.any_component_page():
         return semantic_fragment
-    supports_figures = supports_figure_contract(source_path, data)
-    supports_legacy_target_components = supports_preface_contract(source_path, data)
     # Inbox is a shared component, not target-specific figure geometry.  Keep
     # legacy fragment rendering aligned with the whole-document IR path so a
     # declared What's in the Box page always receives its numbered cards.
-    if (
-        not supports_figures
-        and not supports_legacy_target_components
-        and not is_in_the_box
-    ):
+    supports_figures = supports_figure_contract(source_path, data)
+    supports_legacy = supports_preface_contract(source_path, data)
+    if not supports_figures and not supports_legacy and not kinds.in_the_box:
         return semantic_fragment
 
-    composites = WebCompositeContext(
-        composite_manifest,
-        model,
-        region,
-        language,
-        WebPresentationError,
+    _transform_component_pages(
+        soup,
+        target,
+        kinds,
+        composite_manifest=composite_manifest,
+        operation_panel_copy=operation_panel_copy,
+        has_inbox=has_inbox,
+        supports_figures=supports_figures,
+        supports_legacy=supports_legacy,
     )
-    if is_preface and supports_legacy_target_components:
-        _transform_preface(soup, source_path=source_path)
-    if (
-        is_overview
-        and supports_figures
-        and "HB-SPECIAL-OVERVIEW" not in resolved
-        and not embedded_components_complete
-    ):
-        _transform_product_overview(
-            soup,
-            source_path=source_path,
-            contract=data,
-            composites=composites,
-        )
-    if is_operations and supports_figures:
-        _transform_operations(
-            soup,
-            source_path=source_path,
-            contract=data,
-            composites=composites,
-            resolved_component_ids=resolved,
-            operation_panel_copy=operation_panel_copy,
-        )
-    if (
-        is_fcc
-        and supports_legacy_target_components
-        and "HB-SPECIAL-FCC" not in resolved
-        and not embedded_components_complete
-    ):
-        transform_fcc(
-            soup,
-            source_path=source_path,
-            config=fcc,
-            error_type=WebPresentationError,
-            language=language,
-            model=model, region=region,
-        )
-    if (
-        is_meaning_symbols
-        and supports_legacy_target_components
-        and not embedded_components_complete
-    ):
-        if "HB-TABLE-SYMBOL-SIGNAL" not in resolved:
-            transform_symbol_signal_table(
-                soup,
-                source_path=source_path,
-                expected_body_rows=int(meaning_symbols["signal_row_count"]),
-                error_type=WebPresentationError,
-                language=language, model=model, region=region,
-            )
-        if "HB-TABLE-SYMBOL-ICON" not in resolved:
-            transform_symbol_pairs(
-                soup, source_path=source_path, error_type=WebPresentationError,
-                language=language, model=model, region=region,
-            )
-    if (
-        is_in_the_box
-        and not has_inbox
-        and "HB-SPECIAL-INBOX" not in resolved
-        and not embedded_components_complete
-    ):
-        transform_inbox(
-            soup, source_path=source_path, language=language or "und",
-            model=model, region=region, error_type=WebPresentationError,
-        )
-    if (
-        is_app_download
-        and supports_legacy_target_components
-        and not embedded_components_complete
-    ):
-        transform_app_download(
-            soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
-            language=language, model=model, region=region,
-        )
-    if (
-        is_app_inline_controls
-        and supports_legacy_target_components
-        and not embedded_components_complete
-    ):
-        transform_app_control(
-            soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
-            language=language, model=model, region=region,
-        )
-    if is_reference_page and supports_figures and not embedded_components_complete:
-        _transform_reference_figures(
-            soup,
-            source_path=source_path,
-            contract=data,
-            composites=composites,
-        )
     return str(soup)
 
 

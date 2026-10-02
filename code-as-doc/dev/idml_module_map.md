@@ -127,6 +127,9 @@ tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns componen
                               test-enforced)
 tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by the
                               extractor
+tools/idml_rst_line_blocks.py line-structure steps of the extractor's scanner (comments,
+                              titles, grid tables, line blocks, lists, paragraphs);
+                              directives stay in idml_rst_extract.py
 tools/reference_layout_rebind.py
                               dry-run-by-default maintainer CLI for the atomic approved-
                               contract source rebind; never edits composition geometry
