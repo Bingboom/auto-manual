@@ -172,7 +172,7 @@ tools/queue_build_execution.py	build_document_for_task	45
 tools/queue_config_resolution.py	resolve_config_path_for_task	26
 tools/queue_config_resolution.py	validate_family_config_request	25
 tools/queue_execute.py	render_queue_execute_result	26
-tools/queue_group_processing.py	process_queue_record_group	55
+tools/queue_group_processing.py	process_queue_record_group	21
 tools/queue_outputs.py	write_web_publish_metadata	22
 tools/queue_query.py	_matches_queue_query_row	24
 tools/queue_query.py	apply_inferred_queue_query	42
