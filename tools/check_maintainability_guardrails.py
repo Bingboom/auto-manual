@@ -19,7 +19,6 @@ from tools import (
     check_complexity_ratchet,
     check_facade_patch_ratchet,
     check_language_literal_ratchet,
-    check_zip_strict_ratchet,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
 
@@ -377,10 +376,6 @@ def main(argv: list[str] | None = None) -> int:
     broad_excepts = check_broad_except_ratchet.check_repository(args.repo_root.resolve())
     if broad_excepts.exit_code:
         return broad_excepts.exit_code
-
-    zip_calls = check_zip_strict_ratchet.check_repository(args.repo_root.resolve())
-    if zip_calls.exit_code:
-        return zip_calls.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."

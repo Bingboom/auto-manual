@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from copy import deepcopy
 from pathlib import Path
-from typing import Any, Iterator, Mapping
+from typing import Any, Iterator, Mapping, cast
 
 try:
     import yaml
@@ -235,7 +235,7 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
                 ):
                     issues.append(f"{asset_prefix}.multiple must be boolean")
                 policies = raw_asset.get("locale_policies")
-                if not _non_empty_strings(policies) or not set(policies).issubset(
+                if not _non_empty_strings(policies) or not set(cast(list[str], policies)).issubset(
                     LOCALE_POLICIES
                 ):
                     issues.append(

@@ -1,6 +1,7 @@
 """Editable reference-art regressions for the LCD screen-mode panel."""
 from __future__ import annotations
 
+from itertools import pairwise
 import re
 import unittest
 from pathlib import Path
@@ -442,6 +443,7 @@ class EditableLcdModeTests(unittest.TestCase):
                         description[2] - description[0],
                     ),
                     values["columns"],
+                    strict=True,
                 ):
                     self.assertAlmostEqual(measured, actual, places=2)
 
@@ -456,6 +458,7 @@ class EditableLcdModeTests(unittest.TestCase):
                 for bounds, measured in zip(
                     actual_rows,
                     values["row_heights"],
+                    strict=True,
                 ):
                     self.assertAlmostEqual(
                         measured,
@@ -582,7 +585,7 @@ class EditableLcdModeTests(unittest.TestCase):
         )
         self.assertNotEqual(english_row_heights, actual_heights)
         self.assertTrue(all(height >= 40.0 for height in actual_heights))
-        for previous, current in zip(actual_rows, actual_rows[1:]):
+        for previous, current in pairwise(actual_rows):
             self.assertGreaterEqual(current[1], previous[3] - 0.001)
 
     def test_context_without_story_writer_keeps_table_fallback(self) -> None:

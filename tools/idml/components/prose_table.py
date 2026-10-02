@@ -754,8 +754,9 @@ def _troubleshooting_table(
                 "Color/HB Header K08" if is_compact else "Color/HB Bg K05",
                 None,
             )
+        # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
         for ci, (text, paragraph_style, fill) in enumerate(
-            zip((left, right), styles, fills)
+            zip((left, right), styles, fills, strict=False)
         ):
             content = psr(paragraph_style, text, terminal=True)
             if ri == 0:

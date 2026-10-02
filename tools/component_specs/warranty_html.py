@@ -6,6 +6,7 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.warranty import (
     warranty_lead_component_spec,
     warranty_section_component_spec,
@@ -76,7 +77,7 @@ def _blocks(nodes: list[Tag], *, source_path: Path) -> list[dict[str, object]]:
     return blocks
 
 
-def _lead_nodes(soup: BeautifulSoup, source_path: Path):
+def _lead_nodes(soup: BeautifulSoup, source_path: Path) -> tuple[Tag, list[Tag], list[Tag]]:
     heading = soup.find("h1", recursive=False)
     paragraphs = [
         node for node in soup.find_all("p", recursive=False) if isinstance(node, Tag)
@@ -101,14 +102,14 @@ def parse_warranty_html(
     expected_sections: int,
     expected_years: list[str],
     language: str,
-) -> tuple[tuple[object, tuple[Tag, ...]], ...]:
+) -> tuple[tuple[ComponentSpec, tuple[Tag, ...]], ...]:
     heading, paragraphs, sections = _lead_nodes(soup, source_path)
     if len(sections) != expected_sections:
         raise ValueError(
             f"{source_path}: expected {expected_sections} warranty sections; "
             f"found {len(sections)}"
         )
-    claims: list[tuple[object, tuple[Tag, ...]]] = [
+    claims: list[tuple[ComponentSpec, tuple[Tag, ...]]] = [
         (
             warranty_lead_component_spec(
                 accessibility_label=heading.get_text(" ", strip=True),

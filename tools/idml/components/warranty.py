@@ -369,7 +369,8 @@ def _years_table(
             "idml_warranty_native_badge_indent_adjust",
             4.90,
         )
-    for index, (item, col_w) in enumerate(zip(items, cols)):
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+    for index, (item, col_w) in enumerate(zip(items, cols, strict=False)):
         subtitle = str(item.get("label", "")).strip()
         body = str(item.get("text", "")).strip()
         content = _year_heading(

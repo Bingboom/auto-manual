@@ -127,11 +127,12 @@ def _spec_payload(body: str) -> dict[str, Any] | None:
     if titles:
         labels = _calls(body, "HBTypeSpecLabel", 1)
         values = _calls(body, "HBTypeSpecValue", 1)
+        # zip(strict=False): source data may differ in length; keep the existing truncation
         return {
             "kind": "spec_section",
             "title": _text(titles[0][0]),
             "rows": [[_text(label[0]), _text(value[0])]
-                     for label, value in zip(labels, values)],
+                     for label, value in zip(labels, values, strict=False)],
         }
 
     notes = _calls(body, "HBTypeSpecNote", 1)
