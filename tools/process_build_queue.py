@@ -27,6 +27,8 @@ def _service_module() -> Any:
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.process_build_queue_main import run_main as _run_main_impl  # noqa: E402
 from tools.queue_contract import (  # noqa: E402
+    HTML_LINK_FIELD as _QC_HTML_LINK_FIELD,
+    TRIGGER_VALUES as _QC_TRIGGER_VALUES,
     BUILD_FAMILY_FIELD as _QC_BUILD_FAMILY_FIELD,
     BUILD_STARTED_AT_FIELD as _QC_BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD as _QC_DATA_SYNC_FIELD,
@@ -38,7 +40,6 @@ from tools.queue_contract import (  # noqa: E402
     BASELINE_DOC_FIELD as _QC_BASELINE_DOC_FIELD,
     DOCUMENT_LINK_FIELD as _QC_DOCUMENT_LINK_FIELD,
     FEISHU_CLOUD_DOC_FIELD as _QC_FEISHU_CLOUD_DOC_FIELD,
-    HTML_LINK_FIELD as _QC_HTML_LINK_FIELD,
     DOC_PHASE_FIELD as _QC_DOC_PHASE_FIELD,
     DONE_TRIGGER_VALUE as _QC_DONE_TRIGGER_VALUE,
     FAILED_PREFIX as _QC_FAILED_PREFIX,
@@ -46,14 +47,12 @@ from tools.queue_contract import (  # noqa: E402
     GIT_REF_FIELD as _QC_GIT_REF_FIELD,
     IMMEDIATE_TRIGGER_FIELD as _QC_IMMEDIATE_TRIGGER_FIELD,
     LANG_FIELD as _QC_LANG_FIELD,
-    LEGACY_TRIGGER_FIELDS as _QC_LEGACY_TRIGGER_FIELDS,
     OPERATOR_UNION_ID_FIELD as _QC_OPERATOR_UNION_ID_FIELD,
     QUEUE_CLAIM_TTL_SECONDS as _QC_QUEUE_CLAIM_TTL_SECONDS,
     RESULT_FIELD as _QC_RESULT_FIELD,
     RUNNING_PREFIX as _QC_RUNNING_PREFIX,
     SUCCESS_PREFIX as _QC_SUCCESS_PREFIX,
     TRIGGER_FIELD as _QC_TRIGGER_FIELD,
-    TRIGGER_VALUES as _QC_TRIGGER_VALUES,
     UPLOAD_DINGTALK_FIELD as _QC_UPLOAD_DINGTALK_FIELD,
     VERSION_FIELD as _QC_VERSION_FIELD,
     WORKFLOW_ACTION_FIELD as _QC_WORKFLOW_ACTION_FIELD,
@@ -63,14 +62,9 @@ from tools.queue_contract import (  # noqa: E402
 )
 from tools.document_link_queue import (  # noqa: E402
     available_field_names as _available_field_names_impl,
-    field_value as _field_value_impl,
     parse_document_key as _parse_document_key_impl,
-    scalar_text as _scalar_text_impl,
 )
 from tools.document_link_actions import (  # noqa: E402
-    DRAFT_PACKAGE_ACTION_LABEL,
-    PUBLISH_ACTION_LABEL,
-    WEB_PUBLISH_ACTION_LABEL,
     best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     normalize_doc_phase as _normalize_doc_phase,
@@ -122,8 +116,6 @@ from tools.queue_artifact_sink import (  # noqa: E402
 )
 from tools.queue_bound_outputs import (  # noqa: E402
     publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
-    publish_release_root_for_target as _publish_release_root_for_target,
-    publish_release_version_dir_for_target as _publish_release_version_dir_for_target,
     repo_relative as _repo_relative,
     resolve_docs_dir_for_config as _resolve_docs_dir_for_config,
     resolve_html_output_dir_for_target,
@@ -147,9 +139,6 @@ from tools.queue_bound_lark_ops import (  # noqa: E402
 )
 from tools.queue_bound_binding import (  # noqa: E402
     collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
-    document_link_cfg as _document_link_cfg,
-    document_link_env_names as _document_link_env_names,
-    document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env,
     resolve_document_link_binding,
 )
 from tools.queue_bound_runtime import (  # noqa: E402
@@ -158,14 +147,9 @@ from tools.queue_bound_runtime import (  # noqa: E402
     prepare_git_ref_worktree as _prepare_git_ref_worktree,
     remove_worktree as _remove_worktree,
     run_command as _run_command,
-    run_git as _run_git,
-    worktree_dir_for_git_ref as _worktree_dir_for_git_ref,
 )
 from tools.queue_bound_records import (  # noqa: E402
     group_pending_queue_records,
-    is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
-    is_trigger_requested as _is_trigger_requested,
-    parse_queue_records,
     queue_group_dingtalk_target_node_url,
     queue_group_force_phase2_refresh,
     queue_group_upload_dingtalk,
@@ -187,6 +171,42 @@ from tools.queue_bound_records import (  # noqa: E402
 from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
 from tools.queue_runtime import command_failure_message as _command_failure_message  # noqa: E402
 
+
+__all__ = [
+    "ArtifactDestination", "ArtifactPublishResult", "BASELINE_DOC_FIELD",
+    "best_effort_queue_workflow_action", "build_document_for_task", "build_failure_fields",
+    "build_failure_writeback_fields", "BUILD_FAMILY_FIELD", "BUILD_STARTED_AT_FIELD",
+    "build_started_fields", "build_success_fields", "BuiltDocumentOutputs",
+    "collect_queue_preflight_errors", "DATA_SYNC_FIELD", "DINGTALK_TARGET_NODE_URL_FIELD",
+    "DOC_PHASE_FIELD", "DOCUMENT_DIRECTORY_FIELD", "DOCUMENT_ID_FIELD", "DOCUMENT_KEY_FIELD",
+    "DOCUMENT_LINK_DD_FIELD", "DOCUMENT_LINK_FIELD", "DocumentLinkBinding",
+    "DONE_TRIGGER_VALUE", "ensure_dingtalk_session_ready", "FAILED_PREFIX",
+    "FEISHU_CLOUD_DOC_FIELD", "finalize_cloud_doc", "FORCE_PHASE2_REFRESH_FIELD",
+    "get_wiki_node", "GIT_REF_FIELD", "group_pending_queue_records", "HTML_LINK_FIELD",
+    "IMMEDIATE_TRIGGER_FIELD", "import_markdown_to_cloud_doc", "LANG_FIELD", "LarkCliSource",
+    "load_config", "load_session_config_for_operator_union_id", "main",
+    "move_drive_file_to_wiki", "normalize_cli_queue_action", "normalize_doc_phase",
+    "normalize_workflow_action", "OPERATOR_UNION_ID_FIELD", "parse_args", "parse_document_key",
+    "pending_immediate_queue_records", "pending_queue_records", "process_build_queue",
+    "publish_word_artifact", "QUEUE_CLAIM_TTL_SECONDS", "queue_group_build_family",
+    "queue_group_dingtalk_target_node_url", "queue_group_force_phase2_refresh",
+    "queue_group_lang", "queue_group_operator_union_id", "queue_group_upload_dingtalk",
+    "queue_record_action_source", "queue_record_key", "queue_record_legacy_doc_phase",
+    "queue_record_uses_legacy_doc_phase", "QueueRecord", "resolve_artifact_destination",
+    "resolve_artifact_mirror_provider", "resolve_config_path_for_task",
+    "resolve_dingtalk_mirror_destination", "resolve_document_link_binding",
+    "resolve_html_output_dir_for_target", "resolve_md_output_path_for_target",
+    "resolve_pdf_output_path_for_target", "resolve_queue_workflow_action",
+    "resolve_target_for_record", "resolve_wiki_destination",
+    "resolve_word_output_path_for_target", "RESULT_FIELD", "ROOT", "RUNNING_PREFIX",
+    "select_pending_queue_records", "SUCCESS_PREFIX", "sync_phase2_snapshot_before_queue",
+    "TRIGGER_FIELD", "TRIGGER_VALUES", "UPLOAD_DINGTALK_FIELD", "upload_file_to_node",
+    "upload_word_to_drive", "validate_queue_record_group", "VERSION_FIELD",
+    "wait_for_wiki_move_task", "warn_legacy_cli_doc_phase", "warn_legacy_record_doc_phase",
+    "WikiDestination", "WORKFLOW_ACTION_FIELD", "workflow_action_label",
+    "write_publish_release_metadata", "write_web_publish_metadata",
+]
+
 configure_queue_bound_providers(
     repo_root_provider=lambda: ROOT,
     config_loader_provider=lambda: load_config,
@@ -204,8 +224,9 @@ def resolve_artifact_mirror_provider(cfg: dict[str, Any]) -> str | None:
     return artifact_mirror_provider(cfg, environ=os.environ)
 
 TRIGGER_FIELD = _QC_TRIGGER_FIELD
-LEGACY_TRIGGER_FIELDS = _QC_LEGACY_TRIGGER_FIELDS
 RESULT_FIELD = _QC_RESULT_FIELD
+HTML_LINK_FIELD = _QC_HTML_LINK_FIELD
+TRIGGER_VALUES = _QC_TRIGGER_VALUES
 DOCUMENT_ID_FIELD = _QC_DOCUMENT_ID_FIELD
 DOCUMENT_KEY_FIELD = _QC_DOCUMENT_KEY_FIELD
 VERSION_FIELD = _QC_VERSION_FIELD
@@ -221,7 +242,6 @@ DOCUMENT_LINK_FIELD = _QC_DOCUMENT_LINK_FIELD
 DOCUMENT_LINK_DD_FIELD = _QC_DOCUMENT_LINK_DD_FIELD
 FEISHU_CLOUD_DOC_FIELD = _QC_FEISHU_CLOUD_DOC_FIELD
 BASELINE_DOC_FIELD = _QC_BASELINE_DOC_FIELD
-HTML_LINK_FIELD = _QC_HTML_LINK_FIELD
 DINGTALK_TARGET_NODE_URL_FIELD = _QC_DINGTALK_TARGET_NODE_URL_FIELD
 FORCE_PHASE2_REFRESH_FIELD = _QC_FORCE_PHASE2_REFRESH_FIELD
 UPLOAD_DINGTALK_FIELD = _QC_UPLOAD_DINGTALK_FIELD
@@ -231,12 +251,9 @@ QUEUE_CLAIM_TTL_SECONDS = _QC_QUEUE_CLAIM_TTL_SECONDS
 SUCCESS_PREFIX = _QC_SUCCESS_PREFIX
 RUNNING_PREFIX = _QC_RUNNING_PREFIX
 FAILED_PREFIX = _QC_FAILED_PREFIX
-TRIGGER_VALUES = _QC_TRIGGER_VALUES
 DONE_TRIGGER_VALUE = _QC_DONE_TRIGGER_VALUE
 
 
-_scalar_text = _scalar_text_impl
-_field_value = _field_value_impl
 _available_field_names = _available_field_names_impl
 
 

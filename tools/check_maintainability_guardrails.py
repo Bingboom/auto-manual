@@ -33,8 +33,8 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (import + 7-line resolver + call site). Bundle-path resolution lives in
     # tools/release_asset_lineage.py, so this is the irreducible minimum.
     "build.py": 761,
-    "tools/build_docs.py": 860,
-    "tools/process_build_queue.py": 650,
+    "tools/build_docs.py": 830,
+    "tools/process_build_queue.py": 565,
     "tools/validate_spec_master_runtime.py": 880,
     "tools/check_docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,

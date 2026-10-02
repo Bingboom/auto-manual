@@ -113,10 +113,16 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [x] 内部再次查找的名字：`QueueDeps` 增加 `resolve_wiki_destination`、`upload_word_to_drive`、`move_drive_file_to_wiki`，设置后产物目标与发布两个服务改在 `FacadeOverrides`（替换了这些名字的门面）上运行；`build_document_for_task` 的测试改为直接调用 `queue_build_execution.build_document_for_task` 并显式传入协作者，发布与 wiki 目标的测试改为把 `FacadeOverrides` 作为 `module` 传给服务。`test_process_build_queue.py` 70 → 17，合计 139 → 86（2026-10-02）
     - [x] `test_process_build_queue_routing.py`：配置路径规则改为直接调用 `queue_config_resolution.resolve_config_path_for_task(repo_root=..., config_loader=...)`，不再 patch 门面的 `ROOT` / `load_config`；另加 1 个测试检查门面转发仓库根和加载器，25 → 3，合计 86 → 64，达到 ≤73 目标（2026-10-02）
     - [ ] 余下 64 处（目标 ≤73 已达成，可继续下调）：review-start 21、`test_process_build_queue.py` 17（`ROOT`、`_run_lark_cli_json` 等）、`test_web_publish_queue.py` 15、`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3、其余 2
-- [ ] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
+- [x] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
-- [ ] **CQ-2.5 门面瘦身收尾。** 更新热点行数上限（只下调）和 `orchestration_module_map.md`。
+  - [x] 2026-10-02：`build_docs.py` 删去 7 个无人引用的转发/别名（`render_csv_pages`、`_language_label`、
+    `_effective_variants_for_current`、`_resolve_variant_target_page`、`_variant_key`、`_variant_priority` 及随之无用的导入），
+    补 `__all__`（46 个公开名）；`process_build_queue.py` 删去 16 个无人引用的再导出（核对了函数内的延迟导入、`module.<名字>` 与
+    `queue_dep(..., "<名字>")` 的动态查找核对），补 `__all__`（95 个公开名）。其余 `*_impl` 转发都在为测试或服务
+    注入门面上的协作者，仍有引用，按本项规则保留；验收里“43 → 0”需要把这些注入改为显式依赖对象，留给后续。
+- [x] **CQ-2.5 门面瘦身收尾。** 更新热点行数上限（只下调）和 `orchestration_module_map.md`。
+  （2026-10-02：`build_docs.py` 上限 860 → 830，`process_build_queue.py` 650 → 565；模块图写明 `__all__` 与删除前的动态查找核对）
 
 **验收。** `build_docs.py` 的 `*_impl` 转发从 43 个降到 0 个（保留的公开名全部列入 `__all__`）；
 门面 patch 次数较基线下降 ≥80%；全量测试绿色。

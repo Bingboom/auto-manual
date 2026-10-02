@@ -18,7 +18,6 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.config_pages import CsvPage
 from tools import lang_registry
 from tools.build_docs_bundle import prepare_manual_bundle as _prepare_manual_bundle_impl
 from tools.build_docs_bundle import prepare_web_language_source_bundle
@@ -36,7 +35,6 @@ from tools.build_docs_html import (
     inject_manual_switcher_into_html as _inject_manual_switcher_into_html_impl,
     load_html_manual_variant as _load_html_manual_variant_impl,
     refresh_model_html_switchers as _refresh_model_html_switchers_impl,
-    resolve_variant_target_page as _resolve_variant_target_page_impl,
     strip_html_cover_section as _strip_html_cover_section_impl,
     write_html_manual_meta as _write_html_manual_meta_impl,
 )
@@ -51,7 +49,6 @@ from tools.build_docs_io import (
     remove_tree_with_retries as _remove_tree_with_retries_impl,
     sphinx_build as _sphinx_build_impl,
 )
-from tools.build_docs_pages import render_csv_pages as _render_csv_pages_impl
 from tools.build_docs_paths import (
     build_root_for_target as _build_root_for_target_impl,
     discover_existing_bundle_targets as _discover_existing_bundle_targets_impl,
@@ -68,14 +65,10 @@ from tools.build_docs_targets import (
 from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.build_docs_theme import (
     body_tag_with_class as _body_tag_with_class_impl,
-    effective_variants_for_current as _effective_variants_for_current_impl,
-    language_label as _language_label_impl,
     load_configured_html_theme as _load_configured_html_theme_impl,
     normalize_sphinx_tag_value as _normalize_sphinx_tag_value_impl,
     should_use_minimal_html_theme as _should_use_minimal_html_theme_impl,
     sphinx_tag_args as _sphinx_tag_args_impl,
-    variant_key as _variant_key_impl,
-    variant_priority as _variant_priority_impl,
 )
 from tools.build_docs_resolve import (
     ensure_target_identity as _ensure_target_identity_impl,
@@ -123,7 +116,6 @@ from tools.gen_index_bundle import (
     materialize_bundle,
 )
 from tools.web_language_bundle import materialize_web_language_projection
-from tools.page_manifest import resolve_config_pages_or_raise
 from tools.review_support import (
     overlay_review_content_onto_bundle,
     overlay_review_onto_bundle,
@@ -150,6 +142,25 @@ from tools.markdown_bundle import export_markdown_from_bundle  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg
 from tools.validate_layout_params import validate as validate_layout
+
+__all__ = [
+    "build_manual_switcher_markup", "build_root_for_target", "build_target", "BuildTarget",
+    "clean_build_targets", "cleanup_legacy_rst_artifacts", "collect_model_html_variants",
+    "discover_existing_bundle_targets", "ensure_target_identity",
+    "export_pdf_from_docx_via_word", "export_word_from_html", "export_word_from_latex",
+    "finalize_materialized_bundle", "get_paths", "inject_manual_switcher_into_html",
+    "LANGUAGE_LABELS", "load_config", "main", "overlay_review_content_onto_bundle",
+    "overlay_review_onto_bundle", "parse_args", "patch_fonts", "paths", "prepare_manual_bundle",
+    "prepare_web_language_source_bundle", "refresh_model_html_switchers",
+    "remove_tree_with_retries", "render_build_template", "resolve_build_model",
+    "resolve_build_region", "resolve_build_targets", "resolve_output_path", "resolve_pdf_mode",
+    "resolve_product_name_for_build", "resolve_requested_formats",
+    "resolve_rst_substitutions_for_build", "ROOT", "run", "sphinx_build",
+    "strip_html_cover_section", "SWITCHER_BLOCK_START", "VALID_SOURCE_MODES",
+    "validate_layout_csv", "validate_loaded_config", "write_docs_root_index_for_targets",
+    "write_html_manual_meta",
+]
+
 
 paths = get_paths()
 LANGUAGE_LABELS = lang_registry.language_display_labels()
@@ -226,26 +237,6 @@ def validate_layout_csv(layout_csv_path: Path) -> None:
     return _validate_layout_csv_impl(
         layout_csv_path,
         validate_layout=validate_layout,
-    )
-
-
-def render_csv_pages(
-    cfg: dict,
-    model: str | None,
-    region: str | None,
-    *,
-    data_root: str | None = None,
-) -> None:
-    return _render_csv_pages_impl(
-        cfg,
-        model,
-        region,
-        data_root=data_root,
-        csv_page_cls=CsvPage,
-        resolve_config_pages_or_raise=resolve_config_pages_or_raise,
-        resolve_data_snapshot_paths=resolve_data_snapshot_paths,
-        run=run,
-        repo_root=getattr(paths, "root", ROOT),
     )
 
 
@@ -434,29 +425,6 @@ _target_component = _target_component_impl
 _body_tag_with_class = _body_tag_with_class_impl
 
 
-def _language_label(lang: str) -> str:
-    return _language_label_impl(lang, labels=LANGUAGE_LABELS)
-
-
-_variant_key = _variant_key_impl
-
-
-_variant_priority = _variant_priority_impl
-
-
-def _effective_variants_for_current(
-    variants: list[HtmlManualVariant],
-    *,
-    current_variant: HtmlManualVariant,
-) -> list[HtmlManualVariant]:
-    return _effective_variants_for_current_impl(
-        variants,
-        current_variant=current_variant,
-        variant_key=_variant_key,
-        variant_priority=_variant_priority,
-    )
-
-
 def write_html_manual_meta(
     html_out_dir: Path,
     *,
@@ -503,9 +471,6 @@ def collect_model_html_variants(
             docs_build_dir=actual_docs_build_dir,
         ),
     )
-
-
-_resolve_variant_target_page = _resolve_variant_target_page_impl
 
 
 build_manual_switcher_markup = _build_manual_switcher_markup_impl
