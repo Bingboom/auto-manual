@@ -85,7 +85,7 @@ def idml_manual_table_payload(spec: ComponentSpec) -> dict[str, Any]:
             "kind": "lcd_icons",
             "rows": [
                 {
-                    "no": row["number_text"],
+                    "no": row.get("number_text", ""),
                     "figure": projection["assets"][row["asset_index"]],
                     "name": row["name_text"],
                     "desc": row["description_text"],

@@ -15,7 +15,7 @@ WEB_STYLESHEET_PARTS = (
     "web_inbox_components.css",
     "web_symbols_fcc_components.css",
     "web_app_components.css", "web_registration_components.css",
-    "web_base_art_components.css",
+    "web_base_art_components.css", "web_source_panels.css",
 )
 
 
