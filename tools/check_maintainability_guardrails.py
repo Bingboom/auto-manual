@@ -93,7 +93,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/component_specs/overview.py": 370,
     "tools/component_specs/overview_adapters.py": 220,
     "tools/component_specs/overview_html.py": 240,
-    "tools/component_specs/overview_instance.py": 430,
+    # 430 -> 475: CQ-3.4 split _validate_instance (CC 56 -> 20) into per-view,
+    # per-callout and decorative-leader validators; the growth is their signatures.
+    "tools/component_specs/overview_instance.py": 475,
     "tools/web_overview_component.py": 190,
     "tools/idml/page_overview.py": 570,
     "tools/word_bundle_html_render.py": 330,

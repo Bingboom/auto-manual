@@ -1262,6 +1262,148 @@ def _validate_composition_data(
     return issues
 
 
+def _qr_rect_issue(rect: Any, reference: dict[str, Any]) -> str | None:
+    page_size = reference.get("page_size_pt")
+    page_width = _finite_number(
+        page_size.get("width") if isinstance(page_size, dict) else None
+    )
+    page_height = _finite_number(
+        page_size.get("height") if isinstance(page_size, dict) else None
+    )
+    values = (
+        [_finite_number(value) for value in rect]
+        if isinstance(rect, list) and len(rect) == 4
+        else []
+    )
+    if len(values) != 4 or any(value is None for value in values):
+        return (
+            "idml_contract back_cover.qr_rect must contain four numbers"
+        )
+    else:
+        x, y, width, height = values
+        if (
+            width <= 0
+            or height <= 0
+            or x < 0
+            or y < 0
+            or page_width is not None and x + width > page_width
+            or page_height is not None and y + height > page_height
+        ):
+            return (
+                "idml_contract back_cover.qr_rect must stay inside "
+                "the reference page"
+            )
+    return None
+
+
+def _back_cover_issues(back_cover: Any, reference: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    if not isinstance(back_cover, dict) or set(back_cover) != {
+        "variant",
+        "qr_asset",
+        "qr_rect",
+    }:
+        issues.append(
+            "idml_contract back_cover must contain variant, qr_asset, "
+            "and qr_rect"
+        )
+    else:
+        if back_cover.get("variant") != "qr_only":
+            issues.append("idml_contract back_cover.variant must be qr_only")
+        qr_asset = back_cover.get("qr_asset")
+        if (
+            not isinstance(qr_asset, str)
+            or not qr_asset.strip()
+            or Path(qr_asset).is_absolute()
+            or ".." in Path(qr_asset).parts
+        ):
+            issues.append(
+                "idml_contract back_cover.qr_asset must be bundle-relative"
+            )
+        issue = _qr_rect_issue(back_cover.get("qr_rect"), reference)
+        if issue is not None:
+            issues.append(issue)
+    return issues
+
+
+def _idml_contract_issues(idml_contract: Any, reference: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    editable = (
+        idml_contract.get("editable_components")
+        if isinstance(idml_contract, dict)
+        else None
+    )
+    if not isinstance(editable, dict) or not set(editable) <= {
+        "back_cover",
+        "lcd_icon_table",
+    }:
+        issues.append(
+            "idml_contract.editable_components supports only back_cover "
+            "and lcd_icon_table"
+        )
+        editable = {}
+    back_cover = editable.get("back_cover")
+    if back_cover is not None:
+        issues.extend(_back_cover_issues(back_cover, reference))
+    lcd_profile = editable.get("lcd_icon_table")
+    if lcd_profile is not None:
+        issues.extend(
+            "idml_contract.editable_components.lcd_icon_table." + issue
+            for issue in validate_lcd_reference_profile(lcd_profile)
+        )
+
+    return issues
+
+
+def _normalize_page(
+    index: int,
+    source_page: Any,
+    raw_pages: list[Any],
+    issues: list[str],
+) -> dict[str, Any]:
+    raw = raw_pages[index] if index < len(raw_pages) else {}
+    if not isinstance(raw, dict):
+        issues.append(f"pages[{index}] must be an object")
+        raw = {}
+    source_ref = raw.get("source_ref")
+    if source_ref != source_page.source_ref:
+        issues.append(f"pages[{index}].source_ref is out of order")
+    unknown_keys = set(raw) - _PAGE_KEYS
+    if unknown_keys:
+        issues.append(
+            f"{source_page.source_ref}: unknown page keys "
+            f"{sorted(unknown_keys)}"
+        )
+    if raw.get("language") != source_page.language:
+        issues.append(f"{source_page.source_ref}: language does not match")
+    role = classify_page_role(Path(source_page.source_ref))
+    if role is PageRole.UNCLASSIFIED_PROSE:
+        issues.append(
+            f"{source_page.source_ref}: candidate assembly forbids "
+            "unclassified prose"
+        )
+    if raw.get("page_role") != role.value:
+        issues.append(f"{source_page.source_ref}: page_role does not match")
+    normalized = {
+        "page_id": source_page.page_id,
+        "source_ref": source_page.source_ref,
+        "source_path": source_page.source_path,
+        "source_sha256": source_page.source_sha256,
+        "language": source_page.language,
+        "page_role": role.value,
+        "latex_start_page": raw.get("start_page"),
+        "matched_anchor": f"assembly:{raw.get('composition_id')}",
+        "candidate_count": 0,
+        "composition_id": raw.get("composition_id"),
+        "composition_type": raw.get("composition_type"),
+        "planned_page_count": raw.get("page_count"),
+        "flow_split": raw.get("flow_split"),
+        "composition_data": raw.get("composition_data"),
+    }
+
+    return normalized
+
+
 def normalize_target_assembly_plan(
     payload: dict[str, Any],
     ir: ManualIR,
@@ -1299,81 +1441,7 @@ def normalize_target_assembly_plan(
 
     idml_contract = payload.get("idml_contract")
     if idml_contract is not None:
-        editable = (
-            idml_contract.get("editable_components")
-            if isinstance(idml_contract, dict)
-            else None
-        )
-        if not isinstance(editable, dict) or not set(editable) <= {
-            "back_cover",
-            "lcd_icon_table",
-        }:
-            issues.append(
-                "idml_contract.editable_components supports only back_cover "
-                "and lcd_icon_table"
-            )
-            editable = {}
-        back_cover = editable.get("back_cover")
-        if back_cover is not None:
-            if not isinstance(back_cover, dict) or set(back_cover) != {
-                "variant",
-                "qr_asset",
-                "qr_rect",
-            }:
-                issues.append(
-                    "idml_contract back_cover must contain variant, qr_asset, "
-                    "and qr_rect"
-                )
-            else:
-                if back_cover.get("variant") != "qr_only":
-                    issues.append("idml_contract back_cover.variant must be qr_only")
-                qr_asset = back_cover.get("qr_asset")
-                if (
-                    not isinstance(qr_asset, str)
-                    or not qr_asset.strip()
-                    or Path(qr_asset).is_absolute()
-                    or ".." in Path(qr_asset).parts
-                ):
-                    issues.append(
-                        "idml_contract back_cover.qr_asset must be bundle-relative"
-                    )
-                rect = back_cover.get("qr_rect")
-                page_size = reference.get("page_size_pt")
-                page_width = _finite_number(
-                    page_size.get("width") if isinstance(page_size, dict) else None
-                )
-                page_height = _finite_number(
-                    page_size.get("height") if isinstance(page_size, dict) else None
-                )
-                values = (
-                    [_finite_number(value) for value in rect]
-                    if isinstance(rect, list) and len(rect) == 4
-                    else []
-                )
-                if len(values) != 4 or any(value is None for value in values):
-                    issues.append(
-                        "idml_contract back_cover.qr_rect must contain four numbers"
-                    )
-                else:
-                    x, y, width, height = values
-                    if (
-                        width <= 0
-                        or height <= 0
-                        or x < 0
-                        or y < 0
-                        or page_width is not None and x + width > page_width
-                        or page_height is not None and y + height > page_height
-                    ):
-                        issues.append(
-                            "idml_contract back_cover.qr_rect must stay inside "
-                            "the reference page"
-                        )
-        lcd_profile = editable.get("lcd_icon_table")
-        if lcd_profile is not None:
-            issues.extend(
-                "idml_contract.editable_components.lcd_icon_table." + issue
-                for issue in validate_lcd_reference_profile(lcd_profile)
-            )
+        issues.extend(_idml_contract_issues(idml_contract, reference))
 
     raw_pages = payload.get("pages")
     if not isinstance(raw_pages, list):
@@ -1389,46 +1457,7 @@ def normalize_target_assembly_plan(
 
     normalized_pages: list[dict[str, Any]] = []
     for index, source_page in enumerate(ir.pages):
-        raw = raw_pages[index] if index < len(raw_pages) else {}
-        if not isinstance(raw, dict):
-            issues.append(f"pages[{index}] must be an object")
-            raw = {}
-        source_ref = raw.get("source_ref")
-        if source_ref != source_page.source_ref:
-            issues.append(f"pages[{index}].source_ref is out of order")
-        unknown_keys = set(raw) - _PAGE_KEYS
-        if unknown_keys:
-            issues.append(
-                f"{source_page.source_ref}: unknown page keys "
-                f"{sorted(unknown_keys)}"
-            )
-        if raw.get("language") != source_page.language:
-            issues.append(f"{source_page.source_ref}: language does not match")
-        role = classify_page_role(Path(source_page.source_ref))
-        if role is PageRole.UNCLASSIFIED_PROSE:
-            issues.append(
-                f"{source_page.source_ref}: candidate assembly forbids "
-                "unclassified prose"
-            )
-        if raw.get("page_role") != role.value:
-            issues.append(f"{source_page.source_ref}: page_role does not match")
-        normalized = {
-            "page_id": source_page.page_id,
-            "source_ref": source_page.source_ref,
-            "source_path": source_page.source_path,
-            "source_sha256": source_page.source_sha256,
-            "language": source_page.language,
-            "page_role": role.value,
-            "latex_start_page": raw.get("start_page"),
-            "matched_anchor": f"assembly:{raw.get('composition_id')}",
-            "candidate_count": 0,
-            "composition_id": raw.get("composition_id"),
-            "composition_type": raw.get("composition_type"),
-            "planned_page_count": raw.get("page_count"),
-            "flow_split": raw.get("flow_split"),
-            "composition_data": raw.get("composition_data"),
-        }
-        normalized_pages.append(normalized)
+        normalized_pages.append(_normalize_page(index, source_page, raw_pages, issues))
 
     issues.extend(_validate_flow_splits(raw_pages, ir))
     issues.extend(_validate_composition_data(raw_pages, reference, ir))
