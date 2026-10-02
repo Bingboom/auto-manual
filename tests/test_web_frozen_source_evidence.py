@@ -62,12 +62,30 @@ class FrozenWebEvidenceTests(unittest.TestCase):
     def test_exact_frozen_source_and_stored_copy_verify(self):
         self.seal()
         self.assertEqual(self.verify().language, 'fr')
+        self.assertEqual(json.loads(self.receipt.read_text())["language_baseline"]["status"], "not_enrolled")
         stored = self.root / 'stored'
         shutil.copytree(self.md, stored)
         shutil.copytree(self.receipt.parent, stored / 'evidence')
         (stored / 'publish_meta.json').write_text('{}')
         self.receipt = stored / 'evidence' / self.receipt.name
         self.assertEqual(self.verify(markdown_dir=stored, html_dir=None, stored=True).language, 'fr')
+
+    def test_new_candidate_enrollment_blocks_fresh_seal_and_verify_not_history(self):
+        from tools.prepared_component_policy import POLICY_SCHEMA
+        from tools.web_language_baseline import require_language_baseline
+        self.seal()
+        policy = self.root / 'policy.json'
+        policy.write_text(json.dumps({'schema_version': POLICY_SCHEMA, 'language_baselines': {
+            'MODEL/EU': {'schema_version': 'web-language-baseline/v1',
+                         'baseline_language': 'en', 'status': 'candidate'},
+        }}))
+        with patch('tools.web_component_admission.require_language_baseline',
+                   side_effect=lambda raw, root: require_language_baseline(raw, root, contract_path=policy)):
+            with self.assertRaisesRegex(RuntimeError, 'not operator-approved'):
+                self.verify()
+            with self.assertRaisesRegex(RuntimeError, 'not operator-approved'):
+                self.seal()
+            self.assertEqual(self.verify(stored=True, html_dir=None).language, 'fr')
 
     def test_pending_manual_ir_is_rejected_by_frozen_seal_and_verify(self):
         (self.md / 'manual.ir.json').write_text(json.dumps({'metadata': {

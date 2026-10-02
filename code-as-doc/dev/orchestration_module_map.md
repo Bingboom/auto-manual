@@ -746,3 +746,11 @@ Prepared Web admission: `tools/web_component_admission.py` owns fresh-publicatio
 `component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.
 
 `component_specs/lcd_mode_source.py` owns standalone LCD image/action-matrix recognition, preserving authored headers through the shared reference table. `plain_inventory.py` admits complete three-item lists as well as one-row inventories. `app_label_source.py` preserves a separating note outside the explicitly bound shared panel.
+
+Confirmed-English inheritance: `tools/web_language_structure.py` summarizes
+content-neutral semantic slots, layout and real asset bytes;
+`tools/web_language_baseline.py` owns reviewed enrollment/approval/differences;
+`tools/web_language_baseline_cli.py` generates review candidates and read-only
+trials (and separately binds already-approved IR). The existing
+`web_component_admission.require_fresh_component_admission` remains the single
+fresh publication seam. These modules neither translate nor render manuals.

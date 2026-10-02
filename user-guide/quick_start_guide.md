@@ -852,3 +852,11 @@ JE-100C/EU 九语 Web 的本地示例见[构建指南](../code-as-doc/build_doc_
 并显式指定 `--data-root manual_sources/JE-100C/EU/en/2.0/phase2`。
 其余可用语言为 `en/es/de/it/uk/pt/nl/pl`，配置文件后缀与 `--lang` 同步替换。
 这些产物是本地候选，未修改线上构建表或发布链接。
+
+### 在已确认英文结构上补语言
+
+先按现有 Web 构建流程准备英文，再完成桌面/手机核验和操作者确认。
+已登记为候选的 JE-3600A/EU、JBP-3600A/EU 可继续本地预览和本语映射，
+但不得新发布。其余语言使用本语原稿，复用英文的共享组件与已确认底图。
+低层候选/试验命令与基线引用的封存前校验，见
+[英文基线准入工具](../code-as-doc/dev/prepared_component_admission.md#review-tools-no-automatic-approval)。

@@ -9,6 +9,7 @@ from tools.prepared_component_coverage import audit_prepared_component_coverage
 from tools.prepared_component_policy import resolve_prepared_component_policy
 from tools.utils.path_utils import PathSegments
 from tools.web_document_ir import render_document_fragments
+from tools.web_language_baseline import require_language_baseline
 
 
 ADMITTED_REGIONS = frozenset({"EU", "UK", "EUUK"})
@@ -37,6 +38,7 @@ def require_fresh_component_admission(
         if ir.metadata.get("pending_source_review") or ir.metadata.get("publication_eligible") is False:
             raise ValueError("manual IR has pending source review")
         raw = ir.to_dict()
+        baseline_report = require_language_baseline(raw, Path(markdown_dir))
         if ir.source == "prepared-document":
             policy = resolve_prepared_component_policy(model=model, region=region, language=ir.language)
             report = audit_prepared_component_coverage(raw, policy)
@@ -53,6 +55,9 @@ def require_fresh_component_admission(
         # Validate ComponentSpec slots and actual packaged asset bytes, even
         # when candidate inventory/coverage markers were removed or rehashed.
         render_document_fragments(ir, package_root=Path(markdown_dir))
+        report["language_baseline"] = baseline_report
+        if baseline_report["status"] == "not_enrolled":
+            print(f"[language-baseline] {baseline_report['target']}: not_enrolled (English inheritance not covered)")
         return report
     except (ValueError, OSError) as exc:
         raise RuntimeError(str(exc)) from exc

@@ -101,7 +101,7 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
     require_publishable_manual_ir(markdown_dir)
     manifest = _load_object(source_manifest_path, label="frozen Web source")
     target, inputs, root = _source(manifest, source_manifest_path, language)
-    require_fresh_component_admission(
+    admission = require_fresh_component_admission(
         markdown_dir, model=target["model"], region=target["region"], language=language,
     )
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
@@ -117,7 +117,9 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
     if "index.html" not in {row["path"] for row in html_files} or not git_ref.strip():
         raise RuntimeError("frozen Web evidence requires HTML index and source Git ref")
     payload = {
-        "schema_version": RECEIPT_SCHEMA, "model": target["model"],
+        "schema_version": RECEIPT_SCHEMA,
+        "language_baseline": (admission.get("language_baseline") if isinstance(admission, dict)
+                              else {"status": "out_of_scope"}), "model": target["model"],
         "region": target["region"], "language": language,
         "version": target["technical_version"], "git_ref": git_ref.strip(),
         "source_manifest": {"path": SOURCE_FILENAME, "sha256": _sha256(source_manifest_path)},
