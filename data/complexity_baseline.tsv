@@ -36,8 +36,8 @@ tools/check_identity_drift.py	find_identity_drift_matches	29
 tools/cloud_doc_backport_apply.py	_rewrite_review_block	22
 tools/cloud_doc_backport_commands.py	_run_apply_source_table	21
 tools/cloud_doc_backport_commands.py	_run_review	23
-tools/cloud_doc_backport_orchestration.py	_run_review_branch	50
-tools/cloud_doc_backport_orchestration.py	_run_review_branch_baseline	58
+tools/cloud_doc_backport_orchestration.py	_run_review_branch	31
+tools/cloud_doc_backport_orchestration.py	_run_review_branch_baseline	35
 tools/cloud_doc_backport_render.py	markdown_review_run_report	21
 tools/cloud_doc_backport_reports.py	_verify_delta	30
 tools/cloud_doc_backport_reports.py	build_review_run_report	28
@@ -49,11 +49,9 @@ tools/component_specs/lcd_mode_html.py	parse_lcd_mode_html	23
 tools/component_specs/operation_html.py	parse_operation_components	40
 tools/component_specs/overview.py	_source_slots_from_blocks	29
 tools/component_specs/overview_instance.py	_merge_instance_value	21
-tools/component_specs/overview_instance.py	_validate_instance	56
 tools/component_specs/projection.py	project_manual_ir_components	37
 tools/component_specs/reference_figure.py	reference_figure_component_spec	23
 tools/component_specs/reference_figure_html.py	parse_reference_figure_html	46
-tools/component_specs/registry.py	validate_component_registry	51
 tools/component_specs/registry.py	validate_component_spec	39
 tools/component_specs/theme.py	validate_manual_theme	45
 tools/config_pages.py	_parse_generated_page	27
@@ -138,7 +136,6 @@ tools/idml/target_assembly_plan.py	_figure_callout_issues	22
 tools/idml/target_assembly_plan.py	_validate_app_composition	25
 tools/idml/target_assembly_plan.py	_validate_lcd_composition	35
 tools/idml/target_assembly_plan.py	_validate_specifications_composition	42
-tools/idml/target_assembly_plan.py	normalize_target_assembly_plan	52
 tools/idml/target_assembly_render.py	TargetAssemblyRenderer.render	58
 tools/idml_rst_extract.py	extract_page	80
 tools/idml_rst_extract_latex.py	_extract_raw_latex	28
@@ -181,11 +178,10 @@ tools/queue_group_processing.py	process_queue_record_group	55
 tools/queue_outputs.py	write_web_publish_metadata	22
 tools/queue_query.py	_matches_queue_query_row	24
 tools/queue_query.py	apply_inferred_queue_query	42
-tools/queue_query.py	infer_queue_query_from_text	68
+tools/queue_query.py	infer_queue_query_from_text	21
 tools/queue_query.py	render_queue_query_rows	33
 tools/queue_resolve_action.py	resolve_queue_action	26
 tools/queue_runtime.py	command_failure_message	25
-tools/release_manifest_service.py	build_release_manifest	59
 tools/render_contract.py	validate_render_contract	34
 tools/renderer_acceptance.py	run_acceptance	25
 tools/review_start_failure_summary.py	build_review_start_failure_summary	23
@@ -200,10 +196,9 @@ tools/rtd_portal.py	page_context	33
 tools/rtd_source_registry.py	registry_problems	32
 tools/rtd_system_tooling.py	tooling_view	22
 tools/rtd_system_workspace.py	_focus_findings	39
-tools/rtd_system_workspace.py	build_context	50
+tools/rtd_system_workspace.py	build_context	34
 tools/rtd_system_workspace.py	check_contract	31
 tools/rtd_system_workspace.py	parse_evidence	22
-tools/rtd_system_workspace.py	structural_findings	92
 tools/schema_drift.py	_source_contract_base_issues	35
 tools/skeleton_resolve.py	load_blueprint	41
 tools/skeleton_resolve.py	load_region_profile	34
@@ -241,7 +236,6 @@ tools/web_document_ir.py	_render_document_fragments	22
 tools/web_document_source.py	load_web_document	35
 tools/web_embedded_components.py	render_embedded_web_component	22
 tools/web_figure_coverage.py	build_web_figure_coverage	45
-tools/web_figure_coverage.py	enforce_required_web_figure_coverage	79
 tools/web_figure_coverage.py	validate_web_figure_coverage	36
 tools/web_frozen_source_evidence.py	_verify_frozen	28
 tools/web_language_bundle.py	materialize_web_language_projection	28
