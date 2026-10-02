@@ -9,6 +9,10 @@ Updated: 2026-08-17
 - Start Review 看 `Review Init`；Build Draft Package 看 PR 分支里的 [`docs/_review/`](../docs/_review)
 - Publish 默认看 `Document_link.Git_ref` 指向的 review / PR 分支；只有 `Git_ref` 为空时，才会退回当前 queue worker 所在分支（远端通常是 `main`）
 
+查询已发布欧规产品信息：现有钉钉 BlockClaw 启用后可问“JE-2000F 欧规 USB-C
+输出功率是多少？”，或用 `/manual-query JE-2000F USB-C输出` 查原文章节。
+首次启用见[欧规说明书查询](../code-as-doc/dev/eu_manual_query.md#activation-on-the-existing-gateway)。
+
 ## 1. 先分清三张表各自负责什么
 
 ### 1.1 phase2 源表

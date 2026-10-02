@@ -285,6 +285,7 @@ def copy_workspace_content(app, exception) -> None:
 
 
 def setup(app):
+    from tools.manual_knowledge.export import write_knowledge
     from tools.rtd_deployment_receipt import write_deployment_receipt
     from tools.rtd_portal_search import write_search_index
     from tools.rtd_workspace_revision import write_workspace_revision
@@ -299,6 +300,7 @@ def setup(app):
     # Generated conf.py copies manual assets at the default priority (500).
     app.connect("build-finished", copy_workspace_content, priority=800)
     app.connect("build-finished", write_search_index, priority=900)
+    app.connect("build-finished", write_knowledge, priority=925)
     app.connect("build-finished", write_workspace_revision, priority=950)
     app.connect("build-finished", write_deployment_receipt, priority=1000)
     app.connect("build-finished", clear_catalog_cache, priority=1100)

@@ -56,6 +56,13 @@ read-only served HTML/resource hash verification. `rtd_portal.setup` registers
 its callback; queue, publication assembly and link writers are not callers.
 See the [Git-only receipt contract](rtd_deployment_receipt.md).
 
+[`tools/manual_knowledge/`](../../tools/manual_knowledge/) owns the rendered EU
+manual reading model: semantic HTML/table extraction and the bounded JSON export.
+`rtd_portal` runs its writer after HTML and before the deployment receipt.
+The existing [OpenClaw control plugin](../../integrations/openclaw/auto-manual-control-layer/)
+owns receipt verification, search and paginated evidence reads; it does not call
+build/publish workers for a query. See [EU query contract](eu_manual_query.md).
+
 [`tools/rtd_workspace_revision.py`](../../tools/rtd_workspace_revision.py) owns only
 the system page's checkout identity and successful-build version receipt.
 `rtd_portal` supplies that context and registers the writer before the deployment
