@@ -49,6 +49,7 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-232 | 仅 auto-manual PR #1402（`refactor/queue-record-group-split`，含本登记）：拆分 `process_queue_record_group`（CQ-3.4 补做）并标记 MA-231 失效。最新 head 全部检查成功（含非必需项）、无 changes-requested、无未解决讨论后 squash merge，并核验 main 合入 SHA；落后 main 时先同步（冲突时用仓库工具重新生成复杂度基线）。**不含**：其它 PR、workflow、依赖、公开 CLI、发布、飞书写入。 | 「授权合入」2026-10-02（本会话，针对 #1402） | #1402 合入即失效，或操作者撤销 | 生效（推送后生效） |
 | MA-231 | 仅 auto-manual PR #1399（`refactor/web-fragment-complexity`，含本登记）、#1400（`refactor/queue-orchestration-complexity`）、#1401（`refactor/parser-loader-complexity`）：CQ-3.4 复杂度攻坚 A/B/C 三批。按此顺序逐个：同步最新 main（冲突时用仓库工具重新生成复杂度基线），最新 head 全部检查成功（含非必需项）、无 changes-requested、无未解决讨论后 squash merge，并核验 main 合入 SHA。**不含**：其它 PR、workflow、依赖、公开 CLI、发布、飞书写入。 | 「授权合入」2026-10-02（本会话，针对 #1399–#1401） | 三个 PR 全部合入即失效，或操作者撤销 | 已失效（#1399/#1400/#1401 均已合入，2026-10-02） |
 | MA-230 | 仅 auto-manual PR #1398（`refactor/facade-dead-forwards`，含本登记）：删除 `build_docs` / `process_build_queue` 门面中无人引用的转发与再导出、补 `__all__`、下调热点上限。最新 head 全部检查成功（含非必需项）、无 changes-requested、无未解决讨论后 squash merge，并核验 main 合入 SHA；允许同步最新 main。**不含**：其它 PR、workflow、依赖、公开 CLI。 | 「授权合入」2026-10-02（本会话，针对 #1398） | #1398 合入即失效，或操作者撤销 | 已失效（#1398 已合入 `6bd85d39`） |
 | MA-229 | 仅 auto-manual PR #1397（`docs/ma-227-expire`，含本登记）：把 MA-227 标为已失效。最新 head 全部检查成功（含非必需项）、无 changes-requested、无未解决讨论后 squash merge，并核验 main 合入 SHA。**不含**：其它 PR。 | 「授权」2026-10-02（本会话，针对 #1397） | #1397 合入即失效，或操作者撤销 | 已失效（#1397 已合入 `bd5aa897`） |
