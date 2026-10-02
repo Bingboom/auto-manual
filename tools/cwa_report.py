@@ -26,7 +26,7 @@ query ($account: String!, $site: String!, $since: Time!, $until: Time!, $limit: 
   viewer {
     accounts(filter: {accountTag: $account}) {
       rumPageloadEventsAdaptiveGroups(
-        filter: {AND: [{siteTag: $site}, {datetime_geq: $since}, {datetime_leq: $until}]}
+        filter: {AND: [{siteTag: $site}, {datetime_geq: $since}, {datetime_lt: $until}]}
         limit: $limit
         orderBy: [count_DESC]
       ) {
@@ -52,6 +52,38 @@ def classify(path: str) -> str:
     if "/" not in trimmed[1:]:
         return "扫码/印刷入口（根别名）"
     return "站内手册页"
+
+
+# The adaptive dataset silently degrades (partial rows, no error) past roughly
+# a one-week query span, so longer windows are fetched as half-open chunks and
+# aggregated client-side. Verified live on 2026-09-16: 30-day single query
+# returned 1 row / 10 views while 1..7-day queries returned 7 rows / 63 views.
+_MAX_CHUNK_DAYS = 7
+
+
+def window_chunks(since: "datetime", until: "datetime") -> list[tuple["datetime", "datetime"]]:
+    """Split [since, until) into half-open chunks the API answers faithfully."""
+    chunks = []
+    cursor = since
+    while cursor < until:
+        upper = min(cursor + timedelta(days=_MAX_CHUNK_DAYS), until)
+        chunks.append((cursor, upper))
+        cursor = upper
+    return chunks
+
+
+def merge_rows(chunks_rows: list[list[dict]]) -> list[dict]:
+    """Aggregate per-chunk rows by path, ordered by pageviews descending."""
+    merged: dict[str, dict] = {}
+    for rows in chunks_rows:
+        for row in rows:
+            slot = merged.get(row["path"])
+            if slot is None:
+                merged[row["path"]] = dict(row)
+            else:
+                slot["pageviews"] += row["pageviews"]
+                slot["visits"] += row["visits"]
+    return sorted(merged.values(), key=lambda r: -r["pageviews"])
 
 
 def rows_from_payload(payload: dict) -> list[dict]:
@@ -126,12 +158,15 @@ def main(argv: list[str] | None = None, *, fetch=fetch_payload) -> int:
 
     until = datetime.now(timezone.utc).replace(microsecond=0)
     since = until - timedelta(days=args.days)
-    payload = fetch(token=token, variables={
-        "account": account, "site": site, "limit": 1000,
-        "since": since.isoformat().replace("+00:00", "Z"),
-        "until": until.isoformat().replace("+00:00", "Z"),
-    })
-    rows = rows_from_payload(payload)
+    chunks_rows = []
+    for lower, upper in window_chunks(since, until):
+        payload = fetch(token=token, variables={
+            "account": account, "site": site, "limit": 1000,
+            "since": lower.isoformat().replace("+00:00", "Z"),
+            "until": upper.isoformat().replace("+00:00", "Z"),
+        })
+        chunks_rows.append(rows_from_payload(payload))
+    rows = merge_rows(chunks_rows)
     if args.json:
         print(json.dumps(rows, ensure_ascii=False, indent=2))
     else:
