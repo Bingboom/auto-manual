@@ -147,6 +147,11 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             source_manifest["data_root"],
         )
         self.assertFalse(source_manifest["live_bitable_dependency"])
+        for binding in [source_manifest["asset_recipe"],
+                        source_manifest["web_illustration_manifest"],
+                        *source_manifest["supplemental_asset_recipes"]]:
+            self.assertEqual(binding["sha256"],
+                             hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest())
         for record in source_manifest["files"]:
             path = FORMAL_SOURCE / record["path"]
             data = path.read_bytes()
@@ -184,7 +189,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         for entry in provenance["illustrations"]:
             self.assertTrue(any(entry["sha256"] in src for src in image_sources), entry["path"])
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertGreaterEqual(len(coverage["slots"]), 6)
+        self.assertEqual(9, len(coverage["slots"]))
         self.assertEqual({"finished-panel", "base-art-live-copy"},
                          {slot["status"] for slot in coverage["slots"]})
         self.assertIn("Jackery Explorer 3600 Plus", self.html)

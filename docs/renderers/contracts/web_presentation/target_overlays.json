@@ -452,7 +452,8 @@
           "finished-panel.ac_charging",
           "finished-panel.solar_charging",
           "reference.clearance",
-          "reference.locking"
+          "reference.locking",
+          "finished-panel.stacking_clean"
         ],
         "allowed_statuses": [
           "finished-panel",

@@ -165,7 +165,7 @@ def _duration_token(steps: Tag) -> str:
     return ""
 
 
-def _duration_tag(soup: BeautifulSoup, token: str) -> Tag:
+def _duration_tag(soup: BeautifulSoup, token: str, *, icon: str | None = None) -> Tag:
     # A visual shorthand for copy the steps already state, so assistive
     # technology reads the instruction once.
     duration = soup.new_tag(
@@ -173,6 +173,8 @@ def _duration_tag(soup: BeautifulSoup, token: str) -> Tag:
         attrs={"class": "hb-operation-duration", "aria-hidden": "true"},
     )
     duration.append(token)
+    if icon is not None:
+        duration["data-duration-icon"] = icon
     return duration
 
 
@@ -298,8 +300,7 @@ def arrange_base_art_operation(
                 source_path=source_path,
                 error_type=error_type,
             )
-            duration = _duration_tag(soup, token)
-            duration["data-duration-icon"] = str(layout.get("duration_icon", "none"))
+            duration = _duration_tag(soup, token, icon=layout.get("duration_icon"))
             duration["style"] = f"--hb-x:{_css_number(x)}%;--hb-y:{_css_number(y)}%"
             art_box.append(duration)
         footer = None
