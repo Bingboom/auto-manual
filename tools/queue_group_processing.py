@@ -19,6 +19,11 @@ from tools.utils.log import get_logger
 _LOG = get_logger("build-queue")
 
 
+def utc_now() -> datetime:
+    """The default queue clock: the current time as an aware UTC ``datetime``."""
+    return datetime.now(timezone.utc)
+
+
 @dataclass(frozen=True)
 class QueueGroupProcessingResult:
     processed_rows: int
@@ -130,6 +135,7 @@ def process_queue_record_group(
     build_failure_writeback_fields: Callable[..., dict[str, Any]],
     best_effort_queue_workflow_action: Callable[[Any], str | None],
     stderr: Any,
+    clock: Callable[[], datetime] = utc_now,
 ) -> QueueGroupProcessingResult:
     record = group[0]
     word_output_path: Path | None = None
@@ -155,7 +161,7 @@ def process_queue_record_group(
         effective_doc_phase = resolve_queue_workflow_action(record)
         force_phase2_refresh = queue_group_force_phase2_refresh(group)
         refresh_phase2 = force_phase2_refresh or effective_doc_phase == "web_publish"
-        started_at = datetime.now(timezone.utc)
+        started_at = clock()
         claim_token = uuid4().hex
         claim_expires_at = started_at + timedelta(seconds=queue_claim_ttl_seconds)
         start_fields = build_started_fields(
@@ -348,7 +354,7 @@ def process_queue_record_group(
             document_link_dd_url = artifact_result.document_link_dd_url
             latest_document_link_dd_url = document_link_dd_url or None
             artifact_status_notes = artifact_result.status_notes
-        built_at = datetime.now().astimezone()
+        built_at = clock().astimezone()
         # Delivery outbox is an additive side channel: the DingTalk delivery agent
         # consumes it out of band, so a drop failure must never fail a build whose
         # artifact already reached the knowledge base. It stays visible through the
