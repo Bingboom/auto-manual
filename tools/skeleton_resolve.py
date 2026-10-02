@@ -35,11 +35,9 @@ template-clone failure mode reborn, and is a review-rejection criterion.
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 from typing import Any
-from tools.utils.log import get_logger
-
-_ERR = get_logger("skeleton-resolve", stream="stderr")
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -839,10 +837,13 @@ def main(argv: list[str] | None = None) -> int:
         if committed == text:
             print(f"[skeleton-resolve] OK: {args.manifest} is byte-identical to the resolved output")
             return 0
-        _ERR.error(f"[skeleton-resolve] MISMATCH: {args.manifest} differs from the resolved output")
+        print(
+            f"[skeleton-resolve] MISMATCH: {args.manifest} differs from the resolved output",
+            file=sys.stderr,
+        )
         return 1
     except SkeletonResolveError as exc:
-        _ERR.error(f"skeleton_resolve: ERROR: {exc}")
+        print(f"skeleton_resolve: ERROR: {exc}", file=sys.stderr)
         return 2
 
 

@@ -10,10 +10,8 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 from typing import Any
-from tools.utils.log import get_logger
-
-_ERR = get_logger("release-tag", stream="stderr")
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -202,7 +200,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if args.push and not args.write:
-        _ERR.error("[release-tag] ERROR: --push requires --write")
+        print("[release-tag] ERROR: --push requires --write", file=sys.stderr)
         return 1
     manifest_path = Path(args.manifest)
     if not manifest_path.is_absolute():
@@ -218,7 +216,7 @@ def main(argv: list[str] | None = None) -> int:
         )
     except (OSError, RuntimeError, subprocess.CalledProcessError) as exc:
         message = exc.stderr.strip() if isinstance(exc, subprocess.CalledProcessError) and exc.stderr else str(exc)
-        _ERR.error(f"[release-tag] ERROR: {message}")
+        print(f"[release-tag] ERROR: {message}", file=sys.stderr)
         return 1
 
     print(f"[release-tag] status={status}")

@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import argparse
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any, Callable
-from tools.utils.log import get_logger
-
-_ERR = get_logger("sync-data", stream="stderr")
 
 
 def parse_args(argv: list[str] | None = None, *, table_choices: list[str]) -> argparse.Namespace:
@@ -48,7 +46,7 @@ def run_main(
             dry_run=args.dry_run,
         )
     except (RuntimeError, subprocess.CalledProcessError) as exc:
-        _ERR.error(f"[sync-data] ERROR: {exc}")
+        print(f"[sync-data] ERROR: {exc}", file=sys.stderr)
         return 1
 
     for line in build_sync_run_output_lines_fn(result):

@@ -14,11 +14,9 @@ import argparse
 import copy
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
-from tools.utils.log import get_logger
-
-_ERR = get_logger("manifest-family", stream="stderr")
 
 try:
     import yaml
@@ -424,7 +422,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
         return 0 if report["byte_identical"] else 1
     except (ManifestDiffError, OSError, json.JSONDecodeError) as exc:
-        _ERR.error(f"manifest_family: ERROR: {exc}")
+        print(f"manifest_family: ERROR: {exc}", file=sys.stderr)
         return 2
 
 
