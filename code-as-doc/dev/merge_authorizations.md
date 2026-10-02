@@ -1,5 +1,7 @@
 # Merge Authorizations (gate-on-green registry)
 
+Status: active
+
 The single source of truth for **who may merge what without waiting for the
 operator's per-PR review**. Default remains AGENTS.md §8.6: agents do not
 self-merge. A self-merge is allowed only when a **live entry in the table

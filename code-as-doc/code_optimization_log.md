@@ -2278,3 +2278,445 @@ metadata readback, genuine feedback closure, owner/cadence and cost records.
 See the [accepted closeout](dev/manual_operations_closeout_20260913.md).
 This records accepted workstream completion with disclosed deferrals; final
 CI/review/ancestry gates still control the PR's actual merge.
+
+## Archived roadmap sections (2026-10-02)
+
+Moved verbatim from [`optimization_project.md`](optimization_project.md) to keep the roadmap
+focused on open work (plan item CQ-7.5). Headings are demoted one level.
+
+### Recently Completed (roadmap §4, through 2026-07-17)
+
+
+Use this section for short milestone-style updates.
+
+#### 2026-03-15 to 2026-03-16
+
+- stabilized review-first workflow around `_review`
+- added `check` hardening, including stale identity detection and contract validation
+- added `release-manifest`
+- added `preview` and `fast`
+- added CI baseline workflow
+- clarified deferred direction for table-driven multi-target content
+
+#### 2026-03-31
+
+- added phase2 snapshot path resolution through `--data-root`
+- added `build.py sync-data` for explicit Feishu/Lark snapshot refresh into `data/phase2/`
+- aligned `check`, `diff-report`, and `release-manifest` with the same snapshot-resolution rules
+
+#### 2026-04-05
+
+- normalized queue semantics around `Workflow_action` while keeping `Doc_phase` as a deprecated compatibility fallback
+- added staging-first local validation wrappers and cross-platform branch freshness guardrails
+- started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
+- added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
+- started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
+
+#### 2026-04-06
+
+- completed the entrypoint-and-tooling parity workstream by removing hardcoded low-level `JE-1000F` diff-report defaults, centralizing shared target/config defaults, and aligning review-preview/matrix scripts with shared family config metadata
+- continued Workstream A by moving [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) to config-derived target metadata instead of hardcoded per-language output rules
+- finished the remaining `scripts/` bootstrap cleanup so [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py) and [`scripts/local_build.py`](../scripts/local_build.py) now share the repo-root bootstrap path used across `tools/`
+- collapsed `scripts/build_us_manuals.ps1` (later removed 2026-07-02) into a thin compatibility wrapper over [`scripts/build_us_jp_manuals.py`](../scripts/build_us_jp_manuals.py), removing its duplicate per-language matrix loop and hardcoded default model
+- updated maintainer and user-facing docs so script examples and preview defaults match the current supported baseline
+
+#### 2026-04-06
+
+- completed the core maintainability refactor campaign across build entrypoints, build pipeline helpers, reporting, queue orchestration, preview/export/sync hotspots, and `spec_master`
+- split `build_review_preview.py` into target, data, render, page, postprocess, and workspace helpers
+- reduced `spec_master.py` to a facade over dedicated shared, lookup, auditing, mapping, row-helper, and repairs modules
+- split `word_bundle_html.py` into models, HTML-only, render, images, and rewrite helpers
+- split `sync_data.py` into config, records, runtime, and CLI-output helpers while preserving the existing patch/test surface
+- completed the active tracker in [`code-as-doc/maintainability_refactor_tracker.md`](maintainability_refactor_tracker.md) and logged the closed milestone in [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
+- finished the remaining shared bootstrap rollout across low-level entry scripts and queue-adjacent tools
+
+#### 2026-04-07
+
+- completed Milestone A in [`code-as-doc/next_optimization_checklist.md`](next_optimization_checklist.md) by removing preview-target import side effects, splitting the Spec_Master/runtime/generated-page quality hotspots, adding a minimal Ruff gate, and introducing shared orchestration-test helpers
+- kept Workstream C active, but moved its baseline forward so the local/CI quality gate now includes a deliberate low-noise static check before the heavier unit/build validation layers run
+
+#### 2026-04-08
+
+- completed Milestone B in [`code-as-doc/next_optimization_checklist.md`](next_optimization_checklist.md) by fixing `diff-report` regression fixtures, adding CI smoke coverage for `diff-report`, `release-manifest`, and review-preview packaging, centralizing shared GitHub-hosted Feishu worker setup, and finishing a wrapper-focused boundary pass across `build.py`, `tools/build_docs.py`, `tools/build_docs_export.py`, and `tools/process_build_queue.py`
+
+#### 2026-04-11
+
+- started Workstream F by adding `build.py message-control-dry-run` plus `tools/message_control_*` as the Phase 0 dry-run resolver for the planned Feishu message plus OpenClaw control layer
+- kept the Phase 0 scope intentionally narrow: resolve one raw message into structured JSON, required fields, guardrails, and the target GitHub workflow without dispatching or mutating Feishu state
+
+#### 2026-04-12
+
+- added the repo-external Feishu IM webhook adapter under [`integrations/openclaw/feishu-im-webhook-adapter/`](../integrations/openclaw/feishu-im-webhook-adapter), keeping Feishu IM ingress outside the Python build plane while reusing `queue-query`, `queue-resolve-action`, and `queue-execute`
+- hardened the adapter with explicit publish-confirmation state, event-id dedupe, same-thread Feishu replies, encrypted callback support, and ECS-oriented deployment assets
+- aligned the architecture, maintainer docs, and user workflow docs with the new ingress layer so the control-layer plan no longer drifts from the supported baseline
+- added low-noise maintainability guardrails: a hotspot size check in `Manual Validation`, a refreshed anti-debt PR checklist, and synced baseline docs for the current `468`-test suite
+
+#### 2026-05-07
+
+- absorbed the four short-term hardening PRs into the active baseline: phase2 snapshot manifest validation, build action dispatch registry, config contract validation, and queue `RUNNING` state writeback
+- added [`code-as-doc/dev/external_table_contracts.md`](dev/external_table_contracts.md) as the first explicit field contract for phase2 tables, `Document_link`, and Review Init
+- added [`code-as-doc/dev/queue_state_model.md`](dev/queue_state_model.md) to document `pending -> running -> success/failed` writeback semantics
+- started the test-hotspot split by moving build-queue writeback field tests into [`tests/test_process_build_queue_writeback.py`](../tests/test_process_build_queue_writeback.py)
+
+#### 2026-05-08
+
+- completed the midterm queue contract hardening pass with an explicit queue transition layer, external integration fixtures, schema drift gates, a queue-contract CI surface, and another split of the queue test hotspot
+- started the long-term content direction safely by adding a `03_product_overview` assembly pilot plan, multidimensional-table-style fixtures, an assembly contract validator, a no-op assembler, and a page-level pilot switch for `US/en` and `JP/ja`
+
+#### 2026-06-07
+
+- added snapshot-based content QC through [`tools/content_lint.py`](../tools/content_lint.py) and the rule inventory in [`code-as-doc/content_quality_rules.md`](content_quality_rules.md)
+- added the closed-loop QC agent requirements baseline in [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
+- activated the implementation rollout in [`code-as-doc/dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md): first make rule QC machine-readable and reportable, then connect the standing agent
+
+#### 2026-06-18
+
+- re-assessed the strategy stage against [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md): the repo is mid/late Stage 2, with governance, snapshot, build/render, and release/traceability near Stage 3, but page assembly is split between data-driven reference pages and template-forked prose pages
+- corrected the stale Workstream H record: the generalized `03_product_overview` content-assembly pilot was rolled back to template-driven rendering in PRs #295/#296; the `assembly_pilot` switch and the `content_assembly*` / `product_overview_renderer` modules no longer exist
+- re-scoped the path to Stage 3 into tiered Workstreams J–Q below, and added Milestone E to [`next_optimization_checklist.md`](next_optimization_checklist.md)
+- added the prose-assembly re-launch design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md)
+- clarified the Stage 3 end state as a **deliberate hybrid** in [`architecture/System Evolution Strategy.md`](architecture/System%20Evolution%20Strategy.md) (new Principle 6 plus a Stage 3 note): the CMS governs reusable content while layout, stable long-form/compliance prose, and environment differences stay repository/config-owned, allocated by an explicit content-truth rule; the target is to eliminate template forks, not to structuralize every paragraph
+- recorded the backport scope decision in [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1 (rules R1–R8): backport is a single writer to `docs/_review/...`, template changes go through a template-sync proposal applied by a separate role (operator now, agent later); tracked as Workstream Q below
+
+#### 2026-07-17
+
+- ran a four-dimension production-readiness review (architecture/coupling, maintainability, enterprise ops, scalability) against the "10 devs / 50 product lines" target; full report with file-level evidence in [`reviews/production_readiness_review_2026-07-17.md`](reviews/production_readiness_review_2026-07-17.md)
+- headline: the code plane is already enterprise-grade (no import cycles, behavior-level tests, enforced size ratchet, release provenance); the operating plane is not (single operator, single InDesign Mac, frozen-copy review branches, print-based observability, no Bitable backup, dead lockfile)
+- re-scoped the findings into a Phase 0/1/2 execution plan: Workstream T (enterprise ops hardening), Workstream U (platform consolidation), Workstream V (review-branch propagation re-architecture) below
+
+
+### Finished workstreams (roadmap §6)
+
+#### Workstream A: Entrypoint And Tooling Parity
+
+Status: done
+
+Why now:
+
+- entrypoint drift creates silent behavioral mismatches
+- this problem leaks directly into review, diff-report, and release flow
+
+Scope:
+
+- remove hardcoded target defaults from low-level tools
+- align path-resolution and default-output rules with [`build.py`](../build.py)
+- reduce duplicated CLI semantics between entrypoint code and `tools/*.py`
+
+Exit criteria:
+
+- `build.py` and low-level tools no longer disagree on target defaults or report/output roots
+
+#### Workstream B: Core File Decomposition
+
+Status: done
+
+Why now:
+
+- the main hotspot files needed to be split before quality-gate and traceability hardening could proceed safely
+- the earlier queue/build decomposition wave proved that behavior-preserving modularization could reduce risk without changing the command surface
+
+Scope:
+
+- split responsibilities inside:
+  - [`build.py`](../build.py)
+  - [`tools/build_docs.py`](../tools/build_docs.py)
+  - [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
+  - [`tools/diff_report.py`](../tools/diff_report.py)
+- improve ownership boundaries for routing, bundle assembly, reporting, and export flow
+- keep public wrappers stable while moving implementation into dedicated modules
+- record each completed decomposition milestone in [`code-as-doc/code_optimization_log.md`](code_optimization_log.md)
+- keep [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) aligned with the extracted module boundaries
+
+Exit criteria:
+
+- large orchestration files are broken into smaller units with lower regression risk
+- core entry files act primarily as orchestration layers rather than carrying most low-level implementation themselves
+- module ownership stays documented after each decomposition step instead of drifting back into tribal knowledge
+
+#### Workstream C: Quality Gate Hardening
+
+Status: done
+
+Why now:
+
+- `check` is now central to the repo workflow and should stay authoritative
+
+Scope:
+
+- preserve stale identity detection
+- preserve placeholder, asset, include, and contract checks
+- improve error specificity where needed
+- avoid duplicated validation logic across build stages
+
+Exit criteria:
+
+- `check` remains the clear local and CI gate before export and publish
+
+#### Workstream D: Diff And Traceability Hardening
+
+Status: done
+
+#### Workstream E: CI Expansion
+
+Status: done
+
+#### Workstream F: Feishu IM Ingress Hardening
+
+Status: done
+
+Why now:
+
+- the repo now owns a real Feishu IM ingress package, so deployment and callback-mode boundaries need to stay explicit
+- without a small hardening pass, operator-facing behavior can drift between local testing and real webhook use
+
+Scope:
+
+- keep the Feishu IM adapter outside the Python execution plane
+- keep reply semantics aligned with `queue-resolve-action`, `queue-execute`, and structured failure summaries
+- keep `message-control-dry-run` as a maintainer-only offline parser probe so intent normalization can still be debugged without live Feishu ingress
+- make callback security mode explicit
+- make runtime-state expectations explicit before any multi-instance deployment
+- ship one repeatable ECS deployment contract instead of relying on ad hoc `nohup` steps
+- keep the remaining stable-ingress rollout as an explicit ops checklist rather than tribal knowledge, including Cloudflare DNS ownership, named tunnel creation, `/etc/cloudflared/config.yml`, and the Feishu callback cutover step
+
+Exit criteria:
+
+- the adapter can be deployed without ambiguity about callback mode, runtime state, required env, and restart contract on a long-lived host
+- operator replies stay deterministic for query, review-start, draft build, and publish confirmation
+- remaining gaps are clearly documented instead of being hidden in local-only assumptions
+
+#### Workstream G: Contract And Queue Baseline Hardening
+
+Status: done
+
+Why now:
+
+- phase2 data, Review Init, and `Document_link` are now core runtime contracts rather than incidental integrations
+- queue `RUNNING` writeback makes state more observable, but the transition rules should become testable as one layer
+- future OpenClaw, DingTalk, and multi-region work will be lower-risk if field drift is caught before live queue runs
+
+Scope:
+
+- keep the four merged hardening PRs as the short-term baseline
+- maintain explicit external table and queue-state docs
+- split the largest queue test hotspot by domain
+- add queue transition tests for running, success, failure, and writeback failure
+- add fixture-based smoke tests for Feishu/OpenClaw/DingTalk contract surfaces
+- introduce schema drift checks for snapshot manifests, CSV headers, and writable queue fields
+
+Exit criteria:
+
+- queue state transitions can be tested without running a live Feishu queue
+- external table field drift fails locally or in CI before breaking a production worker
+- future table/field changes have one documented update path instead of spreading through README snippets, queue code, and integration adapters
+
+#### Workstream H: Content Assembly Pilot
+
+Status: rolled back (2026-05-30) — superseded by Workstream N
+
+Outcome:
+
+- the fixture-backed `03_product_overview` assembly pilot (assembly contract validator, no-op assembler, page-level pilot switch, `assembly_blocks/` templates) was built, then reverted to pure template-driven rendering in PRs #295/#296; the `assembly_pilot` switch and the `content_assembly*` / `content_assembly_contract` / `product_overview_renderer` modules no longer exist
+- lesson: a bespoke per-page renderer plus naive layout machinery, attempted first on the hardest page (product overview, which has intentional EU raw-LaTeX divergence), is the wrong entry point; long-form translated prose with compliance formatting cannot be naively block-split without a dedicated schema and a block-level review workflow
+- the proven data-driven pattern that survived is `csv_pages` + `page_registry` + `content_blocks` + `Manual_Copy_Source` short-copy tokens; Workstream N re-launches prose assembly on that pattern instead of a bespoke renderer
+
+See [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone D for the historical pilot record and [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) for the re-launch design.
+
+#### Workstream J: Release Snapshot Freezing And Traceability
+
+Status: complete — E1-PR1 freezes/binds the publish snapshot and E1-PR2 proves byte-equivalent rebuilds
+
+Why now:
+
+- Stage 3 requires every release to be traceable to an immutable snapshot
+- today snapshots are sync-on-demand and are not archived per release, so a past release cannot be rebuilt byte-for-byte from a frozen input
+
+Scope:
+
+- archive a timestamped snapshot (source revision, exported data files, target matrix) at release time
+- bind `release-manifest` to that frozen snapshot, resolving the archive path through [`tools/utils/path_utils.py`](../tools/utils/path_utils.py)
+- record snapshot identity (timestamp + source revision + target matrix) in the manifest
+- keep `--data-root` rebuilds reproducible from the archived snapshot
+
+Progress (2026-07-31): versioned Publish now archives the complete manifest-backed
+phase2 root at `reports/releases/<model>/<region>/<lang>/versions/<version>/snapshot/`.
+The release manifest binds to its immutable identity (file inventory/content hash,
+source-manifest revision, freeze timestamp, target matrix); queue worktree output is
+copied back without permitting overwrite drift. Publish derives deterministic time
+from the recorded Git commit, content-addresses staged assets, and canonicalizes the
+DOCX container. `release-rebuild-verify` validates the recorded toolchain and snapshot,
+replays Publish from the archived input in a detached worktree at `git_sha`, and proves
+byte-identical DOCX, Markdown, and PDF SHA-256 values. Its version-sidecar report is
+the E1-PR2 acceptance evidence.
+
+Exit criteria:
+
+- a release-manifest references an immutable archived snapshot
+- rebuilding from the archived snapshot reproduces the release output
+- the manifest carries snapshot timestamp, source revision, and target matrix
+
+#### Workstream R: Business Closed-Loop — Revision Reflow, TM Corpus Lifecycle, PDF Annotation
+
+Status: done (2026-07-02; log entry 47 — G0–G7 delivered in #514–#521; remaining operator legs: first live hit-rate baseline, reminder-sentinel dispatch, A-base row migration)
+
+PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone G.
+
+Why now:
+
+- the 2026-07-02 closed-loop analysis found the main-line break: `revision_ledger` records reviewer corrections but nothing reconciles them after merge (`verdict` stays `PENDING`, reflow rate ≈ 0%), and no route feeds accepted sentence pairs into `Translation_Memory` — the highest-value corpus (reviewer-confirmed pairs) is lost every review round
+- TM pre-translation's bottleneck is corpus lifecycle, not matching: the match engine is three-tier (exact / parameter-skeleton / fuzzy-threshold) but corpus intake is manual-only, the A/B mirror bases split the corpus, and hit rate has no measurement
+- PDF review annotation is a missing capability (docx is the only annotation carrier); the architecture rule is annotate-on-PDF, correct-at-source
+
+Scope:
+
+- reconcile trigger + similarity verdict; `tm_pair_suggestion` ledger route with operator-approved live writes; hit-rate ledger; TM base convergence (operator decision); `content_lint` → annotated-PDF renderer MVP; backport reminder sentinel; intake completeness gate default-on
+- prerequisite refactor: split `cloud_doc_backport_cli.py` into args / commands / orchestration modules under guardrails
+
+Exit criteria:
+
+- reflow rate is computable and >90% of ledger rows leave `PENDING` automatically after merge
+- every review round emits TM pair candidates; approved pairs land in exactly one canonical TM base; hit rate has a baseline and a visible trend
+- QC findings can be delivered as an annotated sidecar PDF without touching the shipped PDF
+
+#### Workstream W: Product-Line Scaling Execution (模版+数据 → InDesign)
+
+Status: done (engineering implementation completed 2026-07-31; field KPI and
+the first timed rollback drill remain operator-owned evidence)
+
+PR-level breakdown: [`architecture/scaling_execution_plan.md`](architecture/scaling_execution_plan.md) §4 is the authoritative per-PR list (~76 S/M PRs across Stage 0–5); [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone L tracks stage-level progress.
+
+Capacity/trigger: the operator's product-line expansion decision (2026-07-30) is the roadmap-§5 business trigger — it fires K13's named trigger (next new-language/region onboarding) and supplies the Tier-3 "dedicated window" via overnight agent execution. The workstream reuses existing item numbers where they exist (K2, K8 incl. the snapshot file-lock, K13, K14, E1, I2's normalization prerequisite) and adds sensor/generator/scaffold/throughput slices around them. Ordering is safety-net-first (Stage 0 sensors + parity/golden locks), mechanical consolidation next, behavior changes last (Stage 5, each independently gated). Explicit non-goals keep K9/K10/K11/K12-full/K15-implementation, Deferred 1–5, and every fail-closed approval semantic untouched; concurrency work (Stage 4b) is sequenced behind a minimal atomic claim to avoid the double-claim trap.
+
+Execution note: Stage 5 item 1 now binds skipped-raw acceptance to the approved
+reference plan instead of an implicit global zero check. Approved targets
+freeze `idml_contract.max_skipped_raw` and fail above it; fallback targets keep
+the Stage 0 report-only sensor, while `manual-ir --strict` retains its explicit
+zero-tolerance diagnostic.
+
+Execution note: Stage 5 item 2 makes unknown languages fail closed only on
+strict surfaces. `manual-ir --strict` and approved-reference production check
+the Manual IR target, frozen manifest declaration, and every page against the
+shared registry. Ordinary/fallback export remains compatible, and registry
+aliases plus the neutral `cover`/`toc` page roles remain accepted.
+
+Execution note: Stage 5 item 3 binds every current UPS page entry across all 17
+family manifests to `UPS功能`. JP, KR, EU, US, AU, pt-BR, and CN now share the
+same assembly-time capability selection path; a repository-wide contract test
+guards all 24 entries, while pre/post materialized-page hashes prove no current
+configured target changed its page stack.
+
+Execution note: Stage 5 item 4(a) migrates the solar-panel PV input range in
+the eight shared-language charging-method templates to the semantic
+`pv_input_range/value` page row and `PV_INPUT_RANGE` runtime placeholder. Page
+contracts fail closed on missing data, and characterization tests prove
+byte-identical resolved RST. The operator released F6 on 2026-07-31; the
+production Base rows for the current US/EU/AU/KR/pt-BR document keys were
+seeded, read back, synchronized, and covered by the migration diff report.
+
+Execution note: Stage 5 item 5(a) moves the repeated DC input connector and UPS
+transfer time into `dc_input_connector/value` and `ups_transfer_time/value`
+page rows. The eight shared languages retain byte-identical resolved charging
+and UPS templates, including Ukrainian unit spelling; the authored `0 ms`
+incompatibility cautions are deliberately unchanged. The same F6 execution
+seeded and verified both production rows for those five document keys.
+
+Execution note: Stage 5 item 6 migrates the seven Product Overview page,
+panel, and part labels in the US Spanish, French, and Brazilian Portuguese
+templates to the existing `product_overview.*` runtime copy keys. A
+characterization test locks each resolved template to its pre-migration bytes;
+EU raw-LaTeX pages, image alt prose, production Base rows, and layout contracts
+remain unchanged.
+
+Execution note: Stage 5 item 8 now centralizes the primary IDML font-family
+contract across production styles, flow styles, font resources, and delivery
+manifests. It preserves the previous generated bytes and does not add a layout
+CSV row, so the approved reference-layout identity remains untouched.
+
+Execution note: Stage 5 item 9 now gives Japanese and Korean production-IDML
+exports deterministic, byte-level golden snapshots built from genuinely
+localized synthetic bundle content. Language sentinels prevent an English or
+wrong-language fixture from being accepted as a CJK baseline; no production
+renderer behavior or CJK font policy changed.
+
+Execution note: Stage 5 item 10 routes Han, Kana, Hangul, CJK punctuation, and
+fullwidth/halfwidth forms into explicit editable IDML character runs governed
+by `CJK_FONT_FAMILY_TOKEN` (`idml_font_family_cjk`). The token centralizes the
+existing Arial Unicode MS resource and delivery row without changing their
+bytes; EN/FR golden packages remain byte-identical, while JA/KO golden diffs
+are confined to localized Story XML. Layout parameters and approved reference
+contracts remain unchanged.
+
+Execution note: Stage 5 item 11 replaces duplicated Latin-only line estimates
+with the deterministic `tools/idml/line_metrics.py` contract. Existing narrow
+glyph ratios and integer capacities remain stable; East Asian Width `W`/`F`
+characters consume one em, combining marks consume zero width, and ambiguous
+characters stay narrow. EN/FR/JA/KO golden packages remain byte-identical,
+while direct story-budget tests prove equal-count CJK copy receives the larger
+allocation it needs.
+
+Execution note: Stage 5 item 12 ran the real JE-1000F/JP runtime-to-production
+IDML path against the committed phase2 fixture. The first run exposed a false
+green: `check_idml` passed while the Manual IR top-level language was `en`
+because `build.py idml` did not forward the sole `ja` language declared by the
+config. Single-language configs now supply that language automatically;
+multilingual defaults remain unchanged. The corrected JP export records
+`language=ja`, contains explicit CJK font stories, and passes `check_idml`.
+
+Engineering close-out: all registered Stage 0–5 slices are merged to `main`.
+The durable gate decision, exact Feishu record IDs, post-sync checks, and
+diff-report scope are recorded in
+[`reviews/workstream_w_closeout_2026-07-31.md`](reviews/workstream_w_closeout_2026-07-31.md).
+The current production seed has 15 semantic rows across the five document
+keys. US, EU, and AU pass `check`; KR has only four pre-existing capability
+content gaps, and JE-1500D pt-BR has five pre-existing source-content gaps.
+Those are target-readiness debt, not failed F6 writes. The first timed K14
+rollback drill and the next real product-line onboarding measurement remain
+operator-owned field evidence and are not claimed as completed.
+
+Exit criteria: the plan's §2 metrics on the dashboard — a new output language lands with zero Python edits (fake-lang proof), CI check coverage counted as PASS/(PASS+SKIP+FAIL) with a SKIP ratchet, contract recovery after a shared layout change = one command + one approval, hand-written artifact residue ratchets falling, and the next real product line onboarded in ≤2 operator-days.
+
+#### Workstream X: Four-Renderer Style Component Contract v2
+
+Status: complete through the serial PR 0–9 program; the authoritative merge
+and acceptance evidence remains in the linked ledger
+
+PR-level breakdown and the authoritative submitted/completed checklist:
+[`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md).
+
+Why now:
+
+- the approved Web composite manifest and frozen asset assembly contract are
+  established, so a renderer-neutral `ComponentSpec` can be extracted without
+  coupling responsive Web layout to InDesign XML or mutable asset paths;
+- the remaining nine `partial` style semantics cluster around shared page roles
+  and three special components, while Web/Word bindings are still outside the
+  machine-validated style schema;
+- completing the contract now prevents new models from copying JE-1000F/US
+  page-shape and coordinate rules into additional renderer-local patches.
+
+Scope:
+
+- upgrade the style contract to machine-check Web and Word alongside LaTeX and
+  IDML, with debt, platform constraints, and approved variants represented
+  separately;
+- introduce renderer-neutral ComponentSpec and PagePlan layers with independent
+  Web, LaTeX, IDML, and Word adapters;
+- migrate Callout, Spec Table, FCC, Inbox, and Product Overview in reversible
+  pilot PRs, then close compatibility and plain-Markdown debt;
+- preserve the existing Web composite manifest, approved reference layout,
+  responsive Web behavior, editable FCC/Inbox copy, and deliberately hybrid
+  long-form content model.
+
+Exit criteria:
+
+- all 31 style semantics have machine-validated four-renderer capabilities;
+- strict validation reports zero actionable style debt, while legitimate
+  constraints and approved target variants remain explicit and tested;
+- the approved JE-1000F/US content, assembly, reference PDF, and physical page
+  plan remain unchanged through pure migrations;
+- every PR row in the workstream ledger is marked complete with commit, PR,
+  merge, and verification evidence.
