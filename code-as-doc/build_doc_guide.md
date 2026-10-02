@@ -2322,6 +2322,12 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 回执封存执行；无需单独启动后端。维护入口及检索范围见
 [RTD Manual Center](dev/rtd_manual_portal.md)。
 
+冻结 `publish/web` 的成功 HTML 构建还会导出全部欧规说明书的
+`manual-knowledge.json`，并由同轮 `manual-deployment.json` 封存其哈希。
+导出按章节保留表格坐标、步骤和警告，去除样式及导航；现有 BlockClaw 插件通过
+`manual_search` / `manual_section` 只读查询，引用原文并绑定同一发布快照。
+启用配置、更新与撤下行为及图片文字边界见[欧规说明书查询](dev/eu_manual_query.md)。
+
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
 `/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
@@ -2484,3 +2490,7 @@ local snapshots without enabling live synchronization or IDML support. For
 JE-100C, whose localized copy is authored RST rather than core phase2 columns,
 verify the source-bound RST, asset hashes, builds and rendered pages directly;
 an empty source-table observation is not a localized-copy audit.
+
+### 原生 PDF 的已确认勘误
+
+原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。

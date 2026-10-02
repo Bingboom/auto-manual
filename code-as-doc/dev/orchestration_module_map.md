@@ -56,6 +56,13 @@ read-only served HTML/resource hash verification. `rtd_portal.setup` registers
 its callback; queue, publication assembly and link writers are not callers.
 See the [Git-only receipt contract](rtd_deployment_receipt.md).
 
+[`tools/manual_knowledge/`](../../tools/manual_knowledge/) owns the rendered EU
+manual reading model: semantic HTML/table extraction and the bounded JSON export.
+`rtd_portal` runs its writer after HTML and before the deployment receipt.
+The existing [OpenClaw control plugin](../../integrations/openclaw/auto-manual-control-layer/)
+owns receipt verification, search and paginated evidence reads; it does not call
+build/publish workers for a query. See [EU query contract](eu_manual_query.md).
+
 [`tools/rtd_workspace_revision.py`](../../tools/rtd_workspace_revision.py) owns only
 the system page's checkout identity and successful-build version receipt.
 `rtd_portal` supplies that context and registers the writer before the deployment
@@ -427,8 +434,9 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/process_build_queue_deps.py`](../../tools/process_build_queue_deps.py)
   - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
   - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
+  - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. Only names with a single lookup in `process_build_queue_services.process_build_queue` belong here: `resolve_wiki_destination` and `upload_word_to_drive` are also called inside other facade services, so tests still patch them
 - [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
-  - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation
+  - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
 - [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)
   - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)

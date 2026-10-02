@@ -15,6 +15,18 @@ headers and ten vertically centered body cells in every locale, with no broken
 images. Evidence: `languages/function-table-style-builds.json` and
 `languages/function-table-style-browser.json` under the local report directory.
 
+## Authorized publication follow-up
+
+The operator subsequently requested “合并然后发布”; MA-226 covers engineering
+PR #1383 and the nine-language Git-only release. This supersedes the original
+no-merge/no-publication task boundary below; no live-table write is included.
+The final preparation integrates main `8d0f1272` and preserves both independent
+document additions. The check-all failure was a missing JE-100C fixture:
+its source-bound two specification rows and one variable-default row now run
+all nine locales. The observation gate passes with 60 PASS, 16 SKIP and the
+same two pre-existing FAIL rows; neither ratchet baseline was relaxed.
+All nine Web/MyST and strict Sphinx rebuilds pass after the integration.
+
 ## Discovery and implementation plan
 
 - Engineering base: `bee0226379a7c593f4735405146ba0e7295c3731` (live fetch and GitHub API agree).
