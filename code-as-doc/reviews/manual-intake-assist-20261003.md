@@ -121,3 +121,11 @@ real current-main assets and final JBP English IR. Record exact boundaries.
 - Final gallery desktop is verified (22/22 hero images load, no horizontal
   overflow). This turn's attempted 390px override did not change the actual
   browser width; do not treat the saved `mobile.png` as mobile acceptance.
+
+## Merge assessment follow-up — 2026-10-03
+
+Synced origin/main at 3d42c538b2620e09ec250eaae8c85daa2031ed9e. A real FCC ComponentSpec exposed a completeness bug: structured list strings were omitted when no HTML duplicate existed, allowing missing legal bullets to appear complete. The extractor now enumerates list items using their original JSON pointers. A real-component regression confirms both bullets are required and removing them reports two missing items.
+
+Validation: full unittest 5119 tests passed, 35 skipped (718.922s); final targeted suite 13 passed; Ruff, maintainability guardrails and documentation links passed. The helper extraction after starting the full suite is mechanical and was covered by final targeted tests and guardrails. Log: `.tmp/intake-assist/unittest-list-copy-final.log`.
+
+Recommendation: suitable for merging as preparation/inspection tooling after final PR checks. This does not constitute end-to-end Sol model acceptance or enforcement of asset-first assembly. No operator merge authorization is inferred from this assessment.

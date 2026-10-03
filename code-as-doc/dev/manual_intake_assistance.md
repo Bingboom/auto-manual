@@ -25,6 +25,8 @@ Replace the sample pages with the actual source's physical page map. Frontmatter
 and shared legal pages are explicit inputs. PDF-compatible AI is supported;
 outlined text still requires visual reading. The tool records source hashes,
 original text blocks, copy occurrences, component identities and image hashes.
+Structured list items are included even when a component, such as FCC, has no
+duplicate HTML carrier; removing a required bullet fails the completeness check.
 It never extracts or crops an image. Reference IR, source and target must be
 supplied again for checking, so deleting candidate rows does not reduce the
 expected work.

@@ -10,6 +10,7 @@ import unittest
 import fitz
 
 from tools.asset_registry import REQUIRED_COLUMNS
+from tools.component_specs.fcc import fcc_component_spec
 from tools.manual_intake_assist import main
 from tools.manual_intake_assist.packet import check_packet, copy_items, make_packet, native_copy_map
 from tools.manual_intake_assist.art_review import apply_review_annotations, category, inventory, write_review
@@ -84,6 +85,25 @@ class IntakePacketTests(unittest.TestCase):
                 elif name == "identical": p["items"][0]["decision"] = "source-identical"
                 self.assertTrue(check_packet(p, self.expected)["errors"])
                 with self.assertRaises(ValueError): native_copy_map(p, self.expected)
+
+    def test_fcc_native_list_copy_cannot_be_omitted(self):
+        bullets = ["Reorient or relocate the receiving antenna.",
+                   "Increase the separation between the equipment and receiver."]
+        spec = fcc_component_spec(
+            accessibility_label="FCC notice", opening_copy=["Compliance notice"],
+            left_blocks=[{"kind": "list", "items": bullets}], right_blocks=[],
+            source_ref="fcc#body", language="en")
+        raw = json.loads(json.dumps({"pages": [{"page_id": "fcc", "component_spec": spec.to_dict()}]}))
+        expected = deepcopy(self.expected)
+        expected["items"] = copy_items(raw)
+        self.assertTrue(set(bullets).issubset({i["reference"] for i in expected["items"]}))
+        packet = deepcopy(expected)
+        for item in packet["items"]:
+            item.update(native=item["reference"], decision="source-identical",
+                        physical_page=1, evidence="source page 1")
+        self.assertFalse(check_packet(packet, expected)["errors"])
+        packet["items"] = [i for i in packet["items"] if i["reference"] not in bullets]
+        self.assertEqual(sum(e["code"] == "missing_item" for e in check_packet(packet, expected)["errors"]), 2)
 
     def test_explicit_identical_source_and_long_copy(self):
         p = self.complete()

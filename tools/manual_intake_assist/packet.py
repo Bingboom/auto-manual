@@ -17,6 +17,11 @@ SKIP_KEYS = {"metadata", "presentation", "provenance"}
 STRUCTURAL_ROLES = {"operation_id", "reference_id", "caption_mode", "caption_layout", "section_index"}
 
 
+def _copy_key(parent: dict, key: str) -> str:
+    """FCC ordered lists need not have a duplicate HTML carrier."""
+    return "text" if key == "items" and parent.get("kind") == "list" else key
+
+
 def copy_items(raw: dict) -> list[dict]:
     """Enumerate visible copy and its occurrences; IDs do not depend on translation."""
     result = []
@@ -33,7 +38,7 @@ def copy_items(raw: dict) -> list[dict]:
                     if k == "content" and value.get("role") in STRUCTURAL_ROLES:
                         continue
                     if k not in SKIP_KEYS:
-                        walk(child, (*path, k), component, k)
+                        walk(child, (*path, k), component, _copy_key(value, k))
             elif isinstance(value, list):
                 for i, child in enumerate(value):
                     walk(child, (*path, str(i)), component, key)
