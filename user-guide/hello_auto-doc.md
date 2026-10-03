@@ -1939,6 +1939,8 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
 
+HTP011（0924）英文原稿更新使用[Git-only 结构源](../manual_sources/JBP-3600A/EU/en/README.md)，章节参考 HTP017。开关说明、间距与锁扣标注为可选择文字，时钟从底图移除后用公共 CSS 绘制。使用原有 BP 配置构建，无需写飞书；工程 PR、本地预览验收和正式上线分别确认。见[本轮原稿及验收记录](../code-as-doc/reviews/jbp3600a-eu-en-htp011-20261002.md)。
+
 ### JBP-2000B 欧规英文网页
 
 现行 V2.0 的英文网页使用独立的
@@ -2064,3 +2066,7 @@ JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌�
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
 
 冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。
+
+HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
+`HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
+发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。

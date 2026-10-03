@@ -10,8 +10,10 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup
+from PIL import Image
 import yaml
 
 from tools.manual_ir import read_manual_ir
@@ -22,6 +24,7 @@ from tools.skeleton_resolve import (
     resolve_plan,
 )
 from tools.web_document_ir import render_document_fragments
+from tools.web_component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +110,12 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
 
+    def test_actual_package_passes_fresh_publication_admission(self) -> None:
+        report = require_fresh_component_admission(
+            self.package, model="JBP-3600A", region="EU", language="en",
+        )
+        self.assertEqual([], report["issues"])
+
     def test_exact_target_uses_bp_intl_single_english_profile(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
         self.assertEqual([{"model": "JBP-3600A", "region": "EU"}], config["build"]["targets"])
@@ -141,12 +150,18 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
 
         source_manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual("auto-manual-git-source/v1", source_manifest["schema_version"])
-        self.assertEqual("formal-published-source-audited-git-input", source_manifest["source_role"])
+        self.assertEqual("operator-designated-native-artwork-git-input", source_manifest["source_role"])
         self.assertEqual(
             "manual_sources/JBP-3600A/EU/en/phase2",
             source_manifest["data_root"],
         )
         self.assertFalse(source_manifest["live_bitable_dependency"])
+        for binding in [source_manifest["asset_recipe"],
+                        source_manifest["web_illustration_manifest"],
+                        *source_manifest["supplemental_asset_recipes"],
+                        *source_manifest["shared_symbol_assets"]]:
+            self.assertEqual(binding["sha256"],
+                             hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest())
         for record in source_manifest["files"]:
             path = FORMAL_SOURCE / record["path"]
             data = path.read_bytes()
@@ -163,6 +178,26 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             hashlib.sha256(inventory).hexdigest(),
         )
 
+    def test_packaged_symbols_reuse_transparent_shared_assets(self) -> None:
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        expected = {entry["sha256"] for entry in manifest["shared_symbol_assets"]}
+        soup = BeautifulSoup(self.html, "html.parser")
+        images = soup.select(".hb-symbol-art")
+        self.assertEqual(8, len(images))
+        actual = set()
+        for image in images:
+            path = self.package / unquote(urlparse(image["src"]).path)
+            self.assertTrue(path.resolve().is_relative_to(self.package.resolve()))
+            actual.add(hashlib.sha256(path.read_bytes()).hexdigest())
+            with Image.open(path) as icon:
+                self.assertEqual("RGBA", icon.mode)
+                alpha = icon.getchannel("A")
+                self.assertEqual((0, 255), alpha.getextrema())
+                for corner in ((0, 0), (icon.width - 1, 0),
+                               (0, icon.height - 1), (icon.width - 1, icon.height - 1)):
+                    self.assertEqual(0, alpha.getpixel(corner))
+        self.assertEqual(expected, actual)
+
     def test_web_output_has_real_components_and_finished_target_art(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(3, len(soup.select(".hb-inbox-card")))
@@ -171,7 +206,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             {"inbox_unit_clean.png", "inbox_cable_clean.png", "inbox_manual_clean.png"},
             {Path(image["src"]).name for image in soup.select(".hb-inbox-art")},
         )
-        self.assertIsNotNone(soup.select_one("table.lcd-text-only"))
+        self.assertIsNotNone(soup.select_one(".hb-reference-lcd-descriptions table"))
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
         # The print (PDF page 11) sets one INPUT/OUTPUT PORTS table, so the
         # specification page has three compositions, not four.
@@ -184,8 +219,9 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         for entry in provenance["illustrations"]:
             self.assertTrue(any(entry["sha256"] in src for src in image_sources), entry["path"])
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertEqual(6, len(coverage["slots"]))
-        self.assertTrue(all(slot["status"] == "finished-panel" for slot in coverage["slots"]))
+        self.assertEqual(9, len(coverage["slots"]))
+        self.assertEqual({"finished-panel", "base-art-live-copy"},
+                         {slot["status"] for slot in coverage["slots"]})
         self.assertIn("Jackery Explorer 3600 Plus", self.html)
         self.assertIn("F6-F9, FA, FC, FE", self.html)
         self.assertNotIn("Jackery Battery Pack 2000", self.html)
@@ -195,7 +231,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         headings = [h.get_text(" ", strip=True) for h in soup.select("h1,h2,h3,h4")]
         self.assertEqual(1, headings.count("FRONT VIEW"))
         self.assertEqual(1, headings.count("LEFT SIDE VIEW"))
-        for stem in ("overview_front", "overview_left", "lcd_annotated", "power_annotated", "lcd_control_clean", "clearance_clean", "stacking_clean", "locking_clean"):
+        for stem in ("overview_front", "overview_left", "lcd_annotated", "power_native", "lcd_control_clean", "clearance_native", "stacking_clean", "locking_native"):
             images = soup.select(f'img[data-web-finished-panel-path$="/{stem}.png"]')
             self.assertEqual(1, len(images), stem)
         self.assertFalse(any(
@@ -205,10 +241,12 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             t.get_text(" ", strip=True).startswith("Handle DC Expansion Port A")
             for t in soup.select("table")
         ))
-        lcd = soup.select_one("table.lcd-text-only")
+        lcd = soup.select_one(".hb-reference-lcd-descriptions table")
         self.assertIsNotNone(lcd)
         self.assertEqual(2, len(lcd.select("tbody tr")))
         self.assertFalse(lcd.select("img"))
+        self.assertFalse(lcd.select("thead"))
+        self.assertTrue(all(len(row.select("td")) == 2 for row in lcd.select("tbody tr")))
         self.assertIn("Power Percentage/Fault Code", lcd.get_text())
         self.assertIn("Charging Indicator", lcd.get_text())
         self.assertIn("FF code", lcd.get_text())
@@ -225,6 +263,28 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             block.get_text(" ", strip=True) == "On Press once Off Press and hold for 3 seconds"
             for block in soup.select(".line-block")
         ))
+
+    def test_native_labels_and_css_clock_survive_component_binding(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        operation = soup.select_one('[data-web-replace-key="operation.main-power"]')
+        self.assertIsNotNone(operation)
+        self.assertEqual(["On", "Off"], [item.get_text(strip=True) for item in
+                                        operation.select(".hb-operation-step-label")])
+        duration = operation.select_one('.hb-operation-duration[data-duration-icon="clock"]')
+        self.assertEqual("3s", duration.get_text(strip=True))
+        self.assertFalse(duration.select("img,svg"))
+        for key, labels in (
+            ("reference.clearance", ["≥0.66 ft (≈200 mm)"] * 2),
+            ("reference.locking", ["Lock", "Unlock", "1", "2", "1", "2"]),
+        ):
+            figure = soup.select_one(f'[data-web-replace-key="{key}"]')
+            self.assertEqual(labels, [item.get_text(strip=True) for item in
+                                     figure.select(".hb-reference-live-label")])
+        slots = {item["slot_id"]: item["status"]
+                 for item in self.ir.metadata["web_figure_coverage"]["slots"]}
+        for key in ("operation.main-power", "reference.clearance", "reference.locking"):
+            self.assertEqual("base-art-live-copy", slots[key])
+        self.assertFalse(soup.select(".hb-auto-resume-table,.hb-key-combination-table"))
 
     def test_warranty_uses_shared_native_components(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
@@ -256,6 +316,9 @@ with patch.object(Path, "open", guarded):
         read_manual_ir(package / "manual.ir.json"), package_root=package
     )
     assert len(result) == 15
+    markup = "\n".join(result)
+    assert 'data-duration-icon="clock"' in markup
+    assert 'data-web-replace-key="reference.locking"' in markup
 '''
         subprocess.run(
             [sys.executable, "-c", script, str(self.package)],

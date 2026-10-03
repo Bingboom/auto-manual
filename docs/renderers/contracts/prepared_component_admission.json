@@ -835,15 +835,9 @@
         },
         "lcd_display_en.rst": {
           "slot": "lcd_display_en",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "1ac22cb64fe08e5ed1ca19548b035579fedd7345761633f7dd8bab431db1319e",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1
+          }
         },
         "operation_en.rst": {
           "slot": "operation_en",

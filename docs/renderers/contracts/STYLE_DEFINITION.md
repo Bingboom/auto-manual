@@ -1391,7 +1391,11 @@ plain-Markdown 的三处实现缺口已经关闭：单元格支持确定性的 `
 The shared Web component preserves source-authored text tables that do not have
 per-row icon assets. RST declares `hb-source-lcd-legend` (number/name/description),
 `hb-source-lcd-actions` (mode/action/result), `hb-source-lcd-actions-compact`
-(function/description), or `hb-source-symbol-meanings` (two headerless columns).
+(function/description), `hb-source-lcd-descriptions` (headerless name/description),
+or `hb-source-symbol-meanings` (two headerless columns).
+CSV pages opt into the text-only LCD variant through the shared
+`lcd_descriptions_template.rst`; actual icon rows are rejected, and other
+LCD templates retain their existing contracts.
 The source adapter preserves ordered rich-text cells and deliberately blank
 callout numbers. It rejects conflicting declarations, unexpected columns,
 headers, spans, nested tables and image cells. It never infers meaning from a
