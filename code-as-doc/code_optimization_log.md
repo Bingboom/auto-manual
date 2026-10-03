@@ -58,7 +58,8 @@ For current rules, see:
   target needs the families the plan did not list, such as `listen_*`, `message_*`,
   `source_*`, `sync_data*`); bootstrap files 103 → 75, all of them script entry points.
 - CQ-1 follow-up toward the ≥50% target, moving without shims: `listen_*` and
-  `message_*` (8 modules) into `tools/build_queue/`.
+  `message_*` (8 modules) into `tools/build_queue/`; `backport_*` (4) into
+  `tools/backport/`.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 
@@ -884,7 +885,7 @@ Main outcomes:
 - **TM utilization is measurable (G3, #515):** the preprocess `Matcher` counts sentence-level units attempted vs matched; each run appends to `reports/tm_hit_rate/ledger.jsonl` via the stdlib-only [`tools/tm_hit_rate.py`](../tools/tm_hit_rate.py) (`stats` = overall + per-language-pair rates).
 - **One canonical TM base (G4, #521, operator decision):** the env-token base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`, tables by name) is the single write base; the A/wiki mirror is a read-only archive — the query script no longer falls back to it silently, the preprocess script resolves env-first, and the `bilingual-tm-maintenance` write skill targets the canonical base.
 - **PDF gains an annotation surface (G5, #520):** [`tools/pdf_annotate.py`](../tools/pdf_annotate.py) (PyMuPDF) renders `content_lint` findings as highlight+note annotations on a sidecar `*_annotated.pdf` — annotate on the PDF, correct at the source; unlocatable findings degrade to a page-1 summary note, never a misplaced highlight. New skill `pdf-annotate-qc`.
-- **Nobody has to remember the backport (G6, #519):** [`tools/backport_reminder.py`](../tools/backport_reminder.py) + a daily `backport-reminder.yml` sentinel compare every InReview doc's live text against its committed render baseline (content, not timestamps) and keep a `[backport-reminder]` issue open exactly while un-backported edits exist.
+- **Nobody has to remember the backport (G6, #519):** [`tools/backport_reminder.py`](../tools/backport/reminder.py) + a daily `backport-reminder.yml` sentinel compare every InReview doc's live text against its committed render baseline (content, not timestamps) and keep a `[backport-reminder]` issue open exactly while un-backported edits exist.
 - **The intake gate cannot be skipped silently (G7, #516):** `spec-extract` without `--reference` errors out unless `--skip-completeness` is explicit; the "ambiguous keys only warn" claim was verified stale (multi-match already escalates to `needs_review`).
 - **Prerequisite refactor (G0, #517):** the 1380-line `cloud_doc_backport_cli.py` split into `args` / `commands` / `orchestration` / a 222-line dispatcher, all under per-module guardrails (22 hotspot files governed); 39 test patches retargeted to the orchestration seams (patching a re-export never intercepted the real call).
 

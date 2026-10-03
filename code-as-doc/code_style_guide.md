@@ -114,7 +114,7 @@ Responsibilities:
 
 ### 2.9 Cloud-Doc Backport
 
-- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3), `backport_*.py`
+- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3, and the `backport_*` tools without their prefix)
 
 Responsibilities:
 

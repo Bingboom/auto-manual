@@ -25,10 +25,10 @@ round-trip.
 The ``check`` command is **offline** (no Feishu) and CI-safe; it is also runnable
 by an operator as a quick green/red gate:
 
-    python3 tools/backport_harness.py check            # run all fixtures, assert
-    python3 tools/backport_harness.py check --json     # machine-readable report
-    python3 tools/backport_harness.py list             # list fixtures
-    python3 tools/backport_harness.py matrix           # language x route coverage map
+    python3 -m tools.backport.harness check            # run all fixtures, assert
+    python3 -m tools.backport.harness check --json     # machine-readable report
+    python3 -m tools.backport.harness list             # list fixtures
+    python3 -m tools.backport.harness matrix           # language x route coverage map
 
 For a true LIVE round-trip, run ``tools/backport/cloud_doc.py`` against a seeded
 test-tenant doc in dry-run. Live source-table writes must target an
@@ -42,13 +42,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.backport.cloud_doc import build_report  # noqa: E402
 from tools.source_record_index import build_index  # noqa: E402

@@ -25,7 +25,7 @@ from tools.source_table_sync import (  # noqa: E402
     load_sidecar_index,
     write_change_request_report,
 )
-from tools.backport_baseline import baseline_rel_path, load_baseline, store_baseline  # noqa: E402
+from tools.backport.baseline import baseline_rel_path, load_baseline, store_baseline  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
     doc_token,
     list_in_review_branches,
