@@ -13,7 +13,7 @@ App/LCD migration is complete.
 
 ## Boundary and owning contracts
 
-`tools/web_component_admission.py` gates new EU/UK/EUUK Web inputs at queue
+`tools/web/component_admission.py` gates new EU/UK/EUUK Web inputs at queue
 staging, projection sealing, frozen-source sealing and fresh evidence verification.
 A real `manual.ir.json` is mandatory. Removing a coverage marker cannot opt out.
 Target identity, pending source review, the IR envelope/content hashes, actual

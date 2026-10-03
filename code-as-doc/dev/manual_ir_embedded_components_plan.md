@@ -140,7 +140,7 @@ Files:
 - new focused whole-document component source module(s);
 - existing five source projectors only where a reusable decode boundary is
   required;
-- `tools/web_document_source.py`;
+- `tools/web/document_source.py`;
 - focused source and whole-document tests.
 
 Extract in ownership order Overview/FCC/Inbox/Spec/Callout, insert semantic
@@ -153,7 +153,7 @@ Files:
 
 - new whole-document component replay/dispatch module;
 - focused refactors in the five existing Web component consumers;
-- `tools/web_document_ir.py` and `tools/web_presentation.py`.
+- `tools/web/document_ir.py` and `tools/web/presentation.py`.
 
 Render embedded instances directly and mark those families as already
 resolved so the remaining presentation pass cannot invoke their DOM source

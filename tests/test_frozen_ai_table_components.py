@@ -26,8 +26,8 @@ from tools.manual_ir import (
 )
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.hashing import value_sha256
-from tools.web_document_ir import render_document_fragments
-from tools.web_manual_table_components import render_manual_table_component
+from tools.web.document_ir import render_document_fragments
+from tools.web.manual_table_components import render_manual_table_component
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,7 +67,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
 
     def test_key_combinations_validate_shape_and_escape_native_copy(self):
         from tools.component_specs.key_combinations import key_combinations_component_spec
-        from tools.web_key_combinations_component import render_key_combinations_component
+        from tools.web.key_combinations_component import render_key_combinations_component
         args = dict(headers=["Buttons", "Operation", "Function"],
                     rows=[["POWER + AC", "Hold <3s> & wait", "<script>alert(1)</script>"]] * 3,
                     source_ref="operations", language="en")

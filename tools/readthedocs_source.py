@@ -21,7 +21,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.publish_asset_pool import pool_publish_assets  # noqa: E402
-from tools.web_presentation import WEB_STYLESHEET_NAME, copy_web_stylesheet  # noqa: E402
+from tools.web.presentation import WEB_STYLESHEET_NAME, copy_web_stylesheet  # noqa: E402
 
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)

@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 from tools import plain_markdown_site as pms
 from tools.gen_index_bundle import plan_materialized_pages
-from tools.web_presentation import (
+from tools.web.presentation import (
     WebPresentationError, load_web_manual_contract, transform_web_fragment,
 )
 from tools.word_bundle_html import _convert_rst_fragment_to_html, build_word_bundle_html

@@ -47,6 +47,8 @@ For current rules, see:
   bootstrap files 93 → 90.
 - CQ-1.4 build family: the 18 `build_docs*` modules moved into `tools/build/`;
   `tools.build.docs` is the facade, and the facade-patch ratchet watches both names.
+- CQ-1.4 web family: the 44 `web_*` modules moved into `tools/web/`; the isolated
+  Sphinx runtime that `plain_markdown_site` stages now carries a `tools/web` package.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

@@ -83,9 +83,9 @@ python3 -m unittest \
   `ManualSource` blocks without reading source files.
 - `tools/manual_ir/document.py` currently owns the HTML content-tree shape and
   whole-document-specific validation.
-- `tools/web_document_source.py` reads each source page once, packages images
+- `tools/web/document_source.py` reads each source page once, packages images
   by digest and builds the whole-document IR.
-- `tools/web_document_ir.py` validates hashes and replays without reading RST
+- `tools/web/document_ir.py` validates hashes and replays without reading RST
   or CSV.
 
 The existing prepared-RST/IDML producer and its `manual-ir/v1` bytes are a
@@ -224,8 +224,8 @@ Files:
 - `tools/manual_ir/builder.py`
 - `tools/manual_ir/validate.py`
 - `tools/manual_ir/serialize.py`
-- `tools/web_document_source.py`
-- `tools/web_document_ir.py`
+- `tools/web/document_source.py`
+- `tools/web/document_ir.py`
 
 Safety net:
 

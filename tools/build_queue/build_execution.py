@@ -23,7 +23,7 @@ from tools.release_reproducibility import (
     git_commit_epoch,
 )
 from tools.utils.path_utils import PathSegments, review_dir_of
-from tools.web_language_release_evidence import (
+from tools.web.language_release_evidence import (
     RECEIPT_FILENAME,
     ProjectionCapture,
     capture_projection,

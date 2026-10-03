@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.flow import flow_nodes_to_html, validate_flow_node
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.embedded_components import render_embedded_web_component
 
 
 PDF = Path("/private/tmp/je1000f-nine-language-intake/HTE153-nine-language-native-text-check.pdf")

@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 import unittest
 
-from tools.web_figure_coverage import (
+from tools.web.figure_coverage import (
     WEB_FIGURE_COVERAGE_SCHEMA,
     build_web_figure_coverage,
     enforce_required_web_figure_coverage,

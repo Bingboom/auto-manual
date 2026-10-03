@@ -1,41 +1,15 @@
-"""Assemble responsive web-manual stylesheets into one Sphinx asset."""
+"""Deprecated alias of :mod:`tools.web.stylesheets` (CQ-1.4); import the new path.
 
-from __future__ import annotations
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-from pathlib import Path
-
-from tools.utils.path_utils import PathSegments, get_paths
-
-WEB_STYLESHEET_NAME = "web_manual.css"
-WEB_STYLESHEET_PARTS = (
-    WEB_STYLESHEET_NAME,
-    "web_battery_pack_components.css",
-    "web_language_navigation.css",
-    "web_fcc_components.css",
-    "web_inbox_components.css",
-    "web_symbols_fcc_components.css",
-    "web_app_components.css", "web_registration_components.css",
-    "web_base_art_components.css", "web_operation_clock.css", "web_source_panels.css",
+warnings.warn(
+    "tools.web_stylesheets moved to tools.web.stylesheets",
+    DeprecationWarning,
+    stacklevel=2,
 )
-
-
-def copy_web_stylesheet(destination_dir: Path) -> Path:
-    """Copy the ordered web style modules as one stable public stylesheet."""
-    contracts_dir = get_paths().renderer_contracts_dir
-    sources = [contracts_dir / name for name in WEB_STYLESHEET_PARTS]
-    missing = [source for source in sources if not source.is_file()]
-    if missing:
-        names = ", ".join(str(source) for source in missing)
-        raise RuntimeError(f"web manual stylesheet is missing: {names}")
-    static_dir = destination_dir / PathSegments.STATIC
-    static_dir.mkdir(parents=True, exist_ok=True)
-    destination = static_dir / WEB_STYLESHEET_NAME
-    destination.write_text(
-        "\n\n".join(source.read_text(encoding="utf-8").rstrip() for source in sources)
-        + "\n",
-        encoding="utf-8",
-    )
-    return destination
-
-
-__all__ = ["WEB_STYLESHEET_NAME", "WEB_STYLESHEET_PARTS", "copy_web_stylesheet"]
+sys.modules[__name__] = import_module("tools.web.stylesheets")

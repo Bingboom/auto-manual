@@ -12,8 +12,8 @@ from tools.frozen_pdf_media import (
     MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels,
 )
 from tools.manual_ir.flow import validate_flow_node
-from tools.web_embedded_components import render_embedded_web_component
-from tools.web_presentation import load_web_manual_contract
+from tools.web.embedded_components import render_embedded_web_component
+from tools.web.presentation import load_web_manual_contract
 
 
 PDF = Path("/private/tmp/je1000f-nine-language-intake/HTE153-nine-language-native-text-check.pdf")

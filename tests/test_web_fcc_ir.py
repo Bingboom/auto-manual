@@ -11,9 +11,9 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools import web_fcc_component
+from tools.web import fcc_component as web_fcc_component
 from tools.manual_ir import build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, load_web_manual_contract, transform_web_fragment
+from tools.web.presentation import WebPresentationError, load_web_manual_contract, transform_web_fragment
 
 
 HTML = ('<p id="before">Before</p><h1>FCC</h1>'
@@ -48,7 +48,7 @@ class WebFccIRTests(unittest.TestCase):
 
     def test_serialized_replay_reads_no_source_or_parser_config(self) -> None:
         from tools.manual_ir import web_fcc
-        from tools.web_fcc_component import render_fcc_ir
+        from tools.web.fcc_component import render_fcc_ir
 
         with TemporaryDirectory() as td:
             source_path = Path(td) / '01_fcc.rst'
@@ -107,7 +107,7 @@ class WebFccIRTests(unittest.TestCase):
 
     def test_invalid_rehashed_owned_payload_is_rejected(self) -> None:
         from tools.manual_ir.web_fcc import load_web_fcc_source
-        from tools.web_fcc_component import render_fcc_ir
+        from tools.web.fcc_component import render_fcc_ir
 
         for change in ('column', 'binding', 'source', 'language', 'extra', 'kind', 'projection', 'hidden-slot'):
             with self.subTest(change=change):

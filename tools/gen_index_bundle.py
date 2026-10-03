@@ -106,7 +106,7 @@ from tools.utils.path_utils import (  # noqa: E402
     web_composite_manifest_of,
     word_common_assets_of,
 )
-from tools.web_composite_manifest import stage_web_composite_snapshot
+from tools.web.composite_manifest import stage_web_composite_snapshot
 from tools.utils.targets import (
     resolve_output_lang,
 )

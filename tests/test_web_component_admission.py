@@ -9,7 +9,7 @@ from unittest.mock import patch
 from tests.prepared_admission_fixture import install_prepared_admission_fixture
 from tools.manual_ir import read_manual_ir
 from tools.manual_ir.hashing import value_sha256
-from tools.web_component_admission import require_fresh_component_admission
+from tools.web.component_admission import require_fresh_component_admission
 
 
 class FreshComponentAdmissionTests(unittest.TestCase):
@@ -93,9 +93,9 @@ class FreshComponentAdmissionTests(unittest.TestCase):
         ir = read_manual_ir(self.path)
         from dataclasses import replace
         ir = replace(ir, language="nl")
-        with patch("tools.web_component_admission.read_manual_ir", return_value=ir), \
-             patch("tools.web_component_admission.audit_prepared_component_coverage", return_value={"issues": []}), \
-             patch("tools.web_component_admission.render_document_fragments"):
+        with patch("tools.web.component_admission.read_manual_ir", return_value=ir), \
+             patch("tools.web.component_admission.audit_prepared_component_coverage", return_value={"issues": []}), \
+             patch("tools.web.component_admission.render_document_fragments"):
             self.assertEqual(self.admit(language="nl"), {"issues": []})
 
     def test_queue_rejects_missing_ir_before_creating_destination(self):

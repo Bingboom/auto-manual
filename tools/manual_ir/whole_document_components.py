@@ -45,12 +45,12 @@ from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, html_to_flow_nodes
 from tools.manual_ir.web_callouts import decode_callout_payload
 from tools.manual_ir.web_specs import load_web_spec_source
 from tools.utils.path_utils import repo_root
-from tools.web_composite_presentation import (
+from tools.web.composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
     supports_preface_contract,
 )
-from tools.web_composite_manifest import WebCompositeManifest
+from tools.web.composite_manifest import WebCompositeManifest
 
 
 _PLACEHOLDER_PREFIX = "AUTOMANUALIRCOMPONENT"

@@ -97,7 +97,7 @@ ID；所有相对路径必须留在合同目录内。
 
 ### 2. 分层解析器与合同机械拆分
 
-- 新增聚焦的 `tools/web_presentation_contract.py`，让 `web_presentation.py` 继续作为
+- 新增聚焦的 `tools/web/presentation_contract.py`，让 `web_presentation.py` 继续作为
   兼容 facade，不扩大用户 CLI。
 - 把通用组件移入 shared base，把 Overview/Operation/App/Reference 配置移入同一
   skeleton profile，把 US/EU 目标授权和 EU required-slot policy 移入小 overlay。

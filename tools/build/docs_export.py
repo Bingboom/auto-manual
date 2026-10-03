@@ -18,7 +18,7 @@ from tools.gen_index_bundle_assets import raw_html_asset_values
 from tools.page_contracts import resolve_category
 from tools.safe_copy import copy_regular_file_no_symlinks
 from tools.utils.path_utils import PathSegments, latex_renderer_of
-from tools.web_presentation import (
+from tools.web.presentation import (
     PRESENTATION_PROFILE_ENV,
     WEB_PRESENTATION_PROFILE,
     normalize_presentation_profile,

@@ -23,8 +23,8 @@ from tools.skeleton_resolve import (
     load_slot_templates,
     resolve_plan,
 )
-from tools.web_document_ir import render_document_fragments
-from tools.web_component_admission import require_fresh_component_admission
+from tools.web.document_ir import render_document_fragments
+from tools.web.component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -310,7 +310,7 @@ def guarded(path, *args, **kwargs):
     return original(path, *args, **kwargs)
 with patch.object(Path, "open", guarded):
     from tools.manual_ir import read_manual_ir
-    from tools.web_document_ir import render_document_fragments
+    from tools.web.document_ir import render_document_fragments
     package = Path(sys.argv[1])
     result = render_document_fragments(
         read_manual_ir(package / "manual.ir.json"), package_root=package
