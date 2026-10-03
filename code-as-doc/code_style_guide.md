@@ -178,7 +178,7 @@ moves each family into a real subpackage. The names below are proposals.
 | Domain | Today | Proposed package |
 | --- | --- | --- |
 | Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` |
-| Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` |
+| Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` (`check_docs*` moved 2026-10-03) |
 | Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*` moved 2026-10-03) |
 | Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
 | Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` |
