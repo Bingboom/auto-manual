@@ -9,8 +9,8 @@ from tempfile import TemporaryDirectory
 
 import yaml
 
-from tools import rtd_portal
-from tools import rtd_source_registry as reg
+from tools.rtd import portal as rtd_portal
+from tools.rtd import source_registry as reg
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()

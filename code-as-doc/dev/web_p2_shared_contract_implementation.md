@@ -19,7 +19,7 @@ Baseline: `ef45a0df` (`origin/main`, 2026-09-06).
   component level. A new Web-only variant would therefore falsely inherit the
   existing LaTeX, IDML and Word `rendered` claims unless variant-specific
   bindings are introduced.
-- `tools/word_bundle_html.py` checks the first included Web page through
+- `tools/word/bundle_html.py` checks the first included Web page through
   `is_web_entry_page`. Existing governed JE-1000F prefaces remain protected,
   while unlisted targets implicitly accept any first included page. Short
   category manuals need an explicit, fail-closed declaration instead of relying

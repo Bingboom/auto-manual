@@ -111,7 +111,7 @@ class WebTableIRTests(unittest.TestCase):
 
     def test_real_bundle_migrates_renamed_csv_consumers(self):
         from tools.manual_ir import build_manual_ir_from_source
-        from tools.word_bundle_html import build_word_bundle_html
+        from tools.word.bundle_html import build_word_bundle_html
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

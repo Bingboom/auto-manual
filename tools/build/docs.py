@@ -132,8 +132,8 @@ from tools.utils.targets import (
     resolve_output_lang,
 )
 from tools.utils.tex_utils import compile_xelatex  # noqa: E402
-from tools.word_bundle import export_word_from_bundle  # noqa: E402
-from tools.word_bundle_common import load_config_rst_substitutions, load_rst_substitutions  # noqa: E402
+from tools.word.bundle import export_word_from_bundle  # noqa: E402
+from tools.word.bundle_common import load_config_rst_substitutions, load_rst_substitutions  # noqa: E402
 from tools.markdown_bundle import export_markdown_from_bundle  # noqa: E402
 
 from tools.validate_config import validate as validate_cfg

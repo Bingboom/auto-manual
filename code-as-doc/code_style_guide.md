@@ -182,8 +182,8 @@ moves each family into a real subpackage. The names below are proposals.
 | Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*` moved 2026-10-03) |
 | Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
 | Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` (`web_*` moved 2026-10-03) |
-| Read the Docs portal | `rtd_*.py` | `tools/rtd/` |
-| Word export | `word_bundle*.py` | `tools/word/` |
+| Read the Docs portal | `rtd_*.py` | `tools/rtd/` (moved 2026-10-03) |
+| Word export | `word_bundle*.py` | `tools/word/` (moved 2026-10-03) |
 | IDML | `export_idml.py`, `idml_rst_*.py` | existing `tools/idml/` |
 | Source intake and sync | `sync_data*.py`, `source_*.py`, `data_*.py` | `tools/data/` |
 

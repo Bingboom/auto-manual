@@ -26,7 +26,7 @@ from tools.web.presentation import (
     restore_web_inline_controls_after_pandoc,
     transform_web_fragment,
 )
-from tools.word_bundle_html import _convert_rst_fragment_to_html
+from tools.word.bundle_html import _convert_rst_fragment_to_html
 
 
 _ANNOTATED_FIGURE_RE = re.compile(

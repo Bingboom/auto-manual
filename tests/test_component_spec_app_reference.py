@@ -39,7 +39,7 @@ from tools.web.composite_manifest import load_web_composite_manifest
 from tools.web.document_ir import render_document_fragments
 from tools.web.document_source import load_web_document
 from tools.web.presentation import load_web_manual_contract
-from tools.word_bundle_html import _build_word_only_tags
+from tools.word.bundle_html import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]

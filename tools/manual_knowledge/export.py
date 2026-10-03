@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from tools.manual_knowledge.html import extract_sections, identity
-from tools.rtd_deployment_receipt import MAX_FILE_BYTES, source_fingerprint
+from tools.rtd.deployment_receipt import MAX_FILE_BYTES, source_fingerprint
 from tools.utils.path_utils import PathSegments
 
 ARTIFACT = "manual-knowledge.json"
@@ -53,7 +53,7 @@ def write_knowledge(app, exception) -> None:
             or source.name != PathSegments.WEB or source.parent.name != PathSegments.PUBLISH
             or not manifest_path.is_file()):
         return
-    from tools.rtd_portal import portal_data
+    from tools.rtd.portal import portal_data
 
     _, products = portal_data(app)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

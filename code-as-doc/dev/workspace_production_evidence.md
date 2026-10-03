@@ -4,7 +4,7 @@ Status: active
 
 ## 第一阶段调查与实施方案
 
-2026-10-02：入口是 `tools/rtd_deliverables.py` 和
+2026-10-02：入口是 `tools/rtd/deliverables.py` 和
 `tools/rtd_portal_assets/deliverables.html`，RTD 通过现有 Sphinx portal 扩展渲染。
 工程代码只在 auto-manual 修改，合入后由现有镜像同步到 Hello-Docs，再由 RTD 构建。
 

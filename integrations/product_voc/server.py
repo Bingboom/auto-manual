@@ -9,8 +9,8 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from integrations.product_voc.intake import BotWriter, Intake, IntakeError
-from tools.rtd_portal import ASSETS
-from tools.rtd_product_voc import suggestion_markup
+from tools.rtd.portal import ASSETS
+from tools.rtd.product_voc import suggestion_markup
 from tools.utils.path_utils import PathSegments
 
 MAX_BODY = 24000

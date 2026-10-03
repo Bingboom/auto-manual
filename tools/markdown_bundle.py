@@ -11,9 +11,9 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 from tools.gen_index_bundle import MaterializedBundle
-from tools.word_bundle_common import paths
-from tools.word_bundle_docx_pandoc import resolve_pandoc_binary
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_common import paths
+from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.word.bundle_html import build_word_bundle_html
 from tools.manual_ir import ManualIR, read_manual_ir
 from tools.utils.path_utils import PathSegments
 from tools.web.presentation import (

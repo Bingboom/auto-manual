@@ -13,7 +13,7 @@ import time
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.rtd_deployment_receipt import FetchSession, _without_rtd_proxy_injection
+from tools.rtd.deployment_receipt import FetchSession, _without_rtd_proxy_injection
 from tools.workspace_freshness import inventory
 from tools.workspace_refresh_publish import command
 from tools.workspace_snapshot import atomic_json

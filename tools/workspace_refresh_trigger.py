@@ -13,7 +13,7 @@ def delivery_readback(source, binding, group, expected: dict) -> list[str]:
     """Opt-in production hook; source write acknowledgement alone is insufficient."""
     if not os.environ.get(REQUEST_ENV):
         return []
-    from tools.rtd_deliverables import FEISHU_FORMATS, feishu_url
+    from tools.rtd.deliverables import FEISHU_FORMATS, feishu_url
 
     links = {field: feishu_url(expected.get(field)) for field in FEISHU_FORMATS.values()
              if feishu_url(expected.get(field))}

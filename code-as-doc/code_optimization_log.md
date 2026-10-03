@@ -49,6 +49,9 @@ For current rules, see:
   `tools.build.docs` is the facade, and the facade-patch ratchet watches both names.
 - CQ-1.4 web family: the 44 `web_*` modules moved into `tools/web/`; the isolated
   Sphinx runtime that `plain_markdown_site` stages now carries a `tools/web` package.
+- CQ-1.4 done with the rtd and word families (15 + 15 modules) moved into `tools/rtd/`
+  and `tools/word/`: 158 modules now live in six packages, each old name a shim
+  until CQ-1.5. `workspace-data-verify.yml` also triggers on `tools/rtd/**`.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

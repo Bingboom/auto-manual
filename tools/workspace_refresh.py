@@ -36,8 +36,8 @@ def _check_identity(assets: Path, kind: str, source: dict) -> None:
 
 
 def refresh(kind: str, *, root: Path, log: Path, cli_bin: str, identity: str, run=None) -> dict:
-    from tools import rtd_deliverables as delivery
-    from tools import rtd_system_workspace as corpus
+    from tools.rtd import deliverables as delivery
+    from tools.rtd import system_workspace as corpus
     from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
 
     assets = root / "tools" / "rtd_portal_assets"

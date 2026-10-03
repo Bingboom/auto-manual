@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tests.test_rtd_feedback import RtdFeedbackTests
-from tools.rtd_page_metadata import (
+from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
 

@@ -75,12 +75,12 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `python tools/cloud_doc_backport.py` 命令保持可用。**开工前需操作者确认**（热点模块移动）。
   （2026-10-03 完成：13 个模块迁入 `tools/backport/`，入口 `python -m tools.backport.cloud_doc`；
   旧路径 shim 是同一模块对象的别名，`mock.patch` 新旧路径等价；启动代码 103 → 93）
-- [ ] **CQ-1.4 按族迁移其余前缀。** 每个 PR 迁一族，顺序：`queue_*` → `check_docs_*` →
+- [x] **CQ-1.4 按族迁移其余前缀。** 每个 PR 迁一族，顺序：`queue_*` → `check_docs_*` →
   `build_docs_*` → `web_*` → `rtd_*` / `word_*`。每个 PR 同时更新 `orchestration_module_map.md`
   和热点行数上限表中的路径。
   进度：`queue_*` / `process_*queue*`（39 个）→ `tools/build_queue/`（2026-10-03；包名避开标准库 `queue`）；
   `check_docs*`（14 个）→ `tools/check/`（2026-10-03）；`build_docs*`（18 个）→ `tools/build/`（2026-10-03）；
-  `web_*`（44 个）→ `tools/web/`（2026-10-03）。
+  `web_*`（44 个）→ `tools/web/`（2026-10-03）；`rtd_*`、`word_*`（各 15 个）→ `tools/rtd/`、`tools/word/`（2026-10-03）。
 - [ ] **CQ-1.5 入口统一。** 让 `scripts/`、文档中的命令、`build.py` 的子进程调用改用
   `python -m`；确认没有调用方后删除 shim 与启动代码。**涉及 `.github/workflows/**` 的改动需操作者确认。**
 

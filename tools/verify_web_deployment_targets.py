@@ -9,7 +9,7 @@ published target catalog (``docs/publish/publish_manifest.json`` on Hello-Docs
 site:
 
 - With ``--publish-root`` (a local frozen ``docs/publish`` checkout) it runs
-  the full ``tools.rtd_deployment_receipt.verify_deployment`` check per target:
+  the full ``tools.rtd.deployment_receipt.verify_deployment`` check per target:
   live receipt against the frozen source fingerprint, byte identity for each
   page and its same-origin resources, and the RTD project-slug dimension.
 - Without a local tree it fetches the manifest remotely (``--manifest-url``)
@@ -50,7 +50,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools import rtd_deployment_receipt as receipt  # noqa: E402
+from tools.rtd import deployment_receipt as receipt  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.utils.log import get_logger

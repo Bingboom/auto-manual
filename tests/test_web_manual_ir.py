@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 from tests.test_web_spec_component import declared_table
 from tools.manual_ir import read_manual_ir, write_manual_ir
 from tools.web.presentation import WebPresentationError, transform_web_fragment
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_html import build_word_bundle_html
 
 
 class WebManualIRTests(unittest.TestCase):
@@ -47,7 +47,7 @@ class WebManualIRTests(unittest.TestCase):
             )
             with (
                 patch(
-                    "tools.word_bundle_html._extract_spec_word_data",
+                    "tools.word.bundle_html._extract_spec_word_data",
                     side_effect=AssertionError("legacy Word parser"),
                 ),
                 patch(

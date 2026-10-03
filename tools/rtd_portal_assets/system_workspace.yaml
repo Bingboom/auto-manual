@@ -121,7 +121,7 @@ capabilities:
         note: 按产品、区域、语言进入在线手册
         evidence:
           - "url:https://ht-doc.readthedocs.io/"
-          - "file:auto-manual:tools/rtd_portal.py"
+          - "file:auto-manual:tools/rtd/portal.py"
       - id: search
         label: 站内搜索
         status: available
@@ -183,7 +183,7 @@ capabilities:
         status: available
         note: 页面短文案按键从记忆库取对应语言，构建时写入
         evidence:
-          - "file:auto-manual:tools/word_bundle_common.py"
+          - "file:auto-manual:tools/word/bundle_common.py"
       - id: correction_reflow
         label: 评审修正回收入库
         status: validated
@@ -438,7 +438,7 @@ flow:
     status: available
     mode: automated
     note: 构建时按键取对应语言的译文
-    evidence: ["file:auto-manual:tools/word_bundle_common.py"]
+    evidence: ["file:auto-manual:tools/word/bundle_common.py"]
   - from: 翻译记忆库
     to: 文档预翻译
     status: in_progress

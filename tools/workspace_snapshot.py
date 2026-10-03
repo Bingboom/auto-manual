@@ -121,7 +121,7 @@ def complete_rows(run, base_token: str, table_id: str) -> tuple[list[str], list[
 
 
 def _delivery_losses(candidate: dict, previous: dict) -> list[str]:
-    from tools.rtd_deliverables import version_key
+    from tools.rtd.deliverables import version_key
 
     def slots(snapshot):
         return {(row["key"], row["lang"], fmt): value for row in snapshot["documents"]

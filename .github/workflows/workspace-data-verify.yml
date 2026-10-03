@@ -6,6 +6,7 @@ on:
       - 'docs/knowledge/workspace-data/**'
       - 'docs/publish/**'
       - 'tools/rtd*'
+      - 'tools/rtd/**'
       - 'tools/rtd_portal_assets/**'
       - 'tools/workspace*'
       - '.github/workflows/workspace-data-verify.yml'

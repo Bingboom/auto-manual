@@ -29,7 +29,7 @@ from tools.utils.spec_master import (  # noqa: E402
     region_value_matches_target,
     source_language_for_row,
 )
-from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.word.bundle_common import resolve_config_path  # noqa: E402
 
 
 def _supported_source_language(value: str) -> bool:
