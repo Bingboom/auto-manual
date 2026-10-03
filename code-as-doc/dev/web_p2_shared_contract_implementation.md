@@ -50,7 +50,7 @@ Baseline: `ef45a0df` (`origin/main`, 2026-09-06).
 - Full repository Ruff passed.
 - Full `python -m unittest` passed (3,781 tests; 22 skipped).
 - Maintainability guardrails passed without raising either touched-file limit:
-  `tools/web_inbox_component.py` remains at 120 lines and
+  `tools/web/inbox_component.py` remains at 120 lines and
   `web_inbox_components.css` remains at 180 lines.
 - Documentation link integrity passed: 158 Markdown files, 1,710 links, zero
   broken.

@@ -111,7 +111,7 @@ from tools.gen_index_bundle import (
     cleanup_legacy_rst_artifacts,
     materialize_bundle,
 )
-from tools.web_language_bundle import materialize_web_language_projection
+from tools.web.language_bundle import materialize_web_language_projection
 from tools.review_support import (
     overlay_review_content_onto_bundle,
     overlay_review_onto_bundle,

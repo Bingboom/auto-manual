@@ -74,14 +74,14 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # Web manual presentation surface — source styles are component modules but
     # assemble into one public RTD asset. Keep the orchestration façade, reusable
     # reference component helper, and stylesheet assembler independently pinned.
-    "tools/web_presentation.py": 2134,
-    "tools/web_reference_components.py": 161,
+    "tools/web/presentation.py": 2134,
+    "tools/web/reference_components.py": 161,
     # Component migrations add ordered stylesheet modules while the assembler
     # remains intentionally logic-free and stays at its existing line cap.
     # 40 -> 41: one ordered module entry for the base-art Operation styles.
-    "tools/web_stylesheets.py": 41,
-    "tools/web_fcc_component.py": 150,
-    "tools/web_inbox_component.py": 120,
+    "tools/web/stylesheets.py": 41,
+    "tools/web/fcc_component.py": 150,
+    "tools/web/inbox_component.py": 120,
     "tools/component_specs/fcc.py": 280,
     "tools/component_specs/fcc_adapters.py": 150,
     "tools/component_specs/fcc_html.py": 220,
@@ -97,7 +97,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # 430 -> 475: CQ-3.4 split _validate_instance (CC 56 -> 20) into per-view,
     # per-callout and decorative-leader validators; the growth is their signatures.
     "tools/component_specs/overview_instance.py": 475,
-    "tools/web_overview_component.py": 190,
+    "tools/web/overview_component.py": 190,
     "tools/idml/page_overview.py": 570,
     "tools/word_bundle_html_render.py": 330,
     "tools/word_inbox_component.py": 150,
@@ -106,13 +106,13 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # Registered 2026-08-03 at 434 lines with 31 lines of growth headroom.
     "tools/publish_branch_assembly.py": 465,
     # Registered 2026-08-03 at 347 lines with 33 lines of growth headroom.
-    "tools/web_composite_manifest.py": 380,
+    "tools/web/composite_manifest.py": 380,
     # Registered 2026-08-03 at 202 lines with 38 lines of growth headroom.
     # 240 -> 242: a base-art figure stops after its identity attributes are
-    # bound; its layout lives in tools/web_base_art_operation.py.
-    "tools/web_composite_presentation.py": 242,
+    # bound; its layout lives in tools/web/base_art_operation.py.
+    "tools/web/composite_presentation.py": 242,
     # Registered 2026-08-03 at 139 lines with 41 lines of growth headroom.
-    "tools/web_symbol_components.py": 180,
+    "tools/web/symbol_components.py": 180,
     # Registered 2026-08-03 at 201 lines with 39 lines of growth headroom.
     "tools/dingtalk_delivery_map.py": 240,
     # Registered 2026-08-03 at 517 lines with 43 lines of growth headroom.

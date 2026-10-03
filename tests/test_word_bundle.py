@@ -23,7 +23,7 @@ from tools.word_bundle_html import (
 )
 from tools import word_bundle_html
 from tools.word_bundle_html_rewrite import _extract_spec_word_data
-from tools.web_presentation import load_web_manual_contract
+from tools.web.presentation import load_web_manual_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]

@@ -9,7 +9,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.idml_rst_extract import _parse_text
-from tools.web_presentation import load_web_manual_contract
+from tools.web.presentation import load_web_manual_contract
 from tools.word_bundle_html import _convert_rst_fragment_to_html
 from tools.word_inbox_component import transform_word_inbox_html
 
@@ -99,7 +99,7 @@ class PlainInventoryDocumentTests(unittest.TestCase):
     def test_web_plain_inventory_freezes_shared_table_and_preserves_notes(self) -> None:
         from tools.word_bundle_html import build_word_bundle_html
         from tools.manual_ir import read_manual_ir
-        from tools.web_document_ir import render_document_fragments
+        from tools.web.document_ir import render_document_fragments
 
         source = ROOT / "docs/templates/page_jp/02_whats_in_the_box.rst"
         with tempfile.TemporaryDirectory() as td:

@@ -11,7 +11,7 @@ Scoped style blocks preserve the accepted layout; the repository Web theme
 still provides the surrounding manual center. All 69 artwork files are local.
 
 Rebuild with strict Sphinx from `web/ja` into a new directory. Seal the
-source manifest and exact Git commit using `tools.web_frozen_source_evidence`,
+source manifest and exact Git commit using `tools.web.frozen_source_evidence`,
 then use the ordinary publish assembler against current Hello-Docs/main.
 Do not dispatch a live-data rebuild as a substitute for this reviewed source.
 The phase2 JP check is a regression check; it does not validate this source's

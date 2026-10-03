@@ -8,9 +8,9 @@ from bs4 import BeautifulSoup
 
 from tools.component_specs.operation_tables_html import parse_operation_tables_html
 from tools.manual_ir.whole_document_components import discover_registered_components
-from tools.web_presentation import load_web_manual_contract, normalize_web_source_fragment
-from tools.web_key_combinations_component import render_key_combinations_component
-from tools.web_lcd_mode_component import render_lcd_mode_component
+from tools.web.presentation import load_web_manual_contract, normalize_web_source_fragment
+from tools.web.key_combinations_component import render_key_combinations_component
+from tools.web.lcd_mode_component import render_lcd_mode_component
 from tools.word_bundle_html import _publish_rst_fragment_to_html
 
 

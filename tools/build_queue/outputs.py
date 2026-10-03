@@ -10,14 +10,14 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.language_aliases import normalize_language
-from tools.web_component_admission import require_fresh_component_admission
+from tools.web.component_admission import require_fresh_component_admission
 from tools.utils.path_utils import (
     PathSegments,
     docs_build_dir_of,
     release_manifests_of,
     release_snapshot_of,
 )
-from tools.web_language_release_evidence import (
+from tools.web.language_release_evidence import (
     RECEIPT_FILENAME,
     ProjectionCapture,
     require_consistent_captures,

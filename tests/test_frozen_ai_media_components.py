@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from tools.frozen_ai_media_components import app_nodes, figure_node
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.flow import flow_nodes_to_html, validate_flow_node
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.embedded_components import render_embedded_web_component
 
 
 ROOT = Path(__file__).resolve().parents[1]

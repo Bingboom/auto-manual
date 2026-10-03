@@ -80,14 +80,14 @@ GitHub nor changes publication/source authority. See
 [published workspace version](rtd_manual_portal.md#published-version-and-refresh).
 
 Internal frozen Web language projection lives in
-[`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
+[`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
 `build_docs_export` selects this path only for Web plus an explicit language;
 `build_docs_bundle.prepare_web_language_source_bundle` preserves complete source
 scope, then the projection helper replaces canonical RST for check/Markdown/HTML.
 See [scope and integration boundary](web_language_projection.md).
 
-[`tools/web_language_release_evidence.py`](../../tools/web_language_release_evidence.py)
+[`tools/web/language_release_evidence.py`](../../tools/web/language_release_evidence.py)
 owns capture, sealing and shared verification of language release evidence.
 Queue execution records the three successful actions; staging seals the
 immutable candidate, and metadata/assembly/stored replay verify at their own
@@ -234,17 +234,17 @@ empty-cell policies are recorded in
   - HTML postprocess handoff
 - [`tools/build/docs_html.py`](../../tools/build/docs_html.py)
   - manual HTML metadata and switcher helpers
-- [`tools/web_presentation.py`](../../tools/web_presentation.py)
+- [`tools/web/presentation.py`](../../tools/web/presentation.py)
   - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
-- [`tools/web_presentation_contract.py`](../../tools/web_presentation_contract.py)
+- [`tools/web/presentation_contract.py`](../../tools/web/presentation_contract.py)
   - fail-closed resolver for `shared base → skeleton profile → target overlay`
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
 - [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
   - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure (Operation or reference)
   - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
-- [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
+- [`tools/web/base_art_operation.py`](../../tools/web/base_art_operation.py)
   - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, or lays out a footer-panel card (lead, art, numbered steps); never measures the artwork
-- [`tools/web_base_art_reference.py`](../../tools/web_base_art_reference.py)
+- [`tools/web/base_art_reference.py`](../../tools/web/base_art_reference.py)
   - places one base-art reference figure's captured source lines on the panel rectangles its `base_art_layout` declares, each line exactly once; never measures the artwork
 - [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`
   - the one rule both Web paths use to give a base-art figure its source panel copy (`mode_label`, `sos_label`)
@@ -254,15 +254,15 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/components.py`](../../tools/manual_ir/components.py)
   - strict embedded ComponentSpec carrier validation, asset enumeration and
     renderer-neutral document-order traversal
-- [`tools/web_embedded_components.py`](../../tools/web_embedded_components.py)
+- [`tools/web/embedded_components.py`](../../tools/web/embedded_components.py)
   - whole-document Web dispatch from embedded component identity to the existing adapters
-- [`tools/web_component_carriers.py`](../../tools/web_component_carriers.py)
+- [`tools/web/component_carriers.py`](../../tools/web/component_carriers.py)
   - rich carrier/semantic agreement checks shared by Inbox, FCC and Overview adapters;
     `web_fcc_markup` holds FCC-only HTML construction helpers below hotspot limits
 - [`tools/manual_ir/web_specs.py`](../../tools/manual_ir/web_specs.py)
   - declared HTML specification source adapter into the public ManualSource contract;
     isolated from the neutral core and IDML extraction
-- [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
+- [`tools/web/spec_component.py`](../../tools/web/spec_component.py)
   - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
     used by both the prepared Web bundle and standalone `SpecTableDirective`
   - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
@@ -271,15 +271,15 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
   - one declared LCD/troubleshooting source decoder and owned payload validation;
     explicit CSV/class identities select tables independently of filenames or artwork grants
-- [`tools/web_table_ir.py`](../../tools/web_table_ir.py)
+- [`tools/web/table_ir.py`](../../tools/web/table_ir.py)
   - shared public IR replay and atomic DOM application for LCD/troubleshooting;
     `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
 - [`tools/manual_ir/web_callouts.py`](../../tools/manual_ir/web_callouts.py)
   - declared/generated HTML callout decoder; owns one-row geometry, ComponentSpec, image references
     and optional explicit carrier language/variant declarations
-- [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
+- [`tools/web/callout_ir.py`](../../tools/web/callout_ir.py)
   - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
-- [`tools/web_callout_alignment.py`](../../tools/web_callout_alignment.py)
+- [`tools/web/callout_alignment.py`](../../tools/web/callout_alignment.py)
   - page-level pass after the callouts are restored: every label cell carries the page's distinct labels
     as invisible width references, so all label columns share one width that fits the widest label
   - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
@@ -288,39 +288,39 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/web_inbox.py`](../../tools/manual_ir/web_inbox.py)
   - scoped Inbox source/payload adapter; reuses the existing three-card + internal TIP ComponentSpec
   - records retained markup/assets and validates complete geometry plus semantic agreement
-- [`tools/web_inbox_component.py`](../../tools/web_inbox_component.py)
+- [`tools/web/inbox_component.py`](../../tools/web/inbox_component.py)
   - real Web entrypoint assembles public IR, replays on detached tags, then atomically applies the figure
   - existing target gate and projection remain; direct ComponentSpec-only Web reading has exited
 - [`tools/manual_ir/web_fcc.py`](../../tools/manual_ir/web_fcc.py)
   - prepared FCC source and owned IR contract; carries existing semantic blocks and resolved mark binding
   - validates canonical semantics, source identity and asset binding without reparsing HTML at replay
-- [`tools/web_fcc_component.py`](../../tools/web_fcc_component.py)
+- [`tools/web/fcc_component.py`](../../tools/web/fcc_component.py)
   - actual Web consumer assembles public IR and renders its semantic slots before mutating caller DOM
   - retains existing FCC projection/layout; source marker config is not a renderer input
 - [`tools/manual_ir/web_symbols.py`](../../tools/manual_ir/web_symbols.py)
   - governed signal legend and icon/meaning pair sources; share provenance/envelope checks
   - validate complete rows, labels and pair assets against retained rich table markup before replay
-- [`tools/web_symbol_components.py`](../../tools/web_symbol_components.py)
+- [`tools/web/symbol_components.py`](../../tools/web/symbol_components.py)
   - actual signal-table Web consumer uses public IR and applies the figure only after validation
   - raw caller-row decoding exits; signal payloads/hashes stay stable as pair consumers migrate
-- [`tools/web_symbol_pairs.py`](../../tools/web_symbol_pairs.py)
+- [`tools/web/symbol_pairs.py`](../../tools/web/symbol_pairs.py)
   - public IR consumer for the existing left-six/right-five icon/meaning panels
   - moves the direct source/render loop out of `web_presentation`; applies only fully validated replay
 - [`tools/manual_ir/web_app_download.py`](../../tools/manual_ir/web_app_download.py)
   - prepared App download source and owned payload validation; binds two rich-copy columns and all artwork
   - snapshots config/CSS provenance; replay validates data without reopening source/config
-- [`tools/web_app_download.py`](../../tools/web_app_download.py)
+- [`tools/web/app_download.py`](../../tools/web/app_download.py)
   - real public IR consumer for store/QR columns; retains the original rendering body
   - replaces image/removes consumed paragraphs only after complete validation and detached rendering
 - [`tools/manual_ir/web_app_controls.py`](../../tools/manual_ir/web_app_controls.py)
   - prepared add-device paragraph source; validates localized label and markup/image agreement
   - owns prefix/button-vocabulary admission and config/CSS provenance
-- [`tools/web_app_controls.py`](../../tools/web_app_controls.py)
+- [`tools/web/app_controls.py`](../../tools/web/app_controls.py)
   - actual public IR consumer replaces only the validated paragraph after detached replay
   - renders the existing accessible glyph without source/config access; old direct caller exits
-- [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
+- [`tools/web/reference_components.py`](../../tools/web/reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
-- [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
+- [`tools/web/stylesheets.py`](../../tools/web/stylesheets.py)
   - ordered assembly of the responsive base theme and focused component CSS modules into one public Sphinx stylesheet
 - [`tools/utils/spec_footnotes.py`](../../tools/utils/spec_footnotes.py)
   - shared reference-ID parsing, numeric markers and marker attachment for CSV spec and IDML readers; row/language selection stays with callers
@@ -748,9 +748,9 @@ source-scoped locale validator is `manual_ir.external_languages`; it does
 not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
 
-Prepared Web admission: `tools/web_component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).
+Prepared Web admission: `tools/web/component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).
 
-- `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
+- `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web/reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
 
 `component_specs/operation_tables_html` binds explicitly normalized RST auto-resume and key-combination tables to the shared ComponentSpec registry. `manual_ir/whole_document_components` owns their flow claims; the target presentation contract owns chapter applicability.
 

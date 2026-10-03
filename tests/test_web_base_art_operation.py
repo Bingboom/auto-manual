@@ -5,7 +5,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_base_art_operation import arrange_base_art_operation
+from tools.web.base_art_operation import arrange_base_art_operation
 
 
 SOURCE = Path("page/05_operation_guide_placeholder.rst")
@@ -301,7 +301,7 @@ class BaseArtOperationTests(unittest.TestCase):
                     )
 
     def test_lead_bolds_through_its_first_colon_only_when_plain(self) -> None:
-        from tools.web_base_art_operation import _bold_colon_lead
+        from tools.web.base_art_operation import _bold_colon_lead
 
         fullwidth = "\uff1a"
         for html, expected in (
@@ -459,7 +459,7 @@ class OperationPanelCopySourceTests(unittest.TestCase):
             )
 
     def test_only_active_panel_copy_reaches_the_page(self) -> None:
-        from tools.web_document_source import operation_panel_copy
+        from tools.web.document_source import operation_panel_copy
 
         text = "\n".join(
             [

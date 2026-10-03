@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 
 from tools.component_specs.overview import COMPONENT_ID
 from tools.manual_ir.hashing import file_sha256
-from tools.web_composite_manifest import WebCompositeEntry
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.composite_manifest import WebCompositeEntry
+from tools.web.embedded_components import render_embedded_web_component
 
 
 def bind_finished_overview(book, bindings: dict, manifest: Path) -> None:

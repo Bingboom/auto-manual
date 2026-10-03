@@ -1,18 +1,15 @@
-"""Align live captions to source-bound illustration centers."""
-from itertools import pairwise
-import math
+"""Deprecated alias of :mod:`tools.web.figure_captions` (CQ-1.4); import the new path.
 
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-def align_caption_centers(figure, centers):
-    """Keep the shared caption grid, offsetting its labels to native centers."""
-    if centers is None:
-        return
-    labels = figure.select(".hb-reference-caption-grid > .hb-reference-caption")
-    if (not isinstance(centers, (list, tuple)) or len(centers) != len(labels)
-            or not centers or any(isinstance(x, bool) or not isinstance(x, (int, float))
-                                  or not math.isfinite(x) or not 0 < x < 100 for x in centers)
-            or any(a >= b for a, b in pairwise(centers))):
-        raise ValueError("caption centers must be ordered percentages, one per live caption")
-    for index, (label, center) in enumerate(zip(labels, centers, strict=True)):
-        shift = center * len(labels) - (index + .5) * 100
-        label["style"] = f"transform:translateX({shift:g}%)"
+warnings.warn(
+    "tools.web_figure_captions moved to tools.web.figure_captions",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.web.figure_captions")

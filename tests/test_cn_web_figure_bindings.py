@@ -7,12 +7,12 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir.whole_document_components import discover_registered_components
-from tools.web_figure_coverage import (
+from tools.web.figure_coverage import (
     build_web_figure_coverage,
     enforce_required_web_figure_coverage,
 )
-from tools.web_presentation import load_web_manual_contract
-from tools.web_reference_figure_component import render_reference_figure_component
+from tools.web.presentation import load_web_manual_contract
+from tools.web.reference_figure_component import render_reference_figure_component
 
 
 SOURCE = Path('page/08_charging_methods.rst')

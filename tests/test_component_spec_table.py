@@ -19,7 +19,7 @@ from tools.component_specs.theme import load_manual_theme, validate_manual_theme
 from tools.render_contract import load_layout_tokens, load_render_contract
 from tools.manual_ir import ManualBlock, ManualIR, ManualPage
 from tools.utils.path_utils import Paths
-from tools.web_stylesheets import WEB_STYLESHEET_PARTS
+from tools.web.stylesheets import WEB_STYLESHEET_PARTS
 
 
 ROOT = Path(__file__).resolve().parents[1]

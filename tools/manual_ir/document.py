@@ -97,7 +97,7 @@ def validate_document(ir: ManualIR) -> None:
         raise ValueError("document presentation bindings are missing")
     figure_coverage = ir.metadata.get("web_figure_coverage")
     if figure_coverage is not None:
-        from tools.web_figure_coverage import validate_web_figure_coverage
+        from tools.web.figure_coverage import validate_web_figure_coverage
 
         if not isinstance(figure_coverage, dict):
             raise ValueError("invalid Web figure coverage")

@@ -2,7 +2,7 @@
 
 把已有的 `.md`（手写的、云文档导出的、流水线产出的）渲染成和线上 web 手册同一套样式的自包含静态站。
 
-在仓库里跑，不需要额外准备：样式直接取自 [`docs/renderers/contracts/`](../docs/renderers/contracts/) 的三份契约 CSS（经 [`tools/web_stylesheets.py`](../tools/web_stylesheets.py) 拼接），渲染栈用仓库 `.venv`（sphinx / myst-parser / furo，与线上构建同版本）。
+在仓库里跑，不需要额外准备：样式直接取自 [`docs/renderers/contracts/`](../docs/renderers/contracts/) 的三份契约 CSS（经 [`tools/web/stylesheets.py`](../tools/web/stylesheets.py) 拼接），渲染栈用仓库 `.venv`（sphinx / myst-parser / furo，与线上构建同版本）。
 
 **这不是发布通道。** 线上 Read the Docs 只渲染 `docs/publish/web` 的冻结快照；本工具拒绝写入 `docs/_build`、`reports/releases`、`docs/publish`。
 
