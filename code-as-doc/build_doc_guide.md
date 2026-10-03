@@ -1394,6 +1394,11 @@ preference:
   transform after `crop`, zero-area line groups are overlap-checked safely,
   and unsupported path items or crop/index drift fail closed. Promote only
   after a 12x quarantine comparison and pin the resulting output SHA-256;
+- when `drop_leader_strokes` would also find a necessary leader of the same
+  stroke widths, its optional source-page `bbox_pt` limits suppression to
+  complete paired paths inside that rectangle. A path crossing the boundary
+  stays intact. Omit `bbox_pt` for the original whole-crop behavior; review
+  the source/candidate pair at 12x before approving the new output hash;
 - when identical pinned PyMuPDF/MuPDF versions still produce isolated
   cross-platform antialiasing samples, a PNG output may declare
   `rgb_quantization_bits` from 1 through 8. The pipeline rounds every RGB
