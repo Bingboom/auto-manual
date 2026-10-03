@@ -1688,12 +1688,12 @@
                 "content_kind": "ordered_labels",
                 "content": [
                   {
-                    "html": "On: Press once",
-                    "text": "On: Press once"
+                    "html": "<span class=\"hb-source-operation-step\" style=\"display:block;width:100%\"><span class=\"hb-operation-step-label\">On</span> <span class=\"hb-operation-step-instruction\">Press once</span></span>",
+                    "text": "On Press once"
                   },
                   {
-                    "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>Off: Press and hold for 3s</span></span>",
-                    "text": "Off: Press and hold for 3s"
+                    "html": "<span class=\"hb-source-operation-step\" style=\"display:block;width:100%\"><span class=\"hb-operation-step-label\">Off</span> <span class=\"hb-operation-step-instruction\" style=\"display:flex;align-items:center;gap:0.35em\"><span>Press and hold for 3s</span><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span></span></span>",
+                    "text": "Off Press and hold for 3s"
                   },
                   {
                     "html": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
@@ -1729,19 +1729,19 @@
                   {
                     "line": 0,
                     "rect": [
-                      73.96825396825396,
-                      6.32183908045977,
-                      20.952380952380953,
-                      14.367816091954023
+                      74.92063492063492,
+                      8.42494626100036,
+                      22.53968253968254,
+                      0.0
                     ]
                   },
                   {
                     "line": 1,
                     "rect": [
-                      73.96825396825396,
-                      22.988505747126435,
-                      22.22222222222222,
-                      16.091954022988507
+                      74.92063492063492,
+                      23.1059796914287,
+                      22.53968253968254,
+                      0.0
                     ]
                   },
                   {
@@ -1766,7 +1766,7 @@
               },
               "image_key": "operation-main-power",
               "web_replace_key": "",
-              "source_fragment_sha256": "1c75a4a929d7ce689fd991ea7533bf8ad89cfa72c30e2ea36b2e92239ad8c48e"
+              "source_fragment_sha256": "dd224ac1bcd1aca116dc44a7caaa6fd9f61e101af9958f30dec193002a9e4d2e"
             },
             "schema_version": "component-spec/v1"
           },
@@ -1799,8 +1799,53 @@
                   },
                   "children": [
                     {
-                      "kind": "text",
-                      "text": "On: Press once"
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "hb-source-operation-step",
+                            "style": "display:block;width:100%"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "hb-operation-step-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "On"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "text",
+                          "text": " "
+                        },
+                        {
+                          "kind": "inline_group",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "hb-operation-step-instruction"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Press once"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -1820,42 +1865,76 @@
                       "presentation": {
                         "html": {
                           "attributes": {
-                            "style": "display:inline-flex;align-items:center;gap:0.35em"
+                            "class": "hb-source-operation-step",
+                            "style": "display:block;width:100%"
                           }
                         }
                       },
                       "children": [
                         {
                           "kind": "inline_group",
-                          "hidden": true,
                           "presentation": {
                             "html": {
                               "attributes": {
-                                "class": "hb-inline-hold-clock",
-                                "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                                "class": "hb-operation-step-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Off"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "text",
+                          "text": " "
+                        },
+                        {
+                          "kind": "inline_group",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "hb-operation-step-instruction",
+                                "style": "display:flex;align-items:center;gap:0.35em"
                               }
                             }
                           },
                           "children": [
                             {
                               "kind": "inline_group",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Press and hold for 3s"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "inline_group",
+                              "hidden": true,
                               "presentation": {
                                 "html": {
                                   "attributes": {
-                                    "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                    "class": "hb-inline-hold-clock",
+                                    "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
                                   }
                                 }
                               },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "inline_group",
-                          "children": [
-                            {
-                              "kind": "text",
-                              "text": "Off: Press and hold for 3s"
+                              "children": [
+                                {
+                                  "kind": "inline_group",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                      }
+                                    }
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         }

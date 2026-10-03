@@ -51,12 +51,12 @@
     }
   ],
   "baseline_main": "6bd85d39f7f7dba2aa751a69f82f258c63eab9c3",
-  "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62",
+  "validated_main": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
   "inputs": [
     {
       "path": "README.md",
-      "sha256": "f46c819514ed62e31ded715220c9f9e41e06d68f459d6efa66258cf575b35f62",
-      "size": 9840
+      "sha256": "af98ce7dc8ffce0a9ea8c85206e292e72a55ea08f74ef46b0b22a86aea92ec24",
+      "size": 10536
     },
     {
       "path": "asset_recipe.json",
@@ -380,8 +380,8 @@
     },
     {
       "path": "source/browser-audit.json",
-      "sha256": "1a5a137353b3e91506bdc502724bc091e6755dd967b252929cbbeaa9a87224f5",
-      "size": 65400
+      "sha256": "af219bc8f470ea1c5bb9ab2c009683727dec24707391c32beabcefe0f750018c",
+      "size": 78639
     },
     {
       "path": "source/chapter-copy-index.json",
@@ -390,8 +390,8 @@
     },
     {
       "path": "source/chapters.json",
-      "sha256": "c5a9a7b5d86a773300884e8a48bc586dc0d5fe1bf8dc81bfc9cebdc9232042bc",
-      "size": 298780
+      "sha256": "1dfcb25db91a228bde176b4d6d8c71d0f5b48e22e60c58332110563051aa9a61",
+      "size": 302252
     },
     {
       "path": "source/lcd-icon-connected-batteries.pdf",
@@ -420,13 +420,13 @@
     },
     {
       "path": "source/validation.json",
-      "sha256": "84597cf1a1747774cb1e2e34fe8e403714e9a1637749c22268a399683e75e41e",
-      "size": 4054
+      "sha256": "1ee2534edd8d14c1c962761b7ed44b9623c45cdd2cf3b3f58b4c116319afcb80",
+      "size": 4838
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "sha256": "dcea4885605e605e9c0f49e16326870d92b39c6f2bdbac76a038e89f0ab17163",
-      "size": 91831
+      "sha256": "f702dd25ed5cb4f07a1980d95e7f8101c0b3450217c106b621a6e00c681a808d",
+      "size": 92550
     },
     {
       "path": "web/en/assets/app-control.png",
@@ -715,13 +715,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "sha256": "da7718cbad5c9034753246adfdfdbae39c611c4cd5c511c872fca58371ea3bfa",
-      "size": 414887
+      "sha256": "6678d6beb3ffc8da4aae5413de562333ee500d88d1123a85c70241a76c77651d",
+      "size": 418549
     },
     {
       "path": "web/en/manual_je3600a_eu_en.md",
-      "sha256": "30e03011701708dda99febb2a6a477cb3f3864484f622bcc2ed2a76ff42c370d",
-      "size": 67107
+      "sha256": "f1c285ef5201584aa8ef1a5420adb5a1f3bedb0761e0a65a5af8a73cbe7606a3",
+      "size": 67423
     }
   ]
 }

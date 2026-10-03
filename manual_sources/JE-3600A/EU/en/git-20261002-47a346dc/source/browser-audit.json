@@ -167,7 +167,7 @@
         "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -1067,6 +1067,213 @@
         }
       ],
       "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
+    },
+    "main_power_alignment_review": {
+      "brokenImages": [],
+      "clocks": [
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 214.703125,
+          "containsImage": false,
+          "fontSize": "12.6422px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 13.90625,
+          "hidden": "true",
+          "left": 1068.4609375,
+          "lineHeight": "13.9064px",
+          "right": 1082.3671875,
+          "text": "",
+          "top": 200.796875,
+          "width": 13.90625
+        },
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 2563.484375,
+          "containsImage": false,
+          "fontSize": "16.772px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 18.4453125,
+          "hidden": "true",
+          "left": 796.1953125,
+          "lineHeight": "19.4555px",
+          "right": 814.640625,
+          "text": "",
+          "top": 2545.0390625,
+          "width": 18.4453125
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "main": {
+        "art": {
+          "bottom": 532.8203125,
+          "height": 465.546875,
+          "left": 314.59375,
+          "right": 1157.40625,
+          "top": 67.2734375,
+          "width": 842.8125
+        },
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 146.3515625,
+              "fontSize": "12.6422px",
+              "fontWeight": "400",
+              "height": 13.8984375,
+              "left": 946.03125,
+              "lineHeight": "13.9064px",
+              "right": 1135.9921875,
+              "text": "Press once",
+              "top": 132.453125,
+              "width": 189.9609375
+            },
+            "label": {
+              "bottom": 132.453125,
+              "fontSize": "23.5987px",
+              "fontWeight": "700",
+              "height": 25.9609375,
+              "left": 946.03125,
+              "lineHeight": "25.9586px",
+              "right": 1135.9921875,
+              "text": "On",
+              "top": 106.4921875,
+              "width": 189.9609375
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 214.703125,
+              "fontSize": "12.6422px",
+              "fontWeight": "400",
+              "height": 13.90625,
+              "left": 946.03125,
+              "lineHeight": "13.9064px",
+              "right": 1135.9921875,
+              "text": "Press and hold for 3s",
+              "top": 200.796875,
+              "width": 189.9609375
+            },
+            "label": {
+              "bottom": 200.796875,
+              "fontSize": "23.5987px",
+              "fontWeight": "700",
+              "height": 25.9609375,
+              "left": 946.03125,
+              "lineHeight": "25.9586px",
+              "right": 1135.9921875,
+              "text": "Off",
+              "top": 174.8359375,
+              "width": 189.9609375
+            }
+          }
+        ],
+        "support": [
+          {
+            "bottom": 415.0859375,
+            "fontSize": "16.772px",
+            "fontWeight": "400",
+            "height": 98.9921875,
+            "left": 710.578125,
+            "lineHeight": "19.4555px",
+            "right": 1109.234375,
+            "text": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
+            "top": 316.09375,
+            "width": 398.65625
+          },
+          {
+            "bottom": 498.03125,
+            "fontSize": "16.772px",
+            "fontWeight": "400",
+            "height": 58.859375,
+            "left": 365.421875,
+            "lineHeight": "19.4555px",
+            "right": 1125.2890625,
+            "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+            "top": 439.171875,
+            "width": 759.8671875
+          }
+        ]
+      },
+      "scrollWidth": 1440,
+      "usb": {
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 744.8671875,
+              "fontSize": "12.6122px",
+              "fontWeight": "400",
+              "height": 13.8671875,
+              "left": 1013.4609375,
+              "lineHeight": "13.8734px",
+              "right": 1147.984375,
+              "text": "Press once",
+              "top": 731,
+              "width": 134.5234375
+            },
+            "label": {
+              "bottom": 731,
+              "fontSize": "23.5427px",
+              "fontWeight": "700",
+              "height": 25.890625,
+              "left": 1013.4609375,
+              "lineHeight": "25.897px",
+              "right": 1147.984375,
+              "text": "On",
+              "top": 705.109375,
+              "width": 134.5234375
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 812.7734375,
+              "fontSize": "12.6122px",
+              "fontWeight": "400",
+              "height": 13.8671875,
+              "left": 1013.4609375,
+              "lineHeight": "13.8734px",
+              "right": 1147.984375,
+              "text": "Press once",
+              "top": 798.90625,
+              "width": 134.5234375
+            },
+            "label": {
+              "bottom": 798.90625,
+              "fontSize": "23.5427px",
+              "fontWeight": "700",
+              "height": 25.890625,
+              "left": 1013.4609375,
+              "lineHeight": "25.897px",
+              "right": 1147.984375,
+              "text": "Off",
+              "top": 773.015625,
+              "width": 134.5234375
+            }
+          }
+        ]
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "errors": [],
+      "text_sha256": "5f3b6d500057c4780a5a7a6f9ced58f50cdcbdcb130962c36475c11d327fc7ba",
+      "screenshots": [
+        {
+          "name": "power-alignment-1440.png",
+          "sha256": "6da07fa22f7311be6b9b37b3232eef0eb9cede297730baa9945000499cda333b"
+        }
+      ],
+      "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
     }
   },
   {
@@ -1256,7 +1463,7 @@
         "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -2168,6 +2375,213 @@
         }
       ],
       "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
+    },
+    "main_power_alignment_review": {
+      "brokenImages": [],
+      "clocks": [
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 343.4140625,
+          "containsImage": false,
+          "fontSize": "14.08px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "left": 162.7734375,
+          "lineHeight": "15.488px",
+          "right": 178.2578125,
+          "text": "",
+          "top": 327.9296875,
+          "width": 15.484375
+        },
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 2248.7421875,
+          "containsImage": false,
+          "fontSize": "14.08px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "left": 26.3984375,
+          "lineHeight": "16.3328px",
+          "right": 41.8828125,
+          "text": "",
+          "top": 2233.2578125,
+          "width": 15.484375
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "main": {
+        "art": {
+          "bottom": 262.8671875,
+          "height": 197.75,
+          "left": 16,
+          "right": 374,
+          "top": 65.1171875,
+          "width": 358
+        },
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 303.140625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 26.3984375,
+              "lineHeight": "15.488px",
+              "right": 363.6015625,
+              "text": "Press once",
+              "top": 287.65625,
+              "width": 337.203125
+            },
+            "label": {
+              "bottom": 287.65625,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 26.3984375,
+              "lineHeight": "17.6px",
+              "right": 363.6015625,
+              "text": "On",
+              "top": 270.0625,
+              "width": 337.203125
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 343.4140625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 26.3984375,
+              "lineHeight": "15.488px",
+              "right": 363.6015625,
+              "text": "Press and hold for 3s",
+              "top": 327.9296875,
+              "width": 337.203125
+            },
+            "label": {
+              "bottom": 327.9296875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 26.3984375,
+              "lineHeight": "17.6px",
+              "right": 363.6015625,
+              "text": "Off",
+              "top": 310.3359375,
+              "width": 337.203125
+            }
+          }
+        ],
+        "support": [
+          {
+            "bottom": 415.921875,
+            "fontSize": "14.08px",
+            "fontWeight": "400",
+            "height": 65.3125,
+            "left": 26.3984375,
+            "lineHeight": "16.3328px",
+            "right": 363.6015625,
+            "text": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
+            "top": 350.609375,
+            "width": 337.203125
+          },
+          {
+            "bottom": 488.4296875,
+            "fontSize": "14.08px",
+            "fontWeight": "400",
+            "height": 65.3125,
+            "left": 26.3984375,
+            "lineHeight": "16.3328px",
+            "right": 363.6015625,
+            "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+            "top": 423.1171875,
+            "width": 337.203125
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "usb": {
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 832.90625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 27.3984375,
+              "lineHeight": "15.488px",
+              "right": 191,
+              "text": "Press once",
+              "top": 817.421875,
+              "width": 163.6015625
+            },
+            "label": {
+              "bottom": 817.421875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 27.3984375,
+              "lineHeight": "17.6px",
+              "right": 191,
+              "text": "On",
+              "top": 799.828125,
+              "width": 163.6015625
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 832.90625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 199,
+              "lineHeight": "15.488px",
+              "right": 362.6015625,
+              "text": "Press once",
+              "top": 817.421875,
+              "width": 163.6015625
+            },
+            "label": {
+              "bottom": 817.421875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 199,
+              "lineHeight": "17.6px",
+              "right": 362.6015625,
+              "text": "Off",
+              "top": 799.828125,
+              "width": 163.6015625
+            }
+          }
+        ]
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "errors": [],
+      "text_sha256": "555e162b7f8add9faa8055564f605e6320277e3b5929f9bc8c112c2b465b6515",
+      "screenshots": [
+        {
+          "name": "power-alignment-390.png",
+          "sha256": "9a7cb9fcb82883db69ffc03fe57a7140f72d5fd917763894fd75cf7a9a43637c"
+        }
+      ],
+      "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
     }
   }
 ]

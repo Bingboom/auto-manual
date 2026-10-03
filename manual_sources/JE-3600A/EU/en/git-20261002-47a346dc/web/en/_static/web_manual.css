@@ -1803,6 +1803,8 @@ body {
 .hb-reference-lcd-actions td:nth-child(2),
 .hb-reference-lcd-actions th:nth-child(2) { width: 18%; }
 .hb-reference-symbol-meanings td { width: 50%; }
+.hb-reference-lcd-descriptions td:first-child { width: 35%; }
+.hb-reference-lcd-descriptions td:last-child { width: 65%; }
 @media (max-width: 42rem) {
   .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
 }
@@ -3260,6 +3262,26 @@ body {
 .hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill {
   max-width: none;
   padding: 0.3cqw 1.2cqw;
+}
+
+/* Opt-in clock for source art whose baked glyph has been removed. */
+.hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration[data-duration-icon="clock"] {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: max(0.65rem, 2.1cqw);
+}
+
+.hb-base-art-live-copy .hb-operation-duration[data-duration-icon="clock"]::before {
+  content: "";
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  border-radius: 50%;
+  background:
+    linear-gradient(#fff, #fff) 50% 32% / 0.13em 0.56em no-repeat,
+    linear-gradient(#fff, #fff) 66% 50% / 0.5em 0.13em no-repeat,
+    #343031;
 }
 
 /* Source-authored figure/table compositions and bounded target refinements. */

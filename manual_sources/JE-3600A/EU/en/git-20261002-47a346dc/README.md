@@ -144,6 +144,16 @@ The store badges and QR code load within their columns and stay centered above
 their copy. No assets or wording change. Local screenshots are
 `reports/je3600a-native/final-sections-*.png`.
 
+Main-power On/Off correction is recorded under `main_power_alignment_review`.
+Both titles and their separate instruction lines reuse the shared Operation text
+classes, matching USB typography. The title centers bind to the native p13
+bracket arms at y=93.5104 and 119.0554 pt, with one common left edge at x=263 pt.
+The CSS clock follows the long-press instruction, so it cannot indent the Off
+title. At mobile width the same text classes remain readable below the artwork.
+Only the two editorial On/Off colons become block boundaries; all words, source
+facts, the native text ledger and all artwork stay unchanged. Local screenshots
+are `reports/je3600a-native/power-alignment-{1440,390}.png`.
+
 ## Source errata awaiting product review
 
 1. P2 English preface/TOC carries “US” although this source and target are EU.

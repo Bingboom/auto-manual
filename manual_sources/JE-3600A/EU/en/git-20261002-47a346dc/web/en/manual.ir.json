@@ -57,8 +57,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "754dc173974f8e7a986e823cd84bfc905b601bac099db80d3b35c1e18a08cf16",
-  "content_sha256": "e953ad42ca6c1b64f212990645b2b545d6b6d59f9a0adbf770f39e39dba4d225",
+  "bundle_sha256": "b2e2c2f0dd9015f7961958dfb54a2473510ad286d60768f2dbc7b4595100d8c9",
+  "content_sha256": "a240fa61be2108cbdac32899050bce59e11c2cdb07c8992fd8b591a42a2cbab6",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -976,6 +976,7 @@
             "component.table.reference"
           ],
           "variants": [
+            "lcd-descriptions",
             "lcd-legend",
             "lcd-actions",
             "lcd-actions-compact",
@@ -1338,7 +1339,7 @@
       "registry_id": "hb-component-registry",
       "schema_version": "component-registry/v1"
     },
-    "component_registry_sha256": "f1900bd78432e69acbd9dc7a7b7254cfc54fc22eca88db741827532a9d288c02",
+    "component_registry_sha256": "9275f1facc80873cdbf74f4f3c91c29f87ebc26fd6056eb37e69e13f96639a8f",
     "component_scope_notes": {
       "HB-TABLE-AUTO-RESUME": "Absent from native English p8-24; not applicable."
     },
@@ -1399,9 +1400,9 @@
         "region": "EU",
         "technical_version": "git-20261002-47a346dc"
       },
-      "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62"
+      "validated_main": "565c52a2d450d2b353e0186b22d0b230a2fb13ee"
     },
-    "frozen_stylesheet_sha256": "dcea4885605e605e9c0f49e16326870d92b39c6f2bdbac76a038e89f0ab17163",
+    "frozen_stylesheet_sha256": "f702dd25ed5cb4f07a1980d95e7f8101c0b3450217c106b621a6e00c681a808d",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -4025,7 +4026,7 @@
             "assets/operation-main-power.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "175ad55c004ccff37de36504ac4ef5798097d7b50e9732d8af6b2486a321a7aa",
+          "content_sha256": "7230b2b28f7418876c132c586a4678835f8785b7e6d5cc16abaab00cfef36425",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4039,8 +4040,53 @@
                   {
                     "children": [
                       {
-                        "kind": "text",
-                        "text": "On: Press once"
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "On"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-operation-step-label"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "kind": "text",
+                            "text": " "
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Press once"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-operation-step-instruction"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-source-operation-step",
+                              "style": "display:block;width:100%"
+                            }
+                          }
+                        }
                       }
                     ],
                     "kind": "group",
@@ -4060,43 +4106,77 @@
                           {
                             "children": [
                               {
-                                "children": [],
-                                "kind": "inline_group",
-                                "presentation": {
-                                  "html": {
-                                    "attributes": {
-                                      "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
-                                    }
-                                  }
-                                }
+                                "kind": "text",
+                                "text": "Off"
                               }
                             ],
-                            "hidden": true,
                             "kind": "inline_group",
                             "presentation": {
                               "html": {
                                 "attributes": {
-                                  "class": "hb-inline-hold-clock",
-                                  "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                                  "class": "hb-operation-step-label"
                                 }
                               }
                             }
                           },
                           {
+                            "kind": "text",
+                            "text": " "
+                          },
+                          {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Off: Press and hold for 3s"
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Press and hold for 3s"
+                                  }
+                                ],
+                                "kind": "inline_group"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [],
+                                    "kind": "inline_group",
+                                    "presentation": {
+                                      "html": {
+                                        "attributes": {
+                                          "style": "position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)"
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "hidden": true,
+                                "kind": "inline_group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": "hb-inline-hold-clock",
+                                      "style": "position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor"
+                                    }
+                                  }
+                                }
                               }
                             ],
-                            "kind": "inline_group"
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-operation-step-instruction",
+                                  "style": "display:flex;align-items:center;gap:0.35em"
+                                }
+                              }
+                            }
                           }
                         ],
                         "kind": "inline_group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "style": "display:inline-flex;align-items:center;gap:0.35em"
+                              "class": "hb-source-operation-step",
+                              "style": "display:block;width:100%"
                             }
                           }
                         }
@@ -4175,19 +4255,19 @@
                     {
                       "line": 0,
                       "rect": [
-                        73.96825396825396,
-                        6.32183908045977,
-                        20.952380952380953,
-                        14.367816091954023
+                        74.92063492063492,
+                        8.42494626100036,
+                        22.53968253968254,
+                        0.0
                       ]
                     },
                     {
                       "line": 1,
                       "rect": [
-                        73.96825396825396,
-                        22.988505747126435,
-                        22.22222222222222,
-                        16.091954022988507
+                        74.92063492063492,
+                        23.1059796914287,
+                        22.53968253968254,
+                        0.0
                       ]
                     },
                     {
@@ -4217,7 +4297,7 @@
                 "capture_following_lines": 4,
                 "image_key": "operation-main-power",
                 "presentation_mode": "base-art-live-copy",
-                "source_fragment_sha256": "1c75a4a929d7ce689fd991ea7533bf8ad89cfa72c30e2ea36b2e92239ad8c48e",
+                "source_fragment_sha256": "dd224ac1bcd1aca116dc44a7caaa6fd9f61e101af9958f30dec193002a9e4d2e",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
@@ -4245,12 +4325,12 @@
                 {
                   "content": [
                     {
-                      "html": "On: Press once",
-                      "text": "On: Press once"
+                      "html": "<span class=\"hb-source-operation-step\" style=\"display:block;width:100%\"><span class=\"hb-operation-step-label\">On</span> <span class=\"hb-operation-step-instruction\">Press once</span></span>",
+                      "text": "On Press once"
                     },
                     {
-                      "html": "<span style=\"display:inline-flex;align-items:center;gap:0.35em\"><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span><span>Off: Press and hold for 3s</span></span>",
-                      "text": "Off: Press and hold for 3s"
+                      "html": "<span class=\"hb-source-operation-step\" style=\"display:block;width:100%\"><span class=\"hb-operation-step-label\">Off</span> <span class=\"hb-operation-step-instruction\" style=\"display:flex;align-items:center;gap:0.35em\"><span>Press and hold for 3s</span><span aria-hidden=\"true\" class=\"hb-inline-hold-clock\" style=\"position:relative;display:inline-block;width:1.1em;height:1.1em;flex:none;border-radius:50%;background:currentColor\"><span style=\"position:absolute;left:50%;top:22%;width:25%;height:28%;border-left:0.1em solid #fff;border-bottom:0.1em solid #fff;transform:translateX(-0.05em)\"></span></span></span></span>",
+                      "text": "Off Press and hold for 3s"
                     },
                     {
                       "html": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",

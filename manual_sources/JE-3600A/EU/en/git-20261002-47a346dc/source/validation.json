@@ -1,6 +1,6 @@
 {
   "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
-  "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62",
+  "validated_main": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
   "chapters": 16,
   "assets": 55,
   "component_inventory": {
@@ -49,12 +49,13 @@
     "strict_sphinx": "passed with -W --keep-going",
     "guardrails": "passed",
     "logic_suite": "not applicable: source and shared CSS only; no production Python changes",
-    "doc_links": "249 files and 2208 links checked; zero broken",
+    "doc_links": "251 markdown files and 2213 links checked; zero broken",
     "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md",
     "review_correction": "IMPORTANT heading and eight byte-identical shared Symbols passed at 1440x1000 and 390x844",
     "operation_background_review": "Passed at 1440x1000 and 390x844: five gray boxes and two baked clocks removed, two CSS-only clocks, two native prerequisite paragraphs, 56 loaded images, no overflow or page errors",
     "style_restoration_review": "Passed at 1440x1000 and 390x844: 16 chapter bands, manual bullets isolated from App numbering, three sold-separately pills, first-charge pill, bold green-energy lead, rounded storage panel, 56 loaded images, no overflow/errors/duplicate IDs",
-    "spec_warranty_app_review": "Passed at 1440x1000 and 390x844: three dark chapter bars, six floating warranty labels without body overlap, seven App headings with source case and aligned text edges, step 2.2 emphasis, store/QR assets loaded and centered, no broken images/errors/overflow/duplicate IDs"
+    "spec_warranty_app_review": "Passed at 1440x1000 and 390x844: three dark chapter bars, six floating warranty labels without body overlap, seven App headings with source case and aligned text edges, step 2.2 emphasis, store/QR assets loaded and centered, no broken images/errors/overflow/duplicate IDs",
+    "main_power_alignment_review": "Passed at 1440x1000 and 390x844: shared USB typography, aligned title/instruction left edges, native bracket centers within 0.1 px on desktop, readable mobile stacked text, two CSS-only clocks, 56 loaded images and zero page errors/overflow/duplicate IDs"
   },
   "warnings": [
     "Local Python package versions differ from requirements.lock; dependencies were not changed."
@@ -86,5 +87,17 @@
     "source_copy_unchanged": true,
     "source_artwork_unchanged": true,
     "frozen_css_regenerated": true
+  },
+  "main_power_alignment_correction": {
+    "shared_operation_text_classes": true,
+    "bracket_arm_y_pt": [
+      93.51040649414062,
+      119.05540466308594
+    ],
+    "text_left_x_pt": 263,
+    "css_clock": "after long-press instruction, outside the title",
+    "native_text_ledger_byte_identical": true,
+    "asset_manifest_byte_identical": true,
+    "copy_change": "The two main-power On/Off editorial colons become separate label/instruction blocks; all words unchanged."
   }
 }
