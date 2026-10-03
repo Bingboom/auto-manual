@@ -29,10 +29,10 @@ def freshness(root: Path, registry: dict, today: dt.date) -> list[dict]:
             path = snapshot_path(assets, NAMES[kind])
             payload = json.loads(path.read_text())
             if kind == "deliverables":
-                from tools.rtd_deliverables import snapshot_problems
+                from tools.rtd.deliverables import snapshot_problems
                 problems = snapshot_problems(payload)
             else:
-                from tools.rtd_system_workspace import CONTRACT_NAME, corpus_problems, load_contract
+                from tools.rtd.system_workspace import CONTRACT_NAME, corpus_problems, load_contract
                 contract = load_contract(assets / CONTRACT_NAME)
                 problems = corpus_problems(payload, [v["code"] for v in contract["corpus"]["languages"]])
             if problems:

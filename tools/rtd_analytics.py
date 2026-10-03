@@ -1,36 +1,15 @@
-"""Optional, cookieless Cloudflare Web Analytics beacon for frozen Web pages."""
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.rtd.analytics` (CQ-1.4); import the new path.
 
-import json
-import re
-from html import escape
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-BEACON_SRC = "https://static.cloudflareinsights.com/beacon.min.js"
-_TOKEN = re.compile(r"^[0-9a-f]{32}$")
-
-
-def normalize_beacon_token(raw: object) -> str:
-    """Return the configured beacon token, or '' when analytics stays off."""
-    if raw is None:
-        return ""
-    if not isinstance(raw, str):
-        raise ValueError("analytics_beacon_token must be a string")
-    token = raw.strip()
-    if not token:
-        return ""
-    if not _TOKEN.fullmatch(token):
-        raise ValueError("analytics_beacon_token must be 32 lowercase hex characters")
-    return token
-
-
-def beacon_attributes(token: str) -> dict[str, str]:
-    """Attributes for the beacon script tag; the token is the only payload."""
-    return {"data-cf-beacon": json.dumps({"token": token})}
-
-
-def beacon_markup(token: str) -> str:
-    """Beacon script tag for templates that render their own head; '' when off."""
-    if not token:
-        return ""
-    payload = escape(json.dumps({"token": token}), quote=True)
-    return f'<script defer src="{BEACON_SRC}" data-cf-beacon="{payload}"></script>'
+warnings.warn(
+    "tools.rtd_analytics moved to tools.rtd.analytics",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.rtd.analytics")

@@ -38,7 +38,7 @@ from tools.web.presentation import protect_web_callouts_for_pandoc
 from tools.web.presentation import transform_web_fragment
 from tools.web.document_ir import render_document_fragments
 from tools.web.document_source import _consume_covered_annotations, load_web_document
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_html import build_word_bundle_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -172,7 +172,7 @@ class WebDocumentIRTests(unittest.TestCase):
         )
         output = root / "package"
         cfg = {"paths": {"web_illustration_manifest": str(manifest)}} if manifest else {}
-        with patch("tools.word_bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
+        with patch("tools.word.bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
             build_word_bundle_html(cfg, "BP", "JP", materialized_bundle=bundle,
                                    output_dir=output, presentation_profile="web")
         return read_manual_ir(output / "manual.ir.json"), output, pages
@@ -657,7 +657,7 @@ with patch.object(Path, "open", guarded):
 
     def test_declared_lcd_without_separate_icons_keeps_all_copy(self):
         from tools.csv_pages.renderers_lcd_icons import _rst_table
-        from tools.word_bundle_html import _convert_rst_fragment_to_html
+        from tools.word.bundle_html import _convert_rst_fragment_to_html
         rows = [{"no": "1", "figure": "", "name": "残量", "description": "現在の残量です。"}]
         with tempfile.TemporaryDirectory() as td:
             markup = _convert_rst_fragment_to_html(

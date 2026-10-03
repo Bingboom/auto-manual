@@ -38,8 +38,8 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/build_queue/process_build_queue.py": 565,
     "tools/validate_spec_master_runtime.py": 880,
     "tools/check/docs_generated.py": 880,
-    "tools/word_bundle_docx.py": 740,
-    "tools/word_bundle_docx_styles.py": 1080,
+    "tools/word/bundle_docx.py": 740,
+    "tools/word/bundle_docx_styles.py": 1080,
     # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into
     # action / scope / prefix / task-id helpers; the growth is their signatures.
     "tools/build_queue/query.py": 1240,
@@ -99,8 +99,8 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/component_specs/overview_instance.py": 475,
     "tools/web/overview_component.py": 190,
     "tools/idml/page_overview.py": 570,
-    "tools/word_bundle_html_render.py": 330,
-    "tools/word_inbox_component.py": 150,
+    "tools/word/bundle_html_render.py": 330,
+    "tools/word/inbox_component.py": 150,
     # Registered 2026-08-03 at 469 lines with 31 lines of growth headroom.
     "tools/sync_web_composites.py": 500,
     # Registered 2026-08-03 at 434 lines with 31 lines of growth headroom.

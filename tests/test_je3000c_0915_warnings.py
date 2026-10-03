@@ -23,7 +23,7 @@ Word outputs. The PDF (LaTeX) and IDML stay exactly as on main. The gate is the
 repo's print/screen branch selection:
 
 * ``.. only:: not latex`` bodies reach the Web and Word pipelines, whose tag set
-  is ``html`` plus model/region/lang (``tools.word_bundle_html``); the Sphinx
+  is ``html`` plus model/region/lang (``tools.word.bundle_html``); the Sphinx
   LaTeX builder and the IDML extractor (tags ``latex``/``idml``) drop them;
 * ``.. only:: latex`` bodies go the other way.
 
@@ -60,8 +60,8 @@ from bs4 import BeautifulSoup
 from tools.config_loader import load_config_mapping
 from tools.config_pages import GeneratedPage, RstIncludePage, parse_config_pages
 from tools.idml_rst_extract import extract_page
-from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html import _normalize_sphinx_only_blocks_for_docutils
+from tools.word.bundle_html_only import _build_word_only_tags
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "docs" / "templates"

@@ -5,7 +5,7 @@ import tempfile
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_html import build_word_bundle_html
 
 
 def install_prepared_admission_fixture(test, markdown_dir, *, model, language, region="EU"):

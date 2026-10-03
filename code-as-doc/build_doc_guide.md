@@ -74,7 +74,7 @@ gate, hosting change or online write is introduced by the documentation update.
 ## 1. Recommended Entrypoint
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
-`python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
+`python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
 The consumer-facing feedback channel is the after-sales mailbox

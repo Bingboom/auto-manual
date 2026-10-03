@@ -19,7 +19,7 @@ from tools import workspace_refresh as refresh
 from tools import workspace_refresh_verify as verify
 from tools.workspace_refresh_trigger import REQUEST_ENV, delivery_readback, request_refresh
 from tools.workspace_freshness import freshness, inventory
-from tools.rtd_deliverables import snapshot_problems
+from tools.rtd.deliverables import snapshot_problems
 from tests.test_rtd_deliverables import snapshot
 from tests.test_rtd_system_workspace import corpus_contract
 
@@ -191,7 +191,7 @@ class ExportServiceTests(unittest.TestCase):
             self.assertEqual(json.loads((assets / snap.NAMES["deliverables"]).read_text())["documents"], snapshot()["documents"])
 
     def test_corpus_revision_changes_hash_without_changing_counts(self):
-        from tools.rtd_system_workspace import corpus_export
+        from tools.rtd.system_workspace import corpus_export
         def reader(text):
             return lambda _: {"data": {"fields": ["en", "fr", "Status"], "record_id_list": ["r1"], "data": [["Hello", text, "Approved"]]}}
         a = corpus_export(corpus_contract(), base_token="base", run=reader("Bonjour"), today=dt.date(2026, 10, 2))
@@ -334,7 +334,7 @@ class QueueBatchTests(unittest.TestCase):
             self.assertEqual((result['stage'], result['status']), ('rtd-build', 'failed'))
 
     def test_rtd_api_uses_safe_query_free_transport_url(self):
-        from tools.rtd_deployment_receipt import _canonical_probe_url
+        from tools.rtd.deployment_receipt import _canonical_probe_url
         with TemporaryDirectory() as tmp:
             output = Path(tmp) / 'result.json'
             args = ['verify', '--root', tmp, '--revision', 'a' * 40, '--output', str(output)]
@@ -348,7 +348,7 @@ class QueueBatchTests(unittest.TestCase):
                 return json.dumps(response).encode()
 
             with patch('sys.argv', args), patch.object(verify, 'command', return_value='a' * 40), \
-                    patch('tools.rtd_deployment_receipt._fetch', side_effect=fetch), \
+                    patch('tools.rtd.deployment_receipt._fetch', side_effect=fetch), \
                     patch.object(verify, 'verify_once', return_value={'status': 'verified'}), \
                     redirect_stdout(io.StringIO()):
                 self.assertEqual(verify.main(), 0)

@@ -104,7 +104,7 @@ At discovery time the main hot spots are:
 - `docs/renderers/contracts/web_manual.json`: 420 lines;
 - assembled Web CSS source modules: about 1,900 lines in the primary module,
   plus specialized modules;
-- `tools/word_bundle_docx_styles.py`: 1,044 lines;
+- `tools/word/bundle_docx_styles.py`: 1,044 lines;
 - `tools/render_contract.py` and `tests/test_render_contract.py`: the current
   schema and parity gate;
 - `tools/manual_ir/`: deterministic shared input to fixed-page rendering;

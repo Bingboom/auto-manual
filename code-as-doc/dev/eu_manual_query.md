@@ -28,7 +28,7 @@ Phases and owned surfaces:
 
 1. `tools/manual_knowledge/`: semantic extraction and versioned export; targeted
    tests with tables, row/column spans, lists, callouts, images and exclusions.
-2. `tools/rtd_portal.py`: one build-finished hook; all canonical EU publications,
+2. `tools/rtd/portal.py`: one build-finished hook; all canonical EU publications,
    including explicitly labelled legacy language scope. No source edits.
 3. `integrations/openclaw/auto-manual-control-layer/`: receipt-verified reader,
    bounded search/section tools and an authenticated query command. Natural
@@ -162,7 +162,7 @@ sibling checkouts):
 
 ```bash
 PYTHONPATH="$PWD" .venv/bin/python -m sphinx -E -q -b html \
-  -D extensions=myst_parser,tools.rtd_portal \
+  -D extensions=myst_parser,tools.rtd.portal \
   -D rtd_knowledge_dir=../Hello-Docs/docs/knowledge \
   ../Hello-Docs/docs/publish/web .tmp/eu-query/candidate
 .venv/bin/python -m unittest tests.test_manual_knowledge
