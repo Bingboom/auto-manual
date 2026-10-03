@@ -1,15 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.check.docs_cli` (CQ-1.4); import the new path.
 
-import argparse
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Run lightweight quality checks against prepared manual bundles.")
-    ap.add_argument("--config", required=True, help="Config YAML path")
-    ap.add_argument("--data-root", default=None, help="Override structured content snapshot root")
-    ap.add_argument("--docs-build-dir", default=None, help="Override prepared docs/_build root")
-    ap.add_argument("--model", default=None, help="Single target model override")
-    ap.add_argument("--region", default=None, help="Single target region override")
-    ap.add_argument("--lang", default=None, help="Optional language selector for multi-language configs")
-    ap.add_argument("--all-targets", action="store_true", help="Use build.targets from config")
-    return ap.parse_args(argv)
+warnings.warn(
+    "tools.check_docs_cli moved to tools.check.docs_cli",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.check.docs_cli")

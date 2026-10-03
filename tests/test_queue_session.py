@@ -4,8 +4,8 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 
-from tools.queue_contract import QueueRecord
-from tools.queue_session import load_pending_queue_state
+from tools.build_queue.contract import QueueRecord
+from tools.build_queue.session import load_pending_queue_state
 
 
 def _active_result() -> str:

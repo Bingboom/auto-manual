@@ -423,8 +423,8 @@ Primary dispatch targets:
 Primary execution surface that stays unchanged:
 
 - [`../../build.py`](../../build.py)
-- [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
-- [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
+- [`../../tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
+- [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 - [`../../scripts/validate_required_env.sh`](../../scripts/validate_required_env.sh)
 - [`../../.github/actions/feishu-common-setup/action.yml`](../../.github/actions/feishu-common-setup/action.yml)
 

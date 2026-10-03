@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import build_docs
+from tools.build import docs as build_docs
 from tools.utils.korean_josa import (
     JOSA_PAIRS,
     has_batchim,

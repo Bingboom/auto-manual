@@ -1,58 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.check.docs_renderer_contracts` (CQ-1.4); import the new path.
 
-from pathlib import Path
-from tempfile import TemporaryDirectory
-from typing import Any, Callable
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-
-def collect_fcc_renderer_contract_issues(
-    *,
-    bundle_dir: Path,
-    model: str | None,
-    region: str | None,
-    lang: str | None,
-    issue_cls: type[Any],
-    convert_rst_fragment_to_html: Callable[..., str],
-) -> list[Any]:
-    """Fail ``check`` before Word/Web generation when FCC structure drifts."""
-
-    page_dir = bundle_dir / "page"
-    if not page_dir.exists():
-        return []
-
-    active_tags = {
-        f"region_{region_name.strip().lower().replace('-', '_')}"
-        for region_name in (region,)
-        if region_name and region_name.strip()
-    }
-    issues: list[Any] = []
-    for source_path in sorted(page_dir.glob("*01_fcc.rst")):
-        rst_text = source_path.read_text(encoding="utf-8")
-        for profile in ("document", "web"):
-            try:
-                with TemporaryDirectory(prefix="auto-manual-check-fcc-") as tmp:
-                    convert_rst_fragment_to_html(
-                        rst_text,
-                        source_path,
-                        Path(tmp),
-                        active_tags=active_tags,
-                        presentation_profile=profile,
-                        model=model,
-                        region=region,
-                        language=lang,
-                    )
-            except Exception as exc:  # noqa: BLE001 - a renderer failure becomes a contract issue
-                issues.append(
-                    issue_cls(
-                        code="FCC_RENDER_CONTRACT",
-                        message=f"FCC {profile} renderer contract failed: {exc}",
-                        model=model,
-                        region=region,
-                        path=source_path,
-                        lang=lang,
-                    )
-                )
-    return issues
-
-
-__all__ = ["collect_fcc_renderer_contract_issues"]
+warnings.warn(
+    "tools.check_docs_renderer_contracts moved to tools.check.docs_renderer_contracts",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.check.docs_renderer_contracts")

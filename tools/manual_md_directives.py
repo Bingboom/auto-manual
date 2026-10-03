@@ -42,10 +42,10 @@ from sphinx.errors import SphinxError
 from tools.component_specs.callout import CALLOUT_VARIANTS
 from tools.manual_ir import build_manual_ir_from_source
 from tools.manual_ir.web_callouts import load_web_callout_source
-from tools.web_callout_ir import render_callout_ir
-from tools.web_spec_component import transform_specification_tables
-from tools.web_troubleshooting_component import transform_troubleshooting_tables
-from tools.web_lcd_component import transform_lcd_icon_tables
+from tools.web.callout_ir import render_callout_ir
+from tools.web.spec_component import transform_specification_tables
+from tools.web.troubleshooting_component import transform_troubleshooting_tables
+from tools.web.lcd_component import transform_lcd_icon_tables
 
 SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "NOTES", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")

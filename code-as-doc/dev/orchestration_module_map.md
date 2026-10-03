@@ -23,8 +23,8 @@ For external table and queue-state contracts, use:
 Keep these files orchestration-first:
 
 - [`build.py`](../../build.py)
-- [`tools/build_docs.py`](../../tools/build_docs.py)
-- [`tools/process_build_queue.py`](../../tools/process_build_queue.py)
+- [`tools/build/docs.py`](../../tools/build/docs.py)
+- [`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 
 That means:
 
@@ -80,14 +80,14 @@ GitHub nor changes publication/source authority. See
 [published workspace version](rtd_manual_portal.md#published-version-and-refresh).
 
 Internal frozen Web language projection lives in
-[`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
+[`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
 `build_docs_export` selects this path only for Web plus an explicit language;
 `build_docs_bundle.prepare_web_language_source_bundle` preserves complete source
 scope, then the projection helper replaces canonical RST for check/Markdown/HTML.
 See [scope and integration boundary](web_language_projection.md).
 
-[`tools/web_language_release_evidence.py`](../../tools/web_language_release_evidence.py)
+[`tools/web/language_release_evidence.py`](../../tools/web/language_release_evidence.py)
 owns capture, sealing and shared verification of language release evidence.
 Queue execution records the three successful actions; staging seals the
 immutable candidate, and metadata/assembly/stored replay verify at their own
@@ -208,15 +208,15 @@ ranking, filtering, repair and cache owners are unchanged. Table fallback and
 empty-cell policies are recorded in
 [`external_table_contracts.md`](external_table_contracts.md#localized-columns-in-frozen-snapshots).
 
-[`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade. Its public names are listed in `__all__`; a wrapper or re-export that no code or test references is deleted rather than kept for symmetry. It delegates to:
+[`tools/build/docs.py`](../../tools/build/docs.py) should stay a wrapper-compatible facade. Its public names are listed in `__all__`; a wrapper or re-export that no code or test references is deleted rather than kept for symmetry. It delegates to:
 
-- [`tools/build_docs_main.py`](../../tools/build_docs_main.py)
+- [`tools/build/docs_main.py`](../../tools/build/docs_main.py)
   - CLI bootstrap for the low-level build entrypoint
-- [`tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
+- [`tools/build/docs_entry.py`](../../tools/build/docs_entry.py)
   - top-level build session orchestration
-- [`tools/build_docs_targets.py`](../../tools/build_docs_targets.py)
+- [`tools/build/docs_targets.py`](../../tools/build/docs_targets.py)
   - build target resolution and configured target expansion
-- [`tools/build_docs_bundle.py`](../../tools/build_docs_bundle.py)
+- [`tools/build/docs_bundle.py`](../../tools/build/docs_bundle.py)
   - ordered bundle preparation: runtime materialization, review overlay, attachment aliases, then asset finalization
 - [`tools/bundle_asset_finalize.py`](../../tools/bundle_asset_finalize.py)
   - final `index.rst` include-closure scan with inherited language context and fail-closed conflict handling
@@ -226,25 +226,25 @@ empty-cell policies are recorded in
   - bundle-relative staging bridge for semantic and legacy asset references
 - [`tools/gen_index_bundle_materialize.py`](../../tools/gen_index_bundle_materialize.py)
   - contract preflight and initial non-finalized bundle manifest assembly
-- [`tools/build_docs_export.py`](../../tools/build_docs_export.py)
+- [`tools/build/docs_export.py`](../../tools/build/docs_export.py)
   - export orchestration shell for one build target
-- [`tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
+- [`tools/build/docs_artifacts.py`](../../tools/build/docs_artifacts.py)
   - export-plan derivation
   - word/pdf/html artifact steps
   - HTML postprocess handoff
-- [`tools/build_docs_html.py`](../../tools/build_docs_html.py)
+- [`tools/build/docs_html.py`](../../tools/build/docs_html.py)
   - manual HTML metadata and switcher helpers
-- [`tools/web_presentation.py`](../../tools/web_presentation.py)
+- [`tools/web/presentation.py`](../../tools/web/presentation.py)
   - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
-- [`tools/web_presentation_contract.py`](../../tools/web_presentation_contract.py)
+- [`tools/web/presentation_contract.py`](../../tools/web/presentation_contract.py)
   - fail-closed resolver for `shared base → skeleton profile → target overlay`
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
 - [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
   - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure (Operation or reference)
   - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
-- [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
+- [`tools/web/base_art_operation.py`](../../tools/web/base_art_operation.py)
   - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, or lays out a footer-panel card (lead, art, numbered steps); never measures the artwork
-- [`tools/web_base_art_reference.py`](../../tools/web_base_art_reference.py)
+- [`tools/web/base_art_reference.py`](../../tools/web/base_art_reference.py)
   - places one base-art reference figure's captured source lines on the panel rectangles its `base_art_layout` declares, each line exactly once; never measures the artwork
 - [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`
   - the one rule both Web paths use to give a base-art figure its source panel copy (`mode_label`, `sos_label`)
@@ -254,15 +254,15 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/components.py`](../../tools/manual_ir/components.py)
   - strict embedded ComponentSpec carrier validation, asset enumeration and
     renderer-neutral document-order traversal
-- [`tools/web_embedded_components.py`](../../tools/web_embedded_components.py)
+- [`tools/web/embedded_components.py`](../../tools/web/embedded_components.py)
   - whole-document Web dispatch from embedded component identity to the existing adapters
-- [`tools/web_component_carriers.py`](../../tools/web_component_carriers.py)
+- [`tools/web/component_carriers.py`](../../tools/web/component_carriers.py)
   - rich carrier/semantic agreement checks shared by Inbox, FCC and Overview adapters;
     `web_fcc_markup` holds FCC-only HTML construction helpers below hotspot limits
 - [`tools/manual_ir/web_specs.py`](../../tools/manual_ir/web_specs.py)
   - declared HTML specification source adapter into the public ManualSource contract;
     isolated from the neutral core and IDML extraction
-- [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
+- [`tools/web/spec_component.py`](../../tools/web/spec_component.py)
   - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
     used by both the prepared Web bundle and standalone `SpecTableDirective`
   - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
@@ -271,15 +271,15 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
   - one declared LCD/troubleshooting source decoder and owned payload validation;
     explicit CSV/class identities select tables independently of filenames or artwork grants
-- [`tools/web_table_ir.py`](../../tools/web_table_ir.py)
+- [`tools/web/table_ir.py`](../../tools/web/table_ir.py)
   - shared public IR replay and atomic DOM application for LCD/troubleshooting;
     `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
 - [`tools/manual_ir/web_callouts.py`](../../tools/manual_ir/web_callouts.py)
   - declared/generated HTML callout decoder; owns one-row geometry, ComponentSpec, image references
     and optional explicit carrier language/variant declarations
-- [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
+- [`tools/web/callout_ir.py`](../../tools/web/callout_ir.py)
   - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
-- [`tools/web_callout_alignment.py`](../../tools/web_callout_alignment.py)
+- [`tools/web/callout_alignment.py`](../../tools/web/callout_alignment.py)
   - page-level pass after the callouts are restored: every label cell carries the page's distinct labels
     as invisible width references, so all label columns share one width that fits the widest label
   - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
@@ -288,45 +288,45 @@ empty-cell policies are recorded in
 - [`tools/manual_ir/web_inbox.py`](../../tools/manual_ir/web_inbox.py)
   - scoped Inbox source/payload adapter; reuses the existing three-card + internal TIP ComponentSpec
   - records retained markup/assets and validates complete geometry plus semantic agreement
-- [`tools/web_inbox_component.py`](../../tools/web_inbox_component.py)
+- [`tools/web/inbox_component.py`](../../tools/web/inbox_component.py)
   - real Web entrypoint assembles public IR, replays on detached tags, then atomically applies the figure
   - existing target gate and projection remain; direct ComponentSpec-only Web reading has exited
 - [`tools/manual_ir/web_fcc.py`](../../tools/manual_ir/web_fcc.py)
   - prepared FCC source and owned IR contract; carries existing semantic blocks and resolved mark binding
   - validates canonical semantics, source identity and asset binding without reparsing HTML at replay
-- [`tools/web_fcc_component.py`](../../tools/web_fcc_component.py)
+- [`tools/web/fcc_component.py`](../../tools/web/fcc_component.py)
   - actual Web consumer assembles public IR and renders its semantic slots before mutating caller DOM
   - retains existing FCC projection/layout; source marker config is not a renderer input
 - [`tools/manual_ir/web_symbols.py`](../../tools/manual_ir/web_symbols.py)
   - governed signal legend and icon/meaning pair sources; share provenance/envelope checks
   - validate complete rows, labels and pair assets against retained rich table markup before replay
-- [`tools/web_symbol_components.py`](../../tools/web_symbol_components.py)
+- [`tools/web/symbol_components.py`](../../tools/web/symbol_components.py)
   - actual signal-table Web consumer uses public IR and applies the figure only after validation
   - raw caller-row decoding exits; signal payloads/hashes stay stable as pair consumers migrate
-- [`tools/web_symbol_pairs.py`](../../tools/web_symbol_pairs.py)
+- [`tools/web/symbol_pairs.py`](../../tools/web/symbol_pairs.py)
   - public IR consumer for the existing left-six/right-five icon/meaning panels
   - moves the direct source/render loop out of `web_presentation`; applies only fully validated replay
 - [`tools/manual_ir/web_app_download.py`](../../tools/manual_ir/web_app_download.py)
   - prepared App download source and owned payload validation; binds two rich-copy columns and all artwork
   - snapshots config/CSS provenance; replay validates data without reopening source/config
-- [`tools/web_app_download.py`](../../tools/web_app_download.py)
+- [`tools/web/app_download.py`](../../tools/web/app_download.py)
   - real public IR consumer for store/QR columns; retains the original rendering body
   - replaces image/removes consumed paragraphs only after complete validation and detached rendering
 - [`tools/manual_ir/web_app_controls.py`](../../tools/manual_ir/web_app_controls.py)
   - prepared add-device paragraph source; validates localized label and markup/image agreement
   - owns prefix/button-vocabulary admission and config/CSS provenance
-- [`tools/web_app_controls.py`](../../tools/web_app_controls.py)
+- [`tools/web/app_controls.py`](../../tools/web/app_controls.py)
   - actual public IR consumer replaces only the validated paragraph after detached replay
   - renders the existing accessible glyph without source/config access; old direct caller exits
-- [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
+- [`tools/web/reference_components.py`](../../tools/web/reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
-- [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
+- [`tools/web/stylesheets.py`](../../tools/web/stylesheets.py)
   - ordered assembly of the responsive base theme and focused component CSS modules into one public Sphinx stylesheet
 - [`tools/utils/spec_footnotes.py`](../../tools/utils/spec_footnotes.py)
   - shared reference-ID parsing, numeric markers and marker attachment for CSV spec and IDML readers; row/language selection stays with callers
-- [`tools/build_docs_io.py`](../../tools/build_docs_io.py)
+- [`tools/build/docs_io.py`](../../tools/build/docs_io.py)
   - Sphinx, cleanup, Word/PDF I/O helpers
-- [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
+- [`tools/build/docs_validation.py`](../../tools/build/docs_validation.py)
   - config/layout validation helpers for the build tool
 - [`tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
   - DOCX export assembly and Word post-processing orchestration
@@ -345,13 +345,13 @@ empty-cell policies are recorded in
 
 Quality and release logic should follow concern-specific modules instead of drifting back into entry files:
 
-- [`tools/check_docs.py`](../../tools/check_docs.py)
+- [`tools/check/docs.py`](../../tools/check/docs.py)
   - quality gate facade over bundle/reference/contract/generated-page checks
-- [`tools/check_docs_runtime.py`](../../tools/check_docs_runtime.py)
+- [`tools/check/docs_runtime.py`](../../tools/check/docs_runtime.py)
   - target-scoped quality-check orchestration and collector sequencing
-- [`tools/check_docs_renderer_contracts.py`](../../tools/check_docs_renderer_contracts.py)
+- [`tools/check/docs_renderer_contracts.py`](../../tools/check/docs_renderer_contracts.py)
   - FCC document/web renderer preflight using the resolved target language
-- [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
+- [`tools/check/docs_generated.py`](../../tools/check/docs_generated.py)
   - generated-page rule helpers
 - [`tools/validate_spec_master_shared.py`](../../tools/validate_spec_master_shared.py)
   owns shared validation predicates, including source-language recognition from
@@ -410,6 +410,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - per-test-file count of patches on facade modules against `data/facade_patch_baseline.tsv`: unlisted files may not patch a facade, recorded counts may not grow, a lower count must be written back
 - [`tools/check_broad_except_ratchet.py`](../../tools/check_broad_except_ratchet.py)
   - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back. Audited handlers are not counted: one whose body ends in `raise`, or whose `except` line carries `# noqa: BLE001 - <reason>`. The baseline is empty since the CQ-5.3 audit
+- [`tools/check_top_level_module_ratchet.py`](../../tools/check_top_level_module_ratchet.py)
+  - `tools/*.py` top-level modules and files carrying script bootstrap code against `data/top_level_module_baseline.tsv`: both lists may only shrink; a new top-level module needs `update --allow NAME=REASON`, and removals must be written back
 - [`tools/check_mypy_ratchet.py`](../../tools/check_mypy_ratchet.py)
   - per-file count of `mypy --disallow-untyped-defs` errors in `tools/manual_ir`, `tools/component_specs`, `tools/csv_pages` against `data/mypy_untyped_baseline.tsv`; runs in the CI `type-check` job (not in the guardrails, which have no mypy)
 - [`tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
@@ -431,28 +433,28 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 ## 5. Build Queue Modules
 
-[`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
+[`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
 
-- [`tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
+- [`tools/build_queue/process_build_queue_main.py`](../../tools/build_queue/process_build_queue_main.py)
   - CLI bootstrap and data-root normalization for the queue entrypoint
-- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
   - wrapper-compatible service grouping for queue entrypoint helpers
   - optional queue dependencies are forwarded to existing session/build callbacks; omitted dependencies preserve facade compatibility lookups
-- [`tools/process_build_queue_deps.py`](../../tools/process_build_queue_deps.py)
+- [`tools/build_queue/process_build_queue_deps.py`](../../tools/build_queue/process_build_queue_deps.py)
   - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
   - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
   - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. `resolve_wiki_destination`, `upload_word_to_drive` and `move_drive_file_to_wiki` are also looked up inside the artifact-destination and publish services, so when `deps` sets one of them those two services run against `FacadeOverrides(module, ...)` (the facade with the names replaced) instead of the facade itself
   - `QueueDeps.resolve_config_path_for_task` (optional) replaces the config-path resolver for both record grouping (`queue_bound_records.group_pending_queue_records(..., resolve_config_path_for_task=...)`) and group processing, so a run sees one resolver end to end
   - `QueueDeps.clock` (optional) is the group processor's clock: `process_queue_record_group(clock=...)` takes the started-at stamp, claim expiry and built-at time from it (default `queue_group_processing.utc_now`). `queue_claims`, `queue_bound_records` and `queue_session` read no clock; `queue_transitions` already takes `now=`
-- [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+- [`tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
   - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
-- [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)
+- [`tools/build_queue/process_review_start_queue_runtime.py`](../../tools/build_queue/process_review_start_queue_runtime.py)
   - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
-- [`tools/queue_contract.py`](../../tools/queue_contract.py)
+- [`tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
   - canonical queue contract constants
   - shared queue dataclasses
   - binding / record / wiki destination type definitions
-- [`tools/queue_delivery.py`](../../tools/queue_delivery.py)
+- [`tools/build_queue/delivery.py`](../../tools/build_queue/delivery.py)
   - phase-aware Agent delivery contract: Draft cloud doc, Publish IDML handoff, Web HTML
   - `delivery_kind / delivery_url / delivery_ready` derivation and queue-row serialization
   - strips the retired public `document_link` name while preserving internal binding compatibility
@@ -464,32 +466,32 @@ Quality and release logic should follow concern-specific modules instead of drif
   - row filtering
   - record binding
   - queue preflight helpers
-- [`tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+- [`tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
   - queue preflight and Document_link binding adapters
   - repo entrypoint-facing access to environment-backed binding resolution
-- [`tools/queue_bound_records.py`](../../tools/queue_bound_records.py)
+- [`tools/build_queue/bound_records.py`](../../tools/build_queue/bound_records.py)
   - queue record/action facade adapters
   - repo-root-aware config resolution that forwards the parsed model/region target into grouping and execution
-- [`tools/queue_config_resolution.py`](../../tools/queue_config_resolution.py)
+- [`tools/build_queue/config_resolution.py`](../../tools/build_queue/config_resolution.py)
   - shared Start Review / Draft / Publish / Preview config resolver
   - exact declared model/region target override plus generic regional fallback
   - queue `Build_family` language-range matching through `build.language_family`, while `build.family_id` remains the internal config identity
   - target-only config exclusion from model-less fallback and fail-closed ambiguity handling
-- [`tools/queue_runtime.py`](../../tools/queue_runtime.py)
+- [`tools/build_queue/runtime.py`](../../tools/build_queue/runtime.py)
   - worktree/runtime helpers
   - generated path and review/runtime input helpers, including subprocess-scoped environment overlays
-- [`tools/queue_build_execution.py`](../../tools/queue_build_execution.py)
+- [`tools/build_queue/build_execution.py`](../../tools/build_queue/build_execution.py)
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
   - exact review commit/path provenance injection for versioned print Publish
   - review-input commit epoch injection for deterministic Web `check` / `md` / `html`
   - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
-- [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+- [`tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
   - top-level queue session flow
   - dry-run vs real-run branch control
   - post-sync pending-state reload
-- [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+- [`tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
   - per-group queue processing
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
@@ -504,16 +506,16 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/dingtalk_delivery_map.py`](../../tools/dingtalk_delivery_map.py)
   - `(model, region)` to DingTalk 项目代码 / 安规 / 文案语言集合 lookup over `data/dingtalk_delivery_map.csv`
   - `DeliveryTargetNotMapped` (skip) kept distinct from malformed-map `RuntimeError` (fail-closed)
-- [`tools/queue_claims.py`](../../tools/queue_claims.py)
+- [`tools/build_queue/claims.py`](../../tools/build_queue/claims.py)
   - bounded lease write across every row in a document group
   - no-view readback and exact-token ownership verification before dispatch
-- [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
+- [`tools/build_queue/dry_run.py`](../../tools/build_queue/dry_run.py)
   - dry-run preview payload assembly
   - grouped queue preview output formatting
-- [`tools/queue_grouping.py`](../../tools/queue_grouping.py)
+- [`tools/build_queue/grouping.py`](../../tools/build_queue/grouping.py)
   - grouped record bucketing rules
   - document-key vs record-id grouping strategy
-- [`tools/queue_session.py`](../../tools/queue_session.py)
+- [`tools/build_queue/session.py`](../../tools/build_queue/session.py)
   - queue-session bootstrap and preflight
   - pending-record fetch/select/group state with active sibling-lease exclusion
   - wiki destination reporting for a processing session
@@ -527,27 +529,27 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/bitable_schema.py`](../../tools/bitable_schema.py)
   - tenant schema and reference-row orchestration
   - profile/identity routing and compatibility wrapper over the shared transport
-- [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
   - Drive/Wiki remote I/O helpers and the compatibility wrapper for shared queue transport
-- [`tools/queue_bound_lark_ops.py`](../../tools/queue_bound_lark_ops.py)
+- [`tools/build_queue/bound_lark_ops.py`](../../tools/build_queue/bound_lark_ops.py)
   - repo-root-aware Lark transport adapters used by queue entrypoints
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
-- [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
+- [`tools/build_queue/outputs.py`](../../tools/build_queue/outputs.py)
   - separate print-publish and Web-Publish asset staging
   - atomic immutable snapshot/manifest copy-out plus generic release/output path helpers
   - exact-hash Web version seal, immutable version metadata, and atomic latest pointer
-- [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
+- [`tools/build_queue/bound_outputs.py`](../../tools/build_queue/bound_outputs.py)
   - repo-root-aware queue output adapters
   - bound output/release helpers that keep `process_build_queue.ROOT` patchable
-- [`tools/queue_bound_runtime.py`](../../tools/queue_bound_runtime.py)
+- [`tools/build_queue/bound_runtime.py`](../../tools/build_queue/bound_runtime.py)
   - repo-root-aware command/worktree adapters for queue entrypoints
   - bound `build.py` command builders and worktree helpers that keep entrypoint compatibility names stable
-- [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
+- [`tools/build_queue/writeback.py`](../../tools/build_queue/writeback.py)
   - queue result formatting
   - row writeback payload assembly
   - `pending -> running -> success/failed` payload expectations documented in
     [`queue_state_model.md`](queue_state_model.md)
-- [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
+- [`tools/build_queue/transitions.py`](../../tools/build_queue/transitions.py)
   - explicit queue transition payload model for running, success, failure, and writeback-failed states
   - queue-claim parsing, expiry checks, and exact-token ownership checks
   - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
@@ -579,50 +581,53 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 The cloud-doc backport closed loop (fetch → diff → classify/route → write-back)
 was decomposed from a single 4183-line `cloud_doc_backport.py` into focused
-layers (debt-paydown, 2026-06). The entry path is unchanged: every
-`from tools.cloud_doc_backport import X` and `python3 tools/cloud_doc_backport.py …`
-still works because the entry file re-exports all public symbols.
+layers (debt-paydown, 2026-06), and since CQ-1.3 (2026-10) those layers live in
+the `tools/backport/` package. Import from `tools.backport.<module>` and run
+`python -m tools.backport.cloud_doc <command>`. The old names stay available until
+CQ-1.5: `python tools/cloud_doc_backport.py …` still runs the CLI, and every old
+`tools.cloud_doc_backport*` module is a shim that warns (`DeprecationWarning`) and
+aliases the new module object, so `mock.patch` targets on either name hit the same code.
 
-- [`tools/cloud_doc_backport.py`](../../tools/cloud_doc_backport.py)
-  - thin entry shim (~200 lines): re-exports every public symbol from the modules
-    below + the `__main__` guard. Keep it shim-only.
-- [`tools/cloud_doc_backport_model.py`](../../tools/cloud_doc_backport_model.py)
+- [`tools/backport/cloud_doc.py`](../../tools/backport/cloud_doc.py)
+  - thin facade (~200 lines): re-exports every public symbol from the modules
+    below + the `__main__` guard. Keep it re-export-only.
+- [`tools/backport/model.py`](../../tools/backport/model.py)
   - foundation: `Block` model, document fetch/normalization, markdown→block
     parsing, section selection. Imports only stdlib + `path_utils` (no cycle).
-- [`tools/cloud_doc_backport_util.py`](../../tools/cloud_doc_backport_util.py)
+- [`tools/backport/util.py`](../../tools/backport/util.py)
   - shared constants (schema versions) + scaffolding (counters, git-ref,
     timestamp, source-path resolution).
-- [`tools/cloud_doc_backport_routing.py`](../../tools/cloud_doc_backport_routing.py)
+- [`tools/backport/routing.py`](../../tools/backport/routing.py)
   - delta classification + routing (Class R / D / T / image / semantic) + `diff_blocks`.
-- [`tools/cloud_doc_backport_apply.py`](../../tools/cloud_doc_backport_apply.py)
+- [`tools/backport/apply.py`](../../tools/backport/apply.py)
   - guarded Class-R write-back (literal-first + block-fallback RST rewrite) + apply-report builders.
-- [`tools/cloud_doc_backport_render.py`](../../tools/cloud_doc_backport_render.py)
+- [`tools/backport/render.py`](../../tools/backport/render.py)
   - markdown report renderers (pure report-dict → markdown).
-- [`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+- [`tools/backport/transports.py`](../../tools/backport/transports.py)
   - live Feishu source-table / TM transports + `--table-binding` parsing.
-- [`tools/cloud_doc_backport_reports.py`](../../tools/cloud_doc_backport_reports.py)
+- [`tools/backport/reports.py`](../../tools/backport/reports.py)
   - report builders (`build_report` + verify / source-table-suggestions / template-sync-proposal / review-run).
-- [`tools/cloud_doc_backport_pr.py`](../../tools/cloud_doc_backport_pr.py)
+- [`tools/backport/pr.py`](../../tools/backport/pr.py)
   - PR/git helpers (`gh` PR creation + 403 compare-url fallback, branch naming, `open_backport_pr_from_manifest`).
-- [`tools/cloud_doc_backport_args.py`](../../tools/cloud_doc_backport_args.py)
+- [`tools/backport/args.py`](../../tools/backport/args.py)
   - argparse surface + arg-interpretation helpers (`_parse_args`,
     `_value_index_from_args`, `_family_index_from_args`).
-- [`tools/cloud_doc_backport_commands.py`](../../tools/cloud_doc_backport_commands.py)
+- [`tools/backport/commands.py`](../../tools/backport/commands.py)
   - single-command runners: `_run_diff` / `_run_apply*` / `_run_review` /
     `_run_verify_review` / `_run_open_pr` / `_run_apply_source_table`.
-- [`tools/cloud_doc_backport_orchestration.py`](../../tools/cloud_doc_backport_orchestration.py)
+- [`tools/backport/orchestration.py`](../../tools/backport/orchestration.py)
   - multi-step flows: review-branch resolution, worktree sync, the
     render-baseline diff, sibling scope, the backport-PR flow, and the
     best-effort revision-ledger ingest hook
     (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables). **Patch seams for
     review-branch tests live here**, not on the cli re-exports.
-- [`tools/cloud_doc_backport_cli.py`](../../tools/cloud_doc_backport_cli.py)
+- [`tools/backport/cli.py`](../../tools/backport/cli.py)
   - thin dispatcher: `main` + the compatibility re-export hub the facade
     imports from.
 
 Layering (import direction, bottom → top): `model` → `util` → `routing` /
 `apply` / `render` / `transports` / `reports` / `pr` → `args` → `commands` /
-`orchestration` → `cli` → entry shim. A new extraction must import from the
+`orchestration` → `cli` → `cloud_doc` facade. A new extraction must import from the
 **leaf modules**, never from the entry file (that would cycle), and the entry
 file re-exports it.
 
@@ -667,7 +672,7 @@ same approval-gated source-table writer used by cloud-doc backport.
 The write boundary stays in [`tools/source_table_sync.py`](../../tools/source_table_sync.py):
 source intake may approve and invoke it, but does not own live Feishu write
 semantics. Live transports are still constructed through
-[`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+[`tools/backport/transports.py`](../../tools/backport/transports.py)
 so table-binding parsing and source-table GET/verify behavior stay shared.
 
 Tests: [`tests/test_source_intake.py`](../../tests/test_source_intake.py)
@@ -692,8 +697,8 @@ When adding or moving logic in this area:
 
 These areas still deserve follow-up only when a concrete hotspot reappears:
 
-- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
-- [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
+- [`tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - [`tools/gen_index_bundle.py`](../../tools/gen_index_bundle.py)
 
 Keep future extraction notes here once those boundaries stabilize again.
@@ -743,9 +748,9 @@ source-scoped locale validator is `manual_ir.external_languages`; it does
 not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
 
-Prepared Web admission: `tools/web_component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).
+Prepared Web admission: `tools/web/component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).
 
-- `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
+- `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web/reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
 
 `component_specs/operation_tables_html` binds explicitly normalized RST auto-resume and key-combination tables to the shared ComponentSpec registry. `manual_ir/whole_document_components` owns their flow claims; the target presentation contract owns chapter applicability.
 

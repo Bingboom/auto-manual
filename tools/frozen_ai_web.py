@@ -25,8 +25,8 @@ from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.manual_ir.source import ManualSource
 from tools.markdown_bundle import _rewrite_local_file_uris_to_relative, _write_myst_sphinx_scaffold
 from tools.utils.path_utils import PathSegments
-from tools.web_document_ir import render_document_fragments
-from tools.web_presentation import load_web_manual_contract
+from tools.web.document_ir import render_document_fragments
+from tools.web.presentation import load_web_manual_contract
 
 
 def replay_package(package: Path) -> tuple[str, ...]:

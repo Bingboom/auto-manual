@@ -296,8 +296,8 @@ class RealGitHandoffTests(unittest.TestCase):
 class QueueBatchTests(unittest.TestCase):
     def test_multi_group_delivery_emits_one_deduplicated_request_and_dry_run_emits_none(self):
         import inspect
-        from tools.queue_orchestration import process_build_queue
-        from tools.queue_group_processing import QueueGroupProcessingResult
+        from tools.build_queue.orchestration import process_build_queue
+        from tools.build_queue.group_processing import QueueGroupProcessingResult
         kwargs = {name: Mock() for name in inspect.signature(process_build_queue).parameters}
         kwargs.update(cfg={}, config_path=Path('config.yaml'), data_root=None, dry_run=False,
                       immediate_only=False, workflow_action='publish', doc_phase=None, record_id=None,

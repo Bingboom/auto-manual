@@ -4,8 +4,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from tools.build_docs import load_config
-from tools.queue_config_resolution import resolve_declared_target_config_path
+from tools.build.docs import load_config
+from tools.build_queue.config_resolution import resolve_declared_target_config_path
 from tools.script_bootstrap import bootstrap_repo_root
 from tools.utils.path_utils import Paths
 

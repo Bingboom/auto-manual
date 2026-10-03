@@ -23,7 +23,7 @@ from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
 from tools.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
 from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
 from tools.manual_ir.hashing import file_sha256, value_sha256
-from tools.web_presentation import load_web_manual_contract
+from tools.web.presentation import load_web_manual_contract
 
 
 _REFERENCE_IDS = {'ups_connection', 'ac_wall_charging', 'solar_single', 'solar_four', 'car_charging'}

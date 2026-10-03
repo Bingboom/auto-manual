@@ -5,7 +5,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_language_navigation import (
+from tools.web.language_navigation import (
     WebLanguageNavigationError,
     add_web_language_navigation,
     protect_web_language_navigation_for_pandoc,

@@ -16,7 +16,7 @@ from tools.frozen_pdf_reference import (
 )
 from tools.manual_ir.flow import flow_nodes_to_html
 from tools.manual_ir.components import component_specs_in_flow
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.embedded_components import render_embedded_web_component
 
 
 def fixture():

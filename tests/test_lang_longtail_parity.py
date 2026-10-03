@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import unittest
 
-from tools import build_docs, build_docs_shared, content_lint, localized_copy
+from tools import content_lint, localized_copy
+from tools.build import docs as build_docs, docs_shared as build_docs_shared
 from tools import lang_registry, signal_words
-from tools.check_docs import _pick_spec_value
+from tools.check.docs import _pick_spec_value
 from tools.idml import loaders
 from tools.idml.page_toc import _LANG_HEADERS
 from tools.manual_copy_source import TM_LANGUAGE_FIELDS

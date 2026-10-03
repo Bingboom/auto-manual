@@ -52,7 +52,7 @@ from tools.document_link_queue import split_rendered_url  # noqa: E402
 from tools.feishu_record_transport import run_lark_cli_json as _transport_run  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import parse_json_payload, resolved_cli_command_parts  # noqa: E402
-from tools.queue_runtime import command_failure_message, format_command  # noqa: E402
+from tools.build_queue.runtime import command_failure_message, format_command  # noqa: E402
 from tools.rtd_deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
 from tools.utils.path_utils import ops_catalog_reconcile_whitelist_of  # noqa: E402
 from tools.verify_web_deployment_targets import (  # noqa: E402

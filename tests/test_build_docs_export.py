@@ -8,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest import mock
 
-from tools.build_docs_export import (
+from tools.build.docs_export import (
     _copy_attachment_images_for_latex,
     _copy_raw_html_assets_for_html,
     _prepare_artifact_bundle,

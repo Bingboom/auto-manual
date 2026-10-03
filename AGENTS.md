@@ -169,7 +169,7 @@ The PR cannot be opened until the validation set that matches the change passes 
 | any Python under `build.py`, `tools/`, `tests/`, `scripts/`, `integrations/` | `python -m ruff check build.py integrations tools tests scripts` |
 | logic in `tools/`, `build.py`, `tests/` | `python -m unittest` |
 | `tools/utils/**` types | `python -m mypy tools/utils` |
-| `tools/` boundary, `build.py`, `tools/build_docs.py`, `tools/process_build_queue.py` | `python tools/check_maintainability_guardrails.py` |
+| `tools/` boundary, `build.py`, `tools/build/docs.py`, `tools/build_queue/process_build_queue.py` | `python tools/check_maintainability_guardrails.py` |
 | any `code-as-doc/**` or `user-guide/**` docs | `python tools/check_doc_link_integrity.py` |
 | build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
 | JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |

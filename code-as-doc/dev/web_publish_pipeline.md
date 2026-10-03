@@ -32,7 +32,7 @@ The Web profile renders explicitly declared specification sections across
 targets. `h2.hb-spec-section` with a source-authored
 `.hb-spec-section-text` title and its adjacent `hb-spec-table` or
 `manual-spec-table` are the declaration. The Web adapter in
-[`web_spec_component.py`](../../tools/web_spec_component.py) projects their
+[`web_spec_component.py`](../../tools/web/spec_component.py) projects their
 label/value rows through the existing `HB-TABLE-SPEC` ComponentSpec and public
 `web_spec_table_projection`. It keeps inline markup, row order, label spans,
 references and adjacent footnotes/safety copy. Only the declared decorative
@@ -57,7 +57,7 @@ error codes. This also covers unmarked `review-asis` snapshots without editing
 their reviewed RST. Explicit `table.hb-troubleshooting-table` declarations can
 scope individual tables in mixed HTML fragments.
 
-[`web_troubleshooting_component.py`](../../tools/web_troubleshooting_component.py)
+[`web_troubleshooting_component.py`](../../tools/web/troubleshooting_component.py)
 shares validation and DOM projection with `{troubleshooting}`. It consumes the
 existing `HB-TABLE-TROUBLESHOOTING` CSS; that style binding is **not** a registered
 ComponentSpec, and this adapter adds no public schema. The standalone Markdown
@@ -338,7 +338,7 @@ create synthetic queue rows or write `HTML_link`.
    Its `source_manifest.json` uses `auto-manual-frozen-web-source/v1` and
    inventories every source input, including each locale's MyST and assets.
    At the actual source Git commit, call
-   `seal_frozen_web_evidence` in `tools/web_frozen_source_evidence.py` for each
+   `seal_frozen_web_evidence` in `tools/web/frozen_source_evidence.py` for each
    language. The resulting `auto-manual-frozen-web-language-evidence/v1`
    receipt binds that manifest, the exact source commit, the versioned MyST
    tree, and verification HTML including local images. Point the versioned

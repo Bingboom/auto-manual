@@ -1,29 +1,15 @@
-"""Compatibility entry for the public IR lcd Web consumer."""
+"""Deprecated alias of :mod:`tools.web.lcd_component` (CQ-1.4); import the new path.
 
-from __future__ import annotations
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-from pathlib import Path
-from bs4 import BeautifulSoup
-from tools.web_table_ir import transform_declared_tables
-
-
-def transform_lcd_icon_tables(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    declared_page: bool = False,
-    error_type: type[Exception] = ValueError,
-    language: str | None = None,
-    model: str | None = None,
-    region: str | None = None,
-) -> bool:
-    return transform_declared_tables(
-        soup,
-        table_kind="lcd",
-        source_path=source_path,
-        declared_page=declared_page,
-        error_type=error_type,
-        language=language,
-        model=model,
-        region=region,
-    )
+warnings.warn(
+    "tools.web_lcd_component moved to tools.web.lcd_component",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.web.lcd_component")

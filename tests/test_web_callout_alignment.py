@@ -4,7 +4,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_callout_alignment import LABEL_SIZER_CLASS, align_callout_label_columns
+from tools.web.callout_alignment import LABEL_SIZER_CLASS, align_callout_label_columns
 
 
 def _callout(label: str, body: str = "Body copy.") -> str:

@@ -35,10 +35,10 @@ from tools.component_specs.reference_figure_adapters import (
 from tools.component_specs.registry import load_component_registry
 from tools.component_specs.theme import load_manual_theme
 from tools.manual_ir import read_manual_ir
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_presentation import load_web_manual_contract
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.presentation import load_web_manual_contract
 from tools.word_bundle_html import _build_word_only_tags
 
 
@@ -335,15 +335,15 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.transform_app_download",
+                    "tools.web.presentation.transform_app_download",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.transform_app_control",
+                    "tools.web.presentation.transform_app_control",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_reference_figures",
+                    "tools.web.presentation._transform_reference_figures",
                     side_effect=source_projector_error,
                 ),
             ):

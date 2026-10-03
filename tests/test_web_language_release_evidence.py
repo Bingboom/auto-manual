@@ -7,7 +7,7 @@ import shutil
 import tempfile
 import unittest
 
-from tools.web_language_release_evidence import (
+from tools.web.language_release_evidence import (
     PROJECTION_MANIFEST_FILENAME,
     RECEIPT_FILENAME,
     capture_projection,

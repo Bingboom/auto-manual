@@ -12,7 +12,7 @@ from tools.sync_web_composites import (
     build_web_composite_entries,
     sync_web_composites,
 )
-from tools.web_composite_manifest import WebCompositeManifestError
+from tools.web.composite_manifest import WebCompositeManifestError
 
 
 def _sha256(data: bytes) -> str:

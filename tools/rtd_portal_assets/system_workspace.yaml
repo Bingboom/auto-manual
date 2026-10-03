@@ -235,7 +235,7 @@ capabilities:
         status: available
         note: 由构建队列产出；出货印刷走 IDML
         evidence:
-          - "file:auto-manual:tools/queue_build_execution.py"
+          - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
       - id: shared_ir
         label: 共享中间表示
@@ -336,7 +336,7 @@ capabilities:
         status: in_progress
         note: 源表写入须逐项审批；模板层的回流尚未完成
         evidence:
-          - "file:auto-manual:tools/cloud_doc_backport_orchestration.py"
+          - "file:auto-manual:tools/backport/orchestration.py"
           - "file:auto-manual:code-as-doc/optimization_project.md"
       - id: revision_ledger
         label: 修订台账
@@ -456,7 +456,7 @@ flow:
     status: in_progress
     mode: manual
     note: 源表写入逐项审批；模板层回流未完成
-    evidence: ["file:auto-manual:tools/cloud_doc_backport_orchestration.py"]
+    evidence: ["file:auto-manual:tools/backport/orchestration.py"]
   - from: 评审修正
     to: 翻译记忆库
     status: validated

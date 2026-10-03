@@ -10,9 +10,9 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools import web_symbol_components
+from tools.web import symbol_components as web_symbol_components
 from tools.manual_ir import build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 
 
 TABLE = ('<table style="width:100%"><thead><tr><th>Signal</th><th>Meaning</th></tr></thead>'
@@ -43,7 +43,7 @@ class WebSignalIRTests(unittest.TestCase):
 
     def test_serialized_replay_preserves_rich_meanings_and_assets(self) -> None:
         from tools.manual_ir.web_symbols import load_web_signal_source
-        from tools.web_symbol_components import render_signal_ir
+        from tools.web.symbol_components import render_signal_ir
 
         with TemporaryDirectory() as td:
             path = Path(td) / 'symbols.html'
@@ -100,7 +100,7 @@ class WebSignalIRTests(unittest.TestCase):
 
     def test_rehashed_owned_payload_drift_is_rejected(self) -> None:
         from tools.manual_ir.web_symbols import load_web_signal_source
-        from tools.web_symbol_components import render_signal_ir
+        from tools.web.symbol_components import render_signal_ir
 
         for change in ('labels', 'meanings', 'assets', 'count', 'kind', 'projection', 'extra'):
             with self.subTest(change=change):

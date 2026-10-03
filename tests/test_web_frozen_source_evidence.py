@@ -10,10 +10,10 @@ from unittest.mock import patch
 
 from tests.prepared_admission_fixture import install_prepared_admission_fixture
 
-from tools.web_frozen_source_evidence import (
+from tools.web.frozen_source_evidence import (
     SOURCE_SCHEMA, seal_frozen_web_evidence, verify_release_evidence,
 )
-from tools.web_language_release_evidence import _file_inventory
+from tools.web.language_release_evidence import _file_inventory
 
 
 class FrozenWebEvidenceTests(unittest.TestCase):
@@ -80,8 +80,8 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         self.assertFalse((self.root / 'evidence').exists())
         # Verify independently refuses a self-consistent receipt whose source
         # inventory happens to include an unapproved manual IR.
-        with (patch('tools.web_frozen_source_evidence.require_publishable_manual_ir'),
-              patch('tools.web_frozen_source_evidence.require_fresh_component_admission')):
+        with (patch('tools.web.frozen_source_evidence.require_publishable_manual_ir'),
+              patch('tools.web.frozen_source_evidence.require_fresh_component_admission')):
             self.seal()
         with self.assertRaisesRegex(RuntimeError, 'pending source review'):
             self.verify()

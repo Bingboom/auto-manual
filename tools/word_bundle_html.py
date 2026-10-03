@@ -11,7 +11,7 @@ from tools.config_pages import CsvPage
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle, plan_materialized_pages
 from tools.lang_registry import LANGUAGE_BY_ALIAS
 from tools.utils.path_utils import PathSegments, web_composite_manifest_of
-from tools.web_composite_manifest import (
+from tools.web.composite_manifest import (
     WebCompositeManifest,
     load_optional_web_composite_manifest,
 )
@@ -37,7 +37,7 @@ from tools.word_bundle_html_rewrite import (
     _extract_spec_word_data,
     _rewrite_word_friendly_fragment,
 )
-from tools.web_presentation import (
+from tools.web.presentation import (
     DOCUMENT_PRESENTATION_PROFILE,
     WEB_PRESENTATION_PROFILE,
     is_web_entry_page,
@@ -337,7 +337,7 @@ def _convert_rst_fragment_to_html(
     if profile == WEB_PRESENTATION_PROFILE:
         # HTML drops the page's operation_panel_copy blocks; read them from the
         # source exactly as the whole-document Web path does.
-        from tools.web_document_source import operation_panel_copy
+        from tools.web.document_source import operation_panel_copy
 
         rewritten_fragment = transform_web_fragment(
             rewritten_fragment,
@@ -457,8 +457,8 @@ def build_word_bundle_html(
             resolve_web_illustration_manifest_from_config,
             resolve_web_illustration_manifests_from_config,
         )
-        from tools.web_document_source import load_web_document
-        from tools.web_document_ir import render_document_fragments
+        from tools.web.document_source import load_web_document
+        from tools.web.document_ir import render_document_fragments
         illustration_manifest = resolve_web_illustration_manifest_from_config(
             cfg,
             repo_root=paths.root,
@@ -483,7 +483,7 @@ def build_word_bundle_html(
         web_fragments = render_document_fragments(ir, package_root=bundle_output_dir)
         from tools.manual_ir import write_manual_ir
         from tools.manual_ir.document import validate_document
-        from tools.web_figure_coverage import attach_web_figure_coverage
+        from tools.web.figure_coverage import attach_web_figure_coverage
 
         ir = attach_web_figure_coverage(ir, web_fragments)
         validate_document(ir)

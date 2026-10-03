@@ -2,7 +2,7 @@
 """Fail-closed ratchet for tests that patch names on facade modules.
 
 The orchestration facades (``build_docs``, ``process_build_queue``,
-``process_review_start_queue``, ``cloud_doc_backport``) keep forwarders and
+``process_review_start_queue``, ``backport.cloud_doc``) keep forwarders and
 re-exports alive only because tests patch those names on the facade instead of
 on the module that actually looks them up.  Every such patch pins a forwarder
 in place.  This check counts them per test file and enforces:
@@ -38,8 +38,15 @@ from typing import Callable, Iterable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASELINE = REPO_ROOT / "data" / "facade_patch_baseline.tsv"
 FACADE_MODULES = (
+    "tools.build.docs",
+    # CQ-1.4 shim: the old name aliases the same facade module until CQ-1.5.
     "tools.build_docs",
+    "tools.backport.cloud_doc",
+    # CQ-1.3 shim: the old name aliases the same facade module until CQ-1.5.
     "tools.cloud_doc_backport",
+    "tools.build_queue.process_build_queue",
+    "tools.build_queue.process_review_start_queue",
+    # CQ-1.4 shims: the old names alias the same facade modules until CQ-1.5.
     "tools.process_build_queue",
     "tools.process_review_start_queue",
 )

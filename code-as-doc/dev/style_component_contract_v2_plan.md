@@ -100,7 +100,7 @@ substitute for that re-check.
 
 At discovery time the main hot spots are:
 
-- `tools/web_presentation.py`: 2,129 lines;
+- `tools/web/presentation.py`: 2,129 lines;
 - `docs/renderers/contracts/web_manual.json`: 420 lines;
 - assembled Web CSS source modules: about 1,900 lines in the primary module,
   plus specialized modules;

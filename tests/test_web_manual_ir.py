@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 from tests.test_web_spec_component import declared_table
 from tools.manual_ir import read_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 from tools.word_bundle_html import build_word_bundle_html
 
 
@@ -51,7 +51,7 @@ class WebManualIRTests(unittest.TestCase):
                     side_effect=AssertionError("legacy Word parser"),
                 ),
                 patch(
-                    "tools.web_spec_component.build_manual_ir_from_source",
+                    "tools.web.spec_component.build_manual_ir_from_source",
                     wraps=build_manual_ir_from_source,
                 ) as assemble,
             ):
@@ -78,7 +78,7 @@ class WebManualIRTests(unittest.TestCase):
             self.assertEqual("① Note.", soup.select_one("#note").text)
 
     def test_later_malformed_section_does_not_partially_mutate_dom(self):
-        from tools.web_spec_component import transform_specification_tables
+        from tools.web.spec_component import transform_specification_tables
 
         source = declared_table("<tr><td>A</td><td>B</td></tr>") + declared_table(
             "<tr><td>missing</td></tr>"
@@ -97,7 +97,7 @@ class WebManualIRTests(unittest.TestCase):
     def test_serialized_projection_replays_without_source_file(self):
         from tools.manual_ir import build_manual_ir_from_source
         from tools.manual_ir.web_specs import load_web_spec_source
-        from tools.web_spec_component import render_specification_ir
+        from tools.web.spec_component import render_specification_ir
 
         source = declared_table("<tr><td>Input</td><td><em>100 V</em></td></tr>")
         adapter = load_web_spec_source(
@@ -120,7 +120,7 @@ class WebManualIRTests(unittest.TestCase):
     def test_rich_markup_and_semantics_cannot_drift_even_with_valid_hashes(self):
         from tools.manual_ir import build_manual_ir_from_source
         from tools.manual_ir.web_specs import load_web_spec_source
-        from tools.web_spec_component import render_specification_ir
+        from tools.web.spec_component import render_specification_ir
 
         source = load_web_spec_source(
             declared_table("<tr><td>Input</td><td>100 V</td></tr>"),
@@ -177,7 +177,7 @@ class WebManualIRTests(unittest.TestCase):
                     if fullname.startswith(('tools.idml', 'idml')) or fullname == 'tools.manual_ir.prepared_rst':
                         raise AssertionError('legacy import: ' + fullname)
             sys.meta_path.insert(0, ForbidLegacy())
-            from tools.web_spec_component import transform_specification_tables
+            from tools.web.spec_component import transform_specification_tables
             from bs4 import BeautifulSoup
             from pathlib import Path
             soup = BeautifulSoup('<h2 class="hb-spec-section"><span class="hb-spec-section-text">Test</span></h2><table class="hb-spec-table"><tbody><tr><td>A</td><td>B</td></tr></tbody></table>', 'html.parser')

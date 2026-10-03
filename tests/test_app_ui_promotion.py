@@ -30,7 +30,7 @@ from tools.asset_registry import (
     resolve_asset,
 )
 from tools.asset_usage import AssetTarget, BundleAssetUsage
-from tools.build_docs_export import _copy_attachment_images_for_latex
+from tools.build.docs_export import _copy_attachment_images_for_latex
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tools.idml.primitives import resolve_bundle_image
 

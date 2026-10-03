@@ -22,7 +22,7 @@ Use these docs for those topics:
 ### 2.1 Entrypoint and Orchestration
 
 - [`../build.py`](../build.py)
-- [`../tools/build_docs.py`](../tools/build_docs.py)
+- [`../tools/build/docs.py`](../tools/build/docs.py)
 
 Responsibilities:
 
@@ -78,7 +78,7 @@ Responsibilities:
 
 - [`../tools/validate_config.py`](../tools/validate_config.py)
 - [`../tools/validate_layout_params.py`](../tools/validate_layout_params.py)
-- [`../tools/check_docs.py`](../tools/check_docs.py)
+- [`../tools/check/docs.py`](../tools/check/docs.py)
 - [`../tools/check_identity_drift.py`](../tools/check_identity_drift.py)
 - [`../tools/page_contracts.py`](../tools/page_contracts.py)
 
@@ -103,8 +103,8 @@ Responsibilities:
 
 ### 2.8 Build Queue and Delivery
 
-- [`../tools/process_build_queue.py`](../tools/process_build_queue.py), `process_build_queue_*.py`, `process_review_start_queue*.py`
-- `queue_*.py`, `listen_*.py`, `message_*.py`, [`../tools/dingtalk/`](../tools/dingtalk)
+- [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix; the old top-level names are deprecated shims)
+- `listen_*.py`, `message_*.py`, [`../tools/dingtalk/`](../tools/dingtalk)
 
 Responsibilities:
 
@@ -114,7 +114,7 @@ Responsibilities:
 
 ### 2.9 Cloud-Doc Backport
 
-- [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py), `cloud_doc_backport_*.py`, `backport_*.py`
+- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3; the old top-level names are deprecated shims), `backport_*.py`
 
 Responsibilities:
 
@@ -177,11 +177,11 @@ moves each family into a real subpackage. The names below are proposals.
 
 | Domain | Today | Proposed package |
 | --- | --- | --- |
-| Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` |
-| Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` |
-| Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/queue/` |
-| Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot) |
-| Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` |
+| Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` (`build_docs*` moved 2026-10-03) |
+| Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` (`check_docs*` moved 2026-10-03) |
+| Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*` moved 2026-10-03) |
+| Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
+| Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` (`web_*` moved 2026-10-03) |
 | Read the Docs portal | `rtd_*.py` | `tools/rtd/` |
 | Word export | `word_bundle*.py` | `tools/word/` |
 | IDML | `export_idml.py`, `idml_rst_*.py` | existing `tools/idml/` |

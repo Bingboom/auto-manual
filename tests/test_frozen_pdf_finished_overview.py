@@ -17,7 +17,7 @@ from tools.frozen_pdf_finished_overview import bind_finished_overview
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.manual_ir.source import SourcePage
-from tools.web_presentation import load_web_manual_contract
+from tools.web.presentation import load_web_manual_contract
 
 
 class FinishedOverviewTests(unittest.TestCase):

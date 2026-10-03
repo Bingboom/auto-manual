@@ -22,7 +22,7 @@ approved composites, editable fallbacks and missing slots are used.
 Files:
 
 - `tests/test_web_presentation.py`
-- `tools/web_presentation.py`
+- `tools/web/presentation.py`
 
 Steps:
 
@@ -35,7 +35,7 @@ Steps:
 Verification:
 
 ```bash
-python3 -m ruff check tools/web_presentation.py tests/test_web_presentation.py
+python3 -m ruff check tools/web/presentation.py tests/test_web_presentation.py
 python3 -m unittest tests.test_web_presentation
 ```
 
@@ -43,8 +43,8 @@ python3 -m unittest tests.test_web_presentation
 
 Files:
 
-- `tools/web_figure_coverage.py` (new focused module)
-- `tools/web_document_source.py`
+- `tools/web/figure_coverage.py` (new focused module)
+- `tools/web/document_source.py`
 - `tests/test_web_figure_coverage.py` (new)
 - `tests/test_web_document_ir.py`
 

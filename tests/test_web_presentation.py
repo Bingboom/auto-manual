@@ -12,10 +12,10 @@ from bs4 import BeautifulSoup, Tag
 from PIL import Image
 
 from tools.component_specs.web_source import validate_web_callout_html
-from tools.web_callout_ir import render_callout_ir
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_composite_presentation import WebCompositeContext
-from tools.web_presentation import (
+from tools.web.callout_ir import render_callout_ir
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.composite_presentation import WebCompositeContext
+from tools.web.presentation import (
     _transform_product_overview,
     WebPresentationError,
     protect_web_callouts_for_pandoc,
@@ -89,10 +89,10 @@ class WebPresentationTests(unittest.TestCase):
 
         with (
             patch(
-                "tools.web_presentation.resolve_overview_instance",
+                "tools.web.presentation.resolve_overview_instance",
                 return_value=resolved,
             ) as resolver,
-            patch("tools.web_presentation.transform_overview") as transform,
+            patch("tools.web.presentation.transform_overview") as transform,
         ):
             _transform_product_overview(
                 BeautifulSoup("<section></section>", "html.parser"),

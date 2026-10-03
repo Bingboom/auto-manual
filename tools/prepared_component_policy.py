@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from tools.check_docs_capability import load_capabilities, load_known_missing
+from tools.check.docs_capability import load_capabilities, load_known_missing
 from tools.utils.path_utils import get_paths
 
 

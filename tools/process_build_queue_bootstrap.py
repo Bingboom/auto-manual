@@ -1,27 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.build_queue.process_build_queue_bootstrap` (CQ-1.4); import the new path.
 
-from pathlib import Path
-from typing import Any, Callable
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-from tools.queue_bound_lark_ops import set_repo_root_provider as _set_queue_lark_repo_root_provider
-from tools.queue_bound_outputs import set_repo_root_provider as _set_queue_output_repo_root_provider
-from tools.queue_bound_records import (
-    set_config_loader_provider as _set_queue_record_config_loader_provider,
-    set_repo_root_provider as _set_queue_record_repo_root_provider,
-    set_resolve_config_path_provider as _set_queue_record_resolve_config_path_provider,
+warnings.warn(
+    "tools.process_build_queue_bootstrap moved to tools.build_queue.process_build_queue_bootstrap",
+    DeprecationWarning,
+    stacklevel=2,
 )
-from tools.queue_bound_runtime import set_repo_root_provider as _set_queue_runtime_repo_root_provider
-
-
-def configure_queue_bound_providers(
-    *,
-    repo_root_provider: Callable[[], Path],
-    config_loader_provider: Callable[[], Callable[[Path], dict[str, Any]]],
-    resolve_config_path_provider: Callable[[], Callable[..., Path]],
-) -> None:
-    _set_queue_output_repo_root_provider(lambda: repo_root_provider())
-    _set_queue_runtime_repo_root_provider(lambda: repo_root_provider())
-    _set_queue_lark_repo_root_provider(lambda: repo_root_provider())
-    _set_queue_record_repo_root_provider(lambda: repo_root_provider())
-    _set_queue_record_config_loader_provider(lambda: config_loader_provider())
-    _set_queue_record_resolve_config_path_provider(lambda: resolve_config_path_provider())
+sys.modules[__name__] = import_module("tools.build_queue.process_build_queue_bootstrap")

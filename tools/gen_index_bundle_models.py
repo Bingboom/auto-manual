@@ -37,7 +37,7 @@ class MaterializedBundle:
     # The target's resolved language scope, and the bundle page files whose
     # manifest entry declared `lang_blocks`. A review overlay replaces those
     # files with the committed derivative, so the caller re-applies the trim
-    # afterwards — see tools/build_docs_bundle.py.
+    # afterwards — see tools/build/docs_bundle.py.
     languages: tuple[str, ...] = ()
     lang_block_pages: tuple[tuple[str, str | None], ...] = ()
 

@@ -5,8 +5,8 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.component_specs.app_html import parse_app_add_device_html
-from tools.web_app_component import render_app_component
-from tools.web_presentation import load_web_manual_contract
+from tools.web.app_component import render_app_component
+from tools.web.presentation import load_web_manual_contract
 
 
 class JapaneseAppSourceTests(unittest.TestCase):

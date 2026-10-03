@@ -14,8 +14,8 @@ from bs4 import BeautifulSoup
 
 from tests.test_web_lcd_component import _table as lcd_table
 from tests.test_web_troubleshooting_component import source_table
-from tools.web_lcd_component import transform_lcd_icon_tables
-from tools.web_troubleshooting_component import transform_troubleshooting_tables
+from tools.web.lcd_component import transform_lcd_icon_tables
+from tools.web.troubleshooting_component import transform_troubleshooting_tables
 
 
 class WebTableIRTests(unittest.TestCase):
@@ -41,7 +41,7 @@ class WebTableIRTests(unittest.TestCase):
 
     def test_real_entrypoints_use_public_assembler_and_ir_renderer(self):
         from tools.manual_ir import build_manual_ir_from_source
-        from tools.web_table_ir import render_web_table_ir
+        from tools.web.table_ir import render_web_table_ir
 
         for transform, markup, kind in (
             (transform_lcd_icon_tables, lcd_table(), "lcd"),
@@ -50,11 +50,11 @@ class WebTableIRTests(unittest.TestCase):
             with (
                 self.subTest(kind=kind),
                 patch(
-                    "tools.web_table_ir.build_manual_ir_from_source",
+                    "tools.web.table_ir.build_manual_ir_from_source",
                     wraps=build_manual_ir_from_source,
                 ) as assemble,
                 patch(
-                    "tools.web_table_ir.render_web_table_ir", wraps=render_web_table_ir
+                    "tools.web.table_ir.render_web_table_ir", wraps=render_web_table_ir
                 ) as render,
             ):
                 soup = BeautifulSoup(markup, "html.parser")
@@ -81,7 +81,7 @@ class WebTableIRTests(unittest.TestCase):
             write_manual_ir,
         )
         from tools.manual_ir.web_tables import load_web_table_source
-        from tools.web_table_ir import render_web_table_ir
+        from tools.web.table_ir import render_web_table_ir
 
         for kind, markup, transform in (
             ("lcd", lcd_table(), transform_lcd_icon_tables),
@@ -169,7 +169,7 @@ class WebTableIRTests(unittest.TestCase):
                 languages=("ja",),
             )
             with patch(
-                "tools.web_table_ir.build_manual_ir_from_source",
+                "tools.web.table_ir.build_manual_ir_from_source",
                 wraps=build_manual_ir_from_source,
             ) as assemble:
                 output, _, _ = build_word_bundle_html(
@@ -203,7 +203,7 @@ class WebTableIRTests(unittest.TestCase):
     def test_rehashed_semantic_drift_and_unsupported_blocks_fail(self):
         from tools.manual_ir import build_manual_ir_from_source
         from tools.manual_ir.web_tables import load_web_table_source
-        from tools.web_table_ir import render_web_table_ir
+        from tools.web.table_ir import render_web_table_ir
 
         source = load_web_table_source(
             source_table(), table_kind="troubleshooting", source_path=Path("x.rst")
@@ -239,7 +239,7 @@ sys.meta_path.insert(0, BlockLegacy())
 from pathlib import Path
 from tools.manual_ir import build_manual_ir_from_source, read_manual_ir, write_manual_ir
 from tools.manual_ir.web_tables import load_web_table_source
-from tools.web_table_ir import render_web_table_ir
+from tools.web.table_ir import render_web_table_ir
 source = load_web_table_source({lcd_table()!r}, table_kind='lcd', source_path=Path('missing.rst'))
 ir = build_manual_ir_from_source(source)
 assert ir.asset_refs == ('icon.png',)

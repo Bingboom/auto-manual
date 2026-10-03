@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-10-02
+Updated: 2026-10-03
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -15,6 +15,40 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-10-03: CQ-3.4 complexity cleanup and CQ-2.3 test decoupling done
+
+- CQ-3.4 done: every function at complexity ≥50 was split, 24 → 0, in batches
+  A–E (#1399, #1400, #1401, #1402, #1405, #1406, #1407). Each split was checked
+  for behavior: old-vs-new differential runs on real and randomized inputs; for
+  the IDML renderers, byte-identical exports of four real targets (1,431 zip
+  parts); for the two IDML table builders that no local target reaches, a replay
+  of every call made by the full test run.
+- CQ-2.3 done: facade patches in tests 363 → 11 (#1384, #1387, #1392, #1411,
+  #1412). The remaining 11 patch where the name is looked up, or check the
+  facade's own forwarding, and stay. `QueueDeps` gained
+  `resolve_config_path_for_task`; tests share `tests/queue_build_fixture.py`.
+- CQ-2 acceptance changed by operator decision: the `build_docs.py` `*_impl`
+  forwards are the dependency wiring point and stay ("facade only wires"),
+  instead of going to 0.
+- CQ-1.2: `tools/` top-level modules (398) and files carrying script bootstrap
+  code (103) are ratcheted; a new top-level module needs a recorded reason.
+- CQ-1.3 done: the 13 `cloud_doc_backport*` modules moved into `tools/backport/`
+  (entry `python -m tools.backport.cloud_doc`); each old path is a warning shim that
+  aliases the same module object, so the AGENTS.md §3 command and old patch targets
+  keep working. Bootstrap files 103 → 93. The move also fixed the
+  `run-review-branch` per-page worker, which had run a module with no `__main__`
+  since the G0 split and so exited 0 on every page without diffing.
+- CQ-1.4 queue family: the 39 `queue_*` / `process_*queue*` modules moved into
+  `tools/build_queue/` (named so it cannot shadow the stdlib `queue` when `tools/`
+  is on `sys.path`), with the same alias shims; the moved modules compute the repo
+  root directly instead of running script bootstrap code.
+- CQ-1.4 check family: the 14 `check_docs*` modules moved into `tools/check/`;
+  bootstrap files 93 → 90.
+- CQ-1.4 build family: the 18 `build_docs*` modules moved into `tools/build/`;
+  `tools.build.docs` is the facade, and the facade-patch ratchet watches both names.
+- CQ-1.4 web family: the 44 `web_*` modules moved into `tools/web/`; the isolated
+  Sphinx runtime that `plain_markdown_site` stages now carries a `tools/web` package.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

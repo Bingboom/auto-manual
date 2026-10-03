@@ -6,8 +6,8 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.frozen_pdf_app import artwork_node
-from tools.web_embedded_components import render_embedded_web_component
-from tools.web_reference_components import prepare_reference_caption_data
+from tools.web.embedded_components import render_embedded_web_component
+from tools.web.reference_components import prepare_reference_caption_data
 
 
 class WebReferenceCaptionModesTests(unittest.TestCase):

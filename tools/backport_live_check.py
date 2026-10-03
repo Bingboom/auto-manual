@@ -50,7 +50,7 @@ from typing import Any, Callable
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import (  # noqa: E402
+from tools.backport.cloud_doc import (  # noqa: E402
     _parse_table_bindings,
     _source_table_transport,
     build_change_request_report,
