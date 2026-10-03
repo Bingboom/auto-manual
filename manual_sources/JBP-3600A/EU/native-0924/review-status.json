@@ -217,14 +217,14 @@
     "scope": "native-source content and desktop/mobile layout only",
     "summary": "review/independent-acceptance-summary.json"
   },
-  "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
+  "shared_symbol_transparency_followup": "independent-final-delta-passed",
   "count_erratum_closure": "independently-closed-count-label-only",
   "count_erratum_closure_evidence": {
     "path": "review/count-errata-independent/closure.md",
     "sha256": "312ebf6c2251f43a699e72b85da710ed3721967f01eb761ebec01260154b2ab1"
   },
   "transparent_symbol_followup": {
-    "status": "local-candidates-awaiting-operator-review",
+    "status": "independent-final-delta-passed-awaiting-operator-review",
     "evidence": "review/transparent-symbol-r1/README.md",
     "results": "review/transparent-symbol-r1/results.json",
     "new_revisions": [
@@ -242,6 +242,16 @@
     "new_full_independent_acceptance_claimed": false,
     "publication_eligible": false,
     "registry_enrollment": false,
-    "merge_or_publication_performed": false
+    "merge_or_publication_performed": false,
+    "independent_delta_acceptance": {
+      "source_commit": "44b6ce6101141681a6cf75c9fdfef05b8aef93b0",
+      "passed": 9,
+      "total": 9,
+      "report": "review/transparent-final-independent/acceptance.md",
+      "report_sha256": "4035a8c6e4775d21dbd15de6b813c745ed8a2676039132c4250075ac7f3899b3",
+      "receipt": "review/transparent-final-independent/receipt.json",
+      "scope": "Final content/artwork/layout delta; prior eight native full-source reviews retained."
+    },
+    "final_confirmation": "FINAL_CONFIRMATION.md"
   }
 }

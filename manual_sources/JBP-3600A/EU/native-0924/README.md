@@ -1,5 +1,7 @@
 # JBP-3600A EU native-language intake candidates
 
+最终九语差量现已[独立验收通过](review/transparent-final-independent/acceptance.md)，绑定提交 `44b6ce61`。待操作者裁定及工程后续已收敛为[最终确认项](FINAL_CONFIRMATION.md)；技术 PASS 不等于上线批准。
+
 最新本地修订见[透明素材复用及发布准备](review/transparent-symbol-r1/README.md)：英语 r6、法语 r5、西语 r3、其余六语 r2。旧封存和 8/8 独立验收保留；以下旧版记录不自动批准新修订。
 
 English is already published at engineering commit `565c52a2d450d2b353e0186b22d0b230a2fb13ee` (PR1404), Hello-Docs PR170 and RTD34910454. These eight native packages are local review candidates. They do not authorize another release or promote an English baseline.
