@@ -11,9 +11,9 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
-from tools.frozen_ai_flow import heading, paragraph, prose, root, squash
-from tools.frozen_pdf_frontmatter import preface_flow, strong_paragraph, template_heading_levels
-from tools.frozen_ai_table_components import (
+from tools.web.frozen_ai_flow import heading, paragraph, prose, root, squash
+from tools.web.frozen_pdf_frontmatter import preface_flow, strong_paragraph, template_heading_levels
+from tools.web.frozen_ai_table_components import (
     specification_flow, symbol_pictogram_flow, troubleshooting_flow,
 )
 from tools.manual_ir.source import SourcePage

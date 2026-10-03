@@ -5,7 +5,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.frozen_pdf_app import artwork_node
+from tools.web.frozen_pdf_app import artwork_node
 from tools.web.embedded_components import render_embedded_web_component
 from tools.web.reference_components import prepare_reference_caption_data
 

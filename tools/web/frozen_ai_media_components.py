@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 from tools.component_specs.app import app_inline_control_component_spec
 from tools.component_specs.reference_figure import reference_figure_component_spec
-from tools.frozen_ai_flow import callout, root
+from tools.web.frozen_ai_flow import callout, root
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, flow_nodes_to_html
 from tools.web.composite_hashing import reference_source_fragment_sha256

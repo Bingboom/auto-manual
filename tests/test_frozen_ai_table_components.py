@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from tools.component_specs.registry import load_component_registry, registry_sha256
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.theme import load_manual_theme, theme_sha256
-from tools.frozen_ai_table_components import (
+from tools.web.frozen_ai_table_components import (
     lcd_mode_flow,
     specification_flow,
     symbol_pictogram_flow,
@@ -40,7 +40,7 @@ def _read(name):
 
 class FrozenAITableComponentTests(unittest.TestCase):
     def test_key_combinations_share_english_table_in_source_free_replay(self):
-        from tools.frozen_ai_source import FrozenBook
+        from tools.web.frozen_ai_source import FrozenBook
         from tools.component_specs.key_combinations import key_combinations_projection
         for language in ("pl", "pt", "nl"):
             with self.subTest(language=language):
@@ -49,7 +49,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                 book.language = language
                 book.errata = {"entries": []}
                 book.records = {"operation_tables": {"shortcuts": record}}
-                from tools.frozen_ai_flow import root
+                from tools.web.frozen_ai_flow import root
                 nodes = [root(n) for n in book.operation("shortcuts")]
                 soup = self._roundtrip(nodes, language)
                 table = soup.select_one("figure.hb-key-combination-composition > table.hb-key-combination-table")
@@ -79,8 +79,8 @@ class FrozenAITableComponentTests(unittest.TestCase):
             key_combinations_component_spec(**args)
 
     def test_auto_resume_four_languages_survive_source_free_public_replay(self):
-        from tools.frozen_ai_source import FrozenBook
-        from tools.frozen_ai_flow import root
+        from tools.web.frozen_ai_source import FrozenBook
+        from tools.web.frozen_ai_flow import root
         from tools.component_specs.auto_resume import auto_resume_projection
         for language in ("uk", "pt", "nl", "pl"):
             with self.subTest(language=language):
@@ -108,7 +108,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                     self.assertEqual([len(c) for c in auto_resume_projection(spec, renderer)["conditions"]], [3, 4])
 
     def test_auto_resume_rejects_changed_geometry_and_escapes_copy(self):
-        from tools.frozen_ai_table_components import auto_resume_flow
+        from tools.web.frozen_ai_table_components import auto_resume_flow
         record = deepcopy(_read("operation_tables")["locales"]["pl"]["restore"])
         record["columns"][0]["items"][0]["text"] = "SOC < 10% & <script>"
         nodes = auto_resume_flow(record, source_ref="restore", language="pl")

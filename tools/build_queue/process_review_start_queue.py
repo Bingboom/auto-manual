@@ -13,7 +13,7 @@ from typing import Any, Callable
 ROOT = Path(__file__).resolve().parents[2]
 
 from tools.data.snapshot import resolve_phase2_export_root  # noqa: E402
-from tools.document_link_queue import parse_document_key  # noqa: E402
+from tools.web.document_link_queue import parse_document_key  # noqa: E402
 from tools.phase2_support import (  # noqa: E402
     LarkCliSource,
     cli_bin as _cli_bin,

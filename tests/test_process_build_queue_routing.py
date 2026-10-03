@@ -8,7 +8,7 @@ from typing import Callable
 from unittest import mock
 
 from tests.test_helpers import temp_test_root, write_text
-from tools import document_link_queue
+from tools.web import document_link_queue
 from tools.build_queue import process_build_queue, bound_records as queue_bound_records, config_resolution as queue_config_resolution
 from tools.build_queue.process_build_queue_deps import QueueDeps, default_queue_deps
 

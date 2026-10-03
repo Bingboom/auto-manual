@@ -15,7 +15,7 @@ from tools.component_specs.app import (
     resolve_app_control_label_roles,
 )
 from tools.component_specs.reference_figure import reference_figure_component_spec
-from tools.frozen_ai_flow import callout, heading, node, paragraph, root, text
+from tools.web.frozen_ai_flow import callout, heading, node, paragraph, root, text
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import flow_nodes_to_html
 from tools.web.composite_hashing import reference_source_fragment_sha256

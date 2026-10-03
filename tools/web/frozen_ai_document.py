@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import re
 
-from tools.frozen_ai_flow import heading, node, paragraph, prose, root, squash, text
-from tools.frozen_ai_source import FrozenBook, _key
-from tools.frozen_ai_table_components import (
+from tools.web.frozen_ai_flow import heading, node, paragraph, prose, root, squash, text
+from tools.web.frozen_ai_source import FrozenBook, _key
+from tools.web.frozen_ai_table_components import (
     specification_flow, symbol_pictogram_flow, troubleshooting_flow,
 )
 from tools.manual_ir.hashing import value_sha256

@@ -16,7 +16,7 @@ from tools.manual_ir.hashing import file_sha256
 from tools.web.composite_manifest import WebCompositeEntry, WebCompositeManifest
 from tools.web.presentation import transform_web_fragment
 from tools.web.language_navigation import add_web_language_navigation
-from tools.document_assets import stage_fragment_assets
+from tools.web.document_assets import stage_fragment_assets
 from tools.web.embedded_components import render_embedded_web_component
 from tools.utils.path_utils import get_paths
 

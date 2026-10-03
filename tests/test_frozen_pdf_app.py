@@ -8,7 +8,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
+from tools.web.frozen_pdf_app import APP_ASSET_KEYS, app_section
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.flow import flow_nodes_to_html, validate_flow_node
 from tools.web.embedded_components import render_embedded_web_component
@@ -187,7 +187,7 @@ class FrozenPDFAppTests(unittest.TestCase):
 
     @unittest.skipUnless(PDF.is_file(), "native intake PDF is not available")
     def test_complete_fresh_pdf_app_copy_survives_public_replay_in_four_languages(self):
-        from tools.frozen_pdf_intake import load_pdf_book
+        from tools.web.frozen_pdf_intake import load_pdf_book
 
         for language in ("uk", "pt", "nl", "pl"):
             with self.subTest(language=language):

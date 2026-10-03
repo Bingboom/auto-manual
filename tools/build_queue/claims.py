@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Iterable
 
-from tools.document_link_queue import scalar_text
+from tools.web.document_link_queue import scalar_text
 from tools.build_queue.transitions import queue_claim_is_owned
 
 

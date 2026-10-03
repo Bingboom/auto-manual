@@ -87,7 +87,9 @@ web、IDML、队列、回写这几块目前最大的代码面。
   只被 import 的模块不再带启动代码。验收现状：顶层 `.py` 398 → 240（−40%，未达 ≥50%：计划未列出的
   `listen_*`、`message_*`、`source_*`、`sync_data*` 等族仍在顶层）；启动代码文件 103 → 75，余下的都是真正的脚本入口）
   补充迁移（冲 ≥50%，不留 shim）：`listen_*`、`message_*`（8 个）→ `tools/build_queue/`（2026-10-03）；
-  `backport_*`（4 个）→ `tools/backport/`（2026-10-03）；`source_*`、`sync_data*`、`data_*`（23 个）→ `tools/data/`（2026-10-03）。
+  `backport_*`（4 个）→ `tools/backport/`（2026-10-03）；`source_*`、`sync_data*`、`data_*`（23 个）→ `tools/data/`（2026-10-03）；
+  `frozen_*`、`document_*`（22 个）→ `tools/web/`（2026-10-03）。**验收达成：顶层 `.py` 398 → 183（−54%）；
+  启动代码文件 103 → 67，均为脚本入口。**
 
 **验收。** `tools/` 顶层 `.py` 数量下降 ≥50%；启动代码使用数从 154 降到只剩真正的脚本入口；
 `python -m unittest` 与 `build.py check` 保持绿色；旧命令在 shim 窗口期内仍能运行。

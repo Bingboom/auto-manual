@@ -59,7 +59,9 @@ For current rules, see:
   `source_*`, `sync_data*`); bootstrap files 103 → 75, all of them script entry points.
 - CQ-1 follow-up toward the ≥50% target, moving without shims: `listen_*` and
   `message_*` (8 modules) into `tools/build_queue/`; `backport_*` (4) into
-  `tools/backport/`; `source_*`, `sync_data*` and `data_*` (23) into `tools/data/`.
+  `tools/backport/`; `source_*`, `sync_data*` and `data_*` (23) into `tools/data/`;
+  `frozen_*` and `document_*` (22) into `tools/web/`. CQ-1 acceptance met: `tools/`
+  top level 398 → 183 (−54%), bootstrap files 103 → 67, all script entry points.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 
@@ -381,8 +383,8 @@ Main outcomes:
 - extracted CLI command assembly helpers into [`tools/build_entry_commands.py`](../tools/build_entry_commands.py)
 - extracted doctor environment/preflight helpers into [`tools/build_doctor.py`](../tools/build_doctor.py)
 - extracted shared queue dataclasses into [`tools/queue_contract.py`](../tools/build_queue/contract.py)
-- extracted queue action normalization into [`tools/document_link_actions.py`](../tools/document_link_actions.py)
-- extracted queue record parsing/binding/filtering into [`tools/document_link_queue.py`](../tools/document_link_queue.py)
+- extracted queue action normalization into [`tools/document_link_actions.py`](../tools/web/document_link_actions.py)
+- extracted queue record parsing/binding/filtering into [`tools/document_link_queue.py`](../tools/web/document_link_queue.py)
 - extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/build_queue/config_resolution.py)
 - extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/build_queue/runtime.py)
 - extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/build_queue/build_execution.py)

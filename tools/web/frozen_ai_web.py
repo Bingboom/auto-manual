@@ -1,6 +1,6 @@
 """Bounded intake of approved frozen AI JSON into the existing Web IR pipeline.
 
-Run with ``python -m tools.frozen_ai_web --source-root ... --output-root ...``.
+Run with ``python -m tools.web.frozen_ai_web --source-root ... --output-root ...``.
 The historical input is immutable; every output must be a new directory.
 """
 from __future__ import annotations
@@ -15,9 +15,9 @@ from bs4 import BeautifulSoup, Tag
 from tools.component_specs.registry import load_component_registry, registry_sha256
 from tools.component_specs.overview_instance import overview_instance_sha256, resolve_overview_instance
 from tools.component_specs.theme import load_manual_theme, theme_sha256
-from tools.frozen_ai_document import ordered_pages
-from tools.frozen_ai_source import FrozenBook
-from tools.frozen_web_component_coverage import require_frozen_component_coverage
+from tools.web.frozen_ai_document import ordered_pages
+from tools.web.frozen_ai_source import FrozenBook
+from tools.web.frozen_web_component_coverage import require_frozen_component_coverage
 from tools.manual_ir import V2_SCHEMA_VERSION, build_manual_ir_from_source, read_manual_ir, write_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.document import validate_document
@@ -84,7 +84,7 @@ def assemble_book(book, title, pages):
     with (output / "conf.py").open("a", encoding="utf-8") as stream:
         stream.write(f"language = {language!r}\n")
     specs = component_specs_in_flow([payload for page in pages for _, payload in page.blocks])
-    from tools.frozen_pdf_finished_overview import finished_overview_composites
+    from tools.web.frozen_pdf_finished_overview import finished_overview_composites
     composites = finished_overview_composites(book, pages)
     metadata = {
         "projection": "whole-document-components/v1",

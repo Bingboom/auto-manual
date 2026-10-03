@@ -5,9 +5,9 @@ import json
 from types import SimpleNamespace
 import unittest
 
-from tools.frozen_ai_flow import flow_text, heading
-from tools.frozen_ai_source import FrozenBook
-from tools.frozen_pdf_frontmatter import preface_flow, safety_flow, template_heading_levels
+from tools.web.frozen_ai_flow import flow_text, heading
+from tools.web.frozen_ai_source import FrozenBook
+from tools.web.frozen_pdf_frontmatter import preface_flow, safety_flow, template_heading_levels
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/source'
