@@ -4,8 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import check_docs
-from tools.check_docs_duplicate_text import collect_duplicate_render_text_issues
+from tools.check import docs as check_docs
+from tools.check.docs_duplicate_text import collect_duplicate_render_text_issues
 from tests.test_helpers import temp_test_root, write_lines, write_text
 
 

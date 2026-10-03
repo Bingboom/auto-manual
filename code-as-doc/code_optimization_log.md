@@ -43,6 +43,8 @@ For current rules, see:
   `tools/build_queue/` (named so it cannot shadow the stdlib `queue` when `tools/`
   is on `sys.path`), with the same alias shims; the moved modules compute the repo
   root directly instead of running script bootstrap code.
+- CQ-1.4 check family: the 14 `check_docs*` modules moved into `tools/check/`;
+  bootstrap files 93 → 90.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

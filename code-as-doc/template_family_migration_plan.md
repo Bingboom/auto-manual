@@ -185,7 +185,7 @@ Target files:
 - [`../tools/config_pages.py`](../tools/config_pages.py)
 - [`../tools/build_docs_pages.py`](../tools/build_docs_pages.py)
 - [`../tools/word_bundle_common.py`](../tools/word_bundle_common.py)
-- [`../tools/check_docs.py`](../tools/check_docs.py)
+- [`../tools/check/docs.py`](../tools/check/docs.py)
 - [`../tests/`](../tests)
 
 Tasks:

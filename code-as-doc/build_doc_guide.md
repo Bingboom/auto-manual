@@ -1941,7 +1941,7 @@ UPS page entries, all bound to `UPS功能`; this is enforced by
 `tests/test_capability_pages.py` so a new language or single-language carrier
 cannot silently bypass assembly-time filtering.
 
-`check` also runs the language-tree parity gate (`tools/check_docs_lang_parity.py`, Milestone I1): `LANG_PARITY_FOREIGN_SHELL` (a ko/ja/zh/uk page carrying almost no target-script text — an untranslated shell), `LANG_PARITY_FOREIGN_LANG_BLOCK` (language-tagged blocks such as `**FR IMPORTANT**` or `\HBApplyLang{xx}` outside the family's languages), `LANG_PARITY_MISSING_LANG_PAGE` / `LANG_PARITY_FOREIGN_LANG_PAGE` (per-language generated page set incomplete, or a leftover page from another language line). Pre-existing findings are registered in `data/lang_parity_known_exceptions.csv` (model, region, code, page, note) so only NEW drift fails; delete a row once its content decision lands.
+`check` also runs the language-tree parity gate (`tools/check/docs_lang_parity.py`, Milestone I1): `LANG_PARITY_FOREIGN_SHELL` (a ko/ja/zh/uk page carrying almost no target-script text — an untranslated shell), `LANG_PARITY_FOREIGN_LANG_BLOCK` (language-tagged blocks such as `**FR IMPORTANT**` or `\HBApplyLang{xx}` outside the family's languages), `LANG_PARITY_MISSING_LANG_PAGE` / `LANG_PARITY_FOREIGN_LANG_PAGE` (per-language generated page set incomplete, or a leftover page from another language line). Pre-existing findings are registered in `data/lang_parity_known_exceptions.csv` (model, region, code, page, note) so only NEW drift fails; delete a row once its content decision lands.
 
 ## 5.2 Language Scope Gate
 
@@ -2010,7 +2010,7 @@ stable. `tools/gen_index_bundle_plan.py` applies the skip; the annotation is
 Background: the 2026-08-13/14 same-source-gate incidents, where reseeds
 dropped these two pages because they lived only in a hand-edited review index.
 
-Failure codes (`tools/check_docs_language_scope.py`):
+Failure codes (`tools/check/docs_language_scope.py`):
 `LANG_SCOPE_UNSHIPPED_LANGUAGE` (the scope row is disjoint from the family the
 config declares — e.g. `configs/config.eu-uk.yaml` pointed at a model that ships
 no Ukrainian) and `LANG_SCOPE_FOREIGN_SCRIPT` (a bundle page carries the script
