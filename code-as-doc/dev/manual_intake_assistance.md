@@ -105,6 +105,27 @@ selection before refreshing. Confirm exact rows/scopes before the archive step;
 then write existing rows additively, upload original bytes, read back every record
 and download/hash-check the attachments. No live writes are performed by this tool.
 
+## Operator selections and readable artwork identities
+
+Import the exported review JSON with `art-review --selections /path/to/shared-art-selections.json`.
+Conditional reuse notes remain conditional; an exclusion removes that byte version from the
+priority view. Operation/button artwork is excluded from shared-art priority and cannot receive
+a reuse selection. This excludes artwork only, not shared rendering components.
+
+`--identities /path/to/identity-review.json` accepts `items` containing `id`, full `sha256`,
+`label`, `canonical_id` and `evidence`. The agent first compares matching artwork, preserves
+source/target distinctions and proposes an existing canonical original. Unknown/duplicate IDs,
+a changed hash, a missing label/evidence or a cross-category canonical reference fail.
+Annotations change review labels and record proposed aliases; they do not replace source files,
+approve new scope, merge registry rows or write Feishu. Perceptual similarity is a screening aid,
+not proof of equivalent wiring or symbols.
+
+Solar art keeps its existing SolarSaga model/count caption as the human-readable identity.
+Car/car-cable explanatory text belongs to native HTML and caption frames to shared CSS.
+Small LCD and safety symbols require real transparency. Match source-visible symbol semantics
+before reuse; retain count/style variants when their meaning differs. See the
+[Web artwork contract](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工).
+
 ## Sol handoff and acceptance boundary
 
 Give the executor the source/page map, English reference and one generated packet,
@@ -118,3 +139,8 @@ A GPT-6.1 Sol trial must use the actual requested model on one complete English
 chapter and one corresponding native chapter, then receive independent semantic,
 asset and desktop/mobile acceptance. Deterministic tests or another model's run
 cannot be reported as that model's acceptance.
+
+For visual normalization, inspect SVG originals in the browser: some raster
+preview converters misrender clip paths or transforms. A broken contact-sheet
+preview alone is not evidence of a broken original. Record reference-only
+fragments and excluded defects separately from proposed reusable originals.

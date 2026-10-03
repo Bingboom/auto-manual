@@ -2,7 +2,8 @@
 
 Status: active
 
-Discovery complete; implementation validation and operator asset selection pending.
+Packet/check tooling and selection import validated; solar visual grouping recorded.
+Operator archive approval, full pipeline integration and actual Sol trial remain open.
 
 ## Evidence and cause
 
@@ -71,3 +72,30 @@ real current-main assets and final JBP English IR. Record exact boundaries.
   and guardrails were rerun. No production build/admission behavior changed.
 - No Feishu writes, no baseline approval, no completed Sol model trial.
   Asset confirmation and pipeline integration remain separate next steps.
+
+## Selection import and solar normalization
+
+- Imported all 69 operator choices unchanged (64 conditional, five exclusions),
+  plus 92 hash-bound solar annotations through the real `art-review` CLI.
+  Operation/button artwork cannot receive a reuse selection. No source image
+  was altered, no registry scope enlarged and no Feishu record written.
+- Compared all 108 solar-category byte versions: 92 files fold into 22 proposed
+  canonical originals while keeping host/receptacle/topology differences;
+  15 files remain in eight reference-only groups and one missing-subject PNG
+  is excluded from recommendation. This is visual grouping, not byte equality
+  or approval to substitute a canonical into any existing manual.
+- Durable source paths, hashes, group decisions and exact operator selections:
+  [normalization review](shared-art-normalization-20261003.json).
+  Final local gallery: `.tmp/intake-assist/solar-review-v7/index.html`.
+- All 11 SVGs were additionally inspected in the browser. The previous raster
+  preview converter misrendered clipping/transforms; nine JE-100C SVGs and two
+  JE-1000F JP SVGs are not corrupt originals. Intermediate v6 classification
+  is superseded by v7. Never use a converted contact sheet alone to reject SVG.
+- Full selection-policy suite: 5,110 tests OK / 35 skipped, 799.219 seconds,
+  `.tmp/intake-assist/unittest-selection-policy.log`; after mechanical helper
+  extraction, 12 targeted tests, Ruff, guardrails and doc links passed.
+- Battery ×8 native extraction from HTE152 p13 is a separate transparent
+  candidate; artwork confirmation and enrollment remain separate.
+- Next bounded work: classify car/car-cable source variants and generate
+  explicit textless/HTML/CSS work items; run an actual requested-model pilot
+  when available. Tool tests are not GPT-6.1 Sol acceptance.

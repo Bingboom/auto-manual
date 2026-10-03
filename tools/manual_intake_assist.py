@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 from tools.manual_intake_packet import check_packet, make_packet, native_copy_map
-from tools.shared_art_review import inventory, tracked_art, write_review
+from tools.shared_art_review import apply_review_annotations, inventory, tracked_art, write_review
 
 
 def _write(path: Path, value: dict) -> None:
@@ -25,6 +25,8 @@ def main(argv=None) -> int:
     art.add_argument("--repo", type=Path, required=True)
     art.add_argument("--snapshots", type=Path, required=True)
     art.add_argument("--output", type=Path, required=True)
+    art.add_argument("--selections", type=Path)
+    art.add_argument("--identities", type=Path)
     for command in ("packet", "check-copy"):
         sub = commands.add_parser(command)
         for flag in ("reference-ir", "source", "output"):
@@ -42,6 +44,11 @@ def main(argv=None) -> int:
         downloads = args.snapshots / "downloads"
         files.extend(p for p in downloads.rglob("*") if p.is_file())
         result = inventory(repo, files, args.snapshots)
+        apply_review_annotations(
+            result,
+            json.loads(args.selections.read_text(encoding="utf-8")) if args.selections else None,
+            json.loads(args.identities.read_text(encoding="utf-8")) if args.identities else None,
+        )
         write_review(result, args.output, repo)
         print(json.dumps({k: v for k, v in result.items() if k != "items"}, ensure_ascii=False))
         return 0

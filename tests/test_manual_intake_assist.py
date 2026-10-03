@@ -12,7 +12,7 @@ import fitz
 from tools.asset_registry import REQUIRED_COLUMNS
 from tools.manual_intake_assist import main
 from tools.manual_intake_packet import check_packet, copy_items, make_packet, native_copy_map
-from tools.shared_art_review import category, inventory, write_review
+from tools.shared_art_review import apply_review_annotations, category, inventory, write_review
 
 
 class IntakePacketTests(unittest.TestCase):
@@ -140,3 +140,44 @@ class SharedArtReviewTests(unittest.TestCase):
         self.assertEqual(category("lcd.icon.solar-charging.png"), "LCD icons 专表")
         self.assertEqual(category("solar_four.png"), "太阳能板与连接图")
         self.assertEqual(category("car_charge.png"), "车充与车充线")
+
+
+class SharedArtAnnotationTests(unittest.TestCase):
+    def report(self):
+        return {"items": [{"id": "ART-a", "sha256": "a" * 64,
+            "category": "Symbols 专表", "shared_eligible": True, "priority": True},
+            {"id": "ART-op", "sha256": "b" * 64, "category": "操作与按键图",
+             "shared_eligible": False, "priority": True}]}
+
+    def test_selections_preserve_conditional_scope_and_exclude_operations(self):
+        report = self.report()
+        row = {"id": "ART-a", "decision": "limited", "note": "only when source symbol matches"}
+        apply_review_annotations(report, {"items": [row]})
+        self.assertEqual(report["items"][0]["operator_selection"], row)
+        self.assertFalse(report["items"][1]["priority"])
+        self.assertFalse(report["publication_eligible"])
+
+    def test_identity_is_hash_bound_and_does_not_replace_original(self):
+        report = self.report()
+        row = {"id": "ART-a", "sha256": "a" * 64, "label": "Warning triangle",
+               "canonical_id": "ART-a", "evidence": "operator selection + visible source"}
+        apply_review_annotations(report, identities={"items": [row]})
+        self.assertEqual(report["items"][0]["identity_review"], row)
+        self.assertEqual(report["items"][0]["sha256"], "a" * 64)
+
+    def test_invalid_annotations_fail_before_any_mutation(self):
+        good = {"id": "ART-a", "decision": "limited"}
+        for bad in ({"id": "unknown", "decision": "exclude"}, good,
+                    {"id": "ART-op", "decision": "reuse"},
+                    {"id": "ART-op", "decision": "approved"}):
+            report = self.report()
+            with self.assertRaises(ValueError):
+                apply_review_annotations(report, {"items": [good, bad]})
+            self.assertNotIn("operator_selection", report["items"][0])
+        for field, value in (("sha256", "wrong"), ("label", ""), ("evidence", ""),
+                             ("canonical_id", "unknown"), ("canonical_id", "ART-op")):
+            row = {"id": "ART-a", "sha256": "a" * 64, "label": "Warning triangle",
+                   "canonical_id": "ART-a", "evidence": "visual comparison"}
+            row[field] = value
+            with self.assertRaises(ValueError):
+                apply_review_annotations(self.report(), identities={"items": [row]})
