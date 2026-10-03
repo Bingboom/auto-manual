@@ -8,12 +8,8 @@ from dataclasses import replace
 from pathlib import Path
 from unittest import mock
 
-from tools import (
-    process_review_start_queue,
-    process_review_start_queue_git,
-    process_review_start_queue_records,
-)
-from tools.process_review_start_queue_runtime import ReviewStartRuntimeDeps
+from tools.build_queue import process_review_start_queue, process_review_start_queue_git, process_review_start_queue_records
+from tools.build_queue.process_review_start_queue_runtime import ReviewStartRuntimeDeps
 
 
 def _review_start_deps(**overrides: object) -> ReviewStartRuntimeDeps:

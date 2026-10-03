@@ -41,7 +41,7 @@ See AGENTS.md §8.3 and code-as-doc/dev/git_branching_guide.md §6.
 
 ## Anti-Debt Checklist
 
-- [ ] New low-level logic was kept out of `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py`
+- [ ] New low-level logic was kept out of `build.py`, `tools/build_docs.py`, and `tools/build_queue/process_build_queue.py`
 - [ ] If helper boundaries changed, `code-as-doc/dev/orchestration_module_map.md` was updated in the same PR
 - [ ] If behavior or workflow semantics changed, `README.md`, `code-as-doc/build_doc_guide.md`, and `user-guide/hello_auto-doc.md` were updated in the same PR
 - [ ] `python tools/check_maintainability_guardrails.py` passes locally

@@ -170,7 +170,7 @@ def _pr_body_from_manifest(
         "",
         "## Anti-Debt Checklist",
         "",
-        "- [x] New low-level logic was kept out of `build.py`, `tools/build_docs.py`, and `tools/process_build_queue.py`",
+        "- [x] New low-level logic was kept out of `build.py`, `tools/build_docs.py`, and `tools/build_queue/process_build_queue.py`",
         "- [x] No new config was added only because the model changed",
         "",
         "---",

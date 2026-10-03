@@ -2,7 +2,7 @@
 """Resolve a published repo target to its DingTalk delivery identity.
 
 Keyed on `(model, region)` — deliberately NOT on language. A publish queue row
-must leave `Lang` blank (`tools/queue_config_resolution.py` rejects a
+must leave `Lang` blank (`tools/build_queue/config_resolution.py` rejects a
 single-language family for publish), and the artifact it produces is one
 whole-book bundle covering every language of that region's family: US carries
 en/fr/es, EU carries en/fr/es/de/it/uk. One published deliverable therefore

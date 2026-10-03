@@ -164,7 +164,7 @@ def _target_config_path_for_review_mapping(
     lang: str,
 ) -> Path | None:
     from tools.config_loader import load_config_mapping
-    from tools.queue_config_resolution import resolve_config_path_for_task
+    from tools.build_queue.config_resolution import resolve_config_path_for_task
 
     normalized_region = (region or "").strip().upper()
     normalized_lang = lang.strip().lower()

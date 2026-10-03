@@ -13,15 +13,15 @@ from types import SimpleNamespace
 from typing import Callable
 from unittest import mock
 
-from tools import process_build_queue
-from tools import process_review_start_queue
-from tools import queue_execute
-from tools import queue_query
-from tools import queue_resolve_action
-from tools.queue_artifact_sink import ArtifactDestination, ArtifactPublishResult
-from tools.queue_build_execution import BuiltDocumentOutputs
-from tools.queue_group_processing import process_queue_record_group
-from tools.queue_transitions import format_queue_result
+from tools.build_queue import process_build_queue
+from tools.build_queue import process_review_start_queue
+from tools.build_queue import execute as queue_execute
+from tools.build_queue import query as queue_query
+from tools.build_queue import resolve_action as queue_resolve_action
+from tools.build_queue.artifact_sink import ArtifactDestination, ArtifactPublishResult
+from tools.build_queue.build_execution import BuiltDocumentOutputs
+from tools.build_queue.group_processing import process_queue_record_group
+from tools.build_queue.transitions import format_queue_result
 
 FIXTURE_ROOT = Path(__file__).parent / "fixtures" / "external_integrations"
 

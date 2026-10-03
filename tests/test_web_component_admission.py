@@ -99,7 +99,7 @@ class FreshComponentAdmissionTests(unittest.TestCase):
             self.assertEqual(self.admit(language="nl"), {"issues": []})
 
     def test_queue_rejects_missing_ir_before_creating_destination(self):
-        from tools.queue_outputs import stage_web_publish_assets_to_host_repo
+        from tools.build_queue.outputs import stage_web_publish_assets_to_host_repo
         self.path.unlink()
         md = self.root / "manual.md"
         md.write_text("# Manual")

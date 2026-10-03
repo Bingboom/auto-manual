@@ -21,8 +21,8 @@ class CountFileTest(unittest.TestCase):
             from unittest import mock
             from unittest.mock import patch
             from tools import build_docs
-            from tools import process_build_queue as pbq
-            import tools.process_review_start_queue as review
+            from tools.build_queue import process_build_queue as pbq
+            import tools.build_queue.process_review_start_queue as review
             import tools.backport.cloud_doc
 
             @patch.object(build_docs, "run")
@@ -31,7 +31,7 @@ class CountFileTest(unittest.TestCase):
                     pass
                 with patch.object(tools.backport.cloud_doc, "x"):
                     pass
-                with patch("tools.process_build_queue.helper"), mock.patch("tools.build_docs.run"):
+                with patch("tools.build_queue.process_build_queue.helper"), mock.patch("tools.build_docs.run"):
                     pass
         """
         with tempfile.TemporaryDirectory() as tmp:
@@ -43,14 +43,15 @@ class CountFileTest(unittest.TestCase):
     def test_ignores_implementation_modules_and_unrelated_patches(self) -> None:
         source = """
             from unittest.mock import patch
-            from tools import build_docs_artifacts, process_build_queue_main
+            from tools import build_docs_artifacts
+            from tools.build_queue import process_build_queue_main
             from pathlib import Path
 
             with patch.object(build_docs_artifacts, "run"), patch.object(Path, "exists"):
                 pass
             with patch.object(process_build_queue_main, "run"):
                 pass
-            with patch("tools.process_build_queue_main.run"), patch("tools.build_docs.sub.run"):
+            with patch("tools.build_queue.process_build_queue_main.run"), patch("tools.build_docs.sub.run"):
                 pass
             with patch.dict("os.environ", {}):
                 pass

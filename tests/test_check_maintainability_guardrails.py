@@ -65,7 +65,7 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "Guardrail target does not exist"):
                 guardrails.collect_hotspot_failures(
                     root,
-                    thresholds={"tools/process_build_queue.py": 10},
+                    thresholds={"tools/build_queue/process_build_queue.py": 10},
                 )
 
     def test_target_scoped_idml_page_predicate_guardrail(self) -> None:

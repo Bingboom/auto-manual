@@ -35,17 +35,17 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # tools/release_asset_lineage.py, so this is the irreducible minimum.
     "build.py": 761,
     "tools/build_docs.py": 830,
-    "tools/process_build_queue.py": 565,
+    "tools/build_queue/process_build_queue.py": 565,
     "tools/validate_spec_master_runtime.py": 880,
     "tools/check_docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,
     "tools/word_bundle_docx_styles.py": 1080,
     # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into
     # action / scope / prefix / task-id helpers; the growth is their signatures.
-    "tools/queue_query.py": 1240,
+    "tools/build_queue/query.py": 1240,
     "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
-    "tools/queue_lark_ops.py": 360,
+    "tools/build_queue/lark_ops.py": 360,
     # Backport / data-sync surface — previously ungoverned and grew unchecked
     # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
     # The facade (tools/backport/cloud_doc.py since CQ-1.3) is set EXACTLY at its
