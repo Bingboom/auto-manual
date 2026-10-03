@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""CI guard for the live verification orchestrator (tools/backport_live_check.py).
+"""CI guard for the live verification orchestrator (tools/backport/live_check.py).
 
 The orchestrator itself is operator-run against the Feishu tenant; these tests
 exercise its orchestration logic with the live fetch + sandbox transport mocked,
@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.backport_live_check import main, run_live  # noqa: E402
+from tools.backport.live_check import main, run_live  # noqa: E402
 from tools.source_record_index import build_index  # noqa: E402
 from tools.token_resolution_map import build_value_index  # noqa: E402
 

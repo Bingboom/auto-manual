@@ -735,7 +735,7 @@ change.
     happen on the business plane (Hello-Docs mirror), so the sentinel now runs
     in both repos, each against its own bound base.
   - Target files:
-    - [`../tools/backport_reminder.py`](../tools/backport_reminder.py)
+    - [`../tools/backport_reminder.py`](../tools/backport/reminder.py)
     - `.github/workflows/backport-reminder.yml`
   - Done when:
     - a review cloud doc with un-backported edits opens/updates a reminder issue (report-only, no auto-backport)

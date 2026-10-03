@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Live verification of the backport closed loop against the Feishu tenant.
 
-Where ``tools/backport_harness.py`` is the OFFLINE, CI-safe integration harness,
+Where ``tools/backport/harness.py`` is the OFFLINE, CI-safe integration harness,
 this module runs the same closed loop **live** by composing the proven pipeline
 functions against a real cloud doc:
 
@@ -28,12 +28,12 @@ Safety:
 Usage (operator):
 
     # read-only: fetch the edited doc, diff vs baseline, assert routing
-    python3 tools/backport_live_check.py \\
+    python3 -m tools.backport.live_check \\
         --cloud-doc <edited doc url> --baseline-md baseline.md --lang fr \\
         --data-root data/phase2 --expect expect.json
 
     # sandbox write: apply the resolved Class D edits to a sandbox table + verify
-    python3 tools/backport_live_check.py ... \\
+    python3 -m tools.backport.live_check ... \\
         --write --table-binding Spec_Master=<SANDBOX_BASE>:<SANDBOX_TABLE>
 
 ``expect.json`` (all keys optional): ``{"routes": {"repo_review_text": 1}, "total": 1, "semantic": 0}``.
@@ -44,11 +44,9 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Any, Callable
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.backport.cloud_doc import (  # noqa: E402
     _parse_table_bindings,

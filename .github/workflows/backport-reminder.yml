@@ -69,7 +69,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python -m tools.backport_reminder check | tee reminder_out.txt
+          python -m tools.backport.reminder check | tee reminder_out.txt
           rc=${PIPESTATUS[0]}
           {
             echo "### Backport Reminder (in-review docs vs baselines)"

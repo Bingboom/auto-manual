@@ -12,10 +12,6 @@ module	asset_usage.py
 module	attachment_identity.py
 module	audit_code_copy.py
 module	audit_spec_master.py
-module	backport_baseline.py
-module	backport_harness.py
-module	backport_live_check.py
-module	backport_reminder.py
 module	bitable_content_backup.py
 module	bitable_schema.py
 module	build_cli.py
@@ -236,9 +232,6 @@ module	write_web_publish_html_link.py
 module	write_web_publish_receipt_links.py
 bootstrap	tools/asset_intake.py
 bootstrap	tools/audit_spec_master.py
-bootstrap	tools/backport_harness.py
-bootstrap	tools/backport_live_check.py
-bootstrap	tools/backport_reminder.py
 bootstrap	tools/bitable_schema.py
 bootstrap	tools/check_language_literal_ratchet.py
 bootstrap	tools/check_maintainability_guardrails.py
