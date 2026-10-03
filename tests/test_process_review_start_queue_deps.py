@@ -11,7 +11,7 @@ from types import SimpleNamespace
 import unittest
 from unittest import mock
 
-from tools import process_review_start_queue
+from tools.build_queue import process_review_start_queue
 from tools.phase2_support import LarkCliSource
 
 

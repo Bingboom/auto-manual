@@ -24,7 +24,7 @@ Keep these files orchestration-first:
 
 - [`build.py`](../../build.py)
 - [`tools/build_docs.py`](../../tools/build_docs.py)
-- [`tools/process_build_queue.py`](../../tools/process_build_queue.py)
+- [`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 
 That means:
 
@@ -433,28 +433,28 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 ## 5. Build Queue Modules
 
-[`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
+[`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
 
-- [`tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
+- [`tools/build_queue/process_build_queue_main.py`](../../tools/build_queue/process_build_queue_main.py)
   - CLI bootstrap and data-root normalization for the queue entrypoint
-- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
   - wrapper-compatible service grouping for queue entrypoint helpers
   - optional queue dependencies are forwarded to existing session/build callbacks; omitted dependencies preserve facade compatibility lookups
-- [`tools/process_build_queue_deps.py`](../../tools/process_build_queue_deps.py)
+- [`tools/build_queue/process_build_queue_deps.py`](../../tools/build_queue/process_build_queue_deps.py)
   - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
   - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
   - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. `resolve_wiki_destination`, `upload_word_to_drive` and `move_drive_file_to_wiki` are also looked up inside the artifact-destination and publish services, so when `deps` sets one of them those two services run against `FacadeOverrides(module, ...)` (the facade with the names replaced) instead of the facade itself
   - `QueueDeps.resolve_config_path_for_task` (optional) replaces the config-path resolver for both record grouping (`queue_bound_records.group_pending_queue_records(..., resolve_config_path_for_task=...)`) and group processing, so a run sees one resolver end to end
   - `QueueDeps.clock` (optional) is the group processor's clock: `process_queue_record_group(clock=...)` takes the started-at stamp, claim expiry and built-at time from it (default `queue_group_processing.utc_now`). `queue_claims`, `queue_bound_records` and `queue_session` read no clock; `queue_transitions` already takes `now=`
-- [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+- [`tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
   - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
-- [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)
+- [`tools/build_queue/process_review_start_queue_runtime.py`](../../tools/build_queue/process_review_start_queue_runtime.py)
   - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
-- [`tools/queue_contract.py`](../../tools/queue_contract.py)
+- [`tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
   - canonical queue contract constants
   - shared queue dataclasses
   - binding / record / wiki destination type definitions
-- [`tools/queue_delivery.py`](../../tools/queue_delivery.py)
+- [`tools/build_queue/delivery.py`](../../tools/build_queue/delivery.py)
   - phase-aware Agent delivery contract: Draft cloud doc, Publish IDML handoff, Web HTML
   - `delivery_kind / delivery_url / delivery_ready` derivation and queue-row serialization
   - strips the retired public `document_link` name while preserving internal binding compatibility
@@ -466,32 +466,32 @@ Quality and release logic should follow concern-specific modules instead of drif
   - row filtering
   - record binding
   - queue preflight helpers
-- [`tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+- [`tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
   - queue preflight and Document_link binding adapters
   - repo entrypoint-facing access to environment-backed binding resolution
-- [`tools/queue_bound_records.py`](../../tools/queue_bound_records.py)
+- [`tools/build_queue/bound_records.py`](../../tools/build_queue/bound_records.py)
   - queue record/action facade adapters
   - repo-root-aware config resolution that forwards the parsed model/region target into grouping and execution
-- [`tools/queue_config_resolution.py`](../../tools/queue_config_resolution.py)
+- [`tools/build_queue/config_resolution.py`](../../tools/build_queue/config_resolution.py)
   - shared Start Review / Draft / Publish / Preview config resolver
   - exact declared model/region target override plus generic regional fallback
   - queue `Build_family` language-range matching through `build.language_family`, while `build.family_id` remains the internal config identity
   - target-only config exclusion from model-less fallback and fail-closed ambiguity handling
-- [`tools/queue_runtime.py`](../../tools/queue_runtime.py)
+- [`tools/build_queue/runtime.py`](../../tools/build_queue/runtime.py)
   - worktree/runtime helpers
   - generated path and review/runtime input helpers, including subprocess-scoped environment overlays
-- [`tools/queue_build_execution.py`](../../tools/queue_build_execution.py)
+- [`tools/build_queue/build_execution.py`](../../tools/build_queue/build_execution.py)
   - queue-triggered `build.py` command assembly
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
   - exact review commit/path provenance injection for versioned print Publish
   - review-input commit epoch injection for deterministic Web `check` / `md` / `html`
   - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
-- [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+- [`tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
   - top-level queue session flow
   - dry-run vs real-run branch control
   - post-sync pending-state reload
-- [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+- [`tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
   - per-group queue processing
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
@@ -506,16 +506,16 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/dingtalk_delivery_map.py`](../../tools/dingtalk_delivery_map.py)
   - `(model, region)` to DingTalk 项目代码 / 安规 / 文案语言集合 lookup over `data/dingtalk_delivery_map.csv`
   - `DeliveryTargetNotMapped` (skip) kept distinct from malformed-map `RuntimeError` (fail-closed)
-- [`tools/queue_claims.py`](../../tools/queue_claims.py)
+- [`tools/build_queue/claims.py`](../../tools/build_queue/claims.py)
   - bounded lease write across every row in a document group
   - no-view readback and exact-token ownership verification before dispatch
-- [`tools/queue_dry_run.py`](../../tools/queue_dry_run.py)
+- [`tools/build_queue/dry_run.py`](../../tools/build_queue/dry_run.py)
   - dry-run preview payload assembly
   - grouped queue preview output formatting
-- [`tools/queue_grouping.py`](../../tools/queue_grouping.py)
+- [`tools/build_queue/grouping.py`](../../tools/build_queue/grouping.py)
   - grouped record bucketing rules
   - document-key vs record-id grouping strategy
-- [`tools/queue_session.py`](../../tools/queue_session.py)
+- [`tools/build_queue/session.py`](../../tools/build_queue/session.py)
   - queue-session bootstrap and preflight
   - pending-record fetch/select/group state with active sibling-lease exclusion
   - wiki destination reporting for a processing session
@@ -529,27 +529,27 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/bitable_schema.py`](../../tools/bitable_schema.py)
   - tenant schema and reference-row orchestration
   - profile/identity routing and compatibility wrapper over the shared transport
-- [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
   - Drive/Wiki remote I/O helpers and the compatibility wrapper for shared queue transport
-- [`tools/queue_bound_lark_ops.py`](../../tools/queue_bound_lark_ops.py)
+- [`tools/build_queue/bound_lark_ops.py`](../../tools/build_queue/bound_lark_ops.py)
   - repo-root-aware Lark transport adapters used by queue entrypoints
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
-- [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
+- [`tools/build_queue/outputs.py`](../../tools/build_queue/outputs.py)
   - separate print-publish and Web-Publish asset staging
   - atomic immutable snapshot/manifest copy-out plus generic release/output path helpers
   - exact-hash Web version seal, immutable version metadata, and atomic latest pointer
-- [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
+- [`tools/build_queue/bound_outputs.py`](../../tools/build_queue/bound_outputs.py)
   - repo-root-aware queue output adapters
   - bound output/release helpers that keep `process_build_queue.ROOT` patchable
-- [`tools/queue_bound_runtime.py`](../../tools/queue_bound_runtime.py)
+- [`tools/build_queue/bound_runtime.py`](../../tools/build_queue/bound_runtime.py)
   - repo-root-aware command/worktree adapters for queue entrypoints
   - bound `build.py` command builders and worktree helpers that keep entrypoint compatibility names stable
-- [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
+- [`tools/build_queue/writeback.py`](../../tools/build_queue/writeback.py)
   - queue result formatting
   - row writeback payload assembly
   - `pending -> running -> success/failed` payload expectations documented in
     [`queue_state_model.md`](queue_state_model.md)
-- [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
+- [`tools/build_queue/transitions.py`](../../tools/build_queue/transitions.py)
   - explicit queue transition payload model for running, success, failure, and writeback-failed states
   - queue-claim parsing, expiry checks, and exact-token ownership checks
   - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
@@ -697,8 +697,8 @@ When adding or moving logic in this area:
 
 These areas still deserve follow-up only when a concrete hotspot reappears:
 
-- [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
-- [`tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
+- [`tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - [`tools/gen_index_bundle.py`](../../tools/gen_index_bundle.py)
 
 Keep future extraction notes here once those boundaries stabilize again.

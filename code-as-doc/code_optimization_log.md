@@ -39,6 +39,10 @@ For current rules, see:
   keep working. Bootstrap files 103 → 93. The move also fixed the
   `run-review-branch` per-page worker, which had run a module with no `__main__`
   since the G0 split and so exited 0 on every page without diffing.
+- CQ-1.4 queue family: the 39 `queue_*` / `process_*queue*` modules moved into
+  `tools/build_queue/` (named so it cannot shadow the stdlib `queue` when `tools/`
+  is on `sys.path`), with the same alias shims; the moved modules compute the repo
+  root directly instead of running script bootstrap code.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

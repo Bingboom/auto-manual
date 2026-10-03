@@ -7,12 +7,12 @@ import unittest
 from unittest import mock
 
 from tests.queue_build_fixture import build_document_for_task
-from tools import process_build_queue, queue_execute, queue_query
-from tools.queue_outputs import stage_web_publish_assets_to_host_repo
+from tools.build_queue import process_build_queue, execute as queue_execute, query as queue_query
+from tools.build_queue.outputs import stage_web_publish_assets_to_host_repo
 from tools.document_link_actions import normalize_workflow_action, workflow_action_label
-from tools.queue_contract import DocumentLinkBinding, QueueRecord
-from tools.queue_group_processing import process_queue_record_group
-from tools.queue_transitions import format_queue_result
+from tools.build_queue.contract import DocumentLinkBinding, QueueRecord
+from tools.build_queue.group_processing import process_queue_record_group
+from tools.build_queue.transitions import format_queue_result
 
 
 def _apply_queue_upsert(raw_records: list[dict[str, object]], kwargs: dict[str, object]) -> None:
@@ -87,7 +87,7 @@ class WebPublishQueueTests(unittest.TestCase):
             word_resolver = mock.Mock()
             stage_web = mock.Mock(return_value=(staged_md, staged_html))
             with mock.patch(
-                "tools.queue_build_execution.git_commit_epoch",
+                "tools.build_queue.build_execution.git_commit_epoch",
                 return_value=1234567890,
             ) as git_epoch:
                 outputs = build_document_for_task(
@@ -152,9 +152,9 @@ class WebPublishQueueTests(unittest.TestCase):
 
             stage_web = mock.Mock(return_value=(root / "staged.md", root / "staged-html"))
             with mock.patch(
-                "tools.queue_build_execution.git_commit_epoch", return_value=1234567890
+                "tools.build_queue.build_execution.git_commit_epoch", return_value=1234567890
             ), mock.patch(
-                "tools.queue_build_execution.capture_projection", side_effect=captured
+                "tools.build_queue.build_execution.capture_projection", side_effect=captured
             ):
                 outputs = build_document_for_task(
                     repo_root=root,

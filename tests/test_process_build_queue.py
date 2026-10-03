@@ -10,12 +10,8 @@ from unittest import mock
 
 from tests.queue_build_fixture import bound_repo_root, build_document_for_task
 from tests.test_helpers import temp_test_root
-from tools import (
-    process_build_queue,
-    process_build_queue_main,
-    process_build_queue_services,
-)
-from tools.process_build_queue_deps import FacadeOverrides, QueueDeps, default_queue_deps
+from tools.build_queue import process_build_queue, process_build_queue_main, process_build_queue_services
+from tools.build_queue.process_build_queue_deps import FacadeOverrides, QueueDeps, default_queue_deps
 
 _IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 
@@ -909,11 +905,11 @@ class TestProcessBuildQueue(unittest.TestCase):
             remove_mock = mock.MagicMock()
             with (
                 mock.patch(
-                    "tools.queue_build_execution._git_head_sha",
+                    "tools.build_queue.build_execution._git_head_sha",
                     return_value="b" * 40,
                 ),
                 mock.patch(
-                    "tools.queue_build_execution.target_has_approved_reference_plan",
+                    "tools.build_queue.build_execution.target_has_approved_reference_plan",
                     return_value=True,
                 ),
             ):

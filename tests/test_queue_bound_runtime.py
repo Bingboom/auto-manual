@@ -5,8 +5,8 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from tools import queue_bound_runtime
-from tools import queue_runtime
+from tools.build_queue import bound_runtime as queue_bound_runtime
+from tools.build_queue import runtime as queue_runtime
 
 
 class QueueBoundRuntimeTests(unittest.TestCase):

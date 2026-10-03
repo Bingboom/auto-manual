@@ -164,8 +164,8 @@ Milestone status: `done`
 - [x] PR 7: Split queue flow and external integrations
   - Status: `done`
   - Target files:
-    - [`../tools/process_build_queue.py`](../tools/process_build_queue.py)
-    - [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py)
+    - [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
+    - [`../tools/build_queue/process_review_start_queue.py`](../tools/build_queue/process_review_start_queue.py)
     - [`../tools/listen_build_queue.py`](../tools/listen_build_queue.py)
     - [`../tools/sync_data.py`](../tools/sync_data.py)
   - Guard tests:
@@ -177,7 +177,7 @@ Milestone status: `done`
     - queue parsing, routing, build execution, and writeback are separated
     - external system adapters stop importing private helpers across modules
   - Completed: `2026-04-05`
-  - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/process_build_queue.py`](../tools/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
+  - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/build_queue/bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
 
 - [x] PR 8: Split `spec_master` domain logic
   - Status: `done`

@@ -377,11 +377,11 @@ Success criteria:
 The control layer should reuse these cut points instead of creating new execution paths:
 
 - queue writeback and field contract:
-  - [`../../tools/queue_contract.py`](../../tools/queue_contract.py)
+  - [`../../tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
 - build queue entrypoint:
-  - [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
+  - [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 - review-start entrypoint:
-  - [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+  - [`../../tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
 - current maintainer workflow:
   - [`../build_doc_guide.md`](../build_doc_guide.md)
 - current user workflow:

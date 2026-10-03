@@ -42,6 +42,9 @@ FACADE_MODULES = (
     "tools.backport.cloud_doc",
     # CQ-1.3 shim: the old name aliases the same facade module until CQ-1.5.
     "tools.cloud_doc_backport",
+    "tools.build_queue.process_build_queue",
+    "tools.build_queue.process_review_start_queue",
+    # CQ-1.4 shims: the old names alias the same facade modules until CQ-1.5.
     "tools.process_build_queue",
     "tools.process_review_start_queue",
 )

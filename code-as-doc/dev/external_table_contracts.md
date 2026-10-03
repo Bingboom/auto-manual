@@ -25,8 +25,8 @@ Keep this document aligned when changing:
 - [`tools/source_table_contract.py`](../../tools/source_table_contract.py)
 - [`data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
 - [`tools/validate_config.py`](../../tools/validate_config.py)
-- [`tools/queue_contract.py`](../../tools/queue_contract.py)
-- [`tools/process_review_start_queue_records.py`](../../tools/process_review_start_queue_records.py)
+- [`tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
+- [`tools/build_queue/process_review_start_queue_records.py`](../../tools/build_queue/process_review_start_queue_records.py)
 - [`tools/sync_data.py`](../../tools/sync_data.py)
 
 ## 1. Phase2 Snapshot Tables

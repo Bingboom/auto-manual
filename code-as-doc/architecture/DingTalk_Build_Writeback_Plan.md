@@ -49,13 +49,13 @@ Current queue orchestration is intentionally build-provider-agnostic in the midd
 - phase2 sync runtime:
   [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
 - build queue entrypoint and orchestration:
-  [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py),
-  [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py),
-  [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+  [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py),
+  [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py),
+  [`../../tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
 - provider-specific upload and wiki attach:
-  [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+  [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - queue binding and preflight:
-  [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+  [`../../tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
 
 The build core itself should stay unchanged:
 
@@ -211,14 +211,14 @@ Expected primary refactor surface:
   - expose provider-neutral loader and provider factories
 - [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
   - remove hard stop on `provider != "lark_cli"`
-- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
   - replace Lark-specific upload/move binding with provider-selected services
-- [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
   - keep as Feishu implementation
   - add sibling `queue_dingtalk_ops.py`
-- [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+- [`../../tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
   - generalize binding resolution away from Feishu-only env names
-- [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+- [`../../tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
   - leave unchanged in phase 1 unless DingTalk also needs review-init queue parity
 
 ### 6.4 Prefer A Repo-Owned CLI Wrapper
