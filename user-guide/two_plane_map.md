@@ -104,6 +104,8 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 逐项核实、批准变更并验收后，再回填实际托管状态。
 停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
 
+Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
+
 ## 3. 谁在哪跑
 
 | 东西 | 跑在哪 | 对着哪组 base |

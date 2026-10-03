@@ -1,0 +1,46 @@
+name: Workspace Data Refresh
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Source to recheck after a completed production or asset batch
+        type: choice
+        options: [deliverables, corpus]
+        required: true
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: workspace-refresh-${{ inputs.source }}
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
+      FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID }}
+      FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: ./.github/actions/feishu-common-setup
+      - uses: ./.github/actions/workspace-data-refresh
+        with:
+          kind: ${{ inputs.source }}
+      - name: Source failure notice
+        if: ${{ !cancelled() }}
+        env:
+          REFRESH_KIND: ${{ inputs.source }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          args=()
+          if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
+          python tools/workspace_refresh_notice.py --kind "$REFRESH_KIND" --report .tmp/workspace-refresh/result.json "${args[@]}"

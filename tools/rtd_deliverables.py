@@ -64,6 +64,8 @@ SNAPSHOT_SCHEMA = "hello-docs-deliverables/v1"
 
 # Build-table column per Feishu-held format. The Publish ZIP link lives in the
 # column the queue calls DOCUMENT_LINK_FIELD ("idml_file").
+from tools.workspace_snapshot import digest, save_snapshot, snapshot_path
+
 FEISHU_FORMATS = {"print": DOCUMENT_LINK_FIELD, "word": FEISHU_CLOUD_DOC_FIELD}
 FORMAT_LABELS = {"web": "网页", "print": "印刷交付包", "word": "Word 云文档"}
 # The Document_key table's key text, "<model>_<region>" (e.g. "JE-1000F_US").
@@ -128,30 +130,20 @@ def _field_name(item: object) -> str:
 
 def _records(run, base_token: str, table_id: str, required: tuple[str, ...]) -> list[tuple[str, dict[str, Any]]]:
     """Every ``(record_id, {field: value})`` of one table; ``+record-list`` caps a page at 200."""
-    records: list[tuple[str, dict[str, Any]]] = []
-    header: list[str] = []
-    offset = 0
-    while True:
-        payload = run(["base", "+record-list", "--base-token", base_token, "--table-id", table_id,
-                       "--format", "json", "--limit", "200", "--offset", str(offset)])
-        data = payload.get("data") if isinstance(payload, dict) else None
-        if not isinstance(data, dict):
-            raise RuntimeError(f"record-list returned no data payload for {table_id}")
-        names = [_field_name(item) for item in data.get("fields") or []]
-        header = header or names
-        page = data.get("data") or []
-        ids = data.get("record_id_list") or []
-        for index, row in enumerate(page):
-            if isinstance(row, list):
-                # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
-                records.append((str(ids[index]) if index < len(ids) else "", dict(zip(names, row, strict=False))))
-        if len(page) < 200:
-            break
-        offset += 200
+    from tools.workspace_snapshot import complete_rows
+
+    header, records = complete_rows(run, base_token, table_id)
     missing = [name for name in required if name not in header]
     if missing:
         raise RuntimeError(f"table {table_id} is missing columns {missing}")
     return records
+
+
+def _keep_latest(best: dict, slot: tuple, version: str, url: str) -> None:
+    if slot in best and version_key(version) == best[slot][0] and url != best[slot][2]:
+        raise RuntimeError("delivery target has conflicting links for the same version")
+    if slot not in best or version_key(version) > best[slot][0]:
+        best[slot] = (version_key(version), version, url)
 
 
 def export_snapshot(*, run, base_token: str, build_table: str, key_table: str, today: dt.date) -> dict[str, Any]:
@@ -177,16 +169,19 @@ def export_snapshot(*, run, base_token: str, build_table: str, key_table: str, t
         link = row.get(DOCUMENT_KEY_FIELD)
         record_id = link[0].get("id") if isinstance(link, list) and link and isinstance(link[0], dict) else ""
         if record_id not in keys:
+            if any(feishu_url(row.get(field)) for field in FEISHU_FORMATS.values()):
+                raise RuntimeError("delivery link has no resolvable target identity")
             continue
         key = keys[record_id]
         lang, version = _cell(row.get(LANG_FIELD)), _cell(row.get(VERSION_FIELD))
         for fmt, field in FEISHU_FORMATS.items():
             url = feishu_url(row.get(field))
             if not url:
+                if _cell(row.get(field)):
+                    raise RuntimeError("delivery field has a malformed or unsupported link")
                 continue
             slot = (key, lang, fmt)
-            if slot not in best or version_key(version) > best[slot][0]:
-                best[slot] = (version_key(version), version, url)
+            _keep_latest(best, slot, version, url)
 
     documents: dict[tuple[str, str], dict[str, Any]] = {}
     for (key, lang, fmt), (_, version, url) in best.items():
@@ -200,6 +195,14 @@ def export_snapshot(*, run, base_token: str, build_table: str, key_table: str, t
 
 
 # --- snapshot -----------------------------------------------------------------------
+
+
+def _valid_target_identity(document: dict) -> bool:
+    model, region, lang = document.get("model"), document.get("region"), document.get("lang")
+    patterns = ((model, r"[A-Za-z0-9][A-Za-z0-9._-]*"),
+                (region, r"[A-Za-z]{2,3}(?:-[A-Za-z]{2,4})?"),
+                (lang, r"(?:[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*)?"))
+    return all(isinstance(value, str) and re.fullmatch(pattern, value) for value, pattern in patterns) and document.get("key") == f"{model}_{region}"
 
 
 def snapshot_problems(data: object) -> list[str]:
@@ -224,7 +227,9 @@ def snapshot_problems(data: object) -> list[str]:
             continue
         if not document.get("model") or not isinstance(document.get("lang", ""), str):
             problems.append(f"{where} needs a model and a text lang")
-        slot = (document.get("key"), document.get("lang"))
+        if not _valid_target_identity(document):
+            problems.append(f"{where} has an invalid target identity")
+        slot = (str(document.get("key")), str(document.get("lang")))
         if slot in seen:
             problems.append(f"{where} repeats {slot}")
         seen.add(slot)
@@ -235,7 +240,7 @@ def snapshot_problems(data: object) -> list[str]:
         for fmt, entry in formats.items():
             if fmt not in FEISHU_FORMATS:
                 problems.append(f"{where} has unknown format {fmt!r}")
-            elif not isinstance(entry, dict) or not entry.get("url") or feishu_url(entry["url"]) != entry["url"]:
+            elif not isinstance(entry, dict) or not isinstance(entry.get("version"), str) or not entry.get("url") or feishu_url(entry["url"]) != entry["url"]:
                 problems.append(f"{where}.{fmt} is not an https Feishu link")
     return problems
 
@@ -389,12 +394,15 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
     domain = registry[FEISHU_DOMAIN] if registry else None
     snapshot = None
     if domain is not None:
-        snapshot, problems = load_snapshot(assets / str(domain["snapshot"]))
+        snapshot, problems = load_snapshot(snapshot_path(assets, str(domain["snapshot"])))
     if problems:
         logger.warning("Deliverables page shows no Feishu links: %s", "; ".join(problems[:3]))
     view = deliverables_view(targets, snapshot, names=names,
                              labels=region_labels(assets), language_order=language_order, today=today,
                              feishu_domain=domain)
+    from tools.workspace_freshness import freshness
+    view["freshness"] = freshness(repo_root(), registry or {}, today)
+    view["page_built_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     view["production"] = production_context(
         root=repo_root(), assets=assets, manifest=Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON,
         snapshot=snapshot, registry=registry, today=today, delivery_stale=view["stale"],
@@ -448,7 +456,7 @@ def main(argv: list[str] | None = None) -> int:
         print("ERROR   " + "; ".join(problems[:5]))
         return 1
     domain = registry[FEISHU_DOMAIN]
-    default_snapshot = ASSETS / str(domain["snapshot"])
+    default_snapshot = snapshot_path(ASSETS, str(domain["snapshot"]))
 
     if args.command == "export":
         missing = [flag for flag, value in (("--base-token", args.base_token), ("--build-table", args.build_table),
@@ -461,15 +469,26 @@ def main(argv: list[str] | None = None) -> int:
                                        build_table=args.build_table, key_table=args.key_table,
                                        today=args.today or _utc_today())
         except RuntimeError as exc:
-            print(f"ERROR   {exc}")
+            print(f"ERROR   source export failed ({type(exc).__name__}); previous snapshot retained")
             return 1
         problems = snapshot_problems(snapshot)
         if problems:
             print("ERROR   " + "; ".join(problems[:5]))
             return 1
         output = args.output or default_snapshot
-        output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(f"wrote {output}: {_summary(snapshot)}; exported {snapshot['exported_at']}")
+        previous, errors = load_snapshot(output) if output.exists() else (None, [])
+        if errors:
+            print("ERROR   invalid previous snapshot; repair before refresh")
+            return 1
+        try:
+            result = save_snapshot(output, snapshot, previous=previous, validate=snapshot_problems,
+                                   source={"identity_sha256": digest([args.base_token, args.build_table, args.key_table])})
+        except (ValueError, OSError):
+            print("ERROR   candidate validation or atomic replacement failed; previous snapshot retained")
+            return 1
+        print(json.dumps(result, ensure_ascii=False))
+        saved = previous if result["status"] == "unchanged" else snapshot
+        print(f"{result['status']} {output}: {_summary(saved)}; snapshot dated {saved['exported_at']}")
         return 0
 
     path = args.snapshot or default_snapshot
