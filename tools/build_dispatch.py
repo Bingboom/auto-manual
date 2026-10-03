@@ -327,7 +327,7 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
         build_args.pdf_mode = "latex"
     context.run_checked(context.build_docs_command(
         build_args, action_override=build_action, source_override=source_override))
-    cmd = [_sys.executable, str(repo_root / "tools" / "export_idml.py")]
+    cmd = [_sys.executable, "-m", "tools.export_idml"]
     if getattr(args, "model", None):
         cmd += ["--model", args.model]
     if getattr(args, "region", None):

@@ -9,8 +9,8 @@ from tempfile import TemporaryDirectory
 
 import yaml
 
-from tools import rtd_portal
-from tools import rtd_source_registry as reg
+from tools.rtd import portal as rtd_portal
+from tools.rtd import source_registry as reg
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
@@ -99,8 +99,8 @@ class SourcesViewTests(unittest.TestCase):
         self.assertEqual(rows["capabilities"]["freshness"], "30 天复核")
         corpus = rows["corpus"]
         self.assertEqual((corpus["how"], corpus["freshness"], corpus["stale"]),
-                         ("读快照 system_workspace_corpus.json", "45 天 · 快照 2026-09-25", []))
-        self.assertIn("corpus-export", corpus["refresh"])
+                         ("读快照 system_workspace_corpus.json", "7 天 · 快照 2026-09-25", []))
+        self.assertIn("workspace_refresh.py refresh corpus", corpus["refresh"])
         # file: authorities become links; anything else stays plain text.
         self.assertTrue(rows["ledger"]["sources"][0]["href"].startswith("https://example.test/file:auto-manual:"))
         self.assertEqual(rows["focus"]["sources"][0], {"label": "操作者决定", "href": "", "title": "操作者决定"})
@@ -109,10 +109,10 @@ class SourcesViewTests(unittest.TestCase):
 
     def test_old_or_unreadable_snapshots(self):
         old = self.rows(today=TODAY + dt.timedelta(days=46))
-        self.assertEqual(old["corpus"]["stale"], ["语料规模快照已超过 45 天（导出于 2026-09-25）"])
+        self.assertEqual(old["corpus"]["stale"], ["语料规模快照已超过 7 天（导出于 2026-09-25）"])
         (self.assets / "deliverables_snapshot.json").write_text("{not json", encoding="utf-8")
         row = self.rows()["deliverables_feishu"]
-        self.assertEqual((row["freshness"], row["stale"]), ("45 天 · 飞书快照当前不可读", []))
+        self.assertEqual((row["freshness"], row["stale"]), ("3 天 · 飞书快照当前不可读", []))
 
 
 if __name__ == "__main__":

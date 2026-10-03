@@ -17,9 +17,9 @@ from urllib.parse import unquote, urlsplit
 
 from bs4 import BeautifulSoup
 
-from tools import rtd_deliverables as dl
-from tools import rtd_portal
-from tools.rtd_source_registry import load_registry
+from tools.rtd import deliverables as dl
+from tools.rtd import portal as rtd_portal
+from tools.rtd.source_registry import load_registry
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
@@ -110,9 +110,6 @@ class ExportTests(unittest.TestCase):
             [us, None, ["0.9"], None, link("https://t.feishu.cn/wiki/w09"), None],
             [us, ["en"], ["2.0"], None, "https://t.feishu.cn/wiki/w-en", link("https://ht-doc.readthedocs.io/x.html")],
             [br, None, ["0.5"], "https://t.feishu.cn/wiki/p-br", None, None],
-            [[{"id": "rec-missing"}], None, ["9.9"], "https://t.feishu.cn/wiki/orphan", None, None],
-            [us, None, ["3.0"], "https://example.com/not-feishu", None, None],
-            [None, None, ["1.0"], "https://t.feishu.cn/wiki/no-key", None, None],
         ])
         result = dl.export_snapshot(run=run, base_token="base", build_table="tblBUILD", key_table="tblKEY", today=TODAY)
         self.assertEqual(result["schema"], dl.SNAPSHOT_SCHEMA)
@@ -131,6 +128,14 @@ class ExportTests(unittest.TestCase):
         key_offsets = [c[c.index("--offset") + 1] for c in run.calls if "tblKEY" in c]
         self.assertEqual(key_offsets, ["0", "200"])
         self.assertNotIn("否", json.dumps(result, ensure_ascii=False))
+
+    def test_does_not_silently_drop_unresolved_or_invalid_delivery(self):
+        for row in (
+            [[{"id": "rec-missing"}], None, ["1.0"], "https://t.feishu.cn/wiki/orphan", None, None],
+            [[{"id": "rec-us"}], None, ["1.0"], "https://example.com/invalid", None, None],
+        ):
+            with self.subTest(row=row), self.assertRaises(RuntimeError):
+                dl.export_snapshot(run=self.tables([row]), base_token="base", build_table="tblBUILD", key_table="tblKEY", today=TODAY)
 
     def test_refuses_a_table_without_the_needed_columns(self):
         run = self.tables([])
@@ -210,7 +215,7 @@ class ViewTests(unittest.TestCase):
     def test_staleness_and_missing_inputs(self):
         view = self.view()
         self.assertEqual((view["snapshot_date"], view["stale"], view["last_published"]), ("2026-09-25", [], "2026-09-24"))
-        self.assertIn("超过 45 天", self.view(today=TODAY + dt.timedelta(days=46))["stale"][0])
+        self.assertIn("超过 3 天", self.view(today=TODAY + dt.timedelta(days=46))["stale"][0])
         bare = dl.deliverables_view(None, None, names={}, labels=LABELS, language_order=ORDER, today=TODAY,
                                     feishu_domain=FEISHU)
         self.assertEqual((bare["models"], bare["web_missing"], bare["feishu_missing"]), ([], True, True))
@@ -268,7 +273,7 @@ class RealSphinxTests(unittest.TestCase):
             (assets / "settings.json").write_text(json.dumps(dict(settings, product_voc_endpoint="")), encoding="utf-8")
             (web / "conf.py").write_text(
                 "project = 'manual'\nroot_doc = 'index'\n"
-                "from pathlib import Path\nfrom tools import rtd_portal as portal\n"
+                "from pathlib import Path\nfrom tools.rtd import portal\n"
                 f"portal.ASSETS = Path({str(assets)!r})\n"
                 f"rtd_knowledge_dir = {str(base / 'knowledge')!r}\n"
                 "rtd_system_workspace_date = '2026-09-25'\n",
@@ -278,7 +283,7 @@ class RealSphinxTests(unittest.TestCase):
             def build(name):
                 result = subprocess.run(
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
-                     "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
+                     "-D", "extensions=myst_parser,tools.rtd.portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
                     check=False,
                 )

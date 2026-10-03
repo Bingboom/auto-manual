@@ -57,7 +57,7 @@ Milestone status: `done`
   - Status: `done`
   - Target files:
     - [`../build.py`](../build.py)
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/build/docs.py`](../tools/build/docs.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
     - [`../tools/diff_report.py`](../tools/diff_report.py)
     - [`../tools/sync_data.py`](../tools/sync_data.py)
@@ -90,13 +90,13 @@ Milestone status: `done`
 
 Milestone status: `done`
 
-- [x] PR 3: Split `tools/build_docs.py` into target, bundle, and export layers
+- [x] PR 3: Split `tools/build/docs.py` into target, bundle, and export layers
   - Status: `done`
   - Target files:
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
-    - [`../tools/word_bundle.py`](../tools/word_bundle.py)
-    - [`../tools/word_bundle_html.py`](../tools/word_bundle_html.py)
-    - [`../tools/word_bundle_docx.py`](../tools/word_bundle_docx.py)
+    - [`../tools/build/docs.py`](../tools/build/docs.py)
+    - [`../tools/word/bundle.py`](../tools/word/bundle.py)
+    - [`../tools/word/bundle_html.py`](../tools/word/bundle_html.py)
+    - [`../tools/word/bundle_docx.py`](../tools/word/bundle_docx.py)
   - Guard tests:
     - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
     - [`../tests/test_build_docs_review_compat.py`](../tests/test_build_docs_review_compat.py)
@@ -105,15 +105,15 @@ Milestone status: `done`
     - [`../tests/test_manual_html_assets.py`](../tests/test_manual_html_assets.py)
   - Done when:
     - target resolution, bundle preparation, and export backends are separated
-    - `tools/build_docs.py` becomes a thin orchestration shell
+    - `tools/build/docs.py` becomes a thin orchestration shell
   - Completed: `2026-04-05`
-  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build_docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
+  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build/docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
 
 - [x] PR 4: Split bundle materialization and check logic
   - Status: `done`
   - Target files:
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
-    - [`../tools/check_docs.py`](../tools/check_docs.py)
+    - [`../tools/check/docs.py`](../tools/check/docs.py)
     - [`../tools/page_contracts.py`](../tools/page_contracts.py)
   - Guard tests:
     - [`../tests/test_check_docs.py`](../tests/test_check_docs.py)
@@ -123,7 +123,7 @@ Milestone status: `done`
     - bundle planning/materialization and validation are separated cleanly
     - page-contract behavior is preserved
   - Completed: `2026-04-05`
-  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check_docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check_docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
+  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check/docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check/docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
 
 - [x] PR 5: Reduce config-family duplication
   - Status: `done`
@@ -164,8 +164,8 @@ Milestone status: `done`
 - [x] PR 7: Split queue flow and external integrations
   - Status: `done`
   - Target files:
-    - [`../tools/process_build_queue.py`](../tools/process_build_queue.py)
-    - [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py)
+    - [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
+    - [`../tools/build_queue/process_review_start_queue.py`](../tools/build_queue/process_review_start_queue.py)
     - [`../tools/listen_build_queue.py`](../tools/listen_build_queue.py)
     - [`../tools/sync_data.py`](../tools/sync_data.py)
   - Guard tests:
@@ -177,7 +177,7 @@ Milestone status: `done`
     - queue parsing, routing, build execution, and writeback are separated
     - external system adapters stop importing private helpers across modules
   - Completed: `2026-04-05`
-  - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/process_build_queue.py`](../tools/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
+  - Note: extracted listener event/runtime/Lark helpers, decoupled review-start flow from `process_build_queue.py`, introduced shared `phase2` facade/bootstrap helpers, moved queue-session/runtime plus build/writeback implementation wiring into helper modules, and removed the last direct queue-adapter import of `sync_data.py` private helpers by routing [`../tools/build_queue/bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py) through [`../tools/phase2_support.py`](../tools/phase2_support.py); [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py) is now down to 402 lines while preserving the existing patchable/test-facing entry points and CLI routing
 
 - [x] PR 8: Split `spec_master` domain logic
   - Status: `done`

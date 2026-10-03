@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Tests for the cloud-doc finalize ops (tools/queue_cloud_doc_finalize.py).
+"""Tests for the cloud-doc finalize ops (tools/build_queue/cloud_doc_finalize.py).
 
 These cover the operator edit-access grant + wiki co-location that fix the
 "built Feishu cloud-doc is bot-owned, operator can only make a 副本" problem.
@@ -17,13 +17,13 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.queue_cloud_doc_finalize import (  # noqa: E402
+from tools.build_queue.cloud_doc_finalize import (  # noqa: E402
     finalize_cloud_doc,
     grant_doc_full_access,
     is_wiki_destination,
     resolve_cloud_doc_grantee,
 )
-from tools.queue_lark_ops import move_drive_file_to_wiki  # noqa: E402
+from tools.build_queue.lark_ops import move_drive_file_to_wiki  # noqa: E402
 
 WIKI_DEST = SimpleNamespace(space_id="spc123", parent_wiki_token="wiknodeP")
 NON_WIKI_DEST = SimpleNamespace(space_id="", parent_wiki_token="")

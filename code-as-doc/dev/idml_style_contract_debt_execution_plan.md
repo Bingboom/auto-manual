@@ -54,7 +54,7 @@ Discovery：[`../reviews/idml_style_contract_debt_discovery_2026-08-05.md`](../r
 
 顺序：
 
-1. `python3 tools/csv_to_tex_params.py`；
+1. `python3 -m tools.csv_to_tex_params`；
 2. 最终 `review-asis` flow 构建，确认 52 source refs / 58 physical composition map 不变；
 3. 用 `reference_layout_scaffold.py` 从现有批准 plan 生成完整候选；
 4. 对照 source refs、languages、composition map、skipped_raw 与全部 identity；
@@ -69,9 +69,9 @@ Discovery：[`../reviews/idml_style_contract_debt_discovery_2026-08-05.md`](../r
 python3 -m ruff check build.py integrations tools tests scripts
 python3 -m unittest <targeted modules>
 python3 -m unittest
-python3 tools/check_maintainability_guardrails.py
-python3 tools/check_reference_layout_pins.py
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_maintainability_guardrails
+python3 -m tools.check_reference_layout_pins
+python3 -m tools.check_doc_link_integrity
 python3 build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source auto --idml-mode both --no-clean
 ```
 

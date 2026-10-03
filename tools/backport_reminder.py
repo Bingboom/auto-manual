@@ -26,7 +26,7 @@ from typing import Any, Callable
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.backport_baseline import baseline_rel_path  # noqa: E402
-from tools.cloud_doc_backport_model import fetch_doc_text, parse_blocks  # noqa: E402
+from tools.backport.model import fetch_doc_text, parse_blocks  # noqa: E402
 from tools.document_link_queue import field_value, scalar_text  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
     CLOUD_DOC_FIELDS,
@@ -148,7 +148,7 @@ def check_docs(
 
 
 def _fetch_build_table_records(lark_cli: str, identity: str) -> list[dict[str, Any]]:
-    from tools.cloud_doc_backport_orchestration import (
+    from tools.backport.orchestration import (
         _fetch_build_table_records as fetch_records,
     )
 

@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools.build_docs import load_config
+from tools.build.docs import load_config
 from tools.language_aliases import normalize_language
 from tools.utils.path_utils import (
     release_manifests_of,

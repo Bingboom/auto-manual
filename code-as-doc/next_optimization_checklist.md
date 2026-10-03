@@ -73,10 +73,10 @@ This checklist assumes the 2026-05-07 baseline below:
   - queue `RUNNING` status writeback
 - highest-leverage current hotspots identified in:
   - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
-  - [`../tools/queue_query.py`](../tools/queue_query.py)
-  - [`../tools/word_bundle_docx_styles.py`](../tools/word_bundle_docx_styles.py)
+  - [`../tools/queue_query.py`](../tools/build_queue/query.py)
+  - [`../tools/word_bundle_docx_styles.py`](../tools/word/bundle_docx_styles.py)
   - [`../tools/csv_pages/renderers_symbols.py`](../tools/csv_pages/renderers_symbols.py)
-  - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+  - [`../tools/check_docs_generated.py`](../tools/check/docs_generated.py)
 - the long-term content assembly pilot (Milestone D) was rolled back to
   template-driven rendering (#295/#296); the live data-driven primitives are now
   `csv_pages` + `page_registry` + `content_blocks` + `Manual_Copy_Source`
@@ -122,8 +122,8 @@ Milestone note: completed the first quality-gate hardening wave across preview t
 - [x] PR 3: Split generated-page checks by responsibility
   - Status: `done`
   - Target files:
-    - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
-    - [`../tools/check_docs.py`](../tools/check_docs.py)
+    - [`../tools/check_docs_generated.py`](../tools/check/docs_generated.py)
+    - [`../tools/check_docs.py`](../tools/check/docs.py)
   - Guard tests:
     - [`../tests/test_check_docs.py`](../tests/test_check_docs.py)
     - [`../tests/test_page_contracts.py`](../tests/test_page_contracts.py)
@@ -240,9 +240,9 @@ Milestone note: closed the second stability wave by fixing diff-report regressio
   - Status: `done`
   - Target files:
     - [`../build.py`](../build.py)
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
-    - [`../tools/build_docs_export.py`](../tools/build_docs_export.py)
-    - [`../tools/process_build_queue.py`](../tools/process_build_queue.py)
+    - [`../tools/build_docs.py`](../tools/build/docs.py)
+    - [`../tools/build_docs_export.py`](../tools/build/docs_export.py)
+    - [`../tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
   - Guard tests:
     - [`../tests/test_build_script.py`](../tests/test_build_script.py)
     - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
@@ -306,9 +306,9 @@ of the largest queue test hotspot.
 - [x] PR 15: Centralize queue state transitions
   - Status: `done`
   - Target files:
-    - [`../tools/queue_transitions.py`](../tools/queue_transitions.py)
-    - [`../tools/queue_writeback.py`](../tools/queue_writeback.py)
-    - [`../tools/queue_group_processing.py`](../tools/queue_group_processing.py)
+    - [`../tools/queue_transitions.py`](../tools/build_queue/transitions.py)
+    - [`../tools/queue_writeback.py`](../tools/build_queue/writeback.py)
+    - [`../tools/queue_group_processing.py`](../tools/build_queue/group_processing.py)
     - [`../tests/test_queue_transitions.py`](../tests/test_queue_transitions.py)
   - Done when:
     - result formatting, start/success/failure writeback, trigger clearing, and `data_sync` rules are testable as transition behavior
@@ -458,7 +458,7 @@ gated on the same design.
   - Status: `pending`
   - Target files:
     - [`dev/content_block_migration_assessment.md`](dev/content_block_migration_assessment.md)
-    - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+    - [`../tools/check_docs_generated.py`](../tools/check/docs_generated.py)
   - Done when:
     - operation-guide and app-setup section headings, button/UI labels, table labels, and image alt text resolve from `Manual_Copy_Source` via `{{ copy:<copy_key> }}`
     - missing copy keys fail in `build.py check`
@@ -468,7 +468,7 @@ gated on the same design.
   - Status: `pending`
   - Note: touches the phase2 source contract → operator-gated per `AGENTS.md` §8.7
   - Target files:
-    - [`../tools/check_docs_generated.py`](../tools/check_docs_generated.py)
+    - [`../tools/check_docs_generated.py`](../tools/check/docs_generated.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
   - Done when:
     - every shipped page (including prose pages) is declared in `page_registry` with explicit applicability (`sku_scope`, `langs`, region/model)
@@ -511,7 +511,7 @@ dry-run boundary; live activation is the operator's, per
   - Target files:
     - [`../tools/draft_engine.py`](../tools/draft_engine.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
-    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py)
   - Done when:
     - the build emits a per-target map of resolved token / copy / csv values back to their source key (the lightweight provenance of §5.1 R8)
     - backport uses it to classify a delta as Class `D` (data-origin) instead of guessing
@@ -521,7 +521,7 @@ dry-run boundary; live activation is the operator's, per
   - Status: `done`
   - Note: `tools/family_scope.py` (`build_family_index` over sibling sources + `classify_family_scope`) wired into `cloud_doc_backport` alongside the F2 value index. A review-doc prose span identical across the family is routed `needs_human_mapping` with its blast radius (`family_scope.targets`) — the §5.1 R5 intentional-divergence gate — instead of auto-routing; target-local spans stay `repo_review_text`. Explicit siblings via repeatable `--sibling`; **`run-review-branch` now auto-resolves the `page_shared/<lang>` shared templates as siblings** so the blessed path fires Class T with no manual flags (`--no-auto-sibling` disables; single-region `ja`/`zh` have no shared surface). Tests in `tests/test_family_scope.py`, `tests/test_cloud_doc_backport.py::RunReviewBranchFamilyScopeTests`.
   - Target files:
-    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py)
     - [`../.agents/skills/manual-revision-backport/scripts/scan_residuals.py`](../.agents/skills/manual-revision-backport/scripts/scan_residuals.py)
   - Done when:
     - backport derives `R` (target-local) vs `T` (shared) from whether the span is identical across the family, reusing the residual scanner
@@ -532,7 +532,7 @@ dry-run boundary; live activation is the operator's, per
   - Status: `done`
   - Note: `cloud_doc_backport` now emits `cloud_doc_backport_template_sync_proposal.json/.md` (report-only, `external_write=false`) from `verify-review`, `run-review`, and the blessed `run-review-branch` baseline path, one entry per Class `T` (shared-across-family) delta with the §5.1 R4 contract: target templates (family scope), old→new, evidence, delta hash, and the post-apply rebuild+sync-review step. Backport still writes only Class `R` to `docs/_review/...`; Class `T` is never written there. Tests in `tests/test_template_sync_proposal.py`.
   - Target files:
-    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py)
     - [`architecture/Feishu_Cloud_Doc_Backport_Design.md`](architecture/Feishu_Cloud_Doc_Backport_Design.md)
   - Done when:
     - a review-backport run emits `template_sync_proposal.json/.md` for Class `T` deltas with the §5.1 R4 contract (target template(s), family scope, old→new, evidence, post-apply rebuild step, delta hash)
@@ -543,7 +543,7 @@ dry-run boundary; live activation is the operator's, per
   - Status: `done`
   - Note: `_rebuild_rediff_gate` re-diffs the baseline against the edited source and asserts the only changes are the intended `repo_review_text` deltas (no collateral `unexpected`, none `missing`); `build_review_verify_report` attaches the result and `build_review_run_report` requires it for `PR_READY` (verify PASS **and** gate pass). It runs against a distinct baseline snapshot, and now also against an **in-memory pre-edit baseline** — `run-review` passes the source it read before applying in place, so the prior in-place skip is closed. It is also wired into the blessed **`run-review-branch` baseline path**: each changed page's source pre→post diff must equal exactly the Class R deltas applied to it, else the seed-cursor advance **and** the PR push are blocked and the run exits non-zero. Tests in `tests/test_rebuild_rediff_gate.py`, `tests/test_cloud_doc_backport.py::RebuildRediffBlessedGateTests`.
   - Target files:
-    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py)
   - Done when:
     - `verify-review` is extended to rebuild from edited sources and re-diff against the accepted doc
     - the gate passes only when residuals are zero AND no diff appears outside the intended spans (recorded intentional overrides excepted)
@@ -553,7 +553,7 @@ dry-run boundary; live activation is the operator's, per
   - Status: `done` (to the dry-run/fixture boundary; live activation operator-gated)
   - Note: `tools/source_table_sync.py` — `build_change_requests` turns Class D deltas into change requests (record_id resolved via the F1 sidecar, exact-or-abstain); `plan_apply`/`apply_change_requests` enforce the R9 gates (human approval required, exact-or-abstain skip, content-field only, delta-hash idempotency, GET-verify-after-write) with an injected transport — dry-run by default. The request carries the precise `old_value`/`new_value`: for a table-ROW delta the **changed cell** value is extracted (e.g. `IN1 (DC 12V点烟口)`) so the write targets the cell field, not the whole row markup; `plan_apply` writes `new_value` and abstains when the cell can't be aligned (a row-vs-row write would corrupt the cell). Each live write **GET-checks the cell first** (drift guard): idempotent-skip (`already_applied`) if it already holds the new value, **abstain** (`drift_abstained`) if it holds neither the expected `old_value` nor the new value (never clobber an externally-changed/stale cell), else upsert + GET-verify-after. `run-review` now emits `cloud_doc_backport_source_table_change_request.json`. **Operator follow-up (live):** wire `lark-cli --as bot` as the transport and a populated `record_id` sidecar; the operator approves by deliberately running `apply-source-table --write` (the cloud-doc-backport IM trigger was removed 2026-06-21, #453 — backport is CLI-only). An agent may propose/execute but never approve. Tests in `tests/test_source_table_sync.py`.
   - Target files:
-    - [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py)
+    - [`../tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py)
     - `tools/source_table_sync.py` (new executor)
   - Done when:
     - backport emits a `source_table_change_request` for Class `D` deltas (table, exact `record_id` from F1, field, old→new, scope, blast radius, evidence, delta hash)
@@ -617,7 +617,7 @@ change.
     best-effort (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables; tests
     isolated via setUpModule).
   - Target files:
-    - [`../tools/cloud_doc_backport_cli.py`](../tools/cloud_doc_backport_cli.py)
+    - [`../tools/cloud_doc_backport_cli.py`](../tools/backport/cli.py)
     - [`../tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py)
   - Done when:
     - argparse definitions, per-command run functions, and multi-step orchestration (review-branch / baseline / PR opening) live in separate modules with one-way imports
@@ -1402,8 +1402,8 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
     boundary at the end.
   - Target files:
     - [`../tools/feishu_record_transport.py`](../tools/feishu_record_transport.py)
-    - [`../tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
-    - [`../tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py)
+    - [`../tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py)
+    - [`../tools/queue_bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py)
     - [`../tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py)
     - [`../tools/spec_master_rebuild.py`](../tools/spec_master_rebuild.py)
     - [`../tools/bitable_schema.py`](../tools/bitable_schema.py)
@@ -1421,7 +1421,7 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
     baseline, not a repo-wide sweep: queue orchestration and build entry paths
     first; user-facing CLI output stays `print`.
   - Target files:
-    - [`../tools/queue_orchestration.py`](../tools/queue_orchestration.py)
+    - [`../tools/queue_orchestration.py`](../tools/build_queue/orchestration.py)
     - [`../tools/build_runtime.py`](../tools/build_runtime.py)
   - Done when:
     - queue and build orchestration emit leveled `logging` records (level via env), with run/record correlation ids on queue paths
@@ -1504,7 +1504,7 @@ semantic change sitting in the tree while business work resumes.
     `build_root_for_target`, dragging Sphinx/export imports into queue and
     check paths.
   - Target files:
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/build_docs.py`](../tools/build/docs.py)
     - [`../tools/utils/path_utils.py`](../tools/utils/path_utils.py)
   - Done when:
     - target/config resolution lives in a lightweight `tools/utils/` module with no Sphinx-side imports
@@ -1526,8 +1526,8 @@ semantic change sitting in the tree while business work resumes.
     concurrency domains now close this registered slice. The parallel build matrix is a recorded
     follow-up AFTER the claim lands, not part of this PR.
   - Target files:
-    - [`../tools/queue_transitions.py`](../tools/queue_transitions.py)
-    - [`../tools/queue_orchestration.py`](../tools/queue_orchestration.py)
+    - [`../tools/queue_transitions.py`](../tools/build_queue/transitions.py)
+    - [`../tools/queue_orchestration.py`](../tools/build_queue/orchestration.py)
     - [`dev/queue_state_model.md`](dev/queue_state_model.md)
   - Done when:
     - claiming a row is atomic (claim token + TTL, or re-read-and-verify CAS) so two concurrent dispatches cannot both process the same record — covered by a fixture test
@@ -1884,7 +1884,7 @@ generate-then-verify; YAML stays the source of truth).
     - three surfaces the plan missed, all found while landing #936:
       [`../tools/gen_index_bundle_plan.py`](../tools/gen_index_bundle_plan.py)
       (`slot_id` must survive planning, not only config parsing),
-      [`../tools/process_review_start_queue.py`](../tools/process_review_start_queue.py)
+      [`../tools/process_review_start_queue.py`](../tools/build_queue/process_review_start_queue.py)
       (a second region-only resolver — see the queue guard below), and
       [`../.github/ci_check_targets_skip_baseline.json`](../.github/ci_check_targets_skip_baseline.json)
       (`skip_count` 4 → 5: the committed fixture snapshot has no
@@ -1892,7 +1892,7 @@ generate-then-verify; YAML stays the source of truth).
       not coverage — S4 must ratchet it back down)
   - **Queue-routing guard (P0, operator review 2026-08-21; unified
     2026-08-24):**
-    [`../tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
+    [`../tools/queue_config_resolution.py`](../tools/build_queue/config_resolution.py)
     `config_match_score` adds +1 to **any** filename that is not
     `config.us.yaml`, so a US 3-language BP config outscores the host config
     105:104 — a plain US queue record with no `Build_family` would silently

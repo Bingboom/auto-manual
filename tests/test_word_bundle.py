@@ -12,8 +12,8 @@ import yaml
 from bs4 import BeautifulSoup
 
 from tools.language_aliases import language_key
-from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
-from tools.word_bundle_html import (
+from tools.word.bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
+from tools.word.bundle_html import (
     _build_word_only_tags,
     build_word_bundle_html,
     _convert_rst_fragment_to_html,
@@ -21,9 +21,9 @@ from tools.word_bundle_html import (
     _rewrite_word_friendly_fragment,
     _stage_fragment_assets,
 )
-from tools import word_bundle_html
-from tools.word_bundle_html_rewrite import _extract_spec_word_data
-from tools.web_presentation import load_web_manual_contract
+from tools.word import bundle_html as word_bundle_html
+from tools.word.bundle_html_rewrite import _extract_spec_word_data
+from tools.web.presentation import load_web_manual_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class TestWordBundle(unittest.TestCase):
     def test_native_rst_admonitions_keep_rich_body_and_explicit_boundary(self) -> None:
-        from tools.word_bundle_html import _publish_rst_fragment_to_html
+        from tools.word.bundle_html import _publish_rst_fragment_to_html
 
         for variant in ("note", "tip", "warning", "caution", "danger"):
             with self.subTest(variant=variant):

@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from tests.prepared_admission_fixture import install_prepared_admission_fixture
 
-from tools.web_language_release_evidence import (
+from tools.web.language_release_evidence import (
     capture_projection,
     seal_release_evidence,
     verify_release_evidence,
@@ -144,7 +144,7 @@ class LanguageEvidenceAdversarialTests(unittest.TestCase):
     def test_historical_receipt_without_ir_replays_but_cannot_be_republished(self):
         (self.md / "manual.ir.json").unlink()
         # Produce the historical envelope with the old admission boundary.
-        with patch("tools.web_language_release_evidence.require_fresh_component_admission"):
+        with patch("tools.web.language_release_evidence.require_fresh_component_admission"):
             receipt = self.seal()
         self.verify(receipt, stored=True, html_dir=None)
         with self.assertRaisesRegex(RuntimeError, "requires a real manual IR"):

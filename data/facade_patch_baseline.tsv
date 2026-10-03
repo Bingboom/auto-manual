@@ -1,12 +1,9 @@
 # Per-test-file count of patches applied to facade modules
-# (tools.build_docs, tools.cloud_doc_backport, tools.process_build_queue, tools.process_review_start_queue).
+# (tools.build.docs, tools.backport.cloud_doc, tools.build_queue.process_build_queue, tools.build_queue.process_review_start_queue).
 # No file may grow, unlisted files may not patch facades, and a lower
 # count must be written back. Regenerate intentionally with:
 #   python tools/check_facade_patch_ratchet.py update
 tests/test_build_docs_review_compat.py	1
 tests/test_build_review_preview.py	1
-tests/test_process_build_queue.py	17
 tests/test_process_build_queue_routing.py	3
-tests/test_process_review_start_queue.py	21
 tests/test_target_resolution.py	6
-tests/test_web_publish_queue.py	15

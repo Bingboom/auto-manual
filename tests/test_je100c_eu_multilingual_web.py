@@ -18,7 +18,7 @@ from tools.content_lint_languages import SUPPORTED_LANGS
 from tools.manual_ir import read_manual_ir
 from tools.prepared_component_coverage import audit_prepared_component_coverage
 from tools.prepared_component_policy import resolve_prepared_component_policy
-from tools.web_component_admission import require_fresh_component_admission
+from tools.web.component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]

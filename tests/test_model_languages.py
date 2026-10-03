@@ -208,7 +208,7 @@ class TrackedTableTests(unittest.TestCase):
         the defect this table exists to close.
         """
         from tools.dingtalk_delivery_map import load_delivery_map
-        from tools.queue_query_languages import canonical_query_lang
+        from tools.build_queue.query_languages import canonical_query_lang
 
         mapped = load_delivery_map(root=ROOT)
         self.assertTrue(mapped)

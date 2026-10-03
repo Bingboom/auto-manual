@@ -9,9 +9,9 @@ from tools.component_specs.authored_tables_html import parse_authored_tables
 from tools.component_specs.model import ComponentSpec, ComponentSpecError
 from tools.component_specs.reference_table import reference_table_projection
 from tools.manual_ir.whole_document_components import discover_registered_components
-from tools.web_presentation import load_web_manual_contract
-from tools.web_reference_table_component import render_reference_table_component
-from tools.word_bundle_html import _publish_rst_fragment_to_html, _rewrite_word_friendly_fragment
+from tools.web.presentation import load_web_manual_contract
+from tools.web.reference_table_component import render_reference_table_component
+from tools.word.bundle_html import _publish_rst_fragment_to_html, _rewrite_word_friendly_fragment
 
 ROOT = Path(__file__).resolve().parents[1]
 

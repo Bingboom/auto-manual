@@ -137,7 +137,7 @@ As of 2026-05-07, the repo has working baselines for:
 - structured short-copy through `Manual_Copy_Source` plus Translation Memory tags, resolved into RST via `{{ copy:<copy_key> }}` while templates keep layout
 - snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py), with machine-readable `--json` output and local QC reports
 - closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
-- deterministic reviewer-diff backport through [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py), routing accepted Feishu-doc changes into templates/source as draft PRs
+- deterministic reviewer-diff backport through [`tools/backport/cloud_doc.py`](../tools/backport/cloud_doc.py), routing accepted Feishu-doc changes into templates/source as draft PRs
 
 ## 4. Recently Completed
 
@@ -171,7 +171,7 @@ A (Entrypoint And Tooling Parity), B (Core File Decomposition), C (Quality Gate 
 
 Status: active
 
-Progress (2026-06-18): M1 (`content_lint --json`), M2 lightweight `source_ref`, M3 local reports, and M5 docs/command shipped (#338-#341); the B2 reviewer-diff channel shipped as the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (#342-#354), not a standing LLM agent. Remaining tail: M4 Feishu `QC_Report` table and the sync-time `record_id` sidecar, both deferred until the source/report contracts stabilize.
+Progress (2026-06-18): M1 (`content_lint --json`), M2 lightweight `source_ref`, M3 local reports, and M5 docs/command shipped (#338-#341); the B2 reviewer-diff channel shipped as the deterministic [`tools/backport/cloud_doc.py`](../tools/backport/cloud_doc.py) CLI (#342-#354), not a standing LLM agent. Remaining tail: M4 Feishu `QC_Report` table and the sync-time `record_id` sidecar, both deferred until the source/report contracts stabilize.
 
 Why now:
 
@@ -424,7 +424,7 @@ Scope:
 - Execution note: Workstream W / Stage 4a has completed K8 slices 1–4, centralizing the queue, build-listener, spec-master, and schema command/response boundary plus bounded retry/backoff, pagination, and phase2 snapshot-write locking policy.
 - Execution note: Stage 4a items 10–15 now provide review-only reference-layout scaffolding, explicit failure-isolated finalize job manifests, a one-dispatch JSX batch loop per InDesign application group, approved-contract App page ownership, target-neutral page-role assembly coverage warnings, and native page/overset signals in both release JSON and CSV. Item 12's design-Mac two-document evidence was accepted on 2026-07-31 and PR #814 is merged.
 - U2: package the flat `tools/` namespace along the proven `tools/idml/` pattern — `queue/`, `backport/`, `word/`, `intake/`, `sync/`, `checks/` — as behavior-preserving mechanical moves with guardrail entries updated per move
-- U3: extract target/config resolution (`load_config`, `resolve_build_targets`, `build_root_for_target`) out of the [`tools/build_docs.py`](../tools/build_docs.py) facade into `tools/utils/` so queue/check/release modules stop importing the build orchestrator
+- U3: extract target/config resolution (`load_config`, `resolve_build_targets`, `build_root_for_target`) out of the [`tools/build/docs.py`](../tools/build/docs.py) facade into `tools/utils/` so queue/check/release modules stop importing the build orchestrator
 - U4: structured logging baseline: introduce `logging` with levels in queue orchestration and build entry paths first, replacing prints incrementally
 - U5: atomic queue claim (compare-and-swap or claim token + TTL on the queue row) plus a shared concurrency contract across the three queue workflows; then a parallel build matrix for independent targets
 - Execution note: Workstream W / Stage 4b is complete: items 1–3 provide a verified two-hour row lease, shared Draft/Publish Document_link record groups, a separate Start Review identity domain, a global Vercel production mutex, and selective GitHub artifact surfaces with explicit 1/7/14-day retention while preserving the independent 90-day phase2 backup. The independent-target build matrix remains the later U5 expansion.

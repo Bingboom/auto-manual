@@ -19,7 +19,7 @@ Baseline: `ef45a0df` (`origin/main`, 2026-09-06).
   component level. A new Web-only variant would therefore falsely inherit the
   existing LaTeX, IDML and Word `rendered` claims unless variant-specific
   bindings are introduced.
-- `tools/word_bundle_html.py` checks the first included Web page through
+- `tools/word/bundle_html.py` checks the first included Web page through
   `is_web_entry_page`. Existing governed JE-1000F prefaces remain protected,
   while unlisted targets implicitly accept any first included page. Short
   category manuals need an explicit, fail-closed declaration instead of relying
@@ -50,7 +50,7 @@ Baseline: `ef45a0df` (`origin/main`, 2026-09-06).
 - Full repository Ruff passed.
 - Full `python -m unittest` passed (3,781 tests; 22 skipped).
 - Maintainability guardrails passed without raising either touched-file limit:
-  `tools/web_inbox_component.py` remains at 120 lines and
+  `tools/web/inbox_component.py` remains at 120 lines and
   `web_inbox_components.css` remains at 180 lines.
 - Documentation link integrity passed: 158 Markdown files, 1,710 links, zero
   broken.

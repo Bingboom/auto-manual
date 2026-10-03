@@ -7,8 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.web_presentation import WebPresentationError, load_web_manual_contract
-from tools.web_presentation_contract import merge_contract_layers
+from tools.web.presentation import WebPresentationError, load_web_manual_contract
+from tools.web.presentation_contract import merge_contract_layers
 from tools.operation_artwork_mode import operation_artwork_mode
 
 

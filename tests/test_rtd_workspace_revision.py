@@ -7,7 +7,7 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools import rtd_workspace_revision as revision
+from tools.rtd import workspace_revision as revision
 
 
 class WorkspaceRevisionTests(unittest.TestCase):

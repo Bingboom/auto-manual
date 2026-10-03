@@ -32,7 +32,7 @@ from tools.listen_build_queue_runtime import (  # noqa: E402
     BuildQueueWorker as _BuildQueueWorkerImpl,
     listen_for_build_queue_events as _listen_for_build_queue_events_impl,
 )
-from tools.process_build_queue import (  # noqa: E402
+from tools.build_queue.process_build_queue import (  # noqa: E402
     IMMEDIATE_TRIGGER_FIELD,
     collect_queue_preflight_errors,
     process_build_queue,

@@ -11,7 +11,7 @@ from tools.component_specs.reference_figure_html import parse_reference_figure_h
 from tools.frozen_ai_flow import node, root, squash, text
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import flow_nodes_to_html
-from tools.web_presentation_contract import _validate_reference_base_art_layout
+from tools.web.presentation_contract import _validate_reference_base_art_layout
 
 
 def _native_caption_labels(book, figure):

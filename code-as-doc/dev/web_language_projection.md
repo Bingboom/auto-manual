@@ -2,7 +2,7 @@
 
 Status: active
 
-OPS-01a provides `tools.web_language_bundle.split_web_bundle` as an internal
+OPS-01a provides `tools.web.language_bundle.split_web_bundle` as an internal
 producer for a single-language `MaterializedBundle`. OPS-01b1 connects that
 producer to the existing Web presentation profile when the caller supplies an
 explicit `--lang`: the complete configured-language source freezes under

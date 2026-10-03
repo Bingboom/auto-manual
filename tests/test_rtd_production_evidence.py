@@ -7,12 +7,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd_production_evidence import (
+from tools.rtd.production_evidence import (
     NOT_APPLICABLE, NOT_TRACKED, UNAVAILABLE, activity_windows,
     component_references, metric, production_context, production_metrics, read_publications, skeleton_total,
 )
-from tools.rtd_source_registry import load_registry
-from tools.rtd_deliverables import ASSETS, load_snapshot
+from tools.rtd.source_registry import load_registry
+from tools.rtd.deliverables import ASSETS, load_snapshot
 from tools.utils.path_utils import Paths, repo_root
 
 

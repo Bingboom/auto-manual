@@ -262,13 +262,13 @@ tools/reference_layout_scaffold.py
 - `python build.py idml --idml-mode both --model M --region R [--lang L]`
   writes the production IDML, the flow artifacts, and the design handoff package
   in one run
-- `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
-- `python tools/reference_layout_rebind.py --plan <approved.json> --manual-ir
+- `python -m tools.export_idml …` (direct CLI; `--check <file.idml>` validates)
+- `python -m tools.reference_layout_rebind --plan <approved.json> --manual-ir
   <manual.ir.json> [--write]` (complete source rebind; dry-run by default)
-- `python tools/reference_layout_scaffold.py --seed-plan <approved.json>
+- `python -m tools.reference_layout_scaffold --seed-plan <approved.json>
   --manual-ir <manual.ir.json> --output <draft.json>` (composition-preserving,
   non-activating draft)
-- `python tools/indesign_finalize.py --jobs <manifest.json>` (design-host batch
+- `python -m tools.indesign_finalize --jobs <manifest.json>` (design-host batch
   orchestration: explicit print contract per job, one JSX outer loop per
   InDesign application group, isolated per-document finalize reports, and
   incomplete InDesign-package inventory)

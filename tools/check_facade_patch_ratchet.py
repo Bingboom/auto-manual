@@ -2,7 +2,7 @@
 """Fail-closed ratchet for tests that patch names on facade modules.
 
 The orchestration facades (``build_docs``, ``process_build_queue``,
-``process_review_start_queue``, ``cloud_doc_backport``) keep forwarders and
+``process_review_start_queue``, ``backport.cloud_doc``) keep forwarders and
 re-exports alive only because tests patch those names on the facade instead of
 on the module that actually looks them up.  Every such patch pins a forwarder
 in place.  This check counts them per test file and enforces:
@@ -21,8 +21,8 @@ Counted forms (aliases are resolved from the file's imports)::
 Baseline entries for files that no longer exist are reported as stale and do
 not fail::
 
-    python tools/check_facade_patch_ratchet.py check
-    python tools/check_facade_patch_ratchet.py update
+    python -m tools.check_facade_patch_ratchet check
+    python -m tools.check_facade_patch_ratchet update
 """
 
 from __future__ import annotations
@@ -38,10 +38,10 @@ from typing import Callable, Iterable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASELINE = REPO_ROOT / "data" / "facade_patch_baseline.tsv"
 FACADE_MODULES = (
-    "tools.build_docs",
-    "tools.cloud_doc_backport",
-    "tools.process_build_queue",
-    "tools.process_review_start_queue",
+    "tools.build.docs",
+    "tools.backport.cloud_doc",
+    "tools.build_queue.process_build_queue",
+    "tools.build_queue.process_review_start_queue",
 )
 _TARGET_PATCHERS = frozenset({"object", "multiple"})
 
@@ -160,7 +160,7 @@ def write_baseline(path: Path, counts: Iterable[FilePatchCount]) -> Path:
         f"# ({', '.join(FACADE_MODULES)}).\n"
         "# No file may grow, unlisted files may not patch facades, and a lower\n"
         "# count must be written back. Regenerate intentionally with:\n"
-        "#   python tools/check_facade_patch_ratchet.py update\n"
+        "#   python -m tools.check_facade_patch_ratchet update\n"
     )
     body = "".join(f"{item.path}\t{item.count}\n" for item in sorted(counts, key=lambda item: item.path))
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -228,7 +228,7 @@ def check_repository(
     for item, recorded in result.improved:
         printer(
             f"[facade-patch] IMPROVED {item.path} facade patches {recorded} -> {item.count}; "
-            "lock it in with `python tools/check_facade_patch_ratchet.py update`"
+            "lock it in with `python -m tools.check_facade_patch_ratchet update`"
         )
     for entry in result.stale:
         printer(f"[facade-patch] stale-baseline {entry}")

@@ -10,7 +10,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from tools.rtd_portal import ASSETS, catalog
+from tools.rtd.portal import ASSETS, catalog
 
 
 def _https_url(value: str) -> str:

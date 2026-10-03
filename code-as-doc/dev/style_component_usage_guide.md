@@ -205,7 +205,7 @@ python -m unittest \
   tests.test_idml_fixed_panel_golden \
   tests.test_export_idml \
   tests.test_indesign_finalize
-python tools/check_doc_link_integrity.py
+python -m tools.check_doc_link_integrity
 ```
 
 涉及可见 IDML 几何或最终化行为时，直接测试之后还必须用真实 InDesign 导出

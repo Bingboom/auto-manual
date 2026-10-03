@@ -167,6 +167,9 @@ def apply_translation_suggestions(
             applied.append({**entry, "status": "written" if ok else "verify_failed", "verified": ok})
         except Exception as exc:  # noqa: BLE001 - isolate one write's failure from the batch
             applied.append({**entry, "status": "error", "error": str(exc)})
+    from tools.workspace_refresh_trigger import request_tm_refresh
+
+    request_tm_refresh(write, transport, applied)
     return {
         "schema_version": TM_APPLY_SCHEMA_VERSION,
         "external_write": bool(write and transport is not None),

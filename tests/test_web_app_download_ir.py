@@ -11,7 +11,7 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import ManualIR, builder, build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 
 
 def config():
@@ -44,7 +44,7 @@ class WebAppDownloadIRTests(unittest.TestCase):
 
     def test_replay_needs_neither_source_nor_config_and_preserves_rich_copy(self):
         from tools.manual_ir.web_app_download import load_web_download_source
-        from tools.web_app_download import render_download_ir
+        from tools.web.app_download import render_download_ir
 
         for split in (False, True):
             with self.subTest(split=split), TemporaryDirectory() as td:
@@ -70,7 +70,7 @@ class WebAppDownloadIRTests(unittest.TestCase):
                 self.assertLess(expected.index('hb-app-download-column-store'), expected.index('hb-app-download-column-qr'))
 
     def test_application_preserves_neighbors_and_target_gate(self):
-        from tools import web_app_download
+        from tools.web import app_download as web_app_download
 
         soup = BeautifulSoup(source(), 'html.parser')
         web_app_download.transform_app_download(soup, source_path=Path('app.html'), config=config(), error_type=WebPresentationError)
@@ -84,7 +84,7 @@ class WebAppDownloadIRTests(unittest.TestCase):
             self.assertNotIn('hb-app-download-composition', output)
 
     def test_invalid_inputs_do_not_change_caller(self):
-        from tools.web_app_download import transform_app_download
+        from tools.web.app_download import transform_app_download
 
         html = source()
         for malformed in (html.replace('<h2>', '<h3>').replace('</h2>', '</h3>'),
@@ -102,7 +102,7 @@ class WebAppDownloadIRTests(unittest.TestCase):
                 self.assertEqual(str(soup), before)
 
     def test_corrupt_envelope_is_atomic(self):
-        from tools import web_app_download
+        from tools.web import app_download as web_app_download
 
         def corrupt(source):
             return replace(build_manual_ir_from_source(source), content_sha256='0' * 64)
@@ -116,7 +116,7 @@ class WebAppDownloadIRTests(unittest.TestCase):
 
     def test_rehashed_owned_payload_drift_is_rejected(self):
         from tools.manual_ir.web_app_download import load_web_download_source
-        from tools.web_app_download import render_download_ir
+        from tools.web.app_download import render_download_ir
 
         for change in ('text', 'order', 'assets', 'extra', 'kind', 'projection', 'binding', 'image'):
             with self.subTest(change=change):

@@ -47,7 +47,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools import rtd_deployment_receipt as receipt  # noqa: E402
+from tools.rtd import deployment_receipt as receipt  # noqa: E402
 from tools.document_link_queue import (  # noqa: E402
     describe_url_field,
     scalar_text,
@@ -57,11 +57,11 @@ from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
 from tools.publish_locale_identity import safe_queue_record_ids  # noqa: E402
-from tools.queue_bound_binding import (  # noqa: E402
+from tools.build_queue.bound_binding import (  # noqa: E402
     collect_queue_preflight_errors,
     resolve_document_link_binding,
 )
-from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
+from tools.build_queue.bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.verify_web_deployment_targets import (  # noqa: E402
     PUBLISH_MANIFEST,

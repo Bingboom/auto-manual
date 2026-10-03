@@ -6,7 +6,7 @@ from collections.abc import Iterator, Sequence
 from functools import lru_cache
 from pathlib import Path
 
-from tools.build_docs import load_config
+from tools.build.docs import load_config
 from tools.process_docs.build_review_preview_config import (
     WorkspaceTarget,
     WorkspaceTargetTemplate,
@@ -14,7 +14,6 @@ from tools.process_docs.build_review_preview_config import (
     resolve_preview_target_config_path,
 )
 from tools.review_support import review_content_exists
-from tools.script_bootstrap import bootstrap_repo_root
 from tools.utils.path_utils import Paths
 from tools.target_defaults import (
     FAMILY_DEFAULT_CONFIGS,
@@ -22,7 +21,7 @@ from tools.target_defaults import (
 )
 
 
-ROOT = bootstrap_repo_root(__file__, parent_count=2)
+ROOT = Path(__file__).resolve().parents[2]
 _PATHS = Paths(root=ROOT)
 FAMILY_ORDER = ("US", "JP", "CN")
 

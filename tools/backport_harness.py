@@ -30,7 +30,7 @@ by an operator as a quick green/red gate:
     python3 tools/backport_harness.py list             # list fixtures
     python3 tools/backport_harness.py matrix           # language x route coverage map
 
-For a true LIVE round-trip, run ``tools/cloud_doc_backport.py`` against a seeded
+For a true LIVE round-trip, run ``tools/backport/cloud_doc.py`` against a seeded
 test-tenant doc in dry-run. Live source-table writes must target an
 operator-nominated **sandbox** data-root (never production source tables), so they
 are intentionally out of this harness.
@@ -50,7 +50,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import build_report  # noqa: E402
+from tools.backport.cloud_doc import build_report  # noqa: E402
 from tools.source_record_index import build_index  # noqa: E402
 from tools.source_table_sync import (  # noqa: E402
     apply_change_requests,

@@ -4,17 +4,14 @@ import tempfile
 import unittest
 from dataclasses import replace
 from datetime import datetime, timedelta
+from functools import partial
 from pathlib import Path
 from unittest import mock
 
+from tests.queue_build_fixture import bound_repo_root, build_document_for_task
 from tests.test_helpers import temp_test_root
-from tools import (
-    process_build_queue,
-    process_build_queue_main,
-    process_build_queue_services,
-    queue_build_execution,
-)
-from tools.process_build_queue_deps import FacadeOverrides, QueueDeps, default_queue_deps
+from tools.build_queue import process_build_queue, process_build_queue_main, process_build_queue_services
+from tools.build_queue.process_build_queue_deps import FacadeOverrides, QueueDeps, default_queue_deps
 
 _IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 
@@ -22,40 +19,6 @@ _IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 def _facade_view(**overrides: object) -> FacadeOverrides:
     """The facade with some names replaced, passed as the ``module`` argument of a queue service."""
     return FacadeOverrides(process_build_queue, overrides)
-
-
-_BUILD_DOCUMENT_COLLABORATORS = {
-    "normalize_workflow_action": "normalize_workflow_action",
-    "prepare_git_ref_worktree": "_prepare_git_ref_worktree",
-    "remove_worktree": "_remove_worktree",
-    "config_path_in_repo_root": "_config_path_in_repo_root",
-    "run_command": "_run_command",
-    "build_py_target_command": "_build_py_target_command",
-    "resolve_word_output_path_for_target": "resolve_word_output_path_for_target",
-    "resolve_pdf_output_path_for_target": "resolve_pdf_output_path_for_target",
-    "resolve_md_output_path_for_target": "resolve_md_output_path_for_target",
-    "versioned_pdf_output_path": "_versioned_pdf_output_path",
-    "versioned_word_output_path": "_versioned_word_output_path",
-    "versioned_md_output_path": "_versioned_md_output_path",
-    "resolve_html_output_dir_for_target": "resolve_html_output_dir_for_target",
-    "stage_publish_assets_to_host_repo": "_stage_publish_assets_to_host_repo",
-    "stage_web_publish_assets_to_host_repo": "_stage_web_publish_assets_to_host_repo",
-    "stage_draft_word_output_to_host_repo": "_stage_draft_word_output_to_host_repo",
-    "stage_draft_md_output_to_host_repo": "_stage_draft_md_output_to_host_repo",
-}
-
-
-def _build_document_for_task(**kwargs: object) -> object:
-    """Run the build step with the facade's collaborators, overriding any passed in by impl name."""
-    collaborators = {
-        name: kwargs.pop(name) if name in kwargs else getattr(process_build_queue, facade_name)
-        for name, facade_name in _BUILD_DOCUMENT_COLLABORATORS.items()
-    }
-    return queue_build_execution.build_document_for_task(
-        repo_root=process_build_queue.ROOT,
-        **collaborators,  # type: ignore[arg-type]
-        **kwargs,  # type: ignore[arg-type]
-    )
 
 
 def _queue_deps(**overrides: object) -> QueueDeps:
@@ -135,7 +98,7 @@ class TestProcessBuildQueue(unittest.TestCase):
         self.assertEqual(worktree / "configs" / "config.eu.yaml", resolved)
 
     def test_resolve_docs_dir_for_config_should_keep_configs_dir_repo_relative(self) -> None:
-        with tempfile.TemporaryDirectory() as td, mock.patch.object(process_build_queue, "ROOT", Path(td)):
+        with tempfile.TemporaryDirectory() as td, bound_repo_root(Path(td)):
             root = Path(td)
             config_path = root / "configs" / "config.eu.yaml"
 
@@ -783,7 +746,7 @@ class TestProcessBuildQueue(unittest.TestCase):
 
             resolve_word_mock = mock.MagicMock(return_value=word_path)
             resolve_md_mock = mock.MagicMock(return_value=md_path)
-            resolved_path = _build_document_for_task(
+            resolved_path = build_document_for_task(
                 config_path=Path("configs/config.us-en.yaml"),
                 model="JE-1000F",
                 region="US",
@@ -849,7 +812,7 @@ class TestProcessBuildQueue(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            with mock.patch.object(process_build_queue, "ROOT", root):
+            with bound_repo_root(root):
                 word_path = process_build_queue.resolve_word_output_path_for_target(
                     config_path=config_path,
                     model="JE-1500D",
@@ -941,17 +904,17 @@ class TestProcessBuildQueue(unittest.TestCase):
             prepare_mock = mock.MagicMock(side_effect=[main_worktree, review_worktree])
             remove_mock = mock.MagicMock()
             with (
-                mock.patch.object(process_build_queue, "ROOT", root),
                 mock.patch(
-                    "tools.queue_build_execution._git_head_sha",
+                    "tools.build_queue.build_execution._git_head_sha",
                     return_value="b" * 40,
                 ),
                 mock.patch(
-                    "tools.queue_build_execution.target_has_approved_reference_plan",
+                    "tools.build_queue.build_execution.target_has_approved_reference_plan",
                     return_value=True,
                 ),
             ):
-                resolved_path = _build_document_for_task(
+                resolved_path = build_document_for_task(
+                    repo_root=root,
                     config_path=host_config_path,
                     model="JE-1000F",
                     region="US",
@@ -1062,25 +1025,23 @@ class TestProcessBuildQueue(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            with (
-                mock.patch.object(process_build_queue, "ROOT", root),
-            ):
-                _build_document_for_task(
-                    config_path=host_config_path,
-                    model="JE-2000F",
-                    region="EU",
-                    data_root="data/phase2",
-                    doc_phase="Draft",
-                    version="0.1",
-                    git_ref="codex/review-eu",
-                    prepare_git_ref_worktree=mock.MagicMock(side_effect=[main_worktree, review_worktree]),
-                    remove_worktree=mock.MagicMock(),
-                    run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd")))),
-                    resolve_word_output_path_for_target=mock.MagicMock(return_value=main_worktree_word_path),
-                    resolve_md_output_path_for_target=mock.MagicMock(return_value=main_worktree_md_path),
-                    stage_draft_word_output_to_host_repo=mock.MagicMock(return_value=staged_word_path),
-                    stage_draft_md_output_to_host_repo=mock.MagicMock(return_value=staged_md_path),
-                )
+            build_document_for_task(
+                repo_root=root,
+                config_path=host_config_path,
+                model="JE-2000F",
+                region="EU",
+                data_root="data/phase2",
+                doc_phase="Draft",
+                version="0.1",
+                git_ref="codex/review-eu",
+                prepare_git_ref_worktree=mock.MagicMock(side_effect=[main_worktree, review_worktree]),
+                remove_worktree=mock.MagicMock(),
+                run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd")))),
+                resolve_word_output_path_for_target=mock.MagicMock(return_value=main_worktree_word_path),
+                resolve_md_output_path_for_target=mock.MagicMock(return_value=main_worktree_md_path),
+                stage_draft_word_output_to_host_repo=mock.MagicMock(return_value=staged_word_path),
+                stage_draft_md_output_to_host_repo=mock.MagicMock(return_value=staged_md_path),
+            )
 
         self.assertEqual(3, len(commands))
         check_command, check_cwd = commands[0]
@@ -1124,36 +1085,34 @@ class TestProcessBuildQueue(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            with (
-                mock.patch.object(process_build_queue, "ROOT", root),
-            ):
-                resolved_path = _build_document_for_task(
-                    config_path=host_config_path,
-                    model="JE-1000F",
-                    region="US",
-                    data_root=str(source_data_root),
-                    doc_phase="Draft",
-                    version="0.3",
-                    git_ref="codex/review-us-en",
-                    prepare_git_ref_worktree=mock.MagicMock(side_effect=[main_worktree, review_worktree]),
-                    remove_worktree=mock.MagicMock(),
-                    run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd")))),
-                    resolve_word_output_path_for_target=mock.MagicMock(return_value=main_worktree_word_path),
-                    resolve_md_output_path_for_target=mock.MagicMock(return_value=main_worktree_md_path),
-                    stage_draft_word_output_to_host_repo=mock.MagicMock(return_value=staged_word_path),
-                    stage_draft_md_output_to_host_repo=mock.MagicMock(return_value=staged_md_path),
-                )
-                self.assertEqual(staged_word_path, resolved_path.word_output_path)
-                self.assertEqual(staged_md_path, resolved_path.md_output_path)
-                self.assertEqual(
-                    "review-content\n",
-                    (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
-                )
-                self.assertEqual(
-                    "fresh-host-data\n",
-                    (main_worktree / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8"),
-                )
-                self.assertTrue((main_worktree / "data" / "phase2" / "_attachments" / "lcd_icons" / "1_Wi-Fi_token.png").exists())
+            resolved_path = build_document_for_task(
+                repo_root=root,
+                config_path=host_config_path,
+                model="JE-1000F",
+                region="US",
+                data_root=str(source_data_root),
+                doc_phase="Draft",
+                version="0.3",
+                git_ref="codex/review-us-en",
+                prepare_git_ref_worktree=mock.MagicMock(side_effect=[main_worktree, review_worktree]),
+                remove_worktree=mock.MagicMock(),
+                run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("cwd")))),
+                resolve_word_output_path_for_target=mock.MagicMock(return_value=main_worktree_word_path),
+                resolve_md_output_path_for_target=mock.MagicMock(return_value=main_worktree_md_path),
+                stage_draft_word_output_to_host_repo=mock.MagicMock(return_value=staged_word_path),
+                stage_draft_md_output_to_host_repo=mock.MagicMock(return_value=staged_md_path),
+            )
+            self.assertEqual(staged_word_path, resolved_path.word_output_path)
+            self.assertEqual(staged_md_path, resolved_path.md_output_path)
+            self.assertEqual(
+                "review-content\n",
+                (main_worktree / "docs" / "_review" / "JE-1000F" / "US" / "marker.rst").read_text(encoding="utf-8"),
+            )
+            self.assertEqual(
+                "fresh-host-data\n",
+                (main_worktree / "data" / "phase2" / "Spec_Master.csv").read_text(encoding="utf-8"),
+            )
+            self.assertTrue((main_worktree / "data" / "phase2" / "_attachments" / "lcd_icons" / "1_Wi-Fi_token.png").exists())
 
         expected_data_root = str(main_worktree / "data" / "phase2")
         self.assertEqual(3, len(commands))
@@ -1196,30 +1155,28 @@ class TestProcessBuildQueue(unittest.TestCase):
                 version="1.0",
             )
 
-            with (
-                mock.patch.object(process_build_queue, "ROOT", root),
-            ):
-                resolved_path = _build_document_for_task(
-                    config_path=config_path,
-                    model="JE-1000F",
-                    region="JP",
-                    data_root="data/phase2",
-                    doc_phase="Publish",
-                    version="1.0",
-                    run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append(cmd)),
-                    resolve_word_output_path_for_target=mock.MagicMock(return_value=word_path),
-                    resolve_pdf_output_path_for_target=mock.MagicMock(return_value=pdf_path),
-                    resolve_md_output_path_for_target=mock.MagicMock(return_value=md_path),
-                    resolve_html_output_dir_for_target=mock.MagicMock(return_value=html_dir),
-                )
-                self.assertTrue(resolved_path.word_output_path.exists())
-                self.assertTrue(resolved_path.upload_output_path.exists())
-                host_release_root = root / "reports" / "releases" / "JE-1000F" / "JP" / "ja"
-                self.assertTrue(
-                    (host_release_root / "versions" / "1.0" / "snapshot" / "release_snapshot_identity.json").exists()
-                )
-                self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.csv").exists())
-                self.assertTrue((host_release_root / "versions" / "1.0" / "latex" / "manual.tex").exists())
+            resolved_path = build_document_for_task(
+                repo_root=root,
+                config_path=config_path,
+                model="JE-1000F",
+                region="JP",
+                data_root="data/phase2",
+                doc_phase="Publish",
+                version="1.0",
+                run_command=mock.MagicMock(side_effect=lambda cmd, **kwargs: commands.append(cmd)),
+                resolve_word_output_path_for_target=mock.MagicMock(return_value=word_path),
+                resolve_pdf_output_path_for_target=mock.MagicMock(return_value=pdf_path),
+                resolve_md_output_path_for_target=mock.MagicMock(return_value=md_path),
+                resolve_html_output_dir_for_target=mock.MagicMock(return_value=html_dir),
+            )
+            self.assertTrue(resolved_path.word_output_path.exists())
+            self.assertTrue(resolved_path.upload_output_path.exists())
+            host_release_root = root / "reports" / "releases" / "JE-1000F" / "JP" / "ja"
+            self.assertTrue(
+                (host_release_root / "versions" / "1.0" / "snapshot" / "release_snapshot_identity.json").exists()
+            )
+            self.assertTrue((host_release_root / "manifests" / "20260731T000000Z.csv").exists())
+            self.assertTrue((host_release_root / "versions" / "1.0" / "latex" / "manual.tex").exists())
 
         self.assertEqual(
             root / "reports" / "releases" / "JE-1000F" / "JP" / "ja" / "versions" / "1.0" / "manual_je1000f_jp_publish_1.0.docx",
@@ -1262,7 +1219,7 @@ class TestProcessBuildQueue(unittest.TestCase):
             md_output_path.write_text("# Manual\n", encoding="utf-8")
             (html_dir / "index.html").write_text("<html>published</html>\n", encoding="utf-8")
 
-            with mock.patch.object(process_build_queue, "ROOT", root):
+            with bound_repo_root(root):
                 latest_meta = process_build_queue.write_publish_release_metadata(
                     config_path=config_path,
                     model="JE-1000F",
@@ -1373,11 +1330,11 @@ class TestProcessBuildQueue(unittest.TestCase):
     def test_sync_phase2_snapshot_before_queue_should_call_build_py_sync_data(self) -> None:
         commands: list[list[str]] = []
 
-        with mock.patch.object(process_build_queue, "_run_command", side_effect=lambda cmd: commands.append(cmd)):
-            process_build_queue.sync_phase2_snapshot_before_queue(
-                config_path=Path("config.yaml"),
-                data_root="data/phase2",
-            )
+        process_build_queue_services.sync_phase2_snapshot_before_queue(
+            _facade_view(_run_command=lambda cmd: commands.append(cmd)),
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+        )
 
         self.assertEqual(1, len(commands))
         self.assertEqual("sync-data", commands[0][2])
@@ -1409,12 +1366,9 @@ class TestProcessBuildQueue(unittest.TestCase):
                     },
                 }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "_run_lark_cli_json",
-                side_effect=fake_run,
-            ):
-                file_token, drive_url = process_build_queue.upload_word_to_drive(
+            with bound_repo_root(root):
+                file_token, drive_url = process_build_queue_services.upload_word_to_drive(
+                    _facade_view(ROOT=root, _run_lark_cli_json=fake_run),
                     cli_bin="lark-cli",
                     word_output_path=word_path,
                     identity="bot",
@@ -1450,12 +1404,9 @@ class TestProcessBuildQueue(unittest.TestCase):
                     },
                 }
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "_run_lark_cli_json",
-                side_effect=fake_run,
-            ):
-                token, cloud_doc_url = process_build_queue.import_markdown_to_cloud_doc(
+            with bound_repo_root(root):
+                token, cloud_doc_url = process_build_queue_services.import_markdown_to_cloud_doc(
+                    _facade_view(ROOT=root, _run_lark_cli_json=fake_run),
                     cli_bin="lark-cli",
                     source_path=md_path,
                     identity="bot",
@@ -1529,11 +1480,19 @@ class TestProcessBuildQueue(unittest.TestCase):
                 },
             }
 
-        with mock.patch.object(process_build_queue, "_run_lark_cli_json", side_effect=fake_run), mock.patch.object(
+        with mock.patch.object(
             process_build_queue.time,
             "sleep",
         ):
-            wiki_url = process_build_queue.move_drive_file_to_wiki(
+            lark_view = _facade_view(_run_lark_cli_json=fake_run)
+            lark_view = _facade_view(
+                _run_lark_cli_json=fake_run,
+                wait_for_wiki_move_task=partial(
+                    process_build_queue_services.wait_for_wiki_move_task, lark_view
+                ),
+            )
+            wiki_url = process_build_queue_services.move_drive_file_to_wiki(
+                lark_view,
                 cli_bin="lark-cli",
                 identity="bot",
                 file_token="file_token_123",
@@ -1622,33 +1581,27 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with (
-                mock.patch.object(
-                    process_build_queue,
-                    "resolve_config_path_for_task",
-                    return_value=Path("configs/config.us-en.yaml"),
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("config.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    resolve_config_path_for_task=mock.MagicMock(return_value=Path("configs/config.us-en.yaml")),
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                    build_document_for_task=build_document_mock,
+                    phase2_identity=mock.MagicMock(return_value="bot"),
+                    upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
+                    resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    )),
+                    move_drive_file_to_wiki=mock.MagicMock(return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123"),
                 ),
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("config.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                    deps=_queue_deps(
-                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
-                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
-                        source_factory=mock.MagicMock(return_value=FakeSource()),
-                        sync_phase2_snapshot_before_queue=sync_mock,
-                        build_document_for_task=build_document_mock,
-                        phase2_identity=mock.MagicMock(return_value="bot"),
-                        upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
-                        resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
-                            space_id="space_123",
-                            parent_wiki_token="wiki_parent",
-                        )),
-                        move_drive_file_to_wiki=mock.MagicMock(return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123"),
-                    ),
-                )
+            )
 
         self.assertEqual(0, exit_code)
         self.assertEqual(2, len(captured_upserts))
@@ -1981,33 +1934,27 @@ class TestProcessBuildQueue(unittest.TestCase):
                     _apply_queue_upsert(raw_records, kwargs)
                     return {"ok": True}
 
-            with (
-                mock.patch.object(
-                    process_build_queue,
-                    "resolve_config_path_for_task",
-                    return_value=Path("configs/config.ja.yaml"),
+            exit_code = process_build_queue.process_build_queue(
+                cfg=cfg,
+                config_path=Path("configs/config.ja.yaml"),
+                data_root="data/phase2",
+                dry_run=False,
+                deps=_queue_deps(
+                    resolve_config_path_for_task=mock.MagicMock(return_value=Path("configs/config.ja.yaml")),
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                    build_document_for_task=build_document_mock,
+                    phase2_identity=mock.MagicMock(return_value="user"),
+                    upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
+                    resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                        space_id="space_123",
+                        parent_wiki_token="wiki_parent",
+                    )),
+                    move_drive_file_to_wiki=mock.MagicMock(side_effect=RuntimeError("permission | Permission denied [99991679]")),
                 ),
-            ):
-                exit_code = process_build_queue.process_build_queue(
-                    cfg=cfg,
-                    config_path=Path("configs/config.ja.yaml"),
-                    data_root="data/phase2",
-                    dry_run=False,
-                    deps=_queue_deps(
-                        collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
-                        resolve_document_link_binding=mock.MagicMock(return_value=binding),
-                        source_factory=mock.MagicMock(return_value=FakeSource()),
-                        sync_phase2_snapshot_before_queue=sync_mock,
-                        build_document_for_task=build_document_mock,
-                        phase2_identity=mock.MagicMock(return_value="user"),
-                        upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
-                        resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
-                            space_id="space_123",
-                            parent_wiki_token="wiki_parent",
-                        )),
-                        move_drive_file_to_wiki=mock.MagicMock(side_effect=RuntimeError("permission | Permission denied [99991679]")),
-                    ),
-                )
+            )
 
         self.assertEqual(0, exit_code)
         self.assertEqual(2, len(captured_upserts))
@@ -2086,31 +2033,25 @@ class TestProcessBuildQueue(unittest.TestCase):
                 _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
-        with (
-            mock.patch.object(
-                process_build_queue,
-                "resolve_config_path_for_task",
-                return_value=Path("configs/config.ja.yaml"),
+        exit_code = process_build_queue.process_build_queue(
+            cfg=cfg,
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+            dry_run=False,
+            deps=_queue_deps(
+                resolve_config_path_for_task=mock.MagicMock(return_value=Path("configs/config.ja.yaml")),
+                collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                source_factory=mock.MagicMock(return_value=FakeSource()),
+                sync_phase2_snapshot_before_queue=sync_mock,
+                build_document_for_task=build_document_mock,
+                phase2_identity=mock.MagicMock(return_value="bot"),
+                resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                )),
             ),
-        ):
-            exit_code = process_build_queue.process_build_queue(
-                cfg=cfg,
-                config_path=Path("config.yaml"),
-                data_root="data/phase2",
-                dry_run=False,
-                deps=_queue_deps(
-                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
-                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
-                    source_factory=mock.MagicMock(return_value=FakeSource()),
-                    sync_phase2_snapshot_before_queue=sync_mock,
-                    build_document_for_task=build_document_mock,
-                    phase2_identity=mock.MagicMock(return_value="bot"),
-                    resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
-                        space_id="space_123",
-                        parent_wiki_token="wiki_parent",
-                    )),
-                ),
-            )
+        )
 
         self.assertEqual(1, exit_code)
         sync_mock.assert_not_called()
@@ -2181,33 +2122,27 @@ class TestProcessBuildQueue(unittest.TestCase):
                 _apply_queue_upsert(raw_records, kwargs)
                 return {"ok": True}
 
-        with (
-            mock.patch.object(
-                process_build_queue,
-                "resolve_config_path_for_task",
-                return_value=Path("configs/config.us-en.yaml"),
+        exit_code = process_build_queue.process_build_queue(
+            cfg=cfg,
+            config_path=Path("config.yaml"),
+            data_root="data/phase2",
+            dry_run=False,
+            deps=_queue_deps(
+                resolve_config_path_for_task=mock.MagicMock(return_value=Path("configs/config.us-en.yaml")),
+                collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                source_factory=mock.MagicMock(return_value=FakeSource()),
+                sync_phase2_snapshot_before_queue=sync_mock,
+                build_document_for_task=build_document_mock,
+                phase2_identity=mock.MagicMock(return_value="user"),
+                upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
+                resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
+                    space_id="space_123",
+                    parent_wiki_token="wiki_parent",
+                )),
+                move_drive_file_to_wiki=mock.MagicMock(return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123"),
             ),
-        ):
-            exit_code = process_build_queue.process_build_queue(
-                cfg=cfg,
-                config_path=Path("config.yaml"),
-                data_root="data/phase2",
-                dry_run=False,
-                deps=_queue_deps(
-                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
-                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
-                    source_factory=mock.MagicMock(return_value=FakeSource()),
-                    sync_phase2_snapshot_before_queue=sync_mock,
-                    build_document_for_task=build_document_mock,
-                    phase2_identity=mock.MagicMock(return_value="user"),
-                    upload_word_to_drive=mock.MagicMock(return_value=("file_token_123", "https://test-degwga5x6ex8.feishu.cn/file/file_token_123")),
-                    resolve_wiki_destination=mock.MagicMock(return_value=process_build_queue.WikiDestination(
-                        space_id="space_123",
-                        parent_wiki_token="wiki_parent",
-                    )),
-                    move_drive_file_to_wiki=mock.MagicMock(return_value="https://test-degwga5x6ex8.feishu.cn/wiki/wiki_token_123"),
-                ),
-            )
+        )
 
         self.assertEqual(0, exit_code)
         sync_mock.assert_called_once_with(

@@ -117,7 +117,7 @@ def read_input_text(source: str, *, lark_cli: str = "lark-cli") -> str:
             return pdf_to_text(str(path))
         return path.read_text(encoding="utf-8-sig")
 
-    from tools.cloud_doc_backport_model import fetch_doc_text
+    from tools.backport.model import fetch_doc_text
 
     return fetch_doc_text(source, lark_cli=lark_cli)
 

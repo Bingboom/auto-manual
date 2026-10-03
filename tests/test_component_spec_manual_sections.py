@@ -53,17 +53,17 @@ from tools.manual_ir.whole_document_components import discover_registered_compon
 from tools.manual_ir import read_manual_ir
 from tools.render_contract import load_render_contract
 from tools.utils.path_utils import Paths
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_composite_presentation import WebCompositeContext
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_operation_component import render_operation_component
-from tools.web_presentation import WebPresentationError, load_web_manual_contract
-from tools.word_bundle_html import (
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.composite_presentation import WebCompositeContext
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.operation_component import render_operation_component
+from tools.web.presentation import WebPresentationError, load_web_manual_contract
+from tools.word.bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
 )
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html_only import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -574,11 +574,11 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_lcd_mode_table",
+                    "tools.web.presentation._transform_lcd_mode_table",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_warranty",
+                    "tools.web.presentation._transform_warranty",
                     side_effect=source_projector_error,
                 ),
             ):

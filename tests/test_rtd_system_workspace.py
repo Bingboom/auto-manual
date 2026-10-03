@@ -15,9 +15,9 @@ from unittest.mock import patch
 
 import yaml
 
-from tools import rtd_portal
-from tools import rtd_system_workspace as sw
-from tools.rtd_source_registry import load_registry
+from tools.rtd import portal as rtd_portal
+from tools.rtd import system_workspace as sw
+from tools.rtd.source_registry import load_registry
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
@@ -489,7 +489,7 @@ class CorpusSnapshotTests(unittest.TestCase):
             table, offset = args[args.index("--table-id") + 1], int(args[args.index("--offset") + 1])
             calls.append((table, offset))
             rows = sentence_rows if table == TM_SENTENCE_TABLE else terms_rows
-            return {"code": 0, "data": {"fields": header, "data": rows[offset:offset + 200]}}
+            return {"code": 0, "data": {"fields": header, "data": rows[offset:offset + 200], "record_id_list": [f"rec{i}" for i in range(offset, min(offset + 200, len(rows)))]}}
 
         snapshot = sw.corpus_export(corpus_contract(), base_token="base", run=run, today=TODAY)
         self.assertEqual(calls, [(TM_SENTENCE_TABLE, 0), (TM_SENTENCE_TABLE, 200), (TM_TERMS_TABLE, 0)])
@@ -500,14 +500,14 @@ class CorpusSnapshotTests(unittest.TestCase):
         self.assertNotIn("Salut", json.dumps(snapshot, ensure_ascii=False))
 
         def run_without_fr(args):
-            return {"code": 0, "data": {"fields": ["en", "Status"], "data": [["Hi", "Approved"]]}}
+            return {"code": 0, "data": {"fields": ["en", "Status"], "data": [["Hi", "Approved"]], "record_id_list": ["rec1"]}}
 
         with self.assertRaisesRegex(RuntimeError, r"missing columns \['fr'\]"):
             sw.corpus_export(corpus_contract(), base_token="base", run=run_without_fr, today=TODAY)
 
     def test_export_carries_one_headline_per_earlier_month(self):
         def run(args):
-            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]]}}
+            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]], "record_id_list": ["rec1"]}}
 
         def export(previous, today=TODAY):
             return sw.corpus_export(corpus_contract(), base_token="base", run=run, today=today, previous=previous)
@@ -575,7 +575,7 @@ class CorpusSnapshotTests(unittest.TestCase):
         write_registry(self.root)
 
         def run(args):
-            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]]}}
+            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]], "record_id_list": ["rec1"]}}
 
         with redirect_stdout(io.StringIO()) as out, patch.dict("os.environ", {}, clear=False):
             self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", ""]), 1)
@@ -592,8 +592,9 @@ class CorpusSnapshotTests(unittest.TestCase):
             self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base",
                                       "--today", "2026-10-24"]), 0)
         written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
-        self.assertEqual(written["history"], [month("2026-09-24", pairs=1, terms=1, approved=1)])
-        self.assertIn("history carries 1 earlier month(s)", out.getvalue())
+        self.assertNotIn("history", written)
+        self.assertEqual(written["exported_at"], "2026-09-24")
+        self.assertIn('"status": "unchanged"', out.getvalue())
 
         # A replaced snapshot that cannot be read or trusted stops the export instead of dropping history.
         for text, fragment in (("{not json", "cannot read the snapshot being replaced"),
@@ -612,13 +613,13 @@ class CorpusSnapshotTests(unittest.TestCase):
         path.write_text(yaml.safe_dump(wider, allow_unicode=True), encoding="utf-8")
 
         def run_with_de(args):
-            return {"code": 0, "data": {"fields": ["en", "fr", "de", "Status"], "data": [["Hi", "", "Hallo", "Approved"]]}}
+            return {"code": 0, "data": {"fields": ["en", "fr", "de", "Status"], "data": [["Hi", "", "Hallo", "Approved"]], "record_id_list": ["rec1"]}}
 
+        original = (self.root / "corpus.json").read_bytes()
         with redirect_stdout(io.StringIO()), patch.object(sw, "lark_runner", return_value=run_with_de):
             self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base",
-                                      "--today", "2026-09-24"]), 0)
-        written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
-        self.assertEqual(written["history"], [month("2026-08-24", pairs=10, approved=7)])
+                                      "--today", "2026-09-24"]), 1)
+        self.assertEqual((self.root / "corpus.json").read_bytes(), original)
 
 
 class SkeletonFactsTests(unittest.TestCase):
@@ -692,7 +693,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             (assets / "settings.json").write_text(json.dumps(dict(settings, product_voc_endpoint="")), encoding="utf-8")
             (web / "conf.py").write_text(
                 "project = 'manual'\nroot_doc = 'index'\n"
-                "from pathlib import Path\nfrom tools import rtd_portal as portal\n"
+                "from pathlib import Path\nfrom tools.rtd import portal\n"
                 f"portal.ASSETS = Path({str(assets)!r})\n"
                 f"rtd_knowledge_dir = {str(base / 'knowledge')!r}\n"
                 "rtd_system_workspace_date = '2026-09-24'\n",
@@ -702,7 +703,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             def build(name):
                 return subprocess.run(
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
-                     "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
+                     "-D", "extensions=myst_parser,tools.rtd.portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
                     check=False,
                 )
@@ -735,7 +736,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Every registered data domain is listed publicly, snapshots with their file.
             self.assertEqual(page.count('<tr id="source-'), 8)
             self.assertIn("system_workspace_corpus.json", page)
-            self.assertIn("python tools/rtd_deliverables.py export", page)
+            self.assertIn("python tools/workspace_refresh.py refresh deliverables", page)
             self.assertIn("版本 9.9", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)

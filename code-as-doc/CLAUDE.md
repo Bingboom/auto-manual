@@ -20,5 +20,5 @@
 
 ## Validation
 
-- Docs link check: `python3 tools/check_doc_link_integrity.py`
+- Docs link check: `python3 -m tools.check_doc_link_integrity`
 - If docs describe build behavior, also run the relevant build command from `AGENTS.md` validation.

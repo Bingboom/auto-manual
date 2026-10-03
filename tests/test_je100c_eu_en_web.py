@@ -12,7 +12,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
-from tools.web_component_admission import require_fresh_component_admission
+from tools.web.component_admission import require_fresh_component_admission
 
 
 ROOT = Path(__file__).resolve().parents[1]

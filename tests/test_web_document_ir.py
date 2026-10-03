@@ -34,11 +34,11 @@ from tools.component_specs.overview_adapters import (
 )
 from tools.component_specs.registry import registry_sha256
 from tools.component_specs.theme import theme_sha256
-from tools.web_presentation import protect_web_callouts_for_pandoc
-from tools.web_presentation import transform_web_fragment
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import _consume_covered_annotations, load_web_document
-from tools.word_bundle_html import build_word_bundle_html
+from tools.web.presentation import protect_web_callouts_for_pandoc
+from tools.web.presentation import transform_web_fragment
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import _consume_covered_annotations, load_web_document
+from tools.word.bundle_html import build_word_bundle_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,11 +107,11 @@ class WebDocumentIRTests(unittest.TestCase):
             )
             with (
                 patch(
-                    "tools.web_presentation.transform_specification_tables",
+                    "tools.web.presentation.transform_specification_tables",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.load_web_callout_source",
+                    "tools.web.presentation.load_web_callout_source",
                     side_effect=source_projector_error,
                 ),
             ):
@@ -126,7 +126,7 @@ class WebDocumentIRTests(unittest.TestCase):
             self.assertIn("AUTOMANUALWEBCALLOUT", protected)
 
     def test_japanese_box_contents_uses_shared_inbox_outside_figure_target(self):
-        from tools.web_presentation import transform_web_fragment
+        from tools.web.presentation import transform_web_fragment
         cells = ''.join(f'<td><img src="{i}.png"><p>{label}</p></td>'
                         for i, label in enumerate(('本体', '拡張ケーブル', '取扱説明書')))
         markup = f'<h1>同梱品</h1><table><tr>{cells}</tr></table><table><tr><td>注意</td><td>付属品についての注意</td></tr></table>'
@@ -172,7 +172,7 @@ class WebDocumentIRTests(unittest.TestCase):
         )
         output = root / "package"
         cfg = {"paths": {"web_illustration_manifest": str(manifest)}} if manifest else {}
-        with patch("tools.word_bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
+        with patch("tools.word.bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
             build_word_bundle_html(cfg, "BP", "JP", materialized_bundle=bundle,
                                    output_dir=output, presentation_profile="web")
         return read_manual_ir(output / "manual.ir.json"), output, pages
@@ -239,7 +239,7 @@ class WebDocumentIRTests(unittest.TestCase):
             shutil.rmtree(pages)
             relocated = root / "relocated"
             shutil.copytree(output, relocated)
-            with patch("tools.web_document_source.load_web_document", side_effect=AssertionError("source reopened")):
+            with patch("tools.web.document_source.load_web_document", side_effect=AssertionError("source reopened")):
                 after = render_document_fragments(read_manual_ir(relocated / "manual.ir.json"), package_root=relocated)
             self.assertEqual([x.replace(str(output), "PACKAGE") for x in before],
                              [x.replace(str(relocated), "PACKAGE") for x in after])
@@ -292,7 +292,7 @@ class WebDocumentIRTests(unittest.TestCase):
             ir, output, _ = self.build(Path(td))
 
             with patch(
-                "tools.web_document_ir.transform_web_fragment",
+                "tools.web.document_ir.transform_web_fragment",
                 side_effect=AssertionError("legacy DOM projector called"),
             ):
                 fragments = render_document_fragments(ir, package_root=output)
@@ -364,7 +364,7 @@ class WebDocumentIRTests(unittest.TestCase):
             )
 
             with patch(
-                "tools.web_embedded_components.resolve_overview_instance",
+                "tools.web.embedded_components.resolve_overview_instance",
                 side_effect=AssertionError("external Overview contract reopened"),
             ):
                 fragment = render_document_fragments(ir, package_root=output)[0]
@@ -400,7 +400,7 @@ class WebDocumentIRTests(unittest.TestCase):
             legacy = replace(ir, metadata=metadata)
 
             with patch(
-                "tools.web_document_ir.transform_web_fragment",
+                "tools.web.document_ir.transform_web_fragment",
                 wraps=transform_web_fragment,
             ) as projector:
                 fragments = render_document_fragments(legacy, package_root=output)
@@ -482,7 +482,7 @@ class WebDocumentIRTests(unittest.TestCase):
                 read_manual_ir(path)
 
     def test_base_art_coverage_evidence_must_match_the_asset_manifest(self):
-        from tools.web_figure_coverage import build_web_figure_coverage
+        from tools.web.figure_coverage import build_web_figure_coverage
 
         with tempfile.TemporaryDirectory() as td:
             ir, _, _ = self.build(Path(td))
@@ -564,7 +564,7 @@ def guarded(path, *args, **kwargs):
     return original(path, *args, **kwargs)
 with patch.object(Path, "open", guarded):
     from tools.manual_ir import read_manual_ir
-    from tools.web_document_ir import render_document_fragments
+    from tools.web.document_ir import render_document_fragments
     package = Path(sys.argv[1])
     result = render_document_fragments(read_manual_ir(package / "manual.ir.json"), package_root=package)
     assert len(result) == 2
@@ -657,7 +657,7 @@ with patch.object(Path, "open", guarded):
 
     def test_declared_lcd_without_separate_icons_keeps_all_copy(self):
         from tools.csv_pages.renderers_lcd_icons import _rst_table
-        from tools.word_bundle_html import _convert_rst_fragment_to_html
+        from tools.word.bundle_html import _convert_rst_fragment_to_html
         rows = [{"no": "1", "figure": "", "name": "残量", "description": "現在の残量です。"}]
         with tempfile.TemporaryDirectory() as td:
             markup = _convert_rst_fragment_to_html(

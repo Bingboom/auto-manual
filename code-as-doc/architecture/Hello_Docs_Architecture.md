@@ -34,11 +34,11 @@ Current responsibility:
 
 ### 2.2 Build Orchestration Layer
 
-- [`../../tools/build_docs.py`](../../tools/build_docs.py)
-- [`../../tools/build_docs_main.py`](../../tools/build_docs_main.py)
-- [`../../tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
-- [`../../tools/build_docs_export.py`](../../tools/build_docs_export.py)
-- [`../../tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
+- [`../../tools/build/docs.py`](../../tools/build/docs.py)
+- [`../../tools/build/docs_main.py`](../../tools/build/docs_main.py)
+- [`../../tools/build/docs_entry.py`](../../tools/build/docs_entry.py)
+- [`../../tools/build/docs_export.py`](../../tools/build/docs_export.py)
+- [`../../tools/build/docs_artifacts.py`](../../tools/build/docs_artifacts.py)
 - [`../../tools/utils/targets.py`](../../tools/utils/targets.py)
 
 Current responsibility:
@@ -104,8 +104,8 @@ Current responsibility:
 
 - [`../../tools/validate_config.py`](../../tools/validate_config.py)
 - [`../../tools/validate_layout_params.py`](../../tools/validate_layout_params.py)
-- [`../../tools/check_docs.py`](../../tools/check_docs.py)
-- [`../../tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
+- [`../../tools/check/docs.py`](../../tools/check/docs.py)
+- [`../../tools/check/docs_generated.py`](../../tools/check/docs_generated.py)
 - [`../../tools/check_identity_drift.py`](../../tools/check_identity_drift.py)
 - [`../../tools/page_contracts.py`](../../tools/page_contracts.py)
 - [`../../tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
@@ -119,11 +119,11 @@ Current responsibility:
 
 ### 2.8 Queue Orchestration Layer
 
-- [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
-- [`../../tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
-- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
-- [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
-- [`../../tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+- [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
+- [`../../tools/build_queue/process_build_queue_main.py`](../../tools/build_queue/process_build_queue_main.py)
+- [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
+- [`../../tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
+- [`../../tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
 
 Current responsibility:
 
@@ -160,19 +160,19 @@ Current responsibility:
 ```mermaid
 flowchart TD
   A["build.py"] --> B["tools/build_dispatch.py"]
-  B --> C["tools/build_docs.py"]
+  B --> C["tools/build/docs.py"]
   B --> D["tools/build_runtime.py"]
   B --> E["tools/build_reports.py"]
   B --> F["tools/build_publish.py"]
   C --> G["tools/gen_index_bundle.py"]
-  C --> H["tools/build_docs_export.py"]
+  C --> H["tools/build/docs_export.py"]
   H --> I["docs/_build/<model>/<region>/rst"]
   I --> J["docs/_review/<model>/<region> overlay"]
   J --> K["html / word / pdf"]
   J --> L["check"]
   J --> M["diff-report"]
   K --> N["release-manifest"]
-  A --> O["tools/process_build_queue.py"]
+  A --> O["tools/build_queue/process_build_queue.py"]
   O --> P["queue_* / queue_bound_* helpers"]
 ```
 

@@ -21,7 +21,7 @@ from typing import Callable, Iterable, Sequence
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools import build_docs  # noqa: E402
+from tools.build import docs as build_docs  # noqa: E402
 from tools.config_loader import load_config_mapping  # noqa: E402
 from tools.utils.log import get_logger
 

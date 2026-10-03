@@ -14,7 +14,7 @@ is hardcoded in committed files — that is deliberate (see §6).
 ## 1. How it works (one paragraph)
 
 The build queue imports the cloud doc with `FEISHU_PHASE2_IDENTITY=bot`, then the
-leaf calls [`../../tools/queue_cloud_doc_finalize.py`](../../tools/queue_cloud_doc_finalize.py)
+leaf calls [`../../tools/build_queue/cloud_doc_finalize.py`](../../tools/build_queue/cloud_doc_finalize.py)
 `finalize_cloud_doc`, which grants the operator `full_access` (so they edit the
 registered doc directly) and co-locates it in the Word's wiki node. The grantee is
 resolved by `resolve_cloud_doc_grantee`: the build row's `operator_union_id` when
@@ -104,7 +104,7 @@ lark-cli api GET "/open-apis/drive/v1/permissions/<doc_token>/members" \
 ```
 
 Then open the registered doc as the operator — it should be **editable**, and no 副本
-is needed. New builds will auto-share going forward, and `tools/cloud_doc_backport.py`
+is needed. New builds will auto-share going forward, and `tools/backport/cloud_doc.py`
 resolves the doc by URL.
 
 ## 7. Why nothing is hardcoded
@@ -116,6 +116,6 @@ operator identity. The mirror configures its own.
 
 ## References
 
-- Executor: [`../../tools/queue_cloud_doc_finalize.py`](../../tools/queue_cloud_doc_finalize.py)
+- Executor: [`../../tools/build_queue/cloud_doc_finalize.py`](../../tools/build_queue/cloud_doc_finalize.py)
 - Build flow context: [`../build_doc_guide.md`](../build_doc_guide.md)
 - Backport interaction (why URL resolution depends on this): [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md)

@@ -48,7 +48,8 @@ class TestAuditCodeCopy(unittest.TestCase):
                 "_SIGNAL_WORDS = {'de': {'danger': 'GEFAHR'}}\n",
                 encoding="utf-8",
             )
-            html_rewrite = root / "tools" / "word_bundle_html_rewrite.py"
+            html_rewrite = root / "tools" / "word" / "bundle_html_rewrite.py"
+            html_rewrite.parent.mkdir()
             html_rewrite.write_text(
                 "def build_alt(label):\n"
                 "    return f'{label} banner placeholder.'\n",

@@ -48,15 +48,15 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
 
     def test_collect_hotspot_failures_reports_threshold_regression(self) -> None:
         with temp_test_root() as root:
-            write_lines(root / "tools" / "build_docs.py", ["line 1", "line 2", "line 3"])
+            write_lines(root / "tools" / "build" / "docs.py", ["line 1", "line 2", "line 3"])
 
             failures = guardrails.collect_hotspot_failures(
                 root,
-                thresholds={"tools/build_docs.py": 2},
+                thresholds={"tools/build/docs.py": 2},
             )
 
         self.assertEqual(1, len(failures))
-        self.assertEqual("tools/build_docs.py", failures[0].path)
+        self.assertEqual("tools/build/docs.py", failures[0].path)
         self.assertEqual(3, failures[0].actual_lines)
         self.assertEqual(2, failures[0].max_lines)
 
@@ -65,7 +65,7 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "Guardrail target does not exist"):
                 guardrails.collect_hotspot_failures(
                     root,
-                    thresholds={"tools/process_build_queue.py": 10},
+                    thresholds={"tools/build_queue/process_build_queue.py": 10},
                 )
 
     def test_target_scoped_idml_page_predicate_guardrail(self) -> None:

@@ -7,7 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd_portal import ASSETS, catalog
+from tools.rtd.portal import ASSETS, catalog
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
@@ -138,7 +138,7 @@ class PublicationCatalogTests(unittest.TestCase):
     def test_sphinx_grouped_home_and_single_manual_dropdown(self):
         self.publication()
         self.publication("fr", default=False)
-        (self.root / "conf.py").write_text("extensions=['myst_parser','tools.rtd_portal']\nhtml_theme='furo'\n")
+        (self.root / "conf.py").write_text("extensions=['myst_parser','tools.rtd.portal']\nhtml_theme='furo'\n")
         index = self.root / "index.md"
         index.write_text(index.read_text() + "\n\n```{toctree}\n\nJE-TEST/EU/en/md/manual_en\nJE-TEST/EU/fr/md/manual_fr\n```\n")
         before = {p: p.read_bytes() for p in self.root.rglob("*") if p.is_file()}

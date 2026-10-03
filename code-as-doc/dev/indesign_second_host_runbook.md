@@ -38,13 +38,13 @@ runbook 的目标:任何一台满足前提的 Mac,照着本文从零到跑通一
 python build.py doctor
 
 # 2. 版本核对——必须输出 match,否则先对齐 InDesign 版本再继续
-python tools/indesign_finalize.py --check-host
+python -m tools.indesign_finalize --check-host
 
 # 3. 取一个已知良品 IDML(最近一次 release 的 handoff zip,或让操作者
 #    指定 docs/_build/<model>/<region>/ 下的现成 IDML)
 
 # 4. 跑一次 finalize(输出放临时目录,不碰仓库)
-python tools/indesign_finalize.py \
+python -m tools.indesign_finalize \
   --idml <known-good>.idml \
   --indd /tmp/k7-verify/out.indd \
   --pdf  /tmp/k7-verify/out.pdf \
@@ -63,7 +63,7 @@ python tools/indesign_finalize.py \
 ```
 
 For a multi-target handoff, replace the single-job command with
-`python tools/indesign_finalize.py --jobs <manifest.json>`. The manifest must
+`python -m tools.indesign_finalize --jobs <manifest.json>`. The manifest must
 declare `pdf_preset`, `output_intent`, `output_condition`, and `pdfx` on every
 job; do not rely on the single-job CLI defaults. The aggregate report records
 which jobs passed, which failed, and which IDML directories still have
@@ -77,7 +77,7 @@ remaining handoff inventory.
 
 | 日期 | 主机 | InDesign 版本 | 预检结果 | 尚欠 |
 | --- | --- | --- | --- | --- |
-| 2026-07-20 | `ArriettyMac-mini.local` | Adobe InDesign 2026 21.0.1.6 | `python tools/indesign_finalize.py --check-host` → `match` | 下载的 main 目录没有已知良品 IDML；§2 步骤 3-5 未执行，K7 仍为 `in_progress` |
+| 2026-07-20 | `ArriettyMac-mini.local` | Adobe InDesign 2026 21.0.1.6 | `python -m tools.indesign_finalize --check-host` → `match` | 下载的 main 目录没有已知良品 IDML；§2 步骤 3-5 未执行，K7 仍为 `in_progress` |
 
 跑通一次后,把记录追加到下表**并同步更新 `ONBOARDING.md` §3 登记表**
 (这一行从"待第二主机验证"改为"已验证 + 日期")。
@@ -89,7 +89,7 @@ remaining handoff inventory.
 ## 4. 日常纪律
 
 - **版本升级**:两台(所有)finalize 主机一起升 → 任一台跑
-  `python tools/indesign_finalize.py --write-pin` → 提交 pin 的 diff →
+  `python -m tools.indesign_finalize --write-pin` → 提交 pin 的 diff →
   另一台跑 `--check-host` 确认 match。禁止只升一台。
 - **节奏**:季度冷启动演练(ONBOARDING §7)时在第二主机重跑 §2,
   保持"可恢复"是被验证过的事实而不是文档愿望。

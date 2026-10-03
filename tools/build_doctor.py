@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
-from tools.word_bundle_docx_pandoc import pandoc_version, resolve_pandoc_binary
+from tools.word.bundle_docx_pandoc import pandoc_version, resolve_pandoc_binary
 
 
 class SafeFormatDict(dict[str, str]):

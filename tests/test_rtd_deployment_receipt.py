@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools import rtd_deployment_receipt as receipt
+from tools.rtd import deployment_receipt as receipt
 
 _no_pacing = patch.object(receipt, "sleep")
 
@@ -168,7 +168,7 @@ class DeploymentReceiptTests(unittest.TestCase):
     def test_real_frozen_sphinx_build_emits_verifiable_receipt(self):
         (self.web / "conf.py").write_text(
             "project='Receipt fixture'\n"
-            "extensions=['myst_parser', 'tools.rtd_portal']\n"
+            "extensions=['myst_parser', 'tools.rtd.portal']\n"
             "html_static_path=['_static']\n"
             "from pathlib import Path\n"
             "def copy_late_asset(app, exception):\n"

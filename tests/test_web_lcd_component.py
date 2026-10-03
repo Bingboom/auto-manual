@@ -14,8 +14,8 @@ from bs4 import BeautifulSoup
 
 from tools import plain_markdown_site as pms
 from tools.gen_index_bundle import plan_materialized_pages
-from tools.web_presentation import WebPresentationError, load_web_manual_contract, transform_web_fragment
-from tools.word_bundle_html import build_word_bundle_html
+from tools.web.presentation import WebPresentationError, load_web_manual_contract, transform_web_fragment
+from tools.word.bundle_html import build_word_bundle_html
 
 
 def _table(declared: bool = True) -> str:
@@ -101,7 +101,7 @@ class WebLcdTests(unittest.TestCase):
                 bundle_dir=root, page_dir=pages, page_paths=(declared, ordinary),
                 title='Manual', reference_doc=None, model='OTHER', region='JP', lang='ja', languages=('ja',),
             )
-            with patch('tools.word_bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
                 output, _, _ = build_word_bundle_html(
                     cfg, 'OTHER', 'JP', materialized_bundle=bundle,
                     output_dir=root / 'web', presentation_profile='web',
@@ -111,7 +111,7 @@ class WebLcdTests(unittest.TestCase):
             self.assertEqual(len(soup.select('figure.hb-lcd-table-composition')), 1)
             self.assertEqual(len(soup.select('table')), 2)
             self.assertEqual(len(soup.select('.hb-lcd-description .line')), 2)
-            with patch('tools.word_bundle_html.plan_materialized_pages') as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages') as planner:
                 output, _, _ = build_word_bundle_html(cfg, 'OTHER', 'JP', materialized_bundle=bundle, output_dir=root / 'doc')
                 planner.assert_not_called()
             self.assertNotIn('hb-lcd-icon-table', output.read_text())

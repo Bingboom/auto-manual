@@ -106,11 +106,11 @@ from tools.utils.path_utils import (  # noqa: E402
     web_composite_manifest_of,
     word_common_assets_of,
 )
-from tools.web_composite_manifest import stage_web_composite_snapshot
+from tools.web.composite_manifest import stage_web_composite_snapshot
 from tools.utils.targets import (
     resolve_output_lang,
 )
-from tools.word_bundle_common import (  # noqa: E402
+from tools.word.bundle_common import (  # noqa: E402
     apply_rst_substitutions,
     derive_word_title,
     ensure_csv_page_rsts,

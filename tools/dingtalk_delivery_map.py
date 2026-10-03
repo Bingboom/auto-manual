@@ -2,7 +2,7 @@
 """Resolve a published repo target to its DingTalk delivery identity.
 
 Keyed on `(model, region)` — deliberately NOT on language. A publish queue row
-must leave `Lang` blank (`tools/queue_config_resolution.py` rejects a
+must leave `Lang` blank (`tools/build_queue/config_resolution.py` rejects a
 single-language family for publish), and the artifact it produces is one
 whole-book bundle covering every language of that region's family: US carries
 en/fr/es, EU carries en/fr/es/de/it/uk. One published deliverable therefore
@@ -41,12 +41,8 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[1]
 
 DELIVERY_MAP_FILENAME = "dingtalk_delivery_map.csv"
 

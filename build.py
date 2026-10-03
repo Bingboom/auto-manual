@@ -63,9 +63,9 @@ from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
 from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.manual_index_query import run_manual_index_query as _run_manual_index_query_impl
-from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
-from tools.queue_query import run_queue_query as _run_queue_query_impl
-from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
+from tools.build_queue.execute import run_queue_execute as _run_queue_execute_impl
+from tools.build_queue.query import run_queue_query as _run_queue_query_impl
+from tools.build_queue.resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
 from tools.translation_memory import (
     build_translation_memory_payload as _build_translation_memory_payload_impl,
     payload_to_json as _payload_to_json_impl,
@@ -284,7 +284,7 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
 
 
 def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespace]:
-    from tools.build_docs import resolve_build_targets
+    from tools.build.docs import resolve_build_targets
     from tools.review_support import resolve_existing_review_bundle_dir
 
     return _review_sync_target_args_impl(
@@ -673,7 +673,7 @@ def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path, 
 
 
 def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
-    from tools.build_docs import resolve_build_targets
+    from tools.build.docs import resolve_build_targets
 
     return _resolve_diff_report_targets_impl(
         config_path=resolve_path_from_root(args.config),

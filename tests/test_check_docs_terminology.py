@@ -5,8 +5,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from types import SimpleNamespace
 
-from tools import check_docs_runtime
-from tools.check_docs_terminology import (
+from tools.check import docs_runtime as check_docs_runtime
+from tools.check.docs_terminology import (
     collect_terminology_issues,
     load_rules,
     page_language,

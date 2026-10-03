@@ -15,7 +15,7 @@ from tools.utils.path_utils import (
     web_composite_attachments_of,
     web_composite_manifest_of,
 )
-from tools.web_composite_manifest import (
+from tools.web.composite_manifest import (
     WebCompositeEntry,
     WebCompositeManifestError,
     manifest_json_text,

@@ -32,7 +32,8 @@ on:
         type: boolean
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   issues: write
 
 jobs:
@@ -43,6 +44,8 @@ jobs:
       group: ${{ inputs.texlive_smoke_only && format('feishu-texlive-smoke-{0}', github.run_id) || format('feishu-document-queue-{0}', inputs.queue_record_id != '' && inputs.queue_record_id || 'batch') }}
       cancel-in-progress: false
     env:
+      GH_TOKEN: ${{ github.token }}
+      AUTO_MANUAL_WORKSPACE_REFRESH_REQUEST: .tmp/workspace-refresh/request.json
       FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
       FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
       FEISHU_PHASE2_IDENTITY: bot
@@ -194,6 +197,22 @@ jobs:
             cmd+=(--record-ids "${{ inputs.queue_record_ids }}")
           fi
           "${cmd[@]}"
+
+      - name: Refresh workspace after verified delivery writeback
+        id: workspace-refresh
+        if: ${{ !cancelled() && github.repository == 'Bingboom/Hello-Docs' && hashFiles('.tmp/workspace-refresh/request.json') != '' }}
+        uses: ./.github/actions/workspace-data-refresh
+        with:
+          kind: deliverables
+
+      - name: Workspace refresh failure notice
+        if: ${{ !cancelled() && github.repository == 'Bingboom/Hello-Docs' && hashFiles('.tmp/workspace-refresh/request.json') != '' }}
+        env:
+          JOB_STATUS: ${{ steps.workspace-refresh.outcome }}
+        run: |
+          args=()
+          if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
+          python -m tools.workspace_refresh_notice --kind deliverables --report .tmp/workspace-refresh/result.json "${args[@]}"
 
       - name: Upload built docs artifact
         if: always()

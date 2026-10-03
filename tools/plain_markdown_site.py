@@ -831,11 +831,11 @@ def resolve_stylesheet(staged_dir: Path, *, explicit: Path | None = None) -> tup
         return destination, f"explicit ({explicit})"
 
     try:
-        from tools.web_stylesheets import copy_web_stylesheet
+        from tools.web.stylesheets import copy_web_stylesheet
     except ImportError:
         pass
     else:
-        return copy_web_stylesheet(staged_dir), "repo contract (tools/web_stylesheets.py)"
+        return copy_web_stylesheet(staged_dir), "repo contract (tools/web/stylesheets.py)"
 
     if _BUNDLED_STYLESHEET.is_file():
         static_dir.mkdir(parents=True, exist_ok=True)
@@ -880,11 +880,14 @@ def stage_component_extension(staged_dir: Path) -> bool:
     """
     source = _SCRIPT_DIR / f"{_EXTENSION_MODULE}.py"
     component_specs = _SCRIPT_DIR / "component_specs"
-    troubleshooting = _SCRIPT_DIR / "web_troubleshooting_component.py"
-    lcd = _SCRIPT_DIR / "web_lcd_component.py"
     rst_inline = _SCRIPT_DIR / "rst_inline.py"
     path_utils = _SCRIPT_DIR / "utils" / "path_utils.py"
-    table_runtime = ("web_table_ir.py", "web_spec_component.py", "web_callout_ir.py", "lang_registry.py")
+    lang_registry = _SCRIPT_DIR / "lang_registry.py"
+    web_runtime = (
+        "__init__.py", "troubleshooting_component.py", "lcd_component.py",
+        "table_ir.py", "spec_component.py", "callout_ir.py",
+    )
+    web_sources = tuple(_SCRIPT_DIR / "web" / name for name in web_runtime)
     ir_runtime = ("__init__.py", "builder.py", "hashing.py", "model.py", "serialize.py",
                   "source.py", "validate.py", "web_source.py", "web_tables.py", "web_specs.py", "web_callouts.py")
     ir_sources = tuple(_SCRIPT_DIR / "manual_ir" / name for name in ir_runtime)
@@ -899,9 +902,8 @@ def stage_component_extension(staged_dir: Path) -> bool:
     table_style = registry.with_name("web_manual.css")
     if not all(
         path.is_file()
-        for path in (source, troubleshooting, lcd, rst_inline, path_utils, registry, theme, table_style,
-                     _SCRIPT_DIR / "__init__.py", *ir_sources,
-                     *(_SCRIPT_DIR / name for name in table_runtime))
+        for path in (source, rst_inline, path_utils, lang_registry, registry, theme, table_style,
+                     _SCRIPT_DIR / "__init__.py", *ir_sources, *web_sources)
     ) or not component_specs.is_dir():
         return False
     target_dir = staged_dir / _EXTENSION_DIRNAME
@@ -909,11 +911,12 @@ def stage_component_extension(staged_dir: Path) -> bool:
     shutil.copyfile(source, target_dir / f"{_EXTENSION_MODULE}.py")
     staged_tools = target_dir / "tools"
     staged_tools.mkdir()
-    shutil.copyfile(troubleshooting, staged_tools / troubleshooting.name)
-    shutil.copyfile(lcd, staged_tools / lcd.name)
     shutil.copyfile(rst_inline, staged_tools / rst_inline.name)
-    for name in table_runtime:
-        shutil.copyfile(_SCRIPT_DIR / name, staged_tools / name)
+    shutil.copyfile(lang_registry, staged_tools / lang_registry.name)
+    staged_web = staged_tools / "web"
+    staged_web.mkdir()
+    for path in web_sources:
+        shutil.copyfile(path, staged_web / path.name)
     staged_ir = staged_tools / "manual_ir"
     staged_ir.mkdir()
     for path in ir_sources:
@@ -1014,7 +1017,7 @@ def _require_sphinx() -> None:
 
 def _sphinx_cmd() -> list[str]:
     try:
-        from tools.build_docs_sphinx import resolve_sphinx_build_cmd
+        from tools.build.docs_sphinx import resolve_sphinx_build_cmd
         from tools.utils.process_utils import find_exe
     except ImportError:
         sphinx_build = shutil.which("sphinx-build")

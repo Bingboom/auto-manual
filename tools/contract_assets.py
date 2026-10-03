@@ -13,7 +13,7 @@ from typing import Callable
 
 from tools.asset_registry import AssetRegistryError
 from tools.asset_usage import AssetTarget, BundleAssetUsage, parse_asset_uri
-from tools.build_docs_resolve import render_build_template, slug_token
+from tools.build.docs_resolve import render_build_template, slug_token
 
 _CONTRACT_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
 

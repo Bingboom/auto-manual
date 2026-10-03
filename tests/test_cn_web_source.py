@@ -9,10 +9,10 @@ from tools.component_specs.app_adapters import latex_app_projection
 from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
 from tools.component_specs.plain_inventory import is_plain_inventory, plain_inventory_spec
 from tools.manual_ir.whole_document_components import discover_registered_components
-from tools.web_app_component import render_app_component
-from tools.web_figure_captions import align_caption_centers
-from tools.web_presentation import load_web_manual_contract
-from tools.word_inbox_component import transform_word_inbox_html
+from tools.web.app_component import render_app_component
+from tools.web.figure_captions import align_caption_centers
+from tools.web.presentation import load_web_manual_contract
+from tools.word.inbox_component import transform_word_inbox_html
 
 
 class ChineseWebSourceTests(unittest.TestCase):

@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import json
 import tempfile
+from functools import partial
 import unittest
 from dataclasses import replace
 from pathlib import Path
 from unittest import mock
 
-from tools import process_review_start_queue, process_review_start_queue_git
-from tools.process_review_start_queue_runtime import ReviewStartRuntimeDeps
+from tools.build_queue import process_review_start_queue, process_review_start_queue_git, process_review_start_queue_records
+from tools.build_queue.process_review_start_queue_runtime import ReviewStartRuntimeDeps
 
 
 def _review_start_deps(**overrides: object) -> ReviewStartRuntimeDeps:
@@ -496,16 +497,13 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ),
         ]
 
-        with mock.patch.object(
-            process_review_start_queue,
-            "resolve_config_path_for_task",
-            side_effect=AssertionError("review-start grouping must not resolve config"),
-        ) as mock_resolve_config_path, mock.patch.object(
-            process_review_start_queue,
-            "load_config",
-            side_effect=AssertionError("review-start grouping must not load config"),
-        ) as mock_load_config:
-            grouped = process_review_start_queue.group_review_start_records(records)
+        mock_resolve_config_path = mock.MagicMock(side_effect=AssertionError("review-start grouping must not resolve config"))
+        mock_load_config = mock.MagicMock(side_effect=AssertionError("review-start grouping must not load config"))
+        grouped = process_review_start_queue_records.group_review_start_records(
+            records,
+            resolve_config_path_for_task=mock_resolve_config_path,
+            load_config=mock_load_config,
+        )
 
         self.assertEqual(1, len(grouped))
         self.assertEqual(["rec_en", "rec_fr"], [record.record_id for record in grouped[0]])
@@ -556,16 +554,13 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ),
         ]
 
-        with mock.patch.object(
-            process_review_start_queue,
-            "resolve_config_path_for_task",
-            side_effect=AssertionError("review-start grouping must not resolve config"),
-        ) as mock_resolve_config_path, mock.patch.object(
-            process_review_start_queue,
-            "load_config",
-            side_effect=AssertionError("review-start grouping must not load config"),
-        ) as mock_load_config:
-            grouped = process_review_start_queue.group_review_start_records(records)
+        mock_resolve_config_path = mock.MagicMock(side_effect=AssertionError("review-start grouping must not resolve config"))
+        mock_load_config = mock.MagicMock(side_effect=AssertionError("review-start grouping must not load config"))
+        grouped = process_review_start_queue_records.group_review_start_records(
+            records,
+            resolve_config_path_for_task=mock_resolve_config_path,
+            load_config=mock_load_config,
+        )
 
         self.assertEqual(2, len(grouped))
         self.assertEqual(["rec_en_1"], [record.record_id for record in grouped[0]])
@@ -601,16 +596,13 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             ),
         ]
 
-        with mock.patch.object(
-            process_review_start_queue,
-            "resolve_config_path_for_task",
-            side_effect=AssertionError("review-start grouping must not resolve config"),
-        ) as mock_resolve_config_path, mock.patch.object(
-            process_review_start_queue,
-            "load_config",
-            side_effect=AssertionError("review-start grouping must not load config"),
-        ) as mock_load_config:
-            grouped = process_review_start_queue.group_review_start_records(records)
+        mock_resolve_config_path = mock.MagicMock(side_effect=AssertionError("review-start grouping must not resolve config"))
+        mock_load_config = mock.MagicMock(side_effect=AssertionError("review-start grouping must not load config"))
+        grouped = process_review_start_queue_records.group_review_start_records(
+            records,
+            resolve_config_path_for_task=mock_resolve_config_path,
+            load_config=mock_load_config,
+        )
 
         self.assertEqual(1, len(grouped))
         self.assertEqual(["rec_en_1", "rec_en_2"], [record.record_id for record in grouped[0]])
@@ -629,13 +621,13 @@ class TestProcessReviewStartQueue(unittest.TestCase):
             self.assertEqual("us-merged", build_family)
             return expected
 
-        with mock.patch.object(process_review_start_queue, "resolve_config_path_for_task", side_effect=fake_resolver):
-            resolved = process_review_start_queue._resolve_review_start_config_path(
-                model="JE-1000F",
-                region="US",
-                lang="",
-                build_family="us-merged",
-            )
+        resolved = process_review_start_queue._resolve_review_start_config_path(
+            model="JE-1000F",
+            region="US",
+            lang="",
+            build_family="us-merged",
+            resolve_config_path=fake_resolver,
+        )
 
         self.assertEqual(expected, resolved)
 
@@ -664,18 +656,14 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_review_start_queue, "ROOT", root), \
-                mock.patch.object(
-                    process_review_start_queue,
-                    "load_config",
-                    side_effect=lambda path: cfgs[path.name],
-                ):
-                resolved = process_review_start_queue._resolve_review_start_config_path(
-                    model="JE-2000E",
-                    region="CN",
-                    lang="",
-                    build_family="",
-                )
+            resolved = process_review_start_queue._resolve_review_start_config_path(
+                model="JE-2000E",
+                region="CN",
+                lang="",
+                build_family="",
+                repo_root=root,
+                config_loader=lambda path: cfgs[path.name],
+            )
 
         self.assertEqual(root / "config.zh.yaml", resolved)
 
@@ -697,18 +685,14 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 },
             }
 
-            with mock.patch.object(process_review_start_queue, "ROOT", root), \
-                mock.patch.object(
-                    process_review_start_queue,
-                    "load_config",
-                    side_effect=lambda path: cfgs[path.name],
-                ):
-                resolved = process_review_start_queue._resolve_review_start_config_path(
-                    model="JE-1000F",
-                    region="EU",
-                    lang="",
-                    build_family="",
-                )
+            resolved = process_review_start_queue._resolve_review_start_config_path(
+                model="JE-1000F",
+                region="EU",
+                lang="",
+                build_family="",
+                repo_root=root,
+                config_loader=lambda path: cfgs[path.name],
+            )
 
         self.assertEqual(configs_dir / "config.eu.yaml", resolved)
 
@@ -862,15 +846,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         mock_binding = mock.MagicMock()
         mock_start_review = mock.MagicMock(return_value=("codex/review-je-1000f-us", "https://github.com/Bingboom/auto-manual/pull/999"))
-        with (
-            tempfile.TemporaryDirectory() as td,
-            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}),
-            mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / ("config.us.yaml" if build_family == "us-merged" else "config.us-en.yaml"),
-            ) as mock_resolve_config_path,
-        ):
+        with tempfile.TemporaryDirectory() as td:
+            mock_resolve_config_path = mock.MagicMock(side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / ("config.us.yaml" if build_family == "us-merged" else "config.us-en.yaml"))
+            load_config = mock.MagicMock(return_value={"build": {"queue_by_document_key": True}})
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
@@ -886,6 +864,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 dry_run=False,
                 record_id=None,
                 deps=_review_start_deps(
+                    resolve_config_path_fn=partial(
+                        process_review_start_queue._resolve_review_start_config_path,
+                        resolve_config_path=mock_resolve_config_path,
+                        config_loader=load_config,
+                    ),
                     collect_preflight_errors_fn=mock.MagicMock(return_value=[]),
                     resolve_binding_fn=mock_binding,
                     cli_bin_fn=mock.MagicMock(return_value="lark-cli"),
@@ -955,15 +938,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         mock_binding = mock.MagicMock()
         mock_start_review = mock.MagicMock(return_value=("codex/review-je-1000f-us", "https://github.com/Bingboom/auto-manual/pull/999"))
-        with (
-            tempfile.TemporaryDirectory() as td,
-            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}),
-            mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                return_value=Path(td) / "config.us.yaml",
-            ),
-        ):
+        with tempfile.TemporaryDirectory() as td:
+            resolve_config_path = mock.MagicMock(return_value=Path(td) / "config.us.yaml")
+            load_config = mock.MagicMock(return_value={"build": {"queue_by_document_key": True}})
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
@@ -979,6 +956,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 dry_run=False,
                 record_id="rec_init_dup",
                 deps=_review_start_deps(
+                    resolve_config_path_fn=partial(
+                        process_review_start_queue._resolve_review_start_config_path,
+                        resolve_config_path=resolve_config_path,
+                        config_loader=load_config,
+                    ),
                     collect_preflight_errors_fn=mock.MagicMock(return_value=[]),
                     resolve_binding_fn=mock_binding,
                     cli_bin_fn=mock.MagicMock(return_value="lark-cli"),
@@ -1059,15 +1041,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         mock_binding = mock.MagicMock()
         mock_start_review = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-            mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / "config.us.yaml",
-            ),
-            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}),
-        ):
+        with tempfile.TemporaryDirectory() as td:
+            resolve_config_path = mock.MagicMock(side_effect=lambda *, model=None, region, lang, build_family=None: Path(td) / "config.us.yaml")
+            load_config = mock.MagicMock(return_value={"build": {"queue_by_document_key": True}})
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
@@ -1083,6 +1059,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 dry_run=False,
                 record_id=None,
                 deps=_review_start_deps(
+                    resolve_config_path_fn=partial(
+                        process_review_start_queue._resolve_review_start_config_path,
+                        resolve_config_path=resolve_config_path,
+                        config_loader=load_config,
+                    ),
                     collect_preflight_errors_fn=mock.MagicMock(return_value=[]),
                     resolve_binding_fn=mock_binding,
                     cli_bin_fn=mock.MagicMock(return_value="lark-cli"),
@@ -1148,15 +1129,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
 
         mock_binding = mock.MagicMock()
         mock_start_review = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-            mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                return_value=Path(td) / "config.us.yaml",
-            ),
-            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}),
-        ):
+        with tempfile.TemporaryDirectory() as td:
+            resolve_config_path = mock.MagicMock(return_value=Path(td) / "config.us.yaml")
+            load_config = mock.MagicMock(return_value={"build": {"queue_by_document_key": True}})
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_REVIEW_INIT_TABLE_ID",
@@ -1172,6 +1147,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                 dry_run=False,
                 record_id=None,
                 deps=_review_start_deps(
+                    resolve_config_path_fn=partial(
+                        process_review_start_queue._resolve_review_start_config_path,
+                        resolve_config_path=resolve_config_path,
+                        config_loader=load_config,
+                    ),
                     collect_preflight_errors_fn=mock.MagicMock(return_value=[]),
                     resolve_binding_fn=mock_binding,
                     cli_bin_fn=mock.MagicMock(return_value="lark-cli"),
@@ -1222,15 +1202,9 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         source.fetch_records_with_ids.return_value = raw_records
 
         mock_binding = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-            mock.patch.object(process_review_start_queue, "load_config", return_value={"build": {"queue_by_document_key": True}}),
-            mock.patch.object(
-                process_review_start_queue,
-                "resolve_config_path_for_task",
-                return_value=Path(td) / "config.zh.yaml",
-            ),
-        ):
+        with tempfile.TemporaryDirectory() as td:
+            resolve_config_path = mock.MagicMock(return_value=Path(td) / "config.zh.yaml")
+            load_config = mock.MagicMock(return_value={"build": {"queue_by_document_key": True}})
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
@@ -1252,6 +1226,11 @@ class TestProcessReviewStartQueue(unittest.TestCase):
                     dry_run=False,
                     record_id="rec_cn_missing_spec",
                     deps=_review_start_deps(
+                        resolve_config_path_fn=partial(
+                            process_review_start_queue._resolve_review_start_config_path,
+                            resolve_config_path=resolve_config_path,
+                            config_loader=load_config,
+                        ),
                         collect_preflight_errors_fn=mock.MagicMock(return_value=[]),
                         resolve_binding_fn=mock_binding,
                         cli_bin_fn=mock.MagicMock(return_value="lark-cli"),
@@ -1337,9 +1316,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         source.fetch_records_with_ids.return_value = []
 
         mock_binding = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-        ):
+        with tempfile.TemporaryDirectory() as td:
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
@@ -1419,9 +1396,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         mock_binding = mock.MagicMock()
         mock_sync = mock.MagicMock()
         mock_start_review = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-        ):
+        with tempfile.TemporaryDirectory() as td:
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
@@ -1501,9 +1476,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         mock_binding = mock.MagicMock()
         mock_sync = mock.MagicMock()
         mock_start_review = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-        ):
+        with tempfile.TemporaryDirectory() as td:
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",
@@ -1582,9 +1555,7 @@ class TestProcessReviewStartQueue(unittest.TestCase):
         mock_binding = mock.MagicMock()
         mock_sync = mock.MagicMock()
         mock_start_review = mock.MagicMock()
-        with (
-            tempfile.TemporaryDirectory() as td,
-        ):
+        with tempfile.TemporaryDirectory() as td:
             mock_binding.return_value = process_review_start_queue.ReviewInitBinding(
                 base_token_env="FEISHU_PHASE2_BASE_TOKEN",
                 table_id_env="FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID",

@@ -6,7 +6,7 @@
 # build time from docs/publish/publish_manifest.json, the execution ledger, the
 # corpus snapshot or the skeleton blueprints under docs/manifests/skeletons.
 #
-# Evidence grammar (checked by `python tools/rtd_system_workspace.py check`):
+# Evidence grammar (checked by `python tools/rtd/system_workspace.py check`):
 #   pr:<repo>#<n>             merged pull request (verified with --online)
 #   file:<repo>:<path>        file or directory on main
 #   url:<https-url>           page answering 200 (verified with --online)
@@ -121,7 +121,7 @@ capabilities:
         note: 按产品、区域、语言进入在线手册
         evidence:
           - "url:https://ht-doc.readthedocs.io/"
-          - "file:auto-manual:tools/rtd_portal.py"
+          - "file:auto-manual:tools/rtd/portal.py"
       - id: search
         label: 站内搜索
         status: available
@@ -183,7 +183,7 @@ capabilities:
         status: available
         note: 页面短文案按键从记忆库取对应语言，构建时写入
         evidence:
-          - "file:auto-manual:tools/word_bundle_common.py"
+          - "file:auto-manual:tools/word/bundle_common.py"
       - id: correction_reflow
         label: 评审修正回收入库
         status: validated
@@ -235,7 +235,7 @@ capabilities:
         status: available
         note: 由构建队列产出；出货印刷走 IDML
         evidence:
-          - "file:auto-manual:tools/queue_build_execution.py"
+          - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
       - id: shared_ir
         label: 共享中间表示
@@ -336,7 +336,7 @@ capabilities:
         status: in_progress
         note: 源表写入须逐项审批；模板层的回流尚未完成
         evidence:
-          - "file:auto-manual:tools/cloud_doc_backport_orchestration.py"
+          - "file:auto-manual:tools/backport/orchestration.py"
           - "file:auto-manual:code-as-doc/optimization_project.md"
       - id: revision_ledger
         label: 修订台账
@@ -386,7 +386,7 @@ capabilities:
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
 
 corpus:
-  # Counts only, from `python tools/rtd_system_workspace.py corpus-export`
+  # Counts only, from `python tools/rtd/system_workspace.py corpus-export`
   # (read-only TM read); refresh monthly through a PR. The snapshot file and
   # its freshness limit are the `corpus` domain of source_registry.yaml.
   languages:
@@ -438,7 +438,7 @@ flow:
     status: available
     mode: automated
     note: 构建时按键取对应语言的译文
-    evidence: ["file:auto-manual:tools/word_bundle_common.py"]
+    evidence: ["file:auto-manual:tools/word/bundle_common.py"]
   - from: 翻译记忆库
     to: 文档预翻译
     status: in_progress
@@ -456,7 +456,7 @@ flow:
     status: in_progress
     mode: manual
     note: 源表写入逐项审批；模板层回流未完成
-    evidence: ["file:auto-manual:tools/cloud_doc_backport_orchestration.py"]
+    evidence: ["file:auto-manual:tools/backport/orchestration.py"]
   - from: 评审修正
     to: 翻译记忆库
     status: validated

@@ -100,7 +100,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
         return manifest
 
     def test_merged_document_accepts_one_manifest_per_language(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -120,7 +120,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
                 )
 
     def test_language_projection_consumes_only_selected_family_binding(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -147,7 +147,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
                 )
 
     def test_rejects_a_language_the_document_never_declares(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -165,7 +165,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
                 )
 
     def test_rejects_a_manifest_filed_under_the_wrong_language(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

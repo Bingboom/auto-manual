@@ -23,7 +23,7 @@
 - Full logic suite: `python3 -m unittest`
 - Targeted tests: `python3 -m unittest tests.test_<name>`
 - Utility type checks: `python3 -m mypy tools/utils`
-- Boundary guardrails: `python3 tools/check_maintainability_guardrails.py`
+- Boundary guardrails: `python3 -m tools.check_maintainability_guardrails`
 - Build behavior: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`
 - Diff behavior: `python3 build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US`
 - Release traceability: `python3 build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP`

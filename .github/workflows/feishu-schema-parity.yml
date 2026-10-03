@@ -72,7 +72,7 @@ jobs:
           # The two tenants intentionally use different names for these shared
           # tables during the old-base -> business-base migration. Compare the
           # existing target tables; do not propose duplicate tables in prod.
-          python tools/bitable_schema.py parity \
+          python -m tools.bitable_schema parity \
             --source-base "$FEISHU_PHASE2_BASE_TOKEN" \
             --target-base "$FEISHU_PHASE2_PROD_BASE_TOKEN" \
             --ignore-table-prefix "$PARITY_IGNORE_PREFIX" \

@@ -14,10 +14,10 @@ from bs4 import BeautifulSoup
 
 from tools import plain_markdown_site as pms
 from tools.gen_index_bundle import plan_materialized_pages
-from tools.web_presentation import (
+from tools.web.presentation import (
     WebPresentationError, load_web_manual_contract, transform_web_fragment,
 )
-from tools.word_bundle_html import _convert_rst_fragment_to_html, build_word_bundle_html
+from tools.word.bundle_html import _convert_rst_fragment_to_html, build_word_bundle_html
 
 
 def source_table(*, declared: bool = True, head: bool = True) -> str:
@@ -117,7 +117,7 @@ class WebTroubleshootingTests(unittest.TestCase):
                 title='Manual', reference_doc=None, model='OTHER', region='JP',
                 lang='ja', languages=('ja',),
             )
-            with patch('tools.word_bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
                 output, _, _ = build_word_bundle_html(
                     cfg, 'OTHER', 'JP', materialized_bundle=bundle,
                     output_dir=root / 'web', presentation_profile='web',
@@ -127,7 +127,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             self.assertEqual(1, len(soup.select('figure.hb-troubleshooting-composition')))
             self.assertEqual(2, len(soup.select('table')))
             self.assertFalse(soup.select('table')[1].find('thead'))
-            with patch('tools.word_bundle_html.plan_materialized_pages') as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages') as planner:
                 output, _, _ = build_word_bundle_html(
                     cfg, 'OTHER', 'JP', materialized_bundle=bundle,
                     output_dir=root / 'document',

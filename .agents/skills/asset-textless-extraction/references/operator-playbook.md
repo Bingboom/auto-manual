@@ -63,7 +63,7 @@ Precision facts that decide between rows:
   pipeline semantics (open the archived page PDF, apply the candidate
   transform, render). A full intake run (~1.5 min) is for final packaging,
   not parameter search.
-- Final packaging: `python tools/asset_intake.py --asset-source-key <key>
+- Final packaging: `python -m tools.asset_intake --asset-source-key <key>
   --asset-source-file <master> --asset-recipe data/asset_recipes/<r>.json
   --asset-output-root <out>` — intake is **package-only and never edits the
   worktree**; promotion into the repo is a separate, deliberate step.

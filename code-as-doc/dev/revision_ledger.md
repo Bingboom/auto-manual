@@ -16,7 +16,7 @@ Tests: [`tests/test_revision_ledger.py`](../../tests/test_revision_ledger.py).
 ### ingest
 
 `ingest` reads one backport diff report (the dict written by
-`cloud_doc_backport_reports.build_report`) and appends one row per delta to
+`backport.reports.build_report`) and appends one row per delta to
 `reports/revision_ledger/ledger.jsonl`:
 
 ```bash

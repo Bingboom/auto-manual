@@ -2,7 +2,7 @@
 
 Status: active
 
-A successful HTML build of `docs/publish/web` with `tools.rtd_portal` emits
+A successful HTML build of `docs/publish/web` with `tools.rtd.portal` emits
 `manual-deployment.json` in its HTML output. The adjacent
 `docs/publish/publish_manifest.json` is required. Ordinary source directories,
 non-HTML builders and builds ending with an exception do not emit this receipt.
@@ -21,7 +21,7 @@ content. Existing HTML/assets and frozen inputs are not rewritten by the hook. T
 runs at priority 1000, after the generated config copies manual assets at the
 default priority 500, so those shipped files are included in the receipt.
 
-`tools.rtd_deployment_receipt.verify_deployment(web_root, base_url, routes,
+`tools.rtd.deployment_receipt.verify_deployment(web_root, base_url, routes,
 expected_project_slug=None, session=None, include_dependency=None)`
 compares the served receipt with the caller's trusted frozen checkout, then
 GETs the explicitly selected HTML and recursively referenced same-origin
@@ -47,7 +47,7 @@ unchanged and no slug key appears in the result. The expectation for the
 production site is derivable with
 `rtd_project_slug_from_base_url(base_url)` (the `https://<slug>.readthedocs.io`
 host shape; other hosts derive `None`), and the production base URL itself has
-a single source of truth in `tools.rtd_deployment_receipt.DEFAULT_RTD_BASE_URL`,
+a single source of truth in `tools.rtd.deployment_receipt.DEFAULT_RTD_BASE_URL`,
 which `tools/write_web_publish_html_link.py` reuses as its `--base-url` default.
 
 ### Narrowing what gets re-downloaded
@@ -148,7 +148,7 @@ of `HTML_link` with a verified online version.
 The existing Sphinx invocation generates the receipt without workflow changes:
 
 ```bash
-python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd_portal \
+python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd.portal \
   docs/publish/web /tmp/manual-rtd-html
 ```
 
@@ -160,7 +160,7 @@ python - https://ht-doc.readthedocs.io/ MODEL/REGION/LANG/md/manual.html <<'PYCO
 import json
 from pathlib import Path
 import sys
-from tools.rtd_deployment_receipt import verify_deployment
+from tools.rtd.deployment_receipt import verify_deployment
 from tools.utils.path_utils import PathSegments, Paths
 
 web_root = Paths(Path.cwd()).docs_publish_dir / PathSegments.WEB

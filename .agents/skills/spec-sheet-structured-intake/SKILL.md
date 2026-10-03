@@ -12,7 +12,7 @@ The closed loop that fills the build's structured source from a 产品规格书:
              → 入库到两张源表(规格参数明细 + 页面占位参数) → sync-data → check → build
 ```
 
-This is the **entry** half; `tools/cloud_doc_backport.py` is the **return** half. Both
+This is the **entry** half; `tools/backport/cloud_doc.py` is the **return** half. Both
 share the same spine: `data/phase2/source_record_index.json` sidecar, the
 `source-table-change-request/v1` contract, and the drift-guarded
 `tools/source_table_sync.py` writer.
@@ -37,7 +37,7 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
    the `Model No.` **value**, not the key.
 2. **Extract candidates** (region-aware: US → dual imperial/metric, JP/EU → metric):
    ```bash
-   python tools/source_intake.py spec-extract \
+   python -m tools.source_intake spec-extract \
      --input <规格书.pdf|.md|cloud-doc-url> --rules <rules.json> \
      --document-key JE-2000E_JP --region JP \
      --reference <sibling_rows.json> --out reports/source_intake/<run>
@@ -77,12 +77,12 @@ Once the rule export and sibling JSON are available, the mechanical portion shou
 formal-table approval are outside that repeat-run timing.
 
 ```bash
-python tools/source_intake.py spec-extract \
+python -m tools.source_intake spec-extract \
   --input <spec.pdf> --rules <rules.json> \
   --document-key JE-2000E_KR --region KR \
   --reference <sibling-spec.json> --out reports/source_intake/JE-2000E_KR
 
-python tools/source_intake.py stage-plan \
+python -m tools.source_intake stage-plan \
   --spec-candidates reports/source_intake/JE-2000E_KR/spec_intake_candidates.json \
   --spec-sibling <sibling-spec.json> \
   --placeholder-sibling <sibling-placeholders.json> \

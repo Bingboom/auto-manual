@@ -21,7 +21,7 @@ from tools.frozen_ai_web import build_book, replay_package
 from tools.manual_ir import validate_manual_ir
 from tools.manual_ir.document import validate_document
 from tools.manual_ir.hashing import file_sha256
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 SOURCE = Path(__file__).resolve().parents[1] / "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language"

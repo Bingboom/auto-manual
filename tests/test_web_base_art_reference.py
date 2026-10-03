@@ -5,7 +5,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_base_art_reference import arrange_base_art_reference
+from tools.web.base_art_reference import arrange_base_art_reference
 
 
 SOURCE = Path("page/08_charging_methods.rst")

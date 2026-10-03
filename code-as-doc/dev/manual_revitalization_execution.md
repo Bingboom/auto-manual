@@ -142,7 +142,7 @@ REV-34 是条件性专项，不是所有路线结束前必须完成的任务。
 方案要求的每周复核由指定执行人执行：检查无责任人事项、长期 active、阻塞缺少解锁动作、
 verifying 无验收和原方案条目遗漏。当前未配置自动周检，不能声称会自行提醒。
 
-文档改动运行 `python3 tools/check_doc_link_integrity.py` 和 `git diff --check`；
+文档改动运行 `python3 -m tools.check_doc_link_integrity` 和 `git diff --check`；
 每个实施切片另按仓库规则运行对应检查。评审时逐项确认：
 
 - 方案 ID 集合与台账 ID 集合完全一致，无重复、无遗漏；依赖引用均存在且无循环。

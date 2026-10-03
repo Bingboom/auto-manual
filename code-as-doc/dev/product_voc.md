@@ -168,8 +168,8 @@ node --check tools/rtd_portal_assets/_static/product-voc.js
 node --test tests/product_voc_ui.test.mjs
 python -m ruff check build.py integrations tools tests scripts
 python -m unittest
-python tools/check_maintainability_guardrails.py
-python tools/check_doc_link_integrity.py
+python -m tools.check_maintainability_guardrails
+python -m tools.check_doc_link_integrity
 ```
 
 ## Deployment-stage trial (2026-09-19)

@@ -14,7 +14,7 @@ from tools.utils.targets import (
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
 )
-from tools.word_bundle_common import resolve_config_path
+from tools.word.bundle_common import resolve_config_path
 
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
 

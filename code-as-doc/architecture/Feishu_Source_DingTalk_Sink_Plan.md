@@ -32,7 +32,7 @@ as historical background.
 As of 2026-04-14, the hybrid path is already implemented:
 
 - artifact sink selection exists in
-  [`../../tools/queue_artifact_sink.py`](../../tools/queue_artifact_sink.py)
+  [`../../tools/build_queue/artifact_sink.py`](../../tools/build_queue/artifact_sink.py)
 - queue execution supports `lark_drive` and `dingtalk_alidocs_session`
 - DingTalk browser-session upload exists in
   [`../../tools/dingtalk/alidocs_session.py`](../../tools/dingtalk/alidocs_session.py)
@@ -96,19 +96,19 @@ Feishu phase2 tables
 Current repo cut points:
 
 - queue entry and orchestration:
-  [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py),
-  [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+  [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py),
+  [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
 - queue row execution:
-  [`../../tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+  [`../../tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
 - sink provider selection and row-level target/session resolution:
-  [`../../tools/queue_artifact_sink.py`](../../tools/queue_artifact_sink.py)
+  [`../../tools/build_queue/artifact_sink.py`](../../tools/build_queue/artifact_sink.py)
 - current Feishu upload path:
-  [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+  [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - DingTalk upload helpers:
   [`../../tools/dingtalk/README.md`](../../tools/dingtalk/README.md),
   [`../../tools/dingtalk/alidocs_session.py`](../../tools/dingtalk/alidocs_session.py)
 - queue writeback field construction:
-  [`../../tools/queue_writeback.py`](../../tools/queue_writeback.py)
+  [`../../tools/build_queue/writeback.py`](../../tools/build_queue/writeback.py)
 
 ## 4. Current Execution Modes
 

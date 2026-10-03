@@ -535,8 +535,8 @@ Run in order for each phase:
 2. targeted contract/IR/IDML tests
 3. `python -m unittest`
 4. `python -m mypy tools/utils`
-5. `python tools/check_maintainability_guardrails.py`
-6. `python tools/check_doc_link_integrity.py`
+5. `python -m tools.check_maintainability_guardrails`
+6. `python -m tools.check_doc_link_integrity`
 7. JE-1000F US build and cross-renderer parity checks
 8. real InDesign preflight and exported-PDF comparison on the design host
 

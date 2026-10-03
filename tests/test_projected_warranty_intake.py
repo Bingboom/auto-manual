@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 
 from tools.component_specs.warranty_html import parse_warranty_html
 from tools.manual_ir.whole_document_components import discover_registered_components
-from tools.web_presentation import load_web_manual_contract
-from tools.word_bundle_html import _publish_rst_fragment_to_html, _rewrite_word_friendly_fragment
+from tools.web.presentation import load_web_manual_contract
+from tools.word.bundle_html import _publish_rst_fragment_to_html, _rewrite_word_friendly_fragment
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,7 +46,7 @@ class ProjectedWarrantyIntakeTests(unittest.TestCase):
                 self.assertEqual(4 if language == "fr" else 2, len(paragraphs))
 
     def test_jp_authored_warranty_keeps_all_seven_sections_and_line_breaks(self):
-        from tools.web_warranty_component import render_warranty_component
+        from tools.web.warranty_component import render_warranty_component
         path = ROOT / "docs/templates/page_jp/11_warranty.rst"
         html = _rewrite_word_friendly_fragment(
             _publish_rst_fragment_to_html(path.read_text(), path, active_tags={"region_jp"}), lang="ja",

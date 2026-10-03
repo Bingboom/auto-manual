@@ -39,15 +39,15 @@ from tools.manual_ir.whole_document_components import (
     discover_registered_components,
 )
 from tools.utils.path_utils import Paths
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_presentation import load_web_manual_contract
-from tools.web_manual_table_components import render_manual_table_component
-from tools.word_bundle_html import (
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.presentation import load_web_manual_contract
+from tools.web.manual_table_components import render_manual_table_component
+from tools.word.bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
 )
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html_only import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -378,7 +378,7 @@ class ManualTableComponentSpecTests(unittest.TestCase):
             )
             page.unlink()
             with patch(
-                "tools.web_presentation.transform_lcd_icon_tables",
+                "tools.web.presentation.transform_lcd_icon_tables",
                 side_effect=AssertionError("legacy LCD projector called"),
             ):
                 fragment = render_document_fragments(ir, package_root=package)[0]

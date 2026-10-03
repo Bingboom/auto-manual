@@ -9,8 +9,8 @@ from unittest.mock import patch
 
 from tools.manual_knowledge.export import ARTIFACT, make_corpus, write_knowledge
 from tools.manual_knowledge.html import extract_sections
-from tools.rtd_deployment_receipt import write_deployment_receipt
-from tools.rtd_portal import setup
+from tools.rtd.deployment_receipt import write_deployment_receipt
+from tools.rtd.portal import setup
 
 
 def extract(body):
@@ -140,7 +140,7 @@ class KnowledgeExportTests(unittest.TestCase):
             products = [{'model': 'MODEL', 'region': 'EU', 'name': 'Product', 'publications': [
                 {'url': url, 'lang': 'en', 'language_scope': 'single', 'version': '1.0'}]}]
             app = SimpleNamespace(srcdir=source, outdir=out, builder=SimpleNamespace(format='html'))
-            with patch('tools.rtd_portal.portal_data', return_value=({}, products)):
+            with patch('tools.rtd.portal.portal_data', return_value=({}, products)):
                 write_knowledge(app, None)
                 write_deployment_receipt(app, None)
                 receipt = json.loads((out / 'manual-deployment.json').read_text())
@@ -161,7 +161,7 @@ class KnowledgeExportTests(unittest.TestCase):
             source.mkdir(parents=True)
             (source.parent / 'publish_manifest.json').write_text('{}')
             app = SimpleNamespace(srcdir=source, outdir=tmp, builder=SimpleNamespace(format='html'))
-            with patch('tools.rtd_portal.portal_data', return_value=({}, [])):
+            with patch('tools.rtd.portal.portal_data', return_value=({}, [])):
                 write_knowledge(app, None)
             self.assertFalse((Path(tmp) / ARTIFACT).exists())
 

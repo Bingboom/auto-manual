@@ -1,0 +1,53 @@
+name: Workspace Data Verify
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/knowledge/workspace-data/**'
+      - 'docs/publish/**'
+      - 'tools/rtd*'
+      - 'tools/rtd/**'
+      - 'tools/rtd_portal_assets/**'
+      - 'tools/workspace*'
+      - '.github/workflows/workspace-data-verify.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: workspace-online-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - run: python -m pip install -r requirements.lock
+      - name: Verify current main deployment and source hashes
+        run: python -m tools.workspace_refresh_verify --revision "$(git rev-parse HEAD)" --attempts 20
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: workspace-online-verification
+          path: .tmp/workspace-refresh/verification.json
+          retention-days: 30
+      - name: Publication failure notice
+        if: ${{ !cancelled() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          args=()
+          if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
+          python -m tools.workspace_refresh_notice --kind publication --report .tmp/workspace-refresh/verification.json "${args[@]}"

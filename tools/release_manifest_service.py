@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.build_docs import (
+from tools.build.docs import (
     build_root_for_target,
     load_config,
     render_build_template,

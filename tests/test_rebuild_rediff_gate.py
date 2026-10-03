@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import (  # noqa: E402
+from tools.backport.cloud_doc import (  # noqa: E402
     _rebuild_rediff_gate,
     build_review_run_report,
 )
