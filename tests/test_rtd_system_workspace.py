@@ -745,7 +745,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Corpus coverage must not read as manual localization completion.
             self.assertIn("语料库句对覆盖", page)
             self.assertIn("不是说明书的翻译完成率", page)
-            self.assertIn('#shares" class="nav-link"', page)
+            self.assertIn('#shares" class="app-nav-link"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
@@ -759,10 +759,10 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="system/index.html"', workspace)
             for absent in ("ai-share", 'id="shares"', 'id="search"', 'href="#shares"'):
                 self.assertNotIn(absent, workspace)
-            self.assertIn('document.querySelector(".mobile-menu")', workspace)
+            self.assertIn('document.querySelector(".app-menu")', workspace)
             page = (base / "no-share" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn("当前重点", page)
-            self.assertNotIn('#shares" class="nav-link"', page)
+            self.assertNotIn('#shares" class="app-nav-link"', page)
             self.assertFalse((base / "no-share" / "ai-share").exists())
             (base / "share-aside").rename(share)
 

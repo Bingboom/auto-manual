@@ -7,33 +7,13 @@
   <meta name="description" content="知识库：分享资料、工作资料与实践记录。">
   <title>知识库</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
-<body>
-<aside class="sidebar">
-  <a class="brand" href="#home">知识库<span>.</span></a>
-  <div class="workspace"><span>资料库</span></div>
-  <div class="nav-label">工作空间</div>
-  <nav aria-label="知识库导航">
-    <a href="#home" class="nav-link active"><i>⌂</i> 概览</a>
-    {% if share_entry %}<a href="#shares" class="nav-link"><i>✦</i> 分享资料 <span class="nav-count">1</span></a>{% endif %}
-    {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}" class="nav-link"><i>◈</i> 系统建设</a>{% endif %}
-    {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}" class="nav-link"><i>▦</i> 说明书工作台</a>{% endif %}
-    <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
-    <a href="#updates" class="nav-link"><i>◷</i> 最近更新</a>
-  </nav>
-</aside>
-
-<div class="shell">
-  <header class="topbar">
-    <button class="mobile-menu" type="button" aria-label="展开导航">☰</button>
-    <div class="breadcrumb">工作空间 <span>/</span> <b>概览</b></div>
-    <div class="topbar-right">
-      <div class="edition-switch" aria-label="切换页面">
-        <a class="selected" href="{{ pathto('workspace/index') }}">知识库</a>
-        <a href="{{ pathto('index') }}">工作资料</a>
-      </div>
-    </div>
-  </header>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app">
+{{ site_sidebar('overview', {'share': share_entry, 'system': system_entry, 'deliverables': deliverables_entry}) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '概览') }}
 
   <main id="home">
     <section class="intro">
@@ -120,7 +100,6 @@
     refresh();
   }));
   search.addEventListener("input", refresh);
-  document.querySelector(".mobile-menu").addEventListener("click", () => body.classList.toggle("menu-open"));
   window.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
@@ -128,8 +107,7 @@
     }
   });
 })();
-</script>{% else %}<script>
-document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
 </script>{% endif %}
+{{ site_script() }}
 </body>
 </html>

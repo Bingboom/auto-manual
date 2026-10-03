@@ -1,0 +1,52 @@
+{#- Shared site shell: one sidebar and one top bar for every portal page.
+    Import with context so pathto() resolves relative to the calling page:
+      {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool). -#}
+{%- macro nav_link(href, icon, label, is_active, count='') -%}
+<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
+{%- endmacro -%}
+{%- macro site_sidebar(active, nav) -%}
+{%- set home = pathto('workspace/index') -%}
+{%- set on_home = active in ('overview', 'shares', 'updates') -%}
+<aside class="app-sidebar" id="app-sidebar">
+  <a class="app-brand" href="{{ pathto('index') }}">资料库<span>.</span></a>
+  <p class="app-brand-sub">说明书与知识工作空间</p>
+  <nav class="app-nav" aria-label="站点导航">
+    <div class="app-nav-group">工作资料</div>
+    {{ nav_link(pathto('index'), '▤', '说明书资料库', active == 'manuals') }}
+    {{ nav_link(pathto('search'), '⌕', '搜索说明书正文', active == 'search') }}
+    <div class="app-nav-group">知识库</div>
+    {{ nav_link(home, '⌂', '概览', active == 'overview') }}
+    {% if nav.share %}{{ nav_link(('' if on_home else home) ~ '#shares', '✦', '分享资料', active == 'shares', '1') }}{% endif %}
+    {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
+    {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
+    {{ nav_link(('' if on_home else home) ~ '#updates', '◷', '最近更新', active == 'updates') }}
+  </nav>
+  <p class="app-sidebar-foot">Hosted by <a href="https://readthedocs.org/">Read the Docs</a></p>
+</aside>
+<div class="app-scrim" aria-hidden="true"></div>
+{%- endmacro -%}
+{%- macro site_topbar(section, crumb) -%}
+<header class="app-topbar">
+  <button class="app-menu" type="button" aria-label="展开导航" aria-controls="app-sidebar" aria-expanded="false">☰</button>
+  <div class="app-crumb">{{ section }} <span>/</span> <b>{{ crumb }}</b></div>
+  <div class="app-topbar-right">
+    {{ caller() if caller else '' }}
+    <div class="app-switch" aria-label="切换页面">
+      <a{% if section == '知识库' %} class="selected"{% endif %} href="{{ pathto('workspace/index') }}">知识库</a>
+      <a{% if section == '工作资料' %} class="selected"{% endif %} href="{{ pathto('index') }}">工作资料</a>
+    </div>
+  </div>
+</header>
+{%- endmacro -%}
+{%- macro site_script() -%}
+<script>
+(() => {
+  const body = document.body, menu = document.querySelector(".app-menu");
+  const set = open => { body.classList.toggle("app-menu-open", open); menu.setAttribute("aria-expanded", String(open)); };
+  menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
+  document.querySelector(".app-scrim").addEventListener("click", () => set(false));
+  document.querySelectorAll(".app-nav-link").forEach(link => link.addEventListener("click", () => set(false)));
+})();
+</script>
+{%- endmacro -%}

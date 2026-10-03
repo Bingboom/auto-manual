@@ -47,17 +47,27 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-The root page is split into five bounded zones that share one container
-width (`.shell`, 1200px), so every zone's edges line up:
+Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台)
+shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
+`_static/site-shell.css`: a left sidebar (工作资料 group: 说明书资料库, 搜索说明书正文;
+知识库 group: 概览, 分享资料, 系统建设, 说明书工作台, 最近更新) and a sticky top bar
+(breadcrumb, the 知识库 / 工作资料 switch and page-specific controls such as the
+region selector). Optional entries follow the same rules as before: 分享资料 only
+with the sharing package, 系统建设 only when its context builds (computed once
+per build and shared with the root sidebar). Page stylesheets style only what
+sits inside `.app-content`; the brand accent is the shared `--brand` orange.
+The Furo search page and manual pages keep their theme.
 
-1. **Top bar** (sticky): brand, page switch and the region selector.
-2. **Search hero** (dark band): title and the cross-manual search box.
-3. **Filter toolbar** (sticky below the top bar): product-type chips and the
+Inside the shell the root page has four bounded zones on one container width
+(`.wrap`, 1200px):
+
+1. **Search hero** (dark band): title and the cross-manual search box.
+2. **Filter toolbar** (sticky below the top bar): product-type chips and the
    language filter.
-4. **Catalog**: region heading and count, then one section per product type
+3. **Catalog**: region heading and count, then one section per product type
    (`便携储能` / `加电包` / `太阳能板` / `配件`) with a responsive card grid.
    Sections with no visible card after filtering are hidden.
-5. **Footer** (dark band), which also holds the Read the Docs ad placement.
+4. **Footer** (dark band), which also holds the Read the Docs ad placement.
 
 Cards show the product image, model, edition, a language summary (first
 published language plus the count; the full list is in the tooltip) and a

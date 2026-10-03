@@ -1,8 +1,8 @@
-/* Manual library portal: four bounded zones — top bar, search hero, sticky
-   filter toolbar, grouped catalog — then the footer. One container width
-   (.shell) keeps every zone's left/right edge aligned. */
+/* Manual library page content inside the shared site shell (site-shell.css):
+   search hero, sticky filter toolbar, grouped catalog, footer. One container
+   width (.wrap) keeps every zone's left/right edge aligned. */
 :root {
-  --orange:#ed6508;
+  --orange:var(--brand);
   --orange-soft:#fff1e6;
   --ink:#1d1f23;
   --muted:#686c74;
@@ -13,7 +13,6 @@
   --hero:#16181c;
   --radius:12px;
   --shell:1200px;
-  --topbar-h:64px;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
   color:var(--ink);
   background:var(--surface);
@@ -32,21 +31,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .skip {position:absolute;left:12px;top:-80px;background:#fff;padding:12px;z-index:50;border-radius:6px}
 .skip:focus {top:12px}
 
-.shell {max-width:var(--shell);margin:0 auto;padding-left:32px;padding-right:32px}
+.wrap {max-width:var(--shell);margin:0 auto;padding-left:32px;padding-right:32px}
 
-/* 1. Top bar */
-.topbar {position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
-.topbar-inner {display:flex;align-items:center;gap:20px;height:var(--topbar-h)}
-.brand {text-decoration:none;font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1;white-space:nowrap}
-.brand span {color:var(--orange);margin-left:1px}
-.header-title {border-left:1px solid var(--line);padding-left:20px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap}
-.page-switch {display:flex;margin-left:auto;padding:3px;border-radius:8px;background:var(--surface)}
-.page-switch a {padding:6px 14px;border-radius:6px;color:var(--muted);font-size:13px;text-decoration:none;white-space:nowrap}
-.page-switch a.selected {background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 3px #17191f1a}
+/* Region selector, rendered into the shared top bar */
 .region {display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;white-space:nowrap}
-.region select {border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:7px 10px;font-weight:700;font-size:14px}
+.region select {border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:6px 10px;font-weight:700;font-size:14px}
 
-/* 2. Search hero */
+/* 1. Search hero */
 .intro {background:var(--hero);color:#fff}
 .intro-inner {padding-top:48px;padding-bottom:44px}
 .eyebrow {font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--faint)}
@@ -61,8 +52,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .search button {border:0;background:var(--surface);border-radius:50%;width:28px;height:28px;font-size:18px;line-height:1;color:var(--muted);flex-shrink:0}
 .search-hint {margin:12px 0 0;font-size:13px;color:var(--faint)}
 
-/* 3. Filter toolbar */
-.toolbar {position:sticky;top:var(--topbar-h);z-index:20;background:#fffffff2;backdrop-filter:blur(8px);
+/* 2. Filter toolbar */
+.toolbar {position:sticky;top:var(--app-topbar);z-index:20;background:#fffffff2;backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);box-shadow:0 1px 0 #0000000a}
 .toolbar-inner {display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:60px}
 .categories {display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
@@ -74,7 +65,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .language-filter {display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap}
 .language-filter select {padding:7px 10px;border:1px solid var(--line);background:#fff;border-radius:8px;font-size:14px;max-width:220px}
 
-/* 4. Catalog */
+/* 3. Catalog */
 .catalog-body {padding-top:32px;padding-bottom:56px}
 .results-bar {display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .results-bar h2 {font-size:24px;margin:0;letter-spacing:-.02em}
@@ -136,7 +127,7 @@ mark {background:#ffe7cc;color:inherit;padding:0 2px;border-radius:2px}
 .all-manuals summary {cursor:pointer;color:var(--ink);font-weight:600}
 .all-manuals ul {padding-left:20px;overflow-wrap:anywhere;columns:2 360px;column-gap:32px}
 
-/* 5. Footer */
+/* 4. Footer */
 .site-footer {background:var(--hero);color:#9a9ea6;font-size:13px}
 .footer-inner {display:flex;align-items:center;gap:28px;padding-top:28px;padding-bottom:20px;border-bottom:1px solid #2b2e34}
 .footer-brand {font-size:20px;font-weight:800;color:#fff;letter-spacing:-.03em}
@@ -160,21 +151,14 @@ dialog h2 {font-size:26px;line-height:1.2;letter-spacing:-.02em;margin:8px 0 6px
 .primary:hover {background:#d55a05}
 
 @media (max-width:860px) {
-  .shell {padding-left:20px;padding-right:20px}
-  .header-title {display:none}
+  .wrap {padding-left:20px;padding-right:20px}
   .toolbar {position:static;backdrop-filter:none;background:#fff}
   .toolbar-inner {flex-direction:column;align-items:stretch;gap:0;padding-bottom:12px}
   .language-filter select {flex:1;max-width:none}
 }
 @media (max-width:560px) {
-  :root {--topbar-h:auto}
-  .shell {padding-left:16px;padding-right:16px}
-  .topbar {position:static}
-  .topbar-inner {flex-wrap:wrap;gap:10px 12px;padding-top:12px;padding-bottom:12px}
-  .brand {font-size:20px}
-  .page-switch {order:3;margin-left:0}
-  .region {margin-left:auto}
   .region span {display:none}
+  .wrap {padding-left:16px;padding-right:16px}
   .intro-inner {padding-top:30px;padding-bottom:30px}
   .search {height:50px;padding:0 14px;gap:10px}
   .search input {font-size:15px}

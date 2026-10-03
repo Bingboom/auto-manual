@@ -1,0 +1,67 @@
+/* Shared site shell (sidebar + top bar) for every portal page.
+   Page stylesheets own only what sits inside .app-content. */
+:root {
+  --brand:#ed6508;
+  --brand-strong:#c4520a;
+  --brand-soft:#fff1e6;
+  --app-ink:#1d1f23;
+  --app-muted:#686c74;
+  --app-faint:#9a9ea6;
+  --app-line:#e4e6ea;
+  --app-bg:#f4f5f7;
+  --app-sidebar:232px;
+  --app-topbar:60px;
+}
+body.app {margin:0;background:var(--app-bg);color:var(--app-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif}
+
+.app-sidebar {position:fixed;inset:0 auto 0 0;z-index:40;width:var(--app-sidebar);display:flex;flex-direction:column;
+  background:#fff;border-right:1px solid var(--app-line);padding:22px 14px 16px;overflow-y:auto}
+.app-brand {display:block;padding:0 12px;font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1.1;
+  color:var(--app-ink);text-decoration:none}
+.app-brand span {color:var(--brand)}
+.app-brand-sub {margin:6px 12px 22px;font-size:12px;color:var(--app-faint)}
+.app-nav {display:flex;flex-direction:column;gap:2px}
+.app-nav-group {margin:16px 12px 6px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--app-faint)}
+.app-nav-group:first-child {margin-top:0}
+.app-nav-link {display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border-radius:8px;
+  font-size:14px;color:#50545c;text-decoration:none;transition:background .15s,color .15s}
+.app-nav-link i {width:18px;text-align:center;font-style:normal;font-size:15px;color:var(--app-faint)}
+.app-nav-link em {margin-left:auto;font-style:normal;font-size:11px;color:var(--app-muted);background:var(--app-bg);padding:1px 7px;border-radius:999px}
+.app-nav-link:hover {background:var(--app-bg);color:var(--app-ink)}
+.app-nav-link.active {background:var(--brand-soft);color:var(--brand-strong);font-weight:650}
+.app-nav-link.active i {color:var(--brand)}
+.app-sidebar-foot {margin:auto 12px 0;padding-top:24px;font-size:11px;color:var(--app-faint)}
+.app-sidebar-foot a {color:inherit}
+.app-scrim {display:none}
+
+.app-content {margin-left:var(--app-sidebar);min-width:0}
+.app-topbar {position:sticky;top:0;z-index:30;height:var(--app-topbar);display:flex;align-items:center;gap:16px;
+  padding:0 32px;background:#ffffffeb;backdrop-filter:blur(8px);border-bottom:1px solid var(--app-line)}
+.app-menu {display:none;border:0;background:none;font-size:20px;width:36px;height:36px;border-radius:8px;cursor:pointer;color:var(--app-ink)}
+.app-crumb {font-size:13px;color:var(--app-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-crumb span {margin:0 8px;color:#c6c9cf}
+.app-crumb b {font-weight:600;color:var(--app-ink)}
+.app-topbar-right {margin-left:auto;display:flex;align-items:center;gap:16px}
+.app-switch {display:flex;padding:3px;border-radius:8px;background:var(--app-bg)}
+.app-switch a {padding:6px 14px;border-radius:6px;font-size:13px;color:var(--app-muted);text-decoration:none;white-space:nowrap}
+.app-switch a.selected {background:#fff;color:var(--app-ink);font-weight:600;box-shadow:0 1px 3px #17191f1a}
+.app-sidebar a:focus-visible,.app-topbar a:focus-visible,.app-topbar button:focus-visible,.app-topbar select:focus-visible {
+  outline:3px solid var(--brand);outline-offset:2px}
+
+@media (max-width:900px) {
+  :root {--app-sidebar:0px}
+  .app-sidebar {width:260px;transform:translateX(-100%);transition:transform .2s}
+  .app-menu-open .app-sidebar {transform:none;box-shadow:12px 0 50px #0003}
+  .app-menu-open .app-scrim {display:block;position:fixed;inset:0;z-index:35;background:#0005}
+  .app-menu {display:grid;place-items:center}
+  .app-topbar {padding:0 16px;gap:8px}
+}
+@media (max-width:560px) {
+  .app-crumb {display:none}
+  .app-switch a {padding:6px 10px;font-size:12px}
+  .app-topbar-right {gap:8px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .app-sidebar,.app-nav-link {transition:none}
+}

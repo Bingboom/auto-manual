@@ -1,5 +1,5 @@
 /* Workbench navigation, scoped to the existing Deliverables page. */
-.deliverables { --wb-green: #276e65; --wb-ink: #27313e; --wb-subtle: #68717e; }
+.deliverables { --wb-green: #c4520a; --wb-ink: #27313e; --wb-subtle: #68717e; }
 .deliverables main { max-width: 1440px; }
 .wb-hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 0 26px; }
 .wb-hero .eyebrow { color: #a35a2c; margin-bottom: 10px; }
@@ -20,7 +20,7 @@
 .wb-node strong { display: block; font-size: 15px; font-weight: 600; color: var(--wb-ink); }
 .wb-node small { display: block; font-size: 11.5px; color: var(--wb-subtle); line-height: 1.7; }
 .wb-source, .wb-template { display: flex; align-items: center; gap: 10px; padding: 13px 12px; }
-.wb-node-mark { flex: none; display: grid; place-items: center; width: 29px; height: 32px; border-radius: 6px; color: var(--wb-green); background: #eaf3f0; font-size: 11px; letter-spacing: .5px; }
+.wb-node-mark { flex: none; display: grid; place-items: center; width: 29px; height: 32px; border-radius: 6px; color: var(--wb-green); background: #fff1e6; font-size: 11px; letter-spacing: .5px; }
 .wb-template .wb-node-mark { color: #636086; background: #f0eef7; }
 .wb-node-arrow { margin-left: auto; color: #87919d; font-size: 13px; }
 .wb-plus { justify-self: center; line-height: 1; color: #89919c; font-size: 16px; }
