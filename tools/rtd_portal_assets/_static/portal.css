@@ -1,5 +1,5 @@
 /* Manual library page content inside the shared site shell (site-shell.css):
-   search hero, sticky filter toolbar, grouped catalog, footer. One container
+   light search hero, sticky filter toolbar, grouped catalog, footer. One container
    width (.wrap) keeps every zone's left/right edge aligned. */
 :root {
   --orange:var(--brand);
@@ -10,7 +10,7 @@
   --line:#e4e6ea;
   --surface:#f4f5f7;
   --card:#fff;
-  --hero:#16181c;
+  --hero:#eceef2;
   --radius:12px;
   --shell:1200px;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
@@ -38,14 +38,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .region select {border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:6px 10px;font-weight:700;font-size:14px}
 
 /* 1. Search hero */
-.intro {background:var(--hero);color:#fff}
+.intro {background:var(--hero);border-bottom:1px solid var(--line)}
 .intro-inner {padding-top:48px;padding-bottom:44px}
 .eyebrow {font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--faint)}
 .intro h1 {font-size:clamp(30px,3.4vw,42px);letter-spacing:-.03em;line-height:1.1;margin:10px 0 10px}
 .intro h1 span {color:var(--orange)}
-.intro-inner>p {font-size:15px;color:#b7bac1;margin:0 0 26px;max-width:640px;line-height:1.6}
+.intro-inner>p {font-size:15px;color:var(--muted);margin:0 0 26px;max-width:640px;line-height:1.6}
 .search {display:flex;align-items:center;gap:14px;background:#fff;color:var(--ink);border-radius:10px;
-  max-width:760px;padding:0 18px;height:56px;box-shadow:0 10px 30px #0000004d}
+  max-width:760px;padding:0 18px;height:56px;border:1px solid #d6d9de;box-shadow:0 4px 14px #1d1f230d}
+.search:focus-within {border-color:var(--orange);box-shadow:0 0 0 3px #ed650826}
 .search svg {width:22px;height:22px;fill:none;stroke:#686c74;stroke-width:1.7;flex-shrink:0}
 .search input {width:100%;min-width:0;border:0;outline:none;background:none;height:100%;font-size:16px}
 .search input::-webkit-search-cancel-button {display:none}
@@ -128,15 +129,15 @@ mark {background:#ffe7cc;color:inherit;padding:0 2px;border-radius:2px}
 .all-manuals ul {padding-left:20px;overflow-wrap:anywhere;columns:2 360px;column-gap:32px}
 
 /* 4. Footer */
-.site-footer {background:var(--hero);color:#9a9ea6;font-size:13px}
-.footer-inner {display:flex;align-items:center;gap:28px;padding-top:28px;padding-bottom:20px;border-bottom:1px solid #2b2e34}
-.footer-brand {font-size:20px;font-weight:800;color:#fff;letter-spacing:-.03em}
-.footer-meta span {display:block;margin-top:4px;font-size:12px;color:#70747c}
-.footer-inner a {margin-left:auto;text-decoration:none;color:#d8dade}
-.footer-inner a:hover {color:#fff}
-.platform {padding-top:14px;padding-bottom:28px;font-size:12px;color:#70747c}
+.site-footer {background:var(--hero);color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.footer-inner {display:flex;align-items:center;gap:28px;padding-top:28px;padding-bottom:20px;border-bottom:1px solid #dcdfe4}
+.footer-brand {font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+.footer-meta span {display:block;margin-top:4px;font-size:12px;color:var(--faint)}
+.footer-inner a {margin-left:auto;text-decoration:none;color:var(--ink);font-weight:600}
+.footer-inner a:hover {color:var(--orange)}
+.platform {padding-top:14px;padding-bottom:28px;font-size:12px;color:var(--faint)}
 .platform p {margin:8px 0 0}
-.platform a {color:#9a9ea6}
+.platform a {color:var(--muted)}
 
 /* Language dialog */
 dialog {border:0;border-radius:16px;padding:36px;max-width:500px;width:calc(100% - 32px);box-shadow:0 30px 100px #0005}

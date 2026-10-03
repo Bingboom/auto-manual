@@ -9,10 +9,10 @@
 {%- set home = pathto('workspace/index') -%}
 {%- set on_home = active in ('overview', 'shares', 'updates') -%}
 <aside class="app-sidebar" id="app-sidebar">
-  <a class="app-brand" href="{{ pathto('index') }}">资料库<span>.</span></a>
+  <a class="app-brand" href="{{ pathto('index') }}">工作资料<span>.</span></a>
   <p class="app-brand-sub">说明书与知识工作空间</p>
   <nav class="app-nav" aria-label="站点导航">
-    <div class="app-nav-group">工作资料</div>
+    <div class="app-nav-group">说明书</div>
     {{ nav_link(pathto('index'), '▤', '说明书资料库', active == 'manuals') }}
     {{ nav_link(pathto('search'), '⌕', '搜索说明书正文', active == 'search') }}
     <div class="app-nav-group">知识库</div>
