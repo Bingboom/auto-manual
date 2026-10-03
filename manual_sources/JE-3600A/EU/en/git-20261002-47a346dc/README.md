@@ -57,7 +57,7 @@ AI file and its pinned SHA-256.
 | Area | Shared structure reused | JE-3600A source binding |
 | --- | --- | --- |
 | Inbox, symbols, LCD | Existing semantic tables/cards/icons | 23 LCD rows; numbers 4 and 18 each span two rows; ×5 battery indicator |
-| Operations | Shared Operation, reference figure, LCD mode and key-combination components | USB/AC prerequisites are native paragraphs above the artwork; main-power/energy panels retain live reference labels and CSS clocks. Explanatory gray boxes and baked clock glyphs are removed; devices, button circles and frames remain intact |
+| Operations | Shared Operation, reference figure, LCD mode and key-combination components | USB/AC prerequisites are native HTML capsules inside the artwork; main-power/energy panels retain live reference labels and CSS clocks. Explanatory gray boxes and baked clock glyphs are removed; devices, button circles and frames remain intact |
 | Connections/charging | Shared base-art reference figure | Five battery packs maximum, 200 mm ventilation, EU sockets and this source's cable topology |
 | Specifications | Shared spec tables | 3584 Wh; 3600 W rated / 7200 W surge; 100 A expansion input and 60 A output |
 | Warranty/App | Shared warranty and App components | 3+2 years; source phone UI and live captions; positioned selectable control labels |
@@ -113,8 +113,8 @@ adds the correction checks and screenshot digests under `review_correction`.
 Current correction screenshots are `reports/je3600a-native/review-*.png`.
 
 The gray-box correction is checked separately under `operation_background_review`
-in the browser receipt at both sizes. USB and AC prerequisite text remains
-selectable above the figures without a capsule overlay. The four operation
+in the browser receipt at both sizes. That earlier receipt placed USB/AC prerequisite text above the figures; it is
+superseded by `operation_frame_prerequisite_review` below. The four operation
 panels, IMPORTANT heading and shared Symbols were rechecked; local screenshots
 are `reports/je3600a-native/operation-background-*.png`.
 The two decorative clocks use CSS circles and border-drawn hands inside the
@@ -153,6 +153,16 @@ title. At mobile width the same text classes remain readable below the artwork.
 Only the two editorial On/Off colons become block boundaries; all words, source
 facts, the native text ledger and all artwork stay unchanged. Local screenshots
 are `reports/je3600a-native/power-alignment-{1440,390}.png`.
+
+The USB/AC frame and prerequisite correction is recorded under
+`operation_frame_prerequisite_review`. Both Operation components use a neutral
+flow wrapper with `data-preserve-art-frame="true"`; shared CSS removes the extra
+stage border and rounding so only the source artwork frame remains. Each
+prerequisite returns to its native upper-left position inside the illustration,
+with a CSS capsule using the measured #ebebec tone, bold `Prerequisite:` prefix
+and normal-weight body. Desktop and mobile geometry checks confirm containment
+and readable wrapping. Text, source ledger and artwork bytes are unchanged.
+Local screenshots are `reports/je3600a-native/operation-frame-{usb,ac}-{1440,390}.png`.
 
 ## Source errata awaiting product review
 

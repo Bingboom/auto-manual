@@ -627,6 +627,11 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 正视图、侧视图等密集引线标注图 | 经目标确认的本地化完整图 | 保留完整标注，不混入章节标题；型号、插座、接口必须匹配 |
 | App 界面、二维码、产品实物铭刻 | 保留图内内容 | App 步骤号统一用图下 HTML；不把界面文字当说明文字删除 |
 
+Operation 底图已含完整外框时，在承载组件的中立 flow 容器声明
+`data-preserve-art-frame="true"`：共享 CSS 取消组件额外的外框和圆角裁边。
+图内前提说明继续使用 Operation 的 prerequisite 槽位及源坐标，浅灰胶囊由
+HTML/CSS 按 `prerequisite_fill` 绘制；只有前缀加粗，不把说明移到图外。
+
 跨语言可复用已核对的同一底图和组件；跨型号复用前必须核对主机、接口和地区差异。
 共享样式不代表可以借用另一型号的底图。底图、源文字、SHA-256 和百分比标签位置
 必须一起登记；`base-art-live-copy` 复用现有 `manual-ir/v2 → ComponentSpec → 公共

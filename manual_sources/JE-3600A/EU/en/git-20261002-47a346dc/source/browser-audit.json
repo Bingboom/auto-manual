@@ -167,7 +167,7 @@
         "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review; USB/AC frame and prerequisite placement superseded by operation_frame_prerequisite_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -1274,6 +1274,125 @@
         }
       ],
       "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
+    },
+    "operation_frame_prerequisite_review": {
+      "outsidePrerequisites": [],
+      "panels": [
+        {
+          "art": {
+            "bottom": 492.984375,
+            "height": 425.4140625,
+            "left": 314.59375,
+            "right": 1157.40625,
+            "top": 67.5703125,
+            "width": 842.8125
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-dc-usb-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "15.592px",
+          "id": "dc-usb-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 124.953125,
+            "height": 36.6328125,
+            "left": 346.078125,
+            "right": 689.140625,
+            "top": 88.3203125,
+            "width": 343.0625
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 115.8125,
+            "left": 362.0859375,
+            "right": 633.875,
+            "top": 97.3125
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              47,
+              31,
+              560,
+              86
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        },
+        {
+          "art": {
+            "bottom": 1351.515625,
+            "height": 494.984375,
+            "left": 314.59375,
+            "right": 1157.40625,
+            "top": 856.53125,
+            "width": 842.8125
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-ac-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "15.592px",
+          "id": "ac-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 914.890625,
+            "height": 36.6328125,
+            "left": 349.53125,
+            "right": 692.625,
+            "top": 878.2578125,
+            "width": 343.09375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 905.75,
+            "left": 365.5390625,
+            "right": 637.328125,
+            "top": 887.25
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              52,
+              32,
+              565,
+              87
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        }
+      ],
+      "scrollWidth": 1440,
+      "totalPrerequisiteMentions": 2,
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "errors": [],
+      "screenshots": [
+        {
+          "name": "operation-frame-ac-1440.png",
+          "sha256": "f42efe21952797691b1f9aa1974e20b6318930aa785a41d8e1bf5a06347da826"
+        },
+        {
+          "name": "operation-frame-usb-1440.png",
+          "sha256": "dabecdca9ef20c59cc0805238e786727dd5de9d7fd9c24b5e756e749582dda6d"
+        }
+      ],
+      "scope": "Complete English prerequisite audit: source p13 USB and p14 AC only; both live captions inside the source frame, bold prefix/normal body, measured CSS capsule fill; extra stage border removed. Earlier external-prerequisite placement is superseded."
     }
   },
   {
@@ -1463,7 +1582,7 @@
         "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review; USB/AC frame and prerequisite placement superseded by operation_frame_prerequisite_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -2582,6 +2701,125 @@
         }
       ],
       "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
+    },
+    "operation_frame_prerequisite_review": {
+      "outsidePrerequisites": [],
+      "panels": [
+        {
+          "art": {
+            "bottom": 641.234375,
+            "height": 180.703125,
+            "left": 16,
+            "right": 374,
+            "top": 460.53125,
+            "width": 358
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-dc-usb-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "12.48px",
+          "id": "dc-usb-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 503.171875,
+            "height": 33.828125,
+            "left": 29.375,
+            "right": 201.2109375,
+            "top": 469.34375,
+            "width": 171.8359375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 500.2578125,
+            "left": 40.5703125,
+            "right": 185.3984375,
+            "top": 471.5390625
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              47,
+              31,
+              652,
+              150
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        },
+        {
+          "art": {
+            "bottom": 1443.2578125,
+            "height": 210.25,
+            "left": 16,
+            "right": 374,
+            "top": 1233.0078125,
+            "width": 358
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-ac-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "12.48px",
+          "id": "ac-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 1276.0625,
+            "height": 33.828125,
+            "left": 30.8359375,
+            "right": 202.671875,
+            "top": 1242.234375,
+            "width": 171.8359375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 1273.1484375,
+            "left": 42.03125,
+            "right": 186.859375,
+            "top": 1244.4296875
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              52,
+              32,
+              657,
+              152
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        }
+      ],
+      "scrollWidth": 390,
+      "totalPrerequisiteMentions": 2,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "errors": [],
+      "screenshots": [
+        {
+          "name": "operation-frame-ac-390.png",
+          "sha256": "4273850510414ca4c5f4e30a756bd5a5f2387caa31ae1fdf214c838633417bef"
+        },
+        {
+          "name": "operation-frame-usb-390.png",
+          "sha256": "727c67f0a8afd71923fa0fefe44d4bc93db5ee2ecc5b8dfcd0bfc78126da557d"
+        }
+      ],
+      "scope": "Complete English prerequisite audit: source p13 USB and p14 AC only; both live captions inside the source frame, bold prefix/normal body, measured CSS capsule fill; extra stage border removed. Earlier external-prerequisite placement is superseded."
     }
   }
 ]

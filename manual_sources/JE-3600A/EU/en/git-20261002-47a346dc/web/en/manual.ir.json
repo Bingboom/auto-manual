@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "b2e2c2f0dd9015f7961958dfb54a2473510ad286d60768f2dbc7b4595100d8c9",
-  "content_sha256": "a240fa61be2108cbdac32899050bce59e11c2cdb07c8992fd8b591a42a2cbab6",
+  "content_sha256": "df7c3493da1276907f0852ddd7029ff0072eb816d17b3bb2bea3cf0f2c04f8a6",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -119,7 +119,7 @@
       "assets/symbol-weee.png": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
       "assets/ups.png": "370b2ae2e50dbbea4b1b1be1f0efefbd0447850d40ee3ba613ca5a97975b23a0"
     },
-    "block_count": 126,
+    "block_count": 124,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 14,
       "HB-SPECIAL-APP": 3,
@@ -1402,7 +1402,7 @@
       },
       "validated_main": "565c52a2d450d2b353e0186b22d0b230a2fb13ee"
     },
-    "frozen_stylesheet_sha256": "f702dd25ed5cb4f07a1980d95e7f8101c0b3450217c106b621a6e00c681a808d",
+    "frozen_stylesheet_sha256": "314105723ad959dfd74447b4dd12edcb16360cb9f4da00373e3846b81382d4eb",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -2084,6 +2084,14 @@
           {
             "base_art_layout": {
               "art_sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+              "prerequisite_fill": "#ebebec",
+              "prerequisite_max_width": 48,
+              "prerequisite_rect": [
+                3.7362,
+                4.8777,
+                40.7051,
+                8.6119
+              ],
               "step_anchors": [
                 [
                   83,
@@ -2097,7 +2105,7 @@
               "step_width": 16
             },
             "capture_following_lines": 0,
-            "capture_prerequisite": false,
+            "capture_prerequisite": true,
             "composite_locales": [],
             "id": "dc-usb-output",
             "image_key": "operation/dc_usb_output",
@@ -2112,6 +2120,14 @@
           {
             "base_art_layout": {
               "art_sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+              "prerequisite_fill": "#ebebec",
+              "prerequisite_max_width": 48,
+              "prerequisite_rect": [
+                4.1456,
+                4.3896,
+                40.7086,
+                7.4016
+              ],
               "step_anchors": [
                 [
                   80,
@@ -2125,7 +2141,7 @@
               "step_width": 19
             },
             "capture_following_lines": 0,
-            "capture_prerequisite": false,
+            "capture_prerequisite": true,
             "composite_locales": [],
             "id": "ac-output",
             "image_key": "operation/ac_output",
@@ -4375,202 +4391,221 @@
           "source_ref": "en/pdf-13-15/operations#block-4"
         },
         {
-          "asset_refs": [],
+          "asset_refs": [
+            "assets/operation-dc-usb-output.png"
+          ],
           "block_id": "operations:block-0005",
-          "content_sha256": "ec62a9d6a101ea16ac0beb9366463ff4ff63bc54bde9da5343d15a4144c56564",
+          "content_sha256": "f8554dfdd5664b21a3f186e01f6cdfe62931f006817d6e0abd0daba928dd0690",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Prerequisite: The product is turned on."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "en/pdf-13-15/operations#block-5"
-        },
-        {
-          "asset_refs": [
-            "assets/operation-dc-usb-output.png"
-          ],
-          "block_id": "operations:block-0006",
-          "content_sha256": "09b06763cb48d0a260ca9a5678ba89f269ba11e1226a97ec23413a92576290fa",
-          "kind": "flow",
-          "payload": {
-            "carrier_flow": [
-              {
-                "alt": "USB OUTPUT ON/OFF",
-                "kind": "image",
-                "source": "assets/operation-dc-usb-output.png"
-              },
-              {
-                "children": [
+                "carrier_flow": [
                   {
                     "children": [
                       {
                         "children": [
                           {
                             "kind": "text",
-                            "text": "On"
+                            "text": "Prerequisite:"
                           }
                         ],
                         "kind": "strong"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                      },
                       {
                         "kind": "text",
-                        "text": "Press once"
+                        "text": " The product is turned on."
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
+                    "kind": "paragraph"
+                  },
+                  {
+                    "alt": "USB OUTPUT ON/OFF",
+                    "kind": "image",
+                    "source": "assets/operation-dc-usb-output.png"
                   },
                   {
                     "children": [
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "Off"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "On"
+                              }
+                            ],
+                            "kind": "strong"
                           }
                         ],
-                        "kind": "strong"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
                       {
-                        "kind": "text",
-                        "text": "Press once"
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press once"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Off"
+                              }
+                            ],
+                            "kind": "strong"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press once"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
                       }
                     ],
                     "kind": "group",
                     "presentation": {
                       "html": {
                         "attributes": {
-                          "class": "line"
+                          "class": "line-block"
                         }
                       }
                     },
                     "role": "container"
                   }
                 ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "line-block"
-                    }
-                  }
-                },
-                "role": "container"
-              }
-            ],
-            "component_spec": {
-              "assets": [
-                {
-                  "asset_ref": "assets/operation-dc-usb-output.png",
-                  "locale_policy": "shared",
-                  "role": "artwork"
-                }
-              ],
-              "component_id": "HB-SPECIAL-OPERATION",
-              "language": "en",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "dc-usb-output",
-                  "content_kind": "inline_text",
-                  "role": "operation_id"
-                },
-                {
-                  "content": "USB OUTPUT ON/OFF",
-                  "content_kind": "inline_text",
-                  "role": "accessibility_label"
-                },
-                {
-                  "content": [
+                "component_spec": {
+                  "assets": [
                     {
-                      "id": "on",
-                      "parts": [
-                        {
-                          "html": "<strong>On</strong>",
-                          "role": "label",
-                          "text": "On"
-                        },
-                        {
-                          "html": "Press once",
-                          "role": "instruction",
-                          "text": "Press once"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "off",
-                      "parts": [
-                        {
-                          "html": "<strong>Off</strong>",
-                          "role": "label",
-                          "text": "Off"
-                        },
-                        {
-                          "html": "Press once",
-                          "role": "instruction",
-                          "text": "Press once"
-                        }
-                      ]
+                      "asset_ref": "assets/operation-dc-usb-output.png",
+                      "locale_policy": "shared",
+                      "role": "artwork"
                     }
                   ],
-                  "content_kind": "ordered_steps",
-                  "role": "steps"
+                  "component_id": "HB-SPECIAL-OPERATION",
+                  "language": "en",
+                  "metadata": {},
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "dc-usb-output",
+                      "content_kind": "inline_text",
+                      "role": "operation_id"
+                    },
+                    {
+                      "content": "USB OUTPUT ON/OFF",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": [
+                        {
+                          "id": "on",
+                          "parts": [
+                            {
+                              "html": "<strong>On</strong>",
+                              "role": "label",
+                              "text": "On"
+                            },
+                            {
+                              "html": "Press once",
+                              "role": "instruction",
+                              "text": "Press once"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "off",
+                          "parts": [
+                            {
+                              "html": "<strong>Off</strong>",
+                              "role": "label",
+                              "text": "Off"
+                            },
+                            {
+                              "html": "Press once",
+                              "role": "instruction",
+                              "text": "Press once"
+                            }
+                          ]
+                        }
+                      ],
+                      "content_kind": "ordered_steps",
+                      "role": "steps"
+                    },
+                    {
+                      "content": "<p><strong>Prerequisite:</strong> The product is turned on.</p>",
+                      "content_kind": "rich_text",
+                      "role": "prerequisite"
+                    }
+                  ],
+                  "source_ref": "en/pdf-13/dc-usb-output",
+                  "token_roles": [
+                    "component.special.operation"
+                  ],
+                  "variant": "status-right"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "data-preserve-art-frame": "true"
                 }
-              ],
-              "source_ref": "en/pdf-13/dc-usb-output",
-              "token_roles": [
-                "component.special.operation"
-              ],
-              "variant": "status-right"
+              }
             },
-            "kind": "component",
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-6"
+          "source_ref": "en/pdf-13-15/operations#block-5"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0007",
+          "block_id": "operations:block-0006",
           "content_sha256": "6cba858507a5ff3b8494df6ba28498e438962089f9c0ac7e3f892f7b353449ae",
           "kind": "flow",
           "payload": {
@@ -4712,11 +4747,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-7"
+          "source_ref": "en/pdf-13-15/operations#block-6"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0008",
+          "block_id": "operations:block-0007",
           "content_sha256": "7a4d721046cf214314f2229b935fde5832b5a1c52f3f1c775b7bef94859fa16a",
           "kind": "flow",
           "payload": {
@@ -4730,205 +4765,224 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "operations:block-0009",
-          "content_sha256": "ec62a9d6a101ea16ac0beb9366463ff4ff63bc54bde9da5343d15a4144c56564",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Prerequisite: The product is turned on."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "en/pdf-13-15/operations#block-9"
+          "source_ref": "en/pdf-13-15/operations#block-7"
         },
         {
           "asset_refs": [
             "assets/operation-ac-output.png"
           ],
-          "block_id": "operations:block-0010",
-          "content_sha256": "1fd2ab281b43b8dec8e0dcf6139654af53a652fec92b433cfefcf1076bd744c8",
+          "block_id": "operations:block-0008",
+          "content_sha256": "32525926d74c7b4a9dd98199070685e61b07e1fc99909effe7388c3f335ed893",
           "kind": "flow",
           "payload": {
-            "carrier_flow": [
+            "children": [
               {
-                "alt": "AC OUTPUT ON/OFF",
-                "kind": "image",
-                "source": "assets/operation-ac-output.png"
-              },
-              {
-                "children": [
+                "carrier_flow": [
                   {
                     "children": [
                       {
                         "children": [
                           {
                             "kind": "text",
-                            "text": "On"
+                            "text": "Prerequisite:"
                           }
                         ],
                         "kind": "strong"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                      },
                       {
                         "kind": "text",
-                        "text": "Press once"
+                        "text": " The product is turned on."
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
+                    "kind": "paragraph"
+                  },
+                  {
+                    "alt": "AC OUTPUT ON/OFF",
+                    "kind": "image",
+                    "source": "assets/operation-ac-output.png"
                   },
                   {
                     "children": [
                       {
                         "children": [
                           {
-                            "kind": "text",
-                            "text": "Off"
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "On"
+                              }
+                            ],
+                            "kind": "strong"
                           }
                         ],
-                        "kind": "strong"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
                       {
-                        "kind": "text",
-                        "text": "Press once"
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press once"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Off"
+                              }
+                            ],
+                            "kind": "strong"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press once"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
                       }
                     ],
                     "kind": "group",
                     "presentation": {
                       "html": {
                         "attributes": {
-                          "class": "line"
+                          "class": "line-block"
                         }
                       }
                     },
                     "role": "container"
                   }
                 ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "line-block"
-                    }
-                  }
-                },
-                "role": "container"
-              }
-            ],
-            "component_spec": {
-              "assets": [
-                {
-                  "asset_ref": "assets/operation-ac-output.png",
-                  "locale_policy": "shared",
-                  "role": "artwork"
-                }
-              ],
-              "component_id": "HB-SPECIAL-OPERATION",
-              "language": "en",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "ac-output",
-                  "content_kind": "inline_text",
-                  "role": "operation_id"
-                },
-                {
-                  "content": "AC OUTPUT ON/OFF",
-                  "content_kind": "inline_text",
-                  "role": "accessibility_label"
-                },
-                {
-                  "content": [
+                "component_spec": {
+                  "assets": [
                     {
-                      "id": "on",
-                      "parts": [
-                        {
-                          "html": "<strong>On</strong>",
-                          "role": "label",
-                          "text": "On"
-                        },
-                        {
-                          "html": "Press once",
-                          "role": "instruction",
-                          "text": "Press once"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "off",
-                      "parts": [
-                        {
-                          "html": "<strong>Off</strong>",
-                          "role": "label",
-                          "text": "Off"
-                        },
-                        {
-                          "html": "Press once",
-                          "role": "instruction",
-                          "text": "Press once"
-                        }
-                      ]
+                      "asset_ref": "assets/operation-ac-output.png",
+                      "locale_policy": "shared",
+                      "role": "artwork"
                     }
                   ],
-                  "content_kind": "ordered_steps",
-                  "role": "steps"
+                  "component_id": "HB-SPECIAL-OPERATION",
+                  "language": "en",
+                  "metadata": {},
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "ac-output",
+                      "content_kind": "inline_text",
+                      "role": "operation_id"
+                    },
+                    {
+                      "content": "AC OUTPUT ON/OFF",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": [
+                        {
+                          "id": "on",
+                          "parts": [
+                            {
+                              "html": "<strong>On</strong>",
+                              "role": "label",
+                              "text": "On"
+                            },
+                            {
+                              "html": "Press once",
+                              "role": "instruction",
+                              "text": "Press once"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "off",
+                          "parts": [
+                            {
+                              "html": "<strong>Off</strong>",
+                              "role": "label",
+                              "text": "Off"
+                            },
+                            {
+                              "html": "Press once",
+                              "role": "instruction",
+                              "text": "Press once"
+                            }
+                          ]
+                        }
+                      ],
+                      "content_kind": "ordered_steps",
+                      "role": "steps"
+                    },
+                    {
+                      "content": "<p><strong>Prerequisite:</strong> The product is turned on.</p>",
+                      "content_kind": "rich_text",
+                      "role": "prerequisite"
+                    }
+                  ],
+                  "source_ref": "en/pdf-14/ac-output",
+                  "token_roles": [
+                    "component.special.operation"
+                  ],
+                  "variant": "status-right"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "data-preserve-art-frame": "true"
                 }
-              ],
-              "source_ref": "en/pdf-14/ac-output",
-              "token_roles": [
-                "component.special.operation"
-              ],
-              "variant": "status-right"
+              }
             },
-            "kind": "component",
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-10"
+          "source_ref": "en/pdf-13-15/operations#block-8"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0011",
+          "block_id": "operations:block-0009",
           "content_sha256": "04acd6cb10059e6e2fcaf68820597c77dfa35421785fed429a1fae121b9beebb",
           "kind": "flow",
           "payload": {
@@ -4942,13 +4996,13 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-11"
+          "source_ref": "en/pdf-13-15/operations#block-9"
         },
         {
           "asset_refs": [
             "assets/operation-energy-saving.png"
           ],
-          "block_id": "operations:block-0012",
+          "block_id": "operations:block-0010",
           "content_sha256": "8385d079fbe1c77cb4094f0f10c6308844bf1c13f7fbbb1b39701877c4dac17a",
           "kind": "flow",
           "payload": {
@@ -5198,11 +5252,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-12"
+          "source_ref": "en/pdf-13-15/operations#block-10"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0013",
+          "block_id": "operations:block-0011",
           "content_sha256": "923a067acdf28db97d137834501af9fac96e93837c35e47481c088a1d9cd30fe",
           "kind": "flow",
           "payload": {
@@ -5296,11 +5350,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-13"
+          "source_ref": "en/pdf-13-15/operations#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0014",
+          "block_id": "operations:block-0012",
           "content_sha256": "fb02670a8e1c1a67078e57cefd8fc346f611ad184c0208aa38c7087c7954a763",
           "kind": "flow",
           "payload": {
@@ -5314,13 +5368,13 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-14"
+          "source_ref": "en/pdf-13-15/operations#block-12"
         },
         {
           "asset_refs": [
             "assets/lcd-mode.png"
           ],
-          "block_id": "operations:block-0015",
+          "block_id": "operations:block-0013",
           "content_sha256": "ac59da64133c3dc14a70578c74a6ee20fe9ad78d2fd34e0297cac6c77ee6ccf4",
           "kind": "flow",
           "payload": {
@@ -5406,11 +5460,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-15"
+          "source_ref": "en/pdf-13-15/operations#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0016",
+          "block_id": "operations:block-0014",
           "content_sha256": "4c1d87e680bbb7ffc6bacc9027417274eda28c24628f86f22aee0c9aebce83c0",
           "kind": "flow",
           "payload": {
@@ -5423,11 +5477,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-16"
+          "source_ref": "en/pdf-13-15/operations#block-14"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0017",
+          "block_id": "operations:block-0015",
           "content_sha256": "4df48f13d394981b7e6db01190f17586ba15ef61caa6ac053ddabff3c85ada43",
           "kind": "flow",
           "payload": {
@@ -5441,11 +5495,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-17"
+          "source_ref": "en/pdf-13-15/operations#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0018",
+          "block_id": "operations:block-0016",
           "content_sha256": "a6f7d25d9014f13c2edbae5ba1570cd28e77af81477dcf223174c4414d244620",
           "kind": "flow",
           "payload": {
@@ -5496,7 +5550,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "en/pdf-13-15/operations#block-18"
+          "source_ref": "en/pdf-13-15/operations#block-16"
         }
       ],
       "language": "en",
@@ -11207,5 +11261,5 @@
   "schema_version": "manual-ir/v2",
   "snapshot_sha256": null,
   "source": "prepared-document",
-  "style_contract_sha256": "24d98b76c3a883d0362f8ba1b911c9885c4fc88d8eb4fa94d4254e14537a7b2d"
+  "style_contract_sha256": "f1d89ff83745b0b12c637edbf4748470946587e3323088112934ecd332a54174"
 }
