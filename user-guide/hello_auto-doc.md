@@ -60,7 +60,7 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 ### 发布候选、撤回与恢复
 
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
-冻结发布源同时保留独立源包与整站组装副本，源清单容量上限为 640 MiB；网页输出及线上取回仍限 512 MiB，单文件 32 MiB、文件数 10,000 和哈希校验不变。
+冻结发布源同时保留独立源包与整站组装副本，源清单容量上限为 768 MiB；网页输出及线上取回仍限 512 MiB，单文件 32 MiB、文件数 10,000 和哈希校验不变。发布前的整站 Sphinx 检查须加载 `myst_parser,tools.rtd.portal`，同时验证知识导出和部署凭据生成。
 
 已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
 
