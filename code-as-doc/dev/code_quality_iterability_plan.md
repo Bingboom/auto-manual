@@ -174,6 +174,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
       `ordered_pages` 59 → 36、`_extract_raw_latex` 75 → 28（宏到块改为规则表）；CC≥50 24 → 10
     - [x] 补做（2026-10-02）：`process_queue_record_group` 55 → 21。拆出上传目标解析（钉钉主目标/镜像）、phase2 同步、构建产物记录、发布上传、评审云文档与基线、Web 发布元数据、失败回写；失败回写读取的中间进度收进 `_GroupRunState`。新旧实现用 60,000 组随机依赖（每个调用点都可能抛错）对比调用序列、日志、stderr 和返回值，零差异
     - [x] D 批（纯输入热点，2026-10-02）：`transform_web_fragment` 93 → 33、`_parse_spec_master_sections` 81 → 25、`extract_page` 80 → 9（行结构步骤移到 `tools/idml_rst_line_blocks.py`，`idml_rst_extract.py` 上限 520 → 300）、`discover_registered_components` 62 → 1（按组件族原样拆成 `_claim_*`）。前三个用新旧实现差分验证（真实数据与随机变异输入），第四个是逐字搬移，并用 AST 检查确认没有名字被改绑
+    - [x] E1 批（IDML 渲染，2026-10-02）：`promote_reference_figures` 87 → 7、`ReferenceStoryEmitter.emit` 72 → 10、`TargetAssemblyRenderer.render` 58 → 10（按组合类型改为分派表，18 个分支原样搬移）。验证：JE-1000F US（已批准参考版式）、JE-1000F US flow、JBP-2000B US/JP 共 4 个真实目标，新旧代码各导出一次 IDML，1,431 个 zip 部件逐字节一致；`promote_reference_figures` 另做 60,000 组随机差分，零差异
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。
