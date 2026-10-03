@@ -284,6 +284,10 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
                  for item in self.ir.metadata["web_figure_coverage"]["slots"]}
         for key in ("operation.main-power", "reference.clearance", "reference.locking"):
             self.assertEqual("base-art-live-copy", slots[key])
+        badges = soup.select('[data-web-replace-key="reference.locking"] .hb-reference-live-pill')
+        self.assertEqual(2, len(badges))
+        for badge in badges:
+            self.assertIn("--hb-fill:#434345;--hb-label-color:#ffffff", badge["style"])
         self.assertFalse(soup.select(".hb-auto-resume-table,.hb-key-combination-table"))
 
     def test_warranty_uses_shared_native_components(self) -> None:

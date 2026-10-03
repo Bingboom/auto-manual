@@ -928,6 +928,16 @@ Web Publish / Read the Docs note:
   permits battery packs to omit host-only auto-resume, key-combination and LCD
   mode tables. Its opt-in `base_art_layout.duration_icon: clock` draws a CSS
   clock beside live duration text after the source glyph is removed.
+  The duration reader accepts Italian `secondi`, German numeric `Sekunden`,
+  and the native German phrase `Drei Sekunden`; only the decorative clock
+  becomes `3s`, while the instruction retains its original wording.
+  Reference labels can declare a measured `color` with their `fill`; these
+  source badges retain a 0.875rem minimum and expand within the art edge on phones.
+  JBP locking labels use the native dark fill and white type. Frozen MyST
+  replay promotes top-level `hb-h1-pill` document headings into navigation,
+  while preserving headings inside components. On mobile, shared anchor spacing
+  includes Furo's sticky header height so direct links and TOC jumps show the
+  complete section heading.
   Governed reference figures and hash-locked finished panels may coexist in
   coverage. Apply label-bearing illustration replacements before ComponentSpec
   discovery (`consume_before_presentation`) so cold replay hashes the same

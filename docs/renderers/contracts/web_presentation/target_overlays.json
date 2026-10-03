@@ -590,7 +590,8 @@
                       18,
                       6
                     ],
-                    "fill": "#efefef"
+                    "fill": "#434345",
+                    "color": "#ffffff"
                   },
                   {
                     "line": 1,
@@ -600,7 +601,8 @@
                       18,
                       6
                     ],
-                    "fill": "#efefef"
+                    "fill": "#434345",
+                    "color": "#ffffff"
                   },
                   {
                     "line": 2,

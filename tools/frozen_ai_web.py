@@ -47,7 +47,9 @@ def replay_package(package: Path) -> tuple[str, ...]:
     for fragment in fragments:
         soup = BeautifulSoup(fragment, "html.parser")
         for item in soup.contents:
-            if isinstance(item, Tag) and item.name in {"h1", "h2", "h3", "h4"} and not item.get("class") and not item.has_attr("hidden"):
+            if (isinstance(item, Tag) and item.name in {"h1", "h2", "h3", "h4"}
+                    and set(item.get("class", [])) <= {"hb-h1-pill"}
+                    and not item.has_attr("hidden")):
                 if item.get("id"):
                     # Sphinx normalizes underscores in explicit MyST labels;
                     # source chapter links must retain their exact IR anchors.

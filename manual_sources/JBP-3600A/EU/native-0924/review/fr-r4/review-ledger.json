@@ -1,0 +1,347 @@
+{
+  "language": "fr",
+  "status": "sealed-r4-awaiting-independent-recheck",
+  "publication_eligible": false,
+  "independent_acceptance": false,
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "english_revision": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+  "english_ir_sha256": "4c4fb33a2016849503a7812fa6cd0c3e0c70c84036cb2d65e3b8208b1f4a0a79",
+  "candidate_ir_sha256": "b92d4ac099bc0e0219705d76420ef40dfbcd435c258f458566a7bc8e54311390",
+  "candidate_markdown_sha256": "152205ae36bd66794cf3a31e55ae5d27b2c6d48840e36f5675389106ef220c3b",
+  "native_copy_sha256": "21c64705dfd1e79d436f177c93079e4ccff298fa41e135d641a6a314981bbc3e",
+  "baseline_gate_revision": "2edbda652c3ceb9ed26357ab6fb7004337127793",
+  "physical_pages": {
+    "preface": [
+      2
+    ],
+    "body": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "regulatory": [
+      79
+    ]
+  },
+  "checks": {
+    "strict_sphinx": "passed",
+    "full_unittest": {
+      "result": "passed",
+      "tests": 5075,
+      "skipped": 35,
+      "duration_seconds": 762.048,
+      "log": "unittest-fr-fixes.log",
+      "scope": "FR-001/002 shared logic before final source-badge opt-in marker; final marker separately targeted."
+    },
+    "ruff": "passed",
+    "guardrails": "passed",
+    "doc_links": "passed",
+    "us_check": "passed with committed tests/fixtures/phase2 snapshot",
+    "prepared_component_english_applicability_trial": "no issues",
+    "fresh_admission": "blocked: pending source review and FR enrollment",
+    "final_marker_targeted": {
+      "result": "passed",
+      "tests": 36,
+      "log": "label-scope-targeted.log"
+    },
+    "fr003_css": {
+      "result": "producer-browser-passed",
+      "evidence": "browser-check.json",
+      "note": "CSS-only; no full-suite repetition. Independent recheck pending."
+    },
+    "cold_replay": {
+      "status": "passed",
+      "markdown_byte_identical": true,
+      "ir_sha256": "b92d4ac099bc0e0219705d76420ef40dfbcd435c258f458566a7bc8e54311390",
+      "markdown_sha256": "152205ae36bd66794cf3a31e55ae5d27b2c6d48840e36f5675389106ef220c3b",
+      "package_files_checked": 29,
+      "html_files_checked": 60,
+      "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+      "html_byte_identical": true,
+      "html_sha256": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+      "strict_sphinx": "passed"
+    }
+  },
+  "native_findings": [
+    "Source Mlise en garde! retained (page15; zoom evidence).",
+    "Source problème.Si retained (page18).",
+    "Source adéquate.Température retained (page21).",
+    "French manufacturer-rights text Jackery Inc. retained (page22).",
+    "Shared regulations/manufacturer page79 remains native English.",
+    "Outlined source safety/storage/warranty exclusions visually checked.",
+    "Printed environne- ment wrap joined; whitespace and fi/fl ligatures normalized."
+  ],
+  "values_checked": [
+    "JBP-3600A; 80Ah / 44.8Vdc (3584 Wh); LiFePO₄",
+    "25kg; 37.5 x31.7 x22.9cm; 6000 cycles to70%+",
+    "DC input36.4–50.4V/60A; output36.4–50.4V/100A",
+    "native charge and discharge temperatures -20°C to45°C",
+    "storage 1month -20–45°C;3months0–45°C;12months0–25°C, all0–60%RH",
+    "5 battery packs max; max3 stacked;0.66ft/~200mm clearance",
+    "3second off;2hour automatic shutdown",
+    "3+2year badges;36months;recharge within7days and every6months"
+  ],
+  "assets": {
+    "rendered_total": 22,
+    "english_neutral_reused_exact": 18,
+    "localized_label_panels": 3,
+    "native_x5_inline_icon": 1,
+    "shared_symbols_reused": 8,
+    "pending_exceptions": 5
+  },
+  "browser": {
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "image_decode": "22/22",
+    "lcd_table": [
+      2,
+      2
+    ],
+    "css_clock_count": 1,
+    "horizontal_document_overflow": false,
+    "preview": "http://127.0.0.1:56059/fr-r4/manual_jbp3600a_eu_fr.html",
+    "evidence": "browser-check.json",
+    "screenshots": [
+      "en-desktop-locking.png",
+      "en-mobile-lcd-anchor.png",
+      "en-mobile-locking.png",
+      "fr-desktop-specifications.png",
+      "fr-mobile-connections-anchor.png",
+      "fr-mobile-lcd-anchor.png",
+      "fr-mobile-locking.png",
+      "fr-mobile-overview-anchor.png",
+      "fr-mobile-specifications.png"
+    ]
+  },
+  "review_boundaries": [
+    "English baseline not promoted.",
+    "Three localized panel crops and native inline connection-icon exception await review.",
+    "No eight-language merge/publication authorization.",
+    "US check initially failed due absent local live snapshot; committed fixture run passed.",
+    "Shared FR-003 mobile anchor CSS also requires review; English released package remains immutable."
+  ],
+  "independent_review_findings": {
+    "FR-001": "closed by independent r2 review; retained in r4",
+    "FR-002": "closed by independent r2 review; same JBP appearance, opt-in marker scoped in r4",
+    "FR-003": "producer fix and browser verification complete; independent recheck pending"
+  },
+  "scoped_refinement": "Readable badge sizing is opt-in through a measured foreground color; other existing overlays retain sizing. r2 preserved; no visual change for JBP.",
+  "pending_baseline_revision": {
+    "finding": "FR-002",
+    "status": "candidate-not-approved",
+    "previous_layout": {
+      "art_sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+      "labels": [
+        {
+          "fill": "#efefef",
+          "line": 0,
+          "rect": [
+            58,
+            4,
+            18,
+            6
+          ]
+        },
+        {
+          "fill": "#efefef",
+          "line": 1,
+          "rect": [
+            58,
+            52,
+            18,
+            6
+          ]
+        },
+        {
+          "line": 2,
+          "rect": [
+            59.4,
+            15.8,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 3,
+          "rect": [
+            80.3,
+            15.8,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 4,
+          "rect": [
+            59.4,
+            64.2,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 5,
+          "rect": [
+            80.3,
+            64.2,
+            4,
+            5
+          ]
+        }
+      ],
+      "mobile_labels": "overlay",
+      "panel_fill": "#ffffff",
+      "panel_top": 0,
+      "preserve_frame": true
+    },
+    "proposed_layout": {
+      "art_sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+      "panel_top": 0,
+      "panel_fill": "#ffffff",
+      "preserve_frame": true,
+      "mobile_labels": "overlay",
+      "labels": [
+        {
+          "line": 0,
+          "rect": [
+            58,
+            4,
+            18,
+            6
+          ],
+          "fill": "#434345",
+          "color": "#ffffff"
+        },
+        {
+          "line": 1,
+          "rect": [
+            58,
+            52,
+            18,
+            6
+          ],
+          "fill": "#434345",
+          "color": "#ffffff"
+        },
+        {
+          "line": 2,
+          "rect": [
+            59.4,
+            15.8,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 3,
+          "rect": [
+            80.3,
+            15.8,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 4,
+          "rect": [
+            59.4,
+            64.2,
+            4,
+            5
+          ]
+        },
+        {
+          "line": 5,
+          "rect": [
+            80.3,
+            64.2,
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "candidate_html_sha256": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+  "frozen_stylesheet_sha256": "16e22b108fa0aa4963a6db00e11d038597995d82dbe41d72d1a68739032177b1",
+  "baseline_trial": {
+    "structural_field_differences": 9,
+    "represented_review_decisions": 5,
+    "additional_css_revision": "FR-003, stylesheet bytes and all renderer behavior are outside the structural trial; recorded separately."
+  },
+  "independent_review_report": "/tmp/jbp-independent-acceptance/fr-r2-20261003/acceptance.md",
+  "historical_reference_evidence": [
+    "unittest.log",
+    "guardrails.log",
+    "us-fixture-check.log",
+    "fr-sphinx.log",
+    "fr-desktop-overview-edges.png"
+  ],
+  "historical_reference_note": "These earlier reference files were retained by the candidate helper; final validation is in checks and the named r4 logs/browser-check.json.",
+  "implementation_files": [
+    {
+      "path": "code-as-doc/build_doc_guide.md",
+      "sha256": "c6f1ee85a7830e2d6579eeeb3ad0203227b9b1fd02319668b70bd8eab5df2f1f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "sha256": "3ea3c4f325e0d79ab250def4998596674d5e15abf26e812268b5eeaa31fb3289"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "sha256": "1f3f3bc19d9ba8954961a72228c5184cbeb4f101071d41a69085cd309aa90d53"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "0bd5878e51765cb1cfcac03111f74c29ec20a0be8937153dd794614579680504"
+    },
+    {
+      "path": "tests/test_frozen_ai_web.py",
+      "sha256": "7f14552cb7aee6dde34f7160e746cfd53a988aa943694a0897b59c08179ca60a"
+    },
+    {
+      "path": "tests/test_jbp3600a_eu_en_web.py",
+      "sha256": "b54f38ada0fa49e9b430ca65355bcfa1c0b6d7f42260e00df0e525dd56f37ed8"
+    },
+    {
+      "path": "tests/test_web_base_art_operation.py",
+      "sha256": "9cd198259171ecb06d7189831edd3de28f771c2e05e75882396054ec28a0d8da"
+    },
+    {
+      "path": "tests/test_web_base_art_reference.py",
+      "sha256": "8ec2b6b5a7d6c4f2227db0e3670e9463365551f4226cc30260922260b6a4f934"
+    },
+    {
+      "path": "tests/test_web_presentation_contract.py",
+      "sha256": "e20a737ed97fa583231482a199918075c55d6537b4576c5a6b33c8b389a96e38"
+    },
+    {
+      "path": "tools/frozen_ai_web.py",
+      "sha256": "b7daf7876865f228ef30fd5dac620249ff904058157fb6649a43a1870258e277"
+    },
+    {
+      "path": "tools/web_base_art_operation.py",
+      "sha256": "d0b5aeec0ca3067247e95d8969757cc0392377de2b87b6b95794c90f95eaa225"
+    },
+    {
+      "path": "tools/web_base_art_reference.py",
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web_presentation_contract.py",
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "user-guide/hello_auto-doc.md",
+      "sha256": "1b31f592c570de3d769eb7246319b698979b32dc101f814bb56e99cf4c37e605"
+    }
+  ],
+  "producer_base_revision": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+  "working_revision_note": "Local review batch; commit identity will be supplied with the handoff. This ledger does not self-approve.",
+  "packaging_note": "Historical fr/r2/r3 snapshots remain local and unchanged; this Git batch contains the final r4 snapshot."
+}

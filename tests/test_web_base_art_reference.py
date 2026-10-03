@@ -46,6 +46,27 @@ def _text(tag: object) -> str:
 
 
 class BaseArtReferenceTests(unittest.TestCase):
+    def test_measured_label_foreground_keeps_native_badge_contrast(self) -> None:
+        for color in ("#ffffff", "invalid"):
+            with self.subTest(color=color):
+                soup, semantic, image, label_block = _semantic("Verrouiller", "Déverrouiller")
+                spec = _spec(labels=[VEHICLE, {**NOTE, "fill": "#434345", "color": color}])
+                if color == "invalid":
+                    with self.assertRaisesRegex(ValueError, "color must be a measured"):
+                        arrange_base_art_reference(
+                            soup, semantic=semantic, image=image, label_block=label_block,
+                            spec=spec, source_path=SOURCE, error_type=ValueError,
+                        )
+                else:
+                    arrange_base_art_reference(
+                        soup, semantic=semantic, image=image, label_block=label_block,
+                        spec=spec, source_path=SOURCE, error_type=ValueError,
+                    )
+                    label = semantic.select_one(".hb-reference-live-pill")
+                    self.assertEqual("Déverrouiller", _text(label))
+                    self.assertIn("hb-reference-source-badge", label["class"])
+                    self.assertIn("--hb-fill:#434345;--hb-label-color:#ffffff", label["style"])
+
     def test_source_lines_sit_on_their_declared_rects_over_the_art(self) -> None:
         soup, semantic, image, label_block = _semantic(
             "Vehicle", "*The car charging cable is <em>sold separately</em>."

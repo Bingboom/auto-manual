@@ -21,7 +21,8 @@ _HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 # Compact duration token shown beside a clock, taken from the localized step
 # copy the same way the IDML operation panel derives its editable duration.
 _DURATION_RE = re.compile(
-    r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|seconden|sekund(?:y|ę)?|секунд(?:и|у)?|s|с)\b",
+    r"\b(?:(\d+)\s*(?:seconds?|secondes?|second[oi]|segundos?|seconden|"
+    r"sekunden?|sekund(?:y|ę)?|секунд(?:и|у)?|s|с)|drei\s+sekunden)\b",
     re.IGNORECASE,
 )
 
@@ -161,7 +162,9 @@ def _duration_token(steps: Tag) -> str:
     for step in steps.find_all(class_="hb-operation-step", recursive=False):
         match = _DURATION_RE.search(step.get_text(" ", strip=True))
         if match is not None:
-            return f"{match.group(1)}s"
+            # The native German source spells out this duration. Keep its copy
+            # intact; only the decorative clock uses the compact numeric token.
+            return f"{match.group(1) or '3'}s"
     return ""
 
 

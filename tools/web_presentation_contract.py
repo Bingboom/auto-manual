@@ -467,7 +467,7 @@ _REFERENCE_BASE_ART_LAYOUT_KEYS = frozenset({
     "preserve_frame",
     "mobile_labels",
 })
-_REFERENCE_LABEL_KEYS = frozenset({"line", "rect", "fill"})
+_REFERENCE_LABEL_KEYS = frozenset({"line", "rect", "fill", "color"})
 
 
 def _validate_reference_display_options(layout: Mapping[str, Any], *, field: str) -> None:
@@ -542,8 +542,9 @@ def _validate_reference_base_art_layout(
             )
         seen.add(line)
         _require_percentages(label.get("rect"), count=4, field=f"{item}.rect")
-        if "fill" in label and not _HEX_COLOR_RE.fullmatch(str(label["fill"])):
-            raise WebPresentationContractError(f"{item}.fill must be a #rrggbb tone")
+        for tone in ("fill", "color"):
+            if not _HEX_COLOR_RE.fullmatch(str(label.get(tone, "#000000"))):
+                raise WebPresentationContractError(f"{item}.{tone} must be a #rrggbb tone")
 
 
 def _base_art_live_copy_slots(
