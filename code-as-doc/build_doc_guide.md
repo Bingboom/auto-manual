@@ -2509,3 +2509,5 @@ an empty source-table observation is not a localized-copy audit.
 HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
 `HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
 发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。
+
+Intake preparation: [source-copy work packets and shared-art review](dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.
