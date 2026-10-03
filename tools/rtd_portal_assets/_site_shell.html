@@ -45,6 +45,52 @@
   menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
   document.querySelector(".app-scrim").addEventListener("click", () => set(false));
   document.querySelectorAll(".app-nav-link").forEach(link => link.addEventListener("click", () => set(false)));
+
+  /* Page tabs: progressive enhancement over plain anchors; without JS every panel shows. */
+  const panels = [...document.querySelectorAll(".tab-panel")];
+  const tabs = [...document.querySelectorAll(".page-tabs [data-tab]")];
+  if (!panels.length || !tabs.length) return;
+  const show = (id, focusTab) => {
+    panels.forEach(panel => { panel.hidden = panel.id !== id; });
+    tabs.forEach(tab => {
+      const on = tab.dataset.tab === id;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focusTab) tab.focus();
+    });
+  };
+  const panelFor = hash => {
+    const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+    return target && (target.classList.contains("tab-panel") ? target : target.closest(".tab-panel"));
+  };
+  const reveal = (hash, scroll) => {
+    const panel = panelFor(hash);
+    if (!panel) return false;
+    show(panel.id);
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (scroll && target && target !== panel) target.scrollIntoView({block: "start"});
+    return true;
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", event => {
+      event.preventDefault();
+      show(tab.dataset.tab);
+      history.replaceState(null, "", "#" + tab.dataset.tab);
+    });
+    tab.addEventListener("keydown", event => {
+      const step = {ArrowRight: 1, ArrowLeft: -1}[event.key];
+      if (!step) return;
+      event.preventDefault();
+      const next = tabs[(index + step + tabs.length) % tabs.length];
+      show(next.dataset.tab, true);
+    });
+  });
+  document.addEventListener("click", event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link && !link.dataset.tab) reveal(link.hash, false);
+  });
+  window.addEventListener("hashchange", () => reveal(location.hash, true));
+  if (!reveal(location.hash, true)) show(panels[0].id);
 })();
 </script>
 {%- endmacro -%}

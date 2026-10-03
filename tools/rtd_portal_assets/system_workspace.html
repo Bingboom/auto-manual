@@ -57,7 +57,7 @@
 
   <main id="top">
     <section class="sw-hero page-head">
-      <h1>{{ hero.title|e }}<span class="title-dot">.</span></h1>
+      <h1>系统建设</h1>
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
     </section>
 
@@ -68,7 +68,23 @@
       <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
     </div>
     </details>
-    <nav class="sw-page-nav" aria-label="本页导航"><a href="#focus">建设顺序</a><a href="#now-next">阶段验收</a><a href="#language-assets">语料覆盖</a><a href="#capabilities">能力与证据</a><a href="#sources">数据来源</a></nav>
+    {%- if gates %}
+    <div class="kpi-row" aria-label="阶段进度">
+      {%- for gate in gates|rejectattr('fold') %}
+      <div class="kpi"><span>{{ gate.id|e }} · {{ gate.label|e }}</span><strong>{{ gate.done }}<small>/ {{ gate.total }}</small></strong><div class="kpi-bar" aria-hidden="true"><i style="width:{{ gate.percent }}%"></i></div><em>{{ gate.tally|e }}</em></div>
+      {%- endfor %}
+      {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，按月快照</em></div>{% endif %}
+    </div>
+    {%- endif %}
+    <nav class="page-tabs" role="tablist" aria-label="系统建设分类">
+      <a role="tab" href="#tab-progress" data-tab="tab-progress" aria-selected="true">建设进度</a>
+      <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
+      {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
+      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
+    </nav>
+
+    <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="建设进度">
 
     {%- if focus %}
     <section class="sw-section" id="focus">
@@ -140,11 +156,6 @@
       </div></div>
       {%- if gates %}
       {%- set folded_gates = gates|selectattr('fold')|list %}
-      <div class="sw-gates">
-        {%- for gate in gates|rejectattr('fold') %}
-{{ gate_card(gate) }}
-        {%- endfor %}
-      </div>
       {%- if folded_gates %}
       <details class="sw-more">
         <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
@@ -166,8 +177,10 @@
       <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
       {%- endif %}
     </section>
+    </div>
 
     {%- if corpus_enabled %}
+    <div class="tab-panel" id="tab-corpus" role="tabpanel" aria-label="语言资产">
     <section class="sw-section" id="language-assets">
       <div class="section-header"><div>
         <h2>语言资产</h2>
@@ -192,8 +205,10 @@
       <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.corpus|e }}。</p></div>
       {%- endif %}
     </section>
+    </div>
     {%- endif %}
 
+    <div class="tab-panel" id="tab-capabilities" role="tabpanel" aria-label="能力与流程">
     <section class="sw-section" id="capabilities">
       <div class="section-header"><div>
         <h2>能力地图</h2>
@@ -239,7 +254,10 @@
       </ol>
     </section>
 
+    </div>
+
     {%- if tooling %}
+    <div class="tab-panel" id="tab-tooling" role="tabpanel" aria-label="技能与钩子">
     <section class="sw-section" id="tooling">
       <div class="section-header"><div>
         <h2>技能与钩子</h2>
@@ -281,8 +299,10 @@
       </div>
       <p class="sw-hooks-note">git 钩子要在本机设置 <code>core.hooksPath</code> 才会运行；Claude Code 钩子随项目设置生效。</p>
     </section>
+    </div>
     {%- endif %}
 
+    <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="入口与数据来源">
     <section class="sw-section" id="working">
       <div class="section-header"><div>
         <h2>现在就能用</h2>
@@ -319,6 +339,7 @@
         </table>
       </div>
     </section>
+    </div>
 
     <footer>
       <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>

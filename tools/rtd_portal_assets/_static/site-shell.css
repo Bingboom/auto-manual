@@ -53,6 +53,29 @@ body.app h1,body.app h2,body.app h3,body.app h4 {letter-spacing:0}
 .page-head h1 .title-dot,.page-head h1 span {color:var(--brand)}
 .page-head p {font-size:15px;color:var(--app-muted);line-height:1.7;margin:8px 0 0}
 
+/* Key-metric row under the page header. */
+.kpi-row {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0 8px}
+.kpi {background:#fff;border:1px solid var(--app-line);border-radius:12px;padding:16px 18px;min-width:0}
+.kpi > span {display:block;font-size:13px;color:var(--app-muted)}
+.kpi > strong {display:block;margin-top:4px;font-size:28px;font-weight:700;line-height:1.2;color:var(--app-ink);font-variant-numeric:tabular-nums}
+.kpi > strong small {font-size:14px;font-weight:500;color:var(--app-muted);margin-left:4px}
+.kpi > em {display:block;margin-top:2px;font-style:normal;font-size:13px;color:var(--app-faint)}
+a.kpi {color:inherit;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+a.kpi:hover {border-color:#d3d6db;box-shadow:0 6px 18px #1d1f2312}
+.kpi-bar {height:6px;margin-top:10px;border-radius:99px;background:#eef0f3;overflow:hidden}
+.kpi-bar > i {display:block;height:100%;background:var(--brand);border-radius:99px}
+
+/* Page tabs: one topic per panel. */
+.page-tabs {position:sticky;top:var(--app-topbar);z-index:20;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
+  margin:24px 0 24px;padding:6px 0;background:var(--app-bg);border-bottom:1px solid var(--app-line)}
+.page-tabs::-webkit-scrollbar {display:none}
+.page-tabs a {position:relative;padding:10px 16px;font-size:15px;font-weight:500;color:var(--app-muted);text-decoration:none;white-space:nowrap;border-radius:8px}
+.page-tabs a:hover {color:var(--app-ink);background:#e9ebee}
+.page-tabs a[aria-selected="true"] {color:var(--app-ink);font-weight:650}
+.page-tabs a[aria-selected="true"]::after {content:"";position:absolute;left:16px;right:16px;bottom:-7px;height:3px;border-radius:3px;background:var(--brand)}
+.page-tabs a:focus-visible {outline:3px solid var(--brand);outline-offset:-3px}
+.tab-panel > .sw-section:first-child,.tab-panel > section:first-child {margin-top:0}
+
 /* Build/version details live behind one quiet disclosure. */
 .page-meta {margin:16px 0;font-size:13px;color:var(--app-muted)}
 .page-meta > summary {cursor:pointer;color:var(--app-faint);font-size:13px;list-style:none}
@@ -69,6 +92,9 @@ body.app h1,body.app h2,body.app h3,body.app h4 {letter-spacing:0}
   .app-topbar {padding:0 16px;gap:8px}
 }
 @media (max-width:560px) {
+  .kpi-row {grid-template-columns:1fr 1fr}
+  .kpi > strong {font-size:22px}
+  .page-tabs a {padding:10px 12px;font-size:14px}
   .page-head h1 {font-size:24px}
   .app-crumb {display:none}
   .app-switch a {padding:6px 10px;font-size:12px}

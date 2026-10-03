@@ -58,6 +58,17 @@ per build and shared with the root sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
+The 系统建设 and 说明书工作台 pages share two more shell components: a key-metric
+row (`.kpi-row`) under the page header and page tabs (`.page-tabs` /
+`.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
+without JavaScript every panel shows; any in-page link or URL hash that
+points inside a panel opens that panel. 系统建设 tabs: 建设进度, 能力与流程,
+语言资产, 技能与钩子, 入口与数据来源, with the unfolded stage gates as the
+metric row. 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
+default), 工作入口, 生产与资产, with web manuals, language editions, Word and
+print counts as the metric row. Build times, snapshot dates and hashes sit in
+the collapsed 页面版本与更新 / 数据更新时间 disclosure.
+
 Inside the shell the root page has four bounded zones on one container width
 (`.wrap`, 1200px):
 

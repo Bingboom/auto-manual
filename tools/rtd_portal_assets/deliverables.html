@@ -26,14 +26,19 @@
   <main id="top">
     <section class="wb-hero page-head">
       <div>
-      <h1>说明书工作台<span class="title-dot">.</span></h1>
+      <h1>说明书工作台</h1>
       <p>看交付成果、用共享资产、跟进生产与修订。</p></div>
-      <a class="wb-jump" href="#deliverables">查找交付物 <span aria-hidden="true">↓</span></a>
     </section>
 
     {% include 'workbench_summary.html' %}
 
-    <details class="pe-fold" id="deliverables"><summary>查找全部交付物 <span>按型号、区域、语言筛选</span></summary>
+    <nav class="page-tabs" role="tablist" aria-label="工作台分类">
+      <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
+      <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
+      <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
+    </nav>
+
+    <div class="tab-panel" id="deliverables" role="tabpanel" aria-label="交付物">
 
     <section class="sw-section" id="deliverables-matrix" aria-labelledby="deliverables-title">
       <div class="dl-section-title"><h2 id="deliverables-title">交付物矩阵</h2><p>按型号与区域查找 · 点语言标签打开对应版本</p></div>
@@ -72,25 +77,18 @@
       {%- endif %}
       <p class="dl-note">每个标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。PDF 在印刷交付包的压缩包里。</p>
     </section>
+    </div>
 
-    </details>
-
-    <details class="pe-fold" id="work-entries"><summary>更多工作入口 <span>源表、构建、评审与维护指引</span></summary>
+    <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
       {% include 'manual_workbench.html' %}
-    </details>
+    </div>
 
-    <details class="pe-fold" id="production-evidence"><summary>查看数据与依据 <span>统计口径、引用目标与记录缺口</span></summary>
+    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产与资产">
       {% include 'production_evidence.html' %}
-    </details>
-
-    <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
-      {% include 'production_evidence_details.html' %}
-    </details>
-
-    <details class="pe-system-entry"><summary>系统健康与架构</summary>
-      <p>SSOT · Manual IR · Skeleton · Agent Architecture · Gate · Roadmap</p>
-      {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}">系统建设、阶段门与证据 →</a>{% endif %}
-    </details>
+      <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
+        {% include 'production_evidence_details.html' %}
+      </details>
+    </div>
 
     <footer>
       <span>页面构建日期 {{ build_date|e }}</span>
