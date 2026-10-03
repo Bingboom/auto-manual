@@ -151,9 +151,9 @@
       "css_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
       "copy_map_sha256": "daf848b6afb8a38ab265b3aac79cefb73e1e0b54680f6e782444404c2966d281",
       "preview": "http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html",
-      "independent_status": "pending",
-      "independent_report": null,
-      "independent_report_sha256": null,
+      "independent_status": "source-and-layout-pass",
+      "independent_report": "review/pt-r1-independent/acceptance.md",
+      "independent_report_sha256": "d27c5d0cce2d589432b92fe202649fbc459ccb1240500db2689b786c73a979e1",
       "structural_trial_differences": 9,
       "native_findings": [
         "Native operation uses ON and Apagado; retained."
