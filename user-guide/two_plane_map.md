@@ -92,7 +92,7 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 | --- | --- | --- | --- |
 | **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**` | 每次合入 main 自动，秒级 |
 | **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish → PR → Hello-Docs/main | `feishu-web-publish-queue.yml` 组装候选 `docs/publish/`、范围门禁后普通增量 push，并自动创建/更新只含该目录的 PR | 每次审核后的 Web Publish |
-| **表结构 + 引用数据** | 旧 base → 新 base | `python tools/bitable_schema.py promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
+| **表结构 + 引用数据** | 旧 base → 新 base | `python -m tools.bitable_schema promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
 
 ### 2.1 发布契约与实际托管配置的区别（2026-09-17）

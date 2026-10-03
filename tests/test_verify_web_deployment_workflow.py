@@ -45,7 +45,7 @@ class TestVerifyWebDeploymentWorkflow(unittest.TestCase):
 
     def test_verifier_runs_against_the_frozen_publish_root(self) -> None:
         rendered = "\n".join(str(step) for step in self.job["steps"])
-        self.assertIn("tools/verify_web_deployment_targets.py", rendered)
+        self.assertIn("tools.verify_web_deployment_targets", rendered)
         self.assertIn("--publish-root docs/publish", rendered)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", rendered)
 

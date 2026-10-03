@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import rtd_system_tooling as tooling
+from tools.rtd import system_tooling as tooling
 from tools.utils.path_utils import repo_root
 
 

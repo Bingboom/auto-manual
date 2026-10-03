@@ -7,7 +7,7 @@ raw ``<img>`` tags resolve — and then again for every sibling language that
 shares the same artwork. Only the ``_static`` copy is ever referenced, and the
 artwork is routinely byte-identical across languages and models, so the frozen
 tree grew several times larger than the content it carries. That size is not
-cosmetic: ``tools.rtd_deployment_receipt`` inventories the whole publish tree
+cosmetic: ``tools.rtd.deployment_receipt`` inventories the whole publish tree
 and refuses to deploy past a fixed ceiling, so the duplication was consuming
 the headroom that new languages need.
 

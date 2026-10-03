@@ -97,12 +97,12 @@ from tools.utils.spec_master import (  # noqa: E402
     source_language_for_row,
     resolve_template_substitutions_from_spec_master,
 )
-from tools.word_bundle_common import (  # noqa: E402
+from tools.word.bundle_common import (  # noqa: E402
     load_config_rst_substitutions,
     load_rst_substitutions,
     resolve_config_path,
 )
-from tools.word_bundle_html import _convert_rst_fragment_to_html  # noqa: E402
+from tools.word.bundle_html import _convert_rst_fragment_to_html  # noqa: E402
 
 @dataclass(frozen=True)
 class CheckIssue:

@@ -65,7 +65,7 @@ loader or weaken their target/hash/source checks.
 Verification:
 
 ```bash
-python3 -m ruff check tools/web_figure_coverage.py tools/web_document_source.py tests/test_web_figure_coverage.py tests/test_web_document_ir.py
+python3 -m ruff check tools/web/figure_coverage.py tools/web/document_source.py tests/test_web_figure_coverage.py tests/test_web_document_ir.py
 python3 -m unittest tests.test_web_figure_coverage tests.test_web_document_ir
 ```
 
@@ -82,8 +82,8 @@ Verification ladder:
 ```bash
 python3 -m ruff check build.py integrations tools tests scripts
 python3 -m unittest
-python3 tools/check_maintainability_guardrails.py
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_maintainability_guardrails
+python3 -m tools.check_doc_link_integrity
 ```
 
 Then run real Web builds for:

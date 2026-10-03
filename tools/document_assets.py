@@ -6,7 +6,7 @@ import re
 import shutil
 from pathlib import Path
 
-from tools.word_bundle_html_images import _IMG_SRC_RE
+from tools.word.bundle_html_images import _IMG_SRC_RE
 
 
 def resolve_fragment_asset_path(src: str, source_path: Path, search_roots: tuple[Path, ...]) -> Path | None:

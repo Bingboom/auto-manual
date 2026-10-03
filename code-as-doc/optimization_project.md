@@ -137,7 +137,7 @@ As of 2026-05-07, the repo has working baselines for:
 - structured short-copy through `Manual_Copy_Source` plus Translation Memory tags, resolved into RST via `{{ copy:<copy_key> }}` while templates keep layout
 - snapshot-based content linting through [`tools/content_lint.py`](../tools/content_lint.py), with machine-readable `--json` output and local QC reports
 - closed-loop QC requirements under [`code-as-doc/architecture/closed_loop_qc_agent_requirements.md`](architecture/closed_loop_qc_agent_requirements.md)
-- deterministic reviewer-diff backport through [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py), routing accepted Feishu-doc changes into templates/source as draft PRs
+- deterministic reviewer-diff backport through [`tools/backport/cloud_doc.py`](../tools/backport/cloud_doc.py), routing accepted Feishu-doc changes into templates/source as draft PRs
 
 ## 4. Recently Completed
 
@@ -171,7 +171,7 @@ A (Entrypoint And Tooling Parity), B (Core File Decomposition), C (Quality Gate 
 
 Status: active
 
-Progress (2026-06-18): M1 (`content_lint --json`), M2 lightweight `source_ref`, M3 local reports, and M5 docs/command shipped (#338-#341); the B2 reviewer-diff channel shipped as the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (#342-#354), not a standing LLM agent. Remaining tail: M4 Feishu `QC_Report` table and the sync-time `record_id` sidecar, both deferred until the source/report contracts stabilize.
+Progress (2026-06-18): M1 (`content_lint --json`), M2 lightweight `source_ref`, M3 local reports, and M5 docs/command shipped (#338-#341); the B2 reviewer-diff channel shipped as the deterministic [`tools/backport/cloud_doc.py`](../tools/backport/cloud_doc.py) CLI (#342-#354), not a standing LLM agent. Remaining tail: M4 Feishu `QC_Report` table and the sync-time `record_id` sidecar, both deferred until the source/report contracts stabilize.
 
 Why now:
 

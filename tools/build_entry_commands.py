@@ -70,7 +70,7 @@ def build_docs_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "build_docs.py"),
+        "-m", "tools.build.docs",
         "--config",
         str(config_path),
     ]
@@ -135,7 +135,7 @@ def review_bundle_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "review_bundle.py"),
+        "-m", "tools.review_bundle",
         "--config",
         str(config_path),
     ]
@@ -158,7 +158,7 @@ def check_docs_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "check_docs.py"),
+        "-m", "tools.check.docs",
         "--config",
         str(config_path),
     ]
@@ -180,7 +180,7 @@ def sync_review_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "sync_review.py"),
+        "-m", "tools.sync_review",
         "--config",
         str(config_path),
         "--sync-scope",
@@ -206,7 +206,7 @@ def sync_data_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "sync_data.py"),
+        "-m", "tools.sync_data",
         "--config",
         str(config_path),
     ]
@@ -227,7 +227,7 @@ def spec_master_rebuild_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "spec_master_rebuild.py"),
+        "-m", "tools.spec_master_rebuild",
         "--config",
         str(config_path),
     ]
@@ -264,7 +264,7 @@ def message_control_dry_run_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "message_control_dry_run.py"),
+        "-m", "tools.message_control_dry_run",
         "--config",
         str(config_path),
         "--message",
@@ -306,7 +306,7 @@ def release_manifest_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "release_manifest.py"),
+        "-m", "tools.release_manifest",
         "--config",
         str(config_path),
         "--model",
@@ -344,7 +344,7 @@ def release_rebuild_command(
         )
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "release_rebuild.py"),
+        "-m", "tools.release_rebuild",
         "--manifest",
         str(resolve_path_from_root(raw_manifest)),
     ]
@@ -368,7 +368,7 @@ def process_build_queue_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "process_build_queue.py"),
+        "-m", "tools.build_queue.process_build_queue",
         "--config",
         str(config_path),
     ]
@@ -402,7 +402,7 @@ def process_review_start_queue_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "process_review_start_queue.py"),
+        "-m", "tools.build_queue.process_review_start_queue",
         "--config",
         str(config_path),
     ]
@@ -429,7 +429,7 @@ def listen_build_queue_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "listen_build_queue.py"),
+        "-m", "tools.listen_build_queue",
         "--config",
         str(config_path),
     ]

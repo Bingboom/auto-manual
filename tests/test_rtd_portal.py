@@ -11,8 +11,8 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools import rtd_portal
-from tools.rtd_alias_entry import alias_head_markup, forward_markers
+from tools.rtd import portal as rtd_portal
+from tools.rtd.alias_entry import alias_head_markup, forward_markers
 from tools.readthedocs_source import assemble_rtd_source
 
 
@@ -109,13 +109,13 @@ class RtdPortalTests(unittest.TestCase):
         (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
         (share / "配图" / "00-概览.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
         with (root / "conf.py").open("a") as conf:
-            conf.write(f"\nfrom pathlib import Path\nfrom tools import rtd_portal as portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
             conf.write(f"rtd_knowledge_dir = {str(knowledge)!r}\n")
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
         # Compare manual content with the same site branding on both builds.
         for name, flags in (("before", ["-D", "html_title=Manual Center"]),
-                            ("after", ["-D", "extensions=myst_parser,tools.rtd_portal"])):
+                            ("after", ["-D", "extensions=myst_parser,tools.rtd.portal"])):
             result = subprocess.run(
                 [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
                 cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,

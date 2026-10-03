@@ -27,7 +27,7 @@ manifest. It compares canonical UTF-8 bytes (sorted JSON keys, stable
 indentation) so YAML whitespace and comments do not obscure semantic drift:
 
 ```bash
-python tools/manifest_family.py roundtrip \
+python -m tools.manifest_family roundtrip \
   --base docs/manifests/manual_us-single-en.yaml \
   --target docs/manifests/manual_us-single-fr.yaml \
   --diff /tmp/us-en-to-fr.family-diff.json
@@ -47,7 +47,7 @@ current manifests. `BP@INTL` and `BP@JP` intentionally use separate anchors.
 Run:
 
 ```bash
-python tools/manifest_family.py fold \
+python -m tools.manifest_family fold \
   --root . \
   --index docs/manifests/family/index.yaml
 ```

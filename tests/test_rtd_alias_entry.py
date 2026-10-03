@@ -7,7 +7,7 @@ from tempfile import TemporaryDirectory
 
 from tests import test_rtd_feedback
 from tools.readthedocs_source import RtdManual, _write_short_aliases
-from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
+from tools.rtd.alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 
 _BASE = "https://ht-doc.readthedocs.io"
 _TARGET = "JE-TEST/EU/fr/md/manual.html"

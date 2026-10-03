@@ -13,7 +13,7 @@ import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from tools import rtd_deployment_receipt as receipt
+from tools.rtd import deployment_receipt as receipt
 
 
 URL = "https://example.org/en/latest/page.html"

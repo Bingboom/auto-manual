@@ -155,8 +155,8 @@ Rule 6:
 Every plan, discovery, review, or runbook doc under [`dev/`](dev) or [`reviews/`](reviews) starts with a lifecycle line in its first 15 lines:
 `Status: <proposed | active | done | archived | superseded-by <link>>`, optionally followed by `· Owner: … · Created: YYYY-MM-DD`.
 Update the keyword when the doc's state changes (for example `active` → `done`).
-`python tools/check_doc_link_integrity.py` enforces this for new docs via [`../tools/check_doc_lifecycle.py`](../tools/check_doc_lifecycle.py);
-docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](../data/doc_lifecycle_baseline.txt) until they are fixed — then remove them with `python tools/check_doc_lifecycle.py update`.
+`python -m tools.check_doc_link_integrity` enforces this for new docs via [`../tools/check_doc_lifecycle.py`](../tools/check_doc_lifecycle.py);
+docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](../data/doc_lifecycle_baseline.txt) until they are fixed — then remove them with `python -m tools.check_doc_lifecycle update`.
 
 ## 5. Minimal Verification Before Commit
 

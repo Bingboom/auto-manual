@@ -6,6 +6,7 @@ on:
       - 'docs/knowledge/workspace-data/**'
       - 'docs/publish/**'
       - 'tools/rtd*'
+      - 'tools/rtd/**'
       - 'tools/rtd_portal_assets/**'
       - 'tools/workspace*'
       - '.github/workflows/workspace-data-verify.yml'
@@ -35,7 +36,7 @@ jobs:
           cache-dependency-path: requirements.lock
       - run: python -m pip install -r requirements.lock
       - name: Verify current main deployment and source hashes
-        run: python tools/workspace_refresh_verify.py --revision "$(git rev-parse HEAD)" --attempts 20
+        run: python -m tools.workspace_refresh_verify --revision "$(git rev-parse HEAD)" --attempts 20
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
@@ -49,4 +50,4 @@ jobs:
         run: |
           args=()
           if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
-          python tools/workspace_refresh_notice.py --kind publication --report .tmp/workspace-refresh/verification.json "${args[@]}"
+          python -m tools.workspace_refresh_notice --kind publication --report .tmp/workspace-refresh/verification.json "${args[@]}"

@@ -10,15 +10,8 @@ from __future__ import annotations
 
 import csv
 import re
-import sys
 from pathlib import Path
 
-# export_idml.py runs as a direct script (also from the build queue) with
-# tools/ itself on sys.path; the utils package imports with the tools.
-# prefix, so make the repo root importable regardless of entry mode.
-_REPO_ROOT = str(Path(__file__).resolve().parents[2])
-if _REPO_ROOT not in sys.path:
-    sys.path.insert(0, _REPO_ROOT)
 
 from tools.utils.spec_master_lookup import resolve_template_substitutions_from_spec_master
 from tools.utils.variable_resolver import resolve_variable_value

@@ -94,9 +94,9 @@ Milestone status: `done`
   - Status: `done`
   - Target files:
     - [`../tools/build/docs.py`](../tools/build/docs.py)
-    - [`../tools/word_bundle.py`](../tools/word_bundle.py)
-    - [`../tools/word_bundle_html.py`](../tools/word_bundle_html.py)
-    - [`../tools/word_bundle_docx.py`](../tools/word_bundle_docx.py)
+    - [`../tools/word/bundle.py`](../tools/word/bundle.py)
+    - [`../tools/word/bundle_html.py`](../tools/word/bundle_html.py)
+    - [`../tools/word/bundle_docx.py`](../tools/word/bundle_docx.py)
   - Guard tests:
     - [`../tests/test_target_resolution.py`](../tests/test_target_resolution.py)
     - [`../tests/test_build_docs_review_compat.py`](../tests/test_build_docs_review_compat.py)

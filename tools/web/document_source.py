@@ -50,7 +50,7 @@ def operation_panel_copy(text, source_path, *, active_tags):
     from docutils import nodes
     from docutils.core import publish_doctree
 
-    from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
+    from tools.word.bundle_html import _normalize_sphinx_only_blocks_for_docutils
 
     doctree = publish_doctree(
         _normalize_sphinx_only_blocks_for_docutils(text, active_tags=active_tags),
@@ -217,7 +217,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                       output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
                       illustration_manifests: dict[str, Path] | None = None,
                       page_slots: dict[str, str] | None = None):
-    from tools.word_bundle_html import (
+    from tools.word.bundle_html import (
         _extract_raw_html_blocks, _publish_rst_fragment_to_html,
         _resolve_fragment_lang, _rewrite_word_friendly_fragment, _resolve_fragment_asset_path,
     )

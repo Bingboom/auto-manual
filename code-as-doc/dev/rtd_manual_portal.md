@@ -182,7 +182,7 @@ Settings → Webhooks → Recent deliveries. Redeliver only the failed main-push
 notification (for example an HTTP 502), then verify the resulting RTD build SHA,
 success and served page. A webhook returning 200 is only trigger acceptance.
 
-`tools/rtd_workspace_revision.py` stamps the HTML and
+`tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
 The page displays that identity. Its JS probes only the same-origin deployed
@@ -211,7 +211,7 @@ an aggregate snapshot that holds counts only, never corpus text. The build
 never reads Feishu. Refresh the snapshot monthly through a PR:
 
 ```bash
-python tools/rtd_system_workspace.py corpus-export
+python -m tools.rtd.system_workspace corpus-export
 ```
 
 The command reads the live TM base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`)
@@ -236,7 +236,7 @@ cases.
 ### Skills and hooks
 
 The 技能与钩子 block lists what agents can call and what runs automatically.
-It is read from the tree at build time (`tools/rtd_system_tooling.py`), and
+It is read from the tree at build time (`tools/rtd/system_tooling.py`), and
 none of it is hand-listed.
 
 - **Skills**: one row per skill directory, merging the Codex copy
@@ -326,8 +326,8 @@ Edit the YAML in an auto-manual PR. Update `verified_on` when you re-check the
 entries, then run:
 
 ```bash
-python tools/rtd_system_workspace.py check
-python tools/rtd_system_workspace.py check --online
+python -m tools.rtd.system_workspace check
+python -m tools.rtd.system_workspace check --online
 ```
 
 The first command works offline and checks the rules, evidence files, REV ids
@@ -415,8 +415,8 @@ source registry's `deliverables_feishu` domain. Refresh it through a PR
 after new Draft or Publish builds:
 
 ```bash
-python tools/rtd_deliverables.py export --cli-bin "lark-cli --profile prod" --as bot
-python tools/rtd_deliverables.py check
+python -m tools.rtd.deliverables export --cli-bin "lark-cli --profile prod" --as bot
+python -m tools.rtd.deliverables check
 ```
 
 `export` is read-only. It reads two tables in the base named by
@@ -448,7 +448,7 @@ and narrow bot receiver; see [product VOC](product_voc.md). This is not the
 documentation issue channel below. RTD only builds the form; it never reads
 Feishu credentials or runs the receiver.
 
-- `tools/rtd_portal.py` reads explicit frozen index links and only existing
+- `tools/rtd/portal.py` reads explicit frozen index links and only existing
   local packing-list product assets. It does not scrape the live website.
 - `tools/rtd_portal_assets/settings.json` owns the temporary default, entrance
   bindings, category-prefix presentation rules and twelve planned labels.
@@ -509,7 +509,7 @@ Feishu credentials or runs the receiver.
   `MODEL/REGION/...` paths ≈ web navigation and search. With analytics off
   the alias keeps its instant forward; an unrecognized alias body shape is
   left unchanged.
-- Tabular traffic reads: `python tools/cwa_report.py --days 7` prints the
+- Tabular traffic reads: `python -m tools.cwa_report --days 7` prints the
   taxonomy totals (print/QR alias entries, in-site manual routes, portal
   home) and a top-pages table from the Web Analytics GraphQL API. It needs
   `CLOUDFLARE_API_TOKEN` (Account Analytics: Read), `CLOUDFLARE_ACCOUNT_ID`
@@ -577,7 +577,7 @@ closure evidence. Ruff, maintainability and documentation link checks pass.
 ## Directory and keyword search (2026-09-13)
 
 The local redesign uses compact product rows and a shared keyword box for product
-identity and manual body content. `tools/rtd_portal_search.py` indexes canonical
+identity and manual body content. `tools/rtd/portal_search.py` indexes canonical
 rendered publications after HTML generation, before deployment receipts are sealed.
 The index is a same-site static JavaScript asset, so it needs no remote search
 service. Matches require every query token and prioritize model and heading matches.

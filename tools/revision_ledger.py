@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Revision ledger: accumulate reviewer-correction records from backport runs.
 
-The cloud-doc backport (``tools/cloud_doc_backport.py``) already classifies every
+The cloud-doc backport (``tools/backport/cloud_doc.py``) already classifies every
 reviewer edit into a structured delta (machine text -> reviewer text, with route
 class, location, and confidence). Those reports are written per run and then
 scattered. This module collects them into a single append-only ledger so the

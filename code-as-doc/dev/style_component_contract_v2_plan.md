@@ -104,7 +104,7 @@ At discovery time the main hot spots are:
 - `docs/renderers/contracts/web_manual.json`: 420 lines;
 - assembled Web CSS source modules: about 1,900 lines in the primary module,
   plus specialized modules;
-- `tools/word_bundle_docx_styles.py`: 1,044 lines;
+- `tools/word/bundle_docx_styles.py`: 1,044 lines;
 - `tools/render_contract.py` and `tests/test_render_contract.py`: the current
   schema and parity gate;
 - `tools/manual_ir/`: deterministic shared input to fixed-page rendering;
@@ -225,9 +225,9 @@ final slice adds the discovery report, serial PR plan, and durable checklist.
 ### Required verification
 
 ```bash
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_doc_link_integrity
 python3 -m unittest tests.test_render_contract
-python3 tools/check_reference_layout_pins.py
+python3 -m tools.check_reference_layout_pins
 ```
 
 PR #874's full existing validation must remain green after the documentation
@@ -284,7 +284,7 @@ taxonomy in schema v2.
 - no output bytes or reference pins change;
 - `rg` shows one human style definition, with all other style docs linking to
   it;
-- `python3 tools/check_doc_link_integrity.py` passes;
+- `python3 -m tools.check_doc_link_integrity` passes;
 - `python3 -m unittest tests.test_render_contract` passes.
 
 ### Rollback point
@@ -355,7 +355,7 @@ footer, and page number are explicitly `not-applicable`, not debt.
    approval metadata required for that style-only operation;
 6. content, assembly, page mapping, reference PDF, and composition map remain
    identical;
-7. `python3 tools/check_reference_layout_pins.py` passes.
+7. `python3 -m tools.check_reference_layout_pins` passes.
 
 ### Rollback point
 
@@ -801,9 +801,9 @@ python3 -m ruff check build.py integrations tools tests scripts
 python3 -m unittest <all focused component/style/page-plan modules>
 python3 -m unittest
 python3 -m mypy tools/utils
-python3 tools/check_maintainability_guardrails.py
-python3 tools/check_doc_link_integrity.py
-python3 tools/check_reference_layout_pins.py
+python3 -m tools.check_maintainability_guardrails
+python3 -m tools.check_doc_link_integrity
+python3 -m tools.check_reference_layout_pins
 python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
 python3 build.py idml --config configs/config.us.yaml --model JE-1000F --region US --source auto --idml-mode both --no-clean
 ```

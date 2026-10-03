@@ -271,8 +271,8 @@ Run in order and record the exact result:
 1. `python3 -m ruff check build.py integrations tools tests scripts`
 2. focused ManualIR/whole-document/component projection tests
 3. `python3 -m unittest`
-4. `python3 tools/check_maintainability_guardrails.py`
-5. `python3 tools/check_doc_link_integrity.py`
+4. `python3 -m tools.check_maintainability_guardrails`
+5. `python3 -m tools.check_doc_link_integrity`
 6. `python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
 7. build a real JE-1000F/US Web package, verify v2-only flow blocks, then cold
    replay it with RST/CSV reads forbidden

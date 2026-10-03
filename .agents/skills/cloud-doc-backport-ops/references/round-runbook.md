@@ -7,7 +7,7 @@ trust `--help` and fix this file in the same PR.
 
 ## 1. Preflight
 
-- **Resolve the target.** `python tools/cloud_doc_backport.py resolve-review-branch
+- **Resolve the target.** `python -m tools.backport.cloud_doc resolve-review-branch
   --cloud-doc <url>` maps the doc to its review branch (`Git_ref`) +
   `docs/_review/<model>/<region>` via the build table. When the URL is an
   unregistered 副本/copy, pass `--doc-name manual_<model>_<region>_<ver>` so the
@@ -32,7 +32,7 @@ trust `--help` and fix this file in the same PR.
 ## 2. Dry-run
 
 ```bash
-python tools/cloud_doc_backport.py run-review-branch \
+python -m tools.backport.cloud_doc run-review-branch \
   --cloud-doc <url> [--doc-name manual_je1000f_eu_en_0.8] \
   [--page 05_operation_guide.rst] \
   --lang <lang> [--data-root <phase2-snapshot>] \
@@ -87,7 +87,7 @@ record_id + content field + idempotent. Steps:
 3. Dry-run first (default), then write:
 
    ```bash
-   python tools/cloud_doc_backport.py apply-source-table \
+   python -m tools.backport.cloud_doc apply-source-table \
      --report reports/.../cloud_doc_backport_source_table_change_request.json \
      --approve <delta_hash> [--approve <delta_hash> ...] \
      --table-binding '<Table>=<BASE_TOKEN>:<TABLE_ID>' [...] \

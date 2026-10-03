@@ -49,7 +49,7 @@ byte inventory and operator annotations. It does not assemble or approve manuals
 
 ## 2. Build Entrypoint Modules
 
-[`tools/rtd_publication_catalog.py`](../../tools/rtd_publication_catalog.py) groups
+[`tools/rtd/publication_catalog.py`](../../tools/rtd/publication_catalog.py) groups
 frozen publication metadata for the portal; it is a read model, not a source of
 content. [Language navigation](rtd_locale_navigation.md) stays in the Web adapter.
 
@@ -65,7 +65,7 @@ reuses frozen portal discovery for bounded same-origin HTTPS HEAD checks.
 HTTP accessibility is separate from deployment identity and translation coverage;
 see [online check scope](manual_operations_online_health.md).
 
-[`tools/rtd_deployment_receipt.py`](../../tools/rtd_deployment_receipt.py) owns
+[`tools/rtd/deployment_receipt.py`](../../tools/rtd/deployment_receipt.py) owns
 the frozen-source fingerprint, Sphinx build-finished output receipt and bounded
 read-only served HTML/resource hash verification. `rtd_portal.setup` registers
 its callback; queue, publication assembly and link writers are not callers.
@@ -78,7 +78,7 @@ The existing [OpenClaw control plugin](../../integrations/openclaw/auto-manual-c
 owns receipt verification, search and paginated evidence reads; it does not call
 build/publish workers for a query. See [EU query contract](eu_manual_query.md).
 
-[`tools/rtd_workspace_revision.py`](../../tools/rtd_workspace_revision.py) owns only
+[`tools/rtd/workspace_revision.py`](../../tools/rtd/workspace_revision.py) owns only
 the system page's checkout identity and successful-build version receipt.
 `rtd_portal` supplies that context and registers the writer before the deployment
 receipt. Browser refresh probes the served same-origin receipt; it neither queries
@@ -100,12 +100,12 @@ immutable candidate, and metadata/assembly/stored replay verify at their own
 boundaries. See [receipt and acceptance limits](web_language_release_evidence.md).
 
 Optional manual feedback affordances are kept in
-[`tools/rtd_feedback.py`](../../tools/rtd_feedback.py). It validates fixed
+[`tools/rtd/feedback.py`](../../tools/rtd/feedback.py). It validates fixed
 HTTPS channel configuration and renders only local copyable context from the
 frozen publication identity; an empty channel list produces no markup.
 
 Product suggestion HTML and endpoint validation live in
-[`tools/rtd_product_voc.py`](../../tools/rtd_product_voc.py). The append-only
+[`tools/rtd/product_voc.py`](../../tools/rtd/product_voc.py). The append-only
 receiver and fixed bot adapter are isolated under
 [`integrations/product_voc/`](../../integrations/product_voc/); neither the build
 nor frozen publication assembly performs a live write.
@@ -115,19 +115,19 @@ It uses the designated local `main` agent in a separate VOC session and produces
 local review candidates. See [VOC](product_voc.md).
 
 Optional visit analytics lives in
-[`tools/rtd_analytics.py`](../../tools/rtd_analytics.py). It validates the
+[`tools/rtd/analytics.py`](../../tools/rtd/analytics.py). It validates the
 fixed-shape Cloudflare Web Analytics beacon token and renders the beacon
 script tag; an empty token keeps every page byte-identical to the
 analytics-free output.
 
 Derived page head metadata lives in
-[`tools/rtd_page_metadata.py`](../../tools/rtd_page_metadata.py). It builds
+[`tools/rtd/page_metadata.py`](../../tools/rtd/page_metadata.py). It builds
 title/description/canonical/hreflang/OG strictly from the frozen publication
 identity plus the validated `site_base_url` origin; an empty origin omits
 every absolute URL.
 
 Root-alias entry behavior lives in
-[`tools/rtd_alias_entry.py`](../../tools/rtd_alias_entry.py). It maps alias
+[`tools/rtd/alias_entry.py`](../../tools/rtd/alias_entry.py). It maps alias
 page names to nested canonical routes, emits their noindex/canonical head,
 and swaps the generated instant forward for a beacon send window only when
 analytics is configured; unknown alias shapes pass through unchanged.
@@ -334,17 +334,17 @@ empty-cell policies are recorded in
   - Sphinx, cleanup, Word/PDF I/O helpers
 - [`tools/build/docs_validation.py`](../../tools/build/docs_validation.py)
   - config/layout validation helpers for the build tool
-- [`tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
+- [`tools/word/bundle_docx.py`](../../tools/word/bundle_docx.py)
   - DOCX export assembly and Word post-processing orchestration
-- [`tools/word_bundle_docx_styles.py`](../../tools/word_bundle_docx_styles.py)
+- [`tools/word/bundle_docx_styles.py`](../../tools/word/bundle_docx_styles.py)
   - DOCX heading/style remapping and outline-level normalization
-- [`tools/word_bundle_docx_images.py`](../../tools/word_bundle_docx_images.py)
+- [`tools/word/bundle_docx_images.py`](../../tools/word/bundle_docx_images.py)
   - DOCX external image embedding and content-type updates
-- [`tools/word_bundle_docx_pandoc.py`](../../tools/word_bundle_docx_pandoc.py)
+- [`tools/word/bundle_docx_pandoc.py`](../../tools/word/bundle_docx_pandoc.py)
   - pandoc version guardrails for reference-template DOCX exports
-- [`tools/word_bundle_docx_xml.py`](../../tools/word_bundle_docx_xml.py)
+- [`tools/word/bundle_docx_xml.py`](../../tools/word/bundle_docx_xml.py)
   - namespace-preserving XML serialization helpers for DOCX package rewrites
-- [`tools/word_bundle_docx_reproducible.py`](../../tools/word_bundle_docx_reproducible.py)
+- [`tools/word/bundle_docx_reproducible.py`](../../tools/word/bundle_docx_reproducible.py)
   - release-only DOCX canonicalization for timestamps, local file URIs, ZIP metadata, and member ordering
 
 ## 4. Quality And Release Modules
@@ -581,7 +581,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - contract in [`web_publish_pipeline.md`](web_publish_pipeline.md) §2.3
 - [`tools/utils/log.py`](../../tools/utils/log.py)
   - console lines for unattended queue runs: `get_logger(name)` / `get_logger(name, stream="stderr")` write each message verbatim to the stream current at emit time, filtered by `AUTO_MANUAL_LOG_LEVEL`
-  - migrated so far: the review-start queue (`tools/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`
+  - migrated so far: the review-start queue (`tools/build_queue/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`
 
 ## 6. Cloud-Doc Backport Modules
 
@@ -589,10 +589,8 @@ The cloud-doc backport closed loop (fetch → diff → classify/route → write-
 was decomposed from a single 4183-line `cloud_doc_backport.py` into focused
 layers (debt-paydown, 2026-06), and since CQ-1.3 (2026-10) those layers live in
 the `tools/backport/` package. Import from `tools.backport.<module>` and run
-`python -m tools.backport.cloud_doc <command>`. The old names stay available until
-CQ-1.5: `python tools/cloud_doc_backport.py …` still runs the CLI, and every old
-`tools.cloud_doc_backport*` module is a shim that warns (`DeprecationWarning`) and
-aliases the new module object, so `mock.patch` targets on either name hit the same code.
+`python -m tools.backport.cloud_doc <command>`. The old `tools/cloud_doc_backport*.py`
+compatibility shims were removed in CQ-1.5.
 
 - [`tools/backport/cloud_doc.py`](../../tools/backport/cloud_doc.py)
   - thin facade (~200 lines): re-exports every public symbol from the modules

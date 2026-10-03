@@ -4,7 +4,7 @@
 
 MVP scope: read a structured Markdown/Feishu document, extract source-table
 candidates, and optionally emit approval-gated source-table change requests for
-existing rows. Live writes remain owned by ``tools/cloud_doc_backport.py
+existing rows. Live writes remain owned by ``tools/backport/cloud_doc.py
 apply-source-table`` / ``tools.source_table_sync``.
 """
 from __future__ import annotations

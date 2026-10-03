@@ -12,7 +12,7 @@ from tools.manual_ir.whole_document_components import discover_registered_compon
 from tools.web.app_component import render_app_component
 from tools.web.figure_captions import align_caption_centers
 from tools.web.presentation import load_web_manual_contract
-from tools.word_inbox_component import transform_word_inbox_html
+from tools.word.inbox_component import transform_word_inbox_html
 
 
 class ChineseWebSourceTests(unittest.TestCase):

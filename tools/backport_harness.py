@@ -30,7 +30,7 @@ by an operator as a quick green/red gate:
     python3 tools/backport_harness.py list             # list fixtures
     python3 tools/backport_harness.py matrix           # language x route coverage map
 
-For a true LIVE round-trip, run ``tools/cloud_doc_backport.py`` against a seeded
+For a true LIVE round-trip, run ``tools/backport/cloud_doc.py`` against a seeded
 test-tenant doc in dry-run. Live source-table writes must target an
 operator-nominated **sandbox** data-root (never production source tables), so they
 are intentionally out of this harness.

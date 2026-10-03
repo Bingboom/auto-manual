@@ -134,8 +134,8 @@ python -m json.tool data/asset_recipes/manual_je1000f_us_master.json
 python -m ruff check build.py integrations tools tests scripts
 python -m unittest tests.test_asset_intake
 python -m unittest
-python tools/check_maintainability_guardrails.py
-python tools/check_doc_link_integrity.py
+python -m tools.check_maintainability_guardrails
+python -m tools.check_doc_link_integrity
 python build.py asset-check --json
 python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
 ```

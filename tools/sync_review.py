@@ -30,7 +30,7 @@ from tools.review_support import (  # noqa: E402
 )
 from tools.safe_copy import assert_source_tree_no_symlinks  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
-from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.word.bundle_common import resolve_config_path  # noqa: E402
 from tools.utils.log import get_logger
 
 _ERR = get_logger("sync-review", stream="stderr")

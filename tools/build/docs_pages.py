@@ -54,7 +54,7 @@ def render_csv_pages(
             csv_langs.add(str(lang))
 
     if csv_pages:
-        cmd = [sys.executable, "tools/csv_page_build.py"]
+        cmd = [sys.executable, "-m", "tools.csv_page_build"]
         cmd += ["--page", ",".join(sorted(csv_pages))]
         if csv_langs:
             cmd += ["--lang", ",".join(sorted(csv_langs))]

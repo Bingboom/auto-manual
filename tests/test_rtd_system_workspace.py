@@ -15,9 +15,9 @@ from unittest.mock import patch
 
 import yaml
 
-from tools import rtd_portal
-from tools import rtd_system_workspace as sw
-from tools.rtd_source_registry import load_registry
+from tools.rtd import portal as rtd_portal
+from tools.rtd import system_workspace as sw
+from tools.rtd.source_registry import load_registry
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
@@ -693,7 +693,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             (assets / "settings.json").write_text(json.dumps(dict(settings, product_voc_endpoint="")), encoding="utf-8")
             (web / "conf.py").write_text(
                 "project = 'manual'\nroot_doc = 'index'\n"
-                "from pathlib import Path\nfrom tools import rtd_portal as portal\n"
+                "from pathlib import Path\nfrom tools.rtd import portal\n"
                 f"portal.ASSETS = Path({str(assets)!r})\n"
                 f"rtd_knowledge_dir = {str(base / 'knowledge')!r}\n"
                 "rtd_system_workspace_date = '2026-09-24'\n",
@@ -703,7 +703,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             def build(name):
                 return subprocess.run(
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
-                     "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
+                     "-D", "extensions=myst_parser,tools.rtd.portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
                     check=False,
                 )

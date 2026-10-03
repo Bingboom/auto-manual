@@ -48,7 +48,7 @@ no longer route or constrain rendering. The `{spec-table}` Markdown directive
 already consumes the same public adapter and requires no new interface.
 
 Troubleshooting follows the same semantic-before-figure boundary. In the
-RST-to-Web bundle path, [`word_bundle_html.py`](../../tools/word_bundle_html.py)
+RST-to-Web bundle path, [`word_bundle_html.py`](../../tools/word/bundle_html.py)
 resolves the current target's `plan_materialized_pages` once and passes a
 declaration for the exact materialized paths of `CsvPage(page="troubleshooting")`.
 The existing planner owns language/capability selection and `slot_id` naming;
@@ -220,7 +220,7 @@ online source update. For example, with a separate staging directory:
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
-python tools/readthedocs_source.py --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
+python -m tools.readthedocs_source --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
 python -m sphinx -b html .tmp/web-check/docs/_build/rtd .tmp/web-check/html
 ```
 
@@ -350,7 +350,7 @@ create synthetic queue rows or write `HTML_link`.
    candidate with:
 
    ```bash
-   python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
+   python -m tools.publish_branch_assembly --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
    python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 
@@ -571,7 +571,7 @@ watch for later drift.
 is the independent detector: a daily scheduled run on the Hello-Docs business
 plane feeds every target of `Hello-Docs/main:docs/publish/publish_manifest.json`
 through [`tools/verify_web_deployment_targets.py`](../../tools/verify_web_deployment_targets.py),
-which runs the full `tools.rtd_deployment_receipt.verify_deployment` check per
+which runs the full `tools.rtd.deployment_receipt.verify_deployment` check per
 canonical nested page — frozen-source byte identity plus the expected RTD
 project slug derived from the base URL — and fails the run on any unreachable
 page, drifted bytes, or wrong-site deployment. Failures open the

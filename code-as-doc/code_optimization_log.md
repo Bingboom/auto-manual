@@ -49,6 +49,14 @@ For current rules, see:
   `tools.build.docs` is the facade, and the facade-patch ratchet watches both names.
 - CQ-1.4 web family: the 44 `web_*` modules moved into `tools/web/`; the isolated
   Sphinx runtime that `plain_markdown_site` stages now carries a `tools/web` package.
+- CQ-1.4 done with the rtd and word families (15 + 15 modules) moved into `tools/rtd/`
+  and `tools/word/`: 158 modules now live in six packages, each old name a shim
+  until CQ-1.5. `workspace-data-verify.yml` also triggers on `tools/rtd/**`.
+- CQ-1.5 done: `build.py` child processes, docs, `scripts/` and workflow commands run
+  `python -m tools.…`; the 158 shims are gone, and modules that are only imported no
+  longer carry script bootstrap code. `tools/` top level 398 → 240 (−40%; the ≥50%
+  target needs the families the plan did not list, such as `listen_*`, `message_*`,
+  `source_*`, `sync_data*`); bootstrap files 103 → 75, all of them script entry points.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 
@@ -143,7 +151,7 @@ Main outcomes:
 - extracted shared target resolution helpers
 - reduced duplicated target/token logic across build entry scripts
 - split [`tools/phase1/renderers.py`](../tools/phase1/renderers.py) into smaller renderer modules
-- split [`tools/word_bundle.py`](../tools/word_bundle.py) into `common / html / docx`
+- split [`tools/word_bundle.py`](../tools/word/bundle.py) into `common / html / docx`
 - introduced stronger config page parsing
 - cleaned build noise and cache tracking from Git
 
@@ -369,20 +377,20 @@ Main outcomes:
 - extracted diff-report and publish-path command helpers into [`tools/build_reports.py`](../tools/build_reports.py)
 - extracted CLI command assembly helpers into [`tools/build_entry_commands.py`](../tools/build_entry_commands.py)
 - extracted doctor environment/preflight helpers into [`tools/build_doctor.py`](../tools/build_doctor.py)
-- extracted shared queue dataclasses into [`tools/queue_contract.py`](../tools/queue_contract.py)
+- extracted shared queue dataclasses into [`tools/queue_contract.py`](../tools/build_queue/contract.py)
 - extracted queue action normalization into [`tools/document_link_actions.py`](../tools/document_link_actions.py)
 - extracted queue record parsing/binding/filtering into [`tools/document_link_queue.py`](../tools/document_link_queue.py)
-- extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py)
-- extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/queue_runtime.py)
-- extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/queue_build_execution.py)
-- extracted per-group queue processing and writeback orchestration into [`tools/queue_group_processing.py`](../tools/queue_group_processing.py)
-- extracted grouped dry-run preview formatting into [`tools/queue_dry_run.py`](../tools/queue_dry_run.py)
-- extracted grouped queue bucketing rules into [`tools/queue_grouping.py`](../tools/queue_grouping.py)
-- extracted queue-session bootstrap and pending-state loading into [`tools/queue_session.py`](../tools/queue_session.py)
-- extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py)
-- extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/queue_outputs.py)
-- extracted queue writeback/result formatting into [`tools/queue_writeback.py`](../tools/queue_writeback.py)
-- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) from the earlier 1600+ line range down to a smaller orchestration-focused core
+- extracted queue config-family routing into [`tools/queue_config_resolution.py`](../tools/build_queue/config_resolution.py)
+- extracted queue runtime/worktree helpers into [`tools/queue_runtime.py`](../tools/build_queue/runtime.py)
+- extracted queue-triggered build execution into [`tools/queue_build_execution.py`](../tools/build_queue/build_execution.py)
+- extracted per-group queue processing and writeback orchestration into [`tools/queue_group_processing.py`](../tools/build_queue/group_processing.py)
+- extracted grouped dry-run preview formatting into [`tools/queue_dry_run.py`](../tools/build_queue/dry_run.py)
+- extracted grouped queue bucketing rules into [`tools/queue_grouping.py`](../tools/build_queue/grouping.py)
+- extracted queue-session bootstrap and pending-state loading into [`tools/queue_session.py`](../tools/build_queue/session.py)
+- extracted Lark drive/wiki transport helpers into [`tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py)
+- extracted queue output staging and publish metadata helpers into [`tools/queue_outputs.py`](../tools/build_queue/outputs.py)
+- extracted queue writeback/result formatting into [`tools/queue_writeback.py`](../tools/build_queue/writeback.py)
+- reduced [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) from the earlier 1600+ line range down to a smaller orchestration-focused core
 
 Why it mattered:
 
@@ -395,7 +403,7 @@ Why it mattered:
 Main outcomes:
 
 - added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living map for build and queue module ownership
-- recorded the current rule that [`build.py`](../build.py) and [`tools/process_build_queue.py`](../tools/process_build_queue.py) should stay orchestration-first while helper modules absorb low-level logic
+- recorded the current rule that [`build.py`](../build.py) and [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) should stay orchestration-first while helper modules absorb low-level logic
 - linked ongoing decomposition maintenance to both the roadmap and the optimization log
 
 Why it mattered:
@@ -407,8 +415,8 @@ Why it mattered:
 
 Main outcomes:
 
-- extracted [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) so [`tools/process_build_queue.py`](../tools/process_build_queue.py) now delegates its top-level session loop instead of carrying the full pending-state / dry-run / real-run branch logic
-- extracted [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py) so repo-root-aware output and release adapters live outside the entry file
+- extracted [`tools/queue_orchestration.py`](../tools/build_queue/orchestration.py) so [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) now delegates its top-level session loop instead of carrying the full pending-state / dry-run / real-run branch logic
+- extracted [`tools/queue_bound_outputs.py`](../tools/build_queue/bound_outputs.py) so repo-root-aware output and release adapters live outside the entry file
 - preserved test-time `ROOT` patching by wiring the bound-output module through a dynamic repo-root provider instead of hardcoding repo state inside the helper
 - refreshed [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) to record the new queue ownership split
 
@@ -421,10 +429,10 @@ Why it mattered:
 
 Main outcomes:
 
-- extracted [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) for repo-root-aware command/worktree helpers and bound `build.py` command assembly
-- extracted [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py) for repo-root-aware Lark CLI adapters used by the queue entrypoint
-- kept compatibility names such as `_run_command`, `_run_lark_cli_json`, `get_wiki_node`, and `_command_failure_message` on [`tools/process_build_queue.py`](../tools/process_build_queue.py) so existing tests and callers still patch the same surface
-- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller orchestration-and-compatibility layer
+- extracted [`tools/queue_bound_runtime.py`](../tools/build_queue/bound_runtime.py) for repo-root-aware command/worktree helpers and bound `build.py` command assembly
+- extracted [`tools/queue_bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py) for repo-root-aware Lark CLI adapters used by the queue entrypoint
+- kept compatibility names such as `_run_command`, `_run_lark_cli_json`, `get_wiki_node`, and `_command_failure_message` on [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) so existing tests and callers still patch the same surface
+- reduced [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) further into a smaller orchestration-and-compatibility layer
 
 Why it mattered:
 
@@ -435,10 +443,10 @@ Why it mattered:
 
 Main outcomes:
 
-- extracted [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) for `Document_link` preflight and binding resolution helpers
-- extracted [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) for queue record parsing, workflow-action facade logic, config routing, and grouping helpers
-- preserved `ROOT` and `load_config` patchability by wiring repo-root and config-loader providers from [`tools/process_build_queue.py`](../tools/process_build_queue.py)
-- reduced [`tools/process_build_queue.py`](../tools/process_build_queue.py) further into a smaller compatibility-and-entrypoint layer
+- extracted [`tools/queue_bound_binding.py`](../tools/build_queue/bound_binding.py) for `Document_link` preflight and binding resolution helpers
+- extracted [`tools/queue_bound_records.py`](../tools/build_queue/bound_records.py) for queue record parsing, workflow-action facade logic, config routing, and grouping helpers
+- preserved `ROOT` and `load_config` patchability by wiring repo-root and config-loader providers from [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
+- reduced [`tools/process_build_queue.py`](../tools/build_queue/process_build_queue.py) further into a smaller compatibility-and-entrypoint layer
 
 Why it mattered:
 
@@ -467,10 +475,10 @@ Why it mattered:
 
 Main outcomes:
 
-- split [`tools/build_docs.py`](../tools/build_docs.py) into dedicated CLI, entry, target-resolution, bundle, validation, I/O, export, theme, path, sphinx, HTML, page/index, and shared-support modules
-- reduced [`tools/build_docs.py`](../tools/build_docs.py) from the earlier 1400+ line range down to a thinner orchestration facade
+- split [`tools/build_docs.py`](../tools/build/docs.py) into dedicated CLI, entry, target-resolution, bundle, validation, I/O, export, theme, path, sphinx, HTML, page/index, and shared-support modules
+- reduced [`tools/build_docs.py`](../tools/build/docs.py) from the earlier 1400+ line range down to a thinner orchestration facade
 - split [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) into planning, materialization, asset, page-render, and runtime helper modules
-- split [`tools/check_docs.py`](../tools/check_docs.py) into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules
+- split [`tools/check_docs.py`](../tools/check/docs.py) into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules
 - added config `extends` support and moved shared US single-language defaults into [`configs/config-bases/us-single-language-base.yaml`](../configs/config-bases/us-single-language-base.yaml) so `config.us-en/es/fr.yaml` became thin overrides with manifest-owned page stacks
 
 Why it mattered:
@@ -516,7 +524,7 @@ Main outcomes:
 
 - split [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) into dedicated target, data, render, page, postprocess, and workspace helper modules while preserving the public facade
 - reduced [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) to a thin facade over dedicated shared, row-helper, lookup, auditing, mapping, and repairs modules
-- split [`tools/word_bundle_html.py`](../tools/word_bundle_html.py) into models, HTML-only, render, images, and rewrite helper modules
+- split [`tools/word_bundle_html.py`](../tools/word/bundle_html.py) into models, HTML-only, render, images, and rewrite helper modules
 - split [`tools/sync_data.py`](../tools/sync_data.py) into config, records, runtime, and CLI-output helpers while keeping `LarkCliSource`, `ROOT`, and existing patch surfaces stable
 - finished the remaining shared-bootstrap rollout across entry scripts and reduced queue-side phase2 helper coupling through [`tools/phase2_support.py`](../tools/phase2_support.py)
 
@@ -532,7 +540,7 @@ Main outcomes:
 
 - removed import-time config loading from [`tools/process_docs/build_review_preview_targets.py`](../tools/process_docs/build_review_preview_targets.py) while keeping the existing preview-template iterable surface stable
 - split [`tools/validate_spec_master_runtime.py`](../tools/validate_spec_master_runtime.py) into focused rule collectors for row, header, footnote, note, and selector validation
-- split [`tools/check_docs_generated.py`](../tools/check_docs_generated.py) into loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers
+- split [`tools/check_docs_generated.py`](../tools/check/docs_generated.py) into loader, recipe, binding, snippet, placeholder, contract, and orphan-snippet helpers
 - added a minimal Ruff gate through [`pyproject.toml`](../pyproject.toml) and [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml)
 - added shared orchestration-test helpers in [`../tests/test_helpers.py`](../tests/test_helpers.py) and migrated representative build/check/queue/target-resolution tests onto the shared scaffolding
 
@@ -550,7 +558,7 @@ Main outcomes:
 - expanded [`.github/workflows/manual-validation.yml`](../.github/workflows/manual-validation.yml) with smoke paths for `build.py diff-report` and `build.py release-manifest`
 - tightened [`.github/workflows/review-preview.yml`](../.github/workflows/review-preview.yml) into a stable smoke package path with `--skip-word` plus explicit packaged-artifact checks before upload
 - centralized GitHub-hosted Feishu worker bootstrap in [`.github/actions/feishu-common-setup/action.yml`](../.github/actions/feishu-common-setup/action.yml) and [`scripts/validate_required_env.sh`](../scripts/validate_required_env.sh)
-- extracted [`tools/build_main.py`](../tools/build_main.py), [`tools/build_docs_main.py`](../tools/build_docs_main.py), [`tools/process_build_queue_main.py`](../tools/process_build_queue_main.py), and [`tools/build_docs_artifacts.py`](../tools/build_docs_artifacts.py) so entry files stay facade-first while export planning/output steps live in dedicated helpers
+- extracted [`tools/build_main.py`](../tools/build_main.py), [`tools/build_docs_main.py`](../tools/build/docs_main.py), [`tools/process_build_queue_main.py`](../tools/build_queue/process_build_queue_main.py), and [`tools/build_docs_artifacts.py`](../tools/build/docs_artifacts.py) so entry files stay facade-first while export planning/output steps live in dedicated helpers
 - updated [`next_optimization_checklist.md`](next_optimization_checklist.md), [`optimization_project.md`](optimization_project.md), [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md), and [`architecture/Hello_Docs_Architecture.md`](architecture/Hello_Docs_Architecture.md) to match the closed milestone
 
 Why it mattered:
@@ -610,7 +618,7 @@ Why it mattered:
 
 Main outcomes:
 
-- added [`../tools/queue_transitions.py`](../tools/queue_transitions.py) as the explicit transition payload layer for running, success, failure, and writeback-failed queue states
+- added [`../tools/queue_transitions.py`](../tools/build_queue/transitions.py) as the explicit transition payload layer for running, success, failure, and writeback-failed queue states
 - added [`../tools/schema_drift.py`](../tools/schema_drift.py) so phase2 logical tables, required CSV headers, and `Document_link` writable fields can be checked from fixtures or local snapshot payloads without live Feishu access
 - added offline external integration smoke fixtures in [`../tests/fixtures/external_integrations/`](../tests/fixtures/external_integrations/) covering missing fields, writeback permission failure, duplicate Start Review dispatch, Publish confirmation, and DingTalk fallback
 - split queue routing/config/grouping tests into [`../tests/test_process_build_queue_routing.py`](../tests/test_process_build_queue_routing.py), further reducing the largest queue test hotspot without changing behavior
@@ -720,7 +728,7 @@ Main outcomes:
 
 - moved the 14 root `config.*.yaml` family configs and the `config-bases/` overrides into [`configs/`](../configs) (with `config-bases/` now at [`configs/config-bases/`](../configs/config-bases)), so config-dir-relative `extends:` chains keep resolving with zero content edits
 - added `PathSegments.CONFIGS` plus `Paths.configs_dir` / `Paths.config_file(name)` and repointed `Paths.config_yaml` at `configs/`, per the §3 rule that repo paths go through `path_utils`
-- updated every reference (~55 files): `build.py` default, all CLI `--config` defaults, `target_defaults`, the review-preview config map, the config-discovery globs in [`tools/queue_config_resolution.py`](../tools/queue_config_resolution.py) (now `configs/config*.yaml`), the 6 CI workflows, docs, and `AGENTS.md` validation commands
+- updated every reference (~55 files): `build.py` default, all CLI `--config` defaults, `target_defaults`, the review-preview config map, the config-discovery globs in [`tools/queue_config_resolution.py`](../tools/build_queue/config_resolution.py) (now `configs/config*.yaml`), the 6 CI workflows, docs, and `AGENTS.md` validation commands
 - updated tests for the new layout: real-config refs prefixed with `configs/`, discovery-fixture writes redirected under `<tmpdir>/configs/`, while tmpdir temp configs and basename (`config_path.name`) comparisons were deliberately left unchanged
 
 Why it mattered:
@@ -811,14 +819,14 @@ Main outcomes:
 Why it mattered:
 
 - in live use the chat LLM's target-resolution was too uncertain — a CN-doc backport ask resolved to the wrong (EU) review branch and reported 379 phantom cross-language diffs against a doc nobody had edited
-- the deterministic [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) CLI (unchanged) resolves the review branch from the build table, so backport stays a confident, reviewable operation; the decision keeps high-risk, strong-determinism writes on the CLI execution plane instead of the LLM chat control plane
+- the deterministic [`tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py) CLI (unchanged) resolves the review branch from the build table, so backport stays a confident, reviewable operation; the decision keeps high-risk, strong-determinism writes on the CLI execution plane instead of the LLM chat control plane
 
 ## 43. 2026-06-25: Backport Hotspot Decomposition + Hotspot Governance
 
 Main outcomes:
 
 - governed the previously-ungoverned backport/data-sync hotspots in [`tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py): `tools/cloud_doc_backport.py` had reached 4183 lines — the largest file in the repo — outside any threshold; added it (capped exactly, only-descend) plus `sync_data_runtime.py` / `content_lint.py` / `translation_memory.py` / `source_record_index.py` / `source_table_sync.py` (#478)
-- decomposed [`tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py) from **4183 → 202 lines (−95%)** into nine focused modules behind a re-export entry shim: `_model` (Block/parse/normalize/section), `_util` (schema consts + scaffolding), `_routing` (classify/route/diff), `_apply` (Class-R write-back), `_render` (markdown), `_transports` (Feishu transports), `_reports` (report builders), `_pr` (gh PR helpers), `_cli` (CLI + orchestration conductor) — #479–#487
+- decomposed [`tools/cloud_doc_backport.py`](../tools/backport/cloud_doc.py) from **4183 → 202 lines (−95%)** into nine focused modules behind a re-export entry shim: `_model` (Block/parse/normalize/section), `_util` (schema consts + scaffolding), `_routing` (classify/route/diff), `_apply` (Class-R write-back), `_render` (markdown), `_transports` (Feishu transports), `_reports` (report builders), `_pr` (gh PR helpers), `_cli` (CLI + orchestration conductor) — #479–#487
 - every step was behavior-preserving (move + re-export; the entry file re-exports all public symbols, so every `from tools.cloud_doc_backport import X` and `python3 tools/cloud_doc_backport.py …` is unchanged) and gated by the full suite (1183 tests) + ruff + guardrails, ratcheting the threshold down each step
 - recorded the new module map in [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) §6 (incl. the leaf→cli→shim import layering, the test layers, and the sync-env bootstrap pointer)
 
@@ -899,7 +907,7 @@ Why it mattered:
 What changed:
 
 - **Hand-over became a tested property (I0, #655):** repo-root [`ONBOARDING.md`](../ONBOARDING.md) is the single first-hour entrypoint (two-plane map, what-runs-where bus-factor register, golden-path drill); the quarterly cold-start drill protocol makes "someone else can maintain this" verifiable instead of assumed.
-- **Language-tree parity gate (I1, #657):** [`tools/check_docs_lang_parity.py`](../tools/check_docs_lang_parity.py) in `check` — foreign-script shells, foreign lang-tag blocks, per-language page-set completeness — with `data/lang_parity_known_exceptions.csv` keeping registered debt green. First run caught the us-en trilingual-preface leftover (decision pending).
+- **Language-tree parity gate (I1, #657):** [`tools/check_docs_lang_parity.py`](../tools/check/docs_lang_parity.py) in `check` — foreign-script shells, foreign lang-tag blocks, per-language page-set completeness — with `data/lang_parity_known_exceptions.csv` keeping registered debt green. First run caught the us-en trilingual-preface leftover (decision pending).
 - **Warning ratchet (I2, #658):** every Sphinx run captures `-w` and diffs the sanitized stream against `data/known_warnings/` baselines (esp-docs pattern); staged enforcement (report → env-strict → default-strict after stable rounds). The one seeded warning is itself a real defect now visible as debt.
 - **Toolchain provenance (I3, #656, raised to a render-projection prerequisite after #648):** `requirements.lock` + [`tools/toolchain_provenance.py`](../tools/toolchain_provenance.py) feeding both `doctor` and the release manifest — every published PDF names its environment.
 - **Printed-URL inventory (I4):** [`tools/printed_url_inventory.py`](../tools/printed_url_inventory.py) scan/check/liveness over templates/renderers/configs/phase2; tracked inventory + manual QR register; monthly ops rhythm.
@@ -1094,7 +1102,7 @@ Why it mattered:
 What changed:
 
 - Added the shared `run_lark_cli_json` boundary to [`tools/feishu_record_transport.py`](../tools/feishu_record_transport.py). It owns command execution, injected CLI resolution, JSON parsing, and Feishu API response validation for queue and build-listener callers.
-- Converted [`tools/queue_lark_ops.py`](../tools/queue_lark_ops.py) and [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) into compatibility wrappers over that boundary, preserving their patchable entrypoint names and listener-specific output behavior.
+- Converted [`tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py) and [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) into compatibility wrappers over that boundary, preserving their patchable entrypoint names and listener-specific output behavior.
 - Added focused transport and delegation tests. Retry/backoff, pagination, snapshot locking, and the remaining Feishu callers stay in their separately gated K8 slices.
 
 Why it mattered:
@@ -2344,9 +2352,9 @@ Use this section for short milestone-style updates.
 - added staging-first local validation wrappers and cross-platform branch freshness guardrails
 - started the core file decomposition wave by splitting `build.py` and `tools/process_build_queue.py` into dedicated helper modules for paths, reports, command assembly, doctor checks, queue contract types, queue parsing, queue runtime, queue build execution, per-group queue processing, dry-run formatting, queue-session bootstrap, Lark transport, output staging, and writeback
 - added [`code-as-doc/dev/orchestration_module_map.md`](dev/orchestration_module_map.md) as the living ownership map for those extracted boundaries
-- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](../tools/queue_orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](../tools/queue_bound_outputs.py)
-- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](../tools/queue_bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](../tools/queue_bound_lark_ops.py)
-- continued the same queue workstream with [`tools/queue_bound_binding.py`](../tools/queue_bound_binding.py) and [`tools/queue_bound_records.py`](../tools/queue_bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
+- continued the queue decomposition wave by moving top-level queue-session flow into [`tools/queue_orchestration.py`](../tools/build_queue/orchestration.py) and repo-root-aware release/output adapters into [`tools/queue_bound_outputs.py`](../tools/build_queue/bound_outputs.py)
+- continued the same queue workstream with repo-root-aware runtime adapters in [`tools/queue_bound_runtime.py`](../tools/build_queue/bound_runtime.py) and Lark transport adapters in [`tools/queue_bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py)
+- continued the same queue workstream with [`tools/queue_bound_binding.py`](../tools/build_queue/bound_binding.py) and [`tools/queue_bound_records.py`](../tools/build_queue/bound_records.py) so preflight/binding and record/config/grouping logic no longer sit inline in the entry file
 - completed the foundation/entrypoint maintainability milestone by adding shared config/bootstrap helpers plus `build.py` parser, doctor, publish, diff, cleanup, and dispatch modules
 - started the next build-pipeline pass by extracting `tools/build_docs.py` CLI parsing and top-level entry orchestration into dedicated helper modules
 
@@ -2457,7 +2465,7 @@ Scope:
 
 - split responsibilities inside:
   - [`build.py`](../build.py)
-  - [`tools/build_docs.py`](../tools/build_docs.py)
+  - [`tools/build_docs.py`](../tools/build/docs.py)
   - [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
   - [`tools/diff_report.py`](../tools/diff_report.py)
 - improve ownership boundaries for routing, bundle assembly, reporting, and export flow

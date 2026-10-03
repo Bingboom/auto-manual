@@ -184,7 +184,7 @@ Target files:
 - [`../tools/page_manifest.py`](../tools/page_manifest.py)
 - [`../tools/config_pages.py`](../tools/config_pages.py)
 - [`../tools/build/docs_pages.py`](../tools/build/docs_pages.py)
-- [`../tools/word_bundle_common.py`](../tools/word_bundle_common.py)
+- [`../tools/word/bundle_common.py`](../tools/word/bundle_common.py)
 - [`../tools/check/docs.py`](../tools/check/docs.py)
 - [`../tests/`](../tests)
 

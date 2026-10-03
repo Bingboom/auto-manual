@@ -531,7 +531,7 @@ def classify_string(
                 rst_template_option="no: derive from owned source rows",
             )
 
-    if rel_path == "tools/word_bundle_html_rewrite.py":
+    if rel_path == "tools/word/bundle_html_rewrite.py":
         if context.startswith(("_ALERT_LABELS", "_WARNING_BOX_LABEL_TEXTS")):
             return Classification(
                 "manual_output",
@@ -582,7 +582,7 @@ def classify_string(
             rst_template_option="yes: template title is possible if fixed",
         )
 
-    if rel_path == "tools/word_bundle_common.py" and text == "User Manual":
+    if rel_path == "tools/word/bundle_common.py" and text == "User Manual":
         return Classification(
             "manual_output",
             "config",
@@ -885,14 +885,14 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
         lines.append(
             "- `tools/signal_words.py`: replace hardcoded signal words with generated `Localized_Copy.csv` signal labels, falling back to `symbols_blocks.csv` compatibility labels only when needed."
         )
-    if "tools/word_bundle_html_rewrite.py" in p0_files:
+    if "tools/word/bundle_html_rewrite.py" in p0_files:
         lines.append(
-            "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should come from generated `Localized_Copy.csv` signal labels."
+            "- `tools/word/bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should come from generated `Localized_Copy.csv` signal labels."
         )
     if "tools/csv_pages/renderers_spec_parser.py" in p0_files:
         lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required manual copy source or data validation.")
-    if "tools/word_bundle_common.py" in p0_files:
-        lines.append("- `tools/word_bundle_common.py`: make the default Word manual title config/data driven.")
+    if "tools/word/bundle_common.py" in p0_files:
+        lines.append("- `tools/word/bundle_common.py`: make the default Word manual title config/data driven.")
     if not p0_files:
         lines.append("- No P0 code-copy migration batches remain in the current scan.")
 
