@@ -51,3 +51,21 @@ paths = [
   # generated diff-report artifacts: links carry resource tokens by design
   '''reports/version_tracking/.*\.html''',
 ]
+
+# JBP archived unit-test ledger digests are content identities, not credentials.
+# Derived by pdf_annotate._ledger_run_key and tm_hit_rate._run_key (SHA-1).
+# Preserve the immutable evidence; constrain this exception by rule, two exact
+# log paths, field spelling, and the two observed digest values together.
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  description = "JBP archived unit-test ledger digests"
+  condition = "AND"
+  regexTarget = "line"
+  paths = [
+    '''^manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unittest(?:-fr-fixes)?\.log$''',
+  ]
+  regexes = [
+    '''^\s*"run_key": "(?:b8fbd5a3f7b1e86a31ba883e729c4a578012cebc|e2d2071104b374b5e9efe937b2e13b8f855824a7)",?\s*$''',
+  ]

@@ -11,3 +11,7 @@ Admission reports are stored beside the source, outside each publishable Markdow
 PR1409 is absent from the current admission call chain and is not a release dependency. Current admission checks trusted locale policies, native pending-review resolution, ComponentSpec slots and actual asset bytes. Existing phase2 checks are regression coverage; native body acceptance is independently recorded.
 
 The trial is a preflight, not an engineering merge, publication or RTD receipt. Final code validation and deployment evidence are recorded separately.
+
+## Secret-scan false positives
+
+The initial PR scan matched four SHA-1 `run_key` values in two sealed unit-test logs. PDF annotation and TM hit-rate code derive these from test content. The logs remain byte-identical. A rule-specific exception requires both exact log paths and exact field/digest values; five negative cases verify that changed values, field names, paths and synthetic credential shapes remain blocked. See `secret-scan-resolution.json` and `gitleaks-boundary-result.json`. The full tracked-file scan with CI version 8.30.1 passes with zero findings.
