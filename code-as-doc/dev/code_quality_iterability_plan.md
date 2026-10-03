@@ -117,7 +117,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [x] 内部再次查找的名字：`QueueDeps` 增加 `resolve_wiki_destination`、`upload_word_to_drive`、`move_drive_file_to_wiki`，设置后产物目标与发布两个服务改在 `FacadeOverrides`（替换了这些名字的门面）上运行；`build_document_for_task` 的测试改为直接调用 `queue_build_execution.build_document_for_task` 并显式传入协作者，发布与 wiki 目标的测试改为把 `FacadeOverrides` 作为 `module` 传给服务。`test_process_build_queue.py` 70 → 17，合计 139 → 86（2026-10-02）
     - [x] `test_process_build_queue_routing.py`：配置路径规则改为直接调用 `queue_config_resolution.resolve_config_path_for_task(repo_root=..., config_loader=...)`，不再 patch 门面的 `ROOT` / `load_config`；另加 1 个测试检查门面转发仓库根和加载器，25 → 3，合计 86 → 64，达到 ≤73 目标（2026-10-02）
     - [x] `test_web_publish_queue.py` 15 → 0、`test_process_build_queue.py` 17 → 0，合计 64 → 32（2026-10-03）：构建步骤的测试改用共享夹具 `tests/queue_build_fixture.py`（显式传协作者和 `repo_root`，同时把队列的 bound 模块指向该根目录，等同原来 patch 门面 `ROOT` 的效果）；lark/同步服务直接调用 `process_build_queue_services` 并传 `FacadeOverrides`；`QueueDeps` 增加 `resolve_config_path_for_task`，分组和组处理都使用它
-    - [ ] 余下 32 处：review-start 21、`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3、其余 2
+    - [x] `test_process_review_start_queue.py` 21 → 0（2026-10-03）：`_resolve_review_start_config_path` 增加可选的 `repo_root` / `config_loader` / `resolve_config_path` （默认在调用时取门面上的名字，回退逻辑照常被测试覆盖）；直接调用的测试显式传参，完整运行的测试经 `ReviewStartRuntimeDeps.resolve_config_path_fn` 传入绑定后的解析器；分组守卫测试改为调用 `process_review_start_queue_records.group_review_start_records` 并显式传入会报错的解析器和加载器
+    - [ ] 余下 11 处：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
 - [x] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
