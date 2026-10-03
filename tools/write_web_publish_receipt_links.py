@@ -53,7 +53,7 @@ from tools.document_link_queue import (  # noqa: E402
     scalar_text,
     url_field_matches,
 )
-from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
+from tools.build_queue.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
 from tools.publish_locale_identity import safe_queue_record_ids  # noqa: E402

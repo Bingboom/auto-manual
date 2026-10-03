@@ -140,7 +140,7 @@ tools/lang_asset_sweep.py	_cmd_sweep	29
 tools/lang_asset_sweep.py	collect_template_entries	22
 tools/language_block_trim.py	trim_bundle_language_pages	21
 tools/language_block_trim.py	trim_language_blocks	27
-tools/listen_build_queue_events.py	event_requests_immediate_build	22
+tools/build_queue/listen_build_queue_events.py	event_requests_immediate_build	22
 tools/localized_copy.py	LocalizedCopyResolver.resolve	28
 tools/manual_copy_source.py	build_localized_copy_rows	22
 tools/manual_index_query.py	infer_manual_index_intent	26

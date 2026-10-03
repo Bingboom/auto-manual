@@ -166,7 +166,7 @@ Milestone status: `done`
   - Target files:
     - [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
     - [`../tools/build_queue/process_review_start_queue.py`](../tools/build_queue/process_review_start_queue.py)
-    - [`../tools/listen_build_queue.py`](../tools/listen_build_queue.py)
+    - [`../tools/build_queue/listen_build_queue.py`](../tools/build_queue/listen_build_queue.py)
     - [`../tools/sync_data.py`](../tools/sync_data.py)
   - Guard tests:
     - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)

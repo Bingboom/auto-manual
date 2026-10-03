@@ -8,19 +8,15 @@ import sys
 from pathlib import Path
 from typing import Any
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[2]
 
 from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
-from tools.listen_build_queue_events import (  # noqa: E402
+from tools.build_queue.listen_build_queue_events import (  # noqa: E402
     event_field_value_truthy as _event_field_value_truthy_impl,
     event_requests_immediate_build as _event_requests_immediate_build_impl,
 )
-from tools.listen_build_queue_lark import (  # noqa: E402
+from tools.build_queue.listen_build_queue_lark import (  # noqa: E402
     build_event_subscribe_command as _build_event_subscribe_command_impl,
     ensure_drive_event_subscription as _ensure_drive_event_subscription_impl,
     fetch_field_id_map as _fetch_field_id_map_impl,
@@ -28,7 +24,7 @@ from tools.listen_build_queue_lark import (  # noqa: E402
     run_lark_cli_json as _run_lark_cli_json_impl,
     stderr_pump as _stderr_pump_impl,
 )
-from tools.listen_build_queue_runtime import (  # noqa: E402
+from tools.build_queue.listen_build_queue_runtime import (  # noqa: E402
     BuildQueueWorker as _BuildQueueWorkerImpl,
     listen_for_build_queue_events as _listen_for_build_queue_events_impl,
 )

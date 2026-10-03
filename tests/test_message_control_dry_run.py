@@ -4,7 +4,7 @@ import unittest
 
 from tests.test_helpers import temp_test_root, write_text
 from tools.build_paths import load_config
-from tools.message_control_contract import (
+from tools.build_queue.message_control_contract import (
     ACTION_BUILD_DRAFT_PACKAGE,
     ACTION_PUBLISH,
     ACTION_QUERY_STATUS,
@@ -13,7 +13,7 @@ from tools.message_control_contract import (
     STATUS_NEEDS_INPUT,
     STATUS_READY,
 )
-from tools.message_control_runtime import resolve_message_control
+from tools.build_queue.message_control_runtime import resolve_message_control
 
 
 class TestMessageControlDryRun(unittest.TestCase):

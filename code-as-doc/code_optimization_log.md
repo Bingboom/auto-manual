@@ -57,6 +57,8 @@ For current rules, see:
   longer carry script bootstrap code. `tools/` top level 398 → 240 (−40%; the ≥50%
   target needs the families the plan did not list, such as `listen_*`, `message_*`,
   `source_*`, `sync_data*`); bootstrap files 103 → 75, all of them script entry points.
+- CQ-1 follow-up toward the ≥50% target, moving without shims: `listen_*` and
+  `message_*` (8 modules) into `tools/build_queue/`.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 
@@ -1102,7 +1104,7 @@ Why it mattered:
 What changed:
 
 - Added the shared `run_lark_cli_json` boundary to [`tools/feishu_record_transport.py`](../tools/feishu_record_transport.py). It owns command execution, injected CLI resolution, JSON parsing, and Feishu API response validation for queue and build-listener callers.
-- Converted [`tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py) and [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) into compatibility wrappers over that boundary, preserving their patchable entrypoint names and listener-specific output behavior.
+- Converted [`tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py) and [`tools/listen_build_queue_lark.py`](../tools/build_queue/listen_build_queue_lark.py) into compatibility wrappers over that boundary, preserving their patchable entrypoint names and listener-specific output behavior.
 - Added focused transport and delegation tests. Retry/backoff, pagination, snapshot locking, and the remaining Feishu callers stay in their separately gated K8 slices.
 
 Why it mattered:
@@ -1129,7 +1131,7 @@ What changed:
 
 - Added bounded exponential retry/backoff for rate-limited `lark-cli` responses, including bounded `retry_after` hints, to [`tools/feishu_record_transport.py`](../tools/feishu_record_transport.py).
 - Added one page iterator with a positive-limit check, offset advancement, and fail-closed empty-page handling when a response claims more data.
-- Routed field-list pagination in [`tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py) and record reads in [`tools/bitable_schema.py`](../tools/bitable_schema.py) through that iterator without changing identity, profile, schema, or record mapping semantics.
+- Routed field-list pagination in [`tools/listen_build_queue_lark.py`](../tools/build_queue/listen_build_queue_lark.py) and record reads in [`tools/bitable_schema.py`](../tools/bitable_schema.py) through that iterator without changing identity, profile, schema, or record mapping semantics.
 - Added focused tests for retry timing, retry-after handling, offset ownership, and pagination behavior.
 
 Why it mattered:
