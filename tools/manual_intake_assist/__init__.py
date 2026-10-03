@@ -8,8 +8,8 @@ import argparse
 import json
 from pathlib import Path
 
-from tools.manual_intake_packet import check_packet, make_packet, native_copy_map
-from tools.shared_art_review import apply_review_annotations, inventory, tracked_art, write_review
+from tools.manual_intake_assist.packet import check_packet, make_packet, native_copy_map
+from tools.manual_intake_assist.art_review import apply_review_annotations, inventory, tracked_art, write_review
 
 
 def _write(path: Path, value: dict) -> None:
@@ -66,6 +66,3 @@ def main(argv=None) -> int:
     print(f"{report['status']}: {len(report['errors'])} issues")
     return 1 if report["errors"] else 0
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())

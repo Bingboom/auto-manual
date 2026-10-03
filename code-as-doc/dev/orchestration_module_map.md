@@ -41,6 +41,12 @@ Do not move new low-level implementation back into these files unless the behavi
 失败提醒复用 GitHub issue；模块不合入、不生产说明书、不推断历史活动。
 见 [工作台数据持续更新](workspace_data_refresh.md)。
 
+Read-only intake work packets and shared-art review live in
+[`tools/manual_intake_assist/`](../../tools/manual_intake_assist/). The package
+facade owns the unchanged `python -m tools.manual_intake_assist` command;
+`packet.py` owns copy/evidence enumeration and checks, `art_review.py` owns
+byte inventory and operator annotations. It does not assemble or approve manuals.
+
 ## 2. Build Entrypoint Modules
 
 [`tools/rtd_publication_catalog.py`](../../tools/rtd_publication_catalog.py) groups

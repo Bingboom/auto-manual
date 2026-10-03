@@ -99,3 +99,25 @@ real current-main assets and final JBP English IR. Record exact boundaries.
 - Next bounded work: classify car/car-cable source variants and generate
   explicit textless/HTML/CSS work items; run an actual requested-model pilot
   when available. Tool tests are not GPT-6.1 Sol acceptance.
+
+## Car grouping and main compatibility
+
+- 70 car-connection versions grouped by actual host/receptacle/topology into
+  17 groups: five have existing textless candidates; 12 still need native
+  source preparation or an identity check. Empty caption pills are not accepted
+  as textless artwork. Vehicle labels and sales notes remain native HTML;
+  caption frames remain shared CSS. [Per-group work items](car-artwork-work-items-20261003.json)
+  bind exact source IDs and next actions. This inventory does not claim to
+  cover every unnamed standalone cable in package-content illustrations.
+- After integrating main `02998d14`, its top-level module ratchet correctly
+  rejected the three new helper files. Moved this PR's code mechanically into
+  `tools/manual_intake_assist/` without increasing thresholds. The public
+  `python -m tools.manual_intake_assist` command and `main` callable are unchanged.
+- CLI output parity after the move: all 1,738 gallery/report/export files are
+  byte-identical. 12 targeted tests, full Ruff, structural guardrails (398/398
+  top-level modules) and doc links pass. Final full suite against
+  this merged package layout: 5,118 tests OK / 35 skipped, 573.776 seconds,
+  `.tmp/intake-assist/unittest-main-package-final.log`.
+- Final gallery desktop is verified (22/22 hero images load, no horizontal
+  overflow). This turn's attempted 390px override did not change the actual
+  browser width; do not treat the saved `mobile.png` as mobile acceptance.

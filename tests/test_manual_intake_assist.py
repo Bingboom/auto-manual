@@ -11,8 +11,8 @@ import fitz
 
 from tools.asset_registry import REQUIRED_COLUMNS
 from tools.manual_intake_assist import main
-from tools.manual_intake_packet import check_packet, copy_items, make_packet, native_copy_map
-from tools.shared_art_review import apply_review_annotations, category, inventory, write_review
+from tools.manual_intake_assist.packet import check_packet, copy_items, make_packet, native_copy_map
+from tools.manual_intake_assist.art_review import apply_review_annotations, category, inventory, write_review
 
 
 class IntakePacketTests(unittest.TestCase):
