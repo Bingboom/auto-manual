@@ -18,7 +18,9 @@
     {% for item in outputs %}<div class="ws-bar-row"><span>{{ output_names[item.id] }}</span><div class="ws-bar-track" aria-hidden="true"><i style="width:{{ (item.value / scale * 100) if item.value is not none and scale else 0 }}%"></i></div><b>{{ item.display if item.value is not none else '未知' }}</b></div>{% endfor %}
   </figure>
 </section>
-<div class="ws-update"><span>目录最近构建：{{ last_published|default('暂不可读', true)|e }} · 交付快照：{{ snapshot_date|default('暂不可读', true)|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看持续构建记录 ↗</a></div>
+<div class="ws-update"><span>页面构建：{{ page_built_at|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看更新记录 ↗</a></div>
+<div class="ws-update" aria-label="数据新鲜度">{% for item in freshness %}<span data-workspace-source="{{ item.kind|e }}" data-snapshot-sha256="{{ item.hash|e }}">{{ item.label|e }}：{{ item.date|e }} · <b>{{ item.state|e }}</b></span>{% endfor %}</div>
+<details class="ws-alert"><summary>数据版本与更新说明</summary><p>待更新表示需要重新确认，仍展示上次有效数据。页面构建不代表业务来源已刷新。</p>{% for item in freshness %}<p>{{ item.label|e }} · SHA256 <code>{{ item.hash|default('Unavailable', true)|e }}</code>{% if item.execution.startswith('https://github.com/') %} · <a href="{{ item.execution|e }}" target="_blank" rel="noopener">执行记录 ↗</a>{% endif %}</p>{% endfor %}</details>
 {% if production.alerts %}<details class="ws-alert"><summary>有 {{ production.alerts|length }} 项数据需要复核</summary><ul>{% for alert in production.alerts %}<li>{{ alert|e }}</li>{% endfor %}</ul></details>{% endif %}
 <section class="ws-assets" aria-labelledby="ws-assets-title">
   <header><div><span class="pe-step">02 · 资产管理与消费</span><h2 id="ws-assets-title">三类共享资产，支撑说明书生产</h2></div><a href="#reuse">查看使用情况 →</a></header>

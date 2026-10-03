@@ -36,8 +36,8 @@ domains:
     authority: 飞书翻译记忆库（$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN）
     read: snapshot
     snapshot: system_workspace_corpus.json
-    refresh: python tools/rtd_system_workspace.py corpus-export
-    stale_after_days: 45
+    refresh: python tools/workspace_refresh.py refresh corpus
+    stale_after_days: 7
     fallback: 语料快照当前不可读
     used_by: 语言资产
 
@@ -46,8 +46,8 @@ domains:
     authority: 飞书文档构建表与 Document_key 表（$FEISHU_PHASE2_BASE_TOKEN）
     read: snapshot
     snapshot: deliverables_snapshot.json
-    refresh: python tools/rtd_deliverables.py export
-    stale_after_days: 45
+    refresh: python tools/workspace_refresh.py refresh deliverables
+    stale_after_days: 3
     fallback: 飞书快照当前不可读
     used_by: 交付物页的印刷交付包、Word 云文档两列
 

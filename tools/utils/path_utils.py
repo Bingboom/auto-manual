@@ -44,6 +44,8 @@ class PathSegments:
     IDML_PORTABLE_FONTS = "idml_portable"
     DOCUMENT_FONTS = "Document fonts"
     WEB_COMPOSITES = "web_composites"
+    KNOWLEDGE = "knowledge"
+    WORKSPACE_DATA = "workspace-data"
     PUBLISH = "publish"
     WEB = "web"
     SOURCE = "source"

@@ -20,6 +20,8 @@ from typing import Any, Callable
 
 import yaml
 
+from tools.workspace_snapshot import snapshot_path
+
 REGISTRY_NAME = "source_registry.yaml"
 REGISTRY_SCHEMA = "hello-docs-source-registry/v1"
 READ_LABELS = {"build": "构建时读", "snapshot": "读快照"}
@@ -113,7 +115,7 @@ def load_registry(assets: Path) -> tuple[Registry | None, list[str]]:
 def snapshot_date(assets: Path, domain: dict[str, Any]) -> dt.date | None:
     """A snapshot domain's ``exported_at``, or None when the file cannot say."""
     try:
-        data = json.loads((assets / str(domain["snapshot"])).read_text(encoding="utf-8"))
+        data = json.loads(snapshot_path(assets, str(domain["snapshot"])).read_text(encoding="utf-8"))
         return dt.date.fromisoformat(str(data["exported_at"]))
     except (OSError, ValueError, KeyError, TypeError):
         return None

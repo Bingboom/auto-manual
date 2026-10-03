@@ -125,6 +125,9 @@ class Ledger(NamedTuple):
 # --- reading ------------------------------------------------------------------
 
 
+from tools.workspace_snapshot import snapshot_path
+
+
 def load_contract(path: Path) -> dict[str, Any]:
     try:
         data = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -608,9 +611,11 @@ def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
     except ValueError:
         problems.append("exported_at must be an ISO date")
         exported = None
-    extra = set(snapshot) - {"schema", "exported_at", "sentence_pairs", "terms", "history"}
+    extra = set(snapshot) - {"schema", "exported_at", "sentence_pairs", "terms", "history", "source_content_sha256", "refresh"}
     if extra:
         problems.append(f"snapshot carries unexpected keys {sorted(extra)} (aggregates only)")
+    if "source_content_sha256" in snapshot and not re.fullmatch(r"[0-9a-f]{64}", str(snapshot["source_content_sha256"])):
+        problems.append("invalid source content hash")
     problems += _history_problems(snapshot.get("history", []), exported)
     for key in ("sentence_pairs", "terms"):
         block = snapshot.get(key)
@@ -666,7 +671,7 @@ def load_corpus(contract: dict[str, Any], assets: Path, name: str) -> tuple[dict
     if not config:
         return None, []
     try:
-        data = json.loads((assets / name).read_text(encoding="utf-8"))
+        data = json.loads((snapshot_path(assets, name)).read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
         return None, [f"cannot read {name}: {exc}"]
     problems = corpus_problems(data, [str(lang["code"]) for lang in config["languages"]])
@@ -745,23 +750,10 @@ def _cell_text(value: object) -> str:
 
 def _table_rows(run, base_token: str, table_id: str) -> tuple[list[str], list[dict[str, Any]]]:
     """Every row of one table as {field: value}; +record-list caps a page at 200."""
-    header: list[str] = []
-    rows: list[dict[str, Any]] = []
-    offset = 0
-    while True:
-        payload = run(["base", "+record-list", "--base-token", base_token, "--table-id", table_id,
-                       "--format", "json", "--limit", "200", "--offset", str(offset)])
-        data = payload.get("data") if isinstance(payload, dict) else None
-        if not isinstance(data, dict):
-            raise RuntimeError(f"record-list returned no data payload for {table_id}")
-        names = [_field_name(item) for item in data.get("fields") or []]
-        header = header or names
-        page = data.get("data") or []
-        # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
-        rows += [dict(zip(names, row, strict=False)) for row in page if isinstance(row, list)]
-        if len(page) < 200:
-            return header, rows
-        offset += 200
+    from tools.workspace_snapshot import complete_rows
+
+    header, rows = complete_rows(run, base_token, table_id)
+    return header, [row for _, row in rows]
 
 
 def _table_aggregate(header: list[str], rows: list[dict[str, Any]], codes: list[str]) -> dict[str, Any]:
@@ -789,12 +781,16 @@ def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.d
     """
     from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
 
+    from tools.workspace_snapshot import complete_rows, digest
+
     codes = [str(lang["code"]) for lang in contract["corpus"]["languages"]]
+    tables = [complete_rows(run, base_token, table) for table in (TM_SENTENCE_TABLE, TM_TERMS_TABLE)]
     snapshot: dict[str, Any] = {
         "schema": CORPUS_SCHEMA,
         "exported_at": today.isoformat(),
-        "sentence_pairs": _table_aggregate(*_table_rows(run, base_token, TM_SENTENCE_TABLE), codes),
-        "terms": _table_aggregate(*_table_rows(run, base_token, TM_TERMS_TABLE), codes),
+        "sentence_pairs": _table_aggregate(tables[0][0], [row for _, row in tables[0][1]], codes),
+        "terms": _table_aggregate(tables[1][0], [row for _, row in tables[1][1]], codes),
+        "source_content_sha256": digest([sorted(rows, key=lambda row: row[0]) for _, rows in tables]),
     }
     month = today.isoformat()[:7]
     history = list((previous or {}).get("history") or [])
@@ -1232,7 +1228,7 @@ def _run_corpus_export(args) -> int:
     if registry is None:
         print("ERROR   " + "; ".join(problems))
         return 1
-    output = args.output or assets / str(registry["corpus"]["snapshot"])
+    output = args.output or snapshot_path(assets, str(registry["corpus"]["snapshot"]))
     previous, problem = _previous_snapshot(output)
     if problem:
         print(f"ERROR   {problem}")
@@ -1247,10 +1243,21 @@ def _run_corpus_export(args) -> int:
     if problems:
         print("ERROR   " + "; ".join(problems))
         return 1
-    output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
-    print(f"wrote {output}: {pairs['total']} sentence pairs, {terms['total']} terms, exported "
-          f"{snapshot['exported_at']}; history carries {len(snapshot.get('history') or [])} earlier month(s)")
+    from tools.workspace_snapshot import digest, save_snapshot
+    from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
+
+    try:
+        result = save_snapshot(output, snapshot, previous=previous,
+                               validate=lambda value: corpus_problems(value, list(value["sentence_pairs"]["by_language"])),
+                               source={"identity_sha256": digest([args.base_token, TM_SENTENCE_TABLE, TM_TERMS_TABLE])})
+    except (ValueError, OSError):
+        print("ERROR   candidate validation or atomic replacement failed; previous snapshot retained")
+        return 1
+    print(json.dumps(result, ensure_ascii=False))
+    saved = previous if result["status"] == "unchanged" else snapshot
+    pairs, terms = saved["sentence_pairs"], saved["terms"]
+    print(f"{result['status']} {output}: {pairs['total']} sentence pairs, {terms['total']} terms, snapshot dated "
+          f"{saved['exported_at']}; history carries {len(saved.get('history') or [])} earlier month(s)")
     return 0
 
 

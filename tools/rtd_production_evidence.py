@@ -12,6 +12,7 @@ from tools.component_specs.overview_instance import load_overview_instance_regis
 from tools.component_specs.registry import load_component_registry
 from tools.rtd_system_workspace import CONTRACT_NAME, load_contract, load_corpus
 from tools.utils.path_utils import Paths, skeletons_of
+from tools.workspace_snapshot import snapshot_path
 
 NOT_TRACKED = "Not tracked yet"
 UNAVAILABLE = "Unavailable"
@@ -37,7 +38,7 @@ def source(path: Path, root: Path, *, date: str, business: bool = False) -> dict
         relative = path.name
     if business:
         relative = "docs/publish/publish_manifest.json"
-    repo = "Hello-Docs" if business else "auto-manual"
+    repo = "Hello-Docs" if business or relative.startswith("docs/knowledge/") else "auto-manual"
     return {"label": relative, "href": f"https://github.com/Bingboom/{repo}/blob/main/{quote(relative)}",
             "date": date or "Not tracked yet", "sha256": digest}
 
@@ -168,7 +169,7 @@ def asset_metrics(root: Path, assets: Path, registry, today: dt.date) -> tuple[l
     corpus = None
     corpus_source = []
     if corpus_domain:
-        corpus_path = assets / corpus_domain["snapshot"]
+        corpus_path = snapshot_path(assets, corpus_domain["snapshot"])
         try:
             corpus, _ = load_corpus(load_contract(assets / CONTRACT_NAME), assets, corpus_domain["snapshot"])
         except (ValueError, KeyError, TypeError):
@@ -203,7 +204,7 @@ def production_context(*, root: Path, assets: Path, manifest: Path, snapshot, re
     targets, built_at = read_publications(manifest)
     web_source = source(manifest, root, date=built_at, business=True)
     domain = (registry or {}).get("deliverables_feishu", {})
-    delivery_source = source(assets / domain.get("snapshot", "deliverables_snapshot.json"), root,
+    delivery_source = source(snapshot_path(assets, domain.get("snapshot", "deliverables_snapshot.json")), root,
                              date=(snapshot or {}).get("exported_at", ""))
     overview = production_metrics(targets, snapshot, web_source, delivery_source)
     asset_rows, relationships, reference, alerts = asset_metrics(root, assets, registry, today)

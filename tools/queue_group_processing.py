@@ -28,6 +28,18 @@ def utc_now() -> datetime:
 class QueueGroupProcessingResult:
     processed_rows: int
     failure_message: str | None = None
+    workspace_deliveries: tuple[str, ...] = ()
+    workspace_error: str | None = None
+
+
+def _workspace_group_result(source, binding, group, success_fields, row_count):
+    from tools.workspace_refresh_trigger import delivery_readback
+
+    try:
+        delivered = delivery_readback(source, binding, group, success_fields)
+    except Exception:  # noqa: BLE001 - preserve production success; refresh is independently retryable
+        return QueueGroupProcessingResult(processed_rows=row_count, workspace_error="source-readback failed")
+    return QueueGroupProcessingResult(processed_rows=row_count, workspace_deliveries=tuple(delivered))
 
 
 def _write_terminal_queue_fields(
@@ -774,7 +786,7 @@ def process_queue_record_group(
             f"{state.artifact_output_path or state.md_output_path}"
             + (f" -> {document_link_url}" if document_link_url else "")
         )
-        return QueueGroupProcessingResult(processed_rows=row_count)
+        return _workspace_group_result(source, binding, group, success_fields, row_count)
     except Exception as exc:  # noqa: BLE001 - group boundary: failure is written back to the row
         return _report_group_failure(
             exc,
