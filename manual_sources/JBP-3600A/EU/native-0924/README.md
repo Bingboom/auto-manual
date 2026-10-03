@@ -10,7 +10,7 @@ Source: `HTP011-EU-9国语言-0924.ai`,79 PDF-compatible pages, SHA256 `8c6c25dd
 | --- | --- | --- | --- |
 | fr | [fr-r4](http://127.0.0.1:56059/fr-r4/manual_jbp3600a_eu_fr.html) | [package](web/fr-r4/manual.ir.json) / [evidence](review/fr-r4/review-ledger.json) | [PASS](review/fr-r4-independent/acceptance.md) |
 | es | [es-r2](http://127.0.0.1:56059/es-r2/manual_jbp3600a_eu_es.html) | [package](web/es-r2/manual.ir.json) / [evidence](review/es-r2/review-ledger.json) | [PASS](review/es-r2-independent/acceptance.md) |
-| de | [de-r1](http://127.0.0.1:56059/de-r1/manual_jbp3600a_eu_de.html) | [package](web/de-r1/manual.ir.json) / [evidence](review/de-r1/review-ledger.json) | Pending |
+| de | [de-r1](http://127.0.0.1:56059/de-r1/manual_jbp3600a_eu_de.html) | [package](web/de-r1/manual.ir.json) / [evidence](review/de-r1/review-ledger.json) | [PASS](review/de-r1-independent/acceptance.md) |
 | it | [it-r1](http://127.0.0.1:56059/it-r1/manual_jbp3600a_eu_it.html) | [package](web/it-r1/manual.ir.json) / [evidence](review/it-r1/review-ledger.json) | Pending |
 | uk | [uk-r1](http://127.0.0.1:56059/uk-r1/manual_jbp3600a_eu_uk.html) | [package](web/uk-r1/manual.ir.json) / [evidence](review/uk-r1/review-ledger.json) | Pending |
 | pt | [pt-r1](http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html) | [package](web/pt-r1/manual.ir.json) / [evidence](review/pt-r1/review-ledger.json) | Pending |
@@ -23,7 +23,7 @@ Each locale has169 explicit source mappings under `copy-maps/`. All packages use
 
 Strict Sphinx, native-copy checks, byte-identical cold replay and desktop1440×1000/mobile390×844 browser checks passed for each fixed package. All22 images decode, LCD stays2×2, the CSS clock shows3s and there is no document horizontal overflow. Native source anomalies remain explicit review items. The structural trial reports9 differences per locale except Italian11 for its extra specification row; stylesheet bytes and all renderer behavior are outside that trial. Its no-issues English applicability comparison is not locale enrollment. Fresh admission remains blocked.
 
-FR r4 independently passed with FR-001/002/003 closed. ES r2 independently passed with ES-001 closed; ES r1 is superseded. The six other packages await independent review. Independent PASS is not approval of the English baseline, source exceptions, enrollment, merge or publication. Sealed producer ledgers preserve their original historical status; later independent reports are separate records.
+FR r4 independently passed with FR-001/002/003 closed. ES r2 independently passed with ES-001 closed; ES r1 is superseded. DE r1 independently passed content/layout review with its native source anomalies still pending operator decisions. The five other packages await independent review. Independent PASS is not approval of the English baseline, source exceptions, enrollment, merge or publication. Sealed producer ledgers preserve their original historical status; later independent reports are separate records.
 
 Shared logic validation from producer commit5de0abb passed5075 tests with35 skipped;36 targeted tests cover the final opt-in badge marker. This second CSS/native-content batch reuses that evidence and adds per-language browser/build/replay checks, without repeating the full suite. No online source, queue, registry or publication write occurred.
 
