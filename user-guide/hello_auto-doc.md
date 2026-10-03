@@ -2072,3 +2072,9 @@ JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌�
 HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
 `HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
 发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。
+
+Intake preparation: [source-copy work packets and shared-art review](../code-as-doc/dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.
+
+共用图确认清单可通过 `tools.manual_intake_assist art-review --selections` 导入；
+太阳能保留型号/数量标识，车充文字用 HTML/CSS，操作与按键图片不纳入共用库。
+图标按原稿中匹配的符号复用，独立图标须真实透明底。
