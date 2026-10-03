@@ -56,17 +56,18 @@
   {{ site_topbar('知识库', '系统建设') }}
 
   <main id="top">
-    <section class="sw-hero">
-      <div class="eyebrow">SYSTEM WORKSPACE</div>
+    <section class="sw-hero page-head">
       <h1>{{ hero.title|e }}<span class="title-dot">.</span></h1>
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
     </section>
 
+    <details class="page-meta"><summary>页面版本与更新</summary>
     <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
       <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
       <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
       <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
     </div>
+    </details>
     <nav class="sw-page-nav" aria-label="本页导航"><a href="#focus">建设顺序</a><a href="#now-next">阶段验收</a><a href="#language-assets">语料覆盖</a><a href="#capabilities">能力与证据</a><a href="#sources">数据来源</a></nav>
 
     {%- if focus %}

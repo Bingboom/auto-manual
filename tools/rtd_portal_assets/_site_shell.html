@@ -10,19 +10,17 @@
 {%- set on_home = active in ('overview', 'shares', 'updates') -%}
 <aside class="app-sidebar" id="app-sidebar">
   <a class="app-brand" href="{{ pathto('index') }}">工作资料<span>.</span></a>
-  <p class="app-brand-sub">说明书与知识工作空间</p>
   <nav class="app-nav" aria-label="站点导航">
     <div class="app-nav-group">说明书</div>
     {{ nav_link(pathto('index'), '▤', '说明书资料库', active == 'manuals') }}
     {{ nav_link(pathto('search'), '⌕', '搜索说明书正文', active == 'search') }}
     <div class="app-nav-group">知识库</div>
     {{ nav_link(home, '⌂', '概览', active == 'overview') }}
-    {% if nav.share %}{{ nav_link(('' if on_home else home) ~ '#shares', '✦', '分享资料', active == 'shares', '1') }}{% endif %}
+    {% if nav.share %}{{ nav_link(('' if on_home else home) ~ '#shares', '✦', '分享资料', active == 'shares') }}{% endif %}
     {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
     {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
     {{ nav_link(('' if on_home else home) ~ '#updates', '◷', '最近更新', active == 'updates') }}
   </nav>
-  <p class="app-sidebar-foot">Hosted by <a href="https://readthedocs.org/">Read the Docs</a></p>
 </aside>
 <div class="app-scrim" aria-hidden="true"></div>
 {%- endmacro -%}
