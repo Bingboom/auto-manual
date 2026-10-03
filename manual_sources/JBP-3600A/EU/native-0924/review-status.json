@@ -1,12 +1,12 @@
 {
-  "status": "candidate-review-only",
+  "status": "authorized-publication-preparation",
   "released_english_revision": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
   "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
   "candidate_stylesheet_sha256": "362a75d05efbfe8b84c1927c659cda63fc8f4adab65f653c6420b70ec18172f5",
-  "operator_baseline_approval": false,
-  "source_exception_approval": false,
-  "locale_enrollment": false,
-  "multilingual_merge_publication_authorization": false,
+  "operator_baseline_approval": true,
+  "source_exception_approval": true,
+  "locale_enrollment": true,
+  "multilingual_merge_publication_authorization": true,
   "candidates": [
     {
       "language": "fr",
@@ -253,5 +253,7 @@
       "scope": "Final content/artwork/layout delta; prior eight native full-source reviews retained."
     },
     "final_confirmation": "FINAL_CONFIRMATION.md"
-  }
+  },
+  "publication_approval_record": "../git-20261003-44b6ce61-reviewed/approval.json",
+  "approved_release_source": "../git-20261003-44b6ce61-reviewed"
 }

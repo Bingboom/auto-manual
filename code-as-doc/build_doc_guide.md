@@ -944,9 +944,13 @@ Web Publish / Read the Docs note:
   The current candidate stylesheet also reserves 4rem for desktop anchor
   jumps. Mobile warranty headings participate in normal flow so wrapped titles
   reserve body space; targeted warranty headings retain their dark fill.
-  These changes are documented as the pending English r5 revision in the
-  [native candidate review](../manual_sources/JBP-3600A/EU/native-0924/REVIEW.md),
-  separately from the immutable English release and locale acceptance.
+  The approved nine-language snapshot binds English r6 and the independently
+  reviewed native versions to the actual MA-244 publication instruction in
+  [the release source](../manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/README.md).
+  Native source exceptions remain explicit; prepared component applicability
+  is enrolled per language. Original candidates and acceptance seals remain
+  immutable. Fresh admission, strict Sphinx and cold output parity are required
+  before publishing; phase2 checks do not validate these native-language bodies.
   Governed reference figures and hash-locked finished panels may coexist in
   coverage. Apply label-bearing illustration replacements before ComponentSpec
   discovery (`consume_before_presentation`) so cold replay hashes the same

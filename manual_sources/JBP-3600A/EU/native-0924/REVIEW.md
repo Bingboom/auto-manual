@@ -1,5 +1,7 @@
 # JBP-3600A EU 候选确认材料
 
+2026-10-03 更新：操作者已授权本批八语合入上线及必要英语 r6 更新（MA-244）。原稿差异按受审版本保留，实际指令与九语精确身份见[发布批准记录](../git-20261003-44b6ce61-reviewed/approval.json)。新批准包位于[发布源](../git-20261003-44b6ce61-reviewed/README.md)，下文候选阶段的待确认状态仅为历史记录。工程合入、发布与 RTD 验收仍分别跟踪。
+
 最终九语差量现已[独立验收通过](review/transparent-final-independent/acceptance.md)，绑定提交 `44b6ce61`。待操作者裁定及工程后续已收敛为[最终确认项](FINAL_CONFIRMATION.md)；技术 PASS 不等于上线批准。
 
 最新本地修订见[透明素材复用及发布准备](review/transparent-symbol-r1/README.md)：英语 r6、法语 r5、西语 r3、其余六语 r2。旧封存和 8/8 独立验收保留；以下旧版记录不自动批准新修订。
