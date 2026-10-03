@@ -105,3 +105,5 @@ python tools/workspace_refresh_batch.py corpus -- python tools/revision_ledger.p
   不以本地 fixtures 或试导出代替线上生产验收。
 
 - 2026-10-03 UTC：真实 TM-B 完整分页试导出通过，返回 `changed`；候选仅在 `.tmp`，未发布业务数据。
+
+- 首次部署核验发现：共用部署下载器拒绝查询参数，RTD 构建列表必须使用无查询的默认分页 URL。已补跨真实下载器 URL 闸门的回归测试；故障日志正确停在 rtd-build，未误报已更新。

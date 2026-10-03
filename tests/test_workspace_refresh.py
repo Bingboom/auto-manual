@@ -332,3 +332,24 @@ class QueueBatchTests(unittest.TestCase):
                 online.assert_not_called()
             result = json.loads(output.read_text())
             self.assertEqual((result['stage'], result['status']), ('rtd-build', 'failed'))
+
+    def test_rtd_api_uses_safe_query_free_transport_url(self):
+        from tools.rtd_deployment_receipt import _canonical_probe_url
+        with TemporaryDirectory() as tmp:
+            output = Path(tmp) / 'result.json'
+            args = ['verify', '--root', tmp, '--revision', 'a' * 40, '--output', str(output)]
+            response = {'results': [{'id': 42, 'commit': 'a' * 40,
+                        'state': {'code': 'finished'}, 'success': True}]}
+
+            def fetch(url):
+                # Use the real transport URL gate; mocking FetchSession hid this failure.
+                self.assertEqual(_canonical_probe_url(url), url)
+                self.assertEqual(url, 'https://readthedocs.org/api/v3/projects/ht-doc/builds/')
+                return json.dumps(response).encode()
+
+            with patch('sys.argv', args), patch.object(verify, 'command', return_value='a' * 40), \
+                    patch('tools.rtd_deployment_receipt._fetch', side_effect=fetch), \
+                    patch.object(verify, 'verify_once', return_value={'status': 'verified'}), \
+                    redirect_stdout(io.StringIO()):
+                self.assertEqual(verify.main(), 0)
+            self.assertEqual(json.loads(output.read_text())['rtd_build'], 42)
