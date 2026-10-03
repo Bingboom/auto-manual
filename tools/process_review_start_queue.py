@@ -7,7 +7,7 @@ import argparse
 import os
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root
@@ -158,17 +158,25 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
     return _generate_review_branch_name_impl(record)
 
 
-def _resolve_review_start_target_config_path(*, model: str, region: str, lang: str | None) -> Path:
+def _resolve_review_start_target_config_path(
+    *,
+    model: str,
+    region: str,
+    lang: str | None,
+    repo_root: Path | None = None,
+    config_loader: Callable[[Path], dict[str, Any]] | None = None,
+) -> Path:
+    root = ROOT if repo_root is None else repo_root
     config_paths = [
-        *sorted((ROOT / PathSegments.CONFIGS).glob("config*.yaml")),
-        *sorted(ROOT.glob("config*.yaml")),
+        *sorted((root / PathSegments.CONFIGS).glob("config*.yaml")),
+        *sorted(root.glob("config*.yaml")),
     ]
     resolved = resolve_declared_target_config_path(
         config_paths=config_paths,
         model=model,
         region=region,
         lang=lang,
-        config_loader=load_config,
+        config_loader=load_config if config_loader is None else config_loader,
     )
     if resolved is None:
         raise RuntimeError(
@@ -183,24 +191,33 @@ def _resolve_review_start_config_path(
     region: str,
     lang: str | None,
     build_family: str | None,
+    repo_root: Path | None = None,
+    config_loader: Callable[[Path], dict[str, Any]] | None = None,
+    resolve_config_path: Callable[..., Path] | None = None,
 ) -> Path:
+    """Resolve the Start Review config; the keyword overrides default to this module's names."""
+    root = ROOT if repo_root is None else repo_root
+    loader = load_config if config_loader is None else config_loader
+    resolver = resolve_config_path_for_task if resolve_config_path is None else resolve_config_path
     if not str(build_family or "").strip():
-        return _resolve_review_start_target_config_path(model=model, region=region, lang=lang)
+        return _resolve_review_start_target_config_path(
+            model=model, region=region, lang=lang, repo_root=root, config_loader=loader,
+        )
     try:
-        return resolve_config_path_for_task(
-            repo_root=ROOT,
+        return resolver(
+            repo_root=root,
             model=model,
             region=region,
             lang=lang,
             build_family=build_family,
-            config_loader=load_config,
+            config_loader=loader,
         )
     except TypeError as exc:
         message = str(exc)
         if not any(name in message for name in ("repo_root", "config_loader", "build_family")):
             raise
     try:
-        return resolve_config_path_for_task(
+        return resolver(
             model=model,
             region=region,
             lang=lang,
@@ -209,7 +226,7 @@ def _resolve_review_start_config_path(
     except TypeError as exc:
         if "build_family" not in str(exc):
             raise
-        return resolve_config_path_for_task(model=model, region=region, lang=lang)
+        return resolver(model=model, region=region, lang=lang)
 
 
 def resolve_target_for_review_start(record: ReviewStartRecord) -> tuple[str, str]:
