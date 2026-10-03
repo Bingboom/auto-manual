@@ -6,12 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[1]
 
 SOURCE_TABLE_CONTRACT_SCHEMA_VERSION = "phase2-source-table-contract/v1"
 DEFAULT_CONTRACT_PATH = ROOT / "data" / "source_table_contracts" / "phase2_source_tables.json"

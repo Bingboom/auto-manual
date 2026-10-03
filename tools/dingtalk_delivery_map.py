@@ -41,12 +41,8 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[1]
 
 DELIVERY_MAP_FILENAME = "dingtalk_delivery_map.csv"
 

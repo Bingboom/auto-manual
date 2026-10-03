@@ -744,7 +744,7 @@ python build.py check --config configs/config.ja.yaml --model JE-1000F --region 
 Mapping export:
 
 ```powershell
-python tools/export_spec_master_row_key_mapping.py
+python -m tools.export_spec_master_row_key_mapping
 ```
 
 Current output:

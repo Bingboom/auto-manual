@@ -79,5 +79,5 @@ and no website or receiver integration.
 python3 -m unittest tests.test_product_voc_openclaw_handoff
 python3 -m ruff check integrations/product_voc/openclaw_handoff.py \
   tests/test_product_voc_openclaw_handoff.py
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_doc_link_integrity
 ```

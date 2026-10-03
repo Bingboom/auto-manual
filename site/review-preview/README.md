@@ -9,7 +9,7 @@ Generated output:
 The generated site is built by:
 
 ```powershell
-python tools/process_docs/build_review_preview.py --config configs/config.us.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --data-root tests/fixtures/phase2
+python -m tools.process_docs.build_review_preview --config configs/config.us.yaml --model JE-1000F --region US --source review --from-ref HEAD~1 --to-ref HEAD --data-root tests/fixtures/phase2
 ```
 
 Do not hand-edit `dist/`.

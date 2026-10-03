@@ -64,7 +64,7 @@ jobs:
       - name: Run cred health-check probes
         id: probe
         continue-on-error: true
-        run: python tools/cred_health_check.py --config configs/config.us.yaml --summary "$GITHUB_STEP_SUMMARY"
+        run: python -m tools.cred_health_check --config configs/config.us.yaml --summary "$GITHUB_STEP_SUMMARY"
 
       - name: Open or update tracking issue on failure
         if: steps.probe.outcome == 'failure'

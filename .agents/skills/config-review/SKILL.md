@@ -33,8 +33,8 @@ Review the repository's agent configuration surface without reading generated ou
 Run the checks that match the changed surface:
 
 - `python3 /Users/hello-tech-team/.codex/skills/.system/skill-creator/scripts/quick_validate.py .agents/skills/<skill-name>`
-- `python3 tools/check_doc_link_integrity.py`
-- `python3 tools/check_maintainability_guardrails.py`
+- `python3 -m tools.check_doc_link_integrity`
+- `python3 -m tools.check_maintainability_guardrails`
 
 For Python implementation changes, also run the repository lint and targeted tests from the applicable nested `AGENTS.md`.
 

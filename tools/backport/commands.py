@@ -211,7 +211,7 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
             baseline_path=_display_path(baseline_path),
             fetched_text=fetched_text,
             baseline_text=baseline_text,
-            command=["tools/cloud_doc_backport.py", *raw_argv],
+            command=["python", "-m", "tools.backport.cloud_doc", *raw_argv],
             source_path=_display_path(source_path) if source_path else None,
             section_title=section_title,
             section_inferred_from=section_inferred_from,
@@ -246,7 +246,7 @@ def _run_apply(
             diff_report,
             source_path=source_override,
             write=bool(args.write),
-            command=["tools/cloud_doc_backport.py", *raw_argv],
+            command=["python", "-m", "tools.backport.cloud_doc", *raw_argv],
         )
     except (OSError, RuntimeError) as exc:
         _ERR.error(f"cloud-doc-backport: {exc}")
@@ -273,7 +273,7 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
         verify_report = build_review_verify_report(
             diff_report,
             source_path=source_override,
-            command=["tools/cloud_doc_backport.py", *raw_argv],
+            command=["python", "-m", "tools.backport.cloud_doc", *raw_argv],
         )
     except (OSError, RuntimeError) as exc:
         _ERR.error(f"cloud-doc-backport: {exc}")
@@ -283,12 +283,12 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
     suggestions_report = build_source_table_suggestions_report(
         diff_report=diff_report,
         verify_report=verify_report,
-        command=["tools/cloud_doc_backport.py", *raw_argv],
+        command=["python", "-m", "tools.backport.cloud_doc", *raw_argv],
     )
     suggestions_written = write_source_table_suggestions_report(suggestions_report, out_dir)
     proposal_report = build_template_sync_proposal_report(
         diff_report=diff_report,
-        command=["tools/cloud_doc_backport.py", *raw_argv],
+        command=["python", "-m", "tools.backport.cloud_doc", *raw_argv],
     )
     proposal_written = write_template_sync_proposal_report(proposal_report, out_dir)
     print(f"WROTE {written['json']}")
@@ -302,7 +302,7 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
 def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
     run_id = str(args.run_id or "").strip() or "cloud-doc-backport-local"
     out_dir = Path(args.out) if args.out else _default_out_dir(run_id)
-    command = ["tools/cloud_doc_backport.py", *raw_argv]
+    command = ["python", "-m", "tools.backport.cloud_doc", *raw_argv]
     try:
         source_path = _resolve_source_path(args.source_path, label="source target")
         _validate_apply_source(source_path, kind="review")
@@ -472,7 +472,7 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
         "run_id": run_id,
         "approved_count": len(approved),
         "translation_apply": tm_apply_result,
-        "command": ["tools/cloud_doc_backport.py", *raw_argv],
+        "command": ["python", "-m", "tools.backport.cloud_doc", *raw_argv],
     }
     out_dir = Path(args.out) if args.out else report_path.parent
     written = write_source_table_apply_report(report, out_dir)

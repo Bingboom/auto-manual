@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Tests for tools/cloud_doc_backport.py."""
+"""Tests for tools/backport/cloud_doc.py."""
 from __future__ import annotations
 
 import json
@@ -179,7 +179,7 @@ class CloudDocBackportTest(unittest.TestCase):
             baseline_path=FIXTURES / "baseline.md",
             fetched_text=fetched,
             baseline_text=baseline,
-            command=["tools/cloud_doc_backport.py", "diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "diff"],
         )
 
         self.assertEqual(report["schema_version"], "cloud-doc-backport-report/v1")
@@ -205,7 +205,7 @@ class CloudDocBackportTest(unittest.TestCase):
             baseline_path=FIXTURES / "baseline.md",
             fetched_text=fetched,
             baseline_text=baseline,
-            command=["tools/cloud_doc_backport.py", "diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "diff"],
         )
 
         self.assertEqual(report["summary"]["route_classes"]["needs_human_mapping"], 1)
@@ -326,7 +326,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=template_path,
                 fetched_text=fetched,
                 baseline_text=template_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=template_path,
                 section_title="用户指南",
             )
@@ -360,7 +360,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=template_path,
                 fetched_text=fetched,
                 baseline_text=template_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=template_path,
                 section_title="用户指南",
             )
@@ -395,7 +395,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -430,7 +430,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -462,7 +462,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 section_title="用户指南",
             )
             report.pop("source_target", None)
@@ -495,7 +495,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,  # .rst source baseline -> the broken rendered-vs-RST path
                 fetched_text="# manual\n\n## 用户指南\n\n修改内容。\n",
                 baseline_text=original,
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -528,7 +528,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=Path("docs/_review/JE-1000F/US/.backport/doc123.baseline.md"),
                 fetched_text="# manual\n\n## 用户指南\n\n修改内容。\n",
                 baseline_text="# manual\n\n## 用户指南\n\n原始内容。\n",
-                command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-diff"],
                 source_path=None,
                 section_title=None,
             )
@@ -563,7 +563,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -609,7 +609,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -768,7 +768,7 @@ class CloudDocBackportTest(unittest.TestCase):
                 baseline_path=review_path,
                 fetched_text=fetched,
                 baseline_text=review_path.read_text(encoding="utf-8"),
-                command=["tools/cloud_doc_backport.py", "diff"],
+                command=["python", "-m", "tools.backport.cloud_doc", "diff"],
                 source_path=review_path,
                 section_title="用户指南",
             )
@@ -1085,7 +1085,7 @@ class CloudDocBackportTest(unittest.TestCase):
             baseline_path=FIXTURES / "baseline.md",
             fetched_text=baseline,
             baseline_text=baseline,
-            command=["tools/cloud_doc_backport.py", "diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "diff"],
         )
 
         self.assertEqual(report["result"], "NO_DIFF")
@@ -1523,7 +1523,7 @@ class BaselineDiffTests(unittest.TestCase):
             baseline_path=Path("docs/_review/JE-1000F/EU/.backport/doc-1.baseline.md"),
             fetched_text=self.EDITED,
             baseline_text=self.BASELINE,
-            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-diff"],
             source_path=None,
             section_title=None,
         )
@@ -1546,7 +1546,7 @@ class BaselineDiffTests(unittest.TestCase):
             baseline_path=Path("docs/_review/JE-1000F/EU/.backport/doc-1.baseline.md"),
             fetched_text=self.BASELINE,
             baseline_text=self.BASELINE,
-            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-diff"],
             source_path=None,
             section_title=None,
         )

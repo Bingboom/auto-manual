@@ -106,7 +106,7 @@ def diff_report_command(
 ) -> list[str]:
     cmd = [
         sys.executable,
-        str(repo_root / "tools" / "diff_report.py"),
+        "-m", "tools.diff_report",
         "--tracked-root",
         str(tracked_root),
         "--config",

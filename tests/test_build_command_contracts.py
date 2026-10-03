@@ -119,12 +119,11 @@ NODE_CASES: dict[str, list[list[str]]] = {
 NOT_CHILD_COMMANDS = {"format_command"}
 
 
-def _child_parser(script: Path):
-    stem = script.stem
+def _child_parser(module_name: str):
+    stem = module_name.rpartition(".")[2]
     if stem in CHILD_PARSERS:
         return CHILD_PARSERS[stem]
-    module = importlib.import_module(f"tools.{stem}")
-    return module.parse_args
+    return importlib.import_module(module_name).parse_args
 
 
 class BuildCommandContractTest(unittest.TestCase):
@@ -148,15 +147,16 @@ class BuildCommandContractTest(unittest.TestCase):
                 with self.subTest(builder=name, argv=argv[1:]):
                     cmd = getattr(build, name)(build.parse_args(argv))
                     self.assertEqual(cmd[0], sys.executable)
-                    script = Path(cmd[1])
-                    self.assertTrue(script.is_file(), f"{name} launches a missing script: {script}")
-                    self.assertEqual(script.parent, ROOT / "tools")
+                    self.assertEqual(cmd[1], "-m", f"{name} must launch its child with python -m")
+                    module_name = cmd[2]
+                    self.assertTrue(module_name.startswith("tools."), module_name)
+                    self.assertIsNotNone(importlib.util.find_spec(module_name), f"{name} launches a missing module")
                     stderr = io.StringIO()
                     try:
                         with contextlib.redirect_stderr(stderr):
-                            _child_parser(script)(cmd[2:])
+                            _child_parser(module_name)(cmd[3:])
                     except SystemExit:
-                        self.fail(f"{script.name} rejected {cmd[2:]}:\n{stderr.getvalue()}")
+                        self.fail(f"{module_name} rejected {cmd[3:]}:\n{stderr.getvalue()}")
 
     @unittest.skipUnless(shutil.which("node"), "node is not installed")
     def test_node_child_commands_parse_in_the_listener(self) -> None:

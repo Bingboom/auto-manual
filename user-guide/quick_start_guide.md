@@ -49,10 +49,10 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 如果原始输入是一份规格书、Word 说明书转出的结构化 Markdown，或飞书云文档里的规格/文案表，先用 source intake 做候选沉淀：
 
 ```bash
-python3 tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
-python3 tools/source_intake.py approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
-python3 tools/source_intake.py apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
-python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
+python3 -m tools.source_intake run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
+python3 -m tools.source_intake approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
+python3 -m tools.source_intake apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
+python3 -m tools.source_intake verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
 ```
 
 `apply` 默认只做 dry-run 计划；只有人工确认后显式加 `--write --table-binding TABLE=BASE:TABLE_ID`，才会写线上 Feishu 源表。新增行仍先停在候选/人审层，不自动创建线上记录。
@@ -60,8 +60,8 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 如果输入是产品规格书，而且已经有同产品或同区域 sibling，默认走重复入库快速通道，不再手工组装几十行：
 
 ```bash
-python3 tools/source_intake.py spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
-python3 tools/source_intake.py stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
+python3 -m tools.source_intake spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
+python3 -m tools.source_intake stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
 ```
 
 `stage-plan` 只克隆 sibling 结构并应用目标差异，输出评审文件和一个 `create_records` 批量 payload，不写飞书。它会拒绝模糊规则匹配、sibling 结构缺行以及未配对的本地化值。输入就绪后，机械步骤目标是 3–5 分钟；后续暂存表回读、人工确认和正式源表写入仍是硬门禁。
@@ -256,7 +256,7 @@ Publish 的原料是：
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
    - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
    - 它仍然只处理这套文档控制层支持的动作、状态和只读发布文档管理查询，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`、`查 JE-2000F 的说明书链接`、`获取说明书总览信息`
-   - 云文档 backport **不是**飞书 IM / BlockClaw 的能力（LLM 对目标分支的判断不够确定）；已接受修订的回写请在 Claude Code / Codex / 终端里跑 `python tools/cloud_doc_backport.py run-review-branch ...`（见 AGENTS.md §3）
+   - 云文档 backport **不是**飞书 IM / BlockClaw 的能力（LLM 对目标分支的判断不够确定）；已接受修订的回写请在 Claude Code / Codex / 终端里跑 `python -m tools.backport.cloud_doc run-review-branch ...`（见 AGENTS.md §3）
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
    - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`
@@ -453,7 +453,7 @@ Phase 2 控制层使用阶段化交付契约：
 - 配好后每次成功 Publish 会在 `<root>/<job_id>/` 落一份产物（PDF / handoff zip / DOCX / Markdown）加一个 `delivery_manifest.json`，交给交付 agent 消费；`latex/`、`html/` 渲染目录不进 outbox
 - `构建结果` 会多一条注记：`delivery_outbox=ok`（附 `delivery_outbox_job=<job id>`）、`delivery_outbox=skipped`（该目标没在 [`../data/dingtalk_delivery_map.csv`](../data/dingtalk_delivery_map.csv) 里，属正常状态）、或 `delivery_outbox=failed`（附原因）。投递侧出问题不会把已经上传成功的构建行判失败
 - 哪些目标会投递看那张映射表：按 `(型号, 区域)` 一行，对应钉钉的项目代码 + 安规 + 该区域整本覆盖的文案语言集合。Publish 行的 `Lang` 必须留空、产出的是一本多语合订本，所以映射按区域而不是按语言
-- 验收单个 drop：`python tools/delivery_outbox.py --manifest <root>/<job_id>/delivery_manifest.json`
+- 验收单个 drop：`python -m tools.delivery_outbox --manifest <root>/<job_id>/delivery_manifest.json`
 - 已消费的 job 目录不会自动回收（里面是完整 PDF 和 zip），要定期清理；同一目标同一版本同一秒内重复 Publish 会被拒绝而不是覆盖
 
 Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`；正式回写给业务侧的主链接是 PDF，DOCX 只保留在 release 目录里做留档。
@@ -630,7 +630,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
 4. 在装有 InDesign 的设计 Mac 上关闭旧 INDD，再运行：
 
    ```bash
-   python3 tools/indesign_finalize.py \
+   python3 -m tools.indesign_finalize \
      --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml \
      --indd output/indesign/JE-1000F_US_same_source.indd \
      --pdf output/pdf/JE-1000F_US_indesign.pdf \
@@ -645,7 +645,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    必须是获批参考 PDF，不是本次新生成的 LaTeX PDF：
 
    ```bash
-   python3 tools/idml_pdf_parity.py \
+   python3 -m tools.idml_pdf_parity \
      --latex-pdf <approved-reference.pdf> \
      --indesign-pdf output/pdf/JE-1000F_US_indesign.pdf \
      --preflight output/indesign/JE-1000F_US_preflight.json \
@@ -779,7 +779,7 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python3 build.py check \
 
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.bp-jp.yaml --model JBP-2000B --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/bp-web --no-clean --skip-root-index
-python tools/readthedocs_source.py --build-root .tmp/bp-web/docs/_build --output-dir .tmp/bp-web/docs/_build/rtd
+python -m tools.readthedocs_source --build-root .tmp/bp-web/docs/_build --output-dir .tmp/bp-web/docs/_build/rtd
 python -m sphinx -b html .tmp/bp-web/docs/_build/rtd .tmp/bp-web/html
 ```
 
@@ -797,7 +797,7 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --model JS-100I --region EU --lang en \
   --data-root tests/fixtures/js100i_eu_en_phase2 \
   --staging-root .tmp/js100i-web
-python tools/readthedocs_source.py \
+python -m tools.readthedocs_source \
   --build-root .tmp/js100i-web/docs/_build \
   --output-dir .tmp/js100i-web/docs/_build/rtd \
   --title "JS-100I Web Acceptance"

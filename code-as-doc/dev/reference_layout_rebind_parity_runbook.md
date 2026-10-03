@@ -67,7 +67,7 @@ python build.py idml --config configs/config.us.yaml --model JE-1000F --region U
 ## 4. 重绑：先 dry-run，看清它要改什么
 
 ```bash
-python tools/reference_layout_rebind.py \
+python -m tools.reference_layout_rebind \
   --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
   --manual-ir docs/_build/JE-1000F/US/idml/flow/manual.ir.json
 ```
@@ -88,7 +88,7 @@ v1 契约没有 assembly pin，因此迁移到 v2 必然属于显式批准；迁
 确认后写入：
 
 ```bash
-python tools/reference_layout_rebind.py \
+python -m tools.reference_layout_rebind \
   --plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
   --manual-ir docs/_build/JE-1000F/US/idml/flow/manual.ir.json --write
 ```
@@ -105,7 +105,7 @@ python build.py idml --config configs/config.us.yaml --model JE-1000F --region U
 ## 6. finalize（设计 Mac）
 
 ```bash
-python tools/indesign_finalize.py --check-host          # 必须 match
+python -m tools.indesign_finalize --check-host          # 必须 match
 ```
 
 产物一律写进 `idml/` 目录——那是 `release-manifest` 唯一采集的位置，
@@ -113,7 +113,7 @@ python tools/indesign_finalize.py --check-host          # 必须 match
 
 ```bash
 D=docs/_build/JE-1000F/US/idml
-python tools/indesign_finalize.py \
+python -m tools.indesign_finalize \
   --idml    $D/manual_je1000f_us.idml \
   --indd    $D/manual_je1000f_us.indd \
   --pdf     $D/manual_je1000f_us_indesign.pdf \
@@ -134,7 +134,7 @@ python tools/indesign_finalize.py \
 
 ```bash
 D=docs/_build/JE-1000F/US/idml
-python tools/idml_pdf_parity.py \
+python -m tools.idml_pdf_parity \
   --latex-pdf    ~/ref/"Jackery Explorer 1000 User Manual V2.0-2026-06-05.pdf" \
   --indesign-pdf $D/manual_je1000f_us_indesign.pdf \
   --preflight    $D/finalize_report.json \
@@ -175,7 +175,7 @@ indesign_package.parity.accepted   = true
 
 ```bash
 git add docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json
-python tools/check_reference_layout_pins.py     # 必须 OK
+python -m tools.check_reference_layout_pins     # 必须 OK
 ```
 
 `docs/_build/` 与 `reports/releases/` 均为本地产物，不提交。

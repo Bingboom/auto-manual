@@ -6,7 +6,7 @@
 # build time from docs/publish/publish_manifest.json, the execution ledger, the
 # corpus snapshot or the skeleton blueprints under docs/manifests/skeletons.
 #
-# Evidence grammar (checked by `python tools/rtd_system_workspace.py check`):
+# Evidence grammar (checked by `python tools/rtd/system_workspace.py check`):
 #   pr:<repo>#<n>             merged pull request (verified with --online)
 #   file:<repo>:<path>        file or directory on main
 #   url:<https-url>           page answering 200 (verified with --online)
@@ -386,7 +386,7 @@ capabilities:
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
 
 corpus:
-  # Counts only, from `python tools/rtd_system_workspace.py corpus-export`
+  # Counts only, from `python tools/rtd/system_workspace.py corpus-export`
   # (read-only TM read); refresh monthly through a PR. The snapshot file and
   # its freshness limit are the `corpus` domain of source_registry.yaml.
   languages:

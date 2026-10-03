@@ -13,13 +13,13 @@ runs:
       shell: bash
       env:
         REFRESH_KIND: ${{ inputs.kind }}
-      run: python tools/workspace_refresh.py refresh "$REFRESH_KIND"
+      run: python -m tools.workspace_refresh refresh "$REFRESH_KIND"
     - name: Submit reviewed snapshot or failure state
       if: ${{ !cancelled() }}
       shell: bash
       env:
         REFRESH_KIND: ${{ inputs.kind }}
-      run: python tools/workspace_refresh_publish.py "$REFRESH_KIND"
+      run: python -m tools.workspace_refresh_publish "$REFRESH_KIND"
     - name: Preserve refresh execution evidence
       if: ${{ !cancelled() }}
       uses: actions/upload-artifact@v4

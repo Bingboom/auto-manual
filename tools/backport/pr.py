@@ -197,7 +197,7 @@ def _pr_body_from_manifest(
             "",
             "- [ ] `python -m unittest`",
             "- [ ] Additional targeted verification:",
-            f"  - `python tools/cloud_doc_backport.py open-pr --manifest {manifest_rel}`",
+            f"  - `python tools/backport/cloud_doc.py open-pr --manifest {manifest_rel}`",
         ]
     )
     return "\n".join(lines) + "\n"

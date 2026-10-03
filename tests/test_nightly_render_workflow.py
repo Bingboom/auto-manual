@@ -20,7 +20,7 @@ class TestNightlyRenderWorkflow(unittest.TestCase):
         job = workflow["jobs"]["render-smoke"]
         steps = job["steps"]
         rendered = "\n".join(str(step) for step in steps)
-        self.assertIn("tools/nightly_render.py", rendered)
+        self.assertIn("tools.nightly_render", rendered)
         self.assertIn("configs/config.us-en.yaml", rendered)
         self.assertIn("JE-1000F", rendered)
         self.assertIn("poppler-utils", rendered)

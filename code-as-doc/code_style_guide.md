@@ -91,7 +91,7 @@ Responsibilities:
 
 ### 2.7 Export, Reporting, and Release
 
-- [`../tools/word_bundle*.py`](../tools)
+- [`../tools/word/`](../tools/word) (`bundle*.py`)
 - [`../tools/diff_report.py`](../tools/diff_report.py)
 - [`../tools/release_manifest.py`](../tools/release_manifest.py)
 
@@ -103,7 +103,7 @@ Responsibilities:
 
 ### 2.8 Build Queue and Delivery
 
-- [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix; the old top-level names are deprecated shims)
+- [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix)
 - `listen_*.py`, `message_*.py`, [`../tools/dingtalk/`](../tools/dingtalk)
 
 Responsibilities:
@@ -114,7 +114,7 @@ Responsibilities:
 
 ### 2.9 Cloud-Doc Backport
 
-- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3; the old top-level names are deprecated shims), `backport_*.py`
+- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3), `backport_*.py`
 
 Responsibilities:
 
@@ -192,7 +192,8 @@ moves each family into a real subpackage. The names below are proposals.
 
 Rules for the migration:
 
-- one family per PR, with a thin re-export shim at each old module path until no caller or test uses it
+- one family per PR, with a thin re-export shim at each old module path until no caller or test uses it (CQ-1.4's shims were removed in CQ-1.5)
+- run modules with `python -m tools.<pkg>.<module>` from the repo root; package modules carry no script bootstrap code, and only true script entry points keep it
 - moving a hotspot module needs operator confirmation first ([`../AGENTS.md`](../AGENTS.md) §8.4)
 - until its family has moved, a new module keeps the family prefix at the top of `tools/`
 

@@ -211,7 +211,7 @@ an aggregate snapshot that holds counts only, never corpus text. The build
 never reads Feishu. Refresh the snapshot monthly through a PR:
 
 ```bash
-python tools/rtd_system_workspace.py corpus-export
+python -m tools.rtd.system_workspace corpus-export
 ```
 
 The command reads the live TM base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`)
@@ -326,8 +326,8 @@ Edit the YAML in an auto-manual PR. Update `verified_on` when you re-check the
 entries, then run:
 
 ```bash
-python tools/rtd_system_workspace.py check
-python tools/rtd_system_workspace.py check --online
+python -m tools.rtd.system_workspace check
+python -m tools.rtd.system_workspace check --online
 ```
 
 The first command works offline and checks the rules, evidence files, REV ids
@@ -415,8 +415,8 @@ source registry's `deliverables_feishu` domain. Refresh it through a PR
 after new Draft or Publish builds:
 
 ```bash
-python tools/rtd_deliverables.py export --cli-bin "lark-cli --profile prod" --as bot
-python tools/rtd_deliverables.py check
+python -m tools.rtd.deliverables export --cli-bin "lark-cli --profile prod" --as bot
+python -m tools.rtd.deliverables check
 ```
 
 `export` is read-only. It reads two tables in the base named by
@@ -509,7 +509,7 @@ Feishu credentials or runs the receiver.
   `MODEL/REGION/...` paths ≈ web navigation and search. With analytics off
   the alias keeps its instant forward; an unrecognized alias body shape is
   left unchanged.
-- Tabular traffic reads: `python tools/cwa_report.py --days 7` prints the
+- Tabular traffic reads: `python -m tools.cwa_report --days 7` prints the
   taxonomy totals (print/QR alias entries, in-site manual routes, portal
   home) and a top-pages table from the Web Analytics GraphQL API. It needs
   `CLOUDFLARE_API_TOKEN` (Account Analytics: Read), `CLOUDFLARE_ACCOUNT_ID`

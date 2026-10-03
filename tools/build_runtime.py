@@ -184,7 +184,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_config.py"),
+            "-m", "tools.validate_config",
             "--config",
             str(config_path),
         ]
@@ -192,7 +192,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_layout_params.py"),
+            "-m", "tools.validate_layout_params",
             "--csv",
             str(resolve_layout_params_csv(config_path)),
         ]
@@ -208,7 +208,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_spec_master.py"),
+            "-m", "tools.validate_spec_master",
             "--config",
             str(config_path),
             *(

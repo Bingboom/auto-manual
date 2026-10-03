@@ -47,7 +47,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check maintainability guardrails
-        run: python tools/check_maintainability_guardrails.py
+        run: python -m tools.check_maintainability_guardrails
 
   doc-link-integrity:
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check code-as-doc and user-guide link integrity
-        run: python tools/check_doc_link_integrity.py
+        run: python -m tools.check_doc_link_integrity
 
   reference-layout-pins:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.lock
       - name: Check approved reference-layout pins
-        run: python tools/check_reference_layout_pins.py
+        run: python -m tools.check_reference_layout_pins
 
   asset-registry:
     runs-on: ubuntu-latest
@@ -99,7 +99,7 @@ jobs:
       - name: Run mypy on tools/utils
         run: python -m mypy tools/utils
       - name: Ratchet untyped-def mypy errors
-        run: python tools/check_mypy_ratchet.py check
+        run: python -m tools.check_mypy_ratchet check
 
   openclaw-plugin:
     runs-on: ubuntu-latest
@@ -171,8 +171,8 @@ jobs:
         run: python -m unittest tests.test_queue_transitions tests.test_process_build_queue_writeback
       - name: Run schema drift fixture check
         run: |
-          python tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json
-          python tools/schema_drift.py --phase2-root tests/fixtures/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
+          python -m tools.schema_drift --payload tests/fixtures/schema_drift/passing_payload.json
+          python -m tools.schema_drift --phase2-root tests/fixtures/phase2 --queue-fields tests/fixtures/schema_drift/queue_fields_complete.json
 
   doctor-en:
     runs-on: ubuntu-latest
@@ -253,7 +253,7 @@ jobs:
           python -m pip install -r requirements.lock
       - name: Run config-derived check targets
         run: |
-          python tools/ci_check_targets.py \
+          python -m tools.ci_check_targets \
             --data-root tests/fixtures/phase2 \
             --skip-baseline .github/ci_check_targets_skip_baseline.json \
             --report "$RUNNER_TEMP/ci_check_targets.json" \

@@ -670,7 +670,7 @@ def _plan_delta_pages(
     for page in bundle_pages:
         plan_rep = build_review_apply_report(
             report, source_path=page, write=False,
-            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-plan"],
+            command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-plan"],
         )
         for op in plan_rep.get("operations") or []:
             if op.get("status") == "planned" and op.get("delta_hash"):
@@ -718,7 +718,7 @@ def _apply_review_deltas(
         pre_text = page.read_text(encoding="utf-8") if page.is_file() else ""
         apply_rep = build_review_apply_report(
             {**report, "deltas": page_deltas}, source_path=page, write=True,
-            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-apply"],
+            command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-apply"],
         )
         page_applied = {
             str(op["delta_hash"])
@@ -809,7 +809,7 @@ def _run_review_branch_baseline(
             baseline_path=Path(baseline_rel),
             fetched_text=c_now,
             baseline_text=baseline_text,
-            command=["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"],
+            command=["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-diff"],
             source_path=None,
             section_title=None,
             section_inferred_from=None,
@@ -825,7 +825,7 @@ def _run_review_branch_baseline(
     # worker). The blessed baseline path classifies these deltas but previously wrote only
     # the diff report, so the operator had nothing to feed `apply-source-table` (which reads
     # the change-request report, not the diff report) or the template-sync role.
-    artifact_cmd = ["tools/cloud_doc_backport.py", "run-review-branch", "--baseline-diff"]
+    artifact_cmd = ["python", "-m", "tools.backport.cloud_doc", "run-review-branch", "--baseline-diff"]
     write_source_table_suggestions_report(
         build_source_table_suggestions_report(diff_report=report, command=artifact_cmd), out_dir
     )

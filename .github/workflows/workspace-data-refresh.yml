@@ -43,4 +43,4 @@ jobs:
         run: |
           args=()
           if [ "$JOB_STATUS" = failure ]; then args+=(--failed); fi
-          python tools/workspace_refresh_notice.py --kind "$REFRESH_KIND" --report .tmp/workspace-refresh/result.json "${args[@]}"
+          python -m tools.workspace_refresh_notice --kind "$REFRESH_KIND" --report .tmp/workspace-refresh/result.json "${args[@]}"

@@ -24,7 +24,8 @@ class TestBuildScript(unittest.TestCase):
         self.assertEqual(
             [
                 sys.executable,
-                str(build_cli.ROOT / "tools" / "build_docs.py"),
+                "-m",
+                "tools.build.docs",
                 "--config",
                 str(build_cli.ROOT / "configs/config.us.yaml"),
                 "--all-targets",
@@ -409,7 +410,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.process_review_start_queue_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "process_review_start_queue.py"), cmd[1])
+        self.assertEqual(["-m", "tools.build_queue.process_review_start_queue"], cmd[1:3])
         self.assertIn("--config", cmd)
         self.assertIn(str(build_cli.ROOT / "configs/config.us.yaml"), cmd)
         self.assertIn("--data-root", cmd)
@@ -513,9 +514,9 @@ class TestBuildScript(unittest.TestCase):
         review_cmd = build_cli.review_bundle_command(review_args)
         check_cmd = build_cli.check_docs_command(check_args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "review_bundle.py"), review_cmd[1])
+        self.assertEqual(["-m", "tools.review_bundle"], review_cmd[1:3])
         self.assertIn("--all-targets", review_cmd)
-        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), check_cmd[1])
+        self.assertEqual(["-m", "tools.check.docs"], check_cmd[1:3])
         self.assertIn("--model", check_cmd)
         self.assertIn("JE-2000F", check_cmd)
         self.assertIn("--region", check_cmd)
@@ -573,15 +574,15 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual("review", validate_kwargs[0]["source_mode"])
         self.assertEqual(4, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[0][1:3])
         self.assertIn("--source", seen[0])
         self.assertIn("runtime", seen[0])
         self.assertIn("--prepare-only", seen[0])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), seen[1][1])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.sync_review"], seen[1][1:3])
+        self.assertEqual(["-m", "tools.build.docs"], seen[2][1:3])
         self.assertIn("--source", seen[2])
         self.assertIn("review", seen[2])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
+        self.assertEqual(["-m", "tools.check.docs"], seen[3][1:3])
 
     def test_run_check_should_not_pre_sync_the_review_surface_by_default(self) -> None:
         """`check` validates; it must not rewrite tracked review files.
@@ -605,11 +606,11 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual(
             [],
-            [cmd for cmd in seen if str(build_cli.ROOT / "tools" / "sync_review.py") in cmd],
+            [cmd for cmd in seen if "tools.sync_review" in cmd],
         )
         self.assertEqual(2, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[1][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[0][1:3])
+        self.assertEqual(["-m", "tools.check.docs"], seen[1][1:3])
 
     def test_run_check_should_pre_sync_when_refresh_review_is_requested(self) -> None:
         """--refresh-review is the explicit opt-in for the params refresh."""
@@ -636,7 +637,7 @@ class TestBuildScript(unittest.TestCase):
 
         self.assertEqual(
             1,
-            len([cmd for cmd in seen if str(build_cli.ROOT / "tools" / "sync_review.py") in cmd]),
+            len([cmd for cmd in seen if "tools.sync_review" in cmd]),
         )
         self.assertEqual(4, len(seen))
 
@@ -665,9 +666,9 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate(build_cli.ROOT / "configs/config.us.yaml", data_root="tests/fixtures/phase2")
 
         self.assertEqual(3, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.validate_config"], seen[0][1:3])
+        self.assertEqual(["-m", "tools.validate_layout_params"], seen[1][1:3])
+        self.assertEqual(["-m", "tools.validate_spec_master"], seen[2][1:3])
         self.assertIn("--source", seen[2])
         self.assertIn("runtime", seen[2])
 
@@ -677,7 +678,7 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_validate(build_cli.ROOT / "configs/config.us.yaml", data_root="data/phase2")
 
         self.assertEqual(3, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.validate_spec_master"], seen[2][1:3])
         self.assertIn("--data-root", seen[2])
         self.assertIn("data/phase2", seen[2])
 
@@ -692,7 +693,7 @@ class TestBuildScript(unittest.TestCase):
             )
 
         self.assertEqual(3, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.validate_spec_master"], seen[2][1:3])
         self.assertIn("--model", seen[2])
         self.assertIn("JE-1000F", seen[2])
         self.assertIn("--region", seen[2])
@@ -708,7 +709,7 @@ class TestBuildScript(unittest.TestCase):
             )
 
         self.assertEqual(3, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_spec_master.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.validate_spec_master"], seen[2][1:3])
         self.assertIn("--source", seen[2])
         self.assertIn("review", seen[2])
 
@@ -741,8 +742,8 @@ class TestBuildScript(unittest.TestCase):
                 build_cli.run_validate(config_path)
 
         self.assertEqual(2, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_config.py"), seen[0][1])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "validate_layout_params.py"), seen[1][1])
+        self.assertEqual(["-m", "tools.validate_config"], seen[0][1:3])
+        self.assertEqual(["-m", "tools.validate_layout_params"], seen[1][1:3])
 
     def test_sync_review_command_should_forward_scope_and_page_files(self) -> None:
         args = build_cli.parse_args(
@@ -761,7 +762,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.sync_review_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), cmd[1])
+        self.assertEqual(["-m", "tools.sync_review"], cmd[1:3])
         self.assertIn("--sync-scope", cmd)
         self.assertIn("generated", cmd)
         self.assertIn("--page-file", cmd)
@@ -783,7 +784,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.sync_data_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_data.py"), cmd[1])
+        self.assertEqual(["-m", "tools.sync_data"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
         self.assertIn("--table", cmd)
@@ -821,7 +822,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.spec_master_rebuild_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "spec_master_rebuild.py"), cmd[1])
+        self.assertEqual(["-m", "tools.spec_master_rebuild"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn(".tmp/spec-master-rebuild", cmd)
         self.assertIn("--spec-rows-table-id", cmd)
@@ -855,7 +856,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.process_build_queue_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "process_build_queue.py"), cmd[1])
+        self.assertEqual(["-m", "tools.build_queue.process_build_queue"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
         self.assertIn("--workflow-action", cmd)
@@ -885,7 +886,7 @@ class TestBuildScript(unittest.TestCase):
         cmd = build_cli.message_control_dry_run_command(args)
 
         self.assertEqual(sys.executable, cmd[0])
-        self.assertIn(str(build_cli.ROOT / "tools" / "message_control_dry_run.py"), cmd)
+        self.assertIn("tools.message_control_dry_run", cmd)
         self.assertIn("--message", cmd)
         self.assertIn("publish JE-1000F us-merged from branch feature/review-123", cmd)
         self.assertIn("--record-id", cmd)
@@ -927,7 +928,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.listen_build_queue_command(args)
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "listen_build_queue.py"), cmd[1])
+        self.assertEqual(["-m", "tools.listen_build_queue"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
 
@@ -1026,11 +1027,11 @@ class TestBuildScript(unittest.TestCase):
             build_cli.run_checked = original_run_checked  # type: ignore[assignment]
             build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
-        self.assertFalse(any(Path(command[1]).name == "sync_review.py" for command in seen))
+        self.assertFalse(any(command[1:3] == ["-m", "tools.sync_review"] for command in seen))
         build_commands = [
             command
             for command in seen
-            if len(command) > 1 and Path(command[1]).name == "build_docs.py"
+            if len(command) > 1 and command[1:3] == ["-m", "tools.build.docs"]
         ]
         self.assertEqual(4, len(build_commands))
         for command in build_commands:
@@ -1061,44 +1062,44 @@ class TestBuildScript(unittest.TestCase):
             build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
         self.assertEqual(9, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[0][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[0][1:3])
         self.assertIn("--source", seen[0])
         self.assertIn("runtime", seen[0])
         self.assertIn("--prepare-only", seen[0])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "sync_review.py"), seen[1][1])
+        self.assertEqual(["-m", "tools.sync_review"], seen[1][1:3])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[2][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[2][1:3])
         self.assertIn("--source", seen[2])
         self.assertIn("review", seen[2])
         self.assertIn("--prepare-only", seen[2])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "check_docs.py"), seen[3][1])
+        self.assertEqual(["-m", "tools.check.docs"], seen[3][1:3])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
+        self.assertEqual(["-m", "tools.diff_report"], seen[4][1:3])
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "JP"), seen[4])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "JP"), seen[4])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[5][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[5][1:3])
         self.assertIn("--formats", seen[5])
         self.assertIn("word", seen[5])
         self.assertIn("--source", seen[5])
         self.assertIn("review", seen[5])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[6][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[6][1:3])
         self.assertIn("--formats", seen[6])
         self.assertIn("pdf", seen[6])
         self.assertIn("--source", seen[6])
         self.assertIn("review", seen[6])
         self.assertNotIn("--clean", seen[6])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "build_docs.py"), seen[7][1])
+        self.assertEqual(["-m", "tools.build.docs"], seen[7][1:3])
         self.assertIn("--formats", seen[7])
         self.assertIn("md", seen[7])
         self.assertIn("--source", seen[7])
         self.assertIn("review", seen[7])
         self.assertNotIn("--clean", seen[7])
 
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[8][1])
+        self.assertEqual(["-m", "tools.release_manifest"], seen[8][1:3])
         self.assertIn("--model", seen[8])
         self.assertIn("JE-1000F", seen[8])
         self.assertIn("--region", seen[8])
@@ -1246,10 +1247,10 @@ class TestBuildScript(unittest.TestCase):
             build_cli._publish_asset_gate = original_asset_gate  # type: ignore[assignment]
 
         self.assertEqual(9, len(seen))
-        self.assertEqual(str(build_cli.ROOT / "tools" / "diff_report.py"), seen[4][1])
+        self.assertEqual(["-m", "tools.diff_report"], seen[4][1:3])
         self.assertIn(str(build_cli.ROOT / "docs" / "_review" / "JE-1000F" / "US" / "es"), seen[4])
         self.assertIn(str(build_cli.ROOT / "reports" / "version_tracking" / "JE-1000F" / "US" / "es"), seen[4])
-        self.assertEqual(str(build_cli.ROOT / "tools" / "release_manifest.py"), seen[8][1])
+        self.assertEqual(["-m", "tools.release_manifest"], seen[8][1:3])
 
     def test_publish_should_redirect_generated_outputs_into_staging_root(self) -> None:
         args = build_cli.parse_args(
