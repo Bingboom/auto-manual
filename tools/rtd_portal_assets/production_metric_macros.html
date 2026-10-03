@@ -1,0 +1,11 @@
+{%- macro metric_details(item) -%}
+<details class="pe-details"><summary>口径与证据</summary>
+  <dl><dt>范围</dt><dd>{{ item.scope|e }}</dd><dt>身份与去重</dt><dd>{{ item.rule|e }}</dd>
+  <dt>单位 / 分母</dt><dd>{{ item.unit|e }} / {{ item.denominator|e }}（数量指标）</dd>
+  <dt>限制</dt><dd>{{ item.limitation|e or '登记存量不能证明新增活动或实际消费。' }}</dd></dl>
+  {% for s in item.sources %}<p><a href="{{ s.href|e }}" target="_blank" rel="noopener">{{ s.label|e }} ↗</a><br>来源时间：{{ s.date|e }}<br><small>SHA-256 <code>{{ s.sha256|e }}</code></small></p>{% endfor %}
+  {% if not item.sources %}<p>来源未建立；检查时间 {{ production.as_of|e }} UTC。</p>{% endif %}
+  {% if item.objects %}<details><summary>查看 {{ item.objects|length }} 个对象</summary><ul>{% for object in item.objects %}<li>{{ object|e }}</li>{% endfor %}</ul></details>{% endif %}
+  <a href="{{ item.guide|e }}" target="_blank" rel="noopener">完整统计契约与记录缺口 ↗</a>
+</details>
+{%- endmacro -%}

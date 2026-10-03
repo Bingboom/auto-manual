@@ -1,0 +1,54 @@
+{% from 'production_metric_macros.html' import metric_details with context %}
+<nav class="pe-nav" aria-label="工作台本页导航"><a href="#production-overview">01 生产规模</a><a href="#reuse">02 资产管理与消费</a><a href="#production-effort">03 生产投入</a><a href="#backflow">04 回流再利用</a></nav>
+<aside class="pe-attention" id="attention" aria-label="交付关注">
+  <b>交付关注</b>
+  {% if production.alerts %}<ul>{% for alert in production.alerts %}<li>{{ alert|e }}</li>{% endfor %}</ul>{% endif %}
+  <p>构建失败或任务需要人工处理时，从这里查看。运行状态尚未汇入本页。</p>
+  <div class="pe-links"><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看构建与发布运行 ↗</a><a href="https://xcn57j1urbe6.feishu.cn/wiki/BLYEwfMMFiS7wsk9MuvcOvdVnje?table=tblbnRHjpJeCVTtj" target="_blank" rel="noopener">查看待处理任务 ↗</a>{% if system_entry %}<a href="{{ pathto('workspace/system/index') }}#now-next">查看阶段验收 →</a>{% endif %}</div>
+</aside>
+<section class="sw-section pe-section pe-layer" id="production-overview" aria-labelledby="pe-scale-title">
+  <header class="pe-header"><div><span class="pe-step">01 · 生产规模</span><h2 id="pe-scale-title">已经做了哪些说明书？</h2></div><a class="pe-action" href="#deliverables">查看全部说明书与交付物 ↓</a></header>
+  <p class="pe-intro">按型号和区域查手册，再选择需要的语言或文件。一本手册的多个版本不会重复算成多本。</p>
+  {% set card_names = {'manuals': '网页说明书', 'variants': '语言版本', 'word': 'Word 文档', 'print': '印刷交付包'} %}
+  <div class="pe-cards">{% for item in production.overview if item.id in card_names %}<article class="pe-card" data-metric="{{ item.id|e }}" data-state="{{ item.state|e }}">
+    <h3>{{ card_names[item.id]|e }}</h3><strong class="{% if item.value is none %}pe-missing{% endif %}">{% if item.value is none %}暂时无法读取{% else %}{{ item.display|e }}{% endif %}</strong>
+    <span class="pe-unit">{% if item.id == 'manuals' %}本 · 型号与区域的组合{% elif item.id == 'variants' %}个 · 已标注语言的网页目标{% else %}个交付入口 · 需登录飞书{% endif %}</span>{{ metric_details(item) }}
+  </article>{% endfor %}</div>
+  <details class="pe-details pe-secondary"><summary>这些数字怎么算？还有哪些交付尚未统计？</summary>
+    <p>统计于 {{ production.as_of|e }} UTC，来源为当前发布目录与交付快照；各来源时间分别列在证据中。这里只表示当前存量，不能当作本周新增量。</p>
+    {% for item in production.overview if item.id not in card_names %}<div class="pe-extra-metric"><b>{{ item.label|e }} · {{ item.display|e }}</b>{{ metric_details(item) }}</div>{% endfor %}
+  </details>
+</section>
+<section class="sw-section pe-section pe-layer" id="reuse" aria-labelledby="pe-use-title">
+  <header class="pe-header"><div><span class="pe-step">02 · 资产管理与消费</span><h2 id="pe-use-title">有哪些可复用资产？在哪里维护、被谁用上？</h2></div></header>
+  <p class="pe-intro">按语料库、样式库、模板与骨架查看：先找到资产和维护入口，再看具体手册的采用情况。</p>
+  {% include 'asset_libraries.html' %}
+  <div class="pe-finding" id="component-usage">
+    {% if production.references %}<span class="pe-tag">已确认配置引用</span><h3>同一套产品总览组件，已绑定 {{ production.reference_metric.display|e }} 个型号／区域</h3>
+    <p>它承载产品外观、按键与接口说明。以下目标已配置引用；是否确实进入每次交付的成品，还需要产物记录来确认。</p>
+    <div class="pe-targets">{% for row in production.references %}<span><b>{{ row.model|e }}</b> · {{ regions|selectattr('code', 'equalto', row.region)|map(attribute='label')|first|default(row.region)|e }}</span>{% endfor %}</div>
+    {% else %}<span class="pe-tag">引用数据暂不可读</span><h3>暂时无法确认共用内容的使用目标</h3><p>请展开下方来源检查具体原因；这里不会把读取失败显示成 0。</p>{% endif %}
+    <div class="pe-links"><a href="#deliverables">去交付矩阵查这些手册 ↓</a><a href="#asset-growth">查看其他资产记录 ↓</a></div>
+  </div>
+  <details class="pe-details pe-secondary"><summary>查看“共用组件 → 具体手册”的引用依据</summary>
+    {{ metric_details(production.reference_metric) }}
+    <div class="pe-table-wrap" role="region" aria-label="资产配置引用关系，可横向滚动" tabindex="0"><table class="pe-table"><thead><tr><th>共享资产</th><th>生产目标</th><th>实例 ID</th><th>证据层级</th></tr></thead><tbody>
+    {% for row in production.references %}<tr><td><code>{{ row.component|e }}</code></td><td>{{ row.model|e }} / {{ row.region|e }}</td><td><code>{{ row.instances|e }}</code></td><td>配置引用</td></tr>{% endfor %}
+    </tbody></table></div><p>这是一类资产的引用覆盖，不代表全部资产的实际消费。翻译记忆最终采用、规格字段消费、跨语言复用：Not tracked yet；不能由登记量或候选命中推断。</p>
+  </details>
+</section>
+<section class="sw-section pe-section pe-layer" id="production-effort" aria-labelledby="pe-effort-title">
+  <header class="pe-header"><div><span class="pe-step">03 · 生产投入</span><h2 id="pe-effort-title">完成一份交付，还要新增和人工处理多少内容？</h2></div></header>
+  <div class="pe-finding pe-pending"><span class="pe-tag">暂时不能比较</span><h3>还不能判断，后来的说明书是不是更省力了</h3>
+    <p>现有快照没有把新增内容、人工处理和返工关联到每次交付。先把下面三项记下来，才能比较相近产品和相同阶段的任务。</p>
+    <div class="pe-inputs"><div><b>新增内容</b><p>新写或改写了哪些段落？<br>复用了哪些已有内容？</p><small>尚无可比较记录</small></div><div><b>人工处理</b><p>哪些步骤需要人接手？<br>处理了多少项？</p><small>尚无可比较记录</small></div><div><b>返工</b><p>评审后修改了哪些内容？<br>哪些问题再次出现？</p><small>尚无可比较记录</small></div></div>
+  </div>
+  <details class="pe-details pe-secondary"><summary>为什么暂不展示节省工时或投入下降比例？</summary><p>新增内容、既有内容覆盖、人工介入和返工指标状态：Not tracked yet。范围：当前冻结输入，截至 {{ production.as_of|e }} UTC。缺少逐交付的内容单位、人工处理记录与可比样本，不具备可靠分母。</p><p>文本段落、结构化字段、图片与组件不能合成一个复用百分比；Agent 执行次数和同一目标的重复构建也不能代表效率提升。</p><a href="{{ production.guide|e }}">查看需要补充的记录 ↗</a></details>
+</section>
+<section class="sw-section pe-section pe-layer" id="backflow" aria-labelledby="pe-backflow-title">
+  <header class="pe-header"><div><span class="pe-step">04 · 回流再利用</span><h2 id="pe-backflow-title">上次的修订，帮到了后来的哪份说明书？</h2></div></header>
+  <div class="pe-finding pe-pending"><span class="pe-tag">尚未证明再次复用</span><h3>当前还没有能从头核验的再利用案例</h3><p>当前输入尚不能把一次修订与后续交付关联起来。一个可确认的案例，需要能连续回答这三个问题：</p>
+    <ol class="pe-chain"><li><span>修订</span><b>当时改了什么？</b><small>找到评审意见或修订记录</small></li><li><span>回流</span><b>更新了哪项共用内容？</b><small>找到对应资产及修订版本</small></li><li><span>再次采用</span><b>后来哪份手册用了它？</b><small>找到后续交付和使用证据</small></li></ol>
+  </div>
+  <details class="pe-details pe-secondary"><summary>查看闭环证据缺口</summary><p>范围：本次页面的冻结输入；截至 {{ production.as_of|e }} UTC。以下指标均为 Not tracked yet，不能解释为没有修订或没有复用。</p><ul>{% for label in production.backflow %}<li>{{ label|e }}：Not tracked yet</li>{% endfor %}</ul><p>每条链须具备修订 ID、资产 ID 与版本、后续消费记录、Manual / Variant、时间与证据入口。原目标后续版本采用和其他目标采用分别记录。工程台账的完成状态、各阶段数量不能证明它们属于同一条生产链。</p><a href="{{ production.guide|e }}">查看关联记录的补充计划 ↗</a></details>
+</section>
