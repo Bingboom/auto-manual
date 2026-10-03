@@ -61,12 +61,18 @@ def main() -> int:
     try:
         if command(["git", "rev-parse", "HEAD"], cwd=args.root) != args.revision:
             raise ValueError("checkout does not match target revision")
+        command(["git", "merge-base", "--is-ancestor", args.revision, "origin/main"], cwd=args.root)
+        report["mainline_verified"] = True
         for attempt in range(args.attempts):
             # RTD success is checked separately; an old receipt cannot stand in for a finished build.
             report["stage"] = "rtd-build"
             builds = json.loads(FetchSession().fetch("https://readthedocs.org/api/v3/projects/ht-doc/builds/?limit=20"))
+            previous = next((item for item in builds["results"] if item.get("success")), None)
+            report["last_success"] = (previous or {}).get("finished") or "Unavailable"
             target = next((item for item in builds["results"] if item.get("commit") == args.revision), None)
             if target and target.get("state", {}).get("code") == "finished":
+                report["rtd_build"] = target.get("id")
+                report["rtd_url"] = f"https://app.readthedocs.org/projects/ht-doc/builds/{target.get('id')}/"
                 if not target.get("success"):
                     raise ValueError("RTD target build failed")
                 report["stage"] = "online-verification"
