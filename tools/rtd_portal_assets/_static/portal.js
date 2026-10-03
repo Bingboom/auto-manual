@@ -24,7 +24,11 @@ function render() {
   };
   $('#market-note').textContent = marketNotes[selected.dataset.binding] || `${selected.value} 区域说明书资料。`;
   $('#count').textContent = `${count} 份说明书`;
-  $('#products').classList.toggle('single', count === 1);
+  document.querySelectorAll('.group').forEach(group => {
+    const visible = group.querySelectorAll('.card:not([hidden])').length;
+    group.hidden = visible === 0;
+    group.querySelector('.group-count').textContent = `${visible} 份`;
+  });
   $('#empty').hidden = count !== 0;
   $('#clear').hidden = !$('#search').value;
   renderContent(query, selected.dataset.binding);

@@ -45,6 +45,27 @@ advertisements. Other markets remain accessible in an all-publications fallback
 for markets outside the primary US/EU/UK/CN/JP dropdown. The footer derives
 its market list from the same settings, and CN/JP display their own market notes.
 
+## Page layout
+
+The root page is split into five bounded zones that share one container
+width (`.shell`, 1200px), so every zone's edges line up:
+
+1. **Top bar** (sticky): brand, page switch and the region selector.
+2. **Search hero** (dark band): title and the cross-manual search box.
+3. **Filter toolbar** (sticky below the top bar): product-type chips and the
+   language filter.
+4. **Catalog**: region heading and count, then one section per product type
+   (`便携储能` / `加电包` / `太阳能板` / `配件`) with a responsive card grid.
+   Sections with no visible card after filtering are hidden.
+5. **Footer** (dark band), which also holds the Read the Docs ad placement.
+
+Cards show the product image, model, edition, a language summary (first
+published language plus the count; the full list is in the tooltip) and a
+version label. Build identifiers are not shown raw: `git-YYYYMMDD-…` reads as
+`构建 YYYY-MM-DD`, other `git-…` values as `开发构建`, and `candidate` as
+`候选版`; the raw value stays in the tooltip. Template and styles live in
+`tools/rtd_portal_assets/manual_portal.html` and `_static/portal.css`.
+
 ## Catalog validation during a build
 
 The frozen publication catalog is validated once per Sphinx build and reused
