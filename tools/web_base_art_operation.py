@@ -176,6 +176,38 @@ def _duration_tag(soup: BeautifulSoup, token: str) -> Tag:
     return duration
 
 
+def _place_art_captions(soup, art_box, supporting, layout, source_path, error_type):
+    """Position existing semantic supporting lines on hash-bound artwork."""
+    rects = layout.get("supporting_copy_rects")
+    if rects is None:
+        return supporting
+    lines = supporting.find_all(class_="line", recursive=False) if isinstance(supporting, Tag) else []
+    if not isinstance(rects, list) or not rects or len(rects) != len(lines):
+        raise error_type(f"{source_path}: supporting_copy_rects must cover every supporting line")
+    for line, rect in zip(lines, rects, strict=True):
+        x, y, width, height = _percentages(
+            rect, count=4, field="supporting_copy_rects[]",
+            source_path=source_path, error_type=error_type,
+        )
+        _add_class(line, "hb-operation-art-caption")
+        line["style"] = (f"--hb-x:{x:g}%;--hb-y:{y:g}%;"
+                         f"--hb-width:{width:g}%;--hb-height:{height:g}%")
+        art_box.append(line.extract())
+    supporting.decompose()
+    return None
+
+
+def _anchor_footer(footer, art_box, layout, source_path, error_type):
+    if "footer_y" not in layout:
+        return footer
+    (y,) = _percentages([layout["footer_y"]], count=1, field="footer_y",
+                        source_path=source_path, error_type=error_type)
+    _add_class(footer, "hb-operation-footer-anchored")
+    footer["style"] += f";--hb-footer-y:{y:g}%"
+    art_box.append(footer)
+    return None
+
+
 def arrange_base_art_operation(
     soup: BeautifulSoup,
     *,
@@ -213,6 +245,8 @@ def arrange_base_art_operation(
     image.insert_before(canvas)
     art_box.append(image.extract())
     canvas.append(art_box)
+
+    supporting = _place_art_captions(soup, art_box, supporting, layout, source_path, error_type)
 
     variant = str(spec.get("layout") or "")
     lead: Tag | None = None
@@ -327,6 +361,7 @@ def arrange_base_art_operation(
             copy.append(label)
         copy.append(steps.extract())
         footer.append(copy)
+        footer = _anchor_footer(footer, art_box, layout, source_path, error_type)
     elif variant == "footer-panel":
         (art_width,) = _percentages(
             [layout.get("art_width")],

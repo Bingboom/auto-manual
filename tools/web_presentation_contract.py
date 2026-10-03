@@ -325,6 +325,8 @@ _BASE_ART_LAYOUT_KEYS = frozenset({
     "prerequisite_max_width",
     "prerequisite_fill",
     "footer_x",
+    "footer_y",
+    "supporting_copy_rects",
     "art_width",
     "step_markers",
 })
@@ -348,6 +350,22 @@ def _require_percentages(value: Any, *, count: int, field: str) -> None:
         raise WebPresentationContractError(f"{field} must be {count} percentages")
 
 
+def _validate_operation_caption_layout(figure, layout, field):
+    if "supporting_copy_rects" in layout:
+        rects = layout["supporting_copy_rects"]
+        if (not isinstance(rects, list) or not rects
+                or len(rects) != figure.get("capture_following_lines", 0)):
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.supporting_copy_rects must cover every supporting line"
+            )
+        for index, rect in enumerate(rects):
+            _require_percentages(rect, count=4,
+                                 field=f"{field}.supporting_copy_rects[{index}]")
+    if "footer_y" in layout:
+        _require_percentages([layout["footer_y"]], count=1,
+                             field=f"{field}.base_art_layout.footer_y")
+
+
 def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
     """Fail closed on anchors that do not fit the figure they position."""
 
@@ -363,6 +381,7 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
         raise WebPresentationContractError(
             f"{field}.base_art_layout.art_sha256 must name the measured art"
         )
+    _validate_operation_caption_layout(figure, layout, field)
     variant = str(figure.get("layout") or "")
     if variant == "status-right":
         anchors = layout.get("step_anchors")

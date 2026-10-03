@@ -556,3 +556,37 @@
   max-width: none;
   padding: 0.3cqw 1.2cqw;
 }
+
+/* Localized button captions reuse semantic supporting-copy slots. */
+.hb-base-art-live-copy .hb-operation-art-caption {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  text-align: center;
+  font-size: 1.85cqw;
+  line-height: 1.25;
+}
+@media (max-width: 600px) {
+  .hb-base-art-live-copy .hb-operation-art-caption {
+    position: static;
+    width: auto;
+    min-height: 0;
+    margin: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+  }
+}
+
+.hb-base-art-live-copy .hb-operation-footer-anchored {
+  position: absolute;
+  top: var(--hb-footer-y);
+  left: 0;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .hb-base-art-live-copy .hb-operation-footer-anchored {
+    position: relative;
+    top: auto;
+  }
+}

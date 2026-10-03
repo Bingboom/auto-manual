@@ -36,6 +36,36 @@ def _text(tag: object) -> str:
 
 
 class BaseArtOperationTests(unittest.TestCase):
+    def test_energy_captions_keep_native_copy_and_separate_status_duration(self):
+        soup, figure, stage = _figure(
+            "footer-overlay", '<img class="hb-operation-art" src="shared.png">'
+            '<div class="line-block hb-operation-steps">'
+            + _step("toggle", ("summary", "Pressione e segure por 3 s"))
+            + '</div><div class="hb-operation-supporting-copy">'
+            '<div class="line">Botão Power Principal</div>'
+            '<div class="line">Botão Power CA</div></div>',
+        )
+        spec = {"id": "energy-saving", "layout": "footer-overlay",
+                "mode_label": "Ligar/Desligar", "capture_following_lines": 2,
+                "base_art_layout": {"art_sha256": "a" * 64, "footer_x": 56, "footer_y": 80,
+                                    "supporting_copy_rects": [[39, 57, 30, 16], [73, 57, 26, 16]]}}
+        from tools.web_presentation_contract import _validate_base_art_layout
+        _validate_base_art_layout(spec, field="operation")
+        arrange_base_art_operation(soup, figure=figure, stage=stage, spec=spec,
+                                   source_path=SOURCE, error_type=ValueError)
+        self.assertEqual(["Botão Power Principal", "Botão Power CA"],
+                         [_text(x) for x in stage.select(".hb-operation-art-caption")])
+        self.assertEqual("Ligar/Desligar", _text(stage.select_one(".hb-operation-mode-label")))
+        self.assertEqual("3s", _text(stage.select_one(".hb-operation-duration")))
+        self.assertIsNotNone(stage.select_one(".hb-operation-art-box > .hb-operation-footer-anchored"))
+        self.assertEqual("shared.png", stage.img["src"])
+        self.assertEqual(1, str(stage).count("Pressione e segure por 3 s"))
+        self.assertIsNone(stage.select_one(".hb-operation-supporting-copy"))
+        for rects in ([], [[0, 0, 101, 1]], [[0, 0, 1, 1]]):
+            with self.subTest(rects=rects), self.assertRaises(ValueError):
+                spec["base_art_layout"]["supporting_copy_rects"] = rects
+                _validate_base_art_layout(spec, field="operation")
+
     def test_summary_steps_sit_on_their_anchors_beside_one_duration(self) -> None:
         soup, figure, stage = _figure(
             "status-right",
