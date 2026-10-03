@@ -8,7 +8,7 @@ primary_lang: en
 terminal_slots: [regulatory_compliance]
 slot_overrides:
   preface_important:
-    file: templates/page_bp/intl/00_preface_six_language.rst
+    file: templates/page_bp/en/00_preface.rst
   toc:
     file: templates/page_bp/en-web/jbp3600a_00_toc.rst
   safety_info:

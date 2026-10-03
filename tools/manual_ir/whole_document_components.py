@@ -244,7 +244,7 @@ def _claim_lcd_mode(
 
 
 def _declared_lcd_tables(soup: BeautifulSoup, declared_role: str | None) -> list[Tag | None]:
-    if declared_role == "lcd_icons" and soup.select_one("table.lcd-text-only") is None:
+    if declared_role == "lcd_icons" and soup.select_one("table.lcd-text-only, table.hb-source-lcd-descriptions") is None:
         return [None]  # Declared pages enforce the one-table contract.
     return soup.select("table.hb-lcd-icon-table:not(.lcd-text-only)")
 

@@ -256,6 +256,23 @@ def _string_list(value: Any, *, field: str) -> list[str]:
     return normalized
 
 
+def _governed_reference_figure(figure: Mapping[str, Any]) -> bool:
+    """Require coverage for charging and explicitly governed live-copy figures."""
+
+    return (
+        str(figure.get("id") or "").casefold().startswith("charging-")
+        or str(figure.get("image_key") or "").casefold().startswith("charging/")
+        or figure.get("presentation_mode") == "base-art-live-copy"
+    )
+
+
+def _unmapped_semantic_slots(required: list[str], derived: list[str]) -> list[str]:
+    # Finished panels are measured by the illustration/hash coverage pass;
+    # semantic slots must be declared by a ComponentSpec-capable figure.
+    return [slot for slot in required
+            if slot not in derived and not slot.startswith("finished-panel.")]
+
+
 def _derived_figure_slots(
     contract: Mapping[str, Any],
     *,
@@ -297,12 +314,7 @@ def _derived_figure_slots(
         for figure in references.get("figures", []):
             if not isinstance(figure, Mapping):
                 continue
-            identifier = str(figure.get("id") or "").casefold()
-            image_key = str(figure.get("image_key") or "").casefold()
-            if not (
-                identifier.startswith("charging-")
-                or image_key.startswith("charging/")
-            ):
+            if not _governed_reference_figure(figure):
                 continue
             key = str(figure.get("web_replace_key") or "").strip()
             if key:
@@ -321,6 +333,7 @@ _BASE_ART_LAYOUT_KEYS = frozenset({
     "step_anchors",
     "step_width",
     "duration_anchor",
+    "duration_icon",
     "prerequisite_rect",
     "prerequisite_max_width",
     "prerequisite_fill",
@@ -348,6 +361,14 @@ def _require_percentages(value: Any, *, count: int, field: str) -> None:
         raise WebPresentationContractError(f"{field} must be {count} percentages")
 
 
+def _validate_duration_icon(layout: Mapping[str, Any], *, field: str) -> None:
+    icon = layout.get("duration_icon", "none")
+    if icon not in {"none", "clock"}:
+        raise WebPresentationContractError(f"{field}.duration_icon must be none or clock")
+    if icon == "clock" and "duration_anchor" not in layout:
+        raise WebPresentationContractError(f"{field}.duration_icon requires duration_anchor")
+
+
 def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
     """Fail closed on anchors that do not fit the figure they position."""
 
@@ -363,6 +384,7 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
         raise WebPresentationContractError(
             f"{field}.base_art_layout.art_sha256 must name the measured art"
         )
+    _validate_duration_icon(layout, field=f"{field}.base_art_layout")
     variant = str(figure.get("layout") or "")
     if variant == "status-right":
         anchors = layout.get("step_anchors")
@@ -667,7 +689,7 @@ def _normalize_coverage_policy(
     if figures_enabled:
         derived = _derived_figure_slots(resolved_contract, target=overlay["target"])
         missing = [slot for slot in derived if slot not in required_slots]
-        extra = [slot for slot in required_slots if slot not in derived]
+        extra = _unmapped_semantic_slots(required_slots, derived)
         if missing or extra:
             raise WebPresentationContractError(
                 f"{prefix}.required_slots are incomplete or out of scope; "

@@ -1803,6 +1803,8 @@ body {
 .hb-reference-lcd-actions td:nth-child(2),
 .hb-reference-lcd-actions th:nth-child(2) { width: 18%; }
 .hb-reference-symbol-meanings td { width: 50%; }
+.hb-reference-lcd-descriptions td:first-child { width: 35%; }
+.hb-reference-lcd-descriptions td:last-child { width: 65%; }
 @media (max-width: 42rem) {
   .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
 }

@@ -45,15 +45,15 @@ from tools.queue_contract import (  # noqa: E402
     LANG_FIELD,
     VERSION_FIELD,
 )
+from tools.rtd_production_evidence import production_context, read_publications  # noqa: E402
 from tools.rtd_source_registry import PAGE_DOMAINS, load_registry, stale_reason  # noqa: E402
 from tools.rtd_system_workspace import (  # noqa: E402
     CONTRACT_NAME,
     ContractError,
     lark_runner,
     load_contract,
-    publication_facts,
 )
-from tools.utils.path_utils import PathSegments  # noqa: E402
+from tools.utils.path_utils import PathSegments, repo_root  # noqa: E402
 
 DELIVERABLES_PAGE = "workspace/deliverables/index"
 DELIVERABLES_TEMPLATE = "deliverables.html"
@@ -323,7 +323,7 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
             lang = item["lang"].upper() or WHOLE_BOOK
             title = f"{label} · {lang} · 版本 {item['version'] or '未标注'}"
             if item.get("date"):
-                title += f" · 发布于 {item['date']}"
+                title += f" · 构建于 {item['date']}"
             shown.append({**item, "label": lang, "title": title})
         return shown
 
@@ -384,7 +384,7 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
             today = dt.date.fromisoformat(configured)
         except ValueError:
             logger.warning("rtd_system_workspace_date %r is not an ISO date; using %s", configured, today)
-    facts = publication_facts(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
+    targets, _ = read_publications(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
     registry, problems = load_registry(assets)
     domain = registry[FEISHU_DOMAIN] if registry else None
     snapshot = None
@@ -392,9 +392,13 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
         snapshot, problems = load_snapshot(assets / str(domain["snapshot"]))
     if problems:
         logger.warning("Deliverables page shows no Feishu links: %s", "; ".join(problems[:3]))
-    view = deliverables_view(facts["targets"] if facts else None, snapshot, names=names,
+    view = deliverables_view(targets, snapshot, names=names,
                              labels=region_labels(assets), language_order=language_order, today=today,
                              feishu_domain=domain)
+    view["production"] = production_context(
+        root=repo_root(), assets=assets, manifest=Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON,
+        snapshot=snapshot, registry=registry, today=today, delivery_stale=view["stale"],
+    )
     # Without a usable registry the page still renders, with the generic 无数据.
     view["fallbacks"] = ({key: value["fallback"] for key, value in registry.items()} if registry
                          else dict.fromkeys(PAGE_DOMAINS, "无数据"))
