@@ -45,13 +45,13 @@ jobs:
               [ -z "${review_ref}" ] && continue
               echo "=== ${review_ref} ===" | tee -a review_sync_out.txt
               slug="$(printf '%s' "${review_ref}" | tr '/' '_')"
-              python tools/check_review_branch_sync.py \
+              python -m tools.check_review_branch_sync \
                 --base "${review_ref}" \
                 --remote origin \
                 --repo-root . \
                 --strict | tee -a review_sync_out.txt
               rc=${PIPESTATUS[0]}
-              python tools/check_review_branch_sync.py \
+              python -m tools.check_review_branch_sync \
                 --base "${review_ref}" \
                 --remote origin \
                 --repo-root . \

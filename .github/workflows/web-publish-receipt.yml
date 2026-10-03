@@ -85,7 +85,7 @@ jobs:
       - name: Verify deployment and register HTML_link
         shell: bash
         run: |
-          cmd=(python tools/write_web_publish_receipt_links.py
+          cmd=(python -m tools.write_web_publish_receipt_links
             --config configs/config.us.yaml
             --publish-root docs/publish
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"

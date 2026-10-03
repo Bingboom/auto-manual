@@ -104,7 +104,7 @@ lark-cli api GET "/open-apis/drive/v1/permissions/<doc_token>/members" \
 ```
 
 Then open the registered doc as the operator — it should be **editable**, and no 副本
-is needed. New builds will auto-share going forward, and `tools/cloud_doc_backport.py`
+is needed. New builds will auto-share going forward, and `tools/backport/cloud_doc.py`
 resolves the doc by URL.
 
 ## 7. Why nothing is hardcoded

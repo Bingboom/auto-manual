@@ -220,7 +220,7 @@ online source update. For example, with a separate staging directory:
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
-python tools/readthedocs_source.py --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
+python -m tools.readthedocs_source --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
 python -m sphinx -b html .tmp/web-check/docs/_build/rtd .tmp/web-check/html
 ```
 
@@ -350,7 +350,7 @@ create synthetic queue rows or write `HTML_link`.
    candidate with:
 
    ```bash
-   python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
+   python -m tools.publish_branch_assembly --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
    python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 

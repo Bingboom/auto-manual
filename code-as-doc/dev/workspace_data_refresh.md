@@ -40,7 +40,7 @@ Word／印刷包：Hello-Docs 的 **Feishu Build Queue** 与 **Feishu Draft Buil
 可输出同样请求。已授权的本机批次用以下包装器启动，原命令和审批参数保持原样：
 
 ```bash
-python tools/workspace_refresh_batch.py corpus -- python tools/revision_ledger.py tm-apply ...
+python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledger tm-apply ...
 ```
 
 `...` 替换为原有已获批准的参数；包装器不授予源表写入权限。失败或 dry run 没有

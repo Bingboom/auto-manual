@@ -59,7 +59,7 @@ compares the regenerated Markdown SHA-256 exactly.
 Formal native extraction:
 
 ```bash
-python3 tools/asset_intake.py \
+python3 -m tools.asset_intake \
   --asset-source-key source/je1000h-eu-three-locales-native \
   --asset-source-file '/Users/pika/Desktop/HTE159-EU-9国说明书-0928(1).ai' \
   --asset-recipe manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/extraction_recipes/je1000h_eu_native.json \

@@ -320,7 +320,7 @@ Writeback fields:
   queue run can depend on them.
 - Schema drift checks should run against fixed fixtures or dry-run payloads
   before depending on real Feishu network state.
-- First offline gate: `python3 tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json`
+- First offline gate: `python3 -m tools.schema_drift --payload tests/fixtures/schema_drift/passing_payload.json`
   validates required phase2 logical tables, required CSV headers, required queue
   writeback fields, and the source-table contract without contacting Feishu.
 - Source-table contract gate: `python3 -m unittest tests.test_source_table_contract`

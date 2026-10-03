@@ -137,8 +137,8 @@ credentials.
 2. targeted Web composite, sync, Web presentation, and Markdown tests
 3. `python3 -m unittest`
 4. `python3 -m mypy tools/utils`
-5. `python3 tools/check_maintainability_guardrails.py`
-6. `python3 tools/check_doc_link_integrity.py`
+5. `python3 -m tools.check_maintainability_guardrails`
+6. `python3 -m tools.check_doc_link_integrity`
 7. `python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
 8. Web Markdown/Sphinx build from the committed RTD fixture
 9. PR checks and the post-merge ReadTheDocs build

@@ -575,7 +575,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - contract in [`web_publish_pipeline.md`](web_publish_pipeline.md) §2.3
 - [`tools/utils/log.py`](../../tools/utils/log.py)
   - console lines for unattended queue runs: `get_logger(name)` / `get_logger(name, stream="stderr")` write each message verbatim to the stream current at emit time, filtered by `AUTO_MANUAL_LOG_LEVEL`
-  - migrated so far: the review-start queue (`tools/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`
+  - migrated so far: the review-start queue (`tools/build_queue/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`
 
 ## 6. Cloud-Doc Backport Modules
 
@@ -583,10 +583,8 @@ The cloud-doc backport closed loop (fetch → diff → classify/route → write-
 was decomposed from a single 4183-line `cloud_doc_backport.py` into focused
 layers (debt-paydown, 2026-06), and since CQ-1.3 (2026-10) those layers live in
 the `tools/backport/` package. Import from `tools.backport.<module>` and run
-`python -m tools.backport.cloud_doc <command>`. The old names stay available until
-CQ-1.5: `python tools/cloud_doc_backport.py …` still runs the CLI, and every old
-`tools.cloud_doc_backport*` module is a shim that warns (`DeprecationWarning`) and
-aliases the new module object, so `mock.patch` targets on either name hit the same code.
+`python -m tools.backport.cloud_doc <command>`. The old `tools/cloud_doc_backport*.py`
+compatibility shims were removed in CQ-1.5.
 
 - [`tools/backport/cloud_doc.py`](../../tools/backport/cloud_doc.py)
   - thin facade (~200 lines): re-exports every public symbol from the modules
