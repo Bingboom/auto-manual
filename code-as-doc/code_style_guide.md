@@ -78,7 +78,7 @@ Responsibilities:
 
 - [`../tools/validate_config.py`](../tools/validate_config.py)
 - [`../tools/validate_layout_params.py`](../tools/validate_layout_params.py)
-- [`../tools/check_docs.py`](../tools/check_docs.py)
+- [`../tools/check/docs.py`](../tools/check/docs.py)
 - [`../tools/check_identity_drift.py`](../tools/check_identity_drift.py)
 - [`../tools/page_contracts.py`](../tools/page_contracts.py)
 

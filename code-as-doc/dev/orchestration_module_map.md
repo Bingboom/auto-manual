@@ -345,13 +345,13 @@ empty-cell policies are recorded in
 
 Quality and release logic should follow concern-specific modules instead of drifting back into entry files:
 
-- [`tools/check_docs.py`](../../tools/check_docs.py)
+- [`tools/check/docs.py`](../../tools/check/docs.py)
   - quality gate facade over bundle/reference/contract/generated-page checks
-- [`tools/check_docs_runtime.py`](../../tools/check_docs_runtime.py)
+- [`tools/check/docs_runtime.py`](../../tools/check/docs_runtime.py)
   - target-scoped quality-check orchestration and collector sequencing
-- [`tools/check_docs_renderer_contracts.py`](../../tools/check_docs_renderer_contracts.py)
+- [`tools/check/docs_renderer_contracts.py`](../../tools/check/docs_renderer_contracts.py)
   - FCC document/web renderer preflight using the resolved target language
-- [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
+- [`tools/check/docs_generated.py`](../../tools/check/docs_generated.py)
   - generated-page rule helpers
 - [`tools/validate_spec_master_shared.py`](../../tools/validate_spec_master_shared.py)
   owns shared validation predicates, including source-language recognition from

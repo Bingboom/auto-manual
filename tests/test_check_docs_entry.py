@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from tools.check_docs_entry import run_check_entry
+from tools.check.docs_entry import run_check_entry
 
 
 class CheckDocsEntryTests(unittest.TestCase):

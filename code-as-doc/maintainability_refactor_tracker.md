@@ -113,7 +113,7 @@ Milestone status: `done`
   - Status: `done`
   - Target files:
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
-    - [`../tools/check_docs.py`](../tools/check_docs.py)
+    - [`../tools/check/docs.py`](../tools/check/docs.py)
     - [`../tools/page_contracts.py`](../tools/page_contracts.py)
   - Guard tests:
     - [`../tests/test_check_docs.py`](../tests/test_check_docs.py)
@@ -123,7 +123,7 @@ Milestone status: `done`
     - bundle planning/materialization and validation are separated cleanly
     - page-contract behavior is preserved
   - Completed: `2026-04-05`
-  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check_docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check_docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
+  - Note: extracted CLI parsing, top-level entry execution, page planning/index helpers, contract-asset preflight/materialization scaffolding, bundle manifest assembly, RST asset rewrite helpers, single-page materialization/render helpers, and `materialize_bundle()` runtime orchestration helpers from `tools/gen_index_bundle.py`, then split `tools/check/docs.py` into bundle/reference, contract, generated-page, identity, runtime, and CLI helper modules; `tools/gen_index_bundle.py` dropped from 1008 to 638 lines and `tools/check/docs.py` dropped from 1071 to 393 lines while preserving existing check behavior
 
 - [x] PR 5: Reduce config-family duplication
   - Status: `done`

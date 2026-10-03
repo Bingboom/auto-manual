@@ -3,7 +3,7 @@
 import unittest
 from pathlib import Path
 
-from tools import check_docs
+from tools.check import docs as check_docs
 from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, RstIncludePage
 from tools.page_manifest import resolve_config_pages_or_raise
 

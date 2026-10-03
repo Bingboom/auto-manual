@@ -30,8 +30,8 @@ tools/build_entry_commands.py	message_control_dry_run_command	22
 tools/build_paths.py	resolve_idml_assembly_plan	25
 tools/build_paths.py	resolve_idml_layout_param_overlays	30
 tools/bundle_asset_finalize.py	finalize_materialized_bundle	23
-tools/check_docs_contracts.py	collect_page_contract_issues	37
-tools/check_docs_lang_parity.py	collect_lang_parity_issues	30
+tools/check/docs_contracts.py	collect_page_contract_issues	37
+tools/check/docs_lang_parity.py	collect_lang_parity_issues	30
 tools/check_identity_drift.py	find_identity_drift_matches	29
 tools/backport/apply.py	_rewrite_review_block	22
 tools/backport/commands.py	_run_apply_source_table	21

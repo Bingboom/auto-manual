@@ -408,9 +408,6 @@ bootstrap	tools/backport_reminder.py
 bootstrap	tools/bitable_schema.py
 bootstrap	tools/build_docs.py
 bootstrap	tools/check_docs.py
-bootstrap	tools/check_docs_capability.py
-bootstrap	tools/check_docs_lang_parity.py
-bootstrap	tools/check_docs_language_scope.py
 bootstrap	tools/check_language_literal_ratchet.py
 bootstrap	tools/check_maintainability_guardrails.py
 bootstrap	tools/check_mypy_ratchet.py

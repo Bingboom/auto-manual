@@ -37,7 +37,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/build_docs.py": 830,
     "tools/process_build_queue.py": 565,
     "tools/validate_spec_master_runtime.py": 880,
-    "tools/check_docs_generated.py": 880,
+    "tools/check/docs_generated.py": 880,
     "tools/word_bundle_docx.py": 740,
     "tools/word_bundle_docx_styles.py": 1080,
     # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into

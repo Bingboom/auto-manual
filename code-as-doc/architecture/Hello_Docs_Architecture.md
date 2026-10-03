@@ -104,8 +104,8 @@ Current responsibility:
 
 - [`../../tools/validate_config.py`](../../tools/validate_config.py)
 - [`../../tools/validate_layout_params.py`](../../tools/validate_layout_params.py)
-- [`../../tools/check_docs.py`](../../tools/check_docs.py)
-- [`../../tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
+- [`../../tools/check/docs.py`](../../tools/check/docs.py)
+- [`../../tools/check/docs_generated.py`](../../tools/check/docs_generated.py)
 - [`../../tools/check_identity_drift.py`](../../tools/check_identity_drift.py)
 - [`../../tools/page_contracts.py`](../../tools/page_contracts.py)
 - [`../../tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)

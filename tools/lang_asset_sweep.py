@@ -47,7 +47,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from tools.check_docs_terminology import load_rules, scan_text  # noqa: E402
+from tools.check.docs_terminology import load_rules, scan_text  # noqa: E402
 
 TM_SENTENCE_TABLE = "tblqtvNbgjDwR4ya"
 TM_TERMS_TABLE = "tblzerRpOEuDIkKA"
