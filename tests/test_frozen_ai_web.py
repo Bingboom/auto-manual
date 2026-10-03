@@ -56,8 +56,8 @@ class FrozenHeadingReplayTests(unittest.TestCase):
             fragments = ('<h1 class="hb-h1-pill" id="specifications">SPÉCIFICATIONS</h1>'
                          '<figure><h2 class="component-title">Keep inside component</h2></figure>'
                          '<h2 hidden>Do not promote</h2>',)
-            with patch("tools.frozen_ai_web.read_manual_ir", return_value=ir), \
-                 patch("tools.frozen_ai_web.render_document_fragments", return_value=fragments):
+            with patch("tools.web.frozen_ai_web.read_manual_ir", return_value=ir), \
+                 patch("tools.web.frozen_ai_web.render_document_fragments", return_value=fragments):
                 replay_package(package)
             output = (package / "manual.md").read_text()
             self.assertIn('<span id="specifications"></span>\n\n# SPÉCIFICATIONS', output)
