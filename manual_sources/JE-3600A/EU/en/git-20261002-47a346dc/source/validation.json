@@ -45,14 +45,16 @@
     "publication_eligible": false
   },
   "checks": {
-    "targeted_shared_components": "56 tests passed",
+    "targeted_shared_components": "113 component/presentation tests passed",
     "strict_sphinx": "passed with -W --keep-going",
     "guardrails": "passed",
-    "logic_suite": "not applicable: no production Python or renderer changes",
+    "logic_suite": "not applicable: source and shared CSS only; no production Python changes",
+    "doc_links": "249 files and 2208 links checked; zero broken",
     "phase2_build_check": "not applicable to prepared-document candidate; historical baseline built through build.py md",
     "review_correction": "IMPORTANT heading and eight byte-identical shared Symbols passed at 1440x1000 and 390x844",
     "operation_background_review": "Passed at 1440x1000 and 390x844: five gray boxes and two baked clocks removed, two CSS-only clocks, two native prerequisite paragraphs, 56 loaded images, no overflow or page errors",
-    "style_restoration_review": "Passed at 1440x1000 and 390x844: 16 chapter bands, manual bullets isolated from App numbering, three sold-separately pills, first-charge pill, bold green-energy lead, rounded storage panel, 56 loaded images, no overflow/errors/duplicate IDs"
+    "style_restoration_review": "Passed at 1440x1000 and 390x844: 16 chapter bands, manual bullets isolated from App numbering, three sold-separately pills, first-charge pill, bold green-energy lead, rounded storage panel, 56 loaded images, no overflow/errors/duplicate IDs",
+    "spec_warranty_app_review": "Passed at 1440x1000 and 390x844: three dark chapter bars, six floating warranty labels without body overlap, seven App headings with source case and aligned text edges, step 2.2 emphasis, store/QR assets loaded and centered, no broken images/errors/overflow/duplicate IDs"
   },
   "warnings": [
     "Local Python package versions differ from requirements.lock; dependencies were not changed."
@@ -77,5 +79,12 @@
     "native_text_ledger_byte_identical": true,
     "asset_manifest_byte_identical": true,
     "copy_change": "Remove three editorial parentheses surrounding SOLD SEPARATELY; source has standalone badges without parentheses. All words, source facts and chapter order preserved."
+  },
+  "shared_app_heading_correction": {
+    "preserve_source_case": true,
+    "remove_inherited_padding": true,
+    "source_copy_unchanged": true,
+    "source_artwork_unchanged": true,
+    "frozen_css_regenerated": true
   }
 }

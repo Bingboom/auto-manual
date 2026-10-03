@@ -167,7 +167,7 @@
         "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -745,6 +745,328 @@
         }
       ],
       "scope": "Source heading hierarchy, three SOLD SEPARATELY badges, first-charge pill, bold green-energy lead and storage panel; prior artwork/CSS clocks preserved."
+    },
+    "spec_warranty_app_review": {
+      "app": {
+        "downloads": [
+          {
+            "artCenter": 497.29296875,
+            "columnCenter": 497.296875,
+            "copyTop": 750.6953125,
+            "loaded": true,
+            "renderedHeight": 146.875,
+            "renderedWidth": 219.2421875,
+            "src": "assets/app-store.png"
+          },
+          {
+            "artCenter": 974.69921875,
+            "columnCenter": 974.703125,
+            "copyTop": 750.6953125,
+            "loaded": true,
+            "renderedHeight": 160.7734375,
+            "renderedWidth": 160.7734375,
+            "src": "assets/app-qr.png"
+          }
+        ],
+        "emphasis": [
+          {
+            "text": "POWER",
+            "weight": "700"
+          },
+          {
+            "text": "Icon Flashed",
+            "weight": "700"
+          }
+        ],
+        "headings": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 510.6953125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "1. Download the App and log in",
+            "textLeft": 314.59375,
+            "top": 488.8359375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 893.9609375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "2. Add device",
+            "textLeft": 314.59375,
+            "top": 872.1015625,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3279.9375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "3. Unbind the device",
+            "textLeft": 314.59375,
+            "top": 3258.078125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3408.65625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "4. Notes",
+            "textLeft": 314.59375,
+            "top": 3386.796875,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3446.3125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3426.25,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3608.8984375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3588.8359375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3746.2109375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.3 To reset Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3726.1484375,
+            "transform": "none"
+          }
+        ],
+        "left": 314.59375,
+        "paragraphs": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 930.75,
+            "color": "rgb(52, 48, 49)",
+            "left": 314.59375,
+            "right": 1146.59375,
+            "tag": "P",
+            "text": "2.1 Click the button + to add your device;",
+            "top": 905.4765625,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 1020.6875,
+            "color": "rgb(52, 48, 49)",
+            "left": 314.59375,
+            "right": 1146.59375,
+            "tag": "P",
+            "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+            "top": 943.8671875,
+            "transform": "none"
+          }
+        ],
+        "step2": {
+          "background": "rgba(0, 0, 0, 0)",
+          "bottom": 893.9609375,
+          "color": "rgb(52, 48, 49)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H2",
+          "text": "2. Add device",
+          "top": 872.1015625,
+          "transform": "none"
+        }
+      },
+      "brokenImages": [],
+      "chapters": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -1960.921875,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "SPECIFICATIONS",
+          "top": -2012.6328125,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -717.234375,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "WARRANTY",
+          "top": -768.9453125,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 444.0390625,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "APP SETUP",
+          "top": 392.328125,
+          "transform": "uppercase"
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "scrollWidth": 1440,
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "warranty": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -543.390625,
+          "bottom": -545.0546875,
+          "cardLeft": 314.59375,
+          "cardTop": -562.1875,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 520.9609375,
+          "tag": "H2",
+          "text": "Limited Warranty",
+          "top": -573.9453125,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -378.6328125,
+          "bottom": -380.296875,
+          "cardLeft": 314.59375,
+          "cardTop": -397.4296875,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 513.4765625,
+          "tag": "H2",
+          "text": "Warranty Period",
+          "top": -409.1875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -137.6640625,
+          "bottom": -139.328125,
+          "cardLeft": 314.59375,
+          "cardTop": -156.4609375,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 460.84375,
+          "tag": "H2",
+          "text": "Exchange",
+          "top": -168.21875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -11.484375,
+          "bottom": -13.1484375,
+          "cardLeft": 314.59375,
+          "cardTop": -30.28125,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 666.1640625,
+          "tag": "H2",
+          "text": "Limited to Original Consumer Buyer",
+          "top": -42.0390625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 95.40625,
+          "bottom": 93.7421875,
+          "cardLeft": 314.59375,
+          "cardTop": 76.609375,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 463.8828125,
+          "tag": "H2",
+          "text": "Exclusions",
+          "top": 64.8515625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 313.125,
+          "bottom": 311.4609375,
+          "cardLeft": 314.59375,
+          "cardTop": 294.328125,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 548.3125,
+          "tag": "H2",
+          "text": "Interpretation Rights",
+          "top": 282.5703125,
+          "transform": "none"
+        }
+      ],
+      "errors": [],
+      "text_sha256": "b194a3bfd88a95cebb6dac4465c24fdd1ebd499e9416ef2e3b87338004615f0a",
+      "screenshots": [
+        {
+          "name": "final-sections-app-1440.png",
+          "sha256": "5b4142856fb9a78e3730d7d02cf0c3f46db37d59e87780a1d82f5f55d604c11b"
+        },
+        {
+          "name": "final-sections-specifications-1440.png",
+          "sha256": "e128fe7150222b9fdb9056c6f144fba8b873611abc562fcf7212d7eb3e853c62"
+        },
+        {
+          "name": "final-sections-warranty-1440.png",
+          "sha256": "f45d0dce538aee320300807fbeb74a8b9175708a5a119f8085a943d47ebb0315"
+        }
+      ],
+      "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
     }
   },
   {
@@ -934,7 +1256,7 @@
         "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
       }
     ],
-    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review",
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review",
     "review_correction": {
       "brokenImages": [],
       "duplicateIds": [],
@@ -1524,6 +1846,328 @@
         }
       ],
       "scope": "Source heading hierarchy, three SOLD SEPARATELY badges, first-charge pill, bold green-energy lead and storage panel; prior artwork/CSS clocks preserved."
+    },
+    "spec_warranty_app_review": {
+      "app": {
+        "downloads": [
+          {
+            "artCenter": 100.6953125,
+            "columnCenter": 100.69921875,
+            "copyTop": 2111.96875,
+            "loaded": true,
+            "renderedHeight": 88.5078125,
+            "renderedWidth": 132.125,
+            "src": "assets/app-store.png"
+          },
+          {
+            "artCenter": 289.296875,
+            "columnCenter": 289.296875,
+            "copyTop": 2111.96875,
+            "loaded": true,
+            "renderedHeight": 101.640625,
+            "renderedWidth": 101.640625,
+            "src": "assets/app-qr.png"
+          }
+        ],
+        "emphasis": [
+          {
+            "text": "POWER",
+            "weight": "700"
+          },
+          {
+            "text": "Icon Flashed",
+            "weight": "700"
+          }
+        ],
+        "headings": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 1983.96875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "1. Download the App and log in",
+            "textLeft": 16,
+            "top": 1964.453125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2242.015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "2. Add device",
+            "textLeft": 16,
+            "top": 2222.5,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4477.6015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "3. Unbind the device",
+            "textLeft": 16,
+            "top": 4458.0859375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4641.015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "4. Notes",
+            "textLeft": 16,
+            "top": 4621.5,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4678.671875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 4658.609375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4885.9453125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 4865.8828125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 5093.21875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.3 To reset Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 5073.15625,
+            "transform": "none"
+          }
+        ],
+        "left": 16,
+        "paragraphs": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2277.828125,
+            "color": "rgb(52, 48, 49)",
+            "left": 16,
+            "right": 374,
+            "tag": "P",
+            "text": "2.1 Click the button + to add your device;",
+            "top": 2253.53125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2437.7265625,
+            "color": "rgb(52, 48, 49)",
+            "left": 16,
+            "right": 374,
+            "tag": "P",
+            "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+            "top": 2290.9453125,
+            "transform": "none"
+          }
+        ],
+        "step2": {
+          "background": "rgba(0, 0, 0, 0)",
+          "bottom": 2242.015625,
+          "color": "rgb(52, 48, 49)",
+          "left": 16,
+          "right": 374,
+          "tag": "H2",
+          "text": "2. Add device",
+          "top": 2222.5,
+          "transform": "none"
+        }
+      },
+      "brokenImages": [],
+      "chapters": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -1353.8125,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "SPECIFICATIONS",
+          "top": -1399.859375,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 212.5234375,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "WARRANTY",
+          "top": 166.4765625,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 1929.2578125,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "APP SETUP",
+          "top": 1883.2109375,
+          "transform": "uppercase"
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "scrollWidth": 390,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "warranty": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 438.6328125,
+          "bottom": 434.5234375,
+          "cardLeft": 16,
+          "cardTop": 419.8359375,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 191.46875,
+          "tag": "H2",
+          "text": "Limited Warranty",
+          "top": 409.359375,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 715.125,
+          "bottom": 711.015625,
+          "cardLeft": 16,
+          "cardTop": 696.328125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 185.09375,
+          "tag": "H2",
+          "text": "Warranty Period",
+          "top": 685.8515625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1144.953125,
+          "bottom": 1140.84375,
+          "cardLeft": 16,
+          "cardTop": 1126.15625,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 140.2578125,
+          "tag": "H2",
+          "text": "Exchange",
+          "top": 1115.6796875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1325,
+          "bottom": 1320.890625,
+          "cardLeft": 16,
+          "cardTop": 1306.203125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 315.15625,
+          "tag": "H2",
+          "text": "Limited to Original Consumer Buyer",
+          "top": 1295.7265625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1447.1796875,
+          "bottom": 1443.0703125,
+          "cardLeft": 16,
+          "cardTop": 1428.3828125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 142.84375,
+          "tag": "H2",
+          "text": "Exclusions",
+          "top": 1417.90625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1795.921875,
+          "bottom": 1791.8125,
+          "cardLeft": 16,
+          "cardTop": 1777.125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 214.765625,
+          "tag": "H2",
+          "text": "Interpretation Rights",
+          "top": 1766.6484375,
+          "transform": "none"
+        }
+      ],
+      "errors": [],
+      "text_sha256": "3a6f6f25a00d3e3da04c4b98eb1d2a7703fe97921c4b08d5e3fbec70c351bf0b",
+      "screenshots": [
+        {
+          "name": "final-sections-app-390.png",
+          "sha256": "f938fc77b775a2e7460d81d211f6eb4965ea94e369fa48eb1bce23c101961f7c"
+        },
+        {
+          "name": "final-sections-specifications-390.png",
+          "sha256": "7354b5e5670c3116932f207dd3978a3685cf57a57b0029c1d0b486f842168cfa"
+        },
+        {
+          "name": "final-sections-warranty-390.png",
+          "sha256": "bc944e0d63c596f1a32d123a22a58facdef3146bf5cc633a7f1d3aecc58df285"
+        }
+      ],
+      "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
     }
   }
 ]

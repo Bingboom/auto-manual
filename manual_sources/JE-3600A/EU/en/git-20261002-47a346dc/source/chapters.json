@@ -7123,7 +7123,33 @@
           "children": [
             {
               "kind": "text",
-              "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions."
+              "text": "2.2 Press the "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "POWER"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “"
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Icon Flashed"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "” button and allow the App to connect to nearby devices and open Bluetooth permissions."
             }
           ],
           "schema_version": "manual-flow/v2"

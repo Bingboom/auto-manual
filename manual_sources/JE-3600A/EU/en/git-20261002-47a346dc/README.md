@@ -79,7 +79,7 @@ and was visually transcribed; it does not claim native publication admission.
 ## Review evidence
 
 The candidate passed strict IR validation, deterministic Markdown replay, all
-packaged asset hashes, strict Sphinx, 56 targeted shared-component tests, and the
+packaged asset hashes, strict Sphinx, 113 targeted shared-component/presentation tests, and the
 repository maintainability guardrails. Browser checks cover 1440×1000 and
 390×844, 56 loaded image elements, 23 LCD rows, correct rowspans, zero missing
 images, page errors or document overflow. Wide semantic tables remain horizontally
@@ -102,8 +102,10 @@ therefore unsuitable for unchanged reuse.
 Local complete chapter screenshots are retained in
 `reports/je3600a-native/browser-final-{1440,390}`; their digests are in the browser
 receipt. Local Python versions differ from `requirements.lock`; no dependencies
-were changed. No production renderer, Python logic or shared CSS was changed, so
-full logic/build-behavior suites were not applicable to this source-only PR.
+were changed. No production Python logic or build commands change. The shared App heading
+CSS preserves source case and removes inherited heading padding; this candidate
+freezes the regenerated stylesheet. Full logic/build-behavior suites are not
+applicable to these source and stylesheet changes.
 
 The introduction and Symbols correction was rechecked in the in-app browser at
 both sizes. `source/browser-audit.json` retains the initial full-manual audit and
@@ -132,6 +134,15 @@ The three editorial parentheses around `SOLD SEPARATELY` are removed to match
 the native standalone badges. All words, technical values, chapter order,
 native text ledger and artwork remain unchanged. Local screenshots are
 `reports/je3600a-native/style-*.png`.
+
+The final Specifications/Warranty/App check is recorded under
+`spec_warranty_app_review`. The three chapter bands and six dark warranty labels
+were rechecked at both widths. All seven App numbered headings align their text
+with the chapter's left edge; the shared rule removes inherited H3 padding and
+preserves source case. Step 2.2 retains native bold `POWER` and `Icon Flashed`.
+The store badges and QR code load within their columns and stay centered above
+their copy. No assets or wording change. Local screenshots are
+`reports/je3600a-native/final-sections-*.png`.
 
 ## Source errata awaiting product review
 

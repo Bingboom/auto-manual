@@ -667,6 +667,8 @@ App 添加设备源稿中夹在手机图和按键图之间的备注，由共享�
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图；默认的共享按键底图不依赖目标插图授权，标签保持为覆盖活文本。仅当 target 的已核准 finished-panel 明确包含该组标签时，允许在 presentation 前以整图消费该 reference，并同时移除重复活文本；JE-2000F/EU/en 的三键控制面板属于此批准变体。LCD 模式表不属于此例外，仍由设备图与语义化 CSS/HTML 表格组成 |
 
+Web App 的编号步骤标题保留源文大小写，不加圆点，与步骤正文左边线对齐；该例外仅限包含共享 Add Device 组件的章节，不覆盖其他章节的 H2/H3。
+
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。

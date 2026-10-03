@@ -13,6 +13,8 @@
 #furo-main-content > section:has(.hb-app-add-device-composition) h2,
 #furo-main-content > section:has(.hb-app-add-device-composition) h3 {
   gap: 0;
+  padding: 0;
+  text-transform: none;
 }
 
 .hb-app-add-device-composition {

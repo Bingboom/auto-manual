@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "754dc173974f8e7a986e823cd84bfc905b601bac099db80d3b35c1e18a08cf16",
-  "content_sha256": "d4f604f6d49a72c6decd2ad80ac89ed5c50b3f45fbac460b3f5a6360d9207a88",
+  "content_sha256": "e953ad42ca6c1b64f212990645b2b545d6b6d59f9a0adbf770f39e39dba4d225",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1401,7 +1401,7 @@
       },
       "validated_main": "e682bc7770c91cbd8e6aec6c98105fbb68c61f62"
     },
-    "frozen_stylesheet_sha256": "8d62bec04b9a3390648d02ba372987d573a8f5cf4905e3d4ff8d1df35779cf2a",
+    "frozen_stylesheet_sha256": "dcea4885605e605e9c0f49e16326870d92b39c6f2bdbac76a038e89f0ab17163",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -9804,13 +9804,39 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0006",
-          "content_sha256": "08e77380f1eb304b766d85be9194fe68fac925c63f7c607b442734601a2cbde6",
+          "content_sha256": "e0eb38d7cdba4ada239e8ddd8b07c2d7c05b03516ca2807e8f2c5cda35a240c4",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions."
+                "text": "2.2 Press the "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "POWER"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Icon Flashed"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": "” button and allow the App to connect to nearby devices and open Bluetooth permissions."
               }
             ],
             "kind": "paragraph",
