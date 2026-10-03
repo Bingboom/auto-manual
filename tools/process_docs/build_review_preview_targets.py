@@ -6,7 +6,7 @@ from collections.abc import Iterator, Sequence
 from functools import lru_cache
 from pathlib import Path
 
-from tools.build_docs import load_config
+from tools.build.docs import load_config
 from tools.process_docs.build_review_preview_config import (
     WorkspaceTarget,
     WorkspaceTargetTemplate,

@@ -22,9 +22,9 @@ tools/bitable_schema.py	_cmd_promote	22
 tools/bitable_schema.py	apply	31
 tools/bitable_schema.py	parity	26
 tools/bitable_schema.py	seed_import	30
-tools/build_docs_bundle.py	prepare_manual_bundle	40
-tools/build_docs_entry.py	run_build	23
-tools/build_docs_export.py	_copy_attachment_images_for_latex	22
+tools/build/docs_bundle.py	prepare_manual_bundle	40
+tools/build/docs_entry.py	run_build	23
+tools/build/docs_export.py	_copy_attachment_images_for_latex	22
 tools/build_doctor.py	collect_doctor_findings	47
 tools/build_entry_commands.py	message_control_dry_run_command	22
 tools/build_paths.py	resolve_idml_assembly_plan	25

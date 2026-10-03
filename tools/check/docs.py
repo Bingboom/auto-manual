@@ -14,7 +14,7 @@ from tools.config_pages import GeneratedPage, RstIncludePage  # noqa: E402
 from tools.contract_assets import ContractAssetResolver  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.utils.path_utils import Paths, contracts_dir_of  # noqa: E402
-from tools.build_docs import (  # noqa: E402
+from tools.build.docs import (  # noqa: E402
     BuildTarget,
     load_config,
     render_build_template,

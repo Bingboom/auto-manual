@@ -79,7 +79,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `build_docs_*` → `web_*` → `rtd_*` / `word_*`。每个 PR 同时更新 `orchestration_module_map.md`
   和热点行数上限表中的路径。
   进度：`queue_*` / `process_*queue*`（39 个）→ `tools/build_queue/`（2026-10-03；包名避开标准库 `queue`）；
-  `check_docs*`（14 个）→ `tools/check/`（2026-10-03）。
+  `check_docs*`（14 个）→ `tools/check/`（2026-10-03）；`build_docs*`（18 个）→ `tools/build/`（2026-10-03）。
 - [ ] **CQ-1.5 入口统一。** 让 `scripts/`、文档中的命令、`build.py` 的子进程调用改用
   `python -m`；确认没有调用方后删除 shim 与启动代码。**涉及 `.github/workflows/**` 的改动需操作者确认。**
 

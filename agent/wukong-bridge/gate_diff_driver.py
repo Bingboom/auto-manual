@@ -33,7 +33,7 @@ import json, sys
 sys.path.insert(0, ".")
 from pathlib import Path
 from tools.check.docs import load_config
-from tools.build_docs import prepare_manual_bundle
+from tools.build.docs import prepare_manual_bundle
 from tools.manual_ir.builder import build_manual_ir
 from tools.manual_ir.serialize import write_manual_ir
 from tools.target_defaults import FAMILY_DEFAULT_CONFIGS

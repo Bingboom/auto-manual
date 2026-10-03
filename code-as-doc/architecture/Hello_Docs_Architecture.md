@@ -34,11 +34,11 @@ Current responsibility:
 
 ### 2.2 Build Orchestration Layer
 
-- [`../../tools/build_docs.py`](../../tools/build_docs.py)
-- [`../../tools/build_docs_main.py`](../../tools/build_docs_main.py)
-- [`../../tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
-- [`../../tools/build_docs_export.py`](../../tools/build_docs_export.py)
-- [`../../tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
+- [`../../tools/build/docs.py`](../../tools/build/docs.py)
+- [`../../tools/build/docs_main.py`](../../tools/build/docs_main.py)
+- [`../../tools/build/docs_entry.py`](../../tools/build/docs_entry.py)
+- [`../../tools/build/docs_export.py`](../../tools/build/docs_export.py)
+- [`../../tools/build/docs_artifacts.py`](../../tools/build/docs_artifacts.py)
 - [`../../tools/utils/targets.py`](../../tools/utils/targets.py)
 
 Current responsibility:
@@ -160,12 +160,12 @@ Current responsibility:
 ```mermaid
 flowchart TD
   A["build.py"] --> B["tools/build_dispatch.py"]
-  B --> C["tools/build_docs.py"]
+  B --> C["tools/build/docs.py"]
   B --> D["tools/build_runtime.py"]
   B --> E["tools/build_reports.py"]
   B --> F["tools/build_publish.py"]
   C --> G["tools/gen_index_bundle.py"]
-  C --> H["tools/build_docs_export.py"]
+  C --> H["tools/build/docs_export.py"]
   H --> I["docs/_build/<model>/<region>/rst"]
   I --> J["docs/_review/<model>/<region> overlay"]
   J --> K["html / word / pdf"]

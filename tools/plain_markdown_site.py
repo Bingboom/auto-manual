@@ -1014,7 +1014,7 @@ def _require_sphinx() -> None:
 
 def _sphinx_cmd() -> list[str]:
     try:
-        from tools.build_docs_sphinx import resolve_sphinx_build_cmd
+        from tools.build.docs_sphinx import resolve_sphinx_build_cmd
         from tools.utils.process_utils import find_exe
     except ImportError:
         sphinx_build = shutil.which("sphinx-build")

@@ -20,7 +20,7 @@ class CountFileTest(unittest.TestCase):
         source = """
             from unittest import mock
             from unittest.mock import patch
-            from tools import build_docs
+            from tools.build import docs as build_docs
             from tools.build_queue import process_build_queue as pbq
             import tools.build_queue.process_review_start_queue as review
             import tools.backport.cloud_doc
@@ -31,7 +31,7 @@ class CountFileTest(unittest.TestCase):
                     pass
                 with patch.object(tools.backport.cloud_doc, "x"):
                     pass
-                with patch("tools.build_queue.process_build_queue.helper"), mock.patch("tools.build_docs.run"):
+                with patch("tools.build_queue.process_build_queue.helper"), mock.patch("tools.build.docs.run"):
                     pass
         """
         with tempfile.TemporaryDirectory() as tmp:
@@ -43,7 +43,7 @@ class CountFileTest(unittest.TestCase):
     def test_ignores_implementation_modules_and_unrelated_patches(self) -> None:
         source = """
             from unittest.mock import patch
-            from tools import build_docs_artifacts
+            from tools.build import docs_artifacts as build_docs_artifacts
             from tools.build_queue import process_build_queue_main
             from pathlib import Path
 
@@ -51,7 +51,7 @@ class CountFileTest(unittest.TestCase):
                 pass
             with patch.object(process_build_queue_main, "run"):
                 pass
-            with patch("tools.build_queue.process_build_queue_main.run"), patch("tools.build_docs.sub.run"):
+            with patch("tools.build_queue.process_build_queue_main.run"), patch("tools.build.docs.sub.run"):
                 pass
             with patch.dict("os.environ", {}):
                 pass
@@ -103,7 +103,7 @@ class RepositoryTest(unittest.TestCase):
                 "tests/test_z.py",
                 """
                 from unittest.mock import patch
-                from tools import build_docs
+                from tools.build import docs as build_docs
                 with patch.object(build_docs, "run"):
                     pass
                 """,

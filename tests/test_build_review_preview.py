@@ -38,7 +38,7 @@ class TestBuildReviewPreview(unittest.TestCase):
         module_name = "tools.process_docs.build_review_preview_targets"
         sys.modules.pop(module_name, None)
 
-        with mock.patch("tools.build_docs.load_config", side_effect=AssertionError("config load should be lazy")):
+        with mock.patch("tools.build.docs.load_config", side_effect=AssertionError("config load should be lazy")):
             module = importlib.import_module(module_name)
 
         self.assertEqual(0, module.workspace_target_templates.cache_info().currsize)

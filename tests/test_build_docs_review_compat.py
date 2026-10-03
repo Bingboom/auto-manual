@@ -6,7 +6,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest import mock
 
-from tools import build_docs, build_docs_bundle
+from tools.build import docs as build_docs, docs_bundle as build_docs_bundle
 from tools.gen_index_bundle import MaterializedBundle
 
 _BUNDLE_COLLABORATORS = (

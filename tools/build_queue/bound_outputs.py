@@ -6,7 +6,7 @@ from typing import Any
 _DEFAULT_ROOT = Path(__file__).resolve().parents[2]
 _repo_root_provider = lambda: _DEFAULT_ROOT
 
-from tools.build_docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
+from tools.build.docs import build_root_for_target, render_build_template, resolve_output_path  # noqa: E402
 from tools.document_link_actions import normalize_workflow_action  # noqa: E402
 from tools.build_queue.config_resolution import build_languages as _build_languages  # noqa: E402
 from tools.build_queue.outputs import (  # noqa: E402

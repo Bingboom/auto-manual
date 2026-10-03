@@ -57,7 +57,7 @@ Milestone status: `done`
   - Status: `done`
   - Target files:
     - [`../build.py`](../build.py)
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/build/docs.py`](../tools/build/docs.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
     - [`../tools/diff_report.py`](../tools/diff_report.py)
     - [`../tools/sync_data.py`](../tools/sync_data.py)
@@ -90,10 +90,10 @@ Milestone status: `done`
 
 Milestone status: `done`
 
-- [x] PR 3: Split `tools/build_docs.py` into target, bundle, and export layers
+- [x] PR 3: Split `tools/build/docs.py` into target, bundle, and export layers
   - Status: `done`
   - Target files:
-    - [`../tools/build_docs.py`](../tools/build_docs.py)
+    - [`../tools/build/docs.py`](../tools/build/docs.py)
     - [`../tools/word_bundle.py`](../tools/word_bundle.py)
     - [`../tools/word_bundle_html.py`](../tools/word_bundle_html.py)
     - [`../tools/word_bundle_docx.py`](../tools/word_bundle_docx.py)
@@ -105,9 +105,9 @@ Milestone status: `done`
     - [`../tests/test_manual_html_assets.py`](../tests/test_manual_html_assets.py)
   - Done when:
     - target resolution, bundle preparation, and export backends are separated
-    - `tools/build_docs.py` becomes a thin orchestration shell
+    - `tools/build/docs.py` becomes a thin orchestration shell
   - Completed: `2026-04-05`
-  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build_docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
+  - Note: extracted CLI parsing, entry orchestration, target resolution, validation, csv/root-index generation, HTML metadata helpers, bundle preparation, output resolution, I/O/export flow, path/theme/sphinx helpers, shared types/constants, and additional misc support modules; `tools/build/docs.py` dropped from 1409 to 678 lines while preserving current test-facing wrappers
 
 - [x] PR 4: Split bundle materialization and check logic
   - Status: `done`

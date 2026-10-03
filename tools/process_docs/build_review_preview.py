@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
 from tools.utils.path_utils import Paths, PathSegments
-from tools.build_docs import load_config
+from tools.build.docs import load_config
 from tools.process_docs.build_review_preview_data import (
     build_change_workbook,
     build_downloads_metadata,
