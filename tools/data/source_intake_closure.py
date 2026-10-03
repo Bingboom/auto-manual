@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from tools.source_table_sync import (
+from tools.data.source_table_sync import (
     CHANGE_REQUEST_SCHEMA_VERSION,
     apply_change_requests,
     load_change_requests,

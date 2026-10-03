@@ -5,23 +5,19 @@
 MVP scope: read a structured Markdown/Feishu document, extract source-table
 candidates, and optionally emit approval-gated source-table change requests for
 existing rows. Live writes remain owned by ``tools/backport/cloud_doc.py
-apply-source-table`` / ``tools.source_table_sync``.
+apply-source-table`` / ``tools.data.source_table_sync``.
 """
 from __future__ import annotations
 
 import argparse
 from pathlib import Path
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[2]
 
-from tools.source_intake_extract import read_input_text  # noqa: E402
-from tools.source_intake_closure import (  # noqa: E402
+from tools.data.source_intake_extract import read_input_text  # noqa: E402
+from tools.data.source_intake_closure import (  # noqa: E402
     build_apply_report,
     build_approval_report,
     build_closure_report,
@@ -30,7 +26,7 @@ from tools.source_intake_closure import (  # noqa: E402
     write_approval_report,
     write_closure_report,
 )
-from tools.source_intake_runtime import (  # noqa: E402
+from tools.data.source_intake_runtime import (  # noqa: E402
     enrich_candidates_with_snapshot,
     extract_candidates_from_text,
     write_intake_outputs,
@@ -299,9 +295,9 @@ def _spec_extract(args: argparse.Namespace) -> int:
     import collections
     import json
 
-    from tools.source_intake_completeness import check_completeness
-    from tools.source_intake_extract import read_input_text
-    from tools.source_intake_rules import FieldRule, extract_candidates
+    from tools.data.source_intake_completeness import check_completeness
+    from tools.data.source_intake_extract import read_input_text
+    from tools.data.source_intake_rules import FieldRule, extract_candidates
 
     if not args.reference and not args.skip_completeness:
         # The gate silently not running is exactly the QC gap this guards
@@ -344,7 +340,7 @@ def _spec_extract(args: argparse.Namespace) -> int:
 def _stage_plan(args: argparse.Namespace) -> int:
     import json
 
-    from tools.source_intake_staging import build_staging_plan, write_staging_outputs
+    from tools.data.source_intake_staging import build_staging_plan, write_staging_outputs
 
     out_dir = Path(args.out).resolve() if args.out else _default_out_dir(str(args.document_key))
     try:

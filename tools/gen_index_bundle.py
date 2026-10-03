@@ -25,7 +25,7 @@ from tools.config_pages import (
 from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.capability_pages import strip_capability_sections
 from tools.contract_assets import ContractAssetResolver
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
     render_generated_page,

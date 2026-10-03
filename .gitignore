@@ -37,7 +37,7 @@ docs/generated/
 # copies into the snapshot; it must stay tracked or fresh checkouts cannot sync.
 data/phase2/*
 !data/phase2/page_registry.csv
-# sync-data's snapshot write lock (tools/sync_data_records.py
+# sync-data's snapshot write lock (tools/data/sync_data_records.py
 # phase2_snapshot_write_lock). Only the flock is released; the file itself is
 # left on disk, and it sits BESIDE the export root rather than inside it, so
 # the pattern above does not cover it. Named from the export root, so a

@@ -47,7 +47,7 @@ def run_main(
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
 ) -> int:
     # Make phase2/Feishu secrets from ~/.auto-manual-phase2.env available to this
-    # process (and the child processes it spawns, e.g. tools/sync_data.py) without
+    # process (and the child processes it spawns, e.g. tools/data/sync_data.py) without
     # requiring a manual `source`. No-op when the file is absent; never overrides
     # variables already set to a non-empty value. See tools/local_env.py.
     load_local_env_file()

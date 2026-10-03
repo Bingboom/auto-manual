@@ -11,7 +11,7 @@ queue, review, and release code.
 Machine-readable phase2 source-table contract:
 
 - [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
-- Loader/validator: [`../../tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- Loader/validator: [`../../tools/data/source_table_contract.py`](../../tools/data/source_table_contract.py)
 - Drift-facing tests: [`../../tests/test_source_table_contract.py`](../../tests/test_source_table_contract.py)
 
 Use the JSON contract as the durable index when changing online source-table
@@ -21,13 +21,13 @@ index mapping, and guarded writer boundary used by automation.
 
 Keep this document aligned when changing:
 
-- [`tools/data_snapshot.py`](../../tools/data_snapshot.py)
-- [`tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- [`tools/data/snapshot.py`](../../tools/data/snapshot.py)
+- [`tools/data/source_table_contract.py`](../../tools/data/source_table_contract.py)
 - [`data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
 - [`tools/validate_config.py`](../../tools/validate_config.py)
 - [`tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
 - [`tools/build_queue/process_review_start_queue_records.py`](../../tools/build_queue/process_review_start_queue_records.py)
-- [`tools/sync_data.py`](../../tools/sync_data.py)
+- [`tools/data/sync_data.py`](../../tools/data/sync_data.py)
 
 ## 1. Phase2 Snapshot Tables
 

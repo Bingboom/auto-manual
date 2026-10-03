@@ -13,7 +13,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, Callable, ContextManager, Mapping, Protocol
 
-from tools.sync_data_derived import collect_derived_snapshot_writes
+from tools.data.sync_data_derived import collect_derived_snapshot_writes
 
 from tools.spec_master_sources import (
     collect_footnote_record_id_refs,
@@ -35,7 +35,7 @@ from tools.manual_copy_source import (
     csv_text as manual_copy_csv_text,
     missing_translations_csv_text,
 )
-from tools.source_record_index import (
+from tools.data.source_record_index import (
     INDEXED_LOGICAL_TABLES as _SOURCE_RECORD_INDEX_LOGICAL_TABLES,
     SIDECAR_FILENAME as SOURCE_RECORD_INDEX_FILENAME,
     build_index as build_source_record_index,

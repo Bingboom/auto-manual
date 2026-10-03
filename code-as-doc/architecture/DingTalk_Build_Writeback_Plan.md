@@ -47,7 +47,7 @@ Current queue orchestration is intentionally build-provider-agnostic in the midd
 - sync provider selection and auth bootstrap:
   [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
 - phase2 sync runtime:
-  [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+  [`../../tools/data/sync_data_runtime.py`](../../tools/data/sync_data_runtime.py)
 - build queue entrypoint and orchestration:
   [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py),
   [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py),
@@ -173,7 +173,7 @@ We should not create a separate DingTalk-only build entrypoint.
 ### 6.2 Move From `lark_cli` To Provider Contracts
 
 Current config still hardcodes `lark_cli` as the only supported provider in
-[`../../tools/sync_data_config.py`](../../tools/sync_data_config.py).
+[`../../tools/data/sync_data_config.py`](../../tools/data/sync_data_config.py).
 
 We should evolve this into real provider contracts:
 
@@ -204,12 +204,12 @@ Recommended new contracts:
 
 Expected primary refactor surface:
 
-- [`../../tools/sync_data_config.py`](../../tools/sync_data_config.py)
+- [`../../tools/data/sync_data_config.py`](../../tools/data/sync_data_config.py)
   - stop collapsing every provider into `lark_cli`
   - add provider-specific env and auth settings
 - [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
   - expose provider-neutral loader and provider factories
-- [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+- [`../../tools/data/sync_data_runtime.py`](../../tools/data/sync_data_runtime.py)
   - remove hard stop on `provider != "lark_cli"`
 - [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
   - replace Lark-specific upload/move binding with provider-selected services

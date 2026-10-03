@@ -59,7 +59,7 @@ For current rules, see:
   `source_*`, `sync_data*`); bootstrap files 103 → 75, all of them script entry points.
 - CQ-1 follow-up toward the ≥50% target, moving without shims: `listen_*` and
   `message_*` (8 modules) into `tools/build_queue/`; `backport_*` (4) into
-  `tools/backport/`.
+  `tools/backport/`; `source_*`, `sync_data*` and `data_*` (23) into `tools/data/`.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 
@@ -289,7 +289,7 @@ Why it mattered:
 Main outcomes:
 
 - added [`build.py sync-data`](../build.py) as the explicit local sync step for Feishu/Lark content snapshots
-- introduced [`tools/data_snapshot.py`](../tools/data_snapshot.py) to centralize structured-data path resolution
+- introduced [`tools/data_snapshot.py`](../tools/data/snapshot.py) to centralize structured-data path resolution
 - added `--data-root` support across build, check, diff-report, and release-manifest entrypoints
 - added [`data/phase2/`](../data/phase2) as the preferred frozen snapshot root while keeping [`data/phase1/`](../data/phase1) as the legacy baseline
 - kept page registry metadata and [`data/layout_params.csv`](../data/layout_params.csv) as repo-maintained inputs outside the Feishu sync flow; the active page registry now lives at [`data/phase2/page_registry.csv`](../data/phase2/page_registry.csv)
@@ -528,7 +528,7 @@ Main outcomes:
 - split [`tools/process_docs/build_review_preview.py`](../tools/process_docs/build_review_preview.py) into dedicated target, data, render, page, postprocess, and workspace helper modules while preserving the public facade
 - reduced [`tools/utils/spec_master.py`](../tools/utils/spec_master.py) to a thin facade over dedicated shared, row-helper, lookup, auditing, mapping, and repairs modules
 - split [`tools/word_bundle_html.py`](../tools/word/bundle_html.py) into models, HTML-only, render, images, and rewrite helper modules
-- split [`tools/sync_data.py`](../tools/sync_data.py) into config, records, runtime, and CLI-output helpers while keeping `LarkCliSource`, `ROOT`, and existing patch surfaces stable
+- split [`tools/sync_data.py`](../tools/data/sync_data.py) into config, records, runtime, and CLI-output helpers while keeping `LarkCliSource`, `ROOT`, and existing patch surfaces stable
 - finished the remaining shared-bootstrap rollout across entry scripts and reduced queue-side phase2 helper coupling through [`tools/phase2_support.py`](../tools/phase2_support.py)
 
 Why it mattered:
@@ -1144,8 +1144,8 @@ Why it mattered:
 
 What changed:
 
-- Added a portable advisory lock in [`tools/sync_data_records.py`](../tools/sync_data_records.py), using a stable sibling lock file for each phase2 export root.
-- Wrapped the final batch of phase2 CSV, derived-file, and `snapshot_manifest.json` atomic replacements in [`tools/sync_data_runtime.py`](../tools/sync_data_runtime.py) with that lock.
+- Added a portable advisory lock in [`tools/sync_data_records.py`](../tools/data/sync_data_records.py), using a stable sibling lock file for each phase2 export root.
+- Wrapped the final batch of phase2 CSV, derived-file, and `snapshot_manifest.json` atomic replacements in [`tools/sync_data_runtime.py`](../tools/data/sync_data_runtime.py) with that lock.
 - Kept dry-run behavior unchanged and added a POSIX exclusivity test; the lock file is operational state, not a snapshot input.
 
 Why it mattered:

@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 
-from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.data.snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.build_queue.listen_build_queue_events import (  # noqa: E402
     event_field_value_truthy as _event_field_value_truthy_impl,
     event_requests_immediate_build as _event_requests_immediate_build_impl,

@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 from tools.build.docs import BuildTarget, load_config as load_config, resolve_build_targets  # noqa: E402
 from tools.config_pages import GeneratedPage  # noqa: E402
-from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
+from tools.data.snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
 from tools.lang_registry import canonical_language  # noqa: E402

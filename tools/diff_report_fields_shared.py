@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 from tools.config_loader import try_load_config_mapping
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import source_language_for_row
 
 INLINE_MARKUP_RE = re.compile(r"(\*\*|`|:raw-latex:|:raw-html:)")

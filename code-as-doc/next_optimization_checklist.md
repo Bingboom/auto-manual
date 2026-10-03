@@ -435,7 +435,7 @@ gated on the same design.
   - Target files:
     - [`../tools/release_manifest.py`](../tools/release_manifest.py)
     - [`../tools/utils/path_utils.py`](../tools/utils/path_utils.py)
-    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/sync_data.py`](../tools/data/sync_data.py)
   - Done when:
     - a timestamped snapshot (source revision, exported files, target matrix) is archived at release time
     - `release-manifest` binds to that frozen snapshot through `path_utils`, not a re-pulled live snapshot
@@ -446,7 +446,7 @@ gated on the same design.
   - Status: `pending`
   - Note: touches `sync-data` and the phase2 source contract → operator-gated per `AGENTS.md` §8.7
   - Target files:
-    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/sync_data.py`](../tools/data/sync_data.py)
     - [`../tools/content_lint.py`](../tools/content_lint.py)
     - [`dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
   - Done when:
@@ -495,7 +495,7 @@ dry-run boundary; live activation is the operator's, per
   - Status: `done`
   - Note: touches `sync-data` + the phase2 contract → operator-gated; this is the detailed form of Milestone E PR E2. Delivered by `tools/source_record_index.py` (builder/resolver, exact-or-abstain), the `sync_data_runtime` sidecar emission, and `content_lint` resolution (lcd_icons indexed; coverage expands in follow-ups). Live population needs an operator `sync-data`; logic is covered by `tests/test_source_record_index.py`. **Correctness fix:** `normalize_records` sorts rows, so pairing the *sorted* normalized list with the *unsorted* raw records mapped each business key to the WRONG `record_id` (live-verified: a `JE-1000F_CN/dc12_port` key resolved to a `JE-1000F_US/dc8020` row, across the two-table `Spec_Master` merge). Now each row's source `record_id` is threaded onto it (`SOURCE_RECORD_ID_KEY`) so it survives the sort; `collect_index_rows` reads it (positional fallback only for legacy/no-id rows).
   - Target files:
-    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/sync_data.py`](../tools/data/sync_data.py)
     - [`../tools/content_lint.py`](../tools/content_lint.py)
     - `data/phase2/source_record_index.json` (new derived sidecar)
     - [`dev/closed_loop_qc_implementation_plan.md`](dev/closed_loop_qc_implementation_plan.md)
@@ -752,7 +752,7 @@ change.
     warnings already force `needs_review` status; the original screening claim
     ("ambiguous only warns") was stale.
   - Target files:
-    - [`../tools/source_intake.py`](../tools/source_intake.py)
+    - [`../tools/source_intake.py`](../tools/data/source_intake.py)
   - Done when:
     - `spec-extract` without `--reference` fails loudly unless `--skip-completeness` is passed explicitly (no silent skip)
     - ambiguous snapshot keys require review instead of warning
@@ -1217,7 +1217,7 @@ business deliveries, in this order: K4 → K5 → K7 → K1.
     backup; a destructive Bitable edit was unrecoverable. Read-only export, no
     source-table writes.
   - Target files:
-    - [`../tools/data_snapshot.py`](../tools/data_snapshot.py)
+    - [`../tools/data_snapshot.py`](../tools/data/snapshot.py)
     - [`../tools/bitable_schema.py`](../tools/bitable_schema.py)
     - [`../user-guide/closed_loop_ops_guide.md`](../user-guide/closed_loop_ops_guide.md)
   - Done when:
@@ -1438,7 +1438,7 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
     a data problem solved with code edits, which fails at 50 lines.
   - Target files:
     - [`../tools/signal_words.py`](../tools/signal_words.py)
-    - [`../tools/sync_data_models.py`](../tools/sync_data_models.py)
+    - [`../tools/sync_data_models.py`](../tools/data/sync_data_models.py)
     - [`../tools/localized_copy.py`](../tools/localized_copy.py)
     - [`../tools/manual_copy_source.py`](../tools/manual_copy_source.py)
   - Done when:

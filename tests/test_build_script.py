@@ -784,7 +784,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.sync_data_command(args)
 
-        self.assertEqual(["-m", "tools.sync_data"], cmd[1:3])
+        self.assertEqual(["-m", "tools.data.sync_data"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
         self.assertIn("--table", cmd)

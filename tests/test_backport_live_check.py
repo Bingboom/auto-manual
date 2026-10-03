@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.backport.live_check import main, run_live  # noqa: E402
-from tools.source_record_index import build_index  # noqa: E402
+from tools.data.source_record_index import build_index  # noqa: E402
 from tools.token_resolution_map import build_value_index  # noqa: E402
 
 
