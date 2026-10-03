@@ -119,12 +119,10 @@ tools/idml/prose_flow.py	ProseFlowBuffer._items_with_approved_splits	23
 tools/idml/prose_flow.py	ProseFlowBuffer.flush	30
 tools/idml/prose_flow.py	_apply_single_page_ups_callout_roles	29
 tools/idml/prose_flow.py	apply_component_composition_data	28
-tools/idml/prose_flow.py	promote_reference_figures	87
 tools/idml/prose_paragraph.py	build_text_paragraph	21
 tools/idml/reference_layout_plan.py	_validate_reference_pages	28
 tools/idml/reference_layout_plan.py	load_approved_reference_plan	21
 tools/idml/reference_layout_rebind.py	build_rebound_reference_layout_plan	23
-tools/idml/reference_story_flow.py	ReferenceStoryEmitter.emit	72
 tools/idml/safety_story.py	_safety_section_story	33
 tools/idml/shared_page.py	add_connections_page	43
 tools/idml/shared_page.py	grouped_spec_sections	22
@@ -135,7 +133,6 @@ tools/idml/target_assembly_plan.py	_figure_callout_issues	22
 tools/idml/target_assembly_plan.py	_validate_app_composition	25
 tools/idml/target_assembly_plan.py	_validate_lcd_composition	35
 tools/idml/target_assembly_plan.py	_validate_specifications_composition	42
-tools/idml/target_assembly_render.py	TargetAssemblyRenderer.render	58
 tools/idml_rst_extract_latex.py	_extract_raw_latex	28
 tools/idml_rst_tables.py	parse_grid_table	24
 tools/indesign_finalize.py	_collect_finalize_result	28
@@ -242,10 +239,8 @@ tools/web_presentation.py	_transform_auto_resume_table	25
 tools/web_presentation.py	_transform_operation_figure	22
 tools/web_presentation.py	transform_web_fragment	33
 tools/web_presentation_contract.py	_base_art_live_copy_slots	21
-tools/web_presentation_contract.py	_derived_figure_slots	23
 tools/web_presentation_contract.py	_load_cached	25
 tools/web_presentation_contract.py	_load_target_overlays	22
-tools/web_presentation_contract.py	_normalize_coverage_policy	21
 tools/web_presentation_contract.py	_validate_base_art_layout	24
 tools/web_presentation_contract.py	_validate_reference_base_art_layout	21
 tools/word_bundle_docx_images.py	embed_external_docx_images	30

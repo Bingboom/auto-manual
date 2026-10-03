@@ -19,6 +19,7 @@ from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 PH_LCD_ICONS_HEADING_RST = "{{ lcd_icons_heading_rst }}"
 PH_LCD_ICONS_IMAGE_ALT = "{{ lcd_icons_image_alt }}"
 PH_LCD_ICONS_TABLE_RST = "{{ lcd_icons_table_rst }}"
+PH_LCD_DESCRIPTIONS_TABLE_RST = "{{ lcd_descriptions_table_rst }}"
 
 _VAR_RE = re.compile(r"\{\{\s*([a-zA-Z0-9_\-]+)\s*\}\}")
 _TRUE_VALUES = {"1", "true", "yes", "y"}
@@ -456,6 +457,19 @@ def _rst_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) ->
     return "\n".join(lines) + "\n"
 
 
+def _rst_descriptions_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) -> str:
+    """Explicit headerless name/description source; never discard actual icons."""
+    if not rows or any(row["figure"].strip() for row in rows):
+        raise ValueError("LCD descriptions require nonempty text-only source rows")
+    lines = [".. list-table::", "   :class: hb-source-lcd-descriptions",
+             "   :header-rows: 0", "   :widths: 35 65", ""]
+    for row in rows:
+        _append_text_cell(lines, "   * - ", row["name"])
+        _append_text_cell(lines, "     - ", row["description"],
+                          format_status=True, status_labels=status_labels)
+    return "\n".join(lines) + "\n"
+
+
 def _indent_block(text: str, spaces: int) -> str:
     prefix = " " * spaces
     return "\n".join((prefix + line) if line else line for line in text.rstrip("\n").splitlines())
@@ -521,8 +535,10 @@ def _table(
     *,
     status_labels: tuple[str, ...],
     lang: str,
+    descriptions: bool = False,
 ) -> str:
-    rst_table = _rst_table(rows, status_labels=status_labels)
+    renderer = _rst_descriptions_table if descriptions else _rst_table
+    rst_table = renderer(rows, status_labels=status_labels)
     latex_table = _latex_table(rows, status_labels=status_labels, lang=lang)
     return "\n".join(
         [
@@ -571,4 +587,9 @@ def render_lcd_icons_page(
         PH_LCD_ICONS_TABLE_RST,
         _table(rows, status_labels=status_labels, lang=lang),
     )
+    if PH_LCD_DESCRIPTIONS_TABLE_RST in rendered:
+        rendered = rendered.replace(
+            PH_LCD_DESCRIPTIONS_TABLE_RST,
+            _table(rows, status_labels=status_labels, lang=lang, descriptions=True),
+        )
     return rendered
