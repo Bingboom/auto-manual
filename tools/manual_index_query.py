@@ -10,7 +10,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
-from tools.document_link_queue import scalar_text
+from tools.web.document_link_queue import scalar_text
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity
 
 DEFAULT_MANUAL_INDEX_SOURCE_URL = (

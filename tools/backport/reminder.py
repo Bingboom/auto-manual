@@ -25,7 +25,7 @@ from typing import Any, Callable
 
 from tools.backport.baseline import baseline_rel_path  # noqa: E402
 from tools.backport.model import fetch_doc_text, parse_blocks  # noqa: E402
-from tools.document_link_queue import field_value, scalar_text  # noqa: E402
+from tools.web.document_link_queue import field_value, scalar_text  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
     CLOUD_DOC_FIELDS,
     DOCUMENT_ID_FIELDS,

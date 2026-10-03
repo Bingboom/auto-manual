@@ -15,7 +15,7 @@ This source-local package uses the native PDF-compatible text and artwork of `HT
 With the generalized shared `tools.frozen_pdf_*` adapter available, run from the engineering repository:
 
 ```sh
-python3 -m tools.frozen_pdf_web --pdf /tmp/je2000f-eu-nine-languages.ai --recipe-root "$F_RECIPE_ROOT" --assets-manifest "$F_RECIPE_ROOT/pl_assets_manifest.json" --output /tmp/je2000f-pl-new-candidate --language pl
+python3 -m tools.web.frozen_pdf_web --pdf /tmp/je2000f-eu-nine-languages.ai --recipe-root "$F_RECIPE_ROOT" --assets-manifest "$F_RECIPE_ROOT/pl_assets_manifest.json" --output /tmp/je2000f-pl-new-candidate --language pl
 python3 -m sphinx -q -W --keep-going -b html /tmp/je2000f-pl-new-candidate /tmp/je2000f-pl-new-html
 ```
 

@@ -5,7 +5,7 @@ import re
 from dataclasses import dataclass
 from typing import Any, Callable
 
-from tools.document_link_queue import looks_like_explicit_document_key
+from tools.web.document_link_queue import looks_like_explicit_document_key
 from tools.review_branch_resolver import parse_document_id
 from tools.language_aliases import normalize_language
 from tools.utils.log import get_logger

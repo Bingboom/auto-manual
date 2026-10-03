@@ -8,7 +8,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.component_specs.overview_instance import resolve_overview_instance
-from tools.frozen_pdf_media import (
+from tools.web.frozen_pdf_media import (
     MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels,
 )
 from tools.manual_ir.flow import validate_flow_node

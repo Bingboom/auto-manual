@@ -7,7 +7,7 @@ from typing import Any, Callable
 from uuid import uuid4
 
 from tools.delivery_outbox import drop_publish_delivery_outbox
-from tools.document_link_queue import scalar_text
+from tools.web.document_link_queue import scalar_text
 from tools.build_queue.contract import BASELINE_DOC_FIELD
 from tools.build_queue.transitions import (
     append_writeback_failed,

@@ -601,7 +601,7 @@ verify the generated manifest, merge it, and let the `main` webhook rebuild RTD.
 ## Native multilingual shared-component admission
 
 Native portable-manual imports use one semantic coverage policy in
-[`frozen_web_component_coverage.py`](../../tools/frozen_web_component_coverage.py).
+[`frozen_web_component_coverage.py`](../../tools/web/frozen_web_component_coverage.py).
 A valid `manual-ir/v2` envelope or `whole-document-components/v1` flag alone
 is insufficient: an ordinary table can satisfy the IR schema while missing
 its shared presentation, as happened to the JE-1000F key-combination table.

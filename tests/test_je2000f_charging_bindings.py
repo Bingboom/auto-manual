@@ -8,7 +8,7 @@ import unittest
 from PIL import Image
 from bs4 import BeautifulSoup
 
-from tools.frozen_pdf_reference import (
+from tools.web.frozen_pdf_reference import (
     bind_reference_labels, labeled_artwork_node, reference_label_regions,
 )
 from tools.manual_ir.flow import flow_nodes_to_html

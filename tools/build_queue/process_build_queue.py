@@ -56,11 +56,11 @@ from tools.build_queue.contract import (  # noqa: E402
     QueueRecord,
     WikiDestination,
 )
-from tools.document_link_queue import (  # noqa: E402
+from tools.web.document_link_queue import (  # noqa: E402
     available_field_names as _available_field_names_impl,
     parse_document_key as _parse_document_key_impl,
 )
-from tools.document_link_actions import (  # noqa: E402
+from tools.web.document_link_actions import (  # noqa: E402
     best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     normalize_doc_phase as _normalize_doc_phase,

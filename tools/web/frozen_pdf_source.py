@@ -15,13 +15,13 @@ import shutil
 from tools.component_specs.overview_instance import (
     overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
 )
-from tools.frozen_ai_source import FrozenBook
-from tools.frozen_pdf_errata import apply_native_errata
-from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
-from tools.frozen_pdf_glyphs import recover_pdf_glyphs, recover_recorded_glyphs
-from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
-from tools.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
-from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
+from tools.web.frozen_ai_source import FrozenBook
+from tools.web.frozen_pdf_errata import apply_native_errata
+from tools.web.frozen_pdf_app import APP_ASSET_KEYS, app_section
+from tools.web.frozen_pdf_glyphs import recover_pdf_glyphs, recover_recorded_glyphs
+from tools.web.frozen_pdf_intake import load_pdf_book, read_recipe_json
+from tools.web.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
+from tools.web.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.web.presentation import load_web_manual_contract
 
@@ -161,11 +161,11 @@ class PdfBook(FrozenBook):
                 raise ValueError(f'body text or table image is forbidden: {key}')
             destination = f"assets/{record['sha256'][:12]}_{source.name}"
             self.assets[key] = {**record, 'asset_ref': destination}
-        from tools.frozen_pdf_reference import bind_reference_labels
+        from tools.web.frozen_pdf_reference import bind_reference_labels
         bind_reference_labels(self, reference_bindings)
         reference_overview = self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures'
         self.overview_instance = None if reference_overview else _overview_binding(bindings, self.target)
-        from tools.frozen_pdf_finished_overview import bind_finished_overview
+        from tools.web.frozen_pdf_finished_overview import bind_finished_overview
         bind_finished_overview(self, bindings, assets_manifest)
         # Validate the whole binding before creating output or copying files.
         for key, record in self.assets.items():
@@ -207,16 +207,16 @@ class PdfBook(FrozenBook):
         return operation_panels(self, self.assets)
 
     def consumed_media_regions(self):
-        from tools.frozen_pdf_reference import reference_label_regions
+        from tools.web.frozen_pdf_reference import reference_label_regions
         return [*consumed_media_regions(self), *reference_label_regions(self.figures)]
 
     def figure(self, figure):
         # A local source panel is not an approved composite. Its embedded
         # captions retain native semantic copy without a duplicate visible row.
-        from tools.frozen_pdf_app import artwork_node
+        from tools.web.frozen_pdf_app import artwork_node
         asset = self.assets[figure['asset_key']]
         if figure.get('live_captions'):
-            from tools.frozen_pdf_reference import labeled_artwork_node
+            from tools.web.frozen_pdf_reference import labeled_artwork_node
             return labeled_artwork_node(figure, asset['asset_ref'], self.language)
         source_captions = self.records.get('reference_captions', {}).get(figure['slug'])
         if source_captions:
@@ -224,7 +224,7 @@ class PdfBook(FrozenBook):
                 raise ValueError(f"{figure['slug']}: native caption page changed")
             if (asset.get('content_mode') == 'source-finished-panel' and
                     asset.get('captions_embedded') is True):
-                from tools.frozen_pdf_reference import finished_artwork_node
+                from tools.web.frozen_pdf_reference import finished_artwork_node
                 return finished_artwork_node(figure, asset, source_captions, self.language)
             return artwork_node(asset['asset_ref'], figure['slug'], self.language,
                                 f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
@@ -244,12 +244,12 @@ class PdfBook(FrozenBook):
 
     def special(self, section):
         if section == 'safety':
-            from tools.frozen_pdf_frontmatter import positioned_safety_flow, safety_flow
+            from tools.web.frozen_pdf_frontmatter import positioned_safety_flow, safety_flow
             return positioned_safety_flow(self) if 'safety' in self.records else safety_flow(self)
         if section == 'app_setup':
             return app_section(self, self.assets)
         if section == 'lcd_display':
-            from tools.frozen_pdf_app import artwork_node
+            from tools.web.frozen_pdf_app import artwork_node
             title = self.locale['titles'][self.index['section_ids'].index(section)]
             return [artwork_node(self.assets['lcd.map']['asset_ref'], 'lcd-map', self.language,
                                  f'{self.language}/lcd-display'),

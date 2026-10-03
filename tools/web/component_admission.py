@@ -44,7 +44,7 @@ def require_fresh_component_admission(
                 raise ValueError("shared component admission failed: " + "; ".join(report["issues"]))
         elif ir.source in {"frozen-pdf-json", "frozen-ai-json"}:
             # The native gate is owned by the preceding native-admission change.
-            from tools.frozen_web_component_coverage import require_frozen_component_coverage
+            from tools.web.frozen_web_component_coverage import require_frozen_component_coverage
 
             require_frozen_component_coverage(raw)
             report = {"profile": "native-shared-components", "issues": []}

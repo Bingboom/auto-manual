@@ -4,7 +4,7 @@ from __future__ import annotations
 from copy import deepcopy
 import re
 
-from tools.frozen_ai_flow import callout, heading, is_heading, node, paragraph, squash, text
+from tools.web.frozen_ai_flow import callout, heading, is_heading, node, paragraph, squash, text
 
 
 def strong_paragraph(value):

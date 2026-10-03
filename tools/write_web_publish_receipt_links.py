@@ -48,7 +48,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.rtd import deployment_receipt as receipt  # noqa: E402
-from tools.document_link_queue import (  # noqa: E402
+from tools.web.document_link_queue import (  # noqa: E402
     describe_url_field,
     scalar_text,
     url_field_matches,

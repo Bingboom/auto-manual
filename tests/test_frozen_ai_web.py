@@ -16,7 +16,7 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 from markdown_it import MarkdownIt
 
-from tools.frozen_ai_web import build_book, replay_package
+from tools.web.frozen_ai_web import build_book, replay_package
 from tools.manual_ir import validate_manual_ir
 from tools.manual_ir.document import validate_document
 from tools.manual_ir.hashing import file_sha256
@@ -105,8 +105,8 @@ class FrozenAIWebTests(unittest.TestCase):
                 moved = self.output / f"moved-{language}"
                 shutil.copytree(original, moved)
                 expected = (original / ir.metadata["markdown_filename"]).read_bytes()
-                with patch("tools.frozen_ai_web.FrozenBook", side_effect=AssertionError("source reopened")), \
-                     patch("tools.frozen_ai_web.load_web_manual_contract", side_effect=AssertionError("contract reopened")), \
+                with patch("tools.web.frozen_ai_web.FrozenBook", side_effect=AssertionError("source reopened")), \
+                     patch("tools.web.frozen_ai_web.load_web_manual_contract", side_effect=AssertionError("contract reopened")), \
                      patch("tools.component_specs.registry.default_registry_path", side_effect=AssertionError("registry reopened")), \
                      patch("tools.component_specs.theme.default_theme_path", side_effect=AssertionError("theme reopened")):
                     replay_package(moved)

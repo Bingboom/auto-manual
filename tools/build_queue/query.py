@@ -7,11 +7,11 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
-from tools.document_link_actions import (
+from tools.web.document_link_actions import (
     best_effort_queue_workflow_action,
     workflow_action_label,
 )
-from tools.document_link_queue import (
+from tools.web.document_link_queue import (
     is_immediate_trigger_enabled,
     scalar_text,
 )

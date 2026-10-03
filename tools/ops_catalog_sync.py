@@ -48,7 +48,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.document_link_queue import split_rendered_url  # noqa: E402
+from tools.web.document_link_queue import split_rendered_url  # noqa: E402
 from tools.feishu_record_transport import run_lark_cli_json as _transport_run  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import parse_json_payload, resolved_cli_command_parts  # noqa: E402

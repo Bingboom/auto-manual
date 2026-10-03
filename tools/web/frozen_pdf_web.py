@@ -8,9 +8,9 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from tools.frozen_ai_web import assemble_book
-from tools.frozen_pdf_document import ordered_pages
-from tools.frozen_pdf_source import PdfBook
+from tools.web.frozen_ai_web import assemble_book
+from tools.web.frozen_pdf_document import ordered_pages
+from tools.web.frozen_pdf_source import PdfBook
 
 
 def build_pdf_book(pdf_path: Path, recipe_root: Path, assets_manifest: Path,

@@ -464,10 +464,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - phase-aware Agent delivery contract: Draft cloud doc, Publish IDML handoff, Web HTML
   - `delivery_kind / delivery_url / delivery_ready` derivation and queue-row serialization
   - strips the retired public `document_link` name while preserving internal binding compatibility
-- [`tools/document_link_actions.py`](../../tools/document_link_actions.py)
+- [`tools/web/document_link_actions.py`](../../tools/web/document_link_actions.py)
   - normalized queue action vocabulary
   - legacy `Doc_phase` compatibility mapping
-- [`tools/document_link_queue.py`](../../tools/document_link_queue.py)
+- [`tools/web/document_link_queue.py`](../../tools/web/document_link_queue.py)
   - row parsing
   - row filtering
   - record binding

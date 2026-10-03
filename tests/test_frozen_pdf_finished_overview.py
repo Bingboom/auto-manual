@@ -11,9 +11,9 @@ from bs4 import BeautifulSoup
 
 from tools.component_specs.overview import overview_component_spec
 from tools.component_specs.overview_instance import resolve_overview_instance
-from tools.frozen_ai_flow import cell, node, table, text
-from tools.frozen_ai_web import assemble_book, replay_package
-from tools.frozen_pdf_finished_overview import bind_finished_overview
+from tools.web.frozen_ai_flow import cell, node, table, text
+from tools.web.frozen_ai_web import assemble_book, replay_package
+from tools.web.frozen_pdf_finished_overview import bind_finished_overview
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.manual_ir.source import SourcePage

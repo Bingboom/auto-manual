@@ -17,7 +17,7 @@ from tools.web.composite_manifest import (
 )
 from tools.word.bundle_common import paths
 from tools.word.bundle_html_images import _inject_img_dimensions
-from tools.document_assets import resolve_fragment_asset_path, stage_fragment_assets
+from tools.web.document_assets import resolve_fragment_asset_path, stage_fragment_assets
 from tools.word.bundle_html_models import WordBundlePageMeta
 from tools.page_plan import page_template_role_for_source_ref, word_page_binding
 from tools.word.bundle_html_only import (
