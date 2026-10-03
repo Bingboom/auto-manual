@@ -351,12 +351,16 @@ create synthetic queue rows or write `HTML_link`.
 
    ```bash
    python -m tools.publish_branch_assembly --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
-   python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
+   python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd.portal <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 
    The assembler replaces matching target routes, retains the other stored
    targets, rebuilds the aggregate Sphinx tree, and rewrites
    `publish_manifest.json`.
+   Keep the RTD portal extension enabled in this aggregate preflight: it exports
+   the query corpus and seals the deployment receipt, including the bounded
+   frozen-source inventory. A plain Sphinx build without the extension cannot
+   validate those production callbacks.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
    branches, print artifacts, or unrelated targets.
