@@ -115,6 +115,7 @@ python tools/source_intake.py apply --report reports/source_intake/<run-id>/sour
 python tools/source_intake.py verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
 python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url>
 python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url> --write --push
+python -m tools.backport.cloud_doc run-review-branch --doc-name <doc name> --cloud-doc <url>  # same CLI; the code lives in tools/backport/ since CQ-1.3
 python tools/cloud_doc_backport.py run-review --doc-url <doc-or-fixture.md> --source-path docs/_review/<model>/<region>/page/<page>.rst --out reports/cloud_doc_backport/<run-id>
 python tools/cloud_doc_backport.py open-pr --manifest reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
 python tools/cloud_doc_backport.py diff --doc-url <doc-or-fixture.md> --source-path docs/_review/<model>/<region>/page/<page>.rst --doc-type review --out reports/cloud_doc_backport/<run-id>
