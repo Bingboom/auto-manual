@@ -104,7 +104,7 @@ Responsibilities:
 ### 2.8 Build Queue and Delivery
 
 - [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix)
-- `listen_*.py`, `message_*.py`, [`../tools/dingtalk/`](../tools/dingtalk)
+- [`../tools/dingtalk/`](../tools/dingtalk) (the `listen_*` / `message_*` modules moved into `tools/build_queue/`)
 
 Responsibilities:
 
@@ -179,7 +179,7 @@ moves each family into a real subpackage. The names below are proposals.
 | --- | --- | --- |
 | Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` (`build_docs*` moved 2026-10-03) |
 | Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` (`check_docs*` moved 2026-10-03) |
-| Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*` moved 2026-10-03) |
+| Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*`/`listen_*`/`message_*` moved 2026-10-03) |
 | Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
 | Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` (`web_*` moved 2026-10-03) |
 | Read the Docs portal | `rtd_*.py` | `tools/rtd/` (moved 2026-10-03) |

@@ -119,10 +119,6 @@ module	lang_registry.py
 module	language_aliases.py
 module	language_block_trim.py
 module	lcd_table_layout.py
-module	listen_build_queue.py
-module	listen_build_queue_events.py
-module	listen_build_queue_lark.py
-module	listen_build_queue_runtime.py
 module	local_env.py
 module	localized_copy.py
 module	manifest_family.py
@@ -134,10 +130,6 @@ module	manual_md_directives.py
 module	manual_operations_health.py
 module	manual_operations_online_health.py
 module	markdown_bundle.py
-module	message_control_contract.py
-module	message_control_dry_run.py
-module	message_control_entry.py
-module	message_control_runtime.py
 module	model_languages.py
 module	new_line_scaffold.py
 module	new_line_seed_plan.py
@@ -270,10 +262,8 @@ bootstrap	tools/gen_index_bundle.py
 bootstrap	tools/idml_pdf_parity.py
 bootstrap	tools/indesign_finalize.py
 bootstrap	tools/lang_asset_sweep.py
-bootstrap	tools/listen_build_queue.py
 bootstrap	tools/manifest_lint.py
 bootstrap	tools/manual_ir_cli.py
-bootstrap	tools/message_control_dry_run.py
 bootstrap	tools/nightly_render.py
 bootstrap	tools/normalize_spec_master.py
 bootstrap	tools/ops_catalog_sync.py
