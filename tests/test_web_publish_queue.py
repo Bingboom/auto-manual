@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from unittest import mock
 
+from tests.queue_build_fixture import build_document_for_task
 from tools import process_build_queue, queue_execute, queue_query
 from tools.queue_outputs import stage_web_publish_assets_to_host_repo
 from tools.document_link_actions import normalize_workflow_action, workflow_action_label
@@ -83,37 +84,21 @@ class WebPublishQueueTests(unittest.TestCase):
             main_workspace.mkdir()
             (review_workspace / "docs" / "_review" / "JE-1000F" / "US").mkdir(parents=True)
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue,
-                "_run_command",
-                side_effect=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("env"))),
-            ), mock.patch(
+            word_resolver = mock.Mock()
+            stage_web = mock.Mock(return_value=(staged_md, staged_html))
+            with mock.patch(
                 "tools.queue_build_execution.git_commit_epoch",
                 return_value=1234567890,
-            ) as git_epoch, mock.patch.object(
-                process_build_queue,
-                "_prepare_git_ref_worktree",
-                side_effect=[main_workspace, review_workspace],
-            ), mock.patch.object(
-                process_build_queue,
-                "_remove_worktree",
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_md_output_path_for_target",
-                return_value=md_path,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_html_output_dir_for_target",
-                return_value=html_dir,
-            ), mock.patch.object(
-                process_build_queue,
-                "resolve_word_output_path_for_target",
-            ) as word_resolver, mock.patch.object(
-                process_build_queue,
-                "_stage_web_publish_assets_to_host_repo",
-                return_value=(staged_md, staged_html),
-            ) as stage_web:
-                outputs = process_build_queue.build_document_for_task(
+            ) as git_epoch:
+                outputs = build_document_for_task(
+                    repo_root=root,
+                    run_command=lambda cmd, **kwargs: commands.append((cmd, kwargs.get("env"))),
+                    prepare_git_ref_worktree=mock.Mock(side_effect=[main_workspace, review_workspace]),
+                    remove_worktree=mock.Mock(),
+                    resolve_md_output_path_for_target=mock.Mock(return_value=md_path),
+                    resolve_html_output_dir_for_target=mock.Mock(return_value=html_dir),
+                    resolve_word_output_path_for_target=word_resolver,
+                    stage_web_publish_assets_to_host_repo=stage_web,
                     config_path=config_path,
                     model="JE-1000F",
                     region="US",
@@ -165,28 +150,20 @@ class WebPublishQueueTests(unittest.TestCase):
                 captures.append(value)
                 return value
 
-            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
-                process_build_queue, "_run_command"
-            ), mock.patch(
+            stage_web = mock.Mock(return_value=(root / "staged.md", root / "staged-html"))
+            with mock.patch(
                 "tools.queue_build_execution.git_commit_epoch", return_value=1234567890
             ), mock.patch(
                 "tools.queue_build_execution.capture_projection", side_effect=captured
-            ), mock.patch.object(
-                process_build_queue,
-                "_prepare_git_ref_worktree",
-                side_effect=[main_workspace, review_workspace],
-            ), mock.patch.object(
-                process_build_queue, "_remove_worktree"
-            ), mock.patch.object(
-                process_build_queue, "resolve_md_output_path_for_target", return_value=md_path
-            ), mock.patch.object(
-                process_build_queue, "resolve_html_output_dir_for_target", return_value=html_dir
-            ), mock.patch.object(
-                process_build_queue,
-                "_stage_web_publish_assets_to_host_repo",
-                return_value=(root / "staged.md", root / "staged-html"),
-            ) as stage_web:
-                outputs = process_build_queue.build_document_for_task(
+            ):
+                outputs = build_document_for_task(
+                    repo_root=root,
+                    run_command=mock.Mock(),
+                    prepare_git_ref_worktree=mock.Mock(side_effect=[main_workspace, review_workspace]),
+                    remove_worktree=mock.Mock(),
+                    resolve_md_output_path_for_target=mock.Mock(return_value=md_path),
+                    resolve_html_output_dir_for_target=mock.Mock(return_value=html_dir),
+                    stage_web_publish_assets_to_host_repo=stage_web,
                     config_path=config_path,
                     model="MODEL",
                     region="EU",

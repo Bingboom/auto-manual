@@ -32,6 +32,7 @@ class QueueDeps:
     publish_word_artifact: Callable[..., Any] | None = None
     import_markdown_to_cloud_doc: Callable[..., Any] | None = None
     finalize_cloud_doc: Callable[..., Any] | None = None
+    resolve_config_path_for_task: Callable[..., Path] | None = None
     # Also looked up inside other facade services (artifact destination and
     # publish), so a set value is routed through ``FacadeOverrides`` as well.
     resolve_wiki_destination: Callable[..., Any] | None = None

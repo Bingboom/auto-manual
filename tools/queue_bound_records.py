@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 _DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 _repo_root_provider = lambda: _DEFAULT_ROOT
@@ -220,11 +220,17 @@ def resolve_config_path_for_task(
     )
 
 
-def group_pending_queue_records(records: list[QueueRecord]) -> list[list[QueueRecord]]:
+def group_pending_queue_records(
+    records: list[QueueRecord],
+    *,
+    resolve_config_path_for_task: Callable[..., Path] | None = None,
+) -> list[list[QueueRecord]]:
     return _group_pending_queue_records_impl(
         records,
         resolve_target_for_record=resolve_target_for_record,
-        resolve_config_path_for_task=_resolve_config_path_func_provider(),
+        resolve_config_path_for_task=(
+            resolve_config_path_for_task or _resolve_config_path_func_provider()
+        ),
         config_loader=_config_loader_provider(),
         queue_by_document_key=_queue_by_document_key,
         queue_record_group_key=queue_record_group_key,
