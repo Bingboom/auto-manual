@@ -192,7 +192,7 @@ class ViewTests(unittest.TestCase):
         us = first["rows"][1]
         self.assertEqual([chip["label"] for chip in us["web"]], ["EN", "FR"])
         self.assertEqual(us["web"][0]["docname"], "JE-1000F/US/en/md/manual_je1000f_us")
-        self.assertIn("发布于 2026-09-24", us["web"][0]["title"])
+        self.assertIn("构建于 2026-09-24", us["web"][0]["title"])
         self.assertEqual([(c["label"], c["version"], c["url"]) for c in us["print"]],
                          [("整本", "2.2", "https://t.feishu.cn/wiki/print-us")])
         self.assertEqual(first["rows"][0]["print"], [])
@@ -294,6 +294,21 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertIn('href="https://t.feishu.cn/wiki/print-us"', page)
             soup = BeautifulSoup(page, 'html.parser')
+            sections = [section.get('id') for section in soup.select('#production-evidence > section')]
+            self.assertLess(sections.index('production-overview'), sections.index('reuse'))
+            self.assertLess(sections.index('reuse'), sections.index('production-effort'))
+            self.assertLess(sections.index('production-effort'), sections.index('backflow'))
+            self.assertTrue(soup.select('#production-evidence > aside#attention'))
+            self.assertEqual(len(soup.select('#production-evidence > section.pe-layer')), 4)
+            self.assertTrue(soup.select('details#more-evidence #activity'))
+            self.assertIn('已确认配置引用', page)
+            self.assertIn('尚未证明再次复用', page)
+            self.assertIn('2026-09-18 至 2026-09-25 UTC', page)
+            self.assertFalse(soup.select('.dl-tiles'))  # one authoritative summary, no legacy zero tiles
+            for card in soup.select('[data-metric]'):
+                self.assertTrue(card.select('details'))
+            self.assertTrue(soup.select('.pe-attention a[href]'))
+
             self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
             self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
             self.assertIn("飞书快照 2026-09-25", page)
@@ -339,6 +354,13 @@ class RealSphinxTests(unittest.TestCase):
             _, page = build("nothing")
             self.assertIn("发布清单和飞书快照当前都不可读", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
+            manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
+            (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
+                "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
+            _, page = build("empty")
+            self.assertIn("当前有效快照没有交付物", page)
+            self.assertNotIn("发布清单和飞书快照当前都不可读", page)
+
 
 
 if __name__ == "__main__":

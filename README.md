@@ -7,6 +7,8 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 
 ## 工作流路线图
 
+说明书工作台提供工作入口、三类资产管理与生产复用证据；统计边界见 [工作台统计契约](code-as-doc/dev/workspace_production_evidence.md)。
+
 手册中心按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
 
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。

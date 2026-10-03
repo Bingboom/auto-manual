@@ -1,6 +1,8 @@
 # Windows Build Guide
 
 
+说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。首页采用结论优先布局：常用工作入口、生产规模及交付入口条形图、三类资产关系图、投入与回流简况；完整列表、工作地图和统计证据折叠展示，锚点导航自动展开目标；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](dev/workspace_production_evidence.md)。
+
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](reviews/jbp3600a-overview-lcd-20260916.md)。
 
@@ -920,11 +922,16 @@ Web Publish / Read the Docs note:
   A local Sphinx acceptance build must report zero broken images; opening only
   the intermediate `manual_bundle.html` is not sufficient Web verification.
 - `JBP-3600A / EU / en` uses the BP skeleton through
-  [`config.bp-eu-en-web.yaml`](../configs/config.bp-eu-en-web.yaml). Its target
-  fixture and approved source-AI illustration hashes support engineering
-  acceptance only until the corresponding live phase2/build/asset rows are
-  created and read back. See the
-  [intake and acceptance record](reviews/jbp3600a_eu_en_web_intake_2026-09.md).
+  [`config.bp-eu-en-web.yaml`](../configs/config.bp-eu-en-web.yaml) and its
+  [Git-only input](../manual_sources/JBP-3600A/EU/en/README.md). HTP011 source
+  wording follows the HTP017 chapter structure. The shared Operation component
+  permits battery packs to omit host-only auto-resume, key-combination and LCD
+  mode tables. Its opt-in `base_art_layout.duration_icon: clock` draws a CSS
+  clock beside live duration text after the source glyph is removed.
+  Governed reference figures and hash-locked finished panels may coexist in
+  coverage. Apply label-bearing illustration replacements before ComponentSpec
+  discovery (`consume_before_presentation`) so cold replay hashes the same
+  carrier. See the [source and acceptance record](reviews/jbp3600a-eu-en-htp011-20261002.md).
 - For an approved PDF artwork correction, `swap_pdf_regions` exchanges two
   equal-size, disjoint native regions on white backgrounds, inside the asset
   crop. Freeze source/output hashes and visually verify the final PNG. JBP-2000B
@@ -2353,7 +2360,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：上方以“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图组织入口，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：首页提供常用工作入口、生产规模图表、三类资产管理入口与投入/回流简况。“更多工作入口”折叠区保留“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
@@ -2498,3 +2505,7 @@ an empty source-table observation is not a localized-copy audit.
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
 
 冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。
+
+HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
+`HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
+发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。

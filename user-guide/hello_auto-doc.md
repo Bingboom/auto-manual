@@ -1,6 +1,8 @@
 # Hello Auto Doc
 
 
+说明书工作台首页优先展示生产概览、资产引用、回流复用缺口与交付风险。使用“口径与证据”查看来源时间、去重和对象；活动尚未记录不能读作 0。Word/印刷包链接仍在交付矩阵，操作导航移至“工作入口、系统健康与架构”，运行失败和待处理任务入口保留在首页。参考 [工作台统计契约](../code-as-doc/dev/workspace_production_evidence.md)。
+
 网页备注若出现双层项目符号，应核对冻结源中的表格结构；若出现深底深字，应同时核对引用块背景和文字颜色。修复后须分别检查桌面、窄屏与深色主题；本地预览不代表 RTD 已发布。
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -53,7 +55,7 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 
 系统建设页随 auto-manual/main 合入，经 Hello-Docs 镜像同步和 RTD 成功构建后更新。页首显示本次站点构建的提交版本与时间；已打开的页面每分钟及重新切回时检查已发布版本，发现更新可点“刷新到新版本”，阅读中不会强制跳页。同步或构建失败时仍显示旧快照，不代表 main 已上线。语料等飞书数据仍需按原流程导出、审核并提交快照，页面刷新不会读取活表。
 
-侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。下方保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
+侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。首页先提供常用工作入口，再用交付总量、交付入口条形图和三类资产关系图呈现重点；生产投入与回流再利用简要显示状态及入口。完整工作地图、交付矩阵和统计证据默认折叠，点击对应入口展开。资产部分按语料库、样式库、模板与骨架提供数量、维护入口和采用情况；登记量与配置引用不能当作成品使用量，缺少记录时明确标注。随后保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
 
 ### 发布候选、撤回与恢复
 
@@ -1937,6 +1939,8 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
 
+HTP011（0924）英文原稿更新使用[Git-only 结构源](../manual_sources/JBP-3600A/EU/en/README.md)，章节参考 HTP017。开关说明、间距与锁扣标注为可选择文字，时钟从底图移除后用公共 CSS 绘制。使用原有 BP 配置构建，无需写飞书；工程 PR、本地预览验收和正式上线分别确认。见[本轮原稿及验收记录](../code-as-doc/reviews/jbp3600a-eu-en-htp011-20261002.md)。
+
 ### JBP-2000B 欧规英文网页
 
 现行 V2.0 的英文网页使用独立的
@@ -2064,3 +2068,7 @@ JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌�
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
 
 冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。
+
+HTP011 英文无图标 LCD 说明通过共享 `lcd_descriptions_template.rst` 显式绑定
+`HB-TABLE-REFERENCE/lcd-descriptions`，保留名称／说明两列及原稿文字；
+发布封存直接校验组件，不再依赖该目标旧 LCD 表的内容哈希例外。

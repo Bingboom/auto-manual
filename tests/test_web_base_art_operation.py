@@ -99,6 +99,7 @@ class BaseArtOperationTests(unittest.TestCase):
         duration = canvas.select_one(".hb-operation-art-box > .hb-operation-duration")
         self.assertEqual("3s", _text(duration))
         self.assertEqual("true", duration["aria-hidden"])
+        self.assertNotIn("data-duration-icon", duration.attrs)
         self.assertEqual("--hb-x:81.4%;--hb-y:48.1%", duration["style"])
 
     def test_label_pairs_and_prerequisite_use_the_art_pill(self) -> None:

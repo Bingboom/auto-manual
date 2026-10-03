@@ -436,7 +436,7 @@
       },
       "skeleton_profile": "battery-pack-v1",
       "capabilities": {
-        "figures": false,
+        "figures": true,
         "legacy_target_components": false
       },
       "figure_coverage": {
@@ -447,21 +447,200 @@
         "required_slots": [
           "finished-panel.overview_front",
           "finished-panel.overview_left",
-          "finished-panel.power_annotated",
+          "operation.main-power",
           "finished-panel.lcd_control_clean",
           "finished-panel.ac_charging",
-          "finished-panel.solar_charging"
+          "finished-panel.solar_charging",
+          "reference.clearance",
+          "reference.locking",
+          "finished-panel.stacking_clean"
         ],
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "operation.main-power": [
+            "base-art-live-copy"
+          ],
+          "reference.clearance": [
+            "base-art-live-copy"
+          ],
+          "reference.locking": [
+            "base-art-live-copy"
+          ]
+        }
       },
       "contract_overrides": {
         "warranty": {
           "source_patterns": [
             "*11_warranty",
             "warranty_en"
+          ]
+        },
+        "product_overview": {
+          "source_patterns": []
+        },
+        "operations": {
+          "source_patterns": [
+            "operation_en"
+          ],
+          "auto_resume_table": null,
+          "key_combination_table": null,
+          "lcd_mode_table": null,
+          "figures": [
+            {
+              "id": "main-power",
+              "image_key": "power_native",
+              "layout": "status-right",
+              "step_ids": [
+                "on",
+                "off"
+              ],
+              "capture_prerequisite": false,
+              "capture_following_lines": 0,
+              "web_replace_key": "operation.main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00",
+                "step_anchors": [
+                  [
+                    77,
+                    17
+                  ],
+                  [
+                    77,
+                    46
+                  ]
+                ],
+                "step_width": 22,
+                "duration_anchor": [
+                  78,
+                  64
+                ],
+                "duration_icon": "clock"
+              }
+            }
+          ]
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "connections_en"
+          ],
+          "figures": [
+            {
+              "id": "clearance",
+              "image_key": "clearance_native",
+              "source_patterns": [
+                "connections_en"
+              ],
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.clearance",
+              "presentation_mode": "base-art-live-copy",
+              "captions_embedded": false,
+              "base_art_layout": {
+                "art_sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      54,
+                      83,
+                      33,
+                      7
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      28,
+                      88,
+                      33,
+                      7
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "locking",
+              "image_key": "locking_native",
+              "source_patterns": [
+                "connections_en"
+              ],
+              "capture_following_lines": 6,
+              "web_replace_key": "reference.locking",
+              "presentation_mode": "base-art-live-copy",
+              "captions_embedded": false,
+              "base_art_layout": {
+                "art_sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      58,
+                      4,
+                      18,
+                      6
+                    ],
+                    "fill": "#efefef"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      58,
+                      52,
+                      18,
+                      6
+                    ],
+                    "fill": "#efefef"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      59.4,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      80.3,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      59.4,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      80.3,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  }
+                ]
+              }
+            }
           ]
         }
       }

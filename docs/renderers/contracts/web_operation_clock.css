@@ -1,0 +1,19 @@
+/* Opt-in clock for source art whose baked glyph has been removed. */
+.hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration[data-duration-icon="clock"] {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: max(0.65rem, 2.1cqw);
+}
+
+.hb-base-art-live-copy .hb-operation-duration[data-duration-icon="clock"]::before {
+  content: "";
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  border-radius: 50%;
+  background:
+    linear-gradient(#fff, #fff) 50% 32% / 0.13em 0.56em no-repeat,
+    linear-gradient(#fff, #fff) 66% 50% / 0.5em 0.13em no-repeat,
+    #343031;
+}

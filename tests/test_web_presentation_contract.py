@@ -596,6 +596,16 @@ class WebPresentationContractTests(unittest.TestCase):
             ),
             ("no measured layout", overlay(coverage=grant), "base_art_layout is required"),
             (
+                "unsupported duration icon",
+                overlay(coverage=grant, base_art_layout={**layout, "duration_icon": "image"}),
+                "duration_icon must be none or clock",
+            ),
+            (
+                "clock has no anchor",
+                overlay(coverage=grant, base_art_layout={**layout, "duration_icon": "clock"}),
+                "duration_icon requires duration_anchor",
+            ),
+            (
                 "layout names an unknown key",
                 overlay(coverage=grant, base_art_layout={**layout, "leader_path": []}),
                 "unknown keys",
