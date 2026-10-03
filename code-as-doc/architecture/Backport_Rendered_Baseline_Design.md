@@ -165,7 +165,7 @@ source-vs-rendered noise, phases 3–4 add incremental + source routing.
 
 ## 11. Implementation status
 
-- **Phase 1 (shipped):** `tools/backport_baseline.py` (on-branch `.backport/`
+- **Phase 1 (shipped):** `tools/backport/baseline.py` (on-branch `.backport/`
   store/load) + `run-review-branch --seed` (store the current cloud-doc as the
   baseline; `--reseed` to overwrite; `--push` commits it). This covers legacy
   seeding (§7.2) and the storage foundation.

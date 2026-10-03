@@ -638,9 +638,9 @@ source_ref), [`tools/source_table_sync.py`](../../tools/source_table_sync.py)
 
 Tests: `tests/test_backport_golden_corpus.py` (routing matrix),
 `tests/test_source_table_sync_invariants.py` (F6 write-side fuzz),
-`tests/test_backport_harness.py` (+ `tools/backport_harness.py`, offline
+`tests/test_backport_harness.py` (+ `tools/backport/harness.py`, offline
 multi-edit integration), `tests/test_backport_noise_injection.py`,
-`tests/test_backport_live_check.py` (+ `tools/backport_live_check.py`, operator
+`tests/test_backport_live_check.py` (+ `tools/backport/live_check.py`, operator
 live round-trip).
 
 Sync-env bootstrap (`sync-data` needs `FEISHU_PHASE2_*` + TM env): copy

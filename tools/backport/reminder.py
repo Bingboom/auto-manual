@@ -20,12 +20,10 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any, Callable
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.backport_baseline import baseline_rel_path  # noqa: E402
+from tools.backport.baseline import baseline_rel_path  # noqa: E402
 from tools.backport.model import fetch_doc_text, parse_blocks  # noqa: E402
 from tools.document_link_queue import field_value, scalar_text  # noqa: E402
 from tools.review_branch_resolver import (  # noqa: E402
