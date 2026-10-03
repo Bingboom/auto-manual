@@ -63,6 +63,7 @@ config plane.
 
 - [ ] Was `python -m unittest` run if logic changed?
 - [ ] Do new or changed tests patch the module that looks the name up, not a re-export on a facade (`build_docs`, `process_build_queue`, `process_review_start_queue`, `backport.cloud_doc`)? The facade-patch ratchet (`data/facade_patch_baseline.tsv`) only lets the count fall.
+- [ ] Does new code live in a subpackage rather than at `tools/` top level, and run through `python -m` instead of new `script_bootstrap` / `sys.path.insert` code? The top-level ratchet (`data/top_level_module_baseline.tsv`) admits a new top-level module only with a recorded reason (`update --allow NAME=REASON`).
 - [ ] Was at least one relevant smoke build run for the affected family?
 - [ ] If JP review/publish flow changed, was `python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
 - [ ] If release traceability changed, was `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
