@@ -32,7 +32,10 @@
         "Outlined source safety/storage/warranty exclusions visually checked.",
         "Printed environne- ment wrap joined; whitespace and fi/fl ligatures normalized."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "es",
@@ -53,7 +56,10 @@
         "Native adequate.Temperature / problem.If spacing retained as adecuada.Temperatura and problema.Si.",
         "Native Principa, cargos, garantia,debe and laduración wording retained; source correction requires review."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "de",
@@ -78,7 +84,10 @@
         "Left port B label reads C-Erweiterungsport B; retained in native panel.",
         "Native source pairs the do-not-dismantle hand symbol with Vermeiden Sie Hitze and no-flame symbol with Demontieren Sie das Produkt nicht; preserve native copy and pairing pending operator review."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "it",
@@ -91,9 +100,9 @@
       "css_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
       "copy_map_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
       "preview": "http://127.0.0.1:56059/it-r1/manual_jbp3600a_eu_it.html",
-      "independent_status": "pending",
-      "independent_report": null,
-      "independent_report_sha256": null,
+      "independent_status": "source-and-layout-pass",
+      "independent_report": "review/it-r1-independent/acceptance.md",
+      "independent_report_sha256": "08a8f4a2683ff6013ded003d08f2f9ad71971083e46293161fd616756147ce4c",
       "structural_trial_differences": 11,
       "native_findings": [
         "Native inbox cable is labelled Cavo di ricarica CA; retained alongside the unchanged expansion cable art.",
@@ -105,7 +114,10 @@
         "Native operation text says ucita; retained.",
         "Native charge-temperature label reads Temperatura di caricatra; retained."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "uk",
@@ -123,7 +135,10 @@
       "independent_report_sha256": null,
       "structural_trial_differences": 9,
       "native_findings": [],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "pt",
@@ -143,7 +158,10 @@
       "native_findings": [
         "Native operation uses ON and Apagado; retained."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "nl",
@@ -163,7 +181,10 @@
       "native_findings": [
         "Native port group heading has INGANGS//UITGANGSPOORTEN; retained."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     },
     {
       "language": "pl",
@@ -184,7 +205,10 @@
         "Native weight and dimensions put metric units first; retained.",
         "Native clearance labels put millimetres before feet; retained."
       ],
-      "publication_eligible": false
+      "publication_eligible": false,
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     }
   ]
 }

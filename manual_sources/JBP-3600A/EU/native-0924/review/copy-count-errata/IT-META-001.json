@@ -1,0 +1,327 @@
+{
+  "finding": "IT-META-001",
+  "status": "producer-appendix-complete-awaiting-independent-closure",
+  "kind": "non-content-count-label-correction",
+  "publication_eligible": false,
+  "basis_commit": "edaf3e1039803e5b71954c385cd66532c4fd666f",
+  "definition": "sum(len(values) for values in copy_by_page.values()) counts170 page-scoped English-to-native dictionary entries; len(evidence) counts169 positioned provenance records. The additional YEARS entry is a warranty badge unit mapping. Neither number counts rendered occurrences, source sentences or all native-specific structures.",
+  "cause": "The producer mapped_native_entries and explicit_native_mappings fields used len(evidence); the ledger and source review repeated169 as a mapping total. The presence check itself iterated all copy_by_page values.",
+  "italian_extra_row_note": "Italian extra_spec_row is a separate source-backed structural extension on page45, not the cause of170-versus169. Its two structural representations account for the additional two baseline differences.",
+  "affected_historical_fields": [
+    "review/<revision>/*-native-copy-check.json:mapped_native_entries",
+    "review/<revision>/review-ledger.json:checks.native_copy",
+    "review/<language>-source/source-copy-review.json:explicit_mappings",
+    "web/<revision>/candidate-validation.json:explicit_native_mappings"
+  ],
+  "preservation": "No copy map, frozen package, native HTML, producer ledger, source-review record or manifest changed. This appendix supersedes only mapping-count labels.",
+  "locales": [
+    {
+      "language": "fr",
+      "revision": "fr-r4",
+      "copy_map": "copy-maps/fr.json",
+      "copy_map_sha256": "21c64705dfd1e79d436f177c93079e4ccff298fa41e135d641a6a314981bbc3e",
+      "html_sha256": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "ANS",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "es",
+      "revision": "es-r2",
+      "copy_map": "copy-maps/es.json",
+      "copy_map_sha256": "d683c84689d5a649909039c381ab7fa3fc61b4c296f66e6e19f40595a5176ccf",
+      "html_sha256": "ea435f96c7d7a10302c597b5fd5042f49b6d146a0c3568ea80e51cf1164e9c48",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "AÑOS",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "de",
+      "revision": "de-r1",
+      "copy_map": "copy-maps/de.json",
+      "copy_map_sha256": "b0a91833a9c12fbedf894863ab5827f34a3e356756390e673bdaadbd81f30b3b",
+      "html_sha256": "e76ad579cac6fbe22c9b7c32f3cb818fb26374ebe383e8d6c8a4ce8994a7501b",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "JAHRE",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "it",
+      "revision": "it-r1",
+      "copy_map": "copy-maps/it.json",
+      "copy_map_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
+      "html_sha256": "8a435fb822e35f905ed24c2802477f7203c791e06d38eee77ab06e13ebafaa85",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "ANNI",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      },
+      "separate_extra_spec_row": {
+        "label": "Corrente massima di cortocircuito e durata",
+        "value": "1160A/860μs",
+        "physical_page": 45,
+        "native_blocks": [
+          22,
+          25
+        ],
+        "status": "source-backed-structure-exception-not-approved",
+        "included_in_copy_by_page_count": false,
+        "rendered_label_and_value_present": true
+      }
+    },
+    {
+      "language": "uk",
+      "revision": "uk-r1",
+      "copy_map": "copy-maps/uk.json",
+      "copy_map_sha256": "2c6a03f3a441bb8508e33a996c55cffb22a2f06a41bead912f67381dd641b84d",
+      "html_sha256": "dc2c0ccc70cd987b6628676981168da68e0f084fa8cda8dde6f3a2dc659c1707",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "РОКИ",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "pt",
+      "revision": "pt-r1",
+      "copy_map": "copy-maps/pt.json",
+      "copy_map_sha256": "daf848b6afb8a38ab265b3aac79cefb73e1e0b54680f6e782444404c2966d281",
+      "html_sha256": "c3683edd791fb497b80f427962a65e44820b9681ec412dd585989554da50df0c",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "ANOS",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "nl",
+      "revision": "nl-r1",
+      "copy_map": "copy-maps/nl.json",
+      "copy_map_sha256": "de7554b57efdaaf4b289e878e1d9f8445c151043f4ff61039efeffafb22f2ffb",
+      "html_sha256": "45549f8c51e045834a617fa8181497618c4bc38c2638460e9e5268614ab35bf8",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "JAAR",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    },
+    {
+      "language": "pl",
+      "revision": "pl-r1",
+      "copy_map": "copy-maps/pl.json",
+      "copy_map_sha256": "60bfe06d622dee2d330649855b4c621706731e6f2b5603823bf1d76bc57c1d59",
+      "html_sha256": "a69bf348da6c1aa8621999b69575bb1d0db20a2f9b8ddbd80abb82ac4f9d6095",
+      "copy_by_page_entries": 170,
+      "evidence_records": 169,
+      "per_page_entries": {
+        "preface_important_en.rst": 4,
+        "toc.rst": 0,
+        "safety_info_en.rst": 12,
+        "symbol_meaning_en.rst": 20,
+        "box_contents_en.rst": 7,
+        "product_overview_en.rst": 5,
+        "lcd_display_en.rst": 6,
+        "operation_en.rst": 13,
+        "connections_en.rst": 15,
+        "troubleshooting_en.rst": 9,
+        "charging_en.rst": 9,
+        "storage_en.rst": 6,
+        "specifications_en.rst": 27,
+        "warranty_en.rst": 27,
+        "regulatory_compliance.rst": 10
+      },
+      "mapping_without_dedicated_evidence_record": {
+        "page_id": "warranty_en.rst",
+        "english": "YEARS",
+        "native": "LATA",
+        "role": "unit label reused by3-year and2-year warranty badges"
+      },
+      "supplemental_presence_check": {
+        "mapped_values_checked": 170,
+        "missing_values": [],
+        "scope": "Rendered article text plus image alt/aria-label; whitespace normalized and inserted x5 removed; no new source or visual acceptance claimed."
+      }
+    }
+  ]
+}

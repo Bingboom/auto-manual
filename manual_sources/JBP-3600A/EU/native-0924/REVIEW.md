@@ -29,7 +29,7 @@
 
 ## 八语固定版本
 
-所有语言的正文均来自各语原稿，没有按英文重译。FR r4、ES r2和DE r1独立内容和版面复核PASS；IT/UK/PT/NL/PL的独立复核仍待完成。FR r4保持先前已封存CSS；其余七语使用r5候选CSS。
+所有语言的正文均来自各语原稿，没有按英文重译。FR r4、ES r2、DE r1和IT r1独立内容和版面复核PASS；UK/PT/NL/PL的独立原稿与视觉复核仍待完成。FR r4保持先前已封存CSS；其余七语使用r5候选CSS。
 
 | 固定候选 | IR SHA256 | HTML SHA256 |
 | --- | --- | --- |
@@ -43,6 +43,8 @@
 | pl-r1 | `91e10c0b26f5bb87e3ce9efb74c25606e631bbed73857d5c0b701f6016f08b51` | `a69bf348da6c1aa8621999b69575bb1d0db20a2f9b8ddbd80abb82ac4f9d6095` |
 
 [各语入口与独立报告](README.md)、[完整状态](review-status.json)。所有包和证据有各自manifest；不得覆盖封存目录，修改需新修订号。
+
+意大利语独立验收提出的统计项 IT-META-001 已追加[计数勘误](review/copy-count-errata/README.md)，等待独立确认关闭：每语170个copy-map条目、169条evidence，另1项是保修徽标YEARS。所有旧报告和封存字节保留；此补充不改变内容验收或发布权限。
 
 ## 待确认的原稿差异
 
