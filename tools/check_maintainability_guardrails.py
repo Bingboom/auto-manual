@@ -19,6 +19,7 @@ from tools import (
     check_complexity_ratchet,
     check_facade_patch_ratchet,
     check_language_literal_ratchet,
+    check_top_level_module_ratchet,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
 
@@ -384,6 +385,10 @@ def main(argv: list[str] | None = None) -> int:
     broad_excepts = check_broad_except_ratchet.check_repository(args.repo_root.resolve())
     if broad_excepts.exit_code:
         return broad_excepts.exit_code
+
+    top_level = check_top_level_module_ratchet.check_repository(args.repo_root.resolve())
+    if top_level.exit_code:
+        return top_level.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."

@@ -62,9 +62,13 @@ web、IDML、队列、回写这几块目前最大的代码面。
   （build / check / queue / backport / web / rtd / word / idml / manual_ir / component_specs /
   asset）及每个领域的目标子包名。只改文档（与 CQ-7.4 同一个 PR）。
   （#1331，2026-09-30；目标子包提案见 `code_style_guide.md` §2.16）
-- [ ] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
+- [x] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
   顶层 `.py` 数量与 `script_bootstrap`/`sys.path.insert` 使用数量只减不增；新增顶层模块需要在
   允许清单里写明理由。
+  （2026-10-03；`tools/check_top_level_module_ratchet.py` + `data/top_level_module_baseline.tsv`，
+  已接入 guardrails。基线：顶层模块 398 个（含本检查自身），带启动代码的文件 103 个（按 AST 识别，
+  注释与文档字符串不计；原文的 154 是更宽口径的计数）。新增顶层模块只能经
+  `update --allow NAME=REASON` 进入基线，理由写在第三列）
 - [ ] **CQ-1.3 试点迁移一个低耦合族。** 选 `cloud_doc_backport_*`（13 个文件，已有单向
   import 约束）迁到 `tools/backport/`。旧路径保留一个只做再导出的薄 shim，并加
   `DeprecationWarning`；[`../../AGENTS.md`](../../AGENTS.md) §3 引用的
