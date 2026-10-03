@@ -1,10 +1,12 @@
 # JBP-3600A EU native-language intake candidates
 
+最新本地修订见[透明素材复用及发布准备](review/transparent-symbol-r1/README.md)：英语 r6、法语 r5、西语 r3、其余六语 r2。旧封存和 8/8 独立验收保留；以下旧版记录不自动批准新修订。
+
 English is already published at engineering commit `565c52a2d450d2b353e0186b22d0b230a2fb13ee` (PR1404), Hello-Docs PR170 and RTD34910454. These eight native packages are local review candidates. They do not authorize another release or promote an English baseline.
 
 Source: `HTP011-EU-9国语言-0924.ai`,79 PDF-compatible pages, SHA256 `8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1`. Native bodies: FR15–22, ES23–30, DE31–38, IT39–46, UK47–54, PT55–62, NL63–70, PL71–78. `uk` is Ukrainian. Frontmatter FR/ES/DE/IT is on page2; UK/PT/NL/PL is on page3. Shared legal/manufacturer page79 remains English as in the original.
 
-## Current fixed candidates
+## Independently accepted sealed candidates before the new revision
 
 | Language | Preview | Fixed files | Independent content/layout review |
 | --- | --- | --- | --- |

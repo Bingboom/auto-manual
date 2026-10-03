@@ -222,5 +222,26 @@
   "count_erratum_closure_evidence": {
     "path": "review/count-errata-independent/closure.md",
     "sha256": "312ebf6c2251f43a699e72b85da710ed3721967f01eb761ebec01260154b2ab1"
+  },
+  "transparent_symbol_followup": {
+    "status": "local-candidates-awaiting-operator-review",
+    "evidence": "review/transparent-symbol-r1/README.md",
+    "results": "review/transparent-symbol-r1/results.json",
+    "new_revisions": [
+      "en-r6",
+      "fr-r5",
+      "es-r3",
+      "de-r2",
+      "it-r2",
+      "uk-r2",
+      "pt-r2",
+      "nl-r2",
+      "pl-r2"
+    ],
+    "historical_independent_acceptance_preserved": true,
+    "new_full_independent_acceptance_claimed": false,
+    "publication_eligible": false,
+    "registry_enrollment": false,
+    "merge_or_publication_performed": false
   }
 }
