@@ -5,7 +5,7 @@ import json
 import unittest
 from unittest import mock
 
-from tools import queue_query
+from tools.build_queue import query as queue_query
 
 
 class TestQueueQuery(unittest.TestCase):

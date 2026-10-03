@@ -235,7 +235,7 @@ capabilities:
         status: available
         note: 由构建队列产出；出货印刷走 IDML
         evidence:
-          - "file:auto-manual:tools/queue_build_execution.py"
+          - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
       - id: shared_ir
         label: 共享中间表示

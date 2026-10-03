@@ -3,7 +3,7 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-from tools import process_build_queue
+from tools.build_queue import process_build_queue
 
 
 class ProcessBuildQueueWritebackTests(unittest.TestCase):

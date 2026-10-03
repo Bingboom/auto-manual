@@ -21,7 +21,7 @@ from tools.data_snapshot import (  # noqa: E402
     PHASE2_REQUIRED_TABLE_FILES,
     SNAPSHOT_MANIFEST_FILE,
 )
-from tools.queue_contract import (  # noqa: E402
+from tools.build_queue.contract import (  # noqa: E402
     BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD,
     DOCUMENT_DIRECTORY_FIELD,

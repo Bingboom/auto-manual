@@ -6,7 +6,7 @@ Status: active
 
 现有 `rtd_deliverables.py export` 与 `rtd_system_workspace.py corpus-export`
 直接覆盖工程快照；分页缺少响应完整性和重复页检查。队列批次入口是
-`tools/queue_orchestration.py`，单组成功写回在 `tools/queue_group_processing.py`。
+`tools/build_queue/orchestration.py`，单组成功写回在 `tools/build_queue/group_processing.py`。
 现有业务内容保护范围是 `docs/publish` 和 `docs/knowledge`；工程同步会覆盖
 其他目录。RTD 已提供 `manual-deployment.json` 页面字节哈希回执。
 

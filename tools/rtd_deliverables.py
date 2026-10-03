@@ -38,7 +38,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from tools.queue_contract import (  # noqa: E402
+from tools.build_queue.contract import (  # noqa: E402
     DOCUMENT_KEY_FIELD,
     DOCUMENT_LINK_FIELD,
     FEISHU_CLOUD_DOC_FIELD,

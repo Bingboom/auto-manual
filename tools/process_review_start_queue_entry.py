@@ -1,49 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.build_queue.process_review_start_queue_entry` (CQ-1.4); import the new path.
 
-import argparse
-from pathlib import Path
-from typing import Any, Callable
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    ap = argparse.ArgumentParser(description="Consume Review-init rows and start review branches and PRs.")
-    ap.add_argument("--config", required=True, help="Config YAML path")
-    ap.add_argument("--data-root", default=None, help="Override phase2 snapshot root for review seeding")
-    ap.add_argument("--dry-run", action="store_true", help="List pending rows without creating branches or PRs")
-    ap.add_argument("--record-id", default=None, help="Only consume one Review-init record_id")
-    ap.add_argument(
-        "--record-ids",
-        default="",
-        help="Only consume these comma-separated Review-init record_ids (batch worker input)",
-    )
-    return ap.parse_args(argv)
-
-
-def run_main(
-    argv: list[str] | None = None,
-    *,
-    root: Path,
-    load_config_fn: Callable[[Path], dict[str, Any]],
-    resolve_phase2_export_root_fn: Callable[..., Path],
-    process_review_start_queue_fn: Callable[..., int],
-) -> int:
-    args = parse_args(argv)
-    config_path = Path(args.config)
-    if not config_path.is_absolute():
-        config_path = root / config_path
-    cfg = load_config_fn(config_path)
-    resolved_data_root = str(
-        resolve_phase2_export_root_fn(
-            cfg,
-            repo_root=root,
-            data_root=args.data_root,
-        )
-    )
-    return process_review_start_queue_fn(
-        cfg=cfg,
-        config_path=config_path,
-        data_root=resolved_data_root,
-        dry_run=args.dry_run,
-        record_id=args.record_id,
-        record_ids=tuple(item.strip() for item in str(args.record_ids or "").split(",") if item.strip()),
-    )
+warnings.warn(
+    "tools.process_review_start_queue_entry moved to tools.build_queue.process_review_start_queue_entry",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.build_queue.process_review_start_queue_entry")

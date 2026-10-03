@@ -12,8 +12,8 @@ from types import SimpleNamespace
 import unittest
 from unittest import mock
 
-from tools import process_build_queue, process_build_queue_services, queue_bound_runtime, queue_group_processing
-from tools.process_build_queue_deps import default_queue_deps
+from tools.build_queue import process_build_queue, process_build_queue_services, bound_runtime as queue_bound_runtime, group_processing as queue_group_processing
+from tools.build_queue.process_build_queue_deps import default_queue_deps
 from tools.phase2_support import LarkCliSource
 from tools.utils.path_utils import PathSegments, review_dir_of
 

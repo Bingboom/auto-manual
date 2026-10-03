@@ -18,7 +18,7 @@ from tools.message_control_contract import (
     MessageTargetSelector,
 )
 from tools.language_aliases import normalize_language, normalize_region
-from tools.queue_config_resolution import config_family_id, normalize_build_family
+from tools.build_queue.config_resolution import config_family_id, normalize_build_family
 
 
 def normalize_message_text(raw_message: str) -> str:

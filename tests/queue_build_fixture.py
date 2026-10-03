@@ -6,14 +6,7 @@ from contextlib import ExitStack, contextmanager
 from pathlib import Path
 from unittest import mock
 
-from tools import (
-    process_build_queue,
-    queue_bound_lark_ops,
-    queue_bound_outputs,
-    queue_bound_records,
-    queue_bound_runtime,
-    queue_build_execution,
-)
+from tools.build_queue import process_build_queue, bound_lark_ops as queue_bound_lark_ops, bound_outputs as queue_bound_outputs, bound_records as queue_bound_records, bound_runtime as queue_bound_runtime, build_execution as queue_build_execution
 
 _BOUND_MODULES = (queue_bound_outputs, queue_bound_runtime, queue_bound_lark_ops, queue_bound_records)
 

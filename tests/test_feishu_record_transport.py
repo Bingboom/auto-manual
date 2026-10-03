@@ -8,7 +8,7 @@ from unittest import mock
 
 from tools.feishu_record_transport import run_lark_cli_json
 from tools.feishu_record_transport import LarkRetryPolicy, iter_lark_pages
-from tools.queue_lark_ops import run_lark_cli_json as run_queue_lark_cli_json
+from tools.build_queue.lark_ops import run_lark_cli_json as run_queue_lark_cli_json
 from tools import bitable_schema, spec_master_rebuild
 
 

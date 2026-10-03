@@ -119,11 +119,11 @@ Current responsibility:
 
 ### 2.8 Queue Orchestration Layer
 
-- [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py)
-- [`../../tools/process_build_queue_main.py`](../../tools/process_build_queue_main.py)
-- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
-- [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
-- [`../../tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
+- [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
+- [`../../tools/build_queue/process_build_queue_main.py`](../../tools/build_queue/process_build_queue_main.py)
+- [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
+- [`../../tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
+- [`../../tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
 
 Current responsibility:
 
@@ -172,7 +172,7 @@ flowchart TD
   J --> L["check"]
   J --> M["diff-report"]
   K --> N["release-manifest"]
-  A --> O["tools/process_build_queue.py"]
+  A --> O["tools/build_queue/process_build_queue.py"]
   O --> P["queue_* / queue_bound_* helpers"]
 ```
 

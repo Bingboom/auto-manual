@@ -204,7 +204,7 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
         clock: Callable[[], datetime] | None = None,
         started_calls: list[dict[str, object]] | None = None,
     ) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
-        from tools import queue_group_processing
+        from tools.build_queue import group_processing as queue_group_processing
 
         directory = Path(tempfile.mkdtemp())
         outputs = _outputs(directory / "build")
@@ -277,7 +277,7 @@ class TestQueueGroupProcessingDropsDelivery(unittest.TestCase):
             return FakeClaim()
 
         def fake_build_started_fields(**kwargs: object) -> dict[str, object]:
-            from tools.queue_transitions import format_queue_result
+            from tools.build_queue.transitions import format_queue_result
 
             if started_calls is not None:
                 started_calls.append(kwargs)

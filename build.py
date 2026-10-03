@@ -63,9 +63,9 @@ from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
 from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.manual_index_query import run_manual_index_query as _run_manual_index_query_impl
-from tools.queue_execute import run_queue_execute as _run_queue_execute_impl
-from tools.queue_query import run_queue_query as _run_queue_query_impl
-from tools.queue_resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
+from tools.build_queue.execute import run_queue_execute as _run_queue_execute_impl
+from tools.build_queue.query import run_queue_query as _run_queue_query_impl
+from tools.build_queue.resolve_action import run_queue_resolve_action as _run_queue_resolve_action_impl
 from tools.translation_memory import (
     build_translation_memory_payload as _build_translation_memory_payload_impl,
     payload_to_json as _payload_to_json_impl,
