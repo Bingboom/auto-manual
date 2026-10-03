@@ -66,7 +66,7 @@ def main() -> int:
         for attempt in range(args.attempts):
             # RTD success is checked separately; an old receipt cannot stand in for a finished build.
             report["stage"] = "rtd-build"
-            builds = json.loads(FetchSession().fetch("https://readthedocs.org/api/v3/projects/ht-doc/builds/?limit=20"))
+            builds = json.loads(FetchSession().fetch("https://readthedocs.org/api/v3/projects/ht-doc/builds/"))
             previous = next((item for item in builds["results"] if item.get("success")), None)
             report["last_success"] = (previous or {}).get("finished") or "Unavailable"
             target = next((item for item in builds["results"] if item.get("commit") == args.revision), None)
