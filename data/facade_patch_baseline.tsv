@@ -1,5 +1,5 @@
 # Per-test-file count of patches applied to facade modules
-# (tools.build_docs, tools.cloud_doc_backport, tools.process_build_queue, tools.process_review_start_queue).
+# (tools.build_docs, tools.backport.cloud_doc, tools.process_build_queue, tools.process_review_start_queue).
 # No file may grow, unlisted files may not patch facades, and a lower
 # count must be written back. Regenerate intentionally with:
 #   python tools/check_facade_patch_ratchet.py update

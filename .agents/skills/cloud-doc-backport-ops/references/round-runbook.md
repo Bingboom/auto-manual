@@ -2,7 +2,7 @@
 
 Everything here was earned in real rounds (JE-2000F CN 2026-07-03, JE-900B JP
 07-07, JE-1800B JP 07-08/09, AU/JP sweep 07-03). Command shapes were verified
-against `tools/cloud_doc_backport_args.py` — if a flag disagrees with this file,
+against `tools/backport/args.py` — if a flag disagrees with this file,
 trust `--help` and fix this file in the same PR.
 
 ## 1. Preflight

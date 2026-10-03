@@ -238,7 +238,7 @@ def _apply(args: argparse.Namespace) -> int:
     try:
         transport = None
         if args.write:
-            from tools.cloud_doc_backport_transports import _parse_table_bindings, _source_table_transport
+            from tools.backport.transports import _parse_table_bindings, _source_table_transport
 
             bindings = _parse_table_bindings(args.table_binding or [])
             if not bindings:

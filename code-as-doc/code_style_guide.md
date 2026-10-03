@@ -114,7 +114,7 @@ Responsibilities:
 
 ### 2.9 Cloud-Doc Backport
 
-- [`../tools/cloud_doc_backport.py`](../tools/cloud_doc_backport.py), `cloud_doc_backport_*.py`, `backport_*.py`
+- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3; the old top-level names are deprecated shims), `backport_*.py`
 
 Responsibilities:
 
@@ -180,7 +180,7 @@ moves each family into a real subpackage. The names below are proposals.
 | Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` |
 | Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` |
 | Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/queue/` |
-| Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot) |
+| Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
 | Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` |
 | Read the Docs portal | `rtd_*.py` | `tools/rtd/` |
 | Word export | `word_bundle*.py` | `tools/word/` |

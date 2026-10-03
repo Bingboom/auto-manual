@@ -418,16 +418,6 @@ bootstrap	tools/check_reference_layout_pins.py
 bootstrap	tools/check_review_branch_sync.py
 bootstrap	tools/ci_check_targets.py
 bootstrap	tools/cloud_doc_backport.py
-bootstrap	tools/cloud_doc_backport_apply.py
-bootstrap	tools/cloud_doc_backport_args.py
-bootstrap	tools/cloud_doc_backport_cli.py
-bootstrap	tools/cloud_doc_backport_commands.py
-bootstrap	tools/cloud_doc_backport_model.py
-bootstrap	tools/cloud_doc_backport_orchestration.py
-bootstrap	tools/cloud_doc_backport_pr.py
-bootstrap	tools/cloud_doc_backport_reports.py
-bootstrap	tools/cloud_doc_backport_routing.py
-bootstrap	tools/cloud_doc_backport_util.py
 bootstrap	tools/content_lint.py
 bootstrap	tools/cred_health_check.py
 bootstrap	tools/csv_page_build.py

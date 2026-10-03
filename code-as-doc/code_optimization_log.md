@@ -33,6 +33,12 @@ For current rules, see:
   instead of going to 0.
 - CQ-1.2: `tools/` top-level modules (398) and files carrying script bootstrap
   code (103) are ratcheted; a new top-level module needs a recorded reason.
+- CQ-1.3 done: the 13 `cloud_doc_backport*` modules moved into `tools/backport/`
+  (entry `python -m tools.backport.cloud_doc`); each old path is a warning shim that
+  aliases the same module object, so the AGENTS.md §3 command and old patch targets
+  keep working. Bootstrap files 103 → 93. The move also fixed the
+  `run-review-branch` per-page worker, which had run a module with no `__main__`
+  since the G0 split and so exited 0 on every page without diffing.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

@@ -69,10 +69,12 @@ web、IDML、队列、回写这几块目前最大的代码面。
   已接入 guardrails。基线：顶层模块 398 个（含本检查自身），带启动代码的文件 103 个（按 AST 识别，
   注释与文档字符串不计；原文的 154 是更宽口径的计数）。新增顶层模块只能经
   `update --allow NAME=REASON` 进入基线，理由写在第三列）
-- [ ] **CQ-1.3 试点迁移一个低耦合族。** 选 `cloud_doc_backport_*`（13 个文件，已有单向
+- [x] **CQ-1.3 试点迁移一个低耦合族。** 选 `cloud_doc_backport_*`（13 个文件，已有单向
   import 约束）迁到 `tools/backport/`。旧路径保留一个只做再导出的薄 shim，并加
   `DeprecationWarning`；[`../../AGENTS.md`](../../AGENTS.md) §3 引用的
   `python tools/cloud_doc_backport.py` 命令保持可用。**开工前需操作者确认**（热点模块移动）。
+  （2026-10-03 完成：13 个模块迁入 `tools/backport/`，入口 `python -m tools.backport.cloud_doc`；
+  旧路径 shim 是同一模块对象的别名，`mock.patch` 新旧路径等价；启动代码 103 → 93）
 - [ ] **CQ-1.4 按族迁移其余前缀。** 每个 PR 迁一族，顺序：`queue_*` → `check_docs_*` →
   `build_docs_*` → `web_*` → `rtd_*` / `word_*`。每个 PR 同时更新 `orchestration_module_map.md`
   和热点行数上限表中的路径。

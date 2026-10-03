@@ -23,13 +23,13 @@ class CountFileTest(unittest.TestCase):
             from tools import build_docs
             from tools import process_build_queue as pbq
             import tools.process_review_start_queue as review
-            import tools.cloud_doc_backport
+            import tools.backport.cloud_doc
 
             @patch.object(build_docs, "run")
             def test_a(run):
                 with mock.patch.object(pbq, "main"), patch.multiple(review, a=1):
                     pass
-                with patch.object(tools.cloud_doc_backport, "x"):
+                with patch.object(tools.backport.cloud_doc, "x"):
                     pass
                 with patch("tools.process_build_queue.helper"), mock.patch("tools.build_docs.run"):
                     pass
