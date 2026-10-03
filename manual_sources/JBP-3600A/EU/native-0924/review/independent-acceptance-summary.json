@@ -1,0 +1,94 @@
+{
+  "status": "all8-independent-candidate-source-layout-pass",
+  "passed": 8,
+  "total": 8,
+  "publication_eligible": false,
+  "operator_baseline_approval": false,
+  "source_exception_approval": false,
+  "locale_enrollment": false,
+  "multilingual_merge_publication_authorization": false,
+  "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
+  "count_erratum": {
+    "finding": "IT-META-001",
+    "status": "producer-appendix-complete-awaiting-independent-closure",
+    "path": "review/copy-count-errata/IT-META-001.json",
+    "commit": "54cc7f47748760c154cffc005e4adc36593e3dcc",
+    "sha256": "bd35b9e0c86ca2faa336a2ef1746f6825452e3d250f80d81cd3dc591f4771a74",
+    "definition": "170 copy_by_page dictionary entries =169 evidence records +1 localized YEARS warranty badge key; Italian extra_spec_row is separate."
+  },
+  "reports": [
+    {
+      "language": "fr",
+      "revision": "fr-r4",
+      "ir_sha256": "b92d4ac099bc0e0219705d76420ef40dfbcd435c258f458566a7bc8e54311390",
+      "html_sha256": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+      "copy_map_sha256": "21c64705dfd1e79d436f177c93079e4ccff298fa41e135d641a6a314981bbc3e",
+      "independent_report": "review/fr-r4-independent/acceptance.md",
+      "independent_report_sha256": "945281da5a77172a355ec8ba9c4c16b655cd8ed121593de502f047400aeb95fc"
+    },
+    {
+      "language": "es",
+      "revision": "es-r2",
+      "ir_sha256": "948f3aefddd1946b15724a579c40244cb3f3b241272b28afd6358802dc92491e",
+      "html_sha256": "ea435f96c7d7a10302c597b5fd5042f49b6d146a0c3568ea80e51cf1164e9c48",
+      "copy_map_sha256": "d683c84689d5a649909039c381ab7fa3fc61b4c296f66e6e19f40595a5176ccf",
+      "independent_report": "review/es-r2-independent/acceptance.md",
+      "independent_report_sha256": "841e4ceef603f8cfa698c17b3fd665d277749781e9ec580fdae16f6fcb6e02cf"
+    },
+    {
+      "language": "de",
+      "revision": "de-r1",
+      "ir_sha256": "aa0bc443e7b5f5779abe4bc357527c96f0f8085098ac0844848368772616407f",
+      "html_sha256": "e76ad579cac6fbe22c9b7c32f3cb818fb26374ebe383e8d6c8a4ce8994a7501b",
+      "copy_map_sha256": "b0a91833a9c12fbedf894863ab5827f34a3e356756390e673bdaadbd81f30b3b",
+      "independent_report": "review/de-r1-independent/acceptance.md",
+      "independent_report_sha256": "296b68cd6eb482ad17bcd4241a858a59e66777199aa5061157d71e833aff6fcd"
+    },
+    {
+      "language": "it",
+      "revision": "it-r1",
+      "ir_sha256": "9a564c39fd42f537e8f8930eced3be793b4d71c07fe5f6a6cb1cf8e12162d375",
+      "html_sha256": "8a435fb822e35f905ed24c2802477f7203c791e06d38eee77ab06e13ebafaa85",
+      "copy_map_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
+      "independent_report": "review/it-r1-independent/acceptance.md",
+      "independent_report_sha256": "08a8f4a2683ff6013ded003d08f2f9ad71971083e46293161fd616756147ce4c"
+    },
+    {
+      "language": "uk",
+      "revision": "uk-r1",
+      "ir_sha256": "ea452133014af357b5fc71a83d41caef7ca76a412cc078af334f12b96adb11db",
+      "html_sha256": "dc2c0ccc70cd987b6628676981168da68e0f084fa8cda8dde6f3a2dc659c1707",
+      "copy_map_sha256": "2c6a03f3a441bb8508e33a996c55cffb22a2f06a41bead912f67381dd641b84d",
+      "independent_report": "review/uk-r1-independent/acceptance.md",
+      "independent_report_sha256": "8a4e4f8ef1014bf01667a0a0c61ac899fc5f9952cd2411bb0f9c024e3c32cc47"
+    },
+    {
+      "language": "pt",
+      "revision": "pt-r1",
+      "ir_sha256": "6ebd5988ec96e846d2278076d46b5dcdfd276fde628cb35f6119de8d45409ea6",
+      "html_sha256": "c3683edd791fb497b80f427962a65e44820b9681ec412dd585989554da50df0c",
+      "copy_map_sha256": "daf848b6afb8a38ab265b3aac79cefb73e1e0b54680f6e782444404c2966d281",
+      "independent_report": "review/pt-r1-independent/acceptance.md",
+      "independent_report_sha256": "d27c5d0cce2d589432b92fe202649fbc459ccb1240500db2689b786c73a979e1"
+    },
+    {
+      "language": "nl",
+      "revision": "nl-r1",
+      "ir_sha256": "524e398604f4fd2add6fe3aa9ac42c7dea4fa39468d02a6ea9db0a832217c6c5",
+      "html_sha256": "45549f8c51e045834a617fa8181497618c4bc38c2638460e9e5268614ab35bf8",
+      "copy_map_sha256": "de7554b57efdaaf4b289e878e1d9f8445c151043f4ff61039efeffafb22f2ffb",
+      "independent_report": "review/nl-r1-independent/acceptance.md",
+      "independent_report_sha256": "037e9084d04c36185b7f86123b47e1c86a9efcc77da9e3106a555393e7c44a23"
+    },
+    {
+      "language": "pl",
+      "revision": "pl-r1",
+      "ir_sha256": "91e10c0b26f5bb87e3ce9efb74c25606e631bbed73857d5c0b701f6016f08b51",
+      "html_sha256": "a69bf348da6c1aa8621999b69575bb1d0db20a2f9b8ddbd80abb82ac4f9d6095",
+      "copy_map_sha256": "60bfe06d622dee2d330649855b4c621706731e6f2b5603823bf1d76bc57c1d59",
+      "independent_report": "review/pl-r1-independent/acceptance.md",
+      "independent_report_sha256": "758e7ede05887577a2d1f64a65a8c6946ec2f1a0dc7933bca44ef797add5ba41"
+    }
+  ],
+  "preservation": "Frozen candidate bytes,producer ledgers,source-review records and prior evidence remain unchanged. Earlier status snapshots remain historical; this summary records the later eight independent acceptances."
+}

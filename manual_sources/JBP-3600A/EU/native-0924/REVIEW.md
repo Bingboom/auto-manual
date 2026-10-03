@@ -29,7 +29,7 @@
 
 ## 八语固定版本
 
-所有语言的正文均来自各语原稿，没有按英文重译。FR r4、ES r2、DE r1、IT r1、UK r1、PT r1和NL r1独立内容和版面复核PASS；PL的独立原稿与视觉复核仍待完成。共用符号去底色属于单独后续，未由本轮候选验收认证。FR r4保持先前已封存CSS；其余七语使用r5候选CSS。
+所有语言的正文均来自各语原稿，没有按英文重译。FR r4、ES r2和DE/IT/UK/PT/NL/PL r1全部通过独立原稿内容及桌面/手机版式验收（8/8）；[验收汇总](review/independent-acceptance-summary.json)绑定每份独立报告与固定版本。共用符号去底色属于单独后续，未由本轮候选验收认证。FR r4保持先前已封存CSS；其余七语使用r5候选CSS。
 
 | 固定候选 | IR SHA256 | HTML SHA256 |
 | --- | --- | --- |
@@ -44,7 +44,7 @@
 
 [各语入口与独立报告](README.md)、[完整状态](review-status.json)。所有包和证据有各自manifest；不得覆盖封存目录，修改需新修订号。
 
-意大利语独立验收提出的统计项 IT-META-001 已追加[计数勘误](review/copy-count-errata/README.md)，等待独立确认关闭：每语170个copy-map条目、169条evidence，另1项是保修徽标YEARS。所有旧报告和封存字节保留；此补充不改变内容验收或发布权限。
+意大利语独立验收提出的统计项 IT-META-001 已追加[计数勘误](review/copy-count-errata/README.md)，等待独立确认关闭；确切提交为 `54cc7f47748760c154cffc005e4adc36593e3dcc`，机器可读文件为[IT-META-001.json](review/copy-count-errata/IT-META-001.json)：每语170个copy-map条目、169条evidence，另1项是保修徽标YEARS。所有旧报告和封存字节保留；此补充不改变内容验收或发布权限。
 
 ## 待确认的原稿差异
 

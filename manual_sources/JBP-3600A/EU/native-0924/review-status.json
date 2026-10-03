@@ -197,9 +197,9 @@
       "css_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
       "copy_map_sha256": "60bfe06d622dee2d330649855b4c621706731e6f2b5603823bf1d76bc57c1d59",
       "preview": "http://127.0.0.1:56059/pl-r1/manual_jbp3600a_eu_pl.html",
-      "independent_status": "pending",
-      "independent_report": null,
-      "independent_report_sha256": null,
+      "independent_status": "source-and-layout-pass",
+      "independent_report": "review/pl-r1-independent/acceptance.md",
+      "independent_report_sha256": "758e7ede05887577a2d1f64a65a8c6946ec2f1a0dc7933bca44ef797add5ba41",
       "structural_trial_differences": 9,
       "native_findings": [
         "Native weight and dimensions put metric units first; retained.",
@@ -210,5 +210,13 @@
       "evidence_records": 169,
       "copy_count_erratum": "review/copy-count-errata/IT-META-001.json"
     }
-  ]
+  ],
+  "independent_candidate_acceptance": {
+    "passed": 8,
+    "total": 8,
+    "scope": "native-source content and desktop/mobile layout only",
+    "summary": "review/independent-acceptance-summary.json"
+  },
+  "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
+  "count_erratum_closure": "producer-appendix-complete-awaiting-independent-closure"
 }
