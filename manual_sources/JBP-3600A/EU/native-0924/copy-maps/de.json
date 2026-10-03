@@ -1,7 +1,7 @@
 {
   "language": "de",
   "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
-  "status": "candidate-native-copy-review-in-progress",
+  "status": "producer-source-checked-awaiting-final-web-build-and-independent-review",
   "normalization": [
     "print line-wrap whitespace joined",
     "fi/fl/ff ligatures expanded",
@@ -69,9 +69,9 @@
       "Keep away from children.": "Halten Sie das Produkt fern von Kindern.",
       "Read the user manual before operation.": "Lesen Sie vor der Anwendung die Benutzeranleitung.",
       "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Dieses Symbol zeigt an, dass sich ein Lithium-Ionen-Akku (Li-Ion) im Produkt befindet und ordnungsgemäß entsorgt oder recycelt werden sollte.",
-      "Do not dismantle the product.": "Demontieren Sie das Produkt nicht.",
+      "Do not dismantle the product.": "Vermeiden Sie Hitze.",
       "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Dieses Symbol zeigt an, dass das Produkt nicht als Haushaltsabfall entsorgt werden soll und an eine dafür vorgesehene Sammelstelle zur Entsorgung und Recycling gebracht werden sollte. Eine ordnungsgemäße Entsorgung und Recycling kann dazu beitragen, die Umwelt zu schützen. Für weitere Informationen zur Entsorgung und Recycling dieses Produkts wenden Sie sich an Ihre örtliche Gemeinde, Entsorgungsdienstleistungen oder Ihren Händler.",
-      "Keep the product away from fire.": "Vermeiden Sie Hitze.",
+      "Keep the product away from fire.": "Demontieren Sie das Produkt nicht.",
       "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "Batterien und Akkumulatoren dürfen nicht über den Hausmüll entsorgt werden. Als Verbraucher sind Sie gesetzlich verpflichtet, alle Batterien und Akkumulatoren an dafür vorgesehenen Sammelstellen zu entsorgen, unabhängig davon, ob sie Schadstoffe enthalten. Bitte geben Sie gebrauchte Batterien und Akkumulatoren an einer örtlichen Sammelstelle, einem Recyclingzentrum oder beim Händler zurück, bei dem sie gekauft wurden. Die ordnungsgemäße Entsorgung gewährleistet eine umweltgerechte Wiederverwertung und verhindert mögliche Schäden für die menschliche Gesundheit und die Umwelt.",
       "Symbol": "Symbol",
       "Meaning": "Bedeutung",
@@ -250,7 +250,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -259,7 +260,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -268,7 +270,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 0
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -277,7 +280,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 6
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -286,7 +290,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 11
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -295,7 +300,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 7
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -304,16 +310,19 @@
       "physical_page": 31,
       "selection": {
         "native_block": 12
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
       "english": "Do not dismantle the product.",
-      "native": "Demontieren Sie das Produkt nicht.",
+      "native": "Vermeiden Sie Hitze.",
       "physical_page": 31,
       "selection": {
-        "native_block": 9
-      }
+        "native_block": 8,
+        "basis": "Preserve caption paired to source icon on page31, not English semantic translation."
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -322,16 +331,19 @@
       "physical_page": 31,
       "selection": {
         "native_block": 13
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
       "english": "Keep the product away from fire.",
-      "native": "Vermeiden Sie Hitze.",
+      "native": "Demontieren Sie das Produkt nicht.",
       "physical_page": 31,
       "selection": {
-        "native_block": 8
-      }
+        "native_block": 9,
+        "basis": "Preserve caption paired to source icon on page31, not English semantic translation."
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -340,7 +352,8 @@
       "physical_page": 31,
       "selection": {
         "native_block": 19
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -349,7 +362,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 16
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "product_overview_en.rst",
@@ -358,7 +372,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 17
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -367,7 +382,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 7
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -376,7 +392,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -385,7 +402,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -394,7 +412,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 9
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -403,7 +422,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 8
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -412,7 +432,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 11
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -421,7 +442,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 13
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -430,7 +452,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 12
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -439,7 +462,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 14
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -448,7 +472,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 17
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -457,7 +482,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 10
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -466,7 +492,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 16
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -475,7 +502,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -484,7 +512,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -493,7 +522,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -502,7 +532,8 @@
       "physical_page": 35,
       "selection": {
         "native_block": 0
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -511,7 +542,8 @@
       "physical_page": 35,
       "selection": {
         "native_block": 5
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -520,7 +552,8 @@
       "physical_page": 35,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -529,7 +562,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 5
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -538,7 +572,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 20
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -547,7 +582,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 18
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -556,7 +592,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 15
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -565,7 +602,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 19
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -574,7 +612,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 14
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -583,7 +622,8 @@
       "physical_page": 34,
       "selection": {
         "native_block": 13
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -592,7 +632,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -601,7 +642,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -610,7 +652,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -619,7 +662,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 5
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -628,7 +672,8 @@
       "physical_page": 37,
       "selection": {
         "native_block": 29
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -637,7 +682,8 @@
       "physical_page": 37,
       "selection": {
         "native_block": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -646,7 +692,8 @@
       "physical_page": 37,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -655,7 +702,8 @@
       "physical_page": 37,
       "selection": {
         "native_block": 19
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -664,7 +712,8 @@
       "physical_page": 37,
       "selection": {
         "native_block": 28
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -673,7 +722,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 5
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -682,7 +732,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -691,7 +742,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -700,7 +752,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 8
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -709,7 +762,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 17
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -718,7 +772,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 7
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -727,7 +782,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 9
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -736,7 +792,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -745,7 +802,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 13
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -754,7 +812,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 10
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -763,7 +822,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 14
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -772,7 +832,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 16
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -781,7 +842,8 @@
       "physical_page": 38,
       "selection": {
         "native_block": 15
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "preface_important_en.rst",
@@ -790,7 +852,8 @@
       "physical_page": 2,
       "selection": {
         "method": "native frontmatter paragraph"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "preface_important_en.rst",
@@ -799,7 +862,8 @@
       "physical_page": 2,
       "selection": {
         "method": "native frontmatter paragraph"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "preface_important_en.rst",
@@ -808,7 +872,8 @@
       "physical_page": 2,
       "selection": {
         "method": "native frontmatter paragraph"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "preface_important_en.rst",
@@ -817,7 +882,8 @@
       "physical_page": 2,
       "selection": {
         "method": "native frontmatter heading"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -826,7 +892,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -835,7 +902,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -844,7 +912,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -853,7 +922,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -862,7 +932,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -871,7 +942,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -880,7 +952,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -889,7 +962,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -898,7 +972,8 @@
       "physical_page": 31,
       "selection": {
         "method": "visually checked transcription of outlined source"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "safety_info_en.rst",
@@ -907,7 +982,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native safety block segmented at visually verified bullet starts"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -916,7 +992,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native table header"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -925,7 +1002,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native table header"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -934,7 +1012,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native table header"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -943,7 +1022,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native signal label"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -953,7 +1033,8 @@
       "selection": {
         "native_block": 15,
         "exclude_label": "WARNUNG"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -962,7 +1043,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native signal label"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -972,7 +1054,8 @@
       "selection": {
         "native_block": 14,
         "exclude_label": "VORSICHT"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -981,7 +1064,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native signal label"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -991,7 +1075,8 @@
       "selection": {
         "native_block": 16,
         "exclude_label": "HINWEIS"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -1000,7 +1085,8 @@
       "physical_page": 31,
       "selection": {
         "method": "native signal label"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "symbol_meaning_en.rst",
@@ -1010,7 +1096,8 @@
       "selection": {
         "native_block": 17,
         "exclude_label": "TIPP"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1019,7 +1106,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 0
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1028,7 +1116,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 0
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1037,7 +1126,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1046,7 +1136,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1055,7 +1146,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "box_contents_en.rst",
@@ -1064,7 +1156,8 @@
       "physical_page": 32,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "product_overview_en.rst",
@@ -1078,7 +1171,8 @@
           155,
           281
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "product_overview_en.rst",
@@ -1092,7 +1186,8 @@
           346,
           281
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "product_overview_en.rst",
@@ -1106,7 +1201,8 @@
           155,
           434
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "product_overview_en.rst",
@@ -1120,7 +1216,8 @@
           346,
           434
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -1130,7 +1227,8 @@
       "selection": {
         "native_block": 5,
         "part": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -1140,7 +1238,8 @@
       "selection": {
         "native_block": 5,
         "part": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "lcd_display_en.rst",
@@ -1150,7 +1249,8 @@
       "selection": {
         "native_block": 6,
         "exclude_label": "Ladeanzeige"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -1160,7 +1260,8 @@
       "selection": {
         "native_block": 18,
         "part": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -1170,7 +1271,8 @@
       "selection": {
         "native_block": 18,
         "part": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -1179,7 +1281,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 8
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "operation_en.rst",
@@ -1188,7 +1291,8 @@
       "physical_page": 33,
       "selection": {
         "native_block": 10
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1198,7 +1302,8 @@
       "selection": {
         "native_block": 21,
         "part": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1208,7 +1313,8 @@
       "selection": {
         "native_block": 21,
         "part": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1222,7 +1328,8 @@
           170,
           485
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1232,7 +1339,8 @@
       "selection": {
         "native_block": 6,
         "part": 1
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1242,7 +1350,8 @@
       "selection": {
         "native_block": 6,
         "part": 2
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1252,7 +1361,8 @@
       "selection": {
         "native_block": 6,
         "part": 3
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1261,7 +1371,8 @@
       "physical_page": 34,
       "selection": {
         "method": "accessibility from source section/model"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1270,7 +1381,8 @@
       "physical_page": 34,
       "selection": {
         "method": "accessibility from source section/model"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "connections_en.rst",
@@ -1279,7 +1391,8 @@
       "physical_page": 34,
       "selection": {
         "method": "accessibility from source section/model"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -1293,7 +1406,8 @@
           84,
           102
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "troubleshooting_en.rst",
@@ -1307,7 +1421,8 @@
           345,
           102
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -1316,7 +1431,8 @@
       "physical_page": 36,
       "selection": {
         "method": "native warning label"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -1326,7 +1442,8 @@
       "selection": {
         "native_block": 7,
         "exclude_label": "WARNUNG"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -1335,7 +1452,8 @@
       "physical_page": 36,
       "selection": {
         "method": "native heading and qualifier combined"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -1344,7 +1462,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 4
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "charging_en.rst",
@@ -1353,7 +1472,8 @@
       "physical_page": 36,
       "selection": {
         "native_block": 6
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -1362,7 +1482,8 @@
       "physical_page": 37,
       "selection": {
         "method": "visually checked outlined text"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -1371,7 +1492,8 @@
       "physical_page": 37,
       "selection": {
         "method": "visually checked outlined text"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -1380,7 +1502,8 @@
       "physical_page": 37,
       "selection": {
         "method": "visually checked outlined text"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -1389,7 +1512,8 @@
       "physical_page": 37,
       "selection": {
         "method": "visually checked outlined text"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "storage_en.rst",
@@ -1398,7 +1522,8 @@
       "physical_page": 37,
       "selection": {
         "method": "visually checked outlined text"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1412,7 +1537,8 @@
           179,
           217
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1426,7 +1552,8 @@
           345,
           217
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1440,7 +1567,8 @@
           179,
           229
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1454,7 +1582,8 @@
           345,
           229
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1468,7 +1597,8 @@
           179,
           241
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1482,7 +1612,8 @@
           345,
           241
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1496,7 +1627,8 @@
           179,
           253
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1510,7 +1642,8 @@
           345,
           253
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1524,7 +1657,8 @@
           179,
           265
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1538,7 +1672,8 @@
           345,
           265
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1552,7 +1687,8 @@
           179,
           277
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1566,7 +1702,8 @@
           345,
           277
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1580,7 +1717,8 @@
           179,
           289
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1594,7 +1732,8 @@
           345,
           289
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1608,7 +1747,8 @@
           179,
           301
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1622,7 +1762,8 @@
           345,
           301
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1636,7 +1777,8 @@
           179,
           345
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1650,7 +1792,8 @@
           345,
           346
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1664,7 +1807,8 @@
           179,
           359
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1678,7 +1822,8 @@
           345,
           359
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1692,7 +1837,8 @@
           179,
           402
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1706,7 +1852,8 @@
           345,
           402
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "specifications_en.rst",
@@ -1720,7 +1867,8 @@
           179,
           417
         ]
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1729,7 +1877,8 @@
       "physical_page": 38,
       "selection": {
         "method": "native warranty badge spatial reading order"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1738,7 +1887,8 @@
       "physical_page": 38,
       "selection": {
         "method": "native warranty badge spatial reading order"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1747,7 +1897,8 @@
       "physical_page": 38,
       "selection": {
         "method": "native warranty badge spatial reading order"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1756,7 +1907,8 @@
       "physical_page": 38,
       "selection": {
         "method": "native warranty badge spatial reading order"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1766,7 +1918,8 @@
       "selection": {
         "native_block": 1,
         "before_link": "hello.eu@jackery.com"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1776,7 +1929,8 @@
       "selection": {
         "native_block": 1,
         "after_link": "hello.eu@jackery.com"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1785,7 +1939,8 @@
       "physical_page": 38,
       "selection": {
         "method": "visually checked outlined warranty exclusions"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1794,7 +1949,8 @@
       "physical_page": 38,
       "selection": {
         "method": "visually checked outlined warranty exclusions"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1803,7 +1959,8 @@
       "physical_page": 38,
       "selection": {
         "method": "visually checked outlined warranty exclusions"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1812,7 +1969,8 @@
       "physical_page": 38,
       "selection": {
         "method": "visually checked outlined warranty exclusions"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1821,7 +1979,8 @@
       "physical_page": 38,
       "selection": {
         "method": "visually checked outlined warranty exclusions"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1830,7 +1989,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1839,7 +1999,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1848,7 +2009,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1857,7 +2019,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1866,7 +2029,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1875,7 +2039,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1884,7 +2049,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1893,7 +2059,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1902,7 +2069,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "regulatory_compliance.rst",
@@ -1911,7 +2079,8 @@
       "physical_page": 79,
       "selection": {
         "method": "shared English regulatory/manufacturer source, no translation"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1921,7 +2090,8 @@
       "selection": {
         "native_block": 6,
         "paragraph_start": "Diese Garantieerklärung"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     },
     {
       "page_id": "warranty_en.rst",
@@ -1931,7 +2101,8 @@
       "selection": {
         "native_block": 6,
         "paragraph_start": "Diese Garantieerklärung"
-      }
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
     }
   ],
   "native_exceptions": [
@@ -1939,11 +2110,20 @@
     "General-info heading repeats the specifications heading in source; retained.",
     "Source cycle-life value and environmental-temperature heading are English; retained.",
     "Second clearance label reads ≥≈200 mm; retained as source text.",
-    "Left port B label reads C-Erweiterungsport B; retained in native panel."
+    "Left port B label reads C-Erweiterungsport B; retained in native panel.",
+    "Native source pairs the do-not-dismantle hand symbol with Vermeiden Sie Hitze and no-flame symbol with Demontieren Sie das Produkt nicht; preserve native copy and pairing pending operator review."
   ],
   "clearance_labels": [
     "≥200 mm",
     "≥≈200 mm"
   ],
-  "extra_spec_row": null
+  "extra_spec_row": null,
+  "inline_connection_icon": {
+    "insert_after": "Die Anzeige des",
+    "source_page": 35,
+    "status": "source-position-verified-shared-x5-reuse-candidate",
+    "asset": "assets/shared/connection-x5.png",
+    "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+    "reuse_basis": "Native page shows the same framed x5 icon; reuse existing French candidate bytes."
+  }
 }

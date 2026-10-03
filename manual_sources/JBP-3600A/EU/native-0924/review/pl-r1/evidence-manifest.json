@@ -1,0 +1,92 @@
+{
+  "files": [
+    {
+      "path": "browser-metrics.json",
+      "sha256": "1ecfbe17cb9e2fc4a887d08fed653694d3331c8dab3270cc73780a83e151e5bc"
+    },
+    {
+      "path": "cold-sphinx.log",
+      "sha256": "69d5fefd0946fb0f6cbeae3225c662f2e920e22d816afc2a6bc1e7a66dac692e"
+    },
+    {
+      "path": "desktop-lcd.png",
+      "sha256": "42012453006efa9e3d0c3634b282db72c2e775c718bf0967ccd01bb3f242c5da"
+    },
+    {
+      "path": "desktop-left-panel.png",
+      "sha256": "94a49a2680ab74a800a0fab4e804e79fa4d821327b1c820acb6837c04b99f0b4"
+    },
+    {
+      "path": "desktop-overview.png",
+      "sha256": "1007538c0c1df78c3368b69714c53e74c73bdd937348a6203e6ec1089641c24f"
+    },
+    {
+      "path": "desktop-specifications.png",
+      "sha256": "0e92f7a091edfd4dba7094868edb3a93ceb1628a792c15643e0b3dd736afadf7"
+    },
+    {
+      "path": "html-manifest.json",
+      "sha256": "6ef91351e211ae493743e8339c41e22e1447acb8300a03ecaaacdcfe2e60563d"
+    },
+    {
+      "path": "mobile-connections.png",
+      "sha256": "38add4abf220571521312d6ffd3d59713d3b22e1260949f6b19698522b426305"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "048cac0464c256e88b3b87c862d0b51d138ced771df185cc9b4c6a709812644c"
+    },
+    {
+      "path": "mobile-left-panel.png",
+      "sha256": "55e4cac681c442298ed9b26029a686120e6bd597886a4936348bbe50b2c762f8"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "63f39b6f111c24c6f0278481c5618b8a7c081d982ca29834ab9470043f9385bd"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "ca42adde09c2e82cca8592077d954f23a71a6981741ba8fa2186eecbf644d5a8"
+    },
+    {
+      "path": "mobile-overview.png",
+      "sha256": "985b7b4af55392e55c525349d89c310de74645a21d98ad5b74c50acdad709140"
+    },
+    {
+      "path": "mobile-specifications.png",
+      "sha256": "4eeff399d80118e592aac1432d1f4203609f803b4fc89f078090d7aea7c3abdb"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "74b7fc57c5cd001e0a880e625d4da1d48a2e4af5be8a54ae64eb66b8848209a5"
+    },
+    {
+      "path": "package-manifest.json",
+      "sha256": "262ffe1cfd7d506e476014cbd32eea075e7cad85b84f7b36bb411d18f0003acf"
+    },
+    {
+      "path": "pl-baseline-trial.json",
+      "sha256": "8facad7f85d3f8a996863ec1e83f35e6d990ae314c8c32c14abce6f6d237cde8"
+    },
+    {
+      "path": "pl-r1-baseline-trial.log",
+      "sha256": "569615303664e4b8b04fce31cbf75ed57576715aa64b996fb9bcad24ce809eed"
+    },
+    {
+      "path": "pl-r1-native-copy-check.json",
+      "sha256": "6552ccc9505d1d914b3afcf2dbb0938ed68fc66ceba516a784a2679f914a4113"
+    },
+    {
+      "path": "pl-r1-replay.log",
+      "sha256": "5d9cfbd8b17ca374612c34af45eee59173e839ce382abf2a669b63bd1c025427"
+    },
+    {
+      "path": "pl-r1-sphinx.log",
+      "sha256": "06c81a351c6c68d0d07fa0378f07c4da37bcc126f78f295fe48b635d1e8933d5"
+    },
+    {
+      "path": "review-ledger.json",
+      "sha256": "fdf81336acdccab1899f0a329c41d61438977f53c5124481ae0f2c80c39d3772"
+    }
+  ]
+}

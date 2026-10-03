@@ -1,0 +1,100 @@
+{
+  "files": [
+    {
+      "path": "browser-metrics.json",
+      "sha256": "54e45309a3c5e34ecba08ce473451e2e425c5c2401890ef99cdae0d5e79c1a6e"
+    },
+    {
+      "path": "cold-sphinx.log",
+      "sha256": "7f188d4b57acd19f76b31d4d7fff4dd8a185757eeb447592e9230c8187efa9eb"
+    },
+    {
+      "path": "desktop-lcd.png",
+      "sha256": "7d81733612a70160fdb16a07054150c804da47db53c7bee7b4b850e962516fea"
+    },
+    {
+      "path": "desktop-left-panel.png",
+      "sha256": "540c1958c744dca1a04e2fd63ba212ec50e6083cfb8467c19010112ded78fabb"
+    },
+    {
+      "path": "desktop-locking.png",
+      "sha256": "da5da2424cbfa1850632ffca36c5be13e8154f71027497baf5bacaecd8548c67"
+    },
+    {
+      "path": "desktop-operation.png",
+      "sha256": "51ad4d26094b49309501d7a118f02fe6c86b1357be7106cacff4d17f36370037"
+    },
+    {
+      "path": "desktop-overview.png",
+      "sha256": "923be7dd3f327f2ab36af1b44a32724b41a9b4bbf9357cc605ccc7bd5048496b"
+    },
+    {
+      "path": "desktop-specifications.png",
+      "sha256": "1a1c095d66f64dc7a7bc1caed8cf56b6afe55eefc9b3dac9804d038a621778aa"
+    },
+    {
+      "path": "es-baseline-trial.json",
+      "sha256": "aace09992d5b1829826efdbb67ca5e601f210725b5a50f0bd3b64e54c402e0bd"
+    },
+    {
+      "path": "es-r2-baseline-trial.log",
+      "sha256": "16c2b41f7627f2de88c0868ac6acd82e7b14cf81c1ab4155c2e82683a79a952e"
+    },
+    {
+      "path": "es-r2-native-copy-check.json",
+      "sha256": "f9598d92e3d1b030aeff2e05215e24baa64029b06e2ebab99df1474c54e77949"
+    },
+    {
+      "path": "es-r2-replay.log",
+      "sha256": "897b9abb18e0045e9645387039d915137e2eb9c1f3f6f6b166fd63a82bd3a7b1"
+    },
+    {
+      "path": "es-r2-sphinx.log",
+      "sha256": "e360ff8b8a5a8dda6292f93776cc52f07035a4bcb553175de19c2b344d1e3c0b"
+    },
+    {
+      "path": "html-manifest.json",
+      "sha256": "d605e357868e46cb9ca24277613c4d1fc5e972a45343b7ed4a6c1cb9f5bdc478"
+    },
+    {
+      "path": "mobile-connections.png",
+      "sha256": "edeeaf6f348d46d4e950f291aa4c033b7fefcf4eb47616308792627bb5b24ad9"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "028c7f31a46b94f72206dc3ee7dfcef8ebbc020df5ee2bca85e7f6eaa68e0202"
+    },
+    {
+      "path": "mobile-left-panel.png",
+      "sha256": "f363901c415cedd8308b0d85142c9d8aef470491c10a646658d4847f695c18cc"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "49a04cb1441181ba1a4c7632a5c12edb9e252ef7e9005dd59c6a5e0ed5d77029"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "9685b78befcf1f3b93cbf2e297c0dd97e2a458614bcd1df8b7ee044ec6d0fa6c"
+    },
+    {
+      "path": "mobile-overview.png",
+      "sha256": "be51039a723a52db081c53aab50cb17893ec470ec1ea547922a9dee9194a585f"
+    },
+    {
+      "path": "mobile-specifications.png",
+      "sha256": "d3345978c1e5dd9353d3ade8e5699e485f161342823e7c7803cef8d1dd53a9cb"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "5b3792c64a1373bef8dcde641b2fd0d1d87b472c8cbc89f4794a15239b527cf9"
+    },
+    {
+      "path": "package-manifest.json",
+      "sha256": "03cdf0d8f24aa972e8d2fc1d6d2eee93ae723d237a04227e02f4dc670bfce098"
+    },
+    {
+      "path": "review-ledger.json",
+      "sha256": "e79fbfa7c1ec293d5253d3d0d5f98fd9832e55579df21699a811862678e0876f"
+    }
+  ]
+}

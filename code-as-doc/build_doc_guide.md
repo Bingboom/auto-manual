@@ -938,6 +938,12 @@ Web Publish / Read the Docs note:
   while preserving headings inside components. On mobile, shared anchor spacing
   includes Furo's sticky header height so direct links and TOC jumps show the
   complete section heading.
+  The current candidate stylesheet also reserves 4rem for desktop anchor
+  jumps. Mobile warranty headings participate in normal flow so wrapped titles
+  reserve body space; targeted warranty headings retain their dark fill.
+  These changes are documented as the pending English r5 revision in the
+  [native candidate review](../manual_sources/JBP-3600A/EU/native-0924/REVIEW.md),
+  separately from the immutable English release and locale acceptance.
   Governed reference figures and hash-locked finished panels may coexist in
   coverage. Apply label-bearing illustration replacements before ComponentSpec
   discovery (`consume_before_presentation`) so cold replay hashes the same
