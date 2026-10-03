@@ -284,7 +284,7 @@ def sync_review_command(args: argparse.Namespace) -> list[str]:
 
 
 def _review_sync_target_args(args: argparse.Namespace) -> list[argparse.Namespace]:
-    from tools.build_docs import resolve_build_targets
+    from tools.build.docs import resolve_build_targets
     from tools.review_support import resolve_existing_review_bundle_dir
 
     return _review_sync_target_args_impl(
@@ -673,7 +673,7 @@ def _default_report_dir_for_tracked_root(config_path: Path, tracked_root: Path, 
 
 
 def _resolve_diff_report_targets(args: argparse.Namespace) -> list[tuple[str | None, str | None, str | None]]:
-    from tools.build_docs import resolve_build_targets
+    from tools.build.docs import resolve_build_targets
 
     return _resolve_diff_report_targets_impl(
         config_path=resolve_path_from_root(args.config),

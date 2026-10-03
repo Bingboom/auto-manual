@@ -1,45 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.build.docs_shared` (CQ-1.4); import the new path.
 
-import re
-from dataclasses import dataclass
-from pathlib import Path
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-from tools import lang_registry
-
-VALID_FORMATS = {"html", "word", "pdf", "md"}
-VALID_PDF_MODES = {"latex", "word"}
-VALID_SOURCE_MODES = {"auto", "runtime", "review", "review-asis"}
-_TEMPLATE_TOKEN_RE = re.compile(r"\{([a-z_]+)\}")
-MANUAL_META_FILE_NAME = "manual_meta.json"
-SWITCHER_BLOCK_START = "<!-- HB_MANUAL_SWITCHER_START -->"
-SWITCHER_BLOCK_END = "<!-- HB_MANUAL_SWITCHER_END -->"
-BODY_SWITCHER_CLASS = "hb-manual-switcher-body"
-_REMOVE_TREE_RETRY_DELAYS = (0.2, 0.5, 1.0)
-_SWITCHER_BLOCK_RE = re.compile(
-    rf"{re.escape(SWITCHER_BLOCK_START)}.*?{re.escape(SWITCHER_BLOCK_END)}",
-    re.DOTALL,
+warnings.warn(
+    "tools.build_docs_shared moved to tools.build.docs_shared",
+    DeprecationWarning,
+    stacklevel=2,
 )
-_BODY_TAG_RE = re.compile(r"<body\b([^>]*)>", re.IGNORECASE)
-_MANUAL_COVER_SECTION_RE = re.compile(
-    r"<section class=\"manual-cover\">.*?</section>",
-    re.IGNORECASE | re.DOTALL,
-)
-LANGUAGE_LABELS = lang_registry.language_display_labels()
-
-
-@dataclass(frozen=True)
-class BuildTarget:
-    model: str | None
-    region: str | None
-    lang: str | None = None
-
-
-@dataclass(frozen=True)
-class HtmlManualVariant:
-    model: str
-    region: str
-    lang: str
-    title: str
-    html_dir: Path
-    html_dir_token: str
-    lang_in_output_path: bool
+sys.modules[__name__] = import_module("tools.build.docs_shared")

@@ -38,6 +38,8 @@ from typing import Callable, Iterable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASELINE = REPO_ROOT / "data" / "facade_patch_baseline.tsv"
 FACADE_MODULES = (
+    "tools.build.docs",
+    # CQ-1.4 shim: the old name aliases the same facade module until CQ-1.5.
     "tools.build_docs",
     "tools.backport.cloud_doc",
     # CQ-1.3 shim: the old name aliases the same facade module until CQ-1.5.

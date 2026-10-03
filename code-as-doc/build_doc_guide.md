@@ -2055,7 +2055,7 @@ Field pairing now prefers stable source back-mapping before falling back to rend
 - Forgetting to commit `_review/<model>/<region>/` after each review round
 - Treating `_build/rst` and `_review` as the same thing
 - Putting review metadata in `overrides/` and expecting it to overlay; only `_assets`, `_static`, and `renderers` are copied into the runtime bundle
-- Letting `build.py`, `tools/build_docs.py`, or `tools/build_queue/process_build_queue.py` absorb new low-level implementation instead of pushing that logic into helper modules
+- Letting `build.py`, `tools/build/docs.py`, or `tools/build_queue/process_build_queue.py` absorb new low-level implementation instead of pushing that logic into helper modules
 
 ## 8. Minimal Troubleshooting
 

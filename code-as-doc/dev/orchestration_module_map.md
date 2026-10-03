@@ -23,7 +23,7 @@ For external table and queue-state contracts, use:
 Keep these files orchestration-first:
 
 - [`build.py`](../../build.py)
-- [`tools/build_docs.py`](../../tools/build_docs.py)
+- [`tools/build/docs.py`](../../tools/build/docs.py)
 - [`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 
 That means:
@@ -208,15 +208,15 @@ ranking, filtering, repair and cache owners are unchanged. Table fallback and
 empty-cell policies are recorded in
 [`external_table_contracts.md`](external_table_contracts.md#localized-columns-in-frozen-snapshots).
 
-[`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade. Its public names are listed in `__all__`; a wrapper or re-export that no code or test references is deleted rather than kept for symmetry. It delegates to:
+[`tools/build/docs.py`](../../tools/build/docs.py) should stay a wrapper-compatible facade. Its public names are listed in `__all__`; a wrapper or re-export that no code or test references is deleted rather than kept for symmetry. It delegates to:
 
-- [`tools/build_docs_main.py`](../../tools/build_docs_main.py)
+- [`tools/build/docs_main.py`](../../tools/build/docs_main.py)
   - CLI bootstrap for the low-level build entrypoint
-- [`tools/build_docs_entry.py`](../../tools/build_docs_entry.py)
+- [`tools/build/docs_entry.py`](../../tools/build/docs_entry.py)
   - top-level build session orchestration
-- [`tools/build_docs_targets.py`](../../tools/build_docs_targets.py)
+- [`tools/build/docs_targets.py`](../../tools/build/docs_targets.py)
   - build target resolution and configured target expansion
-- [`tools/build_docs_bundle.py`](../../tools/build_docs_bundle.py)
+- [`tools/build/docs_bundle.py`](../../tools/build/docs_bundle.py)
   - ordered bundle preparation: runtime materialization, review overlay, attachment aliases, then asset finalization
 - [`tools/bundle_asset_finalize.py`](../../tools/bundle_asset_finalize.py)
   - final `index.rst` include-closure scan with inherited language context and fail-closed conflict handling
@@ -226,13 +226,13 @@ empty-cell policies are recorded in
   - bundle-relative staging bridge for semantic and legacy asset references
 - [`tools/gen_index_bundle_materialize.py`](../../tools/gen_index_bundle_materialize.py)
   - contract preflight and initial non-finalized bundle manifest assembly
-- [`tools/build_docs_export.py`](../../tools/build_docs_export.py)
+- [`tools/build/docs_export.py`](../../tools/build/docs_export.py)
   - export orchestration shell for one build target
-- [`tools/build_docs_artifacts.py`](../../tools/build_docs_artifacts.py)
+- [`tools/build/docs_artifacts.py`](../../tools/build/docs_artifacts.py)
   - export-plan derivation
   - word/pdf/html artifact steps
   - HTML postprocess handoff
-- [`tools/build_docs_html.py`](../../tools/build_docs_html.py)
+- [`tools/build/docs_html.py`](../../tools/build/docs_html.py)
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
@@ -324,9 +324,9 @@ empty-cell policies are recorded in
   - ordered assembly of the responsive base theme and focused component CSS modules into one public Sphinx stylesheet
 - [`tools/utils/spec_footnotes.py`](../../tools/utils/spec_footnotes.py)
   - shared reference-ID parsing, numeric markers and marker attachment for CSV spec and IDML readers; row/language selection stays with callers
-- [`tools/build_docs_io.py`](../../tools/build_docs_io.py)
+- [`tools/build/docs_io.py`](../../tools/build/docs_io.py)
   - Sphinx, cleanup, Word/PDF I/O helpers
-- [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)
+- [`tools/build/docs_validation.py`](../../tools/build/docs_validation.py)
   - config/layout validation helpers for the build tool
 - [`tools/word_bundle_docx.py`](../../tools/word_bundle_docx.py)
   - DOCX export assembly and Word post-processing orchestration

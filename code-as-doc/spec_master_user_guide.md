@@ -433,7 +433,7 @@ This section is for people maintaining the code path, not just editing the CSV.
 
 Current flow:
 
-1. [`build.py`](../build.py) or [`tools/build_docs.py`](../tools/build_docs.py) resolves target `model` and `region`
+1. [`build.py`](../build.py) or [`tools/build/docs.py`](../tools/build/docs.py) resolves target `model` and `region`
 2. product identity and template substitutions are resolved from [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 3. [`tools/csv_page_build.py`](../tools/csv_page_build.py) renders CSV-driven content
 4. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes runtime pages

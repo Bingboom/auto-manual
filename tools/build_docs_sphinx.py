@@ -1,57 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.build.docs_sphinx` (CQ-1.4); import the new path.
 
-from typing import Callable
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-
-def build_rst_epilog(substitutions: dict[str, str]) -> str:
-    lines: list[str] = []
-    for key, value in substitutions.items():
-        text = (value or "").strip()
-        if not text:
-            continue
-        lines.append(f".. |{key}| replace:: {text}")
-    return "\n".join(lines)
-
-
-def with_rst_epilog(
-    cmd: list[str],
-    substitutions: dict[str, str] | None,
-    *,
-    build_rst_epilog: Callable[[dict[str, str]], str],
-) -> list[str]:
-    if not substitutions:
-        return cmd
-    epilog = build_rst_epilog(substitutions)
-    if not epilog:
-        return cmd
-    return [*cmd, "-D", f"rst_epilog={epilog}"]
-
-
-def with_product_name_epilog(
-    cmd: list[str],
-    product_name: str | None,
-    *,
-    with_rst_epilog: Callable[[list[str], dict[str, str] | None], list[str]],
-) -> list[str]:
-    if not (product_name or "").strip():
-        return cmd
-    name = product_name.strip()
-    return with_rst_epilog(
-        cmd,
-        {
-            "PRODUCT_NAME": name,
-            "PRODUCT_NAME_BOLD": f"**{name}**",
-        },
-    )
-
-
-def resolve_sphinx_build_cmd(
-    builder: str,
-    *,
-    find_exe: Callable[[list[str]], str | None],
-    python_executable: str,
-) -> list[str]:
-    sphinx_build = find_exe(["sphinx-build"])
-    if sphinx_build:
-        return [sphinx_build, "-b", builder]
-    return [python_executable, "-m", "sphinx", "-b", builder]
+warnings.warn(
+    "tools.build_docs_sphinx moved to tools.build.docs_sphinx",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.build.docs_sphinx")

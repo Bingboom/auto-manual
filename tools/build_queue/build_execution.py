@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from typing import Callable
 
-from tools.build_docs import load_config
+from tools.build.docs import load_config
 from tools.build_dispatch import target_has_approved_reference_plan
 from tools.idml.delivery import build_delivery_package
 from tools.release_contract import (

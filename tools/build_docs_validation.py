@@ -1,32 +1,15 @@
-from __future__ import annotations
+"""Deprecated alias of :mod:`tools.build.docs_validation` (CQ-1.4); import the new path.
 
-from pathlib import Path
-from typing import Any, Callable
+The old name resolves to the very same module object, so attribute reads and
+``mock.patch`` targets keep working until CQ-1.5 removes this shim.
+"""
+import sys
+import warnings
+from importlib import import_module
 
-
-def validate_loaded_config(
-    cfg: dict,
-    *,
-    validate_cfg: Callable[..., list[Any]],
-    printer: Callable[[str], None] = print,
-) -> None:
-    issues = validate_cfg(cfg, strict_files=False)
-    errors = [issue for issue in issues if issue.level == "ERROR"]
-    for issue in issues:
-        printer(f"[build] config {issue.level.lower()}: {issue.msg}")
-    if errors:
-        raise RuntimeError("Config validation failed")
-
-
-def validate_layout_csv(
-    layout_csv_path: Path,
-    *,
-    validate_layout: Callable[[Path], list[Any]],
-    printer: Callable[[str], None] = print,
-) -> None:
-    issues = validate_layout(layout_csv_path)
-    errors = [issue for issue in issues if issue.level == "ERROR"]
-    for issue in issues:
-        printer(f"[build] layout {issue.level.lower()}: {issue.msg}")
-    if errors:
-        raise RuntimeError("Layout params validation failed")
+warnings.warn(
+    "tools.build_docs_validation moved to tools.build.docs_validation",
+    DeprecationWarning,
+    stacklevel=2,
+)
+sys.modules[__name__] = import_module("tools.build.docs_validation")

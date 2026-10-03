@@ -10,7 +10,7 @@ from unittest import mock
 
 import build as build_cli
 from tests.test_helpers import patch_module_attrs, temp_test_root, write_text
-from tools import build_docs_io
+from tools.build import docs_io as build_docs_io
 from tools.build_runtime import review_sync_target_args as runtime_review_sync_target_args
 from tools.review_support import resolve_existing_review_bundle_dir
 
