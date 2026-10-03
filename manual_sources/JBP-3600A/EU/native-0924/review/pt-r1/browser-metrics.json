@@ -1,0 +1,776 @@
+{
+  "desktop": {
+    "clocks": [
+      {
+        "height": 25.6015625,
+        "text": "3s",
+        "width": 49.15625,
+        "x": 971.421875,
+        "y": 5282.96484375
+      }
+    ],
+    "headings": [
+      {
+        "height": 51.7109375,
+        "id": "informacoes-importantes-de-seguranca",
+        "text": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 301.921875
+      },
+      {
+        "height": 51.7109375,
+        "id": "significado-dos-simbolos",
+        "text": "SIGNIFICADO DOS SÍMBOLOS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 953.9765625
+      },
+      {
+        "height": 51.7109375,
+        "id": "conteudo-da-embalagem",
+        "text": "CONTEÚDO DA EMBALAGEM¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2268.3671875
+      },
+      {
+        "height": 51.7109375,
+        "id": "visao-geral-do-produto",
+        "text": "VISÃO GERAL DO PRODUTO¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2768.875
+      },
+      {
+        "height": 51.7109375,
+        "id": "display-lcd",
+        "text": "DISPLAY LCD¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4465.9296875
+      },
+      {
+        "height": 51.7109375,
+        "id": "operacoes",
+        "text": "OPERAÇÕES¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5016.234375
+      },
+      {
+        "height": 51.7109375,
+        "id": "conexoes",
+        "text": "CONEXÕES¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5982.2421875
+      },
+      {
+        "height": 51.7109375,
+        "id": "solucao-de-problemas",
+        "text": "SOLUÇÃO DE PROBLEMAS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8085.234375
+      },
+      {
+        "height": 51.7109375,
+        "id": "carregando",
+        "text": "CARREGANDO¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8600.8984375
+      },
+      {
+        "height": 51.7109375,
+        "id": "armazenamento",
+        "text": "Armazenamento¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 9964.5546875
+      },
+      {
+        "height": 51.7109375,
+        "id": "especificacoes",
+        "text": "ESPECIFICAÇÕES¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 10365.15625
+      },
+      {
+        "height": 51.7109375,
+        "id": "garantia",
+        "text": "GARANTIA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 11132.5859375
+      },
+      {
+        "height": 51.7109375,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 12339.734375
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 62.8125,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1416.0859375
+      },
+      {
+        "alt": "read_manual",
+        "height": 51.90625,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1509.1953125
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 67.484375,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1591.3984375
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 63.7734375,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1689.1796875
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 71.1953125,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1416.0859375
+      },
+      {
+        "alt": "li_ion",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1526.71875
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1714.265625
+      },
+      {
+        "alt": "weee2",
+        "height": 79.1015625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 2010.3671875
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 172.796875,
+        "x": 363.859375,
+        "y": 2425.265625
+      },
+      {
+        "alt": "Cabo de expansão",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 172.796875,
+        "x": 649.59375,
+        "y": 2425.265625
+      },
+      {
+        "alt": "Manual do usuário",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 172.796875,
+        "x": 935.328125,
+        "y": 2425.265625
+      },
+      {
+        "alt": "Botão POWER DISPLAY LCD",
+        "height": 854.609375,
+        "loaded": true,
+        "src": "assets/ir/91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193/overview_front.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2904.8359375
+      },
+      {
+        "alt": "Porta de expansão CC B (Conecte ao terminal B do cabo de expansão) (Conecte ao terminal A do cabo de expansão) Porta de expansão CC A Alça",
+        "height": 577.4375,
+        "loaded": true,
+        "src": "assets/ir/969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9/overview_left.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3843.6953125
+      },
+      {
+        "alt": "DISPLAY LCD",
+        "height": 149.828125,
+        "loaded": true,
+        "src": "assets/ir/79c517d4649ca2c583791a785d20aef87281437b655fc5efd60b5cab4286939f/lcd_annotated.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4537.640625
+      },
+      {
+        "alt": "",
+        "height": 216.5234375,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 840.8125,
+        "x": 315.59375,
+        "y": 5157.1953125
+      },
+      {
+        "alt": "LIGA/DESLIGA DO VISOR LCD",
+        "height": 237.984375,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5641.4921875
+      },
+      {
+        "alt": "",
+        "height": 361.203125,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6323.96875
+      },
+      {
+        "alt": "CONEXÕES — Jackery Battery Pack 3600",
+        "height": 484.28125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6717.171875
+      },
+      {
+        "alt": "×5",
+        "height": 19.5859375,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 30.3984375,
+        "x": 614.0703125,
+        "y": 7244.2734375
+      },
+      {
+        "alt": "",
+        "height": 636.7890625,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7403.6484375
+      },
+      {
+        "alt": "CARREGAMENTO POR MEIO DE TOMADA CA",
+        "height": 417.4140625,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8874.4296875
+      },
+      {
+        "alt": "CARREGAMENTO VIA PAINÉIS SOLARES",
+        "height": 481.6015625,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 9438.15625
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.5859375,
+        "paragraph": "A exibição do ícone  na tela LCD (Jackery Explorer 3600 Plus) significa uma conexão bem-sucedida entre a bateria externa e o Jackery Explorer 3600 Plus.",
+        "width": 30.3984375,
+        "x": 614.0703125,
+        "y": 7244.2734375
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Bloquear",
+        "width": 84.9609375,
+        "x": 803.421875,
+        "y": 7429.1171875
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Desbloquear",
+        "width": 114.390625,
+        "x": 803.421875,
+        "y": 7734.7734375
+      }
+    ],
+    "url": "http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "visualViewport": [
+      1440,
+      1000
+    ]
+  },
+  "desktopSpecifications": {
+    "method": "clicked sidebar",
+    "url": "http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html#especificacoes",
+    "y": 64.15625
+  },
+  "mobile": {
+    "clocks": [
+      {
+        "height": 15.078125,
+        "text": "3s",
+        "width": 28.9453125,
+        "x": 294.6796875,
+        "y": 1824.1953125
+      }
+    ],
+    "headings": [
+      {
+        "height": 70.484375,
+        "id": "informacoes-importantes-de-seguranca",
+        "text": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA¶",
+        "width": 358,
+        "x": 16,
+        "y": -3004.6328125
+      },
+      {
+        "height": 46.046875,
+        "id": "significado-dos-simbolos",
+        "text": "SIGNIFICADO DOS SÍMBOLOS¶",
+        "width": 358,
+        "x": 16,
+        "y": -1921.6875
+      },
+      {
+        "height": 46.046875,
+        "id": "conteudo-da-embalagem",
+        "text": "CONTEÚDO DA EMBALAGEM¶",
+        "width": 358,
+        "x": 16,
+        "y": -253.4765625
+      },
+      {
+        "height": 46.046875,
+        "id": "visao-geral-do-produto",
+        "text": "VISÃO GERAL DO PRODUTO¶",
+        "width": 358,
+        "x": 16,
+        "y": 95.765625
+      },
+      {
+        "height": 46.046875,
+        "id": "display-lcd",
+        "text": "DISPLAY LCD¶",
+        "width": 358,
+        "x": 16,
+        "y": 929.8984375
+      },
+      {
+        "height": 46.046875,
+        "id": "operacoes",
+        "text": "OPERAÇÕES¶",
+        "width": 358,
+        "x": 16,
+        "y": 1649.71875
+      },
+      {
+        "height": 46.046875,
+        "id": "conexoes",
+        "text": "CONEXÕES¶",
+        "width": 358,
+        "x": 16,
+        "y": 2546.5703125
+      },
+      {
+        "height": 46.046875,
+        "id": "solucao-de-problemas",
+        "text": "SOLUÇÃO DE PROBLEMAS¶",
+        "width": 358,
+        "x": 16,
+        "y": 4193.109375
+      },
+      {
+        "height": 46.046875,
+        "id": "carregando",
+        "text": "CARREGANDO¶",
+        "width": 358,
+        "x": 16,
+        "y": 4805.2265625
+      },
+      {
+        "height": 46.046875,
+        "id": "armazenamento",
+        "text": "Armazenamento¶",
+        "width": 358,
+        "x": 16,
+        "y": 5823.53125
+      },
+      {
+        "height": 46.046875,
+        "id": "especificacoes",
+        "text": "ESPECIFICAÇÕES¶",
+        "width": 358,
+        "x": 16,
+        "y": 6321.5625
+      },
+      {
+        "height": 46.046875,
+        "id": "garantia",
+        "text": "GARANTIA¶",
+        "width": 358,
+        "x": 16,
+        "y": 7196.921875
+      },
+      {
+        "height": 46.046875,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 358,
+        "x": 16,
+        "y": 9079.40625
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 53.484375,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1403.03125
+      },
+      {
+        "alt": "read_manual",
+        "height": 44.1953125,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1327.3125
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 57.453125,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1261.7890625
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 54.296875,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1183.0078125
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 60.6171875,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1051.796875
+      },
+      {
+        "alt": "li_ion",
+        "height": 71.3125,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -959.4375
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -785.796875
+      },
+      {
+        "alt": "weee2",
+        "height": 67.3515625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -490.9140625
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 91.46875,
+        "x": 27,
+        "y": -128.6328125
+      },
+      {
+        "alt": "Cabo de expansão",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 91.46875,
+        "x": 149.265625,
+        "y": -128.6328125
+      },
+      {
+        "alt": "Manual do usuário",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 91.46875,
+        "x": 271.53125,
+        "y": -128.6328125
+      },
+      {
+        "alt": "Botão POWER DISPLAY LCD",
+        "height": 363.0078125,
+        "loaded": true,
+        "src": "assets/ir/91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193/overview_front.png",
+        "width": 358,
+        "x": 16,
+        "y": 214.1171875
+      },
+      {
+        "alt": "Porta de expansão CC B (Conecte ao terminal B do cabo de expansão) (Conecte ao terminal A do cabo de expansão) Porta de expansão CC A Alça",
+        "height": 245.2734375,
+        "loaded": true,
+        "src": "assets/ir/969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9/overview_left.png",
+        "width": 358,
+        "x": 16,
+        "y": 649.4296875
+      },
+      {
+        "alt": "DISPLAY LCD",
+        "height": 63.640625,
+        "loaded": true,
+        "src": "assets/ir/79c517d4649ca2c583791a785d20aef87281437b655fc5efd60b5cab4286939f/lcd_annotated.png",
+        "width": 358,
+        "x": 16,
+        "y": 995.9453125
+      },
+      {
+        "alt": "",
+        "height": 91.671875,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 356,
+        "x": 17,
+        "y": 1773.0703125
+      },
+      {
+        "alt": "LIGA/DESLIGA DO VISOR LCD",
+        "height": 106.875,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 2330.5625
+      },
+      {
+        "alt": "",
+        "height": 153.421875,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 3095.4296875
+      },
+      {
+        "alt": "CONEXÕES — Jackery Battery Pack 3600",
+        "height": 205.703125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 3336.6953125
+      },
+      {
+        "alt": "×5",
+        "height": 19.1875,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 29.7890625,
+        "x": 178.296875,
+        "y": 3635.53125
+      },
+      {
+        "alt": "",
+        "height": 270.484375,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 3887.4296875
+      },
+      {
+        "alt": "CARREGAMENTO POR MEIO DE TOMADA CA",
+        "height": 177.3046875,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5181.640625
+      },
+      {
+        "alt": "CARREGAMENTO VIA PAINÉIS SOLARES",
+        "height": 204.5703125,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5583.765625
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.1875,
+        "paragraph": "A exibição do ícone  na tela LCD (Jackery Explorer 3600 Plus) significa uma conexão bem-sucedida entre a bateria externa e o Jackery Explorer 3600 Plus.",
+        "width": 29.7890625,
+        "x": 178.296875,
+        "y": 3635.53125
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Bloquear",
+        "width": 73.3046875,
+        "x": 223.6328125,
+        "y": 3898.2421875
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Desbloquear",
+        "width": 97.875,
+        "x": 223.6328125,
+        "y": 4028.078125
+      }
+    ],
+    "url": "http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html#visao-geral-do-produto",
+    "viewport": [
+      390,
+      844
+    ],
+    "visualViewport": [
+      390,
+      844
+    ]
+  },
+  "warrantyLayout": [
+    {
+      "gap": 4.796875,
+      "headingRight": 173.96875,
+      "sectionRight": 374,
+      "title": "Garantia Limitada"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 187.84375,
+      "sectionRight": 374,
+      "title": "Período de Garantia"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 206.0234375,
+      "sectionRight": 374,
+      "title": "Reparo ou substituição"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 347.6484375,
+      "sectionRight": 374,
+      "title": "Limitado ao comprador consumidor original"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 113.984375,
+      "sectionRight": 374,
+      "title": "Exclusões"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 219.6875,
+      "sectionRight": 374,
+      "title": "Direitos de interpretação"
+    }
+  ],
+  "mobileLcdAnchor": {
+    "y": 95.8984375
+  }
+}

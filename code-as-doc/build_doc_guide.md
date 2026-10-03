@@ -931,6 +931,26 @@ Web Publish / Read the Docs note:
   permits battery packs to omit host-only auto-resume, key-combination and LCD
   mode tables. Its opt-in `base_art_layout.duration_icon: clock` draws a CSS
   clock beside live duration text after the source glyph is removed.
+  The duration reader accepts Italian `secondi`, German numeric `Sekunden`,
+  and the native German phrase `Drei Sekunden`; only the decorative clock
+  becomes `3s`, while the instruction retains its original wording.
+  Reference labels can declare a measured `color` with their `fill`; these
+  source badges retain a 0.875rem minimum and expand within the art edge on phones.
+  JBP locking labels use the native dark fill and white type. Frozen MyST
+  replay promotes top-level `hb-h1-pill` document headings into navigation,
+  while preserving headings inside components. On mobile, shared anchor spacing
+  includes Furo's sticky header height so direct links and TOC jumps show the
+  complete section heading.
+  The current candidate stylesheet also reserves 4rem for desktop anchor
+  jumps. Mobile warranty headings participate in normal flow so wrapped titles
+  reserve body space; targeted warranty headings retain their dark fill.
+  The approved nine-language snapshot binds English r6 and the independently
+  reviewed native versions to the actual MA-244 publication instruction in
+  [the release source](../manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/README.md).
+  Native source exceptions remain explicit; prepared component applicability
+  is enrolled per language. Original candidates and acceptance seals remain
+  immutable. Fresh admission, strict Sphinx and cold output parity are required
+  before publishing; phase2 checks do not validate these native-language bodies.
   Governed reference figures and hash-locked finished panels may coexist in
   coverage. Apply label-bearing illustration replacements before ComponentSpec
   discovery (`consume_before_presentation`) so cold replay hashes the same

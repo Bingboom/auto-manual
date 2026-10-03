@@ -163,6 +163,14 @@ def arrange_base_art_reference(
                 source_path=source_path,
                 error_type=error_type,
             )
+        if "color" in label:
+            classes.append("hb-reference-source-badge")
+            style += ";--hb-label-color:" + _tone(
+                label.get("color"),
+                field=f"labels[line={line_index}].color",
+                source_path=source_path,
+                error_type=error_type,
+            )
         span = soup.new_tag(
             "span",
             attrs={

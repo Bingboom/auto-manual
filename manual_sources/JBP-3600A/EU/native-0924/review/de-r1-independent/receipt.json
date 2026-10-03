@@ -1,0 +1,112 @@
+{
+  "status": "independent-source-and-layout-pass",
+  "original_evidence_directory": "/tmp/jbp-independent-acceptance/de-r1-20261003",
+  "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+  "package_commit": "2f830a272851f0348190e1c36d4bdb2b733deb70",
+  "publication_eligible": false,
+  "operator_approval": false,
+  "locale_enrollment": false,
+  "note": "Report copied verbatim; references to independent snapshots retained here refer to the original evidence directory. Full package, HTML and producer-evidence snapshots remain there. This archive includes report, checks, independent structure diff and all top-level source/browser screenshots.",
+  "files": [
+    {
+      "path": "acceptance.md",
+      "sha256": "296b68cd6eb482ad17bcd4241a858a59e66777199aa5061157d71e833aff6fcd"
+    },
+    {
+      "path": "checks.json",
+      "sha256": "a106cb42d52462ee4ffaa13cb62f051f2bb1c7b253982eaf25a79eb8ba9ec4a2"
+    },
+    {
+      "path": "independent-structure-diff.json",
+      "sha256": "c0c7bf24ee7b89d74376a5b589db53717b5e49b243cc3d2d7382a20d91f59f79"
+    },
+    {
+      "path": "desktop-charging.png",
+      "sha256": "dffd585c73fa26e50613624888ba6103e5967dbc402be62a719035db78f5edee"
+    },
+    {
+      "path": "desktop-lcd.png",
+      "sha256": "f148d19aafa6c3cfba2cf969141a9aaf4daee79d34f23e14f3a64c9f4f3275ef"
+    },
+    {
+      "path": "mobile-connections.png",
+      "sha256": "482d6d2d734c0fbd19a881522ecfb0312f0db3095d069425ba9bb69583c01606"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "c3bc0d1932697c99580c89beea5297fefb01577f9a9938b04e975cca005e4b8f"
+    },
+    {
+      "path": "mobile-left-panel.png",
+      "sha256": "e9f4d099abd6f7c8dddc3d688c56218ac13ca3d97a28ad146aa5baa40c2bc0c2"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "826654d4623b3031ae64c4596a06d1330f59d1b168fede48ff94b13349b246a7"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "76bc5b6340b903faf6fa3b30c82a841643e224ee6eefeab2a4c42ebb97df34de"
+    },
+    {
+      "path": "mobile-overview.png",
+      "sha256": "6c9ceed611f99385b129c32e57df82899d3f0086ce0f7db217f6db2a2ec18fa6"
+    },
+    {
+      "path": "mobile-specifications.png",
+      "sha256": "970c500ccece89f45aadb92d5c8e56e9298bbadfe8e56f21c9916512a6718e26"
+    },
+    {
+      "path": "mobile-symbols.png",
+      "sha256": "32b5e9445dc3b6d9ac9bdc4b46999d52aea49eef5002c8984a00c444569e7ee2"
+    },
+    {
+      "path": "mobile-troubleshooting-scrolled.png",
+      "sha256": "1a3c6210564a71570df095494335ea17af0b835185c1a25b70831f51321d7b2c"
+    },
+    {
+      "path": "mobile-warranty-long-title.png",
+      "sha256": "fd035f246c282ab331824d1ae411782e846da0006ebfb465038f301588465246"
+    },
+    {
+      "path": "source-2.png",
+      "sha256": "9a46e1c655634cf9fe99538718f3ec8cb2f03a9d956af17723ed9b822ceb3d11"
+    },
+    {
+      "path": "source-31.png",
+      "sha256": "d909288ecb0e8edf1b5eb88cf085986f5079b08f82051864ff9f8aca02b2e079"
+    },
+    {
+      "path": "source-32.png",
+      "sha256": "84f7abb58d95d03c5fbad58499428a03ceb04ac6d539c7fabcbbe76e3d26b058"
+    },
+    {
+      "path": "source-33.png",
+      "sha256": "1e101099c46475c58cef901f6b38a2d140d7452746d098e64128a3da36b6a403"
+    },
+    {
+      "path": "source-34.png",
+      "sha256": "c9d29b927651368d19cb0368f8cc0f2a74205e76d7bb3adf0f94192c62430e81"
+    },
+    {
+      "path": "source-35.png",
+      "sha256": "e3c4cd60e849339afc1c04e752b78db7f07ee4971e38bfe6878ad674f79dca8a"
+    },
+    {
+      "path": "source-36.png",
+      "sha256": "4cd3118ccb19e6a943b3efce092ed8a1c8b1f13aaa5572ac881e58a815911841"
+    },
+    {
+      "path": "source-37.png",
+      "sha256": "46da8fd754f8902f2157386f77a33434d55465bc0dfd2f608ac42df9ee224af9"
+    },
+    {
+      "path": "source-38.png",
+      "sha256": "f5229a8f2c4e3671b27867e9fe5d92c73220b9d38d86d6794a194dda8fe77c8e"
+    },
+    {
+      "path": "source-79.png",
+      "sha256": "1146f86f1554a2dee42b5d5ab9f00064bf783b00a92cb12c5ae759722d65ce52"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "markdown_byte_identical": true,
+  "ir_sha256": "b92d4ac099bc0e0219705d76420ef40dfbcd435c258f458566a7bc8e54311390",
+  "markdown_sha256": "152205ae36bd66794cf3a31e55ae5d27b2c6d48840e36f5675389106ef220c3b",
+  "package_files_checked": 29,
+  "html_files_checked": 60,
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "html_byte_identical": true,
+  "html_sha256": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+  "strict_sphinx": "passed"
+}

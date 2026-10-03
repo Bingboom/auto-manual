@@ -1,0 +1,806 @@
+{
+  "desktop": {
+    "clocks": [
+      {
+        "height": 25.6015625,
+        "text": "3s",
+        "width": 49.15625,
+        "x": 971.421875,
+        "y": 3733.05078125
+      }
+    ],
+    "headings": [
+      {
+        "height": 51.7109375,
+        "id": "belangrijke-veiligheidsinformatie",
+        "text": "BELANGRIJKE VEILIGHEIDSINFORMATIE¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": -1287.078125
+      },
+      {
+        "height": 51.7109375,
+        "id": "betekenis-van-symbolen",
+        "text": "BETEKENIS VAN SYMBOLEN¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": -609.75
+      },
+      {
+        "height": 51.7109375,
+        "id": "wat-zit-er-in-de-doos",
+        "text": "WAT ZIT ER IN DE DOOS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 718.453125
+      },
+      {
+        "height": 51.7109375,
+        "id": "productoverzicht",
+        "text": "PRODUCTOVERZICHT¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 1218.9609375
+      },
+      {
+        "height": 51.7109375,
+        "id": "lcd-scherm",
+        "text": "LCD-SCHERM¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2916.015625
+      },
+      {
+        "height": 51.7109375,
+        "id": "handelingen",
+        "text": "HANDELINGEN¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3466.3203125
+      },
+      {
+        "height": 51.7109375,
+        "id": "verbindingen",
+        "text": "VERBINDINGEN¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4407.0546875
+      },
+      {
+        "height": 51.7109375,
+        "id": "probleemoplossing",
+        "text": "PROBLEEMOPLOSSING¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6510.046875
+      },
+      {
+        "height": 51.7109375,
+        "id": "opladen",
+        "text": "OPLADEN¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7007.6640625
+      },
+      {
+        "height": 51.7109375,
+        "id": "opslag",
+        "text": "Opslag¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8396.59375
+      },
+      {
+        "height": 51.7109375,
+        "id": "specificaties",
+        "text": "SPECIFICATIES¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8771.921875
+      },
+      {
+        "height": 51.7109375,
+        "id": "garantie",
+        "text": "GARANTIE¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 9539.3515625
+      },
+      {
+        "height": 51.7109375,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 10708.3359375
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 64.0625,
+        "loaded": true,
+        "src": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -126.546875
+      },
+      {
+        "alt": "read_manual",
+        "height": 51.90625,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -24.90625
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 67.484375,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 57.296875
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 63.7734375,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 155.078125
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 71.1953125,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -133.828125
+      },
+      {
+        "alt": "li_ion",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -23.1953125
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 164.3515625
+      },
+      {
+        "alt": "weee2",
+        "height": 75.1015625,
+        "loaded": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 462.453125
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 172.796875,
+        "x": 363.859375,
+        "y": 875.3515625
+      },
+      {
+        "alt": "Uitbreidingskabel",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 172.796875,
+        "x": 649.59375,
+        "y": 875.3515625
+      },
+      {
+        "alt": "Gebruikershandleiding",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 172.796875,
+        "x": 935.328125,
+        "y": 875.3515625
+      },
+      {
+        "alt": "Aan/Uit-knop LCD-scherm",
+        "height": 854.609375,
+        "loaded": true,
+        "src": "assets/ir/61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744/overview_front.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 1354.921875
+      },
+      {
+        "alt": "DC-uitbreidingspoort B (Sluit aan op klem B van de uitbreidingskabel) (Sluit aan op klem A van de uitbreidingskabel) DC-uitbreidingspoort A Handvat",
+        "height": 577.4375,
+        "loaded": true,
+        "src": "assets/ir/a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db/overview_left.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2293.78125
+      },
+      {
+        "alt": "LCD-SCHERM",
+        "height": 149.828125,
+        "loaded": true,
+        "src": "assets/ir/0032ac8b670a75171012c771206d209318abdb4559e9667612de69d10dd0213f/lcd_annotated.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2987.7265625
+      },
+      {
+        "alt": "",
+        "height": 216.5234375,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 840.8125,
+        "x": 315.59375,
+        "y": 3607.28125
+      },
+      {
+        "alt": "LCD-SCHERM AAN/UIT",
+        "height": 237.984375,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4066.3046875
+      },
+      {
+        "alt": "",
+        "height": 361.203125,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4723.5078125
+      },
+      {
+        "alt": "VERBINDINGEN — Jackery Battery Pack 3600",
+        "height": 484.28125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5116.7109375
+      },
+      {
+        "alt": "×5",
+        "height": 19.5859375,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 30.3984375,
+        "x": 626.1328125,
+        "y": 5643.8125
+      },
+      {
+        "alt": "",
+        "height": 636.7890625,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5828.4609375
+      },
+      {
+        "alt": "OPLADEN VIA AC-STOPCONTACT",
+        "height": 417.4140625,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7306.46875
+      },
+      {
+        "alt": "OPLADEN VIA ZONNEPANELEN",
+        "height": 481.6015625,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7870.1953125
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.5859375,
+        "paragraph": "De weergave van het  -pictogram op het LCD-scherm (van de Jackery Explorer 3600 Plus) geeft aan dat de verbinding tussen het batterijpakket en de Jackery Explorer 3600 Plus succesvol is.",
+        "width": 30.3984375,
+        "x": 626.1328125,
+        "y": 5643.8125
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Vergrendelen",
+        "width": 119.0078125,
+        "x": 803.421875,
+        "y": 5853.9296875
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Ontgrendelen",
+        "width": 122.796875,
+        "x": 803.421875,
+        "y": 6159.5859375
+      }
+    ],
+    "url": "http://127.0.0.1:56059/nl-r2/manual_jbp3600a_eu_nl.html",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "visualViewport": [
+      1440,
+      1000
+    ],
+    "warranty": [
+      {
+        "gap": 1.6640625,
+        "headingRight": 501.8359375,
+        "sectionRight": 1157.40625,
+        "title": "Beperkte garantie"
+      },
+      {
+        "gap": 1.6640625,
+        "headingRight": 489.84375,
+        "sectionRight": 1157.40625,
+        "title": "Garantieperiode"
+      },
+      {
+        "gap": 1.6640625,
+        "headingRight": 549.8203125,
+        "sectionRight": 1157.40625,
+        "title": "Reparatie of vervanging"
+      },
+      {
+        "gap": 1.6640625,
+        "headingRight": 646.8515625,
+        "sectionRight": 1157.40625,
+        "title": "Beperkt tot de oorspronkelijke koper"
+      },
+      {
+        "gap": 1.6640625,
+        "headingRight": 455.5390625,
+        "sectionRight": 1157.40625,
+        "title": "Uitsluitingen"
+      },
+      {
+        "gap": 1.6640625,
+        "headingRight": 518.21875,
+        "sectionRight": 1157.40625,
+        "title": "Interpretatierechten"
+      }
+    ]
+  },
+  "mobile": {
+    "clocks": [
+      {
+        "height": 15.078125,
+        "text": "3s",
+        "width": 28.9453125,
+        "x": 294.6796875,
+        "y": 2718.4140625
+      }
+    ],
+    "headings": [
+      {
+        "height": 70.484375,
+        "id": "belangrijke-veiligheidsinformatie",
+        "text": "BELANGRIJKE VEILIGHEIDSINFORMATIE¶",
+        "width": 358,
+        "x": 16,
+        "y": -2170.3359375
+      },
+      {
+        "height": 46.046875,
+        "id": "betekenis-van-symbolen",
+        "text": "BETEKENIS VAN SYMBOLEN¶",
+        "width": 358,
+        "x": 16,
+        "y": -1087.390625
+      },
+      {
+        "height": 46.046875,
+        "id": "wat-zit-er-in-de-doos",
+        "text": "WAT ZIT ER IN DE DOOS¶",
+        "width": 358,
+        "x": 16,
+        "y": 616.4453125
+      },
+      {
+        "height": 46.046875,
+        "id": "productoverzicht",
+        "text": "PRODUCTOVERZICHT¶",
+        "width": 358,
+        "x": 16,
+        "y": 965.6875
+      },
+      {
+        "height": 46.046875,
+        "id": "lcd-scherm",
+        "text": "LCD-SCHERM¶",
+        "width": 358,
+        "x": 16,
+        "y": 1799.8203125
+      },
+      {
+        "height": 46.046875,
+        "id": "handelingen",
+        "text": "HANDELINGEN¶",
+        "width": 358,
+        "x": 16,
+        "y": 2543.9375
+      },
+      {
+        "height": 46.046875,
+        "id": "verbindingen",
+        "text": "VERBINDINGEN¶",
+        "width": 358,
+        "x": 16,
+        "y": 3456.7578125
+      },
+      {
+        "height": 46.046875,
+        "id": "probleemoplossing",
+        "text": "PROBLEEMOPLOSSING¶",
+        "width": 358,
+        "x": 16,
+        "y": 5127.59375
+      },
+      {
+        "height": 46.046875,
+        "id": "opladen",
+        "text": "OPLADEN¶",
+        "width": 358,
+        "x": 16,
+        "y": 5753.8359375
+      },
+      {
+        "height": 46.046875,
+        "id": "opslag",
+        "text": "Opslag¶",
+        "width": 358,
+        "x": 16,
+        "y": 6796.4375
+      },
+      {
+        "height": 46.046875,
+        "id": "specificaties",
+        "text": "SPECIFICATIES¶",
+        "width": 358,
+        "x": 16,
+        "y": 7318.765625
+      },
+      {
+        "height": 46.046875,
+        "id": "garantie",
+        "text": "GARANTIE¶",
+        "width": 358,
+        "x": 16,
+        "y": 8194.125
+      },
+      {
+        "height": 46.046875,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 358,
+        "x": 16,
+        "y": 10076.59375
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 54.5390625,
+        "loaded": true,
+        "src": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -533.6328125
+      },
+      {
+        "alt": "read_manual",
+        "height": 44.1953125,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -438.9609375
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 57.453125,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -373.4375
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 54.296875,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -294.65625
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 60.6171875,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -163.4453125
+      },
+      {
+        "alt": "li_ion",
+        "height": 71.3125,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -71.0859375
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": 102.5546875
+      },
+      {
+        "alt": "weee2",
+        "height": 63.9375,
+        "loaded": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": 389.9296875
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 91.46875,
+        "x": 27,
+        "y": 741.2890625
+      },
+      {
+        "alt": "Uitbreidingskabel",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 91.46875,
+        "x": 149.265625,
+        "y": 741.2890625
+      },
+      {
+        "alt": "Gebruikershandleiding",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 91.46875,
+        "x": 271.53125,
+        "y": 741.2890625
+      },
+      {
+        "alt": "Aan/Uit-knop LCD-scherm",
+        "height": 363.0078125,
+        "loaded": true,
+        "src": "assets/ir/61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744/overview_front.png",
+        "width": 358,
+        "x": 16,
+        "y": 1084.0390625
+      },
+      {
+        "alt": "DC-uitbreidingspoort B (Sluit aan op klem B van de uitbreidingskabel) (Sluit aan op klem A van de uitbreidingskabel) DC-uitbreidingspoort A Handvat",
+        "height": 245.2734375,
+        "loaded": true,
+        "src": "assets/ir/a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db/overview_left.png",
+        "width": 358,
+        "x": 16,
+        "y": 1519.3515625
+      },
+      {
+        "alt": "LCD-SCHERM",
+        "height": 63.640625,
+        "loaded": true,
+        "src": "assets/ir/0032ac8b670a75171012c771206d209318abdb4559e9667612de69d10dd0213f/lcd_annotated.png",
+        "width": 358,
+        "x": 16,
+        "y": 1865.8671875
+      },
+      {
+        "alt": "",
+        "height": 91.671875,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 356,
+        "x": 17,
+        "y": 2667.2890625
+      },
+      {
+        "alt": "LCD-SCHERM AAN/UIT",
+        "height": 106.875,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 3224.78125
+      },
+      {
+        "alt": "",
+        "height": 153.421875,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 4005.6171875
+      },
+      {
+        "alt": "VERBINDINGEN — Jackery Battery Pack 3600",
+        "height": 205.703125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 4246.8828125
+      },
+      {
+        "alt": "×5",
+        "height": 19.1875,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 29.7890625,
+        "x": 190.1171875,
+        "y": 4545.71875
+      },
+      {
+        "alt": "",
+        "height": 270.484375,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 4821.9140625
+      },
+      {
+        "alt": "OPLADEN VIA AC-STOPCONTACT",
+        "height": 177.3046875,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 6154.546875
+      },
+      {
+        "alt": "OPLADEN VIA ZONNEPANELEN",
+        "height": 204.5703125,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 6556.671875
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.1875,
+        "paragraph": "De weergave van het  -pictogram op het LCD-scherm (van de Jackery Explorer 3600 Plus) geeft aan dat de verbinding tussen het batterijpakket en de Jackery Explorer 3600 Plus succesvol is.",
+        "width": 29.7890625,
+        "x": 190.1171875,
+        "y": 4545.71875
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Vergrendelen",
+        "width": 101.7265625,
+        "x": 223.6328125,
+        "y": 4832.7265625
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Ontgrendelen",
+        "width": 104.890625,
+        "x": 223.6328125,
+        "y": 4962.5625
+      }
+    ],
+    "url": "http://127.0.0.1:56059/nl-r2/manual_jbp3600a_eu_nl.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "visualViewport": [
+      390,
+      844
+    ],
+    "warranty": [
+      {
+        "gap": 4.796875,
+        "headingRight": 173.09375,
+        "sectionRight": 374,
+        "title": "Beperkte garantie"
+      },
+      {
+        "gap": 4.796875,
+        "headingRight": 162.8828125,
+        "sectionRight": 374,
+        "title": "Garantieperiode"
+      },
+      {
+        "gap": 4.796875,
+        "headingRight": 213.9765625,
+        "sectionRight": 374,
+        "title": "Reparatie of vervanging"
+      },
+      {
+        "gap": 4.796875,
+        "headingRight": 296.625,
+        "sectionRight": 374,
+        "title": "Beperkt tot de oorspronkelijke koper"
+      },
+      {
+        "gap": 4.796875,
+        "headingRight": 133.6640625,
+        "sectionRight": 374,
+        "title": "Uitsluitingen"
+      },
+      {
+        "gap": 4.796875,
+        "headingRight": 187.0546875,
+        "sectionRight": 374,
+        "title": "Interpretatierechten"
+      }
+    ]
+  }
+}

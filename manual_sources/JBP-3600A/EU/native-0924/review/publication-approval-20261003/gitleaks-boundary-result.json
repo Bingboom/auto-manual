@@ -1,0 +1,37 @@
+{
+  "version": "8.30.1",
+  "status": "pass",
+  "reviewed_digest_allowed": true,
+  "unreviewed_digest_blocked": true,
+  "wrong_field_blocked": true,
+  "wrong_path_blocked": true,
+  "synthetic_generic_credential_blocked": true,
+  "synthetic_github_pat_blocked": true,
+  "expected_findings": [
+    {
+      "RuleID": "generic-api-key",
+      "File": "manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unreviewed.log",
+      "StartLine": 1
+    },
+    {
+      "RuleID": "github-pat",
+      "File": "manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unittest.log",
+      "StartLine": 5
+    },
+    {
+      "RuleID": "generic-api-key",
+      "File": "manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unittest.log",
+      "StartLine": 2
+    },
+    {
+      "RuleID": "generic-api-key",
+      "File": "manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unittest.log",
+      "StartLine": 3
+    },
+    {
+      "RuleID": "generic-api-key",
+      "File": "manual_sources/JBP-3600A/EU/native-0924/review/fr-r4/unittest.log",
+      "StartLine": 4
+    }
+  ]
+}

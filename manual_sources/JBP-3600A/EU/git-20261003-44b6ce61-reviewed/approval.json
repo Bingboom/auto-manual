@@ -1,0 +1,136 @@
+{
+  "schema_version": "jbp-reviewed-publication-approval/v1",
+  "authorization": "MA-244",
+  "date": "2026-10-03",
+  "originating_chat": "01a0f462-2057-7750-b1eb-10402304f6fb",
+  "user_message_id": "01a10179-f9f8-79b2-b175-bf9f68a6e569",
+  "user_instruction": "JBP 八语合入上线啊",
+  "interpretation": "Release the independently reviewed native eight-language delivery and its necessary English r6 baseline update, retaining documented source-authored anomalies. This is the actual publication instruction, not a fabricated separate pixel-approval quote.",
+  "candidate_source_commit": "44b6ce6101141681a6cf75c9fdfef05b8aef93b0",
+  "independent_report": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-final-independent/acceptance.md",
+  "independent_report_sha256": "4035a8c6e4775d21dbd15de6b813c745ed8a2676039132c4250075ac7f3899b3",
+  "english_baseline_revision": "en-r6",
+  "retained_native_findings": {
+    "fr": [
+      "Source Mlise en garde! retained (page15; zoom evidence).",
+      "Source problème.Si retained (page18).",
+      "Source adéquate.Température retained (page21).",
+      "French manufacturer-rights text Jackery Inc. retained (page22).",
+      "Shared regulations/manufacturer page79 remains native English.",
+      "Outlined source safety/storage/warranty exclusions visually checked.",
+      "Printed environne- ment wrap joined; whitespace and fi/fl ligatures normalized."
+    ],
+    "es": [
+      "Native adequate.Temperature / problem.If spacing retained as adecuada.Temperatura and problema.Si.",
+      "Native Principa, cargos, garantia,debe and laduración wording retained; source correction requires review."
+    ],
+    "de": [
+      "Safety bullet 2 repeats the first instruction in the native source; retained.",
+      "General-info heading repeats the specifications heading in source; retained.",
+      "Source cycle-life value and environmental-temperature heading are English; retained.",
+      "Second clearance label reads ≥≈200 mm; retained as source text.",
+      "Left port B label reads C-Erweiterungsport B; retained in native panel.",
+      "Native source pairs the do-not-dismantle hand symbol with Vermeiden Sie Hitze and no-flame symbol with Demontieren Sie das Produkt nicht; preserve native copy and pairing pending operator review."
+    ],
+    "it": [
+      "Native inbox cable is labelled Cavo di ricarica CA; retained alongside the unchanged expansion cable art.",
+      "Native general heading starts NFORMAZIONI; retained.",
+      "Native cycle-life and environmental-temperature heading remain English.",
+      "Native warranty omits 36-month sentence but shows 3+2-year badges; native text retained.",
+      "Native specification adds maximum short-circuit-current/duration row 1160A/860μs.",
+      "Second clearance label reads ≥≈200 mm; retained.",
+      "Native operation text says ucita; retained.",
+      "Native charge-temperature label reads Temperatura di caricatra; retained."
+    ],
+    "uk": [],
+    "pt": [
+      "Native operation uses ON and Apagado; retained."
+    ],
+    "nl": [
+      "Native port group heading has INGANGS//UITGANGSPOORTEN; retained."
+    ],
+    "pl": [
+      "Native weight and dimensions put metric units first; retained.",
+      "Native clearance labels put millimetres before feet; retained."
+    ]
+  },
+  "source_exception_decision": "Preserve reviewed source copy and pairings; no corrections or English-derived additions. DE warning pairings and IT cable label, extra 1160A/860μs specification and warranty wording remain as reviewed.",
+  "artwork": "Reuse warning and battery WEEE transparent sources exactly; retain equipment WEEE with bar and JBP x5; CSS 3s clock; no HTE152 x8 substitution.",
+  "current_admission": "tools.web.component_admission.require_fresh_component_admission + prepared_component_admission.json; trusted reviewed locale enrollment, validated component slots and actual packaged assets.",
+  "pr1409": "Not imported and not a runtime dependency of current-main release path. Its proposed cross-language baseline gate is outside this release; no dependency PR merge or gate bypass.",
+  "phase2_scope": "No new phase2/print language targets; build.py check is regression coverage, not a native-body content audit.",
+  "candidates": [
+    {
+      "language": "en",
+      "revision": "en-r6",
+      "ir_sha256": "70df94260f3fd8fceef40a1f1fb8893915e37c9b00269ce5101e625b93f8f53f",
+      "html_sha256": "c6e447a16abc05b1a2f334e441dab1277b214992c008f173c5d27a272259abd0",
+      "markdown_sha256": "3095e66c6ced7f1d68929762a675f905f999cd61223adc24494f7465568a5fae",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "fr",
+      "revision": "fr-r5",
+      "ir_sha256": "55cfc66eb0482f6893a48c186418160ea6bdfdddc90c5be00da623e824064df0",
+      "html_sha256": "dce81595d558e9975e474ed46e476222872256b99900daee931ea8e0c6ba5b49",
+      "markdown_sha256": "d686e0652c37af453ab98c57c847a26d2cfa0dda8e141db8c2ea8c3e2efaa3ed",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "es",
+      "revision": "es-r3",
+      "ir_sha256": "f4153edb299adaf1a9028ff5ea25121bdc405411a0df349abe6cc83360e290f7",
+      "html_sha256": "7704b68d7877e56fb498bc803530fff7472ec664bf490cdff12868b85a9edd59",
+      "markdown_sha256": "ba17ca814d3bb233ee8faf800173f84b5d8bc7d09131451a4377e937c59c6fb9",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "de",
+      "revision": "de-r2",
+      "ir_sha256": "5f66e588a7ce5516934b3138507599a0dbf0d5560cb06de848ca7bfd156c0556",
+      "html_sha256": "2a816bb562c1ee5fa96bd8706fdbb1f88f81ce81f46330fc4f4f4229429ce169",
+      "markdown_sha256": "61a4d9fefa2ce57bf3c151d064d30f297f0d6bb296fdae6b01944befc452aaad",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "it",
+      "revision": "it-r2",
+      "ir_sha256": "e01e82f34489f3afa4869a27588fe7d6bf4600fb03d8f3c4899c9be85d988a44",
+      "html_sha256": "3d8079560ccff5242e035e3954250d13afda7c552b897e540bdb3297813e18e6",
+      "markdown_sha256": "2d1af804b225544eea18b5d3b091505f5146eaad56f329ef5db44559f3844a27",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "uk",
+      "revision": "uk-r2",
+      "ir_sha256": "1267a875eebce2ba2c542260a207e470dd2644dfa1377066c6c379d37d007890",
+      "html_sha256": "916b2f5d5d8c08d6da4a7c87d64b6ffaa5848f468614e52e4b1b8966bbd6a9ab",
+      "markdown_sha256": "b98a688d4b0749f8c07faad19df0e53193bce0385b8e7d6ee631e38d30d285fd",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "pt",
+      "revision": "pt-r2",
+      "ir_sha256": "fdf98b1b12846c9aa41a6c5a5ec8c996882f5afc4e312b40d3a2639b0cb37685",
+      "html_sha256": "f09854b6c97968dcc1d92db920a736aaf22d516a4a9fbe85f54a39dc54134f36",
+      "markdown_sha256": "af8328959d24927970fa5dfc93295d68aa7fe985a93ded3b964e6f078efa5d57",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "nl",
+      "revision": "nl-r2",
+      "ir_sha256": "c176714232010e3fe47aadd064d132027500f61ac5f798fd5689274ea74158c5",
+      "html_sha256": "e4dd3261ba1874fa7d74d907b7dfc0cfdf991f428ff3bca256568693098bd202",
+      "markdown_sha256": "e65481ad73090877eefee3f1bdb1e4bd5661fd10b75d47566dc16d19ceda9ef6",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    },
+    {
+      "language": "pl",
+      "revision": "pl-r2",
+      "ir_sha256": "c98bcadf90504bc0b4333f6915ce3deeca598aaef09e57d780692a2154364cba",
+      "html_sha256": "9c842505cad6297029bdec56c584ccb010cc8e7c1229995c8bab32dc12a81677",
+      "markdown_sha256": "c20f877901f80580cd6e76d03d3ba8f00a14b56ed25fea16cc695805683260fa",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87"
+    }
+  ]
+}

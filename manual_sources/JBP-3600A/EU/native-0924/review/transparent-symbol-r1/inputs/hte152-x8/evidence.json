@@ -1,0 +1,62 @@
+{
+  "status": "candidate-not-enrolled",
+  "source": "/Users/pika/Downloads/HTE152-EU-9国语言-0924.ai",
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+  "physical_page": 13,
+  "printed_page": "06",
+  "icon_number": 21,
+  "source_label": "Connected Batteries",
+  "crop_pt": [
+    55.0467,
+    160.1394,
+    76.6242,
+    171.7731
+  ],
+  "retained_original_drawing_indices": [
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
+  ],
+  "removed_background_drawing": 3,
+  "background_touch_rect_pt": [
+    30,
+    33,
+    30.2,
+    33.2
+  ],
+  "method": "Native PDF compound paths retained; remove touched backdrop outside icon, then clip. No path redraw, recolor or AI generation.",
+  "geometry_items_fill_rule_and_color_exact_before_after": true,
+  "size": [
+    518,
+    280
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "fully_transparent_pixels": 106848,
+  "interior_holes_transparent": true,
+  "variant_note": "This user-supplied source has no outer capsule. Preserve as HTE152 variant, not equivalent to prior capsule drawing.",
+  "rejected_attempt": "retain_vector_drawings replay filled the inner rectangle due to rectangle winding; never enroll that output. Its recipe.json and extract.py are rejected diagnostics, not production recipe.",
+  "files": [
+    {
+      "file": "connected-batteries-x8-transparent.pdf",
+      "sha256": "0900996fbd0bbac2a5b2497e347b978b364a3d23a874138a2fe8fe63ca48c18c"
+    },
+    {
+      "file": "connected-batteries-x8-transparent.png",
+      "sha256": "81983db46972ddbd56bfd4dbd97ff16629d3179eeb710727a2a0fb518c111dc3"
+    },
+    {
+      "file": "connected-batteries-x8-transparent.svg",
+      "sha256": "7280b724ebf5aa6536503ea0f49ef443f7cdb4c2dd472163f6d5cc1ecd4e4f95"
+    }
+  ]
+}

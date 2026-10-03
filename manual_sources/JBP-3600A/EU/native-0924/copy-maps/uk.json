@@ -1,0 +1,2026 @@
+{
+  "language": "uk",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "status": "producer-source-checked-awaiting-web-build-and-independent-review",
+  "normalization": [
+    "printed line-wrap whitespace joined",
+    "fi/fl/ff ligatures expanded",
+    "printed bullet markers represented by HTML lists, not duplicated in copy"
+  ],
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "ВАЖЛИВО",
+      "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.": "Вітаємо з новим Jackery Battery Pack 3600. Будь ласка, уважно прочитайте це керівництво перед використанням продукту, особливо відповідні застереження для забезпечення правильного використання. Зберігайте цей посібник у легкодоступному місці для частого звернення.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.": "Відповідно до законів і нормативних актів, право остаточного тлумачення цього документа та всіх пов’язаних документів цього продукту належить Компанії.",
+      "Please kindly notice that no further notifications will be given in case of any update, revision or termination.": "Зверніть увагу, що у разі будь-яких оновлень, змін або припинення додаткових повідомлень не буде."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ",
+      "The basic safety precautions should be followed when using this product, including:": "Під час використання цього продукту слід дотримуватися основних заходів безпеки, зокрема:",
+      "Please read all instructions before using this product.": "Будь ласка, прочитайте всі інструкції перед використанням цього продукту.",
+      "Close supervision is required when using this product near children to reduce the risk.": "Під час використання цього продукту поблизу дітей потрібен пильний нагляд, щоб зменшити ризик.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "Ризик ураження електричним струмом може виникнути, якщо використовувати аксесуари, рекомендовані або продані непрофесійними виробниками продукції.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Коли продукт не використовується, будь ласка, від’єднайте вилку живлення від розетки продукту.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Не розбирайте продукт, оскільки це може призвести до непередбачуваних ризиків, таких як пожежа, вибух або ураження електричним струмом.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "Не використовуйте продукт із пошкодженими шнурами або вилками, або пошкодженими вихідними кабелями, оскільки це може спричинити ураження електричним струмом.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Заряджайте продукт у добре провітрюваному місці та не обмежуйте вентиляцію будь-яким чином.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Будь ласка, розміщуйте продукт у провітрюваному та сухому місці, щоб уникнути потрапляння дощу та води, що може спричинити ураження електричним струмом.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "Не піддавайте продукт впливу вогню або високої температури (під прямими сонячними променями або в автомобілі під час сильної спеки), що може спричинити такі аварії, як пожежа та вибух.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Якщо цей продукт зберігається протягом тривалого часу (3-6 місяців) з повністю розрядженим акумулятором, він може стати непридатним для заряджання."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "ЗНАЧЕННЯ СИМВОЛІВ",
+      "Symbol": "Символ",
+      "Meaning": "Значення",
+      "Symbol / Meaning": "Символ / Значення",
+      "WARNING": "ПОПЕРЕДЖЕННЯ",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Небезпечні практики, які можуть призвести до серйозних травм, смерті та/або майнової шкоди.",
+      "CAUTION": "УВАГА",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Небезпечні дії, які можуть призвести до травм та/або майнової шкоди.",
+      "NOTE": "ПРИМІТКА",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Небезпечні дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або непередбачуваних результатів.",
+      "TIP": "ПОРАДА",
+      "Supplements the important information or operation tips in the text.": "Доповнює важливу інформацію або операційні підказки в тексті.",
+      "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.": "Попереджувальні та застережні символи. Обов’язково прочитайте, щоб попередити користувачів про потенційні небезпеки або ризики.",
+      "Keep away from children.": "Тримайте подалі від дітей.",
+      "Read the user manual before operation.": "Перед використанням прочитайте посібник користувача.",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+      "Do not dismantle the product.": "Не розбирайте продукт.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера.",
+      "Keep the product away from fire.": "Тримайте продукт подалі від вогню.",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "Батареї та акумулятори не можна утилізувати разом із побутовими відходами. Як споживач, ви зобов'язані за законом утилізувати всі батареї та акумулятори у спеціально відведених пунктах збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "КОМПЛЕКТАЦІЯ",
+      "Jackery Battery Pack 3600.": "Акумуляторний блок Jackery 3600",
+      "Jackery Battery Pack 3600": "Акумуляторний блок Jackery 3600",
+      "Expansion Cable.": "Кабель розширення",
+      "Expansion Cable": "Кабель розширення",
+      "User Manual.": "Керівництво користувача",
+      "User Manual": "Керівництво користувача"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "ОГЛЯД ПРОДУКТУ",
+      "FRONT VIEW": "ВИГЛЯД СПЕРЕДУ",
+      "LEFT SIDE VIEW": "ВИГЛЯД З ЛІВОГО БОКУ",
+      "POWER button LCD": "Кнопка POWER РК-ДИСПЛЕЙ",
+      "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)": "Порт розширення DC B (Підключіть до клеми B кабелю розширення) (Підключіть до клеми A кабелю розширення) Порт розширення DC A Ручка"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "РК-ДИСПЛЕЙ",
+      "Power Percentage/Fault Code": "Рівень заряду/Код несправності",
+      "The display shows the current power percentage.": "На дисплеї відображається поточний рівень заряду.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.": "У разі збою відображається відповідний код несправності F0-FF. Якщо з'являється код FF, від'єднайте навантаження, і продукт відновиться самостійно. Якщо ні, зверніться до служби підтримки Jackery. У разі появи будь-якого іншого коду зверніться до нашої служби підтримки.",
+      "Charging Indicator": "Індикатор заряджання",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "Індикатор відображається під час заряджання та зникає після повного заряджання."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "ОПЕРАЦІЇ",
+      "POWER ON/OFF": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "On": "Увімкнено",
+      "Press once": "Натисніть один раз",
+      "Off": "Вимкнено",
+      "Press and hold for 3s": "Натисніть і утримуйте протягом 3 с",
+      "NOTE": "ПРИМІТКА",
+      "LCD DISPLAY ON/OFF": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Коли ви натискаєте основну кнопку POWER або під час заряджання продукту, РК-дисплей підсвічується. Коли ви натискаєте її ще раз, РК-дисплей вимикається.",
+      "Jackery Battery Pack 3600 POWER button operation.": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "Jackery Battery Pack 3600 LCD display operation.": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+      "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.": "Під час використання з Jackery Explorer 3600 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 3600 за допомогою основної кнопки POWER на Jackery Explorer 3600 Plus.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження."
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "ПІДКЛЮЧЕННЯ",
+      "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.": "Разом із Jackery Explorer 3600 Plus можна використовувати до 5 таких пристроїв, щоб задовольнити зростаючі потреби в ємності.",
+      "CAUTION": "УВАГА",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Перш ніж підключати Jackery Explorer 3600 Plus до Jackery Battery Pack 3600, переконайтеся, що всі пристрої вимкнено.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залиште щонайменше 0,66 фута (≈200 мм) простору між вентиляційними отворами та будь-якими об'єктами для належного розсіювання тепла.",
+      "≥0.66 ft (≈200 mm)": "≥0,66 фута (≈200 мм)",
+      "Battery pack connection and clearance diagram.": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "Correct and incorrect battery pack stacking.": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "Battery pack stacking and expansion-cable locking and unlocking steps.": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "NOTES": "ПРИМІТКИ",
+      "Lock": "Блокування",
+      "Unlock": "Розблокування",
+      "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.": "Відображення значка на РК-екрані (Jackery Explorer 3600 Plus) означає успішне з'єднання між акумуляторним блоком і Jackery Explorer 3600 Plus.",
+      "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.": "Під час використання продукту не складайте більше трьох акумуляторних блоків в одну вежу, щоб запобігти падінню та травмуванню.",
+      "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.": "Будь ласка, не ставте продукт зверху на Jackery Explorer 3600 Plus."
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Якщо з’являється будь-який із наведених нижче кодів помилок, дотримуйтесь зазначених коригувальних дій для усунення проблеми. Якщо несправність не зникає, зверніться до служби підтримки клієнтів Jackery.",
+      "Restart the product.": "Перезапустіть продукт.",
+      "Contact Jackery Customer Support.": "Зверніться до служби підтримки клієнтів Jackery.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Підключіть продукт до навантаження, щоб розрядити його акумулятор, доки несправність не зникне.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Заряджайте продукт від сонячних панелей або настінної розетки змінного струму, доки несправність не зникне.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Розмістіть продукт у середовищі з належною температурою та зачекайте, доки несправність не зникне.",
+      "Error Code": "Код помилки",
+      "Corrective Measures": "Коригувальні заходи"
+    },
+    "charging_en.rst": {
+      "CHARGING": "ЗАРЯДЖАННЯ",
+      "CHARGING VIA AC WALL OUTLET": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+      "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.": "Під час заряджання від розетки цей продукт повинен використовуватися разом із Jackery Explorer 3600 Plus.",
+      "WARNING": "ПОПЕРЕДЖЕННЯ",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Перш ніж підключати Jackery Explorer 3600 Plus до Jackery Battery Pack 3600, переконайтеся, що всі пристрої вимкнено.",
+      "AC wall charging connection through Jackery Explorer 3600 Plus.": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+      "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.": "Заряджайте ваш продукт за допомогою сонячних панелей і Jackery Explorer 3600 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 3600 Plus для отримання додаткової інформації.",
+      "Solar charging connection through Jackery Explorer 3600 Plus.": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ (ПРОДАЄТЬСЯ ОКРЕМО)"
+    },
+    "storage_en.rst": {
+      "STORAGE": "Зберігання",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Зберігайте продукт у сухому чистому місці з належною вентиляцією. Температура та вологість зберігання:",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 місяць: від -20°C до 45°C (0-60% відносної вологості)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 місяці: від 0°C до 45°C (0-60% відносної вологості)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 місяці: від 0°C до 25°C (0-60% відносної вологості)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Якщо цей продукт зберігається протягом тривалого часу (від 3 до 6 місяців) з повністю розрядженим акумулятором, він може стати непридатним до заряджання. Щоб запобігти цьому та підтримувати стан акумулятора, рекомендується перевіряти та підзаряджати продукт кожні три місяці, а також виконувати повний цикл заряджання та розряджання щонайменше один раз на 6–12 місяців."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ",
+      "GENERAL INFO": "ЗАГАЛЬНА ІНФОРМАЦІЯ",
+      "INPUT/OUTPUT PORTS": "ВХІДНІ/ВИХІДНІ ПОРТИ",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "РОБОЧА ТЕМПЕРАТУРА НАВКОЛИШНЬОГО СЕРЕДОВИЩА",
+      "Model No.": "Номер моделі",
+      "JBP-3600A": "JBP-3600A",
+      "Capacity": "Ємність",
+      "80 Ah/44.8 V DC (3584 Wh)": "80 А·год / 44,8 В постійного струму (3584 Вт·год)",
+      "Cell Chemistry": "Хімічний склад елементів",
+      "LiFePO₄": "LiFePO₄",
+      "Weight": "Вага",
+      "About 55.1 lbs/25 kg": "Приблизно 55,1 фунта / 25 кг",
+      "Dimensions": "Розміри",
+      "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm": "14,8 x 12,5 x 9,0 дюймів / 37,5 x 31,7 x 22,9 см",
+      "Cycle Life": "Ресурс циклів",
+      "6000 cycles to 70%+ capacity": "6000 циклів до збереження 70%+ ємності",
+      "IEC Code": "Код IEC",
+      "IFpR41/136[14S4P]M/-20+40/90": "IFpR41/136[14S4P]M/-20+40/90",
+      "Product Name": "Назва продукту",
+      "Jackery Battery Pack 3600": "Акумуляторний блок Jackery 3600",
+      "DC Expansion Port (Input)": "Порт розширення DC (вхід)",
+      "36.4V-50.4V⎓60A Max": "36,4 В-50,4 В⎓60A макс.",
+      "DC Expansion Port (Output)": "Порт розширення постійного струму (вихід)",
+      "36.4V-50.4V⎓100A Max": "36,4–50,4 В постійного струму, макс. 100 А",
+      "Charge Temperature": "Температура заряджання",
+      "-20°C to 45°C": "від -20°C до 45°C",
+      "Discharge Temperature": "Температура розряду"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "ГАРАНТІЯ",
+      "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "Ми надаємо гарантію лише клієнтам, які придбали продукцію на офіційному вебсайті Jackery, на сторонніх платформах під брендом Jackery або в місцевих авторизованих дилерів.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "* Гарантійний термін та умови можуть відрізнятися залежно від місцевих законів, нормативних актів і авторизованих дилерів.",
+      "Limited Warranty": "Обмежена гарантія",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "Jackery гарантує первинному кінцевому покупцеві, що продукт Jackery не матиме дефектів матеріалів і виготовлення за умов нормального споживчого використання протягом відповідного гарантійного періоду, визначеного в розділі «Гарантійний період» нижче, з урахуванням наведених нижче виключень.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "Ця гарантійна заява визначає повний і виключний обсяг гарантійних зобов’язань Jackery. Ми не беремо на себе і не уповноважуємо будь-яку особу брати на себе від нашого імені будь-які інші зобов’язання у зв’язку з продажем нашої продукції.",
+      "Warranty Period": "Гарантійний період",
+      "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "Стандартний гарантійний термін для акумуляторного блоку Jackery 3600 становить 36 місяців. У кожному випадку гарантійний період обчислюється з дати покупки первинним споживачем-покупцем. Для визначення дати початку гарантійного періоду необхідний касовий чек від першого споживача-покупця або інший належний документальний доказ.",
+      "Repair or Replacement": "Ремонт або заміна",
+      "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.": "Jackery відремонтує або замінить (за свій рахунок) будь-який продукт Jackery, який вийде з ладу протягом відповідного гарантійного періоду через дефект виготовлення або матеріалу. Відремонтований/замінений продукт успадковує залишок гарантії від початкової дати покупки.",
+      "Limited to Original Consumer Buyer": "Обмеження для первинного споживача-покупця",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "Гарантія на продукт Jackery обмежується первинним споживачем-покупцем і не підлягає передачі будь-якому наступному власнику.",
+      "Exclusions": "Виключення",
+      "Interpretation Rights": "Право тлумачення",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "Jackery залишає за собою право остаточного тлумачення вищезазначеної політики післяпродажного обслуговування.",
+      "3 YEARS": "3 РОКИ",
+      "Standard Warranty": "Стандартна гарантія",
+      "2 YEARS": "2 РОКИ",
+      "Extended Warranty": "Розширена гарантія",
+      "YEARS": "РОКИ",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at ": "Щоб активувати розширення гарантії, необхідно зареєструвати продукт онлайн або звернутися до нашої служби підтримки за адресою ",
+      " to extend the standard warranty runtime.": " для продовження стандартного гарантійного терміну.",
+      "Jackery's warranty does not apply to:": "Гарантія Jackery не поширюється на:",
+      "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Неправильне використання, зловживання, модифікації, пошкодження внаслідок нещасного випадку або використання не за призначенням, відмінним від нормального споживчого використання, дозволеного чинною документацією Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "Спроби ремонту будь-ким, окрім авторизованого сервісного центру.",
+      "Any product purchased through an online auction house.": "Будь-який продукт, придбаний через онлайн-аукціон.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "Гарантія Jackery не поширюється на акумуляторний елемент, якщо він не був повністю заряджений вами протягом семи днів після покупки продукту та щонайменше один раз кожні 6 місяців після цього."
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "ВАЖЛИВО",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter heading"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+      "native": "Вітаємо з новим Jackery Battery Pack 3600. Будь ласка, уважно прочитайте це керівництво перед використанням продукту, особливо відповідні застереження для забезпечення правильного використання. Зберігайте цей посібник у легкодоступному місці для частого звернення.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+      "native": "Відповідно до законів і нормативних актів, право остаточного тлумачення цього документа та всіх пов’язаних документів цього продукту належить Компанії.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+      "native": "Зверніть увагу, що у разі будь-яких оновлень, змін або припинення додаткових повідомлень не буде.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Під час використання цього продукту слід дотримуватися основних заходів безпеки, зокрема:",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Будь ласка, прочитайте всі інструкції перед використанням цього продукту.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "Під час використання цього продукту поблизу дітей потрібен пильний нагляд, щоб зменшити ризик.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "Ризик ураження електричним струмом може виникнути, якщо використовувати аксесуари, рекомендовані або продані непрофесійними виробниками продукції.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Коли продукт не використовується, будь ласка, від’єднайте вилку живлення від розетки продукту.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Не розбирайте продукт, оскільки це може призвести до непередбачуваних ризиків, таких як пожежа, вибух або ураження електричним струмом.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "Не використовуйте продукт із пошкодженими шнурами або вилками, або пошкодженими вихідними кабелями, оскільки це може спричинити ураження електричним струмом.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Заряджайте продукт у добре провітрюваному місці та не обмежуйте вентиляцію будь-яким чином.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Будь ласка, розміщуйте продукт у провітрюваному та сухому місці, щоб уникнути потрапляння дощу та води, що може спричинити ураження електричним струмом.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "Не піддавайте продукт впливу вогню або високої температури (під прямими сонячними променями або в автомобілі під час сильної спеки), що може спричинити такі аварії, як пожежа та вибух.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Якщо цей продукт зберігається протягом тривалого часу (3-6 місяців) з повністю розрядженим акумулятором, він може стати непридатним для заряджання.",
+      "physical_page": 47,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "ЗНАЧЕННЯ СИМВОЛІВ",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Символ",
+      "physical_page": 47,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Значення",
+      "physical_page": 47,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "Символ / Значення",
+      "physical_page": 47,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "ПОПЕРЕДЖЕННЯ",
+      "physical_page": 47,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Небезпечні практики, які можуть призвести до серйозних травм, смерті та/або майнової шкоди.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 15,
+        "exclude_label": "ПОПЕРЕДЖЕННЯ"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "УВАГА",
+      "physical_page": 47,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Небезпечні дії, які можуть призвести до травм та/або майнової шкоди.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 14,
+        "exclude_label": "УВАГА"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "ПРИМІТКА",
+      "physical_page": 47,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Небезпечні дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або непередбачуваних результатів.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 16,
+        "exclude_label": "ПРИМІТКА"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "ПОРАДА",
+      "physical_page": 47,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Доповнює важливу інформацію або операційні підказки в тексті.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 17,
+        "exclude_label": "ПОРАДА"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+      "native": "Попереджувальні та застережні символи. Обов’язково прочитайте, щоб попередити користувачів про потенційні небезпеки або ризики.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Тримайте подалі від дітей.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Перед використанням прочитайте посібник користувача.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Не розбирайте продукт.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Тримайте продукт подалі від вогню.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "Батареї та акумулятори не можна утилізувати разом із побутовими відходами. Як споживач, ви зобов'язані за законом утилізувати всі батареї та акумулятори у спеціально відведених пунктах збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.",
+      "physical_page": 47,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "КОМПЛЕКТАЦІЯ",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600.",
+      "native": "Акумуляторний блок Jackery 3600",
+      "physical_page": 48,
+      "selection": {
+        "native_block": [
+          13,
+          14
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Акумуляторний блок Jackery 3600",
+      "physical_page": 48,
+      "selection": {
+        "native_block": [
+          13,
+          14
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Кабель розширення",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Кабель розширення",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Керівництво користувача",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Керівництво користувача",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "ОГЛЯД ПРОДУКТУ",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "FRONT VIEW",
+      "native": "ВИГЛЯД СПЕРЕДУ",
+      "physical_page": 48,
+      "selection": {
+        "bbox_pt": [
+          27,
+          288,
+          155,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "LEFT SIDE VIEW",
+      "native": "ВИГЛЯД З ЛІВОГО БОКУ",
+      "physical_page": 48,
+      "selection": {
+        "bbox_pt": [
+          156,
+          288,
+          346,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD",
+      "native": "Кнопка POWER РК-ДИСПЛЕЙ",
+      "physical_page": 48,
+      "selection": {
+        "bbox_pt": [
+          27,
+          301,
+          155,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)",
+      "native": "Порт розширення DC B (Підключіть до клеми B кабелю розширення) (Підключіть до клеми A кабелю розширення) Порт розширення DC A Ручка",
+      "physical_page": 48,
+      "selection": {
+        "bbox_pt": [
+          156,
+          301,
+          346,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "РК-ДИСПЛЕЙ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Рівень заряду/Код несправності",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "На дисплеї відображається поточний рівень заряду.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 3,
+        "part": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.",
+      "native": "У разі збою відображається відповідний код несправності F0-FF. Якщо з'являється код FF, від'єднайте навантаження, і продукт відновиться самостійно. Якщо ні, зверніться до служби підтримки Jackery. У разі появи будь-якого іншого коду зверніться до нашої служби підтримки.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 3,
+        "part": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Індикатор заряджання",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 4,
+        "part": "label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "Індикатор відображається під час заряджання та зникає після повного заряджання.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 4,
+        "part": "body"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "ОПЕРАЦІЇ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On",
+      "native": "Увімкнено",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press once",
+      "native": "Натисніть один раз",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Off",
+      "native": "Вимкнено",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press and hold for 3s",
+      "native": "Натисніть і утримуйте протягом 3 с",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "ПРИМІТКА",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Коли ви натискаєте основну кнопку POWER або під час заряджання продукту, РК-дисплей підсвічується. Коли ви натискаєте її ще раз, РК-дисплей вимикається.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 POWER button operation.",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 LCD display operation.",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.",
+      "native": "Під час використання з Jackery Explorer 3600 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 3600 за допомогою основної кнопки POWER на Jackery Explorer 3600 Plus.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 16,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 16,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "ПІДКЛЮЧЕННЯ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.",
+      "native": "Разом із Jackery Explorer 3600 Plus можна використовувати до 5 таких пристроїв, щоб задовольнити зростаючі потреби в ємності.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "УВАГА",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Перш ніж підключати Jackery Explorer 3600 Plus до Jackery Battery Pack 3600, переконайтеся, що всі пристрої вимкнено.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залиште щонайменше 0,66 фута (≈200 мм) простору між вентиляційними отворами та будь-якими об'єктами для належного розсіювання тепла.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "≥0.66 ft (≈200 mm)",
+      "native": "≥0,66 фута (≈200 мм)",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 4,
+        "occurrence": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack connection and clearance diagram.",
+      "native": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "physical_page": 50,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct and incorrect battery pack stacking.",
+      "native": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "physical_page": 50,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack stacking and expansion-cable locking and unlocking steps.",
+      "native": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+      "physical_page": 50,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "ПРИМІТКИ",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Lock",
+      "native": "Блокування",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Unlock",
+      "native": "Розблокування",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.",
+      "native": "Відображення значка на РК-екрані (Jackery Explorer 3600 Plus) означає успішне з'єднання між акумуляторним блоком і Jackery Explorer 3600 Plus.",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.",
+      "native": "Під час використання продукту не складайте більше трьох акумуляторних блоків в одну вежу, щоб запобігти падінню та травмуванню.",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.",
+      "native": "Будь ласка, не ставте продукт зверху на Jackery Explorer 3600 Plus.",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Якщо з’являється будь-який із наведених нижче кодів помилок, дотримуйтесь зазначених коригувальних дій для усунення проблеми. Якщо несправність не зникає, зверніться до служби підтримки клієнтів Jackery.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Перезапустіть продукт.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Зверніться до служби підтримки клієнтів Jackery.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Підключіть продукт до навантаження, щоб розрядити його акумулятор, доки несправність не зникне.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Заряджайте продукт від сонячних панелей або настінної розетки змінного струму, доки несправність не зникне.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Розмістіть продукт у середовищі з належною температурою та зачекайте, доки несправність не зникне.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Код помилки",
+      "physical_page": 50,
+      "selection": {
+        "bbox_pt": [
+          28,
+          81.07629852294922,
+          70,
+          89.85711975097657
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Коригувальні заходи",
+      "physical_page": 50,
+      "selection": {
+        "bbox_pt": [
+          71,
+          81.07629852294922,
+          345,
+          89.85711975097657
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "ЗАРЯДЖАННЯ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.",
+      "native": "Під час заряджання від розетки цей продукт повинен використовуватися разом із Jackery Explorer 3600 Plus.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "ПОПЕРЕДЖЕННЯ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Перш ніж підключати Jackery Explorer 3600 Plus до Jackery Battery Pack 3600, переконайтеся, що всі пристрої вимкнено.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through Jackery Explorer 3600 Plus.",
+      "native": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.",
+      "native": "Заряджайте ваш продукт за допомогою сонячних панелей і Jackery Explorer 3600 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 3600 Plus для отримання додаткової інформації.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through Jackery Explorer 3600 Plus.",
+      "native": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ (ПРОДАЄТЬСЯ ОКРЕМО)",
+      "physical_page": 52,
+      "selection": {
+        "method": "native solar heading and qualifier"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "Зберігання",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Зберігайте продукт у сухому чистому місці з належною вентиляцією. Температура та вологість зберігання:",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 9,
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 місяць: від -20°C до 45°C (0-60% відносної вологості)",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 9,
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 місяці: від 0°C до 45°C (0-60% відносної вологості)",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 9,
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 місяці: від 0°C до 25°C (0-60% відносної вологості)",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 9,
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Якщо цей продукт зберігається протягом тривалого часу (від 3 до 6 місяців) з повністю розрядженим акумулятором, він може стати непридатним до заряджання. Щоб запобігти цьому та підтримувати стан акумулятора, рекомендується перевіряти та підзаряджати продукт кожні три місяці, а також виконувати повний цикл заряджання та розряджання щонайменше один раз на 6–12 місяців.",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 9,
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "ЗАГАЛЬНА ІНФОРМАЦІЯ",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "ВХІДНІ/ВИХІДНІ ПОРТИ",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "РОБОЧА ТЕМПЕРАТУРА НАВКОЛИШНЬОГО СЕРЕДОВИЩА",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "Номер моделі",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-3600A",
+      "native": "JBP-3600A",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 17
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Ємність",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "80 Ah/44.8 V DC (3584 Wh)",
+      "native": "80 А·год / 44,8 В постійного струму (3584 Вт·год)",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Хімічний склад елементів",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO₄",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Вага",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 55.1 lbs/25 kg",
+      "native": "Приблизно 55,1 фунта / 25 кг",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Розміри",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm",
+      "native": "14,8 x 12,5 x 9,0 дюймів / 37,5 x 31,7 x 22,9 см",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 21
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Ресурс циклів",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "6000 циклів до збереження 70%+ ємності",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 22
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IEC Code",
+      "native": "Код IEC",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IFpR41/136[14S4P]M/-20+40/90",
+      "native": "IFpR41/136[14S4P]M/-20+40/90",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 23
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Назва продукту",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          28,
+          205.77248840332032,
+          179,
+          213.45048828125
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Акумуляторний блок Jackery 3600",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          180,
+          205.77248840332032,
+          345,
+          213.45048828125
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "Порт розширення DC (вхід)",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          28,
+          326.65791015625,
+          179,
+          340.78590698242186
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓60A Max",
+      "native": "36,4 В-50,4 В⎓60A макс.",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          180,
+          326.65791015625,
+          345,
+          340.78590698242186
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "Порт розширення постійного струму (вихід)",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          28,
+          341.8597839355469,
+          179,
+          349.66978759765624
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓100A Max",
+      "native": "36,4–50,4 В постійного струму, макс. 100 А",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          180,
+          341.8597839355469,
+          345,
+          349.66978759765624
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Температура заряджання",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          28,
+          386.1807067871094,
+          179,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-20°C to 45°C",
+      "native": "від -20°C до 45°C",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          180,
+          386.1807067871094,
+          345,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Температура розряду",
+      "physical_page": 53,
+      "selection": {
+        "bbox_pt": [
+          28,
+          398.18177490234376,
+          179,
+          406.1477844238281
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "ГАРАНТІЯ",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "Ми надаємо гарантію лише клієнтам, які придбали продукцію на офіційному вебсайті Jackery, на сторонніх платформах під брендом Jackery або в місцевих авторизованих дилерів.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "* Гарантійний термін та умови можуть відрізнятися залежно від місцевих законів, нормативних актів і авторизованих дилерів.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Обмежена гарантія",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "Jackery гарантує первинному кінцевому покупцеві, що продукт Jackery не матиме дефектів матеріалів і виготовлення за умов нормального споживчого використання протягом відповідного гарантійного періоду, визначеного в розділі «Гарантійний період» нижче, з урахуванням наведених нижче виключень.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "Ця гарантійна заява визначає повний і виключний обсяг гарантійних зобов’язань Jackery. Ми не беремо на себе і не уповноважуємо будь-яку особу брати на себе від нашого імені будь-які інші зобов’язання у зв’язку з продажем нашої продукції.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Гарантійний період",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "Стандартний гарантійний термін для акумуляторного блоку Jackery 3600 становить 36 місяців. У кожному випадку гарантійний період обчислюється з дати покупки первинним споживачем-покупцем. Для визначення дати початку гарантійного періоду необхідний касовий чек від першого споживача-покупця або інший належний документальний доказ.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Repair or Replacement",
+      "native": "Ремонт або заміна",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.",
+      "native": "Jackery відремонтує або замінить (за свій рахунок) будь-який продукт Jackery, який вийде з ладу протягом відповідного гарантійного періоду через дефект виготовлення або матеріалу. Відремонтований/замінений продукт успадковує залишок гарантії від початкової дати покупки.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Обмеження для первинного споживача-покупця",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "Гарантія на продукт Jackery обмежується первинним споживачем-покупцем і не підлягає передачі будь-якому наступному власнику.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Виключення",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Право тлумачення",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "Jackery залишає за собою право остаточного тлумачення вищезазначеної політики післяпродажного обслуговування.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 РОКИ",
+      "physical_page": 54,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Стандартна гарантія",
+      "physical_page": 54,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 РОКИ",
+      "physical_page": 54,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Розширена гарантія",
+      "physical_page": 54,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at ",
+      "native": "Щоб активувати розширення гарантії, необхідно зареєструвати продукт онлайн або звернутися до нашої служби підтримки за адресою ",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 1,
+        "part": "before mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": " to extend the standard warranty runtime.",
+      "native": " для продовження стандартного гарантійного терміну.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 1,
+        "part": "after mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "Гарантія Jackery не поширюється на:",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18,
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Неправильне використання, зловживання, модифікації, пошкодження внаслідок нещасного випадку або використання не за призначенням, відмінним від нормального споживчого використання, дозволеного чинною документацією Jackery.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18,
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "Спроби ремонту будь-ким, окрім авторизованого сервісного центру.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18,
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Будь-який продукт, придбаний через онлайн-аукціон.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18,
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "Гарантія Jackery не поширюється на акумуляторний елемент, якщо він не був повністю заряджений вами протягом семи днів після покупки продукту та щонайменше один раз кожні 6 місяців після цього.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18,
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    }
+  ],
+  "native_exceptions": [],
+  "clearance_labels": [
+    "≥0,66 фута (≈200 мм)",
+    "≥0,66 фута (≈200 мм)"
+  ],
+  "extra_spec_row": null,
+  "inline_connection_icon": {
+    "insert_after": "Відображення значка",
+    "source_page": 51,
+    "status": "source-position-verified-shared-x5-reuse-candidate",
+    "asset": "assets/shared/connection-x5.png",
+    "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+    "reuse_basis": "Native source page visibly shows the same framed x5 glyph; reuse candidate French-extracted asset without another crop."
+  }
+}

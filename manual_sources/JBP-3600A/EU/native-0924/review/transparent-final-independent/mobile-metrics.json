@@ -1,0 +1,92 @@
+[
+  {
+    "lang": "en",
+    "rev": "en-r6",
+    "decoded": 21,
+    "scroll": 390,
+    "symbol": "meaning-of-symbols",
+    "total": 21,
+    "width": 390,
+    "x5": 0
+  },
+  {
+    "lang": "fr",
+    "rev": "fr-r5",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "signification-des-symboles",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "es",
+    "rev": "es-r3",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "significado-de-los-simbolos",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "de",
+    "rev": "de-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "bedeutung-der-symbole",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "it",
+    "rev": "it-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "significato-dei-simboli",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "uk",
+    "rev": "uk-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "id2",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "pt",
+    "rev": "pt-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "significado-dos-simbolos",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "nl",
+    "rev": "nl-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "betekenis-van-symbolen",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  },
+  {
+    "lang": "pl",
+    "rev": "pl-r2",
+    "decoded": 22,
+    "scroll": 390,
+    "symbol": "znaczenie-symboli",
+    "total": 22,
+    "width": 390,
+    "x5": 1
+  }
+]

@@ -11,6 +11,7 @@ import shutil
 import tempfile
 import unicodedata
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
@@ -39,6 +40,30 @@ def _words(text):
     # Ignore typographic ligatures, punctuation and superscript wrappers;
     # retain every word and number, including source repetitions.
     return Counter(re.findall(r"[^\W\d_]+|\d+", unicodedata.normalize("NFKC", text)))
+
+
+class FrozenHeadingReplayTests(unittest.TestCase):
+    def test_styled_document_heading_enters_myst_navigation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            package = Path(directory)
+            (package / "_static").mkdir()
+            css = package / "_static/web_manual.css"
+            css.write_text("")
+            ir = SimpleNamespace(metadata={
+                "frozen_stylesheet_sha256": file_sha256(css),
+                "markdown_filename": "manual.md",
+            })
+            fragments = ('<h1 class="hb-h1-pill" id="specifications">SPÉCIFICATIONS</h1>'
+                         '<figure><h2 class="component-title">Keep inside component</h2></figure>'
+                         '<h2 hidden>Do not promote</h2>',)
+            with patch("tools.web.frozen_ai_web.read_manual_ir", return_value=ir), \
+                 patch("tools.web.frozen_ai_web.render_document_fragments", return_value=fragments):
+                replay_package(package)
+            output = (package / "manual.md").read_text()
+            self.assertIn('<span id="specifications"></span>\n\n# SPÉCIFICATIONS', output)
+            self.assertIn('<figure><h2 class="component-title">', output)
+            self.assertNotIn("## Keep inside component", output)
+            self.assertNotIn("## Do not promote", output)
 
 
 class FrozenAIWebTests(unittest.TestCase):

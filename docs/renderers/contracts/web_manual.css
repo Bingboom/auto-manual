@@ -115,11 +115,18 @@ body {
 #furo-main-content > section,
 #furo-main-content > section > section {
   margin-top: 2.8rem;
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 4rem;
 }
 
 #furo-main-content > section:first-child {
   margin-top: 0;
+}
+
+/* Match Furo's navigation-collapse breakpoint; clear the header and back-to-top. */
+@media (max-width: 63em) {
+  #furo-main-content :is(section[id], .hb-language-anchor, :target) {
+    scroll-margin-top: calc(var(--header-height, 3rem) + 3rem);
+  }
 }
 
 /* All full-width manual components share one outer-width and box-model contract. */
@@ -648,6 +655,12 @@ body {
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child::before,
 #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child::before {
   display: none;
+}
+
+/* Target highlighting must not remove the white-text title's dark fill. */
+#furo-main-content section:target:has(> figure.hb-warranty-card) > h2:first-child,
+#furo-main-content section:target:has(> figure.hb-warranty-period-card) > h2:first-child {
+  background: var(--hb-brand-dark) !important;
 }
 
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child .headerlink,
@@ -1573,13 +1586,20 @@ body {
     margin-top: 2rem;
     padding: 1.05rem 0.75rem 0.72rem;
     border-radius: 0.7rem;
+    /* The title sits above the border; keep it clear when this card is targeted. */
+    scroll-margin-top: calc(var(--header-height, 3rem) + 4rem);
   }
 
   #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child,
   #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child {
-    top: -0.78rem;
-    left: 0.72rem;
-    max-width: calc(100% - 1.44rem);
+    /* Native headings may wrap; their full height must reserve body space. */
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: -1.83rem 0 0.3rem;
     padding: 0.3rem 0.58rem 0.28rem;
     font-size: 0.92rem;
   }

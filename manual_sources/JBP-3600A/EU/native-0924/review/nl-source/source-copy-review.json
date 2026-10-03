@@ -1,0 +1,75 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "nl",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "de7554b57efdaaf4b289e878e1d9f8445c151043f4ff61039efeffafb22f2ffb",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    3,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "10 safety bullets retained; bullet glyphs represented by HTML list, not duplicated",
+    "Native signal labels, symbol meanings and icon identities checked",
+    "Two LCD rows and native power instructions retained",
+    "Native 3second hold,2hour shutdown,5battery limit,3stack limit and clearance values retained",
+    "F0-F9/FA/FC/FE/FF actions mapped without dropping code groups",
+    "Complete 8 general specification rows,2port rows,2temperature rows retained",
+    "Storage temperature/humidity and3month/6-12month maintenance intervals retained",
+    "3+2year badges,36months,7day/6month battery exclusion retained",
+    "Company/customer-support identity and mailto retained",
+    "Three native label-bearing panel decisions still await Web candidate review",
+    "Inline x5 glyph location verified; existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [
+    "Native port group heading has INGANGS//UITGANGSPOORTEN; retained."
+  ],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/nl-3.png",
+      "sha256": "6b9bc88d02f9f43644f8863339ad4ed869d57b1fff529d2bfb1fe37604faea98"
+    },
+    {
+      "path": "pages/nl-63.png",
+      "sha256": "ee9c33bae7a6314573ba70a74c0d634a92a4a9f3948b75a683da40004b586337"
+    },
+    {
+      "path": "pages/nl-64.png",
+      "sha256": "9fc302fdc2a65282c8d28e608e792a7b8e2546cc64a04d61ac2d4c9a02921ff8"
+    },
+    {
+      "path": "pages/nl-65.png",
+      "sha256": "887cba901b44764952f4d14d70a3e29418c716dd852367a390d3b9865934a92a"
+    },
+    {
+      "path": "pages/nl-66.png",
+      "sha256": "d90595f5416293f519b90b3df72392c37daebf39194c49781b94497c1529cb42"
+    },
+    {
+      "path": "pages/nl-67.png",
+      "sha256": "30456da349ecad428a4ffcc2dc8a226144300fd14228a1fcc6d2247ca867ad44"
+    },
+    {
+      "path": "pages/nl-68.png",
+      "sha256": "aab26241a78f8d6e15e24d475ef47b2167b16d92272d8885661cecd5ed3fa70b"
+    },
+    {
+      "path": "pages/nl-69.png",
+      "sha256": "a845f6ff82ff3a88a5609fa0450a97ab49b1055ceb203251331cb6b080ddeb12"
+    },
+    {
+      "path": "pages/nl-70.png",
+      "sha256": "69475b99d5f1081de58dd500706dfb3881e1e9ae64db2fcb56710c71a3ee41c6"
+    }
+  ]
+}

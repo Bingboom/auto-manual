@@ -1,0 +1,1760 @@
+{
+  "status": "candidate-not-approved",
+  "historical_seals_unchanged": true,
+  "candidates": [
+    {
+      "language": "en",
+      "revision": "en-r6",
+      "previous_revision": "en-r5",
+      "ir_sha256": "70df94260f3fd8fceef40a1f1fb8893915e37c9b00269ce5101e625b93f8f53f",
+      "html_sha256": "c6e447a16abc05b1a2f334e441dab1277b214992c008f173c5d27a272259abd0",
+      "markdown_sha256": "3095e66c6ced7f1d68929762a675f905f999cd61223adc24494f7465568a5fae",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/en-r6/manual_jbp3600a_eu.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "packaged prepared Markdown rebuild",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 21,
+        "unchanged_asset_count": 19,
+        "x5_retained": false,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "en"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/jbp3600a_eu_en/overview_front.png",
+              "sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/overview_left.png",
+              "sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/jbp3600a_eu_en/lcd_annotated.png",
+              "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "en"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/jbp3600a_eu_en/overview_front.png",
+              "sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/overview_left.png",
+              "sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/jbp3600a_eu_en/lcd_annotated.png",
+              "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "baseline_trial_differences": {
+        "released": 10,
+        "en-r6": 0
+      },
+      "browser_metrics_sha256": "024ac88a0561725f5046b9da08b3abf1f54b842bc218ac7aca12dc8ad9fe60a3"
+    },
+    {
+      "language": "fr",
+      "revision": "fr-r5",
+      "previous_revision": "fr-r4",
+      "ir_sha256": "55cfc66eb0482f6893a48c186418160ea6bdfdddc90c5be00da623e824064df0",
+      "html_sha256": "dce81595d558e9975e474ed46e476222872256b99900daee931ea8e0c6ba5b49",
+      "markdown_sha256": "d686e0652c37af453ab98c57c847a26d2cfa0dda8e141db8c2ea8c3e2efaa3ed",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "16e22b108fa0aa4963a6db00e11d038597995d82dbe41d72d1a68739032177b1",
+      "preview": "http://127.0.0.1:56059/fr-r5/manual_jbp3600a_eu_fr.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/fr",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "fr"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/96e16f6193c3f02545efbf70402055c8604baab742e902e954034c75cba3039c/overview_front.png",
+              "sha256": "96e16f6193c3f02545efbf70402055c8604baab742e902e954034c75cba3039c"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/0a42032e2a296edaca8f76c7eb0c9bc9b009cb8dee896134b66f235ba771eb7c/overview_left.png",
+              "sha256": "0a42032e2a296edaca8f76c7eb0c9bc9b009cb8dee896134b66f235ba771eb7c"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/74abec2229e74bdd865c991940f0f314ef8e85b81a844b89215b07068c2813f0/lcd_annotated.png",
+              "sha256": "74abec2229e74bdd865c991940f0f314ef8e85b81a844b89215b07068c2813f0"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "73872545e34c6b59b8004ad0ce979bfa0807d48e3eef042f17bce75be74f0021"
+    },
+    {
+      "language": "es",
+      "revision": "es-r3",
+      "previous_revision": "es-r2",
+      "ir_sha256": "f4153edb299adaf1a9028ff5ea25121bdc405411a0df349abe6cc83360e290f7",
+      "html_sha256": "7704b68d7877e56fb498bc803530fff7472ec664bf490cdff12868b85a9edd59",
+      "markdown_sha256": "ba17ca814d3bb233ee8faf800173f84b5d8bc7d09131451a4377e937c59c6fb9",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/es-r3/manual_jbp3600a_eu_es.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/es",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "es"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/9969623bcbf53b917876af5438b83157eba04cebf8c2b0009466684f97a1820e/overview_front.png",
+              "sha256": "9969623bcbf53b917876af5438b83157eba04cebf8c2b0009466684f97a1820e"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/0c5b47d3b45c6b84f62a2acfdc6a98677fdbc4c4a17b64cd3c5ce6e6e13c99c1/overview_left.png",
+              "sha256": "0c5b47d3b45c6b84f62a2acfdc6a98677fdbc4c4a17b64cd3c5ce6e6e13c99c1"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/d14101735c08be0f534f6d2f56c8e4a65807103acf98ef318a665c073c4fc735/lcd_annotated.png",
+              "sha256": "d14101735c08be0f534f6d2f56c8e4a65807103acf98ef318a665c073c4fc735"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "de2bf40496cdd2e0fcf9053db7ba0c6261e4278a1ab76151e8a9fb54531e9708"
+    },
+    {
+      "language": "de",
+      "revision": "de-r2",
+      "previous_revision": "de-r1",
+      "ir_sha256": "5f66e588a7ce5516934b3138507599a0dbf0d5560cb06de848ca7bfd156c0556",
+      "html_sha256": "2a816bb562c1ee5fa96bd8706fdbb1f88f81ce81f46330fc4f4f4229429ce169",
+      "markdown_sha256": "61a4d9fefa2ce57bf3c151d064d30f297f0d6bb296fdae6b01944befc452aaad",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/de-r2/manual_jbp3600a_eu_de.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/de",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "de"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/1a94826b5c24e48fd1337f8c16e1b49a76fcce4b71d7a40d6e52dbee7d69c6c2/overview_front.png",
+              "sha256": "1a94826b5c24e48fd1337f8c16e1b49a76fcce4b71d7a40d6e52dbee7d69c6c2"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/258e7756bba265b090ac4c94828a4eeeb8fedae757c3af4a8c42d4e70b15f256/overview_left.png",
+              "sha256": "258e7756bba265b090ac4c94828a4eeeb8fedae757c3af4a8c42d4e70b15f256"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/b34cbe53ab2545839604c4eccf47262b964e54c2097fe466d178a59866a049a1/lcd_annotated.png",
+              "sha256": "b34cbe53ab2545839604c4eccf47262b964e54c2097fe466d178a59866a049a1"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "07322710cc167eb65498845ede69a25a1faf77b05ae7b8435db609c516ce9cfd"
+    },
+    {
+      "language": "it",
+      "revision": "it-r2",
+      "previous_revision": "it-r1",
+      "ir_sha256": "e01e82f34489f3afa4869a27588fe7d6bf4600fb03d8f3c4899c9be85d988a44",
+      "html_sha256": "3d8079560ccff5242e035e3954250d13afda7c552b897e540bdb3297813e18e6",
+      "markdown_sha256": "2d1af804b225544eea18b5d3b091505f5146eaad56f329ef5db44559f3844a27",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/it-r2/manual_jbp3600a_eu_it.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/it",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "it"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6/overview_front.png",
+              "sha256": "7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572/overview_left.png",
+              "sha256": "8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/9e8665d32678bc79983a2bf254a43252a281f7e134aa976bfd4a745865c31071/lcd_annotated.png",
+              "sha256": "9e8665d32678bc79983a2bf254a43252a281f7e134aa976bfd4a745865c31071"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 16,
+        "en-r6": 6
+      },
+      "browser_metrics_sha256": "70d5ffb24faef8f5feeb05204ad02d5f3a32ac673c8f77063e91f7a8317f99e9"
+    },
+    {
+      "language": "uk",
+      "revision": "uk-r2",
+      "previous_revision": "uk-r1",
+      "ir_sha256": "1267a875eebce2ba2c542260a207e470dd2644dfa1377066c6c379d37d007890",
+      "html_sha256": "916b2f5d5d8c08d6da4a7c87d64b6ffaa5848f468614e52e4b1b8966bbd6a9ab",
+      "markdown_sha256": "b98a688d4b0749f8c07faad19df0e53193bce0385b8e7d6ee631e38d30d285fd",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/uk-r2/manual_jbp3600a_eu_uk.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/uk",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "uk"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/3c1871342b5a555b49b2ecc27e859163737c3255f51f86d3fcd1062b8fc25c53/overview_front.png",
+              "sha256": "3c1871342b5a555b49b2ecc27e859163737c3255f51f86d3fcd1062b8fc25c53"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/1c59c9f8b41065513465f8234fec70976a425811ecc928483267c6096c586075/overview_left.png",
+              "sha256": "1c59c9f8b41065513465f8234fec70976a425811ecc928483267c6096c586075"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/852bcd2252d4e67dd4b259085885d3f36aa16a082bba8cee3ba15cb295ee1755/lcd_annotated.png",
+              "sha256": "852bcd2252d4e67dd4b259085885d3f36aa16a082bba8cee3ba15cb295ee1755"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "c15117f154cc006e8b47ead0c26d469c816f50ab676a3733e3f9fe8d0db84f0f"
+    },
+    {
+      "language": "pt",
+      "revision": "pt-r2",
+      "previous_revision": "pt-r1",
+      "ir_sha256": "fdf98b1b12846c9aa41a6c5a5ec8c996882f5afc4e312b40d3a2639b0cb37685",
+      "html_sha256": "f09854b6c97968dcc1d92db920a736aaf22d516a4a9fbe85f54a39dc54134f36",
+      "markdown_sha256": "af8328959d24927970fa5dfc93295d68aa7fe985a93ded3b964e6f078efa5d57",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/pt-r2/manual_jbp3600a_eu_pt.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/pt",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "pt"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193/overview_front.png",
+              "sha256": "91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9/overview_left.png",
+              "sha256": "969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/79c517d4649ca2c583791a785d20aef87281437b655fc5efd60b5cab4286939f/lcd_annotated.png",
+              "sha256": "79c517d4649ca2c583791a785d20aef87281437b655fc5efd60b5cab4286939f"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "33db2dfb2d60cea139f0fe3b9c2c131cf4220e1b8dccf020b59fa1ea84022a0b"
+    },
+    {
+      "language": "nl",
+      "revision": "nl-r2",
+      "previous_revision": "nl-r1",
+      "ir_sha256": "c176714232010e3fe47aadd064d132027500f61ac5f798fd5689274ea74158c5",
+      "html_sha256": "e4dd3261ba1874fa7d74d907b7dfc0cfdf991f428ff3bca256568693098bd202",
+      "markdown_sha256": "e65481ad73090877eefee3f1bdb1e4bd5661fd10b75d47566dc16d19ceda9ef6",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/nl-r2/manual_jbp3600a_eu_nl.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/nl",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "nl"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744/overview_front.png",
+              "sha256": "61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db/overview_left.png",
+              "sha256": "a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/0032ac8b670a75171012c771206d209318abdb4559e9667612de69d10dd0213f/lcd_annotated.png",
+              "sha256": "0032ac8b670a75171012c771206d209318abdb4559e9667612de69d10dd0213f"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "68145432bb6d116becdc61062a88cb4500483f5937abf8510233340e3fd6db0d"
+    },
+    {
+      "language": "pl",
+      "revision": "pl-r2",
+      "previous_revision": "pl-r1",
+      "ir_sha256": "c98bcadf90504bc0b4333f6915ce3deeca598aaef09e57d780692a2154364cba",
+      "html_sha256": "9c842505cad6297029bdec56c584ccb010cc8e7c1229995c8bab32dc12a81677",
+      "markdown_sha256": "c20f877901f80580cd6e76d03d3ba8f00a14b56ed25fea16cc695805683260fa",
+      "stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "previous_stylesheet_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+      "preview": "http://127.0.0.1:56059/pl-r2/manual_jbp3600a_eu_pl.html",
+      "publication_eligible": false,
+      "checks": {
+        "strict_sphinx": "pass",
+        "cold_rebuild": "byte-identical Markdown and HTML",
+        "cold_method": "frozen IR replay then strict Sphinx",
+        "rendered_fragments": "only two asset references changed; exact equality after path substitution",
+        "body_tables_components": "unchanged",
+        "asset_count": 22,
+        "unchanged_asset_count": 20,
+        "x5_retained": true,
+        "final_cold_after_metadata_correction": "strict build and byte-identical HTML passed"
+      },
+      "admission": {
+        "publication_eligible": false,
+        "actual_fresh_gate": "manual IR has pending source review",
+        "locale_policy_blocker": "prepared component applicability must be reviewed before publication: JBP-3600A/EU/pl",
+        "english_applicability_trial": {
+          "profile": "prepared-shared-components/v1",
+          "target": {
+            "model": "JBP-3600A",
+            "region": "EU",
+            "language": "pl"
+          },
+          "components": {
+            "HB-TABLE-SYMBOL-SIGNAL": 1,
+            "HB-TABLE-SYMBOL-ICON": 1,
+            "HB-SPECIAL-INBOX": 1,
+            "HB-TABLE-REFERENCE": 1,
+            "HB-SPECIAL-OPERATION": 1,
+            "HB-CALLOUT-STRIP": 4,
+            "HB-SPECIAL-REFERENCE-FIGURE": 2,
+            "HB-TABLE-TROUBLESHOOTING": 1,
+            "HB-TABLE-SPEC": 3,
+            "HB-WARRANTY-LEAD": 1,
+            "HB-WARRANTY-SECTION": 5,
+            "HB-WARRANTY-YEARS": 1
+          },
+          "variants": {
+            "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+            "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+            "HB-SPECIAL-INBOX/three-card-responsive": 1,
+            "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+            "HB-SPECIAL-OPERATION/status-right": 1,
+            "HB-CALLOUT-STRIP/note": 2,
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+            "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+            "HB-CALLOUT-STRIP/warning": 1,
+            "HB-TABLE-SPEC/vertical": 3,
+            "HB-WARRANTY-LEAD/intro-panel": 1,
+            "HB-WARRANTY-SECTION/rounded-card": 5,
+            "HB-WARRANTY-YEARS/numeric-badges": 1
+          },
+          "pages": {
+            "preface_important_en.rst": {},
+            "toc.rst": {},
+            "safety_info_en.rst": {},
+            "symbol_meaning_en.rst": {
+              "HB-TABLE-SYMBOL-SIGNAL": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+              "HB-TABLE-SYMBOL-ICON": 1,
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+            },
+            "box_contents_en.rst": {
+              "HB-SPECIAL-INBOX": 1,
+              "HB-SPECIAL-INBOX/three-card-responsive": 1
+            },
+            "product_overview_en.rst": {},
+            "lcd_display_en.rst": {
+              "HB-TABLE-REFERENCE": 1,
+              "HB-TABLE-REFERENCE/lcd-descriptions": 1
+            },
+            "operation_en.rst": {
+              "HB-SPECIAL-OPERATION": 1,
+              "HB-SPECIAL-OPERATION/status-right": 1,
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "connections_en.rst": {
+              "HB-CALLOUT-STRIP": 2,
+              "HB-CALLOUT-STRIP/caution": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE": 2,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+              "HB-CALLOUT-STRIP/note": 1
+            },
+            "troubleshooting_en.rst": {
+              "HB-TABLE-TROUBLESHOOTING": 1,
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            },
+            "charging_en.rst": {
+              "HB-CALLOUT-STRIP": 1,
+              "HB-CALLOUT-STRIP/warning": 1
+            },
+            "storage_en.rst": {},
+            "specifications_en.rst": {
+              "HB-TABLE-SPEC": 3,
+              "HB-TABLE-SPEC/vertical": 3
+            },
+            "warranty_en.rst": {
+              "HB-WARRANTY-LEAD": 1,
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION": 5,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS": 1,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "regulatory_compliance.rst": {}
+          },
+          "legacy_debt": [],
+          "governed_finished_panels": [
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "1/3",
+              "path": "assets/ir/63334ce912c6e2124d16f1d159aebd87ab3a25a1840e46dbe7bb0d89d5a7b4a0/overview_front.png",
+              "sha256": "63334ce912c6e2124d16f1d159aebd87ab3a25a1840e46dbe7bb0d89d5a7b4a0"
+            },
+            {
+              "page_id": "product_overview_en.rst",
+              "location": "3/3",
+              "path": "assets/ir/ae05447328cffb2edf5ac51c3068db513fa0cdb31735bace965a2075e6d7b3f7/overview_left.png",
+              "sha256": "ae05447328cffb2edf5ac51c3068db513fa0cdb31735bace965a2075e6d7b3f7"
+            },
+            {
+              "page_id": "lcd_display_en.rst",
+              "location": "1",
+              "path": "assets/ir/6442fb65a1e87356d4e7fcf2b41c50479b133df01f48ed0b391aadce490ab67c/lcd_annotated.png",
+              "sha256": "6442fb65a1e87356d4e7fcf2b41c50479b133df01f48ed0b391aadce490ab67c"
+            },
+            {
+              "page_id": "operation_en.rst",
+              "location": "3/3",
+              "path": "assets/jbp3600a_eu_en/lcd_control_clean.png",
+              "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+            },
+            {
+              "page_id": "connections_en.rst",
+              "location": "6",
+              "path": "assets/jbp3600a_eu_en/stacking_clean.png",
+              "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "1/6",
+              "path": "assets/jbp3600a_eu_en/ac_charging.png",
+              "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc"
+            },
+            {
+              "page_id": "charging_en.rst",
+              "location": "3/5",
+              "path": "assets/jbp3600a_eu_en/solar_charging.png",
+              "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"
+            }
+          ],
+          "issues": []
+        },
+        "trial_note": "Read-only applicability audit; not locale enrollment. Renderer validated all actual packaged asset bytes."
+      },
+      "independent_acceptance": "Historical previous revision only; no new independent acceptance claimed",
+      "browser_status": "targeted desktop/mobile verification passed",
+      "metadata_correction": {
+        "previous_style_contract_sha256": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+        "candidate_style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+        "reason": "Bind actual proposed web contract; previous native trial retained released hash. No render delta."
+      },
+      "baseline_trial_differences": {
+        "released": 14,
+        "en-r6": 4
+      },
+      "browser_metrics_sha256": "e863f746156ab4caaa156255c4c6ac263f863d2acbc7afaf81c42b3826869a92"
+    }
+  ],
+  "final_validation_at_utc": "2026-10-03T10:45:30.953570+00:00"
+}

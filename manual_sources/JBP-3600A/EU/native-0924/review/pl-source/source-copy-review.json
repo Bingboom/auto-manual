@@ -1,0 +1,76 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "pl",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "60bfe06d622dee2d330649855b4c621706731e6f2b5603823bf1d76bc57c1d59",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    3,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "10 safety bullets retained; bullet glyphs represented by HTML list, not duplicated",
+    "Native signal labels, symbol meanings and icon identities checked",
+    "Two LCD rows and native power instructions retained",
+    "Native 3second hold,2hour shutdown,5battery limit,3stack limit and clearance values retained",
+    "F0-F9/FA/FC/FE/FF actions mapped without dropping code groups",
+    "Complete 8 general specification rows,2port rows,2temperature rows retained",
+    "Storage temperature/humidity and3month/6-12month maintenance intervals retained",
+    "3+2year badges,36months,7day/6month battery exclusion retained",
+    "Company/customer-support identity and mailto retained",
+    "Three native label-bearing panel decisions still await Web candidate review",
+    "Inline x5 glyph location verified; existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [
+    "Native weight and dimensions put metric units first; retained.",
+    "Native clearance labels put millimetres before feet; retained."
+  ],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/pl-3.png",
+      "sha256": "6b9bc88d02f9f43644f8863339ad4ed869d57b1fff529d2bfb1fe37604faea98"
+    },
+    {
+      "path": "pages/pl-71.png",
+      "sha256": "bd32c3fca00de895218a3d8e3187aba2b593de00208a17a4fdad1570ac5e46fb"
+    },
+    {
+      "path": "pages/pl-72.png",
+      "sha256": "c9d28bb5f96ad4a539176e8cfe11e42940dac5617ff6766044322ebf01e4313b"
+    },
+    {
+      "path": "pages/pl-73.png",
+      "sha256": "6778b8500a85c18c036a618ea20395812233d550d8264c993539c5712b4bee4b"
+    },
+    {
+      "path": "pages/pl-74.png",
+      "sha256": "3f5818f940e70f084aa63fb28b9f95c01d8e6d6a7e27f5c46e24a42fb8facdc0"
+    },
+    {
+      "path": "pages/pl-75.png",
+      "sha256": "3ef3f7c6c016f7971c902a35aada47dc1664184b61a3fcc1707eb4d8c1caadf8"
+    },
+    {
+      "path": "pages/pl-76.png",
+      "sha256": "b5d203b4422676cdd424ee75dcd15756282fe17a7859ca53ff4ed42440a952c4"
+    },
+    {
+      "path": "pages/pl-77.png",
+      "sha256": "991633fe5096707c799d7296d886b016e375720ff19cf8802f76de05b9fbf6a7"
+    },
+    {
+      "path": "pages/pl-78.png",
+      "sha256": "c6751df555b1bbf13704c70bc0f271273af32a32efb374cf5cacd96bab02605d"
+    }
+  ]
+}

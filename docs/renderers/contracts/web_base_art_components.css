@@ -359,7 +359,7 @@
   box-sizing: border-box;
   width: var(--hb-width);
   min-height: var(--hb-height);
-  color: var(--hb-text);
+  color: var(--hb-label-color, var(--hb-text));
   font-size: 1.99cqw;
   line-height: 1.16;
 }
@@ -555,4 +555,13 @@
 .hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill {
   max-width: none;
   padding: 0.3cqw 1.2cqw;
+}
+
+/* Explicit source-foreground badges remain readable within their art edge.
+   Legacy measured overlays keep their existing sizing. */
+.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill.hb-reference-source-badge {
+  width: max-content;
+  max-width: calc(100% - var(--hb-x));
+  padding: 0.15rem 0.45rem;
+  font-size: max(0.875rem, 1.99cqw);
 }
