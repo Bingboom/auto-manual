@@ -1444,3 +1444,19 @@ RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
 semantics while retaining the exact localized label. At most one such role
 may occur in a label cell; conflicting roles are rejected. Unmarked legacy
 labels keep the existing language-data lookup behavior.
+
+### 英文确认基线与本语继承（fresh Web）
+
+新增语言沿用已确认英文的语义槽位、组件变体、分栏/表格结构和逐图呈现策略；
+各语原稿仍是正文、技术值、警告和法务内容的依据。普通图无字底图加原生文字、
+文字框由共享 CSS 绘制；密集引线图及已批准成品面板按确认的逐槽决定保留。
+不得以新增语言或印刷编号变化为由重新提取已有共用图。
+
+既有选材表仍须人工审查。对 `prepared_component_admission.json` 中
+`language_baselines` 已登记的目标，fresh seal/stage/verify 另外自动比较
+独立确认的 IR 结构摘要与实际资产字节；候选元数据不能关闭检查。
+JE-3600A/EU、JBP-3600A/EU 初始仅登记为 candidate，**并未批准英文样张**。
+其他历史目标显示未覆盖；不可变历史回放不追溯改变。
+自动比较不能识别基线图里本来就有的空文字框，也不能替代本语内容/视觉核验。
+具体记录、确认与试验方式见
+[英文基线准入](../../../code-as-doc/dev/prepared_component_admission.md#confirmed-english-baseline-and-native-language-inheritance)。

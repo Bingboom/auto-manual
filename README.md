@@ -102,7 +102,7 @@ JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
 
-Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
+Prepared EU Web admission, legacy debt and confirmed-English inheritance: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
 
 中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide.md)。
 

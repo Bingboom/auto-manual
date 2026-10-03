@@ -339,7 +339,7 @@ def seal_release_evidence(
     require_publishable_manual_ir(markdown_dir)
     checked = require_consistent_captures(captures)
     final = checked[-1]
-    require_fresh_component_admission(
+    admission = require_fresh_component_admission(
         markdown_dir, model=final.model, region=final.region, language=final.language,
     )
     recaptured = capture_projection(
@@ -363,6 +363,8 @@ def seal_release_evidence(
         raise RuntimeError(f"Web language evidence Markdown manual is missing: {markdown_name}")
     receipt = {
         "schema_version": RECEIPT_SCHEMA_VERSION,
+        "language_baseline": (admission.get("language_baseline") if isinstance(admission, dict)
+                              else {"status": "out_of_scope"}),
         "model": final.model,
         "region": final.region,
         "language": final.language,

@@ -2498,3 +2498,11 @@ an empty source-table observation is not a localized-copy audit.
 原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。
 
 冻结 PDF 参数表的语义换行由 `source/target_layout.json` 各语言的 `specifications.value_breaks` 声明（`group`、从零开始的 `row`、唯一匹配的 `before`）。例如车充／PV 共用单元格在 `PV:` 前换行；源文字和已批准勘误先保持完整匹配，再投影为共享 IR 的 `line_break`，不恢复印刷版所有折行、不拆出额外表格行。更新时创建新的冻结版本，旧版本保持不变。
+
+### 英文基线确认后新增语言
+
+已登记英文继承目标的新发布，在原有共享组件门禁上增加结构/资产基线比较。
+先核验英文桌面与手机样张，由操作者确认后冻结；再映射本语原稿，沿用共享组件
+和原资产字节。`candidate` 不可发布，未登记显示 `not_enrolled`，历史回放不改变。
+不能以本语内容对齐为由删除源稿差异。使用方法与证据字段见
+[英文基线与本语继承](dev/prepared_component_admission.md#confirmed-english-baseline-and-native-language-inheritance)。

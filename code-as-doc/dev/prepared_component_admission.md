@@ -150,3 +150,94 @@ now fails admission. The remaining legacy inventory is 82 exceptions: 49
 individual tables, 27 App chapters and six warranty chapters. This is source
 coverage, not a claim that all six updated manuals have been republished.
 The connected-batteries image retains its documented resolution debt.
+
+## Confirmed English baseline and native-language inheritance
+
+`tools/web_language_baseline.py` extends the same fresh admission boundary.
+Enrollment is `language_baselines["MODEL/REGION"]` in the existing admission
+contract, independent of candidate metadata and of prepared/native input kind.
+JE-3600A/EU and JBP-3600A/EU are initially **candidate** enrollments: local
+previews remain available, but fresh publication is blocked until explicit
+English confirmation. Other targets return `not_enrolled`, not a baseline pass.
+This does not change immutable `stored=True` replay or existing family/diff
+assembly configuration.
+
+The required sequence is English intake → desktop/mobile visual inspection →
+operator confirmation → frozen review record → native-language content mapping →
+structural comparison and visual acceptance. JE-2000E is only the structural
+candidate for JE-3600A; JE-3600A's source controls actual differences.
+JBP-3600A keeps the existing battery-pack structure. English is never the
+translation authority for source-authored technical values, warnings or legal text.
+
+### Review record
+
+An approved `web-language-baseline/v1` record contains target identity, revision,
+original AI/PDF SHA-256, exact English IR content hash, a content-neutral structure
+and its hash. `approval` names the human operator and confirmation record,
+repeats `ir_content_sha256`, `structure_sha256`, `review_sha256`, and supplies
+repo-relative desktop/mobile evidence paths with actual file hashes. The
+`review_sha256` binds source identity, asset decisions and the English mapping.
+Evidence files must remain available and byte-identical. A candidate-generation
+command cannot set approved status; a code-reviewed contract change records the
+operator's actual confirmation. CI cannot determine that a human really gave
+approval from arbitrary strings, so review of that record remains essential.
+
+Each locale has an exact `page_map` from assembly page ID to semantic chapter,
+a `component_map` from component source reference to semantic slot, a reviewed
+snapshot hash, original-source hash, explicit one-based source pages, and exact
+reviewed differences. Component references normalize only the build-directory
+prefix: `page.rst#component` is stable across relocated builds. Mappings must
+cover all pages/components exactly and slots must be unique. Use existing
+manifest family/diff slots; do not create a second assembly configuration.
+
+The structure pins component ID/variant/semantic order, column and table geometry,
+merged cells, asset role/policy/actual bytes, artwork presentation, shared theme
+and style/registry identity. Native prose and natural wrapping are excluded.
+Every image has a reviewed source reference and content mode, text ownership,
+frame/leader policy and model/region/language applicability decision. Reuse keeps
+original bytes and identity; deployment copies may have different relative URLs.
+
+A locale exception is a unique exact `/pages/...` delta with expected/actual
+hashes, native source hash, source reference, explicit `source_pages` (within the
+locale source pages), reason and approval record. No wildcard,
+whole-corpus ignore or automatic refresh is supported. Stale exceptions fail.
+Differences report target, chapter, component slot where applicable, JSON pointer,
+and expected/actual values. This is not text-completeness or semantic verification;
+source-copy/visual review must still catch missing prose, wrong translations and
+empty frames already embedded in an approved image.
+
+### Review tools (no automatic approval)
+
+Normal builds still use `build.py`. The low-level review helper consumes existing
+IR; it does not extract, translate, render with a new renderer or change live data:
+
+```sh
+python -m tools.web_language_baseline_cli candidate \
+  --ir /path/to/english/manual.ir.json --source /path/to/original.ai \
+  --revision source-v1 --mapping /path/to/english-mapping.json \
+  --output /path/to/new-candidate.json
+python -m tools.web_language_baseline_cli trial \
+  --ir /path/to/native/manual.ir.json --record /path/to/candidate.json \
+  --mapping /path/to/native-mapping.json --output /path/to/new-trial.json
+```
+
+Mapping JSON contains `page_map` and `component_map`. Candidate image decisions
+start blank for deliberate source review. Trial output is always
+`candidate_trial` / `publication_eligible: false`, even with zero differences.
+After source/evidence/decision fields are reviewed, calculate `review_digest`
+and record explicit confirmation of that exact digest in the trusted contract.
+The helper has no approve action and refuses to overwrite any output file.
+
+For an approved record, `audit --ir ... --record ... --output ...` writes the
+comparison. `bind` with the same arguments creates a new IR with the exact
+`metadata.language_baseline = {revision, sha256: structure_sha256}` reference
+only if the complete admission comparison passes. Place that verified IR into
+the release package before fresh seal; rebuilding regenerates the package and
+requires re-binding/rechecking. `bind` is not a substitute for the final trusted
+contract check: candidate-supplied records cannot opt a target out or authorize
+publication. Removing the reference blocks admission. The helper never edits
+the source IR in place or promotes the baseline automatically.
+
+Report these separately: documented rules, English operator confirmation,
+automatic gate integration, enrolled target coverage, native-source review and
+browser acceptance. See the [implementation evidence](../reviews/english-language-baseline-20261002.md).

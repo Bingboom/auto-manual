@@ -6401,5 +6401,27 @@
         }
       }
     }
+  },
+  "language_baselines": {
+    "JE-3600A/EU": {
+      "schema_version": "web-language-baseline/v1",
+      "status": "candidate",
+      "revision": "native-english-20261002-candidate",
+      "model": "JE-3600A",
+      "region": "EU",
+      "baseline_language": "en",
+      "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+      "review_record": "code-as-doc/reviews/english-language-baseline-20261002.md"
+    },
+    "JBP-3600A/EU": {
+      "schema_version": "web-language-baseline/v1",
+      "status": "candidate",
+      "revision": "native-english-20261002-candidate",
+      "model": "JBP-3600A",
+      "region": "EU",
+      "baseline_language": "en",
+      "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+      "review_record": "code-as-doc/reviews/english-language-baseline-20261002.md"
+    }
   }
 }

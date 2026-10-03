@@ -96,7 +96,7 @@ class FreshComponentAdmissionTests(unittest.TestCase):
         with patch("tools.web_component_admission.read_manual_ir", return_value=ir), \
              patch("tools.web_component_admission.audit_prepared_component_coverage", return_value={"issues": []}), \
              patch("tools.web_component_admission.render_document_fragments"):
-            self.assertEqual(self.admit(language="nl"), {"issues": []})
+            self.assertEqual(self.admit(language="nl")["language_baseline"]["status"], "not_enrolled")
 
     def test_queue_rejects_missing_ir_before_creating_destination(self):
         from tools.queue_outputs import stage_web_publish_assets_to_host_repo
@@ -114,3 +114,26 @@ class FreshComponentAdmissionTests(unittest.TestCase):
                 publish_release_version_dir_for_target=lambda **kwargs: destination,
             )
         self.assertFalse(destination.exists())
+
+    def test_enrolled_candidate_blocks_both_input_kinds(self):
+        from tools.prepared_component_policy import POLICY_SCHEMA
+        from tools.web_language_baseline import require_language_baseline
+        policy = self.root / 'policy.json'
+        policy.write_text(json.dumps({
+            'schema_version': POLICY_SCHEMA,
+            'language_baselines': {'MODEL/EU': {
+                'schema_version': 'web-language-baseline/v1',
+                'baseline_language': 'en', 'status': 'candidate',
+            }},
+        }))
+        def independent_contract(raw, root):
+            return require_language_baseline(raw, root, contract_path=policy)
+        with patch('tools.web_component_admission.require_language_baseline', side_effect=independent_contract):
+            for source in ('prepared-document', 'frozen-ai-json', 'frozen-pdf-json'):
+                with self.subTest(source=source):
+                    raw = deepcopy(self.original)
+                    raw['source'] = source
+                    raw['metadata'].pop('language_baseline', None)
+                    self.rehash(raw)
+                    with self.assertRaisesRegex(RuntimeError, 'not operator-approved'):
+                        self.admit()
