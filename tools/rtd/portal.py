@@ -136,6 +136,7 @@ def prepare_catalog(app) -> None:
 def clear_catalog_cache(app, exception) -> None:
     # A later build in the same process must validate its own frozen inputs again.
     app._rtd_portal_data = None
+    app._rtd_system_context = _UNSET
 
 
 def page_context(app, pagename, templatename, context, doctree):
@@ -228,6 +229,7 @@ def page_context(app, pagename, templatename, context, doctree):
         return None
     context["portal"] = settings
     context["products"] = products
+    context["site_nav"] = site_nav(app)
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     context["product_voc"] = voc_markup
@@ -240,6 +242,27 @@ def workspace_content(app) -> Path:
     return Path(configured) if configured else repo_root() / PathSegments.DOCS / "knowledge"
 
 
+_UNSET = object()
+
+
+def cached_system_context(app):
+    """Build the system page context once per build; the root sidebar and the page share it."""
+    cached = getattr(app, "_rtd_system_context", _UNSET)
+    if cached is _UNSET:
+        cached = system_page_context(app, ASSETS)
+        app._rtd_system_context = cached
+    return cached
+
+
+def site_nav(app) -> dict:
+    """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
+    return {
+        "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
+        "system": cached_system_context(app) is not None,
+        "deliverables": True,
+    }
+
+
 def collect_workspace_pages(app):
     """Add the workspace entry, its system page and its deliverables page, leaving the manual-center root alone.
 
@@ -250,7 +273,7 @@ def collect_workspace_pages(app):
     it hides only its own links.
     """
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
-    system = system_page_context(app, ASSETS)
+    system = cached_system_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))

@@ -45,6 +45,48 @@ advertisements. Other markets remain accessible in an all-publications fallback
 for markets outside the primary US/EU/UK/CN/JP dropdown. The footer derives
 its market list from the same settings, and CN/JP display their own market notes.
 
+## Page layout
+
+Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台)
+shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
+`_static/site-shell.css`: a left sidebar under the 工作资料 brand (说明书 group: 说明书资料库, 搜索说明书正文;
+知识库 group: 概览, 分享资料, 系统建设, 说明书工作台, 最近更新) and a sticky top bar
+(breadcrumb, the 知识库 / 工作资料 switch and page-specific controls such as the
+region selector). Optional entries follow the same rules as before: 分享资料 only
+with the sharing package, 系统建设 only when its context builds (computed once
+per build and shared with the root sidebar). Page stylesheets style only what
+sits inside `.app-content`; the brand accent is the shared `--brand` orange.
+The Furo search page and manual pages keep their theme.
+
+The 系统建设 and 说明书工作台 pages share two more shell components: a key-metric
+row (`.kpi-row`) under the page header and page tabs (`.page-tabs` /
+`.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
+without JavaScript every panel shows; any in-page link or URL hash that
+points inside a panel opens that panel. 系统建设 tabs: 建设进度, 能力与流程,
+语言资产, 技能与钩子, 入口与数据来源, with the unfolded stage gates as the
+metric row. 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
+default), 工作入口, 生产与资产, with web manuals, language editions, Word and
+print counts as the metric row. Build times, snapshot dates and hashes sit in
+the collapsed 页面版本与更新 / 数据更新时间 disclosure.
+
+Inside the shell the root page has four bounded zones on one container width
+(`.wrap`, 1200px):
+
+1. **Search hero** (light grey band): title and the cross-manual search box.
+2. **Filter toolbar** (sticky below the top bar): product-type chips and the
+   language filter.
+3. **Catalog**: region heading and count, then one section per product type
+   (`便携储能` / `加电包` / `太阳能板` / `配件`) with a responsive card grid.
+   Sections with no visible card after filtering are hidden.
+4. **Footer** (light grey band), which also holds the Read the Docs ad placement.
+
+Cards show the product image, model, edition, a language summary (first
+published language plus the count; the full list is in the tooltip) and a
+version label. Build identifiers are not shown raw: `git-YYYYMMDD-…` reads as
+`构建 YYYY-MM-DD`, other `git-…` values as `开发构建`, and `candidate` as
+`候选版`; the raw value stays in the tooltip. Template and styles live in
+`tools/rtd_portal_assets/manual_portal.html` and `_static/portal.css`.
+
 ## Catalog validation during a build
 
 The frozen publication catalog is validated once per Sphinx build and reused

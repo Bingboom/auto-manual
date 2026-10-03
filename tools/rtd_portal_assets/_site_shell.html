@@ -1,0 +1,96 @@
+{#- Shared site shell: one sidebar and one top bar for every portal page.
+    Import with context so pathto() resolves relative to the calling page:
+      {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool). -#}
+{%- macro nav_link(href, icon, label, is_active, count='') -%}
+<a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
+{%- endmacro -%}
+{%- macro site_sidebar(active, nav) -%}
+{%- set home = pathto('workspace/index') -%}
+{%- set on_home = active in ('overview', 'shares', 'updates') -%}
+<aside class="app-sidebar" id="app-sidebar">
+  <a class="app-brand" href="{{ pathto('index') }}">工作资料<span>.</span></a>
+  <nav class="app-nav" aria-label="站点导航">
+    <div class="app-nav-group">说明书</div>
+    {{ nav_link(pathto('index'), '▤', '说明书资料库', active == 'manuals') }}
+    {{ nav_link(pathto('search'), '⌕', '搜索说明书正文', active == 'search') }}
+    <div class="app-nav-group">知识库</div>
+    {{ nav_link(home, '⌂', '概览', active == 'overview') }}
+    {% if nav.share %}{{ nav_link(('' if on_home else home) ~ '#shares', '✦', '分享资料', active == 'shares') }}{% endif %}
+    {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
+    {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
+    {{ nav_link(('' if on_home else home) ~ '#updates', '◷', '最近更新', active == 'updates') }}
+  </nav>
+</aside>
+<div class="app-scrim" aria-hidden="true"></div>
+{%- endmacro -%}
+{%- macro site_topbar(section, crumb) -%}
+<header class="app-topbar">
+  <button class="app-menu" type="button" aria-label="展开导航" aria-controls="app-sidebar" aria-expanded="false">☰</button>
+  <div class="app-crumb">{{ section }} <span>/</span> <b>{{ crumb }}</b></div>
+  <div class="app-topbar-right">
+    {{ caller() if caller else '' }}
+    <div class="app-switch" aria-label="切换页面">
+      <a{% if section == '知识库' %} class="selected"{% endif %} href="{{ pathto('workspace/index') }}">知识库</a>
+      <a{% if section == '工作资料' %} class="selected"{% endif %} href="{{ pathto('index') }}">工作资料</a>
+    </div>
+  </div>
+</header>
+{%- endmacro -%}
+{%- macro site_script() -%}
+<script>
+(() => {
+  const body = document.body, menu = document.querySelector(".app-menu");
+  const set = open => { body.classList.toggle("app-menu-open", open); menu.setAttribute("aria-expanded", String(open)); };
+  menu.addEventListener("click", () => set(!body.classList.contains("app-menu-open")));
+  document.querySelector(".app-scrim").addEventListener("click", () => set(false));
+  document.querySelectorAll(".app-nav-link").forEach(link => link.addEventListener("click", () => set(false)));
+
+  /* Page tabs: progressive enhancement over plain anchors; without JS every panel shows. */
+  const panels = [...document.querySelectorAll(".tab-panel")];
+  const tabs = [...document.querySelectorAll(".page-tabs [data-tab]")];
+  if (!panels.length || !tabs.length) return;
+  const show = (id, focusTab) => {
+    panels.forEach(panel => { panel.hidden = panel.id !== id; });
+    tabs.forEach(tab => {
+      const on = tab.dataset.tab === id;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focusTab) tab.focus();
+    });
+  };
+  const panelFor = hash => {
+    const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+    return target && (target.classList.contains("tab-panel") ? target : target.closest(".tab-panel"));
+  };
+  const reveal = (hash, scroll) => {
+    const panel = panelFor(hash);
+    if (!panel) return false;
+    show(panel.id);
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (scroll && target && target !== panel) target.scrollIntoView({block: "start"});
+    return true;
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", event => {
+      event.preventDefault();
+      show(tab.dataset.tab);
+      history.replaceState(null, "", "#" + tab.dataset.tab);
+    });
+    tab.addEventListener("keydown", event => {
+      const step = {ArrowRight: 1, ArrowLeft: -1}[event.key];
+      if (!step) return;
+      event.preventDefault();
+      const next = tabs[(index + step + tabs.length) % tabs.length];
+      show(next.dataset.tab, true);
+    });
+  });
+  document.addEventListener("click", event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link && !link.dataset.tab) reveal(link.hash, false);
+  });
+  window.addEventListener("hashchange", () => reveal(location.hash, true));
+  if (!reveal(location.hash, true)) show(panels[0].id);
+})();
+</script>
+{%- endmacro -%}

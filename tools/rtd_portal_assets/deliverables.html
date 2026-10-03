@@ -7,53 +7,38 @@
   <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据，按目标查找多格式交付物。">
   <title>说明书工作台</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/deliverables.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/production-evidence.css', 1) }}">
   <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}"></script>
 </head>
-<body class="system-workspace deliverables">
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app system-workspace deliverables">
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
 {%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
 {%- macro feishu_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip is-feishu" href="{{ item.url|e }}" title="{{ item.title|e }}（飞书，需登录）" target="_blank" rel="noopener"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
-<aside class="sidebar">
-  <a class="brand" href="{{ pathto('workspace/index') }}">知识库<span>.</span></a>
-  <div class="workspace"><span>资料库</span></div>
-  <div class="nav-label">工作空间</div>
-  <nav aria-label="知识库导航">
-    <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
-    {% if has_share %}<a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>{% endif %}
-    {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}" class="nav-link"><i>◈</i> 系统建设</a>{% endif %}
-    <a href="#top" class="nav-link active" aria-current="page"><i>▦</i> 说明书工作台</a>
-    <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
-    <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
-  </nav>
-</aside>
-
-<div class="shell">
-  <header class="topbar">
-    <button class="mobile-menu" type="button" aria-label="展开导航">☰</button>
-    <div class="breadcrumb">工作空间 <span>/</span> <b>说明书工作台</b></div>
-    <div class="topbar-right">
-      <div class="edition-switch" aria-label="切换页面">
-        <a class="selected" href="{{ pathto('workspace/index') }}">知识库</a>
-        <a href="{{ pathto('index') }}">工作资料</a>
-      </div>
-    </div>
-  </header>
+{{ site_sidebar('deliverables', {'share': has_share, 'system': system_entry, 'deliverables': True}) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '说明书工作台') }}
 
   <main id="top">
-    <section class="wb-hero">
-      <div><div class="eyebrow">MANUAL WORKBENCH</div>
-      <h1>说明书工作台<span class="title-dot">.</span></h1>
+    <section class="wb-hero page-head">
+      <div>
+      <h1>说明书工作台</h1>
       <p>看交付成果、用共享资产、跟进生产与修订。</p></div>
-      <a class="wb-jump" href="#deliverables">查找交付物 <span aria-hidden="true">↓</span></a>
     </section>
 
     {% include 'workbench_summary.html' %}
 
-    <details class="pe-fold" id="deliverables"><summary>查找全部交付物 <span>按型号、区域、语言筛选</span></summary>
+    <nav class="page-tabs" role="tablist" aria-label="工作台分类">
+      <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
+      <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
+      <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
+    </nav>
+
+    <div class="tab-panel" id="deliverables" role="tabpanel" aria-label="交付物">
 
     <section class="sw-section" id="deliverables-matrix" aria-labelledby="deliverables-title">
       <div class="dl-section-title"><h2 id="deliverables-title">交付物矩阵</h2><p>按型号与区域查找 · 点语言标签打开对应版本</p></div>
@@ -92,25 +77,18 @@
       {%- endif %}
       <p class="dl-note">每个标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。PDF 在印刷交付包的压缩包里。</p>
     </section>
+    </div>
 
-    </details>
-
-    <details class="pe-fold" id="work-entries"><summary>更多工作入口 <span>源表、构建、评审与维护指引</span></summary>
+    <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
       {% include 'manual_workbench.html' %}
-    </details>
+    </div>
 
-    <details class="pe-fold" id="production-evidence"><summary>查看数据与依据 <span>统计口径、引用目标与记录缺口</span></summary>
+    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产与资产">
       {% include 'production_evidence.html' %}
-    </details>
-
-    <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
-      {% include 'production_evidence_details.html' %}
-    </details>
-
-    <details class="pe-system-entry"><summary>系统健康与架构</summary>
-      <p>SSOT · Manual IR · Skeleton · Agent Architecture · Gate · Roadmap</p>
-      {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}">系统建设、阶段门与证据 →</a>{% endif %}
-    </details>
+      <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
+        {% include 'production_evidence_details.html' %}
+      </details>
+    </div>
 
     <footer>
       <span>页面构建日期 {{ build_date|e }}</span>
@@ -121,7 +99,6 @@
 
 <script>
 (() => {
-  document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
   function revealTarget(hash = location.hash) {
     const target = document.getElementById(hash.slice(1));
     if (!target) return;
@@ -160,5 +137,6 @@
   region.addEventListener("change", refresh);
 })();
 </script>
+{{ site_script() }}
 </body>
 </html>

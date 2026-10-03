@@ -7,9 +7,11 @@
   <meta name="description" content="系统建设：当前重点、已有能力、证据与阶段进度。">
   <title>系统建设</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}?v={{ workspace_revision.revision|e }}">
 </head>
-<body class="system-workspace">
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app system-workspace">
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
 {%- macro evidence_links(rows) -%}{% for ev in rows %}{% if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>{% else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>{% endif %}{% endfor %}{%- endmacro -%}
@@ -49,45 +51,40 @@
           {{ lane_tags(gate.lanes, false) }}
         </div>
 {%- endmacro -%}
-<aside class="sidebar">
-  <a class="brand" href="{{ pathto('workspace/index') }}">知识库<span>.</span></a>
-  <div class="workspace"><span>资料库</span></div>
-  <div class="nav-label">工作空间</div>
-  <nav aria-label="知识库导航">
-    <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
-    {% if has_share %}<a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>{% endif %}
-    <a href="#top" class="nav-link active" aria-current="page"><i>◈</i> 系统建设</a>
-    {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}" class="nav-link"><i>▦</i> 说明书工作台</a>{% endif %}
-    <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
-    <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
-  </nav>
-</aside>
-
-<div class="shell">
-  <header class="topbar">
-    <button class="mobile-menu" type="button" aria-label="展开导航">☰</button>
-    <div class="breadcrumb">工作空间 <span>/</span> <b>系统建设</b></div>
-    <div class="topbar-right">
-      <div class="edition-switch" aria-label="切换页面">
-        <a class="selected" href="{{ pathto('workspace/index') }}">知识库</a>
-        <a href="{{ pathto('index') }}">工作资料</a>
-      </div>
-    </div>
-  </header>
+{{ site_sidebar('system', {'share': has_share, 'system': True, 'deliverables': deliverables_entry}) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '系统建设') }}
 
   <main id="top">
-    <section class="sw-hero">
-      <div class="eyebrow">SYSTEM WORKSPACE</div>
-      <h1>{{ hero.title|e }}<span class="title-dot">.</span></h1>
+    <section class="sw-hero page-head">
+      <h1>系统建设</h1>
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
     </section>
 
+    <details class="page-meta"><summary>页面版本与更新</summary>
     <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
       <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
       <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
       <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
     </div>
-    <nav class="sw-page-nav" aria-label="本页导航"><a href="#focus">建设顺序</a><a href="#now-next">阶段验收</a><a href="#language-assets">语料覆盖</a><a href="#capabilities">能力与证据</a><a href="#sources">数据来源</a></nav>
+    </details>
+    {%- if gates %}
+    <div class="kpi-row" aria-label="阶段进度">
+      {%- for gate in gates|rejectattr('fold') %}
+      <div class="kpi"><span>{{ gate.id|e }} · {{ gate.label|e }}</span><strong>{{ gate.done }}<small>/ {{ gate.total }}</small></strong><div class="kpi-bar" aria-hidden="true"><i style="width:{{ gate.percent }}%"></i></div><em>{{ gate.tally|e }}</em></div>
+      {%- endfor %}
+      {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，按月快照</em></div>{% endif %}
+    </div>
+    {%- endif %}
+    <nav class="page-tabs" role="tablist" aria-label="系统建设分类">
+      <a role="tab" href="#tab-progress" data-tab="tab-progress" aria-selected="true">建设进度</a>
+      <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
+      {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
+      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
+    </nav>
+
+    <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="建设进度">
 
     {%- if focus %}
     <section class="sw-section" id="focus">
@@ -159,11 +156,6 @@
       </div></div>
       {%- if gates %}
       {%- set folded_gates = gates|selectattr('fold')|list %}
-      <div class="sw-gates">
-        {%- for gate in gates|rejectattr('fold') %}
-{{ gate_card(gate) }}
-        {%- endfor %}
-      </div>
       {%- if folded_gates %}
       <details class="sw-more">
         <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
@@ -185,8 +177,10 @@
       <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
       {%- endif %}
     </section>
+    </div>
 
     {%- if corpus_enabled %}
+    <div class="tab-panel" id="tab-corpus" role="tabpanel" aria-label="语言资产">
     <section class="sw-section" id="language-assets">
       <div class="section-header"><div>
         <h2>语言资产</h2>
@@ -211,8 +205,10 @@
       <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.corpus|e }}。</p></div>
       {%- endif %}
     </section>
+    </div>
     {%- endif %}
 
+    <div class="tab-panel" id="tab-capabilities" role="tabpanel" aria-label="能力与流程">
     <section class="sw-section" id="capabilities">
       <div class="section-header"><div>
         <h2>能力地图</h2>
@@ -258,7 +254,10 @@
       </ol>
     </section>
 
+    </div>
+
     {%- if tooling %}
+    <div class="tab-panel" id="tab-tooling" role="tabpanel" aria-label="技能与钩子">
     <section class="sw-section" id="tooling">
       <div class="section-header"><div>
         <h2>技能与钩子</h2>
@@ -300,8 +299,10 @@
       </div>
       <p class="sw-hooks-note">git 钩子要在本机设置 <code>core.hooksPath</code> 才会运行；Claude Code 钩子随项目设置生效。</p>
     </section>
+    </div>
     {%- endif %}
 
+    <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="入口与数据来源">
     <section class="sw-section" id="working">
       <div class="section-header"><div>
         <h2>现在就能用</h2>
@@ -338,6 +339,7 @@
         </table>
       </div>
     </section>
+    </div>
 
     <footer>
       <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
@@ -347,5 +349,6 @@
 </div>
 
 <script src="{{ pathto('_static/system-workspace.js', 1) }}?v={{ workspace_revision.revision|e }}" defer></script>
+{{ site_script() }}
 </body>
 </html>
