@@ -1,0 +1,41 @@
+{% from 'production_metric_macros.html' import metric_details with context %}
+{% set engineering = 'https://github.com/Bingboom/auto-manual' %}
+{% macro inventory(key, label) -%}
+  {% for item in production.assets if item.id == key %}
+  <div class="pe-library-count"><b>{{ item.display|e }}</b> {{ label }}{{ metric_details(item) }}</div>
+  {% endfor %}
+{%- endmacro %}
+<div class="pe-library-grid" aria-label="三类资产的管理与使用情况">
+  <article class="pe-library" id="library-corpus">
+    <header><span>复用文字</span><h3>语料库</h3><p>维护翻译句对、术语和各语言表达。</p></header>
+    <div class="pe-library-management"><h4>资产管理</h4>
+      {{ inventory('sentence_pairs', '条句对记录') }}
+      {{ inventory('terms', '条术语记录') }}
+      <p>查看已有译文，补充或修订句对、术语；数量来自语料快照。</p>
+      <div class="pe-links"><a href="https://xcn57j1urbe6.feishu.cn/wiki/FRUywcjrPiMoPrkxnadcQhhenmb" target="_blank" rel="noopener">打开语料库 ↗</a><a href="{{ engineering }}/blob/main/user-guide/closed_loop_ops_guide.md" target="_blank" rel="noopener">维护指引 ↗</a></div>
+    </div>
+    <div class="pe-library-usage"><h4>资产消费</h4><p>哪些手册采用了哪些句对和术语？</p><b>最终采用情况尚未记录</b><small>库中有译文、预翻译命中，都不能直接算作成品采用。</small></div>
+  </article>
+  <article class="pe-library" id="library-styles">
+    <header><span>复用呈现方式</span><h3>样式库</h3><p>维护表格、提示框、图文布局等样式与组件。</p></header>
+    <div class="pe-library-management"><h4>资产管理</h4>
+      {{ inventory('components', '个已登记组件') }}
+      <p>查样式定义、选用组件，并通过工程变更维护。组件登记数不等于样式总数。</p>
+      <div class="pe-links"><a href="{{ engineering }}/blob/main/docs/renderers/contracts/STYLE_DEFINITION.md" target="_blank" rel="noopener">打开样式定义 ↗</a><a href="{{ engineering }}/blob/main/code-as-doc/dev/style_component_usage_guide.md" target="_blank" rel="noopener">组件使用指引 ↗</a></div>
+    </div>
+    <div class="pe-library-usage"><h4>资产消费</h4><p>哪些手册引用了哪些样式与组件？</p>
+      {% if production.reference_metric.value is not none %}<b>产品总览组件：{{ production.reference_metric.display|e }} 个型号／区域配置引用</b>{% else %}<b>组件配置引用暂时无法读取</b>{% endif %}
+      <small>当前仅覆盖产品总览组件绑定；尚未证明实际进入交付物。</small><a href="#component-usage">查看目标与依据 ↓</a>
+    </div>
+  </article>
+  <article class="pe-library" id="library-templates">
+    <header><span>复用手册结构</span><h3>模板与骨架</h3><p>维护产品家族的章节结构、共享页面和装配规则。</p></header>
+    <div class="pe-library-management"><h4>资产管理</h4>
+      {{ inventory('skeletons', '个已登记骨架') }}
+      <p>选择适用骨架，维护共享模板。模板尚无统一去重计数，不按文件数累加。</p>
+      <div class="pe-links"><a href="{{ engineering }}/tree/main/docs/manifests/skeletons" target="_blank" rel="noopener">打开骨架库 ↗</a><a href="{{ engineering }}/tree/main/docs/templates" target="_blank" rel="noopener">打开模板库 ↗</a><a href="{{ engineering }}/blob/main/code-as-doc/manual_family_guide.md" target="_blank" rel="noopener">维护指引 ↗</a></div>
+    </div>
+    <div class="pe-library-usage"><h4>资产消费</h4><p>哪些手册用了哪个骨架、哪些共享模板？</p><b>采用关系尚未汇总</b><small>需要把具体模板、骨架版本与交付目标对应起来；登记数量不能代替使用数量。</small></div>
+  </article>
+</div>
+<p class="pe-note">语料在飞书维护，需登录并具备权限；样式、模板与骨架在工程仓库维护。这里提供管理入口和现有记录，页面不会直接修改资产。产品规格和插图仍可从上方“工作入口 → 结构化数据”维护。</p>
