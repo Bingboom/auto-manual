@@ -1,0 +1,29 @@
+{
+  "finding": "IT-META-001",
+  "status": "independently-closed-count-label-only",
+  "producer_appendix_commit": "54cc7f47748760c154cffc005e4adc36593e3dcc",
+  "producer_appendix_sha256": "bd35b9e0c86ca2faa336a2ef1746f6825452e3d250f80d81cd3dc591f4771a74",
+  "archive_parent_commit": "5a3e98950ecb1e25d459d46bdf0ad01251b97658",
+  "publication_eligible": false,
+  "operator_approval": false,
+  "locale_enrollment": false,
+  "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
+  "note": "Original reports copied byte-for-byte. The original Markdown summary is archived as .txt so its source-directory-relative links and historical statements are preserved as evidence rather than local navigation. Earlier frozen appendices remain unchanged; this is the later independent closure. No tests or builds rerun.",
+  "files": [
+    {
+      "source": "/tmp/jbp-independent-acceptance/count-errata-20261003/closure.md",
+      "path": "closure.md",
+      "sha256": "312ebf6c2251f43a699e72b85da710ed3721967f01eb761ebec01260154b2ab1"
+    },
+    {
+      "source": "/tmp/jbp-independent-acceptance/count-errata-20261003/independent-count-check.json",
+      "path": "independent-count-check.json",
+      "sha256": "fa17973b2a71bd537a60e0dcac6c799e9dba1eff7dcab9d9a52fdcb2f9ea4f8a"
+    },
+    {
+      "source": "/tmp/jbp-independent-acceptance/summary-20261003.md",
+      "path": "summary-20261003.original.txt",
+      "sha256": "bad35263e650cda3dc4c6baf166fc4514487aee85204ac2da82792b761fc27f7"
+    }
+  ]
+}

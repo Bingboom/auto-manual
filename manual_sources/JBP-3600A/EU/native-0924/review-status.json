@@ -218,5 +218,9 @@
     "summary": "review/independent-acceptance-summary.json"
   },
   "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
-  "count_erratum_closure": "producer-appendix-complete-awaiting-independent-closure"
+  "count_erratum_closure": "independently-closed-count-label-only",
+  "count_erratum_closure_evidence": {
+    "path": "review/count-errata-independent/closure.md",
+    "sha256": "312ebf6c2251f43a699e72b85da710ed3721967f01eb761ebec01260154b2ab1"
+  }
 }

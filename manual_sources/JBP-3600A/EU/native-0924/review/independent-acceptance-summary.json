@@ -10,11 +10,16 @@
   "shared_symbol_transparency_followup": "not-completed-by-this-acceptance",
   "count_erratum": {
     "finding": "IT-META-001",
-    "status": "producer-appendix-complete-awaiting-independent-closure",
+    "status": "independently-closed-count-label-only",
     "path": "review/copy-count-errata/IT-META-001.json",
     "commit": "54cc7f47748760c154cffc005e4adc36593e3dcc",
     "sha256": "bd35b9e0c86ca2faa336a2ef1746f6825452e3d250f80d81cd3dc591f4771a74",
-    "definition": "170 copy_by_page dictionary entries =169 evidence records +1 localized YEARS warranty badge key; Italian extra_spec_row is separate."
+    "definition": "170 copy_by_page dictionary entries =169 evidence records +1 localized YEARS warranty badge key; Italian extra_spec_row is separate.",
+    "independent_closure": {
+      "path": "review/count-errata-independent/closure.md",
+      "sha256": "312ebf6c2251f43a699e72b85da710ed3721967f01eb761ebec01260154b2ab1",
+      "checks": "review/count-errata-independent/independent-count-check.json"
+    }
   },
   "reports": [
     {
@@ -90,5 +95,6 @@
       "independent_report_sha256": "758e7ede05887577a2d1f64a65a8c6946ec2f1a0dc7933bca44ef797add5ba41"
     }
   ],
-  "preservation": "Frozen candidate bytes,producer ledgers,source-review records and prior evidence remain unchanged. Earlier status snapshots remain historical; this summary records the later eight independent acceptances."
+  "preservation": "Frozen candidate bytes,producer ledgers,source-review records and prior evidence remain unchanged. Earlier status snapshots remain historical; this summary records the later eight independent acceptances.",
+  "original_independent_summary": "review/count-errata-independent/summary-20261003.original.txt"
 }

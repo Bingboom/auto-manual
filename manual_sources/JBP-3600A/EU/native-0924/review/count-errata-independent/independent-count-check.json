@@ -1,0 +1,58 @@
+[
+  {
+    "language": "fr",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "ANS",
+    "hash_match": true
+  },
+  {
+    "language": "es",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "AÑOS",
+    "hash_match": true
+  },
+  {
+    "language": "de",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "JAHRE",
+    "hash_match": true
+  },
+  {
+    "language": "it",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "ANNI",
+    "hash_match": true
+  },
+  {
+    "language": "uk",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "РОКИ",
+    "hash_match": true
+  },
+  {
+    "language": "pt",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "ANOS",
+    "hash_match": true
+  },
+  {
+    "language": "nl",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "JAAR",
+    "hash_match": true
+  },
+  {
+    "language": "pl",
+    "entries": 170,
+    "evidence": 169,
+    "badge": "LATA",
+    "hash_match": true
+  }
+]
