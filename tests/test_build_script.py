@@ -886,7 +886,7 @@ class TestBuildScript(unittest.TestCase):
         cmd = build_cli.message_control_dry_run_command(args)
 
         self.assertEqual(sys.executable, cmd[0])
-        self.assertIn("tools.message_control_dry_run", cmd)
+        self.assertIn("tools.build_queue.message_control_dry_run", cmd)
         self.assertIn("--message", cmd)
         self.assertIn("publish JE-1000F us-merged from branch feature/review-123", cmd)
         self.assertIn("--record-id", cmd)
@@ -928,7 +928,7 @@ class TestBuildScript(unittest.TestCase):
 
         cmd = build_cli.listen_build_queue_command(args)
 
-        self.assertEqual(["-m", "tools.listen_build_queue"], cmd[1:3])
+        self.assertEqual(["-m", "tools.build_queue.listen_build_queue"], cmd[1:3])
         self.assertIn("--data-root", cmd)
         self.assertIn("data/phase2", cmd)
 

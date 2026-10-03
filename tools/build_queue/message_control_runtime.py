@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from typing import Any, Callable
 
-from tools.message_control_contract import (
+from tools.build_queue.message_control_contract import (
     ACTION_BUILD_DRAFT_PACKAGE,
     ACTION_PUBLISH,
     ACTION_QUERY_STATUS,

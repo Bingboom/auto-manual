@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from tools import listen_build_queue
-from tools import listen_build_queue_lark
+from tools.build_queue import listen_build_queue
+from tools.build_queue import listen_build_queue_lark
 
 
 class TestListenBuildQueue(unittest.TestCase):
