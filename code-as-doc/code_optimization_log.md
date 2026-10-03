@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-10-02
+Updated: 2026-10-03
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -15,6 +15,24 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-10-03: CQ-3.4 complexity cleanup and CQ-2.3 test decoupling done
+
+- CQ-3.4 done: every function at complexity ≥50 was split, 24 → 0, in batches
+  A–E (#1399, #1400, #1401, #1402, #1405, #1406, #1407). Each split was checked
+  for behavior: old-vs-new differential runs on real and randomized inputs; for
+  the IDML renderers, byte-identical exports of four real targets (1,431 zip
+  parts); for the two IDML table builders that no local target reaches, a replay
+  of every call made by the full test run.
+- CQ-2.3 done: facade patches in tests 363 → 11 (#1384, #1387, #1392, #1411,
+  #1412). The remaining 11 patch where the name is looked up, or check the
+  facade's own forwarding, and stay. `QueueDeps` gained
+  `resolve_config_path_for_task`; tests share `tests/queue_build_fixture.py`.
+- CQ-2 acceptance changed by operator decision: the `build_docs.py` `*_impl`
+  forwards are the dependency wiring point and stay ("facade only wires"),
+  instead of going to 0.
+- CQ-1.2: `tools/` top-level modules (398) and files carrying script bootstrap
+  code (103) are ratcheted; a new top-level module needs a recorded reason.
 
 ## 2026-10-02: Workstream Y parallel lanes round
 

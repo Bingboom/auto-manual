@@ -103,14 +103,14 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `check_maintainability_guardrails.py`。基线：7 个测试文件共 363 处，其中
   `test_process_build_queue.py` 203 处、`test_process_review_start_queue.py` 87 处；
   统计 `patch.object` / `patch.multiple`（按 import 别名解析）和 `patch("tools.<门面>.<名字>")`）
-- [ ] **CQ-2.3 为队列处理器引入依赖对象。** 为 `process_build_queue` /
+- [x] **CQ-2.3 为队列处理器引入依赖对象。** 为 `process_build_queue` /
   `process_review_start_queue` 引入一个小的 `QueueDeps` dataclass（外部客户端、git 执行器、
   时钟），默认值为真实实现；按测试文件逐个迁移。每个 PR 迁一个测试文件，不改运行行为。
   - [x] 依赖对象骨架（#1362，2026-10-02）：`QueueDeps`（client factory、command runner、Git worktree
     prepare/remove）传入现有 session/build callback，review-start 接受已有 `ReviewStartRuntimeDeps`；
     默认值在调用时按门面名查找，运行行为不变。
   - [x] 时钟接缝（2026-10-02）：`process_queue_record_group` 增加 `clock` 参数（默认 `utc_now`），开始时间、认领到期和构建时间都取自它；`QueueDeps.clock` 可在单次运行中替换。核对后 `queue_claims.py`、`queue_bound_records.py`、`queue_session.py` 不读时钟，`queue_transitions` 已接受 `now=`
-  - [ ] 按测试文件迁移门面 patch：
+  - [x] 按测试文件迁移门面 patch（2026-10-03 完成：363 → 11）：
     - [x] `QueueDeps` 增加 11 个可选的单次运行覆盖项（会话预检、链接绑定、身份、快照同步、构建、产物目标、钉钉镜像、产物发布、云文档导入/收尾），`test_process_build_queue.py` 203 → 70、`test_process_build_queue_routing.py` 29 → 25，合计 363 → 226（2026-10-02，用脚本按 AST 机械改写，测试断言不变）
     - [x] `process_review_start_queue`：直接调用 `process_review_start_queue()` 的 9 个测试块改为传 `deps=replace(default_review_start_deps(), ...)`（已有 `ReviewStartRuntimeDeps`，8 个字段），87 → 21，合计 226 → 160（2026-10-02）
     - [x] `build_docs` 门面：`test_build_docs_review_compat.py` 改为直接调用 `build_docs_bundle.prepare_manual_bundle` 并显式传入协作者，只留 1 处检查门面自身转发的 patch，22 → 1，合计 160 → 139（2026-10-02）。`test_target_resolution.py` 的 6 处 patch 的是 `build_docs` 自己定义的函数，属于在查找处 patch，保留
@@ -118,7 +118,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [x] `test_process_build_queue_routing.py`：配置路径规则改为直接调用 `queue_config_resolution.resolve_config_path_for_task(repo_root=..., config_loader=...)`，不再 patch 门面的 `ROOT` / `load_config`；另加 1 个测试检查门面转发仓库根和加载器，25 → 3，合计 86 → 64，达到 ≤73 目标（2026-10-02）
     - [x] `test_web_publish_queue.py` 15 → 0、`test_process_build_queue.py` 17 → 0，合计 64 → 32（2026-10-03）：构建步骤的测试改用共享夹具 `tests/queue_build_fixture.py`（显式传协作者和 `repo_root`，同时把队列的 bound 模块指向该根目录，等同原来 patch 门面 `ROOT` 的效果）；lark/同步服务直接调用 `process_build_queue_services` 并传 `FacadeOverrides`；`QueueDeps` 增加 `resolve_config_path_for_task`，分组和组处理都使用它
     - [x] `test_process_review_start_queue.py` 21 → 0（2026-10-03）：`_resolve_review_start_config_path` 增加可选的 `repo_root` / `config_loader` / `resolve_config_path` （默认在调用时取门面上的名字，回退逻辑照常被测试覆盖）；直接调用的测试显式传参，完整运行的测试经 `ReviewStartRuntimeDeps.resolve_config_path_fn` 传入绑定后的解析器；分组守卫测试改为调用 `process_review_start_queue_records.group_review_start_records` 并显式传入会报错的解析器和加载器
-    - [ ] 余下 11 处：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
+    - [x] 余下 11 处有意保留：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
 - [x] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
@@ -167,7 +167,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
   - [x] `lang_asset_sweep.py`（#1356，2026-10-01；`_cmd_sweep` 29）
   - [x] `bitable_schema.py`（#1360，2026-10-01；最高 `apply` 31）
   - [x] `export_idml.py`（2026-10-02）：`main` 只解析参数并分派 `_cmd_check` / `_cmd_flow` / `_cmd_reference`；正式导出的有状态单遍流程从嵌套闭包改为 `tools/idml/reference_export.py::ReferenceExport` 的方法（`render_page` 再拆为数据页、内容页、FCC/收货清单页、符号页、流式页几个方法，两处重复的安全符号页合并为一个方法），最高复杂度 68 → 19；`export_idml.py` 604 → 178 行，热点上限下调到 230
-- [ ] **CQ-3.4 渲染与变换热点随改随降。** `transform_web_fragment`（93）、
+- [x] **CQ-3.4 渲染与变换热点随改随降。**（2026-10-03 完成：CC≥50 的函数 24 → 0） `transform_web_fragment`（93）、
   `structural_findings`（92）、`promote_reference_figures`（87）、
   `_parse_spec_master_sections`（85）、`extract_page`（81）：不单独立项；业务 PR 改到这些函数时，
   必须顺带降低复杂度（由 CQ-3.1 的棘轮保证不会升高）。
