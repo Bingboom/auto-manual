@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import fitz
 
-from tools.frozen_pdf_intake import (
+from tools.web.frozen_pdf_intake import (
     _PDFReader, _chapter_titles, _front_back, _lcd, _page_record, _preface_candidate,
     load_pdf_book, read_recipe_json,
 )
@@ -43,7 +43,7 @@ class FreshPDFGeometryTests(unittest.TestCase):
         ]}
         binding = {"path": "source/preface_candidates.json", "status": "operator-approved",
                    "approval": approval}
-        with patch("tools.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
+        with patch("tools.web.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
             accepted = _preface_candidate(Path("unused"), {}, {"preface_candidate": binding}, "nl")
             self.assertEqual({"status": "operator-approved", "approval": approval,
                               "content": candidate}, accepted)
@@ -64,14 +64,14 @@ class FreshPDFGeometryTests(unittest.TestCase):
         ]}
         binding = {"path": "source/preface_candidates.json",
                    "status": "preview-only-pending-review"}
-        with patch("tools.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
+        with patch("tools.web.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
             preview = _preface_candidate(Path("unused"), {}, {"preface_candidate": binding}, "nl")
         self.assertEqual("preview-only-pending-review", preview["status"])
         recipe = {"shared": {}, "locales": {"nl": {"preface": {
             "status": "missing-in-source", "physical_page": 1, "bbox": [1, 2, 3, 4]},
             "toc_page": 1}}}
         reader = type("Reader", (), {"document": [object()]})()
-        with patch("tools.frozen_pdf_intake._page_record", return_value={}):
+        with patch("tools.web.frozen_pdf_intake._page_record", return_value={}):
             pending = _front_back(reader, recipe, "nl", "a" * 64, preview)
             self.assertEqual("preview-only-pending-review",
                              pending["locales"]["nl"]["preface"]["status"])

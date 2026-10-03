@@ -17,7 +17,7 @@ To rebuild one candidate from the repository root, substitute the source AI
 path and an empty output directory; repeat with `pt`, `nl` or `pl`:
 
 ```sh
-python3 -m tools.frozen_pdf_web \
+python3 -m tools.web.frozen_pdf_web \
   --pdf '/path/to/HTE156-EU-9国语言-0923.ai' \
   --recipe-root manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake \
   --assets-manifest manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake/pt_assets_manifest.json \
@@ -26,7 +26,7 @@ python3 -m sphinx -W -b html /tmp/je3000c-pt-candidate /tmp/je3000c-pt-html
 ```
 
 The adjacent `git-20261001-45219a6e-native-web` package contains the reviewed
-frozen output. Its IR can replay through `tools.frozen_ai_web.replay_package`
+frozen output. Its IR can replay through `tools.web.frozen_ai_web.replay_package`
 without opening the original AI or rereading this intake.
 
 Ordinary artwork is textless, with native labels and CSS text containers.

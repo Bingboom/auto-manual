@@ -8,7 +8,7 @@ _repo_root_provider = lambda: _DEFAULT_ROOT
 _config_loader_provider = lambda: load_config
 _resolve_config_path_func_provider = lambda: resolve_config_path_for_task
 
-from tools.document_link_actions import (
+from tools.web.document_link_actions import (
     legacy_doc_phase_value as _legacy_doc_phase_value,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     resolve_workflow_action as _resolve_workflow_action,
@@ -16,7 +16,7 @@ from tools.document_link_actions import (
     workflow_action_uses_legacy_doc_phase as _workflow_action_uses_legacy_doc_phase,
 )
 from tools.language_aliases import normalize_language
-from tools.document_link_queue import (
+from tools.web.document_link_queue import (
     is_force_phase2_refresh_enabled as _is_force_phase2_refresh_enabled_impl,
     is_immediate_trigger_enabled as _is_immediate_trigger_enabled_impl,
     is_trigger_requested as _is_trigger_requested_impl,

@@ -1,7 +1,7 @@
 from copy import deepcopy
 import unittest
 
-from tools.frozen_pdf_errata import apply_native_errata
+from tools.web.frozen_pdf_errata import apply_native_errata
 
 
 class NativeErrataTests(unittest.TestCase):

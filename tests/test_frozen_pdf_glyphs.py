@@ -6,8 +6,8 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 
-from tools.frozen_pdf_glyphs import recover_pdf_glyphs
-from tools.frozen_pdf_intake import load_pdf_book
+from tools.web.frozen_pdf_glyphs import recover_pdf_glyphs
+from tools.web.frozen_pdf_intake import load_pdf_book
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +51,7 @@ class FrozenPDFGlyphTests(unittest.TestCase):
 
     def test_ai_hash_must_match_provenance(self):
         original = load_pdf_book(PDF, "pl", RECIPE)
-        with patch("tools.frozen_pdf_glyphs.file_sha256", return_value="0" * 64):
+        with patch("tools.web.frozen_pdf_glyphs.file_sha256", return_value="0" * 64):
             with self.assertRaisesRegex(ValueError, "SHA-256"):
                 recover_pdf_glyphs(original, AI)
         self.assertEqual([], original["provenance"]["corrections_applied"])

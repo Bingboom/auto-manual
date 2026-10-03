@@ -9,7 +9,7 @@ from unittest import mock
 from tests.queue_build_fixture import build_document_for_task
 from tools.build_queue import process_build_queue, execute as queue_execute, query as queue_query
 from tools.build_queue.outputs import stage_web_publish_assets_to_host_repo
-from tools.document_link_actions import normalize_workflow_action, workflow_action_label
+from tools.web.document_link_actions import normalize_workflow_action, workflow_action_label
 from tools.build_queue.contract import DocumentLinkBinding, QueueRecord
 from tools.build_queue.group_processing import process_queue_record_group
 from tools.build_queue.transitions import format_queue_result

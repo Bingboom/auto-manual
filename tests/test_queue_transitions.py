@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.document_link_actions import normalize_doc_phase, normalize_workflow_action, workflow_action_label
+from tools.web.document_link_actions import normalize_doc_phase, normalize_workflow_action, workflow_action_label
 from tools.build_queue.contract import (
     BUILD_STARTED_AT_FIELD,
     DATA_SYNC_FIELD,

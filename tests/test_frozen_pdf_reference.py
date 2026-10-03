@@ -9,9 +9,9 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools.frozen_ai_web import replay_package
-from tools.frozen_pdf_source import PdfBook
-from tools.frozen_pdf_reference import (
+from tools.web.frozen_ai_web import replay_package
+from tools.web.frozen_pdf_source import PdfBook
+from tools.web.frozen_pdf_reference import (
     bind_reference_labels, labeled_artwork_node, reference_label_regions,
 )
 from tools.manual_ir.flow import flow_nodes_to_html

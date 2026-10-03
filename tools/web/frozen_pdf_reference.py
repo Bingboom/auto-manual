@@ -8,7 +8,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 from tools.component_specs.reference_figure_html import parse_reference_figure_html
-from tools.frozen_ai_flow import node, root, squash, text
+from tools.web.frozen_ai_flow import node, root, squash, text
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import flow_nodes_to_html
 from tools.web.presentation_contract import _validate_reference_base_art_layout
@@ -88,7 +88,7 @@ def reference_label_regions(figures):
 
 def finished_artwork_node(figure, asset, source_captions, language):
     """Keep a locale-bound source panel intact, with its native captions once."""
-    from tools.frozen_pdf_app import artwork_node
+    from tools.web.frozen_pdf_app import artwork_node
 
     if asset.get('language') != language or asset.get('physical_page') != figure['physical_page']:
         raise ValueError(f"{figure['slug']}: finished reference panel locale/page mismatch")

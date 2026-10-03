@@ -14,7 +14,7 @@ from typing import Any
 from tools.component_specs.inbox import inbox_component_spec
 from tools.component_specs.operation import operation_component_spec
 from tools.component_specs.overview import overview_component_spec
-from tools.frozen_ai_flow import node, paragraph, table, text
+from tools.web.frozen_ai_flow import node, paragraph, table, text
 from tools.manual_ir.components import component_flow_node
 
 

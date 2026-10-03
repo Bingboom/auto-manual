@@ -5,7 +5,7 @@ Status: active
 This is a local review candidate adding **pt/nl/pl only** to the existing
 JE-1000H / Jackery Explorer 1000 Plus EU Web manuals. The existing
 **en/fr/es/de/it/uk** sources and published frozen editions are unchanged.
-It reuses `tools.frozen_pdf_web`, `manual-ir/v2`, registered ComponentSpecs
+It reuses `tools.web.frozen_pdf_web`, `manual-ir/v2`, registered ComponentSpecs
 and the common Web renderer/CSS. No source-table write or publication is
 part of this package.
 
@@ -41,7 +41,7 @@ Use the unchanged original at its current path, and **new empty output
 folders**. Example for Portuguese; repeat with `nl` and `pl`:
 
 ```bash
-python3 -m tools.frozen_pdf_web \
+python3 -m tools.web.frozen_pdf_web \
   --pdf '/Users/pika/Desktop/HTE159-EU-9国说明书-0928(1).ai' \
   --recipe-root manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake \
   --assets-manifest manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/pt_assets_manifest.json \
@@ -52,7 +52,7 @@ python3 -m sphinx -q -W --keep-going -b html \
 ```
 
 For a PDF-free replay, copy the complete frozen candidate folder and call
-`tools.frozen_ai_web.replay_package(Path(<copied-package>))`. The saved
+`tools.web.frozen_ai_web.replay_package(Path(<copied-package>))`. The saved
 acceptance evidence guards reads of the recipe root and original AI, and
 compares the regenerated Markdown SHA-256 exactly.
 

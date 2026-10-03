@@ -7,9 +7,9 @@ from pathlib import Path
 import re
 import shutil
 
-from tools.frozen_ai_flow import callout, cell, heading, is_heading, node, paragraph, prose, scroll_table, squash, text
-from tools.frozen_ai_media_components import app_nodes, figure_node
-from tools.frozen_ai_table_components import (
+from tools.web.frozen_ai_flow import callout, cell, heading, is_heading, node, paragraph, prose, scroll_table, squash, text
+from tools.web.frozen_ai_media_components import app_nodes, figure_node
+from tools.web.frozen_ai_table_components import (
     auto_resume_flow, lcd_mode_flow, symbol_signal_flow, warranty_flow,
 )
 from tools.manual_ir.hashing import file_sha256

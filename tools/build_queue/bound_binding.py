@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from typing import Any
 
-from tools.document_link_queue import (
+from tools.web.document_link_queue import (
     collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
     document_link_cfg as _document_link_cfg_impl,
     document_link_env_names as _document_link_env_names_impl,

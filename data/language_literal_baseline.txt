@@ -21,11 +21,11 @@ tools/csv_pages/builder.py	set	br,pt-br,pt_br	527f3c004b071054
 tools/csv_pages/renderers_spec_parser.py	set	ja,jp	b1624bf2284afc32
 tools/csv_pages/renderers_symbols.py	set	es,fr	f4c071528243d993
 tools/diff_report_fields_shared.py	set	ja,jp	b1624bf2284afc32
-tools/frozen_ai_document.py	dict	nl,pl,pt,uk	582ac0072a12eb2a
-tools/frozen_pdf_document.py	dict	nl,pl,pt,uk	f7ac99471a360f93
-tools/frozen_pdf_finished_overview.py	set	nl,pl,pt,uk	5a79915407c73ab7
-tools/frozen_pdf_lcd.py	dict	nl,pl,pt,uk	5f45359054a6ded6
-tools/frozen_pdf_source.py	dict	nl,uk	f468d85ac85f70ae
+tools/web/frozen_ai_document.py	dict	nl,pl,pt,uk	582ac0072a12eb2a
+tools/web/frozen_pdf_document.py	dict	nl,pl,pt,uk	f7ac99471a360f93
+tools/web/frozen_pdf_finished_overview.py	set	nl,pl,pt,uk	5a79915407c73ab7
+tools/web/frozen_pdf_lcd.py	dict	nl,pl,pt,uk	5f45359054a6ded6
+tools/web/frozen_pdf_source.py	dict	nl,uk	f468d85ac85f70ae
 tools/idml/character_metrics.py	set	es,fr	f4c071528243d993
 tools/idml/components/fcc_panel.py	dict	es,fr	45ba0643c529e566
 tools/idml/components/fcc_panel.py	set	es,fr	f4c071528243d993
