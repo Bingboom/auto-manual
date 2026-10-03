@@ -19,7 +19,7 @@ from tools.manual_copy_source import (
     TM_LANGUAGE_FIELDS,
     TRANSLATION_MEMORY_COLUMNS,
 )
-from tools.sync_data_models import TABLE_SCHEMAS
+from tools.data.sync_data_models import TABLE_SCHEMAS
 
 
 ROOT = Path(__file__).resolve().parents[1]

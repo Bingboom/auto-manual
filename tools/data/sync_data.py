@@ -13,15 +13,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Mapping
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[2]
 
 from tools.config_loader import load_config_mapping
-from tools.sync_data_config import (  # noqa: E402
+from tools.data.sync_data_config import (  # noqa: E402
     cli_bin as _cli_bin_impl,
     cli_command_exists as _cli_command_exists_impl,
     cli_command_parts as _cli_command_parts_impl,
@@ -37,14 +33,14 @@ from tools.sync_data_config import (  # noqa: E402
     table_cfg as _table_cfg_impl,
     table_env_names as _table_env_names_impl,
 )
-from tools.sync_data_cli import build_sync_run_output_lines  # noqa: E402
-from tools.data_snapshot import (  # noqa: E402
+from tools.data.sync_data_cli import build_sync_run_output_lines  # noqa: E402
+from tools.data.snapshot import (  # noqa: E402
     resolve_data_snapshot_paths,
     resolve_phase2_export_root,
     resolve_phase2_manifest_path,
 )
-from tools.sync_data_entry import parse_args as _parse_args_impl, run_main as _run_main_impl  # noqa: E402
-from tools.sync_data_models import (  # noqa: E402
+from tools.data.sync_data_entry import parse_args as _parse_args_impl, run_main as _run_main_impl  # noqa: E402
+from tools.data.sync_data_models import (  # noqa: E402
     ROW_KEY_MAPPING_FIELDNAMES,
     SUPPORTED_IDENTITIES,
     SUPPORTED_PROVIDERS,
@@ -55,7 +51,7 @@ from tools.sync_data_models import (  # noqa: E402
     TableBinding,
     TableSyncResult,
 )
-from tools.sync_data_records import (  # noqa: E402
+from tools.data.sync_data_records import (  # noqa: E402
     _csv_text,
     _dict_rows_csv_text,
     _normalized_cell as _normalized_cell,
@@ -66,7 +62,7 @@ from tools.sync_data_records import (  # noqa: E402
     _write_atomic_text,
     normalize_records,
 )
-from tools.sync_data_runtime import (  # noqa: E402
+from tools.data.sync_data_runtime import (  # noqa: E402
     SyncRuntimeDeps,
     manifest_payload as _manifest_payload_impl,
     resolve_existing_row_key_mapping_path as _resolve_existing_row_key_mapping_path_impl,

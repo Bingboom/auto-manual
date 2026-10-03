@@ -66,7 +66,7 @@ localized_copy = reload(import_module("tools.localized_copy"))
 signal_words = reload(import_module("tools.signal_words"))
 content_lint_languages = reload(import_module("tools.content_lint_languages"))
 queue_query_languages = reload(import_module("tools.build_queue.query_languages"))
-sync_data_models = reload(import_module("tools.sync_data_models"))
+sync_data_models = reload(import_module("tools.data.sync_data_models"))
 preview_render = reload(import_module("tools.process_docs.build_review_preview_render"))
 
 assert lang_registry.canonical_language("xx") == "xx"

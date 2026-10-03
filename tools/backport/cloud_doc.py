@@ -165,7 +165,7 @@ from tools.backport.render import (  # noqa: E402,F401
     markdown_template_sync_proposal_report,
     markdown_review_run_report,
 )
-from tools.source_table_sync import build_change_request_report  # noqa: E402,F401
+from tools.data.source_table_sync import build_change_request_report  # noqa: E402,F401
 from tools.backport.cli import (  # noqa: E402,F401
     _auto_sibling_rels,
     _backport_pr_branch,

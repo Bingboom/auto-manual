@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.build_paths import load_config
-from tools.data_snapshot import resolve_data_snapshot_paths, resolve_phase2_export_root
+from tools.data.snapshot import resolve_data_snapshot_paths, resolve_phase2_export_root
 from tools.utils.spec_master_row_helpers import multi_value_tokens
 
 LANGUAGE_ALIASES = {

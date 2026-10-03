@@ -104,7 +104,7 @@ from tools.build.docs_validation import (
     validate_loaded_config as _validate_loaded_config_impl,
 )
 from tools.config_loader import load_config_mapping
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.gen_index_bundle import (
     MaterializedBundle,
     bundle_dir_for_target,

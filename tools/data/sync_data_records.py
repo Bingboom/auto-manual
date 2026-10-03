@@ -19,7 +19,7 @@ if os.name == "nt":  # pragma: no cover - exercised on Windows CI only
 else:  # pragma: no cover - exercised on POSIX CI only
     import fcntl
 
-from tools.source_record_index import SOURCE_RECORD_ID_KEY
+from tools.data.source_record_index import SOURCE_RECORD_ID_KEY
 from tools.sync_schema_sensor import apply_source_field_aliases
 
 

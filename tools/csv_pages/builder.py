@@ -23,7 +23,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 from tools.utils.spec_master import resolve_product_name_from_spec_master
 from tools.utils.path_utils import Paths
-from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR
+from tools.data.snapshot import STRUCTURED_DATA_DEFAULT_DIR
 from tools import lang_registry
 from tools.localized_copy import first_text, localized_columns
 

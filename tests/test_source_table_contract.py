@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from tools import source_table_contract
-from tools.data_snapshot import PHASE2_REQUIRED_TABLE_FILES
-from tools.source_intake_model import (
+from tools.data import source_table_contract
+from tools.data.snapshot import PHASE2_REQUIRED_TABLE_FILES
+from tools.data.source_intake_model import (
     FOOTNOTE_TEXT_FIELDS,
     MANUAL_COPY_TEXT_FIELDS,
     NOTE_TEXT_FIELDS,
@@ -16,7 +16,7 @@ from tools.source_intake_model import (
     TARGET_SPEC_NOTES,
     UPDATE_CAPABLE_TABLES,
 )
-from tools.source_record_index import TABLE_FALLBACK_KEY_FIELDS, TABLE_KEY_FIELDS, TABLE_OPTIONAL_KEY_FIELDS
+from tools.data.source_record_index import TABLE_FALLBACK_KEY_FIELDS, TABLE_KEY_FIELDS, TABLE_OPTIONAL_KEY_FIELDS
 
 
 class SourceTableContractTests(unittest.TestCase):

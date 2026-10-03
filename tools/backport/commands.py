@@ -13,7 +13,7 @@ from tools.backport.args import (  # noqa: E402
     _family_index_from_args,
     _value_index_from_args,
 )
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     apply_change_requests,
     build_change_request_report,
     load_change_requests,

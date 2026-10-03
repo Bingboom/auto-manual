@@ -55,7 +55,7 @@ from tools.backport.cloud_doc import (  # noqa: E402
     build_report,
     fetch_doc_text,
 )
-from tools.source_table_sync import apply_change_requests, load_sidecar_index  # noqa: E402
+from tools.data.source_table_sync import apply_change_requests, load_sidecar_index  # noqa: E402
 from tools.token_resolution_map import build_value_index  # noqa: E402
 from tools.utils.log import get_logger
 

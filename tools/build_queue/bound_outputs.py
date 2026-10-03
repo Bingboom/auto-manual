@@ -38,7 +38,7 @@ from tools.release_contract import (  # noqa: E402
     release_tag_for_target,
     release_version_dir_for_target,
 )
-from tools.sync_data import load_config  # noqa: E402
+from tools.data.sync_data import load_config  # noqa: E402
 from tools.utils.targets import resolve_output_lang  # noqa: E402
 
 

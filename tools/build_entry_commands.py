@@ -206,7 +206,7 @@ def sync_data_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        "-m", "tools.sync_data",
+        "-m", "tools.data.sync_data",
         "--config",
         str(config_path),
     ]

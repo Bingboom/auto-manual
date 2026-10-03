@@ -60,7 +60,7 @@ Milestone status: `done`
     - [`../tools/build/docs.py`](../tools/build/docs.py)
     - [`../tools/gen_index_bundle.py`](../tools/gen_index_bundle.py)
     - [`../tools/diff_report.py`](../tools/diff_report.py)
-    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/data/sync_data.py`](../tools/data/sync_data.py)
   - Guard tests:
     - [`../tests/test_build_script.py`](../tests/test_build_script.py)
     - [`../tests/test_sync_data.py`](../tests/test_sync_data.py)
@@ -167,7 +167,7 @@ Milestone status: `done`
     - [`../tools/build_queue/process_build_queue.py`](../tools/build_queue/process_build_queue.py)
     - [`../tools/build_queue/process_review_start_queue.py`](../tools/build_queue/process_review_start_queue.py)
     - [`../tools/build_queue/listen_build_queue.py`](../tools/build_queue/listen_build_queue.py)
-    - [`../tools/sync_data.py`](../tools/sync_data.py)
+    - [`../tools/data/sync_data.py`](../tools/data/sync_data.py)
   - Guard tests:
     - [`../tests/test_process_build_queue.py`](../tests/test_process_build_queue.py)
     - [`../tests/test_process_review_start_queue.py`](../tests/test_process_review_start_queue.py)

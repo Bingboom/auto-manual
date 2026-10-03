@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.data_snapshot import (  # noqa: E402
+from tools.data.snapshot import (  # noqa: E402
     PHASE2_REQUIRED_DERIVED_FILES,
     PHASE2_REQUIRED_TABLE_FILES,
     SNAPSHOT_MANIFEST_FILE,
@@ -31,7 +31,7 @@ from tools.build_queue.contract import (  # noqa: E402
     RESULT_FIELD,
     TRIGGER_FIELD,
 )
-from tools.source_intake_model import (  # noqa: E402
+from tools.data.source_intake_model import (  # noqa: E402
     MANUAL_COPY_TEXT_FIELDS,
     SPEC_TEXT_FIELDS,
     TARGET_MANUAL_COPY,
@@ -39,19 +39,19 @@ from tools.source_intake_model import (  # noqa: E402
     TARGET_SPEC_MASTER,
     UPDATE_CAPABLE_TABLES,
 )
-from tools.source_record_index import (  # noqa: E402
+from tools.data.source_record_index import (  # noqa: E402
     TABLE_FALLBACK_KEY_FIELDS,
     TABLE_KEY_FIELDS,
     TABLE_OPTIONAL_KEY_FIELDS,
 )
-from tools.source_table_contract import (  # noqa: E402
+from tools.data.source_table_contract import (  # noqa: E402
     DEFAULT_CONTRACT_PATH,
     load_source_table_contract,
     source_table_by_name,
     source_tables,
     validate_source_table_contract,
 )
-from tools.sync_data_models import TABLE_SCHEMAS  # noqa: E402
+from tools.data.sync_data_models import TABLE_SCHEMAS  # noqa: E402
 from tools.utils.log import get_logger
 
 _ERR = get_logger("schema-drift", stream="stderr")

@@ -66,11 +66,11 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
     # fix) is a correctness guard that belongs next to the verify verdicts.
     "tools/backport/reports.py": 900,
-    "tools/sync_data_runtime.py": 900,
+    "tools/data/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,
     "tools/translation_memory.py": 790,
-    "tools/source_record_index.py": 500,
-    "tools/source_table_sync.py": 500,
+    "tools/data/source_record_index.py": 500,
+    "tools/data/source_table_sync.py": 500,
     # Web manual presentation surface — source styles are component modules but
     # assemble into one public RTD asset. Keep the orchestration façade, reusable
     # reference component helper, and stylesheet assembler independently pinned.

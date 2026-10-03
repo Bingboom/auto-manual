@@ -381,7 +381,7 @@ Scope (one PR per item where possible):
 - T1: make `requirements.lock` the install source for CI and ReadTheDocs (today no workflow references it); fix the stale "Python >= 3.9" comment in [`requirements.txt`](../requirements.txt) and the stale "no lock file" note in [`ONBOARDING.md`](../ONBOARDING.md)
 - T2: pin and cache the TeXLive install in [`feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) (currently unpinned apt install on every run)
 - T3: move `docs/_build` binary assets (PNG/PDF/DOCX) to Git LFS; the history-rewrite decision (pack ~148 MiB, two 18.9 MB PDFs) is operator-gated and may be deferred, but new binaries stop entering raw history now
-- T4: scheduled, versioned export of the phase2 source tables (extend [`tools/data_snapshot.py`](../tools/data_snapshot.py) / `bitable_schema.py` export) plus a written restore runbook — today only structure parity is checked, content has no backup
+- T4: scheduled, versioned export of the phase2 source tables (extend [`tools/data/snapshot.py`](../tools/data/snapshot.py) / `bitable_schema.py` export) plus a written restore runbook — today only structure parity is checked, content has no backup
 - T5: route `feishu-build-queue` / draft / start-review failures into the same open/close-Issue sentinel pattern used by `cred-health-check` and `feishu-schema-parity`, so a failed queue run alerts without a watcher
 - T6: governance floor: add `CODEOWNERS`, verify server-side branch protection, add secret scanning and dependabot
 - T7: InDesign finalize resilience: record the pinned InDesign version and document a second-host setup for [`tools/idml/indesign_finalize.jsx`](../tools/idml/indesign_finalize.jsx) (top delivery SPOF)

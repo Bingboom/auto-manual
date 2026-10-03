@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     _resolve_written_value,
     apply_change_requests,
     plan_apply,

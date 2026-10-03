@@ -6,7 +6,7 @@ from pathlib import Path
 
 from tools.config_loader import load_config_mapping
 from tools.config_pages import ConfigPage, CsvPage, GeneratedPage, RstIncludePage
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.utils.path_utils import docs_build_dir_of
 from tools.utils.targets import (
     format_tokenized,

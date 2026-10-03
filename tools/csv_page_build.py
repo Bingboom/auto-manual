@@ -13,7 +13,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.data_snapshot import (
+from tools.data.snapshot import (
     STRUCTURED_DATA_DEFAULT_DIR,
     PAGE_REGISTRY_FILE,
     SPEC_FOOTNOTES_FILE,
