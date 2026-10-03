@@ -2418,6 +2418,10 @@ JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有
 
 App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
 
+Operation 源图已含外框时，中立 flow 包裹容器声明 `data-preserve-art-frame="true"`，避免共享 stage 再画第二层边线；前提说明使用 prerequisite 槽位及底图绑定坐标，文字和浅灰胶囊留在图内，由 HTML/CSS 绘制。
+
+Web App 编号步骤标题保留源文大小写，隐藏圆点并与步骤正文左边线对齐；该共享样式只作用于 App 章节。冻结包需重新生成并核验桌面/手机预览后才能采用更新样式。
+
 通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
 
 中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。

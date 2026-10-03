@@ -12,6 +12,20 @@
   container-type: inline-size;
 }
 
+/* A source-flow wrapper declares artwork that already contains its frame.
+   Preserve that edge instead of drawing and clipping a second outer frame. */
+[data-preserve-art-frame="true"] > .hb-operation-figure.hb-base-art-live-copy > .hb-operation-stage {
+  border: 0;
+  border-radius: 0;
+}
+
+/* The textless source removes the original pill; live copy restores its
+   measured fill and carries emphasis on the prerequisite prefix only. */
+[data-preserve-art-frame="true"] > .hb-operation-figure.hb-base-art-live-copy .hb-operation-prerequisite {
+  background: var(--hb-fill);
+  font-weight: 400;
+}
+
 /* The canvas holds the art box and the steps; the art box is exactly the art,
    so pill, clock and duration anchors resolve against the drawing alone. */
 .hb-base-art-live-copy .hb-operation-canvas,
@@ -443,6 +457,10 @@
     background: var(--hb-prerequisite-surface);
     font-size: 0.78rem;
     white-space: normal;
+  }
+
+  [data-preserve-art-frame="true"] > .hb-operation-figure.hb-base-art-live-copy .hb-operation-prerequisite {
+    padding-block: 0.2rem;
   }
 
   .hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration {

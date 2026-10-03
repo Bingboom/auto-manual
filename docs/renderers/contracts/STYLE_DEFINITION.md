@@ -627,6 +627,11 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 正视图、侧视图等密集引线标注图 | 经目标确认的本地化完整图 | 保留完整标注，不混入章节标题；型号、插座、接口必须匹配 |
 | App 界面、二维码、产品实物铭刻 | 保留图内内容 | App 步骤号统一用图下 HTML；不把界面文字当说明文字删除 |
 
+Operation 底图已含完整外框时，在承载组件的中立 flow 容器声明
+`data-preserve-art-frame="true"`：共享 CSS 取消组件额外的外框和圆角裁边。
+图内前提说明继续使用 Operation 的 prerequisite 槽位及源坐标，浅灰胶囊由
+HTML/CSS 按 `prerequisite_fill` 绘制；只有前缀加粗，不把说明移到图外。
+
 跨语言可复用已核对的同一底图和组件；跨型号复用前必须核对主机、接口和地区差异。
 共享样式不代表可以借用另一型号的底图。底图、源文字、SHA-256 和百分比标签位置
 必须一起登记；`base-art-live-copy` 复用现有 `manual-ir/v2 → ComponentSpec → 公共
@@ -666,6 +671,8 @@ App 添加设备源稿中夹在手机图和按键图之间的备注，由共享�
 | 开箱清单 | `.hb-inbox-composition` > `.hb-inbox-grid` | 三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条 |
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图；默认的共享按键底图不依赖目标插图授权，标签保持为覆盖活文本。仅当 target 的已核准 finished-panel 明确包含该组标签时，允许在 presentation 前以整图消费该 reference，并同时移除重复活文本；JE-2000F/EU/en 的三键控制面板属于此批准变体。LCD 模式表不属于此例外，仍由设备图与语义化 CSS/HTML 表格组成 |
+
+Web App 的编号步骤标题保留源文大小写，不加圆点，与步骤正文左边线对齐；该例外仅限包含共享 Add Device 组件的章节，不覆盖其他章节的 H2/H3。
 
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 
