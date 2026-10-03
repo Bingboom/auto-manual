@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="说明书工作台：从结构化数据与模板骨架进入构建，按型号和区域查找多格式交付物。">
+  <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据，按目标查找多格式交付物。">
   <title>说明书工作台</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/deliverables.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/production-evidence.css', 1) }}">
   <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}"></script>
 </head>
 <body class="system-workspace deliverables">
@@ -46,24 +47,21 @@
     <section class="wb-hero">
       <div><div class="eyebrow">MANUAL WORKBENCH</div>
       <h1>说明书工作台<span class="title-dot">.</span></h1>
-      <p>用结构化数据与可复用模板，构建多语言、多格式说明书。</p></div>
+      <p>看交付成果、用共享资产、跟进生产与修订。</p></div>
       <a class="wb-jump" href="#deliverables">查找交付物 <span aria-hidden="true">↓</span></a>
     </section>
 
-    {% include 'manual_workbench.html' %}
+    {% include 'workbench_summary.html' %}
 
-    <section class="sw-section" id="deliverables" aria-labelledby="deliverables-title">
+    <details class="pe-fold" id="deliverables"><summary>查找全部交付物 <span>按型号、区域、语言筛选</span></summary>
+
+    <section class="sw-section" id="deliverables-matrix" aria-labelledby="deliverables-title">
       <div class="dl-section-title"><h2 id="deliverables-title">交付物矩阵</h2><p>按型号与区域查找 · 点语言标签打开对应版本</p></div>
-      <div class="dl-tiles">
-        {%- for tile in tiles %}
-        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong><span class="sw-tile-sub">{{ tile.sub|e }}</span></div>
-        {%- endfor %}
-      </div>
       <div class="dl-toolbar">
         <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
         <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
         <div class="dl-meta">
-          <span>网页手册：{% if web_missing %}{{ fallbacks.publications|e }}{% else %}发布清单{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}{% endif %}</span>
+          <span>网页手册：{% if web_missing %}{{ fallbacks.publications|e }}{% else %}发布清单{% if last_published %} · 目录中最近构建 {{ last_published|e }}{% endif %}{% endif %}</span>
           <span>印刷交付包、Word 云文档：{% if snapshot_date %}飞书快照 {{ snapshot_date|e }}{% else %}{{ fallbacks.deliverables_feishu|e }}{% endif %}{{ stale_mark(stale) }}</span>
         </div>
       </div>
@@ -90,10 +88,29 @@
       </div>
       <p class="dl-empty" id="dl-empty" hidden>没有符合筛选条件的交付物。</p>
       {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>发布清单和飞书快照当前都不可读。</p></div>
+      <div class="empty-state">{% if web_missing and feishu_missing %}<h3>Unavailable</h3><p>发布清单和飞书快照当前都不可读。</p>{% elif web_missing or feishu_missing %}<h3>Unavailable</h3><p>部分来源不可读；可读来源暂无交付物。</p>{% else %}<h3>0 个交付物</h3><p>当前有效快照没有交付物。</p>{% endif %}</div>
       {%- endif %}
       <p class="dl-note">每个标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。PDF 在印刷交付包的压缩包里。</p>
     </section>
+
+    </details>
+
+    <details class="pe-fold" id="work-entries"><summary>更多工作入口 <span>源表、构建、评审与维护指引</span></summary>
+      {% include 'manual_workbench.html' %}
+    </details>
+
+    <details class="pe-fold" id="production-evidence"><summary>查看数据与依据 <span>统计口径、引用目标与记录缺口</span></summary>
+      {% include 'production_evidence.html' %}
+    </details>
+
+    <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
+      {% include 'production_evidence_details.html' %}
+    </details>
+
+    <details class="pe-system-entry"><summary>系统健康与架构</summary>
+      <p>SSOT · Manual IR · Skeleton · Agent Architecture · Gate · Roadmap</p>
+      {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}">系统建设、阶段门与证据 →</a>{% endif %}
+    </details>
 
     <footer>
       <span>快照 {{ build_date|e }}</span>
@@ -105,6 +122,20 @@
 <script>
 (() => {
   document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
+  function revealTarget(hash = location.hash) {
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    for (let parent = target; parent; parent = parent.parentElement) {
+      if (parent.tagName === "DETAILS") parent.open = true;
+    }
+    target.scrollIntoView({block: "start"});
+  }
+  window.addEventListener("hashchange", () => revealTarget());
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link && link.hash === location.hash) revealTarget(link.hash);
+  });
+  revealTarget();
   const model = document.getElementById("dl-model");
   const region = document.getElementById("dl-region");
   const empty = document.getElementById("dl-empty");

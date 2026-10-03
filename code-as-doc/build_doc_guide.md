@@ -1,6 +1,8 @@
 # Windows Build Guide
 
 
+说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。首页采用结论优先布局：常用工作入口、生产规模及交付入口条形图、三类资产关系图、投入与回流简况；完整列表、工作地图和统计证据折叠展示，锚点导航自动展开目标；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](dev/workspace_production_evidence.md)。
+
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](reviews/jbp3600a-overview-lcd-20260916.md)。
 
@@ -2358,7 +2360,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：上方以“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图组织入口，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：首页提供常用工作入口、生产规模图表、三类资产管理入口与投入/回流简况。“更多工作入口”折叠区保留“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
