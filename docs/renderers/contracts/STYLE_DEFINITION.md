@@ -1444,3 +1444,11 @@ RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
 semantics while retaining the exact localized label. At most one such role
 may occur in a label cell; conflicting roles are rejected. Unmarked legacy
 labels keep the existing language-data lookup behavior.
+
+### 节能操作图的状态和按钮标签
+
+节能图须绑定 `HB-SPECIAL-OPERATION/footer-overlay`，开关状态使用
+`mode_label`，长按说明使用独立 step；不得把两者拼成普通插图的一行标签。
+时钟由共享 CSS 呈现。本语按钮标签使用 `supporting_copy`，可由哈希绑定的
+`supporting_copy_rects` 定位；手机端恢复自然流。`footer_y` 可将底部操作说明
+定位到原图括号下方，原始底图字节不变。几何配置必须覆盖全部标签。

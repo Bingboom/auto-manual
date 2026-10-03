@@ -1,0 +1,1000 @@
+{
+  "schema_version": "frozen-pdf-artwork-bindings/v1",
+  "target": {
+    "model": "JE-3000C",
+    "region": "EU"
+  },
+  "technical_version": "git-20261002-45219a6e-energy-web",
+  "text_source": {
+    "filename": "HTE156-EU-9国语言-0923.ai",
+    "sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574"
+  },
+  "assets": {
+    "lcd.icon.wifi": {
+      "path": "artwork/shared/lcd-icon-wifi.png",
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-wifi.png",
+      "source_sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    "lcd.icon.bluetooth": {
+      "path": "artwork/shared/lcd-icon-bluetooth.png",
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-bluetooth.png",
+      "source_sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    "lcd.icon.quiet-charging": {
+      "path": "artwork/shared/lcd-icon-quiet-charging.png",
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-quiet-charging.png",
+      "source_sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    "lcd.icon.battery-saving": {
+      "path": "artwork/shared/lcd-icon-battery-saving.png",
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-battery-saving.png",
+      "source_sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    "lcd.icon.charging-plan": {
+      "path": "artwork/shared/lcd-icon-charging-plan.png",
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-charging-plan.png",
+      "source_sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    "lcd.icon.charging-power-limit": {
+      "path": "artwork/shared/lcd-icon-charging-power-limit.png",
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-charging-power-limit.png",
+      "source_sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    "lcd.icon.self-powered": {
+      "path": "artwork/shared/lcd-icon-self-powered.png",
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-self-powered.png",
+      "source_sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    "lcd.icon.tou": {
+      "path": "artwork/shared/lcd-icon-tou.png",
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-tou.png",
+      "source_sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    "lcd.icon.ups": {
+      "path": "artwork/shared/lcd-icon-ups.png",
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ups.png",
+      "source_sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    "lcd.icon.ac-power": {
+      "path": "artwork/shared/lcd-icon-ac-power.png",
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ac-power.png",
+      "source_sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    "lcd.icon.input-power": {
+      "path": "artwork/shared/lcd-icon-input-power.png",
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-input-power.png",
+      "source_sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    "lcd.icon.remaining-charge-time": {
+      "path": "artwork/shared/lcd-icon-remaining-charge-time.png",
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-charge-time.png",
+      "source_sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    "lcd.icon.ac-wall-charging": {
+      "path": "artwork/shared/lcd-icon-ac-wall-charging.png",
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-ac-wall-charging.png",
+      "source_sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    "lcd.icon.car-charging": {
+      "path": "artwork/shared/lcd-icon-car-charging.png",
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-car-charging.png",
+      "source_sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    "lcd.icon.solar-charging": {
+      "path": "artwork/shared/lcd-icon-solar-charging.png",
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-solar-charging.png",
+      "source_sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    "lcd.icon.battery-power": {
+      "path": "artwork/shared/lcd-icon-battery-power.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-battery-power.png",
+      "source_sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    "lcd.icon.low-battery": {
+      "path": "artwork/shared/lcd-icon-low-battery.png",
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-low-battery.png",
+      "source_sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    "lcd.icon.remaining-battery-percentage": {
+      "path": "artwork/shared/lcd-icon-remaining-battery-percentage.png",
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-battery-percentage.png",
+      "source_sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    "lcd.icon.discharge-timer": {
+      "path": "artwork/shared/lcd-icon-discharge-timer.png",
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-discharge-timer.png",
+      "source_sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    "lcd.icon.energy-saving": {
+      "path": "artwork/shared/lcd-icon-energy-saving.png",
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-energy-saving.png",
+      "source_sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    "lcd.icon.high-temperature": {
+      "path": "artwork/shared/lcd-icon-high-temperature.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/shared/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "source_sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    "lcd.icon.low-temperature": {
+      "path": "artwork/shared/lcd-icon-low-temperature.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/shared/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "source_sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    "lcd.icon.fault-code": {
+      "path": "artwork/shared/lcd-icon-fault-code.png",
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-fault-code.png",
+      "source_sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    "lcd.icon.output-voltage-frequency": {
+      "path": "artwork/shared/lcd-icon-output-voltage-frequency.png",
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-output-voltage-frequency.png",
+      "source_sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    "lcd.icon.output-power": {
+      "path": "artwork/shared/lcd-icon-output-power.png",
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-output-power.png",
+      "source_sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    "lcd.icon.remaining-discharge-time": {
+      "path": "artwork/shared/lcd-icon-remaining-discharge-time.png",
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-remaining-discharge-time.png",
+      "source_sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    "symbol.general_warning": {
+      "path": "artwork/shared/symbol-general_warning.png",
+      "sha256": "9a9a245fe848fed454ec26af59ccf09f1c95992681f9882cd8c6b0494b74c592",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-general_warning.png",
+      "source_sha256": "9a9a245fe848fed454ec26af59ccf09f1c95992681f9882cd8c6b0494b74c592"
+    },
+    "symbol.read_manual": {
+      "path": "artwork/shared/symbol-read_manual.png",
+      "sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-read_manual.png",
+      "source_sha256": "e36930ae47111aed8e3024f886e4a5840c38d44a728be6a2bf971049f201c79e"
+    },
+    "symbol.do_not_disassemble": {
+      "path": "artwork/shared/symbol-do_not_disassemble.png",
+      "sha256": "2c7663a3294d2f73c14f7bc17a6eefdd04414495f76dbe0e76b893f11c0f919f",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-do_not_disassemble.png",
+      "source_sha256": "2c7663a3294d2f73c14f7bc17a6eefdd04414495f76dbe0e76b893f11c0f919f"
+    },
+    "symbol.keep_away_from_fire": {
+      "path": "artwork/shared/symbol-keep_away_from_fire.png",
+      "sha256": "5bb172a98c923d9688e9260db6d27a5cbe26d7dd39ed17adff5b340c02cdcc90",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-keep_away_from_fire.png",
+      "source_sha256": "5bb172a98c923d9688e9260db6d27a5cbe26d7dd39ed17adff5b340c02cdcc90"
+    },
+    "symbol.keep_away_from_children": {
+      "path": "artwork/shared/symbol-keep_away_from_children.png",
+      "sha256": "8936085b3f6fe236859cd9cdb44b4c8313cd71f2da1b9b1916ce11e5715bc03d",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-keep_away_from_children.png",
+      "source_sha256": "8936085b3f6fe236859cd9cdb44b4c8313cd71f2da1b9b1916ce11e5715bc03d"
+    },
+    "symbol.lithium_battery": {
+      "path": "artwork/shared/symbol-lithium_battery.png",
+      "sha256": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-lithium_battery.png",
+      "source_sha256": "11f1a73a4cb5b6c4ec69a51f71f3f16480fd792c61882135ee77569f78b192b8"
+    },
+    "symbol.weee": {
+      "path": "artwork/shared/symbol-weee.png",
+      "sha256": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7",
+      "content_mode": "textless",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/symbol-weee.png",
+      "source_sha256": "40529e39bab80505522965d934be95e94c03e2ac6a56f7d6208ddfec6b19d8d7"
+    },
+    "symbol.weee2": {
+      "path": "artwork/shared/symbol-weee2.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "content_mode": "textless",
+      "reused_from": "docs/templates/word_template/common_assets/symbols/weee2.png",
+      "source_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    "inbox.main": {
+      "path": "artwork/shared/inbox-main.png",
+      "sha256": "17555c602ab83833236333ae28aac28dfdfed0064f389504a0aee30c93a7a1f6",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/inbox_unit.png",
+      "source_sha256": "17555c602ab83833236333ae28aac28dfdfed0064f389504a0aee30c93a7a1f6"
+    },
+    "inbox.cable": {
+      "path": "artwork/shared/inbox-cable.png",
+      "sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/inbox_cable.png",
+      "source_sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f"
+    },
+    "inbox.manual": {
+      "path": "artwork/shared/inbox-manual.png",
+      "sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/inbox_manual.png",
+      "source_sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6"
+    },
+    "lcd.map": {
+      "path": "artwork/shared/lcd-map.png",
+      "sha256": "951a135e02a5dc0633fdbfba70e3df1f2fc145350b6119effc45f5fee9be5a75",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/lcd_map.png",
+      "source_sha256": "951a135e02a5dc0633fdbfba70e3df1f2fc145350b6119effc45f5fee9be5a75"
+    },
+    "reference.ups_connection": {
+      "path": "artwork/shared/reference-ups_connection.png",
+      "sha256": "c9915b21215a57d5072ee9bfcd2ae3067dfffd78adb00a1dcc15ed6449b8a133",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/ups.png",
+      "source_sha256": "c9915b21215a57d5072ee9bfcd2ae3067dfffd78adb00a1dcc15ed6449b8a133"
+    },
+    "reference.ac_wall_charging": {
+      "path": "artwork/shared/reference-ac_wall_charging.png",
+      "sha256": "5af07782e9c16ccc57275e018e52f213881d81c822491422143023d0fb6996b5",
+      "content_mode": "fixed-product-markings",
+      "reused_from": "docs/renderers/web/assets/je3000c_eu_en/charging_ac.png",
+      "source_sha256": "5af07782e9c16ccc57275e018e52f213881d81c822491422143023d0fb6996b5"
+    },
+    "app.store": {
+      "path": "artwork/shared/app-store.png",
+      "sha256": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c",
+      "content_mode": "app-ui",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/app-store.png",
+      "source_sha256": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c"
+    },
+    "app.qr": {
+      "path": "artwork/shared/app-qr.png",
+      "sha256": "d826f7ee551bd30223a7e9ceb2eb65448f0b3a185145ddc45b42eb19bcfed14a",
+      "content_mode": "app-ui",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/app-qr.png",
+      "source_sha256": "d826f7ee551bd30223a7e9ceb2eb65448f0b3a185145ddc45b42eb19bcfed14a"
+    },
+    "app.download": {
+      "path": "artwork/shared/app-store.png",
+      "sha256": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c",
+      "content_mode": "app-ui",
+      "reused_from": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/app-store.png",
+      "source_sha256": "1a75f52019e85f537b1744e56ddeb81bf35710ebfb8b95766bfd404857d7c60c"
+    },
+    "operation.main-power": {
+      "path": "artwork/shared/operation-main-power.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 109,
+      "clip_points": [
+        38,
+        78,
+        340,
+        157
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd"
+    },
+    "operation.ac-output": {
+      "path": "artwork/shared/operation-ac-output.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 109,
+      "clip_points": [
+        35,
+        272,
+        340,
+        467
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12"
+    },
+    "operation.dc-usb-output": {
+      "path": "artwork/shared/operation-dc-usb-output.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 110,
+      "clip_points": [
+        35,
+        47,
+        341,
+        210
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d"
+    },
+    "lcd.mode": {
+      "path": "artwork/shared/lcd-mode.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 111,
+      "clip_points": [
+        37,
+        201,
+        333,
+        280
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "3a01e09d603ddc83289b3869304c7f45909dec2aaa650d4a84306e4dc4b8b55a"
+    },
+    "reference.solar_four": {
+      "path": "artwork/shared/reference-solar_four.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 114,
+      "clip_points": [
+        28,
+        28,
+        342,
+        160
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda"
+    },
+    "reference.car_charging": {
+      "path": "artwork/shared/reference-car_charging.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 114,
+      "clip_points": [
+        28,
+        306,
+        341,
+        437
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f"
+    },
+    "app.phone": {
+      "path": "artwork/shared/app-phone.png",
+      "content_mode": "app-ui",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 118,
+      "clip_points": [
+        100,
+        215.5,
+        269,
+        366.5
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "eba70d2cac9d117d5e53bf7572da12548d08f23ee824a473b652eb839bb93f77"
+    },
+    "app.result": {
+      "path": "artwork/shared/app-result.png",
+      "content_mode": "app-ui",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 119,
+      "clip_points": [
+        54,
+        145,
+        320,
+        294
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "123ee64484e222f7565742843818885dc4e5520c47b8f5fcb60c362b04a562f7"
+    },
+    "app.control": {
+      "path": "artwork/shared/app-control.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 118,
+      "clip_points": [
+        28,
+        379,
+        341,
+        471
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "4653c9cd4faf5f9add373894c9776b9e3028a9a2eeb9938fdea2956762c17885"
+    },
+    "reference.overview_front_view": {
+      "path": "artwork/pt/reference-overview_front_view-pt.png",
+      "content_mode": "source-finished-panel",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 106,
+      "clip_points": [
+        25,
+        76,
+        344,
+        289
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "language": "pt",
+      "sha256": "b7edc6e663213bb9e5c1b434d1c8948844fd9625361e4f5cfa33f74648a3c1b1"
+    },
+    "reference.overview_right_view": {
+      "path": "artwork/pt/reference-overview_right_view-pt.png",
+      "content_mode": "source-finished-panel",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 106,
+      "clip_points": [
+        25,
+        328,
+        344,
+        444
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "language": "pt",
+      "sha256": "1a91d6d7799d3abeb9a7b53c924e3fb5879fd4a628a0bcd332cb513990ec1e8a"
+    },
+    "operation.energy-saving": {
+      "path": "artwork/shared/reference-energy_saving.png",
+      "content_mode": "fixed-product-markings",
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_page": 111,
+      "clip_points": [
+        35,
+        36,
+        337,
+        130
+      ],
+      "extraction_recipe": "extraction_recipes/native-artwork.json",
+      "sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27"
+    }
+  },
+  "figures": [
+    {
+      "slug": "overview_front_view",
+      "asset_key": "reference.overview_front_view"
+    },
+    {
+      "slug": "overview_right_view",
+      "asset_key": "reference.overview_right_view"
+    },
+    {
+      "slug": "ups_connection",
+      "asset_key": "reference.ups_connection"
+    },
+    {
+      "slug": "ac_wall_charging",
+      "asset_key": "reference.ac_wall_charging"
+    },
+    {
+      "slug": "solar_four",
+      "asset_key": "reference.solar_four",
+      "native_captions": true,
+      "base_art_layout": {
+        "art_sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "preserve_frame": true,
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              65,
+              82,
+              34,
+              15
+            ]
+          }
+        ],
+        "mobile_labels": "overlay"
+      }
+    },
+    {
+      "slug": "car_charging",
+      "asset_key": "reference.car_charging",
+      "native_captions": true,
+      "base_art_layout": {
+        "art_sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "preserve_frame": true,
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              67,
+              21.5,
+              31,
+              14
+            ]
+          },
+          {
+            "line": 1,
+            "rect": [
+              50.3,
+              84.3,
+              44.5,
+              11
+            ],
+            "fill": "#ffffff"
+          }
+        ],
+        "mobile_labels": "overlay"
+      }
+    }
+  ],
+  "web_contract": {
+    "profiles": {
+      "document": {
+        "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+      },
+      "web": {
+        "entry_source_pattern": "00_preface*",
+        "excluded_source_patterns": [
+          "cover*",
+          "00_toc*",
+          "99_back_cover*"
+        ]
+      }
+    },
+    "figure_coverage": {
+      "requirements": []
+    },
+    "preface": {
+      "source_patterns": [
+        "00_preface*"
+      ],
+      "targets": []
+    },
+    "fcc": {
+      "source_patterns": [
+        "*01_fcc"
+      ],
+      "mark_asset_ref": "mark/fcc",
+      "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+      "right_column_markers": [
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "en",
+          "marker": "If this equipment does cause harmful interference"
+        },
+        {
+          "source_patterns": [
+            "p22_01_fcc"
+          ],
+          "language": "fr",
+          "marker": "Si cet équipement trouble la réception"
+        },
+        {
+          "source_patterns": [
+            "p38_01_fcc"
+          ],
+          "language": "es",
+          "marker": "Si este aparato causa interferencias dañinas"
+        },
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "pt-BR",
+          "marker": "Se este equipamento causar interferência prejudicial"
+        }
+      ]
+    },
+    "meaning_symbols": {
+      "source_patterns": [
+        "symbols_*"
+      ],
+      "signal_row_count": 4
+    },
+    "troubleshooting_table": {
+      "source_patterns": [
+        "troubleshooting_*"
+      ]
+    },
+    "specifications": {
+      "source_patterns": [
+        "spec_*"
+      ],
+      "section_count": 4,
+      "circled_reference_count": 2
+    },
+    "warranty": {
+      "source_patterns": [
+        "*11_warranty"
+      ],
+      "section_count": 6,
+      "period_years": [
+        "3",
+        "2"
+      ]
+    },
+    "in_the_box": {
+      "semantic_source_patterns": [
+        "box_contents_*"
+      ],
+      "source_patterns": [
+        "*02_whats_in_the_box"
+      ]
+    },
+    "product_overview": {
+      "source_patterns": []
+    },
+    "operations": {
+      "source_patterns": [
+        "*05_operation_guide_placeholder",
+        "*05_operation_guide_de",
+        "*05_operation_guide_es",
+        "*05_operation_guide_fr",
+        "*05_operation_guide_it",
+        "*05_operation_guide_uk"
+      ],
+      "auto_resume_table": {
+        "body_rows": 4
+      },
+      "key_combination_table": {
+        "minimum_body_rows": 3
+      },
+      "lcd_mode_table": {
+        "image_key": "operation/lcd_mode",
+        "body_rows": 6
+      },
+      "figures": [
+        {
+          "id": "main-power",
+          "image_key": "operation/main_power",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "capture_prerequisite": false,
+          "capture_following_lines": 3,
+          "web_replace_key": "operation.main-power",
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd",
+            "step_anchors": [
+              [
+                75.4967,
+                17.7215
+              ],
+              [
+                75.4967,
+                50.6329
+              ]
+            ],
+            "step_width": 24,
+            "duration_anchor": [
+              81.12582781456953,
+              72.15189873417721
+            ]
+          }
+        },
+        {
+          "id": "ac-output",
+          "image_key": "operation/ac_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "capture_prerequisite": true,
+          "capture_following_lines": 0,
+          "web_replace_key": "operation.ac-output",
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12",
+            "step_anchors": [
+              [
+                82.9508,
+                21.0256
+              ],
+              [
+                82.9508,
+                32.8205
+              ]
+            ],
+            "step_width": 18,
+            "prerequisite_rect": [
+              1,
+              1,
+              43,
+              8
+            ],
+            "prerequisite_fill": "#f2f2f3",
+            "prerequisite_max_width": 43
+          }
+        },
+        {
+          "id": "dc-usb-output",
+          "image_key": "operation/dc_usb_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "capture_prerequisite": true,
+          "capture_following_lines": 0,
+          "web_replace_key": "operation.dc-usb-output",
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d",
+            "step_anchors": [
+              [
+                83.00653594771242,
+                14.11042944785276
+              ],
+              [
+                83.00653594771242,
+                26.993865030674847
+              ]
+            ],
+            "step_width": 18,
+            "prerequisite_rect": [
+              1,
+              1,
+              43,
+              8
+            ],
+            "prerequisite_fill": "#f2f2f3",
+            "prerequisite_max_width": 43
+          }
+        },
+        {
+          "id": "energy-saving",
+          "image_key": "reference-energy_saving",
+          "layout": "footer-overlay",
+          "step_ids": [
+            "toggle"
+          ],
+          "capture_prerequisite": false,
+          "capture_following_lines": 2,
+          "web_replace_key": "operation.energy-saving",
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27",
+            "footer_x": 56,
+            "footer_y": 80,
+            "supporting_copy_rects": [
+              [
+                39,
+                57,
+                30,
+                16
+              ],
+              [
+                73,
+                57,
+                26,
+                16
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "app_download": {
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "image_key": "app/download",
+      "artwork": {
+        "store": "docs/renderers/contracts/assets/app/app_store_badges.png",
+        "qr": "docs/renderers/contracts/assets/app/app_download_qr.png"
+      }
+    },
+    "app_inline_controls": {
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "add_device_paragraph_prefix": "2.1",
+      "button_terms": [
+        "button",
+        "bouton",
+        "botón"
+      ],
+      "accessible_label": "Add device"
+    },
+    "reference_figures": {
+      "source_patterns": [
+        "*charging",
+        "*08_charging_methods",
+        "*12_app_setup_placeholder"
+      ],
+      "figures": [
+        {
+          "id": "app-add-device",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/add_device",
+          "capture_following_lines": 3,
+          "presentation": "shared-art-live-labels",
+          "captions_embedded": true,
+          "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+          "label_roles": [
+            "main-power",
+            "dc-usb",
+            "ac-power"
+          ],
+          "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+          "asset_scope": "shared"
+        },
+        {
+          "id": "charging-ac-wall",
+          "source_patterns": [
+            "*charging"
+          ],
+          "image_key": "charging/ac_wall",
+          "capture_adjacent_paragraph": true,
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-ac-wall",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-solar-direct",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/solar_direct",
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-solar-direct",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-solar-adapter",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/solar_adapter",
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-solar-adapter",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-car",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/car_charge",
+          "capture_following_lines": 2,
+          "web_replace_key": "reference.charging-car",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "08_charging_methods"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p29_08_charging_methods"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p45_08_charging_methods"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "app-connect-result",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/connect_result",
+          "captions_embedded": true,
+          "web_replace_key": "reference.app-connect-result",
+          "composite_locale": "shared",
+          "asset_scope": "shared"
+        }
+      ]
+    },
+    "schema_version": "web-manual-presentation/v2",
+    "figure_targets": [
+      {
+        "model": "JE-3000C",
+        "region": "EU"
+      }
+    ],
+    "presentation_layers": {
+      "base": "shared-manual-semantics-v1",
+      "skeleton_profile": "portable-power-station-v1",
+      "target_overlay": "je3000c-eu-shared-tables-v1"
+    }
+  },
+  "pending": []
+}

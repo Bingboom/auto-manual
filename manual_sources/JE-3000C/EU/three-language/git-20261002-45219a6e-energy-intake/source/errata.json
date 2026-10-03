@@ -1,0 +1,263 @@
+{
+  "entries": [
+    {
+      "id": "NL-AC-BUTTON",
+      "locale": "nl",
+      "source_text": "Aan/uit-knop voor DC",
+      "corrected_text": "Aan/uit-knop voor AC",
+      "status": "operator-approved",
+      "operator_decision": {
+        "date": "2026-10-01",
+        "quote": "确认这两项按 AC、8 A 修正，并记录勘误"
+      },
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_pages": [
+        122,
+        127,
+        128,
+        134
+      ],
+      "reason": "Operator-approved correction against same-source English, Portuguese and Polish labels/specifications.",
+      "native_bindings": [
+        {
+          "path": [
+            "source",
+            "pages",
+            2,
+            "blocks_visual_order",
+            13,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC\n",
+          "corrected_text": "Aan/uit-knop voor AC\n",
+          "physical_page": 122
+        },
+        {
+          "path": [
+            "source",
+            "pages",
+            7,
+            "blocks_visual_order",
+            0,
+            "text"
+          ],
+          "source_text": "Hoofd AAN/UIT-knop\nAan/uit-knop voor DC\n",
+          "corrected_text": "Hoofd AAN/UIT-knop\nAan/uit-knop voor AC\n",
+          "physical_page": 127
+        },
+        {
+          "path": [
+            "source",
+            "pages",
+            8,
+            "blocks_visual_order",
+            4,
+            "text"
+          ],
+          "source_text": "Houd beide knoppen 3 \nseconden ingedrukt\nAan/Uit-knop\nAan/uit-knop voor DC\n",
+          "corrected_text": "Houd beide knoppen 3 \nseconden ingedrukt\nAan/Uit-knop\nAan/uit-knop voor AC\n",
+          "physical_page": 128
+        },
+        {
+          "path": [
+            "source",
+            "pages",
+            8,
+            "blocks_visual_order",
+            11,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC\n",
+          "corrected_text": "Aan/uit-knop voor AC\n",
+          "physical_page": 128
+        },
+        {
+          "path": [
+            "source",
+            "pages",
+            14,
+            "blocks_visual_order",
+            10,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC\n",
+          "corrected_text": "Aan/uit-knop voor AC\n",
+          "physical_page": 134
+        },
+        {
+          "path": [
+            "records",
+            "operation_tables",
+            "shortcuts",
+            "rows",
+            0,
+            "buttons",
+            1,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC",
+          "corrected_text": "Aan/uit-knop voor AC",
+          "physical_page": 128
+        },
+        {
+          "path": [
+            "records",
+            "operation_tables",
+            "shortcuts",
+            "rows",
+            2,
+            "buttons",
+            1,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC",
+          "corrected_text": "Aan/uit-knop voor AC",
+          "physical_page": 128
+        },
+        {
+          "path": [
+            "records",
+            "media",
+            "overview",
+            "views",
+            "front",
+            "callouts",
+            "13",
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC",
+          "corrected_text": "Aan/uit-knop voor AC",
+          "physical_page": 122
+        },
+        {
+          "path": [
+            "records",
+            "app_control_labels",
+            "rows",
+            2,
+            "text"
+          ],
+          "source_text": "Aan/uit-knop voor DC",
+          "corrected_text": "Aan/uit-knop voor AC",
+          "physical_page": 134
+        },
+        {
+          "path": [
+            "records",
+            "media",
+            "operation_panels",
+            "energy-saving",
+            "supporting_copy",
+            1
+          ],
+          "source_text": "Aan/uit-knop voor DC",
+          "corrected_text": "Aan/uit-knop voor AC",
+          "physical_page": 127
+        }
+      ],
+      "asset_corrections": [
+        {
+          "physical_page": 122,
+          "raw_asset": {
+            "path": "artwork/nl/reference-overview_front_view-nl.png",
+            "sha256": "c037c858fe766ca9a3ba1afb6239236620047a1cc89909ade24a5bc5e6b35d04"
+          },
+          "corrected_web_asset": {
+            "path": "artwork/nl/reference-overview_front_view-nl-approved.png",
+            "sha256": "0dc41ff0d58107d988507d5e02b625cea1b82c9a3769c5fd3f531197762d1ef2"
+          },
+          "extraction_recipe": "extraction_recipes/nl-approved-labels.json"
+        }
+      ]
+    },
+    {
+      "id": "NL-CAR-INPUT",
+      "locale": "nl",
+      "source_text": "16A max",
+      "corrected_text": "8A max",
+      "status": "operator-approved",
+      "operator_decision": {
+        "date": "2026-10-01",
+        "quote": "确认这两项按 AC、8 A 修正，并记录勘误"
+      },
+      "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+      "physical_pages": [
+        122,
+        132
+      ],
+      "reason": "Operator-approved correction against same-source English, Portuguese and Polish labels/specifications.",
+      "native_bindings": [
+        {
+          "path": [
+            "source",
+            "pages",
+            2,
+            "blocks_visual_order",
+            19,
+            "text"
+          ],
+          "source_text": "16A max\n",
+          "corrected_text": "8A max\n",
+          "physical_page": 122
+        },
+        {
+          "path": [
+            "source",
+            "pages",
+            12,
+            "blocks_visual_order",
+            18,
+            "text"
+          ],
+          "source_text": "Auto: 12-16 V⎓8A max, verdubbeld naar 16A max\n",
+          "corrected_text": "Auto: 12-16 V⎓8A max, verdubbeld naar 8A max\n",
+          "physical_page": 132
+        },
+        {
+          "path": [
+            "source",
+            "tables",
+            "specifications",
+            "groups",
+            "inputs",
+            1,
+            "value"
+          ],
+          "source_text": "Auto: 12-16 V⎓8A max, verdubbeld naar 16A max PV: 16-60 V⎓12A max, verdubbeld naar 24A / 1000W max",
+          "corrected_text": "Auto: 12-16 V⎓8A max, verdubbeld naar 8A max PV: 16-60 V⎓12A max, verdubbeld naar 24A / 1000W max",
+          "physical_page": 132
+        },
+        {
+          "path": [
+            "records",
+            "media",
+            "overview",
+            "views",
+            "right",
+            "callouts",
+            "19",
+            "text"
+          ],
+          "source_text": "16A max",
+          "corrected_text": "8A max",
+          "physical_page": 122
+        }
+      ],
+      "asset_corrections": [
+        {
+          "physical_page": 122,
+          "raw_asset": {
+            "path": "artwork/nl/reference-overview_right_view-nl.png",
+            "sha256": "70e824fe0b2339c324cc520d2599bc5f27eef73c9b8809b2c546636f72cbb7de"
+          },
+          "corrected_web_asset": {
+            "path": "artwork/nl/reference-overview_right_view-nl-approved.png",
+            "sha256": "ed2c31a9cf77d0318415fb20f90cf8ff0fcbaf13736f45336fea82894d971320"
+          },
+          "extraction_recipe": "extraction_recipes/nl-approved-labels.json"
+        }
+      ]
+    }
+  ],
+  "policy": "Apply only exact native bindings approved by the operator; retain raw AI and raw extraction evidence."
+}
