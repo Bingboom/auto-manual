@@ -1,5 +1,7 @@
 # JE-3000C EU energy-saving panel correction
 
+Status: active
+
 ## Cause and correction
 
 The PT/NL/PL native intake registered `energy_saving` as a generic reference
