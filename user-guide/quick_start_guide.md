@@ -852,3 +852,5 @@ JE-100C/EU 九语 Web 的本地示例见[构建指南](../code-as-doc/build_doc_
 并显式指定 `--data-root manual_sources/JE-100C/EU/en/2.0/phase2`。
 其余可用语言为 `en/es/de/it/uk/pt/nl/pl`，配置文件后缀与 `--lang` 同步替换。
 这些产物是本地候选，未修改线上构建表或发布链接。
+
+For English/native Web intake, start with the [source-copy work packet and shared-art review](../code-as-doc/dev/manual_intake_assistance.md) before assembling a candidate.
