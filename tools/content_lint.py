@@ -63,7 +63,7 @@ from tools.content_lint_languages import (  # noqa: E402
     _TROUBLE,
     _VALUE,
 )
-from tools.source_record_index import resolve_findings  # noqa: E402
+from tools.data.source_record_index import resolve_findings  # noqa: E402
 from tools.utils.path_utils import get_paths  # noqa: E402
 from tools.utils.log import get_logger
 

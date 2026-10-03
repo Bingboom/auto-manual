@@ -26,7 +26,7 @@ import re
 from pathlib import Path
 from typing import Any, Protocol
 
-from tools.source_record_index import (
+from tools.data.source_record_index import (
     load_index,
     resolve as _resolve_record,
     resolve_by_table as _resolve_by_table,

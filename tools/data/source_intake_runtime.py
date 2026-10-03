@@ -6,8 +6,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools.source_intake_extract import MarkdownTable, parse_markdown_tables, table_payload
-from tools.source_intake_model import (
+from tools.data.source_intake_extract import MarkdownTable, parse_markdown_tables, table_payload
+from tools.data.source_intake_model import (
     CANDIDATE_SCHEMA_VERSION,
     FOOTNOTE_TEXT_FIELDS,
     MANUAL_COPY_TEXT_FIELDS,
@@ -25,9 +25,9 @@ from tools.source_intake_model import (
     normalize_space,
     page_is_specifications,
 )
-from tools.source_record_index import load_index, resolve_by_table
+from tools.data.source_record_index import load_index, resolve_by_table
 from tools.spec_master_sources import model_region_from_document_key
-from tools.source_table_sync import CHANGE_REQUEST_SCHEMA_VERSION
+from tools.data.source_table_sync import CHANGE_REQUEST_SCHEMA_VERSION
 
 
 _HEADER_CLEAN_RE = re.compile(r"[^a-z0-9]+")

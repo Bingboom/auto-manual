@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from tools.data_snapshot import inspect_phase2_snapshot
+from tools.data.snapshot import inspect_phase2_snapshot
 from tools.validate_spec_master_runtime import collect_spec_master_validation_issues
 
 

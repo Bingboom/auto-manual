@@ -49,8 +49,8 @@ from typing import Any
 
 
 from tools.backport.cloud_doc import build_report  # noqa: E402
-from tools.source_record_index import build_index  # noqa: E402
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_record_index import build_index  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     apply_change_requests,
     build_change_request_report,
     plan_apply,

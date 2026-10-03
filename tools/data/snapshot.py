@@ -4,15 +4,13 @@
 from __future__ import annotations
 
 import json
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.utils.targets import format_tokenized
-from tools.sync_data_models import TABLE_ORDER, TABLE_SCHEMAS
+from tools.data.sync_data_models import TABLE_ORDER, TABLE_SCHEMAS
 
 STRUCTURED_DATA_DEFAULT_DIR = "data/phase2"
 LEGACY_STRUCTURED_DATA_DIR = "data/phase1"
@@ -640,7 +638,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     args, remainder = parser.parse_known_args(argv)
     if args.command == "fixture-refresh":
-        from tools.data_snapshot_fixture_refresh import main as fixture_refresh_main
+        from tools.data.snapshot_fixture_refresh import main as fixture_refresh_main
 
         return fixture_refresh_main(remainder)
     parser.error(f"unsupported command: {args.command}")

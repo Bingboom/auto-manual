@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
-from tools.source_intake_model import normalize_space
+from tools.data.source_intake_model import normalize_space
 
 
 STAGING_PLAN_SCHEMA_VERSION = "source-intake-staging-plan/v1"

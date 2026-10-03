@@ -7,7 +7,7 @@ from typing import Any, Callable
 from tools.attachment_identity import stage_bundle_attachment_aliases
 from tools.build.docs_shared import VALID_SOURCE_MODES
 from tools.bundle_asset_finalize import finalize_materialized_bundle
-from tools.data_snapshot import resolve_active_data_root
+from tools.data.snapshot import resolve_active_data_root
 from tools.gen_index_bundle import MaterializedBundle, materialize_web_language_source_bundle
 from tools.lang_registry import canonical_language
 from tools.language_block_trim import trim_bundle_language_blocks, trim_bundle_language_pages

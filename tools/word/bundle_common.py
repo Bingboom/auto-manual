@@ -8,7 +8,7 @@ from pathlib import Path
 
 from tools.config_pages import CsvPage
 from tools.utils.korean_josa import with_josa_substitutions
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.language_aliases import language_key, normalize_language
 from tools.localized_copy import COPY_TOKEN_RE, apply_localized_copy_tokens
 from tools.page_manifest import resolve_config_pages_or_raise

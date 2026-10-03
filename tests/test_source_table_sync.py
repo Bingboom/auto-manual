@@ -12,8 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_record_index import build_index  # noqa: E402
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_record_index import build_index  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     apply_change_requests,
     build_change_request_report,
     build_change_requests,

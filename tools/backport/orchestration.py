@@ -20,7 +20,7 @@ from tools.backport.args import (  # noqa: E402
     _family_index_from_args,
     _value_index_from_args,
 )
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     build_change_request_report,
     load_sidecar_index,
     write_change_request_report,
@@ -33,7 +33,7 @@ from tools.review_branch_resolver import (  # noqa: E402
     match_review_branch_by_name,
 )
 from tools.review_worktree import derive_review_source_rel, ensure_review_worktree  # noqa: E402
-from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR  # noqa: E402
+from tools.data.snapshot import STRUCTURED_DATA_DEFAULT_DIR  # noqa: E402
 from tools.token_resolution_map import (  # noqa: E402
     SPEC_MASTER_FILE,
 )
@@ -237,7 +237,7 @@ def _fetch_build_table_records(lark_cli: str, identity: str) -> list[dict[str, A
     """Fetch the Document_link build table (文档构建表) records via lark-cli."""
     import os
 
-    from tools.sync_data import LarkCliSource
+    from tools.data.sync_data import LarkCliSource
 
     base = os.environ.get("FEISHU_PHASE2_BASE_TOKEN", "").strip()
     table = os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", "").strip()

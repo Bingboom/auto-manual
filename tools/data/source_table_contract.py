@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 SOURCE_TABLE_CONTRACT_SCHEMA_VERSION = "phase2-source-table-contract/v1"
 DEFAULT_CONTRACT_PATH = ROOT / "data" / "source_table_contracts" / "phase2_source_tables.json"

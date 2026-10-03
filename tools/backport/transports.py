@@ -30,7 +30,7 @@ def _source_table_transport(bindings: dict[str, tuple[str, str]], *, lark_cli: s
     (status ``error``) — so e.g. a derived ``Localized_Copy`` table is skipped safely.
     """
     from tools.feishu_record_transport import SourceTableLarkTransport
-    from tools.sync_data import LarkCliSource
+    from tools.data.sync_data import LarkCliSource
 
     def binding_for(table: str) -> tuple[str, str]:
         try:
@@ -44,7 +44,7 @@ def _source_table_transport(bindings: dict[str, tuple[str, str]], *, lark_cli: s
 def _tm_transport(spec: str, *, lark_cli: str, identity: str) -> Any:
     """Build a live Translation_Memory transport from a ``BASE:TABLE_ID`` binding."""
     from tools.feishu_record_transport import TranslationMemoryLarkTransport
-    from tools.sync_data import LarkCliSource
+    from tools.data.sync_data import LarkCliSource
 
     base, sep, table_id = str(spec or "").partition(":")
     base, table_id = base.strip(), table_id.strip()

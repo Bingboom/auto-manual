@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 def _service_module() -> Any:
     return sys.modules[__name__]
 
-from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.data.snapshot import resolve_phase2_export_root  # noqa: E402
 from tools.build_queue.process_build_queue_main import run_main as _run_main_impl  # noqa: E402
 from tools.build_queue.contract import (  # noqa: E402
     HTML_LINK_FIELD as _QC_HTML_LINK_FIELD,

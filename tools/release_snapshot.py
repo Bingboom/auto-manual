@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
-from tools.data_snapshot import inspect_phase2_snapshot, resolve_phase2_export_root
+from tools.data.snapshot import inspect_phase2_snapshot, resolve_phase2_export_root
 from tools.utils.path_utils import PathSegments, release_snapshot_identity_of
 
 

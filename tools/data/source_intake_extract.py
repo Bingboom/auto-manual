@@ -4,7 +4,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-from tools.source_intake_model import normalize_space
+from tools.data.source_intake_model import normalize_space
 
 
 _HEADING_RE = re.compile(r"^(#{1,6})\s+(.*)$")

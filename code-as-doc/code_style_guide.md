@@ -185,7 +185,7 @@ moves each family into a real subpackage. The names below are proposals.
 | Read the Docs portal | `rtd_*.py` | `tools/rtd/` (moved 2026-10-03) |
 | Word export | `word_bundle*.py` | `tools/word/` (moved 2026-10-03) |
 | IDML | `export_idml.py`, `idml_rst_*.py` | existing `tools/idml/` |
-| Source intake and sync | `sync_data*.py`, `source_*.py`, `data_*.py` | `tools/data/` |
+| Source intake and sync | `sync_data*.py`, `source_*.py`, `data_*.py` | `tools/data/` (moved 2026-10-03; `data_` prefix dropped) |
 
 `tools/manual_ir/`, `tools/component_specs/`, `tools/csv_pages/`, and
 `tools/utils/` are already packages and stay where they are.

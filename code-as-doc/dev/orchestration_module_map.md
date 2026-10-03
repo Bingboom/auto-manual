@@ -636,10 +636,10 @@ Layering (import direction, bottom → top): `model` → `util` → `routing` /
 file re-exports it.
 
 Record-resolution + source-table write are in sibling modules:
-[`tools/source_record_index.py`](../../tools/source_record_index.py) (the
+[`tools/data/source_record_index.py`](../../tools/data/source_record_index.py) (the
 `source_record_index.json` sidecar: business key → Feishu `record_id`),
 [`tools/token_resolution_map.py`](../../tools/token_resolution_map.py) (value →
-source_ref), [`tools/source_table_sync.py`](../../tools/source_table_sync.py)
+source_ref), [`tools/data/source_table_sync.py`](../../tools/data/source_table_sync.py)
 (exact-or-abstain F6 write).
 
 Tests: `tests/test_backport_golden_corpus.py` (routing matrix),
@@ -662,18 +662,18 @@ The source-intake closed loop converts structured specs/manual-source documents
 into reviewable source-table candidates, then hands existing-row changes to the
 same approval-gated source-table writer used by cloud-doc backport.
 
-- [`tools/source_intake.py`](../../tools/source_intake.py)
+- [`tools/data/source_intake.py`](../../tools/data/source_intake.py)
   - CLI entrypoint and command orchestration for `run`, `approve`, `apply`, and `verify`.
-- [`tools/source_intake_extract.py`](../../tools/source_intake_extract.py)
+- [`tools/data/source_intake_extract.py`](../../tools/data/source_intake_extract.py)
   - input acquisition and Markdown-table parsing from local Markdown, stdin, or Feishu/Lark cloud-doc text.
-- [`tools/source_intake_model.py`](../../tools/source_intake_model.py)
+- [`tools/data/source_intake_model.py`](../../tools/data/source_intake_model.py)
   - candidate schema constants, target-table names, hash helpers, and text normalization.
-- [`tools/source_intake_runtime.py`](../../tools/source_intake_runtime.py)
+- [`tools/data/source_intake_runtime.py`](../../tools/data/source_intake_runtime.py)
   - candidate extraction, snapshot enrichment, existing-row change-request building, and run/report writing.
-- [`tools/source_intake_closure.py`](../../tools/source_intake_closure.py)
+- [`tools/data/source_intake_closure.py`](../../tools/data/source_intake_closure.py)
   - P4-P7 closure reports: approval artifact, apply handoff report, labeled verification command results, and closure checklist.
 
-The write boundary stays in [`tools/source_table_sync.py`](../../tools/source_table_sync.py):
+The write boundary stays in [`tools/data/source_table_sync.py`](../../tools/data/source_table_sync.py):
 source intake may approve and invoke it, but does not own live Feishu write
 semantics. Live transports are still constructed through
 [`tools/backport/transports.py`](../../tools/backport/transports.py)

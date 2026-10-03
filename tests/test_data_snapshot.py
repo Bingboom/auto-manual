@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.data_snapshot import (
+from tools.data.snapshot import (
     inspect_phase2_snapshot,
     resolve_data_snapshot_paths,
     resolve_phase2_export_root,

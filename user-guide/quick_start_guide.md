@@ -49,10 +49,10 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 如果原始输入是一份规格书、Word 说明书转出的结构化 Markdown，或飞书云文档里的规格/文案表，先用 source intake 做候选沉淀：
 
 ```bash
-python3 -m tools.source_intake run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
-python3 -m tools.source_intake approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
-python3 -m tools.source_intake apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
-python3 -m tools.source_intake verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
 ```
 
 `apply` 默认只做 dry-run 计划；只有人工确认后显式加 `--write --table-binding TABLE=BASE:TABLE_ID`，才会写线上 Feishu 源表。新增行仍先停在候选/人审层，不自动创建线上记录。
@@ -60,8 +60,8 @@ python3 -m tools.source_intake verify --candidates reports/source_intake/<run-id
 如果输入是产品规格书，而且已经有同产品或同区域 sibling，默认走重复入库快速通道，不再手工组装几十行：
 
 ```bash
-python3 -m tools.source_intake spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
-python3 -m tools.source_intake stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
 ```
 
 `stage-plan` 只克隆 sibling 结构并应用目标差异，输出评审文件和一个 `create_records` 批量 payload，不写飞书。它会拒绝模糊规则匹配、sibling 结构缺行以及未配对的本地化值。输入就绪后，机械步骤目标是 3–5 分钟；后续暂存表回读、人工确认和正式源表写入仍是硬门禁。

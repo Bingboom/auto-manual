@@ -57,8 +57,8 @@ from tools.backport.cloud_doc import (
     select_document_preamble_blocks,
     select_section_blocks,
 )
-from tools.source_record_index import build_index  # noqa: E402
-from tools.source_table_sync import build_change_request_report  # noqa: E402
+from tools.data.source_record_index import build_index  # noqa: E402
+from tools.data.source_table_sync import build_change_request_report  # noqa: E402
 from tools.token_resolution_map import build_value_index  # noqa: E402
 
 

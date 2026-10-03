@@ -68,7 +68,7 @@ Boundary:
 ## MVP Command
 
 ```bash
-python -m tools.source_intake run \
+python -m tools.data.source_intake run \
   --input <spec.md-or-cloud-doc-url> \
   --document-key JE-2000F_EU \
   --source-lang en \
@@ -79,17 +79,17 @@ python -m tools.source_intake run \
 ## Closure Command Chain
 
 ```bash
-python -m tools.source_intake approve \
+python -m tools.data.source_intake approve \
   --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
   --approve <delta_hash> \
   --out reports/source_intake/<run-id>
 
-python -m tools.source_intake apply \
+python -m tools.data.source_intake apply \
   --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
   --approval reports/source_intake/<run-id>/source_intake_approval.json \
   --out reports/source_intake/<run-id>
 
-python -m tools.source_intake apply \
+python -m tools.data.source_intake apply \
   --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
   --approval reports/source_intake/<run-id>/source_intake_approval.json \
   --write \
@@ -97,7 +97,7 @@ python -m tools.source_intake apply \
   --table-binding 'Page_Placeholders_Source=<base_token>:<table_id>' \
   --out reports/source_intake/<run-id>
 
-python -m tools.source_intake verify \
+python -m tools.data.source_intake verify \
   --candidates reports/source_intake/<run-id>/source_intake_candidates.json \
   --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json \
   --approval reports/source_intake/<run-id>/source_intake_approval.json \

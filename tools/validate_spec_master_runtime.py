@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.utils.spec_master import (
     canonicalize_model_token,
     collect_matching_footnote_rows,

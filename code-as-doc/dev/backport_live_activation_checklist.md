@@ -138,7 +138,7 @@ append/upsert only.
 **Why:** F1 originally indexed `lcd_icons` only, while F2's Class D `source_ref`s are
 mostly `Spec_Master` / `Localized_Copy` — so F6 requests abstained
 (`record_id: null`) for those. Coverage is now extended in
-[`../../tools/source_record_index.py`](../../tools/source_record_index.py):
+[`../../tools/data/source_record_index.py`](../../tools/data/source_record_index.py):
 
 1. **`Spec_Master`** (#397): keyed by `document_key` + `Row_key` + `Slot_key`
    (`Slot_key` disambiguates the `usb_c` 30w/100w collision class).
@@ -176,8 +176,8 @@ a local `data/phase2/` snapshot) cannot exercise this path.
 
 ## References
 
-- Modules: [`../../tools/source_record_index.py`](../../tools/source_record_index.py),
-  [`../../tools/source_table_sync.py`](../../tools/source_table_sync.py),
+- Modules: [`../../tools/data/source_record_index.py`](../../tools/data/source_record_index.py),
+  [`../../tools/data/source_table_sync.py`](../../tools/data/source_table_sync.py),
   [`../../tools/qc_report.py`](../../tools/qc_report.py)
 - Workstream Q / roadmap: [`../optimization_project.md`](../optimization_project.md)
 - PR-level history: [`next_optimization_checklist.md`](../next_optimization_checklist.md) Milestone F

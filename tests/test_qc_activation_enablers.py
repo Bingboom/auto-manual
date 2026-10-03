@@ -14,8 +14,8 @@ from tools.feishu_record_transport import (  # noqa: E402
     QcReportLarkTransport,
     SourceTableLarkTransport,
 )
-from tools.source_record_index import resolve_by_table  # noqa: E402
-from tools.source_table_sync import build_change_requests  # noqa: E402
+from tools.data.source_record_index import resolve_by_table  # noqa: E402
+from tools.data.source_table_sync import build_change_requests  # noqa: E402
 
 _SPEC_KEY = "\x1f".join(["JE-1000F_EU", "dc12_port", "main"])
 

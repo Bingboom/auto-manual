@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from tools.data_snapshot import (
+from tools.data.snapshot import (
     PHASE2_REQUIRED_DERIVED_FILES,
     PHASE2_REQUIRED_TABLE_FILES,
     SNAPSHOT_MANIFEST_FILE,

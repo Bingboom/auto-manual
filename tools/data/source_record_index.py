@@ -30,7 +30,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-from tools.source_record_index_contract import (
+from tools.data.source_record_index_contract import (
     registry_issues_from_namespace as _registry_issues_from_namespace,
     validate_namespace as _validate_registry_namespace,
 )

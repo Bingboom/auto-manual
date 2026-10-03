@@ -414,7 +414,7 @@ flow:
     status: available
     mode: automated
     note: 同步数据后按家族配置组装页面
-    evidence: ["file:auto-manual:tools/data_snapshot.py", "file:auto-manual:.github/workflows/feishu-build-queue.yml"]
+    evidence: ["file:auto-manual:tools/data/snapshot.py", "file:auto-manual:.github/workflows/feishu-build-queue.yml"]
   - from: 模板组装
     to: 网页
     status: available

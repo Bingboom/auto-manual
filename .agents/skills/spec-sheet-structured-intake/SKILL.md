@@ -15,17 +15,17 @@ The closed loop that fills the build's structured source from a 产品规格书:
 This is the **entry** half; `tools/backport/cloud_doc.py` is the **return** half. Both
 share the same spine: `data/phase2/source_record_index.json` sidecar, the
 `source-table-change-request/v1` contract, and the drift-guarded
-`tools/source_table_sync.py` writer.
+`tools/data/source_table_sync.py` writer.
 
 ## Tools (committed)
 
-- `tools/source_intake.py` — CLI. Subcommands: `spec-extract` (PDF/MD → candidates via rules,
+- `tools/data/source_intake.py` — CLI. Subcommands: `spec-extract` (PDF/MD → candidates via rules,
   + completeness gate), `stage-plan` (sibling rows + target differences → one review/payload batch),
   and `run`/`approve`/`apply`/`verify` (Markdown candidate → approval-gated update).
-- `tools/source_intake_rules.py` — the rule engine: `FieldRule`, region-aware `apply_op`
+- `tools/data/source_intake_rules.py` — the rule engine: `FieldRule`, region-aware `apply_op`
   (capacity / weight / dims / temp / cycle_life / dc12 / passthrough / default / manual / exclude),
   `extract_candidates`, `display_width` (East-Asian width).
-- `tools/source_intake_completeness.py` — `check_completeness` (field / logical-row / region gate).
+- `tools/data/source_intake_completeness.py` — `check_completeness` (field / logical-row / region gate).
 - Rule library: Feishu Base table **`规格书字段映射规则`** (the durable, operator-editable rule set).
   Export it to JSON (a list of rule dicts) for `spec-extract --rules`.
 
@@ -37,7 +37,7 @@ share the same spine: `data/phase2/source_record_index.json` sidecar, the
    the `Model No.` **value**, not the key.
 2. **Extract candidates** (region-aware: US → dual imperial/metric, JP/EU → metric):
    ```bash
-   python -m tools.source_intake spec-extract \
+   python -m tools.data.source_intake spec-extract \
      --input <规格书.pdf|.md|cloud-doc-url> --rules <rules.json> \
      --document-key JE-2000E_JP --region JP \
      --reference <sibling_rows.json> --out reports/source_intake/<run>
@@ -77,12 +77,12 @@ Once the rule export and sibling JSON are available, the mechanical portion shou
 formal-table approval are outside that repeat-run timing.
 
 ```bash
-python -m tools.source_intake spec-extract \
+python -m tools.data.source_intake spec-extract \
   --input <spec.pdf> --rules <rules.json> \
   --document-key JE-2000E_KR --region KR \
   --reference <sibling-spec.json> --out reports/source_intake/JE-2000E_KR
 
-python -m tools.source_intake stage-plan \
+python -m tools.data.source_intake stage-plan \
   --spec-candidates reports/source_intake/JE-2000E_KR/spec_intake_candidates.json \
   --spec-sibling <sibling-spec.json> \
   --placeholder-sibling <sibling-placeholders.json> \
@@ -222,5 +222,5 @@ and substitute values:
 ## Validation
 
 - `python3 -m unittest tests.test_source_intake_rules tests.test_source_intake_completeness tests.test_source_intake_staging`
-- `python3 -m ruff check tools/source_intake_rules.py tools/source_intake_completeness.py tools/source_intake_staging.py tools/source_intake.py`
+- `python3 -m ruff check tools/data/source_intake_rules.py tools/data/source_intake_completeness.py tools/data/source_intake_staging.py tools/data/source_intake.py`
 - End to end: `spec-extract` → `stage-plan` → review → ingest → `python build.py check --config <cfg> --model <CANONICAL> --region <REGION>` → `python build.py html ...`
