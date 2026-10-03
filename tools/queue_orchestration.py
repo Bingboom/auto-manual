@@ -151,6 +151,7 @@ def process_build_queue(
 
     failures: list[str] = []
     processed = 0
+    workspace_deliveries: list[str] = []
     phase2_sync_memo: set[tuple[str, str]] = set()
 
     def sync_phase2_snapshot_for_group(*, config_path: Any, data_root: str | None) -> None:
@@ -214,10 +215,16 @@ def process_build_queue(
             best_effort_queue_workflow_action=best_effort_queue_workflow_action,
             stderr=stderr,
         )
+        workspace_deliveries.extend(getattr(result, "workspace_deliveries", ()))
+        if getattr(result, "workspace_error", None):
+            failures.append("workspace refresh: source readback failed; production retained; run workspace_refresh.py refresh deliverables")
         processed += result.processed_rows
         if result.failure_message:
             failures.append(result.failure_message)
 
+    from tools.workspace_refresh_trigger import request_refresh
+
+    request_refresh("deliverables", workspace_deliveries)
     _LOG.info(f"[build-queue] Summary: processed={processed} failed={len(failures)}")
     for failure in failures:
         print(f"[build-queue] FAILURE {failure}", file=stderr)

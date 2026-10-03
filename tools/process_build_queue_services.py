@@ -734,7 +734,14 @@ def process_build_queue(
         upload_dingtalk_field=module.UPLOAD_DINGTALK_FIELD,
         available_field_names=module._available_field_names,
         select_pending_queue_records=module.select_pending_queue_records,
-        group_pending_queue_records=module.group_pending_queue_records,
+        group_pending_queue_records=(
+            partial(
+                module.group_pending_queue_records,
+                resolve_config_path_for_task=deps.resolve_config_path_for_task,
+            )
+            if deps is not None and deps.resolve_config_path_for_task is not None
+            else module.group_pending_queue_records
+        ),
         warn_legacy_record_doc_phase=module.warn_legacy_record_doc_phase,
         resolve_target_for_record=module.resolve_target_for_record,
         queue_group_lang=module.queue_group_lang,
@@ -744,7 +751,7 @@ def process_build_queue(
         queue_group_force_phase2_refresh=module.queue_group_force_phase2_refresh,
         queue_group_upload_dingtalk=module.queue_group_upload_dingtalk,
         validate_queue_record_group=module.validate_queue_record_group,
-        resolve_config_path_for_task=module.resolve_config_path_for_task,
+        resolve_config_path_for_task=queue_dep(deps, "resolve_config_path_for_task", module, "resolve_config_path_for_task"),
         queue_record_key=module.queue_record_key,
         workflow_action_label=module.workflow_action_label,
         queue_record_action_source=module.queue_record_action_source,

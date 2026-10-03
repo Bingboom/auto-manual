@@ -215,7 +215,14 @@ def write_deployment_receipt(app, exception) -> None:
             or source.name != PathSegments.WEB or source.parent.name != PathSegments.PUBLISH
             or not (source.parent / "publish_manifest.json").is_file()):
         return
-    payload = {"schema": SCHEMA, "source_sha256": source_fingerprint(source),
+    from tools.workspace_freshness import inventory
+    from tools.utils.path_utils import repo_root
+    from tools.rtd_workspace_revision import workspace_revision
+
+    root = repo_root()
+    revision = workspace_revision(root)["revision"]
+    payload = {"schema": SCHEMA, "workspace_sources": inventory(root), "workspace_revision": revision,
+               "source_sha256": source_fingerprint(source),
                "files": _inventory(Path(app.outdir))}
     if not any(path.endswith(".html") for path in payload["files"]):
         raise ValueError("Successful deployment contains no HTML")

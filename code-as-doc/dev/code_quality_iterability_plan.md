@@ -112,8 +112,9 @@ web、IDML、队列、回写这几块目前最大的代码面。
     - [x] `build_docs` 门面：`test_build_docs_review_compat.py` 改为直接调用 `build_docs_bundle.prepare_manual_bundle` 并显式传入协作者，只留 1 处检查门面自身转发的 patch，22 → 1，合计 160 → 139（2026-10-02）。`test_target_resolution.py` 的 6 处 patch 的是 `build_docs` 自己定义的函数，属于在查找处 patch，保留
     - [x] 内部再次查找的名字：`QueueDeps` 增加 `resolve_wiki_destination`、`upload_word_to_drive`、`move_drive_file_to_wiki`，设置后产物目标与发布两个服务改在 `FacadeOverrides`（替换了这些名字的门面）上运行；`build_document_for_task` 的测试改为直接调用 `queue_build_execution.build_document_for_task` 并显式传入协作者，发布与 wiki 目标的测试改为把 `FacadeOverrides` 作为 `module` 传给服务。`test_process_build_queue.py` 70 → 17，合计 139 → 86（2026-10-02）
     - [x] `test_process_build_queue_routing.py`：配置路径规则改为直接调用 `queue_config_resolution.resolve_config_path_for_task(repo_root=..., config_loader=...)`，不再 patch 门面的 `ROOT` / `load_config`；另加 1 个测试检查门面转发仓库根和加载器，25 → 3，合计 86 → 64，达到 ≤73 目标（2026-10-02）
+    - [x] `test_web_publish_queue.py` 15 → 0、`test_process_build_queue.py` 17 → 0，合计 64 → 32（2026-10-03）：构建步骤的测试改用共享夹具 `tests/queue_build_fixture.py`（显式传协作者和 `repo_root`，同时把队列的 bound 模块指向该根目录，等同原来 patch 门面 `ROOT` 的效果）；lark/同步服务直接调用 `process_build_queue_services` 并传 `FacadeOverrides`；`QueueDeps` 增加 `resolve_config_path_for_task`，分组和组处理都使用它
     - [x] `test_process_review_start_queue.py` 21 → 0（2026-10-03）：`_resolve_review_start_config_path` 增加可选的 `repo_root` / `config_loader` / `resolve_config_path` （默认在调用时取门面上的名字，回退逻辑照常被测试覆盖）；直接调用的测试显式传参，完整运行的测试经 `ReviewStartRuntimeDeps.resolve_config_path_fn` 传入绑定后的解析器；分组守卫测试改为调用 `process_review_start_queue_records.group_review_start_records` 并显式传入会报错的解析器和加载器
-    - [ ] 余下：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
+    - [ ] 余下 11 处：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
 - [x] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
@@ -125,8 +126,9 @@ web、IDML、队列、回写这几块目前最大的代码面。
 - [x] **CQ-2.5 门面瘦身收尾。** 更新热点行数上限（只下调）和 `orchestration_module_map.md`。
   （2026-10-02：`build_docs.py` 上限 860 → 830，`process_build_queue.py` 650 → 565；模块图写明 `__all__` 与删除前的动态查找核对）
 
-**验收。** `build_docs.py` 的 `*_impl` 转发从 43 个降到 0 个（保留的公开名全部列入 `__all__`）；
-门面 patch 次数较基线下降 ≥80%；全量测试绿色。
+**验收。** 门面只做装配：`build_docs.py` 的 `*_impl` 转发是依赖装配点（把实现函数和门面上的协作者接在一起），
+予以保留，但不再新增只为测试 patch 而存在的转发，保留的公开名全部列入 `__all__`（2026-10-03 操作者确认，
+原“43 → 0”改为此项）；门面 patch 次数较基线下降 ≥80%（363 → 32，已达成）；全量测试绿色。
 
 ### CQ-3 复杂度：加复杂度棘轮，按规则表重写头部校验函数
 
@@ -175,6 +177,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
       `ordered_pages` 59 → 36、`_extract_raw_latex` 75 → 28（宏到块改为规则表）；CC≥50 24 → 10
     - [x] 补做（2026-10-02）：`process_queue_record_group` 55 → 21。拆出上传目标解析（钉钉主目标/镜像）、phase2 同步、构建产物记录、发布上传、评审云文档与基线、Web 发布元数据、失败回写；失败回写读取的中间进度收进 `_GroupRunState`。新旧实现用 60,000 组随机依赖（每个调用点都可能抛错）对比调用序列、日志、stderr 和返回值，零差异
     - [x] D 批（纯输入热点，2026-10-02）：`transform_web_fragment` 93 → 33、`_parse_spec_master_sections` 81 → 25、`extract_page` 80 → 9（行结构步骤移到 `tools/idml_rst_line_blocks.py`，`idml_rst_extract.py` 上限 520 → 300）、`discover_registered_components` 62 → 1（按组件族原样拆成 `_claim_*`）。前三个用新旧实现差分验证（真实数据与随机变异输入），第四个是逐字搬移，并用 AST 检查确认没有名字被改绑
+    - [x] E1 批（IDML 渲染，2026-10-02）：`promote_reference_figures` 87 → 7、`ReferenceStoryEmitter.emit` 72 → 10、`TargetAssemblyRenderer.render` 58 → 10（按组合类型改为分派表，18 个分支原样搬移）。验证：JE-1000F US（已批准参考版式）、JE-1000F US flow、JBP-2000B US/JP 共 4 个真实目标，新旧代码各导出一次 IDML，1,431 个 zip 部件逐字节一致；`promote_reference_figures` 另做 60,000 组随机差分，零差异
+    - [x] E2 批（IDML 表格，2026-10-02）：`add_lcd_story` 60 → 16、`render_table_block` 53 → 21。这两个函数在可本地构建的真实目标上不会被调用，只由单元测试覆盖，因此在全量测试运行时对每次真实调用做深拷贝，新旧实现各跑一次，比较返回值和写入器状态：`render_table_block` 200 次、`add_lcd_story` 22 次，零差异
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。

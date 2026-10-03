@@ -34,6 +34,13 @@ That means:
 
 Do not move new low-level implementation back into these files unless the behavior is truly entrypoint-specific.
 
+工作台数据更新由 [`tools/workspace_snapshot.py`](../../tools/workspace_snapshot.py) 负责
+完整读取与安全快照；`workspace_refresh_trigger` 在队列／TM 批次完成后发请求，
+`workspace_refresh` 复用现有导出器，`workspace_refresh_publish` 只提交业务内容 PR，
+`workspace_refresh_verify` 独立核验线上版本，`workspace_freshness` 仅提供冻结读取模型。
+失败提醒复用 GitHub issue；模块不合入、不生产说明书、不推断历史活动。
+见 [工作台数据持续更新](workspace_data_refresh.md)。
+
 ## 2. Build Entrypoint Modules
 
 [`tools/rtd_publication_catalog.py`](../../tools/rtd_publication_catalog.py) groups
@@ -435,6 +442,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
   - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
   - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. `resolve_wiki_destination`, `upload_word_to_drive` and `move_drive_file_to_wiki` are also looked up inside the artifact-destination and publish services, so when `deps` sets one of them those two services run against `FacadeOverrides(module, ...)` (the facade with the names replaced) instead of the facade itself
+  - `QueueDeps.resolve_config_path_for_task` (optional) replaces the config-path resolver for both record grouping (`queue_bound_records.group_pending_queue_records(..., resolve_config_path_for_task=...)`) and group processing, so a run sees one resolver end to end
   - `QueueDeps.clock` (optional) is the group processor's clock: `process_queue_record_group(clock=...)` takes the started-at stamp, claim expiry and built-at time from it (default `queue_group_processing.utc_now`). `queue_claims`, `queue_bound_records` and `queue_session` read no clock; `queue_transitions` already takes `now=`
 - [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
   - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
