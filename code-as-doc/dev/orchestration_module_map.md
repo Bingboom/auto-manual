@@ -579,50 +579,53 @@ Quality and release logic should follow concern-specific modules instead of drif
 
 The cloud-doc backport closed loop (fetch → diff → classify/route → write-back)
 was decomposed from a single 4183-line `cloud_doc_backport.py` into focused
-layers (debt-paydown, 2026-06). The entry path is unchanged: every
-`from tools.cloud_doc_backport import X` and `python3 tools/cloud_doc_backport.py …`
-still works because the entry file re-exports all public symbols.
+layers (debt-paydown, 2026-06), and since CQ-1.3 (2026-10) those layers live in
+the `tools/backport/` package. Import from `tools.backport.<module>` and run
+`python -m tools.backport.cloud_doc <command>`. The old names stay available until
+CQ-1.5: `python tools/cloud_doc_backport.py …` still runs the CLI, and every old
+`tools.cloud_doc_backport*` module is a shim that warns (`DeprecationWarning`) and
+aliases the new module object, so `mock.patch` targets on either name hit the same code.
 
-- [`tools/cloud_doc_backport.py`](../../tools/cloud_doc_backport.py)
-  - thin entry shim (~200 lines): re-exports every public symbol from the modules
-    below + the `__main__` guard. Keep it shim-only.
-- [`tools/cloud_doc_backport_model.py`](../../tools/cloud_doc_backport_model.py)
+- [`tools/backport/cloud_doc.py`](../../tools/backport/cloud_doc.py)
+  - thin facade (~200 lines): re-exports every public symbol from the modules
+    below + the `__main__` guard. Keep it re-export-only.
+- [`tools/backport/model.py`](../../tools/backport/model.py)
   - foundation: `Block` model, document fetch/normalization, markdown→block
     parsing, section selection. Imports only stdlib + `path_utils` (no cycle).
-- [`tools/cloud_doc_backport_util.py`](../../tools/cloud_doc_backport_util.py)
+- [`tools/backport/util.py`](../../tools/backport/util.py)
   - shared constants (schema versions) + scaffolding (counters, git-ref,
     timestamp, source-path resolution).
-- [`tools/cloud_doc_backport_routing.py`](../../tools/cloud_doc_backport_routing.py)
+- [`tools/backport/routing.py`](../../tools/backport/routing.py)
   - delta classification + routing (Class R / D / T / image / semantic) + `diff_blocks`.
-- [`tools/cloud_doc_backport_apply.py`](../../tools/cloud_doc_backport_apply.py)
+- [`tools/backport/apply.py`](../../tools/backport/apply.py)
   - guarded Class-R write-back (literal-first + block-fallback RST rewrite) + apply-report builders.
-- [`tools/cloud_doc_backport_render.py`](../../tools/cloud_doc_backport_render.py)
+- [`tools/backport/render.py`](../../tools/backport/render.py)
   - markdown report renderers (pure report-dict → markdown).
-- [`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+- [`tools/backport/transports.py`](../../tools/backport/transports.py)
   - live Feishu source-table / TM transports + `--table-binding` parsing.
-- [`tools/cloud_doc_backport_reports.py`](../../tools/cloud_doc_backport_reports.py)
+- [`tools/backport/reports.py`](../../tools/backport/reports.py)
   - report builders (`build_report` + verify / source-table-suggestions / template-sync-proposal / review-run).
-- [`tools/cloud_doc_backport_pr.py`](../../tools/cloud_doc_backport_pr.py)
+- [`tools/backport/pr.py`](../../tools/backport/pr.py)
   - PR/git helpers (`gh` PR creation + 403 compare-url fallback, branch naming, `open_backport_pr_from_manifest`).
-- [`tools/cloud_doc_backport_args.py`](../../tools/cloud_doc_backport_args.py)
+- [`tools/backport/args.py`](../../tools/backport/args.py)
   - argparse surface + arg-interpretation helpers (`_parse_args`,
     `_value_index_from_args`, `_family_index_from_args`).
-- [`tools/cloud_doc_backport_commands.py`](../../tools/cloud_doc_backport_commands.py)
+- [`tools/backport/commands.py`](../../tools/backport/commands.py)
   - single-command runners: `_run_diff` / `_run_apply*` / `_run_review` /
     `_run_verify_review` / `_run_open_pr` / `_run_apply_source_table`.
-- [`tools/cloud_doc_backport_orchestration.py`](../../tools/cloud_doc_backport_orchestration.py)
+- [`tools/backport/orchestration.py`](../../tools/backport/orchestration.py)
   - multi-step flows: review-branch resolution, worktree sync, the
     render-baseline diff, sibling scope, the backport-PR flow, and the
     best-effort revision-ledger ingest hook
     (`AUTO_MANUAL_REVISION_LEDGER_PATH`; `off` disables). **Patch seams for
     review-branch tests live here**, not on the cli re-exports.
-- [`tools/cloud_doc_backport_cli.py`](../../tools/cloud_doc_backport_cli.py)
+- [`tools/backport/cli.py`](../../tools/backport/cli.py)
   - thin dispatcher: `main` + the compatibility re-export hub the facade
     imports from.
 
 Layering (import direction, bottom → top): `model` → `util` → `routing` /
 `apply` / `render` / `transports` / `reports` / `pr` → `args` → `commands` /
-`orchestration` → `cli` → entry shim. A new extraction must import from the
+`orchestration` → `cli` → `cloud_doc` facade. A new extraction must import from the
 **leaf modules**, never from the entry file (that would cycle), and the entry
 file re-exports it.
 
@@ -667,7 +670,7 @@ same approval-gated source-table writer used by cloud-doc backport.
 The write boundary stays in [`tools/source_table_sync.py`](../../tools/source_table_sync.py):
 source intake may approve and invoke it, but does not own live Feishu write
 semantics. Live transports are still constructed through
-[`tools/cloud_doc_backport_transports.py`](../../tools/cloud_doc_backport_transports.py)
+[`tools/backport/transports.py`](../../tools/backport/transports.py)
 so table-binding parsing and source-table GET/verify behavior stay shared.
 
 Tests: [`tests/test_source_intake.py`](../../tests/test_source_intake.py)

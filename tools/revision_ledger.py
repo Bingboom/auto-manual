@@ -12,7 +12,7 @@ away after each review.
 MVP scope (ingest only):
 
 - Read one backport diff report (the dict written by
-  ``cloud_doc_backport_reports.build_report``) and turn each delta into one ledger
+  ``backport.reports.build_report``) and turn each delta into one ledger
   row.
 - Append rows to ``reports/revision_ledger/ledger.jsonl`` (JSON Lines), de-duped
   by ``row_key`` so re-ingesting the same report is a no-op (idempotent).
@@ -36,7 +36,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.cloud_doc_backport_model import _normalize_inline, parse_blocks  # noqa: E402
+from tools.backport.model import _normalize_inline, parse_blocks  # noqa: E402
 from tools.utils.path_utils import PathSegments, get_paths, revision_ledger_of  # noqa: E402
 from tools.utils.log import get_logger
 
@@ -83,7 +83,7 @@ def default_ledger_path(base_root: Path | None = None) -> Path:
 
 
 # Output languages a review path segment / filename suffix may carry. Kept as a
-# local literal (mirrors cloud_doc_backport_args._KNOWN_VALUE_LANGS) so this
+# local literal (mirrors backport.args._KNOWN_VALUE_LANGS) so this
 # leaf module does not pull in the whole backport CLI import graph.
 _KNOWN_LANGS = frozenset(
     {"pt-BR", "pt-br", "en", "fr", "es", "de", "it", "uk", "ja", "zh", "ko", "nl", "pl", "sv"}
@@ -986,7 +986,7 @@ def main(argv: list[str] | None = None) -> int:
             if not args.tm_binding:
                 _ERR.error("revision-ledger: --write requires --tm-binding BASE:TABLE_ID")
                 return 2
-            from tools.cloud_doc_backport_transports import _tm_transport
+            from tools.backport.transports import _tm_transport
 
             transport = _tm_transport(
                 args.tm_binding, lark_cli=args.lark_cli, identity=args.identity

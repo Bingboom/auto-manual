@@ -50,7 +50,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import build_report  # noqa: E402
+from tools.backport.cloud_doc import build_report  # noqa: E402
 from tools.source_record_index import build_index  # noqa: E402
 from tools.source_table_sync import (  # noqa: E402
     apply_change_requests,

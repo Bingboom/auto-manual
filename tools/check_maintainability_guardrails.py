@@ -47,24 +47,24 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/queue_lark_ops.py": 360,
     # Backport / data-sync surface — previously ungoverned and grew unchecked
     # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
-    # cloud_doc_backport.py is set EXACTLY at its current size (no headroom) so the
-    # in-progress decomposition can only push it DOWN, never up.
-    "tools/cloud_doc_backport.py": 210,
+    # The facade (tools/backport/cloud_doc.py since CQ-1.3) is set EXACTLY at its
+    # current size (no headroom) so the decomposition can only push it DOWN, never up.
+    "tools/backport/cloud_doc.py": 210,
     # G0 split of the former 1400-line CLI conductor: dispatcher / argparse /
     # single-command runners / multi-step orchestration, one-way imports only.
-    "tools/cloud_doc_backport_cli.py": 260,
-    "tools/cloud_doc_backport_args.py": 470,
-    "tools/cloud_doc_backport_commands.py": 550,
+    "tools/backport/cli.py": 260,
+    "tools/backport/args.py": 470,
+    "tools/backport/commands.py": 550,
     # 880 -> 950: the cross-page-ambiguity plan pass and the per-page gate check
     # (apply-safety fixes) are correctness guards that belong next to the apply
     # loops they protect.
     # 950 -> 1000: CQ-3.4 split _run_review_branch (50 -> 31) and
     # _run_review_branch_baseline (58 -> 35) into seed / plan / apply / per-page
     # worker helpers; the growth is their signatures.
-    "tools/cloud_doc_backport_orchestration.py": 1000,
+    "tools/backport/orchestration.py": 1000,
     # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
     # fix) is a correctness guard that belongs next to the verify verdicts.
-    "tools/cloud_doc_backport_reports.py": 900,
+    "tools/backport/reports.py": 900,
     "tools/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,
     "tools/translation_memory.py": 790,

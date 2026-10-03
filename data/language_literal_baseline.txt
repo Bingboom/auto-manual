@@ -13,7 +13,7 @@ tools/check_docs_lang_parity.py	dict	ja,ko,uk,ukr,zh	85bdca9f65c3ba08
 tools/check_docs_lang_parity.py	set	BR,PT	31029eb02b029e00
 tools/check_docs_lang_parity.py	tuple	br,de,en,es,fr,it,ja,jp,ko,pt-br,pt_br,uk,ukr,zh	ecc743b3c70b270e
 tools/check_docs_lang_parity.py	tuple	br,pt-br	142d93b2ce6d2100
-tools/cloud_doc_backport_args.py	tuple	de,en,es,fr,it,ja,ko,nl,pl,pt-BR,uk,zh	5080b9a04b199884
+tools/backport/args.py	tuple	de,en,es,fr,it,ja,ko,nl,pl,pt-BR,uk,zh	5080b9a04b199884
 tools/content_lint_languages.py	set	ja,ko,zh	d96f8d244e8ad88d
 tools/content_lint_languages.py	tuple	de,es,fr,it,ja,ko,uk,zh	5529ebc4176d360d
 tools/csv_pages/builder.py	list	br,pt-BR	4056cf2b81e0534e
