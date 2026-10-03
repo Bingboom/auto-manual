@@ -911,16 +911,44 @@ def _app_composition_options(
     }
 
 
-def promote_reference_figures(
-    blocks: list[Block],
-    page_plan: dict | None,
-    stem: str,
-) -> list[Block]:
-    """Promote governed art plus adjacent copy into editable composites.
+# Physical page 21 uses three differently sized callout panels, all inset
+# 10.943 pt from the ordinary story frame.  They are applied by structural
+# notice order so localization never affects routing.
+_APP_NOTICE_LAYOUTS: tuple[dict[str, float | bool], ...] = (
+    {
+        "panel_height": 44.737,
+        "body_size": 5.8,
+        "body_leading": 5.997,
+        "pad_tb": 3.1,
+        "label_size": 10.0,
+        "label_leading": 10.8,
+        "body_inset": 3.917,
+        "paragraph_space_after": 2.0,
+        "unbulleted_first": True,
+    },
+    {
+        "panel_height": 16.221,
+        "body_size": 6.0,
+        "body_leading": 6.0,
+        "pad_tb": 1.5,
+        "label_size": 10.0,
+        "label_leading": 10.8,
+        "body_inset": 5.683,
+        "unbulleted_first": True,
+    },
+    {
+        "panel_height": 24.869,
+        "body_size": 5.8,
+        "body_leading": 5.997,
+        "pad_tb": 2.2,
+        "label_size": 9.0,
+        "label_leading": 9.8,
+        "body_inset": 5.42,
+    },
+)
 
-    Routing uses the approved plan, source-page role, asset basename, and
-    neighbouring block shape.  It never matches translated headings or copy.
-    """
+
+def _is_reference_charging_page(page_plan: dict | None, stem: str) -> bool:
     approved_reference = (
         (page_plan or {}).get("plan_source") == "approved-reference"
     )
@@ -933,10 +961,246 @@ def promote_reference_figures(
             if isinstance(entry, dict)
         )
     )
-    is_charging = re.fullmatch(
+    return re.fullmatch(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
     ) is not None and (approved_reference or registered_charging)
+
+
+def _apply_app_notice_layouts(aligned: list[Block]) -> None:
+    notice_ordinal = 0
+    for block_index, (block_kind, block_payload) in enumerate(aligned):
+        if block_kind != "component" or _component_kind(block_payload) != "notice":
+            continue
+        try:
+            notice_spec = json.loads(block_payload)
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if notice_ordinal >= len(_APP_NOTICE_LAYOUTS):
+            break
+        notice_spec.update({
+            "body_width": 300.516,
+            "inline_x_offset": 10.943,
+            "app_text_frame_safety": True,
+            "plate_left": 1.418,
+            "label_width": 48.939,
+            **_APP_NOTICE_LAYOUTS[notice_ordinal],
+        })
+        aligned[block_index] = (
+            "component", json.dumps(notice_spec, ensure_ascii=False),
+        )
+        notice_ordinal += 1
+
+
+def _app_figure_asset(app_options: dict | None, role: str, payload: str) -> str:
+    return str(
+        dict((app_options or {}).get("figure_assets") or {}).get(
+            role,
+            payload,
+        )
+    )
+
+
+def _prior_steps(aligned: list[Block], index: int, count: int) -> list:
+    return [
+        _step_number(text)
+        for prior_kind, text in aligned[:index]
+        if prior_kind == "body" and _step_number(text)
+    ][-count:]
+
+
+def _next_is_body(aligned: list[Block], index: int) -> bool:
+    return index + 1 < len(aligned) and aligned[index + 1][0] == "body"
+
+
+def _promote_charging_ac(aligned: list[Block], index: int, payload: str) -> int:
+    caption_index = None
+    if index > 0 and aligned[index - 1][0] == "body":
+        caption_index = index - 1
+    elif _next_is_body(aligned, index):
+        caption_index = index + 1
+    if caption_index is None:
+        return index + 1
+    caption = aligned[caption_index][1]
+    start, end = sorted((index, caption_index))
+    aligned[start:end + 1] = [
+        _referencefigure_block(
+            "charging_ac", payload, caption=caption,
+        )
+    ]
+    return index
+
+
+def _promote_charging_car(aligned: list[Block], index: int, payload: str) -> int:
+    heading_index = index - 2
+    if (
+        heading_index >= 0
+        and aligned[index - 1][0] == "body"
+        and aligned[heading_index][0] in {"h2", "body"}
+    ):
+        # The frozen ES derivative carries the RST underline inside a
+        # body block.  Restore the structurally equivalent heading at
+        # render time without changing the reviewed source text.
+        heading = re.sub(
+            r"\s+-{10,}\s*$", "", aligned[heading_index][1],
+        ).rstrip()
+        aligned[heading_index] = ("h2_charging_car", heading)
+    labels = [
+        line.strip()
+        for line in aligned[index + 1][1].splitlines()
+        if line.strip()
+    ]
+    aligned[index:index + 2] = [
+        _referencefigure_block(
+            "charging_car",
+            payload,
+            vehicle=labels[0] if labels else "",
+            note=" ".join(labels[1:]),
+        )
+    ]
+    return index + 1
+
+
+def _promote_app_download(
+    aligned: list[Block], index: int, payload: str, app_options: dict | None,
+) -> int:
+    body_end = index + 1
+    while (
+        body_end < len(aligned)
+        and aligned[body_end][0] == "body"
+        and not _step_number(aligned[body_end][1])
+    ):
+        body_end += 1
+    copy = " ".join(
+        value.strip()
+        for block_kind, value in aligned[index + 1:body_end]
+        if block_kind == "body" and value.strip()
+    )
+    aligned[index:body_end] = [
+        _referencefigure_block(
+            "app_download",
+            _app_figure_asset(app_options, "app_download", payload),
+            copy=copy,
+        )
+    ]
+    return index + 1
+
+
+def _promote_app_add_device(
+    aligned: list[Block], index: int, payload: str, app_options: dict | None,
+) -> int:
+    prior_steps = _prior_steps(aligned, index, 2)
+    base_labels = dict(
+        (app_options or {}).get("base_labels_by_role") or {}
+    )
+    render_labels = dict(
+        (app_options or {}).get("labels_by_role") or {}
+    )
+    consume = 1
+    if _next_is_body(aligned, index) and (
+        matches_base_label_block(aligned[index + 1][1], base_labels)
+        or matches_base_label_block(aligned[index + 1][1], render_labels)
+    ):
+        consume += 1
+    aligned[index:index + consume] = [
+        _referencefigure_block(
+            "app_add_device",
+            _app_figure_asset(app_options, "app_add_device", payload),
+            labels_by_role=render_labels,
+            step_labels=prior_steps,
+            control_image=(app_options or {}).get("control_image"),
+        )
+    ]
+    return index + 1
+
+
+def _promote_app_connect_result(
+    aligned: list[Block], index: int, payload: str, app_options: dict | None,
+) -> int:
+    prior_steps = _prior_steps(aligned, index, 3)
+    aligned[index:index + 2] = [
+        _referencefigure_block(
+            "app_connect_result",
+            _app_figure_asset(app_options, "app_connect_result", payload),
+            step_labels=prior_steps,
+            reference_note=aligned[index + 1][1],
+        )
+    ]
+    return index + 1
+
+
+def _promote_figure_at(
+    aligned: list[Block],
+    index: int,
+    payload: str,
+    *,
+    is_charging: bool,
+    app_options: dict | None,
+) -> int:
+    """Promote the governed image at ``aligned[index]``; return the next index to scan."""
+    asset_stem = Path(payload).stem.casefold()
+    is_app = app_options is not None
+    if is_charging and asset_stem == "ac_wall":
+        return _promote_charging_ac(aligned, index, payload)
+    if is_charging and asset_stem == "car_charge" and _next_is_body(aligned, index):
+        return _promote_charging_car(aligned, index, payload)
+    if is_app and asset_stem == "download" and _next_is_body(aligned, index):
+        return _promote_app_download(aligned, index, payload, app_options)
+    if is_app and asset_stem.startswith("add_device"):
+        return _promote_app_add_device(aligned, index, payload, app_options)
+    if is_app and asset_stem.startswith("connect_result") and _next_is_body(aligned, index):
+        return _promote_app_connect_result(aligned, index, payload, app_options)
+    return index + 1
+
+
+def _app_body_role(step: object, h2_ordinal: int) -> str | None:
+    if step in {"2.1", "2.2"}:
+        return "body_app_primary"
+    if step == "2.3":
+        return "body_app_tail"
+    if step in {"2.4", "2.5"}:
+        return "body_app_result"
+    if h2_ordinal == 3:
+        return "body_app_section"
+    if h2_ordinal >= 4:
+        return "body_app_notes"
+    return None
+
+
+def _assign_app_roles(aligned: list[Block]) -> None:
+    h2_ordinal = 0
+    for block_index, (block_kind, block_payload) in enumerate(aligned):
+        if block_kind == "h2":
+            h2_ordinal += 1
+            aligned[block_index] = (
+                "h2_app_download" if h2_ordinal == 1 else "h2_app",
+                block_payload,
+            )
+            continue
+        if block_kind == "h3":
+            aligned[block_index] = ("h3_app", block_payload)
+            continue
+        if block_kind in {"list", "sublist"}:
+            aligned[block_index] = ("list_app", block_payload)
+            continue
+        if block_kind != "body":
+            continue
+        role = _app_body_role(_step_number(block_payload), h2_ordinal)
+        if role is not None:
+            aligned[block_index] = (role, block_payload)
+
+
+def promote_reference_figures(
+    blocks: list[Block],
+    page_plan: dict | None,
+    stem: str,
+) -> list[Block]:
+    """Promote governed art plus adjacent copy into editable composites.
+
+    Routing uses the approved plan, source-page role, asset basename, and
+    neighbouring block shape.  It never matches translated headings or copy.
+    """
+    is_charging = _is_reference_charging_page(page_plan, stem)
     app_options = _app_composition_options(page_plan, stem)
     is_app = app_options is not None
     if not is_charging and not is_app:
@@ -944,259 +1208,18 @@ def promote_reference_figures(
 
     aligned = list(blocks)
     if is_app:
-        # Physical page 21 uses three differently sized callout panels, all
-        # inset 10.943 pt from the ordinary story frame.  Apply them by
-        # structural notice order so localization never affects routing.
-        notice_layouts = (
-            {
-                "panel_height": 44.737,
-                "body_size": 5.8,
-                "body_leading": 5.997,
-                "pad_tb": 3.1,
-                "label_size": 10.0,
-                "label_leading": 10.8,
-                "body_inset": 3.917,
-                "paragraph_space_after": 2.0,
-                "unbulleted_first": True,
-            },
-            {
-                "panel_height": 16.221,
-                "body_size": 6.0,
-                "body_leading": 6.0,
-                "pad_tb": 1.5,
-                "label_size": 10.0,
-                "label_leading": 10.8,
-                "body_inset": 5.683,
-                "unbulleted_first": True,
-            },
-            {
-                "panel_height": 24.869,
-                "body_size": 5.8,
-                "body_leading": 5.997,
-                "pad_tb": 2.2,
-                "label_size": 9.0,
-                "label_leading": 9.8,
-                "body_inset": 5.42,
-            },
-        )
-        notice_ordinal = 0
-        for block_index, (block_kind, block_payload) in enumerate(aligned):
-            if block_kind != "component" or _component_kind(block_payload) != "notice":
-                continue
-            try:
-                notice_spec = json.loads(block_payload)
-            except (TypeError, json.JSONDecodeError):
-                continue
-            if notice_ordinal >= len(notice_layouts):
-                break
-            notice_spec.update({
-                "body_width": 300.516,
-                "inline_x_offset": 10.943,
-                "app_text_frame_safety": True,
-                "plate_left": 1.418,
-                "label_width": 48.939,
-                **notice_layouts[notice_ordinal],
-            })
-            aligned[block_index] = (
-                "component", json.dumps(notice_spec, ensure_ascii=False),
-            )
-            notice_ordinal += 1
+        _apply_app_notice_layouts(aligned)
     index = 0
     while index < len(aligned):
         kind, payload = aligned[index]
         if kind != "image":
             index += 1
             continue
-        asset_stem = Path(payload).stem.casefold()
-
-        if is_charging and asset_stem == "ac_wall":
-            caption_index = None
-            if index > 0 and aligned[index - 1][0] == "body":
-                caption_index = index - 1
-            elif index + 1 < len(aligned) and aligned[index + 1][0] == "body":
-                caption_index = index + 1
-            if caption_index is None:
-                index += 1
-                continue
-            caption = aligned[caption_index][1]
-            start, end = sorted((index, caption_index))
-            aligned[start:end + 1] = [
-                _referencefigure_block(
-                    "charging_ac", payload, caption=caption,
-                )
-            ]
-            continue
-
-        if (
-            is_charging
-            and asset_stem == "car_charge"
-            and index + 1 < len(aligned)
-            and aligned[index + 1][0] == "body"
-        ):
-            heading_index = index - 2
-            if (
-                heading_index >= 0
-                and aligned[index - 1][0] == "body"
-                and aligned[heading_index][0] in {"h2", "body"}
-            ):
-                # The frozen ES derivative carries the RST underline inside a
-                # body block.  Restore the structurally equivalent heading at
-                # render time without changing the reviewed source text.
-                heading = re.sub(
-                    r"\s+-{10,}\s*$", "", aligned[heading_index][1],
-                ).rstrip()
-                aligned[heading_index] = ("h2_charging_car", heading)
-            labels = [
-                line.strip()
-                for line in aligned[index + 1][1].splitlines()
-                if line.strip()
-            ]
-            aligned[index:index + 2] = [
-                _referencefigure_block(
-                    "charging_car",
-                    payload,
-                    vehicle=labels[0] if labels else "",
-                    note=" ".join(labels[1:]),
-                )
-            ]
-            index += 1
-            continue
-
-        if (
-            is_app
-            and asset_stem == "download"
-            and index + 1 < len(aligned)
-            and aligned[index + 1][0] == "body"
-        ):
-            body_end = index + 1
-            while (
-                body_end < len(aligned)
-                and aligned[body_end][0] == "body"
-                and not _step_number(aligned[body_end][1])
-            ):
-                body_end += 1
-            copy = " ".join(
-                value.strip()
-                for block_kind, value in aligned[index + 1:body_end]
-                if block_kind == "body" and value.strip()
-            )
-            aligned[index:body_end] = [
-                _referencefigure_block(
-                    "app_download",
-                    str(
-                        dict((app_options or {}).get("figure_assets") or {}).get(
-                            "app_download",
-                            payload,
-                        )
-                    ),
-                    copy=copy,
-                )
-            ]
-            index += 1
-            continue
-
-        if is_app and asset_stem.startswith("add_device"):
-            prior_steps = [
-                _step_number(text)
-                for prior_kind, text in aligned[:index]
-                if prior_kind == "body" and _step_number(text)
-            ][-2:]
-            base_labels = dict(
-                (app_options or {}).get("base_labels_by_role") or {}
-            )
-            render_labels = dict(
-                (app_options or {}).get("labels_by_role") or {}
-            )
-            consume = 1
-            if (
-                index + 1 < len(aligned)
-                and aligned[index + 1][0] == "body"
-                and (
-                    matches_base_label_block(
-                        aligned[index + 1][1], base_labels,
-                    )
-                    or matches_base_label_block(
-                        aligned[index + 1][1], render_labels,
-                    )
-                )
-            ):
-                consume += 1
-            aligned[index:index + consume] = [
-                _referencefigure_block(
-                    "app_add_device",
-                    str(
-                        dict((app_options or {}).get("figure_assets") or {}).get(
-                            "app_add_device",
-                            payload,
-                        )
-                    ),
-                    labels_by_role=render_labels,
-                    step_labels=prior_steps,
-                    control_image=(app_options or {}).get("control_image"),
-                )
-            ]
-            index += 1
-            continue
-
-        if (
-            is_app
-            and asset_stem.startswith("connect_result")
-            and index + 1 < len(aligned)
-            and aligned[index + 1][0] == "body"
-        ):
-            prior_steps = [
-                _step_number(text)
-                for prior_kind, text in aligned[:index]
-                if prior_kind == "body" and _step_number(text)
-            ][-3:]
-            aligned[index:index + 2] = [
-                _referencefigure_block(
-                    "app_connect_result",
-                    str(
-                        dict((app_options or {}).get("figure_assets") or {}).get(
-                            "app_connect_result",
-                            payload,
-                        )
-                    ),
-                    step_labels=prior_steps,
-                    reference_note=aligned[index + 1][1],
-                )
-            ]
-            index += 1
-            continue
-        index += 1
+        index = _promote_figure_at(
+            aligned, index, payload, is_charging=is_charging, app_options=app_options,
+        )
     if is_app:
-        h2_ordinal = 0
-        for block_index, (block_kind, block_payload) in enumerate(aligned):
-            if block_kind == "h2":
-                h2_ordinal += 1
-                aligned[block_index] = (
-                    "h2_app_download" if h2_ordinal == 1 else "h2_app",
-                    block_payload,
-                )
-                continue
-            if block_kind == "h3":
-                aligned[block_index] = ("h3_app", block_payload)
-                continue
-            if block_kind in {"list", "sublist"}:
-                aligned[block_index] = ("list_app", block_payload)
-                continue
-            if block_kind != "body":
-                continue
-            step = _step_number(block_payload)
-            if step in {"2.1", "2.2"}:
-                role = "body_app_primary"
-            elif step == "2.3":
-                role = "body_app_tail"
-            elif step in {"2.4", "2.5"}:
-                role = "body_app_result"
-            elif h2_ordinal == 3:
-                role = "body_app_section"
-            elif h2_ordinal >= 4:
-                role = "body_app_notes"
-            else:
-                continue
-            aligned[block_index] = (role, block_payload)
+        _assign_app_roles(aligned)
     return aligned
 
 
