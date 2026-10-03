@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
+from tools.build_queue.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
 from tools.process_docs.build_publish_latest_site import (  # noqa: E402
     latest_publish_meta,

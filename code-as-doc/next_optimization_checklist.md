@@ -1404,7 +1404,7 @@ jumps the queue. Until then it stays `deferred` and exerts no pressure.
     - [`../tools/feishu_record_transport.py`](../tools/feishu_record_transport.py)
     - [`../tools/queue_lark_ops.py`](../tools/build_queue/lark_ops.py)
     - [`../tools/queue_bound_lark_ops.py`](../tools/build_queue/bound_lark_ops.py)
-    - [`../tools/listen_build_queue_lark.py`](../tools/listen_build_queue_lark.py)
+    - [`../tools/listen_build_queue_lark.py`](../tools/build_queue/listen_build_queue_lark.py)
     - [`../tools/spec_master_rebuild.py`](../tools/spec_master_rebuild.py)
     - [`../tools/bitable_schema.py`](../tools/bitable_schema.py)
   - Done when:

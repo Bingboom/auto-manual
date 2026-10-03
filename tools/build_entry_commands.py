@@ -264,7 +264,7 @@ def message_control_dry_run_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        "-m", "tools.message_control_dry_run",
+        "-m", "tools.build_queue.message_control_dry_run",
         "--config",
         str(config_path),
         "--message",
@@ -429,7 +429,7 @@ def listen_build_queue_command(
     config_path = resolve_path_from_root(args.config)
     cmd = [
         sys.executable,
-        "-m", "tools.listen_build_queue",
+        "-m", "tools.build_queue.listen_build_queue",
         "--config",
         str(config_path),
     ]

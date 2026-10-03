@@ -61,7 +61,7 @@ from tools.build_doctor import (
 from tools.build_cli import parse_args as _parse_args_impl
 from tools.build_dispatch import dispatch_action as _dispatch_action_impl
 from tools.build_main import run_main as _run_main_impl
-from tools.message_control_runtime import resolve_message_control as _resolve_message_control_impl
+from tools.build_queue.message_control_runtime import resolve_message_control as _resolve_message_control_impl
 from tools.manual_index_query import run_manual_index_query as _run_manual_index_query_impl
 from tools.build_queue.execute import run_queue_execute as _run_queue_execute_impl
 from tools.build_queue.query import run_queue_query as _run_queue_query_impl

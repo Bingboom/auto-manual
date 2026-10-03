@@ -20,7 +20,7 @@ import unittest
 from pathlib import Path
 
 import build
-from tools import message_control_entry
+from tools.build_queue import message_control_entry
 
 
 ROOT = Path(__file__).resolve().parents[1]
