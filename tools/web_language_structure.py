@@ -143,6 +143,7 @@ def summarize_language_structure(raw: dict, package_root: Path, page_map: dict,
         pages.append({"slot": page_map[page["page_id"]], "items": items})
     return {"model": raw["model"], "region": raw["region"], "pages": pages,
             "style_contract_sha256": raw.get("style_contract_sha256"),
+            "web_contract_sha256": digest(raw.get("metadata", {}).get("web_contract")),
             "component_registry_sha256": raw.get("metadata", {}).get("component_registry_sha256"),
             "manual_theme": raw.get("metadata", {}).get("manual_theme")}
 

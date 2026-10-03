@@ -12,7 +12,9 @@ approved English structure and asset-selection decision. The existing artwork
 selection table is a procedural prerequisite, not an automatic comparison.
 
 JE-3600A English is still receiving artwork corrections. JBP-3600A has a local
-English preview and PR #1404, but no final operator approval was found. Neither
+English preview and PR #1404. The operator subsequently authorized English
+merge/publication in its own window; the final LCD-corrected IR and visual
+evidence still need binding before a baseline is promoted. Neither candidate
 may be silently promoted. JE-2000E is a structural reference for JE-3600A, not
 the authority for JE-3600A values or copy.
 
@@ -68,8 +70,13 @@ a real non-English trial without overwriting either English intake worktree.
   chapter candidate/mapping, native source-page renders, shared-renderer IR
   packages and `cli-trial-report.json`. The pilot intentionally excludes all
   other chapters rather than presenting untranslated English as French.
-- Verification: 52 targeted admission/seal/replay tests passed; full-suite result
-  pending. Ruff, maintenance guardrails, doc integrity and the strict English /
+- Verification: 64 targeted admission/seal/replay and guardrail tests passed.
+  The complete suite passed: 5,075 tests, 32 skipped (2,314.481 seconds).
+  A follow-up mutation additionally checks the actual embedded Web contract
+  digest, preventing a changed renderer contract from retaining an old declared
+  style hash. The final full suite also passed: 5,075 tests, 32 skipped
+  (3,053.886 seconds). The updated real EN/FR chapter trial still reports zero
+  structural differences. Ruff, maintenance guardrails, doc integrity and the strict English /
   French sample Sphinx builds passed. The default US check initially failed
   because this fresh worktree has no local phase2 snapshot; the supported
   `--data-root /Users/pika/Documents/auto-manual2/data/phase2` run passed without

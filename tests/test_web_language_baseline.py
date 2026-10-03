@@ -90,6 +90,7 @@ class LanguageBaselineTests(unittest.TestCase):
             'unmapped language': lambda r: r.update(language='ja'),
             'new snapshot': lambda r: r.update(snapshot_sha256='d' * 64),
             'presentation': lambda r: change_spec(r, 'metadata', {'presentation_mode': 'finished-panel'}),
+            'changed renderer contract with stale declared hash': lambda r: r['metadata'].update(web_contract={'operations': {'figures': []}}),
         }
         for label, mutate in mutations.items():
             with self.subTest(label=label):
