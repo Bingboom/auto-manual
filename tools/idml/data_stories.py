@@ -1,7 +1,9 @@
 """LCD, symbols, troubleshooting, and specification story builders."""
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 try:
     from tools.lcd_table_layout import split_lcd_table_rows
@@ -25,6 +27,398 @@ from .spec_tables import measured_spec_table_height, spec_table_height
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+@dataclass(frozen=True)
+class _LcdContext:
+    """Per-call inputs shared by every LCD table segment."""
+
+    writer: Any
+    lang: str
+    title: str
+    is_english: bool
+    body_w: float
+    text_indent: float
+    governed_icon_line_reserve: float
+    table_variant: str
+
+
+def _lcd_segment_limits(writer, is_english: bool) -> tuple[int, int]:
+    first_limit = int(float(writer.params.get(
+        "comp_lcd_first_segment_rows" if is_english
+        else "comp_lcd_translated_first_segment_rows",
+        ("7", "count"),
+    )[0]))
+    continuation_limit = int(float(writer.params.get(
+        "comp_lcd_continuation_segment_rows" if is_english
+        else "comp_lcd_translated_continuation_segment_rows",
+        ("19", "count"),
+    )[0]))
+    return first_limit, continuation_limit
+
+
+def _lcd_vertical_pad(ctx: _LcdContext, segment_index: int) -> float:
+    params, lang = ctx.writer.params, ctx.lang
+    if segment_index > 0:
+        return param_pt(
+            params,
+            f"lang_{lang}_idml_lcd_continuation_vertical_padding",
+            param_pt(
+                params,
+                "idml_lcd_continuation_vertical_padding",
+                param_pt(
+                    params,
+                    "comp_lcd_continuation_vertical_padding",
+                    1.2,
+                ),
+            ),
+        )
+    if ctx.is_english:
+        return param_pt(
+            params,
+            "idml_lcd_first_vertical_padding",
+            param_pt(params, "comp_lcd_first_vertical_padding", 1.6),
+        )
+    return param_pt(
+        params,
+        f"lang_{lang}_idml_lcd_translated_first_vertical_padding",
+        param_pt(
+            params,
+            "idml_lcd_translated_first_vertical_padding",
+            param_pt(
+                params,
+                "comp_lcd_translated_first_vertical_padding",
+                0.7,
+            ),
+        ),
+    )
+
+
+def _prepare_lcd_segments(
+    ctx: _LcdContext, raw_segments: list[list[dict]],
+) -> list[tuple[list[dict], list[float] | None]]:
+    """Attach governed row heights to each segment, re-splitting continuations to fit."""
+    writer = ctx.writer
+    prepared_segments: list[tuple[list[dict], list[float] | None]] = []
+    for raw_index, raw_segment in enumerate(raw_segments):
+        governed_heights = [
+            str(row.get("row_height_pt") or "").strip() for row in raw_segment
+        ]
+        if not any(governed_heights):
+            prepared_segments.append((raw_segment, None))
+            continue
+        if not all(governed_heights):
+            raise ValueError(
+                "LCD segment mixes governed and InDesign-native row heights"
+            )
+        base_heights = [float(height) for height in governed_heights]
+        raw_cols, _, raw_pad = _lcd.layout_tokens(
+            writer, ctx.body_w, segment_index=raw_index, lang=ctx.lang)
+        if raw_index == 0:
+            # The approved reference contract measures every physical row on
+            # the first LCD page.  Preserve that exact distribution: a generic
+            # character-width estimator is intentionally conservative and can
+            # otherwise move the French terminal row onto a spurious third
+            # page even though the reviewed template proves that it fits.
+            # Continuation pages still use content-aware fitting/splitting
+            # because their rows may change independently of the template.
+            prepared_segments.append((raw_segment, base_heights))
+        else:
+            prepared_segments.extend(
+                (
+                    chunk_rows,
+                    chunk_heights,
+                )
+                for chunk_rows, chunk_heights in _lcd.split_governed_rows(
+                    writer,
+                    raw_segment,
+                    base_heights,
+                    raw_cols,
+                    padding=raw_pad,
+                    vertical_pad=_lcd_vertical_pad(ctx, raw_index),
+                    text_indent=ctx.text_indent,
+                    lang=ctx.lang,
+                    segment_index=raw_index,
+                    governed_icon_line_reserve=ctx.governed_icon_line_reserve,
+                )
+            )
+    return prepared_segments
+
+
+def _lcd_first_panel_height(params, lang: str) -> float:
+    return param_pt(
+        params,
+        f"lang_{lang}_idml_lcd_first_panel_height",
+        param_pt(
+            params,
+            "idml_lcd_first_panel_height",
+            param_pt(
+                params,
+                "comp_lcd_first_panel_height",
+                286.0,
+            ),
+        ),
+    )
+
+
+def _lcd_terminal_fill(
+    ctx: _LcdContext,
+    segment_index: int,
+    row_heights: list[float] | None,
+    *,
+    compact: bool,
+) -> float:
+    """Depth the segment's final row must absorb to close against its shell."""
+    writer, lang = ctx.writer, ctx.lang
+    if segment_index == 0:
+        if row_heights is not None:
+            return max(
+                0.0,
+                _lcd_first_panel_height(writer.params, lang) - sum(row_heights),
+            )
+        if not compact:
+            # Compact shared-page LCD tables own only their real rows.
+            # The approved standalone LCD composition's terminal filler
+            # would otherwise add 26+ pt of empty cell inset, hide the
+            # final short row, and consume the Operations frame budget.
+            return param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_first_terminal_fill",
+                param_pt(
+                    writer.params,
+                    "idml_lcd_first_terminal_fill",
+                    0.0,
+                ),
+            )
+        return 0.0
+    if row_heights is None:
+        return 0.0
+    # Every continuation frame is a complete page-owned table.  Its
+    # last row absorbs the exact remaining page depth so the rounded
+    # table closes on the linked-frame bottom instead of leaving a
+    # white strip below it.  The inline anchor has a small native
+    # baseline offset after IDML import; subtract it from the budget.
+    visual_bottom = writer.page_h - param_pt(
+        writer.params,
+        f"lang_{lang}_idml_lcd_visual_bottom_gap",
+        param_pt(
+            writer.params,
+            "idml_lcd_visual_bottom_gap",
+            writer.m_b,
+        ),
+    )
+    continuation_top = param_pt(
+        writer.params,
+        f"lang_{lang}_idml_lcd_continuation_page_top",
+        param_pt(
+            writer.params,
+            "idml_lcd_continuation_page_top",
+            writer.m_t,
+        ),
+    )
+    target_height = (
+        visual_bottom
+        - continuation_top
+        - param_pt(
+            writer.params,
+            "idml_lcd_inline_anchor_offset",
+            0.375,
+        )
+    )
+    return max(0.0, target_height - sum(row_heights))
+
+
+def _lcd_row_icon_pt(
+    ctx: _LcdContext,
+    row: dict,
+    icon_pt: float,
+    governed_height: str,
+    vertical_pad: float,
+) -> float:
+    row_icon_pt = icon_pt
+    governed_icon_size = str(row.get("icon_size_pt") or "").strip()
+    if governed_icon_size:
+        row_icon_pt = min(row_icon_pt, max(4.0, float(governed_icon_size)))
+    if governed_height:
+        # Fit the inline icon inside the compact row minimum,
+        # including the 0.6 pt baseline shift applied below.  The
+        # table row remains AutoGrow-enabled for real font metrics.
+        row_icon_pt = min(
+            icon_pt,
+            max(
+                4.0,
+                float(governed_height)
+                - 2 * vertical_pad
+                - ctx.governed_icon_line_reserve,
+            ),
+        )
+    return row_icon_pt
+
+
+def _lcd_cell_defs(
+    ctx: _LcdContext,
+    row: dict,
+    image_paragraph: str,
+    typography: tuple[float, float, float, float],
+) -> tuple[tuple[str, int], ...]:
+    writer = ctx.writer
+    label_size, label_leading, body_size, body_leading = typography
+    if ctx.table_variant == "label_description":
+        return (
+            (_lcd.typed_paragraph(
+                writer, "HB Spec Label", row["name"],
+                point_size=label_size, leading=label_leading,
+                bold=True), 0),
+            (_lcd.typed_paragraph(
+                writer, "HB Spec Value", row["desc"],
+                point_size=body_size, leading=body_leading), 1),
+        )
+    return (
+        (_lcd.typed_paragraph(
+            writer, "HB Spec Label", row["no"],
+            "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
+        (image_paragraph, 1),
+        (_lcd.typed_paragraph(
+            writer, "HB Spec Label", row["name"],
+            point_size=label_size, leading=label_leading,
+            bold=True), 2),
+        (_lcd.typed_paragraph(
+            writer, "HB Spec Value", row["desc"],
+            point_size=body_size, leading=body_leading), 3),
+    )
+
+
+def _lcd_row_cells(
+    ctx: _LcdContext,
+    *,
+    tid: str,
+    segment: list[dict],
+    segment_index: int,
+    row_heights: list[float] | None,
+    icon_pt: float,
+    pad: float,
+    vertical_pad: float,
+    terminal_fill: float,
+    global_ri: int,
+) -> tuple[list[str], int]:
+    """Build every cell of one segment; return the cells and the next global row index."""
+    writer = ctx.writer
+    number_icon = ctx.table_variant == "number_icon_label_description"
+    cells: list[str] = []
+    for local_ri, row in enumerate(segment):
+        typography = _lcd.typography_tokens(
+            writer, ctx.lang, row, segment_index=segment_index)
+        governed_height = (
+            f"{row_heights[local_ri]:g}"
+            if row_heights is not None
+            else str(row.get("row_height_pt") or "").strip()
+        )
+        row_icon_pt = _lcd_row_icon_pt(ctx, row, icon_pt, governed_height, vertical_pad)
+        fig = (ROOT / row["figure"]) if row["figure"] else None
+        image = (
+            writer._image_cell_content(
+                f"{tid}img{global_ri}", fig, row_icon_pt, row_icon_pt)
+            if fig and fig.exists() else ""
+        )
+        image_paragraph = _components.figure_paragraph(
+            image,
+            tail="<Content></Content>",
+            justification="CenterAlign",
+        )
+        image_paragraph = image_paragraph.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'BaselineShift="0.6"',
+            1,
+        )
+        terminal_inset = (
+            terminal_fill / 2.0
+            if row_heights is None and local_ri == len(segment) - 1
+            else 0.0
+        )
+        for content, ci in _lcd_cell_defs(ctx, row, image_paragraph, typography):
+            if number_icon and ci == 0 and row.get("suppress_number") == "true":
+                continue
+            row_span = int(row.get("number_row_span", "1")) if number_icon and ci == 0 else 1
+            cell_xml = writer._cell(
+                f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
+                top=vertical_pad + terminal_inset,
+                bottom=vertical_pad + terminal_inset,
+                left=(
+                    ctx.text_indent
+                    if (not number_icon or ci >= 2)
+                    else pad
+                ),
+                right=pad,
+                valign="CenterAlign")
+            if row_span > 1:
+                cell_xml = cell_xml.replace(
+                    'RowSpan="1"', f'RowSpan="{row_span}"', 1)
+            cells.append(cell_xml)
+        global_ri += 1
+    return cells, global_ri
+
+
+def _lcd_panel_height(
+    ctx: _LcdContext,
+    segment_index: int,
+    segment: list[dict],
+    row_heights: list[float] | None,
+    segment_limit: int,
+) -> float:
+    params = ctx.writer.params
+    if segment_index == 0:
+        panel_height = _lcd_first_panel_height(params, ctx.lang)
+    else:
+        panel_height = param_pt(
+            params,
+            "idml_lcd_continuation_panel_height",
+            param_pt(
+                params, "comp_lcd_continuation_panel_height", 465.0),
+        )
+    if row_heights is None and len(segment) < segment_limit:
+        panel_height = min(
+            panel_height,
+            max(
+                param_pt(params, "comp_lcd_partial_panel_min_height", 30.0),
+                len(segment)
+                * param_pt(params, "comp_lcd_partial_row_height", 27.0)
+                + param_pt(params, "comp_lcd_partial_panel_extra", 4.0),
+            ),
+        )
+    # A complete governed table owns the full visible shell height: short
+    # rows keep their compact fixed budget and the final row closes directly
+    # against the rounded bottom border. The native end-of-story marker is
+    # isolated in a separate transparent threaded carrier, never appended
+    # to the visible shell or its table frame.
+    if row_heights is not None:
+        panel_height = sum(row_heights)
+    return panel_height
+
+
+def _lcd_left_indent(ctx: _LcdContext, segment_index: int) -> float:
+    params, lang = ctx.writer.params, ctx.lang
+    if segment_index == 0:
+        return param_pt(
+            params,
+            f"lang_{lang}_idml_lcd_first_left_indent",
+            param_pt(params, "idml_lcd_first_left_indent", 0.0),
+        )
+    return param_pt(
+        params,
+        f"lang_{lang}_idml_lcd_continuation_left_indent",
+        param_pt(
+            params, "idml_lcd_continuation_left_indent", 0.0,
+        ),
+    )
+
+
+def _lcd_table_id(lang: str, segment_index: int) -> str:
+    if segment_index == 0 and lang == "en":
+        return "tbl_lcd"
+    if segment_index == 0:
+        return f"tbl_lcd_{lang}"
+    return f"tbl_lcd_cont_{lang}"
 
 
 def add_lcd_story(
@@ -52,16 +446,7 @@ def add_lcd_story(
         + param_pt(writer.params, "idml_lcd_table_width_adjust", 0.0)
     )
     is_english = lang.strip().casefold().replace("_", "-").startswith("en")
-    first_limit = int(float(writer.params.get(
-        "comp_lcd_first_segment_rows" if is_english
-        else "comp_lcd_translated_first_segment_rows",
-        ("7", "count"),
-    )[0]))
-    continuation_limit = int(float(writer.params.get(
-        "comp_lcd_continuation_segment_rows" if is_english
-        else "comp_lcd_translated_continuation_segment_rows",
-        ("19", "count"),
-    )[0]))
+    first_limit, continuation_limit = _lcd_segment_limits(writer, is_english)
     raw_segments = split_lcd_table_rows(
         rows,
         lang=lang,
@@ -83,84 +468,17 @@ def add_lcd_story(
         strict=writer.strict_component_assets,
         owner="LCD native terminal carrier",
     )
-    def _vertical_pad(segment_index: int) -> float:
-        if segment_index > 0:
-            return param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_continuation_vertical_padding",
-                param_pt(
-                    writer.params,
-                    "idml_lcd_continuation_vertical_padding",
-                    param_pt(
-                        writer.params,
-                        "comp_lcd_continuation_vertical_padding",
-                        1.2,
-                    ),
-                ),
-            )
-        if is_english:
-            return param_pt(
-                writer.params,
-                "idml_lcd_first_vertical_padding",
-                param_pt(writer.params, "comp_lcd_first_vertical_padding", 1.6),
-            )
-        return param_pt(
-            writer.params,
-            f"lang_{lang}_idml_lcd_translated_first_vertical_padding",
-            param_pt(
-                writer.params,
-                "idml_lcd_translated_first_vertical_padding",
-                param_pt(
-                    writer.params,
-                    "comp_lcd_translated_first_vertical_padding",
-                    0.7,
-                ),
-            ),
-        )
-
-    prepared_segments: list[tuple[list[dict], list[float] | None]] = []
-    for raw_index, raw_segment in enumerate(raw_segments):
-        governed_heights = [
-            str(row.get("row_height_pt") or "").strip() for row in raw_segment
-        ]
-        if not any(governed_heights):
-            prepared_segments.append((raw_segment, None))
-            continue
-        if not all(governed_heights):
-            raise ValueError(
-                "LCD segment mixes governed and InDesign-native row heights"
-            )
-        base_heights = [float(height) for height in governed_heights]
-        raw_cols, _, raw_pad = _lcd.layout_tokens(
-            writer, body_w, segment_index=raw_index, lang=lang)
-        if raw_index == 0:
-            # The approved reference contract measures every physical row on
-            # the first LCD page.  Preserve that exact distribution: a generic
-            # character-width estimator is intentionally conservative and can
-            # otherwise move the French terminal row onto a spurious third
-            # page even though the reviewed template proves that it fits.
-            # Continuation pages still use content-aware fitting/splitting
-            # because their rows may change independently of the template.
-            prepared_segments.append((raw_segment, base_heights))
-        else:
-            prepared_segments.extend(
-                (
-                    chunk_rows,
-                    chunk_heights,
-                )
-                for chunk_rows, chunk_heights in _lcd.split_governed_rows(
-                    writer,
-                    raw_segment,
-                    base_heights,
-                    raw_cols,
-                    padding=raw_pad,
-                    vertical_pad=_vertical_pad(raw_index),
-                    text_indent=text_indent,
-                    lang=lang,
-                    segment_index=raw_index,
-                    governed_icon_line_reserve=governed_icon_line_reserve,
-                )
-            )
+    ctx = _LcdContext(
+        writer=writer,
+        lang=lang,
+        title=title,
+        is_english=is_english,
+        body_w=body_w,
+        text_indent=text_indent,
+        governed_icon_line_reserve=governed_icon_line_reserve,
+        table_variant=table_variant,
+    )
+    prepared_segments = _prepare_lcd_segments(ctx, raw_segments)
     writer.lcd_segment_counts[lang] = len(prepared_segments)
     table_panels: list[str] = []
     global_ri = 0
@@ -178,201 +496,32 @@ def add_lcd_story(
                     segment_index=segment_index,
                 )
             )
+            vertical_pad = label_description_pad
         else:
             cols = full_cols
-            label_description_pad = 0.0
             dynamic_row_heights = []
+            vertical_pad = _lcd_vertical_pad(ctx, segment_index)
         if lang == "en":
             icon_pt = min(icon_pt, 23.0)
-        vertical_pad = (
-            label_description_pad
-            if table_variant == "label_description"
-            else _vertical_pad(segment_index)
-        )
-        tid = (
-            "tbl_lcd" if segment_index == 0 and lang == "en"
-            else f"tbl_lcd_{lang}" if segment_index == 0
-            else f"tbl_lcd_cont_{lang}"
-        )
-        cells: list[str] = []
-        terminal_fill = 0.0
-        if segment_index == 0:
-            if row_heights is not None:
-                first_panel_height = param_pt(
-                    writer.params,
-                    f"lang_{lang}_idml_lcd_first_panel_height",
-                    param_pt(
-                        writer.params,
-                        "idml_lcd_first_panel_height",
-                        param_pt(
-                            writer.params,
-                            "comp_lcd_first_panel_height",
-                            286.0,
-                        ),
-                    ),
-                )
-                terminal_fill = max(
-                    0.0,
-                    first_panel_height - sum(row_heights),
-                )
-            elif not compact:
-                # Compact shared-page LCD tables own only their real rows.
-                # The approved standalone LCD composition's terminal filler
-                # would otherwise add 26+ pt of empty cell inset, hide the
-                # final short row, and consume the Operations frame budget.
-                terminal_fill = param_pt(
-                    writer.params,
-                    f"lang_{lang}_idml_lcd_first_terminal_fill",
-                    param_pt(
-                        writer.params,
-                        "idml_lcd_first_terminal_fill",
-                        0.0,
-                    ),
-                )
-        elif row_heights is not None:
-            # Every continuation frame is a complete page-owned table.  Its
-            # last row absorbs the exact remaining page depth so the rounded
-            # table closes on the linked-frame bottom instead of leaving a
-            # white strip below it.  The inline anchor has a small native
-            # baseline offset after IDML import; subtract it from the budget.
-            visual_bottom = writer.page_h - param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_visual_bottom_gap",
-                param_pt(
-                    writer.params,
-                    "idml_lcd_visual_bottom_gap",
-                    writer.m_b,
-                ),
-            )
-            continuation_top = param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_continuation_page_top",
-                param_pt(
-                    writer.params,
-                    "idml_lcd_continuation_page_top",
-                    writer.m_t,
-                ),
-            )
-            target_height = (
-                visual_bottom
-                - continuation_top
-                - param_pt(
-                    writer.params,
-                    "idml_lcd_inline_anchor_offset",
-                    0.375,
-                )
-            )
-            terminal_fill = max(0.0, target_height - sum(row_heights))
+        tid = _lcd_table_id(lang, segment_index)
+        terminal_fill = _lcd_terminal_fill(ctx, segment_index, row_heights, compact=compact)
         if row_heights is not None and terminal_fill:
             row_heights = list(row_heights)
             row_heights[-1] += terminal_fill
         if content_sized_rows:
             row_heights = dynamic_row_heights
-        for local_ri, row in enumerate(segment):
-            label_size, label_leading, body_size, body_leading = (
-                _lcd.typography_tokens(
-                    writer, lang, row, segment_index=segment_index)
-            )
-            row_icon_pt = icon_pt
-            governed_icon_size = str(row.get("icon_size_pt") or "").strip()
-            if governed_icon_size:
-                row_icon_pt = min(row_icon_pt, max(4.0, float(governed_icon_size)))
-            governed_height = (
-                f"{row_heights[local_ri]:g}"
-                if row_heights is not None
-                else str(row.get("row_height_pt") or "").strip()
-            )
-            if governed_height:
-                # Fit the inline icon inside the compact row minimum,
-                # including the 0.6 pt baseline shift applied below.  The
-                # table row remains AutoGrow-enabled for real font metrics.
-                row_icon_pt = min(
-                    icon_pt,
-                    max(
-                        4.0,
-                        float(governed_height)
-                        - 2 * vertical_pad
-                        - governed_icon_line_reserve,
-                    ),
-                )
-            fig = (ROOT / row["figure"]) if row["figure"] else None
-            image = (
-                writer._image_cell_content(
-                    f"{tid}img{global_ri}", fig, row_icon_pt, row_icon_pt)
-                if fig and fig.exists() else ""
-            )
-            image_paragraph = _components.figure_paragraph(
-                image,
-                tail="<Content></Content>",
-                justification="CenterAlign",
-            )
-            image_paragraph = image_paragraph.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'BaselineShift="0.6"',
-                1,
-            )
-            if table_variant == "label_description":
-                cell_defs = (
-                    (_lcd.typed_paragraph(
-                        writer, "HB Spec Label", row["name"],
-                        point_size=label_size, leading=label_leading,
-                        bold=True), 0),
-                    (_lcd.typed_paragraph(
-                        writer, "HB Spec Value", row["desc"],
-                        point_size=body_size, leading=body_leading), 1),
-                )
-            else:
-                cell_defs = (
-                    (_lcd.typed_paragraph(
-                        writer, "HB Spec Label", row["no"],
-                        "type_lcd_no_font_size", "type_lcd_no_font_leading"), 0),
-                    (image_paragraph, 1),
-                    (_lcd.typed_paragraph(
-                        writer, "HB Spec Label", row["name"],
-                        point_size=label_size, leading=label_leading,
-                        bold=True), 2),
-                    (_lcd.typed_paragraph(
-                        writer, "HB Spec Value", row["desc"],
-                        point_size=body_size, leading=body_leading), 3),
-                )
-            for content, ci in cell_defs:
-                if (
-                    table_variant == "number_icon_label_description"
-                    and ci == 0
-                    and row.get("suppress_number") == "true"
-                ):
-                    continue
-                row_span = (
-                    int(row.get("number_row_span", "1"))
-                    if table_variant == "number_icon_label_description" and ci == 0
-                    else 1
-                )
-                terminal_inset = (
-                    terminal_fill / 2.0
-                    if row_heights is None
-                    and local_ri == len(segment) - 1
-                    else 0.0
-                )
-                cell_xml = writer._cell(
-                    f"{tid}c{global_ri}_{ci}", f"{ci}:{local_ri}", content,
-                    top=vertical_pad + terminal_inset,
-                    bottom=vertical_pad + terminal_inset,
-                    left=(
-                        text_indent
-                        if (
-                            table_variant == "label_description"
-                            or ci >= 2
-                        )
-                        else pad
-                    ),
-                    right=pad,
-                    valign="CenterAlign")
-                if row_span > 1:
-                    cell_xml = cell_xml.replace(
-                        'RowSpan="1"', f'RowSpan="{row_span}"', 1)
-                cells.append(cell_xml)
-            global_ri += 1
+        cells, global_ri = _lcd_row_cells(
+            ctx,
+            tid=tid,
+            segment=segment,
+            segment_index=segment_index,
+            row_heights=row_heights,
+            icon_pt=icon_pt,
+            pad=pad,
+            vertical_pad=vertical_pad,
+            terminal_fill=terminal_fill,
+            global_ri=global_ri,
+        )
         table = writer._component_table(
             tid,
             list(cols),
@@ -391,41 +540,7 @@ def add_lcd_story(
         shaded_columns = 1 if table_variant == "label_description" else 3
         for column in range(shaded_columns):
             table = _tb.fill_column_xml(table, column, "Color/HB Bg K05")
-        if segment_index == 0:
-            panel_height = param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_first_panel_height",
-                param_pt(
-                    writer.params,
-                    "idml_lcd_first_panel_height",
-                    param_pt(writer.params, "comp_lcd_first_panel_height", 286.0),
-                ),
-            )
-        else:
-            panel_height = param_pt(
-                writer.params,
-                "idml_lcd_continuation_panel_height",
-                param_pt(
-                    writer.params, "comp_lcd_continuation_panel_height", 465.0),
-            )
         segment_limit = first_limit if segment_index == 0 else continuation_limit
-        if row_heights is None and len(segment) < segment_limit:
-            panel_height = min(
-                panel_height,
-                max(
-                    param_pt(writer.params, "comp_lcd_partial_panel_min_height", 30.0),
-                    len(segment)
-                    * param_pt(writer.params, "comp_lcd_partial_row_height", 27.0)
-                    + param_pt(writer.params, "comp_lcd_partial_panel_extra", 4.0),
-                ),
-            )
-        # A complete governed table owns the full visible shell height: short
-        # rows keep their compact fixed budget and the final row closes directly
-        # against the rounded bottom border. The native end-of-story marker is
-        # isolated in a separate transparent threaded carrier, never appended
-        # to the visible shell or its table frame.
-        if row_heights is not None:
-            panel_height = sum(row_heights)
         panel = rounded_table_panel(
             writer._add_story_parts,
             writer.params,
@@ -433,7 +548,7 @@ def add_lcd_story(
             title=f"{title} table segment {segment_index + 1}",
             table_xml=table,
             width=body_w,
-            height=panel_height,
+            height=_lcd_panel_height(ctx, segment_index, segment, row_heights, segment_limit),
             n_cols=len(cols),
             terminal=segment_index == len(prepared_segments) - 1,
             fill="Color/Paper",
@@ -441,20 +556,7 @@ def add_lcd_story(
             start_next_page=segment_index > 0,
             terminal_carrier_height=native_carrier_allowance,
         )
-        if segment_index == 0:
-            left_indent = param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_first_left_indent",
-                param_pt(writer.params, "idml_lcd_first_left_indent", 0.0),
-            )
-        else:
-            left_indent = param_pt(
-                writer.params,
-                f"lang_{lang}_idml_lcd_continuation_left_indent",
-                param_pt(
-                    writer.params, "idml_lcd_continuation_left_indent", 0.0,
-                ),
-            )
+        left_indent = _lcd_left_indent(ctx, segment_index)
         if left_indent:
             panel = panel.replace(
                 "<ParagraphStyleRange ",
