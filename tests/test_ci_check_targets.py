@@ -4,6 +4,8 @@ import json
 import shutil
 import tempfile
 import unittest
+from dataclasses import asdict, replace
+from unittest.mock import patch
 
 import yaml
 from pathlib import Path
@@ -11,6 +13,7 @@ from pathlib import Path
 from tools.ci_check_targets import (
     CheckResult,
     CheckTarget,
+    TargetIdentity,
     CommandResult,
     build_report,
     discover_targets,
@@ -181,6 +184,23 @@ class TestCiCheckTargets(unittest.TestCase):
         baseline = ROOT / ".github" / "ci_check_targets_skip_baseline.json"
         payload = json.loads(baseline.read_text(encoding="utf-8"))
 
+        self.assertEqual(2, payload["schema_version"])
+        discovered = {
+            TargetIdentity(target.config_path.relative_to(ROOT).as_posix(), target.model, target.region, target.lang)
+            for target in discover_targets(ROOT / "configs")
+        }
+        for key, count_key in (("skipped_targets", "skip_count"), ("failing_targets", "fail_count")):
+            identities = {TargetIdentity(**row) for row in payload[key]}
+            self.assertEqual(payload[count_key], len(identities))
+            self.assertEqual(len(payload[key]), len(identities))
+            self.assertTrue(identities <= discovered)
+        self.assertEqual(
+            {
+                TargetIdentity("configs/config.eu-uk.yaml", "JE-1000F", "EU", "uk"),
+                TargetIdentity("configs/config.zh.yaml", "JE-2000E", "CN", None),
+            },
+            {TargetIdentity(**row) for row in payload["failing_targets"]},
+        )
         self.assertIsInstance(payload.get("skip_count"), int)
         self.assertIsInstance(payload.get("fail_count"), int)
         self.assertEqual(payload["skip_count"], load_skip_baseline(baseline))
@@ -190,6 +210,78 @@ class TestCiCheckTargets(unittest.TestCase):
             for relative in payload.get(key, []):
                 with self.subTest(config=relative):
                     self.assertTrue((ROOT / relative).is_file(), relative)
+
+    def test_identity_ratchets_reject_swaps_even_when_counts_do_not_grow(self) -> None:
+        old = CheckResult("configs/config.old.yaml", "MODEL-A", "US", "en", "MODEL-A_US", "FAIL", "known")
+        allowed = frozenset({TargetIdentity(old.config, old.model, old.region, old.lang)})
+        for status in ("SKIP", "FAIL"):
+            for field, value in (("config", "configs/config.new.yaml"), ("model", "MODEL-B"), ("region", "EU"), ("lang", None)):
+                with self.subTest(status=status, field=field):
+                    repaired = replace(old, status="PASS")
+                    new = replace(old, status=status, **{field: value})
+                    report = build_report(
+                        (repaired, new), baseline_skip_count=1, baseline_fail_count=1,
+                        baseline_skipped_targets=allowed, baseline_failing_targets=allowed,
+                    )
+                    ratchet = report[f"{status.lower()}_ratchet"]
+                    self.assertFalse(ratchet["passed"])
+                    self.assertEqual(1, len(ratchet["unexpected_targets"]))
+
+    def test_identity_ratchets_allow_known_targets_to_recover(self) -> None:
+        identity = TargetIdentity("configs/config.old.yaml", "MODEL-A", "US", "en")
+        for status in ("SKIP", "FAIL", "PASS"):
+            with self.subTest(status=status):
+                result = CheckResult(identity.config, identity.model, identity.region, identity.lang, "MODEL-A_US", status, "known")
+                report = build_report(
+                    [result], baseline_skip_count=1, baseline_fail_count=1,
+                    baseline_skipped_targets=frozenset({identity}),
+                    baseline_failing_targets=frozenset({identity}),
+                )
+                self.assertTrue(report["skip_ratchet"]["passed"])
+                self.assertTrue(report["fail_ratchet"]["passed"])
+
+    def test_observation_driver_rejects_replacement_identities_below_baseline(self) -> None:
+        old = TargetIdentity("configs/config.old.yaml", "MODEL-A", "US", "en")
+        other = replace(old, model="MODEL-B")
+        for status in ("SKIP", "FAIL"):
+            with self.subTest(status=status), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                baseline = root / "baseline.json"
+                baseline.write_text(json.dumps({
+                    "schema_version": 2, "skip_count": 2, "fail_count": 2,
+                    "skipped_targets": [asdict(old), asdict(other)],
+                    "failing_targets": [asdict(old), asdict(other)],
+                }))
+                results = (
+                    CheckResult(old.config, old.model, old.region, old.lang, "MODEL-A_US", "PASS", "repaired"),
+                    CheckResult(old.config, other.model, old.region, old.lang, "MODEL-B_US", "PASS", "repaired"),
+                    CheckResult(old.config, "MODEL-NEW", old.region, old.lang, "MODEL-NEW_US", status, "regression"),
+                )
+                with patch("tools.ci_check_targets.discover_targets", return_value=()), \
+                     patch("tools.ci_check_targets.fixture_document_keys", return_value=set()), \
+                     patch("tools.ci_check_targets.evaluate_targets", return_value=results):
+                    exit_code, report = run_driver(
+                        configs_dir=root, data_root=root, repo_root=root,
+                        skip_baseline=baseline, fail_on_failures=False,
+                    )
+                self.assertEqual(1, exit_code)
+                self.assertEqual(1, report["counts"][status])
+                self.assertFalse(report[f"{status.lower()}_ratchet"]["passed"])
+
+    def test_version_two_baseline_rejects_missing_malformed_or_duplicate_identities(self) -> None:
+        identity = asdict(TargetIdentity("configs/config.old.yaml", "MODEL-A", "US", "en"))
+        for rows in (None, {}, [identity, identity], [{"config": "old"}], [dict(identity, lang=42)], []):
+            with self.subTest(rows=rows), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                baseline = root / "baseline.json"
+                baseline.write_text(json.dumps({
+                    "schema_version": 2, "skip_count": 1, "fail_count": 0,
+                    "skipped_targets": rows, "failing_targets": [],
+                }))
+                with patch("tools.ci_check_targets.discover_targets", return_value=()), \
+                     patch("tools.ci_check_targets.fixture_document_keys", return_value=set()), \
+                     self.assertRaisesRegex(RuntimeError, "skipped_targets"):
+                    run_driver(configs_dir=root, data_root=root, repo_root=root, skip_baseline=baseline)
 
     def test_fixture_document_keys_are_read_case_insensitively(self) -> None:
         with tempfile.TemporaryDirectory() as td:

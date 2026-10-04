@@ -137,6 +137,24 @@ class TestCheckMaintainabilityGuardrails(unittest.TestCase):
             guardrails.collect_web_target_literal_failures(guardrails._REPO_ROOT),
         )
 
+    def test_web_shared_code_rejects_target_literals_in_nested_packages(self) -> None:
+        with temp_test_root() as root:
+            self._write_web_target_registry(root)
+            write_lines(
+                root / "tools" / "web" / "new_package" / "renderer.py",
+                [
+                    "# MODEL-100 belongs in the target overlay only",
+                    "TARGET = 'MODEL-100'",
+                ],
+            )
+
+            failures = guardrails.collect_web_target_literal_failures(root)
+
+        self.assertEqual(
+            [guardrails.WebTargetLiteral("tools/web/new_package/renderer.py", 2, "MODEL-100")],
+            failures,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
