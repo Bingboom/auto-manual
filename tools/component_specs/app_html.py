@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Mapping, cast
+from typing import Any, Iterator, Mapping, cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -103,7 +103,9 @@ def parse_app_download_html(
     )
 
 
-def parse_declared_app_downloads(soup, *, source_path, language):
+def parse_declared_app_downloads(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]]:
     """Bind authored artwork choices to the existing full download component."""
     for image in soup.select("img.hb-source-app-download"):
         config = json.loads(str(image.get("data-app-download") or "{}"))

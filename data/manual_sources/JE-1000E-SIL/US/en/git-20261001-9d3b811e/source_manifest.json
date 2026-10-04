@@ -730,13 +730,13 @@
     },
     {
       "path": "tools/component_specs/app_html.py",
-      "size": 8929,
-      "sha256": "c0e67db8926b492b2a57ab79e18ec528606994f946591a38082987a8a612ac25"
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
     },
     {
       "path": "tools/component_specs/fcc_declaration.py",
-      "size": 1910,
-      "sha256": "cdd45b7e5f9e562567942ad2a502d6bc132233fb094205934c038ff6518b1394"
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
     },
     {
       "path": "tools/manual_ir/whole_document_components.py",

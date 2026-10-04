@@ -1,15 +1,25 @@
 """FCC is a source-content contract, independent of product allowlists."""
-from collections.abc import Mapping
+from __future__ import annotations
+
+from collections.abc import Iterable, Mapping
 import fnmatch
 from pathlib import Path
 import re
+from typing import Any, Protocol
 
 from bs4 import BeautifulSoup
+
+from tools.component_specs.model import ComponentSpec
 
 COMPONENT_ID = 'HB-SPECIAL-FCC'
 
 
-def declares_fcc(soup: BeautifulSoup, source_path: Path, config: Mapping) -> bool:
+class _SpecClaim(Protocol):
+    @property
+    def spec(self) -> ComponentSpec: ...
+
+
+def declares_fcc(soup: BeautifulSoup, source_path: Path, config: Mapping[str, Any]) -> bool:
     if soup.select_one('.hb-source-fcc') is not None:
         return True
     if any(h.get_text(' ', strip=True).casefold() == 'fcc'
@@ -23,21 +33,26 @@ def declares_fcc(soup: BeautifulSoup, source_path: Path, config: Mapping) -> boo
                           soup.get_text(' ', strip=True), re.IGNORECASE))
 
 
-def require_fcc_component(declared: bool, component_ids, source_path: Path) -> None:
+def require_fcc_component(declared: bool, component_ids: Iterable[str], source_path: Path) -> None:
     if declared and list(component_ids).count(COMPONENT_ID) != 1:
         raise ValueError(f'{source_path}: FCC content requires exactly one {COMPONENT_ID} IR component; refusing plain-text fallback')
 
 
-def require_fcc_claims(declared, claims, source_path):
+def require_fcc_claims(
+    declared: bool, claims: Iterable[_SpecClaim], source_path: Path,
+) -> None:
     require_fcc_component(declared, (claim.spec.component_id for claim in claims), source_path)
 
 
-def require_fcc_markup(declared, soup, source_path):
-    require_fcc_component(declared, (node.get('data-component-id') for node in
+def require_fcc_markup(declared: bool, soup: BeautifulSoup, source_path: Path) -> None:
+    require_fcc_component(declared, (str(node.get('data-component-id') or '') for node in
                                     soup.select('[data-component-id="HB-SPECIAL-FCC"]')), source_path)
 
 
-def check_fcc_render_input(soup, source_path, config, resolved, complete):
+def check_fcc_render_input(
+    soup: BeautifulSoup, source_path: Path, config: Mapping[str, Any],
+    resolved: Iterable[str], complete: bool,
+) -> bool:
     declared = declares_fcc(soup, source_path, config)
     if complete:
         require_fcc_component(declared, resolved, source_path)

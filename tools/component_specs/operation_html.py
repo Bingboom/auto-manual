@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from dataclasses import replace
 import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
@@ -228,7 +228,9 @@ def parse_operation_components(
 __all__ = ["parse_operation_components"]
 
 
-def parse_declared_operations(soup, *, source_path, language):
+def parse_declared_operations(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]]]:
     """Bind explicitly authored panels through the shared operation source adapter."""
     for image in soup.select("img.hb-source-operation"):
         config = json.loads(str(image.get("data-operation") or "{}"))

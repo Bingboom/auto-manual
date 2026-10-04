@@ -4,7 +4,7 @@ from __future__ import annotations
 from copy import deepcopy
 import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
@@ -242,7 +242,9 @@ def parse_reference_figure_html(
 __all__ = ["parse_reference_figure_html"]
 
 
-def parse_declared_references(soup, *, source_path, language):
+def parse_declared_references(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]]:
     """Explicit source binding to the existing live-label reference component."""
     for image in soup.select("img.hb-source-reference"):
         config = json.loads(str(image.get("data-reference") or "{}"))

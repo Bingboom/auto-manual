@@ -211,3 +211,10 @@ Final engineering gates passed: 5148 unittest tests (35 skipped, no failures),
 Ruff, maintainability (zero new/grown/stale entries), documentation links and
 staged whitespace checks. Three target checks/builds and strict Sphinx passed.
 The generated root index is preserved locally and excluded from the commit.
+
+CI type-gate follow-up: all seven new declaration helpers now carry explicit
+input/output types (FCC claims use a read-only structural protocol). The pinned
+mypy 2.3.1 gate reports zero new/grown/improved/stale errors; tools/utils passes.
+Focused declaration tests pass. No type baseline, dependency file or layout
+behavior changed. Source inventories and release receipts are refreshed at the
+new source commit before publication.
