@@ -81,7 +81,7 @@ the declared authority and never maintain their own body text. The 机读面 pan
 states that `manual-knowledge.json` is currently extracted from published HTML
 as a compatibility path, not the target. The machine card carries the same fact as a status badge
 (当前：HTML-derived · Compatibility); when the corpus is generated from
-Assembly / Shared IR instead, change the badge to IR-native · Same-source. Build times, snapshot dates and hashes sit in
+Assembly / Shared IR instead, change the badge to IR-native · Same-source. The panel's coverage tiles (versions, fresh vs receipt, generation mode, revisions, callout severity, images without alt) are filled at view time by `_static/machine-surface-stats.js` from the deployed `machine_surface_manifest.json` and `manual-deployment.json`, because the manifest is written after pages render; without JS or either file the panel keeps a note and the download link. Build times, snapshot dates and hashes sit in
 the collapsed 页面版本与更新 / 数据更新时间 disclosure.
 
 Inside the shell the root page has four bounded zones on one container width

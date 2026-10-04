@@ -87,9 +87,14 @@
     </section>
     <section class="wb-panel" id="wb-machine" aria-labelledby="wb-machine-title">
       <header class="wb-panel-header"><h3 id="wb-machine-title">机读面 · Machine Surface</h3><span>与人读面同属一次发布，可直接下载或引用</span></header>
+      <div class="wb-surface" data-surface-manifest="{{ pathto('machine_surface_manifest.json', 1) }}" data-surface-receipt="{{ pathto('manual-deployment.json', 1) }}">
+        <dl class="wb-surface-stats" data-surface-stats hidden></dl>
+        <p class="wb-surface-note" data-surface-note>覆盖统计在页面打开时读取本次部署的机读清单（machine_surface_manifest.json）；读取不到时可直接下载查看。</p>
+      </div>
       <div class="wb-resources">
         <article class="wb-resource"><h4>说明书知识语料（JSON）</h4><p>已发布 EU 手册的章节结构与正文，供检索和问答。</p><div class="wb-resource-links"><a href="{{ pathto('manual-knowledge.json', 1) }}">下载 JSON <span aria-hidden="true">↓</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/code-as-doc/dev/eu_manual_query.md" target="_blank" rel="noopener">使用指引 <span aria-hidden="true">↗</span></a></div></article>
         {{ resource('发布源（Markdown）', '网页手册的冻结 MyST 源，逐版本可追溯。', business ~ '/tree/main/docs/publish/web', '查看 Markdown 源', 'code-as-doc/dev/web_publish_pipeline.md') }}
+        <article class="wb-resource"><h4>机读清单（JSON）</h4><p>每个说明书版本的身份、来源哈希、生成方式与统计，并由部署回执封存。</p><div class="wb-resource-links"><a href="{{ pathto('machine_surface_manifest.json', 1) }}">下载清单 <span aria-hidden="true">↓</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/code-as-doc/dev/machine_readable_manual_corpus.md" target="_blank" rel="noopener">使用指引 <span aria-hidden="true">↗</span></a></div></article>
         <article class="wb-resource"><h4>站内检索索引</h4><p>说明书资料库全文搜索使用的章节索引。</p><div class="wb-resource-links"><a href="{{ pathto('_static/portal-search-index.js', 1) }}">查看索引 <span aria-hidden="true">↗</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/code-as-doc/dev/rtd_manual_portal.md" target="_blank" rel="noopener">使用指引 <span aria-hidden="true">↗</span></a></div></article>
       </div>
       <p class="wb-next">当前 JSON 语料由已发布网页提取，属兼容路径；目标是与网页同源直接生成。内容有误时修正声明的权威源，不直接改 JSON 或 Markdown。</p>
