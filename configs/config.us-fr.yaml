@@ -1,15 +1,21 @@
 extends: config-bases/us-single-language-base.yaml
-
 build:
   family_id: us-fr
-  languages: [fr]
-  # Web-only projection. The manifest intentionally remains trilingual for
-  # IDML/Word/PDF output.
+  languages:
+  - fr
   web_language_block_pages:
     00_preface.rst: en
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
-  word_title: "|PRODUCT_NAME| Manuel d'utilisation"
-
+  word_title: '|PRODUCT_NAME| Manuel d''utilisation'
+  targets:
+  - model: JE-1000F
+    region: US
+  - model: JE-1000E-SIL
+    region: US
 paths:
   page_manifest: docs/manifests/manual_us-single-fr.yaml
+  page_manifests:
+    JE-1000E-SIL_US: docs/manifests/manual_fridgeguard_us-fr.yaml
+  web_illustration_manifests:
+    JE-1000E-SIL_US: docs/renderers/web/je1000e_sil_us_fr_illustrations.json

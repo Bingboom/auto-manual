@@ -4,6 +4,8 @@ import json
 import shutil
 import tempfile
 import unittest
+
+import yaml
 from pathlib import Path
 
 from tools.ci_check_targets import (
@@ -33,7 +35,7 @@ class TestCiCheckTargets(unittest.TestCase):
 
             expanded = discover_targets(configs_dir)
 
-        self.assertEqual(len(expanded), len(original) + 1)
+        self.assertEqual(len(expanded), len(original) + sum(target.config_path.name == "config.us-en.yaml" for target in original))
         self.assertIn("config.zz-test.yaml", {target.config_path.name for target in expanded})
 
     def test_shared_family_config_expands_every_target(self) -> None:
@@ -145,6 +147,10 @@ class TestCiCheckTargets(unittest.TestCase):
                     for config_path in configs.glob("config*.yaml"):
                         if config_path.name != "config.us-en.yaml":
                             config_path.unlink()
+                    us_path = configs / "config.us-en.yaml"
+                    us_config = yaml.safe_load(us_path.read_text())
+                    us_config["build"]["targets"] = [{"model": "JE-1000F", "region": "US"}]
+                    us_path.write_text(yaml.safe_dump(us_config, sort_keys=False))
                     data_root = root / "phase2"
                     data_root.mkdir()
                     shutil.copy2(
@@ -201,6 +207,10 @@ class TestCiCheckTargets(unittest.TestCase):
             for config_path in configs.glob("config*.yaml"):
                 if config_path.name != "config.us-en.yaml":
                     config_path.unlink()
+            us_path = configs / "config.us-en.yaml"
+            us_config = yaml.safe_load(us_path.read_text())
+            us_config["build"]["targets"] = [{"model": "JE-1000F", "region": "US"}]
+            us_path.write_text(yaml.safe_dump(us_config, sort_keys=False))
             data_root = root / "phase2"
             data_root.mkdir()
             shutil.copy2(ROOT / "tests/fixtures/phase2/Spec_Master.csv", data_root / "Spec_Master.csv")
@@ -230,6 +240,10 @@ class TestCiCheckTargets(unittest.TestCase):
             for config_path in configs.glob("config*.yaml"):
                 if config_path.name != "config.us-en.yaml":
                     config_path.unlink()
+            us_path = configs / "config.us-en.yaml"
+            us_config = yaml.safe_load(us_path.read_text())
+            us_config["build"]["targets"] = [{"model": "JE-1000F", "region": "US"}]
+            us_path.write_text(yaml.safe_dump(us_config, sort_keys=False))
             data_root = root / "phase2"
             data_root.mkdir()
             shutil.copy2(ROOT / "tests/fixtures/phase2/Spec_Master.csv", data_root / "Spec_Master.csv")

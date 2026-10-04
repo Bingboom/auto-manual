@@ -63,7 +63,8 @@
     },
     "meaning_symbols": {
       "source_patterns": [
-        "symbols_*"
+        "symbols_*",
+        "symbols"
       ],
       "signal_row_count": 4
     },

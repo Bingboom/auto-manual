@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import json
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -239,3 +240,16 @@ def parse_reference_figure_html(
 
 
 __all__ = ["parse_reference_figure_html"]
+
+
+def parse_declared_references(soup, *, source_path, language):
+    """Explicit source binding to the existing live-label reference component."""
+    for image in soup.select("img.hb-source-reference"):
+        config = json.loads(str(image.get("data-reference") or "{}"))
+        if not isinstance(config, dict) or config.get("presentation_mode") != "base-art-live-copy":
+            raise ValueError(f"{source_path}: declared reference requires base-art-live-copy")
+        config["image_key"] = str(image.get("src") or "")
+        yield parse_reference_figure_html(
+            soup, image=image, config=config, source_path=source_path, language=language,
+            composite_locale=None, approved_entry=None, approved_path=None,
+        )

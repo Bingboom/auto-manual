@@ -1,0 +1,222 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-1000E-SIL",
+  "region": "US",
+  "language": "en",
+  "source_pdf_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "source_pdf_name": "16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_en_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "overview.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/overview.png",
+      "sha256": "a8894d25f8881a6ffaa7ce754e39d7703cb3365f0cb5da1015395e545770fcc4",
+      "source_page": 1,
+      "bbox_pt": [
+        1107.56494140625,
+        2140.18408203125,
+        1425.56494140625,
+        2362.68408203125
+      ],
+      "printed_page": 3
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/lcd_map.png",
+      "sha256": "4535df8d94feca1f95bb5579cf54f5735aee61a2f4c3c1a9feaf2fed959e462d",
+      "source_page": 1,
+      "bbox_pt": [
+        1483.0689697265625,
+        1932.18408203125,
+        1792.0689697265625,
+        2153.18408203125
+      ],
+      "printed_page": 4
+    },
+    {
+      "replaces": [
+        "power_art.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/power_art.png",
+      "sha256": "cc4a6c69ae614c0c80317f85d0f6b7e0e41efe8fd383bc4f8ff1eb18a093239f",
+      "source_page": 1,
+      "bbox_pt": [
+        2215.078125,
+        1935.18408203125,
+        2529.578125,
+        2131.68408203125
+      ],
+      "printed_page": 6
+    },
+    {
+      "replaces": [
+        "battery.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/battery.png",
+      "sha256": "bbfb0afc92e1f28f010aaeaa51bd2a2d1e251e8c632c2c6b74e838ba81f6a47b",
+      "source_page": 1,
+      "bbox_pt": [
+        4795.76513671875,
+        2157.90478515625,
+        5112.76513671875,
+        2325.40478515625
+      ],
+      "printed_page": 13
+    },
+    {
+      "replaces": [
+        "maintenance.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/maintenance.png",
+      "sha256": "ebb3727d071d4609f21724a23274737ae0c22bdddeea4dd53a08ab843cbab94e",
+      "source_page": 1,
+      "bbox_pt": [
+        5164.28515625,
+        1935.18408203125,
+        5479.28515625,
+        2055.68408203125
+      ],
+      "printed_page": 14
+    },
+    {
+      "replaces": [
+        "ac.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/ac.png",
+      "sha256": "beb200b53803e5e75e975ec565f78c12ecff816737feff43565a6610f624bb32",
+      "source_page": 1,
+      "bbox_pt": [
+        5164.28515625,
+        2218.18408203125,
+        5479.28515625,
+        2362.68408203125
+      ],
+      "printed_page": 14
+    },
+    {
+      "replaces": [
+        "app_qr.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/app_qr.png",
+      "sha256": "52d91cbea37c6c3dc07dda2a9348ceec8f624cea62825282f5777dc753e5ad87",
+      "source_page": 1,
+      "bbox_pt": [
+        7177.787109375,
+        1931.40478515625,
+        7230.287109375,
+        1984.90478515625
+      ],
+      "printed_page": 19
+    },
+    {
+      "replaces": [
+        "app_1_2.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/app_1_2.png",
+      "sha256": "fd01914391750f698b74a7ec7ca13a92fce6ac047ffe0185596dadc3513861bd",
+      "source_page": 1,
+      "bbox_pt": [
+        7083.787109375,
+        2078.40478515625,
+        7248.787109375,
+        2240.40478515625
+      ],
+      "printed_page": 19
+    },
+    {
+      "replaces": [
+        "app_power.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/app_power.png",
+      "sha256": "22c61d36b1311304bffb43272e6b10c48f1015a37831ed8f0768b42728a6f869",
+      "source_page": 1,
+      "bbox_pt": [
+        7006.287109375,
+        2252.90478515625,
+        7321.287109375,
+        2347.40478515625
+      ],
+      "printed_page": 19
+    },
+    {
+      "replaces": [
+        "app_3_5.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/app_3_5.png",
+      "sha256": "fe5e13572998f2fb9203c6e927e48357fe7de3b71adaffc06d50c72e0b9a01a7",
+      "source_page": 1,
+      "bbox_pt": [
+        7394.89404296875,
+        2019.40380859375,
+        7670.39404296875,
+        2182.90380859375
+      ],
+      "printed_page": 20
+    },
+    {
+      "replaces": [
+        "inbox_unit.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/inbox_unit.png",
+      "sha256": "63631662f44f19a79667e3b4b739357c093fc3a1522cbd5ba1a37ab9c0198f56",
+      "source_page": 1,
+      "bbox_pt": [
+        1128.56494140625,
+        1951.68408203125,
+        1170.56494140625,
+        2037.68408203125
+      ],
+      "printed_page": 3
+    },
+    {
+      "replaces": [
+        "inbox_cable.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/inbox_cable.png",
+      "sha256": "326b82ea1e21956d2b93fd9b2897eead39f7b2516488dc8514b6011c329b35e1",
+      "source_page": 1,
+      "bbox_pt": [
+        1208.06494140625,
+        1970.18408203125,
+        1243.06494140625,
+        2023.68408203125
+      ],
+      "printed_page": 3
+    },
+    {
+      "replaces": [
+        "inbox_stand.png"
+      ],
+      "path": "assets/je1000e_sil_us_en/inbox_stand.png",
+      "sha256": "edb1cf577172c8adcb06b89297b2d09fe8c5dd9b93e10eee0e8b463aeadc65a6",
+      "source_page": 1,
+      "bbox_pt": [
+        1371.56494140625,
+        1969.68408203125,
+        1398.06494140625,
+        2023.18408203125
+      ],
+      "printed_page": 3
+    }
+  ],
+  "reused_assets": [
+    {
+      "semantic_key": "symbol/no_open_flame",
+      "source_path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/shared/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/shared_no_open_flame.png",
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "decision": "byte-identical reuse of transparent shared semantic icon"
+    },
+    {
+      "semantic_key": "symbol/keep_away_from_children",
+      "source_path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/shared/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/shared_keep_away_from_children.png",
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "decision": "byte-identical reuse of transparent shared semantic icon"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "printed_page": 6,
+  "bbox_pt": [
+    2215.078125,
+    1935.18408203125,
+    2529.578125,
+    2131.68408203125
+  ],
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_power_live.json",
+  "sha256": "cc4a6c69ae614c0c80317f85d0f6b7e0e41efe8fd383bc4f8ff1eb18a093239f",
+  "excluded_panel_drawings": [
+    1853,
+    1854,
+    1855
+  ],
+  "policy": "Native vector artwork retained; source text omitted; panel border and bubbles rendered with CSS."
+}

@@ -394,6 +394,20 @@ def arrange_base_art_operation(
         canvas.insert_after(footer)
     if isinstance(supporting, Tag) and supporting.parent is stage:
         stage.append(supporting.extract())
+        _place_supporting_panels(supporting, canvas, layout, source_path, error_type)
+
+
+def _place_supporting_panels(supporting, canvas, layout, source_path, error_type):
+    """Optional live CSS bubbles on an artwork's declared empty copy region."""
+    if "supporting_anchor" not in layout:
+        return
+    x, y, width = _percentages(
+        layout["supporting_anchor"], count=3, field="supporting_anchor",
+        source_path=source_path, error_type=error_type,
+    )
+    _add_class(supporting, "hb-operation-supporting-panels")
+    supporting["style"] = f"--hb-x:{x:g}%;--hb-y:{y:g}%;--hb-width:{width:g}%"
+    canvas.append(supporting.extract())
 
 
 __all__ = ["BASE_ART_CLASS", "arrange_base_art_operation"]

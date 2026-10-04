@@ -84,7 +84,7 @@ class WebFccIRTests(unittest.TestCase):
         self.assertEqual(source.language, 'en')
         self.assertNotEqual(source.style_contract_sha256, other.style_contract_sha256)
 
-    def test_corruption_does_not_mutate_caller_and_target_gate_stays_closed(self) -> None:
+    def test_corruption_does_not_mutate_caller_and_unknown_target_binds(self) -> None:
         def corrupt(source):
             return replace(build_manual_ir_from_source(source), content_sha256='0' * 64)
 
@@ -97,13 +97,13 @@ class WebFccIRTests(unittest.TestCase):
                     error_type=WebPresentationError,
                 )
         self.assertEqual(str(soup), original)
-        with patch.object(web_fcc_component, 'build_manual_ir_from_source') as assembler:
+        with patch.object(web_fcc_component, 'build_manual_ir_from_source', wraps=build_manual_ir_from_source) as assembler:
             output = transform_web_fragment(
                 HTML, source_path=Path('/tmp/docs/_review/OTHER/XX/page/01_fcc.rst'),
                 model='OTHER', region='XX', language='en',
             )
-            assembler.assert_not_called()
-            self.assertNotIn('hb-fcc-composition', output)
+            assembler.assert_called_once()
+            self.assertIn('hb-fcc-composition', output)
 
     def test_invalid_rehashed_owned_payload_is_rejected(self) -> None:
         from tools.manual_ir.web_fcc import load_web_fcc_source

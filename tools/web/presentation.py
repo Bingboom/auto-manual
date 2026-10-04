@@ -9,7 +9,7 @@ geometry: editable/searchable callouts, SVG leaders, and responsive fallbacks.
 from __future__ import annotations
 
 import fnmatch
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import re
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -17,6 +17,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+from tools.component_specs.fcc_declaration import check_fcc_render_input, declares_fcc, require_fcc_markup
 from tools.manual_ir import ManualIR, build_manual_ir_from_source
 from tools.manual_ir.web_callouts import load_web_callout_source
 from tools.web.callout_ir import render_callout_ir
@@ -58,7 +59,7 @@ PRESENTATION_PROFILE_ENV = "AUTO_MANUAL_PRESENTATION_PROFILE"
 WEB_CONTRACT_NAME = "web_manual.json"
 _WEB_FIGURE_RE = re.compile(
     r'<figure\b(?=[^>]*\bclass=["\'][^"\']*\bhb-'
-    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|key-combination-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|registration-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
+    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|key-combination-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|registration-composition|text-panel|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
     r"[^>]*>.*?</figure>",
     re.IGNORECASE | re.DOTALL,
 )
@@ -1582,7 +1583,7 @@ def _transform_legacy_target_pages(
     source_path, language = target.source_path, target.language
     model, region = target.model, target.region
     embedded = target.embedded_components_complete
-    if kinds.fcc and supports_legacy and "HB-SPECIAL-FCC" not in target.resolved and not embedded:
+    if declares_fcc(soup, source_path, target.data["fcc"]) and "HB-SPECIAL-FCC" not in target.resolved and not embedded:
         transform_fcc(
             soup,
             source_path=source_path,
@@ -1724,7 +1725,8 @@ def transform_web_fragment(
         or ((has_specifications or has_inbox) and not embedded)
         else html_fragment
     )
-    kinds = _WebPageKinds.for_source(source_path, data)
+    is_fcc = check_fcc_render_input(soup, source_path, data["fcc"], resolved, embedded_components_complete)
+    kinds = replace(_WebPageKinds.for_source(source_path, data), fcc=is_fcc)
     has_target_context = bool(model and region) or supports_figure_contract(
         source_path, data
     )
@@ -1768,7 +1770,7 @@ def transform_web_fragment(
     # declared What's in the Box page always receives its numbered cards.
     supports_figures = supports_figure_contract(source_path, data)
     supports_legacy = supports_preface_contract(source_path, data)
-    if not supports_figures and not supports_legacy and not kinds.in_the_box:
+    if not any((supports_figures, supports_legacy, kinds.in_the_box, kinds.fcc)):
         return semantic_fragment
 
     _transform_component_pages(
@@ -1781,6 +1783,7 @@ def transform_web_fragment(
         supports_figures=supports_figures,
         supports_legacy=supports_legacy,
     )
+    require_fcc_markup(is_fcc, soup, source_path)
     return str(soup)
 
 

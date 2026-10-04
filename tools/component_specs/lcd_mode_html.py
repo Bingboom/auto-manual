@@ -26,6 +26,12 @@ def _cell_content(cell: Tag, prefix: str) -> dict[str, str]:
     }
 
 
+def _artwork_metadata(table: Tag) -> dict[str, str]:
+    if "hb-lcd-mode-portrait" in table.get("class", []):
+        return {"artwork_layout": "portrait"}
+    return {}
+
+
 def parse_lcd_mode_html(
     soup: BeautifulSoup,
     *,
@@ -84,6 +90,7 @@ def parse_lcd_mode_html(
         artwork_ref=str(image.get("src") or ""),
         source_ref=f"{source_path}#lcd-mode",
         language=language,
+        metadata=_artwork_metadata(table),
     )
     return spec, table, image
 

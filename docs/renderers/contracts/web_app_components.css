@@ -2,18 +2,25 @@
 
 /*
  * App copy uses numbered headings rather than the dot-led manual section
- * headings.  Key the rule off the shared Add Device composition so the
+ * headings.  Key the rule off the shared App compositions so the
  * treatment survives translated section titles and generated anchor ids.
  */
-#furo-main-content > section:has(.hb-app-add-device-composition) h2::before,
-#furo-main-content > section:has(.hb-app-add-device-composition) h3::before {
+#furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h2::before,
+#furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h3::before {
   display: none;
 }
 
-#furo-main-content > section:has(.hb-app-add-device-composition) h2,
-#furo-main-content > section:has(.hb-app-add-device-composition) h3 {
+#furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h2,
+#furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h3 {
   gap: 0;
+  text-transform: none;
 }
+
+/* Numbered App steps use the compact source spacing in every locale. */
+#furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) > section {
+  margin-top: 1.2rem;
+}
+
 
 .hb-app-add-device-composition {
   width: 100%;
@@ -37,6 +44,14 @@
   object-fit: contain;
 }
 
+/* Complete phone crops use the shared image rules with bounded variants. */
+#furo-main-content .hb-app-add-device-phone-art.hb-app-phone-pair {
+  width: min(100%, 22rem) !important;
+}
+#furo-main-content .hb-app-add-device-phone-art.hb-app-phone-trio {
+  width: min(100%, 36.75rem) !important;
+}
+
 .hb-app-add-device-control-panel {
   position: relative;
   box-sizing: border-box;
@@ -51,13 +66,8 @@
   height: auto !important;
   margin: 0 auto !important;
   object-fit: contain;
-  /*
-   * The live labels are positioned against this box, and the image is
-   * lazy-loaded.  Reserve the artwork's ratio so the box already has its
-   * height before the file arrives; otherwise the labels collapse onto one
-   * line and overlap.  `auto` lets the loaded file's own ratio win.  Keep the
-   * numbers equal to the declared control artwork's pixel ratio (a test checks
-   * every contract's control_artwork).
+  /* Reserve the lazy-loaded control art ratio before positioning live labels.
+   * The loaded file's ratio wins; tests match every declared control artwork.
    */
   aspect-ratio: auto 1203 / 265;
 }

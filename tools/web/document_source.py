@@ -9,6 +9,7 @@ from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup
 
+from tools.component_specs.fcc_declaration import declares_fcc, require_fcc_claims
 from tools.component_specs.registry import (
     load_component_registry,
     registry_sha256,
@@ -326,6 +327,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         )
         soup = BeautifulSoup(markup, "html.parser")
         _apply_text_corrections(soup, text_corrections, used_text_corrections, lang)
+        fcc_declared = declares_fcc(soup, path, contract["fcc"])
         claims = discover_registered_components(
             soup,
             source_path=path,
@@ -344,6 +346,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 text, path, active_tags=active_tags,
             ),
         )
+        require_fcc_claims(fcc_declared, claims, path)
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if (lang, name) in replacements:

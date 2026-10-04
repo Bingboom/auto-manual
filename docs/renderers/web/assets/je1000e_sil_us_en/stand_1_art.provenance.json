@@ -1,0 +1,23 @@
+{
+  "asset": "docs/renderers/web/assets/je1000e_sil_us_en/stand_1_art.png",
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    2952.197021484375,
+    2108.40478515625,
+    3267.197021484375,
+    2226.40478515625
+  ],
+  "sha256": "3d700619b6f0a2e9bfacfabdf51da7d8cb5072b6d37af10c162e4e6317da9ca1",
+  "label_rect_pct": [
+    3.213278149801587,
+    8.22071140095339,
+    58,
+    0
+  ],
+  "source_text": [
+    "1. Remove two screws from the bottom of the product."
+  ],
+  "policy": "Text-only redaction; preserve original full thin grey rounded frame and all illustrations."
+}

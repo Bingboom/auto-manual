@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from dataclasses import replace
+import json
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -224,3 +226,16 @@ def parse_operation_components(
 
 
 __all__ = ["parse_operation_components"]
+
+
+def parse_declared_operations(soup, *, source_path, language):
+    """Bind explicitly authored panels through the shared operation source adapter."""
+    for image in soup.select("img.hb-source-operation"):
+        config = json.loads(str(image.get("data-operation") or "{}"))
+        if not isinstance(config, dict) or config.get("presentation_mode") != _BASE_ART_LIVE_COPY:
+            raise ValueError(f"{source_path}: declared operation requires base-art-live-copy")
+        config["image_key"] = str(image.get("src") or "")
+        for spec, owned, artwork, discarded in parse_operation_components(
+            soup, source_path=source_path, config={"figures": [config]}, language=language,
+        ):
+            yield replace(spec, metadata={**spec.metadata, "web_presentation": config}), owned, artwork, discarded

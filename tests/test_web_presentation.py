@@ -286,6 +286,13 @@ class WebPresentationTests(unittest.TestCase):
         self.assertIn('class="hb-inbox-composition"', restored)
         self.assertIn('class="hb-inbox-card"', restored)
 
+    def test_pandoc_guard_preserves_text_panel_and_list(self) -> None:
+        figure = '<figure class="hb-text-panel"><p>Storage</p><ul><li>1 month</li></ul></figure>'
+        protected, placeholders = protect_web_figures_for_pandoc(figure)
+        self.assertNotIn('<figure', protected)
+        restored = restore_web_figures_after_pandoc(next(iter(placeholders)), placeholders)
+        self.assertIn(figure, restored)
+
     def test_pandoc_guard_restores_reference_figure(self) -> None:
         figure = (
             '<figure class="hb-reference-figure hb-has-composite-art">'
@@ -1044,9 +1051,10 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertTrue(
                     all(
                         badge.select_one(".hb-signal-icon").get("aria-hidden") == "true"
-                        for badge in table.select(".hb-signal-badge")
+                        for badge in table.select(".hb-signal-badge")[:2]
                     )
                 )
+                self.assertEqual(2, len(table.select(".hb-signal-icon")))
                 self.assertIsNone(table.find("col", attrs={"style": re.compile("width:")}))
                 self.assertFalse(any(node.get("style") for node in table.find_all(True)))
 

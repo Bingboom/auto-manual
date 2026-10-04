@@ -1,0 +1,67 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3690.071044921875,
+    2069.15,
+    4004.571044921875,
+    2186.90478515625
+  ],
+  "sha256": "a73b9a922273a9bf788cf4013611b9bc196adab598dfb96d54c50fc7496c6f7b",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        44.6455963086248,
+        5.116191702002483,
+        54.10519860393483,
+        0.0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        2.7912764556836245,
+        5.616270901942109,
+        35.87437586943561,
+        0.0
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        67.10614566772655,
+        20.873247753168144,
+        11.25459869336248,
+        0.0
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        14.997376167527824,
+        26.76472807882503,
+        11.25459869336248,
+        0.0
+      ]
+    },
+    {
+      "line": 4,
+      "rect": [
+        80.57401381160572,
+        35.383837738812645,
+        8.476829540937995,
+        0.0
+      ]
+    }
+  ],
+  "source_text": [
+    "5. Drive the wood screw into the wall at the mounting point,\nleaving a 2-4mm gap between the screw and the wall.",
+    "4. Mark the mounting point on the wall.",
+    "wood stud",
+    "wood stud",
+    "2~4mm"
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

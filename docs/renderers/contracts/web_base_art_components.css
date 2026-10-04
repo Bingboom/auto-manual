@@ -565,3 +565,63 @@
   padding: 0.15rem 0.45rem;
   font-size: max(0.875rem, 1.99cqw);
 }
+
+/* Source-declared empty artwork region; all bubbles and their copy remain live. */
+.hb-base-art-live-copy .hb-operation-supporting-panels {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  width: var(--hb-width);
+  padding: 0;
+  background: transparent;
+  font-size: 1.95cqw;
+  line-height: 1.3;
+}
+.hb-base-art-live-copy[data-operation-id] .hb-operation-supporting-panels > .line {
+  position: relative;
+  padding: 1.2cqw 1.8cqw;
+  border-radius: 2cqw;
+  background: var(--hb-surface);
+  font-weight: 400;
+}
+.hb-base-art-live-copy .hb-operation-supporting-panels > .line + .line {
+  margin-top: 1.2cqw;
+}
+.hb-base-art-live-copy .hb-operation-supporting-panels > .line:first-child::before {
+  content: "";
+  position: absolute;
+  top: -2.2cqw;
+  left: 6cqw;
+  border-left: 2.2cqw solid transparent;
+  border-right: 2.2cqw solid transparent;
+  border-bottom: 2.2cqw solid var(--hb-surface);
+}
+@media (max-width: 760px) {
+  .hb-base-art-live-copy .hb-operation-supporting-panels {
+    position: static;
+    width: auto;
+    margin: 0.6rem;
+    font-size: 0.88rem;
+  }
+  .hb-base-art-live-copy[data-operation-id] .hb-operation-supporting-panels > .line {
+    padding: 0.7rem;
+    border-radius: 0.8rem;
+  }
+  .hb-base-art-live-copy .hb-operation-supporting-panels > .line:first-child::before {
+    display: none;
+  }
+}
+
+.hb-base-art-live-copy:has(.hb-operation-supporting-panels) .hb-operation-step-instruction {
+  font-size: 1.95cqw;
+  line-height: 1.2;
+}
+@media (max-width: 760px) {
+  .hb-base-art-live-copy:has(.hb-operation-supporting-panels) .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+}
+
+.hb-base-art-live-copy[data-operation-id] .hb-operation-supporting-panels > .line:first-child {
+  font-weight: 400;
+}

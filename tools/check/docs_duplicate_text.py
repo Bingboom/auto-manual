@@ -60,7 +60,16 @@ def extract_rst_list_items(text: str) -> list[str]:
             items.append(item)
         current.clear()
 
+    table_indent: int | None = None
     for line in lines[:html_start]:
+        if table_indent is not None:
+            if not line.strip() or _line_indent(line) > table_indent:
+                continue
+            table_indent = None
+        if line.strip().startswith(".. list-table::"):
+            flush()
+            table_indent = _line_indent(line)
+            continue
         bullet = BULLET_RE.match(line)
         if bullet:
             flush()

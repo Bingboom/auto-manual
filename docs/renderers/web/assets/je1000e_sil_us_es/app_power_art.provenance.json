@@ -1,0 +1,14 @@
+{
+  "source_pdf_sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+  "source_page": 62,
+  "bbox_pt": [
+    28,
+    396,
+    343,
+    491
+  ],
+  "sha256": "ba64dc693e2d4ef9297bc5cb22b34d034e9566b736f266aa28c0932259ec767e",
+  "text_policy": "native-labels-in-html",
+  "background_policy": "preserve original frame and background",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_fr_es_web.json"
+}

@@ -6,6 +6,8 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.callout import variant_for_label
+
 from tools.manual_ir import ManualIR, build_manual_ir_from_source
 from tools.manual_ir.web_symbols import decode_signal_ir, load_web_signal_source
 
@@ -61,7 +63,8 @@ def render_signal_ir(ir: ManualIR) -> str:
         icon.string = "⚠"
         label = soup.new_tag("span", attrs={"class": "hb-signal-label"})
         label.string = localized_label
-        badge.append(icon)
+        if variant_for_label(localized_label) not in {"note", "tip"}:
+            badge.append(icon)
         badge.append(label)
         label_cell.append(badge)
 

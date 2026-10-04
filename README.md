@@ -14,6 +14,7 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
 说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取。
 Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
+FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
 封存源辅助文件的复制边界见[构建指南](code-as-doc/build_doc_guide.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。

@@ -1,0 +1,772 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JE-1000E-SIL",
+    "region": "US",
+    "lang": "en",
+    "version": "git-20261001-9d3b811e"
+  },
+  "printed_version": null,
+  "source_role": "user-selected-authoritative-attachment-git-input",
+  "authority": {
+    "source_name": "16-0102-000422 说明书HTE1511000A-US-JAK RoHS REACH.ai",
+    "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+    "source_system": "user local attachment",
+    "included_pages": "preface + English body 01–20; cover/back-cover contact metadata",
+    "audit_record": "code-as-doc/reviews/je1000e_sil_us_en_web_intake.md"
+  },
+  "data_root": "data/manual_sources/JE-1000E-SIL/US/en/git-20261001-9d3b811e/phase2",
+  "live_bitable_dependency": false,
+  "files": [
+    {
+      "path": "16-0102-000422 说明书HTE1511000A-US-JAK RoHS REACH.ai",
+      "size": 10061981,
+      "sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27"
+    },
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 247,
+      "sha256": "8d0af75320f84ce115bdccfe86651f5a8b28226b01ee20ef764681066634fc93"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 2439,
+      "sha256": "98616adedd0e8e2ffb653cdd1421728e7d00df874a6a788b87d68bc7e3ec2148"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 75,
+      "sha256": "9f3accbbb808050a84a0d5662ae49479b312185bd98ba67441157afa40e2778d"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 98,
+      "sha256": "d365fb28c36ac79c1075cbcf5bdd8a16f0ce3758cc7b8ebf7bb0e540fe60afaf"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 40,
+      "sha256": "4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 139,
+      "sha256": "95cc9be818c9c5e2516d70bc8c49d96844eafc0246bfb766b7861652e6665305"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 121,
+      "sha256": "1f9c508111d1a438d475c9cfa1dc2792923a0cbe7da38774f8ba4c8da4548ccc"
+    },
+    {
+      "path": "source_panels.json",
+      "size": 2279,
+      "sha256": "32d1cb2f04cab2af48833f4a366c0062348b56d4348dc176193e7edaaa488016"
+    }
+  ],
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je1000e_sil_us_en_web.json",
+    "sha256": "cbdc42374abb226c66a223030a81bdec2d72d28686eab9a9d1959f549d2eff93"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je1000e_sil_us_en_illustrations.json",
+    "sha256": "e97cc949e4d2c82eae8551f0081584e54ebe73f4902020f1ecdc315f4de1e4e1"
+  },
+  "repo_inputs": [
+    {
+      "path": "configs/config.us-en.yaml",
+      "size": 1950,
+      "sha256": "ecc469b74a15054a18e5e1a11062b45d6d96720bf513789e435265711fa1ea90"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_car_live.json",
+      "size": 3177,
+      "sha256": "728e065d68f8e7dca5cf017055c6c6880e6f50983dd3b29368ef9943ad426d63"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_power_live.json",
+      "size": 6466,
+      "sha256": "cc44794110f7c837aba4c331c81699a8a02423e84809abdb37c61d74924af415"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_solar_live.json",
+      "size": 3190,
+      "sha256": "d6fcc7a73e87681e7dde50ceb2050514d84f56fbcc76dafe4fdc8bb5a04b6e91"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_stand_prepare_live.json",
+      "size": 2636,
+      "sha256": "2138c387544956d06b34cb941b945b2a9348e1f719265648cc45204cc2a6c7e4"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_stand_steps_live.json",
+      "size": 4999,
+      "sha256": "91c11231797f3aff2142db9cdf1c4506245ad5f4f7802bb7004f21cee08da5cd"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_ups_live.json",
+      "size": 2616,
+      "sha256": "305ef188420e09703fa067e65507d40469012008dd911b866dc4cb01aa2c579a"
+    },
+    {
+      "path": "data/asset_recipes/manual_je1000e_sil_us_wall_installation_live.json",
+      "size": 14475,
+      "sha256": "8a56a9f58cfb469cae8de3f1b778b7a4b6ca04dededc4d7c4a929d032b72f013"
+    },
+    {
+      "path": "docs/manifests/family/index.yaml",
+      "size": 11094,
+      "sha256": "fd47b98c3df0e2857f37f84f91f30a99e45fcbb2b59979f39c7b7c9d69f7effa"
+    },
+    {
+      "path": "docs/manifests/manual_fridgeguard_us-en.yaml",
+      "size": 1660,
+      "sha256": "408a686ce9520f3cafc4d8a897486ee64626810fdc9ffa37cb3747d2f82b0754"
+    },
+    {
+      "path": "docs/renderers/contracts/assets/app/app_store_badges.png",
+      "size": 25764,
+      "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3429,
+      "sha256": "bf134d0eaf847afe1eb84a714f95c2c7cf34cce09d93c8e382770d494f68d370"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47754,
+      "sha256": "59672a89a81fb8ec2dc7c5885505982d7b4dc1898344569871560f26bc7cf096"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 3803,
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/latex/assets/fcc_mark.png",
+      "size": 28135,
+      "sha256": "45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/ac.png",
+      "size": 40258,
+      "sha256": "beb200b53803e5e75e975ec565f78c12ecff816737feff43565a6610f624bb32"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/app_1_2.png",
+      "size": 58516,
+      "sha256": "fd01914391750f698b74a7ec7ca13a92fce6ac047ffe0185596dadc3513861bd"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/app_3_5.png",
+      "size": 59330,
+      "sha256": "fe5e13572998f2fb9203c6e927e48357fe7de3b71adaffc06d50c72e0b9a01a7"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/app_power.png",
+      "size": 19732,
+      "sha256": "22c61d36b1311304bffb43272e6b10c48f1015a37831ed8f0768b42728a6f869"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+      "size": 18452,
+      "sha256": "52d91cbea37c6c3dc07dda2a9348ceec8f624cea62825282f5777dc753e5ad87"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/battery.png",
+      "size": 45089,
+      "sha256": "bbfb0afc92e1f28f010aaeaa51bd2a2d1e251e8c632c2c6b74e838ba81f6a47b"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/car.png",
+      "size": 77494,
+      "sha256": "b42cc5609e58e462f802279906efdc8fbbb3287ad472f6a4f1ef4d38f95c7878"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/car_art.png",
+      "size": 103784,
+      "sha256": "0c1cb6b315a0c2d02a8a9affba466d118b23d67311272e1725c6973bf292839f"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/car_art.provenance.json",
+      "size": 1029,
+      "sha256": "3059798d4e76d71516eb1136785c27904d43fb62904110ba41c9a17ab600eadb"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_1.png",
+      "size": 49120,
+      "sha256": "c9e7b64413315b274bc39d2ceaadedbbd3a5326fd9a6b216604c3c175051ec79"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_1_art.png",
+      "size": 65277,
+      "sha256": "e18ba7aeb190f1d8778a08347799e374427994348075a63136669b9e728561cf"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_1_art.provenance.json",
+      "size": 759,
+      "sha256": "9aa904d52fe14afb7e6f0dbf702491e1ef4e55e5418b6e3ef4d7d905aa5c3fcc"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_2.png",
+      "size": 123127,
+      "sha256": "398089ec77020fb0f7bcdc409bfeb366b3ddbddec53d57760f7c3b896a028e56"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_2_art.png",
+      "size": 170714,
+      "sha256": "2e5c885fec9e09dfc2538fe6dbabb35e4024b9e634a71bd979ccf861e2ee06a7"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_2_art.provenance.json",
+      "size": 787,
+      "sha256": "34ca3838779ab82dcbfd6ac19293b7c76977cdb244d7703f1cf44246c75aecb2"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_3_4.png",
+      "size": 56325,
+      "sha256": "abf397384d2c7c5a072e24f1dd20b0637fc942106be92235fb1e03e246f7d0a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_3_4_art.png",
+      "size": 59703,
+      "sha256": "8ba43b495c38e0af28a7c91d4a354dbdbd9c494db88adcd09e2b0bc630e60152"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_3_4_art.provenance.json",
+      "size": 1536,
+      "sha256": "1078a9601d087923680ce25e8f905bc670d3a5dbecda35bb1500e14288ab97e5"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_5_6.png",
+      "size": 56995,
+      "sha256": "82c8b89c5d9586f0c453d52517a4f50b9309a3d84f0a8b90fd75ffbe263a7a33"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_5_6_art.png",
+      "size": 60042,
+      "sha256": "dd90de301d86dcc03e6a7925136aab0cdab91b3a799334be7ea6adb98e784f67"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_5_6_art.provenance.json",
+      "size": 1404,
+      "sha256": "6c44b84bd519a6fe707e23ca1ab1ba8a3fcf90f2d3ee20f8d6b9233dcd4cd3d5"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_7_8.png",
+      "size": 90491,
+      "sha256": "a994f58e1f9a1cc01a608c9761b217b6ca0a827d5f201e73b83e10b493c86e61"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_7_8_art.png",
+      "size": 121206,
+      "sha256": "d7ef4dd0b138e1cbd8c3f4caa0a508658759c2f5faf4be479b1e2eb01f906e07"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_7_8_art.provenance.json",
+      "size": 1009,
+      "sha256": "120b9100d2fa4151c2e7277562f45bb2501683f2b307c6ead072937377282017"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_prepare.png",
+      "size": 60467,
+      "sha256": "5750e9b759a2a3634c44b68148cfc41b8e72394025eaf8daa0c4ea31fae85159"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_prepare_art.png",
+      "size": 81763,
+      "sha256": "931d991c33743651d014185db6b8477c349c31c6bb6a36bd0d11edfe19aa2c33"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/concrete_prepare_art.provenance.json",
+      "size": 909,
+      "sha256": "2c2b065c8de8f90bec58159aef23d515e997d3ca7befe5ed8cd9b621626fd003"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/inbox_cable.png",
+      "size": 7624,
+      "sha256": "326b82ea1e21956d2b93fd9b2897eead39f7b2516488dc8514b6011c329b35e1"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/inbox_stand.png",
+      "size": 6011,
+      "sha256": "edb1cf577172c8adcb06b89297b2d09fe8c5dd9b93e10eee0e8b463aeadc65a6"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/inbox_unit.png",
+      "size": 8788,
+      "sha256": "63631662f44f19a79667e3b4b739357c093fc3a1522cbd5ba1a37ab9c0198f56"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_01.png",
+      "size": 3299,
+      "sha256": "bee1babea1dcbb8c2909321a1ffb3c62c1bdafe0fdedb0de7408dfb52f473f45"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_02.png",
+      "size": 4011,
+      "sha256": "06d5896b50c25c550c67d7973d8d0f4b39073a6f695222d9e719f93c26f5a360"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_03.png",
+      "size": 3163,
+      "sha256": "7366462997a1595ef44c1ea5924c07875d4410e55581219dbd53eaa3f3d43e14"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_04.png",
+      "size": 1732,
+      "sha256": "c85dd72ce7ae308c57e93a1ba56d185d68a42e69e4a392a411ec5ad5140e95ea"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_05.png",
+      "size": 1727,
+      "sha256": "222b992bf98c5a697dd311d74fa96e698054e5657378dfb11fdace6059b0d4ff"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_06.png",
+      "size": 1798,
+      "sha256": "94d277844c20b5997ccd46ea3e5d921568f177e2c05b31f9d7f77e0c138be5b4"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_07.png",
+      "size": 4374,
+      "sha256": "74e2d219427d3155588c28188dcc6b3b870a79f3a7fe8743b89764042b4510f5"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_08.png",
+      "size": 3619,
+      "sha256": "906d00d4a8b2609eaf7a5193c233e199c6f1642cae07e46e3ae47f67949905dc"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_09.png",
+      "size": 1623,
+      "sha256": "9ff96281355a0ff074cfffee4278d35223fba66e8d33e30dbe98bdeabc17a7d2"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_10.png",
+      "size": 1203,
+      "sha256": "7774684b5ddddb775baf4af7d7a9debccf2d618c3b97dbc914efd41ec441aed5"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_11.png",
+      "size": 2339,
+      "sha256": "07f13253f240494b2e9f6420312f39ecbf0a96b3dd2144d627165dc2682e41da"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_12.png",
+      "size": 2529,
+      "sha256": "b13b5c340ef67bf420c7ed2c62273180f70832e3607b648460dbfa0e19d1bb11"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_13.png",
+      "size": 1030,
+      "sha256": "0a6e904e69e110c2fcd2f26d43ea1c7e97aa5240282fda4aafb5e136db0a5c98"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_14.png",
+      "size": 2448,
+      "sha256": "b21ed34d174954cc1abb977753da0b0f7d081875f672d469cc736869d2232c3a"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_15.png",
+      "size": 4189,
+      "sha256": "2894a3ae3d0c7852c085b34276b9ed7a0d73375f7877b56ab6e131c5ad516b92"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icons_provenance.json",
+      "size": 4619,
+      "sha256": "8340a659977c045796dca8e06f6c1db3f8383b0599a5bfb4a10238e0477b6255"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_map.png",
+      "size": 117440,
+      "sha256": "4535df8d94feca1f95bb5579cf54f5735aee61a2f4c3c1a9feaf2fed959e462d"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_mode.png",
+      "size": 30673,
+      "sha256": "e4d9be8aab4ba8beee23c037d3c0c59edf7c849289e31948be6b75879483d7c8"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_mode.provenance.json",
+      "size": 391,
+      "sha256": "30cbdf7c4baff399cd1135c72f9aa4d8000441cc6b1516a013cd5fcf61810878"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/maintenance.png",
+      "size": 77740,
+      "sha256": "ebb3727d071d4609f21724a23274737ae0c22bdddeea4dd53a08ab843cbab94e"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/overview.png",
+      "size": 81133,
+      "sha256": "a8894d25f8881a6ffaa7ce754e39d7703cb3365f0cb5da1015395e545770fcc4"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/power.png",
+      "size": 64486,
+      "sha256": "5be7e3f9f52f63b42b941591520e31068e4583f09c7dba3f634c3c05eccf6afd"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/power_art.png",
+      "size": 47172,
+      "sha256": "cc4a6c69ae614c0c80317f85d0f6b7e0e41efe8fd383bc4f8ff1eb18a093239f"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/power_art.provenance.json",
+      "size": 653,
+      "sha256": "8acd91f366599d64c4b944ad56e38f4cdfb30a6b6e7bda9a852ba64e798044cb"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/shared_keep_away_from_children.png",
+      "size": 7645,
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/shared_no_open_flame.png",
+      "size": 8901,
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/solar.png",
+      "size": 88045,
+      "sha256": "63d0381a0a222ce3ff67b0edd60a14dc3cd5d9db82e36776ac848a50d9bb0a3f"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/solar_art.png",
+      "size": 121027,
+      "sha256": "bac101b77b69b40aef000d82fe7c58fda8faba9197b091d34169504842384729"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/solar_art.provenance.json",
+      "size": 928,
+      "sha256": "6fbae7a451544b03a0196b3fcd8d62fbff7ddd23d05d848ef91261f8e3a2d5fc"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_1.png",
+      "size": 49301,
+      "sha256": "e91d0deb535152e45c7f1fae84bff380544acb57a5854de4331b4349bbe3b6ed"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_1_art.png",
+      "size": 65851,
+      "sha256": "3d700619b6f0a2e9bfacfabdf51da7d8cb5072b6d37af10c162e4e6317da9ca1"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_1_art.provenance.json",
+      "size": 744,
+      "sha256": "4e1942d7e082577e2c831517a860726e9b53d44e3f572059666be30d9dcb3617"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_2.png",
+      "size": 54580,
+      "sha256": "31a236ac042305189c00052740d1829bd9884da94dccc8c3af873455d4a278b3"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_2_art.png",
+      "size": 69698,
+      "sha256": "9e7e01c816912104755cbb7e9d22380fb644f2f863bdc10b95901421e1242c4b"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_2_art.provenance.json",
+      "size": 795,
+      "sha256": "38e102570c17bc390a135f71286ee5543fb5bdaf78c9eb6d616e0c5ca108e973"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_3.png",
+      "size": 55849,
+      "sha256": "5f3ac0c4bfb8ff74ee5982d10885ad9d7289b0fff5f47a077136a8164e86c498"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_3_art.png",
+      "size": 77153,
+      "sha256": "fd4927f5e7638076c1a0320b16ada12a513931f4ba1a8fd1a47678c0a53fcc9b"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_3_art.provenance.json",
+      "size": 715,
+      "sha256": "48499a9478723f9074918ec23085970ca8643001b0ad4d56bde60ac3d15a8520"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_prepare.png",
+      "size": 15246,
+      "sha256": "f3c2801d4215fd8145c8378277581352e2d43ed1c878ce54d8d009fc569a1c05"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_prepare_art.png",
+      "size": 33646,
+      "sha256": "249e291b0c6cf8f9faac1251d4efec0750f68a99f6bd081b3630ea42c104eb21"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/stand_prepare_art.provenance.json",
+      "size": 650,
+      "sha256": "5b717e122fc385aea9156820290e58a1e2b9ef2376310718a27a0b81e41aaf4b"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/ups.png",
+      "size": 77181,
+      "sha256": "390465d222cf7307673be54596d03635ca8f8bd3dcd634402e109d146be2e78e"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/ups_art.png",
+      "size": 110281,
+      "sha256": "30ece347e4e314b835c7b558faf4c4b82eb7f1dfca8f209ee084ddc51a3dd97d"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/ups_art.provenance.json",
+      "size": 969,
+      "sha256": "8f7c88c5ca277836be90e472f72a8019503e08d159058f84160541c51d108d75"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_1.png",
+      "size": 48929,
+      "sha256": "bf022cbaf7314e7090f04d274f49aee1765802ecd21efd3ed1357e2d44184c16"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_1_art.png",
+      "size": 65600,
+      "sha256": "3bcc5bdd18c39ad8c8638b24567b060adec52154ff52a4bc8f35cfe28b368a56"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_1_art.provenance.json",
+      "size": 757,
+      "sha256": "9ff3828a8257a64eb23be267bdddc6e6d179b489febddbff9739262b21e1806a"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_2_3.png",
+      "size": 117809,
+      "sha256": "6cbc37129030d5e655acd10ce0b60fa8442c0fb0a22d57a6bab69c8bb6f0cb61"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_2_3_art.png",
+      "size": 158513,
+      "sha256": "23c9c3de17ae0137f8c9036b653f6ea06d92a5aed55c6065640ae080ed1f9d4f"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_2_3_art.provenance.json",
+      "size": 1176,
+      "sha256": "da394a3a051684522a58bf7a5692fdf9e580e630d94c9af2f9db57fdca387785"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_4_5.png",
+      "size": 43447,
+      "sha256": "05b0d9db5fc5c39cf2a8398efe64355cc8d1ec5e3bbd60dcfddfbe17a0bb21a2"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_4_5_art.png",
+      "size": 45986,
+      "sha256": "a73b9a922273a9bf788cf4013611b9bc196adab598dfb96d54c50fc7496c6f7b"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_4_5_art.provenance.json",
+      "size": 1503,
+      "sha256": "b067023bbfba11c8cd6323f5452b0eda66c392de1dc1792e34ae5fad986e3a73"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_6.png",
+      "size": 66155,
+      "sha256": "1066e3dc65598f0604b106ac4a358ae38f8a1881fb902a680657c69daa60eb54"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_6_art.png",
+      "size": 82056,
+      "sha256": "b3bc37532b4a6a48d53fdea7b7ab2f1ac6ad712ac8835fda42824b567a7ea3eb"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_6_art.provenance.json",
+      "size": 893,
+      "sha256": "d8240a629704782f39ef58e38997f3a56a0ac1709c0d32d1cade1358b18a81c0"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_prepare.png",
+      "size": 47613,
+      "sha256": "2052c214796083bf3cf48cdaf02ada6272e7e95dc5739135b7aecb321fc54eac"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_prepare_art.png",
+      "size": 64026,
+      "sha256": "047da5e3737625ada189066eac35143ed0c3186dba2c9a2db242ebeefe715fdf"
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/wood_prepare_art.provenance.json",
+      "size": 913,
+      "sha256": "6cfb507e2a48556b966e36bc2d06d2407863e676b1df274cf85c0b3e32471046"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/00_preface.rst",
+      "size": 822,
+      "sha256": "1b89ec61df35586ca2f8f837383e07058a1e394d1e68135aa54e4f03e9706ff8"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/01_fcc.rst",
+      "size": 1554,
+      "sha256": "841f73c920b877017697957b1b1cd9daf90a8aadf465cd05fa7668faf0364a17"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/02_whats_in_the_box.rst",
+      "size": 867,
+      "sha256": "7a00d629d8087faa3dd8117f12eabfc63a4b52a6def8df1df65f25f1c802a757"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/03_product_overview.rst",
+      "size": 243,
+      "sha256": "60b36916c1ba02bfce353174d85ba56c5628bb553ab3c70e6f3914e3cc3a35e6"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/05_operation_guide.rst",
+      "size": 2479,
+      "sha256": "746e7ae636bef8f2b273b12cb903b9b4402cb46784c028a4e4cdc6b614b50384"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/06_ups_mode.rst",
+      "size": 3002,
+      "sha256": "1b7b5c4bebfa870c1dc588e310be80e3cadcbfb78a99a6ef4197d6d265f37f93"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/09_storage_and_maintenance.rst",
+      "size": 766,
+      "sha256": "48f7fd315b0358bef7f047789fdb9b10af294d7e2743c5d4fda45ea736998da2"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/11_warranty.rst",
+      "size": 3065,
+      "sha256": "5b518cd75b31d2b6eaaf30b006741f6d8ca7a6cc87948f9a60a17ac79267fe3f"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/12_app_setup.rst",
+      "size": 3510,
+      "sha256": "7628aad703c826196564b686a69cf8be2b1a5e3d05811fdffb635d1b2a23c636"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/charging_en.rst",
+      "size": 4796,
+      "sha256": "0aece750c2224ff74955bbf76f8bdeb393bd024135ab05fa314a6b0c674c60e6"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/connections_en.rst",
+      "size": 605,
+      "sha256": "38bb81285d5c5f5a5dd82c94f7359be180bf4142cfddf1a8a6d045a07052031e"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/installation_en.rst",
+      "size": 18654,
+      "sha256": "a28b17d2ff74b80f3f81c98dd20600876d926cfe03f03a00d57cec830d0a2e53"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/lcd_display_en.rst",
+      "size": 5233,
+      "sha256": "9aa969013bffa5b0e98c6a773db5a596ac5c96542d283e3141c24991bb9a7514"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/maintenance_en.rst",
+      "size": 734,
+      "sha256": "cc245d14e65ad1ae8005453b4be02945ab9d78897a65cd9d1710c924516fd965"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/safety_en.rst",
+      "size": 16183,
+      "sha256": "cd710ec3bb3ba2002bb33b8c40f181f6b586387be9935ed6b8c94059b9348e95"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/symbols_en.rst",
+      "size": 2252,
+      "sha256": "5daa7570e4fbce3498b439059ea0d3c43d29664c04cab8c4cc42898bf64b36b3"
+    },
+    {
+      "path": "docs/templates/page_fridgeguard/en/troubleshooting_en.rst",
+      "size": 2799,
+      "sha256": "5e0956ecd61f6851f1b18cfbae310a947af037e212bf53bb10d88415348eb426"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "size": 2690,
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+      "size": 4144,
+      "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+      "size": 5391,
+      "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+      "size": 5378,
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+      "size": 336,
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_white.svg",
+      "size": 331,
+      "sha256": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 8929,
+      "sha256": "c0e67db8926b492b2a57ab79e18ec528606994f946591a38082987a8a612ac25"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 1910,
+      "sha256": "cdd45b7e5f9e562567942ad2a502d6bc132233fb094205934c038ff6518b1394"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1546,
+      "sha256": "046eac77a12eadf1422e5bf2614352d0ad96ce22af6ad8382fe603a5c8e2ab44"
+    }
+  ],
+  "normalizations": [
+    "Reconstruct printed reading order from the single artboard",
+    "Normalize whitespace and ligatures; preserve original technical values",
+    "Printed TOC and page furniture become Web navigation",
+    "Preserve full source installation panels and phone frames; native text and tables for prose and specifications",
+    "Persist derived phase2 CSV snapshots with LF line endings under their committed .gitattributes; wording and values unchanged"
+  ],
+  "source_errata": [
+    "p16 F6 and FF: 0.2 inches (5 cm) is inconsistent and retained for technical review",
+    "p06 standby wording retained",
+    "p14 maintenance outlet artwork differs from p03 overview; source illustrations retained"
+  ],
+  "supplementary_references": [
+    {
+      "name": "Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf",
+      "sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+      "role": "User supplied symbol layout reference; physical page 5, printed English page 02. Does not replace the frozen AI source or add locales."
+    }
+  ],
+  "repo_input_hash_scope": "canonical Git index blobs; checkout line endings are governed by .gitattributes"
+}

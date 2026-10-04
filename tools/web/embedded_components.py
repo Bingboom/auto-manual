@@ -142,35 +142,8 @@ def render_embedded_web_component(
     }:
         return render_warranty_component(spec)
     if spec.component_id == OPERATION_COMPONENT_ID:
-        carrier = _carrier_html(node)
-        if not supports_figure_contract(source_path, dict(contract)):
-            return carrier
-        operations = contract.get("operations")
-        figures = operations.get("figures") if isinstance(operations, Mapping) else None
-        candidates = [
-            candidate
-            for candidate in figures or []
-            if isinstance(candidate, Mapping)
-            and str(candidate.get("id") or "") == str(spec.slot("operation_id").content)
-        ]
-        if len(candidates) != 1:
-            raise ValueError(
-                f"{spec.source_ref}: expected one Web operation presentation; "
-                f"found {len(candidates)}"
-            )
-        context = WebCompositeContext(
-            composite_manifest,
-            model,
-            region,
-            language,
-            WebPresentationError,
-        )
-        return render_operation_component(
-            spec,
-            carrier,
-            source_path=source_path,
-            presentation=candidates[0],
-            composites=context,
+        return _render_embedded_operation(
+            spec, node, source_path, model, region, language, composite_manifest, contract,
         )
     if spec.component_id == APP_COMPONENT_ID:
         return render_app_component(spec, _carrier_html(node))
@@ -187,3 +160,41 @@ def render_embedded_web_component(
 
 
 __all__ = ["render_embedded_web_component"]
+
+
+def _render_embedded_operation(
+    spec, node, source_path, model, region, language, composite_manifest, contract,
+):
+    carrier = _carrier_html(node)
+    declared = spec.metadata.get("web_presentation")
+    if not declared and not supports_figure_contract(source_path, dict(contract)):
+        return carrier
+    operations = contract.get("operations")
+    figures = operations.get("figures") if isinstance(operations, Mapping) else None
+    candidates = [
+        candidate
+        for candidate in figures or []
+        if isinstance(candidate, Mapping)
+        and str(candidate.get("id") or "") == str(spec.slot("operation_id").content)
+    ]
+    if isinstance(declared, Mapping):
+        candidates = [declared]
+    if len(candidates) != 1:
+        raise ValueError(
+            f"{spec.source_ref}: expected one Web operation presentation; "
+            f"found {len(candidates)}"
+        )
+    context = WebCompositeContext(
+        composite_manifest,
+        model,
+        region,
+        language,
+        WebPresentationError,
+    )
+    return render_operation_component(
+        spec,
+        carrier,
+        source_path=source_path,
+        presentation=candidates[0],
+        composites=context,
+    )

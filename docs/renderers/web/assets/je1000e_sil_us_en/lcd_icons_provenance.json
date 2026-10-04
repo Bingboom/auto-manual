@@ -1,0 +1,173 @@
+{
+  "source_pdf_name": "Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf",
+  "source_pdf_sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+  "background_operator": "Omit PDF table fill #f2f3f3 in the vector extraction; preserve icon paths and text outlines.",
+  "reason": "Native FridgeGuard symbols differ from shared seven-segment artwork (100 percent, F8, unsegmented battery ring and AC delay). Existing LCD component is reused.",
+  "icons": [
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_01.png",
+      "sha256": "bee1babea1dcbb8c2909321a1ffb3c62c1bdafe0fdedb0de7408dfb52f473f45",
+      "physical_page": 7,
+      "bbox_pt": [
+        50,
+        314,
+        80,
+        332
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_02.png",
+      "sha256": "06d5896b50c25c550c67d7973d8d0f4b39073a6f695222d9e719f93c26f5a360",
+      "physical_page": 7,
+      "bbox_pt": [
+        53,
+        346,
+        79,
+        362
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_03.png",
+      "sha256": "7366462997a1595ef44c1ea5924c07875d4410e55581219dbd53eaa3f3d43e14",
+      "physical_page": 7,
+      "bbox_pt": [
+        53,
+        371,
+        79,
+        387
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_04.png",
+      "sha256": "c85dd72ce7ae308c57e93a1ba56d185d68a42e69e4a392a411ec5ad5140e95ea",
+      "physical_page": 7,
+      "bbox_pt": [
+        55,
+        404,
+        78,
+        420
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_05.png",
+      "sha256": "222b992bf98c5a697dd311d74fa96e698054e5657378dfb11fdace6059b0d4ff",
+      "physical_page": 7,
+      "bbox_pt": [
+        56,
+        439,
+        76,
+        453
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_06.png",
+      "sha256": "94d277844c20b5997ccd46ea3e5d921568f177e2c05b31f9d7f77e0c138be5b4",
+      "physical_page": 7,
+      "bbox_pt": [
+        58,
+        472,
+        74,
+        489
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_07.png",
+      "sha256": "74e2d219427d3155588c28188dcc6b3b870a79f3a7fe8743b89764042b4510f5",
+      "physical_page": 8,
+      "bbox_pt": [
+        54,
+        41,
+        79,
+        56
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_08.png",
+      "sha256": "906d00d4a8b2609eaf7a5193c233e199c6f1642cae07e46e3ae47f67949905dc",
+      "physical_page": 8,
+      "bbox_pt": [
+        54,
+        80,
+        79,
+        97
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_09.png",
+      "sha256": "9ff96281355a0ff074cfffee4278d35223fba66e8d33e30dbe98bdeabc17a7d2",
+      "physical_page": 8,
+      "bbox_pt": [
+        59,
+        117,
+        74,
+        131
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_10.png",
+      "sha256": "7774684b5ddddb775baf4af7d7a9debccf2d618c3b97dbc914efd41ec441aed5",
+      "physical_page": 8,
+      "bbox_pt": [
+        60,
+        151,
+        73,
+        166
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_11.png",
+      "sha256": "07f13253f240494b2e9f6420312f39ecbf0a96b3dd2144d627165dc2682e41da",
+      "physical_page": 8,
+      "bbox_pt": [
+        56,
+        225,
+        77,
+        241
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_12.png",
+      "sha256": "b13b5c340ef67bf420c7ed2c62273180f70832e3607b648460dbfa0e19d1bb11",
+      "physical_page": 8,
+      "bbox_pt": [
+        58,
+        330,
+        74,
+        346
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_13.png",
+      "sha256": "0a6e904e69e110c2fcd2f26d43ea1c7e97aa5240282fda4aafb5e136db0a5c98",
+      "physical_page": 8,
+      "bbox_pt": [
+        60,
+        394,
+        73,
+        409
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_14.png",
+      "sha256": "b21ed34d174954cc1abb977753da0b0f7d081875f672d469cc736869d2232c3a",
+      "physical_page": 8,
+      "bbox_pt": [
+        56,
+        433,
+        77,
+        447
+      ]
+    },
+    {
+      "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_icon_15.png",
+      "sha256": "2894a3ae3d0c7852c085b34276b9ed7a0d73375f7877b56ab6e131c5ad516b92",
+      "physical_page": 8,
+      "bbox_pt": [
+        53,
+        463,
+        80,
+        490
+      ]
+    }
+  ]
+}

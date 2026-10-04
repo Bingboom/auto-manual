@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tools.component_specs.callout import variant_for_label
+
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.model import ComponentSpec
@@ -67,6 +69,12 @@ def parse_lcd_icon_html(
         icon_refs=[str(image.get("src") or "") for image in images],
         source_ref=f"{source_path}#lcd-icons",
         language=language,
+        metadata={
+            **({"number_cell_layout": "span-adjacent-equal"}
+               if "hb-lcd-merge-number" in table.get("class", []) else {}),
+            **({"description_cell_layout": "span-adjacent-equal"}
+               if "hb-lcd-merge-description" in table.get("class", []) else {}),
+        },
     )
     return spec, boundary, tuple(images)
 
@@ -124,6 +132,7 @@ def parse_symbol_tables_html(
         rows=[
             {
                 "label": label,
+                "show_icon": variant_for_label(label) not in {"note", "tip"},
                 **_content(row.find_all("td", recursive=False)[1], "meaning"),
             }
             for label, row in zip(signal_payload["labels"], signal_rows, strict=True)

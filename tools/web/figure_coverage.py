@@ -218,6 +218,31 @@ def _base_art_measured_sha256(contract: dict[str, Any], replace_key: str) -> str
     return measured
 
 
+def _declared_art_hashes(value, replace_key):
+    if isinstance(value, list):
+        for child in value:
+            yield from _declared_art_hashes(child, replace_key)
+    elif isinstance(value, dict):
+        spec = value.get("component_spec", {})
+        metadata = spec.get("metadata", {})
+        if metadata.get("web_replace_key") == replace_key:
+            yield metadata.get("base_art_layout", {}).get("art_sha256", "")
+        for key, child in value.items():
+            if key != "component_spec":
+                yield from _declared_art_hashes(child, replace_key)
+
+
+def _page_base_art_sha256(page, contract, replace_key):
+    """Source-declared reference anchors are frozen in IR, not global profiles."""
+    hashes = [digest for block in getattr(page, "blocks", ())
+              for digest in _declared_art_hashes(block.payload, replace_key)]
+    if not hashes:
+        return _base_art_measured_sha256(contract, replace_key)
+    if len(hashes) != 1 or not _SHA256_RE.fullmatch(str(hashes[0])):
+        raise ValueError(f"base-art Web figure {replace_key} has invalid declared art evidence")
+    return hashes[0]
+
+
 def _status_counts(slots: list[dict[str, Any]]) -> dict[str, int]:
     counts = {
         status: sum(slot["status"] == status for slot in slots)
@@ -655,7 +680,7 @@ def build_web_figure_coverage(
                         "base-art-live-copy Web figure must contain exactly one image"
                     )
                 slot["asset"] = _frozen_source_asset(figure_images[0], assets)
-                measured = _base_art_measured_sha256(contract, replace_key)
+                measured = _page_base_art_sha256(page, contract, replace_key)
                 if measured != slot["asset"]["sha256"]:
                     raise ValueError(
                         f"base-art layout for {replace_key} was measured on art "

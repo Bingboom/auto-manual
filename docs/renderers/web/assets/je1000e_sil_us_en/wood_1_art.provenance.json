@@ -1,0 +1,27 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3321.531005859375,
+    2245.40478515625,
+    3636.7,
+    2363.90478515625
+  ],
+  "sha256": "3bcc5bdd18c39ad8c8638b24567b060adec52154ff52a4bc8f35cfe28b368a56",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        3.4011855928607266,
+        6.452111352848101,
+        48.659785541022245,
+        0.0
+      ]
+    }
+  ],
+  "source_text": [
+    "1. Remove two screws from the bottom of the product."
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

@@ -254,6 +254,8 @@ empty-cell policies are recorded in
   - places one base-art reference figure's captured source lines on the panel rectangles its `base_art_layout` declares, each line exactly once; never measures the artwork
 - [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`
   - the one rule both Web paths use to give a base-art figure its source panel copy (`mode_label`, `sos_label`)
+- [`tools/component_specs/fcc_declaration.py`](../../tools/component_specs/fcc_declaration.py)
+  - shares source-driven full-FCC admission between fragment rendering and whole-document ownership; exact declarations and headingless Part 15 fallback preserve compact mixed-page statements
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
   - whole-document ownership pass for the fourteen registered component types;
     claims shared special sections and native table components once and preserves flow order
