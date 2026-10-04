@@ -306,8 +306,30 @@ schema: system-evolution/v1
 updated_on: 2026-10-04
 title: 从一条自动化脚本，到持续演进的说明书工作台
 intro: 从自动生成一份说明书开始，逐步串联评审、发布与维护。当前 Web 文档链条最成熟，IDML 印刷版仍在试生产；内容和经验的积累继续支持后续工作。
+now:
+  - {label: Web 文档, state: 已成熟，持续发布与维护, status: ongoing}
+  - {label: 印刷版 IDML, state: 试生产，逐项验证排版与印刷, status: in_progress}
+  - {label: 程序与 AI 查询, state: EU 第一阶段已验收，从网页整理, status: recorded}
+  - {label: 审核经验回馈, state: 后续规划，范围待定, status: planned}
+chapters:
+  - title: 能稳定地生成
+    question: 同样的数据和模板，能不能每次得到同样的说明书，并覆盖不同产品与市场？
+    stages: [kernel, targets]
+  - title: 能放心地修改
+    question: 审核提出的修改，怎样被记录、确认，再重新生成？
+    stages: [workflow]
+  - title: 能交付给读者
+    question: 同一份内容，怎样变成可发布的网页和可印刷的文件？
+    stages: [corpus, production]
+  - title: 能复用而不复制
+    question: 新手册越来越多，怎样让版式和内容结构只维护一份？
+    stages: [style_components, shared_ir]
+  - title: 能被查询，也能回馈
+    question: 已发布的内容，怎样被程序和 AI 准确引用，并让审核经验帮到下一次编写？
+    stages: [machine, review_experience]
 crosscutting:
   - id: engineering
+    start: "2026-03"
     period: 贯穿系统建设全过程
     status: ongoing
     title: 持续维护与重构
@@ -319,6 +341,8 @@ crosscutting:
     evidence: ["file:auto-manual:code-as-doc/code_optimization_log.md", "file:auto-manual:code-as-doc/dev/code_quality_iterability_plan.md"]
 stages:
   - id: kernel
+    start: "2026-02"
+    end: "2026-03"
     period: 2026-02 ～ 03
     status: recorded
     title: 自动生成第一份说明书
@@ -329,6 +353,8 @@ stages:
     invariant: 结构化数据 × 可复用模板 → 确定性构建。
     evidence: ["file:auto-manual:code-as-doc/architecture/system_evolution_history.md"]
   - id: targets
+    start: "2026-03"
+    end: "2026-05"
     period: 2026-03 ～ 05
     status: recorded
     title: 多产品、多区域、多格式
@@ -339,6 +365,8 @@ stages:
     invariant: 加目标表达差异，优先复用已有结构。
     evidence: ["pr:auto-manual#41", "pr:auto-manual#285"]
   - id: workflow
+    start: "2026-03"
+    end: "2026-07"
     period: 2026-03 ～ 07
     status: recorded
     title: 生成后审核，修改后再生成
@@ -349,6 +377,7 @@ stages:
     invariant: 修改有记录，更新正式内容须经确认，重新生成后再次检查。
     evidence: ["pr:auto-manual#21", "pr:auto-manual#343", "pr:auto-manual#360", "file:auto-manual:user-guide/two_plane_map.md"]
   - id: production
+    start: "2026-07"
     period: 2026-07 起
     status: in_progress
     title: 印刷版试生产
@@ -359,18 +388,20 @@ stages:
     invariant: 工具和测试完成不等于交付成熟；试制结果须经过排版与印刷验证。
     evidence: ["pr:auto-manual#548", "pr:auto-manual#722", "pr:auto-manual#837"]
   - id: style_components
+    start: "2026-07"
     period: 2026-07 起
     status: ongoing
     title: 开始建设可复用的样式组件
     metaphor: 把常用版式整理成组件，供后续页面调用
     summary: 开始把标题、警示框、规格表等常用版式从页面代码中提取出来，由组件统一管理样式。新页面提供自己的文字和数据，逐步减少重复设置版式的工作。
     flow: [整理常用版式, 建立样式组件, 在页面中调用, 逐步扩大复用]
-    detail: 这个阶段记录样式组件化建设的起点：7 月印刷侧组件拆包开始明确组件与页面编排的边界。后续共享样式合同和组件应用指南继续完善规则；随着网页手册录入，整本 Web 的内容与组件复用逐步成熟，见整本 IR 共享记录。
+    detail: 这个阶段记录样式组件化建设的起点：7 月印刷侧组件拆包开始明确组件与页面编排的边界。后续共享样式合同和组件应用指南继续完善规则；随着网页手册录入，整本手册改为先整理成统一底稿再生成网页，见下一项。
     invariant: 页面负责安排组件的位置和顺序，组件负责自己的内部样式。
     evidence: ["file:auto-manual:docs/renderers/contracts/STYLE_DEFINITION.md", "file:auto-manual:code-as-doc/dev/style_component_usage_guide.md", "pr:auto-manual#577"]
   - id: corpus
-    period: 2026-08 ～ 10
-    status: recorded
+    start: "2026-08"
+    period: 2026-08 起
+    status: ongoing
     title: Web 文档发布与内容积累
     metaphor: 当前最成熟的文档链条，持续维护已发布内容
     summary: Web 文档已形成生成、审核、发布和持续更新的链条。随着型号和语言版本增加，工作台集中呈现已发布手册的入口、版本与来源。
@@ -379,6 +410,8 @@ stages:
     invariant: 共享语义约束组件；每个版本仍有自己的权威源与验收证据。
     evidence: ["file:auto-manual:code-as-doc/dev/eu_shared_component_rollout_2026-09.md", "pr:auto-manual#1351", "pr:auto-manual#1431"]
   - id: machine
+    start: "2026-10"
+    end: "2026-10"
     period: 2026-10-01 ～ 10-04 · EU Phase 1 验收
     status: recorded
     title: 让程序和 AI 查找说明书内容
@@ -389,14 +422,15 @@ stages:
     invariant: 查询内容来自正式发布的手册；修改仍回到原有文档、模板或数据，再重新生成。
     evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "pr:auto-manual#1437", "pr:auto-manual#1439", "file:auto-manual:code-as-doc/dev/machine_readable_pilot_audit.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
   - id: shared_ir
-    period: 2026-09 起 · 随网页手册录入持续完善
+    start: "2026-09"
+    period: 2026-09 起 · 每录入一本手册继续完善
     status: ongoing
-    title: 随网页手册积累，完善整本 IR 共享
-    metaphor: 每录入一份手册，都继续完善共用的内容结构与组件
-    summary: Web 版已实现整本样式和组件复用。随着录入的型号、语言和手册增加，共用的正文、表格、步骤和插图处理不断完善，真实手册中的差异也逐步纳入同一套内容结构与组件。
-    flow: [录入真实手册, 补齐内容与组件支持, 使用共用体系生成整本网页, 继续完善]
-    detail: Web 现有入口先把整本内容、ComponentSpec、素材和所用合同保存到 manual.ir.json，再从这份包生成网页；冻结包可脱离 RST、CSV 重放。样式组件化阶段记录早期起点，这一项记录随后随网页文档积累而完善的整本 IR 共享。Word 目前仍逐页转换 RST，IDML 从 prepared RST 另建 IR；它们已有共享组件接口，直接消费同一份冻结整本包仍是后续扩展，代表试点按 REV-39、REV-40 推进。
-    invariant: 共用内容结构与组件，保留各手册原文和必要差异；各格式分别负责排版与验收。
+    title: 整本手册先整理成统一底稿，再生成网页
+    metaphor: 先有一份完整底稿，各种格式都从它出发
+    summary: 网页手册不再逐页拼装，而是先把整本内容（章节、正文、表格、步骤、插图和用到的样式组件）整理成一份统一的结构化底稿，再由底稿生成网页。每录入一本新手册，底稿能表达的情况就更完整。Word 和印刷版目前仍各自生成，以后计划也从同一份底稿出发。
+    flow: [录入一本手册, 整理成统一底稿, 由底稿生成网页, 补齐新遇到的情况]
+    detail: 技术上，这份底稿就是 IR（中间表示），保存为 manual.ir.json，包含整本内容、组件定义、素材和所用规则；保存下来的底稿不依赖原始 RST、CSV 也能重新生成同样的网页。上一项的样式组件是这件事的起点。Word 目前仍逐页转换，印刷版 IDML 另建自己的底稿；两者已能调用共用组件，直接使用同一份底稿是后续工作，代表试点按台账 REV-39、REV-40 推进。
+    invariant: 同一本手册只整理一份底稿；各格式从底稿生成，并各自负责排版与验收。
     evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:tools/web/document_source.py", "file:auto-manual:tools/web/document_ir.py", "file:auto-manual:tools/word/bundle_html.py", "file:auto-manual:tools/idml/ir_projection.py", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"]
   - id: review_experience
     period: 后续规划 · 试点与执行安排待确定
@@ -405,7 +439,7 @@ stages:
     metaphor: 保存确认过的措辞、修改理由和适用条件
     summary: 逐步把经过确认的译文、术语和修改经验记录下来，保留出处与适用条件，供后续说明书参考。具体范围、试点和执行安排仍需确定。
     flow: [记录确认过的修改, 保留出处与适用条件, 编写时参考, 审核后采用]
-    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于 IR 共享建设。
+    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于统一底稿建设。
     invariant: 参考已有经验时核对出处与适用条件，经人工审核后再采用。
     evidence: ["file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
 feedback:

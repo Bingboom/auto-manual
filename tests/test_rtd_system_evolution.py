@@ -45,7 +45,7 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertEqual(view["problems"], [])
         self.assertEqual(len(view["stages"]), 9)
         self.assertEqual([s["status"] for s in view["stages"]],
-                         ["recorded"] * 3 + ["in_progress", "ongoing", "recorded", "recorded", "ongoing", "planned"])
+                         ["recorded"] * 3 + ["in_progress", "ongoing", "ongoing", "recorded", "ongoing", "planned"])
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], DATA["stages"][0]["summary"])
         self.data["stages"][0]["summary"] = "源文件中的修订立即出现在展示中"
@@ -106,6 +106,45 @@ class SystemEvolutionTests(unittest.TestCase):
             self.write_story()
             self.assertTrue(self.view()["problems"])
 
+    def test_chapters_place_every_stage_once_and_bars_share_one_month_scale(self):
+        view = evolution.evolution_view(root=ROOT, domain=DOMAIN, repositories=REPOS)
+        placed = [stage["id"] for chapter in view["chapters"] for stage in chapter["stages"]]
+        self.assertEqual(sorted(placed), sorted(stage["id"] for stage in view["stages"]))
+        kernel = next(stage for stage in view["stages"] if stage["id"] == "kernel")
+        targets = next(stage for stage in view["stages"] if stage["id"] == "targets")
+        month = view["timeline"]["ticks"][1]["left"] - view["timeline"]["ticks"][0]["left"]
+        self.assertEqual(kernel["bar"]["left"], 0)
+        self.assertAlmostEqual(kernel["bar"]["width"], 2 * month, places=2)
+        self.assertAlmostEqual(targets["bar"]["left"], month, places=2)
+        self.assertFalse(kernel["bar"]["open"])
+        self.assertTrue(next(s for s in view["stages"] if s["id"] == "production")["bar"]["open"])
+        self.assertNotIn("bar", next(s for s in view["stages"] if s["id"] == "review_experience"))
+        self.assertLess(kernel["bar"]["left"], view["timeline"]["today"])
+
+    def test_bad_chapters_spans_and_now_rows_fall_back(self):
+        for mutate in (lambda d: d["chapters"][0]["stages"].append("missing"),
+                       lambda d: d["chapters"][0]["stages"].pop(),
+                       lambda d: d["chapters"].append({"title": "重复", "question": "?", "stages": ["kernel"]}),
+                       lambda d: d["stages"][0].update(start="2026-13"),
+                       lambda d: d["stages"][0].update(start="2026-05", end="2026-02"),
+                       lambda d: d["now"][0].update(status="done")):
+            with self.subTest(mutate=mutate):
+                self.data = copy.deepcopy(DATA)
+                mutate(self.data)
+                self.write_story()
+                self.assertTrue(self.view()["problems"])
+                self.assertEqual(self.view()["stages"], [])
+
+    def test_story_without_chapters_or_spans_keeps_a_flat_timeline(self):
+        for key in ("chapters", "now"):
+            del self.data[key]
+        for row in self.data["stages"] + self.data["crosscutting"]:
+            row.pop("start", None)
+            row.pop("end", None)
+        self.write_story()
+        view = self.view()
+        self.assertEqual((view["problems"], view["chapters"], view["now"], view["timeline"]), ([], [], [], None))
+
     def test_context_escaping_disclosure_and_missing_source_panel(self):
         payload = '<img src=x onerror="alert(1)">'
         self.data["stages"][0]["summary"] = payload
@@ -122,8 +161,13 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn('id="tab-evolution"', page)
         self.assertEqual(page.count('class="sw-evolution-details"'), 10)
         self.assertIn('class="sw-crosscutting" id="evolution-engineering"', page)
-        timeline = page.split('<ol class="sw-timeline"', 1)[1].split('</aside>', 1)[0]
-        self.assertNotIn('id="evolution-engineering"', timeline)
+        chapters = page.split('<section class="evo-chapter"', 1)[1].split('<aside class="sw-crosscutting"', 1)[0]
+        self.assertNotIn('id="evolution-engineering"', chapters)
+        self.assertEqual(page.count('class="evo-chapter"'), len(DATA["chapters"]))
+        self.assertEqual(page.count('class="evo-row is-'), 10)
+        self.assertEqual(page.count('class="evo-bar'), 8)
+        self.assertEqual(page.count('class="evo-plan"'), 1)
+        self.assertEqual(page.count('<li class="is-'), len(DATA["now"]))
         self.assertEqual(page.count('class="sw-timeline-row '), 9)
         self.assertNotIn(payload, page)
         self.assertIn("&lt;img", page)

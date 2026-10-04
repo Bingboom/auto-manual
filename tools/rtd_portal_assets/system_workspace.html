@@ -309,52 +309,94 @@
         {% if evolution.problems %}
         <div class="section-header"><div><h2>系统演变</h2><p>{{ evolution.problem|e }}</p></div></div>
         {% else %}
-        <div class="section-header"><div>
-          <span class="sw-evolution-eyebrow">SYSTEM EVOLUTION</span>
+        <header class="evo-head">
           <h2>{{ evolution.title|e }}</h2>
           <p>{{ evolution.intro|e }}</p>
-        </div></div>
-        <div class="sw-evolution-source"><span>记录更新于 {{ evolution.updated_on|e }} · 数字为注明日期的历史快照</span><a href="{{ evolution.source.href|e }}" target="_blank" rel="noopener">完整演进史 ↗</a></div>
+          <p class="evo-source">记录更新于 {{ evolution.updated_on|e }}，数字为注明日期的历史快照 · <a href="{{ evolution.source.href|e }}" target="_blank" rel="noopener">完整演进史 ↗</a></p>
+        </header>
+
+        {% if evolution.now %}
+        <section class="evo-now" aria-labelledby="evo-now-title">
+          <h3 id="evo-now-title">现在走到哪里</h3>
+          <ul>{% for row in evolution.now %}<li class="is-{{ row.status|e }}"><span class="evo-dot" aria-hidden="true"></span><b>{{ row.label|e }}</b><span>{{ row.state|e }}</span></li>{% endfor %}</ul>
+        </section>
+        {% endif %}
+
+        {% if evolution.timeline %}
+        <figure class="evo-chart" aria-labelledby="evo-chart-title">
+          <figcaption id="evo-chart-title">各项能力的时间跨度<span class="evo-legend"><i class="is-recorded"></i>已完成<i class="is-ongoing"></i>持续开展<i class="is-in_progress"></i>建设中<i class="is-planned"></i>未来方向 · 末端渐隐表示仍在进行</span></figcaption>
+          <div class="evo-chart-scroll"><div class="evo-chart-grid">
+            <div class="evo-axis" aria-hidden="true"><span></span><div class="evo-track">{% for tick in evolution.timeline.ticks %}<i style="left:{{ tick.left }}%">{{ tick.label }}</i>{% endfor %}<em class="evo-today" style="left:{{ evolution.timeline.today }}%">今天</em></div></div>
+            {% for chapter in evolution.chapters %}{% for stage in chapter.stages %}
+            <div class="evo-row is-{{ stage.status|e }}"><a href="#evolution-{{ stage.id|e }}">{{ stage.title|e }}</a><div class="evo-track">
+              <span class="evo-today-line" style="left:{{ evolution.timeline.today }}%" aria-hidden="true"></span>
+              {% if stage.bar %}<span class="evo-bar{% if stage.bar.open %} is-open{% endif %}" style="left:{{ stage.bar.left }}%;width:{{ stage.bar.width }}%" title="{{ stage.period|e }} · {{ stage.status_label|e }}"></span>
+              {% else %}<span class="evo-plan" style="left:{{ evolution.timeline.today }}%">{{ stage.status_label|e }}</span>{% endif %}
+            </div></div>
+            {% endfor %}{% endfor %}
+            {% for work in evolution.crosscutting %}{% if work.bar %}
+            <div class="evo-row is-crosscutting"><a href="#evolution-{{ work.id|e }}">{{ work.title|e }}</a><div class="evo-track"><span class="evo-today-line" style="left:{{ evolution.timeline.today }}%" aria-hidden="true"></span><span class="evo-band" style="left:{{ work.bar.left }}%;width:{{ work.bar.width }}%"></span></div></div>
+            {% endif %}{% endfor %}
+          </div></div>
+        </figure>
+        {% endif %}
+
+        {% macro feedback_loop() -%}
+          <figure class="sw-feedback">
+            <figcaption><h4>{{ evolution.feedback.title|e }}</h4><span>后半圈 · 未来建设方向</span></figcaption>
+            <div class="evo-loop">
+              <div class="evo-loop-lane"><b>已有基础</b><ol>{% for step in evolution.feedback.steps[:3] %}<li>{{ step|e }}</li>{% endfor %}</ol></div>
+              <div class="evo-loop-lane is-future"><b>后续规划</b><ol>{% for step in evolution.feedback.steps[3:] %}<li>{{ step|e }}</li>{% endfor %}</ol></div>
+              <span class="evo-loop-return" aria-hidden="true">↺ 回到编写</span>
+            </div>
+            <p>{{ evolution.feedback.note|e }}</p>
+          </figure>
+        {%- endmacro %}
+
+        {% macro stage_item(stage) -%}
+        <li class="sw-timeline-row is-{{ stage.status|e }}" id="evolution-{{ stage.id|e }}">
+          <article>
+            <header><span class="evo-period">{{ stage.period|e }}</span>{{ badge(stage.status, stage.status_label) }}</header>
+            <h4>{{ stage.title|e }}</h4>
+            <p class="sw-story">{{ stage.summary|e }}</p>
+            <ol class="sw-evolution-flow" aria-label="{{ stage.title|e }}的流程">{% for step in stage.flow %}<li>{{ step|e }}</li>{% endfor %}</ol>
+            <p class="evo-principle"><b>留下的原则</b>{{ stage.invariant|e }}</p>
+            <details class="sw-evolution-details">
+              <summary>经过与依据</summary>
+              <p>{{ stage.detail|e }}</p>
+              <div class="sw-refs">{{ evidence_links(stage.evidence) }}</div>
+            </details>
+          </article>
+        </li>
+        {%- endmacro %}
+
+        {% for chapter in evolution.chapters %}
+        <section class="evo-chapter" aria-labelledby="evo-chapter-{{ loop.index }}">
+          <header class="evo-chapter-head"><span class="evo-chapter-no">{{ loop.index }}</span><div><h3 id="evo-chapter-{{ loop.index }}">{{ chapter.title|e }}</h3><p>{{ chapter.question|e }}</p></div></header>
+          <ol class="sw-timeline">{% for stage in chapter.stages %}{{ stage_item(stage) }}{% endfor %}</ol>
+          {% if loop.last %}
+          {{ feedback_loop() }}
+          {% endif %}
+        </section>
+        {% else %}
+        <ol class="sw-timeline">{% for stage in evolution.stages %}{{ stage_item(stage) }}{% endfor %}</ol>
+        {{ feedback_loop() }}
+        {% endfor %}
+
         {% for work in evolution.crosscutting %}
         <aside class="sw-crosscutting" id="evolution-{{ work.id|e }}" aria-labelledby="evolution-{{ work.id|e }}-title">
-          <header><span>{{ work.period|e }}</span>{{ badge(work.status, work.status_label) }}</header>
-          <h3 id="evolution-{{ work.id|e }}-title">{{ work.title|e }}</h3>
-          <p class="sw-metaphor">{{ work.metaphor|e }}</p>
+          <header><span class="evo-period">{{ work.period|e }}</span>{{ badge(work.status, work.status_label) }}</header>
+          <h3 id="evolution-{{ work.id|e }}-title">支撑全程：{{ work.title|e }}</h3>
           <p class="sw-story">{{ work.summary|e }}</p>
           <ul class="sw-crosscutting-signposts" aria-label="{{ work.title|e }}的历次记录">{% for point in work.flow %}<li>{{ point|e }}</li>{% endfor %}</ul>
+          <p class="evo-principle"><b>留下的原则</b>{{ work.invariant|e }}</p>
           <details class="sw-evolution-details">
-            <summary>历次记录、原则与依据</summary>
+            <summary>经过与依据</summary>
             <p>{{ work.detail|e }}</p>
-            <p class="sw-evolution-invariant"><b>留下的原则</b>{{ work.invariant|e }}</p>
             <div class="sw-refs">{{ evidence_links(work.evidence) }}</div>
           </details>
         </aside>
         {% endfor %}
-        <ol class="sw-timeline" aria-label="系统演变阶段">
-          {% for stage in evolution.stages %}
-          <li class="sw-timeline-row is-{{ stage.status|e }}" id="evolution-{{ stage.id|e }}">
-            <span class="sw-timeline-number" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>
-            <article>
-              <header><span>{{ stage.period|e }}</span>{{ badge(stage.status, stage.status_label) }}</header>
-              <h3>{{ stage.title|e }}</h3>
-              <p class="sw-metaphor">{{ stage.metaphor|e }}</p>
-              <p class="sw-story">{{ stage.summary|e }}</p>
-              <ol class="sw-evolution-flow" aria-label="{{ stage.title|e }}的流程">{% for step in stage.flow %}<li>{{ step|e }}</li>{% endfor %}</ol>
-              <details class="sw-evolution-details">
-                <summary>变化、原则与依据</summary>
-                <p>{{ stage.detail|e }}</p>
-                <p class="sw-evolution-invariant"><b>留下的原则</b>{{ stage.invariant|e }}</p>
-                <div class="sw-refs">{{ evidence_links(stage.evidence) }}</div>
-              </details>
-            </article>
-          </li>
-          {% endfor %}
-        </ol>
-        <figure class="sw-feedback">
-          <figcaption><h3>{{ evolution.feedback.title|e }}</h3><span>后半圈 · 未来建设方向</span></figcaption>
-          <ol aria-label="知识反馈闭环">{% for step in evolution.feedback.steps %}<li{% if loop.index > 3 %} class="is-future"{% endif %}><small>{{ '%02d'|format(loop.index) }}</small>{{ step|e }}{% if loop.last %}<span aria-hidden="true"> ↺</span>{% endif %}</li>{% endfor %}</ol>
-          <p>{{ evolution.feedback.note|e }}</p>
-        </figure>
         {% endif %}
       </section>
     </div>

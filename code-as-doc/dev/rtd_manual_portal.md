@@ -158,9 +158,16 @@ content, QR aliases and nested manual URLs are unchanged.
 The 「系统演变」 tab (`#tab-evolution`, individual stages at
 `#evolution-<id>`) describes how the manual workspace evolved from its first
 deterministic build through reusable style components, published content,
-machine consumption and future knowledge feedback. Maintenance and refactoring
-are an unnumbered horizontal signpost above the nine capability stages, covering
-repeated work throughout system construction; September governance is one round.
+machine consumption and future knowledge feedback. It reads top-down: 「现在走到哪里」
+(the optional `now` rows: one state per delivery chain), a month-scaled overview
+(stages with optional `start`/`end` as `YYYY-MM`; every bar, tick and the
+updated-on line share one scale, an open end fades, an undated stage shows as a
+dashed label), then the optional `chapters`, each a question the system had to
+answer, holding its stages. Each stage shows its principle; the account and
+evidence stay in native disclosure. Chapters must place every stage exactly once;
+without `chapters` the stages render as one flat list. Maintenance and refactoring
+close the story as 「支撑全程」 below the chapters, covering repeated work
+throughout system construction; September governance is one round.
 The optional `crosscutting` list shares the stage fields and evidence validation.
 IDs must be unique across both lists; existing `#evolution-engineering` links
 now resolve to the signpost.

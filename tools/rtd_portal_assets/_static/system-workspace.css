@@ -244,58 +244,115 @@
 @media (max-width: 900px) { .sw-focus-group { grid-template-columns: 1fr; gap: 8px; } .sw-horizon { padding-top: 0; } }
 @media (max-width: 660px) { .sw-lane.is-now .sw-lane-progress { grid-template-columns: 1fr; } .sw-update p { margin-left: 0; } .sw-lane > header { flex-wrap: wrap; } }
 
-/* Evolution story: chronological reading, native disclosure and a future boundary. */
-.sw-evolution { max-width: 1020px; margin-inline: auto; }
-.sw-evolution-eyebrow { display: block; font-size: 11px; letter-spacing: 1.5px; color: var(--orange); margin-bottom: 10px; }
-.sw-evolution .section-header h2 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.5; }
-.sw-evolution-source { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; font-size: 12px; color: var(--muted); margin: 0 0 28px; }
-.sw-evolution-source a { color: var(--orange); white-space: nowrap; }
-.sw-crosscutting { margin: 0 0 32px; padding: 24px; border: 1px solid var(--line); border-left: 3px solid var(--orange); border-radius: 12px; background: #fff; }
-.sw-crosscutting header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 12px; color: var(--muted); }
-.sw-crosscutting h3 { margin: 14px 0 4px; font-size: 20px; line-height: 1.5; }
-.sw-crosscutting-signposts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 24px 0 18px; padding: 0; }
-.sw-crosscutting-signposts li { position: relative; padding: 14px 0 0; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.75; color: #505864; overflow-wrap: anywhere; }
-.sw-crosscutting-signposts li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; }
-.sw-timeline { list-style: none; padding: 0; margin: 0; }
-.sw-timeline-row { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 22px; padding-bottom: 32px; }
-.sw-timeline-row:not(:last-child)::before { content: ""; position: absolute; top: 42px; bottom: 0; left: 21px; border-left: 1px solid var(--line); }
-.sw-timeline-number { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--orange); font-size: 14px; font-weight: 650; }
-.sw-timeline-row article { min-width: 0; border-bottom: 1px solid var(--line); padding: 4px 0 26px; }
-.sw-timeline-row header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; color: var(--muted); }
-.sw-badge.is-recorded, .sw-badge.is-ongoing { color: var(--sw-available); background: var(--sw-available-bg); }
-.sw-timeline-row h3 { font-size: 20px; line-height: 1.5; margin: 14px 0 4px; font-weight: 650; }
-.sw-metaphor { margin: 0; font-size: 14px; color: var(--orange); }
-.sw-story { color: #505864; font-size: 14px; line-height: 1.85; margin: 12px 0 14px; }
-.sw-evolution-flow { display: flex; flex-wrap: wrap; gap: 8px 0; list-style: none; margin: 0 0 14px; padding: 0; }
-.sw-evolution-flow li { display: flex; align-items: center; font-size: 12px; line-height: 1.7; color: #505864; }
-.sw-evolution-flow li::before { content: ""; }
-.sw-evolution-flow li:not(:last-child)::after { content: "→"; padding: 0 12px; color: var(--orange); }
-.sw-evolution-details { font-size: 13px; line-height: 1.85; color: var(--muted); }
-.sw-evolution-details summary { cursor: pointer; width: fit-content; color: #505864; padding: 4px 0; }
+/* Evolution story: where it stands now, one month-scaled overview, then chapters
+   that each answer one question. Status colours reuse the workspace tokens;
+   orange marks only "today". */
+.sw-evolution { max-width: 1040px; margin-inline: auto; --evo-done: var(--sw-available); --evo-done-bg: var(--sw-available-bg);
+  --evo-live: var(--sw-validated); --evo-live-bg: var(--sw-validated-bg); --evo-build: var(--sw-in_progress); --evo-build-bg: var(--sw-in_progress-bg);
+  --evo-plan: var(--sw-planned); --evo-plan-bg: var(--sw-planned-bg); --evo-ink: #2b313b; --evo-text: #4f5662; }
+.sw-badge.is-recorded { color: var(--evo-done); background: var(--evo-done-bg); }
+.sw-badge.is-ongoing { color: var(--evo-live); background: var(--evo-live-bg); }
+.evo-head h2 { margin: 0; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.35; text-wrap: balance; color: var(--evo-ink); }
+.evo-head > p { max-width: 46em; margin: 10px 0 0; font-size: 15px; line-height: 1.8; color: var(--evo-text); }
+.evo-head .evo-source { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+.evo-source a { color: var(--evo-text); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Now: four delivery chains, state before history. */
+.evo-now { margin: 28px 0 0; }
+.evo-now h3, .evo-chart figcaption { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 10px; }
+.evo-now ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
+.evo-now li { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 10px; row-gap: 4px; padding: 16px 18px; min-width: 0; }
+.evo-now li + li { border-left: 1px solid var(--line); }
+.evo-now b { font-size: 16px; color: var(--evo-ink); }
+.evo-now li > span:last-child { grid-column: 2; font-size: 13px; line-height: 1.6; color: var(--evo-text); }
+.evo-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 7px; background: var(--evo-done); }
+.is-ongoing > .evo-dot { background: var(--evo-live); }
+.is-in_progress > .evo-dot { background: var(--evo-build); }
+.is-planned > .evo-dot { background: transparent; border: 1.5px dashed var(--evo-plan); }
+
+/* Overview: one month scale for every bar. */
+.evo-chart { margin: 32px 0 0; }
+.evo-legend { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-weight: 400; margin-left: 14px; }
+.evo-legend i { display: inline-block; width: 18px; height: 8px; border-radius: 4px; margin-left: 8px; background: var(--evo-done); }
+.evo-legend i.is-ongoing { background: var(--evo-live); }
+.evo-legend i.is-in_progress { background: var(--evo-build); }
+.evo-legend i.is-planned { background: transparent; border: 1px dashed var(--evo-plan); }
+.evo-chart-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 14px 18px 16px; }
+.evo-chart-grid { min-width: 640px; display: grid; gap: 7px; }
+.evo-axis, .evo-row { display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 14px; align-items: center; }
+.evo-track { position: relative; height: 16px; }
+.evo-axis .evo-track { height: 22px; border-bottom: 1px solid var(--line); }
+.evo-axis i { position: absolute; bottom: 5px; font-style: normal; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.evo-today { position: absolute; top: -2px; transform: translateX(-50%); font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--orange); background: #fff; padding: 0 4px; }
+.evo-today-line { position: absolute; top: -4px; bottom: -4px; border-left: 1.5px solid var(--orange); opacity: .55; }
+.evo-row > a { font-size: 13px; color: var(--evo-text); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.evo-row > a:hover { color: var(--evo-ink); text-decoration: underline; }
+.evo-bar { position: absolute; top: 3px; height: 10px; border-radius: 5px; background: var(--evo-done); }
+.is-ongoing .evo-bar { background: var(--evo-live); }
+.is-in_progress .evo-bar { background: var(--evo-build); }
+.evo-bar.is-open { border-radius: 5px 0 0 5px; -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent); mask-image: linear-gradient(90deg, #000 80%, transparent); }
+.evo-plan { position: absolute; top: -1px; margin-left: 10px; font-size: 11.5px; color: var(--evo-plan); border: 1px dashed var(--evo-plan); border-radius: 999px; padding: 0 8px; white-space: nowrap; }
+.evo-band { position: absolute; top: 6px; height: 4px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--evo-plan) 0 6px, transparent 6px 10px); }
+.evo-row.is-crosscutting { margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--line); }
+
+/* Chapters: each answers one question; stages read as plain rows, not cards. */
+.evo-chapter { margin-top: 44px; }
+.evo-chapter-head { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; align-items: start; padding-bottom: 14px; border-bottom: 1px solid var(--evo-ink); }
+.evo-chapter-no { font-size: 30px; line-height: 1; font-weight: 700; color: var(--evo-ink); font-variant-numeric: tabular-nums; }
+.evo-chapter-head h3 { margin: 0; font-size: 21px; line-height: 1.4; color: var(--evo-ink); }
+.evo-chapter-head p { margin: 4px 0 0; font-size: 14px; line-height: 1.7; color: var(--evo-text); }
+.sw-timeline { list-style: none; padding: 0; margin: 0 0 0 56px; }
+.sw-timeline-row { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.sw-timeline-row article { min-width: 0; max-width: 46em; }
+.sw-timeline-row header, .sw-crosscutting header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+.evo-period { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sw-timeline-row h4 { margin: 10px 0 6px; font-size: 18px; line-height: 1.45; color: var(--evo-ink); }
+.sw-story { margin: 0 0 12px; font-size: 14.5px; line-height: 1.85; color: var(--evo-text); }
+.sw-evolution-flow { display: flex; flex-wrap: wrap; gap: 6px 0; list-style: none; margin: 0 0 12px; padding: 0; }
+.sw-evolution-flow li { display: flex; align-items: center; font-size: 12.5px; line-height: 1.6; color: var(--evo-text); }
+.sw-evolution-flow li:not(:last-child)::after { content: "→"; padding: 0 10px; color: var(--muted); }
+.evo-principle { margin: 0 0 8px; padding: 8px 0 8px 14px; border-left: 2px solid var(--evo-ink); font-size: 14px; line-height: 1.7; color: var(--evo-ink); }
+.evo-principle b { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 2px; }
+.sw-evolution-details { font-size: 13px; line-height: 1.85; color: var(--evo-text); }
+.sw-evolution-details summary { cursor: pointer; width: fit-content; color: var(--muted); padding: 2px 0; }
 .sw-evolution-details summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
-.sw-evolution-details p { margin: 12px 0; overflow-wrap: anywhere; }
-.sw-evolution-invariant b { display: block; color: #3b4350; font-weight: 600; }
-.sw-evolution-details .sw-refs { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.sw-evolution-details p { margin: 10px 0; overflow-wrap: anywhere; }
+.sw-evolution-details .sw-refs { display: flex; flex-wrap: wrap; gap: 6px 16px; }
 .sw-evolution-details .sw-refs a { overflow-wrap: anywhere; }
-.sw-timeline-row.is-in_progress .sw-timeline-number { border-color: #e4b990; background: #fdf0e3; }
-.sw-timeline-row.is-planned .sw-timeline-number { border-style: dashed; color: var(--muted); }
-.sw-feedback { margin: 0 0 12px 66px; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-.sw-feedback figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
-.sw-feedback h3 { margin: 0; font-size: 18px; }
-.sw-feedback figcaption > span { font-size: 12px; color: var(--muted); }
-.sw-feedback ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 20px 0 16px; }
-.sw-feedback li { border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.6; }
-.sw-feedback li small { display: block; color: var(--orange); margin-bottom: 6px; font-size: 11px; }
-.sw-feedback li.is-future { border-style: dashed; color: var(--muted); }
-.sw-feedback p { margin: 0; font-size: 13px; line-height: 1.85; color: var(--muted); }
+
+/* The loop: what exists today, then what is planned, closing back to writing. */
+.sw-feedback { margin: 24px 0 0 56px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.sw-feedback figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.sw-feedback h4 { margin: 0; font-size: 16px; color: var(--evo-ink); }
+.sw-feedback figcaption > span { font-size: 12.5px; color: var(--muted); }
+.evo-loop { position: relative; display: grid; gap: 10px; margin: 16px 0 14px; }
+.evo-loop-lane { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; }
+.evo-loop-lane b { font-size: 12.5px; font-weight: 600; color: var(--evo-done); }
+.evo-loop-lane.is-future b { color: var(--evo-plan); }
+.evo-loop-lane ol { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.evo-loop-lane li { font-size: 13px; line-height: 1.5; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--evo-done-bg); background: var(--evo-done-bg); color: var(--evo-ink); }
+.evo-loop-lane.is-future li { border: 1px dashed var(--evo-plan); background: transparent; color: var(--evo-text); }
+.evo-loop-return { justify-self: end; font-size: 12.5px; color: var(--evo-plan); }
+.sw-feedback > p { margin: 0; font-size: 13px; line-height: 1.8; color: var(--evo-text); }
+
+/* Crosscutting work closes the story as the support under every chapter. */
+.sw-crosscutting { margin: 44px 0 0; padding: 20px 22px; border-radius: 12px; background: var(--evo-plan-bg); }
+.sw-crosscutting h3 { margin: 10px 0 6px; font-size: 18px; color: var(--evo-ink); }
+.sw-crosscutting-signposts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 4px 0 14px; padding: 0; }
+.sw-crosscutting-signposts li { padding-top: 10px; border-top: 2px solid var(--evo-plan); font-size: 13px; line-height: 1.6; color: var(--evo-text); overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .evo-now ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .evo-now li:nth-child(3) { border-left: 0; }
+  .evo-now li:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
 @media (max-width: 660px) {
-  .sw-crosscutting { padding: 18px; }
-  .sw-crosscutting h3 { font-size: 18px; }
+  .evo-now ul { grid-template-columns: minmax(0, 1fr); }
+  .evo-now li + li { border-left: 0; border-top: 1px solid var(--line); }
+  .evo-chapter-head { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+  .evo-chapter-no { font-size: 24px; }
+  .sw-timeline, .sw-feedback { margin-left: 0; }
+  .evo-loop-lane { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .sw-crosscutting-signposts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sw-timeline-row { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding-bottom: 24px; }
-  .sw-timeline-number { width: 32px; height: 32px; font-size: 12px; }
-  .sw-timeline-row:not(:last-child)::before { left: 15px; top: 34px; }
-  .sw-timeline-row h3 { font-size: 18px; }
-  .sw-feedback { margin-left: 0; padding: 18px; }
-  .sw-feedback ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .evo-axis, .evo-row { grid-template-columns: 132px minmax(0, 1fr); }
 }

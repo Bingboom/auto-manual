@@ -76,8 +76,85 @@ def _stage(row: object, repositories: dict[str, str]) -> dict[str, Any]:
     refs = row.get("evidence")
     if not isinstance(refs, list) or not refs:
         raise EvolutionError("every stage needs evidence")
+    span = _span(row)
     return {**stage, "status_label": STATUS_LABELS[stage["status"]], "flow": _texts(row, "flow"),
-            "evidence": [_evidence(ref, repositories) for ref in refs]}
+            "evidence": [_evidence(ref, repositories) for ref in refs], **span}
+
+
+_MONTH = re.compile(r"(20[0-9]{2})-(0[1-9]|1[0-2])")
+
+
+def _month(value: object, field: str) -> int:
+    if not isinstance(value, str) or not _MONTH.fullmatch(value):
+        raise EvolutionError(f"{field} must be YYYY-MM")
+    year, month = map(int, value.split("-"))
+    return year * 12 + month - 1
+
+
+def _span(row: dict) -> dict:
+    """Optional month range for the overview chart; open end means still running."""
+    if "start" not in row:
+        return {}
+    start = _month(row["start"], "start")
+    end = _month(row["end"], "end") if row.get("end") is not None else None
+    if end is not None and end < start:
+        raise EvolutionError("end must not precede start")
+    return {"start": start, "end": end}
+
+
+def _chapters(rows: object, stages: list[dict]) -> list[dict]:
+    """Group stages by the question each answered; every stage belongs to exactly one chapter."""
+    if rows is None:
+        return []
+    if not isinstance(rows, list) or not rows:
+        raise EvolutionError("chapters must be a non-empty list")
+    by_id = {stage["id"]: stage for stage in stages}
+    chapters, seen = [], []
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get("stages"), list) or not row["stages"]:
+            raise EvolutionError("chapter needs stages")
+        if any(stage_id not in by_id for stage_id in row["stages"]):
+            raise EvolutionError("chapter names an unknown stage")
+        seen += row["stages"]
+        chapters.append({"title": _text(row, "title"), "question": _text(row, "question"),
+                         "stages": [by_id[stage_id] for stage_id in row["stages"]]})
+    if sorted(seen) != sorted(by_id):
+        raise EvolutionError("chapters must place every stage exactly once")
+    return chapters
+
+
+def _now(rows: object) -> list[dict]:
+    """Optional one-line state per delivery chain, shown before the history."""
+    if not isinstance(rows, list):
+        raise EvolutionError("now must be a list")
+    now = [{"label": _text(row, "label"), "state": _text(row, "state"), "status": _text(row, "status")}
+           for row in rows]
+    if any(row["status"] not in STATUS_LABELS for row in now):
+        raise EvolutionError("unknown now status")
+    return now
+
+
+def _timeline(entries: list[dict], updated: dt.date) -> dict | None:
+    """Month axis shared by every bar; positions are percentages of one scale."""
+    spans = [entry for entry in entries if "start" in entry]
+    if not spans:
+        return None
+    today = updated.year * 12 + updated.month - 1
+    first = min(entry["start"] for entry in spans)
+    last = max([today + 2] + [entry["end"] or entry["start"] for entry in spans]) + 1
+    width = last - first
+
+    def pct(month: int) -> float:
+        return round((month - first) * 100 / width, 3)
+
+    for entry in spans:
+        end = entry["end"] if entry["end"] is not None else max(today, entry["start"])
+        entry["bar"] = {"left": pct(entry["start"]), "width": max(pct(end + 1) - pct(entry["start"]), 1.5),
+                        "open": entry["end"] is None}
+    ticks = [{"left": pct(month), "label": f"{month % 12 + 1} 月" if month % 12 else f"{month // 12} 年"}
+             for month in range(first, last) if month != today]
+    return {"ticks": ticks, "today": pct(today) + round(100 / width * (updated.day - 1) / 31, 3),
+            "today_label": updated.isoformat()}
 
 
 def _story(text: str, repositories: dict[str, str]) -> dict[str, Any]:
@@ -105,11 +182,15 @@ def _story(text: str, repositories: dict[str, str]) -> dict[str, Any]:
     entries = stages + crosscutting
     if len({entry["id"] for entry in entries}) != len(entries):
         raise EvolutionError("duplicate stage or crosscutting id")
+    chapters = _chapters(data.get("chapters"), stages)
+    timeline = _timeline(entries, updated)
+    now = _now(data.get("now", []))
     feedback = data.get("feedback")
     if not isinstance(feedback, dict):
         raise EvolutionError("summary needs a feedback direction")
     return {"title": _text(data, "title"), "intro": _text(data, "intro"),
             "updated_on": updated.isoformat(), "stages": stages, "crosscutting": crosscutting,
+            "chapters": chapters, "timeline": timeline, "now": now,
             "feedback": {"title": _text(feedback, "title"), "note": _text(feedback, "note"),
                          "steps": _texts(feedback, "steps")}}
 
