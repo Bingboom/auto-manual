@@ -85,6 +85,13 @@ receipt. Browser refresh probes the served same-origin receipt; it neither queri
 GitHub nor changes publication/source authority. See
 [published workspace version](rtd_manual_portal.md#published-version-and-refresh).
 
+[`tools/rtd/system_evolution.py`](../../tools/rtd/system_evolution.py) owns the
+system page's read-only evolution summary. It reads the marked public story
+from the architecture history registered in `source_registry.yaml`;
+`system_workspace` supplies its view and authoring findings, while the existing
+shell owns tab navigation. It neither writes history nor infers execution status.
+See [system workspace](rtd_manual_portal.md#system-workspace-page).
+
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.

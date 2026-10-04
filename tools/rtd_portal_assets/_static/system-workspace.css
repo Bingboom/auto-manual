@@ -243,3 +243,50 @@
 .sw-section { scroll-margin-top: 20px; }
 @media (max-width: 900px) { .sw-focus-group { grid-template-columns: 1fr; gap: 8px; } .sw-horizon { padding-top: 0; } }
 @media (max-width: 660px) { .sw-lane.is-now .sw-lane-progress { grid-template-columns: 1fr; } .sw-update p { margin-left: 0; } .sw-lane > header { flex-wrap: wrap; } }
+
+/* Evolution story: chronological reading, native disclosure and a future boundary. */
+.sw-evolution { max-width: 1020px; margin-inline: auto; }
+.sw-evolution-eyebrow { display: block; font-size: 11px; letter-spacing: 1.5px; color: var(--orange); margin-bottom: 10px; }
+.sw-evolution .section-header h2 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.5; }
+.sw-evolution-source { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; font-size: 12px; color: var(--muted); margin: 0 0 28px; }
+.sw-evolution-source a { color: var(--orange); white-space: nowrap; }
+.sw-timeline { list-style: none; padding: 0; margin: 0; }
+.sw-timeline-row { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 22px; padding-bottom: 32px; }
+.sw-timeline-row:not(:last-child)::before { content: ""; position: absolute; top: 42px; bottom: 0; left: 21px; border-left: 1px solid var(--line); }
+.sw-timeline-number { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--orange); font-size: 14px; font-weight: 650; }
+.sw-timeline-row article { min-width: 0; border-bottom: 1px solid var(--line); padding: 4px 0 26px; }
+.sw-timeline-row header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; color: var(--muted); }
+.sw-badge.is-recorded { color: var(--sw-available); background: var(--sw-available-bg); }
+.sw-timeline-row h3 { font-size: 20px; line-height: 1.5; margin: 14px 0 4px; font-weight: 650; }
+.sw-metaphor { margin: 0; font-size: 14px; color: var(--orange); }
+.sw-story { color: #505864; font-size: 14px; line-height: 1.85; margin: 12px 0 14px; }
+.sw-evolution-flow { display: flex; flex-wrap: wrap; gap: 8px 0; list-style: none; margin: 0 0 14px; padding: 0; }
+.sw-evolution-flow li { display: flex; align-items: center; font-size: 12px; line-height: 1.7; color: #505864; }
+.sw-evolution-flow li::before { content: ""; }
+.sw-evolution-flow li:not(:last-child)::after { content: "→"; padding: 0 12px; color: var(--orange); }
+.sw-evolution-details { font-size: 13px; line-height: 1.85; color: var(--muted); }
+.sw-evolution-details summary { cursor: pointer; width: fit-content; color: #505864; padding: 4px 0; }
+.sw-evolution-details summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.sw-evolution-details p { margin: 12px 0; overflow-wrap: anywhere; }
+.sw-evolution-invariant b { display: block; color: #3b4350; font-weight: 600; }
+.sw-evolution-details .sw-refs { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.sw-evolution-details .sw-refs a { overflow-wrap: anywhere; }
+.sw-timeline-row.is-in_progress .sw-timeline-number { border-color: #e4b990; background: #fdf0e3; }
+.sw-timeline-row.is-planned .sw-timeline-number { border-style: dashed; color: var(--muted); }
+.sw-feedback { margin: 0 0 12px 66px; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.sw-feedback figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+.sw-feedback h3 { margin: 0; font-size: 18px; }
+.sw-feedback figcaption > span { font-size: 12px; color: var(--muted); }
+.sw-feedback ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 20px 0 16px; }
+.sw-feedback li { border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.6; }
+.sw-feedback li small { display: block; color: var(--orange); margin-bottom: 6px; font-size: 11px; }
+.sw-feedback li.is-future { border-style: dashed; color: var(--muted); }
+.sw-feedback p { margin: 0; font-size: 13px; line-height: 1.85; color: var(--muted); }
+@media (max-width: 660px) {
+  .sw-timeline-row { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding-bottom: 24px; }
+  .sw-timeline-number { width: 32px; height: 32px; font-size: 12px; }
+  .sw-timeline-row:not(:last-child)::before { left: 15px; top: 34px; }
+  .sw-timeline-row h3 { font-size: 18px; }
+  .sw-feedback { margin-left: 0; padding: 18px; }
+  .sw-feedback ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

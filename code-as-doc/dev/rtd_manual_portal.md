@@ -155,6 +155,38 @@ content, QR aliases and nested manual URLs are unchanged.
 
 ## System workspace page
 
+The 「系统演变」 tab (`#tab-evolution`, individual stages at
+`#evolution-<id>`) tells the factory story from the first deterministic build
+to engineering governance, machine consumption and future knowledge feedback.
+Its only curated source is
+[`system_evolution_history.md`](../architecture/system_evolution_history.md):
+the formal history and its marked `system-evolution/v1` YAML summary live
+in that same file. `source_registry.yaml` registers the `evolution` authority;
+`tools/rtd/system_evolution.py` reads that file at build time. The mirror carries
+it with the engineering tree. No generated HTML or second timeline is maintained.
+
+Maintenance contract:
+
+- Update historical facts and their commit/PR/acceptance evidence first, then
+  revise the public summary in the same file and match both update dates.
+- `recorded` means a historical capability formed; it does not assert universal
+  coverage or completion of an entire workstream. `in_progress` means current
+  construction, and `planned` identifies the future direction. Existing partial
+  IR sharing is not represented as absent. Machine generation remains explicitly
+  `html_compatibility` until an IR-native path is accepted.
+- Historical quantities carry observation dates and a defined scope; they are
+  not current dashboard totals. The strategy owns future boundaries, the roadmap
+  and ledger own execution state, and the optimization log owns detailed changes.
+- Stage flows and the feedback direction render as text lists; details and
+  evidence use native disclosure. The existing shell handles tabs, keyboard
+  navigation and deep links. Without JavaScript all panels remain readable.
+- Missing or malformed history shows the registered fallback in this tab while
+  keeping other panels usable; `python -m tools.rtd.system_workspace check`
+  reports an authoring error. Unknown status, duplicate stage IDs, missing
+  evidence, unsafe paths, malformed fences and date mismatch are rejected.
+  Text is escaped, not executed as HTML.
+
+
 `/workspace/system/` (系统建设) opens with the current focus: the lanes being
 ordered by delivery priority, each with its next action and ledger progress.
 Stage acceptance follows immediately; corpus statistics, capabilities and evidence

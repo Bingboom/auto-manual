@@ -81,6 +81,7 @@
       <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
       {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
       {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
       <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
     </nav>
 
@@ -301,6 +302,48 @@
     </section>
     </div>
     {%- endif %}
+
+    {% if evolution %}
+    <div class="tab-panel" id="tab-evolution" role="tabpanel" aria-label="系统演变">
+      <section class="sw-section sw-evolution" id="evolution">
+        {% if evolution.problems %}
+        <div class="section-header"><div><h2>系统演变</h2><p>{{ evolution.problem|e }}</p></div></div>
+        {% else %}
+        <div class="section-header"><div>
+          <span class="sw-evolution-eyebrow">SYSTEM EVOLUTION</span>
+          <h2>{{ evolution.title|e }}</h2>
+          <p>{{ evolution.intro|e }}</p>
+        </div></div>
+        <div class="sw-evolution-source"><span>记录更新于 {{ evolution.updated_on|e }} · 数字为注明日期的历史快照</span><a href="{{ evolution.source.href|e }}" target="_blank" rel="noopener">完整演进史 ↗</a></div>
+        <ol class="sw-timeline" aria-label="系统演变阶段">
+          {% for stage in evolution.stages %}
+          <li class="sw-timeline-row is-{{ stage.status|e }}" id="evolution-{{ stage.id|e }}">
+            <span class="sw-timeline-number" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>
+            <article>
+              <header><span>{{ stage.period|e }}</span>{{ badge(stage.status, stage.status_label) }}</header>
+              <h3>{{ stage.title|e }}</h3>
+              <p class="sw-metaphor">{{ stage.metaphor|e }}</p>
+              <p class="sw-story">{{ stage.summary|e }}</p>
+              <ol class="sw-evolution-flow" aria-label="{{ stage.title|e }}的流程">{% for step in stage.flow %}<li>{{ step|e }}</li>{% endfor %}</ol>
+              <details class="sw-evolution-details">
+                <summary>变化、原则与依据</summary>
+                <p>{{ stage.detail|e }}</p>
+                <p class="sw-evolution-invariant"><b>留下的原则</b>{{ stage.invariant|e }}</p>
+                <div class="sw-refs">{{ evidence_links(stage.evidence) }}</div>
+              </details>
+            </article>
+          </li>
+          {% endfor %}
+        </ol>
+        <figure class="sw-feedback">
+          <figcaption><h3>{{ evolution.feedback.title|e }}</h3><span>后半圈 · 未来建设方向</span></figcaption>
+          <ol aria-label="知识反馈闭环">{% for step in evolution.feedback.steps %}<li{% if loop.index > 3 %} class="is-future"{% endif %}><small>{{ '%02d'|format(loop.index) }}</small>{{ step|e }}{% if loop.last %}<span aria-hidden="true"> ↺</span>{% endif %}</li>{% endfor %}</ol>
+          <p>{{ evolution.feedback.note|e }}</p>
+        </figure>
+        {% endif %}
+      </section>
+    </div>
+    {% endif %}
 
     <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="入口与数据来源">
     <section class="sw-section" id="working">

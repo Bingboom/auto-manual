@@ -2363,6 +2363,14 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 `docs/knowledge/ai-share/` 读取分享包，复制到
 `/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
 导航。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
+系统建设页新增「系统演变」标签：从最小生产线到 Workstream Y、机器读取与未来
+共享 IR，用八个阶段展示来路。历史正文及同源 YAML 摘要只维护在
+[`architecture/system_evolution_history.md`](architecture/system_evolution_history.md)，
+RTD 构建经来源登记读取，不手改网页。摘要区分历史里程碑、建设中和未来方向；
+历史数字带日期，合入与线上验收分别记录。维护后运行
+`python -m tools.rtd.system_workspace check`，详见
+[系统建设页契约](dev/rtd_manual_portal.md#system-workspace-page)。
+
 两个界面共用 RTD 项目的可见性设置，详见
 [Personal workspace entry](dev/rtd_manual_portal.md#personal-workspace-entry)。
 
