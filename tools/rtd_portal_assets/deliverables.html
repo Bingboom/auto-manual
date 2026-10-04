@@ -32,10 +32,9 @@
 
     {% include 'workbench_summary.html' %}
 
-    {% include 'manual_workbench.html' %}
-
     <nav class="page-tabs" role="tablist" aria-label="工作台分类">
       <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
+      <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
       <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
     </nav>
 
@@ -78,6 +77,10 @@
       {%- endif %}
       <p class="dl-note">每个标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。PDF 在印刷交付包的压缩包里。</p>
     </section>
+    </div>
+
+    <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
+      {% include 'manual_workbench.html' %}
     </div>
 
     <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产与资产">

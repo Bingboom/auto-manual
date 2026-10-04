@@ -12,26 +12,26 @@
   <div class="wb-resource-links"><a href="{{ url|e }}" target="_blank" rel="noopener">{{ action }} <span aria-hidden="true">↗</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/{{ guide|e }}" target="_blank" rel="noopener">{{ guide_label }} <span aria-hidden="true">↗</span></a></div>
 </article>
 {%- endmacro %}
-<section class="wb-workflow" id="work-entries" aria-labelledby="work-map-title">
-  <header class="wb-map-header"><div><span class="wb-kicker">同一次生产</span><h2 id="work-map-title">从权威来源，到人读与机读两个面</h2></div><span class="wb-map-hint">点任一节点，打开对应的工作入口</span></header>
-  <div class="wb-flow" role="group" aria-label="权威来源经组装成为 IR，同时派生人读面与机读面">
-    <div class="wb-tier wb-tier-sources">
-      <span class="wb-tier-label">权威来源 <em>Authoritative Sources</em></span>
-      <div class="wb-tier-nodes">
-        <button class="wb-node wb-source" type="button" id="wb-data-button" data-workbench-node="data" aria-controls="wb-data" aria-pressed="false"><strong>结构化数据</strong><small>规格 · 文案 · 语料 · 资产</small></button>
-        <button class="wb-node wb-template" type="button" id="wb-templates-button" data-workbench-node="templates" aria-controls="wb-templates" aria-pressed="false"><strong>模板与骨架</strong><small>产品家族 · 共享模块 · 样式</small></button>
-      </div>
+<section class="wb-workflow" id="work-map" aria-labelledby="work-map-title">
+  <header class="wb-map-header"><div><span class="wb-kicker">WORKFLOW</span><h2 id="work-map-title">工作入口</h2></div><span class="wb-map-hint">同一次生产：权威来源 → 组装 / IR → 人读面与机读面 · 选择节点开始工作</span></header>
+  <div class="wb-map" role="group" aria-label="权威来源汇合，经组装成为 IR，同时派生人读面与机读面">
+    <div class="wb-inputs">
+      <span class="wb-node-overline wb-inputs-label">AUTHORITATIVE SOURCES · 权威来源</span>
+      <button class="wb-node wb-source" type="button" id="wb-data-button" data-workbench-node="data" aria-controls="wb-data" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">01</span><span><strong>结构化数据</strong><small>规格 · 文案 · 语料 · 资产</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
+      <span class="wb-plus" aria-hidden="true">+</span>
+      <button class="wb-node wb-template" type="button" id="wb-templates-button" data-workbench-node="templates" aria-controls="wb-templates" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">02</span><span><strong>模板与骨架</strong><small>产品家族 · 共享模块 · 样式</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
     </div>
-    <div class="wb-link" aria-hidden="true"></div>
-    <button class="wb-node wb-build" type="button" id="wb-build-button" data-workbench-node="build" aria-controls="wb-build" aria-pressed="false"><span class="wb-tier-label">组装 / IR <em>Assembly / IR</em></span><strong>按型号 / 区域 / 语言组装</strong><small>共享语义与组件实例 · 检查 → 评审 → 发布</small></button>
-    <svg class="wb-fork" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0V12M25 12H75M25 12V28M75 12V28"/></svg>
-    <div class="wb-tier-nodes wb-surfaces">
-      <button class="wb-node wb-human" type="button" id="wb-outputs-button" data-workbench-node="outputs" aria-controls="wb-outputs" aria-pressed="false"><span class="wb-tier-label">人读面 <em>Human Surface</em></span><span class="wb-formats"><span>网页</span><span>Word</span><span>IDML</span></span><small>给读者和印刷交付</small></button>
-      <button class="wb-node wb-machine" type="button" id="wb-machine-button" data-workbench-node="machine" aria-controls="wb-machine" aria-pressed="false"><span class="wb-tier-label">机读面 <em>Machine Surface</em></span><span class="wb-formats"><span>JSON</span><span>MD</span></span><small>给检索、问答与 Agent</small></button>
+    <svg class="wb-merge wb-merge-desktop" viewBox="0 0 64 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 43H15Q30 43 30 60V120Q30 137 15 137H0M30 90H61M54 84L61 90L54 96"/></svg>
+    <svg class="wb-merge wb-merge-mobile" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M25 0V8H75V0M50 8V22M47 18L50 22L53 18"/></svg>
+    <button class="wb-node wb-build" type="button" id="wb-build-button" data-workbench-node="build" aria-controls="wb-build" aria-pressed="false"><span class="wb-node-overline">ASSEMBLY / IR</span><strong>组装与 IR</strong><span class="wb-build-target">型号 <span>／</span> 区域 <span>／</span> 语言</span><small>共享语义与组件实例 · 检查 → 评审 → 发布</small><span class="wb-node-action">查看操作路径 <span aria-hidden="true">↗</span></span></button>
+    <svg class="wb-merge wb-fork-desktop" viewBox="0 0 38 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90H14M14 44V136M14 44H36M14 136H36M30 39L36 44L30 49M30 131L36 136L30 141"/></svg>
+    <svg class="wb-merge wb-fork-mobile" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0V8M25 8H75M25 8V22M75 8V22M22 18L25 22L28 18M72 18L75 22L78 18"/></svg>
+    <div class="wb-surfaces">
+      <button class="wb-node wb-output wb-human" type="button" id="wb-outputs-button" data-workbench-node="outputs" aria-controls="wb-outputs" aria-pressed="false"><span class="wb-node-overline">HUMAN SURFACE</span><strong>人读面</strong><span class="wb-formats"><span>网页</span><span>Word</span><span>IDML</span></span><small>给读者与印刷交付</small></button>
+      <button class="wb-node wb-output wb-machine" type="button" id="wb-machine-button" data-workbench-node="machine" aria-controls="wb-machine" aria-pressed="false"><span class="wb-node-overline">MACHINE SURFACE</span><strong>机读面</strong><span class="wb-formats"><span>JSON</span><span>MD</span></span><small>给检索、问答与 Agent</small></button>
     </div>
-    <svg class="wb-fork" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><path d="M25 0V16M75 0V16M25 16H75M50 16V28"/></svg>
-    <p class="wb-derived"><strong>都是同一次生产的派生物</strong><span>改内容回到权威来源；任何一个面都不单独修改</span></p>
   </div>
+  <p class="wb-derived"><strong>人读面与机读面，都是同一次生产的派生物</strong><span>改内容回到权威来源；任何一个面都不单独修改</span></p>
   <div class="wb-entry-panels">
     <section class="wb-panel" id="wb-data" aria-labelledby="wb-data-title">
       <header class="wb-panel-header"><h3 id="wb-data-title">维护生产资料</h3><span>业务数据在飞书维护 · 需登录并具备访问权限</span></header>
