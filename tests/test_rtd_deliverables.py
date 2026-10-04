@@ -341,8 +341,14 @@ class RealSphinxTests(unittest.TestCase):
                     self.assertEqual(url.scheme, 'https')
                     self.assertEqual(anchor.get('target'), '_blank')
                     self.assertIn('noopener', anchor.get('rel', []))
-            for name in ('manual-workbench.css', 'manual-workbench.js'):
+            for name in ('manual-workbench.css', 'manual-workbench.js', 'machine-surface-stats.js'):
                 self.assertTrue((base / 'good' / '_static' / name).is_file())
+            # Coverage is read at view time from the sealed manifest; the static page keeps a fallback.
+            surface = soup.select_one('#wb-machine [data-surface-manifest]')
+            self.assertEqual(surface['data-surface-manifest'], '../../machine_surface_manifest.json')
+            self.assertEqual(surface['data-surface-receipt'], '../../manual-deployment.json')
+            self.assertTrue(surface.select_one('[data-surface-stats]').has_attr('hidden'))
+            self.assertIn('machine_surface_manifest.json', surface.select_one('[data-surface-note]').text)
             self.assertIn('说明书工作台', workspace)
             self.assertIn('说明书工作台', system)
 

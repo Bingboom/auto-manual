@@ -1,6 +1,6 @@
 # 欧规说明书机读内容与知识抽取建设
 
-Status: active（P1-1 已合入，P1-2 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
+Status: active（P1-1、P1-2 已合入，P1-3 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
@@ -217,6 +217,12 @@ problems。全部 fresh 时退出码 0，否则 1。Agent 默认不得把 stale 
 机读面面板保留兼容路径说明，并增加：总版本数、fresh / stale / failed /
 unavailable 数、各生成模式数量。长期希望看到 HTML Compatibility 下降、
 IR Native 上升，但这不是 Phase 1 的目标。
+
+实现（P1-3）：清单在页面渲染之后才写出，所以说明书工作台机读面面板在打开时用
+`_static/machine-surface-stats.js` 读取本次部署的清单与回执，显示版本数、与
+网页一致数（逐版本比对回执中的网页哈希；清单未被回执封存或不一致时提示）、生成
+方式、修订号分布、警示识别率、无 alt 图片数。读不到时保留说明与下载链接。
+`failed` 需要下载完整语料，页面不做，由 §5.6 的校验脚本负责。
 
 ### 5.8 兼容性约束
 

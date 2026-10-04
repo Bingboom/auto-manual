@@ -78,6 +78,14 @@
 .wb-resource-links > a { color: #b24a10; width: fit-content; }
 .wb-resource-links > a.wb-guide-link { color: var(--wb-subtle); }
 .wb-resource a:hover, .wb-reference-bar a:hover, .wb-panel-header a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.wb-surface { margin-top: 14px; }
+.wb-surface-stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; margin: 0; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
+.wb-surface-stats > div { padding: 12px 14px; min-width: 0; }
+.wb-surface-stats > div + div { border-left: 1px solid var(--line); }
+.wb-surface-stats dt { font-size: 12.5px; color: var(--wb-subtle); }
+.wb-surface-stats dd { margin: 2px 0 0; font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.wb-surface-stats dd small { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--wb-subtle); line-height: 1.5; }
+.wb-surface-note { margin: 8px 0 0; font-size: 12.5px; color: var(--wb-subtle); }
 .wb-next { border-top: 1px solid #f0f1f4; margin: 15px 0 0; padding: 10px 0; font-size:12.5px; line-height: 1.7; color: var(--wb-subtle); }
 .wb-next > span { color: #b24a10; padding: 0 6px; }
 .wb-reference-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 20px; padding: 12px 24px; background: #fafbfc; border-top: 1px solid var(--line); font-size:12.5px; }
@@ -100,6 +108,9 @@
   .wb-build { padding: 14px; }
   .wb-node-mark { display: none; }
   .wb-resources { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; }
+  .wb-surface-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .wb-surface-stats > div:nth-child(4) { border-left: 0; }
+  .wb-surface-stats > div:nth-child(n+4) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 980px) {
   .deliverables .dl-table { min-width: 660px; }
@@ -145,6 +156,10 @@
   .deliverables .dl-tiles .sw-tile:nth-child(n+3) { border-top: 1px solid var(--line); }
   .wb-resource-links > a, .wb-reference-bar > a { min-height: 32px; display: inline-flex; align-items: center; }
   .wb-resource-links { gap: 2px; }
+  .wb-surface-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wb-surface-stats > div:nth-child(n) { border-left: 0; border-top: 0; }
+  .wb-surface-stats > div:nth-child(even) { border-left: 1px solid var(--line); }
+  .wb-surface-stats > div:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
