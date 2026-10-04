@@ -86,3 +86,10 @@ domains:
     read: build
     fallback: 不显示这一块
     used_by: 当前重点
+
+  - id: evolution
+    label: 系统演变
+    authority: "file:auto-manual:code-as-doc/architecture/system_evolution_history.md"
+    read: build
+    fallback: 系统演变记录当前不可读，请查看仓库演进史
+    used_by: 系统演变标签页；历史快照与未来方向

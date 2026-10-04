@@ -155,6 +155,59 @@ content, QR aliases and nested manual URLs are unchanged.
 
 ## System workspace page
 
+The 「系统演变」 tab (`#tab-evolution`, individual stages at
+`#evolution-<id>`) describes how the manual workspace evolved from its first
+deterministic build through reusable style components, published content,
+machine consumption and future knowledge feedback. It reads top-down: 「现在走到哪里」
+(the optional `now` rows: one state per delivery chain), a month-scaled overview
+(stages with optional `start`/`end` as `YYYY-MM`; every bar, tick and the
+updated-on line share one scale, an open end fades, an undated stage shows as a
+dashed label), then the optional `chapters`, each a question the system had to
+answer, holding its stages. Each stage shows its principle; the account and
+evidence stay in native disclosure. Chapters must place every stage exactly once;
+without `chapters` the stages render as one flat list. Maintenance and refactoring
+close the story as 「支撑全程」 below the chapters, covering repeated work
+throughout system construction; September governance is one round.
+The optional `crosscutting` list shares the stage fields and evidence validation.
+IDs must be unique across both lists; existing `#evolution-engineering` links
+now resolve to the signpost.
+Its only curated source is
+[`system_evolution_history.md`](../architecture/system_evolution_history.md):
+the formal history and its marked `system-evolution/v1` YAML summary live
+in that same file. `source_registry.yaml` registers the `evolution` authority;
+`tools/rtd/system_evolution.py` reads that file at build time. The mirror carries
+it with the engineering tree. No generated HTML or second timeline is maintained.
+
+Maintenance contract:
+
+- Update historical facts and their commit/PR/acceptance evidence first, then
+  revise the public summary in the same file and match both update dates.
+- `recorded` displays 「已完成」 and means that stage capability formed; it does not assert universal
+  coverage or completion of an entire workstream. `ongoing` displays 「持续开展」
+  for established work that continues to be maintained and improved.
+  `in_progress` means current
+  construction, including IDML print trial production, and `planned` identifies the
+  future direction. The current most mature chain is Web document production and
+  maintenance. Whole-document Web reuse exists and its IR continues to improve
+  as manuals are ingested. Cross-format consumption of the same frozen package
+  remains a later extension; review-experience reuse is a separate future stage
+  that still needs its trial scope
+  and execution plan; it is not part of the IR-sharing implementation.
+  Existing partial IR sharing is not represented as absent. Machine generation remains explicitly
+  `html_compatibility` until an IR-native path is accepted.
+- Historical quantities carry observation dates and a defined scope; they are
+  not current dashboard totals. The strategy owns future boundaries, the roadmap
+  and ledger own execution state, and the optimization log owns detailed changes.
+- Stage flows and the feedback direction render as text lists; details and
+  evidence use native disclosure. The existing shell handles tabs, keyboard
+  navigation and deep links. Without JavaScript all panels remain readable.
+- Missing or malformed history shows the registered fallback in this tab while
+  keeping other panels usable; `python -m tools.rtd.system_workspace check`
+  reports an authoring error. Unknown status, duplicate stage IDs, missing
+  evidence, unsafe paths, malformed fences and date mismatch are rejected.
+  Text is escaped, not executed as HTML.
+
+
 `/workspace/system/` (系统建设) opens with the current focus: the lanes being
 ordered by delivery priority, each with its next action and ledger progress.
 Stage acceptance follows immediately; corpus statistics, capabilities and evidence

@@ -46,6 +46,7 @@ import yaml
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
+from tools.rtd.system_evolution import evolution_view
 from tools.rtd.system_tooling import (  # noqa: E402
     hook_facts,
     skill_facts,
@@ -543,6 +544,12 @@ def _checkable(repo: str, root: Path) -> bool:
     return repo != "hello-docs" or (root / PathSegments.DOCS / PathSegments.PUBLISH).is_dir()
 
 
+def _evolution_findings(contract: dict[str, Any], root: Path, registry: Registry) -> list[Finding]:
+    story = evolution_view(root=root, domain=registry.get("evolution"),
+                           repositories=contract.get("repositories") or {})
+    return [Finding("error", "evolution", problem) for problem in (story or {}).get("problems", [])]
+
+
 def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
                    assets: Path | None = None, registry: Registry | None = None) -> list[Finding]:
     """Offline check: rules, the source registry, in-tree evidence files, REV ids, drift and snapshots.
@@ -563,6 +570,7 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
                 findings.append(Finding("error", f"{REGISTRY_NAME}: {domain_id}", f"authority does not exist: {path}"))
     if registry is None or any(f.severity == "error" for f in findings):
         return findings
+    findings += _evolution_findings(contract, root, registry)
     review_days = int(registry["capabilities"]["stale_after_days"])
     for where, entry in _entries(contract):
         for reason in drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today,
@@ -1092,6 +1100,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
 
     status_vocabulary = contract["vocabulary"]["status"]
     return {
+        "evolution": evolution_view(root=root, domain=registry.get("evolution"), repositories=repositories),
         "hero": contract["hero"],
         "focus": focus_view,
         "legend": [{"status": s, "label": STATUS_LABELS[s], "description": status_vocabulary[s]}
