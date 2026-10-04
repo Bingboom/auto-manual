@@ -65,8 +65,13 @@ without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel. 系统建设 tabs: 建设进度, 能力与流程,
 语言资产, 技能与钩子, 入口与数据来源, with the unfolded stage gates as the
 metric row. 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
-default), 工作入口, 生产与资产, with web manuals, language editions, Word and
-print counts as the metric row. Build times, snapshot dates and hashes sit in
+default) and 生产与资产, with web manuals, language editions, Word and
+print counts as the metric row. Between the metric row and the tabs sits the
+same-production map (`manual_workbench.html`): 权威来源 (结构化数据, 模板与骨架) →
+组装 / IR → 人读面 (网页 / Word / IDML) and 机读面 (JSON / MD) → 都是同一次生产的
+派生物. Each node opens its work-entry panel; the 机读面 panel links the
+published `manual-knowledge.json`, the frozen MyST sources in Hello-Docs and the
+portal search index. Build times, snapshot dates and hashes sit in
 the collapsed 页面版本与更新 / 数据更新时间 disclosure.
 
 Inside the shell the root page has four bounded zones on one container width

@@ -326,7 +326,7 @@ class RealSphinxTests(unittest.TestCase):
 
             # The work map remains usable without JS and points at real repo resources.
             nodes = soup.select('[data-workbench-node]')
-            self.assertEqual(len(nodes), 4)
+            self.assertEqual(len(nodes), 5)
             for node in nodes:
                 panel = soup.find(id=node['aria-controls'])
                 self.assertIsNotNone(panel)
