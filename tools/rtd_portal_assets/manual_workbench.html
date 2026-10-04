@@ -13,48 +13,60 @@
 </article>
 {%- endmacro %}
 <section class="wb-workflow" id="work-map" aria-labelledby="work-map-title">
-  <header class="wb-map-header"><div><span class="wb-kicker">WORKFLOW</span><h2 id="work-map-title">工作入口</h2></div><span class="wb-map-hint">同一次生产：权威来源 → 组装 / IR → 人读面与机读面 · 选择节点开始工作</span></header>
-  <div class="wb-map" role="group" aria-label="权威来源汇合，经组装成为 IR，同时派生人读面与机读面">
+  <header class="wb-map-header"><div><span class="wb-kicker">WORKFLOW</span><h2 id="work-map-title">工作入口</h2></div><span class="wb-map-hint">Content Authority → Source Binding → Assembly / IR → Human + Machine Surface · 选择节点开始工作</span></header>
+  <div class="wb-map" role="group" aria-label="每个说明书版本声明一个当前内容权威源，经组装与语义层，同时生成人读面与机读面">
     <div class="wb-inputs">
-      <span class="wb-node-overline wb-inputs-label">AUTHORITATIVE SOURCES · 权威来源</span>
-      <button class="wb-node wb-source" type="button" id="wb-data-button" data-workbench-node="data" aria-controls="wb-data" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">01</span><span><strong>结构化数据</strong><small>规格 · 文案 · 语料 · 资产</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
-      <span class="wb-plus" aria-hidden="true">+</span>
-      <button class="wb-node wb-template" type="button" id="wb-templates-button" data-workbench-node="templates" aria-controls="wb-templates" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">02</span><span><strong>模板与骨架</strong><small>产品家族 · 共享模块 · 样式</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
+      <span class="wb-node-overline wb-inputs-label">CONTENT AUTHORITY · 当前内容权威源</span>
+      <button class="wb-node wb-source" type="button" id="wb-data-button" data-workbench-node="data" aria-controls="wb-data" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">01</span><span><strong>结构化内容源</strong><em class="wb-node-en">Structured Sources</em><small>规格 · 文案 · 语料 · 资产</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
+      <span class="wb-plus" aria-hidden="true">或</span>
+      <button class="wb-node wb-template wb-git" type="button" id="wb-git-button" data-workbench-node="git" aria-controls="wb-git" aria-pressed="false"><span class="wb-node-mark" aria-hidden="true">02</span><span><strong>Git 原生说明书源</strong><em class="wb-node-en">Git-native Manual Source</em><small>RST · MyST · Components · Frozen Source</small><small class="wb-node-note">当前大量网页手册的内容权威源</small></span><span class="wb-node-arrow" aria-hidden="true">↗</span></button>
     </div>
     <svg class="wb-merge wb-merge-desktop" viewBox="0 0 64 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 43H15Q30 43 30 60V120Q30 137 15 137H0M30 90H61M54 84L61 90L54 96"/></svg>
     <svg class="wb-merge wb-merge-mobile" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M25 0V8H75V0M50 8V22M47 18L50 22L53 18"/></svg>
-    <button class="wb-node wb-build" type="button" id="wb-build-button" data-workbench-node="build" aria-controls="wb-build" aria-pressed="false"><span class="wb-node-overline">ASSEMBLY / IR</span><strong>组装与 IR</strong><span class="wb-build-target">型号 <span>／</span> 区域 <span>／</span> 语言</span><small>共享语义与组件实例 · 检查 → 评审 → 发布</small><span class="wb-node-action">查看操作路径 <span aria-hidden="true">↗</span></span></button>
+    <div class="wb-middle">
+      <div class="wb-binding"><span class="wb-node-overline">SOURCE BINDING</span><strong>每个说明书版本唯一声明当前权威源</strong><small>文档构建表 Git_ref · Git-only 发布的 source_manifest.json</small></div>
+      <span class="wb-down" aria-hidden="true">↓</span>
+      <button class="wb-node wb-build" type="button" id="wb-build-button" data-workbench-node="build" aria-controls="wb-build" aria-pressed="false"><span class="wb-node-overline">ASSEMBLY / IR · 组装与语义层</span><strong>组装与语义层</strong><span class="wb-build-lines"><span>Skeleton · Template · Components</span><span>型号 <i>／</i> 区域 <i>／</i> 语言</span><span>Manual IR（按当前覆盖程度）</span></span><span class="wb-node-action">查看生产规则与构建 <span aria-hidden="true">↗</span></span></button>
+    </div>
     <svg class="wb-merge wb-fork-desktop" viewBox="0 0 38 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90H14M14 44V136M14 44H36M14 136H36M30 39L36 44L30 49M30 131L36 136L30 141"/></svg>
     <svg class="wb-merge wb-fork-mobile" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0V8M25 8H75M25 8V22M75 8V22M22 18L25 22L28 18M72 18L75 22L78 18"/></svg>
     <div class="wb-surfaces">
-      <button class="wb-node wb-output wb-human" type="button" id="wb-outputs-button" data-workbench-node="outputs" aria-controls="wb-outputs" aria-pressed="false"><span class="wb-node-overline">HUMAN SURFACE</span><strong>人读面</strong><span class="wb-formats"><span>网页</span><span>Word</span><span>IDML</span></span><small>给读者与印刷交付</small></button>
-      <button class="wb-node wb-output wb-machine" type="button" id="wb-machine-button" data-workbench-node="machine" aria-controls="wb-machine" aria-pressed="false"><span class="wb-node-overline">MACHINE SURFACE</span><strong>机读面</strong><span class="wb-formats"><span>JSON</span><span>MD</span></span><small>给检索、问答与 Agent</small></button>
+      <button class="wb-node wb-output wb-human" type="button" id="wb-outputs-button" data-workbench-node="outputs" aria-controls="wb-outputs" aria-pressed="false"><span class="wb-node-overline">HUMAN SURFACE · 人读面</span><span class="wb-formats"><span>Web</span><span>Word</span><span>IDML / PDF</span></span><small>阅读、评审与印刷交付</small></button>
+      <button class="wb-node wb-output wb-machine" type="button" id="wb-machine-button" data-workbench-node="machine" aria-controls="wb-machine" aria-pressed="false"><span class="wb-node-overline">MACHINE SURFACE · 机读面</span><span class="wb-formats"><span>JSON</span><span>MD</span></span><small>检索、知识抽取与 Agent</small></button>
+      <span class="wb-surface-tag">Derived from declared content authority · 不独立维护正文</span>
     </div>
   </div>
-  <p class="wb-derived"><strong>人读面与机读面，都是同一次生产的派生物</strong><span>改内容回到权威来源；任何一个面都不单独修改</span></p>
+  <p class="wb-derived"><strong>人读面与机读面共享同一 Content Authority，不形成第二份内容源。</strong><span>内容修改回到该说明书版本声明的权威源；Surface 只重新生成，不独立维护正文。</span></p>
   <div class="wb-entry-panels">
     <section class="wb-panel" id="wb-data" aria-labelledby="wb-data-title">
-      <header class="wb-panel-header"><h3 id="wb-data-title">维护生产资料</h3><span>业务数据在飞书维护 · 需登录并具备访问权限</span></header>
+      <header class="wb-panel-header"><h3 id="wb-data-title">维护生产资料</h3><span>结构化资产入口；Git 原生说明书的正文从对应的说明书源维护 · 飞书需登录并具备访问权限</span></header>
       <div class="wb-resources">
         {{ resource('产品与规格', '产品信息、规格参数、区域与语言。', source_base ~ '?table=tblPUFJqt2uGGvTT', '打开规格数据', 'user-guide/two_plane_map.md') }}
         {{ resource('文案与变量', '共享文案、页面参数与目标差异。', source_base ~ '?table=tblboUMUiLbWk9nF', '打开文案源表', 'user-guide/hello_auto-doc.md') }}
         {{ resource('翻译与术语', '复用翻译记忆，维护统一术语。', corpus_base, '打开语料库', 'user-guide/closed_loop_ops_guide.md') }}
         {{ resource('插图资产', '源文件、资产定义与导出物。', source_base ~ '?table=tblsXlZx61Ff5pQC', '打开资产源文件', 'user-guide/two_plane_map.md') }}
       </div>
-      <p class="wb-next">下一步 <span aria-hidden="true">→</span> 选择适用骨架，与数据一起进入构建。</p>
+      <p class="wb-next">下一步 <span aria-hidden="true">→</span> 在文档构建表声明目标的来源，再进入组装与构建。</p>
     </section>
-    <section class="wb-panel" id="wb-templates" aria-labelledby="wb-templates-title">
-      <header class="wb-panel-header"><h3 id="wb-templates-title">复用结构与表达</h3><span>共享模板在工程面维护</span></header>
+    <section class="wb-panel" id="wb-git" aria-labelledby="wb-git-title">
+      <header class="wb-panel-header"><h3 id="wb-git-title">维护 Git 原生说明书源</h3><span>当前大量网页手册以评审后的 Git 内容为权威源</span></header>
+      <div class="wb-resources">
+        {{ resource('冻结发布源（MyST）', '已发布网页手册的冻结源与资产，逐版本可追溯。', business ~ '/tree/main/docs/publish/web', '查看发布源', 'code-as-doc/dev/web_publish_pipeline.md') }}
+        {{ resource('评审稿（RST）', '评审中的目标稿件；评审修改在这里回收。', engineering ~ '/tree/main/docs/_review', '查看评审稿', 'user-guide/closed_loop_ops_guide.md') }}
+        {{ resource('来源声明', 'source_manifest.json 记录目标身份、权威来源与输入哈希。', engineering ~ '/blob/main/code-as-doc/dev/web_publish_pipeline.md', '查看 Git-only 约定', 'user-guide/two_plane_map.md') }}
+      </div>
+      <p class="wb-next">改这类手册的正文：在其声明的 Git 源里修改，经评审合入后重新生成各个面。</p>
+    </section>
+    <section class="wb-panel" id="wb-build" aria-labelledby="wb-build-title">
+      <header class="wb-panel-header"><h3 id="wb-build-title">组装与语义层</h3><span>生产规则不是内容源；入口打开现有工作位置，具体操作按指引执行</span></header>
+      <h4 class="wb-subhead">生产规则 · Skeleton / Template / Components</h4>
       <div class="wb-resources">
         {{ resource('产品骨架', '选择产品家族的章节结构与装配规则。', engineering ~ '/tree/main/docs/manifests/skeletons', '查看骨架', 'code-as-doc/manual_family_guide.md') }}
         {{ resource('共享内容模块', '复用前言、安全、操作等页面内容。', engineering ~ '/tree/main/docs/templates', '查看模板', 'user-guide/hello_auto-doc.md') }}
         {{ resource('样式与组件', '复用表格、提示框和图文组件。', engineering ~ '/blob/main/docs/renderers/contracts/STYLE_DEFINITION.md', '查看样式定义', 'code-as-doc/dev/style_component_usage_guide.md') }}
         {{ resource('家族配置', '确定区域、语言与构建配置。', engineering ~ '/tree/main/configs', '查看配置', 'user-guide/quick_start_guide.md') }}
       </div>
-      <p class="wb-next">下一步 <span aria-hidden="true">→</span> 确认型号、区域、语言及输出格式，再进入构建。</p>
-    </section>
-    <section class="wb-panel" id="wb-build" aria-labelledby="wb-build-title">
-      <header class="wb-panel-header"><h3 id="wb-build-title">开始一次构建</h3><span>入口打开现有工作位置；具体操作按指引执行</span></header>
+      <h4 class="wb-subhead">构建与发布</h4>
       <div class="wb-resources">
         {{ resource('构建任务', '选择目标与格式，按流程发起任务。', source_base ~ '?table=tblbnRHjpJeCVTtj', '打开文档构建表', 'code-as-doc/build_doc_guide.md') }}
         {{ resource('运行与检查', '查看业务构建记录，定位失败环节。', business ~ '/actions', '查看运行记录', 'code-as-doc/build_doc_guide.md') }}
@@ -64,7 +76,7 @@
       <p class="wb-next">下一步 <span aria-hidden="true">→</span> 核对交付链接与实际产物；触发任务不等于交付完成。</p>
     </section>
     <section class="wb-panel" id="wb-outputs" aria-labelledby="wb-outputs-title">
-      <header class="wb-panel-header"><h3 id="wb-outputs-title">取用人读面</h3><a href="#deliverables">前往交付物矩阵 <span aria-hidden="true">↓</span></a></header>
+      <header class="wb-panel-header"><h3 id="wb-outputs-title">人读面 · Human Surface</h3><a href="#deliverables">前往交付物矩阵 <span aria-hidden="true">↓</span></a></header>
       <div class="wb-resources">
         <article class="wb-resource"><h4>网页手册</h4><p>按型号、区域与语言查阅已发布手册。</p><div class="wb-resource-links"><a href="{{ pathto('index') }}">打开手册中心 <span aria-hidden="true">→</span></a></div></article>
         <article class="wb-resource"><h4>Word 云文档</h4><p>从矩阵打开对应版本的飞书云文档。</p><div class="wb-resource-links"><a href="#deliverables">查看交付矩阵 <span aria-hidden="true">↓</span></a></div></article>
@@ -74,13 +86,13 @@
       <p class="wb-next">印刷交付包包含 IDML 与 PDF；各格式的版本和更新时间以矩阵中的记录为准。</p>
     </section>
     <section class="wb-panel" id="wb-machine" aria-labelledby="wb-machine-title">
-      <header class="wb-panel-header"><h3 id="wb-machine-title">取用机读面</h3><span>与网页手册同一次构建产出，可直接下载或引用</span></header>
+      <header class="wb-panel-header"><h3 id="wb-machine-title">机读面 · Machine Surface</h3><span>与人读面同属一次发布，可直接下载或引用</span></header>
       <div class="wb-resources">
         <article class="wb-resource"><h4>说明书知识语料（JSON）</h4><p>已发布 EU 手册的章节结构与正文，供检索和问答。</p><div class="wb-resource-links"><a href="{{ pathto('manual-knowledge.json', 1) }}">下载 JSON <span aria-hidden="true">↓</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/code-as-doc/dev/eu_manual_query.md" target="_blank" rel="noopener">使用指引 <span aria-hidden="true">↗</span></a></div></article>
         {{ resource('发布源（Markdown）', '网页手册的冻结 MyST 源，逐版本可追溯。', business ~ '/tree/main/docs/publish/web', '查看 Markdown 源', 'code-as-doc/dev/web_publish_pipeline.md') }}
         <article class="wb-resource"><h4>站内检索索引</h4><p>说明书资料库全文搜索使用的章节索引。</p><div class="wb-resource-links"><a href="{{ pathto('_static/portal-search-index.js', 1) }}">查看索引 <span aria-hidden="true">↗</span></a><a class="wb-guide-link" href="{{ engineering }}/blob/main/code-as-doc/dev/rtd_manual_portal.md" target="_blank" rel="noopener">使用指引 <span aria-hidden="true">↗</span></a></div></article>
       </div>
-      <p class="wb-next">机读面与人读面来自同一份组装结果；内容有误时修正权威来源，不直接改 JSON 或 Markdown。</p>
+      <p class="wb-next">当前 JSON 语料由已发布网页提取，属兼容路径；目标是与网页同源直接生成。内容有误时修正声明的权威源，不直接改 JSON 或 Markdown。</p>
     </section>
   </div>
   <div class="wb-reference-bar"><span>工作指引</span><a href="{{ engineering }}/blob/main/ONBOARDING.md" target="_blank" rel="noopener">第一次使用 ↗</a><a href="{{ engineering }}/blob/main/user-guide/two_plane_map.md" target="_blank" rel="noopener">系统与编辑位置地图 ↗</a><a href="{{ engineering }}/blob/main/README.md" target="_blank" rel="noopener">完整工作流 ↗</a>{% if system_entry %}<a href="{{ pathto('workspace/system/index') }}">系统建设进度 →</a>{% endif %}</div>

@@ -66,13 +66,20 @@ points inside a panel opens that panel. 系统建设 tabs: 建设进度, 能力�
 语言资产, 技能与钩子, 入口与数据来源, with the unfolded stage gates as the
 metric row. 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
 default), 工作入口, 生产与资产, with web manuals, language editions, Word and
-print counts as the metric row. The 工作入口 tab draws the same-production map
-(`manual_workbench.html`): AUTHORITATIVE SOURCES 权威来源 (结构化数据 + 模板与骨架)
-→ ASSEMBLY / IR 组装与 IR → HUMAN SURFACE 人读面 (网页 / Word / IDML) and
-MACHINE SURFACE 机读面 (JSON / MD), closed by 都是同一次生产的派生物. Each node
-opens its work-entry panel; the 机读面 panel links the published
-`manual-knowledge.json`, the frozen MyST sources in Hello-Docs and the portal
-search index. Build times, snapshot dates and hashes sit in
+print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
+and states current maturity rather than a target architecture:
+CONTENT AUTHORITY 当前内容权威源 offers two alternatives, 01 结构化内容源
+(规格 · 文案 · 语料 · 资产) or 02 Git 原生说明书源 (RST · MyST · Components ·
+Frozen Source, the authority for many web manuals today); SOURCE BINDING says
+each manual variant declares exactly one current authority (文档构建表
+`Git_ref`, or `source_manifest.json` on the Git-only path); ASSEMBLY / IR
+组装与语义层 holds the production rules (Skeleton · Template · Components),
+model / region / language assembly and Manual IR at its current coverage —
+templates are rules, not a content source; HUMAN SURFACE 人读面 (Web · Word ·
+IDML / PDF) and MACHINE SURFACE 机读面 (JSON · MD) are siblings derived from
+the declared authority and never maintain their own body text. The 机读面 panel
+states that `manual-knowledge.json` is currently extracted from published HTML
+as a compatibility path, not the target. Build times, snapshot dates and hashes sit in
 the collapsed 页面版本与更新 / 数据更新时间 disclosure.
 
 Inside the shell the root page has four bounded zones on one container width
