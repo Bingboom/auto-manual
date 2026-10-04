@@ -64,6 +64,10 @@ after a refresh failure.
   route/hash, language scope, chapter IDs and semantic blocks. Styles, scripts,
   navigation and known layout helpers are excluded. Row/column spans, nested
   steps, warning labels and chapter-adjacent notes stay attached to their source.
+- v1 also carries additive identity/provenance fields (`variant_key`,
+  `manual_variant_id`, `revision`/`revision_kind`, `machine_surface`, `source`,
+  per-block `block_id`/`source_ref`, callout `severity`); see
+  [`machine_readable_manual_corpus.md`](machine_readable_manual_corpus.md) §5.2–§5.4.
 - Verified single-language editions retain their source locale. Eight baseline
   legacy editions remain queryable with `language: null`; their declared `en`
   metadata is not promoted into a verified language assertion.

@@ -9,6 +9,8 @@ from unittest.mock import patch
 
 from tools.manual_knowledge.export import ARTIFACT, make_corpus, write_knowledge
 from tools.manual_knowledge.html import extract_sections
+from tools.manual_knowledge.identity import callout_severity, variant_identity
+from tools.rtd.publication_catalog import _provenance, publication_identity
 from tools.rtd.deployment_receipt import write_deployment_receipt
 from tools.rtd.portal import setup
 
@@ -197,3 +199,80 @@ class KnowledgeExportTests(unittest.TestCase):
             write_knowledge(app, None)
             write_knowledge(app, RuntimeError('failed build'))
             self.assertFalse((Path(tmp) / ARTIFACT).exists())
+
+
+class IdentityProvenanceTests(unittest.TestCase):
+    def test_localized_callout_labels_map_to_fixed_severity_and_never_guess(self):
+        for label, severity in [('WARNUNG', 'warning'), ('*Vorsicht:', 'caution'), ('Opmerkingen', 'note'),
+                                ('WSKAZÓWKI', 'tip'), ('ПОПЕРЕДЖЕННЯ', 'warning')]:
+            self.assertEqual(callout_severity(label), severity)
+        for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', 'Important']:
+            self.assertEqual(callout_severity(label), 'unknown')
+
+    def test_blocks_carry_stable_ids_and_source_refs(self):
+        sections, _ = extract('<section id="safety"><h1>Safety</h1><p>Read.</p>'
+                              '<h2 id="fire">Fire</h2><div class="admonition"><p class="admonition-title">Warning</p>'
+                              '<p>Hot.</p></div></section>')
+        blocks = sections[0]['blocks']
+        self.assertEqual([b['block_id'] for b in blocks], [f"{sections[0]['id']}:{i}" for i in range(3)])
+        self.assertEqual(blocks[0]['source_ref'], 'MODEL/EU/en/md/manual.html#safety')
+        self.assertEqual(blocks[1]['source_ref'], 'MODEL/EU/en/md/manual.html#fire')
+        self.assertEqual(blocks[2]['severity'], 'warning')
+
+    def test_variant_key_is_stable_and_snapshots_are_not_revisions(self):
+        printed = variant_identity(model='M', region='EU', lang='de', version='2.6')
+        self.assertEqual((printed['variant_key'], printed['manual_variant_id']), ('M/EU/de', 'M/EU/de@2.6'))
+        self.assertEqual((printed['revision'], printed['revision_kind']), ('2.6', 'printed'))
+        snapshot = variant_identity(model='M', region='EU', lang='de', version='git-abc123')
+        self.assertEqual(snapshot['variant_key'], printed['variant_key'])
+        self.assertEqual((snapshot['revision'], snapshot['revision_kind']), (None, 'technical_snapshot'))
+        self.assertEqual(snapshot['publication_version'], 'git-abc123')
+        legacy = variant_identity(model='M', region='EU', lang=None, version=None)
+        self.assertEqual((legacy['language'], legacy['language_status']), ('multi', 'needs_review'))
+        self.assertEqual(legacy['manual_variant_id'], 'M/EU/multi@unversioned')
+        self.assertEqual(variant_identity(model='M', region='EU', lang='de', version='candidate')['revision_kind'],
+                         'candidate')
+
+    def test_provenance_names_release_path_from_frozen_files_only(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp) / 'web'
+            meta = Path(tmp) / 'sources' / 'web' / 'M' / 'EU' / 'de' / 'md' / 'publish_meta.json'
+            evidence = meta.parent / 'evidence' / 'frozen_source_manifest.json'
+            evidence.parent.mkdir(parents=True)
+            payload = {'git_ref': 'abc', 'built_at': '2026-10-01'}
+            self.assertEqual(_provenance(root, meta, payload)['release_path'], 'unclassified')
+            self.assertEqual(_provenance(root, meta, {**payload, 'queue_record_ids': ['r1']})['release_path'], 'queue')
+            evidence.write_text('{}')
+            frozen = _provenance(root, meta, payload)
+            self.assertEqual((frozen['release_path'], frozen['authority'], frozen['git_ref']),
+                             ('git_only_frozen', 'git_native', 'abc'))
+            self.assertEqual(frozen['source_manifest'], {
+                'path': 'sources/web/M/EU/de/md/evidence/frozen_source_manifest.json',
+                'sha256': hashlib.sha256(b'{}').hexdigest()})
+            source = root / 'M' / 'EU' / 'md' / 'manual.md'
+            source.parent.mkdir(parents=True)
+            source.write_text('x')
+            legacy = publication_identity(root, source, model='M', region='EU')['provenance']
+            self.assertEqual((legacy['release_path'], legacy['source_manifest']), ('legacy', None))
+
+    def test_corpus_documents_carry_additive_identity_and_provenance(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            url = 'M/EU/de/md/manual.html'
+            (root / url).parent.mkdir(parents=True)
+            (root / url).write_text('<main><p>Published</p></main>')
+            manifest = {'path': 'sources/web/M/EU/de/md/evidence/frozen_source_manifest.json', 'sha256': 'b' * 64}
+            publication = {'url': url, 'lang': 'de', 'language_scope': 'single', 'version': 'git-abc',
+                           'provenance': {'release_path': 'git_only_frozen', 'authority': 'git_native',
+                                          'git_ref': 'abc', 'built_at': '2026-10-01', 'source_manifest': manifest}}
+            corpus = make_corpus([{'model': 'M', 'region': 'EU', 'name': 'P', 'publications': [publication]}],
+                                 root, source_sha256='a' * 64, published_at='2026-10-02')
+            document = corpus['documents'][0]
+            self.assertEqual(corpus['schema'], 'auto-manual-knowledge/v1')
+            self.assertEqual((document['version'], document['lang']), ('git-abc', 'de'))
+            self.assertEqual(document['manual_variant_id'], 'M/EU/de@git-abc')
+            self.assertEqual(document['machine_surface']['generation_mode'], 'html_compatibility')
+            self.assertEqual(document['source']['route'], 'M/EU/de/md')
+            self.assertEqual(document['source']['frozen_source_sha256'], 'b' * 64)
+            self.assertEqual(document['source']['html_sha256'], document['html_sha256'])
+            self.assertEqual(document['source']['published_at'], '2026-10-02')

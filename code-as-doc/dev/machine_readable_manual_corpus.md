@@ -1,6 +1,6 @@
 # 欧规说明书机读内容与知识抽取建设
 
-Status: proposed · Owner: Auto-Manual maintainer · Created: 2026-10-04
+Status: active（P1-1 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
@@ -93,7 +93,7 @@ Native Machine Surface。工作台「工作入口」图已标注
 7. 来源核验（Provenance Verification）
 8. 3–5 本代表性 EU 说明书的人工抽查
 
-区域范围：Phase 1 只做 EU（待确认，见 §7 D4）。
+区域范围：Phase 1 只做 EU（已定，见 §7 D4）。
 
 ### 5.2 Manual Variant 身份
 
@@ -101,7 +101,7 @@ Native Machine Surface。工作台「工作入口」图已标注
 分析单元。Region 与 Language 是独立维度，禁止由语言推导区域：
 `JE-1000F / EU / en ≠ JE-1000F / US / en`。
 
-身份分两层（待确认，见 §7 D2）：
+身份分两层（已定，见 §7 D2）：
 
 ```json
 {
@@ -116,11 +116,13 @@ Native Machine Surface。工作台「工作入口」图已标注
 ```
 
 - `variant_key` 不随修订、路由或生成模式变化，用于跨修订演化分析。
-- `revision` 只放可信的说明书修订号。技术快照号（`git-…`）、`candidate`
-  不冒充修订号：`revision: null`，`revision_kind: "technical_snapshot"`，原值
-  保留在 `publication_version`。
+- `revision` 只放可信的说明书修订号（纯数字点分，如 `2.6`）。技术快照号
+  （`git-…`）、`candidate` 和其他写法不冒充修订号：`revision: null`，
+  `revision_kind` 为 `technical_snapshot` / `candidate` / `unclassified`，原值
+  保留在 `publication_version`。此时 `manual_variant_id` 以发布版本号作后缀
+  （如 `JE-1000F/EU/en@git-…`），只区分发布，不表示修订先后。
 - 多语言合订旧版：`language: "multi"`、`language_status: "needs_review"`，
-  可检索，不参与多语言齐套分析（待确认，见 §7 D3）。
+  可检索，不参与多语言齐套分析（已定，见 §7 D3）。
 - 机读面以后从 `html_compatibility` 迁移到 `ir_native` 时，`variant_key` 和
   `manual_variant_id` 都不得因此改变。
 
@@ -155,7 +157,10 @@ Native Machine Surface。工作台「工作入口」图已标注
     "html_sha256": "…",
     "frozen_source_sha256": "…",
     "authority": "git_native | structured | unknown",
-    "source_manifest": "<Git-only 发布时 source_manifest.json 的位置或 null>",
+    "release_path": "git_only_frozen | queue | unclassified | legacy",
+    "source_manifest": {"path": "sources/web/<route>/evidence/frozen_source_manifest.json", "sha256": "…"},
+    "git_ref": "…",
+    "built_at": "…",
     "published_at": "…"
   }
 }
@@ -163,6 +168,8 @@ Native Machine Surface。工作台「工作入口」图已标注
 
 `generation_mode` 取值：`html_compatibility`、`source_native`、`ir_native`。
 `authority` 只写能从发布元数据可靠得到的值；得不到写 `unknown`，不推断。
+目前只有 Git-only 冻结发布（发布目录带 `evidence/frozen_source_manifest.json`）
+能可靠写 `git_native`；其余写 `unknown`，`source_manifest` 为 `null`。
 
 ### 5.5 Manifest
 
@@ -202,7 +209,7 @@ IR Native 上升，但这不是 Phase 1 的目标。
 - OpenClaw 插件严格校验 `schema == "auto-manual-knowledge/v1"`、
   `region == "EU"`、文档 `id` 唯一等。Phase 1 只在 v1 上**增加字段**，不改
   `schema` 字符串、不改现有字段语义、保留现有 `id`（新增 `manual_variant_id`
-  并行）；插件无需同步发布（待确认，见 §7 D5）。
+  并行）；插件无需同步发布（已定，见 §7 D5）。
 - 文件大小上限 32 MiB（`deployment_receipt.MAX_FILE_BYTES`），当前 6.2 MB。
 - 所有已发布网页 HTML 字节不变。
 
@@ -223,9 +230,9 @@ Safety / Warning 演化的产品。候选：JE-1000F（老、复杂）、JE-3600
 每个 PR 按 AGENTS.md §8 与 `merge_authorizations.md` 流程：先登记授权，
 全部检查通过后合入，再核验 Hello-Docs 同步、RTD 构建与线上产物。
 
-## 7. 待确认决策
+## 7. 决策（2026-10-04 按建议确认）
 
-| # | 问题 | 建议 |
+| # | 问题 | 决定 |
 | --- | --- | --- |
 | D1 | Phase 1 是否包含知识抽取、聚类、覆盖矩阵、缺口候选 | 不包含，归 Phase 2 |
 | D2 | 修订号与身份 | `variant_key` 不含修订；技术快照不当修订号（§5.2） |
