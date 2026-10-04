@@ -79,7 +79,9 @@ templates are rules, not a content source; HUMAN SURFACE 人读面 (Web · Word 
 IDML / PDF) and MACHINE SURFACE 机读面 (JSON · MD) are siblings derived from
 the declared authority and never maintain their own body text. The 机读面 panel
 states that `manual-knowledge.json` is currently extracted from published HTML
-as a compatibility path, not the target. Build times, snapshot dates and hashes sit in
+as a compatibility path, not the target. The machine card carries the same fact as a status badge
+(当前：HTML-derived · Compatibility); when the corpus is generated from
+Assembly / Shared IR instead, change the badge to IR-native · Same-source. Build times, snapshot dates and hashes sit in
 the collapsed 页面版本与更新 / 数据更新时间 disclosure.
 
 Inside the shell the root page has four bounded zones on one container width
