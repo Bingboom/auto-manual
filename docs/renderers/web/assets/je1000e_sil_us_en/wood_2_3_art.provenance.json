@@ -1,0 +1,47 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3690.071044921875,
+    1891.90478515625,
+    4004.571044921875,
+    2064.40478515625
+  ],
+  "sha256": "23c9c3de17ae0137f8c9036b653f6ea06d92a5aed55c6065640ae080ed1f9d4f",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        24.935801495429253,
+        4.925696331521739,
+        36.7668670508744,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        68.3114784131558,
+        5.693925498188405,
+        28.762470190779013,
+        0
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        88.78358195051669,
+        30.627406023550723,
+        10.216418049483309,
+        0
+      ]
+    }
+  ],
+  "source_text": [
+    "2. Securely attach the upper and lower\nmounting brackets to the back of the\nproduct.",
+    "3. Use a stud finder to identify\nwood studs behind the wall.",
+    "wood stud"
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

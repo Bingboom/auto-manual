@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/fridgeguard_us_16-0102-000422",
+    "expected_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_prepare_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3323.031005859375,
+            2102.90478515625,
+            3542.531005859375,
+            2240.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_prepare_art.png",
+          "scale": 4,
+          "expected_sha256": "047da5e3737625ada189066eac35143ed0c3186dba2c9a2db242ebeefe715fdf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_1_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3321.531005859375,
+            2245.40478515625,
+            3636.7,
+            2363.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_1_art.png",
+          "scale": 4,
+          "expected_sha256": "3bcc5bdd18c39ad8c8638b24567b060adec52154ff52a4bc8f35cfe28b368a56"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_2_3_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            1891.90478515625,
+            4004.571044921875,
+            2064.40478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_2_3_art.png",
+          "scale": 4,
+          "expected_sha256": "23c9c3de17ae0137f8c9036b653f6ea06d92a5aed55c6065640ae080ed1f9d4f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_4_5_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            2069.15,
+            4004.571044921875,
+            2186.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_4_5_art.png",
+          "scale": 4,
+          "expected_sha256": "a73b9a922273a9bf788cf4013611b9bc196adab598dfb96d54c50fc7496c6f7b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_6_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            2192.02,
+            4004.571044921875,
+            2361.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_6_art.png",
+          "scale": 4,
+          "expected_sha256": "b3bc37532b4a6a48d53fdea7b7ab2f1ac6ad712ac8835fda42824b567a7ea3eb"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_prepare_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            1924.90478515625,
+            4373.0380859375,
+            2056.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_prepare_art.png",
+          "scale": 4,
+          "expected_sha256": "931d991c33743651d014185db6b8477c349c31c6bb6a36bd0d11edfe19aa2c33"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_1_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            2065.90478515625,
+            4373.0380859375,
+            2183.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_1_art.png",
+          "scale": 4,
+          "expected_sha256": "e18ba7aeb190f1d8778a08347799e374427994348075a63136669b9e728561cf"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_2_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            2189.59,
+            4373.0380859375,
+            2361.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_2_art.png",
+          "scale": 4,
+          "expected_sha256": "2e5c885fec9e09dfc2538fe6dbabb35e4024b9e634a71bd979ccf861e2ee06a7"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_3_4_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4426.65087890625,
+            1891.90478515625,
+            4741.65087890625,
+            2121.40478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_3_4_art.png",
+          "scale": 4,
+          "expected_sha256": "8ba43b495c38e0af28a7c91d4a354dbdbd9c494db88adcd09e2b0bc630e60152"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_5_6_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4426.65087890625,
+            2126.12,
+            4741.65087890625,
+            2361.90478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_5_6_art.png",
+          "scale": 4,
+          "expected_sha256": "dd90de301d86dcc03e6a7925136aab0cdab91b3a799334be7ea6adb98e784f67"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_7_8_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4795.76513671875,
+            1891.90478515625,
+            5109.76513671875,
+            2080.40478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_7_8_art.png",
+          "scale": 4,
+          "expected_sha256": "d7ef4dd0b138e1cbd8c3f4caa0a508658759c2f5faf4be479b1e2eb01f906e07"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; preserve full original frames"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

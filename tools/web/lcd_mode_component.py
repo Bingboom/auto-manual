@@ -25,6 +25,8 @@ def render_lcd_mode_component(spec: ComponentSpec, carrier_html: str = "") -> st
         },
     )
     art_panel = soup.new_tag("div", attrs={"class": projection["art_panel_class"]})
+    if spec.metadata.get("artwork_layout") == "portrait":
+        figure["class"] = [*figure.get("class", []), "hb-lcd-mode-portrait"]
     art_panel.append(
         soup.new_tag(
             "img",

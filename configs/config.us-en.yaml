@@ -3,6 +3,11 @@ extends: config-bases/us-single-language-base.yaml
 build:
   family_id: us-en
   languages: [en]
+  targets:
+    - model: JE-1000F
+      region: US
+    - model: JE-1000E-SIL
+      region: US
   # Web routes are language projections; IDML/Word/PDF keep the trilingual
   # preface required by the US source-manual contract.
   web_language_block_pages:
@@ -30,3 +35,7 @@ build:
 
 paths:
   page_manifest: docs/manifests/manual_us-single-en.yaml
+  page_manifests:
+    JE-1000E-SIL_US: docs/manifests/manual_fridgeguard_us-en.yaml
+  web_illustration_manifests:
+    JE-1000E-SIL_US: docs/renderers/web/je1000e_sil_us_en_illustrations.json

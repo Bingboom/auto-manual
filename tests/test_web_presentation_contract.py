@@ -13,7 +13,7 @@ from tools.operation_artwork_mode import operation_artwork_mode
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
-    "a8e222a084242334776f19a9eb084698787fc170726181507076710c4694929c"
+    "dc8519d531c28de4f366c32dbee411147123648ce2c3f919ed51414654b7be3c"
 )
 
 

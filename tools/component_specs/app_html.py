@@ -1,8 +1,9 @@
 """Structure-first HTML source adapters for App ComponentSpecs."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import Any, Mapping, cast
+from typing import Any, Iterator, Mapping, cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -100,6 +101,21 @@ def parse_app_download_html(
             ("qr_art", _path(artwork.get("qr"), owner="App QR artwork")),
         ),
     )
+
+
+def parse_declared_app_downloads(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]]:
+    """Bind authored artwork choices to the existing full download component."""
+    for image in soup.select("img.hb-source-app-download"):
+        config = json.loads(str(image.get("data-app-download") or "{}"))
+        if not isinstance(config, dict) or set(config) != {"artwork"}:
+            raise ValueError(f"{source_path}: declared App download requires artwork bindings")
+        config["image_key"] = str(image.get("src") or "")
+        yield parse_app_download_html(
+            soup, source_path=source_path, config=config,
+            language=language, model="", region="",
+        )
 
 
 def parse_app_inline_control_html(

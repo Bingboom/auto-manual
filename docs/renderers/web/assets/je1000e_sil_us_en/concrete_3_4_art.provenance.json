@@ -1,0 +1,67 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    4426.65087890625,
+    1891.90478515625,
+    4741.65087890625,
+    2121.40478515625
+  ],
+  "sha256": "8ba43b495c38e0af28a7c91d4a354dbdbd9c494db88adcd09e2b0bc630e60152",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        2.9456535218253967,
+        2.9889408020152506,
+        35.68768601190476,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        44.73353794642857,
+        3.37403407543573,
+        53.56544518849206,
+        0
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        78.17661830357143,
+        38.21497566040305,
+        7.325365823412699,
+        0
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        75.50052703373015,
+        69.60369434232027,
+        8.466548859126984,
+        0
+      ]
+    },
+    {
+      "line": 4,
+      "rect": [
+        86.23961433531746,
+        49.113753574346404,
+        6.274243551587301,
+        0
+      ]
+    }
+  ],
+  "source_text": [
+    "3. Mark the mounting point on the wall.",
+    "4. Drill a hole at the mounting point using an 8mm masonry\nimpact drill to a depth of approximately 70mm. Insert an\nexpansion bolt and loosen its nut by 2-4mm.",
+    "70mm",
+    "2~4mm",
+    "8mm"
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

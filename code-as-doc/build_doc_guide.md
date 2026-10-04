@@ -643,6 +643,7 @@ Safety page note:
 - the standalone user maintenance instructions page is maintained in the shared templates, for example [`docs/templates/page_shared/en/01_user_maintenance_instructions.rst`](../docs/templates/page_shared/en/01_user_maintenance_instructions.rst), and each US/EU manifest includes it immediately before the `symbols` CSV page
 - the JP manual maintains its safety intro in [`docs/templates/page_jp/safety_ja.rst`](../docs/templates/page_jp/safety_ja.rst) through [`docs/manifests/manual_jp.yaml`](../docs/manifests/manual_jp.yaml)
 - edit those `safety_*.rst` files when a family's safety intro page needs copy/layout changes
+- FridgeGuard EN/FR/ES Web safety leads share the declared `hb-safety-instruction` / `hb-safety-lead` signal-panel variants. Keep the risk table inside its protected figure, reuse the shared SVG triangles with explicit dimensions, and align the outer column edges; compact typography and full-width mobile stacking are owned by [the shared style contract](../docs/renderers/contracts/STYLE_DEFINITION.md#1011-例外模板自带双分支的页安全页fcc).
 - the detailed JP safety warnings remain in [`docs/templates/page_jp/01_meaning_of_symbols.rst`](../docs/templates/page_jp/01_meaning_of_symbols.rst)
 - the old `content_blocks.csv` safety source has been removed from the active repo flow
 
@@ -2286,7 +2287,7 @@ The source adapter records actual target context and hashes the active FCC
 config with registry/theme provenance. Invalid IR, source identity or mark
 binding fails before the original page is changed. The old direct Web
 ComponentSpec-only route exits; existing marker/filename language fallback,
-paragraph normalization, three-locale output and target admission remain.
+paragraph normalization and three-locale output remain. FCC admission now follows source content across all targets.
 This is not a new general rich-text parser or a Word/IDML FCC migration.
 
 
@@ -2536,3 +2537,35 @@ Intake preparation: [source-copy work packets and shared-art review](dev/manual_
 共用图确认清单可通过 `tools.manual_intake_assist art-review --selections` 导入；
 太阳能保留型号/数量标识，车充文字用 HTML/CSS，操作与按键图片不纳入共用库。
 图标按原稿中匹配的符号复用，独立图标须真实透明底。
+
+### FridgeGuard US English Git-only input
+
+The user-supplied JE-1000E-SIL / US / en Illustrator master is frozen with its
+structured specifications and source hashes. Use the existing US English family
+with the explicit data root; no online Base write or queue row is required.
+See [source and acceptance record](reviews/je1000e_sil_us_en_web_intake.md)
+for the exact command and retained source errata.
+
+Web symbol legends use warning triangles for WARNING/CAUTION; NOTE/TIP remain text-only badges, using the shared localized signal-word classification.
+
+FCC binding is content-driven for every model and region: an exact FCC heading, `hb-source-fcc` declaration, or governed FCC source filename requires `HB-SPECIAL-FCC`. A Part 15 opening declares only a headingless orphan fragment; compact statements on mixed pages with other headings remain native source content. Whole-document source assembly rejects a missing or duplicate FCC claim; completed-IR rendering and legacy fragment rendering reject absent FCC output. The existing parser still requires the opening, localized column split, measures and modification copy. Unsupported or incomplete source structure fails with its source path; it never falls back to plain text. New targets need no model allowlist or per-model FCC configuration.
+
+LCD icon tables use the shared `HB-TABLE-LCD-ICON` four-column component. An authored `hb-lcd-icon-table` may opt into `hb-lcd-merge-number` and `hb-lcd-merge-description`: only adjacent identical number cells, or descriptions within the same number group, merge in Web output. Keep separate semantic source rows and real icon assets; do not substitute the three-column `hb-source-lcd-legend` when the source includes an icon column.
+
+Declare a standalone LCD on/off matrix with `hb-source-lcd-mode` on its source table to bind `HB-TABLE-LCD-MODE` without activating unrelated legacy operation tables. The source contains one artwork spanning six rows and two mode groups of three actions. Use `hb-lcd-mode-portrait` for narrow, tall device artwork; the shared component then reserves three quarters of the desktop row for the table and stacks at the existing mobile breakpoint.
+
+For source-authored grey prose/list panels, use `figure.hb-text-panel`. It shares the existing grey rounded-panel styling and survives Web Markdown conversion. Preserve source lists rather than inventing table headers.
+
+For a standalone App download QR, declare `img.hb-source-app-qr` followed by its adjacent text-only paragraph. It binds the existing `download-qr-only` App component for any source filename, preserving copy and the shared 9rem desktop / 6rem narrow-mobile QR size. Missing copy is rejected rather than rendered as a full-width illustration.
+
+With store badges plus a QR in the source, declare `img.hb-source-app-download` with `data-app-download` artwork bindings for `store` and `qr`, followed by the two native copy paragraphs. It binds the existing `HB-SPECIAL-APP/download` component through public IR, without a model allowlist. Reuse the approved badges and exact source QR; missing artwork or a missing native column fails intake. Use `download-qr-only` only when the source itself has no store badges. Complete two-phone / three-phone panels reuse `hb-app-add-device-phone-art` with `hb-app-phone-pair` / `hb-app-phone-trio` display variants (22rem / 36.75rem maxima, shrinking to the available width). These shared classes retain the approved display size after finished-art replacement; plain RST width hints are otherwise normalized to the Web reading width. Keep phone borders, status/footer UI and embedded step captions intact, and inherit the same component/size choices in later locales.
+
+To separate operation copy from artwork, an `img.hb-source-operation` can declare the existing base-art operation presentation in its `data-operation` JSON attribute, followed by the native step/supporting line block. The declaration is frozen with the Operation ComponentSpec for replay without model admission. Optional `base_art_layout.supporting_anchor` contains x/y/width percentages for separate CSS speech panels; narrow screens place their text in normal flow. Preserve the source artwork hash and exact wording.
+
+For source-bound illustration labels, `img.hb-source-reference` with `data-reference` JSON and an adjacent line block binds the existing reference ComponentSpec and base-art renderer. Keep textless artwork out of finished-panel replacement bindings: those add finished-image attributes after source hashing. The artwork is packaged by its component asset role; its anchors and source hash remain in the IR.
+
+Figure coverage checks resolve source-declared reference artwork hashes from the frozen page ComponentSpec before falling back to a global profile entry. Missing, duplicate or invalid declared evidence still fails; the measured hash must match the packaged artwork.
+
+### FridgeGuard US native FR/ES local candidate
+
+French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.

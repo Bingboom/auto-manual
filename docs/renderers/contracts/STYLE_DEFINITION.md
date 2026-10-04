@@ -127,7 +127,7 @@ renderer-local 常量称为批准变体。
 
 ### 0.4 “流水线”的定义
 
-本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web_document_source.py`](../../../tools/web_document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
+本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web/document_source.py`](../../../tools/web/document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
 ```text
 phase2 / 模板
@@ -653,6 +653,15 @@ Web 渲染器`，不能用目标专属 HTML 或截图绕开它。
 `preserve_frame=true` 保留源图边界，禁止默认裁边。JE-2000F/CN 的两张太阳能图
 和车充图使用这两个选项，车充白色提示框由 `.hb-reference-live-pill` 绘制。
 
+原稿同时有应用商店徽章和二维码时，使用已有 `HB-SPECIAL-APP/download` 双栏组件。
+源图声明 `hb-source-app-download`，`data-app-download` 绑定 `artwork.store` 与
+`artwork.qr`，后接两段原语种说明；共享 IR 固定两栏和素材角色，不依赖型号白名单。
+复用已批准的徽章与源二维码，缺素材或少一栏说明即拒绝录入，不降级为仅二维码。
+编号 App 标题不加圆点，采用原稿大小写与紧凑间距。完整双机/三机截图使用现有
+`hb-app-add-device-phone-art` 加 `hb-app-phone-pair` / `hb-app-phone-trio` 共享限宽
+变体，最大 22rem / 36.75rem，窄屏缩至可用宽度；该尺寸在成品图替换后仍有效。
+截图保留手机全框、状态栏、底部界面和原有步骤号，各语言继承同一组件及尺寸决策。
+
 只有下载二维码与说明的源稿使用 `HB-SPECIAL-APP/download-qr-only` Web 变体：
 原文左排、二维码右排，二维码最大 `9rem`，手机为 `6rem`，保留完整边框。
 它不补画源稿没有的应用商店徽章，不套用普通插图的通栏宽度。该变体通过共享 IR
@@ -818,7 +827,7 @@ Word 复用结构语义，但不承诺 PDF/IDML 的固定页几何：
 - 正文归一到 `BodyText` / `FirstParagraph` / `Compact`；
 - 表格按形状选 `TableGrid` 或 `tableHeader`，必要时再做列宽和边框覆盖；
 - 文档标题来自配置的 `build.word_title`，不是正文中的第一个 H1；
-- `tools/word_bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
+- `tools/word/bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
 
 Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 的 `word` binding 与 §1
 的语义对照，不能只在 DOCX remapper 中增加一次性规则。
@@ -859,12 +868,12 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → prepared RST bundle：docs/_build/<model>/<region>/rst/page/*.rst
              （冻结样例：docs/_review/JE-1000F/US/page/）
 
-(2) 出片   docutils 逐页渲染 HTML fragment（tools/word_bundle_html.py），
-           同时做结构归一（tools/word_bundle_html_rewrite.py）：
+(2) 出片   docutils 逐页渲染 HTML fragment（tools/word/bundle_html.py），
+           同时做结构归一（tools/word/bundle_html_rewrite.py）：
            无表头、单行两列、首格是登记信号词的 list-table
            → table.manual-callout-table 等
 
-(3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web_presentation.py）
+(3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web/presentation.py）
            先按实际 model/region 解析 shared base → skeleton → target overlay，
            再按 resolved contract 的 source_patterns 认页（按页名 pattern，如
            spec_* / troubleshooting_* / *11_warranty，不猜内容），
@@ -947,7 +956,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
        - Do not charge the product using both a car charger and a solar panel...
 ```
 
-**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word_bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。类型化入口随后生成同一个 `HB-CALLOUT-STRIP` ComponentSpec；五种 variant 是 `warning`、`danger`、`caution`、`note`、`tip`，标签、正文、列表、语言和 source ref 保持为实例数据。Web、LaTeX、IDML、Word 各自通过注册的 adapter 消费它，不再各自维护一份 variant 映射。
+**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word/bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。类型化入口随后生成同一个 `HB-CALLOUT-STRIP` ComponentSpec；五种 variant 是 `warning`、`danger`、`caution`、`note`、`tip`，标签、正文、列表、语言和 source ref 保持为实例数据。Web、LaTeX、IDML、Word 各自通过注册的 adapter 消费它，不再各自维护一份 variant 映射。
 
 **L3 最终 Web 标记**：
 
@@ -958,7 +967,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 </tr></tbody></table>
 ```
 
-版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 先校验 ComponentSpec，再由 Web adapter 产出上面这段标记）。Pandoc 前后由 [`web_presentation.py`](../../../tools/web_presentation.py) 保护并原样恢复整张表；恢复前后会重新校验同一 component ID、variant 和 slot 内容，不能靠 Pandoc 重建一个近似表格。
+版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 先校验 ComponentSpec，再由 Web adapter 产出上面这段标记）。Pandoc 前后由 [`web_presentation.py`](../../../tools/web/presentation.py) 保护并原样恢复整张表；恢复前后会重新校验同一 component ID、variant 和 slot 内容，不能靠 Pandoc 重建一个近似表格。
 
 ### 10.5 竖式规格表（`HB-TABLE-SPEC`）
 
@@ -1260,6 +1269,8 @@ UPS、扩容连接图、配件排、节能组合操作面板或 App 按键说明
 ```
 
 改这类页 = 同时改两个分支；只改一个分支就是 Web/印刷分叉。批量转换存量文档遇到安全类内容时，用 `` ```{callout} WARNING `` 承载文案即可，不要手抄 `hb-safety` 结构（那是 §3.2 的流水线专属语义）。
+
+FridgeGuard 的 EN/FR/ES 安全页沿用现有 `hb-symbol-signal-composition`，用 `hb-safety-instruction` / `hb-safety-lead` 显式声明风险提示与首段警告的 Web 版式。风险提示表必须放在受保护的 figure 内，避免 Pandoc/MyST 将它转为带空表头的普通表格；三角图标复用共用深色/白色 SVG，并声明尺寸。共用样式由 [`web_symbols_fcc_components.css`](web_symbols_fcc_components.css) 维护，保留深色图标整格、加粗原文、紧凑双栏与深色操作标题条。双栏外侧不加 `border-spacing`，只由两格内侧 padding 保留栏距，使标题、风险提示与警告框左边缘对齐。640px 以下，外表、tbody、tr 与两格均转为全宽单栏；风险图标列保留固定宽度。其他语言继承这些声明、结构与图标，仅使用其原稿文案。纯 Web 排版修复不改印刷分支的原文或语义。
 
 ---
 

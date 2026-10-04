@@ -60,7 +60,19 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
         ):
             count = len(list(group))
             spans.extend([count] + [0] * (count - 1))
-    for row, span in zip(projection["rows"], spans, strict=True):
+    description_spans = [1] * len(projection["rows"])
+    if spec.metadata.get("description_cell_layout") == "span-adjacent-equal":
+        description_spans = []
+        for _, group in groupby(
+            projection["rows"],
+            key=lambda row: (row["number_text"], row["number_html"],
+                             row["description_text"], row["description_html"]),
+        ):
+            count = len(list(group))
+            description_spans.extend([count] + [0] * (count - 1))
+    for row, span, description_span in zip(
+        projection["rows"], spans, description_spans, strict=True
+    ):
         tr = soup.new_tag("tr")
         if numbered and span:
             number = soup.new_tag("td", attrs={"class": "hb-lcd-number"})
@@ -83,7 +95,11 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
         )
         _append_html(name, row["name_html"])
         _append_html(description, row["description_html"])
-        tr.extend((icon, name, description))
+        tr.extend((icon, name))
+        if description_span:
+            if description_span > 1:
+                description["rowspan"] = str(description_span)
+            tr.append(description)
         body.append(tr)
     table.append(body)
     figure.append(table)

@@ -1,0 +1,113 @@
+{
+  "schema_version": "family-manifest-diff/v1",
+  "base_manifest_id": "manual_us_single_en",
+  "target_manifest_id": "manual_fridgeguard_us_fr",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_fridgeguard_us_fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/preface.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/safety.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/symbols.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/01_fcc.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/02_whats_in_the_box.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/03_product_overview.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/lcd_display.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/05_operation_guide.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/06_ups_mode.rst",
+          "capability": "UPS功能"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/installation.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/connections.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/maintenance.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/charging.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/troubleshooting.rst"
+        },
+        {
+          "type": "csv_page",
+          "source": "phase2",
+          "page": "spec",
+          "langs": [
+            "fr"
+          ],
+          "include_dir": "generated/{model}"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/09_storage_and_maintenance.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/11_warranty.rst"
+        },
+        {
+          "type": "rst_include",
+          "lang": "fr",
+          "file": "templates/page_fridgeguard/fr/12_app_setup.rst"
+        }
+      ]
+    }
+  ]
+}

@@ -787,6 +787,22 @@ class TestCheckDocs(unittest.TestCase):
             self.assertEqual("DUPLICATE_RENDER_TEXT_MISMATCH", issues[0].code)
             self.assertIn("RST-only=1 HTML-only=1", issues[0].message)
 
+    def test_duplicate_render_check_distinguishes_table_cells_from_prose_bullets(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            path = docs_dir / "templates" / "safety.rst"
+            path.parent.mkdir(parents=True)
+            source = ".. only:: not html\n\n   .. list-table::\n      :header-rows: 0\n\n      * - Warning icon\n        - **Warning title**\n\n   - Actual safety instruction.\n\n.. only:: html\n\n   .. raw:: html\n\n      <strong>Warning title</strong><ul><li>Actual safety instruction.</li></ul>\n"
+            path.write_text(source)
+            kwargs = dict(repo_root=root, docs_dir=docs_dir, bundle_dir=root / "empty",
+                          model="TEST", region="US", issue_cls=check_docs.CheckIssue)
+            self.assertEqual([], collect_duplicate_render_text_issues(**kwargs))
+            path.write_text(source.replace('<li>Actual safety instruction.</li>', '<li>Changed instruction.</li>'))
+            issues = collect_duplicate_render_text_issues(**kwargs)
+            self.assertEqual(1, len(issues))
+            self.assertIn("RST-only=1 HTML-only=1", issues[0].message)
+
     def test_collect_reference_issues_should_resolve_docs_relative_assets_for_generated_pages(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

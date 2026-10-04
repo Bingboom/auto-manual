@@ -1,0 +1,37 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    4795.76513671875,
+    1891.90478515625,
+    5109.76513671875,
+    2080.40478515625
+  ],
+  "sha256": "d7ef4dd0b138e1cbd8c3f4caa0a508658759c2f5faf4be479b1e2eb01f906e07",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        3.9443483777866244,
+        5.982287176724138,
+        27.55919088375796,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        39.86318794785032,
+        5.982287176724138,
+        54.68430284633758,
+        0
+      ]
+    }
+  ],
+  "source_text": [
+    "7. Hang the product onto the\nupper expansion bolt.",
+    "8. Lift the product to align the pre-installed bolt and lower it\ninto place. Tighten the nut."
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

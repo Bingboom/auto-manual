@@ -854,3 +854,13 @@ JE-100C/EU 九语 Web 的本地示例见[构建指南](../code-as-doc/build_doc_
 这些产物是本地候选，未修改线上构建表或发布链接。
 
 For English/native Web intake, start with the [source-copy work packet and shared-art review](../code-as-doc/dev/manual_intake_assistance.md) before assembling a candidate.
+
+### FridgeGuard Git-only 示例
+
+JE-1000E-SIL / US / en 的完整构建示例与源文件哈希见
+[录入记录](../code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
+必须使用记录中的冻结数据根目录；不要用其他型号的 phase2 快照代替。
+
+### FridgeGuard US native FR/ES local candidate
+
+French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](../code-as-doc/reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.

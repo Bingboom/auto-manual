@@ -1,587 +1,754 @@
 {
- "page_bp": {
-  "00_preface.rst": [
-   [
-    "en"
-   ]
-  ],
-  "00_preface_six_language.rst": [
-   [
-    "intl"
-   ]
-  ],
-  "00_toc.rst": [
-   [
-    "de-web",
-    "es-web",
-    "fr-web",
-    "it-web"
-   ],
-   [
-    "en"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "00_toc_six_language.rst": [
-   [
-    "intl"
-   ]
-  ],
-  "01_safety.rst": [
-   [
-    "de",
-    "es",
-    "fr",
-    "it",
-    "uk"
-   ],
-   [
-    "en"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "02_whats_in_the_box.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "uk"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "03_product_overview_placeholder.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "uk"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "04_connections.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "uk"
-   ],
-   [
-    "it"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "05_operation_guide_placeholder.rst": [
-   [
-    "de",
-    "de-web",
-    "en",
-    "es",
-    "es-web",
-    "fr",
-    "fr-web",
-    "it",
-    "it-web",
-    "uk"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "08_charging_methods.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "uk"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "09_storage.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "uk"
-   ]
-  ],
-  "11_warranty.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "it",
-    "uk"
-   ],
-   [
-    "fr"
-   ],
-   [
-    "ja"
-   ]
-  ],
-  "11_warranty_eu.rst": [
-   [
-    "en",
-    "es"
-   ],
-   [
-    "fr"
-   ]
-  ],
-  "99_back_cover.rst": [
-   [
-    "en"
-   ]
-  ],
-  "99_regulatory_compliance_eu.rst": [
-   [
-    "intl"
-   ]
-  ],
-  "99_regulatory_compliance_eu_configurable.rst": [
-   [
-    "intl"
-   ]
-  ],
-  "eu_charging.rst": [
-   [
-    "de-web",
-    "en-web",
-    "es-web",
-    "fr-web",
-    "it-web"
-   ]
-  ],
-  "eu_connections.rst": [
-   [
-    "de-web",
-    "en-web",
-    "es-web",
-    "fr-web"
-   ],
-   [
-    "it-web"
-   ]
-  ],
-  "eu_preface.rst": [
-   [
-    "de-web",
-    "en-web",
-    "fr-web",
-    "it-web"
-   ],
-   [
-    "es-web"
-   ]
-  ],
-  "eu_warranty.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_00_toc.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_02_whats_in_the_box.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_03_product_overview_placeholder.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_04_connections.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_05_operation_guide_placeholder.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_08_charging_methods.rst": [
-   [
-    "en-web"
-   ]
-  ],
-  "jbp3600a_11_warranty.rst": [
-   [
-    "en-web"
-   ]
-  ]
- },
- "page_charger": {
-  "box_contents.rst": [
-   [
-    "en"
-   ]
-  ],
-  "legal_tail.rst": [
-   [
-    "en"
-   ]
-  ],
-  "product_overview.rst": [
-   [
-    "en"
-   ]
-  ],
-  "safety_warning.rst": [
-   [
-    "en"
-   ]
-  ],
-  "using_product.rst": [
-   [
-    "en"
-   ]
-  ],
-  "warranty.rst": [
-   [
-    "en"
-   ]
-  ]
- },
- "page_shared": {
-  "00_preface.rst": [
-   [
-    "ko",
-    "pt-BR"
-   ],
-   [
-    "en"
-   ]
-  ],
-  "00_preface_legacy_single_language.rst": [
-   [
-    "en"
-   ]
-  ],
-  "00_preface_single_language.rst": [
-   [
-    "en"
-   ]
-  ],
-  "00_toc.rst": [
-   [
-    "en"
-   ]
-  ],
-  "01_user_maintenance_instructions.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "ko",
-    "pt-BR",
-    "uk"
-   ]
-  ],
-  "02_whats_in_the_box.rst": [
-   [
-    "de",
-    "it",
-    "pt-BR",
-    "uk"
-   ],
-   [
-    "en",
-    "es",
-    "fr"
-   ],
-   [
-    "ko"
-   ]
-  ],
-  "06_ups_mode.rst": [
-   [
-    "de",
-    "it"
-   ],
-   [
-    "en",
-    "es"
-   ],
-   [
-    "ko",
-    "pt-BR"
-   ],
-   [
-    "fr"
-   ],
-   [
-    "uk"
-   ]
-  ],
-  "07_extra_battery.rst": [
-   [
-    "en",
-    "es",
-    "fr"
-   ],
-   [
-    "ko"
-   ]
-  ],
-  "08_charging_methods.rst": [
-   [
-    "en",
-    "fr",
-    "it",
-    "ko",
-    "uk"
-   ],
-   [
-    "de"
-   ],
-   [
-    "es"
-   ],
-   [
-    "pt-BR"
-   ]
-  ],
-  "09_storage_and_maintenance.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "ko",
-    "pt-BR",
-    "uk"
-   ]
-  ],
-  "10_troubleshooting.rst": [
-   [
-    "de",
-    "en",
-    "it",
-    "pt-BR",
-    "uk"
-   ],
-   [
-    "es",
-    "fr",
-    "ko"
-   ]
-  ],
-  "11_warranty.rst": [
-   [
-    "de",
-    "it",
-    "ko",
-    "pt-BR",
-    "uk"
-   ],
-   [
-    "es",
-    "fr"
-   ],
-   [
-    "en"
-   ]
-  ],
-  "12_app_setup_je2000e.rst": [
-   [
-    "de",
-    "it",
-    "uk"
-   ],
-   [
-    "es"
-   ],
-   [
-    "fr"
-   ]
-  ],
-  "12_app_setup_placeholder.rst": [
-   [
-    "de",
-    "en",
-    "it",
-    "ko",
-    "pt-BR",
-    "uk"
-   ],
-   [
-    "es"
-   ],
-   [
-    "fr"
-   ]
-  ],
-  "99_back_cover.rst": [
-   [
-    "en"
-   ]
-  ],
-  "charging.rst": [
-   [
-    "de",
-    "it"
-   ],
-   [
-    "en"
-   ],
-   [
-    "es"
-   ],
-   [
-    "fr"
-   ],
-   [
-    "ko"
-   ],
-   [
-    "pt-BR"
-   ],
-   [
-    "uk"
-   ]
-  ]
- },
- "page_solar": {
-  "01_safety_tips.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ]
-  ],
-  "02_whats_in_the_box.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ]
-  ],
-  "03_product_views.rst": [
-   [
-    "de",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ],
-   [
-    "en"
-   ]
-  ],
-  "04_unfolding.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ]
-  ],
-  "05_folding.rst": [
-   [
-    "de",
-    "en",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ]
-  ],
-  "06_charging_connections.rst": [
-   [
-    "de",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ],
-   [
-    "en"
-   ]
-  ],
-  "07_angle_and_device.rst": [
-   [
-    "de",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ],
-   [
-    "en"
-   ]
-  ],
-  "09_warranty.rst": [
-   [
-    "de",
-    "es",
-    "fr",
-    "it",
-    "nl",
-    "pl",
-    "pt",
-    "uk"
-   ],
-   [
-    "en"
-   ]
-  ]
- }
+  "page_bp": {
+    "00_preface.rst": [
+      [
+        "en"
+      ]
+    ],
+    "00_preface_six_language.rst": [
+      [
+        "intl"
+      ]
+    ],
+    "00_toc.rst": [
+      [
+        "de-web",
+        "es-web",
+        "fr-web",
+        "it-web"
+      ],
+      [
+        "en"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "00_toc_six_language.rst": [
+      [
+        "intl"
+      ]
+    ],
+    "01_safety.rst": [
+      [
+        "de",
+        "es",
+        "fr",
+        "it",
+        "uk"
+      ],
+      [
+        "en"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "02_whats_in_the_box.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "uk"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "03_product_overview_placeholder.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "uk"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "04_connections.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "uk"
+      ],
+      [
+        "it"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "05_operation_guide_placeholder.rst": [
+      [
+        "de",
+        "de-web",
+        "en",
+        "es",
+        "es-web",
+        "fr",
+        "fr-web",
+        "it",
+        "it-web",
+        "uk"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "08_charging_methods.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "uk"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "09_storage.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "uk"
+      ]
+    ],
+    "11_warranty.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "it",
+        "uk"
+      ],
+      [
+        "fr"
+      ],
+      [
+        "ja"
+      ]
+    ],
+    "11_warranty_eu.rst": [
+      [
+        "en",
+        "es"
+      ],
+      [
+        "fr"
+      ]
+    ],
+    "99_back_cover.rst": [
+      [
+        "en"
+      ]
+    ],
+    "99_regulatory_compliance_eu.rst": [
+      [
+        "intl"
+      ]
+    ],
+    "99_regulatory_compliance_eu_configurable.rst": [
+      [
+        "intl"
+      ]
+    ],
+    "eu_charging.rst": [
+      [
+        "de-web",
+        "en-web",
+        "es-web",
+        "fr-web",
+        "it-web"
+      ]
+    ],
+    "eu_connections.rst": [
+      [
+        "de-web",
+        "en-web",
+        "es-web",
+        "fr-web"
+      ],
+      [
+        "it-web"
+      ]
+    ],
+    "eu_preface.rst": [
+      [
+        "de-web",
+        "en-web",
+        "fr-web",
+        "it-web"
+      ],
+      [
+        "es-web"
+      ]
+    ],
+    "eu_warranty.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_00_toc.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_02_whats_in_the_box.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_03_product_overview_placeholder.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_04_connections.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_05_operation_guide_placeholder.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_08_charging_methods.rst": [
+      [
+        "en-web"
+      ]
+    ],
+    "jbp3600a_11_warranty.rst": [
+      [
+        "en-web"
+      ]
+    ]
+  },
+  "page_charger": {
+    "box_contents.rst": [
+      [
+        "en"
+      ]
+    ],
+    "legal_tail.rst": [
+      [
+        "en"
+      ]
+    ],
+    "product_overview.rst": [
+      [
+        "en"
+      ]
+    ],
+    "safety_warning.rst": [
+      [
+        "en"
+      ]
+    ],
+    "using_product.rst": [
+      [
+        "en"
+      ]
+    ],
+    "warranty.rst": [
+      [
+        "en"
+      ]
+    ]
+  },
+  "page_shared": {
+    "00_preface.rst": [
+      [
+        "ko",
+        "pt-BR"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "00_preface_legacy_single_language.rst": [
+      [
+        "en"
+      ]
+    ],
+    "00_preface_single_language.rst": [
+      [
+        "en"
+      ]
+    ],
+    "00_toc.rst": [
+      [
+        "en"
+      ]
+    ],
+    "01_user_maintenance_instructions.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ko",
+        "pt-BR",
+        "uk"
+      ]
+    ],
+    "02_whats_in_the_box.rst": [
+      [
+        "de",
+        "it",
+        "pt-BR",
+        "uk"
+      ],
+      [
+        "en",
+        "es",
+        "fr"
+      ],
+      [
+        "ko"
+      ]
+    ],
+    "06_ups_mode.rst": [
+      [
+        "de",
+        "it"
+      ],
+      [
+        "en",
+        "es"
+      ],
+      [
+        "ko",
+        "pt-BR"
+      ],
+      [
+        "fr"
+      ],
+      [
+        "uk"
+      ]
+    ],
+    "07_extra_battery.rst": [
+      [
+        "en",
+        "es",
+        "fr"
+      ],
+      [
+        "ko"
+      ]
+    ],
+    "08_charging_methods.rst": [
+      [
+        "en",
+        "fr",
+        "it",
+        "ko",
+        "uk"
+      ],
+      [
+        "de"
+      ],
+      [
+        "es"
+      ],
+      [
+        "pt-BR"
+      ]
+    ],
+    "09_storage_and_maintenance.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ko",
+        "pt-BR",
+        "uk"
+      ]
+    ],
+    "10_troubleshooting.rst": [
+      [
+        "de",
+        "en",
+        "it",
+        "pt-BR",
+        "uk"
+      ],
+      [
+        "es",
+        "fr",
+        "ko"
+      ]
+    ],
+    "11_warranty.rst": [
+      [
+        "de",
+        "it",
+        "ko",
+        "pt-BR",
+        "uk"
+      ],
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "12_app_setup_je2000e.rst": [
+      [
+        "de",
+        "it",
+        "uk"
+      ],
+      [
+        "es"
+      ],
+      [
+        "fr"
+      ]
+    ],
+    "12_app_setup_placeholder.rst": [
+      [
+        "de",
+        "en",
+        "it",
+        "ko",
+        "pt-BR",
+        "uk"
+      ],
+      [
+        "es"
+      ],
+      [
+        "fr"
+      ]
+    ],
+    "99_back_cover.rst": [
+      [
+        "en"
+      ]
+    ],
+    "charging.rst": [
+      [
+        "de",
+        "it"
+      ],
+      [
+        "en"
+      ],
+      [
+        "es"
+      ],
+      [
+        "fr"
+      ],
+      [
+        "ko"
+      ],
+      [
+        "pt-BR"
+      ],
+      [
+        "uk"
+      ]
+    ]
+  },
+  "page_solar": {
+    "01_safety_tips.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ]
+    ],
+    "02_whats_in_the_box.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ]
+    ],
+    "03_product_views.rst": [
+      [
+        "de",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "04_unfolding.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ]
+    ],
+    "05_folding.rst": [
+      [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ]
+    ],
+    "06_charging_connections.rst": [
+      [
+        "de",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "07_angle_and_device.rst": [
+      [
+        "de",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "09_warranty.rst": [
+      [
+        "de",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pl",
+        "pt",
+        "uk"
+      ],
+      [
+        "en"
+      ]
+    ]
+  },
+  "page_fridgeguard": {
+    "00_preface.rst": [
+      [
+        "en"
+      ]
+    ],
+    "01_fcc.rst": [
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "02_whats_in_the_box.rst": [
+      [
+        "en",
+        "es",
+        "fr"
+      ]
+    ],
+    "03_product_overview.rst": [
+      [
+        "en",
+        "es",
+        "fr"
+      ]
+    ],
+    "05_operation_guide.rst": [
+      [
+        "en",
+        "es",
+        "fr"
+      ]
+    ],
+    "06_ups_mode.rst": [
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "09_storage_and_maintenance.rst": [
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "11_warranty.rst": [
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "12_app_setup.rst": [
+      [
+        "es",
+        "fr"
+      ],
+      [
+        "en"
+      ]
+    ],
+    "charging.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "charging_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "connections.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "connections_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "installation.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "installation_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "lcd_display.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "lcd_display_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "maintenance.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "maintenance_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "preface.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "safety.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "safety_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "symbols.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "symbols_en.rst": [
+      [
+        "en"
+      ]
+    ],
+    "troubleshooting.rst": [
+      [
+        "es",
+        "fr"
+      ]
+    ],
+    "troubleshooting_en.rst": [
+      [
+        "en"
+      ]
+    ]
+  }
 }

@@ -13,15 +13,18 @@ from typing import Any, Callable, Iterable, Iterator, Mapping, Sequence, TypeGua
 
 from bs4 import BeautifulSoup, Comment, Tag
 
+from tools.component_specs.app_qr_source import parse_app_qr_download_html
 from tools.component_specs.app_html import (
     parse_app_add_device_html,
     parse_app_download_html,
     parse_app_inline_control_html,
+    parse_declared_app_downloads,
 )
 from tools.component_specs.authored_tables_html import (
     normalize_declared_specifications,
     parse_authored_tables,
 )
+from tools.component_specs.fcc_declaration import declares_fcc
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
 from tools.component_specs.plain_inventory import is_plain_inventory, plain_inventory_spec
@@ -33,12 +36,12 @@ from tools.component_specs.manual_table_html import (
     parse_troubleshooting_html,
 )
 from tools.component_specs.model import ComponentSpec
-from tools.component_specs.operation_html import parse_operation_components
+from tools.component_specs.operation_html import parse_operation_components, parse_declared_operations
 from tools.component_specs.operation_tables_html import parse_operation_tables_html
 from tools.component_specs.overview_html import parse_overview_html
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.registry import require_valid_component_spec
-from tools.component_specs.reference_figure_html import parse_reference_figure_html
+from tools.component_specs.reference_figure_html import parse_reference_figure_html, parse_declared_references
 from tools.component_specs.warranty_html import parse_warranty_html
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, html_to_flow_nodes
@@ -48,7 +51,6 @@ from tools.utils.path_utils import repo_root
 from tools.web.composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
-    supports_preface_contract,
 )
 from tools.web.composite_manifest import WebCompositeManifest
 
@@ -168,6 +170,43 @@ def _authored_claims(
     soup: BeautifulSoup, source_path: Path, language: str, claimed: set[int],
 ) -> list[ComponentClaim]:
     claims: list[ComponentClaim] = []
+    for spec, owned, artwork, discarded in parse_declared_operations(
+        soup, source_path=source_path, language=language,
+    ):
+        claim = ComponentClaim(spec=spec, owned_nodes=owned,
+                               asset_tags=(("artwork", artwork),), discard_nodes=discarded)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+    for spec, owned, assets, paths in parse_declared_references(
+        soup, source_path=source_path, language=language,
+    ):
+        claim = ComponentClaim(spec=spec, owned_nodes=owned, asset_tags=assets, asset_paths=paths)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+    for table in soup.select("table.hb-source-lcd-mode"):
+        images = table.select("img")
+        if len(images) != 1:
+            raise ValueError(f"{source_path}: declared LCD mode needs exactly one artwork")
+        _claim_lcd_mode(
+            soup, source_path, language,
+            {"image_key": str(images[0].get("src") or ""), "body_rows": 6},
+            claimed, claims,
+        )
+    for spec, owned, assets, paths in parse_declared_app_downloads(
+        soup, source_path=source_path, language=language,
+    ):
+        claim = ComponentClaim(spec=spec, owned_nodes=owned,
+                               asset_tags=assets, asset_paths=paths)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+    for image in soup.select("img.hb-source-app-qr"):
+        spec, owned, assets, _ = parse_app_qr_download_html(
+            soup, config={"image_key": str(image.get("src") or "")},
+            source_path=source_path, language=language,
+        )
+        claim = ComponentClaim(spec=spec, owned_nodes=owned, asset_tags=assets)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
     normalize_declared_specifications(soup, source_path)
     for spec, table in parse_authored_tables(soup, source_path=source_path, language=language):
         claim = ComponentClaim(spec=spec, owned_nodes=(table,))
@@ -624,11 +663,7 @@ def _claim_fcc(
     claims: list[ComponentClaim],
 ) -> None:
     fcc_config = contract["fcc"]
-    if (
-        isinstance(fcc_config, Mapping)
-        and _matches_source(source_path, fcc_config.get("source_patterns", []))
-        and supports_preface_contract(source_path, dict(contract))
-    ):
+    if isinstance(fcc_config, Mapping) and declares_fcc(soup, source_path, fcc_config):
         fcc_parsed = parse_fcc_html(
             soup,
             source_path=source_path,

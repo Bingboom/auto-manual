@@ -1,0 +1,35 @@
+{
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    5532.61328125,
+    1981.72998046875,
+    5848.61328125,
+    2135.22998046875
+  ],
+  "sha256": "bac101b77b69b40aef000d82fe7c58fda8faba9197b091d34169504842384729",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_solar_live.json",
+  "retained_text": "DC8020",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        78.92170193829115,
+        67.24618917956026,
+        20,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        46.920892256724684,
+        78.49304000407166,
+        48.79335813884494,
+        13.258665004071663
+      ],
+      "fill": "#ebebec"
+    }
+  ],
+  "policy": "Native note backdrop removed within its isolated white-background region; shared CSS live-pill draws the note with centered editable text. Outer frame, DC8020 and all device artwork retained."
+}

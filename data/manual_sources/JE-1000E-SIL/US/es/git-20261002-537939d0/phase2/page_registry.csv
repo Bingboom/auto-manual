@@ -1,0 +1,2 @@
+page_id,order,page_type,sku_scope,langs,template,content_query,asset_ref,enabled
+spec,13,csv_page,ALL,es,spec_template.rst,page_id=spec,,1
