@@ -45,7 +45,7 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertEqual(view["problems"], [])
         self.assertEqual(len(view["stages"]), 9)
         self.assertEqual([s["status"] for s in view["stages"]],
-                         ["recorded"] * 3 + ["in_progress", "ongoing", "recorded", "in_progress", "ongoing", "planned"])
+                         ["recorded"] * 3 + ["in_progress", "ongoing", "recorded", "recorded", "ongoing", "planned"])
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], DATA["stages"][0]["summary"])
         self.data["stages"][0]["summary"] = "源文件中的修订立即出现在展示中"

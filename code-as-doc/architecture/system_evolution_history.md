@@ -219,7 +219,7 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 增加规则文件不等于规则已落实，子项完成也不自动代表整条 Workstream 结案。
 详细日期、分项和保留理由见 [优化日志](../code_optimization_log.md)。
 
-### 环 14 · Machine Surface（2026-10-01 起，正在建设）
+### 环 14 · Machine Surface（2026-10-01 起；EU Phase 1 于 10-04 验收）
 
 已发布网页不仅给人读，也开始提供供程序精确检索的语义数据。
 [EU 查询契约](../dev/eu_manual_query.md) 建立 HTML 语义提取、
@@ -227,9 +227,9 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 10-04 的 [Machine Corpus 方案](../dev/machine_readable_manual_corpus.md) 将
 版本身份、块级来源、生成模式、清单和 freshness 分阶段建设。
 #1434 合入身份与来源；#1435 合入逐版本清单与新鲜度校验；
-#1436 合入工作台覆盖面板。它们是工程落点，代表手册人工抽查与整体线上验收
-仍按方案分别完成，
-不能用两个 PR 合入替代整体线上验收。
+#1436 合入工作台覆盖面板；#1437 的[代表试点验收](../dev/machine_readable_pilot_audit.md)
+及 #1439 的线上核验记录确认 EU Phase 1 已完成。工程合入、人工抽查和线上核验
+各有独立证据，验收范围限于 EU 机读语料；知识观察与回流 Phase 2／3 尚未立项。
 **不变量**：机读面只能由正式内容派生；当前明确标为 `html_compatibility`，
 图片仅消费 alt、不冒充 OCR；机器结论保留版本、章节、块和来源，
 并在使用前核验当前部署。它是新的消费面，尚不是知识回流闭环。
@@ -379,15 +379,15 @@ stages:
     invariant: 共享语义约束组件；每个版本仍有自己的权威源与验收证据。
     evidence: ["file:auto-manual:code-as-doc/dev/eu_shared_component_rollout_2026-09.md", "pr:auto-manual#1351", "pr:auto-manual#1431"]
   - id: machine
-    period: 2026-10-01 起
-    status: in_progress
+    period: 2026-10-01 ～ 10-04 · EU Phase 1 验收
+    status: recorded
     title: 让程序和 AI 查找说明书内容
     metaphor: 查到具体内容，也能找到原文出处
     summary: 把网页手册的文字和表格按章节整理，供程序和 AI 查询。例如，查找某型号的充电说明时，可以找到对应原文、章节和手册版本，并附上网页出处。
     flow: [已发布的网页手册, 按章节整理内容, 记录版本与出处, 提供给程序和 AI 查询]
-    detail: 目前从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、生成版本清单并检查更新（#1435）、在工作台显示覆盖情况（#1436）的代码已合入；代表手册人工抽查与整体线上验收仍待完成。图片只保留已有的文字说明，不识别图片中的文字。
+    detail: 从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、版本清单与更新检查（#1435）、工作台覆盖情况（#1436）、代表手册人工抽查（#1437）及线上核验（#1439）已有证据，EU Phase 1 于 10-04 验收完成。知识观察与回流 Phase 2／3 尚未立项。图片只保留已有的文字说明，不识别图片中的文字。
     invariant: 查询内容来自正式发布的手册；修改仍回到原有文档、模板或数据，再重新生成。
-    evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
+    evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "pr:auto-manual#1437", "pr:auto-manual#1439", "file:auto-manual:code-as-doc/dev/machine_readable_pilot_audit.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
   - id: shared_ir
     period: 2026-09 起 · 随网页手册录入持续完善
     status: ongoing
