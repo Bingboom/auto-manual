@@ -5,6 +5,9 @@ Owner: the Auto-Manual maintainer. Scope approved by the
 operator on 2026-10-01: every EU manual published on Read the Docs, content
 export, read-only retrieval and integration with the already connected DingTalk
 bot. This is a new feature, separate from Workstream Y refactors.
+Planned extensions (variant identity, machine-surface manifest, freshness and
+later knowledge extraction) are tracked in
+[`machine_readable_manual_corpus.md`](machine_readable_manual_corpus.md).
 
 ## Discovery and implementation contract
 
