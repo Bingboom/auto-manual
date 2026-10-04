@@ -10,6 +10,7 @@ from unittest.mock import patch
 from tools.manual_knowledge.export import ARTIFACT, make_corpus, write_knowledge
 from tools.manual_knowledge.html import extract_sections
 from tools.manual_knowledge.identity import callout_severity, variant_identity
+from tools.manual_knowledge.manifest import MANIFEST, check_freshness, main as freshness_main
 from tools.rtd.publication_catalog import _provenance, publication_identity
 from tools.rtd.deployment_receipt import write_deployment_receipt
 from tools.rtd.portal import setup
@@ -276,3 +277,81 @@ class IdentityProvenanceTests(unittest.TestCase):
             self.assertEqual(document['source']['frozen_source_sha256'], 'b' * 64)
             self.assertEqual(document['source']['html_sha256'], document['html_sha256'])
             self.assertEqual(document['source']['published_at'], '2026-10-02')
+
+
+class ManifestFreshnessTests(unittest.TestCase):
+    def build(self, root, body='<main><h1 id="specs">Specs</h1><div class="admonition"><p class="admonition-title">'
+                                'Warning</p><p>Hot.</p></div><img src="a.png"/></main>'):
+        source = root / 'publish' / 'web'
+        source.mkdir(parents=True, exist_ok=True)
+        out = root / 'html'
+        url = 'MODEL/EU/en/md/manual.html'
+        (out / url).parent.mkdir(parents=True, exist_ok=True)
+        (out / url).write_text(body)
+        (source.parent / 'publish_manifest.json').write_text(json.dumps({'built_at': '2026-10-01', 'targets': [
+            {'region': 'EU', 'route': 'MODEL/EU/en', 'manual': 'md/manual.md'}]}))
+        products = [{'model': 'MODEL', 'region': 'EU', 'name': 'Product', 'publications': [
+            {'url': url, 'lang': 'en', 'language_scope': 'single', 'version': '2.6'}]}]
+        app = SimpleNamespace(srcdir=source, outdir=out, builder=SimpleNamespace(format='html'))
+        with patch('tools.rtd.portal.portal_data', return_value=({}, products)):
+            write_knowledge(app, None)
+            write_deployment_receipt(app, None)
+        return out, url
+
+    @staticmethod
+    def reader(out):
+        return lambda path: (out / path).read_bytes()
+
+    def test_manifest_is_sealed_by_the_receipt_and_current_build_is_fresh(self):
+        with TemporaryDirectory() as tmp:
+            out, url = self.build(Path(tmp))
+            receipt = json.loads((out / 'manual-deployment.json').read_text())
+            manifest = json.loads((out / MANIFEST).read_text())
+            self.assertEqual(receipt['files'][MANIFEST], hashlib.sha256((out / MANIFEST).read_bytes()).hexdigest())
+            self.assertEqual(manifest['corpus']['sha256'], receipt['files'][ARTIFACT])
+            variant = manifest['variants'][0]
+            self.assertEqual((variant['manual_variant_id'], variant['generation_mode'], variant['status']),
+                             ('MODEL/EU/en@2.6', 'html_compatibility', 'fresh'))
+            self.assertEqual(variant['counts']['callouts_by_severity'], {'warning': 1})
+            self.assertEqual(variant['counts']['images_without_alt'], 1)
+            report = check_freshness(self.reader(out), receipt_name='manual-deployment.json')
+            self.assertEqual((report['status'], report['problems']), ('fresh', []))
+            self.assertEqual(report['totals'], {'fresh': 1, 'stale': 0, 'failed': 0, 'unavailable': 0})
+            self.assertEqual(freshness_main(['--site', str(out)]), 0)
+
+    def test_cached_manifest_becomes_stale_after_html_changes(self):
+        with TemporaryDirectory() as tmp:
+            out, _ = self.build(Path(tmp))
+            old = json.loads((out / MANIFEST).read_text())
+            self.build(Path(tmp), body='<main><h1 id="specs">Specs</h1><p>Updated.</p></main>')
+            report = check_freshness(self.reader(out), receipt_name='manual-deployment.json', manifest=old)
+            self.assertEqual(report['totals']['stale'], 1)
+            self.assertEqual(report['status'], 'not_fresh')
+            cached = Path(tmp) / 'old.json'
+            cached.write_text(json.dumps(old))
+            self.assertEqual(freshness_main(['--site', str(out), '--manifest', str(cached)]), 1)
+            self.assertEqual(check_freshness(self.reader(out), receipt_name='manual-deployment.json')['status'],
+                             'fresh')
+
+    def test_tampered_missing_and_unavailable_surfaces_are_not_fresh(self):
+        with TemporaryDirectory() as tmp:
+            out, url = self.build(Path(tmp))
+            corpus = json.loads((out / ARTIFACT).read_text())
+            corpus['documents'][0]['sections'][0]['blocks'][0]['text'] = 'edited by hand'
+            (out / ARTIFACT).write_text(json.dumps(corpus))
+            report = check_freshness(self.reader(out), receipt_name='manual-deployment.json')
+            self.assertIn('corpus bytes differ from the deployment receipt', report['problems'])
+            self.assertEqual(report['totals']['failed'], 1)
+            (out / ARTIFACT).unlink()
+            report = check_freshness(self.reader(out), receipt_name='manual-deployment.json')
+            self.assertTrue(any('unreadable' in p for p in report['problems']))
+            receipt = json.loads((out / 'manual-deployment.json').read_text())
+            del receipt['files'][url]
+            (out / 'manual-deployment.json').write_text(json.dumps(receipt))
+            report = check_freshness(self.reader(out), receipt_name='manual-deployment.json')
+            self.assertEqual(report['totals']['unavailable'], 1)
+            manifest = json.loads((out / MANIFEST).read_text())
+            manifest['variants'][0]['status'] = 'fresh-by-hand'
+            (out / MANIFEST).write_text(json.dumps(manifest))
+            self.assertIn('manifest bytes differ from the deployment receipt',
+                          check_freshness(self.reader(out), receipt_name='manual-deployment.json')['problems'])
