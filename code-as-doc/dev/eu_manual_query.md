@@ -68,6 +68,9 @@ after a refresh failure.
   `manual_variant_id`, `revision`/`revision_kind`, `machine_surface`, `source`,
   per-block `block_id`/`source_ref`, callout `severity`); see
   [`machine_readable_manual_corpus.md`](machine_readable_manual_corpus.md) §5.2–§5.4.
+- The same build writes `machine_surface_manifest.json` (per-variant hashes,
+  counts, status), sealed by the deployment receipt; check freshness with
+  `python -m tools.manual_knowledge.manifest --base-url <site>` (§5.5–§5.6).
 - Verified single-language editions retain their source locale. Eight baseline
   legacy editions remain queryable with `language: null`; their declared `en`
   metadata is not promoted into a verified language assertion.

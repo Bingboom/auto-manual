@@ -1,6 +1,6 @@
 # 欧规说明书机读内容与知识抽取建设
 
-Status: active（P1-1 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
+Status: active（P1-1 已合入，P1-2 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
@@ -187,6 +187,11 @@ Native Machine Surface。工作台「工作入口」图已标注
 
 状态与生成模式分开记录。
 
+实现（P1-2）：`tools/manual_knowledge/manifest.py`。清单在
+`write_knowledge` 里紧随语料写出，早于部署回执，因此回执的 `files` 自动包含
+清单与语料的哈希，回执代码无需改动。`surface_sha256` 是该版本文档对象规范
+JSON 的哈希；构建时所有版本均为 `fresh`。
+
 ### 5.6 新鲜度
 
 ```
@@ -195,7 +200,16 @@ Published HTML hash ↔ Machine Surface source hash → match: fresh / mismatch:
 
 机读面与网页同一次构建生成，构建时天然一致；`stale` 主要用于缓存副本和下游
 产物（Phase 2 的知识记录引用的网页哈希与当前不一致）。提供校验脚本，用当前
-部署回执判断任一机读产物是否 stale。Agent 默认不得把 stale 内容当作当前正式
+部署回执判断任一机读产物是否 stale。
+
+```
+python -m tools.manual_knowledge.manifest --base-url https://ht-doc.readthedocs.io
+python -m tools.manual_knowledge.manifest --site <构建输出目录> [--manifest <缓存的旧清单>]
+```
+
+逐版本判定：回执里网页哈希与清单不同 → `stale`；语料缺该版本或字节不同 →
+`failed`；网页已不在部署中 → `unavailable`。清单或语料本身与回执不符记为
+problems。全部 fresh 时退出码 0，否则 1。Agent 默认不得把 stale 内容当作当前正式
 内容回答（现有插件已在回执不一致时拒绝回答）。
 
 ### 5.7 Workspace

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from tools.manual_knowledge.html import extract_sections, identity
 from tools.manual_knowledge.identity import MACHINE_SURFACE, variant_identity
+from tools.manual_knowledge.manifest import MANIFEST, build_manifest
 from tools.rtd.deployment_receipt import MAX_FILE_BYTES, source_fingerprint
 from tools.utils.path_utils import PathSegments
 
@@ -91,7 +92,14 @@ def write_knowledge(app, exception) -> None:
     data = (json.dumps(corpus, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode()
     if len(data) > MAX_FILE_BYTES:
         raise ValueError("EU query corpus exceeds the deployment artifact size limit")
-    destination = Path(app.outdir) / ARTIFACT
+    _write_atomic(Path(app.outdir) / ARTIFACT, data)
+    # Same build, written before the receipt so the receipt hashes both files.
+    manifest = build_manifest(corpus, data, artifact=ARTIFACT)
+    _write_atomic(Path(app.outdir) / MANIFEST,
+                  (json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=1) + "\n").encode())
+
+
+def _write_atomic(destination: Path, data: bytes) -> None:
     temporary = destination.with_suffix(".json.tmp")
     temporary.write_bytes(data)
     temporary.replace(destination)
