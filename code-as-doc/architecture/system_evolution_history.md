@@ -17,9 +17,11 @@ Updated: 2026-10-04
 维护规则：新增"环"、已记录环的关键验收或收官证据变化时更新本文；普通功能与修复不记。
 本文中的数量是注明日期和口径的历史快照，不是实时仪表盘。
 已形成的能力、仍在验收的建设、未来方向分别标注；合入不等于部署或线上验收。
+截至 2026-10-04，当前最成熟的是 Web 文档的生成、审核、发布与维护链条；
+IDML 文件用于印刷版试生产，相关工具和版式测试完成不等于正式印刷交付成熟。
 
 RTD `/workspace/system/` 的「系统演变」读取本文 §7 的同源摘要，
-以“说明书工厂”的类比讲给人看。摘要随历史正文一起维护，不另设网页历史源。
+按工作台能力逐步扩展的过程讲述。摘要随历史正文一起维护，不另设网页历史源。
 长期方向仍归 Strategy，当前任务状态仍归路线图和执行台账。
 
 ## 1. 一行内核（2026-02-15，`fa988f52`）
@@ -57,8 +59,9 @@ flowchart LR
   G --> R[评审层 docs/_review]
   R -.批准后按对应编辑面回源.-> F
   G --> OUT1[Sphinx → PDF/Word/HTML]
-  G --> OUT2[IDML → InDesign → 印刷PDF]
-  OUT1 & OUT2 --> REL[发布<br/>manifest·血缘·tag]
+  G --> OUT2[IDML → InDesign → 印刷PDF<br/>试生产]
+  OUT1 --> REL[发布<br/>manifest·血缘·tag]
+  OUT2 -.试制记录.-> REL
   Q[飞书构建队列] -.驱动.-> ASM
   REL --> WEB[冻结 Web 发布 → RTD HTML]
   WEB --> MACHINE[HTML 语义提取<br/>Machine JSON + Manifest]
@@ -118,13 +121,15 @@ CSV 不再手编。`tools/sync_data.py`、`data/phase2/`、
 资产状态门入 publish 07-27（#722）。
 **不变量**：每类"印出去无法撤回"的错误都要有一道构建期的门。
 
-### 环 7 · 印刷线（2026-07-04 ～ 08-06）
+### 环 7 · IDML 与印刷试生产（2026-07-04 ～ 08-06，工程建设记录）
 
 Word 之外长出 InDesign 印刷线。IDML 导出 MVP 07-04（#548），
 组件化拆包 07-05（#577-585），真 InDesign finalize 07-13（#648），
 参考版式契约 07-17（#675），逐页视觉对齐战役 07-26/27（#711-729，
 #729 宣告收官），pin 护栏进 CI 07-27（#724），契约 v2 分域
 （内容/装配/样式 fail-closed + 快照溯源不阻塞）08-06（#886）。
+以上是导出、版式和测试阶段的工程落点；截至 2026-10-04，IDML 仍用于试生产，
+不代表已形成成熟的正式印刷交付链条。
 **不变量**：操作者批准的参考版式是唯一真相，契约哈希钉死每一页；
 "绿"必须可以从干净检出复现。
 
@@ -154,15 +159,27 @@ Word 之外长出 InDesign 印刷线。IDML 导出 MVP 07-04（#548），
 新区域=一条命令、CI 目标从 configs 自动推导、队列并发有租约语义。
 **不变量**：一切随 config 派生——加产线不加代码。
 
-### 环 11 · 共享语义与组件准入（2026-08 ～ 09）
+### 环 11 · 从样式组件化到整本 Web 复用（2026-07 起）
 
-多格式、多产品不能依赖每条产线各自解释一遍内容。
-Manual IR、ComponentSpec 和产品骨架逐步承接语义、组件角色和资产引用；
+常用版式逐步从每页单独设置，转为可复用的标题、警示框、规格表、符号与 LCD 组件。
+7 月印刷侧组件拆包形成边界；[共享样式合同](../../docs/renderers/contracts/STYLE_DEFINITION.md)
+与[组件应用指南](../dev/style_component_usage_guide.md)明确由组件统一管理样式，
+新型号和语言传入自己的内容与批准的变体，不另复制一套页面绘制代码。
+这是样式组件化的起点。随着网页说明书录入量增加，真实型号、语言和手册差异
+不断推动共用内容结构与组件完善。Manual IR、ComponentSpec 和产品骨架逐步
+承接正文、表格、步骤、组件角色和资产引用；
 9 月共享组件准入与原生导入把这些约束用于真实 Web 交付，
 14 本手册的集中 rollout 在 09-30 完成（#1339–1342，Hello-Docs #157）。
 [rollout 验收](../dev/eu_shared_component_rollout_2026-09.md)
 记录了 14 个线上页面对比、217 次图片检查和 28 个桌面/手机案例。
-这不是所有格式已完全统一的证明：布局、分页、字体和印刷交付仍各自验收。
+Web 整本样式与组件复用已经形成，整本 IR 共享随网页手册积累持续完善。
+现有 Web 入口先构建冻结整本包，再从包生成网页；包可脱离 RST、CSV 重放。
+Word 仍逐页转换 RST，IDML 从 prepared RST 另建 IR。三者已有公共组件接口，
+但直接消费同一份冻结整本包仍待跨格式迁移；布局、分页和交付分别验收。
+代码边界见 [Web 源适配](../../tools/web/document_source.py)、
+[Web 整本消费](../../tools/web/document_ir.py)、
+[Word/Web 入口分支](../../tools/word/bundle_html.py)与
+[IDML 源适配](../../tools/idml/ir_projection.py)。
 **不变量**：语义与组件角色由共享契约约束，各 Renderer 对原生格式负责；
 声明了组件就要通过准入，不能在另一种语言中静默退化。
 稳定边界见 [Strategy §4.6](System%20Evolution%20Strategy.md#46-cross-layer-operations-feedback-and-shared-intake)。
@@ -183,6 +200,11 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 快照口径见 [机读语料方案 §2](../dev/machine_readable_manual_corpus.md#2-当前现实2026-10-04-线上实测)。
 
 ### 环 13 · 高速扩张后的工程治理（2026-09-28 ～ 10-03，Workstream Y）
+
+维护与重构贯穿系统建设过程，并非从 09-28 才开始。优化日志已有 03-08
+初始重构、04-05～08 构建与队列拆分及质量检查、05-30 集中路径管理等多轮记录。
+本环记录 9～10 月的一轮集中治理；RTD 摘要将历次维护作为贯穿全过程的横向路标，
+与能力演变阶段分别呈现。
 
 产线增长也带来了复杂函数、门面临时接线、散落模块和环境漂移。
 [Workstream Y](../dev/code_quality_iterability_plan.md) 将治理拆成边界清晰的任务，
@@ -245,7 +267,8 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 
 ## 6. 下一阶段（方向，不计为已完成的历史环）
 
-**Shared IR：建设中央标准半成品层。** 现有 IR 与组件共享已经形成部分能力；
+**Shared IR：从已实现的 Web 整本共享扩展到更多输出端。** Web 整本复用已经实现，
+IR 与共享组件随网页手册录入持续完善；
 长期线是扩大共同语义的覆盖，让 Web、Word、IDML 和 Machine Surface 直接消费
 同一份公共语义，各自负责表达。逐步替换 HTML → Machine 的兼容路径，
 用现有机读语料作语义迁移基线，而不是一次重写所有 Renderer。
@@ -270,7 +293,10 @@ flowchart LR
 
 以下是本文面向公众的摘要，不是独立台账。事实变化先更新上面的历史与证据，
 再同步这段摘要；构建只读此块，所有文案按纯文本转义。
-`recorded` 表示历史能力已形成，不表示所有产品、格式或后续治理均验收完成；
+`stages` 记录九个能力演变阶段；`crosscutting` 记录贯穿全过程的持续工作，
+用不编号的横向路标呈现，维护与重构不放入单一时间阶段。
+`recorded` 显示为“已完成”，表示该阶段能力已形成，不表示所有产品、格式或后续治理均验收完成；
+`ongoing` 显示为“持续开展”，表示已有基础但仍需持续维护和改进；
 `in_progress` 和 `planned` 明确区分当前建设与未来方向。数量如需展示，
 须写在附日期的历史说明中，不作为实时计数。
 
@@ -278,14 +304,25 @@ flowchart LR
 ```yaml
 schema: system-evolution/v1
 updated_on: 2026-10-04
-title: 从一条自动化脚本，到持续运行的说明书工厂
-intro: 每次扩建都来自真实生产中的问题。从让第一份说明书自动生成，到让过去的生产结果帮助下一次生产。
+title: 从一条自动化脚本，到持续演进的说明书工作台
+intro: 从自动生成一份说明书开始，逐步串联评审、发布与维护。当前 Web 文档链条最成熟，IDML 印刷版仍在试生产；内容和经验的积累继续支持后续工作。
+crosscutting:
+  - id: engineering
+    period: 贯穿系统建设全过程
+    status: ongoing
+    title: 持续维护与重构
+    metaphor: 随系统建设反复整理，让后续修改与扩展更稳妥
+    summary: 在整个系统建设过程中，随功能增加和问题暴露，多次整理代码结构、明确各部分职责、补充测试和自动检查。维护与重构伴随各项能力建设持续开展。
+    flow: [3 月 · 初始结构整理, 4 月 · 构建与队列拆分, 5 月 · 统一路径管理, 9～10 月 · 复杂度与模块治理]
+    detail: 优化日志记录了 03-08 的初始重构、04-05～08 的入口与构建／队列拆分及质量检查、05-30 的集中路径管理。09-28 至 10-03 是其中一轮集中治理：CC≥50 的函数 31 → 0，测试 facade patch 363 → 11，tools 顶层 .py 398 → 183；模块迁入包，11 处接线有保留理由。这些是各轮历史记录，后续仍继续维护和改进。
+    invariant: 每轮重构都要用相应测试、新旧输出或真实目标验证，确认既有行为保持稳定。
+    evidence: ["file:auto-manual:code-as-doc/code_optimization_log.md", "file:auto-manual:code-as-doc/dev/code_quality_iterability_plan.md"]
 stages:
   - id: kernel
     period: 2026-02 ～ 03
     status: recorded
-    title: 最小生产线
-    metaphor: 第一台机器跑起来
+    title: 自动生成第一份说明书
+    metaphor: 数据与模板驱动的确定性构建
     summary: 把安全条目交给数据和模板，让同样的输入稳定生成同样的说明书。
     flow: [CSV + RST 模板, RST, PDF]
     detail: 02-15 的内核先生成 PDF，03-05 才加入 Word。多机型、区域入口随后出现，生产原则开始从手工复制转为确定性构建。
@@ -295,8 +332,8 @@ stages:
     period: 2026-03 ～ 05
     status: recorded
     title: 多产品、多区域、多格式
-    metaphor: 小作坊开始增加产线
-    summary: 同一套生产方法要服务不同产品和市场，差异逐步交给配置、数据与选页规则。
+    metaphor: 用配置表达差异，复用数据与模板
+    summary: 同一套构建方法要服务不同产品和市场，差异逐步交给配置、数据与选页规则。
     flow: [数据 + 家族模板, 目标装配, PDF / Word / HTML]
     detail: 从单一目标扩展到型号、区域和语言的组合；家族配置与 manifest 选页减少了逐机型复制模板和配置的需要。
     invariant: 加目标表达差异，优先复用已有结构。
@@ -304,66 +341,76 @@ stages:
   - id: workflow
     period: 2026-03 ～ 07
     status: recorded
-    title: 评审、队列与回写
-    metaphor: 建立生产和返修流程
-    summary: 生成文件之外，还要让人能审核、让任务能排队、让修改回到可追溯的编辑面。
-    flow: [正式源, 构建与检查, 评审, 受控回写]
-    detail: 评审层先于云数据出现；数据上云与队列同一提交形成。后来工程面和业务面分开，评审回写、模板同步和正式源写入各有边界。
-    invariant: 修改沿声明的编辑面回流，再构建和过门。
+    title: 生成后审核，修改后再生成
+    metaphor: 从生成文件，扩展到审核和修改的完整流程
+    summary: 提交任务后，系统安排说明书生成和检查。审核人员提出修改，按流程确认后再生成说明书；每次修改都有记录。
+    flow: [提交生成任务, 生成与检查, 人工审核, 确认修改, 重新生成]
+    detail: 最初先让审核人员能在评审文档中提出修改，后来把数据接入飞书，让生成任务按队列自动处理。审核文档中的修改先保留在评审版本；需要更新共用模板或正式数据时，再按对应流程确认，不能直接覆盖正式内容。
+    invariant: 修改有记录，更新正式内容须经确认，重新生成后再次检查。
     evidence: ["pr:auto-manual#21", "pr:auto-manual#343", "pr:auto-manual#360", "file:auto-manual:user-guide/two_plane_map.md"]
   - id: production
-    period: 2026-07 ～ 08
-    status: recorded
-    title: 印刷线、资产与发布追溯
-    metaphor: 建立印刷车间和出货记录
-    summary: 排版、插图和交付包都进入生产管理；一次发布要能说明用了什么、如何复现。
-    flow: [受控内容与资产, IDML / 文档渲染, 验收, 冻结发布]
-    detail: InDesign 印刷线采用批准的参考版式；资产有身份、状态和哈希；发布记录绑定数据、工具和交付字节。自动化不能代替原生格式验收。
-    invariant: 不过门不出货，发布可追溯、可复现。
+    period: 2026-07 起
+    status: in_progress
+    title: 印刷版试生产
+    metaphor: 尝试生成 IDML，在 InDesign 中检查排版
+    summary: IDML 文件目前用于试生产，还需要检查字体、分页、插图和最终印刷效果。这条链仍在验证和改进，尚未达到 Web 文档链条的成熟度。
+    flow: [准备内容与插图, 生成 IDML, InDesign 排版检查, 试制验证]
+    detail: 已有 IDML 导出、参考版式、插图管理和版本记录能力，也保留了工程测试证据。这些支持试制，不代表正式印刷交付已完成；排版和最终印刷效果仍需逐项验证。
+    invariant: 工具和测试完成不等于交付成熟；试制结果须经过排版与印刷验证。
     evidence: ["pr:auto-manual#548", "pr:auto-manual#722", "pr:auto-manual#837"]
+  - id: style_components
+    period: 2026-07 起
+    status: ongoing
+    title: 开始建设可复用的样式组件
+    metaphor: 把常用版式整理成组件，供后续页面调用
+    summary: 开始把标题、警示框、规格表等常用版式从页面代码中提取出来，由组件统一管理样式。新页面提供自己的文字和数据，逐步减少重复设置版式的工作。
+    flow: [整理常用版式, 建立样式组件, 在页面中调用, 逐步扩大复用]
+    detail: 这个阶段记录样式组件化建设的起点：7 月印刷侧组件拆包开始明确组件与页面编排的边界。后续共享样式合同和组件应用指南继续完善规则；随着网页手册录入，整本 Web 的内容与组件复用逐步成熟，见整本 IR 共享记录。
+    invariant: 页面负责安排组件的位置和顺序，组件负责自己的内部样式。
+    evidence: ["file:auto-manual:docs/renderers/contracts/STYLE_DEFINITION.md", "file:auto-manual:code-as-doc/dev/style_component_usage_guide.md", "pr:auto-manual#577"]
   - id: corpus
     period: 2026-08 ～ 10
     status: recorded
-    title: 真实手册规模化
-    metaphor: 工厂扩大，也积累了产品和经验
-    summary: 共享语义与组件支持更多语言版本，Web 手册成为持续维护的内容集合，工作台让入口和证据可观察。
-    flow: [共享语义与组件, 多语言手册, Web Corpus, Workspace]
+    title: Web 文档发布与内容积累
+    metaphor: 当前最成熟的文档链条，持续维护已发布内容
+    summary: Web 文档已形成生成、审核、发布和持续更新的链条。随着型号和语言版本增加，工作台集中呈现已发布手册的入口、版本与来源。
+    flow: [多语言 Web 文档, 发布与更新, 工作台目录, 版本与来源]
     detail: 09-30 的 14 本手册 rollout 留下线上页面与桌面、手机验收证据。10 月工作台继续标出每个版本的内容权威源；发布规模、语料规模和能力成熟度分别呈现。
     invariant: 共享语义约束组件；每个版本仍有自己的权威源与验收证据。
     evidence: ["file:auto-manual:code-as-doc/dev/eu_shared_component_rollout_2026-09.md", "pr:auto-manual#1351", "pr:auto-manual#1431"]
-  - id: engineering
-    period: 2026-09-28 ～ 10-03
-    status: recorded
-    title: Workstream Y · 工程治理
-    metaphor: 重新铺电、划分车间、安装护栏
-    summary: 产线高速增长后，需要降低接线和维修成本，让工厂能继续安全扩建。
-    flow: [发现复杂度与接线债务, 分包与拆分, 行为对比, 持续护栏]
-    detail: 09-28 基线至 10-03 收官：CC≥50 的函数 31 → 0，测试 facade patch 363 → 11，tools 顶层 .py 398 → 183。模块迁入包，11 处接线有保留理由；这组历史快照不代表所有后续治理都已结案。
-    invariant: 用新旧输出和真实目标证明重构没有改变生产行为。
-    evidence: ["file:auto-manual:code-as-doc/dev/code_quality_iterability_plan.md", "file:auto-manual:code-as-doc/code_optimization_log.md"]
   - id: machine
     period: 2026-10-01 起
     status: in_progress
-    title: 机器读取内容
-    metaphor: 增加程序和 Agent 的数据出口
-    summary: 把已发布网页整理为可定位、可引用、可核验的语义内容，为检索和后续知识观察准备原料。
-    flow: [已发布 HTML, 语义 JSON, 身份与来源清单, 程序 / Agent]
-    detail: 当前路径是 HTML-derived / html_compatibility。身份与来源（#1434）、清单与新鲜度（#1435）、工作台覆盖面板（#1436）已合入；代表手册人工抽查与整体线上验收仍待完成。图片仅取 alt，不做 OCR。
-    invariant: 机读内容只能生成，不能成为第二个可编辑的正式源。
+    title: 让程序和 AI 查找说明书内容
+    metaphor: 查到具体内容，也能找到原文出处
+    summary: 把网页手册的文字和表格按章节整理，供程序和 AI 查询。例如，查找某型号的充电说明时，可以找到对应原文、章节和手册版本，并附上网页出处。
+    flow: [已发布的网页手册, 按章节整理内容, 记录版本与出处, 提供给程序和 AI 查询]
+    detail: 目前从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、生成版本清单并检查更新（#1435）、在工作台显示覆盖情况（#1436）的代码已合入；代表手册人工抽查与整体线上验收仍待完成。图片只保留已有的文字说明，不识别图片中的文字。
+    invariant: 查询内容来自正式发布的手册；修改仍回到原有文档、模板或数据，再重新生成。
     evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
   - id: shared_ir
-    period: 下一阶段 · 按独立试点推进
+    period: 2026-09 起 · 随网页手册录入持续完善
+    status: ongoing
+    title: 随网页手册积累，完善整本 IR 共享
+    metaphor: 每录入一份手册，都继续完善共用的内容结构与组件
+    summary: Web 版已实现整本样式和组件复用。随着录入的型号、语言和手册增加，共用的正文、表格、步骤和插图处理不断完善，真实手册中的差异也逐步纳入同一套内容结构与组件。
+    flow: [录入真实手册, 补齐内容与组件支持, 使用共用体系生成整本网页, 继续完善]
+    detail: Web 现有入口先把整本内容、ComponentSpec、素材和所用合同保存到 manual.ir.json，再从这份包生成网页；冻结包可脱离 RST、CSV 重放。样式组件化阶段记录早期起点，这一项记录随后随网页文档积累而完善的整本 IR 共享。Word 目前仍逐页转换 RST，IDML 从 prepared RST 另建 IR；它们已有共享组件接口，直接消费同一份冻结整本包仍是后续扩展，代表试点按 REV-39、REV-40 推进。
+    invariant: 共用内容结构与组件，保留各手册原文和必要差异；各格式分别负责排版与验收。
+    evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:tools/web/document_source.py", "file:auto-manual:tools/web/document_ir.py", "file:auto-manual:tools/word/bundle_html.py", "file:auto-manual:tools/idml/ir_projection.py", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"]
+  - id: review_experience
+    period: 后续规划 · 试点与执行安排待确定
     status: planned
-    title: Shared IR 与知识反馈
-    metaphor: 建设中央标准半成品层，让经验回到生产
-    summary: 扩大已有 IR 共享能力，让各格式消费共同语义；另建知识反馈流程，让经过评审的经验帮助下一次生产。
-    flow: [Shared IR, Web / Word / IDML / Machine]
-    detail: 现有 IR 与组件共享已形成部分能力。更完整的 IR-native 多格式消费属于长期线；知识观察和缺口治理属于 Phase 2/3。二者分别立项，不把机器推断直接当作正式安规内容。
-    invariant: 同一份公共语义只理解一次；知识回流先保留证据，再经过人工批准。
-    evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"]
+    title: 积累审核经验，支持后续编写
+    metaphor: 保存确认过的措辞、修改理由和适用条件
+    summary: 逐步把经过确认的译文、术语和修改经验记录下来，保留出处与适用条件，供后续说明书参考。具体范围、试点和执行安排仍需确定。
+    flow: [记录确认过的修改, 保留出处与适用条件, 编写时参考, 审核后采用]
+    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于 IR 共享建设。
+    invariant: 参考已有经验时核对出处与适用条件，经人工审核后再采用。
+    evidence: ["file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
 feedback:
-  title: 下一步，为什么是闭环
-  steps: [生产说明书, 积累版本语料, 机器读取, 发现知识与缺口, 人工审核, 回到正式来源, 下一次生产]
-  note: 生产、发布与机读已有落点；知识观察、缺口审核和知识回流是未来阶段。让过去的生产结果帮助下一次生产，需要把这后半圈逐步跑通。
+  title: 让这次审核的成果，帮助下一次编写
+  steps: [编写与生成说明书, 积累已发布内容, 程序查询原文, 找出需要补充或修改的内容, 人工审核, 更新原有文档或数据, 用于后续编写与维护]
+  note: 说明书生成、发布和内容查询已有基础。后续规划是积累审核确认的措辞、适用条件和修改经验，经确认后用于后续手册；具体范围、试点和执行安排仍需确定。
 ```
 <!-- system-evolution:end -->

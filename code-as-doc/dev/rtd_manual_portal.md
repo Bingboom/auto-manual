@@ -156,8 +156,14 @@ content, QR aliases and nested manual URLs are unchanged.
 ## System workspace page
 
 The 「系统演变」 tab (`#tab-evolution`, individual stages at
-`#evolution-<id>`) tells the factory story from the first deterministic build
-to engineering governance, machine consumption and future knowledge feedback.
+`#evolution-<id>`) describes how the manual workspace evolved from its first
+deterministic build through reusable style components, published content,
+machine consumption and future knowledge feedback. Maintenance and refactoring
+are an unnumbered horizontal signpost above the nine capability stages, covering
+repeated work throughout system construction; September governance is one round.
+The optional `crosscutting` list shares the stage fields and evidence validation.
+IDs must be unique across both lists; existing `#evolution-engineering` links
+now resolve to the signpost.
 Its only curated source is
 [`system_evolution_history.md`](../architecture/system_evolution_history.md):
 the formal history and its marked `system-evolution/v1` YAML summary live
@@ -169,10 +175,18 @@ Maintenance contract:
 
 - Update historical facts and their commit/PR/acceptance evidence first, then
   revise the public summary in the same file and match both update dates.
-- `recorded` means a historical capability formed; it does not assert universal
-  coverage or completion of an entire workstream. `in_progress` means current
-  construction, and `planned` identifies the future direction. Existing partial
-  IR sharing is not represented as absent. Machine generation remains explicitly
+- `recorded` displays 「已完成」 and means that stage capability formed; it does not assert universal
+  coverage or completion of an entire workstream. `ongoing` displays 「持续开展」
+  for established work that continues to be maintained and improved.
+  `in_progress` means current
+  construction, including IDML print trial production, and `planned` identifies the
+  future direction. The current most mature chain is Web document production and
+  maintenance. Whole-document Web reuse exists and its IR continues to improve
+  as manuals are ingested. Cross-format consumption of the same frozen package
+  remains a later extension; review-experience reuse is a separate future stage
+  that still needs its trial scope
+  and execution plan; it is not part of the IR-sharing implementation.
+  Existing partial IR sharing is not represented as absent. Machine generation remains explicitly
   `html_compatibility` until an IR-native path is accepted.
 - Historical quantities carry observation dates and a defined scope; they are
   not current dashboard totals. The strategy owns future boundaries, the roadmap

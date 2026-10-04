@@ -315,6 +315,21 @@
           <p>{{ evolution.intro|e }}</p>
         </div></div>
         <div class="sw-evolution-source"><span>记录更新于 {{ evolution.updated_on|e }} · 数字为注明日期的历史快照</span><a href="{{ evolution.source.href|e }}" target="_blank" rel="noopener">完整演进史 ↗</a></div>
+        {% for work in evolution.crosscutting %}
+        <aside class="sw-crosscutting" id="evolution-{{ work.id|e }}" aria-labelledby="evolution-{{ work.id|e }}-title">
+          <header><span>{{ work.period|e }}</span>{{ badge(work.status, work.status_label) }}</header>
+          <h3 id="evolution-{{ work.id|e }}-title">{{ work.title|e }}</h3>
+          <p class="sw-metaphor">{{ work.metaphor|e }}</p>
+          <p class="sw-story">{{ work.summary|e }}</p>
+          <ul class="sw-crosscutting-signposts" aria-label="{{ work.title|e }}的历次记录">{% for point in work.flow %}<li>{{ point|e }}</li>{% endfor %}</ul>
+          <details class="sw-evolution-details">
+            <summary>历次记录、原则与依据</summary>
+            <p>{{ work.detail|e }}</p>
+            <p class="sw-evolution-invariant"><b>留下的原则</b>{{ work.invariant|e }}</p>
+            <div class="sw-refs">{{ evidence_links(work.evidence) }}</div>
+          </details>
+        </aside>
+        {% endfor %}
         <ol class="sw-timeline" aria-label="系统演变阶段">
           {% for stage in evolution.stages %}
           <li class="sw-timeline-row is-{{ stage.status|e }}" id="evolution-{{ stage.id|e }}">

@@ -1,4 +1,4 @@
-"""Read the public factory story from the architecture history, never a second timeline."""
+"""Read the public evolution story and ongoing work from the architecture history."""
 from __future__ import annotations
 
 import datetime as dt
@@ -12,7 +12,8 @@ import yaml
 START = "<!-- system-evolution:start -->"
 END = "<!-- system-evolution:end -->"
 SCHEMA = "system-evolution/v1"
-STATUS_LABELS = {"recorded": "历史里程碑", "in_progress": "建设中", "planned": "未来方向"}
+STATUS_LABELS = {"recorded": "已完成", "ongoing": "持续开展",
+                 "in_progress": "建设中", "planned": "未来方向"}
 
 
 class EvolutionError(ValueError):
@@ -97,13 +98,18 @@ def _story(text: str, repositories: dict[str, str]) -> dict[str, Any]:
     if not isinstance(rows, list) or not rows:
         raise EvolutionError("summary needs stages")
     stages = [_stage(row, repositories) for row in rows]
-    if len({stage["id"] for stage in stages}) != len(stages):
-        raise EvolutionError("duplicate stage id")
+    crosscutting_rows = data.get("crosscutting", [])
+    if not isinstance(crosscutting_rows, list):
+        raise EvolutionError("crosscutting must be a list")
+    crosscutting = [_stage(row, repositories) for row in crosscutting_rows]
+    entries = stages + crosscutting
+    if len({entry["id"] for entry in entries}) != len(entries):
+        raise EvolutionError("duplicate stage or crosscutting id")
     feedback = data.get("feedback")
     if not isinstance(feedback, dict):
         raise EvolutionError("summary needs a feedback direction")
     return {"title": _text(data, "title"), "intro": _text(data, "intro"),
-            "updated_on": updated.isoformat(), "stages": stages,
+            "updated_on": updated.isoformat(), "stages": stages, "crosscutting": crosscutting,
             "feedback": {"title": _text(feedback, "title"), "note": _text(feedback, "note"),
                          "steps": _texts(feedback, "steps")}}
 

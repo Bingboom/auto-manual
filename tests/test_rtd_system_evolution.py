@@ -43,17 +43,30 @@ class SystemEvolutionTests(unittest.TestCase):
     def test_history_is_the_only_timeline_source_and_future_is_distinct(self):
         view = evolution.evolution_view(root=ROOT, domain=DOMAIN, repositories=REPOS)
         self.assertEqual(view["problems"], [])
-        self.assertEqual(len(view["stages"]), 8)
+        self.assertEqual(len(view["stages"]), 9)
         self.assertEqual([s["status"] for s in view["stages"]],
-                         ["recorded"] * 6 + ["in_progress", "planned"])
+                         ["recorded"] * 3 + ["in_progress", "ongoing", "recorded", "in_progress", "ongoing", "planned"])
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], DATA["stages"][0]["summary"])
         self.data["stages"][0]["summary"] = "源文件中的修订立即出现在展示中"
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], self.data["stages"][0]["summary"])
 
+    def test_crosscutting_work_is_separate_and_older_summaries_remain_readable(self):
+        self.write_story()
+        self.assertEqual(self.view()["crosscutting"][0]["id"], "engineering")
+        self.assertNotIn("engineering", [s["id"] for s in self.view()["stages"]])
+        self.data["crosscutting"][0]["summary"] = "贯穿整个建设过程的维护记录"
+        self.write_story()
+        self.assertEqual(self.view()["crosscutting"][0]["summary"], "贯穿整个建设过程的维护记录")
+        del self.data["crosscutting"]
+        self.write_story()
+        self.assertEqual(self.view()["problems"], [])
+        self.assertEqual(self.view()["crosscutting"], [])
+
     def test_authoring_errors_do_not_fabricate_a_timeline(self):
-        for mutation in ("duplicate_id", "bad_status", "missing_evidence", "bad_date", "wrong_schema"):
+        for mutation in ("duplicate_id", "bad_status", "missing_evidence", "bad_date", "wrong_schema",
+                         "duplicate_crosscutting_id", "bad_crosscutting", "crosscutting_evidence"):
             with self.subTest(mutation=mutation):
                 self.data = copy.deepcopy(DATA)
                 match mutation:
@@ -62,6 +75,9 @@ class SystemEvolutionTests(unittest.TestCase):
                     case "missing_evidence": self.data["stages"][0]["evidence"] = []
                     case "bad_date": self.data["updated_on"] = "unknown"
                     case "wrong_schema": self.data["schema"] = "other"
+                    case "duplicate_crosscutting_id": self.data["crosscutting"][0]["id"] = self.data["stages"][0]["id"]
+                    case "bad_crosscutting": self.data["crosscutting"] = {}
+                    case "crosscutting_evidence": self.data["crosscutting"][0]["evidence"] = []
                 self.write_story()
                 self.assertTrue(self.view()["problems"])
                 self.assertEqual(self.view()["stages"], [])
@@ -93,6 +109,7 @@ class SystemEvolutionTests(unittest.TestCase):
     def test_context_escaping_disclosure_and_missing_source_panel(self):
         payload = '<img src=x onerror="alert(1)">'
         self.data["stages"][0]["summary"] = payload
+        self.data["crosscutting"][0]["detail"] = payload
         self.write_story()
         contract = workspace.load_contract(workspace.DEFAULT_CONTRACT)
         registry = {**REGISTRY, "evolution": self.domain}
@@ -103,7 +120,11 @@ class SystemEvolutionTests(unittest.TestCase):
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("system_workspace.html")
         page = template.render(**context)
         self.assertIn('id="tab-evolution"', page)
-        self.assertEqual(page.count('class="sw-evolution-details"'), 8)
+        self.assertEqual(page.count('class="sw-evolution-details"'), 10)
+        self.assertIn('class="sw-crosscutting" id="evolution-engineering"', page)
+        timeline = page.split('<ol class="sw-timeline"', 1)[1].split('</aside>', 1)[0]
+        self.assertNotIn('id="evolution-engineering"', timeline)
+        self.assertEqual(page.count('class="sw-timeline-row '), 9)
         self.assertNotIn(payload, page)
         self.assertIn("&lt;img", page)
         self.assertIn("后半圈 · 未来建设方向", page)

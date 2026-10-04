@@ -250,13 +250,19 @@
 .sw-evolution .section-header h2 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.5; }
 .sw-evolution-source { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; font-size: 12px; color: var(--muted); margin: 0 0 28px; }
 .sw-evolution-source a { color: var(--orange); white-space: nowrap; }
+.sw-crosscutting { margin: 0 0 32px; padding: 24px; border: 1px solid var(--line); border-left: 3px solid var(--orange); border-radius: 12px; background: #fff; }
+.sw-crosscutting header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 12px; color: var(--muted); }
+.sw-crosscutting h3 { margin: 14px 0 4px; font-size: 20px; line-height: 1.5; }
+.sw-crosscutting-signposts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 24px 0 18px; padding: 0; }
+.sw-crosscutting-signposts li { position: relative; padding: 14px 0 0; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.75; color: #505864; overflow-wrap: anywhere; }
+.sw-crosscutting-signposts li::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; }
 .sw-timeline { list-style: none; padding: 0; margin: 0; }
 .sw-timeline-row { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 22px; padding-bottom: 32px; }
 .sw-timeline-row:not(:last-child)::before { content: ""; position: absolute; top: 42px; bottom: 0; left: 21px; border-left: 1px solid var(--line); }
 .sw-timeline-number { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--orange); font-size: 14px; font-weight: 650; }
 .sw-timeline-row article { min-width: 0; border-bottom: 1px solid var(--line); padding: 4px 0 26px; }
 .sw-timeline-row header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; color: var(--muted); }
-.sw-badge.is-recorded { color: var(--sw-available); background: var(--sw-available-bg); }
+.sw-badge.is-recorded, .sw-badge.is-ongoing { color: var(--sw-available); background: var(--sw-available-bg); }
 .sw-timeline-row h3 { font-size: 20px; line-height: 1.5; margin: 14px 0 4px; font-weight: 650; }
 .sw-metaphor { margin: 0; font-size: 14px; color: var(--orange); }
 .sw-story { color: #505864; font-size: 14px; line-height: 1.85; margin: 12px 0 14px; }
@@ -283,6 +289,9 @@
 .sw-feedback li.is-future { border-style: dashed; color: var(--muted); }
 .sw-feedback p { margin: 0; font-size: 13px; line-height: 1.85; color: var(--muted); }
 @media (max-width: 660px) {
+  .sw-crosscutting { padding: 18px; }
+  .sw-crosscutting h3 { font-size: 18px; }
+  .sw-crosscutting-signposts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sw-timeline-row { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding-bottom: 24px; }
   .sw-timeline-number { width: 32px; height: 32px; font-size: 12px; }
   .sw-timeline-row:not(:last-child)::before { left: 15px; top: 34px; }
