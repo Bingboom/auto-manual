@@ -210,6 +210,14 @@ class IdentityProvenanceTests(unittest.TestCase):
         for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', 'Important']:
             self.assertEqual(callout_severity(label), 'unknown')
 
+    def test_icon_only_callout_label_keeps_alt_text_without_guessing_severity(self):
+        sections, _ = extract('<table class="manual-callout-table"><tr><td class="manual-callout-label">'
+                              '<div style="display:none">⚠</div><img alt="⚠" src="w.png"/></td>'
+                              '<td class="manual-callout-body"><p>Risk of fire.</p></td></tr></table>')
+        callout = sections[0]['blocks'][0]
+        self.assertEqual((callout['label'], callout['severity']), ('⚠', 'unknown'))
+        self.assertEqual(callout['text'], '⚠: Risk of fire.')
+
     def test_blocks_carry_stable_ids_and_source_refs(self):
         sections, _ = extract('<section id="safety"><h1>Safety</h1><p>Read.</p>'
                               '<h2 id="fire">Fire</h2><div class="admonition"><p class="admonition-title">Warning</p>'
