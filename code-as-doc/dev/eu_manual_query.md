@@ -71,6 +71,8 @@ after a refresh failure.
 - The same build writes `machine_surface_manifest.json` (per-variant hashes,
   counts, status), sealed by the deployment receipt; check freshness with
   `python -m tools.manual_knowledge.manifest --base-url <site>` (§5.5–§5.6).
+- Phase 1 pilot audit and known source-content defects:
+  [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md).
 - Verified single-language editions retain their source locale. Eight baseline
   legacy editions remain queryable with `language: null`; their declared `en`
   metadata is not promoted into a verified language assertion.
