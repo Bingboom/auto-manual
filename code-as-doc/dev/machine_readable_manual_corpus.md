@@ -1,6 +1,8 @@
 # 欧规说明书机读内容与知识抽取建设
 
-Status: active（P1-1、P1-2 已合入，P1-3 实现中）· Owner: Auto-Manual maintainer · Created: 2026-10-04
+Status: done · Owner: Auto-Manual maintainer · Created: 2026-10-04
+
+Phase 1 已完成：P1-1 #1434、P1-2 #1435、P1-3 #1436、P1-4 验收见 [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。Phase 2 / 3 未立项。
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
@@ -240,7 +242,7 @@ IR Native 上升，但这不是 Phase 1 的目标。
 | P1-1 身份与来源 | `variant_key` / `manual_variant_id` / 修订号拆分 / 多语言合订标注；`machine_surface` 与 `source` 元数据；`block_id` / `source_ref`；警示级别归一 | `tools/manual_knowledge/`、`tests/test_manual_knowledge.py` | 单元测试；冻结语料基线与候选构建对比：网页 HTML 字节不变，现有字段不变，插件测试通过 |
 | P1-2 清单与新鲜度 | `machine_surface_manifest.json` 生成并纳入回执；stale 校验脚本 | `tools/manual_knowledge/`、`tools/rtd/deployment_receipt.py`（仅纳入清单） | 篡改 / 过期 / 缺失用例；回执校验 |
 | P1-3 工作台 | 机读面面板覆盖统计 | `tools/rtd_portal_assets/manual_workbench.html`、`tools/rtd/` | Sphinx 构建 + 桌面 / 手机截图 |
-| P1-4 试点验收 | 3–5 本代表性 EU 说明书人工抽查与报告 | `code-as-doc/dev/` 验收记录 | 见 §8 |
+| P1-4 试点验收 | 3–5 本代表性 EU 说明书人工抽查与报告 | [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md) | 见 §8 |
 
 代表性样本需覆盖：较老产品、较新产品、功能简单产品、功能复杂产品、已知发生过
 Safety / Warning 演化的产品。候选：JE-1000F（老、复杂）、JE-3600A（新、
