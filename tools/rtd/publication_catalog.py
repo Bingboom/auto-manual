@@ -1,10 +1,12 @@
 """Group frozen RTD links without treating legacy language slots as translations."""
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 from tools.publish_locale_identity import stored_payload
 from tools.utils.path_utils import PathSegments
+from tools.web.frozen_source_evidence import SOURCE_FILENAME
 
 
 def publication_identity(root: Path, source: Path, *, model: str, region: str) -> dict:
@@ -12,7 +14,8 @@ def publication_identity(root: Path, source: Path, *, model: str, region: str) -
     relative = source.relative_to(root.resolve())
     meta_root = root.parent / "sources" / PathSegments.WEB
     metadata = meta_root / relative.parent / PathSegments.PUBLISH_META_JSON
-    legacy = {"lang": None, "language_scope": "legacy_unspecified", "version": None, "legacy_default": None}
+    legacy = {"lang": None, "language_scope": "legacy_unspecified", "version": None, "legacy_default": None,
+              "provenance": _provenance(root, metadata, None)}
     if not metadata.exists():
         if len(relative.parts) == 5:
             raise ValueError(f"Locale route needs frozen publication metadata: {relative}")
@@ -37,7 +40,27 @@ def publication_identity(root: Path, source: Path, *, model: str, region: str) -
     ):
         raise ValueError(f"Single-language publication route mismatch: {metadata}")
     default = payload.get("legacy_default")
-    return {"lang": lang, "language_scope": scope, "version": payload.get("version"), "legacy_default": default}
+    return {"lang": lang, "language_scope": scope, "version": payload.get("version"), "legacy_default": default,
+            "provenance": _provenance(root, metadata, payload)}
+
+
+def _provenance(root: Path, metadata: Path, payload: dict | None) -> dict:
+    """Describe which frozen release path produced a publication, from files only."""
+    if payload is None:
+        return {"release_path": "legacy", "authority": "unknown", "git_ref": None,
+                "built_at": None, "source_manifest": None}
+    manifest = metadata.parent / PathSegments.EVIDENCE / SOURCE_FILENAME
+    source_manifest = None
+    if manifest.is_file():
+        release_path, authority = "git_only_frozen", "git_native"
+        source_manifest = {"path": manifest.relative_to(root.parent).as_posix(),
+                           "sha256": hashlib.sha256(manifest.read_bytes()).hexdigest()}
+    elif payload.get("queue_record_ids"):
+        release_path, authority = "queue", "unknown"
+    else:
+        release_path, authority = "unclassified", "unknown"
+    return {"release_path": release_path, "authority": authority, "git_ref": payload.get("git_ref"),
+            "built_at": payload.get("built_at"), "source_manifest": source_manifest}
 
 
 def group_publications(records: list[dict], language_labels: dict[str, str]) -> list[dict]:

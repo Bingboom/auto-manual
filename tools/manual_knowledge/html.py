@@ -6,6 +6,7 @@ import re
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
+from tools.manual_knowledge.identity import callout_severity
 from tools.manual_knowledge.tables import content_text, list_entries, table_block
 
 _DECORATIVE = (
@@ -66,6 +67,7 @@ def _callout(node: Tag) -> dict | None:
             title.decompose()
         body = copy
     return {"type": "callout", "label": content_text(label), "body": content_text(body),
+            "severity": callout_severity(content_text(label)),
             "text": content_text(label) + ": " + content_text(body)}
 
 
@@ -86,6 +88,9 @@ class _Sections:
     def flush(self) -> None:
         if self.current["blocks"]:
             self.current["id"] = identity(self.url + "#" + self.current["anchor"])
+            for index, block in enumerate(self.current["blocks"]):
+                block["block_id"] = f"{self.current['id']}:{index}"
+                block["source_ref"] = f"{self.url}#{block.get('anchor') or self.current['anchor']}"
             self.sections.append(self.current)
 
     def image(self, node: Tag) -> None:
