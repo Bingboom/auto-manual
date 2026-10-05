@@ -34,13 +34,13 @@ jobs:
           fi
 
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: source
           fetch-depth: 0
 
       - name: Checkout mirror
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.MIRROR_REPOSITORY }}
           ref: ${{ env.MIRROR_BRANCH }}
@@ -112,7 +112,7 @@ jobs:
 
       - name: Workspace mirror failure notice
         if: ${{ !cancelled() }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           SYNC_STATUS: ${{ job.status }}
         with:
