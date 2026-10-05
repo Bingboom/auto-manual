@@ -167,3 +167,32 @@ All nine header pairs were checked in the browser; Italian native `Símbolo`
 is preserved exactly. Nine strict builds and frozen replay/admission/tamper
 checks pass again. Browser evidence is in `symbol-headers-qc.json` and the
 nine `*-symbol-headers.png` files beside the earlier layout evidence.
+
+## Publication hold and native heading correction
+
+Engineering #1442 merged as `c1c984c5f5e656df6ec0a90905c8e9fd99d8e92b`;
+Hello-Docs mirror is `5b6d0b4a724e8c25532933c60e5c195c047709f7`.
+Publication #176 remains unmerged. Final inspection found Ukrainian, Portuguese,
+Dutch and Polish solar headings included the tail of the preceding AC caution.
+German and these four locales also repeated solar heading text in the body.
+
+The corrective source package is `git-20261005-47a346dc` for all nine languages.
+The earlier committed packages remain byte-identical and are not published.
+Four charging/connection subheadings now follow the native heading font size,
+with the selectable sold-separately badge supplied independently. Solar
+paragraphs use complete native body spans and exclude the larger heading and
+badge spans. No native technical content, artwork or component structure is
+changed. The source SHA remains the same HTE139 master. This is a blocking
+source-only correction within MA-256, not a shared renderer or workflow change.
+
+The new revision passes nine strict Sphinx builds, source-input hash checks,
+identical English component signatures, byte-identical cold replay, fresh
+trusted admission and actual tampered-art rejection. Nine desktop/mobile
+solar heading/body checks show no horizontal overflow; evidence is retained
+in `reports/je3600a-nine-language/browser/solar-heading-qc.json` and the
+18 `*-solar-heading-*.png` files. The English Markdown remains byte-identical.
+Production Python, renderer/CSS and technical data are unchanged; the earlier
+5174-test full local pass still applies, and final-head CI is required anew.
+The branch wrapper could not switch the shared main checkout because another
+worktree owns it; the isolated correction branch was created directly from
+the freshly fetched, verified `origin/main` after that refusal.

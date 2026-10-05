@@ -1,0 +1,55 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "language": "de",
+  "reviewed_source_pages": [
+    64,
+    67,
+    68,
+    69,
+    70,
+    71,
+    73
+  ],
+  "fields": {
+    "usb-caution": [
+      "Der USB-C-100-W-Anschluss ist ein USB-PD Power Source 3 (PS3) Hochleistungs-Ausgangsport. Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Bevor Sie diese Anschlüsse verwenden, stellen Sie sicher, dass das angeschlossene Gerät oder Zubehör über einen Brandschutz verfügt.",
+      "Schließen Sie den Jackery Explorer 3600 Plus nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder gleichwertigen Normen) entsprechen.",
+      "Um die maximale Ausgangsleistung zu erreichen, verwenden Sie das offizielle Jackery USB-C-auf-USB-C-5A-Kabel (20 V DC/5 A, 100 W)."
+    ],
+    "ups-caution": [
+      "Dieses Produkt unterstützt keinen 0-ms-Umschaltvorgang. Schließen Sie es nicht an Geräte an, die eine unterbrechungsfreie Stromversorgung benötigen, wie z. B. Datenserver oder Workstations.",
+      "Bitte testen Sie die Kompatibilität mit Ihrem Gerät vor der Verwendung mehrfach.",
+      "Schließen Sie keine Lasten an, die die maximale Ausgangsleistung des Produkts überschreiten. Andernfalls wird der Überlastschutz ausgelöst."
+    ],
+    "battery-caution": [
+      "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie den Explorer 3600 Plus an das Jackery Battery Pack 3600 anschließen.",
+      "Stellen Sie für einen ordnungsgemäßen Betrieb sicher, dass die Lufteinlass- und Abluftöffnungen auf beiden Seiten nicht blockiert sind. Halten Sie zwischen den Lüftungsöffnungen und anderen Gegenständen einen Abstand von mindestens 200 mm ein, um eine ausreichende Wärmeableitung zu gewährleisten."
+    ],
+    "charging-temperature": [
+      "Die empfohlene Temperatur zum Laden des Produkts liegt zwischen -20°C und 45°C, und die Entladungstemperatur ebenfalls zwischen -20°C und 45°C. Wird das Produkt außerhalb dieses Temperaturbereichs betrieben, kann dies die Lade- und Entladefähigkeit einschränken oder sogar dazu führen, dass kein Laden oder Entladen möglich ist.",
+      "Die Ladeleistung und die Batteriekapazität des Produkts können aufgrund von Temperaturschwankungen variieren."
+    ],
+    "solar-caution": [
+      "Stellen Sie sicher, dass die Eingangsspannung für beide DC-Eingangsanschlüsse gleich ist. Andernfalls kann es zu Schäden am Gerät kommen. Beispiel:",
+      "Verwenden Sie beim Anschluss von Solarpanels an beide DC8020-Eingangsanschlüsse dieselben Jackery-Solarmodelltypen und die gleiche Anzahl an Panels.",
+      "Laden Sie das Gerät nicht gleichzeitig über das Autoladegerät und das Solarpanel. Dies könnte die Autosicherung durchbrennen lassen oder zu einem Ladeausfall führen."
+    ],
+    "car-caution": [
+      "Bitte starten Sie das Fahrzeug, bevor Sie Ihre Stromtankstelle aufladen.",
+      "Wenn das Fahrzeug auf holprigen Straßen fährt, ist es verboten, das Autoladegerät zu benutzen, da es aufgrund einer schlechten Verbindung durchbrennen könnte. Das Unternehmen haftet nicht für Schäden, die durch einen nicht normgerechten Betrieb entstehen.",
+      "Das Aufladen des Fahrzeugs gilt nur für Fahrzeuge mit 12 V DC, nicht für Fahrzeuge mit 24 V DC. Bitte laden Sie dieses Produkt nicht in einem 24-V-Fahrzeug auf, um Personen- und Sachschäden zu vermeiden."
+    ],
+    "storage-intro": "Bewahren Sie das Produkt an einem trockenen, sauberen Ort mit ausreichender Belüftung auf. Lagertemperatur und Luftfeuchtigkeit:",
+    "storage-rows": [
+      "1 Monat: -20 °C bis 45 °C (0–60 % relative Luftfeuchtigkeit)",
+      "3 Monate: 0 °C bis 45 °C (0–60 % relative Luftfeuchtigkeit)",
+      "12 Monate: 0 °C bis 25 °C (0–60 % relative Luftfeuchtigkeit)"
+    ],
+    "storage-body": "Wenn dieses Produkt über einen längeren Zeitraum (3 bis 6 Monate) mit entladener Batterie gelagert wird, kann es sein, dass es danach nicht mehr aufgeladen werden kann. Um dies zu verhindern und die Batterielebensdauer zu erhalten, wird empfohlen, das Produkt alle drei Monate zu überprüfen und aufzuladen sowie mindestens einmal alle 6 bis 12 Monate einen vollständigen Lade- und Entladezyklus durchzuführen.",
+    "warranty-exclusions": "Die Garantie von Jackery gilt nicht bei: • Unsachgemäßer Verwendung, Zweckentfremdung, Modifikation des Geräts, versehentlicher Beschädigung oder Nutzung außerhalb des in der aktuellen Produktliteratur von Jackery vorgesehenen normalen Verbrauchsgebrauchs. • Versuch einer Reparatur durch eine nicht autorisierte Drittpartei. • Kauf von Produkten über ein Online-Auktionshaus. • Die Garantie gilt nicht für die Batteriezelle, es sei denn, sie wird innerhalb von sieben Tagen nach dem Kauf vollständig aufgeladen und anschließend mindestens alle sechs Monate erneut vollständig geladen.",
+    "app-bound-steps": [
+      "Der Besitzer des Geräts wird dieses Gerät über die App mit anderen Benutzern teilen.",
+      "Halten Sie die POWER-Taste und die USB-Stromtaste gleichzeitig 3 Sekunden lang gedrückt, um das Gerät zurückzusetzen, und koppeln Sie es anschließend erneut."
+    ]
+  }
+}

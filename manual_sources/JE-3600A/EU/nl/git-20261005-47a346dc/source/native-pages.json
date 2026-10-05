@@ -1,0 +1,3890 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "pages": [
+    {
+      "physical_page": 4,
+      "text": "Parabéns pelo seu novo Jackery Explorer 3600 Plus. Leia este manual atentamente antes de \nusar o produto, especialmente as precauções relevantes, para garantir o uso adequado. \nMantenha este manual em um local acessível para consultas frequentes.\nEm conformidade com leis e regulamentos, o direito de interpretação final deste documento \ne de todos os documentos relacionados a este produto pertence à Empresa.\nObserve que não serão fornecidas notificações adicionais em caso de atualização, revisão \nou encerramento.\nIMPORTANTE\nPT\nGefeliciteerd met uw nieuwe Jackery Explorer 3600 Plus. Lees deze handleiding goed door \nvoordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om \neen correct gebruik te garanderen. Bewaar deze handleiding op een gemakkelijk bereikbare \nplaats, zodat u deze regelmatig kunt raadplegen.\nVolgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit \ndocument en alle andere documenten die bij dit product horen.\nHoud er rekening mee dat er bij een update, herziening of beëindiging geen verdere \nkennisgevingen volgen.\nBELANGRIJK\nNL\nGratulujemy zakupu nowego urządzenia Jackery Explorer 3600 Plus. Prosimy o dokładne \nprzeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem \nśrodków ostrożności, aby zapewnić prawidłowe użytkowanie. Instrukcję należy przechowy-\nwać w łatwo dostępnym miejscu, aby można było po nią sięgać w przyszłości.\nZgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje firmie.\nNależy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji \nnie będą wysyłane żadne dodatkowe powiadomienia.\nWAŻNE\nPL\n",
+      "blocks": [
+        {
+          "bbox": [
+            37.67679977416992,
+            33.83671188354492,
+            128.3468017578125,
+            48.692710876464844
+          ],
+          "text": "IMPORTANTE\nPT\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            53.8187255859375,
+            332.3959045410156,
+            82.2247085571289
+          ],
+          "text": "Parabéns pelo seu novo Jackery Explorer 3600 Plus. Leia este manual atentamente antes de \nusar o produto, especialmente as precauções relevantes, para garantir o uso adequado. \nMantenha este manual em um local acessível para consultas frequentes.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            85.82269287109375,
+            332.5560607910156,
+            104.2256851196289
+          ],
+          "text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento \ne de todos os documentos relacionados a este produto pertence à Empresa.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            107.82366943359375,
+            329.2786560058594,
+            126.2266616821289
+          ],
+          "text": "Observe que não serão fornecidas notificações adicionais em caso de atualização, revisão \nou encerramento.\n"
+        },
+        {
+          "bbox": [
+            38.12839889526367,
+            151.3836212158203,
+            126.15898895263672,
+            166.2396240234375
+          ],
+          "text": "BELANGRIJK\nNL\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            171.3656005859375,
+            332.8919677734375,
+            209.77456665039062
+          ],
+          "text": "Gefeliciteerd met uw nieuwe Jackery Explorer 3600 Plus. Lees deze handleiding goed door \nvoordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om \neen correct gebruik te garanderen. Bewaar deze handleiding op een gemakkelijk bereikbare \nplaats, zodat u deze regelmatig kunt raadplegen.\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            213.37255859375,
+            320.1086120605469,
+            231.77554321289062
+          ],
+          "text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit \ndocument en alle andere documenten die bij dit product horen.\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            235.37353515625,
+            305.8496398925781,
+            253.77651977539062
+          ],
+          "text": "Houd er rekening mee dat er bij een update, herziening of beëindiging geen verdere \nkennisgevingen volgen.\n"
+        },
+        {
+          "bbox": [
+            38.12839889526367,
+            279.6184997558594,
+            97.29899597167969,
+            294.4745178222656
+          ],
+          "text": "WAŻNE\nPL\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            299.6004333496094,
+            323.9642639160156,
+            338.0094299316406
+          ],
+          "text": "Gratulujemy zakupu nowego urządzenia Jackery Explorer 3600 Plus. Prosimy o dokładne \nprzeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem \nśrodków ostrożności, aby zapewnić prawidłowe użytkowanie. Instrukcję należy przechowy-\nwać w łatwo dostępnym miejscu, aby można było po nią sięgać w przyszłości.\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            341.6074523925781,
+            332.3804016113281,
+            360.01043701171875
+          ],
+          "text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje firmie.\n"
+        },
+        {
+          "bbox": [
+            36.281700134277344,
+            363.6084289550781,
+            334.1820983886719,
+            382.0114440917969
+          ],
+          "text": "Należy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji \nnie będą wysyłane żadne dodatkowe powiadomienia.\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 127,
+      "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, \nEEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN\nVolg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt.\n• Lees alle instructies voordat u het product gebruikt.\n• Kinderen mogen niet met het product spelen. Wanneer het product in de buurt van kinderen wordt gebruikt, is \nnauwlettend toezicht op de kinderen noodzakelijk.\n• Het gebruik van accessoires die niet worden aanbevolen of verkocht door professionele productfabrikanten kan \neen risico op elektrische schokken opleveren.\n• Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.\n• Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of \nelektrische schokken.\n• Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een \nelektrische schok.\n• Houd de ventilatieopeningen van het product vrij om een goede luchtcirculatie te garanderen. De ruimte waar \nhet product wordt gebruikt, moet voldoende luchtstroom hebben en koel en droog zijn om oververhitting te \nvoorkomen.\n-Het opladen in vochtige of slecht geventileerde ruimtes kan veiligheidsrisico's met zich meebrengen.\n-Water kan kortsluiting of schade aan de oplader veroorzaken, wat kan leiden tot veiligheidsrisico's.\n• Stel het product niet bloot aan vuur, hoge temperaturen, direct zonlicht of omgevingen met grote hitte, zoals in \neen geparkeerd voertuig. Een dergelijke blootstelling kan leiden tot brand of een explosie.\nINSTRUCTIES VOOR GEBRUIKERSONDERHOUD\nTijdens de levensduur van energieopslagproducten kunt u rekening houden met een zekere mate van capaciteits- \nen energieverlies. Naarmate het aantal laad- en ontlaadcycli toeneemt en de opslagduur langer wordt, zal deze \nachteruitgang geleidelijk toenemen; dit is een normaal verschijnsel dat samenhangt met de natuurlijke \nveroudering van batterijcellen.\nGevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of \nmateriële schade.\nBetekenis van symbolen\nSymbool\nBetekenis\nWAARSCHUWING \nOPGELET\n OPMERKING\nTIP\nGevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade \naan eigendommen.\nGevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, \ngegevensverlies, slechtere prestaties of onverwachte resultaten.\nVult de belangrijke informatie of bedieningstips in de tekst aan.\nWAARSCHUWING \n",
+      "blocks": [
+        {
+          "bbox": [
+            58.51070022583008,
+            73.68119812011719,
+            126.470703125,
+            83.585205078125
+          ],
+          "text": "WAARSCHUWING \n"
+        },
+        {
+          "bbox": [
+            133.73629760742188,
+            67.72608947753906,
+            333.984375,
+            87.2301025390625
+          ],
+          "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, \nEEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN\n"
+        },
+        {
+          "bbox": [
+            28.81839942932129,
+            102.2193832397461,
+            260.37445068359375,
+            110.26638793945312
+          ],
+          "text": "Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            116.57669830322266,
+            172.43536376953125,
+            123.77670288085938
+          ],
+          "text": "• Lees alle instructies voordat u het product gebruikt.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            127.77869415283203,
+            331.61700439453125,
+            142.1787109375
+          ],
+          "text": "• Kinderen mogen niet met het product spelen. Wanneer het product in de buurt van kinderen wordt gebruikt, is \nnauwlettend toezicht op de kinderen noodzakelijk.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            146.1807098388672,
+            335.5133972167969,
+            160.58071899414062
+          ],
+          "text": "• Het gebruik van accessoires die niet worden aanbevolen of verkocht door professionele productfabrikanten kan \neen risico op elektrische schokken opleveren.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            164.5827178955078,
+            305.8902587890625,
+            171.78271484375
+          ],
+          "text": "• Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            175.7847137451172,
+            306.4254455566406,
+            190.18472290039062
+          ],
+          "text": "• Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of \nelektrische schokken.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            194.1867218017578,
+            328.01226806640625,
+            208.58673095703125
+          ],
+          "text": "• Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een \nelektrische schok.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            212.58872985839844,
+            333.24835205078125,
+            234.18875122070312
+          ],
+          "text": "• Houd de ventilatieopeningen van het product vrij om een goede luchtcirculatie te garanderen. De ruimte waar \nhet product wordt gebruikt, moet voldoende luchtstroom hebben en koel en droog zijn om oververhitting te \nvoorkomen.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            238.1907501220703,
+            302.409423828125,
+            245.3907470703125
+          ],
+          "text": "-Het opladen in vochtige of slecht geventileerde ruimtes kan veiligheidsrisico's met zich meebrengen.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            249.3927459716797,
+            298.15362548828125,
+            256.5927429199219
+          ],
+          "text": "-Water kan kortsluiting of schade aan de oplader veroorzaken, wat kan leiden tot veiligheidsrisico's.\n"
+        },
+        {
+          "bbox": [
+            30.988800048828125,
+            260.5947265625,
+            333.309326171875,
+            274.9947509765625
+          ],
+          "text": "• Stel het product niet bloot aan vuur, hoge temperaturen, direct zonlicht of omgevingen met grote hitte, zoals in \neen geparkeerd voertuig. Een dergelijke blootstelling kan leiden tot brand of een explosie.\n"
+        },
+        {
+          "bbox": [
+            36.5166015625,
+            285.96929931640625,
+            205.76463317871094,
+            295.873291015625
+          ],
+          "text": "INSTRUCTIES VOOR GEBRUIKERSONDERHOUD\n"
+        },
+        {
+          "bbox": [
+            29.24370002746582,
+            301.91357421875,
+            342.2734069824219,
+            330.1195983886719
+          ],
+          "text": "Tijdens de levensduur van energieopslagproducten kunt u rekening houden met een zekere mate van capaciteits- \nen energieverlies. Naarmate het aantal laad- en ontlaadcycli toeneemt en de opslagduur langer wordt, zal deze \nachteruitgang geleidelijk toenemen; dit is een normaal verschijnsel dat samenhangt met de natuurlijke \nveroudering van batterijcellen.\n"
+        },
+        {
+          "bbox": [
+            35.91210174560547,
+            350.79449462890625,
+            180.66709899902344,
+            366.88848876953125
+          ],
+          "text": "Betekenis van symbolen\n"
+        },
+        {
+          "bbox": [
+            35.73970031738281,
+            379.09466552734375,
+            143.69712829589844,
+            389.61517333984375
+          ],
+          "text": "Symbool\nBetekenis\n"
+        },
+        {
+          "bbox": [
+            50.37699890136719,
+            403.6334228515625,
+            97.09949493408203,
+            410.4424133300781
+          ],
+          "text": "WAARSCHUWING \n"
+        },
+        {
+          "bbox": [
+            112.28369903564453,
+            398.95159912109375,
+            320.9211120605469,
+            413.1535949707031
+          ],
+          "text": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of \nmateriële schade.\n"
+        },
+        {
+          "bbox": [
+            51.5625,
+            426.1921081542969,
+            94.01250457763672,
+            438.5721130371094
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            113.96389770507812,
+            425.63720703125,
+            317.9801330566406,
+            439.8392028808594
+          ],
+          "text": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade \naan eigendommen.\n"
+        },
+        {
+          "bbox": [
+            48.62009811401367,
+            453.6128234863281,
+            96.07610321044922,
+            463.5168151855469
+          ],
+          "text": " OPMERKING\n"
+        },
+        {
+          "bbox": [
+            115.66189575195312,
+            450.3931884765625,
+            303.13677978515625,
+            464.59521484375
+          ],
+          "text": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, \ngegevensverlies, slechtere prestaties of onverwachte resultaten.\n"
+        },
+        {
+          "bbox": [
+            114.87589263916016,
+            478.1131896972656,
+            286.92352294921875,
+            485.3132019042969
+          ],
+          "text": "Vult de belangrijke informatie of bedieningstips in de tekst aan.\n"
+        },
+        {
+          "bbox": [
+            63.96440124511719,
+            476.46258544921875,
+            77.94440460205078,
+            488.84259033203125
+          ],
+          "text": "TIP\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 128,
+      "text": "WAT ZIT ER IN DE DOOS\n1\n2\nAC-oplaadkabel\nJackery Explorer 3600 Plus\n3\nGebruikershandleiding\nDe oplaadkabel voor de auto is niet inbegrepen, maar is apart verkrijgbaar op onze \nwebsite. Voor assistentie kunt u contact opnemen met de klantenservice van \nJackery.\nTIP\nBatterijen en accu's mogen niet bij het \nhuishoudelijk afval worden weggegooid.\nAls consument bent u wettelijk verplicht \nom alle batterijen en accu's in te leveren \nbij daarvoor aangewezen inzamelpunten, \nongeacht of ze gevaarlijke stoffen \nbevatten.\nLever gebruikte batterijen en accu's in bij \neen plaatselijk inleverpunt, recyclingcen-\ntrum of bij de winkel waar u ze heeft \ngekocht. Een juiste afvalverwerking \nverzekert dat recycling op een \nmilieuvriendelijke manier gebeurt en \nvoorkomt mogelijke schade aan de \nmenselijke gezondheid en het milieu.\nSymbool\nBetekenis\nSymbool Betekenis\nWaarschuwings- en \nvoorzorgssymbolen. Moet worden \ngelezen om personen te waarschuwen \nvoor mogelijke gevaren of risico's.\nLees de gebruikershandleiding voor \ngebruik.\nDemonteer het product niet.\nHoud het product uit de buurt van vuur.\nHoud het product buiten het \nbereik van kinderen.\nDit symbool geeft aan dat er een lithium-ion \n(Li-ion) accu in het product zit en dat deze op \nde juiste wijze moet worden afgevoerd of \ngerecycled.\nDit symbool geeft aan dat het product niet als \nhuishoudelijk afval mag worden weggegooid en \nnaar een aangewezen inzamelingspunt voor \nrecycling moet worden gebracht.\nEen juiste afvalverwerking en recycling dragen bij \naan een beter milieu. Voor meer informatie over \nde verwijdering en recycling van dit product, \nneem contact op met uw gemeente, \nafvalverwerkingsdienst of leverancier.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.58060073852539,
+            29.74348258972168,
+            262.0433349609375,
+            40.144588470458984
+          ],
+          "text": "Symbool\nBetekenis\nSymbool Betekenis\n"
+        },
+        {
+          "bbox": [
+            73.47560119628906,
+            43.62650680541992,
+            180.09019470214844,
+            71.83255004882812
+          ],
+          "text": "Waarschuwings- en \nvoorzorgssymbolen. Moet worden \ngelezen om personen te waarschuwen \nvoor mogelijke gevaren of risico's.\n"
+        },
+        {
+          "bbox": [
+            73.47560119628906,
+            81.00055694580078,
+            172.04238891601562,
+            95.20257568359375
+          ],
+          "text": "Lees de gebruikershandleiding voor \ngebruik.\n"
+        },
+        {
+          "bbox": [
+            73.47560119628906,
+            110.40058135986328,
+            151.35562133789062,
+            117.6005859375
+          ],
+          "text": "Demonteer het product niet.\n"
+        },
+        {
+          "bbox": [
+            227.4813995361328,
+            44.97431182861328,
+            334.8215026855469,
+            142.71652221679688
+          ],
+          "text": "Batterijen en accu's mogen niet bij het \nhuishoudelijk afval worden weggegooid.\nAls consument bent u wettelijk verplicht \nom alle batterijen en accu's in te leveren \nbij daarvoor aangewezen inzamelpunten, \nongeacht of ze gevaarlijke stoffen \nbevatten.\nLever gebruikte batterijen en accu's in bij \neen plaatselijk inleverpunt, recyclingcen-\ntrum of bij de winkel waar u ze heeft \ngekocht. Een juiste afvalverwerking \nverzekert dat recycling op een \nmilieuvriendelijke manier gebeurt en \nvoorkomt mogelijke schade aan de \nmenselijke gezondheid en het milieu.\n"
+        },
+        {
+          "bbox": [
+            73.0239028930664,
+            138.1186981201172,
+            174.5384521484375,
+            145.31869506835938
+          ],
+          "text": "Houd het product uit de buurt van vuur.\n"
+        },
+        {
+          "bbox": [
+            73.47560119628906,
+            160.63331604003906,
+            153.0836181640625,
+            174.8353271484375
+          ],
+          "text": "Houd het product buiten het \nbereik van kinderen.\n"
+        },
+        {
+          "bbox": [
+            73.47460174560547,
+            182.7329864501953,
+            179.0745849609375,
+            206.7329864501953
+          ],
+          "text": "Dit symbool geeft aan dat er een lithium-ion \n(Li-ion) accu in het product zit en dat deze op \nde juiste wijze moet worden afgevoerd of \ngerecycled.\n"
+        },
+        {
+          "bbox": [
+            226.40960693359375,
+            149.0129852294922,
+            339.4761962890625,
+            207.0129852294922
+          ],
+          "text": "Dit symbool geeft aan dat het product niet als \nhuishoudelijk afval mag worden weggegooid en \nnaar een aangewezen inzamelingspunt voor \nrecycling moet worden gebracht.\nEen juiste afvalverwerking en recycling dragen bij \naan een beter milieu. Voor meer informatie over \nde verwijdering en recycling van dit product, \nneem contact op met uw gemeente, \nafvalverwerkingsdienst of leverancier.\n"
+        },
+        {
+          "bbox": [
+            35.97269821166992,
+            246.1562042236328,
+            168.06871032714844,
+            261.01220703125
+          ],
+          "text": "WAT ZIT ER IN DE DOOS\n"
+        },
+        {
+          "bbox": [
+            85.22949981689453,
+            298.4720153808594,
+            199.0976104736328,
+            311.7082824707031
+          ],
+          "text": "1\n2\n"
+        },
+        {
+          "bbox": [
+            291.8926086425781,
+            298.4725036621094,
+            297.7303161621094,
+            311.7082824707031
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            257.4346008300781,
+            410.3210754394531,
+            331.34075927734375,
+            418.8960876464844
+          ],
+          "text": "Gebruikershandleiding\n"
+        },
+        {
+          "bbox": [
+            43.99290466308594,
+            410.5544738769531,
+            219.3709259033203,
+            419.1294860839844
+          ],
+          "text": "AC-oplaadkabel\nJackery Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            51.36869812011719,
+            459.82568359375,
+            338.0486145019531,
+            481.4256896972656
+          ],
+          "text": "De oplaadkabel voor de auto is niet inbegrepen, maar is apart verkrijgbaar op onze \nwebsite. Voor assistentie kunt u contact opnemen met de klantenservice van \nJackery.\nTIP\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 129,
+      "text": "120\nRECHTERZIJAANZICHT\nVOORAANZICHT\nPRODUCTOVERZICHT\n100 W max., 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n18 W max., 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\nAC-uitgang\nAan/uit-knop voor DC\nUSB-aan/uit-knop\nUSB-C 100W-uitgang\nUSB-A 18W-uitgang\nLCD\nAan/Uit-knop\n230 V~ 50 Hz, 3600 W\nTotaal AC-uitgangsvermogen \n3600 W\nAC-ingang\nDC-ingang\n220 V-240 V~ 50 Hz, 10 A max.\n(2×DC8020-poorten):\n12-16 V⎓8 A max.,\nbij dubbel gebruik 8 A max.\n16-60 V⎓12 A, \nbij dubbel gebruik 24 A \nmax./ 1000 W max.\nDC-uitbreidingspoort\nAansluiten op batterijpakket\nWielen\nUitschuifbaar handvat \nDruk op de knop van het uitschuifbare handvat en trek omhoog om het uit te schuiven.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.360801696777344,
+            31.002727508544922,
+            153.7008056640625,
+            45.858726501464844
+          ],
+          "text": "PRODUCTOVERZICHT\n"
+        },
+        {
+          "bbox": [
+            40.700199127197266,
+            59.34321975708008,
+            101.40419006347656,
+            69.24722290039062
+          ],
+          "text": "VOORAANZICHT\n"
+        },
+        {
+          "bbox": [
+            327.0213623046875,
+            69.88841247558594,
+            340.11834716796875,
+            78.55441284179688
+          ],
+          "text": "LCD\n"
+        },
+        {
+          "bbox": [
+            28.016357421875,
+            108.32542419433594,
+            73.38335418701172,
+            116.99142456054688
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            28.009384155273438,
+            121.99641418457031,
+            98.41610717773438,
+            130.66241455078125
+          ],
+          "text": "USB-C 100W-uitgang\n"
+        },
+        {
+          "bbox": [
+            301.81640625,
+            133.4881134033203,
+            340.2813720703125,
+            142.15411376953125
+          ],
+          "text": "AC-uitgang\n"
+        },
+        {
+          "bbox": [
+            27.98539924621582,
+            130.9097137451172,
+            102.89610290527344,
+            143.5290069580078
+          ],
+          "text": "100 W max., 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            267.80572509765625,
+            142.8013153076172,
+            341.2001037597656,
+            153.94192504882812
+          ],
+          "text": "230 V~ 50 Hz, 3600 W\nTotaal AC-uitgangsvermogen \n"
+        },
+        {
+          "bbox": [
+            320.9541320800781,
+            153.7829132080078,
+            339.8750915527344,
+            160.14291381835938
+          ],
+          "text": "3600 W\n"
+        },
+        {
+          "bbox": [
+            28.009384155273438,
+            153.81141662597656,
+            93.01910400390625,
+            162.4774169921875
+          ],
+          "text": "USB-A 18W-uitgang\n"
+        },
+        {
+          "bbox": [
+            27.98539924621582,
+            162.6673126220703,
+            85.3313980102539,
+            175.28660583496094
+          ],
+          "text": "18 W max., 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            28.009384155273438,
+            182.45542907714844,
+            341.00103759765625,
+            191.12142944335938
+          ],
+          "text": "Aan/uit-knop voor DC\nUSB-aan/uit-knop\n"
+        },
+        {
+          "bbox": [
+            40.69919967651367,
+            244.3588104248047,
+            123.37120056152344,
+            254.2628173828125
+          ],
+          "text": "RECHTERZIJAANZICHT\n"
+        },
+        {
+          "bbox": [
+            27.535600662231445,
+            269.552490234375,
+            227.1863250732422,
+            284.8644104003906
+          ],
+          "text": "Uitschuifbaar handvat \nDruk op de knop van het uitschuifbare handvat en trek omhoog om het uit te schuiven.\n"
+        },
+        {
+          "bbox": [
+            303.68499755859375,
+            345.1201171875,
+            340.10595703125,
+            353.7861328125
+          ],
+          "text": "DC-ingang\n"
+        },
+        {
+          "bbox": [
+            288.6708068847656,
+            354.83831787109375,
+            340.106201171875,
+            361.1983337402344
+          ],
+          "text": "(2×DC8020-poorten):\n"
+        },
+        {
+          "bbox": [
+            274.3979187011719,
+            360.837890625,
+            340.10736083984375,
+            373.1975402832031
+          ],
+          "text": "12-16 V⎓8 A max.,\nbij dubbel gebruik 8 A max.\n"
+        },
+        {
+          "bbox": [
+            284.6640319824219,
+            372.83709716796875,
+            341.4323425292969,
+            385.1967468261719
+          ],
+          "text": "16-60 V⎓12 A, \nbij dubbel gebruik 24 A \n"
+        },
+        {
+          "bbox": [
+            27.595199584960938,
+            377.6180114746094,
+            340.1073303222656,
+            392.5194091796875
+          ],
+          "text": "max./ 1000 W max.\nDC-uitbreidingspoort\nAansluiten op batterijpakket\n"
+        },
+        {
+          "bbox": [
+            311.7070007324219,
+            398.5721130371094,
+            347.6379699707031,
+            407.2381286621094
+          ],
+          "text": "AC-ingang\n"
+        },
+        {
+          "bbox": [
+            272.7919921875,
+            407.9761047363281,
+            345.8192138671875,
+            414.33612060546875
+          ],
+          "text": "220 V-240 V~ 50 Hz, 10 A max.\n"
+        },
+        {
+          "bbox": [
+            27.98539924621582,
+            461.7742004394531,
+            50.46940612792969,
+            470.4402160644531
+          ],
+          "text": "Wielen\n"
+        },
+        {
+          "bbox": [
+            27.834999084472656,
+            503.9667053222656,
+            36.7449951171875,
+            511.1667175292969
+          ],
+          "text": "120\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 130,
+      "text": "121\nLCD-SCHERM \n6\n7\n1\n2\n3\n4\n5\nIndicator voor \nAC-voeding \nUitgangsspanning \nen -frequentie\nStille oplaadmodus\nBatterijbesparingsmodus\nZelfvoorzienende \nmodus\nOplaadplan\nWiﬁ\nBluetooth\n20\n21\n8\n9\n1\n10\n2\n11\n12\n13\n14\n15\n17\n18\n19\n3\n4\n5\n6\n7\n16\nAan: Het geluid tijdens het opladen wordt aanzienlijk \nverminderd, terwijl het oplaadvermogen wordt verlaagd en \nde oplaadsnelheid afneemt.\nUit: De stille oplaadmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app.\nAan: Beperkt de maximaal bruikbare batterijcapaciteit om \nde levensduur van de batterij te verlengen.\nUit: De Batterijbesparingsmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app. Deze \nfunctie is niet beschikbaar wanneer het product is \naangesloten op batterijpakketten.\nMaximaliseert het gebruik van zonne-energie en vermindert de \nafhankelijkheid van netstroom door prioriteit te geven aan \nopgeslagen zonne-energie, waardoor elektriciteitskosten dalen \n(schakel deze functie in of uit in de app). Het powerstation moet \ntegelijkertijd op zowel zonnepanelen als op het net worden \naangesloten, waarbij het belastingsvermogen wordt beperkt \ndoor het bypass-vermogen.\nHiermee wordt de oplaadtijd van de Jackery Explorer 3600 \nPlus aangepast. Geschikt voor situaties met fluctuerende \nelektriciteitsprijzen en maakt het mogelijk om \noplaadplannen te maken op basis van piek- en daluren, \nwaardoor de elektriciteitskosten worden verlaagd. (Gelieve \ndit in de Jackery-app in te stellen).\nDe AC-uitgang (zuivere sinusgolf) is ingeschakeld.\nGeeft de uitgangsspanning en -frequentie weer wanneer \nde AC-uitgang is ingeschakeld.\nAan: Wifi is verbonden.\nKnipperend: Klaar om met wifi te verbinden.\nUit: Wifi is niet verbonden.\nAan: Bluetooth is verbonden.\nKnipperend: Klaar om met Bluetooth te verbinden.\nUit: Bluetooth is niet verbonden.\n",
+      "blocks": [
+        {
+          "bbox": [
+            35.682098388671875,
+            31.004680633544922,
+            115.00210571289062,
+            45.860679626464844
+          ],
+          "text": "LCD-SCHERM \n"
+        },
+        {
+          "bbox": [
+            91.17414855957031,
+            57.41865539550781,
+            93.28292846679688,
+            64.86141204833984
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            102.44239807128906,
+            57.42137145996094,
+            105.6986083984375,
+            64.86412811279297
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            114.22560119628906,
+            57.42137145996094,
+            265.1289367675781,
+            65.16594696044922
+          ],
+          "text": "3\n4\n5\n6\n7\n"
+        },
+        {
+          "bbox": [
+            330.06689453125,
+            113.9927749633789,
+            336.5257263183594,
+            120.91293334960938
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            38.727500915527344,
+            114.67829895019531,
+            42.12636184692383,
+            122.12105560302734
+          ],
+          "text": "8\n"
+        },
+        {
+          "bbox": [
+            330.537109375,
+            132.11949157714844,
+            335.787109375,
+            139.31948852539062
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            38.522823333740234,
+            133.84339904785156,
+            41.81004333496094,
+            141.28616333007812
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            89.91310119628906,
+            184.40867614746094,
+            96.11540222167969,
+            191.8514404296875
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            230.2274932861328,
+            185.2651824951172,
+            235.68551635742188,
+            192.70794677734375
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            103.44339752197266,
+            184.3608856201172,
+            280.5498046875,
+            192.78314208984375
+          ],
+          "text": "11\n12\n13\n14\n15\n17\n18\n19\n"
+        },
+        {
+          "bbox": [
+            37.44139862060547,
+            209.37301635742188,
+            39.804569244384766,
+            217.713623046875
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            209.2113800048828,
+            100.40970611572266,
+            217.87738037109375
+          ],
+          "text": "Wiﬁ\n"
+        },
+        {
+          "bbox": [
+            37.16310119628906,
+            232.81741333007812,
+            40.81211471557617,
+            241.15802001953125
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            233.23536682128906,
+            119.34468841552734,
+            241.9013671875
+          ],
+          "text": "Bluetooth\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            202.80178833007812,
+            306.8430480957031,
+            247.23184204101562
+          ],
+          "text": "Aan: Wifi is verbonden.\nKnipperend: Klaar om met wifi te verbinden.\nUit: Wifi is niet verbonden.\nAan: Bluetooth is verbonden.\nKnipperend: Klaar om met Bluetooth te verbinden.\nUit: Bluetooth is niet verbonden.\n"
+        },
+        {
+          "bbox": [
+            37.16699981689453,
+            265.6133117675781,
+            40.850765228271484,
+            273.95391845703125
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            265.44976806640625,
+            150.7334442138672,
+            274.11578369140625
+          ],
+          "text": "Stille oplaadmodus\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            251.361572265625,
+            333.33795166015625,
+            286.65960693359375
+          ],
+          "text": "Aan: Het geluid tijdens het opladen wordt aanzienlijk \nverminderd, terwijl het oplaadvermogen wordt verlaagd en \nde oplaadsnelheid afneemt.\nUit: De stille oplaadmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            309.36407470703125,
+            160.0755615234375,
+            318.03009033203125
+          ],
+          "text": "Batterijbesparingsmodus\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            294.08758544921875,
+            332.40911865234375,
+            336.3875732421875
+          ],
+          "text": "Aan: Beperkt de maximaal bruikbare batterijcapaciteit om \nde levensduur van de batterij te verlengen.\nUit: De Batterijbesparingsmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app. Deze \nfunctie is niet beschikbaar wanneer het product is \naangesloten op batterijpakketten.\n"
+        },
+        {
+          "bbox": [
+            37.059600830078125,
+            335.77642822265625,
+            41.09089279174805,
+            344.1170349121094
+          ],
+          "text": "4\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            360.8943786621094,
+            145.62271118164062,
+            377.057373046875
+          ],
+          "text": "Zelfvoorzienende \nmodus\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            343.8484802246094,
+            331.2817687988281,
+            386.4515380859375
+          ],
+          "text": "Maximaliseert het gebruik van zonne-energie en vermindert de \nafhankelijkheid van netstroom door prioriteit te geven aan \nopgeslagen zonne-energie, waardoor elektriciteitskosten dalen \n(schakel deze functie in of uit in de app). Het powerstation moet \ntegelijkertijd op zowel zonnepanelen als op het net worden \naangesloten, waarbij het belastingsvermogen wordt beperkt \ndoor het bypass-vermogen.\n"
+        },
+        {
+          "bbox": [
+            37.059600830078125,
+            407.4341125488281,
+            40.812870025634766,
+            415.77471923828125
+          ],
+          "text": "5\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            407.43035888671875,
+            127.26173400878906,
+            416.09637451171875
+          ],
+          "text": "Oplaadplan\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            393.6497802734375,
+            333.4716491699219,
+            430.84979248046875
+          ],
+          "text": "Hiermee wordt de oplaadtijd van de Jackery Explorer 3600 \nPlus aangepast. Geschikt voor situaties met fluctuerende \nelektriciteitsprijzen en maakt het mogelijk om \noplaadplannen te maken op basis van piek- en daluren, \nwaardoor de elektriciteitskosten worden verlaagd. (Gelieve \ndit in de Jackery-app in te stellen).\n"
+        },
+        {
+          "bbox": [
+            37.18069839477539,
+            445.0244140625,
+            40.864463806152344,
+            453.3650207519531
+          ],
+          "text": "6\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            446.2997741699219,
+            305.67852783203125,
+            453.4997863769531
+          ],
+          "text": "De AC-uitgang (zuivere sinusgolf) is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            445.16778564453125,
+            135.08700561523438,
+            462.247802734375
+          ],
+          "text": "Indicator voor \nAC-voeding \n"
+        },
+        {
+          "bbox": [
+            37.31930160522461,
+            477.0879211425781,
+            40.72504806518555,
+            485.42852783203125
+          ],
+          "text": "7\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            473.0597839355469,
+            328.84625244140625,
+            487.26177978515625
+          ],
+          "text": "Geeft de uitgangsspanning en -frequentie weer wanneer \nde AC-uitgang is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            471.43878173828125,
+            148.9540252685547,
+            488.518798828125
+          ],
+          "text": "Uitgangsspanning \nen -frequentie\n"
+        },
+        {
+          "bbox": [
+            335.7240905761719,
+            503.9676818847656,
+            342.9541015625,
+            511.1676940917969
+          ],
+          "text": "121\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 131,
+      "text": "Er is een productfout opgetreden. Raadpleeg voor details \nde sectie Probleemoplossing.\nGeeft het resterende batterijpercentage weer.\nToont het aantal aangesloten batterijpakketten.\nHet product wordt opgeladen via de DC-ingang (DC8020) \nmet zonnepanelen.\n11\nBatteri-\njstroom-indicator \nWanneer het product wordt opgeladen, licht de oranje \ncirkel rond het batterijpercentage geleidelijk op. Wanneer u \nandere apparaten van stroom voorziet, blijft de oranje cirkel \nbranden.\nIndicator voor laag \nbatterijniveau\nResterend \nbatterijpercentage\nEnergiebesparingsmodus\nDe beveiliging tegen hoge temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur \nweer binnen het normale bedrijfsbereik is.\nDe beveiliging tegen lege temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur weer \nbinnen het normale bedrijfsbereik is.\nFoutcode\nWanneer de AC- of USB-uitgang wordt ingeschakeld door \nop de Aan/uit-knop voor AC of USB te drukken:\nAan: De Energiebesparingsmodus is ingeschakeld.\nUit: De Energiebesparingsmodus is uitgeschakeld.\nUitgangsvermogen\nResterende \nontlaadtijd \nIndicator voor hoge \ntemperatuur\nIndicator voor \nlage temperatuur\n13\n12\n14\n15\n16\n17\n18\n21\n20\n19\n10\n8\n9\nInvoervermogen\nResterende \noplaadtijd\nIndicator voor \nopladen via een \nAC-stopcontact\nIndicator voor \nopladen via de auto\n122\nZonne-energie-\noplaadindicator\nAan: Het batterijniveau is lager dan 20%.\nKnipperend: Het batterijniveau is lager dan 5%.\nUit: Het batterijniveau is niet lager dan 20% of het \nproduct wordt opgeladen.\nToont het ingangsvermogen in watt.\nToont de resterende oplaadtijd.\nHet product wordt opgeladen via de AC-ingang met \nstroomnet.\nHet product wordt opgeladen via de DC-ingang (DC8020) \nmet DC 12 V (auto-opladen).\nGeeft het uitgangsvermogen in watt weer.\nGeeft de resterende ontlaadtijd weer.\nBatterijpakket-indicat\nor en aantal \naangesloten \nbatterijen\n",
+      "blocks": [
+        {
+          "bbox": [
+            168.1688995361328,
+            38.75498580932617,
+            267.0549621582031,
+            45.95498275756836
+          ],
+          "text": "Toont het ingangsvermogen in watt.\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            37.39628219604492,
+            142.8415985107422,
+            46.06228256225586
+          ],
+          "text": "Invoervermogen\n"
+        },
+        {
+          "bbox": [
+            36.1254997253418,
+            39.20172882080078,
+            39.93437576293945,
+            47.542327880859375
+          ],
+          "text": "8\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            64.4949722290039,
+            254.83892822265625,
+            71.69497680664062
+          ],
+          "text": "Toont de resterende oplaadtijd.\n"
+        },
+        {
+          "bbox": [
+            36.166500091552734,
+            64.67191314697266,
+            39.85026550292969,
+            73.01251220703125
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            89.92140197753906,
+            59.77668380737305,
+            128.25753784179688,
+            76.86367797851562
+          ],
+          "text": "Resterende \noplaadtijd\n"
+        },
+        {
+          "bbox": [
+            34.729000091552734,
+            88.46240997314453,
+            41.679500579833984,
+            96.80300903320312
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            80.73130798339844,
+            144.2969207763672,
+            103.39730834960938
+          ],
+          "text": "Indicator voor \nopladen via een \nAC-stopcontact\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            89.38297271728516,
+            314.8569030761719,
+            103.58499145507812
+          ],
+          "text": "Het product wordt opgeladen via de AC-ingang met \nstroomnet.\n"
+        },
+        {
+          "bbox": [
+            35.40230178833008,
+            112.80420684814453,
+            40.337158203125,
+            121.14480590820312
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            109.0209732055664,
+            330.5949401855469,
+            123.22299194335938
+          ],
+          "text": "Het product wordt opgeladen via de DC-ingang (DC8020) \nmet DC 12 V (auto-opladen).\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            108.19929504394531,
+            155.7139434814453,
+            124.3623046875
+          ],
+          "text": "Indicator voor \nopladen via de auto\n"
+        },
+        {
+          "bbox": [
+            34.79790115356445,
+            136.13619995117188,
+            41.01860046386719,
+            144.476806640625
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            133.1673126220703,
+            330.59375,
+            147.36932373046875
+          ],
+          "text": "Het product wordt opgeladen via de DC-ingang (DC8020) \nmet zonnepanelen.\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            132.3708953857422,
+            142.449951171875,
+            148.53390502929688
+          ],
+          "text": "Zonne-energie-\noplaadindicator\n"
+        },
+        {
+          "bbox": [
+            34.79790115356445,
+            161.71041870117188,
+            41.05335235595703,
+            170.051025390625
+          ],
+          "text": "13\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            157.0174102783203,
+            148.58651733398438,
+            174.097412109375
+          ],
+          "text": "Batteri-\njstroom-indicator \n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            153.00230407714844,
+            333.7244873046875,
+            178.20230102539062
+          ],
+          "text": "Wanneer het product wordt opgeladen, licht de oranje \ncirkel rond het batterijpercentage geleidelijk op. Wanneer u \nandere apparaten van stroom voorziet, blijft de oranje cirkel \nbranden.\n"
+        },
+        {
+          "bbox": [
+            34.624000549316406,
+            196.08541870117188,
+            41.22697830200195,
+            204.426025390625
+          ],
+          "text": "14\n"
+        },
+        {
+          "bbox": [
+            90.33499908447266,
+            191.33189392089844,
+            154.1183319091797,
+            208.41189575195312
+          ],
+          "text": "Indicator voor laag \nbatterijniveau\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            184.75897216796875,
+            305.03607177734375,
+            215.71298217773438
+          ],
+          "text": "Aan: Het batterijniveau is lager dan 20%.\nKnipperend: Het batterijniveau is lager dan 5%.\nUit: Het batterijniveau is niet lager dan 20% of het \nproduct wordt opgeladen.\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            230.17530822753906,
+            294.6950988769531,
+            237.37530517578125
+          ],
+          "text": "Geeft het resterende batterijpercentage weer.\n"
+        },
+        {
+          "bbox": [
+            34.762699127197266,
+            229.69680786132812,
+            41.08765411376953,
+            238.03741455078125
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            89.9219970703125,
+            225.2469024658203,
+            151.73272705078125,
+            242.326904296875
+          ],
+          "text": "Resterend \nbatterijpercentage\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            265.44329833984375,
+            300.2235107421875,
+            272.643310546875
+          ],
+          "text": "Toont het aantal aangesloten batterijpakketten.\n"
+        },
+        {
+          "bbox": [
+            34.79880142211914,
+            264.4507141113281,
+            41.05425262451172,
+            272.79132080078125
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            90.3759994506836,
+            251.98670959472656,
+            162.749755859375,
+            285.90869140625
+          ],
+          "text": "Batterijpakket-indicat\nor en aantal \naangesloten \nbatterijen\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            301.43310546875,
+            40.91493225097656,
+            309.7737121582031
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            301.39239501953125,
+            120.55989837646484,
+            310.05841064453125
+          ],
+          "text": "Foutcode\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            299.3372802734375,
+            327.6837158203125,
+            313.539306640625
+          ],
+          "text": "Er is een productfout opgetreden. Raadpleeg voor details \nde sectie Probleemoplossing.\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            331.0387878417969,
+            155.4752197265625,
+            347.2017822265625
+          ],
+          "text": "Indicator voor hoge \ntemperatuur\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            329.34320068359375,
+            334.2498779296875,
+            350.54718017578125
+          ],
+          "text": "De beveiliging tegen hoge temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur \nweer binnen het normale bedrijfsbereik is.\n"
+        },
+        {
+          "bbox": [
+            34.73440170288086,
+            353.3608093261719,
+            41.11496353149414,
+            361.701416015625
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            368.1597900390625,
+            147.25233459472656,
+            384.3227844238281
+          ],
+          "text": "Indicator voor \nlage temperatuur\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            365.66119384765625,
+            338.9718933105469,
+            386.86517333984375
+          ],
+          "text": "De beveiliging tegen lege temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur weer \nbinnen het normale bedrijfsbereik is.\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            397.5950927734375,
+            329.7356872558594,
+            411.7970886230469
+          ],
+          "text": "Wanneer de AC- of USB-uitgang wordt ingeschakeld door \nop de Aan/uit-knop voor AC of USB te drukken:\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            409.72247314453125,
+            162.8738250732422,
+            418.38848876953125
+          ],
+          "text": "Energiebesparingsmodus\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            410.58929443359375,
+            41.05393981933594,
+            418.9299011230469
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            414.3410949707031,
+            305.6649169921875,
+            421.76910400390625
+          ],
+          "text": "Aan: De Energiebesparingsmodus is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            424.1750793457031,
+            304.3022766113281,
+            431.60308837890625
+          ],
+          "text": "Uit: De Energiebesparingsmodus is uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            447.9429626464844,
+            283.96832275390625,
+            455.1429748535156
+          ],
+          "text": "Geeft het uitgangsvermogen in watt weer.\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            447.02178955078125,
+            151.78692626953125,
+            455.68780517578125
+          ],
+          "text": "Uitgangsvermogen\n"
+        },
+        {
+          "bbox": [
+            34.6411018371582,
+            447.9425354003906,
+            41.892208099365234,
+            455.7115783691406
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            168.1688995361328,
+            477.5049743652344,
+            271.46368408203125,
+            484.7049865722656
+          ],
+          "text": "Geeft de resterende ontlaadtijd weer.\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            477.35400390625,
+            41.019187927246094,
+            485.6946105957031
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            471.40277099609375,
+            128.35089111328125,
+            488.48980712890625
+          ],
+          "text": "Resterende \nontlaadtijd \n"
+        },
+        {
+          "bbox": [
+            27.50830078125,
+            503.9158935546875,
+            35.848304748535156,
+            511.11590576171875
+          ],
+          "text": "122\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 132,
+      "text": "IN-/UITSCHAKELEN\nAAN/UIT VOOR USB-UITGANG\n3s\nStandaard stand-bymodustijd: 2 uur\nHet product wordt na 2 uur inactiviteit automatisch uitgeschakeld, \nzonder dat er wordt opgeladen of ontladen.\n* De stand-bytijd kan worden ingesteld in de Jackery-app.\nHANDELINGEN\nAan\nUit\nDruk één keer\nHoud 3 seconden ingedrukt.\nVoorwaarde: Het product is ingeschakeld.\nAan\nUit\nDruk één keer\nDruk één keer\n123\nWanneer de Energiebesparingsmodus is ingeschakeld, wordt het product na 12 uur automatisch uitgeschakeld als de \naan/uit-knop voor AC of USB op AAN staat, maar het product niet wordt opgeladen of ontladen.\nOPGELET\n• USB-C 100 W MAX is een USB-PD Power Source 3 (PS3)-uitgangspoort met hoog vermogen. Als het \naangesloten apparaat of accessoire niet aan de veiligheidsvereisten voldoet, kan er brandgevaar \nontstaan. Controleer voordat u deze poorten gebruikt of het aangesloten apparaat of accessoire \nbeschikt over brandbeveiliging.\n• Sluit de Jackery Explorer 3600 Plus alleen aan op apparaten of accessoires die voldoen aan clausules 6.3, \n6.4 en 6.5 van IEC/EN/UL 62368-1 (of andere gelijkwaardige normen).\n• Gebruik de oﬃciële Jackery USB-C naar USB-C 5A-kabel (20 V DC/5 A, 100 W) voor maximaal \nuitgangsvermogen.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.834999084472656,
+            31.004680633544922,
+            114.76701354980469,
+            45.860679626464844
+          ],
+          "text": "HANDELINGEN\n"
+        },
+        {
+          "bbox": [
+            40.80619812011719,
+            59.38078689575195,
+            112.03019714355469,
+            69.2847900390625
+          ],
+          "text": "IN-/UITSCHAKELEN\n"
+        },
+        {
+          "bbox": [
+            262.1401062011719,
+            85.30868530273438,
+            280.85009765625,
+            97.68868255615234
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            262.47021484375,
+            98.08878326416016,
+            300.19818115234375,
+            105.28878784179688
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            261.85009765625,
+            111.43869018554688,
+            274.7001037597656,
+            123.81868743896484
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            262.470703125,
+            123.59119415283203,
+            336.4642333984375,
+            130.79119873046875
+          ],
+          "text": "Houd 3 seconden ingedrukt.\n"
+        },
+        {
+          "bbox": [
+            276.61279296875,
+            135.62188720703125,
+            283.50079345703125,
+            144.02188110351562
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            170.0854034423828,
+            169.0177001953125,
+            254.14694213867188,
+            175.20770263671875
+          ],
+          "text": "Standaard stand-bymodustijd: 2 uur\n"
+        },
+        {
+          "bbox": [
+            170.0854034423828,
+            177.0926971435547,
+            322.2994079589844,
+            183.0926971435547
+          ],
+          "text": "Het product wordt na 2 uur inactiviteit automatisch uitgeschakeld, \n"
+        },
+        {
+          "bbox": [
+            170.0854034423828,
+            185.0926971435547,
+            271.1404113769531,
+            191.0926971435547
+          ],
+          "text": "zonder dat er wordt opgeladen of ontladen.\n"
+        },
+        {
+          "bbox": [
+            170.0854034423828,
+            193.0926971435547,
+            304.0479431152344,
+            199.0926971435547
+          ],
+          "text": "* De stand-bytijd kan worden ingesteld in de Jackery-app.\n"
+        },
+        {
+          "bbox": [
+            49.107398986816406,
+            217.2113800048828,
+            316.9533996582031,
+            223.2113800048828
+          ],
+          "text": "Wanneer de Energiebesparingsmodus is ingeschakeld, wordt het product na 12 uur automatisch uitgeschakeld als de \n"
+        },
+        {
+          "bbox": [
+            49.107398986816406,
+            225.2113800048828,
+            270.8243408203125,
+            231.2113800048828
+          ],
+          "text": "aan/uit-knop voor AC of USB op AAN staat, maar het product niet wordt opgeladen of ontladen.\n"
+        },
+        {
+          "bbox": [
+            40.39400100708008,
+            253.6361846923828,
+            152.8419952392578,
+            263.5401916503906
+          ],
+          "text": "AAN/UIT VOOR USB-UITGANG\n"
+        },
+        {
+          "bbox": [
+            44.25979995727539,
+            276.3053894042969,
+            172.0100860595703,
+            284.4761962890625
+          ],
+          "text": "Voorwaarde: Het product is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            288.8359069824219,
+            281.0664978027344,
+            307.5458984375,
+            293.4465026855469
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            289.1659851074219,
+            293.8465881347656,
+            326.8939514160156,
+            301.0466003417969
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            288.5458984375,
+            307.1965026855469,
+            301.3959045410156,
+            319.5765075683594
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            289.1659851074219,
+            319.79656982421875,
+            326.8939514160156,
+            326.99658203125
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            87.83979797363281,
+            430.9400939941406,
+            320.0312805175781,
+            437.1300964355469
+          ],
+          "text": "• USB-C 100 W MAX is een USB-PD Power Source 3 (PS3)-uitgangspoort met hoog vermogen. Als het \n"
+        },
+        {
+          "bbox": [
+            90.83979797363281,
+            439.0151062011719,
+            315.08331298828125,
+            445.0151062011719
+          ],
+          "text": "aangesloten apparaat of accessoire niet aan de veiligheidsvereisten voldoet, kan er brandgevaar \n"
+        },
+        {
+          "bbox": [
+            90.83979797363281,
+            447.0151062011719,
+            314.3692932128906,
+            453.0151062011719
+          ],
+          "text": "ontstaan. Controleer voordat u deze poorten gebruikt of het aangesloten apparaat of accessoire \n"
+        },
+        {
+          "bbox": [
+            90.83979797363281,
+            455.0151062011719,
+            161.81976318359375,
+            461.0151062011719
+          ],
+          "text": "beschikt over brandbeveiliging.\n"
+        },
+        {
+          "bbox": [
+            39.56740188598633,
+            458.33624267578125,
+            72.86367797851562,
+            468.1882629394531
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            87.83979797363281,
+            463.0151062011719,
+            332.46923828125,
+            469.0151062011719
+          ],
+          "text": "• Sluit de Jackery Explorer 3600 Plus alleen aan op apparaten of accessoires die voldoen aan clausules 6.3, \n"
+        },
+        {
+          "bbox": [
+            90.83979797363281,
+            471.0151062011719,
+            246.92221069335938,
+            477.0151062011719
+          ],
+          "text": "6.4 en 6.5 van IEC/EN/UL 62368-1 (of andere gelijkwaardige normen).\n"
+        },
+        {
+          "bbox": [
+            87.83979797363281,
+            479.0151062011719,
+            307.0252685546875,
+            485.0151062011719
+          ],
+          "text": "• Gebruik de oﬃciële Jackery USB-C naar USB-C 5A-kabel (20 V DC/5 A, 100 W) voor maximaal \n"
+        },
+        {
+          "bbox": [
+            90.83979797363281,
+            487.0151062011719,
+            135.13427734375,
+            493.0151062011719
+          ],
+          "text": "uitgangsvermogen.\n"
+        },
+        {
+          "bbox": [
+            333.75799560546875,
+            503.91259765625,
+            342.0679931640625,
+            511.11260986328125
+          ],
+          "text": "123\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 133,
+      "text": "AAN/UIT VOOR AC-UITGANG\n3s\nHoud 3 seconden ingedrukt.\nVoorwaarde: Het product is ingeschakeld.\nAan\nUit\nDruk één keer\nDruk één keer\nAan/Uit\n124\nENERGIEBESPARINGSMODUS\nHoofd AAN/UIT-knop\nAan/uit-knop voor DC\nOm onnodig batterijverbruik te voorkomen wanneer u vergeet de uitgang uit te schakelen, schakelt het product \nstandaard de energiebesparende modus in. Als er gedurende 12 uur geen apparaat is aangesloten of het stroomverbruik \nvan het aangesloten apparaat onder een bepaalde drempelwaarde ligt (25 W AC-uitgang of 2 W USB-uitgang), \nschakelt het product de uitgangen automatisch uit.\nOm de Energiebesparingsmodus uit te schakelen, houdt u zowel de Aan/uit-knop voor AC als de AAN/UIT-knop langer \ndan 3 seconden ingedrukt. Het product zal de AC- of DC-uitgang niet automatisch uitschakelen.\nDe Energiebesparingsmodus hervat de vorige status na het inschakelen. Voor het \nwijzigen van de modus is handmatig schakelen vereist.\nOPMERKING\n",
+      "blocks": [
+        {
+          "bbox": [
+            40.845699310302734,
+            29.709491729736328,
+            149.7176971435547,
+            39.61349105834961
+          ],
+          "text": "AAN/UIT VOOR AC-UITGANG\n"
+        },
+        {
+          "bbox": [
+            45.54880142211914,
+            55.670711517333984,
+            171.77381896972656,
+            63.841514587402344
+          ],
+          "text": "Voorwaarde: Het product is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            279.5693054199219,
+            91.040283203125,
+            298.279296875,
+            103.42028045654297
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            279.8994140625,
+            103.8202896118164,
+            317.62738037109375,
+            111.02029418945312
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            279.279296875,
+            117.1702880859375,
+            292.1293029785156,
+            129.55029296875
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            279.8994140625,
+            129.7762908935547,
+            317.62738037109375,
+            136.97628784179688
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            41.549800872802734,
+            242.37648010253906,
+            148.6298065185547,
+            252.28048706054688
+          ],
+          "text": "ENERGIEBESPARINGSMODUS\n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            275.7632141113281,
+            303.8022155761719,
+            281.7632141113281
+          ],
+          "text": "Om onnodig batterijverbruik te voorkomen wanneer u vergeet de uitgang uit te schakelen, schakelt het product \n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            283.7632141113281,
+            325.4981384277344,
+            289.7632141113281
+          ],
+          "text": "standaard de energiebesparende modus in. Als er gedurende 12 uur geen apparaat is aangesloten of het stroomverbruik \n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            291.7632141113281,
+            307.66168212890625,
+            297.7632141113281
+          ],
+          "text": "van het aangesloten apparaat onder een bepaalde drempelwaarde ligt (25 W AC-uitgang of 2 W USB-uitgang), \n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            299.7632141113281,
+            166.3626708984375,
+            305.7632141113281
+          ],
+          "text": "schakelt het product de uitgangen automatisch uit.\n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            307.7632141113281,
+            320.88763427734375,
+            313.7632141113281
+          ],
+          "text": "Om de Energiebesparingsmodus uit te schakelen, houdt u zowel de Aan/uit-knop voor AC als de AAN/UIT-knop langer \n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            315.7632141113281,
+            269.51519775390625,
+            321.7632141113281
+          ],
+          "text": "dan 3 seconden ingedrukt. Het product zal de AC- of DC-uitgang niet automatisch uitschakelen.\n"
+        },
+        {
+          "bbox": [
+            173.36570739746094,
+            394.1484069824219,
+            308.75372314453125,
+            401.08392333984375
+          ],
+          "text": "Hoofd AAN/UIT-knop\nAan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            221.33349609375,
+            426.7405090332031,
+            258.12347412109375,
+            439.1205139160156
+          ],
+          "text": "Aan/Uit\n"
+        },
+        {
+          "bbox": [
+            207.20069885253906,
+            433.3608093261719,
+            298.9615783691406,
+            445.6234130859375
+          ],
+          "text": "3s\nHoud 3 seconden ingedrukt.\n"
+        },
+        {
+          "bbox": [
+            33.539100646972656,
+            473.9906921386719,
+            317.45172119140625,
+            489.1886901855469
+          ],
+          "text": "De Energiebesparingsmodus hervat de vorige status na het inschakelen. Voor het \nwijzigen van de modus is handmatig schakelen vereist.\nOPMERKING\n"
+        },
+        {
+          "bbox": [
+            28.986799240112305,
+            503.9804992675781,
+            37.536800384521484,
+            511.1805114746094
+          ],
+          "text": "124\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 134,
+      "text": "125\nLCD-SCHERM \nTOETSCOMBINATIE\n3s\n3s\nAan/Uit-knop\nAan/Uit-knop\nAan/uit-knop voor DC\nAan/uit-knop voor DC\nHoud beide knoppen 3 \nseconden ingedrukt\nHoud beide knoppen 3 \nseconden ingedrukt\n1 seconde\nHoud beide knoppen 1 \nseconde ingedrukt\nReset wifi en Bluetooth\nDe Energiebesparingsmodus \nin-/uitschakelen\nWifi en Bluetooth in- of \nuitschakelen\nKnoppen\nBEDIENING\nFunctie\nUSB-aan/uit-knop\nUSB-aan/uit-knop\nKort \ninschakelen\nContinu \ninschakelen \n(bij laden of \nontladen)\nUitschakelen\nAutomatisch \nuitschakelen\nUitschakelen\nInschakelen\nAutomatisch \nuitschakelen\nDruk op de AAN/UIT-knop of \nwanneer het product oplaadt.\nInschakelen\nDruk tweemaal op de \nAAN/UIT-knop wanneer het \nproduct is ingeschakeld.\nU kunt de schermweergavemodus ook instellen in de Jackery-app.\nHet LCD-scherm schakelt \nautomatisch uit na 2 uur \ninactiviteit.\nDruk op de Aan/Uit-knop.\nDruk op de Aan/Uit-knop.\nHet LCD-scherm schakelt \nautomatisch uit en gaat in \nslaapstand na 2 minuten \ninactiviteit.\n",
+      "blocks": [
+        {
+          "bbox": [
+            42.265098571777344,
+            27.448810577392578,
+            95.14509582519531,
+            37.35280990600586
+          ],
+          "text": "LCD-SCHERM \n"
+        },
+        {
+          "bbox": [
+            201.7598419189453,
+            73.13301849365234,
+            325.491455078125,
+            86.97718811035156
+          ],
+          "text": "Druk op de AAN/UIT-knop of \nwanneer het product oplaadt.\nInschakelen\n"
+        },
+        {
+          "bbox": [
+            201.75880432128906,
+            97.26482391357422,
+            235.05343627929688,
+            104.18690490722656
+          ],
+          "text": "Uitschakelen\n"
+        },
+        {
+          "bbox": [
+            245.63783264160156,
+            97.48543548583984,
+            314.14971923828125,
+            104.40751647949219
+          ],
+          "text": "Druk op de Aan/Uit-knop.\n"
+        },
+        {
+          "bbox": [
+            155.06539916992188,
+            98.07328796386719,
+            191.92628479003906,
+            114.43711853027344
+          ],
+          "text": "Kort \ninschakelen\n"
+        },
+        {
+          "bbox": [
+            202.22027587890625,
+            115.29106903076172,
+            236.81912231445312,
+            129.13523864746094
+          ],
+          "text": "Automatisch \nuitschakelen\n"
+        },
+        {
+          "bbox": [
+            245.63783264160156,
+            109.96825408935547,
+            316.80267333984375,
+            134.8877716064453
+          ],
+          "text": "Het LCD-scherm schakelt \nautomatisch uit en gaat in \nslaapstand na 2 minuten \ninactiviteit.\n"
+        },
+        {
+          "bbox": [
+            201.75880432128906,
+            148.41323852539062,
+            232.61338806152344,
+            155.33531188964844
+          ],
+          "text": "Inschakelen\n"
+        },
+        {
+          "bbox": [
+            245.63429260253906,
+            140.98944091796875,
+            320.046142578125,
+            161.7556915283203
+          ],
+          "text": "Druk tweemaal op de \nAAN/UIT-knop wanneer het \nproduct is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            247.3106689453125,
+            171.46517944335938,
+            315.82196044921875,
+            178.3872528076172
+          ],
+          "text": "Druk op de Aan/Uit-knop.\n"
+        },
+        {
+          "bbox": [
+            201.75880432128906,
+            172.1156005859375,
+            235.0528564453125,
+            179.0376739501953
+          ],
+          "text": "Uitschakelen\n"
+        },
+        {
+          "bbox": [
+            154.02708435058594,
+            156.3573455810547,
+            192.8185272216797,
+            185.4301300048828
+          ],
+          "text": "Continu \ninschakelen \n(bij laden of \nontladen)\n"
+        },
+        {
+          "bbox": [
+            201.75880432128906,
+            192.91067504882812,
+            236.35765075683594,
+            206.7548370361328
+          ],
+          "text": "Automatisch \nuitschakelen\n"
+        },
+        {
+          "bbox": [
+            248.62010192871094,
+            187.57052612304688,
+            317.1943054199219,
+            208.33677673339844
+          ],
+          "text": "Het LCD-scherm schakelt \nautomatisch uit na 2 uur \ninactiviteit.\n"
+        },
+        {
+          "bbox": [
+            29.6835994720459,
+            233.78091430664062,
+            231.75584411621094,
+            241.70091247558594
+          ],
+          "text": "U kunt de schermweergavemodus ook instellen in de Jackery-app.\n"
+        },
+        {
+          "bbox": [
+            42.051300048828125,
+            266.3126220703125,
+            113.01128387451172,
+            276.21661376953125
+          ],
+          "text": "TOETSCOMBINATIE\n"
+        },
+        {
+          "bbox": [
+            35.354000091552734,
+            286.65020751953125,
+            276.1622619628906,
+            295.038818359375
+          ],
+          "text": "Knoppen\nBEDIENING\nFunctie\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            308.2070007324219,
+            183.88600158691406,
+            316.60699462890625
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            254.81399536132812,
+            315.1162109375,
+            316.96673583984375,
+            322.31622314453125
+          ],
+          "text": "Reset wifi en Bluetooth\n"
+        },
+        {
+          "bbox": [
+            164.0684051513672,
+            323.4013977050781,
+            223.07240295410156,
+            336.00189208984375
+          ],
+          "text": "Houd beide knoppen 3 \nseconden ingedrukt\n"
+        },
+        {
+          "bbox": [
+            45.201698303222656,
+            330.0630187988281,
+            80.3412094116211,
+            336.66302490234375
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            98.81790161132812,
+            330.0630187988281,
+            146.52545166015625,
+            336.66302490234375
+          ],
+          "text": "USB-aan/uit-knop\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            349.9696960449219,
+            183.88600158691406,
+            358.36968994140625
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            254.15399169921875,
+            351.65618896484375,
+            334.44659423828125,
+            366.85418701171875
+          ],
+          "text": "De Energiebesparingsmodus \nin-/uitschakelen\n"
+        },
+        {
+          "bbox": [
+            164.0684051513672,
+            364.2059020996094,
+            223.07240295410156,
+            376.806396484375
+          ],
+          "text": "Houd beide knoppen 3 \nseconden ingedrukt\n"
+        },
+        {
+          "bbox": [
+            45.201698303222656,
+            371.1150207519531,
+            151.0607452392578,
+            377.71502685546875
+          ],
+          "text": "Aan/Uit-knop\nAan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            392.24798583984375,
+            208.9459991455078,
+            400.6479797363281
+          ],
+          "text": "1 seconde\n"
+        },
+        {
+          "bbox": [
+            253.27198791503906,
+            394.64019775390625,
+            317.6345520019531,
+            409.83819580078125
+          ],
+          "text": "Wifi en Bluetooth in- of \nuitschakelen\n"
+        },
+        {
+          "bbox": [
+            164.06790161132812,
+            405.52789306640625,
+            222.0269012451172,
+            419.12939453125
+          ],
+          "text": "Houd beide knoppen 1 \nseconde ingedrukt\n"
+        },
+        {
+          "bbox": [
+            94.58499908447266,
+            412.6391906738281,
+            151.05955505371094,
+            419.23919677734375
+          ],
+          "text": "Aan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            38.752899169921875,
+            412.9341125488281,
+            86.46045684814453,
+            419.53411865234375
+          ],
+          "text": "USB-aan/uit-knop\n"
+        },
+        {
+          "bbox": [
+            334.9800109863281,
+            504.4921875,
+            343.3800048828125,
+            511.69219970703125
+          ],
+          "text": "125\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 135,
+      "text": "126\nONONDERBROKEN STROOMVOORZIENING (UPS)\n• Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op \napparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of \nwerkstations.\n• Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat.\n• Sluit geen belastingen aan die het maximale uitgangsvermogen van het product \noverschrijden. Anders wordt de overbelastingsbeveiliging geactiveerd. \nSluit het product met de AC-oplaadkabel aan op een stopcontact, druk vervolgens op de Aan/uit-knop voor AC \nen voorzie uw apparaten tegelijkertijd van stroom.\nIn de UPS-modus bedraagt de piekuitgang van het apparaat 10A zonder stroomuitval. Omdat gelijktijdig \nladen/ontladen is ingeschakeld in de Bypass-modus, is het werkelijke uitgangsvermogen in deze modus lager dan \nhet nominale uitgangsvermogen. Tijdens stroomuitval keert het echter terug naar het nominale \nuitgangsvermogen.\nEen ononderbroken stroomvoorziening (UPS) is een type voortdurend \nstroomvoorzieningssysteem dat automatisch back-upstroom levert aan een \nbelasting wanneer de netstroom uitvalt.\nBij een plotseling verlies van netstroom schakelt de Explorer 3600 Plus \nautomatisch binnen 10 ms over op opgeslagen stroom om uw apparaten \ndraaiende te houden.\nOPGELET\n",
+      "blocks": [
+        {
+          "bbox": [
+            31.319799423217773,
+            30.341808319091797,
+            298.5477600097656,
+            45.19780731201172
+          ],
+          "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n"
+        },
+        {
+          "bbox": [
+            26.462900161743164,
+            58.58640670776367,
+            337.02642822265625,
+            74.78640747070312
+          ],
+          "text": "Sluit het product met de AC-oplaadkabel aan op een stopcontact, druk vervolgens op de Aan/uit-knop voor AC \nen voorzie uw apparaten tegelijkertijd van stroom.\n"
+        },
+        {
+          "bbox": [
+            130.4687042236328,
+            262.3388977050781,
+            322.4725341796875,
+            304.9473876953125
+          ],
+          "text": "Een ononderbroken stroomvoorziening (UPS) is een type voortdurend \nstroomvoorzieningssysteem dat automatisch back-upstroom levert aan een \nbelasting wanneer de netstroom uitvalt.\nBij een plotseling verlies van netstroom schakelt de Explorer 3600 Plus \nautomatisch binnen 10 ms over op opgeslagen stroom om uw apparaten \ndraaiende te houden.\n"
+        },
+        {
+          "bbox": [
+            25.37700080871582,
+            329.87548828125,
+            338.7677917480469,
+            364.07550048828125
+          ],
+          "text": "In de UPS-modus bedraagt de piekuitgang van het apparaat 10A zonder stroomuitval. Omdat gelijktijdig \nladen/ontladen is ingeschakeld in de Bypass-modus, is het werkelijke uitgangsvermogen in deze modus lager dan \nhet nominale uitgangsvermogen. Tijdens stroomuitval keert het echter terug naar het nominale \nuitgangsvermogen.\n"
+        },
+        {
+          "bbox": [
+            35.47850036621094,
+            392.0121154785156,
+            69.41558074951172,
+            401.8641357421875
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            82.41020202636719,
+            372.82366943359375,
+            327.26910400390625,
+            420.0137023925781
+          ],
+          "text": "• Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op \napparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of \nwerkstations.\n• Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat.\n• Sluit geen belastingen aan die het maximale uitgangsvermogen van het product \noverschrijden. Anders wordt de overbelastingsbeveiliging geactiveerd. \n"
+        },
+        {
+          "bbox": [
+            25.120100021362305,
+            504.0448913574219,
+            33.37010192871094,
+            511.2449035644531
+          ],
+          "text": "126\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 136,
+      "text": "127\nDit product kan maximaal 5 batterijpakketten ondersteunen om te voldoen aan de behoefte aan een grote \nvermogenscapaciteit. Voor details over het gebruik raadpleegt u de gebruikershandleiding van de Jackery \nBattery Pack 3600.\nVERBINDINGEN \n AANSLUITEN OP BATTERIJPAKKET(TEN) \nMinimaal 200 mm\nMinimaal 200 mm\nAPART VERKOCHT\nOPGELET\n• Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Explorer 3600 Plus op de \nJackery Battery Pack 3600 aansluit.\n• Zorg voor een goede werking van het product door ervoor te zorgen dat de luchtinlaat- \nen uitlaatopeningen aan beide zijden niet geblokkeerd zijn. Zorg voor minimaal 200 mm \nruimte tussen de ventilatieopeningen en eventuele voorwerpen om een goede \nwarmteafvoer mogelijk te maken.\nUitbreidingskabel\nJackery Battery Pack 3600\nGebruikershandleiding\nAPART \nVERKOCHT\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.1963005065918,
+            30.341808319091797,
+            120.94432067871094,
+            45.19780731201172
+          ],
+          "text": "VERBINDINGEN \n"
+        },
+        {
+          "bbox": [
+            194.216796875,
+            60.48191452026367,
+            248.6597900390625,
+            68.4498062133789
+          ],
+          "text": "APART VERKOCHT\n"
+        },
+        {
+          "bbox": [
+            39.56880187988281,
+            60.03960037231445,
+            186.52880859375,
+            69.943603515625
+          ],
+          "text": " AANSLUITEN OP BATTERIJPAKKET(TEN) \n"
+        },
+        {
+          "bbox": [
+            27.799800872802734,
+            75.81009674072266,
+            322.9380187988281,
+            101.01010131835938
+          ],
+          "text": "Dit product kan maximaal 5 batterijpakketten ondersteunen om te voldoen aan de behoefte aan een grote \nvermogenscapaciteit. Voor details over het gebruik raadpleegt u de gebruikershandleiding van de Jackery \nBattery Pack 3600.\n"
+        },
+        {
+          "bbox": [
+            112.83300018310547,
+            262.5794982910156,
+            254.66036987304688,
+            269.8733825683594
+          ],
+          "text": "Minimaal 200 mm\nMinimaal 200 mm\n"
+        },
+        {
+          "bbox": [
+            37.955101013183594,
+            339.0639343261719,
+            71.85142517089844,
+            348.91595458984375
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            88.03810119628906,
+            320.134765625,
+            333.1075439453125,
+            368.3267822265625
+          ],
+          "text": "• Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Explorer 3600 Plus op de \nJackery Battery Pack 3600 aansluit.\n• Zorg voor een goede werking van het product door ervoor te zorgen dat de luchtinlaat- \nen uitlaatopeningen aan beide zijden niet geblokkeerd zijn. Zorg voor minimaal 200 mm \nruimte tussen de ventilatieopeningen en eventuele voorwerpen om een goede \nwarmteafvoer mogelijk te maken.\n"
+        },
+        {
+          "bbox": [
+            303.70208740234375,
+            415.42437744140625,
+            334.3478698730469,
+            429.9209899902344
+          ],
+          "text": "APART \nVERKOCHT\n"
+        },
+        {
+          "bbox": [
+            49.24540710449219,
+            447.0884094238281,
+            256.8614196777344,
+            453.0884094238281
+          ],
+          "text": "Uitbreidingskabel\nJackery Battery Pack 3600\nGebruikershandleiding\n"
+        },
+        {
+          "bbox": [
+            335.20208740234375,
+            503.7421875,
+            343.21209716796875,
+            510.94219970703125
+          ],
+          "text": "127\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 137,
+      "text": "OPLADEN VIA AC-STOPCONTACT\nSluit de AC-oplaadkabel aan op de AC-ingangspoort \nvan het product en op een stopcontact.\nOPLADEN\n128\nLaad het product voor het eerste gebruik volledig op.\n• De aanbevolen oplaadtemperatuur voor het product ligt tussen -20°C en 45°C, en de \nontlaadtemperatuur tussen -20°C en 45°C. Het gebruik van het product buiten dit \ntemperatuurbereik kan de laad- en ontlaadmogelijkheden beperken of zelfs voorkomen \ndat het product kan opladen of ontladen.\n• Het oplaadvermogen en de batterijcapaciteit van het product kunnen variëren als gevolg \nvan verschillende temperaturen.\nOPMERKING\nZorg ervoor dat de AC-oplaadkabel volledig en correct in de AC-ingangspoort is \ngestoken. Een onvolledige verbinding kan instabiele stroom, oververhitting, slecht contact \nof apparaatstoringen veroorzaken.\nOPGELET\nGroene energie eerst: Wij raden aan om eerst groene energie te gebruiken. Dit product ondersteunt twee modi \nvoor opladen tegelijkertijd: Opladen via zonnepanelen en opladen een AC-stopcontact. Wanneer het opladen \nvia een AC-stopcontact en het opladen via zonnepanelen tegelijkertijd zijn ingeschakeld, geeft het product \nprioriteit aan het opladen via zonnepanelen en worden beide methoden gebruikt om de batterij te laden met het \nmaximaal toegestane vermogen.\nAPART VERKOCHT\nSolarSaga 200 × 4\nOPLADEN VIA ZONNEPANELEN\nDe Jackery Explorer 3600 Plus heeft twee DC8020-ingangen en is compatibel met de Jackery-zonnepanelen. Als \ner op één DC8020-ingangspoort twee zonnepanelen tegelijk moeten worden aangesloten, raadpleeg dan de \nonderstaande afbeelding voor het opladen via de zonnepaneel-connector (deze is apart verkrijgbaar en wordt \nniet standaard meegeleverd).\n",
+      "blocks": [
+        {
+          "bbox": [
+            37.5,
+            31.022411346435547,
+            90.88800811767578,
+            45.87841033935547
+          ],
+          "text": "OPLADEN\n"
+        },
+        {
+          "bbox": [
+            30.54050064086914,
+            52.23279571533203,
+            344.8085632324219,
+            87.66885375976562
+          ],
+          "text": "Groene energie eerst: Wij raden aan om eerst groene energie te gebruiken. Dit product ondersteunt twee modi \nvoor opladen tegelijkertijd: Opladen via zonnepanelen en opladen een AC-stopcontact. Wanneer het opladen \nvia een AC-stopcontact en het opladen via zonnepanelen tegelijkertijd zijn ingeschakeld, geeft het product \nprioriteit aan het opladen via zonnepanelen en worden beide methoden gebruikt om de batterij te laden met het \nmaximaal toegestane vermogen.\n"
+        },
+        {
+          "bbox": [
+            34.75490188598633,
+            93.69070434570312,
+            197.70892333984375,
+            101.86150360107422
+          ],
+          "text": "Laad het product voor het eerste gebruik volledig op.\n"
+        },
+        {
+          "bbox": [
+            34.30659866333008,
+            128.26319885253906,
+            79.76260375976562,
+            138.16720581054688
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            83.26319885253906,
+            109.37259674072266,
+            333.6683654785156,
+            157.56454467773438
+          ],
+          "text": "• De aanbevolen oplaadtemperatuur voor het product ligt tussen -20°C en 45°C, en de \nontlaadtemperatuur tussen -20°C en 45°C. Het gebruik van het product buiten dit \ntemperatuurbereik kan de laad- en ontlaadmogelijkheden beperken of zelfs voorkomen \ndat het product kan opladen of ontladen.\n• Het oplaadvermogen en de batterijcapaciteit van het product kunnen variëren als gevolg \nvan verschillende temperaturen.\n"
+        },
+        {
+          "bbox": [
+            41.12260055541992,
+            165.53370666503906,
+            165.9306182861328,
+            175.43771362304688
+          ],
+          "text": "OPLADEN VIA AC-STOPCONTACT\n"
+        },
+        {
+          "bbox": [
+            186.466796875,
+            258.4643859863281,
+            336.3221435546875,
+            274.6643981933594
+          ],
+          "text": "Sluit de AC-oplaadkabel aan op de AC-ingangspoort \nvan het product en op een stopcontact.\n"
+        },
+        {
+          "bbox": [
+            39.84280014038086,
+            289.1889953613281,
+            332.8509826660156,
+            310.39300537109375
+          ],
+          "text": "Zorg ervoor dat de AC-oplaadkabel volledig en correct in de AC-ingangspoort is \ngestoken. Een onvolledige verbinding kan instabiele stroom, oververhitting, slecht contact \nof apparaatstoringen veroorzaken.\nOPGELET\n"
+        },
+        {
+          "bbox": [
+            165.79490661621094,
+            322.21630859375,
+            220.23788452148438,
+            330.1842041015625
+          ],
+          "text": "APART VERKOCHT\n"
+        },
+        {
+          "bbox": [
+            43.35689926147461,
+            321.4625244140625,
+            154.4129180908203,
+            331.36651611328125
+          ],
+          "text": "OPLADEN VIA ZONNEPANELEN\n"
+        },
+        {
+          "bbox": [
+            32.775901794433594,
+            335.19390869140625,
+            346.09661865234375,
+            363.39990234375
+          ],
+          "text": "De Jackery Explorer 3600 Plus heeft twee DC8020-ingangen en is compatibel met de Jackery-zonnepanelen. Als \ner op één DC8020-ingangspoort twee zonnepanelen tegelijk moeten worden aangesloten, raadpleeg dan de \nonderstaande afbeelding voor het opladen via de zonnepaneel-connector (deze is apart verkrijgbaar en wordt \nniet standaard meegeleverd).\n"
+        },
+        {
+          "bbox": [
+            255.47459411621094,
+            484.70062255859375,
+            302.58709716796875,
+            491.4245910644531
+          ],
+          "text": "SolarSaga 200 × 4\n"
+        },
+        {
+          "bbox": [
+            29.61520004272461,
+            504.1972961425781,
+            38.063201904296875,
+            511.3973083496094
+          ],
+          "text": "128\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 138,
+      "text": "129\nHet wordt aanbevolen om het product op te laden met het Jackery-zonnepaneel. Zorg ervoor dat de \nopen-klemspanning (VOC) van het zonnepaneel binnen het DC-ingangsbereik (16 V-60 V) van de Explorer 3600 Plus \nligt. Jackery is niet verantwoordelijk voor schade of verlies als gevolg van het gebruik van zonnepanelen van \nderden.\nOPGELET\nOPGELET\nZorg ervoor dat de ingangsspanning van beide DC-ingangspoorten dezelfde is. Als u dit \nniet doet, kan het product beschadigd raken. Bijvoorbeeld:\n• Gebruik hetzelfde model van en hetzelfde aantal aan Jackery-zonnepanelen wanneer \nu zonnepanelen aansluit op beide DC8020-ingangspoorten. \n• Laad het product niet tegelijkertijd op via zowel een autolader als een zonnepaneel. \nHierdoor kan de autozekering doorbranden of leiden tot een laadstoring.\nAPART VERKOCHT\nOPLADEN VIA EEN AUTOLADER\nDit product kan worden opgeladen met een 12 V-auto-oplader. Zorg ervoor dat de autolader en de 12 \nV-aansluiting in de auto (sigarettenaansteker) goed zijn aangesloten.\nVoertuig \n*De oplaadkabel voor de auto is apart verkrijgbaar.\nOPGELET\n• Start het voertuig voordat u uw powerstation oplaadt.\n• Als u met uw voertuig op oneffen wegen rijdt, is het verboden de autolader te gebruiken \nom niet-standaard werking te voorkomen. Het bedrijf is niet aansprakelijk voor enig \nverlies of schade als gevolg van niet-standaard gebruik.\n• Opladen via de auto is alleen van toepassing op voertuigen met 12 V DC, niet op 24 V DC. \nLaad dit product niet op in een voertuig met 24 V om persoonlijk letsel en materiële \nschade te voorkomen.\nOp één DC8020-ingangspoort kunnen maximaal twee zonnepanelen worden \naangesloten.\n",
+      "blocks": [
+        {
+          "bbox": [
+            37.56930160522461,
+            31.38624382019043,
+            71.40747833251953,
+            41.23824691772461
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            87.33979797363281,
+            29.750497817993164,
+            301.6609802246094,
+            42.950496673583984
+          ],
+          "text": "Op één DC8020-ingangspoort kunnen maximaal twee zonnepanelen worden \naangesloten.\n"
+        },
+        {
+          "bbox": [
+            88.00199890136719,
+            56.8256950378418,
+            330.7979736328125,
+            64.02569580078125
+          ],
+          "text": "Zorg ervoor dat de ingangsspanning van beide DC-ingangspoorten dezelfde is. Als u dit \n"
+        },
+        {
+          "bbox": [
+            37.87221145629883,
+            74.51860046386719,
+            71.71038818359375,
+            84.37060546875
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            88.00199890136719,
+            64.82367706298828,
+            329.4299621582031,
+            104.015625
+          ],
+          "text": "niet doet, kan het product beschadigd raken. Bijvoorbeeld:\n• Gebruik hetzelfde model van en hetzelfde aantal aan Jackery-zonnepanelen wanneer \nu zonnepanelen aansluit op beide DC8020-ingangspoorten. \n• Laad het product niet tegelijkertijd op via zowel een autolader als een zonnepaneel. \nHierdoor kan de autozekering doorbranden of leiden tot een laadstoring.\n"
+        },
+        {
+          "bbox": [
+            29.904800415039062,
+            115.5193862915039,
+            341.1962890625,
+            149.71859741210938
+          ],
+          "text": "Het wordt aanbevolen om het product op te laden met het Jackery-zonnepaneel. Zorg ervoor dat de \nopen-klemspanning (VOC) van het zonnepaneel binnen het DC-ingangsbereik (16 V-60 V) van de Explorer 3600 Plus \nligt. Jackery is niet verantwoordelijk voor schade of verlies als gevolg van het gebruik van zonnepanelen van \nderden.\n"
+        },
+        {
+          "bbox": [
+            40.6963005065918,
+            156.0078887939453,
+            229.50347900390625,
+            165.91189575195312
+          ],
+          "text": "APART VERKOCHT\nOPLADEN VIA EEN AUTOLADER\n"
+        },
+        {
+          "bbox": [
+            29.49799919128418,
+            172.8892059326172,
+            310.38739013671875,
+            188.08718872070312
+          ],
+          "text": "Dit product kan worden opgeladen met een 12 V-auto-oplader. Zorg ervoor dat de autolader en de 12 \nV-aansluiting in de auto (sigarettenaansteker) goed zijn aangesloten.\n"
+        },
+        {
+          "bbox": [
+            245.57420349121094,
+            206.90380859375,
+            274.1824951171875,
+            215.30380249023438
+          ],
+          "text": "Voertuig \n"
+        },
+        {
+          "bbox": [
+            185.14840698242188,
+            301.37158203125,
+            327.9225769042969,
+            308.57159423828125
+          ],
+          "text": "*De oplaadkabel voor de auto is apart verkrijgbaar.\n"
+        },
+        {
+          "bbox": [
+            37.559600830078125,
+            355.7094421386719,
+            71.39777374267578,
+            365.56146240234375
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            84.38480377197266,
+            336.455078125,
+            334.5020751953125,
+            391.64312744140625
+          ],
+          "text": "• Start het voertuig voordat u uw powerstation oplaadt.\n• Als u met uw voertuig op oneffen wegen rijdt, is het verboden de autolader te gebruiken \nom niet-standaard werking te voorkomen. Het bedrijf is niet aansprakelijk voor enig \nverlies of schade als gevolg van niet-standaard gebruik.\n• Opladen via de auto is alleen van toepassing op voertuigen met 12 V DC, niet op 24 V DC. \nLaad dit product niet op in een voertuig met 24 V om persoonlijk letsel en materiële \nschade te voorkomen.\n"
+        },
+        {
+          "bbox": [
+            334.61041259765625,
+            504.52337646484375,
+            342.98040771484375,
+            511.723388671875
+          ],
+          "text": "129\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 139,
+      "text": "130\nBewaar het product op een droge, schone plaats met goede ventilatie. Opslagtemperatuur en -vochtigheid:\n• 1 maand: -20°C tot 45°C (0-60%RH)\n• 3 maanden: 0°C tot 45°C (0-60%RH)\n• 12 maanden: 0°C tot 25°C (0-60%RH)\nAls dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan \nhet zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij in goede conditie te \nhouden, is het aan te raden om het product elke drie maanden te controleren en op te laden, waarbij minstens \néén keer per 6 tot 12 maanden een volledige laad- en ontlaadcyclus moet worden uitgevoerd.\nOpslag\nPROBLEEMOPLOSSING\nFoutcode\nOplossingsmaatregelen\nFC\nFA\nF9\nF8\nF7\nF6\nF5\n1.  Herstart respectievelijk de batterijpakketten en de Jackery Explorer 3600 Plus.\n2. Als de fout aanhoudt, koppelt u het batterijpakket los van de Jackery Explorer 3600 \nPlus en sluit u ze opnieuw aan.\nVerwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de fout verdwijnt.\nNeem contact op met de Jackery-klantenondersteuning.\nLaad het product op via zonnepanelen of een AC-stopcontact tot de fout verdwijnt.\nF4\nF3\nF2\nF1\nF0\nSluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.\nHerstart het product.\nHerstart het product.\nHerstart het product.\nHerstart het product.\n1.  Schakel de AC-uitgang van beide apparaten uit.\n2. Druk binnen 1 minuut opnieuw op de Aan/uit-knop voor AC van elk apparaat.\n1.  Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt.\n2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 200 mm ruimte \naan beide zijden van het product.\n3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge \nomgevingstemperaturen.\n4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout \nverdwijnt.\n5. Herstart het product.\n1. Koppel alle DC-ingangen los van het product.\n2. Controleer de open-klemspanning (Voc) van de aangesloten zonnepanelen. Het product \nstaat een maximale DC-ingangsspanning van 60 V toe.\n3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.\nAls een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te \nlossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.\n",
+      "blocks": [
+        {
+          "bbox": [
+            39.594200134277344,
+            30.574016571044922,
+            80.17820739746094,
+            45.430015563964844
+          ],
+          "text": "Opslag\n"
+        },
+        {
+          "bbox": [
+            38.89699935913086,
+            62.19791793823242,
+            338.6581726074219,
+            132.39791870117188
+          ],
+          "text": "Bewaar het product op een droge, schone plaats met goede ventilatie. Opslagtemperatuur en -vochtigheid:\n• 1 maand: -20°C tot 45°C (0-60%RH)\n• 3 maanden: 0°C tot 45°C (0-60%RH)\n• 12 maanden: 0°C tot 25°C (0-60%RH)\nAls dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan \nhet zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij in goede conditie te \nhouden, is het aan te raden om het product elke drie maanden te controleren en op te laden, waarbij minstens \néén keer per 6 tot 12 maanden een volledige laad- en ontlaadcyclus moet worden uitgevoerd.\n"
+        },
+        {
+          "bbox": [
+            38.887699127197266,
+            173.39292907714844,
+            164.98370361328125,
+            188.24893188476562
+          ],
+          "text": "PROBLEEMOPLOSSING\n"
+        },
+        {
+          "bbox": [
+            32.49089813232422,
+            195.96250915527344,
+            339.852294921875,
+            212.16250610351562
+          ],
+          "text": "Als een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te \nlossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.\n"
+        },
+        {
+          "bbox": [
+            36.077598571777344,
+            223.49380493164062,
+            151.0430145263672,
+            231.8889923095703
+          ],
+          "text": "Foutcode\nOplossingsmaatregelen\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            238.27452087402344,
+            135.05972290039062,
+            245.47451782226562
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            237.4403839111328,
+            56.60750198364258,
+            247.34439086914062
+          ],
+          "text": "F0\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            250.36451721191406,
+            135.05972290039062,
+            257.56451416015625
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            249.5283966064453,
+            54.66350173950195,
+            259.4324035644531
+          ],
+          "text": "F1\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            262.4544982910156,
+            135.05972290039062,
+            269.6545104980469
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            274.54449462890625,
+            135.05972290039062,
+            281.7445068359375
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            261.6164245605469,
+            55.9275016784668,
+            283.4564208984375
+          ],
+          "text": "F3\nF2\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            287.4324951171875,
+            320.3817138671875,
+            294.63250732421875
+          ],
+          "text": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            286.31243896484375,
+            56.12750244140625,
+            296.2164306640625
+          ],
+          "text": "F4\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            301.1667175292969,
+            308.53948974609375,
+            308.3667297363281
+          ],
+          "text": "Laad het product op via zonnepanelen of een AC-stopcontact tot de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            300.44091796875,
+            55.951499938964844,
+            310.34490966796875
+          ],
+          "text": "F5\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            341.3209228515625,
+            55.99150085449219,
+            351.22491455078125
+          ],
+          "text": "F6\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            315.9444885253906,
+            337.94305419921875,
+            379.1304931640625
+          ],
+          "text": "1.  Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt.\n2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 200 mm ruimte \naan beide zijden van het product.\n3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge \nomgevingstemperaturen.\n4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout \nverdwijnt.\n5. Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            47.93550109863281,
+            397.9449462890625,
+            56.00749969482422,
+            407.84893798828125
+          ],
+          "text": "F7\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            387.3684997558594,
+            328.51165771484375,
+            415.57452392578125
+          ],
+          "text": "1. Koppel alle DC-ingangen los van het product.\n2. Controleer de open-klemspanning (Voc) van de aangesloten zonnepanelen. Het product \nstaat een maximale DC-ingangsspanning van 60 V toe.\n3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            423.3207092285156,
+            234.26251220703125,
+            430.5207214355469
+          ],
+          "text": "Neem contact op met de Jackery-klantenondersteuning.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            421.888916015625,
+            56.11149978637695,
+            431.79290771484375
+          ],
+          "text": "F8\n"
+        },
+        {
+          "bbox": [
+            78.59380340576172,
+            436.53021240234375,
+            342.0204162597656,
+            443.1302185058594
+          ],
+          "text": "Verwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            435.27294921875,
+            55.99150085449219,
+            445.17694091796875
+          ],
+          "text": "F9\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            451.9609375,
+            56.66350173950195,
+            461.86492919921875
+          ],
+          "text": "FA\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            448.7724914550781,
+            295.87896728515625,
+            462.9744873046875
+          ],
+          "text": "1.  Schakel de AC-uitgang van beide apparaten uit.\n2. Druk binnen 1 minuut opnieuw op de Aan/uit-knop voor AC van elk apparaat.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            474.4569396972656,
+            57.3754997253418,
+            484.3609313964844
+          ],
+          "text": "FC\n"
+        },
+        {
+          "bbox": [
+            77.95899963378906,
+            470.2889099121094,
+            314.2509765625,
+            491.492919921875
+          ],
+          "text": "1.  Herstart respectievelijk de batterijpakketten en de Jackery Explorer 3600 Plus.\n2. Als de fout aanhoudt, koppelt u het batterijpakket los van de Jackery Explorer 3600 \nPlus en sluit u ze opnieuw aan.\n"
+        },
+        {
+          "bbox": [
+            32.0629997253418,
+            504.4579162597656,
+            41.0629997253418,
+            511.6579284667969
+          ],
+          "text": "130\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 140,
+      "text": "ALGEMENE INFORMATIE\nProductnaam\nJackery Explorer 3600 Plus\nINGANGSPOORTEN\n1 × AC-ingang\nOplaadmodus : 220-240 V~ 50Hz, max. 10 A\nUITGANGSPOORTEN\n3 × AC-uitgang\n230 V~ 50 Hz, 3600 W\nOplaadtemperatuur\nBEDRIJFSTEMPERATUUR\n131\n -20°C tot 45°C\n -20°C tot 45°C\n※ USB Type-C   en USB-C   zijn geregistreerde handelsmerken van USB Implementers Forum.\n®\n®\nSpeciﬁcaties\n① Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de AC-uitgangspoorten.\n② Geeft aan dat twee of meer AC-uitgangspoorten samenwerken.\nModelnummer\nCapaciteit\nCelchemie\nGewicht\nAfmetingen\nLevenscyclus\nIEC-code\nJE-3600A\n80 Ah / 44,8 V DC (3584 Wh)\nLiFePO4 \nOngeveer 35 kg\n38,5×30,9×49,1 cm\n6000 cycli tot 70%+ capaciteit\nIFpR41/136[14S4P]M/-20+40/90\n2 × DC8020-poorten\n1 × DC-uitbreidingspoort\nBypass-modus①: 220-240 V~ 50Hz, max. 10A\n12-16 V⎓8 A max, dubbel naar 8 A max\n16-60 V⎓12 A, max. 24 A bij verdubbeling / max. 1000 W\n36,4 V-50,4 V⎓100 A Max\nAC-totaalvermogen②\nAC-uitgang in Bypassmodus①\n2 × USB-C-uitgang (100 W)\n2 × USB-A-uitgang (18 W)\n1 × DC-uitbreidingspoort\n3600W nominaal, 7200W piekvermogen\n220-240 V~ 50Hz, max. 10 A\n100 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n18 W Max, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n36,4 V-50,4 V⎓60 A Max\nOntlaadtemperatuur\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.83539962768555,
+            30.802501678466797,
+            106.47539520263672,
+            45.65850067138672
+          ],
+          "text": "Speciﬁcaties\n"
+        },
+        {
+          "bbox": [
+            39.12160110473633,
+            58.42720413208008,
+            126.7295913696289,
+            68.33120727539062
+          ],
+          "text": "ALGEMENE INFORMATIE\n"
+        },
+        {
+          "bbox": [
+            31.93760108947754,
+            75.81121063232422,
+            238.49757385253906,
+            85.57920837402344
+          ],
+          "text": "Productnaam\nJackery Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            88.8103256225586,
+            84.26959991455078,
+            98.41032409667969
+          ],
+          "text": "Modelnummer\n"
+        },
+        {
+          "bbox": [
+            140.72560119628906,
+            88.97832489013672,
+            177.14959716796875,
+            98.57832336425781
+          ],
+          "text": "JE-3600A\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            101.8103256225586,
+            71.5416030883789,
+            111.41032409667969
+          ],
+          "text": "Capaciteit\n"
+        },
+        {
+          "bbox": [
+            140.72560119628906,
+            101.97832489013672,
+            244.36563110351562,
+            111.57832336425781
+          ],
+          "text": "80 Ah / 44,8 V DC (3584 Wh)\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            114.8103256225586,
+            70.8696060180664,
+            124.41032409667969
+          ],
+          "text": "Celchemie\n"
+        },
+        {
+          "bbox": [
+            140.72560119628906,
+            115.21660614013672,
+            170.55470275878906,
+            124.81831359863281
+          ],
+          "text": "LiFePO4 \n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            127.8103256225586,
+            62.60559844970703,
+            137.4103240966797
+          ],
+          "text": "Gewicht\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            127.97661590576172,
+            198.91470336914062,
+            137.5766143798828
+          ],
+          "text": "Ongeveer 35 kg\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            140.81033325195312,
+            74.32559204101562,
+            150.4103240966797
+          ],
+          "text": "Afmetingen\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            140.97662353515625,
+            205.28273010253906,
+            150.5766143798828
+          ],
+          "text": "38,5×30,9×49,1 cm\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            153.81033325195312,
+            80.02960968017578,
+            163.4103240966797
+          ],
+          "text": "Levenscyclus\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            153.97662353515625,
+            252.1546630859375,
+            163.5766143798828
+          ],
+          "text": "6000 cycli tot 70%+ capaciteit\n"
+        },
+        {
+          "bbox": [
+            31.9335994720459,
+            166.81033325195312,
+            67.15760040283203,
+            176.4103240966797
+          ],
+          "text": "IEC-code\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            166.97662353515625,
+            256.8187255859375,
+            176.5766143798828
+          ],
+          "text": "IFpR41/136[14S4P]M/-20+40/90\n"
+        },
+        {
+          "bbox": [
+            39.12110137939453,
+            195.09071350097656,
+            110.84910583496094,
+            204.99472045898438
+          ],
+          "text": "INGANGSPOORTEN\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            212.67471313476562,
+            301.985107421875,
+            229.9467010498047
+          ],
+          "text": "1 × AC-ingang\nOplaadmodus : 220-240 V~ 50Hz, max. 10 A\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            225.91259765625,
+            308.1867370605469,
+            235.6245880126953
+          ],
+          "text": "Bypass-modus①: 220-240 V~ 50Hz, max. 10A\n"
+        },
+        {
+          "bbox": [
+            140.7227020263672,
+            238.91259765625,
+            333.1839904785156,
+            258.6023254394531
+          ],
+          "text": "12-16 V⎓8 A max, dubbel naar 8 A max\n16-60 V⎓12 A, max. 24 A bij verdubbeling / max. 1000 W\n"
+        },
+        {
+          "bbox": [
+            31.930702209472656,
+            239.3446044921875,
+            121.54669952392578,
+            258.9446105957031
+          ],
+          "text": "2 × DC8020-poorten\n1 × DC-uitbreidingspoort\n"
+        },
+        {
+          "bbox": [
+            140.72360229492188,
+            261.914306640625,
+            233.75558471679688,
+            271.602294921875
+          ],
+          "text": "36,4 V-50,4 V⎓100 A Max\n"
+        },
+        {
+          "bbox": [
+            39.12160110473633,
+            291.3861083984375,
+            115.00960540771484,
+            301.29010009765625
+          ],
+          "text": "UITGANGSPOORTEN\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            308.05810546875,
+            220.8575897216797,
+            317.6581115722656
+          ],
+          "text": "3 × AC-uitgang\n230 V~ 50 Hz, 3600 W\n"
+        },
+        {
+          "bbox": [
+            140.72540283203125,
+            321.05841064453125,
+            287.9173583984375,
+            330.6584167480469
+          ],
+          "text": "3600W nominaal, 7200W piekvermogen\n"
+        },
+        {
+          "bbox": [
+            31.731605529785156,
+            321.29833984375,
+            114.68359375,
+            331.0103454589844
+          ],
+          "text": "AC-totaalvermogen②\n"
+        },
+        {
+          "bbox": [
+            140.72540283203125,
+            334.05841064453125,
+            242.8933563232422,
+            343.6584167480469
+          ],
+          "text": "220-240 V~ 50Hz, max. 10 A\n"
+        },
+        {
+          "bbox": [
+            31.733400344848633,
+            334.2981262207031,
+            134.8184356689453,
+            344.0101318359375
+          ],
+          "text": "AC-uitgang in Bypassmodus①\n"
+        },
+        {
+          "bbox": [
+            31.733400344848633,
+            347.05841064453125,
+            130.72540283203125,
+            356.6584167480469
+          ],
+          "text": "2 × USB-C-uitgang (100 W)\n"
+        },
+        {
+          "bbox": [
+            140.72360229492188,
+            347.2981262207031,
+            335.7505187988281,
+            356.9861145019531
+          ],
+          "text": "100 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            31.733400344848633,
+            360.05841064453125,
+            124.10939025878906,
+            369.6584167480469
+          ],
+          "text": "2 × USB-A-uitgang (18 W)\n"
+        },
+        {
+          "bbox": [
+            140.72360229492188,
+            360.29864501953125,
+            307.27569580078125,
+            369.98663330078125
+          ],
+          "text": "18 W Max, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            31.733400344848633,
+            373.05841064453125,
+            121.34939575195312,
+            382.6584167480469
+          ],
+          "text": "1 × DC-uitbreidingspoort\n"
+        },
+        {
+          "bbox": [
+            140.72360229492188,
+            373.29864501953125,
+            230.235595703125,
+            382.98663330078125
+          ],
+          "text": "36,4 V-50,4 V⎓60 A Max\n"
+        },
+        {
+          "bbox": [
+            39.12030029296875,
+            399.914306640625,
+            128.30430603027344,
+            409.81829833984375
+          ],
+          "text": "BEDRIJFSTEMPERATUUR\n"
+        },
+        {
+          "bbox": [
+            32.384300231933594,
+            417.08233642578125,
+            107.07229614257812,
+            426.6823425292969
+          ],
+          "text": "Oplaadtemperatuur\n"
+        },
+        {
+          "bbox": [
+            141.03469848632812,
+            418.0608215332031,
+            198.33871459960938,
+            427.66082763671875
+          ],
+          "text": " -20°C tot 45°C\n"
+        },
+        {
+          "bbox": [
+            32.387603759765625,
+            430.0826416015625,
+            109.45159912109375,
+            439.6826477050781
+          ],
+          "text": "Ontlaadtemperatuur\n"
+        },
+        {
+          "bbox": [
+            141.03469848632812,
+            430.4288330078125,
+            198.33871459960938,
+            440.0288391113281
+          ],
+          "text": " -20°C tot 45°C\n"
+        },
+        {
+          "bbox": [
+            28.406299591064453,
+            461.5432434082031,
+            316.38311767578125,
+            470.6652526855469
+          ],
+          "text": "※ USB Type-C   en USB-C   zijn geregistreerde handelsmerken van USB Implementers Forum.\n®\n®\n"
+        },
+        {
+          "bbox": [
+            29.3710994720459,
+            476.3847351074219,
+            307.41668701171875,
+            490.87750244140625
+          ],
+          "text": "① Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de AC-uitgangspoorten.\n② Geeft aan dat twee of meer AC-uitgangspoorten samenwerken.\n"
+        },
+        {
+          "bbox": [
+            335.7373046875,
+            503.9652099609375,
+            342.93731689453125,
+            511.16522216796875
+          ],
+          "text": "131\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 141,
+      "text": "132\nOm de garantieverlenging te activeren, \nmoet u uw product online registreren of \ncontact opnemen met onze \nklantenservice via hello.eu@jackery.com \nom de duur van de standaardgarantie te \nverlengen.\nWe bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers. \n*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.\nJackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.\nGARANTIE\nJackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en \nmateriaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de \nsectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\nIn deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij \naanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakeli-\njkheid te aanvaarden in verband met de verkoop van onze producten.\nDe standaard garantieperiode voor de Jackery Explorer 3600 \nPlus is 36 maanden. In alle gevallen gaat de garantieperiode \nin op de datum van aankoop door de oorspronkelijke \nconsument-koper. Om de startdatum van de \ngarantieperiode te bepalen, is de aankoopbon van de eerste \nconsumentenaankoop of ander redelijk bewijsstuk vereist.\nBeperkte garantie\nRuilen\nDe garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.\nBeperkt tot de oorspronkelijke koper\nDe garantie van Jackery is niet van toepassing op:\n• Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, \nzoals toegestaan in de huidige productliteratuur van Jackery.\n• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n• Elk product dat via een online veilinghuis is gekocht.\n• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.\nUitsluitingen\nInterpretatierechten\nGarantieperiode\n Standaardgarantie\n JAAR\n3  \nVerlengde garantie\n JAAR\n2  \nJackery behoudt zich het recht voor om het bovenstaande beleid voor klantenservice na verkoop \ndefinitief te interpreteren.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.900901794433594,
+            31.031200408935547,
+            91.85291290283203,
+            45.88719940185547
+          ],
+          "text": "GARANTIE\n"
+        },
+        {
+          "bbox": [
+            36.039100646972656,
+            58.87299728393555,
+            333.685546875,
+            76.541015625
+          ],
+          "text": "We bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers. \n"
+        },
+        {
+          "bbox": [
+            29.26759910583496,
+            84.81790924072266,
+            312.9200134277344,
+            92.01791381835938
+          ],
+          "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            99.59529113769531,
+            108.42340850830078,
+            109.49929809570312
+          ],
+          "text": "Beperkte garantie\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            114.31549072265625,
+            327.6878356933594,
+            134.91848754882812
+          ],
+          "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en \nmateriaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de \nsectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            138.15249633789062,
+            329.3800964355469,
+            158.7554931640625
+          ],
+          "text": "In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij \naanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakeli-\njkheid te aanvaarden in verband met de verkoop van onze producten.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            170.62159729003906,
+            102.87140655517578,
+            180.52560424804688
+          ],
+          "text": "Garantieperiode\n"
+        },
+        {
+          "bbox": [
+            41.91109848022461,
+            185.56475830078125,
+            307.8891296386719,
+            213.5975341796875
+          ],
+          "text": " Standaardgarantie\n JAAR\n3  \nVerlengde garantie\n JAAR\n2  \n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            214.2193145751953,
+            208.27423095703125,
+            256.42938232421875
+          ],
+          "text": "De standaard garantieperiode voor de Jackery Explorer 3600 \nPlus is 36 maanden. In alle gevallen gaat de garantieperiode \nin op de datum van aankoop door de oorspronkelijke \nconsument-koper. Om de startdatum van de \ngarantieperiode te bepalen, is de aankoopbon van de eerste \nconsumentenaankoop of ander redelijk bewijsstuk vereist.\n"
+        },
+        {
+          "bbox": [
+            218.62600708007812,
+            214.2193145751953,
+            332.8600158691406,
+            256.42938232421875
+          ],
+          "text": "Om de garantieverlenging te activeren, \nmoet u uw product online registreren of \ncontact opnemen met onze \nklantenservice via hello.eu@jackery.com \nom de duur van de standaardgarantie te \nverlengen.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            270.7750244140625,
+            63.39140319824219,
+            280.67901611328125
+          ],
+          "text": "Ruilen\n"
+        },
+        {
+          "bbox": [
+            37.817596435546875,
+            286.66387939453125,
+            308.7877502441406,
+            307.867919921875
+          ],
+          "text": "Jackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            323.5240173339844,
+            175.55938720703125,
+            333.4280090332031
+          ],
+          "text": "Beperkt tot de oorspronkelijke koper\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            340.1908874511719,
+            295.9216003417969,
+            354.39288330078125
+          ],
+          "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.\n"
+        },
+        {
+          "bbox": [
+            38.4463005065918,
+            369.34332275390625,
+            84.70230865478516,
+            379.247314453125
+          ],
+          "text": "Uitsluitingen\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            385.68206787109375,
+            176.32418823242188,
+            392.882080078125
+          ],
+          "text": "De garantie van Jackery is niet van toepassing op:\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            395.5160827636719,
+            329.690185546875,
+            409.71807861328125
+          ],
+          "text": "• Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, \nzoals toegestaan in de huidige productliteratuur van Jackery.\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            412.3520812988281,
+            254.99502563476562,
+            419.5520935058594
+          ],
+          "text": "• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            422.18609619140625,
+            182.87680053710938,
+            429.3861083984375
+          ],
+          "text": "• Elk product dat via een online veilinghuis is gekocht.\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            432.02008056640625,
+            321.9142150878906,
+            446.22210693359375
+          ],
+          "text": "• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            462.48980712890625,
+            116.0066146850586,
+            472.393798828125
+          ],
+          "text": "Interpretatierechten\n"
+        },
+        {
+          "bbox": [
+            37.815399169921875,
+            478.37750244140625,
+            305.7369689941406,
+            492.5794982910156
+          ],
+          "text": "Jackery behoudt zich het recht voor om het bovenstaande beleid voor klantenservice na verkoop \ndefinitief te interpreteren.\n"
+        },
+        {
+          "bbox": [
+            27.80470085144043,
+            504.0439758300781,
+            36.17470169067383,
+            511.2439880371094
+          ],
+          "text": "132\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 142,
+      "text": "133\nZoek naar \\\"Jackery\\\" in Google Play of de \nApp Store om de app te installeren. \nDaarna kunt u zich registreren en inloggen.\nOf scan de QR-code \nhieronder om de app te \ndownloaden en te installeren.\n2. Apparaat toevoegen\n2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en \nBluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de \nnetwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app \ntoestemming om verbinding te maken met apparaten in de buurt en schakel de \nBluetooth-machtigingen in.\n1. Download de app en log in\n2.1 Klik op de knop       om uw apparaat toe te voegen;\n2.1\n2.2\nAPP INSTELLEN\nOPMERKING\nAls het apparaat is ingeschakeld en binnen 2 uur geen verbinding met de app heeft, worden wiﬁ en \nBluetooth automatisch uitgeschakeld. Het is nu nodig om de USB-aan/uit-knop en de Aan/uit-knop voor \nUSB ingedrukt te houden om wiﬁ en Bluetooth opnieuw in te schakelen.\nAan/Uit-knop\nAC-knop\nUSB-aan/\nuit-knop\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.90039825439453,
+            31.069286346435547,
+            117.23240661621094,
+            45.92528533935547
+          ],
+          "text": "APP INSTELLEN\n"
+        },
+        {
+          "bbox": [
+            29.356000900268555,
+            51.907501220703125,
+            163.71603393554688,
+            64.2874984741211
+          ],
+          "text": "1. Download de app en log in\n"
+        },
+        {
+          "bbox": [
+            48.075199127197266,
+            123.25729370117188,
+            190.66522216796875,
+            147.6593017578125
+          ],
+          "text": "Zoek naar \\\"Jackery\\\" in Google Play of de \nApp Store om de app te installeren. \nDaarna kunt u zich registreren en inloggen.\n"
+        },
+        {
+          "bbox": [
+            29.355499267578125,
+            123.84530639648438,
+            294.80419921875,
+            162.4656982421875
+          ],
+          "text": "Of scan de QR-code \nhieronder om de app te \ndownloaden en te installeren.\n2. Apparaat toevoegen\n"
+        },
+        {
+          "bbox": [
+            29.356399536132812,
+            165.25531005859375,
+            202.6826629638672,
+            173.65530395507812
+          ],
+          "text": "2.1 Klik op de knop       om uw apparaat toe te voegen;\n"
+        },
+        {
+          "bbox": [
+            29.35689926147461,
+            175.534912109375,
+            330.58282470703125,
+            215.4517364501953
+          ],
+          "text": "2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en \nBluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de \nnetwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app \ntoestemming om verbinding te maken met apparaten in de buurt en schakel de \nBluetooth-machtigingen in.\n"
+        },
+        {
+          "bbox": [
+            140.39840698242188,
+            368.2533874511719,
+            234.06439208984375,
+            375.7474060058594
+          ],
+          "text": "2.1\n2.2\n"
+        },
+        {
+          "bbox": [
+            35.46580123901367,
+            402.0575866699219,
+            73.7998046875,
+            409.2575988769531
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            35.46580123901367,
+            429.37939453125,
+            328.6614990234375,
+            442.57940673828125
+          ],
+          "text": "AC-knop\nUSB-aan/\nuit-knop\n"
+        },
+        {
+          "bbox": [
+            35.21480178833008,
+            477.09613037109375,
+            80.58557891845703,
+            486.9481506347656
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            94.58689880371094,
+            472.1509094238281,
+            336.2919006347656,
+            492.1509094238281
+          ],
+          "text": "Als het apparaat is ingeschakeld en binnen 2 uur geen verbinding met de app heeft, worden wiﬁ en \nBluetooth automatisch uitgeschakeld. Het is nu nodig om de USB-aan/uit-knop en de Aan/uit-knop voor \nUSB ingedrukt te houden om wiﬁ en Bluetooth opnieuw in te schakelen.\n"
+        },
+        {
+          "bbox": [
+            335.4657897949219,
+            504.0791015625,
+            343.8057861328125,
+            511.27911376953125
+          ],
+          "text": "133\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 143,
+      "text": "2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch verbinding \nmet het apparaat via Bluetooth.\n• De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.\n• Houd de AAN/UIT-knop en de USB-knop 3 seconden ingedrukt om het apparaat te \nresetten en het apparaat vervolgens opnieuw te koppelen \n• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en \nlichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op.\n• Houd de Aan/uit-knop voor USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de \nwiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.\n3. Apparaat ontkoppelen\nKlik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de \ninstellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te \nontkoppelen.\n4. Opmerkingen\n4.1 Wifi en Bluetooth inschakelen:\n• Houd de Aan/uit-knop voor USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de wiﬁ- en \nBluetooth-pictogrammen op het scherm uitgaan.\n• Wiﬁ en Bluetooth worden automatisch uitgeschakeld als er binnen 2 uur geen apparaat is verbonden.\n4.2 Wifi en Bluetooth uitschakelen:\nHoud de AAN/UIT-knop en de Aan/uit-knop voor USB tegelijkertijd 3 seconden ingedrukt om wiﬁ en \nBluetooth te resetten naar de fabrieksinstellingen en het systeem opnieuw op te starten. Het gekoppelde \napp-account wordt ontkoppeld.\n4.3 Wifi en Bluetooth resetten:\n2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de OK-knop.\n2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wiﬁ-pictogram op het apparaat altijd aan.\nDe bovenstaande schermafbeeldingen zijn alleen ter referentie.\n2.5\n2.3\n2.4\n134\nAls tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de \nvolgende twee methoden worden gebruikt voor de verbinding:\nSelecteer een wiﬁ-netwerk in de 2,4GHz-band. Het apparaat ondersteunt geen \nwiﬁ-netwerk in de 5GHz-band.\nOPMERKING\nDe Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer u \nterugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik opnieuw op het \nPowerstation in de lijst om automatisch opnieuw verbinding te maken.\nOPGELET\nOPMERKING\nE3600 Plus\nExplorer 3600 Plus\n",
+      "blocks": [
+        {
+          "bbox": [
+            32.316898345947266,
+            27.893075942993164,
+            335.67572021484375,
+            42.095088958740234
+          ],
+          "text": "2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch verbinding \nmet het apparaat via Bluetooth.\n"
+        },
+        {
+          "bbox": [
+            86.93709564208984,
+            43.14209747314453,
+            327.1890869140625,
+            58.43008041381836
+          ],
+          "text": "Als tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de \nvolgende twee methoden worden gebruikt voor de verbinding:\n"
+        },
+        {
+          "bbox": [
+            35.999000549316406,
+            62.88032531738281,
+            81.3697738647461,
+            72.73233032226562
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            86.96489715576172,
+            63.67109298706055,
+            323.8430480957031,
+            86.8670654296875
+          ],
+          "text": "• De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.\n• Houd de AAN/UIT-knop en de USB-knop 3 seconden ingedrukt om het apparaat te \nresetten en het apparaat vervolgens opnieuw te koppelen \n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            90.7084732055664,
+            317.29278564453125,
+            97.90847778320312
+          ],
+          "text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wiﬁ-wachtwoord in en tikt u op de OK-knop.\n"
+        },
+        {
+          "bbox": [
+            35.109710693359375,
+            107.43968200683594,
+            80.48047637939453,
+            117.29168701171875
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            86.51709747314453,
+            104.78009796142578,
+            306.7032165527344,
+            119.97808837890625
+          ],
+          "text": "Selecteer een wiﬁ-netwerk in de 2,4GHz-band. Het apparaat ondersteunt geen \nwiﬁ-netwerk in de 5GHz-band.\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            127.7764663696289,
+            337.788818359375,
+            134.97647094726562
+          ],
+          "text": "2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wiﬁ-pictogram op het apparaat altijd aan.\n"
+        },
+        {
+          "bbox": [
+            253.57229614257812,
+            151.64627075195312,
+            276.1437683105469,
+            154.90414428710938
+          ],
+          "text": "Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            77.84770202636719,
+            231.9566650390625,
+            92.3909683227539,
+            235.54537963867188
+          ],
+          "text": "E3600 Plus\n"
+        },
+        {
+          "bbox": [
+            91.32418823242188,
+            280.4560546875,
+            281.4701843261719,
+            287.65606689453125
+          ],
+          "text": "2.5\n2.3\n2.4\n"
+        },
+        {
+          "bbox": [
+            63.47850036621094,
+            287.8927001953125,
+            231.1292724609375,
+            294.8526916503906
+          ],
+          "text": "De bovenstaande schermafbeeldingen zijn alleen ter referentie.\n"
+        },
+        {
+          "bbox": [
+            86.17040252685547,
+            301.49566650390625,
+            321.44940185546875,
+            307.49566650390625
+          ],
+          "text": "De Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer u \n"
+        },
+        {
+          "bbox": [
+            86.17040252685547,
+            309.49566650390625,
+            333.9034423828125,
+            315.49566650390625
+          ],
+          "text": "terugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik opnieuw op het \n"
+        },
+        {
+          "bbox": [
+            40.970699310302734,
+            308.97601318359375,
+            245.08489990234375,
+            323.49566650390625
+          ],
+          "text": "Powerstation in de lijst om automatisch opnieuw verbinding te maken.\nOPGELET\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            330.18829345703125,
+            321.4075012207031,
+            378.7010803222656
+          ],
+          "text": "3. Apparaat ontkoppelen\nKlik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de \ninstellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te \nontkoppelen.\n4. Opmerkingen\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            380.066162109375,
+            142.90492248535156,
+            388.64117431640625
+          ],
+          "text": "4.1 Wifi en Bluetooth inschakelen:\n"
+        },
+        {
+          "bbox": [
+            32.438499450683594,
+            390.1197814941406,
+            322.791015625,
+            425.0469665527344
+          ],
+          "text": "• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en \nlichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op.\n• Houd de Aan/uit-knop voor USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de \nwiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            427.9987487792969,
+            146.76971435546875,
+            436.5737609863281
+          ],
+          "text": "4.2 Wifi en Bluetooth uitschakelen:\n"
+        },
+        {
+          "bbox": [
+            32.43949890136719,
+            437.8373718261719,
+            318.3203430175781,
+            461.03338623046875
+          ],
+          "text": "• Houd de Aan/uit-knop voor USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de wiﬁ- en \nBluetooth-pictogrammen op het scherm uitgaan.\n• Wiﬁ en Bluetooth worden automatisch uitgeschakeld als er binnen 2 uur geen apparaat is verbonden.\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            464.853271484375,
+            132.58685302734375,
+            473.42828369140625
+          ],
+          "text": "4.3 Wifi en Bluetooth resetten:\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            474.63916015625,
+            326.6028747558594,
+            497.8351745605469
+          ],
+          "text": "Houd de AAN/UIT-knop en de Aan/uit-knop voor USB tegelijkertijd 3 seconden ingedrukt om wiﬁ en \nBluetooth te resetten naar de fabrieksinstellingen en het systeem opnieuw op te starten. Het gekoppelde \napp-account wordt ontkoppeld.\n"
+        },
+        {
+          "bbox": [
+            31.995100021362305,
+            504.080078125,
+            40.75510025024414,
+            511.28009033203125
+          ],
+          "text": "134\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 161,
+      "text": "Download the Jackery  Mobile App\nDescargar la aplicación móvil Jackery\nScarica l'applicazione mobile Jackery\nTéléchargez l’application mobile Jackery\nLaden Sie sich die Jackery Mobiltelefon-App herunter\nRED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with \nBluetooth and Wi-Fi  JE-3600A is in compliance with the essential requirements and other relevant \nprovisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\nMANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD. \nsales@hello-tech.com\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side \nof Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, \nGuangdong, China\n+86 400 668 9293\nwww.hello-tech.com\nEU Regulations\n",
+      "blocks": [
+        {
+          "bbox": [
+            26.852100372314453,
+            239.79150390625,
+            139.5023956298828,
+            248.28250122070312
+          ],
+          "text": "Download the Jackery  Mobile App\n"
+        },
+        {
+          "bbox": [
+            26.859899520874023,
+            252.25830078125,
+            157.6604766845703,
+            260.7492980957031
+          ],
+          "text": "Téléchargez l’application mobile Jackery\n"
+        },
+        {
+          "bbox": [
+            26.8528995513916,
+            264.72528076171875,
+            198.54888916015625,
+            273.2162780761719
+          ],
+          "text": "Laden Sie sich die Jackery Mobiltelefon-App herunter\n"
+        },
+        {
+          "bbox": [
+            26.852100372314453,
+            277.1925048828125,
+            147.8750762939453,
+            285.6835021972656
+          ],
+          "text": "Scarica l'applicazione mobile Jackery\n"
+        },
+        {
+          "bbox": [
+            26.852100372314453,
+            289.65948486328125,
+            149.14837646484375,
+            298.1504821777344
+          ],
+          "text": "Descargar la aplicación móvil Jackery\n"
+        },
+        {
+          "bbox": [
+            34.644500732421875,
+            366.7256164550781,
+            97.05950927734375,
+            377.86761474609375
+          ],
+          "text": "EU Regulations\n"
+        },
+        {
+          "bbox": [
+            27.951900482177734,
+            388.415283203125,
+            343.3608093261719,
+            430.48529052734375
+          ],
+          "text": "RED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with \nBluetooth and Wi-Fi  JE-3600A is in compliance with the essential requirements and other relevant \nprovisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\n"
+        },
+        {
+          "bbox": [
+            28.10740089416504,
+            447.4984130859375,
+            250.34744262695312,
+            457.40240478515625
+          ],
+          "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD. \n"
+        },
+        {
+          "bbox": [
+            28.381799697875977,
+            461.7991943359375,
+            280.7886657714844,
+            483.39923095703125
+          ],
+          "text": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side \nof Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, \nGuangdong, China\n"
+        },
+        {
+          "bbox": [
+            39.95610046386719,
+            487.9237976074219,
+            285.5519714355469,
+            496.4153137207031
+          ],
+          "text": "+86 400 668 9293\nwww.hello-tech.com\n"
+        },
+        {
+          "bbox": [
+            120.17289733886719,
+            487.92431640625,
+            191.27883911132812,
+            496.4153137207031
+          ],
+          "text": "sales@hello-tech.com\n"
+        }
+      ]
+    }
+  ]
+}
