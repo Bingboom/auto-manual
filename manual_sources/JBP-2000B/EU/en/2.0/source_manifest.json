@@ -249,8 +249,8 @@
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/symbols_blocks.csv",
-      "sha256": "2794d15f72d1089d8762ccce6a2e081ee2c8ff2730e55c3d97c76951b69007fa",
-      "size_bytes": 18208
+      "sha256": "9a0ee08cceb7275f37006c1e203511b93db2995f75490e2382742357bb763a46",
+      "size_bytes": 18238
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/troubleshooting_blocks.csv",
