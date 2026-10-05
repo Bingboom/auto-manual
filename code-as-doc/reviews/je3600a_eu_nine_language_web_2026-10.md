@@ -128,8 +128,13 @@ replay reproduces the reviewed Markdown byte-for-byte for all nine languages.
   absent; this historical gate does not validate the new native language bodies.
 - Full suite initial run: 5173 tests, 35 skipped, one macOS `/var` versus
   `/private/var` temporary-path error in an existing publication-provenance
-  test. That test passes with `TMPDIR=/private/tmp`; the complete suite is being
-  rerun with this real-path temporary root before PR creation.
+  test. The full rerun with `TMPDIR=/private/tmp` passes: 5174 tests, 35 skipped.
+- Standard US regression: `build.py check` with `configs/config.us-en.yaml`,
+  JE-1000F/US and `tests/fixtures/phase2`: successful.
+- Full frozen catalog preflight: 105 language targets; other 96 target metadata
+  unchanged and existing source diffs restricted to JE-3600A/EU. Strict Sphinx
+  with `myst_parser,tools.rtd.portal` successful; 2028-file deployment receipt
+  generated. Native source commit: `2a527aeaaa0c3b6732e77c66994d34793279557c`.
 
 Engineering merge, mirror sync, publication merge and RTD/live acceptance are
 pending. No candidate or local page is claimed as published.
