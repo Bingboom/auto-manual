@@ -104,8 +104,8 @@
     },
     {
       "path": "docs/renderers/web/jbp2000b_eu_en_illustrations.json",
-      "sha256": "a65c259b780af9df90eb5187438218f9ce9c05887bdffeced55fbe35962713c8",
-      "size_bytes": 4553
+      "sha256": "02f9fc763a252a0f489410e14a9527f8a05443cee91caf497c0528fdb2807490",
+      "size_bytes": 4546
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_charging.rst",
@@ -249,8 +249,8 @@
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/symbols_blocks.csv",
-      "sha256": "bb2706a7d29208569a136068085c468556fa84208cd3cb0c33bdb45f190b592e",
-      "size_bytes": 17658
+      "sha256": "9a0ee08cceb7275f37006c1e203511b93db2995f75490e2382742357bb763a46",
+      "size_bytes": 18238
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/troubleshooting_blocks.csv",
@@ -279,5 +279,135 @@
   },
   "source_name": "Jackery\u00a0Battery\u00a0Pack\u00a02000 User Manual (JBP-2000B) EUUK V2.0-2026-09-11.pdf",
   "revision_date": "2026-09-11",
-  "revision_note": "Compatibility note names E1000 Plus V2 and E2000 Plus V2. All eleven recorded crops render byte-identically under PyMuPDF 1.28.0 at scale 4; existing text-bearing artwork is reused."
+  "revision_note": "Compatibility note names E1000 Plus V2 and E2000 Plus V2. All eleven recorded crops render byte-identically under PyMuPDF 1.28.0 at scale 4; existing text-bearing artwork is reused.",
+  "asset_reuse_decisions": [
+    {
+      "slot": "symbols.warning_triangle",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/10_warning_triangle_RkOwbJ9j1oUHJgxFEx3cqhVynjb.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.read_manual",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/20_read_manual_VK1Ab1MGIoOHdgx1rkUchOHRntb.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.do_not_dismantle",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/10_do_not_dismantle_Ml7EbCjtYohuKAxWNDUc93UMnVc.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.no_open_flame",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/20_no_open_flame_SAbnbxa6iohb2rxxk3PcEh8cnuf.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+      "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.keep_away_from_children",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/30_keep_away_from_children_Nc5NbV2kyoMaTSxvismcAlzbnlh.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+      "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.li_ion",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/40_li_ion_ZEcHbhY0Eo3XOExtXKCcbEVjnpe.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.weee",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/50_weee_L9o3bcXq0oSsqdxSX86covnpnle.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    },
+    {
+      "slot": "symbols.weee2",
+      "previous_asset": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/70_weee2_VL7tbeJhHoy9wBxRZIdcygPBnmf.png",
+      "inventory_checked": [
+        "JBP-2000B frozen attachments",
+        "JBP-3600A legacy attachments",
+        "docs/templates/word_template/common_assets/symbols",
+        "docs/renderers/web/assets/je100c_eu_shared",
+        "JBP-3600A transparent en-r6 assets"
+      ],
+      "decision": "reuse existing transparent original",
+      "identity_check": "Matching semantic symbol, no product/region/language labels. WEEE retains bottom bar; battery disposal has no bottom bar. Operator requested replacement of all symbol table icons.",
+      "source_path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6/assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "background_policy": "Existing alpha retained; exact bytes reused, no processing."
+    }
+  ]
 }

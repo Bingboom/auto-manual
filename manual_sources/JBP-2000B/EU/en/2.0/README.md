@@ -50,3 +50,24 @@ reviewed `bis`, as the storage bullets on the same page do. The fix is in
 `phase2/Spec_Master.csv` and `phase2/spec_titles.csv`;
 `phase2/Localized_Copy.csv` and `phase2/Manual_Copy_Source.csv` carry the same
 titles. `source_manifest.json` re-locks the four files.
+
+Symbol-table correction (2026-10-05): all eight semantic icons reuse the
+existing transparent originals from the JBP-3600A EU native-0924 en-r6 package.
+The previous eight snapshot attachments are byte-identical to JBP-3600A's
+legacy EU attachments. Figure and image_path now resolve to the transparent
+assets; the source manifest records each path, SHA-256 and reuse decision.
+The WEEE equipment icon retains its bottom bar; battery disposal has no bar.
+No image processing, localized copy or publication version changes were made.
+Release remains pending operator proofreading.
+
+Power-art binding correction (2026-10-05): the English illustration manifest
+now matches the current operation copy, `Press and hold for 3s`, which is
+also printed in the frozen power panel. The previous `3 seconds` binding
+was stale. The exact-text gate and original artwork hash remain enforced.
+
+Multilingual validation (2026-10-05): English, French, Spanish, German and
+Italian single-language builds, plus the six-language merged build (including
+Ukrainian), pass both Markdown export and strict Sphinx HTML compilation.
+All 88 symbol appearances resolve byte-identically to the eight transparent
+originals. All non-image CSV fields, including each locale's copy, are unchanged.
+No Ukrainian standalone route or production publication was introduced.
