@@ -52,6 +52,16 @@ class WebBaselineTests(unittest.TestCase):
         self.assertIn("../../releases/web/V1.0.html", markup)
         self.assertIn("Original publication version: 2.7", markup)
 
+    def test_baseline_notice_is_not_manual_answer_evidence(self):
+        from tools.manual_knowledge.html import extract_sections
+
+        sections, _ = extract_sections(
+            '<main><p class="web-release-baseline">Web release baseline: V1.0</p>'
+            '<h1>Specifications</h1><p>Rated output: 200 W.</p></main>', url="manual.html")
+        text = json.dumps(sections)
+        self.assertNotIn("Web release baseline", text)
+        self.assertIn("Rated output: 200 W.", text)
+
     def test_changed_web_content_does_not_inherit_baseline(self):
         self.seal()
         self.manual.write_text("# Changed output\n250 W\n")

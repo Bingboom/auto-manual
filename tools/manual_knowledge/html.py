@@ -13,7 +13,7 @@ _DECORATIVE = (
     "script", "style", "nav", "form", "button", "select", "input", "svg",
     ".headerlink", ".manual-callout-label-sizer", ".hb-signal-icon",
     ".hb-composite-stage", ".hb-leader-layer", ".hb-operation-step-marker",
-    ".manual-feedback", ".product-voc", "[hidden]",
+    ".manual-feedback", ".product-voc", ".web-release-baseline", "[hidden]",
 )
 _HEADINGS = {f"h{level}" for level in range(1, 7)}
 
