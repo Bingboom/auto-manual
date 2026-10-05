@@ -1,5 +1,7 @@
 # JE-3600A EU nine-language Git-only Web release
 
+Status: active
+
 Operator scope (2026-10-04): complete en/fr/es/de/it/uk/pt/nl/pl from the local
 161-page HTE139 source, fix the accessory kit frame, merge and publish. MA-256
 records the engineering and publication authorization. No live Base writes.
@@ -37,3 +39,97 @@ No workflows, dependencies, public CLI flags or schemas change.
 
 The complete labelled scratch crop and CSS border experiment are discarded.
 The artwork is a complete white/gray panel, not a transparent standalone icon.
+
+## Reviewed source and immutable versions
+
+Original: `HTE139-EU-9国说明书-0924.ai`, 161 physical PDF pages,
+SHA-256 `47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043`.
+Each language is frozen under
+`manual_sources/JE-3600A/EU/<lang>/git-20261004-47a346dc/`.
+This is a technical Git snapshot version; the paper-manual version is unknown.
+The existing English `git-20261002-47a346dc` and May source remain immutable.
+
+| Language | Native body pages | Preface page |
+| --- | --- | --- |
+| en | 8–24 | 2 |
+| fr | 25–41 | 2 |
+| es | 42–58 | 2 |
+| de | 59–75 | 3 |
+| it | 76–92 | 3 |
+| uk | 93–109 | 3 |
+| pt | 110–126 | 4 |
+| nl | 127–143 | 4 |
+| pl | 144–160 | 4 |
+
+All packages include the common English EU declaration from physical page 161.
+The original artwork is referenced by hash, not duplicated as a 161-page binary.
+Native span ledgers, component-cell captures and explicit visual transcriptions
+retain physical page and region provenance. Headings are captured separately
+from adjacent body copy, avoiding an earlier German box-heading misbinding and
+troubleshooting introductions leaking into the navigation.
+
+All nine reuse the same ordered 16 chapters and ComponentSpec variants. The
+reviewed source requirements live under the original SHA in
+`prepared_component_admission.json:source_profiles`; the 75 historical target
+entries are unchanged. The map independently requires symbol, LCD, operation,
+UPS, expansion, fault, specification, warranty and App components. Deleting LCD
+components still fails admission even with an unchanged candidate inventory.
+Native source lacks an automatic-output-restore table; no other model's facts
+are substituted.
+
+## Native-source exceptions retained
+
+| Source | Verified issue | Disposition |
+| --- | --- | --- |
+| EN p2 | Preface mentions US in this EU artwork | Retain original copy; target remains EU |
+| EN p14 | Energy-saving copy says AC/DC where operation uses USB | Retain original copy |
+| EN p20 | FA corrective action mentions both units | Retain original copy; no invented connection procedure |
+| FR p36 | Car figure captions are English; solar paragraph names HomePower 3600 Plus | Retain source wording |
+| ES p45/p51 | LCD/connections headings are French | Retain AFFICHAGE LCD / CONNEXIONS |
+| ES p55 | Charging/discharging temperature labels are French | Retain source labels and values |
+| IT p88 | F0–F6 corrective actions are German | Retain source actions; no independent translation |
+| NL p127 | Safety heading is English | Retain IMPORTANT SAFETY INFORMATION |
+| PT p123 | Model cell prints JE-3600 A | Retain typography; technical identity is JE-3600A |
+
+Normalization is limited to ligatures, native line-break hyphen joining,
+superscript placement, source headings and external copy separation. No
+technical ratings, safety requirements, manufacturer identity or legal copy
+are silently corrected.
+
+## Artwork and browser evidence
+
+Each locale has 55 packaged assets: 53 shared bytes and two source-labelled
+product overview panels. The accessory panel SHA is
+`4d320b9cd3273dc56cbc3a4a09512e2e4d412839d84c739c17d2cec8b51f5950`
+in every package. Its four native dashed edges, shopping cart badge and product
+markings are preserved; there is no synthetic CSS border. External labels are
+selectable native HTML; long labels wrap within their allotted regions.
+Source App screenshot frames are preserved and shared. Clock glyphs use CSS.
+
+Local browser evidence is retained in
+`reports/je3600a-nine-language/browser/`: nine 1280px desktop and nine 390px
+mobile accessory screenshots plus `local-qc.json`. Both widths have zero page
+horizontal overflow and no accessory label overflow. All App images loaded
+after visiting the App section; unloaded offscreen lazy images were not
+misclassified as broken. On mobile the artwork stays complete and native copy
+flows below it. `frozen-audit.json` records per-language cold replay, asset
+identity, trusted fresh admission and actual tampered-asset rejection. Cold
+replay reproduces the reviewed Markdown byte-for-byte for all nine languages.
+
+## Validation and delivery state
+
+- Nine frozen packages: strict Sphinx HTML (`-W`) successful.
+- Targeted policy/admission tests: 19 successful, including missing native LCD
+  component rejection and historical projection compatibility.
+- Ruff and maintainability guardrails: successful.
+- Documentation link/lifecycle validation: successful.
+- Historical JE-3600A/EU check: successful with the committed May phase2
+  snapshot passed as `--data-root`. The normal local snapshot is intentionally
+  absent; this historical gate does not validate the new native language bodies.
+- Full suite initial run: 5173 tests, 35 skipped, one macOS `/var` versus
+  `/private/var` temporary-path error in an existing publication-provenance
+  test. That test passes with `TMPDIR=/private/tmp`; the complete suite is being
+  rerun with this real-path temporary root before PR creation.
+
+Engineering merge, mirror sync, publication merge and RTD/live acceptance are
+pending. No candidate or local page is claimed as published.

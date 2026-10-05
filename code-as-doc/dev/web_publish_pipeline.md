@@ -328,6 +328,15 @@ create synthetic queue rows or write `HTML_link`.
    Verify those bodies against their source pages, figures and structured
    tables, then run the same strict Sphinx and browser gates. This exception
    does not register a new phase2 or print target.
+   When a reviewed native source has a different chapter map from the historical
+   phase2 projection, enroll its exact original-source SHA-256 and target/locale
+   requirements under `prepared_component_admission.json:source_profiles`.
+   Admission selects that committed map from the frozen source identity; it
+   never derives requirements from candidate inventories. The historical
+   target entries remain applicable to existing phase2 builds. The JE-3600A
+   0924 source review records the 16 native chapters, shared artwork and
+   source-language exceptions in
+   [its nine-language review](../reviews/je3600a_eu_nine_language_web_2026-10.md).
 3. Put the verified MyST and verification HTML in an isolated release root.
    Write a real `auto-manual-web-publish/v1` record at
    `<model>/<region>/<lang>/latest/web/publish_meta.json`. Its

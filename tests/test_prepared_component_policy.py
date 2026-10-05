@@ -10,6 +10,44 @@ from tools.utils.path_utils import get_paths
 
 
 class PreparedPolicyTests(unittest.TestCase):
+    def test_native_profile_still_rejects_deleted_lcd_components(self):
+        from copy import deepcopy
+        from tools.prepared_component_coverage import audit_prepared_component_coverage
+
+        root = Path(__file__).resolve().parents[1]
+        source = root / "manual_sources/JE-3600A/EU/en/git-20261002-47a346dc/web/en/manual.ir.json"
+        raw = json.loads(source.read_text())
+        policy = resolve_prepared_component_policy(
+            model="JE-3600A", region="EU", language="en",
+            source_sha256="47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+        )
+        raw["metadata"]["page_slots"] = policy["expected_slots"]
+        self.assertEqual(audit_prepared_component_coverage(raw, policy)["issues"], [])
+        changed = deepcopy(raw)
+        page = next(p for p in changed["pages"] if p["page_id"] == "lcd_display")
+        page["blocks"] = []
+        # Even the old, untouched self-reported inventory cannot waive the map.
+        issues = audit_prepared_component_coverage(changed, policy)["issues"]
+        self.assertTrue(any("lcd_display/HB-TABLE-LCD" in issue for issue in issues), issues)
+
+    def test_reviewed_source_profile_preserves_historical_projection(self):
+        identity = dict(model="JE-3600A", region="EU", language="en")
+        historical = resolve_prepared_component_policy(**identity)
+        native = resolve_prepared_component_policy(
+            **identity,
+            source_sha256="47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+        )
+        self.assertIn("safety_en.rst", historical["expected_pages"])
+        self.assertNotIn("safety", historical["expected_pages"])
+        self.assertEqual(native["expected_slots"]["safety"], "native/safety")
+        self.assertEqual(len(native["expected_pages"]), 16)
+        self.assertEqual(resolve_prepared_component_policy(**identity, source_sha256="0" * 64), historical)
+        with self.assertRaisesRegex(ValueError, "applicability must be reviewed"):
+            resolve_prepared_component_policy(
+                model="NEW", region="EU", language="en",
+                source_sha256="47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+            )
+
     def test_all_reviewed_targets_resolve_against_capability_ssot(self):
         contract = json.loads((get_paths().renderer_contracts_dir / POLICY_FILENAME).read_text())
         self.assertEqual(len(contract["targets"]), 75)

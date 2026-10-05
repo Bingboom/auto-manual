@@ -7109,5 +7109,1075 @@
         }
       }
     }
+  },
+  "source_profiles": {
+    "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043": {
+      "source": "HTE139-EU-9国说明书-0924.ai",
+      "review_record": "code-as-doc/reviews/je3600a_eu_nine_language_web_2026-10.md",
+      "targets": {
+        "JE-3600A/EU/en": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/fr": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/es": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/de": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/it": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/uk": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/pt": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/nl": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        },
+        "JE-3600A/EU/pl": {
+          "pages": {
+            "introduction": {
+              "slot": "native/introduction",
+              "components": {}
+            },
+            "safety": {
+              "slot": "native/safety",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "symbols": {
+              "slot": "native/symbols",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "in_the_box": {
+              "slot": "native/in_the_box",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview": {
+              "slot": "native/product_overview",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            },
+            "lcd_display": {
+              "slot": "native/lcd_display",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-TABLE-LCD-ICON/icon-catalog": 1
+              }
+            },
+            "operations": {
+              "slot": "native/operations",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-SPECIAL-OPERATION/status-right": 2,
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+                "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+              }
+            },
+            "ups": {
+              "slot": "native/ups",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "UPS功能"
+            },
+            "connections": {
+              "slot": "native/connections",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "capability": "加电包扩容"
+            },
+            "charging": {
+              "slot": "native/charging",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-CALLOUT-STRIP/caution": 4
+              }
+            },
+            "storage": {
+              "slot": "native/storage",
+              "components": {}
+            },
+            "troubleshooting": {
+              "slot": "native/troubleshooting",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "specifications": {
+              "slot": "native/specifications",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 4
+              }
+            },
+            "warranty": {
+              "slot": "native/warranty",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "app_setup": {
+              "slot": "native/app_setup",
+              "components": {
+                "HB-SPECIAL-APP/download": 1,
+                "HB-SPECIAL-APP/inline-control": 1,
+                "HB-SPECIAL-APP/add-device": 1,
+                "HB-CALLOUT-STRIP/note": 3,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+                "HB-CALLOUT-STRIP/caution": 1
+              },
+              "chapter": "app"
+            },
+            "eu-declaration": {
+              "slot": "native/eu-declaration",
+              "components": {
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
