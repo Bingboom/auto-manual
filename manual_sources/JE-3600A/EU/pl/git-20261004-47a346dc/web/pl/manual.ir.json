@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "c9805b9c98cf054d4f6d2eaef3f3badf5eca544abbf0f3c86338f42236470862",
-  "content_sha256": "5e5b55738bb10490563f6b25a2b9050313fb344c1d8c136051346ab257e65fa9",
+  "content_sha256": "5b1d8df8709199cea106086007a7d467bbfe17ab0ceb54c6a4604bfd3ebbcddf",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2673,7 +2673,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "0a8577c3ddc3db1be2658cd1828abd9515d303401308704a40c39ca389bf0f35",
+          "content_sha256": "e507a42eab38dea89cb517dac6df714a704fc40798d75a1b37d9bc86b8cc1a31",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2691,12 +2691,12 @@
                 {
                   "content": [
                     {
-                      "content_html": "Symbol Znacze",
-                      "content_text": "Symbol Znacze"
+                      "content_html": "Symbol",
+                      "content_text": "Symbol"
                     },
                     {
-                      "content_html": "enie",
-                      "content_text": "enie"
+                      "content_html": "Znaczenie",
+                      "content_text": "Znaczenie"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2756,7 +2756,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "0cdbb68bb61a9a5fbcc4c3732ed52d3658c90a758bf54f975bda7c8b1656f1ad",
+          "content_sha256": "43b4d5af02c20a22009dbc6c60733941fc7f2449e2365f04d24590312b603073",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2815,20 +2815,20 @@
                 {
                   "content": [
                     {
-                      "content_html": "Symbol Znacze",
-                      "content_text": "Symbol Znacze"
+                      "content_html": "Symbol",
+                      "content_text": "Symbol"
                     },
                     {
-                      "content_html": "enie",
-                      "content_text": "enie"
+                      "content_html": "Znaczenie",
+                      "content_text": "Znaczenie"
                     },
                     {
-                      "content_html": "Symbol Znacze",
-                      "content_text": "Symbol Znacze"
+                      "content_html": "Symbol",
+                      "content_text": "Symbol"
                     },
                     {
-                      "content_html": "enie",
-                      "content_text": "enie"
+                      "content_html": "Znaczenie",
+                      "content_text": "Znaczenie"
                     }
                   ],
                   "content_kind": "ordered_headers",

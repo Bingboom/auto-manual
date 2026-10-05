@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "da95801b2532a5f119c68405b35ff8ba2b60d0c5bf76f47934c2e13764197b6a",
-  "content_sha256": "526e477c796f394ca58c88122311a5d350488bfc082139809ff22c7e3c8b1e87",
+  "content_sha256": "b19fe1c5cc10d2e62e45807487b7b6def0445669c37b5d4c9cf55c470a5872d3",
   "language": "uk",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2673,7 +2673,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "0a8336291fc117db3fa444f9368a9df3fc71830e5aa972d49b3b5d2937eef7bd",
+          "content_sha256": "f31656723638113d301134e5114430bf6a000b34b1923e573685b4354f02467a",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2691,12 +2691,12 @@
                 {
                   "content": [
                     {
-                      "content_html": "Символ Значен",
-                      "content_text": "Символ Значен"
+                      "content_html": "Символ",
+                      "content_text": "Символ"
                     },
                     {
-                      "content_html": "ння",
-                      "content_text": "ння"
+                      "content_html": "Значення",
+                      "content_text": "Значення"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2756,7 +2756,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "b8cd805f536a86d4769ea300901b9cd9265ae3c938ee4da5ab6abd88ba216d71",
+          "content_sha256": "63e57c0345fc5c662575dc50f8cc55bed7e2ff842d1f8adbe8884992900033e5",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2815,20 +2815,20 @@
                 {
                   "content": [
                     {
-                      "content_html": "Символ Значен",
-                      "content_text": "Символ Значен"
+                      "content_html": "Символ",
+                      "content_text": "Символ"
                     },
                     {
-                      "content_html": "ння",
-                      "content_text": "ння"
+                      "content_html": "Значення",
+                      "content_text": "Значення"
                     },
                     {
-                      "content_html": "Символ Значен",
-                      "content_text": "Символ Значен"
+                      "content_html": "Символ",
+                      "content_text": "Символ"
                     },
                     {
-                      "content_html": "ння",
-                      "content_text": "ння"
+                      "content_html": "Значення",
+                      "content_text": "Значення"
                     }
                   ],
                   "content_kind": "ordered_headers",

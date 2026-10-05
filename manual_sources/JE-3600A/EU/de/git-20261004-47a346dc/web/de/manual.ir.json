@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "2ddb6f1fa1b412736f53d4a75d1ba9d598f8c21a7b6f1d527694b269e0720813",
-  "content_sha256": "530314f6723f082a8aae205795181b1827f485c9e4b926472ecccad0cf4b2a87",
+  "content_sha256": "ec714c37da6210cddee5413b896aa16b9427bca787edf1680c2722275f51e332",
   "language": "de",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2673,7 +2673,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "dcb8f389575102831e5d225309745dbc45d5b2152cde17947989dab1147fcc2d",
+          "content_sha256": "2912501b7b8ae2a22b533a451a9d4052dd49b5ed6e7340418e7897e2f5d429c9",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2695,8 +2695,8 @@
                       "content_text": "Symbol"
                     },
                     {
-                      "content_html": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen",
-                      "content_text": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen"
+                      "content_html": "Bedeutung",
+                      "content_text": "Bedeutung"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2756,7 +2756,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "11a212ebe2bf524a37695c7d742f40fe60aa6176de1cb09395d9c6dcd9400eea",
+          "content_sha256": "38779eb90783c0a0f4ffa1c141716655042b3d4ae929857f4f21fbc695acbb59",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2819,16 +2819,16 @@
                       "content_text": "Symbol"
                     },
                     {
-                      "content_html": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen",
-                      "content_text": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen"
+                      "content_html": "Bedeutung",
+                      "content_text": "Bedeutung"
                     },
                     {
                       "content_html": "Symbol",
                       "content_text": "Symbol"
                     },
                     {
-                      "content_html": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen",
-                      "content_text": "Bedeutung Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen"
+                      "content_html": "Bedeutung",
+                      "content_text": "Bedeutung"
                     }
                   ],
                   "content_kind": "ordered_headers",

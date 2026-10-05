@@ -2046,25 +2046,25 @@
       "id": "footnote-1",
       "page": 140,
       "bbox": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "① Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de AC-uitgangspoorten.",
+      "method": "native-complete-numbered-footnote",
+      "raw": "① Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de AC-uitgangspoorten.\n",
       "text": "① Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de AC-uitgangspoorten."
     },
     {
       "id": "footnote-2",
       "page": 140,
       "bbox": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "raw": "② Geeft aan dat twee of meer AC-uitgangspoorten samenwerken.",
       "text": "② Geeft aan dat twee of meer AC-uitgangspoorten samenwerken."
     },
@@ -2332,13 +2332,13 @@
       "id": "app-timeout",
       "page": 142,
       "bbox": [
-        85,
-        467,
-        344,
-        499
+        94.58689880371094,
+        472.1509094238281,
+        336.2919006347656,
+        492.1509094238281
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "Als het apparaat is ingeschakeld en binnen 2 uur geen verbinding met de app heeft, worden wiﬁ en \nBluetooth automatisch uitgeschakeld. Het is nu nodig om de USB-aan/uit-knop en de Aan/uit-knop voor \nUSB ingedrukt te houden om wiﬁ en Bluetooth opnieuw in te schakelen.",
+      "method": "native-complete-app-timeout-block",
+      "raw": "Als het apparaat is ingeschakeld en binnen 2 uur geen verbinding met de app heeft, worden wiﬁ en \nBluetooth automatisch uitgeschakeld. Het is nu nodig om de USB-aan/uit-knop en de Aan/uit-knop voor \nUSB ingedrukt te houden om wiﬁ en Bluetooth opnieuw in te schakelen.\n",
       "text": "Als het apparaat is ingeschakeld en binnen 2 uur geen verbinding met de app heeft, worden wifi en Bluetooth automatisch uitgeschakeld. Het is nu nodig om de USB-aan/uit-knop en de Aan/uit-knop voor USB ingedrukt te houden om wifi en Bluetooth opnieuw in te schakelen."
     },
     {

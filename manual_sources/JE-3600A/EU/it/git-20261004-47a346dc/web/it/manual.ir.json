@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "89e9bc51de0e66f7f03997857fd87d8ffe4405c743f2363a1e65c1f93ba34a58",
-  "content_sha256": "85936d1a87f0b8ac133832b26f5980b621ad15c5d20f173c37abce9ca3b3603e",
+  "content_sha256": "5e7457fb5ed9db3369e72a28521623174a907b1365489c7bf3035cc90cfb2042",
   "language": "it",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2685,7 +2685,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "4820262de130993b2f046bf9e750c33005145720e77ea30806574d57a027cf73",
+          "content_sha256": "535df62d5e697cb4f3b773ad0695fe0e01efaa5c614d8baa8ded63ffea8f53af",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2707,8 +2707,8 @@
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o",
-                      "content_text": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o"
+                      "content_html": "Significato",
+                      "content_text": "Significato"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2768,7 +2768,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "17b820788ed381b2429f0b9fa919e4c05e77b9b3b1de186f279d222c61295ef5",
+          "content_sha256": "b66a29722c479d772ab2ea8b12389d0119e2ff8ddd5ef9e54dea52701a04fe9b",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2831,16 +2831,16 @@
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o",
-                      "content_text": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o"
+                      "content_html": "Significato",
+                      "content_text": "Significato"
                     },
                     {
                       "content_html": "Símbolo",
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o",
-                      "content_text": "Significato Pratiche pericolose che possono causare gravi lesioni, morte e/o"
+                      "content_html": "Significato",
+                      "content_text": "Significato"
                     }
                   ],
                   "content_kind": "ordered_headers",

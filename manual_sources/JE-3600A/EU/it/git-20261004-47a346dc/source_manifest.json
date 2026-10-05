@@ -379,8 +379,8 @@
     },
     {
       "path": "source/chapters.json",
-      "size": 316566,
-      "sha256": "5c8b53212a7645ef61ff7ab4c4669f11041706e2ede6c188683a00d58a40fdbb"
+      "size": 316176,
+      "sha256": "81a102a91b625954525dace843f781d0624cf67a5aa50d74c51ef348f1791229"
     },
     {
       "path": "source/component-copy.json",
@@ -396,6 +396,11 @@
       "path": "source/sections.json",
       "size": 84931,
       "sha256": "543368eaa5ea3c9d45421205831491edd3152dbbdc4202c14cb0a7210ba5de69"
+    },
+    {
+      "path": "source/symbol-header-capture.json",
+      "size": 457,
+      "sha256": "eac46fcc4d9130ea0428ddd1a8990fbdd40c901c4d8252278b72104034f55869"
     },
     {
       "path": "source/text-ledger.json",
@@ -699,13 +704,13 @@
     },
     {
       "path": "web/it/manual.ir.json",
-      "size": 434234,
-      "sha256": "20f55f1c434580eca642512e0a608b0eb42347ed21aa864fc6ac571519d9b47c"
+      "size": 433844,
+      "sha256": "093ba3892777d14285f3547275f0b61feec5a0d37c7590b6e09372cb7b4b84d0"
     },
     {
       "path": "web/it/manual_je3600a_eu_it.md",
-      "size": 73320,
-      "sha256": "83f2b6c80a6da378497731a49b6521987396c784ccfeeda8641a7719745a5651"
+      "size": 73125,
+      "sha256": "11c420949ff4a56f3b57ab056f9214a9c775de9bdb7d5e8f8a6859a9d0a1fe23"
     }
   ]
 }

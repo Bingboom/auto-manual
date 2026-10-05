@@ -1,0 +1,24 @@
+{
+  "physical_page": 127,
+  "method": "complete native header spans separated from body",
+  "spans": [
+    {
+      "text": "Symbool",
+      "bbox_pt": [
+        35.73970031738281,
+        379.7631530761719,
+        67.57966613769531,
+        389.61517333984375
+      ]
+    },
+    {
+      "text": "Betekenis",
+      "bbox_pt": [
+        108.06996154785156,
+        379.09466552734375,
+        143.69712829589844,
+        388.9466857910156
+      ]
+    }
+  ]
+}

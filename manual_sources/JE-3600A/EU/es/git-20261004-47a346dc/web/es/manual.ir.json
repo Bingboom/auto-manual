@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "a12500ed66cb8ed3f3a7dfa5899d493f9741819e8156cea1a9e765ea1a462130",
-  "content_sha256": "30838a556c3c86ba72c64a679c745f03f125fbe71b59c48d725e9b3e670f8947",
+  "content_sha256": "06490c6dd0480b5757983f68fee94417995e1956e9d9584d06f47e1c44b3ad3a",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2705,7 +2705,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "1ef7ff601449110ec122e14ebb959b9f3ca11fc1e7e9967715f46d8faf6631f5",
+          "content_sha256": "3479f3d72907e253a0c3dc27597a179063f8884d5026566f483fe9e981e08cba",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2727,8 +2727,8 @@
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte",
-                      "content_text": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte"
+                      "content_html": "Significados",
+                      "content_text": "Significados"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2788,7 +2788,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "584de1e261617b90349f27639f48a99edd33bdd19ce0e7d82d790d93ca046a35",
+          "content_sha256": "815c4a7c4be70f453ffe777e125adf7bbbf7da8a961902368ae7c1b13495c3a5",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2851,16 +2851,16 @@
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte",
-                      "content_text": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte"
+                      "content_html": "Significados",
+                      "content_text": "Significados"
                     },
                     {
                       "content_html": "Símbolo",
                       "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte",
-                      "content_text": "Significados Prácticas peligrosas que pueden resultar en lesiones graves, muerte"
+                      "content_html": "Significados",
+                      "content_text": "Significados"
                     }
                   ],
                   "content_kind": "ordered_headers",

@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "cc7da24ae710aa5aef146942c660946af3e7efe66abf7428625f24df81174e01",
-  "content_sha256": "56013815bb317a94fb9fce2f8d4a6b75b6e6c67f82445dd7f43d1f17383fa12e",
+  "content_sha256": "c9ae4fc075542b693882bab3a1624f9a6eb4f7d7da61d18c0d7540ca07d70700",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2685,7 +2685,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "4728c9aa559b09b4928b3e9dff8b2b2da40500d7d5ab733a8b22b5f09ec09f57",
+          "content_sha256": "e7454aa71086d531c1c33b03c253551012fd50f4c2070957800ab7183955f735",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2703,12 +2703,12 @@
                 {
                   "content": [
                     {
-                      "content_html": "Symbool Beteke",
-                      "content_text": "Symbool Beteke"
+                      "content_html": "Symbool",
+                      "content_text": "Symbool"
                     },
                     {
-                      "content_html": "enis",
-                      "content_text": "enis"
+                      "content_html": "Betekenis",
+                      "content_text": "Betekenis"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2768,7 +2768,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "e3555811b7f58102f117dc3b4b7744614d93e33b7c06edb1fc3e955411571679",
+          "content_sha256": "84ce82307305c4d787826608014f791fcdce3832c697546fa739525b18d4cc94",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2827,20 +2827,20 @@
                 {
                   "content": [
                     {
-                      "content_html": "Symbool Beteke",
-                      "content_text": "Symbool Beteke"
+                      "content_html": "Symbool",
+                      "content_text": "Symbool"
                     },
                     {
-                      "content_html": "enis",
-                      "content_text": "enis"
+                      "content_html": "Betekenis",
+                      "content_text": "Betekenis"
                     },
                     {
-                      "content_html": "Symbool Beteke",
-                      "content_text": "Symbool Beteke"
+                      "content_html": "Symbool",
+                      "content_text": "Symbool"
                     },
                     {
-                      "content_html": "enis",
-                      "content_text": "enis"
+                      "content_html": "Betekenis",
+                      "content_text": "Betekenis"
                     }
                   ],
                   "content_kind": "ordered_headers",

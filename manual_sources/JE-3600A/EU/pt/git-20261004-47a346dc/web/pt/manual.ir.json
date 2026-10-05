@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "40a6b5400ba318daff582eeafa41c440580a79d03c1d7fe22045f1a1e80830b8",
-  "content_sha256": "cfd67401eb091b16c20805a40390fe015fc6b54cd06ad632c217bf0228383a83",
+  "content_sha256": "7d97f3f9eea1f35662c23e649868a33fae2ac835e5fe75eb2ce87b4ce2c77fc8",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2685,7 +2685,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0002",
-          "content_sha256": "48a31ae7c79ed413ba92ddcec596921c818ec168d496fa4824fe385f749c36c3",
+          "content_sha256": "881daef89a050397428f165b647c53fdd2d6af44625c3ec7d93ee05d35fa8d16",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2703,12 +2703,12 @@
                 {
                   "content": [
                     {
-                      "content_html": "Símbolo Signifi",
-                      "content_text": "Símbolo Signifi"
+                      "content_html": "Símbolo",
+                      "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "icado",
-                      "content_text": "icado"
+                      "content_html": "Significado",
+                      "content_text": "Significado"
                     }
                   ],
                   "content_kind": "ordered_headers",
@@ -2768,7 +2768,7 @@
             "assets/symbol-weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "e25b1a15c847dc2f2f0ce54b0a5ed301dec4a55ab59d877d891ffa1d9ba00da9",
+          "content_sha256": "51cc5a250310fb71d27a67145edf69b9e18c3f938c5b1548023f096218be4555",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -2827,20 +2827,20 @@
                 {
                   "content": [
                     {
-                      "content_html": "Símbolo Signifi",
-                      "content_text": "Símbolo Signifi"
+                      "content_html": "Símbolo",
+                      "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "icado",
-                      "content_text": "icado"
+                      "content_html": "Significado",
+                      "content_text": "Significado"
                     },
                     {
-                      "content_html": "Símbolo Signifi",
-                      "content_text": "Símbolo Signifi"
+                      "content_html": "Símbolo",
+                      "content_text": "Símbolo"
                     },
                     {
-                      "content_html": "icado",
-                      "content_text": "icado"
+                      "content_html": "Significado",
+                      "content_text": "Significado"
                     }
                   ],
                   "content_kind": "ordered_headers",

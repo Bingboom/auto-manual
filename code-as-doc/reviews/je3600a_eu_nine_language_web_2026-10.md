@@ -155,3 +155,15 @@ change; artwork and shared component structure remain byte-identical. The
 corrected five languages pass strict Sphinx, and all nine repeat cold replay,
 fresh admission and tamper rejection. The full 5174-test result remains
 applicable to the unchanged production code; final-head CI is required again.
+
+## Native symbol header capture
+
+Final aggregate review found that fixed English column coordinates clipped
+Ukrainian, Portuguese, Dutch and Polish headers, and included first-row text
+in Spanish, German and Italian headers. The author now captures both complete
+native header spans by their actual header-band geometry. The frozen source
+records retain each span and rectangle in `source/symbol-header-capture.json`.
+All nine header pairs were checked in the browser; Italian native `Símbolo`
+is preserved exactly. Nine strict builds and frozen replay/admission/tamper
+checks pass again. Browser evidence is in `symbol-headers-qc.json` and the
+nine `*-symbol-headers.png` files beside the earlier layout evidence.

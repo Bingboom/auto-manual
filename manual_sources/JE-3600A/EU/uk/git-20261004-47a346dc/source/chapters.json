@@ -389,12 +389,12 @@
                 "content_kind": "ordered_headers",
                 "content": [
                   {
-                    "content_html": "Символ Значен",
-                    "content_text": "Символ Значен"
+                    "content_html": "Символ",
+                    "content_text": "Символ"
                   },
                   {
-                    "content_html": "ння",
-                    "content_text": "ння"
+                    "content_html": "Значення",
+                    "content_text": "Значення"
                   }
                 ]
               },
@@ -459,20 +459,20 @@
                 "content_kind": "ordered_headers",
                 "content": [
                   {
-                    "content_html": "Символ Значен",
-                    "content_text": "Символ Значен"
+                    "content_html": "Символ",
+                    "content_text": "Символ"
                   },
                   {
-                    "content_html": "ння",
-                    "content_text": "ння"
+                    "content_html": "Значення",
+                    "content_text": "Значення"
                   },
                   {
-                    "content_html": "Символ Значен",
-                    "content_text": "Символ Значен"
+                    "content_html": "Символ",
+                    "content_text": "Символ"
                   },
                   {
-                    "content_html": "ння",
-                    "content_text": "ння"
+                    "content_html": "Значення",
+                    "content_text": "Значення"
                   }
                 ]
               },

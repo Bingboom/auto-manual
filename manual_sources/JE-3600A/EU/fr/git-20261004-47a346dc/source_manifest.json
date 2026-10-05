@@ -369,8 +369,8 @@
     },
     {
       "path": "source-bindings.json",
-      "size": 172343,
-      "sha256": "b45eabb6b30185599c3e7d70a1e86d9df4777538f0c19e8b9256e93b1b87b9cd"
+      "size": 172376,
+      "sha256": "30a0a1c49ec9b611e674ff88d2d416165f7393f5c55a108b308515d9da57df5f"
     },
     {
       "path": "source/admission-audit.json",
@@ -379,8 +379,8 @@
     },
     {
       "path": "source/bindings.json",
-      "size": 172343,
-      "sha256": "b45eabb6b30185599c3e7d70a1e86d9df4777538f0c19e8b9256e93b1b87b9cd"
+      "size": 172376,
+      "sha256": "30a0a1c49ec9b611e674ff88d2d416165f7393f5c55a108b308515d9da57df5f"
     },
     {
       "path": "source/chapters.json",
@@ -403,9 +403,14 @@
       "sha256": "54a62741d462a9fbd90b9a63d1ddb42b15a7c6b0b4ce8ad875a346b922a68152"
     },
     {
+      "path": "source/symbol-header-capture.json",
+      "size": 459,
+      "sha256": "aae1d5cb4563636cf392ba4aa8f89c8fed9ac765a3e5532390bf135e990f4581"
+    },
+    {
       "path": "source/text-ledger.json",
-      "size": 101331,
-      "sha256": "d7ef68e81d907303b8078b5090d2e64a8f8ba63fe2a3d626fb02ce7b7786e9a7"
+      "size": 101364,
+      "sha256": "dfbce45ff744a8d35a4e68e484dd993086a233679479541e72ac108df968d80f"
     },
     {
       "path": "source/visual-transcription.json",

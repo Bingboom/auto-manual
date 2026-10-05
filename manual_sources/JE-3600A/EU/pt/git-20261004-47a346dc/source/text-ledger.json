@@ -2046,25 +2046,25 @@
       "id": "footnote-1",
       "page": 123,
       "bbox": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.",
+      "method": "native-complete-numbered-footnote",
+      "raw": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.\n",
       "text": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA."
     },
     {
       "id": "footnote-2",
       "page": 123,
       "bbox": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "raw": "② Indica que duas ou mais portas de saída CA operam em conjunto.",
       "text": "② Indica que duas ou mais portas de saída CA operam em conjunto."
     },
@@ -2332,13 +2332,13 @@
       "id": "app-timeout",
       "page": 125,
       "bbox": [
-        85,
-        467,
-        344,
-        499
+        96.03130340576172,
+        467.7198181152344,
+        331.466064453125,
+        495.6816101074219
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, \nele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter \npressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar \nnovamente o Wi-Fi e o Bluetooth.",
+      "method": "native-complete-app-timeout-block",
+      "raw": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, \nele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter \npressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar \nnovamente o Wi-Fi e o Bluetooth.\n",
       "text": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, ele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter pressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar novamente o Wi-Fi e o Bluetooth."
     },
     {

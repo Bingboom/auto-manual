@@ -364,8 +364,8 @@
     },
     {
       "path": "source-bindings.json",
-      "size": 170142,
-      "sha256": "2391a9f695be33d3f5dfb657829cba9d4520d201f39012798ac6fb116e368d7f"
+      "size": 170176,
+      "sha256": "836fc72f4efaa8553596a568e25d6f35d9cae86d09c756db4c3ca1a6672c0881"
     },
     {
       "path": "source/admission-audit.json",
@@ -374,13 +374,13 @@
     },
     {
       "path": "source/bindings.json",
-      "size": 170142,
-      "sha256": "2391a9f695be33d3f5dfb657829cba9d4520d201f39012798ac6fb116e368d7f"
+      "size": 170176,
+      "sha256": "836fc72f4efaa8553596a568e25d6f35d9cae86d09c756db4c3ca1a6672c0881"
     },
     {
       "path": "source/chapters.json",
-      "size": 312310,
-      "sha256": "0f6f8cc3a96bd3479d2f253e746b0f48564155e124518c49a9ede08045b03590"
+      "size": 312298,
+      "sha256": "f7649e8a20bc70526351a73d89104983506a7acf7fb28ed8f2fd53589e74c27c"
     },
     {
       "path": "source/component-copy.json",
@@ -398,9 +398,14 @@
       "sha256": "39b98d9ff7c28464f2556fae4f036a2fb3194283a59092b32efebdfc4ab32552"
     },
     {
+      "path": "source/symbol-header-capture.json",
+      "size": 458,
+      "sha256": "be35fb8c34d83261cc699f7ffab131ad15a81f89b3440125f7d636cd34b8ac65"
+    },
+    {
       "path": "source/text-ledger.json",
-      "size": 98203,
-      "sha256": "dfb4e3130ea504d77f89f817251db07a10df4625f66a43050235ce7d348684bc"
+      "size": 98237,
+      "sha256": "c86dc552082cb532b37068dff7a9784f18fd4e810900fab01ea0666f967897b5"
     },
     {
       "path": "web/nl/_static/web_manual.css",
@@ -694,13 +699,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 430086,
-      "sha256": "9770707e3c7a776f1e4b841d9677637038f0d95db4a8955a83023473abdb9488"
+      "size": 430074,
+      "sha256": "8aa76c2a2242fe6cc3ae13601892e526b2b90ea508f245fc3599850814bf7d0c"
     },
     {
       "path": "web/nl/manual_je3600a_eu_nl.md",
-      "size": 71231,
-      "sha256": "5eb0c26a513dd49be08556e62209e331c45fc910f4efc18f0a21c1a64b5bfa39"
+      "size": 71225,
+      "sha256": "689e0bd9b3bc4a04d1643ebca1494ebc87829494d1de2085bbec1026c45aa766"
     }
   ]
 }

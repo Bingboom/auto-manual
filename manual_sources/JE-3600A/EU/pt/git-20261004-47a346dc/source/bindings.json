@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 123,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.",
+      "raw_text": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.\n",
       "text": "① O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 123,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
       "raw_text": "② Indica que duas ou mais portas de saída CA operam em conjunto.",
       "text": "② Indica que duas ou mais portas de saída CA operam em conjunto.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 125,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        96.03130340576172,
+        467.7198181152344,
+        331.466064453125,
+        495.6816101074219
       ],
-      "raw_text": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, \nele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter \npressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar \nnovamente o Wi-Fi e o Bluetooth.",
+      "raw_text": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, \nele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter \npressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar \nnovamente o Wi-Fi e o Bluetooth.\n",
       "text": "Depois que o dispositivo for ligado e não for conectado ao aplicativo dentro de 2 horas, ele desligará automaticamente o Wi-Fi e o Bluetooth. Agora, é necessário manter pressionados simultaneamente o botão POWER USB e o botão POWER CA para ligar novamente o Wi-Fi e o Bluetooth.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {

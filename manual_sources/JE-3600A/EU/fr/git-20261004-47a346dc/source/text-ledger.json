@@ -2046,25 +2046,25 @@
       "id": "footnote-1",
       "page": 38,
       "bbox": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.",
+      "method": "native-complete-numbered-footnote",
+      "raw": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.\n",
       "text": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA."
     },
     {
       "id": "footnote-2",
       "page": 38,
       "bbox": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "raw": "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble.",
       "text": "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble."
     },
@@ -2332,13 +2332,13 @@
       "id": "app-timeout",
       "page": 40,
       "bbox": [
-        85,
-        467,
-        344,
-        499
+        97.51319885253906,
+        474.93017578125,
+        311.68316650390625,
+        490.1282043457031
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "Une fois allumé, si l’application n’est pas connectée dans un délai de 2 heures, \nl’appareil éteindra automatiquement le Wi-Fi et le Bluetooth. ",
+      "method": "native-complete-app-timeout-block",
+      "raw": "Une fois allumé, si l’application n’est pas connectée dans un délai de 2 heures, \nl’appareil éteindra automatiquement le Wi-Fi et le Bluetooth. \n",
       "text": "Une fois allumé, si l’application n’est pas connectée dans un délai de 2 heures, l’appareil éteindra automatiquement le Wi-Fi et le Bluetooth."
     },
     {

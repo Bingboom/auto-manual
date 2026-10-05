@@ -389,12 +389,12 @@
                 "content_kind": "ordered_headers",
                 "content": [
                   {
-                    "content_html": "Symbool Beteke",
-                    "content_text": "Symbool Beteke"
+                    "content_html": "Symbool",
+                    "content_text": "Symbool"
                   },
                   {
-                    "content_html": "enis",
-                    "content_text": "enis"
+                    "content_html": "Betekenis",
+                    "content_text": "Betekenis"
                   }
                 ]
               },
@@ -459,20 +459,20 @@
                 "content_kind": "ordered_headers",
                 "content": [
                   {
-                    "content_html": "Symbool Beteke",
-                    "content_text": "Symbool Beteke"
+                    "content_html": "Symbool",
+                    "content_text": "Symbool"
                   },
                   {
-                    "content_html": "enis",
-                    "content_text": "enis"
+                    "content_html": "Betekenis",
+                    "content_text": "Betekenis"
                   },
                   {
-                    "content_html": "Symbool Beteke",
-                    "content_text": "Symbool Beteke"
+                    "content_html": "Symbool",
+                    "content_text": "Symbool"
                   },
                   {
-                    "content_html": "enis",
-                    "content_text": "enis"
+                    "content_html": "Betekenis",
+                    "content_text": "Betekenis"
                   }
                 ]
               },
