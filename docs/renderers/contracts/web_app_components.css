@@ -13,6 +13,7 @@
 #furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h2,
 #furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) h3 {
   gap: 0;
+  padding: 0;
   text-transform: none;
 }
 
@@ -20,7 +21,6 @@
 #furo-main-content > section:has(:is(.hb-app-add-device-composition, .hb-app-download-composition)) > section {
   margin-top: 1.2rem;
 }
-
 
 .hb-app-add-device-composition {
   width: 100%;

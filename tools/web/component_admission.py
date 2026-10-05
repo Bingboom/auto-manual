@@ -38,7 +38,11 @@ def require_fresh_component_admission(
             raise ValueError("manual IR has pending source review")
         raw = ir.to_dict()
         if ir.source == "prepared-document":
-            policy = resolve_prepared_component_policy(model=model, region=region, language=ir.language)
+            original = ir.metadata.get("frozen_source_manifest", {}).get("original_source", {})
+            policy = resolve_prepared_component_policy(
+                model=model, region=region, language=ir.language,
+                source_sha256=original.get("sha256"),
+            )
             report = audit_prepared_component_coverage(raw, policy)
             if report["issues"]:
                 raise ValueError("shared component admission failed: " + "; ".join(report["issues"]))

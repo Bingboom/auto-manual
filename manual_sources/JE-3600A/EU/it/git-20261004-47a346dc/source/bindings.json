@@ -1,0 +1,4016 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "language": "it",
+  "publication_eligible": false,
+  "records": [
+    {
+      "ledger_index": 1,
+      "field": "safety-precaution",
+      "english_binding": "Read all the instructions before using the product.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        108.1410903930664,
+        182.20904541015625,
+        115.34109497070312
+      ],
+      "raw_text": "Leggere tutte le istruzioni prima di utilizzare il prodotto.\n",
+      "text": "Leggere tutte le istruzioni prima di utilizzare il prodotto.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 2,
+      "field": "safety-precaution",
+      "english_binding": "Do not allow children to play with the product. Close supervision of children is necessary when the product is used near children.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        118.6410903930664,
+        331.6349182128906,
+        132.33908081054688
+      ],
+      "raw_text": "Non consentire ai bambini di giocare con il prodotto. È necessaria una stretta supervisione quando il prodotto \nviene utilizzato vicino a bambini.\n",
+      "text": "Non consentire ai bambini di giocare con il prodotto. È necessaria una stretta supervisione quando il prodotto viene utilizzato vicino a bambini.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 3,
+      "field": "safety-precaution",
+      "english_binding": "Risk of electric shock may occur if using accessories that are not recommended or sold by professional product manufacturers.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        135.6390838623047,
+        340.3385314941406,
+        149.33706665039062
+      ],
+      "raw_text": "Il rischio di scossa elettrica può verificarsi se si utilizzano accessori non raccomandati o non venduti da produttori \nprofessionali.\n",
+      "text": "Il rischio di scossa elettrica può verificarsi se si utilizzano accessori non raccomandati o non venduti da produttori professionali.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 4,
+      "field": "safety-precaution",
+      "english_binding": "When the product is not in use, unplug the power plug from the product's socket.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        152.63706970214844,
+        288.78656005859375,
+        159.83706665039062
+      ],
+      "raw_text": "Quando il prodotto non è in uso, scollegare la spina di alimentazione dalla presa del prodotto.\n",
+      "text": "Quando il prodotto non è in uso, scollegare la spina di alimentazione dalla presa del prodotto.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 5,
+      "field": "safety-precaution",
+      "english_binding": "Do not dismantle the product, as this may lead to unpredictable risks such as fire, explosion, or electric shock.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        163.13706970214844,
+        322.63958740234375,
+        176.83505249023438
+      ],
+      "raw_text": "Non smontare il prodotto, poiché ciò può comportare rischi imprevedibili come incendi, esplosioni o scosse \nelettriche.\n",
+      "text": "Non smontare il prodotto, poiché ciò può comportare rischi imprevedibili come incendi, esplosioni o scosse elettriche.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 6,
+      "field": "safety-precaution",
+      "english_binding": "Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        180.1350555419922,
+        332.9219970703125,
+        193.83303833007812
+      ],
+      "raw_text": "Non utilizzare il prodotto con cavi di alimentazione, spine o cavi di uscita danneggiati, poiché ciò può causare \nscosse elettriche.\n",
+      "text": "Non utilizzare il prodotto con cavi di alimentazione, spine o cavi di uscita danneggiati, poiché ciò può causare scosse elettriche.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 7,
+      "field": "safety-precaution",
+      "english_binding": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        197.13304138183594,
+        333.46435546875,
+        210.83102416992188
+      ],
+      "raw_text": "Per garantire una corretta circolazione dell’aria, non coprire le prese d’aria del prodotto. L’area in cui si utilizza il \nprodotto deve essere ben ventilata, fresca e asciutta per evitare il surriscaldamento.\n",
+      "text": "Per garantire una corretta circolazione dell’aria, non coprire le prese d’aria del prodotto. L’area in cui si utilizza il prodotto deve essere ben ventilata, fresca e asciutta per evitare il surriscaldamento.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 8,
+      "field": "safety-precaution",
+      "english_binding": "-Charging in damp or poorly ventilated spaces may cause safety hazards.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        214.1310272216797,
+        262.8490905761719,
+        221.33102416992188
+      ],
+      "raw_text": "-La ricarica in ambienti umidi o poco ventilati può comportare rischi per la sicurezza.\n",
+      "text": "-La ricarica in ambienti umidi o poco ventilati può comportare rischi per la sicurezza.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 9,
+      "field": "safety-precaution",
+      "english_binding": "-Water can cause short circuits or damage to the charger, leading to safety risks.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        224.6310272216797,
+        293.2079162597656,
+        231.83102416992188
+      ],
+      "raw_text": "-L'acqua può causare cortocircuiti o danni al caricatore, con conseguenti rischi per la sicurezza.\n",
+      "text": "-L'acqua può causare cortocircuiti o danni al caricatore, con conseguenti rischi per la sicurezza.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 10,
+      "field": "safety-precaution",
+      "english_binding": "Do not expose the product to fire, high temperatures, direct sunlight, or high-heat environments such as inside a parked vehicle. Such exposure may result in fire or explosion.",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.005401611328125,
+        235.1310272216797,
+        330.4625549316406,
+        248.82901000976562
+      ],
+      "raw_text": "Non esporre il prodotto al fuoco, ad alte temperature, alla luce solare diretta o ad ambienti molto caldi come \nl’interno di un veicolo parcheggiato. Tali condizioni possono causare incendi o esplosioni.\n",
+      "text": "Non esporre il prodotto al fuoco, ad alte temperature, alla luce solare diretta o ad ambienti molto caldi come l’interno di un veicolo parcheggiato. Tali condizioni possono causare incendi o esplosioni.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 11,
+      "field": "",
+      "english_binding": "IMPORTANT SAFETY INFORMATION",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        27,
+        340,
+        48
+      ],
+      "raw_text": "PRECAUZIONI DI SICUREZZA",
+      "text": "PRECAUZIONI DI SICUREZZA",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 12,
+      "field": "safety-lead",
+      "english_binding": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS",
+      "physical_page": 76,
+      "bbox_pt": [
+        110,
+        62,
+        344,
+        91
+      ],
+      "raw_text": "ISTRUZIONI RELATIVE AI RISCHI DI INCENDIO, SCOSSA \nELETTRICA O LESIONI ALLE PERSONE",
+      "text": "ISTRUZIONI RELATIVE AI RISCHI DI INCENDIO, SCOSSA ELETTRICA O LESIONI ALLE PERSONE",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 13,
+      "field": "safety-intro",
+      "english_binding": "Always follow these basic precautions when using this product.",
+      "physical_page": 76,
+      "bbox_pt": [
+        28.81839942932129,
+        94.45470428466797,
+        271.69744873046875,
+        102.501708984375
+      ],
+      "raw_text": "Seguire sempre queste precauzioni di base durante l’utilizzo di questo prodotto.\n",
+      "text": "Seguire sempre queste precauzioni di base durante l’utilizzo di questo prodotto.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 14,
+      "field": "maintenance-title",
+      "english_binding": "USER MAINTENANCE INSTRUCTIONS",
+      "physical_page": 76,
+      "bbox_pt": [
+        36.125,
+        271.5250244140625,
+        251.90826416015625,
+        281.42901611328125
+      ],
+      "raw_text": "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL’UTENTE\n",
+      "text": "ISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL’UTENTE",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 15,
+      "field": "maintenance-body",
+      "english_binding": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+      "physical_page": 76,
+      "bbox_pt": [
+        29.19729995727539,
+        288.03759765625,
+        339.186767578125,
+        316.24359130859375
+      ],
+      "raw_text": "Durante il ciclo di vita dei prodotti per l’accumulo di energia, è previsto un certo grado di degrado della capacità \ne dell’energia. Con l’aumentare dei cicli di carica e scarica e il prolungarsi del tempo di immagazzinamento, tale \ndegrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale, coerente con il naturale \ninvecchiamento delle celle della batteria.\n",
+      "text": "Durante il ciclo di vita dei prodotti per l’accumulo di energia, è previsto un certo grado di degrado della capacità e dell’energia. Con l’aumentare dei cicli di carica e scarica e il prolungarsi del tempo di immagazzinamento, tale degrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale, coerente con il naturale invecchiamento delle celle della batteria.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 16,
+      "field": "signal-table",
+      "english_binding": [
+        [
+          "WARNING",
+          "Hazardous practices that may result in severe injury, death, and/or property damage."
+        ],
+        [
+          "CAUTION",
+          "Hazardous practices that may result in personal injury and/or property damage."
+        ],
+        [
+          "NOTE",
+          "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+        ],
+        [
+          "TIP",
+          "Supplements the important information or operation tips in the text."
+        ]
+      ],
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        377,
+        342,
+        496
+      ],
+      "raw_text": "Símbolo\nSignificato\nPratiche pericolose che possono causare lesioni personali e/o danni \nmateriali.\nPratiche pericolose che possono causare danni all'apparecchiatura, \nperdita di dati, deterioramento delle prestazioni o risultati imprevisti.\nIntegra le informazioni importanti o i consigli operativi presenti nel testo.\n ATTENZIONE\n NOTA\n SUGGERIMENTO\nPratiche pericolose che possono causare gravi lesioni, morte e/o \ndanni materiali.\nAVVERTENZA",
+      "text": "Símbolo Significato Pratiche pericolose che possono causare lesioni personali e/o danni materiali. Pratiche pericolose che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti. Integra le informazioni importanti o i consigli operativi presenti nel testo. ATTENZIONE NOTA SUGGERIMENTO Pratiche pericolose che possono causare gravi lesioni, morte e/o danni materiali. AVVERTENZA",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 17,
+      "field": "battery-disposal",
+      "english_binding": "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "physical_page": 77,
+      "bbox_pt": [
+        227.08590698242188,
+        47.59540557861328,
+        338.33819580078125,
+        149.49301147460938
+      ],
+      "raw_text": "Le batterie e gli accumulatori non devono \nessere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente \nobbligato a smaltire tutte le batterie e gli \naccumulatori nei punti di raccolta \ndesignati, indipendentemente dal fatto \nche contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli \naccumulatori usati a un punto di raccolta \nlocale, a un centro di riciclo o al rivenditore \npresso cui sono stati acquistati. Un corretto \nsmaltimento garantisce un riciclo \nresponsabile per l'ambiente e previene \npotenziali danni alla salute umana e \nall'ambiente.\n",
+      "text": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici. Come consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose. Per favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 18,
+      "field": "symbol-warning_triangle",
+      "english_binding": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+      "physical_page": 77,
+      "bbox_pt": [
+        73.27439880371094,
+        47.66870880126953,
+        168.00955200195312,
+        68.38871002197266
+      ],
+      "raw_text": "Simboli di avvertenza e cautela. Da \nleggere assolutamente per avvisare le \npersone di potenziali pericoli o rischi. \n",
+      "text": "Simboli di avvertenza e cautela. Da leggere assolutamente per avvisare le persone di potenziali pericoli o rischi.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 19,
+      "field": "symbol-read_manual",
+      "english_binding": "Read the user manual before operation.",
+      "physical_page": 77,
+      "bbox_pt": [
+        71.5625,
+        83.69599151611328,
+        166.2859649658203,
+        97.4159927368164
+      ],
+      "raw_text": "Prima dell’utilizzo, leggere il manuale \nd’istruzioni.\n",
+      "text": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 20,
+      "field": "symbol-do_not_dismantle",
+      "english_binding": "Do not dismantle the product.",
+      "physical_page": 77,
+      "bbox_pt": [
+        71.5625,
+        118.9592056274414,
+        136.3253936767578,
+        125.67920684814453
+      ],
+      "raw_text": "Non smontare il prodotto.\n",
+      "text": "Non smontare il prodotto.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 21,
+      "field": "symbol-no_open_flame",
+      "english_binding": "Keep the product away from fire.",
+      "physical_page": 77,
+      "bbox_pt": [
+        71.5625,
+        149.57998657226562,
+        167.76434326171875,
+        156.29998779296875
+      ],
+      "raw_text": "Tenere il prodotto lontano da fiamme.\n",
+      "text": "Tenere il prodotto lontano da fiamme.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 22,
+      "field": "symbol-keep_away_from_children",
+      "english_binding": "Keep away from children.",
+      "physical_page": 77,
+      "bbox_pt": [
+        71.5625,
+        177.98410034179688,
+        178.1803436279297,
+        184.7041015625
+      ],
+      "raw_text": "Tenere lontano dalla portata dei bambini.\n",
+      "text": "Tenere lontano dalla portata dei bambini.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 23,
+      "field": "symbol-li_ion",
+      "english_binding": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "physical_page": 77,
+      "bbox_pt": [
+        71.5625,
+        198.4296875,
+        178.49951171875,
+        226.14968872070312
+      ],
+      "raw_text": "Questo simbolo indica che all’interno del \nprodotto è presente una batteria agli ioni \ndi litio (Li-ion), la quale va smaltita o \nriciclata adeguatamente.\n",
+      "text": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 24,
+      "field": "symbol-weee",
+      "english_binding": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "physical_page": 77,
+      "bbox_pt": [
+        227.01849365234375,
+        156.32327270507812,
+        335.5009460449219,
+        224.2288818359375
+      ],
+      "raw_text": "Questo simbolo indica che il prodotto non \nva smaltito come rifiuto domestico e deve \nessere consegnato per il riciclaggio a un \ncentro di raccolta designato.\nSmaltire adeguatamente e riciclare aiuta \na proteggere l’ambiente. Per maggiori \ninformazioni riguardo lo smaltimento e il \nriciclaggio di questo prodotto, contattare \nla propria comunità locale, i servizi di \nsmaltimento o il proprio fornitore.\n",
+      "text": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 25,
+      "field": "inbox-tip",
+      "english_binding": "The car charging cable is not included but is available for purchase separately on our website. For assistance, please contact Jackery customer service.",
+      "physical_page": 77,
+      "bbox_pt": [
+        25,
+        460,
+        344,
+        490
+      ],
+      "raw_text": "Il cavo di ricarica per auto non è incluso, ma può essere acquistato \nSUGGERIMENTO\nseparatamente sul nostro sito web. Per assistenza, contattare il servizio \nclienti Jackery.",
+      "text": "Il cavo di ricarica per auto non è incluso, ma può essere acquistato SUGGERIMENTO separatamente sul nostro sito web. Per assistenza, contattare il servizio clienti Jackery.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 26,
+      "field": "lcd-wifi-name",
+      "english_binding": "Wi-Fi",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        200.9342041015625,
+        155.1,
+        225.935302734375
+      ],
+      "raw_text": "Wi-Fi",
+      "text": "Wi-Fi",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 27,
+      "field": "lcd-wifi-description",
+      "english_binding": "On: Wi-Fi connected. Blink: Ready to connect to Wi-Fi. Off: Wi-Fi disconnected.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        200.9342041015625,
+        344,
+        225.935302734375
+      ],
+      "raw_text": "Acceso: Wi-Fi connesso.\nLampeggiante: pronto per la connessione Wi-Fi.\nSpento: Wi-Fi disconnesso.",
+      "text": "Acceso: Wi-Fi connesso. Lampeggiante: pronto per la connessione Wi-Fi. Spento: Wi-Fi disconnesso.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 28,
+      "field": "lcd-bluetooth-name",
+      "english_binding": "Bluetooth",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        225.935302734375,
+        155.1,
+        251.34628295898438
+      ],
+      "raw_text": "Bluetooth",
+      "text": "Bluetooth",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 29,
+      "field": "lcd-bluetooth-description",
+      "english_binding": "On: Bluetooth Connected. Blink: Ready to connect to Bluetooth. Off: Bluetooth disconnected.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        225.935302734375,
+        344,
+        251.34628295898438
+      ],
+      "raw_text": "Acceso: Bluetooth connesso.\nLampeggiante: pronto per la connessione Bluetooth.\nSpento: Bluetooth disconnesso",
+      "text": "Acceso: Bluetooth connesso. Lampeggiante: pronto per la connessione Bluetooth. Spento: Bluetooth disconnesso",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 30,
+      "field": "lcd-quiet-charging-name",
+      "english_binding": "Quiet Charging Mode",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        251.34628295898438,
+        155.1,
+        291.935302734375
+      ],
+      "raw_text": "Modalità di \nricarica silenziosa",
+      "text": "Modalità di ricarica silenziosa",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 31,
+      "field": "lcd-quiet-charging-description",
+      "english_binding": "On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down. Off: Quiet Charging Mode is disabled. Enable/disable this feature in the Jackery App.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        251.34628295898438,
+        344,
+        291.935302734375
+      ],
+      "raw_text": "Acceso: il rumore durante la ricarica è significativamente ridotto, \nmentre la potenza e la velocità di ricarica diminuiscono.\nSpento: la modalità di ricarica silenziosa è disattivata.\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.",
+      "text": "Acceso: il rumore durante la ricarica è significativamente ridotto, mentre la potenza e la velocità di ricarica diminuiscono. Spento: la modalità di ricarica silenziosa è disattivata. Questa funzione può essere attivata o disattivata tramite l'app Jackery.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 32,
+      "field": "lcd-battery-saving-name",
+      "english_binding": "Battery Saving Mode",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        291.935302734375,
+        155.1,
+        341.435302734375
+      ],
+      "raw_text": "Modalità di \nrisparmio della \nbatteriabatteria",
+      "text": "Modalità di risparmio della batteriabatteria",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 33,
+      "field": "lcd-battery-saving-description",
+      "english_binding": "On: Limits the maximum usable battery capacity to extend battery life. Off: Battery Saving Mode is disabled. Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        291.935302734375,
+        344,
+        341.435302734375
+      ],
+      "raw_text": "Acceso: limita la capacità massima della batteria utilizzabile per \nprolungarne la durata.\nSpento: la modalità di risparmio batteria è disattivata.\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.",
+      "text": "Acceso: limita la capacità massima della batteria utilizzabile per prolungarne la durata. Spento: la modalità di risparmio batteria è disattivata. Questa funzione può essere attivata o disattivata tramite l'app Jackery.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 34,
+      "field": "lcd-self-powered-name",
+      "english_binding": "Self-powered Mode",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        341.435302734375,
+        155.1,
+        396.8097839355469
+      ],
+      "raw_text": "Modalità \nautoalimentata",
+      "text": "Modalità autoalimentata",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 35,
+      "field": "lcd-self-powered-description",
+      "english_binding": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs (please enable/disable this feature in the app). The power station must be connected to both solar panels and the grid simultaneously, with load power limited by bypass power.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        341.435302734375,
+        344,
+        396.8097839355469
+      ],
+      "raw_text": "Massimizza l'uso dell'energia solare e riduce la dipendenza dalla \nrete elettrica, dando priorità all'energia solare immagazzinata e \nriducendo i costi dell'elettricità (abilitare/disabilitare questa \nfunzione nell'app). La stazione di alimentazione deve essere \ncollegata contemporaneamente\nsia ai pannelli solari che alla rete elettrica, con la potenza di \ncarico limitata dalla potenza di bypass.",
+      "text": "Massimizza l'uso dell'energia solare e riduce la dipendenza dalla rete elettrica, dando priorità all'energia solare immagazzinata e riducendo i costi dell'elettricità (abilitare/disabilitare questa funzione nell'app). La stazione di alimentazione deve essere collegata contemporaneamente sia ai pannelli solari che alla rete elettrica, con la potenza di carico limitata dalla potenza di bypass.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 36,
+      "field": "lcd-charging-plan-name",
+      "english_binding": "Charging Plan",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        396.8097839355469,
+        155.1,
+        439.2830810546875
+      ],
+      "raw_text": "Piano di ricarica",
+      "text": "Piano di ricarica",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 37,
+      "field": "lcd-charging-plan-description",
+      "english_binding": "Customizes the charging time of the Jackery Explorer 3600 Plus. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs (Please set in the Jackery App).",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        396.8097839355469,
+        344,
+        439.2830810546875
+      ],
+      "raw_text": "Personalizza il tempo di ricarica dell’Explorer 3600 Plus. Adatta a \nsituazioni di fluttuazione dei prezzi dell'energia elettrica, consente \npiani di ricarica basati sulle ore di punta e non di punta, \nriducendo i costi dell'energia elettrica (da impostare nell'app \nJackery).",
+      "text": "Personalizza il tempo di ricarica dell’Explorer 3600 Plus. Adatta a situazioni di fluttuazione dei prezzi dell'energia elettrica, consente piani di ricarica basati sulle ore di punta e non di punta, riducendo i costi dell'energia elettrica (da impostare nell'app Jackery).",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 38,
+      "field": "lcd-ac-power-name",
+      "english_binding": "AC Power Indicator",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        439.2830810546875,
+        155.1,
+        467.60198974609375
+      ],
+      "raw_text": "Indicatore di\nalimentazione CA",
+      "text": "Indicatore di alimentazione CA",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 39,
+      "field": "lcd-ac-power-description",
+      "english_binding": "The AC output (pure sine wave) is on.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        439.2830810546875,
+        344,
+        467.60198974609375
+      ],
+      "raw_text": "L’uscita AC (onda sinusoidale pura) è attiva.",
+      "text": "L’uscita AC (onda sinusoidale pura) è attiva.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 40,
+      "field": "lcd-output-voltage-frequency-name",
+      "english_binding": "Output Voltage and Frequency",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        467.60198974609375,
+        155.1,
+        495.9862060546875
+      ],
+      "raw_text": "Tensione e \nfrequenza di uscita",
+      "text": "Tensione e frequenza di uscita",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 41,
+      "field": "lcd-output-voltage-frequency-description",
+      "english_binding": "Displays the output voltage and frequency when the AC output is turned on.",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        467.60198974609375,
+        344,
+        495.9862060546875
+      ],
+      "raw_text": "Visualizza la tensione e la frequenza di uscita.",
+      "text": "Visualizza la tensione e la frequenza di uscita.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 42,
+      "field": "lcd-input-power-name",
+      "english_binding": "Input Power",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        28.761688232421875,
+        165,
+        53.764007568359375
+      ],
+      "raw_text": "Potenza in ingresso",
+      "text": "Potenza in ingresso",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 43,
+      "field": "lcd-input-power-description",
+      "english_binding": "Displays the input power in watts.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        28.761688232421875,
+        344,
+        53.764007568359375
+      ],
+      "raw_text": "Visualizza la potenza di ingresso in watt.",
+      "text": "Visualizza la potenza di ingresso in watt.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 44,
+      "field": "lcd-remaining-charge-time-name",
+      "english_binding": "Remaining Charge Time",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        53.764007568359375,
+        165,
+        76.47799682617188
+      ],
+      "raw_text": "Tempo di carica \nrimanente",
+      "text": "Tempo di carica rimanente",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 45,
+      "field": "lcd-remaining-charge-time-description",
+      "english_binding": "Displays the remaining charging time.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        53.764007568359375,
+        344,
+        76.47799682617188
+      ],
+      "raw_text": "Visualizza il tempo residuo di carica.",
+      "text": "Visualizza il tempo residuo di carica.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 46,
+      "field": "lcd-ac-wall-charging-name",
+      "english_binding": "AC Wall Charging Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        76.47799682617188,
+        165,
+        104.11770629882812
+      ],
+      "raw_text": "Indicatore di ricarica \nda auto",
+      "text": "Indicatore di ricarica da auto",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 47,
+      "field": "lcd-ac-wall-charging-description",
+      "english_binding": "The product is charged via the AC Input using grid power.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        76.47799682617188,
+        344,
+        104.11770629882812
+      ],
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando 12V DC (ricarica da auto).",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V DC (ricarica da auto).",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 48,
+      "field": "lcd-car-charging-name",
+      "english_binding": "Car Charging Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        104.11770629882812,
+        165,
+        128.31307983398438
+      ],
+      "raw_text": "Indicatore di ricarica \nsolare",
+      "text": "Indicatore di ricarica solare",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 49,
+      "field": "lcd-car-charging-description",
+      "english_binding": "The product is charged via the DC Input (DC8020) using DC 12V (car charging).",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        104.11770629882812,
+        344,
+        128.31307983398438
+      ],
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando uno o più pannelli solari.",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 50,
+      "field": "lcd-solar-charging-name",
+      "english_binding": "Solar Charging Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        128.31307983398438,
+        165,
+        151.72509765625
+      ],
+      "raw_text": "Indicatore di \nricarica solare",
+      "text": "Indicatore di ricarica solare",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 51,
+      "field": "lcd-solar-charging-description",
+      "english_binding": "The product is charged via the DC Input (DC8020) using solar panel(s).",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        128.31307983398438,
+        344,
+        151.72509765625
+      ],
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando uno o più pannelli solari.",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 52,
+      "field": "lcd-battery-power-name",
+      "english_binding": "Battery Power Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        151.72509765625,
+        165,
+        183.28970336914062
+      ],
+      "raw_text": "Indicatore di carica \ndella batteria",
+      "text": "Indicatore di carica della batteria",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 53,
+      "field": "lcd-battery-power-description",
+      "english_binding": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        151.72509765625,
+        344,
+        183.28970336914062
+      ],
+      "raw_text": "Quando il prodotto è in carica, il cerchio arancione attorno \nalla percentuale della batteria si accende in sequenza. \nDurante la ricarica di altri dispositivi, il cerchio arancione \nrimarrà acceso.",
+      "text": "Quando il prodotto è in carica, il cerchio arancione attorno alla percentuale della batteria si accende in sequenza. Durante la ricarica di altri dispositivi, il cerchio arancione rimarrà acceso.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 54,
+      "field": "lcd-low-battery-name",
+      "english_binding": "Low Battery Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        183.28970336914062,
+        165,
+        219.81698608398438
+      ],
+      "raw_text": "Indicatore di \nbatteria scarica",
+      "text": "Indicatore di batteria scarica",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 55,
+      "field": "lcd-low-battery-description",
+      "english_binding": "On: The battery level is below 20%. Blink: The battery level is below 5%. Off: The battery level is not below 20% or the product is charging.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        183.28970336914062,
+        344,
+        219.81698608398438
+      ],
+      "raw_text": "Acceso: il livello della batteria è inferiore al 20%.\nLampeggiante: il livello della batteria è inferiore al 5%.\nSpento: il livello della batteria non è inferiore al 20% oppure il \nprodotto è in carica.",
+      "text": "Acceso: il livello della batteria è inferiore al 20%. Lampeggiante: il livello della batteria è inferiore al 5%. Spento: il livello della batteria non è inferiore al 20% oppure il prodotto è in carica.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 56,
+      "field": "lcd-remaining-battery-percentage-name",
+      "english_binding": "Remaining Battery Percentage",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        219.81698608398438,
+        165,
+        247.65289306640625
+      ],
+      "raw_text": "Percentuale di \nbatteria residua",
+      "text": "Percentuale di batteria residua",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 57,
+      "field": "lcd-remaining-battery-percentage-description",
+      "english_binding": "Displays the remaining battery percentage.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        219.81698608398438,
+        344,
+        247.65289306640625
+      ],
+      "raw_text": "Mostra la percentuale residua della batteria.",
+      "text": "Mostra la percentuale residua della batteria.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 58,
+      "field": "lcd-connected-batteries-name",
+      "english_binding": "Battery Pack Indicator and Number of Connected Batteries",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        247.65289306640625,
+        165,
+        289.377197265625
+      ],
+      "raw_text": "Indicatore del pacco \nbatteria e numero di \nbatterie collegate",
+      "text": "Indicatore del pacco batteria e numero di batterie collegate",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 59,
+      "field": "lcd-connected-batteries-description",
+      "english_binding": "Displays the quantity of battery packs if any is connected.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        247.65289306640625,
+        344,
+        289.377197265625
+      ],
+      "raw_text": "Visualizza il numero di pacchi batteria collegati, se presenti.",
+      "text": "Visualizza il numero di pacchi batteria collegati, se presenti.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 60,
+      "field": "lcd-fault-code-name",
+      "english_binding": "Fault code",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        289.377197265625,
+        165,
+        321.4207763671875
+      ],
+      "raw_text": "Codice di errore",
+      "text": "Codice di errore",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 61,
+      "field": "lcd-fault-code-description",
+      "english_binding": "A product error has occurred. Please refer to the Troubleshooting section for details.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        289.377197265625,
+        344,
+        321.4207763671875
+      ],
+      "raw_text": "Si è verificato un errore del prodotto. Per maggiori dettagli, \nconsultare la sezione “Risoluzione dei problemi”.",
+      "text": "Si è verificato un errore del prodotto. Per maggiori dettagli, consultare la sezione “Risoluzione dei problemi”.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 62,
+      "field": "lcd-high-temperature-name",
+      "english_binding": "High Temperature Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        321.4207763671875,
+        165,
+        358.31988525390625
+      ],
+      "raw_text": "Indicatore di \ntemperatura elevata",
+      "text": "Indicatore di temperatura elevata",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 63,
+      "field": "lcd-high-temperature-description",
+      "english_binding": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        321.4207763671875,
+        344,
+        358.31988525390625
+      ],
+      "raw_text": "La protezione da alta temperatura è stata attivata.\nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura non rientra nel normale intervallo operativo.",
+      "text": "La protezione da alta temperatura è stata attivata. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 64,
+      "field": "lcd-low-temperature-name",
+      "english_binding": "Low Temperature Indicator",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        358.31988525390625,
+        165,
+        394.3095703125
+      ],
+      "raw_text": "Indicatore di bassa \ntemperatura",
+      "text": "Indicatore di bassa temperatura",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 65,
+      "field": "lcd-low-temperature-description",
+      "english_binding": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        358.31988525390625,
+        344,
+        394.3095703125
+      ],
+      "raw_text": "È stata attivata la protezione da bassa temperatura.\nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura non rientra nel normale intervallo operativo.",
+      "text": "È stata attivata la protezione da bassa temperatura. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 66,
+      "field": "lcd-energy-saving-name",
+      "english_binding": "Energy Saving Mode",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        394.3095703125,
+        165,
+        435.618896484375
+      ],
+      "raw_text": "Modalità di risparmio \nenergetico",
+      "text": "Modalità di risparmio energetico",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 67,
+      "field": "lcd-energy-saving-description",
+      "english_binding": "When the AC or USB output is turned on by pressing the AC or USB power button: On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        394.3095703125,
+        344,
+        435.618896484375
+      ],
+      "raw_text": "Quando l'uscita CA o USB è accesa premendo il rispettivo \npulsante di alimentazione:\nAcceso: La modalità di risparmio energetico è attivata.\nSpento: La modalità di risparmio energetico è disattivata.",
+      "text": "Quando l'uscita CA o USB è accesa premendo il rispettivo pulsante di alimentazione: Acceso: La modalità di risparmio energetico è attivata. Spento: La modalità di risparmio energetico è disattivata.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 68,
+      "field": "lcd-output-power-name",
+      "english_binding": "Output Power",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        435.618896484375,
+        165,
+        465.9848937988281
+      ],
+      "raw_text": "Potenza in uscita",
+      "text": "Potenza in uscita",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 69,
+      "field": "lcd-output-power-description",
+      "english_binding": "Displays the output power in watts.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        435.618896484375,
+        344,
+        465.9848937988281
+      ],
+      "raw_text": "Visualizza la potenza di uscita in watt.",
+      "text": "Visualizza la potenza di uscita in watt.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 70,
+      "field": "lcd-remaining-discharge-time-name",
+      "english_binding": "Remaining Discharge Time",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        465.9848937988281,
+        165,
+        495.9126892089844
+      ],
+      "raw_text": "Tempo di scarica \nrimanente",
+      "text": "Tempo di scarica rimanente",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 71,
+      "field": "lcd-remaining-discharge-time-description",
+      "english_binding": "Displays the remaining discharging time.",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        465.9848937988281,
+        344,
+        495.9126892089844
+      ],
+      "raw_text": "Visualizza il tempo residuo di scarica.",
+      "text": "Visualizza il tempo residuo di scarica.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 72,
+      "field": "standby",
+      "english_binding": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
+      "physical_page": 81,
+      "bbox_pt": [
+        150,
+        165,
+        344,
+        207
+      ],
+      "raw_text": "Tempo di standby predeﬁnito: 2 ore\nIl prodotto si spegnerà automaticamente dopo 2 ore di \ninattività, senza alcuna carica o scarica.\n*Il tempo di standby può essere impostato nell’App \nJackery.",
+      "text": "Tempo di standby predefinito: 2 ore Il prodotto si spegnerà automaticamente dopo 2 ore di inattività, senza alcuna carica o scarica. *Il tempo di standby può essere impostato nell’App Jackery.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 73,
+      "field": "12-hour-shutdown",
+      "english_binding": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+      "physical_page": 81,
+      "bbox_pt": [
+        25,
+        211,
+        344,
+        240
+      ],
+      "raw_text": "Quando la Modalità Risparmio Energetico è attiva, il prodotto si spegnerà automaticamente \ndopo 12 ore se il pulsante di alimentazione CA o USB è ON ma il prodotto non sta né caricando né \nscaricando.",
+      "text": "Quando la Modalità Risparmio Energetico è attiva, il prodotto si spegnerà automaticamente dopo 12 ore se il pulsante di alimentazione CA o USB è ON ma il prodotto non sta né caricando né scaricando.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 74,
+      "field": "usb-prerequisite",
+      "english_binding": "Prerequisite: The product is turned on.",
+      "physical_page": 81,
+      "bbox_pt": [
+        40,
+        270,
+        165,
+        289
+      ],
+      "raw_text": "Condizione:  assicurarsi che il prodotto sia acceso.",
+      "text": "Condizione: assicurarsi che il prodotto sia acceso.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 75,
+      "field": "usb-caution",
+      "english_binding": [
+        "USB-C 100W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.",
+        "Only connect the Jackery Explorer 3600 Plus to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).",
+        "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable (20V DC/5A, 100W)."
+      ],
+      "physical_page": 81,
+      "bbox_pt": [
+        83,
+        426,
+        344,
+        495
+      ],
+      "raw_text": "e USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).\nSe il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe\nesserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il\ndispositivo o l'accessorio collegato sia dotato di protezione antincendio.\n\ne Collegare Jackery Explorer 3600 Plus solo a dispositivi o accessori conformi alle\nclausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o altre norme equivalenti).\n\ne Per ottenere la massima potenza in uscita, utilizzare il cavo ufficiale Jackery USB-C\nto USB-C 5A (20V CC/5A, 100W).\n",
+      "text": "e USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3). Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio. e Collegare Jackery Explorer 3600 Plus solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o altre norme equivalenti). e Per ottenere la massima potenza in uscita, utilizzare il cavo ufficiale Jackery USB-C to USB-C 5A (20V CC/5A, 100W).",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 76,
+      "field": "ac-prerequisite",
+      "english_binding": "Prerequisite: The product is turned on.",
+      "physical_page": 82,
+      "bbox_pt": [
+        40,
+        49,
+        165,
+        68
+      ],
+      "raw_text": "Condizione:  assicurarsi che il prodotto sia acceso.",
+      "text": "Condizione: assicurarsi che il prodotto sia acceso.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 77,
+      "field": "energy-saving-description",
+      "english_binding": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. To disable the energy saving mode, press and hold both the AC power button and POWER button for more than 3 seconds. The product will not automatically turn off the AC or DC output.",
+      "physical_page": 82,
+      "bbox_pt": [
+        40,
+        269,
+        344,
+        330
+      ],
+      "raw_text": "Per prevenire un consumo inutile della batteria dimenticando di spegnere l'uscita, il prodotto attiva la \nModalità di risparmio energetico per impostazione predeﬁnita. Quando il pulsante di alimentazione \nCA è acceso, l’icona della MODALITÀ DI RISPARMIO ENERGETICO verrà visualizzata sullo schermo \nLCD. Se non è collegato alcun dispositivo o il consumo del dispositivo collegato è inferiore a una \ndeterminata soglia (uscita AC ≤ 25W oppure uscita USB-C ≤ 2W), il dispositivo spegne automatica-\nmente tutte le uscite dopo 12 ore. \nPer disattivare la Modalità risparmio energetico, tenere premuti entrambi i pulsanti di accensione CA \ne POWER per più di 3 secondi.",
+      "text": "Per prevenire un consumo inutile della batteria dimenticando di spegnere l'uscita, il prodotto attiva la Modalità di risparmio energetico per impostazione predefinita. Quando il pulsante di alimentazione CA è acceso, l’icona della MODALITÀ DI RISPARMIO ENERGETICO verrà visualizzata sullo schermo LCD. Se non è collegato alcun dispositivo o il consumo del dispositivo collegato è inferiore a una determinata soglia (uscita AC ≤ 25W oppure uscita USB-C ≤ 2W), il dispositivo spegne automaticamente tutte le uscite dopo 12 ore. Per disattivare la Modalità risparmio energetico, tenere premuti entrambi i pulsanti di accensione CA e POWER per più di 3 secondi.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 78,
+      "field": "energy-saving-memory",
+      "english_binding": "Energy Saving Mode resumes previous state after power-on. Manual switching is required for mode changes.",
+      "physical_page": 82,
+      "bbox_pt": [
+        80,
+        465,
+        344,
+        499
+      ],
+      "raw_text": "La Modalità di risparmio energetico ripristina lo stato precedente dopo l'accensione. Per \ncambiare modalità è necessario un intervento manuale.",
+      "text": "La Modalità di risparmio energetico ripristina lo stato precedente dopo l'accensione. Per cambiare modalità è necessario un intervento manuale.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 79,
+      "field": "lcd-mode-Turn on",
+      "english_binding": "Press the POWER Button or when the product is charging.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        70,
+        333,
+        90
+      ],
+      "raw_text": "Premi il pulsante di accensione \nprincipale o durante la ricarica \ndel prodotto.",
+      "text": "Premi il pulsante di accensione principale o durante la ricarica del prodotto.",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 80,
+      "field": "lcd-mode-Turn off",
+      "english_binding": "Press the POWER Button.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        94,
+        333,
+        107
+      ],
+      "raw_text": "Premere il pulsante di \naccensione principale.",
+      "text": "Premere il pulsante di accensione principale.",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 81,
+      "field": "lcd-mode-Auto-off",
+      "english_binding": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        109,
+        333,
+        135
+      ],
+      "raw_text": "accensione principale.\nIl display LCD si spegne \nautomaticamente ed entra in \nmodalità sleep dopo 2 minuti di ",
+      "text": "accensione principale. Il display LCD si spegne automaticamente ed entra in modalità sleep dopo 2 minuti di",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 82,
+      "field": "lcd-mode-Turn on",
+      "english_binding": "Press the POWER button twice when the product is powered on.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        138,
+        333,
+        165
+      ],
+      "raw_text": "inattività.\nPremere due volte il pulsante di \naccensione principale quando \nlo schermo LCD è acceso.",
+      "text": "inattività. Premere due volte il pulsante di accensione principale quando lo schermo LCD è acceso.",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 83,
+      "field": "lcd-mode-Turn off",
+      "english_binding": "Press the POWER button.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        168,
+        333,
+        183
+      ],
+      "raw_text": "Premere il pulsante di \naccensione principale.",
+      "text": "Premere il pulsante di accensione principale.",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 84,
+      "field": "lcd-mode-Auto-off",
+      "english_binding": "The LCD turns off automatically after 2 hours of inactivity.",
+      "physical_page": 83,
+      "bbox_pt": [
+        244,
+        186,
+        333,
+        213
+      ],
+      "raw_text": "accensione principale.\nLa modalità Always-on Display \nsi spegne automaticamente \ndopo 2 ore di inattività.Inaktivi-\ntät automatisch aus.",
+      "text": "accensione principale. La modalità Always-on Display si spegne automaticamente dopo 2 ore di inattività.Inaktivität automatisch aus.",
+      "method": "native-rectangle-pending-geometry-repair",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 85,
+      "field": "lcd-app-mode",
+      "english_binding": "You can also set the screen display mode in the Jackery App.",
+      "physical_page": 83,
+      "bbox_pt": [
+        25,
+        229,
+        344,
+        255
+      ],
+      "raw_text": "È anche possibile impostare la Modalità di visualizzazione dello schermo nell'app Jackery.",
+      "text": "È anche possibile impostare la Modalità di visualizzazione dello schermo nell'app Jackery.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 86,
+      "field": "ups-intro",
+      "english_binding": "Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your appliances at the same time.",
+      "physical_page": 84,
+      "bbox_pt": [
+        25,
+        54,
+        344,
+        78
+      ],
+      "raw_text": "Collega il prodotto a una presa a muro utilizzando il cavo di ricarica AC, quindi premi il pulsante di uscita AC per \nalimentare contemporaneamente i tuoi dispositivi.",
+      "text": "Collega il prodotto a una presa a muro utilizzando il cavo di ricarica AC, quindi premi il pulsante di uscita AC per alimentare contemporaneamente i tuoi dispositivi.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 87,
+      "field": "ups-body",
+      "english_binding": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails. In the event of a sudden loss of grid power, the Explorer 3600 Plus will automatically switch to stored power within 10 ms to keep your appliances running.",
+      "physical_page": 84,
+      "bbox_pt": [
+        128,
+        242,
+        344,
+        312
+      ],
+      "raw_text": "Condizione: assicurarsi che il prodotto sia acceso.\nUn gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che \nfornisce automaticamente energia elettrica di backup a un carico quando \nl'alimentazione dalla rete elettrica viene a mancare.\nIn caso di improvvisa interruzione della corrente di rete, l’Explorer 3600 Plus \npasserà automaticamente all’energia immagazzinata entro 10 ms per \nmantenere in funzione i dispositivi collegati.",
+      "text": "Condizione: assicurarsi che il prodotto sia acceso. Un gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che fornisce automaticamente energia elettrica di backup a un carico quando l'alimentazione dalla rete elettrica viene a mancare. In caso di improvvisa interruzione della corrente di rete, l’Explorer 3600 Plus passerà automaticamente all’energia immagazzinata entro 10 ms per mantenere in funzione i dispositivi collegati.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 88,
+      "field": "ups-bypass",
+      "english_binding": "In UPS mode, the unit's peak output reaches 10A before power outages. As simultaneous charging/discharging is enabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to rated output power during outages.",
+      "physical_page": 84,
+      "bbox_pt": [
+        25,
+        329,
+        344,
+        366
+      ],
+      "raw_text": "In modalità UPS, la potenza di picco dell'unità raggiunge i 10 A prima dell'interruzione di corrente. Poiché la \nmodalità Bypass consente la ricarica/scarica simultanea, la potenza di uscita effettiva è inferiore alla potenza di \nuscita nominale in questa modalità, ma torna alla potenza di uscita nominale durante le interruzioni di corrente.",
+      "text": "In modalità UPS, la potenza di picco dell'unità raggiunge i 10 A prima dell'interruzione di corrente. Poiché la modalità Bypass consente la ricarica/scarica simultanea, la potenza di uscita effettiva è inferiore alla potenza di uscita nominale in questa modalità, ma torna alla potenza di uscita nominale durante le interruzioni di corrente.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 89,
+      "field": "ups-caution",
+      "english_binding": [
+        "This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.",
+        "Before use, please test compatibility with your device multiple times.",
+        "Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered."
+      ],
+      "physical_page": 84,
+      "bbox_pt": [
+        80,
+        370,
+        344,
+        451
+      ],
+      "raw_text": "* Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo a dispositivi\nche richiedono un'alimentazione ininterrotta, come server dati o workstation.\n\n* Prima dell'uso, testare più volte la compatibilità con il proprio dispositivo.\n\n*_ Non collegare carichi che superano la potenza di uscita massima del prodotto. In\ncaso contrario, verrà attivata la protezione da sovraccarico.\n",
+      "text": "* Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo a dispositivi che richiedono un'alimentazione ininterrotta, come server dati o workstation. * Prima dell'uso, testare più volte la compatibilità con il proprio dispositivo. *_ Non collegare carichi che superano la potenza di uscita massima del prodotto. In caso contrario, verrà attivata la protezione da sovraccarico.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 90,
+      "field": "battery-body",
+      "english_binding": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual.",
+      "physical_page": 85,
+      "bbox_pt": [
+        25,
+        73,
+        344,
+        106
+      ],
+      "raw_text": "Questo prodotto può supportare fino a 5 pacchi batteria per soddisfare l'esigenza di grande capacità di \nalimentazione. Per i dettagli su come utilizzarlo, consultare il manuale d'uso del Jackery Battery Pack 3600.",
+      "text": "Questo prodotto può supportare fino a 5 pacchi batteria per soddisfare l'esigenza di grande capacità di alimentazione. Per i dettagli su come utilizzarlo, consultare il manuale d'uso del Jackery Battery Pack 3600.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 91,
+      "field": "battery-caution",
+      "english_binding": [
+        "Ensure all products are powered off before connecting the Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+        "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space in between the vents and any objects to allow for proper heat dissipation."
+      ],
+      "physical_page": 85,
+      "bbox_pt": [
+        83,
+        318,
+        344,
+        382
+      ],
+      "raw_text": "e Assicurarsi che tutti i prodotti siano spenti prima di collegare l'Explorer 3600 Plus al\nJackery Battery Pack 3600.\n\ne Per garantire il corretto funzionamento del prodotto, assicurarsi che le prese d'aria di\naspirazione e bocchette di scarico su entrambi i lati non siano ostruite. Lasciare almeno\n200 mm di spazio tra le prese d'aria e qualsiasi oggetto per consentire un'adeguata\ndissipazione del calore.\n",
+      "text": "e Assicurarsi che tutti i prodotti siano spenti prima di collegare l'Explorer 3600 Plus al Jackery Battery Pack 3600. e Per garantire il corretto funzionamento del prodotto, assicurarsi che le prese d'aria di aspirazione e bocchette di scarico su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le prese d'aria e qualsiasi oggetto per consentire un'adeguata dissipazione del calore.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 92,
+      "field": "green-energy",
+      "english_binding": "Green energy first: We advocate using the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power.",
+      "physical_page": 86,
+      "bbox_pt": [
+        25,
+        51,
+        350,
+        91
+      ],
+      "raw_text": "L'energia verde prima di tutto: sosteniamo a prediligere l'energia verde. Questo prodotto supporta due modalità di \nricarica contemporaneamente: ricarica solare e ricarica CA a muro.Quando la ricarica CA a muro e la ricarica solare \nvengono attivate contemporaneamente, il prodotto darà priorità alla ricarica solare e utilizzerà entrambi i metodi \nper caricare la batteria alla massima potenza consentita.",
+      "text": "L'energia verde prima di tutto: sosteniamo a prediligere l'energia verde. Questo prodotto supporta due modalità di ricarica contemporaneamente: ricarica solare e ricarica CA a muro.Quando la ricarica CA a muro e la ricarica solare vengono attivate contemporaneamente, il prodotto darà priorità alla ricarica solare e utilizzerà entrambi i metodi per caricare la batteria alla massima potenza consentita.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 93,
+      "field": "first-charge",
+      "english_binding": "Fully charge the product before its first use.",
+      "physical_page": 86,
+      "bbox_pt": [
+        25,
+        90,
+        344,
+        104
+      ],
+      "raw_text": "Caricare completamente il dispositivo prima del primo utilizzo.",
+      "text": "Caricare completamente il dispositivo prima del primo utilizzo.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 94,
+      "field": "charging-temperature",
+      "english_binding": [
+        "The recommended charging temperature for the product ranges from -20°C to 45°C, and the discharging temperature ranges from -20°C to 45°C. Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.",
+        "The charging power and capacity of the product may vary due to temperature fluctuations."
+      ],
+      "physical_page": 86,
+      "bbox_pt": [
+        75,
+        108,
+        344,
+        158
+      ],
+      "raw_text": "* La temperatura consigliata per caricare il prodotto è compresa tra -20 °C e 45 °C, e la\ntemperatura di scarica è anch'essa compresa tra -20 °C e 45 °C. Utilizzare il prodotto al di\nfuori di questo intervallo di temperatura può limitare le capacità di carica e scarica, o persino\nimpedire la carica o la scarica.\n\n* La potenza di carica e la capacità della batteria del prodotto possono variare a causa delle\nfluttuazioni di temperatura.\n",
+      "text": "* La temperatura consigliata per caricare il prodotto è compresa tra -20 °C e 45 °C, e la temperatura di scarica è anch'essa compresa tra -20 °C e 45 °C. Utilizzare il prodotto al di fuori di questo intervallo di temperatura può limitare le capacità di carica e scarica, o persino impedire la carica o la scarica. * La potenza di carica e la capacità della batteria del prodotto possono variare a causa delle fluttuazioni di temperatura.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 95,
+      "field": "ac-caution",
+      "english_binding": "Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.",
+      "physical_page": 86,
+      "bbox_pt": [
+        80,
+        279,
+        344,
+        312
+      ],
+      "raw_text": "Assicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella \nporta di ingresso CA. Un collegamento incompleto potrebbe causare corrente instabile, \nsurriscaldamento, contatti difettosi o malfunzionamenti del dispositivo.",
+      "text": "Assicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella porta di ingresso CA. Un collegamento incompleto potrebbe causare corrente instabile, surriscaldamento, contatti difettosi o malfunzionamenti del dispositivo.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 96,
+      "field": "solar-description",
+      "english_binding": "Jackery Explorer 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).",
+      "physical_page": 86,
+      "bbox_pt": [
+        28,
+        320,
+        350,
+        367
+      ],
+      "raw_text": "Il Jackery Explorer 3600 Plus dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery. \nSe una porta di ingresso DC8020 deve collegare due pannelli solari contemporaneamente, fare riferimento alla \nfigura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso nella \nconfezione standard).",
+      "text": "Il Jackery Explorer 3600 Plus dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery. Se una porta di ingresso DC8020 deve collegare due pannelli solari contemporaneamente, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso nella confezione standard).",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 97,
+      "field": "solar-maximum",
+      "english_binding": "One DC8020 input port can be connected to at most two solar panels.",
+      "physical_page": 87,
+      "bbox_pt": [
+        80,
+        28,
+        344,
+        46
+      ],
+      "raw_text": "Una porta di ingresso DC8020 può essere collegata al massimo a due pannelli solari.",
+      "text": "Una porta di ingresso DC8020 può essere collegata al massimo a due pannelli solari.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 98,
+      "field": "solar-caution",
+      "english_binding": [
+        "Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example:",
+        "It is recommended to use the same model of Jackery solar panels and the same number of panels when connecting solar panels to both DC8020 Input ports.",
+        "Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure."
+      ],
+      "physical_page": 87,
+      "bbox_pt": [
+        84,
+        52,
+        344,
+        109
+      ],
+      "raw_text": "Assicurarsi che la tensione di ingresso per entrambe le porte di ingresso CC sia la stessa. In\n\ncaso contrario, il prodotto potrebbe subire danni. Ad esempio:\n\n*_ Si consiglia di utilizzare pannelli solari Jackery dello stesso modello e dello stesso numero\nquando si collegano pannelli solari a entrambe le porte di ingresso CC8020.\n\ne Non caricare il prodotto utilizzando contemporaneamente un caricabatterie per auto e\nun pannello solare. Ciò potrebbe far saltare il fusibile dell'auto o causare un fallimento\ndella carica.\n",
+      "text": "Assicurarsi che la tensione di ingresso per entrambe le porte di ingresso CC sia la stessa. In caso contrario, il prodotto potrebbe subire danni. Ad esempio: *_ Si consiglia di utilizzare pannelli solari Jackery dello stesso modello e dello stesso numero quando si collegano pannelli solari a entrambe le porte di ingresso CC8020. e Non caricare il prodotto utilizzando contemporaneamente un caricabatterie per auto e un pannello solare. Ciò potrebbe far saltare il fusibile dell'auto o causare un fallimento della carica.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 99,
+      "field": "solar-voc",
+      "english_binding": "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (V ) of the solar panel is within the DC input range (16V-60V) of the Explorer 3600 Plus. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels. oc",
+      "physical_page": 87,
+      "bbox_pt": [
+        25,
+        110,
+        344,
+        151
+      ],
+      "raw_text": "Si consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 3600 Plus. Assicurarsi che la tensione a \ncircuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso CC dell’Explorer 3600 Plus \n(16V–60V). Jackery non è responsabile per eventuali danni o perdite derivanti dall’uso di pannelli solari di terze \nparti.",
+      "text": "Si consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 3600 Plus. Assicurarsi che la tensione a circuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso CC dell’Explorer 3600 Plus (16V–60V). Jackery non è responsabile per eventuali danni o perdite derivanti dall’uso di pannelli solari di terze parti.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 100,
+      "field": "car-description",
+      "english_binding": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.",
+      "physical_page": 87,
+      "bbox_pt": [
+        28,
+        169,
+        344,
+        190
+      ],
+      "raw_text": "Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e \nl'accendisigari dell'auto siano ben collegati.",
+      "text": "Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e l'accendisigari dell'auto siano ben collegati.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 101,
+      "field": "car-caution",
+      "english_binding": [
+        "Please start the vehicle before charging your power station.",
+        "If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation.",
+        "Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+      ],
+      "physical_page": 87,
+      "bbox_pt": [
+        82,
+        329,
+        344,
+        412
+      ],
+      "raw_text": "* Avviare il veicolo prima di caricare il prodotto.\n\n* Se il veicolo si trova su strade dissestate, è vietato utilizzare il caricabatterie per auto per\nevitare il rischio di surriscaldamento dovuto a un cattivo collegamento. L'azienda non\nsarà responsabile per eventuali danni causati da un utilizzo non conforme.\n\n* La ricarica tramite veicolo è applicabile solo ai veicoli con alimentazione a 12V DC, nona\n24V DC. Non caricare questo prodotto in un veicolo a 24V per evitare lesioni personali e\ndanni materiali.\n",
+      "text": "* Avviare il veicolo prima di caricare il prodotto. * Se il veicolo si trova su strade dissestate, è vietato utilizzare il caricabatterie per auto per evitare il rischio di surriscaldamento dovuto a un cattivo collegamento. L'azienda non sarà responsabile per eventuali danni causati da un utilizzo non conforme. * La ricarica tramite veicolo è applicabile solo ai veicoli con alimentazione a 12V DC, nona 24V DC. Non caricare questo prodotto in un veicolo a 24V per evitare lesioni personali e danni materiali.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 102,
+      "field": "storage-intro",
+      "english_binding": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:",
+      "physical_page": 88,
+      "bbox_pt": [
+        35,
+        60,
+        343,
+        80
+      ],
+      "raw_text": "Conservare il prodotto in un luogo pulito e asciutto, con una ventilazione adeguata. Temperatura e umidità di\nstoccaggio:\n",
+      "text": "Conservare il prodotto in un luogo pulito e asciutto, con una ventilazione adeguata. Temperatura e umidità di stoccaggio:",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 103,
+      "field": "storage-body",
+      "english_binding": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "physical_page": 88,
+      "bbox_pt": [
+        35,
+        103,
+        343,
+        144
+      ],
+      "raw_text": "Se il prodotto viene conservato a lungo termine (da 3 a 6 mesi) con la batteria scarica, potrebbe non essere\npiù possibile ricaricarlo. Per evitarlo e Mantenere la salute della batteria, si consiglia di controllare e ricaricare\nIl prodotto ogni tre mesi e di eseguire almeno un ciclo completo di carica e scarica ogni 6-12 mesi.\n",
+      "text": "Se il prodotto viene conservato a lungo termine (da 3 a 6 mesi) con la batteria scarica, potrebbe non essere più possibile ricaricarlo. Per evitarlo e Mantenere la salute della batteria, si consiglia di controllare e ricaricare Il prodotto ogni tre mesi e di eseguire almeno un ciclo completo di carica e scarica ogni 6-12 mesi.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 104,
+      "field": "fault-F0",
+      "english_binding": "Restart the product.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        227.10031127929688,
+        344,
+        242.31591796875
+      ],
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 105,
+      "field": "fault-F1",
+      "english_binding": "Restart the product.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        242.31591796875,
+        344,
+        256.676513671875
+      ],
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 106,
+      "field": "fault-F2",
+      "english_binding": "Restart the product.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        256.676513671875,
+        344,
+        270.0558166503906
+      ],
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 107,
+      "field": "fault-F3",
+      "english_binding": "Restart the product.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        270.0558166503906,
+        344,
+        284.5787353515625
+      ],
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 108,
+      "field": "fault-F4",
+      "english_binding": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        284.5787353515625,
+        344,
+        296.4398193359375
+      ],
+      "raw_text": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+      "text": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 109,
+      "field": "fault-F5",
+      "english_binding": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        296.4398193359375,
+        344,
+        307.8258056640625
+      ],
+      "raw_text": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+      "text": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 110,
+      "field": "fault-F6",
+      "english_binding": "1. Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 200 mm clearance on both side of the product. 3. Place the product in a location that is not exposed to direct sunlight or high environment temperatures. 4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears. 5. Restart the product.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        307.8258056640625,
+        344,
+        371.03472900390625
+      ],
+      "raw_text": "1.  Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden.\n2. Überprüfen Sie, ob die Lufteinlass- und -auslassöﬀnungen blockiert sind; stellen Sie sicher, \ndass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird.\n3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen \nUmgebungstemperaturen ausgesetzt ist.\n4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der \nFehler verschwindet.\n5. Starten Sie das Gerät neu.",
+      "text": "1. Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden. 2. Überprüfen Sie, ob die Lufteinlass- und -auslassöffnungen blockiert sind; stellen Sie sicher, dass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird. 3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist. 4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der Fehler verschwindet. 5. Starten Sie das Gerät neu.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 111,
+      "field": "fault-F7",
+      "english_binding": "1. Remove all DC inputs from the product. 2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a maximum DC input voltage of 60V. 3. Restart the product and keep it idle. Wait until the fault disappears.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        371.03472900390625,
+        344,
+        417.82330322265625
+      ],
+      "raw_text": "1.  Rimuovere tutti gli ingressi CC dal prodotto.\n2. Se si ricarica il prodotto tramite un pannello solare, veriﬁcare la tensione a circuito aperto (Voc) \ndel pannello solare collegato. Il prodotto consente una tensione di ingresso CC massima di \n60V.\n3. Riavviare il prodotto e lasciarlo inattivo. Attendere che l'errore scompaia.",
+      "text": "1. Rimuovere tutti gli ingressi CC dal prodotto. 2. Se si ricarica il prodotto tramite un pannello solare, verificare la tensione a circuito aperto (Voc) del pannello solare collegato. Il prodotto consente una tensione di ingresso CC massima di 60V. 3. Riavviare il prodotto e lasciarlo inattivo. Attendere che l'errore scompaia.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 112,
+      "field": "fault-F8",
+      "english_binding": "Contact Jackery Customer Support",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        417.82330322265625,
+        344,
+        433.0710144042969
+      ],
+      "raw_text": "Contattare il distributore o l'assistenza clienti Jackery.",
+      "text": "Contattare il distributore o l'assistenza clienti Jackery.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 113,
+      "field": "fault-F9",
+      "english_binding": "Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        433.0710144042969,
+        344,
+        447.33599853515625
+      ],
+      "raw_text": "Rimuovere il carico collegato alle porte USB del prodotto. Attendere che l'errore scompaia.",
+      "text": "Rimuovere il carico collegato alle porte USB del prodotto. Attendere che l'errore scompaia.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 114,
+      "field": "fault-FA",
+      "english_binding": "1. Turn off the AC output of both units. 2. Press the AC power button on each unit again within 1 minute.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        447.33599853515625,
+        344,
+        470.5928039550781
+      ],
+      "raw_text": "1.  Spegnere l'uscita CA di entrambe le unità.\n2. Premere nuovamente il pulsante di alimentazione CA su ciascuna unità entro 1 minuto.",
+      "text": "1. Spegnere l'uscita CA di entrambe le unità. 2. Premere nuovamente il pulsante di alimentazione CA su ciascuna unità entro 1 minuto.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 115,
+      "field": "fault-FC",
+      "english_binding": "1. Restart the battery packs and the Jackery Explorer 3600 Plus respectively. 2. If the fault persists, disconnect the battery pack from the Jackery Explorer 3600 Plus and connect them again.",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        470.5928039550781,
+        344,
+        495.0754089355469
+      ],
+      "raw_text": "1.  Riavviare rispettivamente i pacchi batteria e il Jackery Explorer 3600 Plus.\n2. Se il guasto persiste, scollegare il pacco batteria dal Jackery Explorer 3600 Plus e ricollegarlo.",
+      "text": "1. Riavviare rispettivamente i pacchi batteria e il Jackery Explorer 3600 Plus. 2. Se il guasto persiste, scollegare il pacco batteria dal Jackery Explorer 3600 Plus e ricollegarlo.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 116,
+      "field": "troubleshooting-intro",
+      "english_binding": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, please contact Jackery Customer Support.",
+      "physical_page": 88,
+      "bbox_pt": [
+        25,
+        186,
+        344,
+        207
+      ],
+      "raw_text": "Se viene visualizzato uno dei seguenti codici di errore, seguire le azioni correttive elencate per risolvere il problema. \nSe l'errore persiste, contattare l'assistenza clienti Jackery.",
+      "text": "Se viene visualizzato uno dei seguenti codici di errore, seguire le azioni correttive elencate per risolvere il problema. Se l'errore persiste, contattare l'assistenza clienti Jackery.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 117,
+      "field": "spec-label",
+      "english_binding": "Product Name",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        74.05380249023438,
+        139,
+        87.23672485351562
+      ],
+      "raw_text": "Nome del prodotto",
+      "text": "Nome del prodotto",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 118,
+      "field": "spec-value",
+      "english_binding": "Jackery Explorer 3600 Plus",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        74.05380249023438,
+        344,
+        87.23672485351562
+      ],
+      "raw_text": "Jackery Explorer 3600 Plus",
+      "text": "Jackery Explorer 3600 Plus",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 119,
+      "field": "spec-label",
+      "english_binding": "Model No.",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        87.23672485351562,
+        139,
+        100.80020141601562
+      ],
+      "raw_text": "Modello n.",
+      "text": "Modello n.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 120,
+      "field": "spec-value",
+      "english_binding": "JE-3600A",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        87.23672485351562,
+        344,
+        100.80020141601562
+      ],
+      "raw_text": "JE-3600A",
+      "text": "JE-3600A",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 121,
+      "field": "spec-label",
+      "english_binding": "Capacity",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        100.80020141601562,
+        139,
+        113.72250366210938
+      ],
+      "raw_text": "Capacità",
+      "text": "Capacità",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 122,
+      "field": "spec-value",
+      "english_binding": "80Ah / 44.8V DC (3584 Wh)",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        100.80020141601562,
+        344,
+        113.72250366210938
+      ],
+      "raw_text": "80Ah / 44,8V DC (3584 Wh)",
+      "text": "80Ah / 44,8V DC (3584 Wh)",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 123,
+      "field": "spec-label",
+      "english_binding": "Cell Chemistry",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        113.72250366210938,
+        139,
+        126.0050048828125
+      ],
+      "raw_text": "Chimica celle batteria",
+      "text": "Chimica celle batteria",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 124,
+      "field": "spec-value",
+      "english_binding": "LiFePO₄",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        113.72250366210938,
+        344,
+        126.0050048828125
+      ],
+      "raw_text": "LiFePO₄ ",
+      "text": "LiFePO₄",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 125,
+      "field": "spec-label",
+      "english_binding": "Weight",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        126.0050048828125,
+        139,
+        139.26840209960938
+      ],
+      "raw_text": "Peso",
+      "text": "Peso",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 126,
+      "field": "spec-value",
+      "english_binding": "About 35 kg",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        126.0050048828125,
+        344,
+        139.26840209960938
+      ],
+      "raw_text": "Circa 35 kg",
+      "text": "Circa 35 kg",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 127,
+      "field": "spec-label",
+      "english_binding": "Dimensions",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        139.26840209960938,
+        139,
+        152.7451171875
+      ],
+      "raw_text": "Dimensioni",
+      "text": "Dimensioni",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 128,
+      "field": "spec-value",
+      "english_binding": "38.5×30.9×49.1 cm",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        139.26840209960938,
+        344,
+        152.7451171875
+      ],
+      "raw_text": "38,5×30,9×49,1 cm",
+      "text": "38,5×30,9×49,1 cm",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 129,
+      "field": "spec-label",
+      "english_binding": "Cycle Life",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        152.7451171875,
+        139,
+        165.18212890625
+      ],
+      "raw_text": "Durata del ciclo",
+      "text": "Durata del ciclo",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 130,
+      "field": "spec-value",
+      "english_binding": "6000 cycles to 70%+ capacity",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        152.7451171875,
+        344,
+        165.18212890625
+      ],
+      "raw_text": "6000 cicli ﬁno all' 70% di capacità",
+      "text": "6000 cicli fino all' 70% di capacità",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 131,
+      "field": "spec-label",
+      "english_binding": "IEC code",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        165.18212890625,
+        139,
+        178.71780395507812
+      ],
+      "raw_text": "IEC code",
+      "text": "IEC code",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 132,
+      "field": "spec-value",
+      "english_binding": "IFpR41/136[14S4P]M/-20+40/90",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        165.18212890625,
+        344,
+        178.71780395507812
+      ],
+      "raw_text": "IFpR41/136[14S4P]M/-20+40/90",
+      "text": "IFpR41/136[14S4P]M/-20+40/90",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 133,
+      "field": "input-value",
+      "english_binding": "Charge Mode : 220-240V~ 50Hz, 10A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        214.6640380859375,
+        344,
+        224.46402893066406
+      ],
+      "raw_text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max",
+      "text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 134,
+      "field": "input-value",
+      "english_binding": "Bypass Mode① : 220-240V~ 50Hz, 10A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        227.6640380859375,
+        344,
+        237.5760284423828
+      ],
+      "raw_text": "AC modalità bypass① : 220-240V~ 50Hz, 10A max",
+      "text": "AC modalità bypass① : 220-240V~ 50Hz, 10A max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 135,
+      "field": "input-value",
+      "english_binding": "12-16V⎓8A Max, Double to 8A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        240.6640380859375,
+        344,
+        250.5520263671875
+      ],
+      "raw_text": "12-16V⎓8A max, raddoppia ﬁno a 8A max",
+      "text": "12-16V⎓8A max, raddoppia fino a 8A max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 136,
+      "field": "input-value",
+      "english_binding": "16-60V⎓12A, Double to 24A Max / 1000W Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        253.6640380859375,
+        344,
+        263.5520263671875
+      ],
+      "raw_text": "16-60V⎓12A, raddoppia ﬁno a 24A Max/ 1000W Max",
+      "text": "16-60V⎓12A, raddoppia fino a 24A Max/ 1000W Max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 137,
+      "field": "input-value",
+      "english_binding": "36.4V-50.4V⎓100A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        266.6640380859375,
+        344,
+        276.5520263671875
+      ],
+      "raw_text": "36,4V-50,4V⎓100A max",
+      "text": "36,4V-50,4V⎓100A max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 138,
+      "field": "output-label",
+      "english_binding": "3 × AC Output",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        306.8661193847656,
+        139,
+        320.17071533203125
+      ],
+      "raw_text": "3 × Uscita CA",
+      "text": "3 × Uscita CA",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 139,
+      "field": "output-value",
+      "english_binding": "230V~ 50Hz, 3600W",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        306.8661193847656,
+        344,
+        320.17071533203125
+      ],
+      "raw_text": "230V~ 50Hz, 3600W",
+      "text": "230V~ 50Hz, 3600W",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 140,
+      "field": "output-label",
+      "english_binding": "AC Total Output②",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        320.17071533203125,
+        139,
+        332.83660888671875
+      ],
+      "raw_text": "Uscita totale CA②",
+      "text": "Uscita totale CA②",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 141,
+      "field": "output-value",
+      "english_binding": "3600W Rated, 7200W Surge peak",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        320.17071533203125,
+        344,
+        332.83660888671875
+      ],
+      "raw_text": "3600W nominali, 7200W picco di sovratensione",
+      "text": "3600W nominali, 7200W picco di sovratensione",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 142,
+      "field": "output-label",
+      "english_binding": "AC Output in Bypass Mode①",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        332.83660888671875,
+        139,
+        345.7054138183594
+      ],
+      "raw_text": "Uscita CA in modalità bypass",
+      "text": "Uscita CA in modalità bypass",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 143,
+      "field": "output-value",
+      "english_binding": "220-240V~ 50Hz, 10A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        332.83660888671875,
+        344,
+        345.7054138183594
+      ],
+      "raw_text": "220-240V~ 50Hz, 10A max\n①",
+      "text": "220-240V~ 50Hz, 10A max ①",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 144,
+      "field": "output-label",
+      "english_binding": "2 × USB-C 100W Output",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        345.7054138183594,
+        139,
+        358.7054138183594
+      ],
+      "raw_text": "2 × USB-C da 100W",
+      "text": "2 × USB-C da 100W",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 145,
+      "field": "output-value",
+      "english_binding": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        345.7054138183594,
+        344,
+        358.7054138183594
+      ],
+      "raw_text": "100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+      "text": "100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 146,
+      "field": "output-label",
+      "english_binding": "2 × USB-A 18W Output",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        358.7054138183594,
+        139,
+        372.0226135253906
+      ],
+      "raw_text": "2 × USB-A da 18W",
+      "text": "2 × USB-A da 18W",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 147,
+      "field": "output-value",
+      "english_binding": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        358.7054138183594,
+        344,
+        372.0226135253906
+      ],
+      "raw_text": "18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+      "text": "18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 148,
+      "field": "output-label",
+      "english_binding": "1 × DC Expansion Port",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        372.0226135253906,
+        139,
+        383.9941101074219
+      ],
+      "raw_text": "1 × Porta di Espansione CC",
+      "text": "1 × Porta di Espansione CC",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 149,
+      "field": "output-value",
+      "english_binding": "36.4V-50.4V⎓60A Max",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        372.0226135253906,
+        344,
+        383.9941101074219
+      ],
+      "raw_text": "36.4V-50.4V⎓60A max",
+      "text": "36.4V-50.4V⎓60A max",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 150,
+      "field": "temperature-label",
+      "english_binding": "Charge Temperature",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        415.28582763671875,
+        139,
+        428.9137268066406
+      ],
+      "raw_text": "Temperatura di carica",
+      "text": "Temperatura di carica",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 151,
+      "field": "temperature-value",
+      "english_binding": "-20°C to 45°C",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        415.28582763671875,
+        344,
+        428.9137268066406
+      ],
+      "raw_text": "tra -20 °C e 45 °C",
+      "text": "tra -20 °C e 45 °C",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 152,
+      "field": "temperature-label",
+      "english_binding": "Discharge Temperature",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        428.9137268066406,
+        139,
+        441.6588134765625
+      ],
+      "raw_text": "Temperatura di scarica",
+      "text": "Temperatura di scarica",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 153,
+      "field": "temperature-value",
+      "english_binding": "-20°C to 45°C",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        428.9137268066406,
+        344,
+        441.6588134765625
+      ],
+      "raw_text": "tra -20 °C e 45 °C",
+      "text": "tra -20 °C e 45 °C",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 154,
+      "field": "footnote-1",
+      "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+      "physical_page": 89,
+      "bbox_pt": [
+        25,
+        472,
+        334,
+        524
+      ],
+      "raw_text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.\n",
+      "text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.",
+      "method": "native-complete-numbered-footnote",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 155,
+      "field": "footnote-2",
+      "english_binding": "② Indicates that two or more AC output ports work together.",
+      "physical_page": 89,
+      "bbox_pt": [
+        25,
+        472,
+        334,
+        524
+      ],
+      "raw_text": "② Indica che due o più porte di uscita CA funzionano insieme.",
+      "text": "② Indica che due o più porte di uscita CA funzionano insieme.",
+      "method": "native-complete-numbered-footnote",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 156,
+      "field": "warranty-title",
+      "english_binding": "WARRANTY",
+      "physical_page": 90,
+      "bbox_pt": [
+        34.900901794433594,
+        30.787090301513672,
+        93.44890594482422,
+        45.643089294433594
+      ],
+      "raw_text": "GARANZIA\n",
+      "text": "GARANZIA",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 157,
+      "field": "warranty-scope",
+      "english_binding": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "physical_page": 90,
+      "bbox_pt": [
+        36.039100646972656,
+        59.01169967651367,
+        330.85809326171875,
+        76.67971801757812
+      ],
+      "raw_text": "Forniamo la nostra garanzia solo ai clienti che acquistano dal sito web ufficiale di Jackery, \ndalle piattaforme di terze parti con marchio Jackery o dai rivenditori autorizzati locali.\n",
+      "text": "Forniamo la nostra garanzia solo ai clienti che acquistano dal sito web ufficiale di Jackery, dalle piattaforme di terze parti con marchio Jackery o dai rivenditori autorizzati locali.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 158,
+      "field": "warranty-local_law_note",
+      "english_binding": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "physical_page": 90,
+      "bbox_pt": [
+        29.26759910583496,
+        85.09329986572266,
+        338.80731201171875,
+        92.29330444335938
+      ],
+      "raw_text": "* Il periodo ei dettagli della garanzia possono variare in base alle leggi locali, ai regolamenti e ai rivenditori autorizzati.\n",
+      "text": "* Il periodo ei dettagli della garanzia possono variare in base alle leggi locali, ai regolamenti e ai rivenditori autorizzati.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 159,
+      "field": "warranty-limited_heading",
+      "english_binding": "Limited Warranty",
+      "physical_page": 90,
+      "bbox_pt": [
+        40.73540115356445,
+        99.59529113769531,
+        105.62980651855469,
+        109.49929809570312
+      ],
+      "raw_text": "Garanzia limitata\n",
+      "text": "Garanzia limitata",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 160,
+      "field": "warranty-limited_body",
+      "english_binding": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below. This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "physical_page": 90,
+      "bbox_pt": [
+        25,
+        111,
+        344,
+        167
+      ],
+      "raw_text": "Jackery garantisce all'acquirente originale che il prodotto Jackery sarà esente da difetti di fabbricazione e \nmateriali in condizioni di normale utilizzo da parte del acquirente durante il periodo di garanzia applicabile \nidentificato nella sezione \"Periodo di garanzia\" di seguito, fatte salve le esclusioni indicate di seguito.\n\nQuesta dichiarazione di garanzia stabilisce l'obbligo di garanzia totale ed esclusivo di Jackery. Non ci \nassumeremo, né autorizzeremo alcuna persona ad assumersi per noi, qualsiasi altra responsabilità in \nrelazione allà vendita dei nostri prodotti.\n",
+      "text": "Jackery garantisce all'acquirente originale che il prodotto Jackery sarà esente da difetti di fabbricazione e materiali in condizioni di normale utilizzo da parte del acquirente durante il periodo di garanzia applicabile identificato nella sezione \"Periodo di garanzia\" di seguito, fatte salve le esclusioni indicate di seguito. Questa dichiarazione di garanzia stabilisce l'obbligo di garanzia totale ed esclusivo di Jackery. Non ci assumeremo, né autorizzeremo alcuna persona ad assumersi per noi, qualsiasi altra responsabilità in relazione allà vendita dei nostri prodotti.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 161,
+      "field": "warranty-period_heading",
+      "english_binding": "Warranty Period",
+      "physical_page": 90,
+      "bbox_pt": [
+        25,
+        161,
+        344,
+        186
+      ],
+      "raw_text": "Periodo di garanzia",
+      "text": "Periodo di garanzia",
+      "method": "native-complete-source-heading",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 162,
+      "field": "warranty-standard_body",
+      "english_binding": "The standard warranty period for Jackery Explorer 3600 Plus is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period. 3",
+      "physical_page": 90,
+      "bbox_pt": [
+        37.815399169921875,
+        212.55824279785156,
+        208.92164611816406,
+        254.768310546875
+      ],
+      "raw_text": "Il periodo di garanzia standard per Jackery Explorer 3600 Plus \nè misurato a partire dalla data di acquisto da parte \ndell'acquirente consumatore originario. Per stabilire la data di \ninizio del periodo di garanzia è necessaria la ricevuta del \nprimo acquisto da parte del consumatore, o altra prova \ndocumentale ragionevole.\n",
+      "text": "Il periodo di garanzia standard per Jackery Explorer 3600 Plus è misurato a partire dalla data di acquisto da parte dell'acquirente consumatore originario. Per stabilire la data di inizio del periodo di garanzia è necessaria la ricevuta del primo acquisto da parte del consumatore, o altra prova documentale ragionevole.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 163,
+      "field": "warranty-extension_body",
+      "english_binding": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty runtime. 2",
+      "physical_page": 90,
+      "bbox_pt": [
+        221.89450073242188,
+        212.5650177001953,
+        333.81005859375,
+        254.77508544921875
+      ],
+      "raw_text": "Per attivare l'estensione della garanzia, \nè necessario registrare il prodotto online, \noppure contattare il nostro servizio \nclienti all’indirizzo hello.eu@jackery.com \nper estendere il periodo di garanzia \nstandard.\n",
+      "text": "Per attivare l'estensione della garanzia, è necessario registrare il prodotto online, oppure contattare il nostro servizio clienti all’indirizzo hello.eu@jackery.com per estendere il periodo di garanzia standard.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 164,
+      "field": "warranty-exchange_heading",
+      "english_binding": "Exchange",
+      "physical_page": 90,
+      "bbox_pt": [
+        25,
+        261,
+        344,
+        286
+      ],
+      "raw_text": "Sostituzione",
+      "text": "Sostituzione",
+      "method": "native-complete-source-heading",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 165,
+      "field": "warranty-exchange_body",
+      "english_binding": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.",
+      "physical_page": 90,
+      "bbox_pt": [
+        37.81639862060547,
+        286.8285827636719,
+        319.2337341308594,
+        308.0325927734375
+      ],
+      "raw_text": "Jackery sostituirà (a spese di Jackery) qualsiasi prodotto Jackery mal funzionante durante il periodo di \ngaranzia applicabile a causa di difetti di fabbricazione o materiali. Un prodotto sostitutivo assume la \ngaranzia residua del prodotto originale.\n",
+      "text": "Jackery sostituirà (a spese di Jackery) qualsiasi prodotto Jackery mal funzionante durante il periodo di garanzia applicabile a causa di difetti di fabbricazione o materiali. Un prodotto sostitutivo assume la garanzia residua del prodotto originale.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 166,
+      "field": "warranty-buyer_heading",
+      "english_binding": "Limited to Original Consumer Buyer",
+      "physical_page": 90,
+      "bbox_pt": [
+        40.73540115356445,
+        324.0494079589844,
+        209.07859802246094,
+        333.9533996582031
+      ],
+      "raw_text": "Limitato all'acquirente consumatore originale\n",
+      "text": "Limitato all'acquirente consumatore originale",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 167,
+      "field": "warranty-buyer_body",
+      "english_binding": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "physical_page": 90,
+      "bbox_pt": [
+        37.81639862060547,
+        338.99658203125,
+        297.52459716796875,
+        353.1986083984375
+      ],
+      "raw_text": "La garanzia sul prodotto Jackery è limitata all’acquirente originale e non è trasferibile a nessun \nproprietario successivo.\n",
+      "text": "La garanzia sul prodotto Jackery è limitata all’acquirente originale e non è trasferibile a nessun proprietario successivo.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 168,
+      "field": "warranty-exclusions_heading",
+      "english_binding": "Exclusions",
+      "physical_page": 90,
+      "bbox_pt": [
+        40.73440170288086,
+        368.04840087890625,
+        76.41439819335938,
+        377.952392578125
+      ],
+      "raw_text": "Esclusioni\n",
+      "text": "Esclusioni",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 169,
+      "field": "warranty-interpretation_heading",
+      "english_binding": "Interpretation Rights",
+      "physical_page": 90,
+      "bbox_pt": [
+        40.73540115356445,
+        465.0406188964844,
+        128.9842071533203,
+        474.9446105957031
+      ],
+      "raw_text": "Diritti di interpretazione\n",
+      "text": "Diritti di interpretazione",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 170,
+      "field": "warranty-interpretation_body",
+      "english_binding": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.",
+      "physical_page": 90,
+      "bbox_pt": [
+        37.815399169921875,
+        482.1371765136719,
+        284.8388671875,
+        489.3371887207031
+      ],
+      "raw_text": "Jackery si riserva il diritto di interpretazione finale della politica post-vendita sopra descritta.\n",
+      "text": "Jackery si riserva il diritto di interpretazione finale della politica post-vendita sopra descritta.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 171,
+      "field": "warranty-exclusions",
+      "english_binding": "Jackery's warranty does not apply to: • Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature. • Attempted repair by anyone other than an authorized facility. • Any product purchased through an online auction house. • Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "physical_page": 90,
+      "bbox_pt": [
+        35,
+        380,
+        344,
+        457
+      ],
+      "raw_text": "La garanzia di Jackery non si applica a:\n\n* Uso improprio, abuso, modifica, danneggiamento accidentale o utilizzo diverso dal normale uso da parte\ndel consumatore, come autorizzato nella documentazione di questo prodotto Jackery.\n\n*_ Tentativi di riparazione da parte di persone diverse da quelle autorizzate.\n\n* Qualsiasi prodotto acquistato tramite una casa d'aste online.\n\n* La garanzia di Jackery non si applica alla batteria, a meno che questa non venga caricata completa-\nmente dall'utente entro sette giorni dall'acquisto del prodotto, e successivamente almeno una volta ogni\n6 mesi.\n",
+      "text": "La garanzia di Jackery non si applica a: * Uso improprio, abuso, modifica, danneggiamento accidentale o utilizzo diverso dal normale uso da parte del consumatore, come autorizzato nella documentazione di questo prodotto Jackery. *_ Tentativi di riparazione da parte di persone diverse da quelle autorizzate. * Qualsiasi prodotto acquistato tramite una casa d'aste online. * La garanzia di Jackery non si applica alla batteria, a meno che questa non venga caricata completamente dall'utente entro sette giorni dall'acquisto del prodotto, e successivamente almeno una volta ogni 6 mesi.",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 172,
+      "field": "app-download-title",
+      "english_binding": "1. Download the App and log in",
+      "physical_page": 91,
+      "bbox_pt": [
+        25,
+        49,
+        344,
+        69
+      ],
+      "raw_text": "1. Per scaricare l'app e accedere",
+      "text": "1. Per scaricare l'app e accedere",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 173,
+      "field": "app-download-store",
+      "english_binding": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in.",
+      "physical_page": 91,
+      "bbox_pt": [
+        40,
+        118,
+        190,
+        155
+      ],
+      "raw_text": "Cercare \"Jackery\" in Google Play o App Store \nper installare l'applicazione Dopodiché, è \npossibile registrarsi e accedere.einloggen.",
+      "text": "Cercare \"Jackery\" in Google Play o App Store per installare l'applicazione Dopodiché, è possibile registrarsi e accedere.einloggen.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 174,
+      "field": "app-download-qr",
+      "english_binding": "Alternatively, scan the QR code below to download and install the App.",
+      "physical_page": 91,
+      "bbox_pt": [
+        195,
+        119,
+        344,
+        155
+      ],
+      "raw_text": "In alternativa, scansionare il \ncodice QR qui sotto per scaricare \ne installare l'App.",
+      "text": "In alternativa, scansionare il codice QR qui sotto per scaricare e installare l'App.",
+      "method": "native-span-start-and-line-center",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 175,
+      "field": "app-2.2",
+      "english_binding": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+      "physical_page": 91,
+      "bbox_pt": [
+        28.170900344848633,
+        184.26980590820312,
+        329.55987548828125,
+        219.19703674316406
+      ],
+      "raw_text": "2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul \ndispositivo lampeggiano per indicare che il dispositivo è entrato in modalità di conﬁgurazione della \nrete, fare clic sul pulsante \"Icon Flashed\" (icona lampeggiante) e consentire all'App di connettersi ai \ndispositivi vicini e aprire le autorizzazioni Bluetooth.\n",
+      "text": "2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo è entrato in modalità di configurazione della rete, fare clic sul pulsante \"Icon Flashed\" (icona lampeggiante) e consentire all'App di connettersi ai dispositivi vicini e aprire le autorizzazioni Bluetooth.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 176,
+      "field": "app-timeout",
+      "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
+      "physical_page": 91,
+      "bbox_pt": [
+        104.22219848632812,
+        463.1299743652344,
+        327.78997802734375,
+        494.3240051269531
+      ],
+      "raw_text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva \nautomaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth.\n",
+      "text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth.",
+      "method": "native-complete-app-timeout-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 177,
+      "field": "app-2.3",
+      "english_binding": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.",
+      "physical_page": 92,
+      "bbox_pt": [
+        31.468299865722656,
+        27.745908737182617,
+        328.465087890625,
+        44.66831970214844
+      ],
+      "raw_text": "2.3 Dopo aver toccato l'icona del dispositivo trovato, l'applicazione si collega automaticamente al \ndispositivo tramite Bluetooth.\n",
+      "text": "2.3 Dopo aver toccato l'icona del dispositivo trovato, l'applicazione si collega automaticamente al dispositivo tramite Bluetooth.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 178,
+      "field": "app-bound-lead",
+      "english_binding": "If \"the device has been bound\" is prompted during the binding process, the following two ways can be used for connection:",
+      "physical_page": 92,
+      "bbox_pt": [
+        86.25980377197266,
+        49.96540451049805,
+        325.4629821777344,
+        64.16741943359375
+      ],
+      "raw_text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è \npossibile utilizzare i due metodi seguenti per la connessione:\n",
+      "text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è possibile utilizzare i due metodi seguenti per la connessione:",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 179,
+      "field": "app-bound-steps",
+      "english_binding": [
+        "The device owner will share this device with other users through the App.",
+        "Press and hold the POWER button and USB power button for 3 seconds to reset the device, and then re-bind the device."
+      ],
+      "physical_page": 92,
+      "bbox_pt": [
+        85,
+        57,
+        339,
+        86
+      ],
+      "raw_text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è \npossibile utilizzare i due metodi seguenti per la connessione:",
+      "text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è possibile utilizzare i due metodi seguenti per la connessione:",
+      "method": "outlined-source-pending-visual-transcription",
+      "review_status": "pending-visual-transcription"
+    },
+    {
+      "ledger_index": 180,
+      "field": "app-2.4",
+      "english_binding": "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.",
+      "physical_page": 92,
+      "bbox_pt": [
+        31.46969985961914,
+        91.822998046875,
+        328.03912353515625,
+        107.74220275878906
+      ],
+      "raw_text": "2.4 Dopo che il dispositivo è stato collegato correttamente, è necessario inserire la password Wi-Fi e \ntoccare il pulsante OK.\n",
+      "text": "2.4 Dopo che il dispositivo è stato collegato correttamente, è necessario inserire la password Wi-Fi e toccare il pulsante OK.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 181,
+      "field": "app-wifi-note",
+      "english_binding": "Please select a Wi-Fi network in 2.4GHz band. The device does not support a Wi-Fi network in 5GHz band.",
+      "physical_page": 92,
+      "bbox_pt": [
+        86.25980377197266,
+        112.7314224243164,
+        334.46112060546875,
+        126.93344116210938
+      ],
+      "raw_text": "Selezionare una rete Wi-Fi con banda a 2,4 GHz. Il dispositivo non supporta una rete Wi-Fi \nin banda 5GHz.\n",
+      "text": "Selezionare una rete Wi-Fi con banda a 2,4 GHz. Il dispositivo non supporta una rete Wi-Fi in banda 5GHz.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 182,
+      "field": "app-2.5",
+      "english_binding": "2.5 After the device is successfully added on the App, the Wi-Fi icon on the device will be always on.",
+      "physical_page": 92,
+      "bbox_pt": [
+        31.468299865722656,
+        131.47830200195312,
+        326.81231689453125,
+        147.3975067138672
+      ],
+      "raw_text": "2.5. Dopo che il dispositivo è stato aggiunto con successo all’App, l'icona Wi-Fi sul dispositivo sarà \nsempre accesa.\n",
+      "text": "2.5. Dopo che il dispositivo è stato aggiunto con successo all’App, l'icona Wi-Fi sul dispositivo sarà sempre accesa.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 183,
+      "field": "app-screenshots-note",
+      "english_binding": "The above screenshots are for reference only.",
+      "physical_page": 92,
+      "bbox_pt": [
+        60,
+        283,
+        344,
+        297
+      ],
+      "raw_text": "Le schermate sopra riportate sono solo di riferimento.",
+      "text": "Le schermate sopra riportate sono solo di riferimento.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 184,
+      "field": "app-bluetooth-caution",
+      "english_binding": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.",
+      "physical_page": 92,
+      "bbox_pt": [
+        80,
+        295,
+        344,
+        328
+      ],
+      "raw_text": "L'app Jackery può connettersi tramite Bluetooth a una sola centrale elettrica alla volta. \nTornando all'elenco dei dispositivi, il Bluetooth si disconnette automaticamente. \nToccare di nuovo la power station nell'elenco per riconnettersi automaticamente.",
+      "text": "L'app Jackery può connettersi tramite Bluetooth a una sola centrale elettrica alla volta. Tornando all'elenco dei dispositivi, il Bluetooth si disconnette automaticamente. Toccare di nuovo la power station nell'elenco per riconnettersi automaticamente.",
+      "method": "native-complete-lines-pending-source-check",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 185,
+      "field": "app-unbind",
+      "english_binding": "3. Unbind the device Click the Settings icon in the upper right corner of the main interface of the device to enter the settings page, and click the Unbind button at the bottom of the page to unbind the device.",
+      "physical_page": 92,
+      "bbox_pt": [
+        31.749500274658203,
+        327.3065185546875,
+        338.92120361328125,
+        387.36199951171875
+      ],
+      "raw_text": "3. Per annullare l’associazione del dispositivo\nFare clic sul pulsante Impostazioni nell'angolo in alto a destra dell'interfaccia principale del dispositivo \nper accedere alla pagina delle impostazioni e fare clic sul pulsante Annulla associazione nella parte \ninferiore della pagina per annullare l'associazione del dispositivo.",
+      "text": "3. Per annullare l’associazione del dispositivo Fare clic sul pulsante Impostazioni nell'angolo in alto a destra dell'interfaccia principale del dispositivo per accedere alla pagina delle impostazioni e fare clic sul pulsante Annulla associazione nella parte inferiore della pagina per annullare l'associazione del dispositivo.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 186,
+      "field": "app-enable",
+      "english_binding": [
+        "Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up.",
+        "Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen light up."
+      ],
+      "physical_page": 92,
+      "bbox_pt": [
+        25,
+        381,
+        344,
+        427
+      ],
+      "raw_text": "• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone \nWi-Fi e Bluetooth sullo schermo si illuminano.\n• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si illuminano.\n",
+      "text": "• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone Wi-Fi e Bluetooth sullo schermo si illuminano. • Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione CA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si illuminano.",
+      "method": "native-source-bullet-blocks",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 187,
+      "field": "app-disable",
+      "english_binding": [
+        "Hold the USB power button and AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen are off.",
+        "Wi-Fi and Bluetooth will be automatically turned off if no device is connected within 2 hours."
+      ],
+      "physical_page": 92,
+      "bbox_pt": [
+        25,
+        430,
+        344,
+        469
+      ],
+      "raw_text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono.\n• Il Wi-Fi e il Bluetooth si spengono automaticamente se non viene collegato alcun dispositivo entro \n2 ore.\n",
+      "text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione CA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono. • Il Wi-Fi e il Bluetooth si spengono automaticamente se non viene collegato alcun dispositivo entro 2 ore.",
+      "method": "native-source-bullet-blocks",
+      "review_status": "native-captured-pending-complete-source-check"
+    },
+    {
+      "ledger_index": 188,
+      "field": "app-reset",
+      "english_binding": "Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi & Bluetooth to factory settings and reboot the system. The connected App account will be unbound. 4.3 To reset Wi-Fi & Bluetooth：",
+      "physical_page": 92,
+      "bbox_pt": [
+        31.75,
+        473.7760925292969,
+        336.4720458984375,
+        497.69451904296875
+      ],
+      "raw_text": "Tenere premuti contemporaneamente il pulsante POWER e il pulsante di alimentazione USB per 3 \nsecondi per ripristinare Wi-Fi e Bluetooth alle impostazioni di fabbrica e riavviare il sistema. L’account \ndell’app collegato verrà scollegato.\n",
+      "text": "Tenere premuti contemporaneamente il pulsante POWER e il pulsante di alimentazione USB per 3 secondi per ripristinare Wi-Fi e Bluetooth alle impostazioni di fabbrica e riavviare il sistema. L’account dell’app collegato verrà scollegato.",
+      "method": "native-complete-source-block",
+      "review_status": "native-captured-pending-complete-source-check"
+    }
+  ],
+  "extra_records": [
+    {
+      "id": "extra-000",
+      "field": "WHAT'S IN THE BOX",
+      "physical_page": 77,
+      "bbox_pt": [
+        28,
+        239,
+        340,
+        267
+      ],
+      "english_binding": "WHAT'S IN THE BOX",
+      "raw_text": "CONTENUTO DELLA CONFEZIONE",
+      "text": "CONTENUTO DELLA CONFEZIONE",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-001",
+      "field": "MEANING OF SYMBOLS",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        340,
+        340,
+        371
+      ],
+      "english_binding": "MEANING OF SYMBOLS",
+      "raw_text": "SIGNIFICATO DEI SIMBOLI",
+      "text": "SIGNIFICATO DEI SIMBOLI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-002",
+      "field": "PRODUCT OVERVIEW",
+      "physical_page": 78,
+      "bbox_pt": [
+        28,
+        24,
+        342,
+        51
+      ],
+      "english_binding": "PRODUCT OVERVIEW",
+      "raw_text": "PANORAMICA DEL PRODOTTO",
+      "text": "PANORAMICA DEL PRODOTTO",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-003",
+      "field": "LCD DISPLAY",
+      "physical_page": 79,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "LCD DISPLAY",
+      "raw_text": "DISPLAY LCD",
+      "text": "DISPLAY LCD",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-004",
+      "field": "OPERATIONS",
+      "physical_page": 81,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "OPERATIONS",
+      "raw_text": "OPERAZIONI",
+      "text": "OPERAZIONI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-005",
+      "field": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "physical_page": 84,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "raw_text": "GRUPPO DI CONTINUITÀ (UPS)",
+      "text": "GRUPPO DI CONTINUITÀ (UPS)",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-006",
+      "field": "CONNECTIONS",
+      "physical_page": 85,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "CONNECTIONS",
+      "raw_text": "COLLEGAMENTI",
+      "text": "COLLEGAMENTI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-007",
+      "field": "CHARGING",
+      "physical_page": 86,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "CHARGING",
+      "raw_text": "RICARICA",
+      "text": "RICARICA",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-008",
+      "field": "STORAGE",
+      "physical_page": 88,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "STORAGE",
+      "raw_text": "STOCCAGGIO",
+      "text": "STOCCAGGIO",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-009",
+      "field": "TROUBLESHOOTING",
+      "physical_page": 88,
+      "bbox_pt": [
+        28,
+        162,
+        342,
+        190
+      ],
+      "english_binding": "TROUBLESHOOTING",
+      "raw_text": "RISOLUZIONE DEI PROBLEMI\nSe viene visualizzato uno dei seguenti codici di errore, seguire le azioni correttive elencate per risolvere il problema. ",
+      "text": "RISOLUZIONE DEI PROBLEMI Se viene visualizzato uno dei seguenti codici di errore, seguire le azioni correttive elencate per risolvere il problema.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-010",
+      "field": "SPECIFICATIONS",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "SPECIFICATIONS",
+      "raw_text": "SPECIFICHE TECNICHE",
+      "text": "SPECIFICHE TECNICHE",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-011",
+      "field": "APP SETUP",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        51
+      ],
+      "english_binding": "APP SETUP",
+      "raw_text": "CONFIGURAZIONE APP",
+      "text": "CONFIGURAZIONE APP",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-012",
+      "field": "POWER ON/OFF",
+      "physical_page": 81,
+      "bbox_pt": [
+        28,
+        53,
+        340,
+        73
+      ],
+      "english_binding": "POWER ON/OFF",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO",
+      "text": "ACCENSIONE/SPEGNIMENTO",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-013",
+      "field": "USB OUTPUT ON/OFF",
+      "physical_page": 81,
+      "bbox_pt": [
+        28,
+        250,
+        340,
+        267
+      ],
+      "english_binding": "USB OUTPUT ON/OFF",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO USCITA USB",
+      "text": "ACCENSIONE/SPEGNIMENTO USCITA USB",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-014",
+      "field": "AC OUTPUT ON/OFF",
+      "physical_page": 82,
+      "bbox_pt": [
+        28,
+        24,
+        342,
+        43
+      ],
+      "english_binding": "AC OUTPUT ON/OFF",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO USCITA AC",
+      "text": "ACCENSIONE/SPEGNIMENTO USCITA AC",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-015",
+      "field": "ENERGY SAVING MODE",
+      "physical_page": 82,
+      "bbox_pt": [
+        28,
+        238,
+        342,
+        258
+      ],
+      "english_binding": "ENERGY SAVING MODE",
+      "raw_text": "MODALITÀ DI RISPARMIO ENERGETICO",
+      "text": "MODALITÀ DI RISPARMIO ENERGETICO",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-016",
+      "field": "LCD SCREEN",
+      "physical_page": 83,
+      "bbox_pt": [
+        28,
+        23,
+        342,
+        43
+      ],
+      "english_binding": "LCD SCREEN",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO SCHERMO LCD",
+      "text": "ACCENSIONE/SPEGNIMENTO SCHERMO LCD",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-017",
+      "field": "KEY COMBINATION",
+      "physical_page": 83,
+      "bbox_pt": [
+        28,
+        260,
+        342,
+        280
+      ],
+      "english_binding": "KEY COMBINATION",
+      "raw_text": "FUNZIONI DEI PULSANTI",
+      "text": "FUNZIONI DEI PULSANTI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-018",
+      "field": "AC Charging Cable",
+      "physical_page": 77,
+      "bbox_pt": [
+        145,
+        407,
+        248,
+        425
+      ],
+      "english_binding": "AC Charging Cable",
+      "raw_text": "Cavo di ricarica CA",
+      "text": "Cavo di ricarica CA",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-019",
+      "field": "User Manual",
+      "physical_page": 77,
+      "bbox_pt": [
+        251,
+        407,
+        343,
+        425
+      ],
+      "english_binding": "User Manual",
+      "raw_text": "Manuale d'uso",
+      "text": "Manuale d'uso",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-020",
+      "field": "Jackery Battery Pack 3600",
+      "physical_page": 85,
+      "bbox_pt": [
+        46,
+        443,
+        130,
+        460
+      ],
+      "english_binding": "Jackery Battery Pack 3600",
+      "raw_text": "Jackery Battery Pack 3600",
+      "text": "Jackery Battery Pack 3600",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-021",
+      "field": "Expansion Cable",
+      "physical_page": 85,
+      "bbox_pt": [
+        140,
+        443,
+        197,
+        460
+      ],
+      "english_binding": "Expansion Cable",
+      "raw_text": "Cavo di espansione",
+      "text": "Cavo di espansione",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-022",
+      "field": "Sold separately",
+      "physical_page": 85,
+      "bbox_pt": [
+        301,
+        413,
+        337,
+        434
+      ],
+      "english_binding": "Sold separately",
+      "raw_text": "VENDUTI \nSEPARATA-\nMENTE",
+      "text": "VENDUTI SEPARATA- MENTE",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-023",
+      "field": "At least 200 mm",
+      "physical_page": 85,
+      "bbox_pt": [
+        109,
+        261,
+        173,
+        273
+      ],
+      "english_binding": "At least 200 mm",
+      "raw_text": "≥Almeno 200 mm",
+      "text": "≥Almeno 200 mm",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-024",
+      "field": "Shortly On",
+      "physical_page": 83,
+      "bbox_pt": [
+        154,
+        71,
+        196,
+        138
+      ],
+      "english_binding": "Shortly On",
+      "raw_text": "Schermo \nLCD",
+      "text": "Schermo LCD",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-025",
+      "field": "Steady On (in charging or discharging state)",
+      "physical_page": 83,
+      "bbox_pt": [
+        154,
+        139,
+        196,
+        214
+      ],
+      "english_binding": "Steady On (in charging or discharging state)",
+      "raw_text": "Modalità \nDisplay \nsempre \nacceso\n(in stato di \ncarica o \nscarica)",
+      "text": "Modalità Display sempre acceso (in stato di carica o scarica)",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-026",
+      "field": "Turn on",
+      "physical_page": 83,
+      "bbox_pt": [
+        199,
+        70,
+        243,
+        92
+      ],
+      "english_binding": "Turn on",
+      "raw_text": "Accendere",
+      "text": "Accendere",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-027",
+      "field": "Turn off",
+      "physical_page": 83,
+      "bbox_pt": [
+        199,
+        94,
+        243,
+        109
+      ],
+      "english_binding": "Turn off",
+      "raw_text": "Spegnere",
+      "text": "Spegnere",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-028",
+      "field": "Auto-off",
+      "physical_page": 83,
+      "bbox_pt": [
+        199,
+        109,
+        243,
+        137
+      ],
+      "english_binding": "Auto-off",
+      "raw_text": "Spegnimento\nautomatico",
+      "text": "Spegnimento automatico",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-029",
+      "field": "On",
+      "physical_page": 81,
+      "bbox_pt": [
+        260,
+        82,
+        340,
+        98
+      ],
+      "english_binding": "On",
+      "raw_text": "Accensione",
+      "text": "Accensione",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-030",
+      "field": "Off",
+      "physical_page": 81,
+      "bbox_pt": [
+        260,
+        109,
+        340,
+        125
+      ],
+      "english_binding": "Off",
+      "raw_text": "Spegnimento\nTenere premuto per 3 ",
+      "text": "Spegnimento Tenere premuto per 3",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-031",
+      "field": "Press once",
+      "physical_page": 81,
+      "bbox_pt": [
+        260,
+        98,
+        340,
+        109
+      ],
+      "english_binding": "Press once",
+      "raw_text": "Accensione\npremere una volta",
+      "text": "Accensione premere una volta",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-032",
+      "field": "Press and hold for 3s",
+      "physical_page": 81,
+      "bbox_pt": [
+        260,
+        123,
+        340,
+        134
+      ],
+      "english_binding": "Press and hold for 3s",
+      "raw_text": "Spegnimento\nTenere premuto per 3 \nsecondi",
+      "text": "Spegnimento Tenere premuto per 3 secondi",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-033",
+      "field": "Main power button",
+      "physical_page": 82,
+      "bbox_pt": [
+        168,
+        391,
+        235,
+        407
+      ],
+      "english_binding": "Main power button",
+      "raw_text": "POWER-Taste",
+      "text": "POWER-Taste",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-034",
+      "field": "AC power button",
+      "physical_page": 82,
+      "bbox_pt": [
+        250,
+        391,
+        330,
+        407
+      ],
+      "english_binding": "AC power button",
+      "raw_text": "AC-Ausgangstaste",
+      "text": "AC-Ausgangstaste",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-035",
+      "field": "On/Off",
+      "physical_page": 82,
+      "bbox_pt": [
+        205,
+        423,
+        331,
+        440
+      ],
+      "english_binding": "On/Off",
+      "raw_text": "enere premuto per 3 secondi\nnsione/Spegnimento",
+      "text": "enere premuto per 3 secondi nsione/Spegnimento",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-036",
+      "field": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+      "physical_page": 86,
+      "bbox_pt": [
+        190,
+        253,
+        332,
+        284
+      ],
+      "english_binding": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+      "raw_text": "A sia inserito completamente e saldamente nella \nga il cavo di ricarica CA alla porta di ingresso CA \nodotto e a una presa a muro.",
+      "text": "A sia inserito completamente e saldamente nella ga il cavo di ricarica CA alla porta di ingresso CA odotto e a una presa a muro.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-037",
+      "field": "*The car charging cable is sold separately.",
+      "physical_page": 87,
+      "bbox_pt": [
+        180,
+        293,
+        344,
+        337
+      ],
+      "english_binding": "*The car charging cable is sold separately.",
+      "raw_text": " cavo di ricarica per auto è venduto separatamente.",
+      "text": "cavo di ricarica per auto è venduto separatamente.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-038",
+      "field": "1 month: -20°C to 45°C (0-60%RH)",
+      "physical_page": 88,
+      "bbox_pt": [
+        35,
+        71,
+        343,
+        80
+      ],
+      "english_binding": "1 month: -20°C to 45°C (0-60%RH)",
+      "raw_text": "",
+      "text": "",
+      "method": "outlined-source-ocr-pending-visual-verification",
+      "ocr_text": "stoccaggio:\n",
+      "ocr_error": ""
+    },
+    {
+      "id": "extra-039",
+      "field": "3 months: 0°C to 45°C (0-60%RH)",
+      "physical_page": 88,
+      "bbox_pt": [
+        35,
+        80,
+        343,
+        89
+      ],
+      "english_binding": "3 months: 0°C to 45°C (0-60%RH)",
+      "raw_text": "",
+      "text": "",
+      "method": "outlined-source-ocr-pending-visual-verification",
+      "ocr_text": "* 1mese: tra -20 ‘C e 45 °C (0-60% UR)\n",
+      "ocr_error": ""
+    },
+    {
+      "id": "extra-040",
+      "field": "12 months: 0°C to 25°C (0-60%RH)",
+      "physical_page": 88,
+      "bbox_pt": [
+        35,
+        89,
+        343,
+        98
+      ],
+      "english_binding": "12 months: 0°C to 25°C (0-60%RH)",
+      "raw_text": "",
+      "text": "",
+      "method": "outlined-source-ocr-pending-visual-verification",
+      "ocr_text": "* 5 mesi: tra O Ce45 C(0-00% UR)\ngf ii 4A 07. nr 02 fANX_ZSZAO) LVII\n",
+      "ocr_error": ""
+    },
+    {
+      "id": "extra-041",
+      "field": "GENERAL INFO",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        53,
+        340,
+        73
+      ],
+      "english_binding": "GENERAL INFO",
+      "raw_text": "INFORMAZIONI GENERALI",
+      "text": "INFORMAZIONI GENERALI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-042",
+      "field": "INPUT PORTS",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        191,
+        340,
+        208
+      ],
+      "english_binding": "INPUT PORTS",
+      "raw_text": "PORTE IN INGRESSO",
+      "text": "PORTE IN INGRESSO",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-043",
+      "field": "OUTPUT PORTS",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        287,
+        340,
+        304
+      ],
+      "english_binding": "OUTPUT PORTS",
+      "raw_text": "PORTE IN USCITA",
+      "text": "PORTE IN USCITA",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-044",
+      "field": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        394,
+        340,
+        413
+      ],
+      "english_binding": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "raw_text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "text": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-045",
+      "field": "Error Code",
+      "physical_page": 88,
+      "bbox_pt": [
+        28,
+        218,
+        75,
+        235
+      ],
+      "english_binding": "Error Code",
+      "raw_text": "Codice di \nerrore\nM\nF0\nS",
+      "text": "Codice di errore M F0 S",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-046",
+      "field": "Corrective Measures",
+      "physical_page": 88,
+      "bbox_pt": [
+        76,
+        218,
+        340,
+        235
+      ],
+      "english_binding": "Corrective Measures",
+      "raw_text": "Misure correttive\nStarten Sie das Gerät neu.",
+      "text": "Misure correttive Starten Sie das Gerät neu.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-047",
+      "field": "Standard Warranty",
+      "physical_page": 90,
+      "bbox_pt": [
+        72,
+        185,
+        211,
+        214
+      ],
+      "english_binding": "Standard Warranty",
+      "raw_text": "garanzia standard per Jackery Explorer 3600 Plus \n garanzia standard\nANNI",
+      "text": "garanzia standard per Jackery Explorer 3600 Plus garanzia standard ANNI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-048",
+      "field": "Extended Warranty",
+      "physical_page": 90,
+      "bbox_pt": [
+        243,
+        185,
+        340,
+        214
+      ],
+      "english_binding": "Extended Warranty",
+      "raw_text": "vare l'estensione della garanzia, \ndi garanzia estesa\n ANNI\n  ",
+      "text": "vare l'estensione della garanzia, di garanzia estesa ANNI",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-049",
+      "field": "2. Add device",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        158,
+        340,
+        173
+      ],
+      "english_binding": "2. Add device",
+      "raw_text": "2. Per aggiungere il dispositivo",
+      "text": "2. Per aggiungere il dispositivo",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-050",
+      "field": "2.1 Click the button + to add your device;",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        171,
+        340,
+        185
+      ],
+      "english_binding": "2.1 Click the button + to add your device;",
+      "raw_text": "2. Per aggiungere il dispositivo\n2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul \n2.1 Fare clic sul pulsante        per aggiungere il dispositivo.",
+      "text": "2. Per aggiungere il dispositivo 2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul 2.1 Fare clic sul pulsante per aggiungere il dispositivo.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-051",
+      "field": "POWER Button",
+      "physical_page": 91,
+      "bbox_pt": [
+        30,
+        397,
+        110,
+        426
+      ],
+      "english_binding": "POWER Button",
+      "raw_text": "Pulsante di \naccensione \nprincipale\nPulsante ",
+      "text": "Pulsante di accensione principale Pulsante",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-052",
+      "field": "USB Power Button",
+      "physical_page": 91,
+      "bbox_pt": [
+        270,
+        425,
+        342,
+        462
+      ],
+      "english_binding": "USB Power Button",
+      "raw_text": "Pulsante AC",
+      "text": "Pulsante AC",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-053",
+      "field": "AC Button",
+      "physical_page": 91,
+      "bbox_pt": [
+        30,
+        425,
+        110,
+        462
+      ],
+      "english_binding": "AC Button",
+      "raw_text": "Pulsante \nAlimentazione \nUSB",
+      "text": "Pulsante Alimentazione USB",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-054",
+      "field": "3. Unbind the device",
+      "physical_page": 92,
+      "bbox_pt": [
+        28,
+        328,
+        342,
+        343
+      ],
+      "english_binding": "3. Unbind the device",
+      "raw_text": "3. Per annullare l’associazione del dispositivo\nFare clic sul pulsante Impostazioni nell'angolo in alto a destra dell'interfaccia principale del dispositivo ",
+      "text": "3. Per annullare l’associazione del dispositivo Fare clic sul pulsante Impostazioni nell'angolo in alto a destra dell'interfaccia principale del dispositivo",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-055",
+      "field": "4. Notes",
+      "physical_page": 92,
+      "bbox_pt": [
+        28,
+        363,
+        342,
+        380
+      ],
+      "english_binding": "4. Notes",
+      "raw_text": "inferiore della pagina per annullare l'associazione del dispositivo.\n4. Note\n4.1 Attivare Wi-Fi e Bluetooth",
+      "text": "inferiore della pagina per annullare l'associazione del dispositivo. 4. Note 4.1 Attivare Wi-Fi e Bluetooth",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-056",
+      "field": "4.1 To turn on Wi-Fi & Bluetooth:",
+      "physical_page": 92,
+      "bbox_pt": [
+        28,
+        379,
+        342,
+        395
+      ],
+      "english_binding": "4.1 To turn on Wi-Fi & Bluetooth:",
+      "raw_text": "• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone \n4. Note\n4.1 Attivare Wi-Fi e Bluetooth",
+      "text": "• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone 4. Note 4.1 Attivare Wi-Fi e Bluetooth",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-057",
+      "field": "4.2 To turn off Wi-Fi & Bluetooth:",
+      "physical_page": 92,
+      "bbox_pt": [
+        28,
+        426,
+        342,
+        442
+      ],
+      "english_binding": "4.2 To turn off Wi-Fi & Bluetooth:",
+      "raw_text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono.\n4.2 Per spegnere Wi-Fi e Bluetooth",
+      "text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione CA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono. 4.2 Per spegnere Wi-Fi e Bluetooth",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "extra-058",
+      "field": "4.3 To reset Wi-Fi & Bluetooth:",
+      "physical_page": 92,
+      "bbox_pt": [
+        28,
+        467,
+        342,
+        482
+      ],
+      "english_binding": "4.3 To reset Wi-Fi & Bluetooth:",
+      "raw_text": "Tenere premuti contemporaneamente il pulsante POWER e il pulsante di alimentazione USB per 3 \nsecondi per ripristinare Wi-Fi e Bluetooth alle impostazioni di fabbrica e riavviare il sistema. L’account \n4.3 Per reimpostare Wi-Fi e Bluetooth",
+      "text": "Tenere premuti contemporaneamente il pulsante POWER e il pulsante di alimentazione USB per 3 secondi per ripristinare Wi-Fi e Bluetooth alle impostazioni di fabbrica e riavviare il sistema. L’account 4.3 Per reimpostare Wi-Fi e Bluetooth",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "signal-0",
+      "field": "signal-0",
+      "physical_page": 76,
+      "bbox_pt": [
+        110,
+        394,
+        340,
+        419
+      ],
+      "english_binding": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference. In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Please kindly notice that no further notifications will be given in case of any update, revision or termination. IMPORTANT US",
+      "raw_text": "Pratiche pericolose che possono causare lesioni personali e/o danni \nPratiche pericolose che possono causare gravi lesioni, morte e/o \ndanni materiali.\nA",
+      "text": "Pratiche pericolose che possono causare lesioni personali e/o danni Pratiche pericolose che possono causare gravi lesioni, morte e/o danni materiali. A",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "signal-1",
+      "field": "signal-1",
+      "physical_page": 76,
+      "bbox_pt": [
+        110,
+        419,
+        340,
+        442
+      ],
+      "english_binding": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference. In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Please kindly notice that no further notifications will be given in case of any update, revision or termination. IMPORTANT US",
+      "raw_text": "Pratiche pericolose che possono causare lesioni personali e/o danni \nmateriali.",
+      "text": "Pratiche pericolose che possono causare lesioni personali e/o danni materiali.",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "signal-2",
+      "field": "signal-2",
+      "physical_page": 76,
+      "bbox_pt": [
+        110,
+        442,
+        340,
+        472
+      ],
+      "english_binding": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference. In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Please kindly notice that no further notifications will be given in case of any update, revision or termination. IMPORTANT US",
+      "raw_text": "Pratiche pericolose che possono causare danni all'apparecchiatura, \nperdita di dati, deterioramento delle prestazioni o risultati imprevisti.\nO",
+      "text": "Pratiche pericolose che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti. O",
+      "method": "native-selectable-text"
+    },
+    {
+      "id": "signal-3",
+      "field": "signal-3",
+      "physical_page": 76,
+      "bbox_pt": [
+        110,
+        472,
+        340,
+        496
+      ],
+      "english_binding": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference. In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Please kindly notice that no further notifications will be given in case of any update, revision or termination. IMPORTANT US",
+      "raw_text": "Integra le informazioni importanti o i consigli operativi presenti nel testo.\nO",
+      "text": "Integra le informazioni importanti o i consigli operativi presenti nel testo. O",
+      "method": "native-selectable-text"
+    }
+  ]
+}

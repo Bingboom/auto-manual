@@ -1,0 +1,942 @@
+{
+  "desktop": [
+    {
+      "lang": "en",
+      "headings": [
+        "IMPORTANT¶",
+        "IMPORTANT SAFETY INFORMATION¶",
+        "MEANING OF SYMBOLS¶",
+        "WHAT’S IN THE BOX¶",
+        "PRODUCT OVERVIEW¶",
+        "LCD DISPLAY¶",
+        "OPERATIONS¶",
+        "UNINTERRUPTIBLE POWER SUPPLY (UPS)¶",
+        "CONNECTIONS¶",
+        "CHARGING¶",
+        "STORAGE¶",
+        "TROUBLESHOOTING¶",
+        "SPECIFICATIONS¶",
+        "WARRANTY¶",
+        "APP SETUP¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Expansion Cable"
+        },
+        {
+          "overflow": false,
+          "text": "User Manual"
+        },
+        {
+          "overflow": false,
+          "text": "Sold separately"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "fr",
+      "headings": [
+        "IMPORTANT¶",
+        "INFORMATIONS DE SÉCURITÉ IMPORTANTES¶",
+        "SIGNIFICATION DES SYMBOLES¶",
+        "CONTENU DE LA BOÎTE¶",
+        "APERÇU DU PRODUIT¶",
+        "AFFICHAGE LCD¶",
+        "FONCTIONNEMENT¶",
+        "ALIMENTATION SANS INTERRUPTION (ASI)¶",
+        "CONNEXIONS¶",
+        "CHARGE¶",
+        "STOCKAGE¶",
+        "DÉPANNAGE¶",
+        "SPÉCIFICATIONS¶",
+        "GARANTIE¶",
+        "CONFIGURATION DE L’APPLICATION¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Câble de rallonge"
+        },
+        {
+          "overflow": false,
+          "text": "Manuel d’utilisation"
+        },
+        {
+          "overflow": false,
+          "text": "Vendu séparément"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "es",
+      "headings": [
+        "IMPORTANTE¶",
+        "INFORMACIÓN IMPORTANTE DE SEGURIDAD¶",
+        "SIGNIFICADO DE LOS SÍMBOLOS¶",
+        "CONTENIDO DE LA CAJA¶",
+        "DESCRIPCIÓN GENERAL DEL PRODUCTO¶",
+        "AFFICHAGE LCD¶",
+        "OPERACIONES¶",
+        "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)¶",
+        "CONNEXIONS¶",
+        "CARGANDO¶",
+        "ALMACENAMIENTO¶",
+        "RESOLUCIÓN DE PROBLEMAS¶",
+        "ESPECIFICACIONES¶",
+        "GARANTÍA¶",
+        "CONFIGURACIÓN DE LA APLICACIÓN¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Cable de expansión"
+        },
+        {
+          "overflow": false,
+          "text": "Manual de usuario"
+        },
+        {
+          "overflow": false,
+          "text": "Se vende por separado"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "de",
+      "headings": [
+        "WICHTIG¶",
+        "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG¶",
+        "BEDEUTUNG DER SYMBOLE¶",
+        "LIEFERUMFANG¶",
+        "PRODUKTÜBERSICHT¶",
+        "LCD-ANZEIGE¶",
+        "GRUNDLEGENDE OPERATIONEN¶",
+        "UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)¶",
+        "VERBINDUNGEN¶",
+        "AUFLADEN¶",
+        "LAGERUNG¶",
+        "FEHLERSUCHE¶",
+        "TECHNISCHE DATEN¶",
+        "GARANTIE¶",
+        "APP-EINSTELLUNG¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Verlängerungskabel"
+        },
+        {
+          "overflow": false,
+          "text": "Benutzerhandbuch"
+        },
+        {
+          "overflow": false,
+          "text": "Separat erhältlich"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "it",
+      "headings": [
+        "IMPORTANTE¶",
+        "PRECAUZIONI DI SICUREZZA¶",
+        "SIGNIFICATO DEI SIMBOLI¶",
+        "CONTENUTO DELLA CONFEZIONE¶",
+        "PANORAMICA DEL PRODOTTO¶",
+        "DISPLAY LCD¶",
+        "OPERAZIONI¶",
+        "GRUPPO DI CONTINUITÀ (UPS)¶",
+        "COLLEGAMENTI¶",
+        "RICARICA¶",
+        "STOCCAGGIO¶",
+        "RISOLUZIONE DEI PROBLEMI¶",
+        "SPECIFICHE TECNICHE¶",
+        "GARANZIA¶",
+        "CONFIGURAZIONE APP¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Cavo di espansione"
+        },
+        {
+          "overflow": false,
+          "text": "Manuale d'uso"
+        },
+        {
+          "overflow": false,
+          "text": "VENDUTI SEPARATAMENTE"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "uk",
+      "headings": [
+        "ВАЖЛИВО¶",
+        "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ¶",
+        "ЗНАЧЕННЯ СИМВОЛІВ¶",
+        "КОМПЛЕКТАЦІЯ¶",
+        "ОГЛЯД ПРОДУКТУ¶",
+        "РК-ДИСПЛЕЙ¶",
+        "ОПЕРАЦІЇ¶",
+        "ДЖЕРЕЛО БЕЗПЕРЕБІЙНОГО ЖИВЛЕННЯ (ДБЖ)¶",
+        "ПІДКЛЮЧЕННЯ¶",
+        "ЗАРЯДЖАННЯ¶",
+        "Зберігання¶",
+        "УСУНЕННЯ НЕСПРАВНОСТЕЙ¶",
+        "Технічні характеристики¶",
+        "ГАРАНТІЯ¶",
+        "НАЛАШТУВАННЯ ДОДАТКА¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Акумуляторний блок Jackery 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Кабель розширення"
+        },
+        {
+          "overflow": false,
+          "text": "Керівництво користувача"
+        },
+        {
+          "overflow": false,
+          "text": "Продається окремо"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "pt",
+      "headings": [
+        "IMPORTANTE¶",
+        "INFORMAÇÕES IMPORTANTES DE SEGURANÇA¶",
+        "Significado dos Símbolos¶",
+        "CONTEÚDO DA EMBALAGEM¶",
+        "VISÃO GERAL DO PRODUTO¶",
+        "DISPLAY LCD¶",
+        "OPERAÇÕES¶",
+        "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)¶",
+        "CONEXÕES¶",
+        "CARREGANDO¶",
+        "Armazenamento¶",
+        "SOLUÇÃO DE PROBLEMAS¶",
+        "ESPECIFICAÇÕES¶",
+        "GARANTIA¶",
+        "CONFIGURAÇÃO DO APLICATIVO¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Cabo de expansão"
+        },
+        {
+          "overflow": false,
+          "text": "Manual do usuário"
+        },
+        {
+          "overflow": false,
+          "text": "Vendido separadamente"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "nl",
+      "headings": [
+        "BELANGRIJK¶",
+        "IMPORTANT SAFETY INFORMATION¶",
+        "Betekenis van symbolen¶",
+        "WAT ZIT ER IN DE DOOS¶",
+        "PRODUCTOVERZICHT¶",
+        "LCD-SCHERM¶",
+        "HANDELINGEN¶",
+        "ONONDERBROKEN STROOMVOORZIENING (UPS)¶",
+        "VERBINDINGEN¶",
+        "OPLADEN¶",
+        "Opslag¶",
+        "PROBLEEMOPLOSSING¶",
+        "Specificaties¶",
+        "GARANTIE¶",
+        "APP INSTELLEN¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Uitbreidingskabel"
+        },
+        {
+          "overflow": false,
+          "text": "Gebruikershandleiding"
+        },
+        {
+          "overflow": false,
+          "text": "APART VERKOCHT"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "pl",
+      "headings": [
+        "WAŻNE¶",
+        "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA¶",
+        "ZNACZENIE SYMBOLI¶",
+        "ZAWARTOŚĆ OPAKOWANIA¶",
+        "WIDOK OGÓLNY PRODUKTU¶",
+        "WYŚWIETLACZ LCD¶",
+        "OBSŁUGA¶",
+        "ZASILACZ BEZPRZERWOWY (UPS)¶",
+        "POŁĄCZENIA¶",
+        "ŁADOWANIE¶",
+        "PRZECHOWYWANIE¶",
+        "ROZWIĄZYWANIE PROBLEMÓW¶",
+        "DANE TECHNICZNE¶",
+        "GWARANCJA¶",
+        "KONFIGURACJA APLIKACJI¶",
+        "EU Regulations¶"
+      ],
+      "labels": [
+        {
+          "overflow": false,
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "text": "Przedłużacz"
+        },
+        {
+          "overflow": false,
+          "text": "Instrukcja obsługi"
+        },
+        {
+          "overflow": false,
+          "text": "SPRZEDAWANE ODDZIELNIE"
+        }
+      ],
+      "scroll": 1280,
+      "width": 1280,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    }
+  ],
+  "mobile": [
+    {
+      "lang": "en",
+      "badLabels": [],
+      "captionText": [
+        "Jackery Battery Pack 3600",
+        "Expansion Cable",
+        "User Manual",
+        "Sold separately"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "fr",
+      "badLabels": [],
+      "captionText": [
+        "Jackery Battery Pack 3600",
+        "Câble de rallonge",
+        "Manuel d’utilisation",
+        "Vendu séparément"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "es",
+      "badLabels": [],
+      "captionText": [
+        "Jackery Battery Pack 3600",
+        "Cable de expansión",
+        "Manual de usuario",
+        "Se vende por separado"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "de",
+      "badLabels": [],
+      "captionText": [
+        "Jackery Battery Pack 3600",
+        "Verlängerungskabel",
+        "Benutzerhandbuch",
+        "Separat erhältlich"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "it",
+      "badLabels": [],
+      "captionText": [
+        "Jackery Battery Pack 3600",
+        "Cavo di espansione",
+        "Manuale d'uso",
+        "VENDUTI SEPARATAMENTE"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "uk",
+      "badLabels": [],
+      "captionText": [
+        "Акумуляторний блок Jackery 3600",
+        "Кабель розширення",
+        "Керівництво користувача",
+        "Продається окремо"
+      ],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "pt",
+      "badLabels": [],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "nl",
+      "badLabels": [],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    },
+    {
+      "lang": "pl",
+      "badLabels": [],
+      "kitLoaded": true,
+      "scroll": 390,
+      "width": 390,
+      "app": [
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-qr.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-store.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-phone.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-control.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/app-result.png"
+        }
+      ]
+    }
+  ]
+}

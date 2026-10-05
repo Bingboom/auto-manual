@@ -1,0 +1,62 @@
+[
+  {
+    "lang": "es",
+    "footnotes": [
+      "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.",
+      "② Indica que dos o más puertos de salida CA trabajan en conjunto."
+    ],
+    "notes": [
+      "Después de estar encendido, si la APP no se conecta en 2 horas, el dispositivo desactivará automáticamente el Wi-Fi y el Bluetooth."
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "lang": "de",
+    "footnotes": [
+      "① Das Produkt kann den Akku über die Steckdose aufladen und gleichzeitig Strom über die AC-Ausgangsports liefern.",
+      "② Zeigt an, dass zwei oder mehr AC-Ausgangsanschlüsse gemeinsam arbeiten."
+    ],
+    "notes": [
+      "Wenn das Gerät nach dem Einschalten innerhalb von 2 Stunden nicht mit der App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden."
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "lang": "it",
+    "footnotes": [
+      "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.",
+      "② Indica che due o più porte di uscita CA funzionano insieme."
+    ],
+    "notes": [
+      "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth."
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "lang": "uk",
+    "footnotes": [
+      "① Продукт може заряджати акумулятор від розетки змінного струму, одночасно подаючи живлення через вихідні порти змінного струму.",
+      "② Вказує, що два або більше вихідних портів змінного струму працюють разом."
+    ],
+    "notes": [
+      "Після ввімкнення пристрою, якщо протягом 2 годин його не підключено до застосунку, він автоматично вимкне Wi-Fi та Bluetooth. Тепер потрібно натиснути та утримувати кнопку живлення USB та кнопку живлення AC, щоб знову увімкнути Wi-Fi та Bluetooth."
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "footnotes": [
+      "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC.",
+      "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą."
+    ],
+    "notes": [
+      "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i Bluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB oraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth."
+    ],
+    "scroll": 390,
+    "width": 390
+  }
+]
