@@ -278,7 +278,11 @@ def _registered_web_models(repo_root: Path) -> tuple[str, ...]:
 def _shared_web_python_files(repo_root: Path) -> tuple[Path, ...]:
     tools_root = repo_root / PathSegments.TOOLS
     paths = set(tools_root.glob("web_*.py"))
-    for directory in (tools_root / "manual_ir", tools_root / "component_specs"):
+    for directory in (
+        tools_root / "web",
+        tools_root / "manual_ir",
+        tools_root / "component_specs",
+    ):
         if directory.is_dir():
             paths.update(directory.rglob("*.py"))
     return tuple(sorted(path for path in paths if path.is_file()))

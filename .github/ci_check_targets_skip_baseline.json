@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "skip_count": 17,
   "reason": "The current fixture snapshot has no document_key rows for AU, JA-AD600A_EU, JE-100C_EU, JE-1000F_KR, JE-2000E_KR, JE-3000C_KR, pt-BR, JS-100I_EU, and JS-100F_EU targets. JA-AD600A_EU uses its dedicated target snapshot; JE-100C_EU uses the formal manual_sources/JE-100C/EU/en/2.0/phase2 source binding; JS-100I_EU uses the dedicated tests/fixtures/js100i_eu_en_phase2 bootstrap snapshot; JS-100F_EU uses the formal manual_sources/JS-100F/EU/en/1.0/phase2 source binding; JBP-2000B_US was skipped until its rows landed in the shared fixtures and now runs and passes. JS-40C_EU uses its frozen manual_sources/JS-40C/EU/en/2026-08-30/phase2 source binding. JE-500A_EU uses its target-scoped frozen manual_sources/JE-500A/EU/en/2.0/phase2 binding. JA-CA05B_EU uses its dedicated frozen Git source. JAAC-WHE-100-EUA1_EU uses its dedicated frozen Git source. JA-CA3SA_EU uses its dedicated data/manual_sources/ja_ca3sa_eu_en snapshot. JA-CC30A_EU uses its dedicated data/manual_sources/ja_cc30a_eu_en snapshot. JS-200E_EU uses its target-scoped frozen data/manual_sources/JS-200E/EU/en/2.0/phase2 binding. The new shared config.solar-eu-multilingual.yaml adds one JS-100I_EU discovery row with no shared-fixture document_key. Its eight locale-specific Git snapshots are checked by tests.test_solar_js100i_eu_locales and the nine-language formal build review; they cannot be combined into the shared fixture because Source_lang does not filter specification rows.",
   "skipped_configs": [
@@ -11,9 +11,127 @@
     "configs/config.solar-eu-multilingual.yaml"
   ],
   "fail_count": 2,
-  "fail_reason": "check-all runs with --observation, which reports FAIL rows without failing the job, so before this ratchet a target regressing from PASS to FAIL was invisible in CI. These two are known and separately tracked; one more than this fails the job.",
+  "fail_reason": "Only the two known failure identities recorded when fail_count was introduced in baf8b712 (#944) are allowed. New failing target identities fail even if another failure is repaired and the total does not grow.",
   "failing_configs": [
     "configs/config.eu-uk.yaml",
     "configs/config.zh.yaml"
+  ],
+  "skipped_targets": [
+    {
+      "config": "configs/config.au-en.yaml",
+      "model": "JE-1000F",
+      "region": "AU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.charger-eu-en.yaml",
+      "model": "JA-AD600A",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.charger-eu-en.yaml",
+      "model": "JAAC-WHE-100-EUA1",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.charger-eu-en.yaml",
+      "model": "JA-CA05B",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.charger-eu-en.yaml",
+      "model": "JA-CA3SA",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.charger-eu-en.yaml",
+      "model": "JA-CC30A",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.eu-en.yaml",
+      "model": "JE-100C",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.eu-en.yaml",
+      "model": "JE-500A",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.kr.yaml",
+      "model": "JE-1000F",
+      "region": "KR",
+      "lang": "ko"
+    },
+    {
+      "config": "configs/config.kr.yaml",
+      "model": "JE-2000E",
+      "region": "KR",
+      "lang": "ko"
+    },
+    {
+      "config": "configs/config.kr.yaml",
+      "model": "JE-3000C",
+      "region": "KR",
+      "lang": "ko"
+    },
+    {
+      "config": "configs/config.pt-br.yaml",
+      "model": "JE-1500D",
+      "region": "pt-BR",
+      "lang": "pt-BR"
+    },
+    {
+      "config": "configs/config.solar-eu-en.yaml",
+      "model": "JS-100I",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.solar-eu-en.yaml",
+      "model": "JS-40C",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.solar-eu-en.yaml",
+      "model": "JS-100F",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.solar-eu-en.yaml",
+      "model": "JS-200E",
+      "region": "EU",
+      "lang": "en"
+    },
+    {
+      "config": "configs/config.solar-eu-multilingual.yaml",
+      "model": "JS-100I",
+      "region": "EU",
+      "lang": null
+    }
+  ],
+  "failing_targets": [
+    {
+      "config": "configs/config.eu-uk.yaml",
+      "model": "JE-1000F",
+      "region": "EU",
+      "lang": "uk"
+    },
+    {
+      "config": "configs/config.zh.yaml",
+      "model": "JE-2000E",
+      "region": "CN",
+      "lang": null
+    }
   ]
 }

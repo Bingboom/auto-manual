@@ -82,9 +82,9 @@ class FetchRateLimitTests(unittest.TestCase):
 class FetchSessionTests(unittest.TestCase):
     def setUp(self) -> None:
         self.slept: list[float] = []
-        self.addCleanup(
-            patch.object(receipt, "sleep", side_effect=self.slept.append).start().stop
-        )
+        sleep_patcher = patch.object(receipt, "sleep", side_effect=self.slept.append)
+        self.addCleanup(sleep_patcher.stop)
+        sleep_patcher.start()
 
     def session(self, **kwargs) -> receipt.FetchSession:
         kwargs.setdefault("min_interval", 0)
@@ -220,6 +220,28 @@ class FetchSessionTests(unittest.TestCase):
             for _ in range(4):
                 self.assertEqual("abc", session.source_fingerprint(__file__))
         self.assertEqual(1, len(calls))
+
+
+class FetchSessionCleanupTests(unittest.TestCase):
+    def test_sleep_patch_is_restored_after_test_success_and_failure(self) -> None:
+        for fail in (False, True):
+            with self.subTest(fail=fail):
+                class CleanupProbe(FetchSessionTests):
+                    def runTest(self) -> None:
+                        receipt.sleep(0.25)
+                        self.assertEqual([0.25], self.slept)
+                        if fail:
+                            self.fail("deliberate failure")
+
+                original_sleep = receipt.sleep
+                self.addCleanup(setattr, receipt, "sleep", original_sleep)
+                result = unittest.TestResult()
+
+                CleanupProbe().run(result)
+
+                self.assertEqual([], result.errors)
+                self.assertEqual(int(fail), len(result.failures))
+                self.assertIs(original_sleep, receipt.sleep)
 
 
 if __name__ == "__main__":

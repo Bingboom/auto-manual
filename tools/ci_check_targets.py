@@ -53,6 +53,16 @@ class CheckResult:
 
 
 @dataclass(frozen=True)
+class TargetIdentity:
+    """A config can contain several models and languages; match the whole row."""
+
+    config: str
+    model: str
+    region: str
+    lang: str | None
+
+
+@dataclass(frozen=True)
 class CommandResult:
     returncode: int
     stdout: str = ""
@@ -211,7 +221,7 @@ def evaluate_targets(
     return tuple(results)
 
 
-def _load_ratchet_counts(path: Path) -> tuple[int, int | None]:
+def _load_ratchet_payload(path: Path) -> dict:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
@@ -223,7 +233,37 @@ def _load_ratchet_counts(path: Path) -> tuple[int, int | None]:
     fail_count = payload.get("fail_count")
     if fail_count is not None and not isinstance(fail_count, int):
         raise RuntimeError(f"ratchet file fail_count must be an integer when present: {path}")
-    return payload["skip_count"], fail_count
+    for key in ("skip_count", "fail_count"):
+        value = payload.get(key)
+        if value is not None and (type(value) is not int or value < 0):
+            raise RuntimeError(f"ratchet file {key} must be a non-negative integer: {path}")
+    return payload
+
+
+def _load_target_identities(payload: dict, key: str, count: int | None) -> frozenset[TargetIdentity] | None:
+    rows = payload.get(key)
+    if rows is None and key not in payload and payload.get("schema_version", 1) == 1:
+        return None  # Legacy count-only baselines remain supported.
+    if not isinstance(rows, list) or count is None:
+        raise RuntimeError(f"ratchet file must contain {key} and its count")
+    identities: set[TargetIdentity] = set()
+    for row in rows:
+        if (
+            not isinstance(row, dict)
+            or set(row) != {"config", "model", "region", "lang"}
+            or any(not isinstance(row[k], str) or not row[k].strip() for k in ("config", "model", "region"))
+            or (row["lang"] is not None and (not isinstance(row["lang"], str) or not row["lang"].strip()))
+        ):
+            raise RuntimeError(f"ratchet file {key} requires config/model/region/lang identities")
+        identities.add(TargetIdentity(**row))
+    if len(identities) != len(rows) or len(identities) != count:
+        raise RuntimeError(f"ratchet file {key} must contain exactly {count} unique targets")
+    return frozenset(identities)
+
+
+def _load_ratchet_counts(path: Path) -> tuple[int, int | None]:
+    payload = _load_ratchet_payload(path)
+    return payload["skip_count"], payload.get("fail_count")
 
 
 def load_skip_baseline(path: Path) -> int:
@@ -240,6 +280,8 @@ def build_report(
     *,
     baseline_skip_count: int,
     baseline_fail_count: int | None = None,
+    baseline_skipped_targets: frozenset[TargetIdentity] | None = None,
+    baseline_failing_targets: frozenset[TargetIdentity] | None = None,
 ) -> dict[str, object]:
     counts = {status: sum(result.status == status for result in results) for status in ("PASS", "SKIP", "FAIL")}
     denominator = counts["PASS"] + counts["SKIP"] + counts["FAIL"]
@@ -256,18 +298,30 @@ def build_report(
         },
         "results": [asdict(result) for result in results],
     }
-    # The FAIL ratchet is what makes the observation lane mean something. The
-    # lane runs with --observation, which reports FAIL rows without failing, so
-    # before this a target regressing from PASS to FAIL was invisible in CI —
-    # only the SKIP ratchet could turn the job red. The baseline records the
-    # failures that are already known and separately tracked; one more than
-    # that fails the run even in observation mode.
     if baseline_fail_count is not None:
         report["fail_ratchet"] = {
             "baseline": baseline_fail_count,
             "current": counts["FAIL"],
             "passed": counts["FAIL"] <= baseline_fail_count,
         }
+    for status, key, allowed in (
+        ("SKIP", "skip_ratchet", baseline_skipped_targets),
+        ("FAIL", "fail_ratchet", baseline_failing_targets),
+    ):
+        if allowed is None:
+            continue
+        if key not in report:
+            raise ValueError(f"{key} target identities require a count baseline")
+        unexpected = [
+            asdict(identity)
+            for result in results
+            if result.status == status
+            and (identity := TargetIdentity(result.config, result.model, result.region, result.lang)) not in allowed
+        ]
+        ratchet = report[key]
+        assert isinstance(ratchet, dict)
+        ratchet["unexpected_targets"] = unexpected
+        ratchet["passed"] = ratchet["passed"] and not unexpected
     return report
 
 
@@ -292,11 +346,14 @@ def run_driver(
         runner=runner,
         staging_root=staging_root,
     )
-    baseline, baseline_fail = _load_ratchet_counts(skip_baseline)
+    payload = _load_ratchet_payload(skip_baseline)
+    baseline, baseline_fail = payload["skip_count"], payload.get("fail_count")
     report = build_report(
         results,
         baseline_skip_count=baseline,
         baseline_fail_count=baseline_fail,
+        baseline_skipped_targets=_load_target_identities(payload, "skipped_targets", baseline),
+        baseline_failing_targets=_load_target_identities(payload, "failing_targets", baseline_fail),
     )
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -316,7 +373,7 @@ def run_driver(
     assert isinstance(ratchet, dict)
     if not ratchet["passed"]:
         _ERR.error(f"[ci-check-targets] SKIP ratchet failed: current={ratchet['current']} "
-            f"baseline={ratchet['baseline']}")
+            f"baseline={ratchet['baseline']} unexpected_targets={ratchet.get('unexpected_targets', [])}")
     fail_ratchet = report.get("fail_ratchet")
     fail_ratchet_failed = False
     if isinstance(fail_ratchet, dict) and not fail_ratchet["passed"]:
@@ -324,7 +381,8 @@ def run_driver(
         newly = [result for result in results if result.status == "FAIL"]
         print(
             f"[ci-check-targets] FAIL ratchet failed: current={fail_ratchet['current']} "
-            f"baseline={fail_ratchet['baseline']} — failing targets: "
+            f"baseline={fail_ratchet['baseline']} "
+            f"unexpected_targets={fail_ratchet.get('unexpected_targets', [])} — failing targets: "
             + ", ".join(f"{r.config} {r.document_key}" for r in newly),
             file=sys.stderr,
         )
@@ -347,7 +405,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--observation",
         action="store_true",
-        help="Report target FAIL rows without failing the observation lane; SKIP ratchet still fails",
+        help="Report baseline FAIL rows without failing; SKIP and FAIL ratchets still apply",
     )
     return parser.parse_args(argv)
 
