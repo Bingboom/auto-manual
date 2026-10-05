@@ -150,3 +150,9 @@ now fails admission. The remaining legacy inventory is 82 exceptions: 49
 individual tables, 27 App chapters and six warranty chapters. This is source
 coverage, not a claim that all six updated manuals have been republished.
 The connected-batteries image retains its documented resolution debt.
+
+The JBP-2000B EU French and Spanish connection pages now use shared callout
+components. French requires two `HB-CALLOUT-STRIP/note` instances; Spanish
+requires one caution and one note. Their three obsolete ordinary-table debt
+pins were removed when sealing the transparent-symbol repair on 2026-10-05.
+The required component counts remain independent of candidate inventories.

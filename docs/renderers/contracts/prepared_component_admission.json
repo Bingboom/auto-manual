@@ -525,16 +525,9 @@
         "connections_es.rst": {
           "slot": "connections_es",
           "components": {
-            "HB-CALLOUT-STRIP/caution": 1
-          },
-          "debt": [
-            {
-              "location": "6",
-              "kind": "table",
-              "sha256": "f703ec1a4dee21bf926402a6e14bb8ff5cb4b3e008659544ec5866ea227d2597",
-              "category": "callout-intake"
-            }
-          ]
+            "HB-CALLOUT-STRIP/caution": 1,
+            "HB-CALLOUT-STRIP/note": 1
+          }
         },
         "troubleshooting_es.rst": {
           "slot": "troubleshooting_es",
@@ -640,21 +633,9 @@
         },
         "connections_fr.rst": {
           "slot": "connections_fr",
-          "components": {},
-          "debt": [
-            {
-              "location": "5",
-              "kind": "table",
-              "sha256": "69fdd1ab8afb384b6398769a4abc78bd06f9e1ab3568b41b1812d74762724be8",
-              "category": "callout-intake"
-            },
-            {
-              "location": "7",
-              "kind": "table",
-              "sha256": "b0fdf6aee0738d9dd4bad069b93d3821bd6d8b11364aa8b2352df4225ac5f081",
-              "category": "callout-intake"
-            }
-          ]
+          "components": {
+            "HB-CALLOUT-STRIP/note": 2
+          }
         },
         "troubleshooting_fr.rst": {
           "slot": "troubleshooting_fr",
