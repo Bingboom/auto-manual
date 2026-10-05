@@ -20,6 +20,7 @@ from tools.rtd.page_metadata import (
 )
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.safe_copy import copytree_replace_no_symlinks
+from tools.rtd.web_baseline import apply_baselines, collect_baseline_pages, prepend_baseline, read_baselines
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
@@ -98,6 +99,7 @@ def catalog(root: Path, settings: dict) -> list[dict]:
             "image": product_image(source, root), "label": label,
             **publication_identity(root, source, model=model, region=region),
         })
+    apply_baselines(root, records)
     order = list(settings["categories"])
     records = group_publications(records, settings["language_labels"])
     return sorted(records, key=lambda p: (order.index(p["category"]), p["model"], p["region"]))
@@ -131,6 +133,8 @@ def portal_data(app) -> tuple[dict, list[dict]]:
 def prepare_catalog(app) -> None:
     # Populate before parallel page writers fork; a failed validation is never cached.
     portal_data(app)
+    if read_baselines(Path(app.srcdir)):
+        app.add_css_file("web-baseline.css")
 
 
 def clear_catalog_cache(app, exception) -> None:
@@ -224,9 +228,11 @@ def page_context(app, pagename, templatename, context, doctree):
                 app.add_js_file("manual-feedback.js")
             app.add_css_file("manual-locales.css")
             break
+        prepend_baseline(products, pagename, context)
         return None
     if not products:
         return None
+    context["web_baselines"] = read_baselines(Path(app.srcdir))
     context["portal"] = settings
     context["products"] = products
     context["site_nav"] = site_nav(app)
@@ -320,6 +326,7 @@ def setup(app):
     app.connect("builder-inited", prepare_catalog)
     app.connect("html-page-context", page_context)
     app.connect("html-collect-pages", collect_workspace_pages)
+    app.connect("html-collect-pages", collect_baseline_pages)
     # Generated conf.py copies manual assets at the default priority (500).
     app.connect("build-finished", copy_workspace_content, priority=800)
     app.connect("build-finished", write_search_index, priority=900)

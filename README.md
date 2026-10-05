@@ -111,3 +111,5 @@ Prepared EU Web admission and legacy migration debt: [shared-component admission
 旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
 
 Intake preparation: [source-copy work packets and shared-art review](code-as-doc/dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.
+
+网页统一发布基线与原说明书版本的关系见[网页发布基线](code-as-doc/dev/web_publish_pipeline.md#网页发布基线)。

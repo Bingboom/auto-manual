@@ -39,6 +39,7 @@ def make_corpus(products: list[dict], output_root: Path, *, source_sha256: str,
                 "name": product["name"], "url": url, "lang": lang,
                 "declared_lang": publication["lang"], "language_scope": publication["language_scope"],
                 "version": publication.get("version"), "html_sha256": html_sha256,
+                **({"web_baselines": publication["web_baselines"]} if publication.get("web_baselines") else {}),
                 "sections": sections, "coverage": coverage,
                 # Additive v1 identity/provenance (P1-1); older readers ignore them.
                 **variant_identity(model=product["model"], region="EU", lang=lang,

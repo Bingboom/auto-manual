@@ -663,3 +663,21 @@ and correctly rehashed IR with a removed binding. The pre-fix snapshot fails
 admission; the corrected ten books pass. These checks establish component
 coverage, not translation correctness or pixel-perfect layout: desktop/mobile
 preview and source comparison remain part of release acceptance.
+
+## 网页发布基线
+
+网页发布基线（如 V1.0）独立于单份说明书的原发布版本。Hello-Docs 的
+`docs/publish/sources/baselines/V1.0.json` 封存一批正式网页的原版本、语言身份、
+来源快照提交、发布清单哈希、完整源包和网页 Markdown 哈希。
+源包包含图片及原发布元数据；正文、图片、版本或语言身份改变后，当前网页不再
+显示旧基线标识。旧记录和 Git 快照保留，后续内容不得改写已发布基线记录。
+
+渲染器提供首页入口、各匹配说明书的基线标识以及
+`/releases/web/V1.0.html` 清单；清单保留原版本和历史源快照入口。
+历史混语页面保留“语言范围待确认”，封存不等于翻译或内容质量验收。
+EU Bot 查询导出附加 `web_baselines`，原 `version` 和来源凭据不变。
+
+操作顺序：核对 RTD 部署回执与 Hello-Docs 发布快照 → 生成基线记录及更新
+发布清单 → 用当前工程工具链严格构建并检查桌面／手机 → 提交仅含
+`docs/publish/**` 的发布候选 → 审核合入 → 验证 RTD 真实路由及查询数据。
+工程代码合入不代表基线已上线；基线不写飞书源表或改变印刷说明书版本。

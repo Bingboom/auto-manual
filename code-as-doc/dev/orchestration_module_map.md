@@ -772,3 +772,8 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 `component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.
 
 `component_specs/lcd_mode_source.py` owns standalone LCD image/action-matrix recognition, preserving authored headers through the shared reference table. `plain_inventory.py` admits complete three-item lists as well as one-row inventories. `app_label_source.py` preserves a separating note outside the explicitly bound shared panel.
+
+[`tools/rtd/web_baseline.py`](../../tools/rtd/web_baseline.py) reads immutable
+Web baseline records from the business snapshot and labels only matching source
+packages and Markdown. The portal owns page hooks and templates; baseline
+records never rewrite manual versions or language verification.

@@ -1,0 +1,29 @@
+.web-release-baseline,
+.web-baseline-page {
+  color: var(--hb-text, #202124);
+  overflow-wrap: anywhere;
+}
+.web-baseline-page .table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.web-baseline-page table {
+  min-width: 40rem;
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--hb-text, #202124);
+}
+.web-baseline-page th,
+.web-baseline-page td {
+  padding: .6rem;
+  border-bottom: 1px solid #d5d7da;
+  text-align: left;
+}
+.web-baseline-page th {
+  background: #f3f4f5;
+}
+
+.web-baseline-page th:last-child,
+.web-baseline-page td:last-child {
+  white-space: nowrap;
+}

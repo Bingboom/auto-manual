@@ -1,0 +1,11 @@
+{% extends "!page.html" %}
+{% block content %}
+<article class="web-baseline-page">
+<h1>网页发布基线 {{ baseline.version|e }}</h1>
+<p>本基线封存 {{ baseline_rows|length }} 个地区／语言版本。每份说明书的原发布版本、内容和语言身份保持原样。后续更新不自动属于本基线。</p>
+<p><a href="https://github.com/Bingboom/Hello-Docs/tree/{{ baseline.snapshot_commit|e }}/docs/publish">查看完整历史源快照</a> · <a href="{{ pathto('index') }}">当前说明书资料库</a></p>
+<div class="table-wrapper" tabindex="0" aria-label="网页基线版本清单"><table><thead><tr><th>型号</th><th>地区</th><th>语言</th><th>原发布版本</th><th>当前网页</th></tr></thead><tbody>
+{% for row in baseline_rows %}<tr><td>{{ row.model|e }}</td><td>{{ row.region|e }}</td><td>{{ row.lang|e }}{% if row.language_scope != 'single' %}（语言范围待确认）{% endif %}</td><td>{{ row.original_version|e }}</td><td>{% if row.current_matches %}<a href="{{ pathto(row.url, 1) }}">{{ baseline.version|e }}</a>{% else %}已更新或撤回，请查看历史源快照{% endif %}</td></tr>{% endfor %}
+</tbody></table></div>
+</article>
+{% endblock %}
