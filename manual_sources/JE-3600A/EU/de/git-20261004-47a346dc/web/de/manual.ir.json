@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "2ddb6f1fa1b412736f53d4a75d1ba9d598f8c21a7b6f1d527694b269e0720813",
-  "content_sha256": "0856a8ba05cf144a3204779193a3a56a6e3ae02099fd19bb072fb9d8b0bb940f",
+  "content_sha256": "530314f6723f082a8aae205795181b1827f485c9e4b926472ecccad0cf4b2a87",
   "language": "de",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -10250,7 +10250,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0008",
-          "content_sha256": "2a35f7798b25c805430be0e1c0a1b26730ea354a2803416079976ad7de2e5215",
+          "content_sha256": "091c23b3d8165cbccb4e80bbad9f561d9e29b240d8e8b620ff48b25f22214687",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10283,7 +10283,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden."
+                                    "text": "Wenn das Gerät nach dem Einschalten innerhalb von 2 Stunden nicht mit der App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -10329,7 +10329,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.",
+                  "content": "Wenn das Gerät nach dem Einschalten innerhalb von 2 Stunden nicht mit der App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

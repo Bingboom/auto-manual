@@ -6669,7 +6669,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos"
+              "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -6682,7 +6682,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "de salida CA."
+              "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto."
             }
           ],
           "schema_version": "manual-flow/v2"

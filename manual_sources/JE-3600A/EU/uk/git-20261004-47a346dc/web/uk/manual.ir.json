@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "da95801b2532a5f119c68405b35ff8ba2b60d0c5bf76f47934c2e13764197b6a",
-  "content_sha256": "a88d17ad44b29e1b99a32f9cef79cfbe4d4d275fb65136bd0b61f7f3e1380db0",
+  "content_sha256": "526e477c796f394ca58c88122311a5d350488bfc082139809ff22c7e3c8b1e87",
   "language": "uk",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -9288,13 +9288,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "123b3ec0b2bd71537e366ea01428811e1ce6d5379c56085d026445b72e71b285",
+          "content_sha256": "8d0249c2fc4bccf56aab6059932ab84f541ebcccaa38948255cc797fb6923593",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "① Продукт може заряджати акумулятор від розетки змінного"
+                "text": "① Продукт може заряджати акумулятор від розетки змінного струму, одночасно подаючи живлення через вихідні порти змінного струму."
               }
             ],
             "kind": "paragraph",
@@ -9305,13 +9305,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0005",
-          "content_sha256": "ec8fb09482faa6981df73b9510b15ab55c940734dc66a14f5d24e9578e41744a",
+          "content_sha256": "755f884aa1c9e9619b4ef8b8e6d3bbabd2e4c3d7a0701149594008e3769434eb",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "струму, одночасно подаючи живлення через вихідні порти"
+                "text": "② Вказує, що два або більше вихідних портів змінного струму працюють разом."
               }
             ],
             "kind": "paragraph",

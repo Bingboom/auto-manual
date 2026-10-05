@@ -134,7 +134,24 @@ replay reproduces the reviewed Markdown byte-for-byte for all nine languages.
 - Full frozen catalog preflight: 105 language targets; other 96 target metadata
   unchanged and existing source diffs restricted to JE-3600A/EU. Strict Sphinx
   with `myst_parser,tools.rtd.portal` successful; 2028-file deployment receipt
-  generated. Native source commit: `2a527aeaaa0c3b6732e77c66994d34793279557c`.
+  generated. Source receipts will be resealed at the corrected exact source commit before release.
 
 Engineering merge, mirror sync, publication merge and RTD/live acceptance are
 pending. No candidate or local page is claimed as published.
+
+## Aggregated-page source corrections before merge
+
+The aggregate browser review caught German and Italian App timeout paragraphs
+starting below the first native line. They now bind the full native text block,
+including the two-hour condition. A companion full-block audit checked all nine
+App timeout tips and both circled specification footnotes. Spanish, Ukrainian
+and Polish footnotes wrapped beyond the English rectangles; both numbered
+notes now retain their full native text. Ukrainian note ② continues below
+physical y=500, so capture follows its actual span geometry, not the nominal
+English body boundary. A standalone printed footer number is excluded.
+
+Only native copy bindings, derived IR/Markdown and corresponding input hashes
+change; artwork and shared component structure remain byte-identical. The
+corrected five languages pass strict Sphinx, and all nine repeat cold replay,
+fresh admission and tamper rejection. The full 5174-test result remains
+applicable to the unchanged production code; final-head CI is required again.

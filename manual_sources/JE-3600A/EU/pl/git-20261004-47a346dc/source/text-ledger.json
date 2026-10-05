@@ -2046,27 +2046,27 @@
       "id": "footnote-1",
       "page": 157,
       "bbox": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty ",
-      "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty"
+      "method": "native-complete-numbered-footnote",
+      "raw": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty \nwyjściowe AC.\n",
+      "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC."
     },
     {
       "id": "footnote-2",
       "page": 157,
       "bbox": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "wyjściowe AC.",
-      "text": "wyjściowe AC."
+      "method": "native-complete-numbered-footnote",
+      "raw": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą.",
+      "text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą."
     },
     {
       "id": "warranty-title",
@@ -2332,13 +2332,13 @@
       "id": "app-timeout",
       "page": 159,
       "bbox": [
-        85,
-        467,
-        344,
-        499
+        96.03130340576172,
+        469.7189025878906,
+        333.68182373046875,
+        492.67529296875
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i \nBluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB \noraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.",
+      "method": "native-complete-app-timeout-block",
+      "raw": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i \nBluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB \noraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.\n",
       "text": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i Bluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB oraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth."
     },
     {

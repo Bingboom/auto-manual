@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "a12500ed66cb8ed3f3a7dfa5899d493f9741819e8156cea1a9e765ea1a462130",
-  "content_sha256": "e38fce36d46365ad80ff8801d90a3800562007f1f8337ed9be0dfbe1d39f77fb",
+  "content_sha256": "30838a556c3c86ba72c64a679c745f03f125fbe71b59c48d725e9b3e670f8947",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -9320,13 +9320,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "554717ff20665fa77bfafad713a28f2ddb4b404c7f6d0121d8058e01db6844f0",
+          "content_sha256": "51161a729a52967f5eb41c93d4c6a2319e9ce45b64aed70ea0f55cb62e71de53",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos"
+                "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA."
               }
             ],
             "kind": "paragraph",
@@ -9337,13 +9337,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0005",
-          "content_sha256": "e2486954a5f085ffffefc7820a6a1e64962b8b30ce73b9e2ceac6cb49138fb2b",
+          "content_sha256": "8cd3792d02c667b17110d90ba41c373dde19b9fe06959a0f64150b29cb800d58",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "de salida CA."
+                "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto."
               }
             ],
             "kind": "paragraph",

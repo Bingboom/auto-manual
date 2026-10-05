@@ -374,8 +374,8 @@
     },
     {
       "path": "source-bindings.json",
-      "size": 171346,
-      "sha256": "94afdd3ce7abbed00c0ded372f3ff130a0573d8b8e211ad196714a409fd7c503"
+      "size": 171521,
+      "sha256": "d078eb15f101420b5607f9db90bda9dd755cf7c1c4d27d7cc9b51141e23ac5cb"
     },
     {
       "path": "source/admission-audit.json",
@@ -384,13 +384,13 @@
     },
     {
       "path": "source/bindings.json",
-      "size": 171346,
-      "sha256": "94afdd3ce7abbed00c0ded372f3ff130a0573d8b8e211ad196714a409fd7c503"
+      "size": 171521,
+      "sha256": "d078eb15f101420b5607f9db90bda9dd755cf7c1c4d27d7cc9b51141e23ac5cb"
     },
     {
       "path": "source/chapters.json",
-      "size": 315081,
-      "sha256": "aebf43dade55995d949287315cde2dcf01d2bdda17960db4e53560ac450c6bd1"
+      "size": 315150,
+      "sha256": "6e0bb2e97361bad3192c2fd9b15472e08a52fe7df093d97927995ff09a1332bc"
     },
     {
       "path": "source/component-copy.json",
@@ -409,8 +409,8 @@
     },
     {
       "path": "source/text-ledger.json",
-      "size": 99660,
-      "sha256": "d17e7c96d0f3f35c547b92cd466b95a61dc426427f60899f7b093fff34c61912"
+      "size": 99835,
+      "sha256": "2f18f286972f95754ab51c29cfc5ac24f38ab369f1220de204dcbd1367d646e7"
     },
     {
       "path": "source/visual-transcription.json",
@@ -709,13 +709,13 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 433287,
-      "sha256": "2925c3ca5571f50ae9c3e691a37ef62f1d58ff0a852981060142904f118c6975"
+      "size": 433356,
+      "sha256": "4c95f929a3502cfaa0a7210a7f31041f0ddd12163c5b85581918f26dfc9877f2"
     },
     {
       "path": "web/es/manual_je3600a_eu_es.md",
-      "size": 72767,
-      "sha256": "331ef2c09b4720062580bd66ea435480f1e57379390f0db2f10639ac271da2a1"
+      "size": 72836,
+      "sha256": "8b6514bd41923d5c8970da02270d1ddaf24c236a9acbc1422d7930d825acf8c3"
     }
   ]
 }

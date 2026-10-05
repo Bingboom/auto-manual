@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 55,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos ",
-      "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos \n     de salida CA.\n",
+      "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 55,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "     de salida CA.",
-      "text": "de salida CA.",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "② Indica que dos o más puertos de salida CA trabajan en conjunto.",
+      "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 57,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        106.2197036743164,
+        477.74029541015625,
+        320.6278076171875,
+        492.93829345703125
       ],
-      "raw_text": "Después de estar encendido, si la APP no se conecta en 2 horas, el dispositivo \ndesactivará automáticamente el Wi-Fi y el Bluetooth.",
+      "raw_text": "Después de estar encendido, si la APP no se conecta en 2 horas, el dispositivo \ndesactivará automáticamente el Wi-Fi y el Bluetooth.\n",
       "text": "Después de estar encendido, si la APP no se conecta en 2 horas, el dispositivo desactivará automáticamente el Wi-Fi y el Bluetooth.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {

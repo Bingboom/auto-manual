@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 157,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty ",
-      "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty \nwyjściowe AC.\n",
+      "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 157,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "wyjściowe AC.",
-      "text": "wyjściowe AC.",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą.",
+      "text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 159,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        96.03130340576172,
+        469.7189025878906,
+        333.68182373046875,
+        492.67529296875
       ],
-      "raw_text": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i \nBluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB \noraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.",
+      "raw_text": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i \nBluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB \noraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.\n",
       "text": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i Bluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB oraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {

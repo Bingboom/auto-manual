@@ -2046,25 +2046,25 @@
       "id": "footnote-1",
       "page": 89,
       "bbox": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.",
+      "method": "native-complete-numbered-footnote",
+      "raw": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.\n",
       "text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA."
     },
     {
       "id": "footnote-2",
       "page": 89,
       "bbox": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "raw": "② Indica che due o più porte di uscita CA funzionano insieme.",
       "text": "② Indica che due o più porte di uscita CA funzionano insieme."
     },
@@ -2332,14 +2332,14 @@
       "id": "app-timeout",
       "page": 91,
       "bbox": [
-        85,
-        467,
-        344,
-        499
+        104.22219848632812,
+        463.1299743652344,
+        327.78997802734375,
+        494.3240051269531
       ],
-      "method": "native-complete-lines-pending-source-check",
-      "raw": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth.",
-      "text": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth."
+      "method": "native-complete-app-timeout-block",
+      "raw": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva \nautomaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth.\n",
+      "text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth."
     },
     {
       "id": "app-2.3",

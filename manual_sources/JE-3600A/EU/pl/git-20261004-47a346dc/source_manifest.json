@@ -358,8 +358,8 @@
     },
     {
       "path": "source-bindings.json",
-      "size": 174017,
-      "sha256": "6805ab79097ab16b0453abd084c7ef5960ab6f807419754a9667508d6a0be65b"
+      "size": 174211,
+      "sha256": "6652c7b311218a2d73e9bd1646035ee4e23d76fe681de9ed74c495cb028cd033"
     },
     {
       "path": "source/admission-audit.json",
@@ -368,13 +368,13 @@
     },
     {
       "path": "source/bindings.json",
-      "size": 174017,
-      "sha256": "6805ab79097ab16b0453abd084c7ef5960ab6f807419754a9667508d6a0be65b"
+      "size": 174211,
+      "sha256": "6652c7b311218a2d73e9bd1646035ee4e23d76fe681de9ed74c495cb028cd033"
     },
     {
       "path": "source/chapters.json",
-      "size": 317404,
-      "sha256": "62a7e74d38f6d75a396ed21df065fa71cd55052b56edb94a3588dbe04a574a31"
+      "size": 317484,
+      "sha256": "2f0def2679851acc8d364532722fa12b0da07d9af97b2bc9403718afa555e0f9"
     },
     {
       "path": "source/component-copy.json",
@@ -393,8 +393,8 @@
     },
     {
       "path": "source/text-ledger.json",
-      "size": 101653,
-      "sha256": "8f33c9951cc82f272eedf47c3f0197588b8552bd463f36b4da4b72f18631166e"
+      "size": 101847,
+      "sha256": "ec01314ad7446529207559a476f50722f938ea2c5461a7342d8cefcd0ad1b711"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -688,13 +688,13 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 434892,
-      "sha256": "078c9db6b8e6274d312506b3b3610c040eca734a7e6177f04333c073e3eae55a"
+      "size": 434972,
+      "sha256": "9bc19733a0fd1789ac7fa73773679e39bbc62a9675e2a2da3795198c492759e4"
     },
     {
       "path": "web/pl/manual_je3600a_eu_pl.md",
-      "size": 73813,
-      "sha256": "bad1da7cf746a53359ad0da8485412bc76d6f0bec965ccdbd07ec260eeb0dfe1"
+      "size": 73893,
+      "sha256": "c19a003c2d582247a87b754dcb90bd1fd2a0baec54492e85cd21b48063098efb"
     }
   ]
 }

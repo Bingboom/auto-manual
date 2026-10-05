@@ -148,9 +148,9 @@
 
 <p>※ USB Type-C® y USB-C® son marcas registradas de USB Implementers Forum.</p>
 
-<p>① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos</p>
+<p>① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de salida CA.</p>
 
-<p>de salida CA.</p>
+<p>② Indica que dos o más puertos de salida CA trabajan en conjunto.</p>
 
 # GARANTÍA
 

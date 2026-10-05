@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 89,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.",
+      "raw_text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.\n",
       "text": "① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 89,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
       "raw_text": "② Indica che due o più porte di uscita CA funzionano insieme.",
       "text": "② Indica che due o più porte di uscita CA funzionano insieme.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 91,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        104.22219848632812,
+        463.1299743652344,
+        327.78997802734375,
+        494.3240051269531
       ],
-      "raw_text": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth.",
-      "text": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth.",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva \nautomaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth.\n",
+      "text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth.",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {

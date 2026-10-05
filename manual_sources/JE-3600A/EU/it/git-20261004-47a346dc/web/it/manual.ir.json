@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "89e9bc51de0e66f7f03997857fd87d8ffe4405c743f2363a1e65c1f93ba34a58",
-  "content_sha256": "683a8369dcb13d87dddd3f12aefd1b8c6edbbcfb907af5190f835d12088e4b7e",
+  "content_sha256": "85936d1a87f0b8ac133832b26f5980b621ad15c5d20f173c37abce9ca3b3603e",
   "language": "it",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -10262,7 +10262,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0008",
-          "content_sha256": "bfc69972a6d85585e389886b802f902bb6239cf5565dccee98c9c69c878ad0dd",
+          "content_sha256": "94916035bdcf87a4f1fc7b099101731cdf1dccf55724aa62adaf86c425c4816f",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -10295,7 +10295,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth."
+                                    "text": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -10341,7 +10341,7 @@
                   "role": "label"
                 },
                 {
-                  "content": "automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth.",
+                  "content": "Dopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva automaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante di alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e Bluetooth.",
                   "content_kind": "rich_text",
                   "role": "body"
                 }

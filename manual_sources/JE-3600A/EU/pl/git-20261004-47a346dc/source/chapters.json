@@ -6669,7 +6669,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty"
+              "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -6682,7 +6682,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "wyjściowe AC."
+              "text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą."
             }
           ],
           "schema_version": "manual-flow/v2"

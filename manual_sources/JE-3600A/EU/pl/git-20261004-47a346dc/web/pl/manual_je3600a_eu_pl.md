@@ -148,9 +148,9 @@
 
 <p>※ USB Type-C® i USB-C® są zastrzeżonymi znakami towarowymi organizacji USB Implementers Forum.</p>
 
-<p>① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty</p>
+<p>① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC.</p>
 
-<p>wyjściowe AC.</p>
+<p>② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą.</p>
 
 # GWARANCJA
 

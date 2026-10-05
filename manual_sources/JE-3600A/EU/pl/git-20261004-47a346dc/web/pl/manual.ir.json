@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "c9805b9c98cf054d4f6d2eaef3f3badf5eca544abbf0f3c86338f42236470862",
-  "content_sha256": "095e7acffdecdca233af97d014609e24bb996c31da8fd6a962eb250a6f581d68",
+  "content_sha256": "5e5b55738bb10490563f6b25a2b9050313fb344c1d8c136051346ab257e65fa9",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -9288,13 +9288,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "5955e42cbebb29576fe3fc3f1101f6b1e2ba2dfde06bc3bbad59075041b02202",
+          "content_sha256": "241fb17a916715a34c2a5ac5f29c9aeaebcd108ac75a69a91089e797970eaea6",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty"
+                "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC."
               }
             ],
             "kind": "paragraph",
@@ -9305,13 +9305,13 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0005",
-          "content_sha256": "2546037b955aa18d579af91e5f1e1daf6de80eba6bbe93304b1e4c8cf928916b",
+          "content_sha256": "526dba2b6d6bc2c4d4e69d7970f0e7739c932bd211c2e63e5a762ec5600114c7",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "wyjściowe AC."
+                "text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą."
               }
             ],
             "kind": "paragraph",

@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 72,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① Das Produkt kann den Akku über die Steckdose aufladen und gleichzeitig Strom über die AC-Ausgangsports liefern.",
+      "raw_text": "① Das Produkt kann den Akku über die Steckdose aufladen und gleichzeitig Strom über die AC-Ausgangsports liefern.\n",
       "text": "① Das Produkt kann den Akku über die Steckdose aufladen und gleichzeitig Strom über die AC-Ausgangsports liefern.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 72,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
       "raw_text": "② Zeigt an, dass zwei oder mehr AC-Ausgangsanschlüsse gemeinsam arbeiten.",
       "text": "② Zeigt an, dass zwei oder mehr AC-Ausgangsanschlüsse gemeinsam arbeiten.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 74,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        106.220703125,
+        463.13037109375,
+        324.05853271484375,
+        494.32440185546875
       ],
-      "raw_text": "App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum \nerneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste \nund die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.",
-      "text": "App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "Wenn das Gerät nach dem Einschalten innerhalb von 2 Stunden nicht mit der \nApp verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum \nerneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste \nund die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.\n",
+      "text": "Wenn das Gerät nach dem Einschalten innerhalb von 2 Stunden nicht mit der App verbunden wird, schaltet es WLAN und Bluetooth automatisch aus. Zum erneuten Einschalten von WLAN und Bluetooth müssen nun die USB-Stromtaste und die AC-Stromtaste gleichzeitig gedrückt und gehalten werden.",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {

@@ -2496,14 +2496,14 @@
       "english_binding": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
       "physical_page": 106,
       "bbox_pt": [
-        28,
-        475,
-        340,
-        484
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "① Продукт може заряджати акумулятор від розетки змінного ",
-      "text": "① Продукт може заряджати акумулятор від розетки змінного",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "① Продукт може заряджати акумулятор від розетки змінного \nструму, одночасно подаючи живлення через вихідні порти \nзмінного струму.\n",
+      "text": "① Продукт може заряджати акумулятор від розетки змінного струму, одночасно подаючи живлення через вихідні порти змінного струму.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2512,14 +2512,14 @@
       "english_binding": "② Indicates that two or more AC output ports work together.",
       "physical_page": 106,
       "bbox_pt": [
-        28,
-        484,
-        340,
-        493
+        25,
+        472,
+        334,
+        524
       ],
-      "raw_text": "струму, одночасно подаючи живлення через вихідні порти ",
-      "text": "струму, одночасно подаючи живлення через вихідні порти",
-      "method": "native-complete-lines-pending-source-check",
+      "raw_text": "② Вказує, що два або більше вихідних портів змінного струму \nпрацюють разом.",
+      "text": "② Вказує, що два або більше вихідних портів змінного струму працюють разом.",
+      "method": "native-complete-numbered-footnote",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
@@ -2848,14 +2848,14 @@
       "english_binding": "After the device is turned on and not connected to the App within 2 hours, it will automatically turn off Wi-Fi and Bluetooth. Now it is required to press and hold USB power button and AC power button to turn on Wi-Fi and Bluetooth again.",
       "physical_page": 108,
       "bbox_pt": [
-        85,
-        467,
-        344,
-        499
+        96.03130340576172,
+        469.71942138671875,
+        332.6017761230469,
+        492.6758117675781
       ],
-      "raw_text": "Після ввімкнення пристрою, якщо протягом 2 годин його не підключено до застосунку, \nвін автоматично вимкне Wi-Fi та Bluetooth. Тепер потрібно натиснути та утримувати \nкнопку живлення USB та кнопку живлення AC, щоб знову увімкнути Wi-Fi та Bluetooth.",
+      "raw_text": "Після ввімкнення пристрою, якщо протягом 2 годин його не підключено до застосунку, \nвін автоматично вимкне Wi-Fi та Bluetooth. Тепер потрібно натиснути та утримувати \nкнопку живлення USB та кнопку живлення AC, щоб знову увімкнути Wi-Fi та Bluetooth.\n",
       "text": "Після ввімкнення пристрою, якщо протягом 2 годин його не підключено до застосунку, він автоматично вимкне Wi-Fi та Bluetooth. Тепер потрібно натиснути та утримувати кнопку живлення USB та кнопку живлення AC, щоб знову увімкнути Wi-Fi та Bluetooth.",
-      "method": "native-complete-lines-pending-source-check",
+      "method": "native-complete-app-timeout-block",
       "review_status": "native-captured-pending-complete-source-check"
     },
     {
