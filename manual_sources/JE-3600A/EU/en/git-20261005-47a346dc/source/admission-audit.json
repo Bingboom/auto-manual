@@ -1,0 +1,140 @@
+{
+  "profile": "prepared-shared-components/v1",
+  "target": {
+    "model": "JE-3600A",
+    "region": "EU",
+    "language": "en"
+  },
+  "components": {
+    "HB-CALLOUT-STRIP": 14,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 14,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-SPECIAL-OPERATION": 2,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1,
+    "HB-SPECIAL-APP": 3
+  },
+  "variants": {
+    "HB-CALLOUT-STRIP/warning": 1,
+    "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+    "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+    "HB-SPECIAL-INBOX/three-card-responsive": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 14,
+    "HB-TABLE-LCD-ICON/icon-catalog": 1,
+    "HB-SPECIAL-OPERATION/status-right": 2,
+    "HB-CALLOUT-STRIP/caution": 8,
+    "HB-CALLOUT-STRIP/note": 5,
+    "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+    "HB-TABLE-KEY-COMBINATIONS/three-column": 1,
+    "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+    "HB-TABLE-SPEC/vertical": 4,
+    "HB-WARRANTY-LEAD/intro-panel": 1,
+    "HB-WARRANTY-SECTION/rounded-card": 5,
+    "HB-WARRANTY-YEARS/numeric-badges": 1,
+    "HB-SPECIAL-APP/download": 1,
+    "HB-SPECIAL-APP/inline-control": 1,
+    "HB-SPECIAL-APP/add-device": 1
+  },
+  "pages": {
+    "introduction": {},
+    "safety": {
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/warning": 1
+    },
+    "symbols": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+    },
+    "in_the_box": {
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-INBOX/three-card-responsive": 1
+    },
+    "product_overview": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+    },
+    "lcd_display": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-ICON/icon-catalog": 1
+    },
+    "operations": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+      "HB-SPECIAL-OPERATION": 2,
+      "HB-SPECIAL-OPERATION/status-right": 2,
+      "HB-CALLOUT-STRIP": 2,
+      "HB-CALLOUT-STRIP/caution": 1,
+      "HB-CALLOUT-STRIP/note": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-KEY-COMBINATIONS/three-column": 1
+    },
+    "ups": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/caution": 1
+    },
+    "connections": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/caution": 1
+    },
+    "charging": {
+      "HB-CALLOUT-STRIP": 5,
+      "HB-CALLOUT-STRIP/note": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3,
+      "HB-CALLOUT-STRIP/caution": 4
+    },
+    "storage": {},
+    "troubleshooting": {
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-TABLE-TROUBLESHOOTING/two-column": 1
+    },
+    "specifications": {
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SPEC/vertical": 4
+    },
+    "warranty": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-LEAD/intro-panel": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-SECTION/rounded-card": 5,
+      "HB-WARRANTY-YEARS": 1,
+      "HB-WARRANTY-YEARS/numeric-badges": 1
+    },
+    "app_setup": {
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-APP/download": 1,
+      "HB-SPECIAL-APP/inline-control": 1,
+      "HB-SPECIAL-APP/add-device": 1,
+      "HB-CALLOUT-STRIP": 4,
+      "HB-CALLOUT-STRIP/note": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+      "HB-CALLOUT-STRIP/caution": 1
+    },
+    "eu-declaration": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+    }
+  },
+  "legacy_debt": [],
+  "governed_finished_panels": [],
+  "issues": []
+}
