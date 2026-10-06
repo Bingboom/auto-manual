@@ -2619,3 +2619,5 @@ ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样�
 Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/list/image/paragraph 表达，使用共享 `hb-package-panel` 样式绘制完整外框、原生配件名称和 availability capsule。先复用已核对配件图；冻结副本必须与记录的共用源 hash 一致。旧整图标记 `superseded-do-not-reuse`，不参与当前原稿图片覆盖；微型文档封面替换为共用文档图标时单独记录 illustration-only omission，并保留原生配件名称。
 
 原稿中的独立深色胶囊正文提示可用 `p.hb-prose-pill > strong` 冻结到 Manual Flow；保留完整原文并拆成独立段落，共享 CSS 负责圆角、字色和窄屏换行。
+
+图内说明使用现有 ReferenceFigure 的 `base-art-live-copy` 和来源坐标；保留底图原字节，去掉图外重复段落。完整有框插图可套 `hb-reference-contained-copy`，在手机上保留同一图框内的可读文字。

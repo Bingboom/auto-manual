@@ -1821,7 +1821,21 @@
     ],
     "final_path": "assets/charge120.png",
     "sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
-    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay",
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          57.65,
+          79.53,
+          38.3,
+          14.3
+        ]
+      }
+    ],
+    "reuse_status": "reuse-current-frame-complete-art-byte-identical",
+    "web_copy_policy": "Native caption at lower right on desktop; readable caption inside same gray frame on mobile. No separate duplicate paragraph."
   },
   {
     "slot": "charge240",

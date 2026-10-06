@@ -3977,3 +3977,28 @@ figure:has(> img.hb-readable-diagram) {
   line-height: 1.35;
 }
 #furo-main-content p.hb-prose-pill strong { color: inherit; }
+
+/* Complete framed art with a native inset caption: keep readable mobile copy
+   inside the same panel, while preserving every pixel of the approved art. */
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-art-panel {
+    background: var(--hb-panel-fill);
+    border-radius: var(--hb-panel-radius);
+    overflow: hidden;
+  }
+  #furo-main-content .hb-reference-contained-copy .hb-reference-live-label {
+    margin: 0.35rem 0.8rem 0.7rem;
+  }
+}
+@media (min-width: 761px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-live-label {
+    font-size: 1.9cqw;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-art-panel > .hb-reference-art {
+    /* Only a source-declared crop's exterior page bleed; default masks none. */
+    clip-path: inset(0 0 var(--hb-art-page-bleed-bottom, 0%) 0);
+  }
+}

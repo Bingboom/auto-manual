@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-charging2"
+    "technical_version": "git-20261005-31fd0692-charge120"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -129,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 106812,
-      "sha256": "ddc3773e3666c3aa773c02f261977a2cf845504540d1b3dbe2505324cd2d33e4"
+      "size": 107270,
+      "sha256": "407bc72b9598463219ced6c9000e30d60447b9f565c756a69cf56d4da6807fbe"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 492025,
-      "sha256": "2b54770fc5766b857b55c005a6b968a4e795999b3c5cd95c7531dfc16bef0a8f"
+      "size": 496996,
+      "sha256": "7690bfad1b0a3faee8e1428bef6c83b64f8bd5f92f1147a0041e8dc2e4259035"
     },
     {
       "path": "source/coverage_audit.json",
@@ -214,8 +214,8 @@
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "size": 108248,
-      "sha256": "5cb90a737d74503ba51d4a3db5b3b323a81d920ed86281c002a4a9cc6ca71059"
+      "size": 109167,
+      "sha256": "ec7ed9e1be4cbeb2904a1d656b4f83aa3c171a7d1a5250705bd8366a71fa90c8"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 663642,
-      "sha256": "03982882f0a158d08a172ecc79b0bce9dff1d2519bd64e0ba09fd003260f4dd2"
+      "size": 668577,
+      "sha256": "89d1d23cf6d1e0082c3e81aa3e1cc095d07ddb09f68a5df868e37e96fa350582"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 106443,
-      "sha256": "1e41e6f5a6abeb1bf424c759a828b31baa80237222fdc639e3f4b0f0dc39795e"
+      "size": 107530,
+      "sha256": "513037ac84d98c6bd59675f1edbe46c4d10376ccd7d9ae0b6bc50d2b07cee655"
     }
   ],
   "repo_inputs": [
@@ -971,8 +971,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_source_panels.css",
-      "size": 11838,
-      "sha256": "f129de7e002b2883e917ed164e1c5dce9bf3e6ad0d4e8c9c2201fa75c17723fd"
+      "size": 12757,
+      "sha256": "ea3cca627470d7422be1b6ee51cbd5e8b1c28801873c3c61be45af4eeb9308ba"
     },
     {
       "path": "docs/renderers/contracts/web_symbols_fcc_components.css",

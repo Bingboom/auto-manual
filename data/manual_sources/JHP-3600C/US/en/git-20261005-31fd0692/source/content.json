@@ -4808,27 +4808,150 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/charge120.png",
-          "alt": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+          "schema_version": "manual-flow/v2",
+          "kind": "group",
+          "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                "class": "hb-reference-contained-copy",
+                "style": "--hb-art-page-bleed-bottom:1.9%;"
               }
             }
           },
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
           "children": [
             {
-              "kind": "text",
-              "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "source/content.json#reference-charge120",
+                "language": "en",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "charge120"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "120V AC charging cable connection to power station and wall outlet"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+                        "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/charge120.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "capture_following_lines": 1,
+                  "captions_embedded": false,
+                  "captions_origin": "carrier",
+                  "caption_centers_pct": null,
+                  "composite_locale": "",
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
+                    "panel_top": 0,
+                    "panel_fill": "#eaebec",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          57.65,
+                          79.53,
+                          38.3,
+                          14.3
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "assets/charge120.png",
+                  "web_replace_key": "reference.charge120",
+                  "source_fragment_sha256": "745df4a7ea075ce41c64f033431fb9f1878294233924d1bf9196b8fa897804b6"
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/charge120.png",
+                  "alt": "120V AC charging cable connection to power station and wall outlet",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "hb-source-reference"
+                        ],
+                        "data-reference": "{\"id\": \"charge120\", \"web_replace_key\": \"reference.charge120\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"labels\": [{\"line\": 0, \"rect\": [57.65, 79.53, 38.3, 14.3]}]}}"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line-block"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": [
+                              "line"
+                            ]
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "component",

@@ -333,9 +333,7 @@
 
 ## CHARGING VIA 120V AC WALL OUTLET
 
-<img alt="Connect the AC charging cable to the AC input port of the product and a wall outlet." src="assets/charge120.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
-
-<p>Connect the AC charging cable to the AC input port of the product and a wall outlet.</p>
+<div class="hb-reference-contained-copy" style="--hb-art-page-bleed-bottom:1.9%;"><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="charge120" data-source-fragment-sha256="745df4a7ea075ce41c64f033431fb9f1878294233924d1bf9196b8fa897804b6" data-web-base-art-ref="assets/charge120.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.charge120"><div class="hb-reference-semantic" data-preserve-art-frame="true" data-reference-id="charge120.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#eaebec"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "charge120", "web_replace_key": "reference.charge120", "capture_following_lines": 1, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb", "panel_top": 0, "panel_fill": "#eaebec", "preserve_frame": true, "labels": [{"line": 0, "rect": [57.65, 79.53, 38.3, 14.3]}]}}' src="assets/charge120.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:57.65%;--hb-y:79.53%;--hb-width:38.3%;--hb-height:14.3%">Connect the AC charging cable to the AC input port of the product and a wall outlet.</span></div></div></figure></div>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><p>Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.</p></td></tr></tbody></table>
 

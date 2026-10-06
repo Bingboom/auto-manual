@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "8c6abbd56a073889b2d1655af74498cc0dd6516ec17e3e2c78adf22fda6264fa",
-  "content_sha256": "0c0ed2e06903ddce33d9b6b7eeb44f2d30a8ab61ec9e01e361199cffcb454fee",
+  "bundle_sha256": "6f1fc450266782a0399256b34d8ee07b21615d7e5c2395beef3a455be2b8d4e5",
+  "content_sha256": "5fc83fe476a2a6de15379df89d34475d39f7e92ebb0965103b496cfb4fbb3ee7",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -209,13 +209,13 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 223,
+    "block_count": 222,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE": 3,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -1435,7 +1435,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "5cb90a737d74503ba51d4a3db5b3b323a81d920ed86281c002a4a9cc6ca71059",
+    "frozen_stylesheet_sha256": "ec7ed9e1be4cbeb2904a1d656b4f83aa3c171a7d1a5250705bd8366a71fa90c8",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -7896,43 +7896,159 @@
             "assets/charge120.png"
           ],
           "block_id": "charging:block-0006",
-          "content_sha256": "fedd6b03349dc1764cc3aa9f96c5dd1c5334006eb3bec7a99a70efd32ccd5094",
+          "content_sha256": "5003ca36b097dee759cd0b5d7bb5d13e1aa8003b392d345092ffe76ad1561033",
           "kind": "flow",
           "payload": {
-            "alt": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
-            "kind": "image",
+            "children": [
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "120V AC charging cable connection to power station and wall outlet",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"charge120\", \"web_replace_key\": \"reference.charge120\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"labels\": [{\"line\": 0, \"rect\": [57.65, 79.53, 38.3, 14.3]}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/charge120.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/charge120.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
+                      "labels": [
+                        {
+                          "line": 0,
+                          "rect": [
+                            57.65,
+                            79.53,
+                            38.3,
+                            14.3
+                          ]
+                        }
+                      ],
+                      "panel_fill": "#eaebec",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 1,
+                    "composite_locale": "",
+                    "image_key": "assets/charge120.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "745df4a7ea075ce41c64f033431fb9f1878294233924d1bf9196b8fa897804b6",
+                    "web_replace_key": "reference.charge120"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "charge120",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "120V AC charging cable connection to power station and wall outlet",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+                          "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "source/content.json#reference-charge120",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                  "class": "hb-reference-contained-copy",
+                  "style": "--hb-art-page-bleed-bottom:1.9%;"
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/charge120.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-6"
         },
         {
           "asset_refs": [],
           "block_id": "charging:block-0007",
-          "content_sha256": "49882d71af47b1ef459a8e8f39f79c268ef8793d68546bd01220fb46fecc4d3c",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/charging#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "charging:block-0008",
           "content_sha256": "33293ee9d5cd2e6fa970cb1d0ca4e160a9ceef0ad4ba14682a0669f51a4f4bc0",
           "kind": "flow",
           "payload": {
@@ -8026,11 +8142,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-8"
+          "source_ref": "native-pdf/charging#block-7"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0009",
+          "block_id": "charging:block-0008",
           "content_sha256": "bbf0de984c261fc6075bd8355c39a73d32e200bd318e460a790a7438eb50f0ff",
           "kind": "flow",
           "payload": {
@@ -8044,11 +8160,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-9"
+          "source_ref": "native-pdf/charging#block-8"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0010",
+          "block_id": "charging:block-0009",
           "content_sha256": "245ba77154d08dff4687c6e925c10fb15b3f172c3eab06cf655d1c15e2fe396a",
           "kind": "flow",
           "payload": {
@@ -8061,11 +8177,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-10"
+          "source_ref": "native-pdf/charging#block-9"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0011",
+          "block_id": "charging:block-0010",
           "content_sha256": "31c483ea869c3eab0a2e79a306f594460c9b10cb5fe167363503919442b23a06",
           "kind": "flow",
           "payload": {
@@ -8089,13 +8205,13 @@
             },
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-11"
+          "source_ref": "native-pdf/charging#block-10"
         },
         {
           "asset_refs": [
             "assets/charge240.png"
           ],
-          "block_id": "charging:block-0012",
+          "block_id": "charging:block-0011",
           "content_sha256": "e8b851571134be7283d63fce25931939d55380b85a5c153a22920591d240a336",
           "kind": "flow",
           "payload": {
@@ -8111,11 +8227,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/charge240.png"
           },
-          "source_ref": "native-pdf/charging#block-12"
+          "source_ref": "native-pdf/charging#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0013",
+          "block_id": "charging:block-0012",
           "content_sha256": "6082682141f88dc4fb6816b9b2d2bb1d81220d88210e11d822af430136cb26df",
           "kind": "flow",
           "payload": {
@@ -8128,11 +8244,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-13"
+          "source_ref": "native-pdf/charging#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0014",
+          "block_id": "charging:block-0013",
           "content_sha256": "07e501b64d613ac2082e78a704008f0c0254a0c8e8c75f39a5280aeb9b8b8e7b",
           "kind": "flow",
           "payload": {
@@ -8249,11 +8365,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-14"
+          "source_ref": "native-pdf/charging#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0015",
+          "block_id": "charging:block-0014",
           "content_sha256": "fe30f74a316e3f24a1190272a818042103c4de66a6b3bcd2adb7e38fab37058e",
           "kind": "flow",
           "payload": {
@@ -8277,11 +8393,11 @@
             },
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-15"
+          "source_ref": "native-pdf/charging#block-14"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0016",
+          "block_id": "charging:block-0015",
           "content_sha256": "639a9c55dd751b5a69f9eff7d34640f30bcff1f9aebdcb1cb7fcac0966c5ba85",
           "kind": "flow",
           "payload": {
@@ -8294,11 +8410,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-16"
+          "source_ref": "native-pdf/charging#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0017",
+          "block_id": "charging:block-0016",
           "content_sha256": "37ee1d78c18322a55297c04c18d232d9db4aa943429b78da86533a06d4348ce5",
           "kind": "flow",
           "payload": {
@@ -8392,11 +8508,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-17"
+          "source_ref": "native-pdf/charging#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0018",
+          "block_id": "charging:block-0017",
           "content_sha256": "9fffbb83adf70986f42c180daa5a43df61e90cb971fa776d8d8b3df91d8ba0c6",
           "kind": "flow",
           "payload": {
@@ -8409,13 +8525,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-18"
+          "source_ref": "native-pdf/charging#block-17"
         },
         {
           "asset_refs": [
             "assets/ats_app.png"
           ],
-          "block_id": "charging:block-0019",
+          "block_id": "charging:block-0018",
           "content_sha256": "615bdfafa3eb1fd05937ecfe4c6b6b65e33d6b7f9fb385a8ee522200091575a0",
           "kind": "flow",
           "payload": {
@@ -8431,11 +8547,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/ats_app.png"
           },
-          "source_ref": "native-pdf/charging#block-19"
+          "source_ref": "native-pdf/charging#block-18"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0020",
+          "block_id": "charging:block-0019",
           "content_sha256": "943465f7fd9a247ed7cefd2db8d4c83bbd0ab32652c6bb0a71f9975047b779ee",
           "kind": "flow",
           "payload": {
@@ -8529,11 +8645,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-20"
+          "source_ref": "native-pdf/charging#block-19"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0021",
+          "block_id": "charging:block-0020",
           "content_sha256": "64b60e728358232acb7c95d9720ae0807d441ffc26f59d9e9fad5835d2548874",
           "kind": "flow",
           "payload": {
@@ -8583,11 +8699,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-21"
+          "source_ref": "native-pdf/charging#block-20"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0022",
+          "block_id": "charging:block-0021",
           "content_sha256": "7ac967c14b6c0252d0e5fd2779de4fa9dabe3cd2b79efacf873dc4a3930271b1",
           "kind": "flow",
           "payload": {
@@ -8600,13 +8716,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-22"
+          "source_ref": "native-pdf/charging#block-21"
         },
         {
           "asset_refs": [
             "assets/solar500.png"
           ],
-          "block_id": "charging:block-0023",
+          "block_id": "charging:block-0022",
           "content_sha256": "19e18daf01609573b664c626dd217b374674f9b446d1c0f4f41c10cc6a85d0e5",
           "kind": "flow",
           "payload": {
@@ -8622,13 +8738,13 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/solar500.png"
           },
-          "source_ref": "native-pdf/charging#block-23"
+          "source_ref": "native-pdf/charging#block-22"
         },
         {
           "asset_refs": [
             "assets/solar200.png"
           ],
-          "block_id": "charging:block-0024",
+          "block_id": "charging:block-0023",
           "content_sha256": "b87bfcc53f220b1f394bfdba031ecb8a94f8dddf44ce1f7634110afd477b9539",
           "kind": "flow",
           "payload": {
@@ -8644,11 +8760,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/solar200.png"
           },
-          "source_ref": "native-pdf/charging#block-24"
+          "source_ref": "native-pdf/charging#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0025",
+          "block_id": "charging:block-0024",
           "content_sha256": "72f7c1d2ce46148149ce34a8eded03cfc897a4b87f2c2d87f2d366371ee76ff5",
           "kind": "flow",
           "payload": {
@@ -8742,11 +8858,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-25"
+          "source_ref": "native-pdf/charging#block-24"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0026",
+          "block_id": "charging:block-0025",
           "content_sha256": "7b6771aa5fdfb126ae6a59b79356ecde42e2da281454b27ab028b27586c28692",
           "kind": "flow",
           "payload": {
@@ -8759,11 +8875,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-26"
+          "source_ref": "native-pdf/charging#block-25"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0027",
+          "block_id": "charging:block-0026",
           "content_sha256": "407be24f02daa9dcd4e6016b00d3e9872843ffcbdabfabb811e1407921a6eb7d",
           "kind": "flow",
           "payload": {
@@ -8813,11 +8929,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-27"
+          "source_ref": "native-pdf/charging#block-26"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0028",
+          "block_id": "charging:block-0027",
           "content_sha256": "4deaa2813ef7aee9e2ae72f10aa14a1ae7801df045f118218c3a73c0cc4534ea",
           "kind": "flow",
           "payload": {
@@ -8830,13 +8946,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-28"
+          "source_ref": "native-pdf/charging#block-27"
         },
         {
           "asset_refs": [
             "assets/car_charging_framefree.svg"
           ],
-          "block_id": "charging:block-0029",
+          "block_id": "charging:block-0028",
           "content_sha256": "b38e9ca590fac83040f9b1ab6a8ba262925e360745e933a591d36ab05bf15d55",
           "kind": "flow",
           "payload": {
@@ -9005,11 +9121,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-29"
+          "source_ref": "native-pdf/charging#block-28"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0030",
+          "block_id": "charging:block-0029",
           "content_sha256": "6672c800e7eb7e4a45f7b3176b2af641f083a99bdb6b1a482abc38e557ca620b",
           "kind": "flow",
           "payload": {
@@ -9136,7 +9252,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-30"
+          "source_ref": "native-pdf/charging#block-29"
         }
       ],
       "language": "en",
@@ -9144,7 +9260,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "5907b60e87b0426909709c234ad9f811a5fa9691ef4740f2b827ba42d86e67ac"
+      "source_sha256": "84dc538b3cc1b59512e6a26c13eb627681857011f377daec5ee9c4e04825673b"
     },
     {
       "blocks": [
