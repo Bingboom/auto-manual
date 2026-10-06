@@ -216,3 +216,17 @@ or byte changes; semantic copy is byte-identical to the previous source.
 
 Technical version: `git-20261005-31fd0692-overview1`. Deterministic rebuild
 and strict standalone Sphinx pass. The preceding releases remain sealed.
+
+Source commit: `d89212af49cfbcb08a57b1f6e23e682a390d59d5`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-overview1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-overview1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-overview1.json) record
+the result. Strict aggregate Sphinx and document links pass. The assembly
+retains 106 targets and preserves all 5,609 pre-existing source files byte-for-byte.
+At 1440px and 390px the dark/white bar spans the artwork band; both view markers
+have zero padding and share its left edge. Both original images load and the
+page has no horizontal overflow. The FCC heading remains hidden.
+[Desktop](jhp3600c_us_en_web_evidence/overview-desktop-overview1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/overview-mobile-overview1.jpg) and
+[restored user pane](jhp3600c_us_en_web_evidence/overview-final-preview-overview1.jpg)
+show the local candidate. Root `tmp/` stays untouched; no remote push or publication.
