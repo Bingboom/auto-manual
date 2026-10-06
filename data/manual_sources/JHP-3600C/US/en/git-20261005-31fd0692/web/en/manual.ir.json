@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "fea52a4e3e00c69407466619ebf2a343ba2d3fb272e707e94b1e3f015c348865",
-  "content_sha256": "b21d67faa8f4f730d0b128d6a1835f2e3e9787d1e505e035645d5c87e1e4d714",
+  "bundle_sha256": "6197616736396ed355a526245fe32e4460a2b4e6de2529027350d9fba11ad465",
+  "content_sha256": "8e2a7e693722357ba2c146cb9cc268ce0dc6aa65e53bb926c9cc0a29697454fc",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -6526,66 +6526,51 @@
             "assets/ups240.png"
           ],
           "block_id": "ups:block-0018",
-          "content_sha256": "b329f58bdb6c0053a3a7f29f2e596d73f84eb725eb47544ca8d8bdef0d1bae93",
+          "content_sha256": "daf5a85f5222574cc64852666f44dbe0aec38a5d5e7368d780aa1435730164e9",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "carrier_flow": [
-                  {
-                    "alt": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
-                    "kind": "image",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "hb-source-reference"
-                          ],
-                          "data-reference": "{\"id\": \"ups240\", \"web_replace_key\": \"reference.ups240\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [66.0, 62.8, 31.5, 11.5]}]}}"
-                        }
-                      }
-                    },
-                    "source": "assets/ups240.png"
-                  },
+                "alt": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"ups240\", \"web_replace_key\": \"reference.ups240\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [66.0, 62.8, 31.5, 11.5]}]}}"
+                    }
+                  }
+                },
+                "source": "assets/ups240.png"
+              },
+              {
+                "children": [
                   {
                     "children": [
                       {
                         "children": [
                           {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackery 40A Charging Cable"
-                              },
-                              {
-                                "kind": "line_break"
-                              },
-                              {
-                                "kind": "text",
-                                "text": "(sold separately)"
-                              }
-                            ],
-                            "kind": "inline_group",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "style": "display:block;width:100%;text-align:center;"
-                                }
-                              }
-                            }
+                            "kind": "text",
+                            "text": "Jackery 40A Charging Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
                           }
                         ],
-                        "kind": "group",
+                        "kind": "inline_group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "class": [
-                                "line"
-                              ]
+                              "style": "display:block;width:100%;text-align:center;"
                             }
                           }
-                        },
-                        "role": "container"
+                        }
                       }
                     ],
                     "kind": "group",
@@ -6593,7 +6578,7 @@
                       "html": {
                         "attributes": {
                           "class": [
-                            "line-block"
+                            "line"
                           ]
                         }
                       }
@@ -6601,96 +6586,98 @@
                     "role": "container"
                   }
                 ],
-                "component_spec": {
-                  "assets": [
-                    {
-                      "asset_ref": "assets/ups240.png",
-                      "locale_policy": "exact",
-                      "role": "source_art"
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
                     }
-                  ],
-                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                  "language": "en",
-                  "metadata": {
-                    "base_art_layout": {
-                      "art_sha256": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
-                      "labels": [
-                        {
-                          "line": 0,
-                          "rect": [
-                            66.0,
-                            62.8,
-                            31.5,
-                            11.5
-                          ]
-                        }
-                      ],
-                      "mobile_labels": "overlay",
-                      "panel_fill": "#eaebec",
-                      "panel_top": 0,
-                      "preserve_frame": true
-                    },
-                    "caption_centers_pct": null,
-                    "captions_embedded": false,
-                    "captions_origin": "carrier",
-                    "capture_following_lines": 1,
-                    "composite_locale": "",
-                    "image_key": "assets/ups240.png",
-                    "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "8cbc7d194bb7b63b7aedde2879904ad55207e3b2ac0f92b21e866f8a68fab59e",
-                    "web_replace_key": "reference.ups240"
-                  },
-                  "schema_version": "component-spec/v1",
-                  "slots": [
-                    {
-                      "content": "ups240",
-                      "content_kind": "inline_text",
-                      "role": "reference_id"
-                    },
-                    {
-                      "content": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
-                      "content_kind": "inline_text",
-                      "role": "accessibility_label"
-                    },
-                    {
-                      "content": "live",
-                      "content_kind": "inline_text",
-                      "role": "caption_mode"
-                    },
-                    {
-                      "content": "equal",
-                      "content_kind": "inline_text",
-                      "role": "caption_layout"
-                    },
-                    {
-                      "content": [
-                        {
-                          "html": "<span style=\"display:block;width:100%;text-align:center;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
-                          "text": "Jackery 40A Charging Cable (sold separately)"
-                        }
-                      ],
-                      "content_kind": "ordered_labels",
-                      "role": "captions"
-                    }
-                  ],
-                  "source_ref": "source/content.json#reference-ups240",
-                  "token_roles": [
-                    "component.special.reference-figure"
-                  ],
-                  "variant": "semantic-fallback"
+                  }
                 },
-                "kind": "component"
+                "role": "container"
               }
             ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "hb-reference-contained-copy"
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/ups240.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
                 }
-              }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        66.0,
+                        62.8,
+                        31.5,
+                        11.5
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#eaebec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 1,
+                "composite_locale": "",
+                "image_key": "assets/ups240.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "8cbc7d194bb7b63b7aedde2879904ad55207e3b2ac0f92b21e866f8a68fab59e",
+                "web_replace_key": "reference.ups240"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "ups240",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:center;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
+                      "text": "Jackery 40A Charging Cable (sold separately)"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-ups240",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ups#block-18"
@@ -6701,7 +6688,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ups",
       "source_ref": "native-pdf/ups",
-      "source_sha256": "3082f6e5355fb9295b6c922dc4e4f4703c1c5449498f6f238af3259cd64152a0"
+      "source_sha256": "b13e21110714aac6b336a61c9dac5d5da3fa291b4f5d726142b6b35c5026358b"
     },
     {
       "blocks": [
