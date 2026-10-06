@@ -257,3 +257,30 @@ scrolls to its description column (286px), with no page overflow.
 [mobile description](jhp3600c_us_en_web_evidence/lcdstatus-mobile-lcdstatus1.jpg)
 and [restored user pane](jhp3600c_us_en_web_evidence/lcdstatus-final-preview-lcdstatus1.jpg)
 show the corrected local preview. Root `tmp/` remains untouched; no push or publication.
+
+
+## Whole-manual shared heading correction (headings1)
+
+The stylesheet was loaded, but the whole-book intake shifted native chapter
+H1 to H2 and section H2 to H3 beneath a synthetic document title. Generic H2
+round markers and theme H3 padding therefore replaced chapter bars and native
+section markers. Earlier safety/overview CSS fixed individual symptoms only.
+
+[Heading review inventory](../../data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source/heading_audit.json)
+records all 84 flow and specification-carrier headings with original physical
+pages and reviewed roles. Native chapter/product bars now use actual H1 and
+native section markers use H2, directly consuming the existing shared
+`web_manual.css`. The duplicate overview and major safety title CSS is removed.
+No new renderer, family stylesheet, model-specific global rule or asset exists.
+
+Original exceptions remain explicit: plain preface; hidden synthetic document,
+FCC/contact and panel labels; safety subsection strips; six shared warranty card
+tabs; numbered App steps; six small gray labels. The two accessory product bars
+use native H1. Thirteen specification group headings carry accessible level 2;
+the duplicate ATS component label is hidden beneath its source product bar.
+
+Technical version: `git-20261005-31fd0692-headings1`. All 84 actual standalone
+HTML headings match the reviewed source level in order. Removing only heading
+metadata reproduces the previous semantic source exactly: body wording,
+component semantics and artwork are unchanged. Deterministic rebuild,
+source coverage, strict standalone Sphinx and document links pass.

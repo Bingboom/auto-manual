@@ -22,7 +22,7 @@
         },
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "important",
           "children": [
             {
@@ -80,7 +80,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "safety",
           "children": [
             {
@@ -382,7 +382,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -628,7 +628,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -831,7 +831,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -858,7 +858,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "symbols",
           "children": [
             {
@@ -1120,7 +1120,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "fcc",
           "children": [
             {
@@ -1256,7 +1256,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "inbox",
           "children": [
             {
@@ -1490,7 +1490,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "overview",
           "children": [
             {
@@ -1502,7 +1502,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -1526,7 +1526,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -1556,7 +1556,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "lcd",
           "children": [
             {
@@ -2114,7 +2114,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "operations",
           "children": [
             {
@@ -2126,7 +2126,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2150,7 +2150,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2298,7 +2298,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2322,7 +2322,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2437,7 +2437,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2541,7 +2541,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2780,7 +2780,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -2850,7 +2850,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "ups",
           "children": [
             {
@@ -2996,7 +2996,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3030,7 +3030,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3070,7 +3070,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "connections",
           "children": [
             {
@@ -3082,7 +3082,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3253,7 +3253,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3281,7 +3281,17 @@
               "text": "Required Accessories"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "required-accessories"
         },
         {
           "kind": "paragraph",
@@ -3302,7 +3312,17 @@
               "text": "Connection Steps"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "connection-steps"
         },
         {
           "kind": "paragraph",
@@ -3531,7 +3551,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3565,7 +3585,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3583,7 +3603,17 @@
               "text": "CONNECT TO ATS — SOLD SEPARATELY"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "connect-to-ats-sold-separately"
         },
         {
           "kind": "paragraph",
@@ -3701,7 +3731,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3820,7 +3850,17 @@
               "text": "MTS Installation Notice"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "mts-installation-notice"
         },
         {
           "kind": "paragraph",
@@ -3834,7 +3874,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -3969,7 +4009,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -4100,7 +4140,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "charging",
           "children": [
             {
@@ -4236,7 +4276,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -4361,7 +4401,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -4389,7 +4429,17 @@
               "text": "240V AC Outlet"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "v-ac-outlet"
         },
         {
           "kind": "image",
@@ -4537,7 +4587,17 @@
               "text": "TRANSFER SWITCH (ATS)"
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-source-pill-heading"
+                ]
+              }
+            }
+          },
+          "anchor": "transfer-switch-ats"
         },
         {
           "kind": "paragraph",
@@ -4756,7 +4816,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -4904,7 +4964,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -5068,7 +5128,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "troubleshooting",
           "children": [
             {
@@ -5194,7 +5254,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "storage",
           "children": [
             {
@@ -5266,7 +5326,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "specifications",
           "children": [
             {
@@ -5448,7 +5508,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -5851,7 +5911,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -6057,7 +6117,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -6341,7 +6401,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -6508,7 +6568,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -6678,7 +6738,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "warranty",
           "children": [
             {
@@ -6723,7 +6783,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6773,7 +6833,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6827,7 +6887,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6877,7 +6937,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6927,7 +6987,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -6987,7 +7047,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7043,7 +7103,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "app",
           "children": [
             {
@@ -7055,7 +7115,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7099,7 +7159,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7595,7 +7655,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7616,7 +7676,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 2,
           "children": [
             {
               "kind": "text",
@@ -7726,7 +7786,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "ess",
           "children": [
             {
@@ -8091,7 +8151,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "ess-specifications",
           "children": [
             {
@@ -8283,7 +8343,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -8686,7 +8746,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -8890,7 +8950,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -9174,7 +9234,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -9341,7 +9401,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "3"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -9505,7 +9565,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -9631,7 +9691,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "4"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -9916,7 +9976,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "4"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -10090,7 +10150,7 @@
                       "hb-spec-group"
                     ],
                     "role": "heading",
-                    "aria-level": "4"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -10179,7 +10239,7 @@
         },
         {
           "kind": "heading",
-          "level": 3,
+          "level": 1,
           "children": [
             {
               "kind": "text",
@@ -10423,10 +10483,11 @@
                   "attributes": {
                     "class": [
                       "hb-spec-section",
-                      "hb-spec-group"
+                      "hb-spec-group",
+                      "hb-source-hidden-heading"
                     ],
                     "role": "heading",
-                    "aria-level": "4"
+                    "aria-level": "2"
                   }
                 }
               },
@@ -10449,7 +10510,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "hidden": true
             },
             {
               "kind": "table",
@@ -11018,7 +11080,7 @@
       "nodes": [
         {
           "kind": "heading",
-          "level": 2,
+          "level": 1,
           "anchor": "contact",
           "children": [
             {

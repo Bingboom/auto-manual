@@ -86,8 +86,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "5f24fdc521acb0734f252d746a260c0fbd3d7071475d9f76b0b651827444f35a",
-  "content_sha256": "72e7489a8f14cf5f0fb39090fa41f7a53f785f5d4becdff3ff94044aab5dcf80",
+  "bundle_sha256": "8be1fda61b433b1ffed4788140c604127ebc29babe3d55791ea84041e488e24d",
+  "content_sha256": "be3e3bd374e3f6ce7c8e55585252015af6cb265bcab404676499d9be0b7bc554",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2035,7 +2035,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "c85213184aa950b2b9e21cf66e17f9760c70a12c73cfd76c07b58ed8b36cadf0"
+      "sha256": "b0949926a6015fbb330bc04307fad0b5db5b6dcf85f810849860b398d0c0fd74"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -2222,7 +2222,7 @@
         {
           "asset_refs": [],
           "block_id": "important:block-0002",
-          "content_sha256": "ef7049e04d79b575a7912be92d381890e009bcab561c7b9fb349cfb319791395",
+          "content_sha256": "128016346d97831325b2c92f90363e5a88a51f1732fdfe06e24af3599aea2e2e",
           "kind": "flow",
           "payload": {
             "anchor": "important",
@@ -2233,7 +2233,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/important#block-2"
@@ -2312,14 +2312,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#important",
       "source_ref": "native-pdf/important",
-      "source_sha256": "bff14e261d8ba7dd2ad01928814f5f99b1f5c648fb9c26a8800793d5c192fbda"
+      "source_sha256": "c276a911bb05fa98ee49e88fb08851966f2b79609461468427b8fe59670647da"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "safety:block-0001",
-          "content_sha256": "21e1884be877cf45554554b75ad7e37358bf917c80787c6eb86099429132cddc",
+          "content_sha256": "cfd027ff8f895688e2b79bfbdc321ca7c54a032db5c7ee4def90d894d9393b09",
           "kind": "flow",
           "payload": {
             "anchor": "safety",
@@ -2330,7 +2330,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-1"
@@ -2644,7 +2644,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0004",
-          "content_sha256": "a5cb3a5f8ed32a468d8bb34b1a745f81b70b7805e4f042ae149d36386588156f",
+          "content_sha256": "540789af88314c7e7840680cd8b6cad62e7d0bfff53c71fe4463152726db69e5",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2654,7 +2654,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-4"
@@ -2904,7 +2904,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0006",
-          "content_sha256": "626f3b93a9337feeefd2f7bb2c0dde0009091504d843053372fc8978e421ddb9",
+          "content_sha256": "d08261335a08d098e155d4a14af4be38301a5b5c5e334e7bbb167ce868aa2e4f",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2914,7 +2914,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-6"
@@ -3135,7 +3135,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0010",
-          "content_sha256": "43ed3f7bc8c1791490b327aa8c5e6616fdb9d64d17e5075913ba5208700496e5",
+          "content_sha256": "78f3f421e355b644e1181a6a5dfbac7f2664865ff55be50c6c37c186c1603184",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3145,7 +3145,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-10"
@@ -3173,14 +3173,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#safety",
       "source_ref": "native-pdf/safety",
-      "source_sha256": "2469ccaa294b0d676cc2565be53ca55bf3b20f39c64e4fa121f3a8631a20255b"
+      "source_sha256": "5b06d922c7478a907e21cd468f396700eb8969946385651bbea049894932978b"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "symbols:block-0001",
-          "content_sha256": "381258bd683761da5b5b232c9ff433d81f9c8107857257b072663b0ce9b50b50",
+          "content_sha256": "d834f27709a779361750a4f2d28278d09bf7201f2cefafbb84b78c6c497b67d1",
           "kind": "flow",
           "payload": {
             "anchor": "symbols",
@@ -3191,7 +3191,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/symbols#block-1"
@@ -3472,14 +3472,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#symbols",
       "source_ref": "native-pdf/symbols",
-      "source_sha256": "035a694c68454c86313204703ac973f3ebcd622c4c7ee43134308c3c06279f44"
+      "source_sha256": "3354b7556d775d04f696777d4ab68073de24f858752b3bf1f3d9fe3e7f4630ad"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "fcc:block-0001",
-          "content_sha256": "9b94f7e0c38441752fdf70274b5b96f77a7ef0d5f92b42c4c7a52439741af042",
+          "content_sha256": "f0535d50bed65024d88a4924ab57857750b34c04e98c51f72646561688ac8c4d",
           "kind": "flow",
           "payload": {
             "anchor": "fcc",
@@ -3490,7 +3490,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/fcc#block-1"
@@ -3628,14 +3628,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#fcc",
       "source_ref": "native-pdf/fcc",
-      "source_sha256": "8c296f3603b40d20b690270b3102c792f70bfec0bbcd918d5f590b5ea901a15c"
+      "source_sha256": "81e036cfee830b9f53d25d4474c3df6f15b2358db06752fdc9ce657372640da8"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "inbox:block-0001",
-          "content_sha256": "e02ae7c8cbd1b4891c9de70d142ae94a942ecea09c5faf98b5cce6083576bc3e",
+          "content_sha256": "00a94b0bf705adbabe2c26758ab2933284b4d962083570940d0c6a154752a3a6",
           "kind": "flow",
           "payload": {
             "anchor": "inbox",
@@ -3646,7 +3646,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/inbox#block-1"
@@ -3885,14 +3885,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#inbox",
       "source_ref": "native-pdf/inbox",
-      "source_sha256": "6e63e7ec74c8a11bccd62f687db580149124fff29c6d4e85c322ee124a270fb4"
+      "source_sha256": "79984130d8a29739ceb09181668479380cb3142a85542cf4ce94961380112538"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "overview:block-0001",
-          "content_sha256": "a46976cfdd23e6df9d5932ffd0f0b6774a7baa3e1de07b2d0b6a4b6951e76064",
+          "content_sha256": "60bc23f01172027afd7e153ae5d142755052a032ffcb5cd9ea40a3f11a9e4738",
           "kind": "flow",
           "payload": {
             "anchor": "overview",
@@ -3903,7 +3903,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/overview#block-1"
@@ -3911,7 +3911,7 @@
         {
           "asset_refs": [],
           "block_id": "overview:block-0002",
-          "content_sha256": "9552216f57762d52704af3b9e5e8a32854be5dd68c79162222ecbb20083fa934",
+          "content_sha256": "c5e2c3c85587940e8ed9d1c51a192cd78daf1b90c9a87a2e98d041856a6a07c9",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3921,7 +3921,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/overview#block-2"
@@ -3951,7 +3951,7 @@
         {
           "asset_refs": [],
           "block_id": "overview:block-0004",
-          "content_sha256": "aaab7692704c5ca54982726facf6aeb30eabb2847f78d73714cdfd71c88d4f51",
+          "content_sha256": "58fa4e37dad54fb70495d159865682173c49bc15973cf211099bf3382b957f3f",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3961,7 +3961,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/overview#block-4"
@@ -3994,14 +3994,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#overview",
       "source_ref": "native-pdf/overview",
-      "source_sha256": "8a569e0b9d156825a71ce4bd0a82eaf3880d2ca1f54a9882204b6d28ad9392b8"
+      "source_sha256": "ad23024b301c8ed2ba4437fd8a3ddf679b60c06319b89a73bf966456ec8d8138"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "lcd:block-0001",
-          "content_sha256": "c6d54d772df14b3ec66cb263de54f6487d58772a0bbd3746afc4943fb52a24e3",
+          "content_sha256": "e788501186b7aaa37213cf74715dd5e35e0448e80f06bdf8d263b0fb9b586740",
           "kind": "flow",
           "payload": {
             "anchor": "lcd",
@@ -4012,7 +4012,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/lcd#block-1"
@@ -4613,14 +4613,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#lcd",
       "source_ref": "native-pdf/lcd",
-      "source_sha256": "e2c63d70762011aa9926b1337fedd64efd14402ef36d64de8cdac3cdb8b2e5be"
+      "source_sha256": "7208d103e6b7986172bc2b1c90062122c8ac73285ffa7acfebc750798225c0a9"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "operations:block-0001",
-          "content_sha256": "08ee0f2b0ce65989a62008ca820443eaa34ed1bba6f96aa079a2db1ea2c532de",
+          "content_sha256": "73d57130c1c7f8f5b0a5d4d5763d57aaf503a6f797ef70986b5da11a892010e4",
           "kind": "flow",
           "payload": {
             "anchor": "operations",
@@ -4631,7 +4631,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-1"
@@ -4639,7 +4639,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0002",
-          "content_sha256": "e0331ce8eb6fe9c58a2d73293c496fc0250bd85e631f0151fcd4edc2a7880ef9",
+          "content_sha256": "415271e4f65dac1c703edfec75bbb8606679e2354218487c6586c40242da333c",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4649,7 +4649,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-2"
@@ -4679,7 +4679,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0004",
-          "content_sha256": "68550fcc52d13d180d163c0fba32e1f5ed3a20eeb96479e8bf4b30c6a878ae6f",
+          "content_sha256": "89158f950c33f65aa0577ef3c89d53f5b1ea2b38f3870c0066fabf8b512aaa9e",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4689,7 +4689,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-4"
@@ -4850,7 +4850,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0007",
-          "content_sha256": "c628f77b0eb0777c778c2626c953103b025e611c3904ef6ebca398fb768cb61c",
+          "content_sha256": "7a4d721046cf214314f2229b935fde5832b5a1c52f3f1c775b7bef94859fa16a",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4860,7 +4860,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-7"
@@ -4890,7 +4890,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0009",
-          "content_sha256": "9367b6b9e6b8a1fa523342b6d045fa075b22e146de4ee484ec7ad5a65736e012",
+          "content_sha256": "04acd6cb10059e6e2fcaf68820597c77dfa35421785fed429a1fae121b9beebb",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4900,7 +4900,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-9"
@@ -5028,7 +5028,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0012",
-          "content_sha256": "5329933c18e677e27f0a0f1f72f77c92548702e049bb94459e30576af0207fea",
+          "content_sha256": "fb02670a8e1c1a67078e57cefd8fc346f611ad184c0208aa38c7087c7954a763",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5038,7 +5038,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-12"
@@ -5155,7 +5155,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0015",
-          "content_sha256": "d176b3d35186edb47a89aa5b13db0eeda302bda877fde4e8cf7f76d5b9a10e35",
+          "content_sha256": "4df48f13d394981b7e6db01190f17586ba15ef61caa6ac053ddabff3c85ada43",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5165,7 +5165,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-15"
@@ -5412,7 +5412,7 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0017",
-          "content_sha256": "f2b2c719bd268946b392249918751a64fd411af790356ce5eea19a761a90ba7a",
+          "content_sha256": "e517f319263b5a70805ae7a707114a2a3702ca3a72f3a31d4ff64199d6c37dbe",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5422,7 +5422,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-17"
@@ -5500,14 +5500,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "40970d1cef490a343ac3c02e5db60ee2184fb8b8e4059d8e0c56651b017dc4d8"
+      "source_sha256": "2180f531d6cdd042a818531814c78d6c685fecf65984c3e98b772b670718f0f0"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "ups:block-0001",
-          "content_sha256": "86520ac9511dd6ec390ce63a5a592a7f5becbcc66ea73fbddf7ab2b3df4cbeac",
+          "content_sha256": "63c0d562767d45c2253bdd2b1a8872eaa14737a28924c8aafd4900faf6eed907",
           "kind": "flow",
           "payload": {
             "anchor": "ups",
@@ -5518,7 +5518,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ups#block-1"
@@ -5674,7 +5674,7 @@
         {
           "asset_refs": [],
           "block_id": "ups:block-0004",
-          "content_sha256": "23268cd3b286f7cab27c3880bfeccb7dd5607b93f99618bd9adcdf2f405f4786",
+          "content_sha256": "ccb6cdf63548d7a746d30c3ce88fdaf3507e277eab00c59c67b7630fae275c69",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5684,7 +5684,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ups#block-4"
@@ -5731,7 +5731,7 @@
         {
           "asset_refs": [],
           "block_id": "ups:block-0007",
-          "content_sha256": "19df9fe0ed68cf09c21d4b4431e25ddcb3dbe05bdf6897e0cfe1403b27ccfb64",
+          "content_sha256": "2f85aa51e8de8ed98c39917e0ff05468eab661c70228c4fe059e9eeecd420299",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5741,7 +5741,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ups#block-7"
@@ -5791,14 +5791,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ups",
       "source_ref": "native-pdf/ups",
-      "source_sha256": "e72121740013a654241563b44d80653c30b5706c55c0b954f4f27362d1a2208d"
+      "source_sha256": "7f5a3ee6b5d8517104540fb8d508fcbbd68a9f009f0a635bceaa449f98acb314"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "connections:block-0001",
-          "content_sha256": "0216d445d39cf2908173c73db20f6a342b49b58d4d8b92c24c8b66208d576a1e",
+          "content_sha256": "fb2cf5ebee6342a9faa3e47829666e934125e7203dd2812b000061ed1563b210",
           "kind": "flow",
           "payload": {
             "anchor": "connections",
@@ -5809,7 +5809,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-1"
@@ -5817,7 +5817,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0002",
-          "content_sha256": "1e28deedc9c36e382f4e0fb976896fec1dbd8636de435eacc89d1f71bafadadf",
+          "content_sha256": "d5bd97959ec092f27100f19b53ee821fecaed7c42ab07a5c1f49da3de3cff4cf",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5827,7 +5827,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-2"
@@ -6034,7 +6034,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0008",
-          "content_sha256": "eadfe3a8cc8aeea40a28bffd9b1c9af8182444b875947d71ca0666c93b974303",
+          "content_sha256": "2f7179b4a43c99988ed120e7e4a85a7fdee8366c3a13bfdda0924eb6631f5877",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6044,7 +6044,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-8"
@@ -6069,9 +6069,10 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0010",
-          "content_sha256": "56a13272977dc9ffc77a2a8b2c210bd3e41b1838e5fee633d36b30fffcbbaa14",
+          "content_sha256": "c7c97fea954a1afa3efba5c8283a0fdd64464c54ad2c20383b09b17f05e93566",
           "kind": "flow",
           "payload": {
+            "anchor": "required-accessories",
             "children": [
               {
                 "kind": "text",
@@ -6080,6 +6081,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-10"
@@ -6104,9 +6114,10 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0012",
-          "content_sha256": "cdc6b4b8e9985e161621e331eca51c11ba3e4d3505cc02cd5a666cf48bf70c4e",
+          "content_sha256": "6307b4f8d3f0321af437153f6b6739616bc8fe104e7ed530483da912c2c1cb10",
           "kind": "flow",
           "payload": {
+            "anchor": "connection-steps",
             "children": [
               {
                 "kind": "text",
@@ -6115,6 +6126,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-12"
@@ -6391,7 +6411,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0019",
-          "content_sha256": "659d79067c0ca40f3cbdc813901d4f68e5f82de78e0edd4fccbd51bfd9342cf2",
+          "content_sha256": "39e80f6e90b1bf435ce13cd24e7ab2af5ebe52fd8b0b1fdc1859d8b4c17bafd5",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6401,7 +6421,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-19"
@@ -6448,7 +6468,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0022",
-          "content_sha256": "fe295a16e44806b4954e013ec096d7f953c88aafe100eaba5512fcd9ff3b5b3e",
+          "content_sha256": "c68889eaeea7ddfb7348f106d49312db98226438040d29ae42fc37a546152ec8",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6458,7 +6478,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-22"
@@ -6466,9 +6486,10 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0023",
-          "content_sha256": "b0481e619d6db3f54952d7fbed4f97fbe3703941ed5baf610cf57367d82e3765",
+          "content_sha256": "95644a2bba02fc17da5b149280c73e5aeab6a2380988ac9e3509441118ef8822",
           "kind": "flow",
           "payload": {
+            "anchor": "connect-to-ats-sold-separately",
             "children": [
               {
                 "kind": "text",
@@ -6477,6 +6498,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-23"
@@ -6621,7 +6651,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0027",
-          "content_sha256": "96db2ea3064c00a68352c012acdbaa2420d5e668ff64c1b135a8483beb8022ea",
+          "content_sha256": "2f7d8052e2e8bbd6c1d86005c04c742285b2733128e1b6c7dabd9519c65db5eb",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6631,7 +6661,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-27"
@@ -6754,9 +6784,10 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0030",
-          "content_sha256": "6e2dce69312c0b022aa00f6530172a436634a009be086f4a111b73275fdc517d",
+          "content_sha256": "576458cec548ff9693541b439aeac59cec8c34a51d80b22f379348ee9595c072",
           "kind": "flow",
           "payload": {
+            "anchor": "mts-installation-notice",
             "children": [
               {
                 "kind": "text",
@@ -6765,6 +6796,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-30"
@@ -6789,7 +6829,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0032",
-          "content_sha256": "f7d0848b081808f296073e16bb94df627f148d7ad0df0403dd18e09524a57b69",
+          "content_sha256": "2cf1e2d710f265d0402cc5e072c9375e0e69959ca463c23da02e2dd30548309d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6799,7 +6839,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-32"
@@ -6961,7 +7001,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0037",
-          "content_sha256": "24f2ef465d8cd5b51df38de5bd498c77af95d59588fa4c4af01b4aba261cfddb",
+          "content_sha256": "e1c7d6823b6b20b2ecd7dde41dedf8aac22a7a9708078a3dc68ea9d4677bef45",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6971,7 +7011,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-37"
@@ -7119,14 +7159,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "90237f99ca498252b99d604ecf4f177371ef150d454fd9537f9098540690c03b"
+      "source_sha256": "591ef21644c68464695291ef17633e0a743a28e4bae1de27dea94c9d0b5a6f9b"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "charging:block-0001",
-          "content_sha256": "61d42617724fc10fa1af443b63cec5da3055f1a4f36146f917fcc2faf38e9509",
+          "content_sha256": "303868fa773bcb3a970ab0d83fedb8ffd860794f554a28d65c27742cc13a0a08",
           "kind": "flow",
           "payload": {
             "anchor": "charging",
@@ -7137,7 +7177,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-1"
@@ -7283,7 +7323,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0004",
-          "content_sha256": "83166307c0ee9eb6d2d9813e9f95f9bde5486094c54a83308ec1c203ab00ede4",
+          "content_sha256": "ba1aea973d5de5e1957c08bd8272e4fbdc12c6c135115595f85b1d7e16f85f97",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7293,7 +7333,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-4"
@@ -7438,7 +7478,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0008",
-          "content_sha256": "ca7f5c93855d2213b7a234cd228e2dbb2f8ad0876884f5f9b0746e692f172aa6",
+          "content_sha256": "bbf0de984c261fc6075bd8355c39a73d32e200bd318e460a790a7438eb50f0ff",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7448,7 +7488,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-8"
@@ -7473,9 +7513,10 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0010",
-          "content_sha256": "582d06058d6de0b5eab0671e955f5f8148949da7347e5e568ed672bc278befc8",
+          "content_sha256": "31c483ea869c3eab0a2e79a306f594460c9b10cb5fe167363503919442b23a06",
           "kind": "flow",
           "payload": {
+            "anchor": "v-ac-outlet",
             "children": [
               {
                 "kind": "text",
@@ -7484,6 +7525,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-10"
@@ -7651,9 +7701,10 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0014",
-          "content_sha256": "dd5f5df67468cd09abbcde258e2a8df0c84c35e15075aee43a1a6ef0823eb56c",
+          "content_sha256": "fe30f74a316e3f24a1190272a818042103c4de66a6b3bcd2adb7e38fab37058e",
           "kind": "flow",
           "payload": {
+            "anchor": "transfer-switch-ats",
             "children": [
               {
                 "kind": "text",
@@ -7662,6 +7713,15 @@
             ],
             "kind": "heading",
             "level": 3,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-source-pill-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-14"
@@ -7921,7 +7981,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0020",
-          "content_sha256": "6ed9b395365c9cc851b804caa49125c99fedd560b6dc962f039880682dc4134c",
+          "content_sha256": "67dbaa52bc3dad3955823400549d7c01581b036f21ba5fb89db56a82ef6f0e01",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7931,7 +7991,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-20"
@@ -8115,7 +8175,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0026",
-          "content_sha256": "51d7ad50cf5b56e2ff198e821d1f84acead49906e9c15d75140df16f3e6bf9c7",
+          "content_sha256": "2be13d2b68a77429e10e61fb5a1c89231144d2a32410940b8d277d0f0c43baac",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8125,7 +8185,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-26"
@@ -8306,14 +8366,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "f426f285c8ed300380d0ebff24d1412d7fc976e092359a36b809df0fc6b9f6e4"
+      "source_sha256": "f1e2752c833534c33429405a08f21882b2097a129bb29f5afe24ad15c3658a59"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0001",
-          "content_sha256": "1b5e515da5c5386bb7a8498af2c3fe39a326ebd894d8c52cbecafa11ab461b36",
+          "content_sha256": "3837bc991d1a186822c157070be0a71fbf5254d2685a35ed3e736def13029c8a",
           "kind": "flow",
           "payload": {
             "anchor": "troubleshooting",
@@ -8324,7 +8384,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/troubleshooting#block-1"
@@ -8457,14 +8517,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#troubleshooting",
       "source_ref": "native-pdf/troubleshooting",
-      "source_sha256": "9921639d45f7371c352f78cb4780105f049edb3e8ac21844aff03948671338be"
+      "source_sha256": "ccbc74a0281fc174cc8ef2338f5cc33c18e512d78d45405bfb5536be36aabd51"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "storage:block-0001",
-          "content_sha256": "3c753b3b39ca0a6b023e428816957daee61717e047bae56506ca077d2e8936ae",
+          "content_sha256": "dcb888a170af1b161fad4d01f3ba8b28bd6a7c4e246d6f330e687724279391f5",
           "kind": "flow",
           "payload": {
             "anchor": "storage",
@@ -8475,7 +8535,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/storage#block-1"
@@ -8561,14 +8621,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#storage",
       "source_ref": "native-pdf/storage",
-      "source_sha256": "a10d3fe1a7973d3a5ebbf7d81881f76c1941e00d4530ee6c6ec20aebe55116ab"
+      "source_sha256": "9015bd7b7eba4232df4be5c0c62013866a5a7bd65dcc331c3ed10e5fa256c6ae"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "specifications:block-0001",
-          "content_sha256": "cd3ae78b1193c50a139eb45f7562261be830e458c8769af6fb897fe8b5da45da",
+          "content_sha256": "48626f62a4601670084501c553a8b0baa523e9653eb50f9b6bb282b911e4c610",
           "kind": "flow",
           "payload": {
             "anchor": "specifications",
@@ -8579,7 +8639,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-1"
@@ -8587,7 +8647,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0002",
-          "content_sha256": "27dfee170712dac652279bd74b1be0a96f50ca0bb9f0f1d5ea09e6184c929434",
+          "content_sha256": "369dfd200f2ccefc3228d6940f2af8088417a9469b478e0ff8555d01072b1967",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -8617,7 +8677,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -9103,7 +9163,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0003",
-          "content_sha256": "b2e3fe64cf409dd93c6fb16df759f3c04968dcf53a6d894b07995e416be187a6",
+          "content_sha256": "4f44b788ba58a87f09507f14234587ed9934cb5977e81b494bf8963ab903f4f1",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9133,7 +9193,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -9270,7 +9330,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "7a0e6656a433fad8a847172e1734838fbfe4c1f1ac5d27f0735511d28a917613",
+          "content_sha256": "48d7fd32891f59439feab6a0b509ce3a8e3b937941d07b919406c09b516a3e51",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9300,7 +9360,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -9611,7 +9671,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0005",
-          "content_sha256": "187ede6c74f67fe5be78fc28388dc306c3890e41b90f1dc5c2e574d1b0fb4931",
+          "content_sha256": "b021c13f7fd00ec5b35d58da5b9d217bba31472b270d2d9265f13103c2336554",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9641,7 +9701,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -9774,7 +9834,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0006",
-          "content_sha256": "3a8182b9abd9088deeac296419adccc0b9f7d5bf65cf787b6a47a558c9154b15",
+          "content_sha256": "de28129b27048ac76cfccfc4c6dc53c25a7ca4b3fb29039d637a4657f4bac0d1",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -9804,7 +9864,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -10054,14 +10114,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#specifications",
       "source_ref": "native-pdf/specifications",
-      "source_sha256": "0ce47cc54139452a0c2d496c36245d3b7e9ab2af8311b2d2217f788c55316927"
+      "source_sha256": "9f997d6c84701c9b911e53d060bf00e299bad6d9436bcd231d180ac58eee3fc4"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "warranty:block-0001",
-          "content_sha256": "2d9b9568c9fc6cdc38f962a228fff99a3795809a03d4d52d29ffd4cd50dacc9b",
+          "content_sha256": "abd89e545b0ec28e2073102aea0cf1f150874574fba0ca0de84d7f8066422047",
           "kind": "flow",
           "payload": {
             "anchor": "warranty",
@@ -10072,7 +10132,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-1"
@@ -10120,7 +10180,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0003",
-          "content_sha256": "b9679135b432cab9ffb557f76c31185e2c76696038dd5669a2a867fd995a17d0",
+          "content_sha256": "b0b9e12fec11ca89647b563b377885278d223e48f1c688da050271979169bcd0",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10130,7 +10190,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-3"
@@ -10184,7 +10244,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0005",
-          "content_sha256": "12eeacf01215f9f4b6b145a0a666c9a07bc48d4f8574617b62693d0116e9cd37",
+          "content_sha256": "bf7d05c852136df579fed3d2e96892893bf6acbe440fa73d5140c4fbcb0463c8",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10194,7 +10254,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-5"
@@ -10252,7 +10312,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0007",
-          "content_sha256": "f938db19f4efffe0500a234df66bae7edb4655e13911c8175866dc90336bb7ac",
+          "content_sha256": "6cd838398e284c2844ba022805f1f38b925069fcd60b4c0f7b214607f36b18f9",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10262,7 +10322,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-7"
@@ -10316,7 +10376,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0009",
-          "content_sha256": "576e791f020840f733997d95efc6a6ccfbf90c6b53fe12db89dfce9122ab08c7",
+          "content_sha256": "74ebdf545a770c58a3d45f02650356973d730f9267009ef1ec11d58548da728e",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10326,7 +10386,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-9"
@@ -10380,7 +10440,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0011",
-          "content_sha256": "70a68c1558809012d70ff213da2bb396ee915796c17bdf62425f3f39cd86ec50",
+          "content_sha256": "8b8fe64c40b2732125d7f07f7072265ddd4aec4056be02116b1fd22f9c8f138a",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10390,7 +10450,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-11"
@@ -10454,7 +10514,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0013",
-          "content_sha256": "c7c4556effdb732c0be4f798ec98c89aa23981ba1af4a8faece4ac265a69e7e5",
+          "content_sha256": "488cae0b92040cdb6554a892f3ca1e851e4ce1ae22f11340dc0e66b15cadff4c",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10464,7 +10524,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-13"
@@ -10521,14 +10581,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#warranty",
       "source_ref": "native-pdf/warranty",
-      "source_sha256": "9effd658d35c0083d1f12feda45491d050c2b716b84be84ac05ec09abf35176a"
+      "source_sha256": "038bc5d900f15df5425a169d422797e1a9198e3b1710be2fb5f762797d8be969"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "app:block-0001",
-          "content_sha256": "8d02d0b94b095b5a05fc5eb0c7322992bc37b450de513aa2c384fb1e11d6f678",
+          "content_sha256": "472db24e3068b3fbe4a17603af096755563841f892330220c6fa37554b676c56",
           "kind": "flow",
           "payload": {
             "anchor": "app",
@@ -10539,7 +10599,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-1"
@@ -10547,7 +10607,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0002",
-          "content_sha256": "5535441bf05e033a11e8e60e75cf7db9beb998e6d434a55e5d3de73a11ed9261",
+          "content_sha256": "c13a163ac6a3240023a5a0abdaa15497e41d3aee8bc9b61e5fb20b5ecf9b8864",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10557,7 +10617,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-2"
@@ -10621,7 +10681,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0006",
-          "content_sha256": "77dea9e44acfe8f09bde01a98c4d23fdcbd48fbfc498343c1bfe1f843a9173e4",
+          "content_sha256": "96022bee0f0f875a732b522b89bed06d8753259efed6ebccaeae3889632a5bc4",
           "kind": "flow",
           "payload": {
             "children": [
@@ -10631,7 +10691,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-6"
@@ -11214,7 +11274,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0019",
-          "content_sha256": "09542506dd1830dc38ba5cd2615aeb7eb42b7eebb6145eb95e34f8edbbb78af8",
+          "content_sha256": "789583daed61416b99269befeaf6c8fe4b41384f5346e06e976034e8624dba9d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11224,7 +11284,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-19"
@@ -11249,7 +11309,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0021",
-          "content_sha256": "4c9cd2d3f0cd7dcb39e03fe09921a09aa462b9e93777e3c42c616c3666ff57dd",
+          "content_sha256": "d88a753241cb36c17ab83bfaa7da32b383bf1ba10990c27a54a07138130501a8",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11259,7 +11319,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-21"
@@ -11405,14 +11465,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#app",
       "source_ref": "native-pdf/app",
-      "source_sha256": "644b5f523fb320da7b5335a9100dc292e2ee7d03938a38c4fb6872cacc4a9a79"
+      "source_sha256": "3f639835b38318f6020a11c4f8ad5b0a7b10ac9bd881ad63076d6112f40d5c84"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "ess:block-0001",
-          "content_sha256": "6ac36cf2171b20f41a42f89c5bdeca53656a97171c75fd42e47005fe4ac9f450",
+          "content_sha256": "40e1b35a9888e03fba3e6483c2d472576e597a2fa6e8467d15c18dff69bbd1f8",
           "kind": "flow",
           "payload": {
             "anchor": "ess",
@@ -11423,7 +11483,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess#block-1"
@@ -11839,14 +11899,14 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess",
       "source_ref": "native-pdf/ess",
-      "source_sha256": "630fa20da650ea6d0fec59a6b23bc67708e4057ad4356018d22c61d5b66da15e"
+      "source_sha256": "2e17471127cf795bb939715ae3cdb9f97b5ac96ce81ac48ffee556764111031e"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0001",
-          "content_sha256": "448493dac5d16a21f898f03a55a8a1ebbafaea911c0517e6d7838987c63320a5",
+          "content_sha256": "ea49cf2fe13d263692cb0b587532a2aea0fb73aae266a7f7ba7378d3bb9b236b",
           "kind": "flow",
           "payload": {
             "anchor": "ess-specifications",
@@ -11857,7 +11917,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-1"
@@ -11882,7 +11942,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0003",
-          "content_sha256": "0d645df3c62bf35b8d3745e1f3a2a5beffd0ff3fd96315355dcfca88aab259fb",
+          "content_sha256": "6184d758b1295efb62fe36d6d2e26a96503b8800f27bf77033f8d72ca01aa0a7",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -11912,7 +11972,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -12398,7 +12458,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0004",
-          "content_sha256": "9cbe49e15ce071fd240939551c0fa8401a96f5e03eaf6567e874fc1ebfe264c3",
+          "content_sha256": "a68354967d027a09525a347740ee22f9ffbe4b2fe5dfb4adb9800e2535d4d2ee",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -12428,7 +12488,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -12565,7 +12625,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0005",
-          "content_sha256": "c48b145969fe4deab96072b3b65766e7ab27ed92d7b9de93dfe46d16f2078997",
+          "content_sha256": "61e94571d8c73531b07ffd1513ad6cd20e843ec807ca76436390550505685497",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -12595,7 +12655,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -12904,7 +12964,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0006",
-          "content_sha256": "6b3acaefcbb06602a20fb89eecdc746ccb341f540d5fe00c6536b85aff2d3d48",
+          "content_sha256": "9cd8fe65b11d299e508772a7180ab35e7f8b327b88c7c0d5aa76345966e15609",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -12934,7 +12994,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -13067,7 +13127,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0007",
-          "content_sha256": "bf436ec14443918f1eba6864dadc69a75a07bfc89f85e6d26c6e7a90bd53a8ac",
+          "content_sha256": "b0b08071a3e01b8043ea6705056517f21750fc7580b89a727d343329559b153b",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13097,7 +13157,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "3",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -13344,7 +13404,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0013",
-          "content_sha256": "8367343a679bca35c5b82f81e933cb76ac1c3e2d72239bc69310d7c714f00cfd",
+          "content_sha256": "5b480681870ddb0738c450b78b4b2fc10bbf81aa2a916335f59b0257363c9b3b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -13354,7 +13414,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-13"
@@ -13362,7 +13422,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0014",
-          "content_sha256": "19e8ca41b58867b56dd63b4184b37c7fe28acbc94ca5a40310e024917676e88b",
+          "content_sha256": "10f555c73169564d7a3c1531aa123bc6ad96983693e52a41be2fa2964ddbe338",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13392,7 +13452,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "4",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -13698,7 +13758,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0015",
-          "content_sha256": "91dcc37107d850e5e8b485bb6a8ca56337ef9add43adb3613753b4880a40d9ad",
+          "content_sha256": "b5324019311b7179bd831da022893ca7f7f2e1b158963e6661822df44f0fcfea",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13728,7 +13788,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "4",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -13890,7 +13950,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0016",
-          "content_sha256": "7aa42ebb039ff00cf75156e4b725221db974b8e55123bbb7d9b7b7c4bdfda876",
+          "content_sha256": "52a8c4becd90aba3e5be20bfe7da5560a67759f09132d87187274a29967573b7",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13920,7 +13980,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "4",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
                         "hb-spec-group"
@@ -14046,7 +14106,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0017",
-          "content_sha256": "4e53a6ede70a99efb9a8a44acd7b49514b10b0b41504fbaba9ed5c0d6cdb3eb7",
+          "content_sha256": "7ba163b04ab011e4056528833855dbce45cf2cef8b4eebfea10026f8d2d72535",
           "kind": "flow",
           "payload": {
             "children": [
@@ -14056,7 +14116,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-17"
@@ -14064,7 +14124,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0018",
-          "content_sha256": "d6d158b7c9a0379c648d6161343a62a80924bc7e50723d379ebd6885ba008bd5",
+          "content_sha256": "9d475e10da03676a5cde44901d82c5329748585e869f311a63285afd6e7ab646",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -14089,15 +14149,17 @@
                     }
                   }
                 ],
+                "hidden": true,
                 "kind": "heading",
                 "level": 2,
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "aria-level": "4",
+                      "aria-level": "2",
                       "class": [
                         "hb-spec-section",
-                        "hb-spec-group"
+                        "hb-spec-group",
+                        "hb-source-hidden-heading"
                       ],
                       "role": "heading"
                     }
@@ -14806,7 +14868,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess-specifications",
       "source_ref": "native-pdf/ess-specifications",
-      "source_sha256": "126405debe61b95b52b140b74df2e899b314c63447d50f04b1de07f1426cacb5"
+      "source_sha256": "6deb9f0a3f9e3a0df8106a5aaf70954aa0ff262110ee7d602ad7c48576e47103"
     },
     {
       "blocks": [
@@ -14962,7 +15024,7 @@
         {
           "asset_refs": [],
           "block_id": "contact:block-0001",
-          "content_sha256": "c07e57385a088c762716cd057f0210072e928b66626261a88fd4c644574e6d1a",
+          "content_sha256": "92678d8e6b2b16d278a4ee733860c9367ea8c3e13efd7642d1703a07cb8fff67",
           "kind": "flow",
           "payload": {
             "anchor": "contact",
@@ -14973,7 +15035,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/contact#block-1"
@@ -15069,7 +15131,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#contact",
       "source_ref": "native-pdf/contact",
-      "source_sha256": "9c6f774bbb2d977445cdd7bc239452b1a223eedff01c3cbf6c532f55516b52a5"
+      "source_sha256": "ab2c748d2b80417c806a6a0eb4051d852fc02f4a4a309f4288a37bb59a0aaa21"
     }
   ],
   "region": "US",

@@ -1,21 +1,23 @@
-/* Operator correction against native p4. Shared safety styles own mobile stacking. */
-#furo-main-content #jackery-homepower-3600-pro-max-user-manual > h1 {
+/* Native exceptions only. Chapter H1 / dot-led H2 use shared web_manual.css. */
+#furo-main-content #jackery-homepower-3600-pro-max-user-manual > h1,
+#furo-main-content section#fcc > h1,
+#furo-main-content section#contact-us > h1,
+#furo-main-content .hb-source-hidden-heading,
+#furo-main-content section#package-list section > h3 {
   display: none;
 }
-#furo-main-content section:has(> .hb-safety-instruction) > h2:first-of-type {
-  display: block;
-  margin: 1.3rem 0 0.5rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--hb-h1-radius);
-  background: var(--hb-brand-dark) !important;
-  color: var(--hb-paper);
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+#furo-main-content section#important > h1 {
+  padding: 0;
+  background: transparent !important;
+  color: var(--hb-text);
+  border-radius: 0;
+  font-size: 1.12rem;
 }
-#furo-main-content section:has(> .hb-safety-instruction) > h2::before,
-#furo-main-content section:has(> .hb-safety-instruction) > section > h3::before {
+/* Native safety subsection strips differ from ordinary dot-led sections. */
+#furo-main-content section:has(> .hb-safety-instruction) > section > h2::before {
   display: none;
 }
-#furo-main-content section:has(> .hb-safety-instruction) > section > h3 {
+#furo-main-content section:has(> .hb-safety-instruction) > section > h2 {
   display: block;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
@@ -60,44 +62,27 @@
   #furo-main-content .hb-source-risk-label img { width: 1.3rem; }
 }
 
-/* Native p6 starts with the FCC card, without a visible chapter heading. */
-#furo-main-content section#fcc > h2 {
+/* Authored small source labels, distinct from level-two section markers. */
+#furo-main-content .hb-source-pill-heading {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--hb-surface);
+  font-size: 0.88rem;
+  text-transform: none;
+}
+#furo-main-content .hb-source-pill-heading::before,
+#furo-main-content section#app-setup h2::before,
+#furo-main-content section#app-setup h3::before {
   display: none;
 }
-
-/* Native p7: full-width dark overview bar and flush-left view markers. */
-#furo-main-content section#product-overview > h2 {
+#furo-main-content section#app-setup h2,
+#furo-main-content section#app-setup h3 {
   display: block;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: none;
-  padding: 0.72rem 1rem 0.68rem;
-  border-radius: var(--hb-h1-radius);
-  background: var(--hb-brand-dark) !important;
-  color: var(--hb-paper);
-  font-size: clamp(1.28rem, 2.5vw, 1.58rem);
-  line-height: 1.14;
-}
-#furo-main-content section#product-overview > h2::before {
-  display: none;
-}
-#furo-main-content section#product-overview > h2 .headerlink {
-  color: rgba(255, 255, 255, 0.7);
-}
-#furo-main-content section#product-overview > section > h3 {
   padding: 0;
-  align-items: center;
-  gap: 0.58rem;
+  text-transform: none;
 }
-#furo-main-content section#product-overview > section > h3::before {
-  width: 0.72rem;
-  height: 0.72rem;
-  margin: 0;
-}
-@media (max-width: 640px) {
-  #furo-main-content section#product-overview > h2 {
-    padding: 0.68rem 0.78rem 0.64rem;
-    border-radius: 0 0 0.48rem 0.48rem;
-    font-size: clamp(1.12rem, 6vw, 1.34rem);
-  }
+#furo-main-content section[id^="jackery-battery-pack-3600-sold-separately"] > h1,
+#furo-main-content section#jackery-automatic-transfer-switch-sold-separately > h1 {
+  text-transform: none;
 }
