@@ -1,0 +1,286 @@
+[
+  {
+    "acComponents": 1,
+    "art": {
+      "height": 504,
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png",
+      "width": 948
+    },
+    "bodyWeight": "400",
+    "figure": {
+      "scrollWidth": 817,
+      "width": 817.03125
+    },
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px",
+      "styles": [
+        "solid",
+        "solid",
+        "solid",
+        "solid"
+      ]
+    },
+    "instructions": [
+      "Press once",
+      "Press once"
+    ],
+    "labelWeights": [
+      "700",
+      "700"
+    ],
+    "labels": [
+      "On",
+      "Off"
+    ],
+    "operations": 3,
+    "pageWidth": 1440,
+    "prefixWeight": "700",
+    "prerequisite": "Prerequisite: The product is powered on.",
+    "prerequisiteCount": 1,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png"
+    ],
+    "textBounds": [
+      {
+        "insideFigure": true,
+        "scrollWidth": 337,
+        "text": "Prerequisite: The product is powered on.",
+        "width": 336.8046875
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 147,
+        "text": "On\nPress once",
+        "width": 146.703125
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 147,
+        "text": "Off\nPress once",
+        "width": 146.703125
+      }
+    ],
+    "viewport": 1440
+  },
+  {
+    "acComponents": 1,
+    "art": {
+      "height": 504,
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png",
+      "width": 948
+    },
+    "bodyWeight": "400",
+    "figure": {
+      "scrollWidth": 609,
+      "width": 609
+    },
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px",
+      "styles": [
+        "solid",
+        "solid",
+        "solid",
+        "solid"
+      ]
+    },
+    "instructions": [
+      "Press once",
+      "Press once"
+    ],
+    "labelWeights": [
+      "700",
+      "700"
+    ],
+    "labels": [
+      "On",
+      "Off"
+    ],
+    "operations": 3,
+    "pageWidth": 641,
+    "prefixWeight": "700",
+    "prerequisite": "Prerequisite: The product is powered on.",
+    "prerequisiteCount": 1,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png"
+    ],
+    "textBounds": [
+      {
+        "insideFigure": true,
+        "scrollWidth": 586,
+        "text": "Prerequisite: The product is powered on.",
+        "width": 586.203125
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 289,
+        "text": "On\nPress once",
+        "width": 289.1015625
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 289,
+        "text": "Off\nPress once",
+        "width": 289.1015625
+      }
+    ],
+    "viewport": 641
+  },
+  {
+    "acComponents": 1,
+    "art": {
+      "height": 504,
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png",
+      "width": 948
+    },
+    "bodyWeight": "400",
+    "figure": {
+      "scrollWidth": 358,
+      "width": 358
+    },
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px",
+      "styles": [
+        "solid",
+        "solid",
+        "solid",
+        "solid"
+      ]
+    },
+    "instructions": [
+      "Press once",
+      "Press once"
+    ],
+    "labelWeights": [
+      "700",
+      "700"
+    ],
+    "labels": [
+      "On",
+      "Off"
+    ],
+    "operations": 3,
+    "pageWidth": 390,
+    "prefixWeight": "700",
+    "prerequisite": "Prerequisite: The product is powered on.",
+    "prerequisiteCount": 1,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png"
+    ],
+    "textBounds": [
+      {
+        "insideFigure": true,
+        "scrollWidth": 335,
+        "text": "Prerequisite: The product is powered on.",
+        "width": 335.203125
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 164,
+        "text": "On\nPress once",
+        "width": 163.6015625
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 164,
+        "text": "Off\nPress once",
+        "width": 163.6015625
+      }
+    ],
+    "viewport": 390
+  },
+  {
+    "acComponents": 1,
+    "art": {
+      "height": 504,
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png",
+      "width": 948
+    },
+    "bodyWeight": "400",
+    "figure": {
+      "scrollWidth": 288,
+      "width": 288
+    },
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px",
+      "styles": [
+        "solid",
+        "solid",
+        "solid",
+        "solid"
+      ]
+    },
+    "instructions": [
+      "Press once",
+      "Press once"
+    ],
+    "labelWeights": [
+      "700",
+      "700"
+    ],
+    "labels": [
+      "On",
+      "Off"
+    ],
+    "operations": 3,
+    "pageWidth": 320,
+    "prefixWeight": "700",
+    "prerequisite": "Prerequisite: The product is powered on.",
+    "prerequisiteCount": 1,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png"
+    ],
+    "textBounds": [
+      {
+        "insideFigure": true,
+        "scrollWidth": 265,
+        "text": "Prerequisite: The product is powered on.",
+        "width": 265.203125
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 129,
+        "text": "On\nPress once",
+        "width": 128.6015625
+      },
+      {
+        "insideFigure": true,
+        "scrollWidth": 129,
+        "text": "Off\nPress once",
+        "width": 128.6015625
+      }
+    ],
+    "viewport": 320
+  }
+]
