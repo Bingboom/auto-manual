@@ -73,7 +73,8 @@
     "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
     "source heading case retained; warranty continuation is one section",
     "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
-    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction"
+    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
+    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation"
   ],
   "source_concerns": [
     {
@@ -154,8 +155,8 @@
     },
     {
       "path": "source/page/product_overview_en.rst",
-      "size": 595,
-      "sha256": "3ebe53a86b088a99683531242a542c430fc5e0e6ef28cc81bfbc2b69185a0416"
+      "size": 2489,
+      "sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c"
     },
     {
       "path": "source/page/spec_en.rst",

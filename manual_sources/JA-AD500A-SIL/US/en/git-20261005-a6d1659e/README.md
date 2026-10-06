@@ -24,6 +24,13 @@ page-end contact block. The operator corrected the previously added
 headings and navigation. The contents contain only the original five chapters.
 The QR is constrained to 96px on both desktop and mobile, preserving its bytes.
 
+The LED table keeps its original bold `LED Light` label, three columns in
+25/20/55 proportions, one grey header and four source rows. It explicitly
+binds the existing shared `manual-table` / `table-wrapper docutils` grid;
+native source presentation retains the dark complete grid, rounded outline,
+left alignment and compact cell spacing. A source width constraint permits
+wrapping at 390px instead of inheriting the generic table's 576px minimum.
+
 ## Rebuild
 
 From the repository root, with the project's Python dependencies installed:
@@ -58,8 +65,7 @@ block and QR width through MyST export, instead of flattening that container.
   images loaded, no document horizontal overflow or broken fragment links,
   and intact native specifications/warranty. See `evidence/verification.json`
   and the browser screenshots. Sphinx log copies omit trailing terminal spaces;
-  original session logs remain in the retained discovery directory. The LED table uses its shared horizontal scroll
-  surface on small screens.
+  original session logs remain in the retained discovery directory. The LED table now wraps within the phone width, with no cropped cells.
 
 No live source table, queue, asset registry, build record or HTML_link was
 written. Merge, Hello-Docs publication, RTD and other languages require their

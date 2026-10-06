@@ -8,8 +8,8 @@
     "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "95850693788deb3121839feb0c63a24cd0cbd50d398a1d711b9234f407220c76",
-  "content_sha256": "9e426549c312f0633aea269febb9f02d8fbb7b85666c0c4f07a55d02bbffd8f7",
+  "bundle_sha256": "768d9d2bf44112f79536d9cb9a76889f8ea37bf9cc611768236cba5bac4efa1d",
+  "content_sha256": "c2c6677c96bf4a2b6d6366c4105e4efc38155d476cd333723c41df1f3525c72f",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -21,7 +21,7 @@
       "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
       "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
     },
-    "block_count": 33,
+    "block_count": 35,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 3,
       "HB-SPECIAL-INBOX": 1,
@@ -1336,8 +1336,8 @@
         },
         {
           "path": "source/page/product_overview_en.rst",
-          "sha256": "3ebe53a86b088a99683531242a542c430fc5e0e6ef28cc81bfbc2b69185a0416",
-          "size": 595
+          "sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c",
+          "size": 2489
         },
         {
           "path": "source/page/spec_en.rst",
@@ -1364,7 +1364,8 @@
         "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
         "source heading case retained; warranty continuation is one section",
         "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
-        "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction"
+        "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
+        "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation"
       ],
       "original_source": {
         "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
@@ -2550,15 +2551,11 @@
         {
           "asset_refs": [],
           "block_id": "product_overview_en.rst:block-0004",
-          "content_sha256": "e1b2e19791a6001451ae012cc6a89372d99c298bd15c688065287ad923bcba2f",
+          "content_sha256": "92f87efc9fccf01a7ada117b1eb301f080bcba91bad96c47ed4c3c32145d754a",
           "kind": "flow",
           "payload": {
             "anchor": "led-light",
             "children": [
-              {
-                "kind": "text",
-                "text": "\n"
-              },
               {
                 "children": [
                   {
@@ -2566,13 +2563,33 @@
                     "text": "LED Light"
                   }
                 ],
-                "kind": "heading",
-                "level": 2
-              },
-              {
-                "kind": "text",
-                "text": "\n"
-              },
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "product_overview_en.rst#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "product_overview_en.rst:block-0005",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "product_overview_en.rst#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "product_overview_en.rst:block-0006",
+          "content_sha256": "f306b54fe5a2e46572760759ad785586c89da37d0e3266416a028d2d68777a39",
+          "kind": "flow",
+          "payload": {
+            "children": [
               {
                 "children": [
                   {
@@ -2661,10 +2678,12 @@
                                 "attributes": {
                                   "class": [
                                     "head"
-                                  ]
+                                  ],
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;border-bottom:1px solid var(--hb-line-soft)!important;"
                                 }
                               }
-                            }
+                            },
+                            "scope": "col"
                           },
                           {
                             "kind": "text",
@@ -2689,10 +2708,12 @@
                                 "attributes": {
                                   "class": [
                                     "head"
-                                  ]
+                                  ],
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;border-bottom:1px solid var(--hb-line-soft)!important;"
                                 }
                               }
-                            }
+                            },
+                            "scope": "col"
                           },
                           {
                             "kind": "text",
@@ -2717,10 +2738,12 @@
                                 "attributes": {
                                   "class": [
                                     "head"
-                                  ]
+                                  ],
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;border-bottom:1px solid var(--hb-line-soft)!important;"
                                 }
                               }
-                            }
+                            },
+                            "scope": "col"
                           },
                           {
                             "kind": "text",
@@ -2761,7 +2784,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2780,7 +2810,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2799,7 +2836,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2827,7 +2871,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2846,7 +2897,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2865,7 +2923,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2893,7 +2958,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2912,7 +2984,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2931,7 +3010,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2959,7 +3045,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2978,7 +3071,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -2997,7 +3097,14 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "padding:0.25rem 0.6rem!important;text-align:left!important;"
+                                }
+                              }
+                            }
                           },
                           {
                             "kind": "text",
@@ -3018,17 +3125,35 @@
                     "text": "\n"
                   }
                 ],
-                "kind": "table"
-              },
-              {
-                "kind": "text",
-                "text": "\n"
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "manual-table"
+                      ],
+                      "style": "table-layout:fixed;min-width:0!important;"
+                    }
+                  }
+                }
               }
             ],
-            "kind": "section",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "table-wrapper",
+                    "docutils"
+                  ],
+                  "style": "--hb-line-soft:var(--hb-brand-dark);border:1.5px solid var(--hb-brand-dark);border-radius:16px;overflow:hidden;"
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "product_overview_en.rst#block-4"
+          "source_ref": "product_overview_en.rst#block-6"
         }
       ],
       "language": "en",
@@ -3036,7 +3161,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/product_overview_en.rst",
       "source_ref": "product_overview_en.rst",
-      "source_sha256": "3ebe53a86b088a99683531242a542c430fc5e0e6ef28cc81bfbc2b69185a0416"
+      "source_sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c"
     },
     {
       "blocks": [

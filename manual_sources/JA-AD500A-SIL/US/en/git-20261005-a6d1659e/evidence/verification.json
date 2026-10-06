@@ -1,6 +1,6 @@
 {
   "target": "JA-AD500A-SIL/US/en",
-  "candidate": "web-candidate-6",
+  "candidate": "web-candidate-9",
   "status": "English candidate, not operator-confirmed baseline or publication",
   "desktop_viewport": [
     1440,
@@ -58,5 +58,38 @@
     "source_free_replay_exact_myst_parity": true,
     "publication_eligible": false
   },
-  "historical_browser_evidence": "Unmodified candidate-3 screenshots retained; footer-corrected screenshots show candidate-6."
+  "historical_browser_evidence": "Unmodified candidate-3 screenshots retained; footer-corrected screenshots show candidate-6.",
+  "led_table_correction": {
+    "candidate": "web-candidate-9",
+    "operator_correction": "这里样式不对",
+    "native_table": true,
+    "source_rows": 4,
+    "header_rows": 1,
+    "columns": 3,
+    "column_proportions": [
+      25,
+      20,
+      55
+    ],
+    "shared_classes": [
+      "table-wrapper",
+      "docutils",
+      "manual-table"
+    ],
+    "label": "LED Light (plain bold, no bullet subsection)",
+    "header_alignment": "left",
+    "header_background": "rgb(244, 243, 243)",
+    "grid_color": "rgb(52, 48, 49)",
+    "header_body_divider": true,
+    "rounded_outline": true,
+    "compact_spacing": true,
+    "mobile_table_width_px": 355,
+    "mobile_wrapper_width_px": 358,
+    "mobile_viewport_width_px": 390,
+    "mobile_document_width_px": 390,
+    "body_words_unchanged": true,
+    "strict_sphinx": true,
+    "source_free_exact_myst_replay": true,
+    "publication_eligible": false
+  }
 }

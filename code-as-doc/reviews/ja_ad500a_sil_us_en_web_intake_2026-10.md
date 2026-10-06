@@ -126,3 +126,20 @@ artwork assets. Actual desktop/mobile inspection confirms zero contact headings,
 the original five-chapter navigation, all contact copy, 96px QR and no document
 overflow. Corrected screenshots and `evidence/footer-correction.json` supersede
 the earlier footer display; historical evidence remains retained.
+
+## Operator correction: LED status table presentation
+
+The operator compared the native rounded, bordered LED table with the unstyled
+Web table. The table had no explicit shared-grid class in the frozen IR replay.
+The source now binds the existing `manual-table` and `table-wrapper docutils`
+presentation, with source-native compact spacing/dark borders and an explicit
+header/body divider. `LED Light` remains a bold table label rather than an
+added bullet subsection. The three native columns retain 25/20/55 proportions,
+left alignment, grey header, all four rows and every original word.
+
+Candidate 9's strict Sphinx and source-free exact-MyST replay passed; body-word
+comparison against candidate 6 is equal. Actual desktop and 390px inspection
+confirms the complete grid/header alignment. On phone the table fits within
+its 358px wrapper (355px table), wraps the long status copy and does not clip
+behind the generic 576px table minimum. No shared renderer or CSS changed;
+the source declares the existing table presentation and its dimensions.
