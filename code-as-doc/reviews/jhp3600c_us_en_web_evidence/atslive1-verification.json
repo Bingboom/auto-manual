@@ -55,5 +55,9 @@
     ]
   },
   "native_frames_preserved": "complete structural operation views and outer panel, all with artwork inside",
-  "bare_art_review": "No independent empty caption frame; gray panel, hands, connectors, native step markers, products and leaders remain."
+  "bare_art_review": "No independent empty caption frame; gray panel, hands, connectors, native step markers, products and leaders remain.",
+  "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "asset_sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
+  "source_commit": "6db4976772ad61046bf845f5282f884e2db54fee",
+  "replay_files_byte_identical": 122
 }

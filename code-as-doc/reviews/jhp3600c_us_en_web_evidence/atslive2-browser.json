@@ -1,0 +1,277 @@
+{
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#power-on-off",
+  "audits": [
+    {
+      "cableLeaderY": 281.5002062499999,
+      "cableTextGap": 8.468956249999906,
+      "componentOverflow": false,
+      "image": {
+        "loaded": true,
+        "natural": [
+          945,
+          540
+        ],
+        "src": "../../../../_static/manual-assets/_pool/3a/3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb.png"
+      },
+      "labels": [
+        {
+          "bold": true,
+          "font": "17.2173px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            70.078125,
+            44.9140625,
+            82.9453125,
+            22.515625
+          ],
+          "text": "Lock",
+          "textBottom": 66.1875,
+          "textInside": true
+        },
+        {
+          "bold": true,
+          "font": "17.2173px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            504.5234375,
+            44.9140625,
+            84.2421875,
+            22.515625
+          ],
+          "text": "Unlock",
+          "textBottom": 66.1875,
+          "textInside": true
+        },
+        {
+          "bold": false,
+          "font": "15.5628px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            518.75,
+            235.2734375,
+            238.6171875,
+            39.421875
+          ],
+          "text": "Power input/output cable in the ATS package",
+          "textBottom": 273.03125,
+          "textInside": true
+        }
+      ],
+      "panel": [
+        817.03125,
+        466.875
+      ],
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "cableLeaderY": 209.82505333333327,
+      "cableTextGap": 6.317240833333273,
+      "componentOverflow": false,
+      "image": {
+        "loaded": true,
+        "natural": [
+          945,
+          540
+        ],
+        "src": "../../../../_static/manual-assets/_pool/3a/3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb.png"
+      },
+      "labels": [
+        {
+          "bold": true,
+          "font": "12.8335px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            52.234375,
+            33.4765625,
+            61.828125,
+            16.78125
+          ],
+          "text": "Lock",
+          "textBottom": 49.421875,
+          "textInside": true
+        },
+        {
+          "bold": true,
+          "font": "12.8335px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            376.0625,
+            33.4765625,
+            62.796875,
+            16.78125
+          ],
+          "text": "Unlock",
+          "textBottom": 49.421875,
+          "textInside": true
+        },
+        {
+          "bold": false,
+          "font": "11.6002px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            386.6640625,
+            175.3671875,
+            177.859375,
+            29.3828125
+          ],
+          "text": "Power input/output cable in the ATS package",
+          "textBottom": 203.5078125,
+          "textInside": true
+        }
+      ],
+      "panel": [
+        609,
+        348
+      ],
+      "viewport": [
+        641,
+        900
+      ]
+    },
+    {
+      "cableLeaderY": 123.34476072048608,
+      "cableTextGap": 19.90726072048608,
+      "componentOverflow": false,
+      "image": {
+        "loaded": true,
+        "natural": [
+          945,
+          540
+        ],
+        "src": "../../../../_static/manual-assets/_pool/3a/3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb.png"
+      },
+      "labels": [
+        {
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            30.703125,
+            19.6796875,
+            36.34375,
+            9.8671875
+          ],
+          "text": "Lock",
+          "textBottom": 29.25,
+          "textInside": true
+        },
+        {
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            221.0703125,
+            19.6796875,
+            36.9140625,
+            9.8671875
+          ],
+          "text": "Unlock",
+          "textBottom": 29.25,
+          "textInside": true
+        },
+        {
+          "bold": false,
+          "font": "8px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            227.296875,
+            84.890625,
+            104.5546875,
+            18.546875
+          ],
+          "text": "Power input/output cable in the ATS package",
+          "textBottom": 103.4375,
+          "textInside": true
+        }
+      ],
+      "panel": [
+        358,
+        204.5703125
+      ],
+      "viewport": [
+        390,
+        900
+      ]
+    },
+    {
+      "cableLeaderY": 99.22693849826386,
+      "cableTextGap": 3.1175634982638627,
+      "componentOverflow": false,
+      "image": {
+        "loaded": true,
+        "natural": [
+          945,
+          540
+        ],
+        "src": "../../../../_static/manual-assets/_pool/3a/3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb.png"
+      },
+      "labels": [
+        {
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            24.703125,
+            15.828125,
+            29.234375,
+            9.2734375
+          ],
+          "text": "Lock",
+          "textBottom": 25.1015625,
+          "textInside": true
+        },
+        {
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            177.84375,
+            15.828125,
+            29.6953125,
+            9.2734375
+          ],
+          "text": "Unlock",
+          "textBottom": 25.1015625,
+          "textInside": true
+        },
+        {
+          "bold": false,
+          "font": "8px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            182.8515625,
+            68.2890625,
+            84.109375,
+            27.8203125
+          ],
+          "text": "Power input/output cable in the ATS package",
+          "textBottom": 96.109375,
+          "textInside": true
+        }
+      ],
+      "panel": [
+        288,
+        164.5703125
+      ],
+      "viewport": [
+        320,
+        900
+      ]
+    }
+  ]
+}
