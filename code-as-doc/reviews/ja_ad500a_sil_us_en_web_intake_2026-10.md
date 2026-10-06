@@ -217,3 +217,31 @@ artwork assets are unchanged. Actual 1440px desktop and 390px phone show all
 six native lines once, aligned above intact leaders, without clipping or
 horizontal overflow. Final screenshots, before/after pair, extraction manifest,
 artifact list and verification reports are in the frozen evidence directory.
+
+## 2026-10-06 authorized English publication
+
+The operator instructed “上线发布” for the current reviewed English candidate
+(commit `45609dc9935e6d3b9e00686fcc962352239e315e`, candidate 13b). MA-259
+covers engineering and the corresponding Git-only data release. This is the
+actual release instruction, not a fabricated separate pixel-approval quote.
+
+Discovery: current main is `ed4d4ec5071d000d590d5b53322aea6c12186f7c`,
+PR #1446 initially has all 18 checks successful. HD#177 occupies persistent
+publish and will remain untouched. The US prepared source uses its normal
+component-slot, asset-hash and source-local inventory gates; the additional
+EU/UK enrollment gate does not apply to US. No phase2 target is registered.
+
+Plan: preserve the review snapshot, create a distinct approved package with a
+source-bound approval record, freshly rerender prepared RST through the shared
+pipeline and validate actual component slots/assets. Compare MyST/CSS/art bytes
+with candidate 13b, strict-build and cold replay. At the committed source ref,
+seal frozen language evidence, assemble only this route over current Hello-Docs
+publish data, preflight strict Sphinx with myst_parser and tools.rtd.portal,
+then gate both PRs on final-head all-green checks before merging and verify
+the actual production build/resources. No business-plane table writes.
+
+Approved package freshly assembles all seven component kinds through the
+prepared-source/public-slot validation path. Strict Sphinx succeeds. MyST,
+CSS and final manual HTML are byte-identical to reviewed candidate 13b;
+source-free cold replay is exact and a changed neutral base-art is rejected.
+The old candidate remains unchanged. `approval-parity.json` retains evidence.
