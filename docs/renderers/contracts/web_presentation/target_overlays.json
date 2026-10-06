@@ -2,6 +2,48 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
+      "overlay_id": "ja-ad500a-sil-us-en-v1",
+      "target": {
+        "model": "JA-AD500A-SIL",
+        "region": "US"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "warranty_en"
+          ],
+          "section_count": 6,
+          "period_years": [
+            "1"
+          ]
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "charging_en"
+          ],
+          "figures": [
+            {
+              "id": "solar-connection",
+              "source_patterns": [
+                "charging_en"
+              ],
+              "semantic_source_patterns": [
+                "charging_en"
+              ],
+              "image_key": "solar.png",
+              "captions_embedded": true,
+              "web_replace_key": "reference.solar-connection"
+            }
+          ]
+        }
+      }
+    },
+    {
       "overlay_id": "js200e-eu-en-v1",
       "target": {
         "model": "JS-200E",

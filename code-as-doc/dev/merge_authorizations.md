@@ -639,3 +639,5 @@ MA-066 expires automatically after the actual #1103 merge.
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
 | MA-248 | 仅本线程 `feat/fridgeguard-us-web` 的 JE-1000E-SIL/US/en、fr、es 工程 PR（含本登记）及其 Hello-Docs `docs/publish/**` 专用发布 PR：提交已确认的手册、可编辑图文、共享组件及图片复用/尺寸修复；允许同步最新 main、处理本范围冲突、修复本候选阻塞并补齐验证。两仓库最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge；随后核验工程镜像、RTD 实际提交、三语规范路由/别名、图片及桌面/手机页面。保留其它目标、历史源与生成产物和 persistent publish 分支。不含线上表/队列/HTML_link 写入、其它手册、workflow、依赖版本、公开 CLI 或 schema 变更。 | 「推上去 发布」2026-10-03（本线程，本地 App 限宽核验之后） | 本次三语 Git-only 发布及线上核验完成，或操作者撤销 | 生效（推送后生效） |
+
+| MA-259 | 仅本线程 `feat/hto889a-us-en-web-intake` 工程 PR #1446 和对应 Hello-Docs 生成式发布 PR（仅 `docs/publish/**`）：JA-AD500A-SIL/US/en 已审英文网页版，源稿 HTO889A、原生正文/技术数值/保修异常保留；太阳能 DC8020 保留底图，产品概览无外部文字底图与可编辑英文、LED 表格、紧凑车充提示及无标题封底按本会话已确认候选。允许封存批准包、真实组件及冷重建核验、同步最新 main、全部检查成功（含非必需项）且无 changes-requested 和未解决讨论后 squash 合入工程/发布 PR，镜像、Git-only RTD 发布与核验。保留旧候选/所有证据/长期 publish 分支，隔离现有 HD#177。禁止其它语言/型号/PR、线上表/队列/资产/HTML_link 写入、workflow/依赖/公开 CLI/schema 改动。 | 「上线发布」2026-10-06（本会话） | 本次英文发布与核验完成，或操作者撤销 | 生效（推送后生效） |

@@ -1,0 +1,321 @@
+{
+  "schema_version": "git-web-intake-output-inventory/v1",
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 101156,
+      "sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db"
+    },
+    {
+      "path": "web/en/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/en/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/en/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/en/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/en/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/en/assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png",
+      "size": 88312,
+      "sha256": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c"
+    },
+    {
+      "path": "web/en/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 818,
+      "sha256": "f5aa90e6547fffb6e37ea7f6f57795056085655130c519335efe592b9d850dbb"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 83,
+      "sha256": "b1942e0eb2a5457743039751d47389c1c5c092d0c5edf5fac3c1f719ac6604bf"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 214521,
+      "sha256": "06bd9c5a9dee596628424a2d61e8c35b25359839df3083aff06334d0249ac513"
+    },
+    {
+      "path": "web/en/manual_jaad500asil_us_en.md",
+      "size": 18422,
+      "sha256": "ed11fa8beffb56d3ec125c4f70411c88e7acfcdcc287eb8bad945b2f61800e9c"
+    },
+    {
+      "path": "evidence/browser/desktop-car-pill-compact.jpg",
+      "size": 92502,
+      "sha256": "ea8839f395b0cb3dfcad79cf158de88b2372a41c33118058fe7716acf38700e4"
+    },
+    {
+      "path": "evidence/browser/desktop-footer-corrected.jpg",
+      "size": 84761,
+      "sha256": "8a870ddc2f69525b1d8bdcd8440e23077933616ec4bcde39a8921478a0ba6844"
+    },
+    {
+      "path": "evidence/browser/desktop-intro-removed.jpg",
+      "size": 60104,
+      "sha256": "6b712d0a9c770052759626dd527cadda4a9666a7feb41d241edda883483ac132"
+    },
+    {
+      "path": "evidence/browser/desktop-led-corrected.jpg",
+      "size": 109067,
+      "sha256": "7d36a82faa1f2e148dea764e6af2556ab9aa48dd291731c96d563f84cf533704"
+    },
+    {
+      "path": "evidence/browser/desktop-led-detail.jpg",
+      "size": 10546,
+      "sha256": "41e5c606d745adb5eb46fef9ce5180e78c4a8285a1f612aa9eeba1517854d8e1"
+    },
+    {
+      "path": "evidence/browser/desktop-overview-smaller.jpg",
+      "size": 60446,
+      "sha256": "e669674f4e895d0ca30b75532c7aecd2cd187b075d5eefb7faf8e1aefd9cdd44"
+    },
+    {
+      "path": "evidence/browser/desktop-overview-textless-live.jpg",
+      "size": 59547,
+      "sha256": "e8ea597d3ef107e5cef0f263c69bf7ba60e797a357ab3390010000b352bd07ef"
+    },
+    {
+      "path": "evidence/browser/desktop-solar.jpg",
+      "size": 96228,
+      "sha256": "beeccd57f72a4378361e81b8fcd34fd42dbe1fddf846b787c8b58220ac290765"
+    },
+    {
+      "path": "evidence/browser/mobile-car-pill-compact.jpg",
+      "size": 48652,
+      "sha256": "2a2408b83b33cae5a4f49ef105cec4f99b11a8b00a9b7a6e0abc646a63244815"
+    },
+    {
+      "path": "evidence/browser/mobile-car.jpg",
+      "size": 53071,
+      "sha256": "a4cb35d1ff9fb49bc1db01816d49d435c5355308c12f30e92c2fc67b5bf69508"
+    },
+    {
+      "path": "evidence/browser/mobile-footer-corrected.jpg",
+      "size": 39704,
+      "sha256": "2873ec50bddba7cd00bf5a84acdf5661004e13eee965b924409e8a4476278499"
+    },
+    {
+      "path": "evidence/browser/mobile-full.jpg",
+      "size": 393124,
+      "sha256": "4376a15b59c3bd699213d336f49e241e21cc68352b9b1549335948ccfa8ac43f"
+    },
+    {
+      "path": "evidence/browser/mobile-intro-removed.jpg",
+      "size": 25399,
+      "sha256": "0403d60c99deddcfd083dccf507a704f3a16000ebb4891e830c8bf9189bba29b"
+    },
+    {
+      "path": "evidence/browser/mobile-led-corrected.jpg",
+      "size": 35573,
+      "sha256": "f36a3f80151f692dc4c36dc0d24d38a68609f8d83c0e8d931d030bff7ea326a1"
+    },
+    {
+      "path": "evidence/browser/mobile-overview-smaller.jpg",
+      "size": 29888,
+      "sha256": "1bd5a41dd3d6b8df8b9c6ab3f8e39d634fd408707900a450be3aacb9f29173fb"
+    },
+    {
+      "path": "evidence/browser/mobile-overview-textless-live.jpg",
+      "size": 29387,
+      "sha256": "cbcd9ec0ba4e07fd9c864196075a3aee43289948578731f982bb34b6474cbbf5"
+    },
+    {
+      "path": "evidence/browser/mobile-solar.jpg",
+      "size": 39307,
+      "sha256": "00c4ba9551a3cdda37956a590b2307e91097af0622179c98ac549f384c6b0bea"
+    },
+    {
+      "path": "evidence/browser/mobile-specs.jpg",
+      "size": 47225,
+      "sha256": "a48bfe46b920ad67f9e65bd2336c89a9d86e235a9535fee837e43564115b9c48"
+    },
+    {
+      "path": "evidence/browser/mobile-warranty.jpg",
+      "size": 67801,
+      "sha256": "cd6c6dbf3f6fcea09453177b4d215854d748f9dd82e4836c53d125377b770e83"
+    },
+    {
+      "path": "evidence/car-pill-correction.json",
+      "size": 752,
+      "sha256": "89e04b072b99392e5fde4fa2fb4bb0145618cae2b1647c0a992d8fe578473fef"
+    },
+    {
+      "path": "evidence/cold-replay.json",
+      "size": 262,
+      "sha256": "58caa78852be45f85daa39b6b14251789c1985e079d9968c62e7d8663b2af690"
+    },
+    {
+      "path": "evidence/component-tests-corrected.log",
+      "size": 137,
+      "sha256": "bcb761e76d2e08acbc5c804ae2afd2d7a91e0787cd66386fc35997597572f866"
+    },
+    {
+      "path": "evidence/doc-links-final.log",
+      "size": 127,
+      "sha256": "8978320bc5362a93dab9e76c0ae2c0b04a4858a9f5cd185d7213e900b856e89d"
+    },
+    {
+      "path": "evidence/footer-correction.json",
+      "size": 672,
+      "sha256": "90f271806f85f24f8f686b581389b14ad42999d3a9656fed62a807edf89be29a"
+    },
+    {
+      "path": "evidence/guardrails.log",
+      "size": 425,
+      "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
+    },
+    {
+      "path": "evidence/intro-correction.json",
+      "size": 579,
+      "sha256": "f69c6f69393c9bc6315ac201c48e9206f5ea807e142658a27eb0ee4dc59e4f7a"
+    },
+    {
+      "path": "evidence/led-table-correction.json",
+      "size": 822,
+      "sha256": "6ccbda61f1133bbbc64f74cbf503e358609510d2104e4c3be0ed05618114071d"
+    },
+    {
+      "path": "evidence/overlay-tests.log",
+      "size": 119,
+      "sha256": "2ae03e05e4d27a443b4cacd3dabfe7773e2e7ec926aaef004cd5c2236808746a"
+    },
+    {
+      "path": "evidence/overview-before-after.png",
+      "size": 111646,
+      "sha256": "6155a62c981976704a238f42131654de39930d671efd61372f73dfd6be90f4bd"
+    },
+    {
+      "path": "evidence/overview-label-edge-final-12x-0.png",
+      "size": 2934,
+      "sha256": "a4e86f1446119bde31d7cd27f5942041d0ed0f0076a0b3b06cfc5980cd59a25a"
+    },
+    {
+      "path": "evidence/overview-label-edge-final-12x-1.png",
+      "size": 661,
+      "sha256": "cbbf6054eb3f53e349f0ae29564d84135384522721f3bb6e1b9e41103bf6fdb9"
+    },
+    {
+      "path": "evidence/overview-label-edge-final-12x-2.png",
+      "size": 571,
+      "sha256": "91a2459dc6c8d6043409624c48aa78c544d30cdc23d0b948a6c2abb3accc4957"
+    },
+    {
+      "path": "evidence/overview-size-correction.json",
+      "size": 692,
+      "sha256": "10013d4c326ac4d71058be4ca427377d565b2222a0fdff5fcf5661e0a2095d7f"
+    },
+    {
+      "path": "evidence/overview-textless-intake-artifacts.csv",
+      "size": 1072,
+      "sha256": "17c95786ad4eecbe627e5fe85dc19bb867816956d699673afa3b84c70daf1680"
+    },
+    {
+      "path": "evidence/overview-textless-intake-manifest.json",
+      "size": 5597,
+      "sha256": "cc0ca9f4ccb389b95acae91931e56c19e9c932d526af872045f217ce7899be1c"
+    },
+    {
+      "path": "evidence/overview-textless-pixel-proof.json",
+      "size": 930,
+      "sha256": "f61408086d26ca768f37f7fab9981969d02c02fe760b230cb92826d70bdeee23"
+    },
+    {
+      "path": "evidence/overview-textless-verification.json",
+      "size": 1063,
+      "sha256": "88cb297ac265c7599e8494e69995ad0ae21e10f6d779b73a07cf13d12fa7689e"
+    },
+    {
+      "path": "evidence/source-contact-proof.png",
+      "size": 48528,
+      "sha256": "b72db886de44d904e9d430a80f0555d9131aae42033d09ada168b5f1bee07085"
+    },
+    {
+      "path": "evidence/sphinx-3.log",
+      "size": 2079,
+      "sha256": "867b94917892b9709cc0a818113e78233fbeb4548f62f2ea032ce5cc33d4724b"
+    },
+    {
+      "path": "evidence/sphinx-6.log",
+      "size": 2079,
+      "sha256": "547075c3d49eb6cc8aa9eb8952d4e8b6eb833109ad93af88998b89e986c67354"
+    },
+    {
+      "path": "evidence/sphinx-9.log",
+      "size": 2079,
+      "sha256": "6e859721ff764afb4066c228a40f2552f7ed8d0e071f06f42801f47aa829613a"
+    },
+    {
+      "path": "evidence/sphinx-cold-3.log",
+      "size": 2087,
+      "sha256": "7e1e07f4417cdeca652fdd141dfa1292de584c0ddbe4f2eb1073e8286181b6f2"
+    },
+    {
+      "path": "evidence/strict-candidate-13b.log",
+      "size": 2087,
+      "sha256": "ff653387a01ad7e81c0fcc9c3d8997a6ab216ede1953cbfcfbd821ba32c1692a"
+    },
+    {
+      "path": "evidence/strict-car-pill-compact.log",
+      "size": 2083,
+      "sha256": "1fe0e2cd08925720a01635209b3a91120fc9d709d586141fa34a5ec2c5ba7e73"
+    },
+    {
+      "path": "evidence/strict-intro-removed.log",
+      "size": 2087,
+      "sha256": "c743dcc7999a36c1a8a2b7832d225c6d20d4fe3a09bb5a3cb597f85bad406472"
+    },
+    {
+      "path": "evidence/strict-overview-smaller.log",
+      "size": 2083,
+      "sha256": "59c455132c801b4681077c564509e3539b13460ec6ae24e4f747b44a496443ea"
+    },
+    {
+      "path": "evidence/tests-overview-textless.log",
+      "size": 120,
+      "sha256": "bf58165444abd4e10c195c6cbad4f807fcda7efed4cb1c0192f5b004e116a2aa"
+    },
+    {
+      "path": "evidence/us-check-default.log",
+      "size": 2710,
+      "sha256": "79a746862f11c7e6c8471ce60508b160caf131e0b33d6edffbc9a84744abb197"
+    },
+    {
+      "path": "evidence/us-check-fixture.log",
+      "size": 1952,
+      "sha256": "b8adbfff8304c13c8002c1c9c8da46fa86e6d37576d6e8d9b5a92009fc1d90d3"
+    },
+    {
+      "path": "evidence/verification.json",
+      "size": 2854,
+      "sha256": "4248e5fbd9d305f8318dcc2b8f2561a73842bafeeb474ef6406cb59fd6325d45"
+    },
+    {
+      "path": "evidence/.gitattributes",
+      "size": 109,
+      "sha256": "09e340a0fc288366ebbb4e6579787dcb437496508c6918c70575ca51c178200f"
+    }
+  ]
+}
