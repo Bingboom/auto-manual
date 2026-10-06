@@ -139,3 +139,28 @@
 #furo-main-content #specifications-model-jhp-3600c > p.manual-spec-footnote {
   margin: 0;
 }
+
+/* Native main-power art has no external copy or independent caption frames. */
+#furo-main-content #power-on-off .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content #power-on-off .hb-operation-supporting-copy > .line:first-child { font-weight: 400; }
+#furo-main-content #power-on-off .hb-operation-supporting-copy > .line:last-child {
+  padding: 1.2cqw 1.8cqw;
+  border-radius: 2.4cqw;
+  background: var(--hb-surface);
+}
+@media (min-width: 761px) {
+  #furo-main-content #power-on-off .hb-operation-step-label { font-size: 3.1546cqw; }
+  #furo-main-content #power-on-off .hb-operation-step-instruction { font-size: 1.8927cqw; }
+  #furo-main-content #power-on-off .hb-operation-duration { font-size: 2.2082cqw; }
+  #furo-main-content #power-on-off .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+    margin-top: -12.5cqw;
+    grid-template-columns: 43% minmax(0, 1fr);
+    padding-inline: 4.4cqw;
+    font-size: 1.8927cqw;
+  }
+  #furo-main-content #power-on-off .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child { margin-top: 1.2cqw; }
+}
+@media (max-width: 760px) {
+  #furo-main-content #power-on-off .hb-operation-supporting-copy > .line:last-child { padding: 0.7rem; border-radius: 0.8rem; }
+  #furo-main-content #power-on-off .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
+}

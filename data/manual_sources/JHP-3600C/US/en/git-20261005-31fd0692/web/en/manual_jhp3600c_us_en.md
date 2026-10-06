@@ -141,6 +141,31 @@
   margin: 0;
 }
 
+/* Native main-power art has no external copy or independent caption frames. */
+#furo-main-content #power-on-off .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content #power-on-off .hb-operation-supporting-copy > .line:first-child { font-weight: 400; }
+#furo-main-content #power-on-off .hb-operation-supporting-copy > .line:last-child {
+  padding: 1.2cqw 1.8cqw;
+  border-radius: 2.4cqw;
+  background: var(--hb-surface);
+}
+@media (min-width: 761px) {
+  #furo-main-content #power-on-off .hb-operation-step-label { font-size: 3.1546cqw; }
+  #furo-main-content #power-on-off .hb-operation-step-instruction { font-size: 1.8927cqw; }
+  #furo-main-content #power-on-off .hb-operation-duration { font-size: 2.2082cqw; }
+  #furo-main-content #power-on-off .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+    margin-top: -12.5cqw;
+    grid-template-columns: 43% minmax(0, 1fr);
+    padding-inline: 4.4cqw;
+    font-size: 1.8927cqw;
+  }
+  #furo-main-content #power-on-off .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child { margin-top: 1.2cqw; }
+}
+@media (max-width: 760px) {
+  #furo-main-content #power-on-off .hb-operation-supporting-copy > .line:last-child { padding: 0.7rem; border-radius: 0.8rem; }
+  #furo-main-content #power-on-off .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -227,7 +252,7 @@
 
 ## POWER ON/OFF
 
-<img alt="On Press once Off Press and hold for 3s 3s Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging." src="assets/power.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy" data-component-id="HB-SPECIAL-OPERATION" data-operation-id="main-power" data-source-fragment-sha256="4b4b57ec9cc84ebdcede73f680142e5bdcb7d22795ce5eb48c2315bea860d563" data-web-base-art-ref="assets/power_framefree.png" data-web-presentation-mode="base-art-live-copy"><div class="hb-operation-stage"><div class="hb-operation-canvas"><div class="hb-operation-art-box"><img alt="" class="hb-operation-art" src="assets/power_framefree.png"/><div aria-hidden="true" class="hb-operation-duration" data-duration-icon="none" style="--hb-x:79.06%;--hb-y:51.9%">3s</div></div><div class="line-block hb-operation-steps" data-callout-id="operation.main-power.steps"><div class="hb-operation-step" data-callout-id="operation.main-power.on" data-step-id="on" style="--hb-step-x:74.5%;--hb-step-y:16.963%;--hb-step-width:23%"><div class="line hb-operation-step-label" data-step-id="on" data-step-part="label"><strong>On</strong></div><div class="line hb-operation-step-instruction" data-step-id="on" data-step-part="instruction">Press once</div></div><div class="hb-operation-step" data-callout-id="operation.main-power.off" data-step-id="off" style="--hb-step-x:74.5%;--hb-step-y:37.378%;--hb-step-width:23%"><div class="line hb-operation-step-label" data-step-id="off" data-step-part="label"><strong>Off</strong></div><div class="line hb-operation-step-instruction" data-step-id="off" data-step-part="instruction">Press and hold for 3s</div></div></div></div><div class="hb-operation-supporting-copy" data-callout-id="operation.main-power.supporting-copy"><div class="line"><strong>Default standby time:</strong> 2 hours</div><div class="line">The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.</div><div class="line">*The standby time can be set in the Jackery App.</div><div class="line">When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.</div></div></div></figure>
 
 ## USB OUTPUT ON/OFF
 

@@ -53,7 +53,7 @@
     "assets/lcd_fault-code.png",
     "assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
     "assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
-    "assets/power.png",
+    "assets/power_framefree.png",
     "assets/usb.png",
     "assets/ac.png",
     "assets/energy_saving.png",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "4e87df2d0653e06364c278d031dd1a41983ac886ab7eb17a02312b438376ae7e",
-  "content_sha256": "ed3ed55ee274626e33a59b93f0dba4e2370b8aa275d83ad2ad4655ab6cbbc97c",
+  "bundle_sha256": "fb42013b0ecc6b507398bd99ce905771229934354ec6d71f5ff9703fa7a8928c",
+  "content_sha256": "df91e3a699cfc78da11b73b1a2949c246638b4c1e9268cec444d4cee16234e89",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -192,6 +192,8 @@
       "assets/package_power_cable.png": "815fe005bfdcc05e07270558a6650a53631b01d04b7995fe2809ab882e905f16",
       "assets/package_template.png": "7393bdf6e7ad9575e3240d88b1d5954970344a23bd91d1221d47381524c84dce",
       "assets/power.png": "0f9ef585164439b9b5728b6b548354f2ca3879ea5ba82a2258d269ddf818b264",
+      "assets/power_framefree.pdf": "882a84908a76943c4e05eedb6ca9bbba9e529fb325cdeb2d35c01cdf3911390c",
+      "assets/power_framefree.png": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24",
       "assets/solar200.png": "2ad7cea648c11ea0309f1ff586bdaf340914d7502b3a75a1b5f5c2253604ebaa",
       "assets/solar500.png": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939",
       "assets/symbol_battery_charging.svg": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
@@ -215,6 +217,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 7,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
@@ -2059,7 +2062,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "5f1e99186d47d0f17fb5460de476b3eb5101883e2d1e473ef5cf3c3d78a57d4b"
+      "sha256": "d06e459b581f03d0bc92f9205f88e05cdaa9405583c4eabaadc2d2ffb0e25292"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -4693,23 +4696,236 @@
         },
         {
           "asset_refs": [
-            "assets/power.png"
+            "assets/power_framefree.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "7efc88db9b491d8dc19c4151f08b926d5c68846c399cb215fd84b68051c26a44",
+          "content_sha256": "c153a8017e4ebb6f0a603d437bbfcb89ac8b14e104da7dadfbaf024c41613e00",
           "kind": "flow",
           "payload": {
-            "alt": "On Press once Off Press and hold for 3s 3s Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "POWER ON/OFF",
+                "kind": "image",
+                "source": "assets/power_framefree.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "On"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Press once"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Off"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Press and hold for 3s"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/power_framefree.png",
+                  "locale_policy": "exact",
+                  "role": "artwork"
+                }
+              ],
+              "component_id": "HB-SPECIAL-OPERATION",
+              "language": "en",
+              "metadata": {
+                "native_supporting_copy": [
+                  "Default standby time: 2 hours",
+                  "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+                  "*The standby time can be set in the Jackery App.",
+                  "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging."
+                ],
+                "presentation_mode": "base-art-live-copy",
+                "web_presentation": {
+                  "base_art_layout": {
+                    "art_sha256": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24",
+                    "duration_anchor": [
+                      79.06,
+                      51.9
+                    ],
+                    "duration_icon": "none",
+                    "step_anchors": [
+                      [
+                        74.5,
+                        16.963
+                      ],
+                      [
+                        74.5,
+                        37.378
+                      ]
+                    ],
+                    "step_width": 23
+                  },
+                  "capture_following_lines": 4,
+                  "id": "main-power",
+                  "image_key": "assets/power_framefree.png",
+                  "layout": "status-right",
+                  "presentation_mode": "base-art-live-copy",
+                  "step_ids": [
+                    "on",
+                    "off"
+                  ]
+                }
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "main-power",
+                  "content_kind": "inline_text",
+                  "role": "operation_id"
+                },
+                {
+                  "content": "POWER ON/OFF",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "id": "on",
+                      "parts": [
+                        {
+                          "html": "<strong>On</strong>",
+                          "role": "label",
+                          "text": "On"
+                        },
+                        {
+                          "html": "Press once",
+                          "role": "instruction",
+                          "text": "Press once"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "off",
+                      "parts": [
+                        {
+                          "html": "<strong>Off</strong>",
+                          "role": "label",
+                          "text": "Off"
+                        },
+                        {
+                          "html": "Press and hold for 3s",
+                          "role": "instruction",
+                          "text": "Press and hold for 3s"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "ordered_steps",
+                  "role": "steps"
+                },
+                {
+                  "content": [
+                    "<strong>Default standby time:</strong> 2 hours",
+                    "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+                    "*The standby time can be set in the Jackery App.",
+                    "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging."
+                  ],
+                  "content_kind": "line_items",
+                  "role": "supporting_copy"
+                }
+              ],
+              "source_ref": "native-pdf/p11#power",
+              "token_roles": [
+                "component.special.operation"
+              ],
+              "variant": "status-right"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/power.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-3"
         },
@@ -5918,7 +6134,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "7ef91a4baa8423eac81359031ef3eba4fe026cc63ccbfb808178a5dfec563ace"
+      "source_sha256": "67b3277f1aa4edc90380623682acf3f2c703890bc9f77d430b4345182285612a"
     },
     {
       "blocks": [

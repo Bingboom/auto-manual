@@ -338,7 +338,7 @@
                               "children": [
                                 {
                                   "kind": "text",
-                                  "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
+                                  "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130\u00b0C (265\u00b0F)."
                                 }
                               ]
                             },
@@ -454,7 +454,7 @@
                                       "children": [
                                         {
                                           "kind": "text",
-                                          "text": "Charging temperature: -4°F to 113°F (-20°C to 45°C )"
+                                          "text": "Charging temperature: -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C )"
                                         }
                                       ]
                                     },
@@ -463,7 +463,7 @@
                                       "children": [
                                         {
                                           "kind": "text",
-                                          "text": "Discharging temperature: -4°F to 113°F (-20°C to 45°C )"
+                                          "text": "Discharging temperature: -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C )"
                                         }
                                       ]
                                     }
@@ -663,7 +663,7 @@
               {
                 "role": "body",
                 "content_kind": "rich_text",
-                "content": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician."
+                "content": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product \u2013 if it will not fit the outlet, have a proper outlet installed by a qualified electrician."
               }
             ],
             "assets": [],
@@ -723,7 +723,7 @@
                               "children": [
                                 {
                                   "kind": "text",
-                                  "text": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician."
+                                  "text": "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product \u2013 if it will not fit the outlet, have a proper outlet installed by a qualified electrician."
                                 }
                               ]
                             }
@@ -754,7 +754,7 @@
               {
                 "role": "body",
                 "content_kind": "rich_text",
-                "content": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+                "content": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). \u203b This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
               }
             ],
             "assets": [],
@@ -814,7 +814,7 @@
                               "children": [
                                 {
                                   "kind": "text",
-                                  "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+                                  "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). \u203b This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
                                 }
                               ]
                             }
@@ -1188,7 +1188,7 @@
                       {
                         "kind": "paragraph",
                         "label": "MODIFICATION:",
-                        "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                        "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user\u2019s authority to operate the device."
                       }
                     ]
                   },
@@ -1244,7 +1244,7 @@
                   "children": [
                     {
                       "kind": "text",
-                      "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
+                      "text": "\u2022 Reorient or relocate the receiving antenna. \u2022 Increase the separation between the equipment and receiver. \u2022 Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. \u2022 Consult the dealer or an experienced radio/TV technician for help."
                     }
                   ]
                 },
@@ -1253,7 +1253,7 @@
                   "children": [
                     {
                       "kind": "text",
-                      "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                      "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user\u2019s authority to operate the device."
                     }
                   ]
                 }
@@ -1527,7 +1527,7 @@
         {
           "kind": "image",
           "source": "assets/overview_front.png",
-          "alt": "LCD AC Output (NEMA 14-50R) 240V~ 60Hz, 16.7A Max, Main Power Button 4000W Max USB-C Output AC Output 100W Max, 5V⎓3A, 9V⎓3A, (NEMA 5-20R) 12V⎓3A, 15V⎓3A, 20V⎓5A 120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total USB-A Output L1 and L2 respectively 18W Max, 5-6V⎓3A, from left to right 6-9V⎓2A, 9-12V⎓1.5A AC Power Button USB Power Button",
+          "alt": "LCD AC Output (NEMA 14-50R) 240V~ 60Hz, 16.7A Max, Main Power Button 4000W Max USB-C Output AC Output 100W Max, 5V\u23933A, 9V\u23933A, (NEMA 5-20R) 12V\u23933A, 15V\u23933A, 20V\u23935A 120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total USB-A Output L1 and L2 respectively 18W Max, 5-6V\u23933A, from left to right 6-9V\u23932A, 9-12V\u23931.5A AC Power Button USB Power Button",
           "presentation": {
             "html": {
               "attributes": {
@@ -1551,7 +1551,7 @@
         {
           "kind": "image",
           "source": "assets/overview_side.png",
-          "alt": "AC Expansion Port For ATS connection or cascading parallel connection Input/Output: 240V~ 60Hz, 16.7A Max, 4000W Parallel Communication For communication connection in cascade parallel operation EPO (Emergency Power Off) To connect to an external DC Expansion Port emergency stop button Connect to Battery Pack DC Input (2×DC8020 Ports) 12-16V⎓8A Max, Double to 8A Max 16-60V⎓12A Max, Double to 24A / AC Input 1200W Max 100V-120V~ 60 Hz, 15A Max",
+          "alt": "AC Expansion Port For ATS connection or cascading parallel connection Input/Output: 240V~ 60Hz, 16.7A Max, 4000W Parallel Communication For communication connection in cascade parallel operation EPO (Emergency Power Off) To connect to an external DC Expansion Port emergency stop button Connect to Battery Pack DC Input (2\u00d7DC8020 Ports) 12-16V\u23938A Max, Double to 8A Max 16-60V\u239312A Max, Double to 24A / AC Input 1200W Max 100V-120V~ 60 Hz, 15A Max",
           "presentation": {
             "html": {
               "attributes": {
@@ -1582,7 +1582,7 @@
         {
           "kind": "image",
           "source": "assets/lcd_map.png",
-          "alt": "Numbered LCD screen map, indicators 1–31.",
+          "alt": "Numbered LCD screen map, indicators 1\u201331.",
           "presentation": {
             "html": {
               "attributes": {
@@ -1725,8 +1725,8 @@
                     "number_text": "12",
                     "name_html": "<p>Output Voltage and Frequency</p>",
                     "name_text": "Output Voltage and Frequency",
-                    "description_html": "<p>Displays the output voltage and frequency when the AC output is enabled via the AC power button or when the AC Extension port is supplying power. • 120V: Displayed when the product is charging from the 120V AC input while simultaneously delivering power through the AC output ports. • 120/240V: Displayed when the 240V AC output is active, or when the product is connected to a transfer switch and operating in bypass mode.</p>",
-                    "description_text": "Displays the output voltage and frequency when the AC output is enabled via the AC power button or when the AC Extension port is supplying power. • 120V: Displayed when the product is charging from the 120V AC input while simultaneously delivering power through the AC output ports. • 120/240V: Displayed when the 240V AC output is active, or when the product is connected to a transfer switch and operating in bypass mode.",
+                    "description_html": "<p>Displays the output voltage and frequency when the AC output is enabled via the AC power button or when the AC Extension port is supplying power. \u2022 120V: Displayed when the product is charging from the 120V AC input while simultaneously delivering power through the AC output ports. \u2022 120/240V: Displayed when the 240V AC output is active, or when the product is connected to a transfer switch and operating in bypass mode.</p>",
+                    "description_text": "Displays the output voltage and frequency when the AC output is enabled via the AC power button or when the AC Extension port is supplying power. \u2022 120V: Displayed when the product is charging from the 120V AC input while simultaneously delivering power through the AC output ports. \u2022 120/240V: Displayed when the 240V AC output is active, or when the product is connected to a transfer switch and operating in bypass mode.",
                     "icon_alt": "Output Voltage and Frequency",
                     "asset_index": 11
                   },
@@ -2149,17 +2149,230 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/power.png",
-          "alt": "On Press once Off Press and hold for 3s 3s Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-OPERATION",
+            "variant": "status-right",
+            "source_ref": "native-pdf/p11#power",
+            "language": "en",
+            "slots": [
+              {
+                "role": "operation_id",
+                "content_kind": "inline_text",
+                "content": "main-power"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "POWER ON/OFF"
+              },
+              {
+                "role": "steps",
+                "content_kind": "ordered_steps",
+                "content": [
+                  {
+                    "id": "on",
+                    "parts": [
+                      {
+                        "role": "label",
+                        "html": "<strong>On</strong>",
+                        "text": "On"
+                      },
+                      {
+                        "role": "instruction",
+                        "html": "Press once",
+                        "text": "Press once"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "off",
+                    "parts": [
+                      {
+                        "role": "label",
+                        "html": "<strong>Off</strong>",
+                        "text": "Off"
+                      },
+                      {
+                        "role": "instruction",
+                        "html": "Press and hold for 3s",
+                        "text": "Press and hold for 3s"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "role": "supporting_copy",
+                "content_kind": "line_items",
+                "content": [
+                  "<strong>Default standby time:</strong> 2 hours",
+                  "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+                  "*The standby time can be set in the Jackery App.",
+                  "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging."
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "artwork",
+                "asset_ref": "assets/power_framefree.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.operation"
+            ],
+            "metadata": {
+              "presentation_mode": "base-art-live-copy",
+              "web_presentation": {
+                "id": "main-power",
+                "layout": "status-right",
+                "step_ids": [
+                  "on",
+                  "off"
+                ],
+                "image_key": "assets/power_framefree.png",
+                "capture_following_lines": 4,
+                "presentation_mode": "base-art-live-copy",
+                "base_art_layout": {
+                  "art_sha256": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24",
+                  "step_anchors": [
+                    [
+                      74.5,
+                      16.963
+                    ],
+                    [
+                      74.5,
+                      37.378
+                    ]
+                  ],
+                  "step_width": 23,
+                  "duration_anchor": [
+                    79.06,
+                    51.9
+                  ],
+                  "duration_icon": "none"
+                }
+              },
+              "native_supporting_copy": [
+                "Default standby time: 2 hours",
+                "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+                "*The standby time can be set in the Jackery App.",
+                "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging."
+              ]
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/power_framefree.png",
+              "alt": "POWER ON/OFF"
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "line-block"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "On"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Press once"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Off"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Press and hold for 3s"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "heading",
@@ -2347,7 +2560,7 @@
         {
           "kind": "image",
           "source": "assets/energy_saving.png",
-          "alt": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s",
+          "alt": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC \u2264 25 W or DC/USB \u2264 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s",
           "presentation": {
             "html": {
               "attributes": {
@@ -3216,7 +3429,7 @@
                 "content": [
                   [
                     "Power-on/Restart after shutdown or restart",
-                    "Battery SOC ≥ discharge limit +10% after reaching limit",
+                    "Battery SOC \u2265 discharge limit +10% after reaching limit",
                     "OTA upgrade completed"
                   ],
                   [
@@ -3427,7 +3640,7 @@
               "children": [
                 {
                   "kind": "text",
-                  "text": "Total Loads ≤1440 W:"
+                  "text": "Total Loads \u22641440 W:"
                 }
               ]
             }
@@ -3662,7 +3875,7 @@
                   "children": [
                     {
                       "kind": "text",
-                      "text": "NEMA 5-20R ×2 (120V~ 60Hz):"
+                      "text": "NEMA 5-20R \u00d72 (120V~ 60Hz):"
                     }
                   ]
                 },
@@ -3950,7 +4163,7 @@
         {
           "kind": "image",
           "source": "assets/battery_packs.png",
-          "alt": "≥ 0.66 ft (≈200 mm) ≥ 0.66 ft (≈200 mm)",
+          "alt": "\u2265 0.66 ft (\u2248200 mm) \u2265 0.66 ft (\u2248200 mm)",
           "presentation": {
             "html": {
               "attributes": {
@@ -3973,7 +4186,7 @@
         {
           "kind": "image",
           "source": "assets/battery_placement.png",
-          "alt": "Side-by-side placement Stacked placement ≥ 0.66 ft (≈200 mm)",
+          "alt": "Side-by-side placement Stacked placement \u2265 0.66 ft (\u2248200 mm)",
           "presentation": {
             "html": {
               "attributes": {
@@ -3999,14 +4212,14 @@
               {
                 "role": "body",
                 "content_kind": "rich_text",
-                "content": "Ensure all products are powered off before connecting the HomePower 3600 Pro Max to the Jackery Battery Pack 3600.\nTo ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation."
+                "content": "Ensure all products are powered off before connecting the HomePower 3600 Pro Max to the Jackery Battery Pack 3600.\nTo ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (\u2248200 mm) of space between the vents and any objects to allow for proper heat dissipation."
               },
               {
                 "role": "items",
                 "content_kind": "list_items",
                 "content": [
                   "Ensure all products are powered off before connecting the HomePower 3600 Pro Max to the Jackery Battery Pack 3600.",
-                  "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation."
+                  "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (\u2248200 mm) of space between the vents and any objects to allow for proper heat dissipation."
                 ]
               }
             ],
@@ -4080,7 +4293,7 @@
                                   "children": [
                                     {
                                       "kind": "text",
-                                      "text": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation."
+                                      "text": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (\u2248200 mm) of space between the vents and any objects to allow for proper heat dissipation."
                                     }
                                   ]
                                 }
@@ -4144,7 +4357,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "Jackery 40A Charging Cable · Jackery Parallel Communication Cable — Sold separately"
+              "text": "Jackery 40A Charging Cable \u00b7 Jackery Parallel Communication Cable \u2014 Sold separately"
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -5278,7 +5491,7 @@
         {
           "kind": "image",
           "source": "assets/mts_cascade.png",
-          "alt": "Complete the Cascade Parallel 1. Connection steps described earlier. Connect the second device’s 2. 240V Output Port (NEMA 14-50R) to the MTS inlet. Turn ON both units and enable 3. AC Output. Charging Cable in the MTS package Jackery 40A Charging Cable NEMA 14-50R (sold separately) Jackery Parallel Communication Cable (sold separately)",
+          "alt": "Complete the Cascade Parallel 1. Connection steps described earlier. Connect the second device\u2019s 2. 240V Output Port (NEMA 14-50R) to the MTS inlet. Turn ON both units and enable 3. AC Output. Charging Cable in the MTS package Jackery 40A Charging Cable NEMA 14-50R (sold separately) Jackery Parallel Communication Cable (sold separately)",
           "presentation": {
             "html": {
               "attributes": {
@@ -5456,13 +5669,13 @@
               {
                 "role": "body",
                 "content_kind": "rich_text",
-                "content": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.\nThe charging power and battery capacity of the product may vary due to temperature fluctuations."
+                "content": "The recommended charging temperature for the product ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C), and the discharging temperature ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.\nThe charging power and battery capacity of the product may vary due to temperature fluctuations."
               },
               {
                 "role": "items",
                 "content_kind": "list_items",
                 "content": [
-                  "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.",
+                  "The recommended charging temperature for the product ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C), and the discharging temperature ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.",
                   "The charging power and battery capacity of the product may vary due to temperature fluctuations."
                 ]
               }
@@ -5528,7 +5741,7 @@
                                   "children": [
                                     {
                                       "kind": "text",
-                                      "text": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging."
+                                      "text": "The recommended charging temperature for the product ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C), and the discharging temperature ranges from -4\u00b0F to 113\u00b0F (-20\u00b0C to 45\u00b0C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging."
                                     }
                                   ]
                                 },
@@ -6397,7 +6610,7 @@
         {
           "kind": "image",
           "source": "assets/solar500.png",
-          "alt": "SolarSaga 500 X × 2",
+          "alt": "SolarSaga 500 X \u00d7 2",
           "presentation": {
             "html": {
               "attributes": {
@@ -6410,7 +6623,7 @@
         {
           "kind": "image",
           "source": "assets/solar200.png",
-          "alt": "SolarSaga 200 × 6",
+          "alt": "SolarSaga 200 \u00d7 6",
           "presentation": {
             "html": {
               "attributes": {
@@ -7031,7 +7244,7 @@
               "children": [
                 {
                   "kind": "text",
-                  "text": "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)"
+                  "text": "1 month: -4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C (0-60%RH)"
                 }
               ]
             },
@@ -7040,7 +7253,7 @@
               "children": [
                 {
                   "kind": "text",
-                  "text": "3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)"
+                  "text": "3 months: 32\u00b0F to 113\u00b0F / 0\u00b0C to 45\u00b0C (0-60%RH)"
                 }
               ]
             },
@@ -7049,7 +7262,7 @@
               "children": [
                 {
                   "kind": "text",
-                  "text": "12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)"
+                  "text": "12 months: 32\u00b0F to 77\u00b0F / 0\u00b0C to 25\u00b0C (0-60%RH)"
                 }
               ]
             }
@@ -7140,7 +7353,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "LiFePO₄",
+                        "text": "LiFePO\u2084",
                         "references": []
                       }
                     ],
@@ -7162,7 +7375,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm",
+                        "text": "14.76 \u00d7 10.83 \u00d7 17.72 in / 37.5\u00d727.5\u00d745.0 cm",
                         "references": []
                       }
                     ],
@@ -7173,7 +7386,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "6000 Cycles (retained capacity ≥70% SOH)",
+                        "text": "6000 Cycles (retained capacity \u226570% SOH)",
                         "references": []
                       }
                     ],
@@ -7195,7 +7408,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "＜10 ms",
+                        "text": "\uff1c10 ms",
                         "references": []
                       }
                     ],
@@ -7217,7 +7430,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "≥0.98",
+                        "text": "\u22650.98",
                         "references": []
                       }
                     ],
@@ -7381,7 +7594,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "LiFePO₄"
+                              "text": "LiFePO\u2084"
                             }
                           ]
                         }
@@ -7431,7 +7644,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm"
+                              "text": "14.76 \u00d7 10.83 \u00d7 17.72 in / 37.5\u00d727.5\u00d745.0 cm"
                             }
                           ]
                         }
@@ -7456,7 +7669,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "6000 Cycles (retained capacity ≥70% SOH)"
+                              "text": "6000 Cycles (retained capacity \u226570% SOH)"
                             }
                           ]
                         }
@@ -7506,7 +7719,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "＜10 ms"
+                              "text": "\uff1c10 ms"
                             }
                           ]
                         }
@@ -7556,7 +7769,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "≥0.98"
+                              "text": "\u22650.98"
                             }
                           ]
                         }
@@ -7612,7 +7825,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "1 × AC Input",
+                    "label": "1 \u00d7 AC Input",
                     "label_rowspan": 2,
                     "values": [
                       {
@@ -7620,22 +7833,22 @@
                         "references": []
                       },
                       {
-                        "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+                        "text": "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W",
                         "references": [
-                          "①"
+                          "\u2460"
                         ]
                       }
                     ],
                     "references": []
                   },
                   {
-                    "label": "2 × DC8020 Ports",
+                    "label": "2 \u00d7 DC8020 Ports",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max",
+                        "text": "12-16V\u23938A Max, Double to 8A Max; 16-60V\u2461\u239312A Max, Double to 24A, 1200W Max",
                         "references": [
-                          "②"
+                          "\u2461"
                         ]
                       }
                     ],
@@ -7703,7 +7916,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC Input"
+                              "text": "1 \u00d7 AC Input"
                             }
                           ],
                           "row_span": 2
@@ -7729,7 +7942,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
+                              "text": "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
                             }
                           ]
                         }
@@ -7744,7 +7957,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "2 × DC8020 Ports"
+                              "text": "2 \u00d7 DC8020 Ports"
                             }
                           ]
                         },
@@ -7754,7 +7967,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max"
+                              "text": "12-16V\u23938A Max, Double to 8A Max; 16-60V\u2461\u239312A Max, Double to 24A, 1200W Max"
                             }
                           ]
                         }
@@ -7785,7 +7998,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "2 × AC (NEMA 5-20R)",
+                    "label": "2 \u00d7 AC (NEMA 5-20R)",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -7796,7 +8009,7 @@
                     "references": []
                   },
                   {
-                    "label": "1 × AC (NEMA 14-50R)",
+                    "label": "1 \u00d7 AC (NEMA 14-50R)",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -7807,7 +8020,7 @@
                     "references": []
                   },
                   {
-                    "label": "Total AC Output③",
+                    "label": "Total AC Output\u2462",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -7816,17 +8029,17 @@
                       }
                     ],
                     "references": [
-                      "③"
+                      "\u2462"
                     ]
                   },
                   {
-                    "label": "AC Output in Bypass Mode①",
+                    "label": "AC Output in Bypass Mode\u2460",
                     "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W④ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W④ Max",
+                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max",
                         "references": [
-                          "④"
+                          "\u2463"
                         ]
                       },
                       {
@@ -7835,26 +8048,26 @@
                       }
                     ],
                     "references": [
-                      "①"
+                      "\u2460"
                     ]
                   },
                   {
-                    "label": "1 × USB-C Output",
+                    "label": "1 \u00d7 USB-C Output",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+                        "text": "100W Max, 5V\u23933A, 9V\u23933A, 12V\u23933A, 15V\u23933A, 20V\u23935A",
                         "references": []
                       }
                     ],
                     "references": []
                   },
                   {
-                    "label": "1 × USB-A Output",
+                    "label": "1 \u00d7 USB-A Output",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+                        "text": "18W Max, 5-6V\u23933A, 6-9V\u23932A, 9-12V\u23931.5A",
                         "references": []
                       }
                     ],
@@ -7922,7 +8135,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "2 × AC (NEMA 5-20R)"
+                              "text": "2 \u00d7 AC (NEMA 5-20R)"
                             }
                           ]
                         },
@@ -7947,7 +8160,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC (NEMA 14-50R)"
+                              "text": "1 \u00d7 AC (NEMA 14-50R)"
                             }
                           ]
                         },
@@ -7972,7 +8185,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "Total AC Output③"
+                              "text": "Total AC Output\u2462"
                             }
                           ]
                         },
@@ -7997,7 +8210,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "AC Output in Bypass Mode①"
+                              "text": "AC Output in Bypass Mode\u2460"
                             }
                           ],
                           "row_span": 2
@@ -8020,14 +8233,14 @@
                             },
                             {
                               "kind": "text",
-                              "text": "NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W④ in Total"
+                              "text": "NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total"
                             },
                             {
                               "kind": "line_break"
                             },
                             {
                               "kind": "text",
-                              "text": "NEMA 14-50R: 240V~ 60Hz, 1440W④ Max"
+                              "text": "NEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max"
                             }
                           ]
                         }
@@ -8076,7 +8289,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × USB-C Output"
+                              "text": "1 \u00d7 USB-C Output"
                             }
                           ]
                         },
@@ -8086,7 +8299,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+                              "text": "100W Max, 5V\u23933A, 9V\u23933A, 12V\u23933A, 15V\u23933A, 20V\u23935A"
                             }
                           ]
                         }
@@ -8101,7 +8314,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × USB-A Output"
+                              "text": "1 \u00d7 USB-A Output"
                             }
                           ]
                         },
@@ -8111,7 +8324,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+                              "text": "18W Max, 5-6V\u23933A, 6-9V\u23932A, 9-12V\u23931.5A"
                             }
                           ]
                         }
@@ -8142,7 +8355,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "1 × AC Expansion Port",
+                    "label": "1 \u00d7 AC Expansion Port",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -8153,11 +8366,11 @@
                     "references": []
                   },
                   {
-                    "label": "1 × DC Expansion Port",
+                    "label": "1 \u00d7 DC Expansion Port",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "36.4V-50.4V⎓126A Max (Input)\n36.4V-50.4V⎓60A Max (Output)",
+                        "text": "36.4V-50.4V\u2393126A Max (Input)\n36.4V-50.4V\u239360A Max (Output)",
                         "references": []
                       }
                     ],
@@ -8225,7 +8438,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC Expansion Port"
+                              "text": "1 \u00d7 AC Expansion Port"
                             }
                           ]
                         },
@@ -8250,7 +8463,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × DC Expansion Port"
+                              "text": "1 \u00d7 DC Expansion Port"
                             }
                           ]
                         },
@@ -8260,14 +8473,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓126A Max (Input)"
+                              "text": "36.4V-50.4V\u2393126A Max (Input)"
                             },
                             {
                               "kind": "line_break"
                             },
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓60A Max (Output)"
+                              "text": "36.4V-50.4V\u239360A Max (Output)"
                             }
                           ]
                         }
@@ -8302,7 +8515,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -8313,7 +8526,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -8324,7 +8537,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "≤3000m",
+                        "text": "\u22643000m",
                         "references": []
                       }
                     ],
@@ -8402,7 +8615,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -8427,7 +8640,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -8452,7 +8665,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "≤3000m"
+                              "text": "\u22643000m"
                             }
                           ]
                         }
@@ -8469,7 +8682,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+              "text": "\u203b USB Type-C\u00ae and USB-C\u00ae are registered trademarks of USB Implementers Forum."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -8479,7 +8692,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
+              "text": "\u2460 The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -8498,7 +8711,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
+              "text": "\u2461 Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -8517,7 +8730,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "③ Indicates that two or more AC output ports work together."
+              "text": "\u2462 Indicates that two or more AC output ports work together."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -8536,7 +8749,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
+              "text": "\u2463 When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -10153,7 +10366,7 @@
               {
                 "role": "body",
                 "content_kind": "rich_text",
-                "content": "Smart Home Backup System (AC ESS) Installation Position\nIndoor installation.\nThe area is completely waterproof.\nThe wall is flat and level.\nAmbient temperature range: -4°F to 113°F / -20°C to 45°C.\nThe temperature and humidity are maintained at a constant level.\nInstall in a well-ventilated place.\nDo not place in an area within the reach of children or pets.\nThe installation area shall avoid direct sunlight.\nNo flammable or explosive materials close to inverter and battery."
+                "content": "Smart Home Backup System (AC ESS) Installation Position\nIndoor installation.\nThe area is completely waterproof.\nThe wall is flat and level.\nAmbient temperature range: -4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C.\nThe temperature and humidity are maintained at a constant level.\nInstall in a well-ventilated place.\nDo not place in an area within the reach of children or pets.\nThe installation area shall avoid direct sunlight.\nNo flammable or explosive materials close to inverter and battery."
               },
               {
                 "role": "items",
@@ -10162,7 +10375,7 @@
                   "Indoor installation.",
                   "The area is completely waterproof.",
                   "The wall is flat and level.",
-                  "Ambient temperature range: -4°F to 113°F / -20°C to 45°C.",
+                  "Ambient temperature range: -4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C.",
                   "The temperature and humidity are maintained at a constant level.",
                   "Install in a well-ventilated place.",
                   "Do not place in an area within the reach of children or pets.",
@@ -10268,7 +10481,7 @@
                                   "children": [
                                     {
                                       "kind": "text",
-                                      "text": "Ambient temperature range: -4°F to 113°F / -20°C to 45°C."
+                                      "text": "Ambient temperature range: -4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C."
                                     }
                                   ]
                                 },
@@ -10334,7 +10547,7 @@
     },
     {
       "id": "ess-specifications",
-      "title": "SPECIFICATIONS — SMART HOME BACKUP SYSTEM",
+      "title": "SPECIFICATIONS \u2014 SMART HOME BACKUP SYSTEM",
       "nodes": [
         {
           "kind": "heading",
@@ -10436,7 +10649,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "LiFePO₄",
+                        "text": "LiFePO\u2084",
                         "references": []
                       }
                     ],
@@ -10458,7 +10671,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm",
+                        "text": "14.76 \u00d7 10.83 \u00d7 17.72 in / 37.5\u00d727.5\u00d745.0 cm",
                         "references": []
                       }
                     ],
@@ -10469,7 +10682,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "6000 Cycles (retained capacity ≥70% SOH)",
+                        "text": "6000 Cycles (retained capacity \u226570% SOH)",
                         "references": []
                       }
                     ],
@@ -10491,7 +10704,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "＜10 ms",
+                        "text": "\uff1c10 ms",
                         "references": []
                       }
                     ],
@@ -10513,7 +10726,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "≥0.98",
+                        "text": "\u22650.98",
                         "references": []
                       }
                     ],
@@ -10677,7 +10890,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "LiFePO₄"
+                              "text": "LiFePO\u2084"
                             }
                           ]
                         }
@@ -10727,7 +10940,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm"
+                              "text": "14.76 \u00d7 10.83 \u00d7 17.72 in / 37.5\u00d727.5\u00d745.0 cm"
                             }
                           ]
                         }
@@ -10752,7 +10965,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "6000 Cycles (retained capacity ≥70% SOH)"
+                              "text": "6000 Cycles (retained capacity \u226570% SOH)"
                             }
                           ]
                         }
@@ -10802,7 +11015,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "＜10 ms"
+                              "text": "\uff1c10 ms"
                             }
                           ]
                         }
@@ -10852,7 +11065,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "≥0.98"
+                              "text": "\u22650.98"
                             }
                           ]
                         }
@@ -10908,7 +11121,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "1 × AC Input",
+                    "label": "1 \u00d7 AC Input",
                     "label_rowspan": 2,
                     "values": [
                       {
@@ -10916,22 +11129,22 @@
                         "references": []
                       },
                       {
-                        "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+                        "text": "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W",
                         "references": [
-                          "①"
+                          "\u2460"
                         ]
                       }
                     ],
                     "references": []
                   },
                   {
-                    "label": "2 × DC8020 Ports",
+                    "label": "2 \u00d7 DC8020 Ports",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max",
+                        "text": "12-16V\u23938A Max, Double to 8A Max; 16-60V\u2461\u239312A Max, Double to 24A, 1200W Max",
                         "references": [
-                          "②"
+                          "\u2461"
                         ]
                       }
                     ],
@@ -10999,7 +11212,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC Input"
+                              "text": "1 \u00d7 AC Input"
                             }
                           ],
                           "row_span": 2
@@ -11025,7 +11238,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
+                              "text": "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
                             }
                           ]
                         }
@@ -11040,7 +11253,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "2 × DC8020 Ports"
+                              "text": "2 \u00d7 DC8020 Ports"
                             }
                           ]
                         },
@@ -11050,7 +11263,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max"
+                              "text": "12-16V\u23938A Max, Double to 8A Max; 16-60V\u2461\u239312A Max, Double to 24A, 1200W Max"
                             }
                           ]
                         }
@@ -11081,7 +11294,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "2 × AC (NEMA 5-20R)",
+                    "label": "2 \u00d7 AC (NEMA 5-20R)",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -11092,7 +11305,7 @@
                     "references": []
                   },
                   {
-                    "label": "1 × AC (NEMA 14-50R)",
+                    "label": "1 \u00d7 AC (NEMA 14-50R)",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -11103,7 +11316,7 @@
                     "references": []
                   },
                   {
-                    "label": "Total AC Output③",
+                    "label": "Total AC Output\u2462",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -11112,15 +11325,15 @@
                       }
                     ],
                     "references": [
-                      "③"
+                      "\u2462"
                     ]
                   },
                   {
-                    "label": "AC Output in Bypass Mode①",
+                    "label": "AC Output in Bypass Mode\u2460",
                     "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W⁴ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W⁴ Max",
+                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max",
                         "references": []
                       },
                       {
@@ -11129,26 +11342,26 @@
                       }
                     ],
                     "references": [
-                      "①"
+                      "\u2460"
                     ]
                   },
                   {
-                    "label": "1 × USB-C Output",
+                    "label": "1 \u00d7 USB-C Output",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+                        "text": "100W Max, 5V\u23933A, 9V\u23933A, 12V\u23933A, 15V\u23933A, 20V\u23935A",
                         "references": []
                       }
                     ],
                     "references": []
                   },
                   {
-                    "label": "1 × USB-A Output",
+                    "label": "1 \u00d7 USB-A Output",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+                        "text": "18W Max, 5-6V\u23933A, 6-9V\u23932A, 9-12V\u23931.5A",
                         "references": []
                       }
                     ],
@@ -11216,7 +11429,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "2 × AC (NEMA 5-20R)"
+                              "text": "2 \u00d7 AC (NEMA 5-20R)"
                             }
                           ]
                         },
@@ -11241,7 +11454,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC (NEMA 14-50R)"
+                              "text": "1 \u00d7 AC (NEMA 14-50R)"
                             }
                           ]
                         },
@@ -11266,7 +11479,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "Total AC Output③"
+                              "text": "Total AC Output\u2462"
                             }
                           ]
                         },
@@ -11291,7 +11504,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "AC Output in Bypass Mode①"
+                              "text": "AC Output in Bypass Mode\u2460"
                             }
                           ],
                           "row_span": 2
@@ -11314,14 +11527,14 @@
                             },
                             {
                               "kind": "text",
-                              "text": "NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W⁴ in Total"
+                              "text": "NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total"
                             },
                             {
                               "kind": "line_break"
                             },
                             {
                               "kind": "text",
-                              "text": "NEMA 14-50R: 240V~ 60Hz, 1440W⁴ Max"
+                              "text": "NEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max"
                             }
                           ]
                         }
@@ -11370,7 +11583,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × USB-C Output"
+                              "text": "1 \u00d7 USB-C Output"
                             }
                           ]
                         },
@@ -11380,7 +11593,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+                              "text": "100W Max, 5V\u23933A, 9V\u23933A, 12V\u23933A, 15V\u23933A, 20V\u23935A"
                             }
                           ]
                         }
@@ -11395,7 +11608,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × USB-A Output"
+                              "text": "1 \u00d7 USB-A Output"
                             }
                           ]
                         },
@@ -11405,7 +11618,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+                              "text": "18W Max, 5-6V\u23933A, 6-9V\u23932A, 9-12V\u23931.5A"
                             }
                           ]
                         }
@@ -11436,7 +11649,7 @@
                 "content_kind": "structured_rows",
                 "content": [
                   {
-                    "label": "1 × AC Expansion Port",
+                    "label": "1 \u00d7 AC Expansion Port",
                     "label_rowspan": 1,
                     "values": [
                       {
@@ -11447,11 +11660,11 @@
                     "references": []
                   },
                   {
-                    "label": "1 × DC Expansion Port",
+                    "label": "1 \u00d7 DC Expansion Port",
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "36.4V-50.4V⎓126A Max (Input)\n36.4V-50.4V⎓60A Max (Output)",
+                        "text": "36.4V-50.4V\u2393126A Max (Input)\n36.4V-50.4V\u239360A Max (Output)",
                         "references": []
                       }
                     ],
@@ -11519,7 +11732,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × AC Expansion Port"
+                              "text": "1 \u00d7 AC Expansion Port"
                             }
                           ]
                         },
@@ -11544,7 +11757,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1 × DC Expansion Port"
+                              "text": "1 \u00d7 DC Expansion Port"
                             }
                           ]
                         },
@@ -11554,14 +11767,14 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓126A Max (Input)"
+                              "text": "36.4V-50.4V\u2393126A Max (Input)"
                             },
                             {
                               "kind": "line_break"
                             },
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓60A Max (Output)"
+                              "text": "36.4V-50.4V\u239360A Max (Output)"
                             }
                           ]
                         }
@@ -11596,7 +11809,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -11607,7 +11820,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -11618,7 +11831,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "≤3000m",
+                        "text": "\u22643000m",
                         "references": []
                       }
                     ],
@@ -11696,7 +11909,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -11721,7 +11934,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -11746,7 +11959,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "≤3000m"
+                              "text": "\u22643000m"
                             }
                           ]
                         }
@@ -11763,7 +11976,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+              "text": "\u203b USB Type-C\u00ae and USB-C\u00ae are registered trademarks of USB Implementers Forum."
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -11773,7 +11986,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
+              "text": "\u2460 The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -11792,7 +12005,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
+              "text": "\u2461 Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -11811,7 +12024,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "③ Indicates that two or more AC output ports work together."
+              "text": "\u2462 Indicates that two or more AC output ports work together."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -11830,7 +12043,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
+              "text": "\u2463 When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -11947,7 +12160,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "LiFePO₄",
+                        "text": "LiFePO\u2084",
                         "references": []
                       }
                     ],
@@ -12133,7 +12346,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "LiFePO₄"
+                              "text": "LiFePO\u2084"
                             }
                           ]
                         }
@@ -12243,7 +12456,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "36.4V-50.4V⎓60A Max",
+                        "text": "36.4V-50.4V\u239360A Max",
                         "references": []
                       }
                     ],
@@ -12254,7 +12467,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "36.4V-50.4V⎓100A Max",
+                        "text": "36.4V-50.4V\u2393100A Max",
                         "references": []
                       }
                     ],
@@ -12265,7 +12478,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "1160A/860μs",
+                        "text": "1160A/860\u03bcs",
                         "references": []
                       }
                     ],
@@ -12343,7 +12556,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓60A Max"
+                              "text": "36.4V-50.4V\u239360A Max"
                             }
                           ]
                         }
@@ -12368,7 +12581,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "36.4V-50.4V⎓100A Max"
+                              "text": "36.4V-50.4V\u2393100A Max"
                             }
                           ]
                         }
@@ -12393,7 +12606,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "1160A/860μs"
+                              "text": "1160A/860\u03bcs"
                             }
                           ]
                         }
@@ -12428,7 +12641,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -12439,7 +12652,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 113°F / -20°C to 45°C",
+                        "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C",
                         "references": []
                       }
                     ],
@@ -12517,7 +12730,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -12542,7 +12755,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 113°F / -20°C to 45°C"
+                              "text": "-4\u00b0F to 113\u00b0F / -20\u00b0C to 45\u00b0C"
                             }
                           ]
                         }
@@ -12723,7 +12936,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "≤20 ms",
+                        "text": "\u226420 ms",
                         "references": []
                       }
                     ],
@@ -12811,7 +13024,7 @@
                     "label_rowspan": 1,
                     "values": [
                       {
-                        "text": "-4°F to 122°F / -20°C to 50°C",
+                        "text": "-4\u00b0F to 122\u00b0F / -20\u00b0C to 50\u00b0C",
                         "references": []
                       }
                     ],
@@ -13116,7 +13329,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "≤20 ms"
+                              "text": "\u226420 ms"
                             }
                           ]
                         }
@@ -13323,7 +13536,7 @@
                           "children": [
                             {
                               "kind": "text",
-                              "text": "-4°F to 122°F / -20°C to 50°C"
+                              "text": "-4\u00b0F to 122\u00b0F / -20\u00b0C to 50\u00b0C"
                             }
                           ]
                         }
@@ -13577,7 +13790,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "Jackery Battery Pack 3600 — Sold separately"
+              "text": "Jackery Battery Pack 3600 \u2014 Sold separately"
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -13809,7 +14022,7 @@
           "children": [
             {
               "kind": "text",
-              "text": "Jackery Automatic Transfer Switch — Sold separately"
+              "text": "Jackery Automatic Transfer Switch \u2014 Sold separately"
             }
           ],
           "schema_version": "manual-flow/v2"
