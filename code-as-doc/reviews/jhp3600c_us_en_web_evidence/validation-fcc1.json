@@ -1,0 +1,17 @@
+{
+  "version": "git-20261005-31fd0692-fcc1",
+  "source_git_ref": "2302c2580222def3d217e8dbe506f9527c3724f7",
+  "existing_sources_unchanged": 5609,
+  "target_count": 106,
+  "semantic_source_unchanged": true,
+  "strict_standalone_sphinx": "passed",
+  "deterministic_rebuild": "passed",
+  "focused_tests": 18,
+  "doc_links": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "browser_desktop_width": 1440,
+  "browser_mobile_width": 390,
+  "browser_heading_display": "none",
+  "browser_heading_height": 0,
+  "browser_overflow": false
+}

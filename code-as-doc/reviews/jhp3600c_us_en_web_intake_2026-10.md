@@ -189,3 +189,16 @@ copy and artwork are unchanged. The technical candidate version is
 
 Deterministic rebuild and strict standalone Sphinx pass. The correction is
 limited to this source package and stays in the isolated Git-only worktree.
+
+Source commit: `2302c2580222def3d217e8dbe506f9527c3724f7`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-fcc1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-fcc1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-fcc1.json) bind the result.
+All 18 focused frozen replay/evidence tests pass, as do document links and
+strict aggregate Sphinx. The 106-target assembly preserves all 5,609 original
+Hello-Docs source files byte-for-byte. At 1440px the FCC card retains two equal
+columns; at 390px it stacks in order, with no page overflow. The visible heading
+has zero layout height on both. [Desktop](jhp3600c_us_en_web_evidence/fcc-desktop-fcc1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/fcc-mobile-fcc1.jpg) and
+[restored user pane](jhp3600c_us_en_web_evidence/fcc-final-preview-fcc1.jpg) record
+the local preview. This correction has not been pushed or published.
