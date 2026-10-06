@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-powerlive2"
+    "technical_version": "git-20261005-31fd0692-usblive1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -129,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 109429,
-      "sha256": "55d82a59e6c4d028dafbc47ffb798d3b04be636f0395d1eafcb49b9fcb1089c2"
+      "size": 110895,
+      "sha256": "57d6c0dfb4fcb4950cefc298ba96939f087b08a6d64c39908178c921d3e054b4"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 537555,
-      "sha256": "cbc8530aeb8e22258505914d93810fe37bcc6df9fcdb9c7b7c7e8b28da001d81"
+      "size": 544337,
+      "sha256": "cdc1fd37b6a15ae64f181c022cdd7ed8dc1844e05b2816900a67b2a8ebdb79eb"
     },
     {
       "path": "source/coverage_audit.json",
@@ -179,8 +179,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 6357,
-      "sha256": "d06e459b581f03d0bc92f9205f88e05cdaa9405583c4eabaadc2d2ffb0e25292"
+      "size": 7312,
+      "sha256": "0375d82e5a27922115054efd7582f48d4fa140ec611824eae04acdadf0d3c5fd"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -213,9 +213,14 @@
       "sha256": "b087b508cc8165b3da1f8de8ddc26f3c6a8a43f672ca8b4d3537acee9965bf76"
     },
     {
+      "path": "source/usb_framefree.pdf",
+      "size": 72263,
+      "sha256": "c22ed7da3e975b5b1efa6e0f6699c6b1466b6d2e3e751ea95870b42d0ee435de"
+    },
+    {
       "path": "web/en/_static/source_presentation.css",
-      "size": 6357,
-      "sha256": "d06e459b581f03d0bc92f9205f88e05cdaa9405583c4eabaadc2d2ffb0e25292"
+      "size": 7312,
+      "sha256": "0375d82e5a27922115054efd7582f48d4fa140ec611824eae04acdadf0d3c5fd"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -778,6 +783,11 @@
       "sha256": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
     {
+      "path": "web/en/assets/usb_framefree.png",
+      "size": 43887,
+      "sha256": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619"
+    },
+    {
       "path": "web/en/conf.py",
       "size": 838,
       "sha256": "87d7db6eaf2d08f39bd20309269b222b25297a1c53f893a4239d51e2071def0c"
@@ -789,13 +799,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 712751,
-      "sha256": "ec732c7b23e36262eab4c83b5651375948544abb206eee5069cb2ce2709aff3c"
+      "size": 720103,
+      "sha256": "182c8f9386878e0fcecb2d25c5381182e910395727c46855249afbbc196a043c"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 117870,
-      "sha256": "332f4f8eb0f73256726c320c7f62e0679ace68ed446779942857e57c2de68857"
+      "size": 120354,
+      "sha256": "432fe4320f93a6d6b6bbea33adf73b33685655303083fd66a145dee2f67acfa4"
     }
   ],
   "repo_inputs": [

@@ -166,6 +166,22 @@
   #furo-main-content #power-on-off .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
 }
 
+/* USB native artwork retains only product markings and connection geometry. */
+#furo-main-content #usb-output-on-off .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content #usb-output-on-off .hb-operation-prerequisite { background: var(--hb-fill); font-weight: 400; }
+@media (min-width: 761px) {
+  #furo-main-content #usb-output-on-off .hb-operation-step-label { font-size: 3.1546cqw; }
+  #furo-main-content #usb-output-on-off .hb-operation-step-instruction { font-size: 1.8927cqw; }
+  #furo-main-content #usb-output-on-off .hb-operation-prerequisite { font-size: 2.082cqw; }
+}
+@media (max-width: 760px) {
+  #furo-main-content #usb-output-on-off .hb-operation-art-box { display: flex; flex-direction: column; }
+  #furo-main-content #usb-output-on-off .hb-operation-prerequisite {
+    position: static; order: -1; width: auto; max-width: none; min-width: 0;
+    margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
+  }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -256,7 +272,7 @@
 
 ## USB OUTPUT ON/OFF
 
-<img alt="On Prerequisite: The product is powered on. Press once Off Press once" src="assets/usb.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy" data-component-id="HB-SPECIAL-OPERATION" data-operation-id="dc-usb-output" data-source-fragment-sha256="0dffd7646039e2b8a66a2f7626e04c0016af46d2de18743a93a6b2c768ae534f" data-web-base-art-ref="assets/usb_framefree.png" data-web-presentation-mode="base-art-live-copy"><div class="hb-operation-stage"><div class="hb-operation-canvas"><div class="hb-operation-art-box"><img alt="" class="hb-operation-art" src="assets/usb_framefree.png"/><div class="hb-operation-prerequisite" data-callout-id="operation.dc-usb-output.prerequisite" style="--hb-x:4.21%;--hb-y:8.66%;--hb-width:41.5%;--hb-height:8.67%;--hb-max-width:45.5%;--hb-fill:#ebebec"><p><strong>Prerequisite:</strong> The product is powered on.</p></div></div><div class="line-block hb-operation-steps" data-callout-id="operation.dc-usb-output.steps"><div class="hb-operation-step" data-callout-id="operation.dc-usb-output.on" data-step-id="on" style="--hb-step-x:83.1%;--hb-step-y:14.9037%;--hb-step-width:15%"><div class="line hb-operation-step-label" data-step-id="on" data-step-part="label"><strong>On</strong></div><div class="line hb-operation-step-instruction" data-step-id="on" data-step-part="instruction">Press once</div></div><div class="hb-operation-step" data-callout-id="operation.dc-usb-output.off" data-step-id="off" style="--hb-step-x:83.1%;--hb-step-y:31.0853%;--hb-step-width:15%"><div class="line hb-operation-step-label" data-step-id="off" data-step-part="label"><strong>Off</strong></div><div class="line hb-operation-step-instruction" data-step-id="off" data-step-part="instruction">Press once</div></div></div></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><ul><li>USB-C 100W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection.</li><li>Only connect the Jackery HomePower 3600 Pro Max to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).</li><li>To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W).</li></ul></td></tr></tbody></table>
 

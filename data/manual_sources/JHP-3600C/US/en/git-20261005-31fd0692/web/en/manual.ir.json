@@ -54,7 +54,7 @@
     "assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
     "assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
     "assets/power_framefree.png",
-    "assets/usb.png",
+    "assets/usb_framefree.png",
     "assets/ac.png",
     "assets/energy_saving.png",
     "assets/lcd_device.png",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "fb42013b0ecc6b507398bd99ce905771229934354ec6d71f5ff9703fa7a8928c",
-  "content_sha256": "df91e3a699cfc78da11b73b1a2949c246638b4c1e9268cec444d4cee16234e89",
+  "bundle_sha256": "02921299056a7257c1d232ef00ee770058cce51665191b97d3ae48438532f2c1",
+  "content_sha256": "be34468cbc5dc11c11db83993f5415489642be0f09a9a84b5e5ae0e39e49fd85",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -208,7 +208,8 @@
       "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/ups120.png": "4a7768c38f4a2093f1c107c8edecd1c672915a97ed79f5c39886f3c8e8f7b5d6",
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
-      "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
+      "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f",
+      "assets/usb_framefree.png": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619"
     },
     "block_count": 230,
     "component_inventory": {
@@ -216,7 +217,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-OPERATION": 1,
+      "HB-SPECIAL-OPERATION": 2,
       "HB-SPECIAL-REFERENCE-FIGURE": 7,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
@@ -2061,7 +2062,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "d06e459b581f03d0bc92f9205f88e05cdaa9405583c4eabaadc2d2ffb0e25292"
+      "sha256": "0375d82e5a27922115054efd7582f48d4fa140ec611824eae04acdadf0d3c5fd"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -4948,23 +4949,247 @@
         },
         {
           "asset_refs": [
-            "assets/usb.png"
+            "assets/usb_framefree.png"
           ],
           "block_id": "operations:block-0005",
-          "content_sha256": "35b36f476e2024cd5c486edbee76794f185fc76b7f3780f62ef5488f741aae0e",
+          "content_sha256": "376bd09872e72ef1d70ff52f3875964629c9d554d6101f57218da0f0252983e4",
           "kind": "flow",
           "payload": {
-            "alt": "On Prerequisite: The product is powered on. Press once Off Press once",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Prerequisite:"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " The product is powered on."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "alt": "USB OUTPUT ON/OFF",
+                "kind": "image",
+                "source": "assets/usb_framefree.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "On"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Press once"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Off"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Press once"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/usb_framefree.png",
+                  "locale_policy": "exact",
+                  "role": "artwork"
+                }
+              ],
+              "component_id": "HB-SPECIAL-OPERATION",
+              "language": "en",
+              "metadata": {
+                "presentation_mode": "base-art-live-copy",
+                "web_presentation": {
+                  "base_art_layout": {
+                    "art_sha256": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619",
+                    "prerequisite_fill": "#ebebec",
+                    "prerequisite_max_width": 45.5,
+                    "prerequisite_rect": [
+                      4.21,
+                      8.66,
+                      41.5,
+                      8.67
+                    ],
+                    "step_anchors": [
+                      [
+                        83.1,
+                        14.9037
+                      ],
+                      [
+                        83.1,
+                        31.0853
+                      ]
+                    ],
+                    "step_width": 15
+                  },
+                  "capture_following_lines": 0,
+                  "capture_prerequisite": true,
+                  "id": "dc-usb-output",
+                  "image_key": "assets/usb_framefree.png",
+                  "layout": "status-right",
+                  "presentation_mode": "base-art-live-copy",
+                  "step_ids": [
+                    "on",
+                    "off"
+                  ]
+                }
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "dc-usb-output",
+                  "content_kind": "inline_text",
+                  "role": "operation_id"
+                },
+                {
+                  "content": "USB OUTPUT ON/OFF",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "id": "on",
+                      "parts": [
+                        {
+                          "html": "<strong>On</strong>",
+                          "role": "label",
+                          "text": "On"
+                        },
+                        {
+                          "html": "Press once",
+                          "role": "instruction",
+                          "text": "Press once"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "off",
+                      "parts": [
+                        {
+                          "html": "<strong>Off</strong>",
+                          "role": "label",
+                          "text": "Off"
+                        },
+                        {
+                          "html": "Press once",
+                          "role": "instruction",
+                          "text": "Press once"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "ordered_steps",
+                  "role": "steps"
+                },
+                {
+                  "content": "<p><strong>Prerequisite:</strong> The product is powered on.</p>",
+                  "content_kind": "rich_text",
+                  "role": "prerequisite"
+                }
+              ],
+              "source_ref": "native-pdf/p11#usb",
+              "token_roles": [
+                "component.special.operation"
+              ],
+              "variant": "status-right"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/usb.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-5"
         },
@@ -6133,7 +6358,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "67b3277f1aa4edc90380623682acf3f2c703890bc9f77d430b4345182285612a"
+      "source_sha256": "d781dfd39ea4b47516050f7d7ae4af3ddd0e0e2b135372d8b6fa5150490f47e6"
     },
     {
       "blocks": [

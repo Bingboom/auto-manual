@@ -1386,7 +1386,7 @@
   },
   {
     "slot": "usb",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1406,7 +1406,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/usb.png",
-    "sha256": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
+    "sha256": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f",
+    "rejection": "Burned external operation copy and prerequisite capsule; replaced with shared Operation live text and CSS frames."
   },
   {
     "slot": "ac",
@@ -2733,6 +2734,36 @@
       766
     ],
     "native_outer_frame": "614 removed by bounded caption-frame removal; shared Operation stage draws frame",
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "usb",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets/je3600a_eu_en/operation_usb.png",
+      "docs/templates/word_template/common_assets/operation/dc_usb_output.png",
+      "docs/renderers/latex/assets/op_dc_usb_output.png"
+    ],
+    "identity_check": "Shared Explorer 1000 housing, DC socket and 2 USB-C differ; Explorer 3600 wheeled housing, vertical USB switch and 2+2 ports differ. Native target uses horizontal USB and 1+1 ports.",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      262,
+      343,
+      420
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve native white product surfaces, gray button faces, outlined engravings and complete leaders; prerequisite capsule and outer frame are CSS.",
+    "final_path": "assets/usb_framefree.png",
+    "sha256": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_usb_framefree.json",
+    "removed_caption_drawings": [
+      765
+    ],
+    "native_outer_frame": "740 removed by bounded prerequisite-frame removal; shared Operation stage draws frame",
     "reuse_status": "active",
     "registry_promotion": "not performed; Git-only review candidate"
   }
