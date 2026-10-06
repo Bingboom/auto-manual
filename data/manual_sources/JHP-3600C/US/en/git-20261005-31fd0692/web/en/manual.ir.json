@@ -56,7 +56,7 @@
     "assets/power_framefree.png",
     "assets/usb_framefree.png",
     "assets/ac_framefree.png",
-    "assets/energy_saving.png",
+    "assets/energy_framefree.png",
     "assets/lcd_device.png",
     "assets/7b5fa9057ca9_power-bottom.svg",
     "assets/4025f864c192_usb-bottom.svg",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "2ffc4daa80dd65e15f98d9e36ecb0ebefdfbcbe6d765639958449601452b777b",
-  "content_sha256": "0990be1c13a8dcc25216be745f15de2590c41eb52a1ea35742f2a59698588b9a",
+  "bundle_sha256": "b2d3d0f7ab8cecc7c48bf81ff94a63cfa6d216cd08af556b9b9560ff5aacdcec",
+  "content_sha256": "60d494aa6eeb1294f7b4e26bcf7b3994649df9f9f1c3904436a078782d526afc",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -157,6 +157,7 @@
       "assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
       "assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
       "assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+      "assets/energy_framefree.png": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
       "assets/energy_saving.png": "cfac4f314dcf9b7598b9618845fe920b40bde79fcfe8c53b92cc7aa65b34eec7",
       "assets/epo.png": "73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068",
       "assets/ess_ats_package.png": "802b6803d4fd7643a82401aa8f8ec25638bce53af5b458483f687acb7e096344",
@@ -218,7 +219,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-OPERATION": 3,
+      "HB-SPECIAL-OPERATION": 4,
       "HB-SPECIAL-REFERENCE-FIGURE": 7,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
@@ -2063,7 +2064,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "23d25e4cf9bceef1a18f7cdb320ec98bbede8beda62d5ff802dcb3ee137da430"
+      "sha256": "1c276588a2d891d8ecfaf0caa5bd8c300f8664c7e4871e908af50a0156e88912"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -5609,23 +5610,214 @@
         },
         {
           "asset_refs": [
-            "assets/energy_saving.png"
+            "assets/energy_framefree.png"
           ],
           "block_id": "operations:block-0010",
-          "content_sha256": "60cc555f6c00f2cc7122e427563bf7b6be29ffa25f679c2b2c9c2097fcbdf503",
+          "content_sha256": "1c487f763d0ef45d3f4f21009d5ef37d2018bef9b291b10d45f24e9459d101b2",
           "kind": "flow",
           "payload": {
-            "alt": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "ENERGY SAVING MODE",
+                "kind": "image",
+                "source": "assets/energy_framefree.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Main power button"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "AC power button"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "On/Off"
+                          }
+                        ],
+                        "kind": "strong"
+                      },
+                      {
+                        "kind": "text",
+                        "text": ": Press and hold for 3s"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/energy_framefree.png",
+                  "locale_policy": "exact",
+                  "role": "artwork"
+                }
+              ],
+              "component_id": "HB-SPECIAL-OPERATION",
+              "language": "en",
+              "metadata": {
+                "presentation_mode": "base-art-live-copy",
+                "web_presentation": {
+                  "base_art_layout": {
+                    "art_sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
+                    "duration_anchor": [
+                      56.88968454258676,
+                      82.75559322033897
+                    ],
+                    "duration_icon": "none",
+                    "step_anchors": [
+                      [
+                        46.21621451104101,
+                        46.249745762711875
+                      ],
+                      [
+                        73.50280757097792,
+                        46.249745762711875
+                      ],
+                      [
+                        61.347854889589904,
+                        73.58542372881358
+                      ]
+                    ],
+                    "step_width": 26
+                  },
+                  "capture_following_lines": 3,
+                  "id": "energy-saving",
+                  "image_key": "assets/energy_framefree.png",
+                  "layout": "status-right",
+                  "presentation_mode": "base-art-live-copy",
+                  "step_ids": [
+                    "main-button",
+                    "ac-button",
+                    "toggle"
+                  ]
+                }
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "energy-saving",
+                  "content_kind": "inline_text",
+                  "role": "operation_id"
+                },
+                {
+                  "content": "ENERGY SAVING MODE",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "id": "main-button",
+                      "parts": [
+                        {
+                          "html": "Main power button",
+                          "role": "summary",
+                          "text": "Main power button"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "ac-button",
+                      "parts": [
+                        {
+                          "html": "AC power button",
+                          "role": "summary",
+                          "text": "AC power button"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "toggle",
+                      "parts": [
+                        {
+                          "html": "<strong>On/Off</strong>: Press and hold for 3s",
+                          "role": "summary",
+                          "text": "On/Off: Press and hold for 3s"
+                        }
+                      ]
+                    }
+                  ],
+                  "content_kind": "ordered_steps",
+                  "role": "steps"
+                },
+                {
+                  "content": [
+                    "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+                    "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+                    "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation."
+                  ],
+                  "content_kind": "line_items",
+                  "role": "supporting_copy"
+                }
+              ],
+              "source_ref": "native-pdf/p12#energy-saving",
+              "token_roles": [
+                "component.special.operation"
+              ],
+              "variant": "status-right"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/energy_saving.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-10"
         },
@@ -6583,7 +6775,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "47a1d97a09fd06769cfc26b0db7633124976fd7117887c455b076d8e2422c1d0"
+      "source_sha256": "641eaaf1965ea9a0eb365cd25a07627a0b5bae193d15c5444cf65968be1f1596"
     },
     {
       "blocks": [

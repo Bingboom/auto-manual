@@ -3006,17 +3006,208 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/energy_saving.png",
-          "alt": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC \u2264 25 W or DC/USB \u2264 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-OPERATION",
+            "variant": "status-right",
+            "source_ref": "native-pdf/p12#energy-saving",
+            "language": "en",
+            "slots": [
+              {
+                "role": "operation_id",
+                "content_kind": "inline_text",
+                "content": "energy-saving"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "ENERGY SAVING MODE"
+              },
+              {
+                "role": "steps",
+                "content_kind": "ordered_steps",
+                "content": [
+                  {
+                    "id": "main-button",
+                    "parts": [
+                      {
+                        "role": "summary",
+                        "html": "Main power button",
+                        "text": "Main power button"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "ac-button",
+                    "parts": [
+                      {
+                        "role": "summary",
+                        "html": "AC power button",
+                        "text": "AC power button"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "toggle",
+                    "parts": [
+                      {
+                        "role": "summary",
+                        "html": "<strong>On/Off</strong>: Press and hold for 3s",
+                        "text": "On/Off: Press and hold for 3s"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "role": "supporting_copy",
+                "content_kind": "line_items",
+                "content": [
+                  "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+                  "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+                  "When powering low-power devices (AC \u2264 25 W or DC/USB \u2264 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation."
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "artwork",
+                "asset_ref": "assets/energy_framefree.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.operation"
+            ],
+            "metadata": {
+              "presentation_mode": "base-art-live-copy",
+              "web_presentation": {
+                "id": "energy-saving",
+                "layout": "status-right",
+                "step_ids": [
+                  "main-button",
+                  "ac-button",
+                  "toggle"
+                ],
+                "image_key": "assets/energy_framefree.png",
+                "capture_following_lines": 3,
+                "presentation_mode": "base-art-live-copy",
+                "base_art_layout": {
+                  "art_sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
+                  "step_anchors": [
+                    [
+                      46.21621451104101,
+                      46.249745762711875
+                    ],
+                    [
+                      73.50280757097792,
+                      46.249745762711875
+                    ],
+                    [
+                      61.347854889589904,
+                      73.58542372881358
+                    ]
+                  ],
+                  "step_width": 26,
+                  "duration_anchor": [
+                    56.88968454258676,
+                    82.75559322033897
+                  ],
+                  "duration_icon": "none"
+                }
+              }
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/energy_framefree.png",
+              "alt": "ENERGY SAVING MODE"
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "line-block"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Main power button"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "AC power button"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "On/Off"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "text",
+                      "text": ": Press and hold for 3s"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "component",

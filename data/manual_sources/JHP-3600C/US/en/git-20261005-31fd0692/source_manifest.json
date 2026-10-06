@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-aclive1"
+    "technical_version": "git-20261005-31fd0692-energylive1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -134,8 +134,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 112411,
-      "sha256": "186c1ec41350df29b80274f98d4e955a4e0547a5fceb445e145c3cb348d3beb3"
+      "size": 113810,
+      "sha256": "10c424822259ee484b51c84d12cdc43ca7f9e257186590776828a8da071a4881"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -144,13 +144,18 @@
     },
     {
       "path": "source/content.json",
-      "size": 551122,
-      "sha256": "8838de71ed5317f44f888b61a748ca68326bd07288110c009370ef85ebef8b4d"
+      "size": 557019,
+      "sha256": "e2b1a85567bf5c60b41370ab50c3f2f5b50c8bd2c5123d56464ee753eb0341aa"
     },
     {
       "path": "source/coverage_audit.json",
       "size": 5136,
       "sha256": "ac8d7017867fafa6c86ea266629a92cbfcbae16e2c308950bfdaf25ed0093012"
+    },
+    {
+      "path": "source/energy_framefree.pdf",
+      "size": 71988,
+      "sha256": "899cb37bbb1375c504cb12053dfca914bae542e404c8b6b9ee5ddbbb2e393fe4"
     },
     {
       "path": "source/heading_audit.json",
@@ -184,8 +189,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 8260,
-      "sha256": "23d25e4cf9bceef1a18f7cdb320ec98bbede8beda62d5ff802dcb3ee137da430"
+      "size": 9952,
+      "sha256": "1c276588a2d891d8ecfaf0caa5bd8c300f8664c7e4871e908af50a0156e88912"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -224,8 +229,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 8260,
-      "sha256": "23d25e4cf9bceef1a18f7cdb320ec98bbede8beda62d5ff802dcb3ee137da430"
+      "size": 9952,
+      "sha256": "1c276588a2d891d8ecfaf0caa5bd8c300f8664c7e4871e908af50a0156e88912"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -528,6 +533,11 @@
       "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
     },
     {
+      "path": "web/en/assets/energy_framefree.png",
+      "size": 41799,
+      "sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2"
+    },
+    {
       "path": "web/en/assets/energy_saving.png",
       "size": 114521,
       "sha256": "cfac4f314dcf9b7598b9618845fe920b40bde79fcfe8c53b92cc7aa65b34eec7"
@@ -809,13 +819,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 727457,
-      "sha256": "823471e2e784be3688268918283ec35e16c928f6b17f00f0716fdc8e50343d7f"
+      "size": 733847,
+      "sha256": "0bdb538201efa121f3e06fb89359d7baf5bde97641d94a20f7d1321ed2dad7e8"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 122826,
-      "sha256": "e8f1f12ef8db0e1abd58614bd13ef3bcc318d5593b2e2e5bbdfbf952c61b7118"
+      "size": 126346,
+      "sha256": "5546dec024f0975dc3f4f7d7d5aa5aa8dddb081ff4b94b70f95f51b31598be65"
     }
   ],
   "repo_inputs": [

@@ -198,6 +198,29 @@
   }
 }
 
+/* Native energy-saving copy flows above the lower artwork; anchors use artwork only. */
+#furo-main-content #energy-saving-mode .hb-operation-stage { display: flex; flex-direction: column; border-color: #e6e7e8; }
+#furo-main-content #energy-saving-mode .hb-operation-supporting-copy {
+  order: -1; position: static; width: auto; margin: 1rem 1rem 0.8rem; padding: 1rem 1.2rem;
+  background: #ebebec; border: 0; border-radius: 1.2rem; font-size: 1rem; line-height: 1.5;
+}
+#furo-main-content #energy-saving-mode .hb-operation-supporting-copy > .line { margin: 0; }
+#furo-main-content #energy-saving-mode .hb-operation-canvas > .hb-operation-steps {
+  position: absolute; display: block; inset: 0; padding: 0; border: 0;
+}
+#furo-main-content #energy-saving-mode .hb-operation-step {
+  position: absolute; top: var(--hb-step-y); left: var(--hb-step-x); width: var(--hb-step-width);
+}
+#furo-main-content #energy-saving-mode .hb-operation-step-instruction { font-size: max(.5rem, 1.735cqw); line-height: 1.1; white-space: nowrap; }
+#furo-main-content #energy-saving-mode [data-step-id="toggle"] .hb-operation-step-label { font-size: max(.5rem, 3.1546cqw); line-height: 1.1; }
+#furo-main-content #energy-saving-mode [data-step-id="toggle"] .hb-operation-step-instruction { font-size: max(.5rem, 1.8927cqw); }
+#furo-main-content #energy-saving-mode .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
+@media (max-width: 760px) {
+  #furo-main-content #energy-saving-mode .hb-operation-supporting-copy { margin: .65rem .65rem .6rem; padding: .75rem; }
+}
+
+#furo-main-content #energy-saving-mode .hb-operation-step[data-step-id="toggle"] { width: 32%; }
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -298,7 +321,7 @@
 
 ## ENERGY SAVING MODE
 
-<img alt="To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s" src="assets/energy_saving.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy" data-component-id="HB-SPECIAL-OPERATION" data-operation-id="energy-saving" data-source-fragment-sha256="32b9244f01eac11169c7e23128bee430e7364b88910486d413e633af4b06dc40" data-web-base-art-ref="assets/energy_framefree.png" data-web-presentation-mode="base-art-live-copy"><div class="hb-operation-stage"><div class="hb-operation-canvas"><div class="hb-operation-art-box"><img alt="" class="hb-operation-art" src="assets/energy_framefree.png"/><div aria-hidden="true" class="hb-operation-duration" data-duration-icon="none" style="--hb-x:56.8897%;--hb-y:82.7556%">3s</div></div><div class="line-block hb-operation-steps" data-callout-id="operation.energy-saving.steps"><div class="hb-operation-step" data-callout-id="operation.energy-saving.main-button" data-step-id="main-button" style="--hb-step-x:46.2162%;--hb-step-y:46.2497%;--hb-step-width:26%"><div class="line" data-step-id="main-button" data-step-part="summary"><span class="hb-operation-step-instruction">Main power button</span></div></div><div class="hb-operation-step" data-callout-id="operation.energy-saving.ac-button" data-step-id="ac-button" style="--hb-step-x:73.5028%;--hb-step-y:46.2497%;--hb-step-width:26%"><div class="line" data-step-id="ac-button" data-step-part="summary"><span class="hb-operation-step-instruction">AC power button</span></div></div><div class="hb-operation-step" data-callout-id="operation.energy-saving.toggle" data-step-id="toggle" style="--hb-step-x:61.3479%;--hb-step-y:73.5854%;--hb-step-width:26%"><div class="line" data-step-id="toggle" data-step-part="summary"><span class="hb-operation-step-label"><strong>On/Off</strong></span><span class="hb-operation-step-instruction">Press and hold for 3s</span></div></div></div></div><div class="hb-operation-supporting-copy" data-callout-id="operation.energy-saving.supporting-copy"><div class="line">To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.</div><div class="line">To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.</div><div class="line">When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.</div></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.</p></td></tr></tbody></table>
 

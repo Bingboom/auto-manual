@@ -196,3 +196,26 @@
     margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
   }
 }
+
+/* Native energy-saving copy flows above the lower artwork; anchors use artwork only. */
+#furo-main-content #energy-saving-mode .hb-operation-stage { display: flex; flex-direction: column; border-color: #e6e7e8; }
+#furo-main-content #energy-saving-mode .hb-operation-supporting-copy {
+  order: -1; position: static; width: auto; margin: 1rem 1rem 0.8rem; padding: 1rem 1.2rem;
+  background: #ebebec; border: 0; border-radius: 1.2rem; font-size: 1rem; line-height: 1.5;
+}
+#furo-main-content #energy-saving-mode .hb-operation-supporting-copy > .line { margin: 0; }
+#furo-main-content #energy-saving-mode .hb-operation-canvas > .hb-operation-steps {
+  position: absolute; display: block; inset: 0; padding: 0; border: 0;
+}
+#furo-main-content #energy-saving-mode .hb-operation-step {
+  position: absolute; top: var(--hb-step-y); left: var(--hb-step-x); width: var(--hb-step-width);
+}
+#furo-main-content #energy-saving-mode .hb-operation-step-instruction { font-size: max(.5rem, 1.735cqw); line-height: 1.1; white-space: nowrap; }
+#furo-main-content #energy-saving-mode [data-step-id="toggle"] .hb-operation-step-label { font-size: max(.5rem, 3.1546cqw); line-height: 1.1; }
+#furo-main-content #energy-saving-mode [data-step-id="toggle"] .hb-operation-step-instruction { font-size: max(.5rem, 1.8927cqw); }
+#furo-main-content #energy-saving-mode .hb-operation-art-box > .hb-operation-duration { display: block; font-size: max(.5rem, 2.2082cqw); }
+@media (max-width: 760px) {
+  #furo-main-content #energy-saving-mode .hb-operation-supporting-copy { margin: .65rem .65rem .6rem; padding: .75rem; }
+}
+
+#furo-main-content #energy-saving-mode .hb-operation-step[data-step-id="toggle"] { width: 32%; }

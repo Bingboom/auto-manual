@@ -1436,7 +1436,7 @@
   },
   {
     "slot": "energy_saving",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1456,7 +1456,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/energy_saving.png",
-    "sha256": "cfac4f314dcf9b7598b9618845fe920b40bde79fcfe8c53b92cc7aa65b34eec7"
+    "sha256": "cfac4f314dcf9b7598b9618845fe920b40bde79fcfe8c53b92cc7aa65b34eec7",
+    "rejection": "Burned long explanation and operation labels; replaced by shared Operation live HTML and CSS frames."
   },
   {
     "slot": "lcd_device",
@@ -2795,6 +2796,35 @@
       613
     ],
     "native_outer_frame": "597 removed by bounded prerequisite-frame removal; shared Operation stage draws frame",
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "energy_saving",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets/je3600a_eu_en/operation_energy.png",
+      "docs/templates/word_template/common_assets/operation/energy_saving.png"
+    ],
+    "identity_check": "Explorer 1000 housing, upper POWER marking and missing native hands differ; Explorer 3600 wheeled housing and vertical switches differ. Target has horizontal buttons and distinct US housing.",
+    "physical_page": 12,
+    "bbox": [
+      28,
+      345,
+      345,
+      463
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Complete native product, hands, buttons, plus, leaders and clock remain; gray explanation and outer frame drawn with CSS.",
+    "final_path": "assets/energy_framefree.png",
+    "sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_energy_framefree.json",
+    "excluded_caption_drawings": [
+      677
+    ],
+    "native_outer_frame": "610 removed through blank bottom-left edge region; shared Operation stage draws frame",
     "reuse_status": "active",
     "registry_promotion": "not performed; Git-only review candidate"
   }
