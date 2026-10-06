@@ -2010,7 +2010,13 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/app_download.png",
-    "sha256": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471"
+    "sha256": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471",
+    "reuse_status": "superseded-do-not-reuse",
+    "withdrawal_reason": "Repeated extraction of already governed common store/QR artwork; source crop is no longer a display or semantic asset. Use shared App/download bindings.",
+    "replacement": [
+      "assets/app_store_badges.png",
+      "assets/app_download_qr.png"
+    ]
   },
   {
     "slot": "app_add",
@@ -2372,6 +2378,40 @@
     "native_live_labels": [
       "Vehicle",
       "*The car charging cable is sold separately."
+    ]
+  },
+  {
+    "slot": "app.download.store",
+    "decision": "reuse byte-identical existing shared artwork",
+    "candidate": "docs/renderers/contracts/assets/app/app_store_badges.png",
+    "final_path": "assets/app_store_badges.png",
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "physical_page": 28,
+    "identity_check": "Store badge artwork visually matches source App Store/Google Play. QR independently decoded from shared file and source crop to https://download.jackery.com/app/jackery.html; complete Jackery QR frame retained.",
+    "background_policy": "complete original badge/QR artwork; no separately extracted caption frame",
+    "reuse_status": "approved-shared-binding",
+    "bbox": [
+      35,
+      69,
+      119,
+      119
+    ]
+  },
+  {
+    "slot": "app.download.qr",
+    "decision": "reuse byte-identical existing shared artwork",
+    "candidate": "docs/renderers/contracts/assets/app/app_download_qr.png",
+    "final_path": "assets/app_download_qr.png",
+    "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "physical_page": 28,
+    "identity_check": "Store badge artwork visually matches source App Store/Google Play. QR independently decoded from shared file and source crop to https://download.jackery.com/app/jackery.html; complete Jackery QR frame retained.",
+    "background_policy": "complete original badge/QR artwork; no separately extracted caption frame",
+    "reuse_status": "approved-shared-binding",
+    "bbox": [
+      223,
+      69,
+      275,
+      119
     ]
   }
 ]

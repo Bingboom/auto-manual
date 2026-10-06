@@ -76,7 +76,8 @@
     "assets/solar500.png",
     "assets/solar200.png",
     "assets/car_charging_framefree.svg",
-    "assets/app_download.png",
+    "assets/app_store_badges.png",
+    "assets/app_download_qr.png",
     "assets/app_add.png",
     "assets/app_control.png",
     "assets/app_result.png",
@@ -86,8 +87,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a99b96b36ab479e24bc022127029e7817988daee17fbedfe9f1c30a4fd1a4e17",
-  "content_sha256": "c637ec4dd71dfb141573eadffba8de9dbb1a62314a55412c39593442880f3baf",
+  "bundle_sha256": "2ec956ce624b2bdbb9fc294dcff59d3b045ba397acf8c513c1335c94b5b8df3f",
+  "content_sha256": "0241ebe3e26268870cf87d7dcdea6c8b2085d038d6250729dd185bd332b67d35",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -128,7 +129,9 @@
       "assets/app_add.png": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
       "assets/app_control.png": "92b9e84fdc173d030100697e12b8415a4ac35c8c074bac8a7fa2196703897c61",
       "assets/app_download.png": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471",
+      "assets/app_download_qr.png": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
       "assets/app_result.png": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14",
+      "assets/app_store_badges.png": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
       "assets/ats_app.png": "f5cc470998ef9e5274a1b9814a1d2c0afa3419bbbc00ad5463e3dcfc17cb41de",
       "assets/ats_lock.png": "8d7d73c646e277f20557e4596a15bce55c28e1cb924060ec9af8a708e662ea4e",
       "assets/battery_packs.png": "a889607cf11ae91cfa2e95512d755ef1193a240fd7bd2c0eb31f5ef15d3dee45",
@@ -192,9 +195,10 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 228,
+    "block_count": 226,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
+      "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 1,
@@ -11343,18 +11347,95 @@
           "source_ref": "native-pdf/app#block-2"
         },
         {
-          "asset_refs": [],
+          "asset_refs": [
+            "assets/app_store_badges.png",
+            "assets/app_download_qr.png"
+          ],
           "block_id": "app:block-0003",
-          "content_sha256": "a1739dfb0b7da30320ec39074b3499ff885916dc5af6ccd60f54430669ef7fe1",
+          "content_sha256": "63cbb7498561562727cdebe0543ed552fd152f57ebd6e7d9f401548403f601dd",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "kind": "text",
-                "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+                "alt": "Jackery App download: App Store and Google Play; QR download.",
+                "kind": "image",
+                "source": "assets/app_store_badges.png"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Alternatively, scan the QR code below to download and install the App."
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/app_store_badges.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                },
+                {
+                  "asset_ref": "assets/app_store_badges.png",
+                  "locale_policy": "shared",
+                  "role": "store_art"
+                },
+                {
+                  "asset_ref": "assets/app_download_qr.png",
+                  "locale_policy": "shared",
+                  "role": "qr_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-APP",
+              "language": "en",
+              "metadata": {
+                "artwork_origin": "existing-shared-byte-identical",
+                "physical_page": 28,
+                "source_kind": "native-pdf-app-copy"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "1. Download the App and log in",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "Search for &quot;Jackery&quot; in Google Play or the App Store to install the App. After that, you can register and log in.",
+                      "role": "store",
+                      "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+                    },
+                    {
+                      "html": "Alternatively, scan the QR code below to download and install the App.",
+                      "role": "qr",
+                      "text": "Alternatively, scan the QR code below to download and install the App."
+                    }
+                  ],
+                  "content_kind": "ordered_columns",
+                  "role": "columns"
+                }
+              ],
+              "source_ref": "native-pdf/physical-page-28/app#download",
+              "token_roles": [
+                "component.special.app"
+              ],
+              "variant": "download"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app#block-3"
@@ -11362,45 +11443,6 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0004",
-          "content_sha256": "a47bc151e643a0bd1e2901f422afe54766abe5b2623ca3e28baafe362724435f",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Alternatively, scan the QR code below to download and install the App."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/app#block-4"
-        },
-        {
-          "asset_refs": [
-            "assets/app_download.png"
-          ],
-          "block_id": "app:block-0005",
-          "content_sha256": "30ffb49ac40897d41449a2d06dceb69bfda45b2571f86f8b89566e5c42dad1c9",
-          "kind": "flow",
-          "payload": {
-            "alt": "Google Play and App Store badges and the source Jackery App download QR code.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
-              }
-            },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/app_download.png"
-          },
-          "source_ref": "native-pdf/app#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "app:block-0006",
           "content_sha256": "96022bee0f0f875a732b522b89bed06d8753259efed6ebccaeae3889632a5bc4",
           "kind": "flow",
           "payload": {
@@ -11414,47 +11456,120 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
+          "source_ref": "native-pdf/app#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "app:block-0005",
+          "content_sha256": "b152a94bdcbe3fde6e24d330b70f89b4ac4bc193fc7ad99e28c3aad2f4721d60",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2.1 Click the "
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "+"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " button to add your device;"
+                  }
+                ],
+                "kind": "paragraph"
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-SPECIAL-APP",
+              "language": "en",
+              "metadata": {
+                "visual_recovery": "native-pdf-vector-plus-control"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "+",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": {
+                    "html": "<p>2.1 Click the <strong>+</strong> button to add your device;</p>",
+                    "text": "2.1 Click the + button to add your device;"
+                  },
+                  "content_kind": "rich_text",
+                  "role": "paragraph"
+                }
+              ],
+              "source_ref": "native-pdf/physical-page-28/app#add-button",
+              "token_roles": [
+                "component.special.app"
+              ],
+              "variant": "inline-control"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/app#block-5"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "app:block-0006",
+          "content_sha256": "baab06491448c6bf4f561b47575df1edf41c5d1d40afadef061ba436ccbc10ad",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "2.2 Press the "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "POWER"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "\"Icon Flashed\""
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " button, and allow the App to connect to nearby devices and enable Bluetooth permissions."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
           "source_ref": "native-pdf/app#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "app:block-0007",
-          "content_sha256": "0817cbb9656239384c451603031b9a014754b730561fdb26bc1287851f7b7201",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "2.1 Click the + button to add your device;"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/app#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "app:block-0008",
-          "content_sha256": "4eff5e2b3c157e8c5140d8f456f52a1155754f6fe42af92e13b5a9e9eb1efb80",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "2.2 Press the POWER button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the \"Icon Flashed\" button, and allow the App to connect to nearby devices and enable Bluetooth permissions."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/app#block-8"
         },
         {
           "asset_refs": [
             "assets/app_add.png"
           ],
-          "block_id": "app:block-0009",
+          "block_id": "app:block-0007",
           "content_sha256": "6ec02b5999c754bdb8508a3e89b0cd0a1aebf0bd71984e054d7f71519a49d485",
           "kind": "flow",
           "payload": {
@@ -11470,13 +11585,13 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/app_add.png"
           },
-          "source_ref": "native-pdf/app#block-9"
+          "source_ref": "native-pdf/app#block-7"
         },
         {
           "asset_refs": [
             "assets/app_control.png"
           ],
-          "block_id": "app:block-0010",
+          "block_id": "app:block-0008",
           "content_sha256": "59613ace9241123a482294d0e5f02ec55128825381d6cf208f5e6f133f6f26d7",
           "kind": "flow",
           "payload": {
@@ -11492,11 +11607,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/app_control.png"
           },
-          "source_ref": "native-pdf/app#block-10"
+          "source_ref": "native-pdf/app#block-8"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0011",
+          "block_id": "app:block-0009",
           "content_sha256": "9866d73aab5afe739faf0426528cf052dc18491f28124bc969fca2c3c7d8b090",
           "kind": "flow",
           "payload": {
@@ -11590,11 +11705,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-11"
+          "source_ref": "native-pdf/app#block-9"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0012",
+          "block_id": "app:block-0010",
           "content_sha256": "f7e2fd88f1bac22b76a9f36245475eaa60baf5fc77d06b30ff56d417f8c73bfe",
           "kind": "flow",
           "payload": {
@@ -11607,11 +11722,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-12"
+          "source_ref": "native-pdf/app#block-10"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0013",
+          "block_id": "app:block-0011",
           "content_sha256": "1b19c1a4599015fb50451ca5ed019cd4b918afb8e43f280d8904927a6e5edafe",
           "kind": "flow",
           "payload": {
@@ -11737,11 +11852,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-13"
+          "source_ref": "native-pdf/app#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0014",
+          "block_id": "app:block-0012",
           "content_sha256": "b7d569b359c8317ed363a3ab9ee34636d2d183f8c6d5c3ea46caf7a3af3013eb",
           "kind": "flow",
           "payload": {
@@ -11754,11 +11869,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-14"
+          "source_ref": "native-pdf/app#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0015",
+          "block_id": "app:block-0013",
           "content_sha256": "c9167830d24de5ae98ed5b63c1b41235947478f39ac0f9d14276c077b86b1f16",
           "kind": "flow",
           "payload": {
@@ -11852,11 +11967,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-15"
+          "source_ref": "native-pdf/app#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0016",
+          "block_id": "app:block-0014",
           "content_sha256": "301963d53b6458ac8e8c5b29ba3778972e4d892be1024bd5ec65ba171df23056",
           "kind": "flow",
           "payload": {
@@ -11869,13 +11984,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-16"
+          "source_ref": "native-pdf/app#block-14"
         },
         {
           "asset_refs": [
             "assets/app_result.png"
           ],
-          "block_id": "app:block-0017",
+          "block_id": "app:block-0015",
           "content_sha256": "5e9eb41078d2849e9701cb9308c9f30b74d368fb2b67bb429746dd1035219a5c",
           "kind": "flow",
           "payload": {
@@ -11891,11 +12006,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/app_result.png"
           },
-          "source_ref": "native-pdf/app#block-17"
+          "source_ref": "native-pdf/app#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0018",
+          "block_id": "app:block-0016",
           "content_sha256": "8caa13c61e81aca2155cdc7f84628a388e8cde9ca77d59313c9581d719e0f627",
           "kind": "flow",
           "payload": {
@@ -11989,11 +12104,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-18"
+          "source_ref": "native-pdf/app#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0019",
+          "block_id": "app:block-0017",
           "content_sha256": "789583daed61416b99269befeaf6c8fe4b41384f5346e06e976034e8624dba9d",
           "kind": "flow",
           "payload": {
@@ -12007,11 +12122,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-19"
+          "source_ref": "native-pdf/app#block-17"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0020",
+          "block_id": "app:block-0018",
           "content_sha256": "f7f24b3510d4a95597bb478ed41d053bf4cfedce59e4d87e87432e6807e87dac",
           "kind": "flow",
           "payload": {
@@ -12024,11 +12139,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-20"
+          "source_ref": "native-pdf/app#block-18"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0021",
+          "block_id": "app:block-0019",
           "content_sha256": "d88a753241cb36c17ab83bfaa7da32b383bf1ba10990c27a54a07138130501a8",
           "kind": "flow",
           "payload": {
@@ -12042,11 +12157,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-21"
+          "source_ref": "native-pdf/app#block-19"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0022",
+          "block_id": "app:block-0020",
           "content_sha256": "662d2a6fadaec80c406e4e1ebffc278e3bf364459d2caba9904fb10da1821a82",
           "kind": "flow",
           "payload": {
@@ -12060,11 +12175,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-22"
+          "source_ref": "native-pdf/app#block-20"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0023",
+          "block_id": "app:block-0021",
           "content_sha256": "1fd5d8b00610ddc57b63f840c6740c04e0446b41d67c133212cc0178dbc7bcbc",
           "kind": "flow",
           "payload": {
@@ -12092,11 +12207,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-23"
+          "source_ref": "native-pdf/app#block-21"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0024",
+          "block_id": "app:block-0022",
           "content_sha256": "aac4359c45cbfb9fb945e1435c130062ae628e855ac67777c4b6343a91373f0b",
           "kind": "flow",
           "payload": {
@@ -12110,11 +12225,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-24"
+          "source_ref": "native-pdf/app#block-22"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0025",
+          "block_id": "app:block-0023",
           "content_sha256": "36334fd0beff5df0e307744ce86bb1325454d103ad44d019aaf20fc74fe49a2d",
           "kind": "flow",
           "payload": {
@@ -12142,11 +12257,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-25"
+          "source_ref": "native-pdf/app#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0026",
+          "block_id": "app:block-0024",
           "content_sha256": "cae86568515ac4d366e3f261f49b93088c7cf93757fd0c8a652e22609ea8ef22",
           "kind": "flow",
           "payload": {
@@ -12160,11 +12275,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-26"
+          "source_ref": "native-pdf/app#block-24"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0027",
+          "block_id": "app:block-0025",
           "content_sha256": "fc0398c2a815a07f61bacc9acfe2f706c2ea2d9417e7631ce3ee92e0380a4516",
           "kind": "flow",
           "payload": {
@@ -12177,7 +12292,7 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-27"
+          "source_ref": "native-pdf/app#block-25"
         }
       ],
       "language": "en",
@@ -12185,7 +12300,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#app",
       "source_ref": "native-pdf/app",
-      "source_sha256": "3f639835b38318f6020a11c4f8ad5b0a7b10ac9bd881ad63076d6112f40d5c84"
+      "source_sha256": "e0d3a8da48cea221610aad6341a71289b1bf06105abbd728655b3c45940891d2"
     },
     {
       "blocks": [

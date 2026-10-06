@@ -7839,37 +7839,88 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Alternatively, scan the QR code below to download and install the App."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "image",
-          "source": "assets/app_download.png",
-          "alt": "Google Play and App Store badges and the source Jackery App download QR code.",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-APP",
+            "variant": "download",
+            "source_ref": "native-pdf/physical-page-28/app#download",
+            "language": "en",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "1. Download the App and log in"
+              },
+              {
+                "role": "columns",
+                "content_kind": "ordered_columns",
+                "content": [
+                  {
+                    "role": "store",
+                    "html": "Search for &quot;Jackery&quot; in Google Play or the App Store to install the App. After that, you can register and log in.",
+                    "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+                  },
+                  {
+                    "role": "qr",
+                    "html": "Alternatively, scan the QR code below to download and install the App.",
+                    "text": "Alternatively, scan the QR code below to download and install the App."
+                  }
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/app_store_badges.png",
+                "locale_policy": "exact"
+              },
+              {
+                "role": "store_art",
+                "asset_ref": "assets/app_store_badges.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "qr_art",
+                "asset_ref": "assets/app_download_qr.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.app"
+            ],
+            "metadata": {
+              "source_kind": "native-pdf-app-copy",
+              "physical_page": 28,
+              "artwork_origin": "existing-shared-byte-identical"
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/app_store_badges.png",
+              "alt": "Jackery App download: App Store and Google Play; QR download."
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Alternatively, scan the QR code below to download and install the App."
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "heading",
@@ -7883,21 +7934,94 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-APP",
+            "variant": "inline-control",
+            "source_ref": "native-pdf/physical-page-28/app#add-button",
+            "language": "en",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "+"
+              },
+              {
+                "role": "paragraph",
+                "content_kind": "rich_text",
+                "content": {
+                  "html": "<p>2.1 Click the <strong>+</strong> button to add your device;</p>",
+                  "text": "2.1 Click the + button to add your device;"
+                }
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.special.app"
+            ],
+            "metadata": {
+              "visual_recovery": "native-pdf-vector-plus-control"
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
             {
-              "kind": "text",
-              "text": "2.1 Click the + button to add your device;"
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.1 Click the "
+                },
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "+"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " button to add your device;"
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "paragraph",
           "children": [
             {
               "kind": "text",
-              "text": "2.2 Press the POWER button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the \"Icon Flashed\" button, and allow the App to connect to nearby devices and enable Bluetooth permissions."
+              "text": "2.2 Press the "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "POWER"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "\"Icon Flashed\""
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": " button, and allow the App to connect to nearby devices and enable Bluetooth permissions."
             }
           ],
           "schema_version": "manual-flow/v2"

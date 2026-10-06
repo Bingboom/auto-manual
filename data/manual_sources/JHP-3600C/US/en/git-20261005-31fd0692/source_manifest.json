@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-car1"
+    "technical_version": "git-20261005-31fd0692-app1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -113,9 +113,14 @@
       "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7"
     },
     {
+      "path": "__pycache__/audit_source.cpython-312.pyc",
+      "size": 7631,
+      "sha256": "0cb6a5797e34024c0661eefe810788682554ff381b34e81f6864cf25ffa7eb8c"
+    },
+    {
       "path": "audit_source.py",
-      "size": 3596,
-      "sha256": "0b2c001e09cb362c792370699e0ea10fe1d90a2c5fb16fe6f31e0a7aedfd8da7"
+      "size": 4233,
+      "sha256": "76f025bce39578b9acaa22e31964f1b3bc1898091fd955e8ecc8c0044d1254bb"
     },
     {
       "path": "rebuild.py",
@@ -124,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 93791,
-      "sha256": "983648eeb77941605cff5d7360b7193d0082fbd252ca25cfe25ae646e787951f"
+      "size": 95687,
+      "sha256": "713695752cc974a98dd6d524e21e7b7ff411f85e12f2f87ca59e52850158690b"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -134,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 449519,
-      "sha256": "63f907013313f42d1a6db0e12923411393ec0fb73a4f0920eeee457cdad13990"
+      "size": 453598,
+      "sha256": "217a6cdc034518a0db54110df5b5a8ac8cfe72b47d190f90937f88dd368bab95"
     },
     {
       "path": "source/coverage_audit.json",
@@ -388,9 +393,19 @@
       "sha256": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471"
     },
     {
+      "path": "web/en/assets/app_download_qr.png",
+      "size": 130235,
+      "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65"
+    },
+    {
       "path": "web/en/assets/app_result.png",
       "size": 60048,
       "sha256": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14"
+    },
+    {
+      "path": "web/en/assets/app_store_badges.png",
+      "size": 25764,
+      "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d"
     },
     {
       "path": "web/en/assets/ats_app.png",
@@ -714,13 +729,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 617906,
-      "sha256": "87af600c200ac9b17fca93533d45d1448b5a910b300f63a0b81838798d68dcbe"
+      "size": 622009,
+      "sha256": "653842f3db63cb05ea041eef08897d8294ae97836d1a945cc2c4d12869ce7aa6"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 100805,
-      "sha256": "81a7083f6928c36da60e3fc939d803958ea254c3f9d7997e59d9cca6a6e163b1"
+      "size": 101743,
+      "sha256": "11648bd5d8205fc4e7502ef1b2069d5f3eb55bf2c365c3a74cbdecd40eaf5b54"
     }
   ],
   "repo_inputs": [
@@ -743,6 +758,16 @@
       "path": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
       "size": 35420,
       "sha256": "e8bbc69e5895945ca94faeb288db522650ca4ff8b67a18a2c918b5ab93e2ffd0"
+    },
+    {
+      "path": "docs/renderers/contracts/assets/app/app_download_qr.png",
+      "size": 130235,
+      "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65"
+    },
+    {
+      "path": "docs/renderers/contracts/assets/app/app_store_badges.png",
+      "size": 25764,
+      "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d"
     },
     {
       "path": "docs/renderers/contracts/assets/product_overview_front_en.svg",

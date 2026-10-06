@@ -5,9 +5,15 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import sys
 import unicodedata
 
 import fitz
+from bs4 import BeautifulSoup
+
+REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "build.py").is_file())
+sys.path.insert(0, str(REPO_ROOT))
+from tools.manual_ir.flow import flow_nodes_to_html  # noqa: E402
 
 PACKAGE = Path(__file__).resolve().parent
 
@@ -32,7 +38,13 @@ def strings(value):
 def audit() -> dict:
     content = json.loads((PACKAGE / "source/content.json").read_text())
     decisions = json.loads((PACKAGE / "source/asset_decisions.json").read_text())
-    corpus = tuple(strings(content))
+    # Native lines may span strong/emphasis children; audit the same joined
+    # semantic paragraphs that the shared flow API presents to readers.
+    paragraphs = BeautifulSoup(flow_nodes_to_html(tuple(
+        node for chapter in content["chapters"] for node in chapter["nodes"]
+        if node["kind"] == "paragraph"
+    )), "html.parser").find_all("p")
+    corpus = (*strings(content), *(normalize(p.get_text()) for p in paragraphs))
     pdf = next(PACKAGE.glob("*.pdf"))
     assert hashlib.sha256(pdf.read_bytes()).hexdigest() == content["source_sha256"]
     for row in decisions:

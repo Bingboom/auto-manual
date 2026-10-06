@@ -462,17 +462,13 @@
 
 ## 1. Download the App and log in
 
-<p>Search for "Jackery" in Google Play or the App Store to install the App. After that, you can register and log in.</p>
-
-<p>Alternatively, scan the QR code below to download and install the App.</p>
-
-<img alt="Google Play and App Store badges and the source Jackery App download QR code." src="assets/app_download.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure aria-label="1. Download the App and log in" class="hb-app-download-composition" data-component-id="HB-SPECIAL-APP"><div class="hb-app-download-grid"><div class="hb-app-download-column hb-app-download-column-store"><div class="hb-app-download-art-frame"><img alt="" aria-hidden="true" class="hb-app-download-art hb-app-download-art-store" loading="lazy" src="assets/app_store_badges.png"/></div><div class="hb-app-download-copy hb-app-download-copy-store"><p>Search for "Jackery" in Google Play or the App Store to install the App. After that, you can register and log in.</p></div></div><div class="hb-app-download-column hb-app-download-column-qr"><div class="hb-app-download-art-frame"><img alt="" aria-hidden="true" class="hb-app-download-art hb-app-download-art-qr" loading="lazy" src="assets/app_download_qr.png"/></div><div class="hb-app-download-copy hb-app-download-copy-qr"><p>Alternatively, scan the QR code below to download and install the App.</p></div></div></div><div class="hb-app-download-semantic"><img alt="Jackery App download: App Store and Google Play; QR download." class="hb-app-download-semantic-art" src="assets/app_store_badges.png"/></div></figure>
 
 ## 2. Add device
 
-<p>2.1 Click the + button to add your device;</p>
+<p>2.1 Click the <span aria-label="+" class="hb-inline-add-device-icon" data-component-id="HB-SPECIAL-APP" role="img">+</span> button to add your device;</p>
 
-<p>2.2 Press the POWER button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the "Icon Flashed" button, and allow the App to connect to nearby devices and enable Bluetooth permissions.</p>
+<p>2.2 Press the <strong>POWER</strong> button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the <strong>"Icon Flashed"</strong> button, and allow the App to connect to nearby devices and enable Bluetooth permissions.</p>
 
 <img alt="2.2 2.1" src="assets/app_add.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 

@@ -422,3 +422,11 @@ Evidence: [validation](jhp3600c_us_en_web_evidence/validation-car1.json),
 [final user-window preview](jhp3600c_us_en_web_evidence/final-preview-car1.png).
 Local commits only; no push/PR/merge/publication. The generic phase2 fixture
 check limitation above remains explicit and is not counted as a passing check.
+
+## App shared download and inline control correction (app1)
+
+Physical p28 now uses the existing `HB-SPECIAL-APP/download` component with two artwork-over-copy columns. Store badges and the complete Jackery QR are byte-identical copies of `docs/renderers/contracts/assets/app/app_store_badges.png` and `app_download_qr.png`. Apple Vision independently decoded the shared QR, the retained source crop and the rendered native p28 to `https://download.jackery.com/app/jackery.html`. The old combined crop is retained for traceability with `superseded-do-not-reuse`; no generated document references it. Complete phone screenshots remain unchanged.
+
+Step 2.1 uses the existing `HB-SPECIAL-APP/inline-control` and shared `.hb-inline-add-device-icon`; step 2.2 restores native bold `POWER` and `"Icon Flashed"`. The source-local coverage audit now assembles rich paragraph spans through the existing flow HTML API before matching native lines, so bold boundaries do not create false missing-text reports. No shared renderer or CSS logic changes.
+
+The 26 relevant App component/IR tests passed (one skipped), ruff passed, source-native coverage has zero unmatched lines, strict standalone Sphinx passed, and frozen output replay is byte-identical. Final aggregate browser evidence is recorded separately after sealing the source commit. This remains a local Git-only candidate.
