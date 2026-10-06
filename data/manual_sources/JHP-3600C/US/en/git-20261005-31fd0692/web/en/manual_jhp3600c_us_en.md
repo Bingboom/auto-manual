@@ -102,7 +102,7 @@
 /* Keep the native outlet label close to its introduction and diagram. */
 #furo-main-content p:has(+ #v-ac-outlet) { margin-bottom: 0.4rem; }
 #furo-main-content #v-ac-outlet { margin: 0.4rem 0 0.2rem; }
-#furo-main-content #v-ac-outlet + img { margin-top: 0.3rem !important; }
+#furo-main-content #v-ac-outlet + [data-reference-id="charge240"] { margin-top: 0.3rem !important; }
 
 /* Source labels stay above their original horizontal leaders at the mobile floor. */
 @media (max-width: 40rem) {
@@ -119,6 +119,18 @@
   #furo-main-content [data-reference-id="charge120"] [data-source-line="0"] {
     left: 40%;
     top: 78%;
+    width: 57%;
+  }
+}
+
+/* 240V caption follows the native 6pt/316pt ratio; phones use the shared 8px floor. */
+#furo-main-content [data-reference-id="charge240"] [data-source-line="0"] {
+  font-size: max(.5rem, 1.9cqw);
+}
+@media (max-width: 400px) {
+  #furo-main-content [data-reference-id="charge240"] [data-source-line="0"] {
+    left: 40%;
+    top: 69%;
     width: 57%;
   }
 }
@@ -385,9 +397,7 @@
 
 <h3 class="hb-source-pill-heading" id="v-ac-outlet">240V AC Outlet</h3>
 
-<img alt="Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately)." src="assets/charge240.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
-
-<p>Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).</p>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="charge240" data-source-fragment-sha256="7aa03221099c67ea32e98a0ee5576ec3ad263541af4f6bb014c8848dee6b10ac" data-web-base-art-ref="assets/charge240.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.charge240"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="charge240.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#eaebec"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "charge240", "web_replace_key": "reference.charge240", "capture_following_lines": 1, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632", "panel_top": 0, "panel_fill": "#eaebec", "preserve_frame": true, "labels": [{"line": 0, "rect": [43.82, 75.04, 52, 16]}], "mobile_labels": "overlay"}}' src="assets/charge240.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:43.82%;--hb-y:75.04%;--hb-width:52%;--hb-height:16%">Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).</span></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><ul><li>Ensure the Jackery 40A Charging Cable is fully and securely plugged into both the 240V outlet and the AC Expansion Port.</li><li>An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.</li></ul></td></tr></tbody></table>
 

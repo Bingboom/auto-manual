@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-cautionitems1"
+    "technical_version": "git-20261005-31fd0692-charge240caption1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -129,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 107270,
-      "sha256": "407bc72b9598463219ced6c9000e30d60447b9f565c756a69cf56d4da6807fbe"
+      "size": 107714,
+      "sha256": "3f45013dc57c1db671f5629ab15de61b78a6e76095b2f3b82f5c53d159a2186e"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 521325,
-      "sha256": "a809b34623c5c94d040d71a4c9ae277ac536010084e955b57127b94a23a24f1b"
+      "size": 525520,
+      "sha256": "87cb0b9b356a1cabf63d6245e677e019ccad61451bee611bf40bb73fee648334"
     },
     {
       "path": "source/coverage_audit.json",
@@ -174,8 +174,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 4321,
-      "sha256": "f597548d7a012cd5964189167f5d6f70b3fbe44aaeead4341de2cf18aa1cbe45"
+      "size": 4706,
+      "sha256": "b25d7a7e16d643a83504e7c77cdc0fa900317f28890f866fae65b91a649ab364"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -209,8 +209,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 4321,
-      "sha256": "f597548d7a012cd5964189167f5d6f70b3fbe44aaeead4341de2cf18aa1cbe45"
+      "size": 4706,
+      "sha256": "b25d7a7e16d643a83504e7c77cdc0fa900317f28890f866fae65b91a649ab364"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 696890,
-      "sha256": "f64f1c58f30d929f33fe3fb6727d8e909ffb4b3338488f60fa58128cd539b7e9"
+      "size": 701023,
+      "sha256": "991abffd877c62ee88406c5afe91bdc981434e960ee40ad741fa189daf43344a"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 112623,
-      "sha256": "1276d7f5776059be0b6a778f45c2fa8a11a007f40e6451e801028055e97a8f1c"
+      "size": 114041,
+      "sha256": "8edcca2d6a797eda0f73e910f6b1eb3ed24c571f24cb06bafbe6a020c567b38d"
     }
   ],
   "repo_inputs": [

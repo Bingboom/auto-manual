@@ -101,7 +101,7 @@
 /* Keep the native outlet label close to its introduction and diagram. */
 #furo-main-content p:has(+ #v-ac-outlet) { margin-bottom: 0.4rem; }
 #furo-main-content #v-ac-outlet { margin: 0.4rem 0 0.2rem; }
-#furo-main-content #v-ac-outlet + img { margin-top: 0.3rem !important; }
+#furo-main-content #v-ac-outlet + [data-reference-id="charge240"] { margin-top: 0.3rem !important; }
 
 /* Source labels stay above their original horizontal leaders at the mobile floor. */
 @media (max-width: 40rem) {
@@ -118,6 +118,18 @@
   #furo-main-content [data-reference-id="charge120"] [data-source-line="0"] {
     left: 40%;
     top: 78%;
+    width: 57%;
+  }
+}
+
+/* 240V caption follows the native 6pt/316pt ratio; phones use the shared 8px floor. */
+#furo-main-content [data-reference-id="charge240"] [data-source-line="0"] {
+  font-size: max(.5rem, 1.9cqw);
+}
+@media (max-width: 400px) {
+  #furo-main-content [data-reference-id="charge240"] [data-source-line="0"] {
+    left: 40%;
+    top: 69%;
     width: 57%;
   }
 }
