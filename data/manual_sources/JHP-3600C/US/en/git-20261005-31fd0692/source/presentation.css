@@ -106,7 +106,7 @@
 /* Source labels stay above their original horizontal leaders at the mobile floor. */
 @media (max-width: 40rem) {
   #furo-main-content [data-reference-id="cascade"] [data-source-line="0"] { top: 4%; }
-  #furo-main-content [data-reference-id="cascade"] [data-source-line="1"] { top: 43%; }
+  #furo-main-content [data-reference-id="cascade"] [data-source-line="1"] { top: 41.5%; }
 }
 
 /* Preserve the source 6pt/316pt caption ratio with the shared mobile 8px floor. */
@@ -238,5 +238,5 @@
 #furo-main-content [data-reference-id="ats-lock"] .hb-reference-live-label { font-size: max(.5rem, 2.1073cqw); }
 #furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { font-size: max(.5rem, 1.9048cqw); justify-content: center; text-align: center; }
 @media (max-width: 480px) {
-  #furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { top: 43%; }
+  #furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { top: 41.5%; }
 }

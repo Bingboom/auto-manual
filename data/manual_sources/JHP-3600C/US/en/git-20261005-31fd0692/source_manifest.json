@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-atslive1"
+    "technical_version": "git-20261005-31fd0692-atslive2"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -199,8 +199,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 11618,
-      "sha256": "78ab115de52449686a1fdb02d98c0c2aa8766b20b6e42d3a108284656d5b73d1"
+      "size": 11622,
+      "sha256": "6d15867b259e6cd7528005469446ae6d0752969f4e7133e72e9bf26a2196d3dd"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -239,8 +239,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 11618,
-      "sha256": "78ab115de52449686a1fdb02d98c0c2aa8766b20b6e42d3a108284656d5b73d1"
+      "size": 11622,
+      "sha256": "6d15867b259e6cd7528005469446ae6d0752969f4e7133e72e9bf26a2196d3dd"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -840,12 +840,12 @@
     {
       "path": "web/en/manual.ir.json",
       "size": 749370,
-      "sha256": "4f2fdf2e70d2fc7375560909c10733bf943acf206a0a639c61dc97a1161c6fbd"
+      "sha256": "eb4390120b9bfbc7824bda3cf4fe7e2a73b70cc6eb971964d309eaa071e264d8"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 132046,
-      "sha256": "f1e4df0cc1b5c8e93496e1091007bf6319c9fbd44e93e3bf956b51c1445f5d61"
+      "size": 132050,
+      "sha256": "2a99f2ad44e73e81010ed9efa22b3ef2aab0a1b2747c858c15586e0098307cc8"
     }
   ],
   "repo_inputs": [
