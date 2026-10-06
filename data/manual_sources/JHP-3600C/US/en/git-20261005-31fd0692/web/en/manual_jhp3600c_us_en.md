@@ -235,6 +235,13 @@
   #furo-main-content [data-reference-id="battery-placement"] [data-source-line="2"] { left: 4%; width: 43%; justify-content: center; }
 }
 
+/* Native ATS labels retain source alignment above the operation views and cable leader. */
+#furo-main-content [data-reference-id="ats-lock"] .hb-reference-live-label { font-size: max(.5rem, 2.1073cqw); }
+#furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { font-size: max(.5rem, 1.9048cqw); justify-content: center; text-align: center; }
+@media (max-width: 480px) {
+  #furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { top: 43%; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -443,7 +450,7 @@
 
 <p>The HomePower 3600 Pro Max can supply backup power to home circuits through a Jackery Automatic Transfer Switch (ATS). For detailed installation and operation, refer to the Jackery ATS User Manual.</p>
 
-<img alt="Lock Unlock 1 2 1 2 Power input/output cable in the ATS package" src="assets/ats_lock.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="ats-lock" data-source-fragment-sha256="631b05d7f912e5bf8846f4c29b322dce159a6d4bc10023603c165136e6a84265" data-web-base-art-ref="assets/ats_live.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.ats-lock"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="ats-lock.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#e6e7e8"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "ats-lock", "image_key": "assets/ats_live.png", "web_replace_key": "reference.ats-lock", "capture_following_lines": 3, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb", "panel_top": 0, "panel_fill": "#e6e7e8", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [8.577460317460316, 9.62055555555556, 10.152698412698413, 4.8238888888888845], "color": "#555555"}, {"line": 1, "rect": [61.75174603174603, 9.62055555555556, 10.311746031746031, 4.8238888888888845], "color": "#555555"}, {"line": 2, "rect": [63.492063492063494, 50.39388888888889, 29.206349206349206, 8.444444444444438], "color": "#555555"}]}}' src="assets/ats_live.png"/><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="0" style="--hb-x:8.5775%;--hb-y:9.6206%;--hb-width:10.1527%;--hb-height:4.8239%;--hb-label-color:#555555"><strong>Lock</strong></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="1" style="--hb-x:61.7517%;--hb-y:9.6206%;--hb-width:10.3117%;--hb-height:4.8239%;--hb-label-color:#555555"><strong>Unlock</strong></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="2" style="--hb-x:63.4921%;--hb-y:50.3939%;--hb-width:29.2063%;--hb-height:8.4444%;--hb-label-color:#555555"><span style="display:block;width:100%;">Power input/output cable in<br/>the ATS package</span></span></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>When UPS mode is enabled on the ATS, the power station remains active and continuously consumes power. During a grid outage, the system switches to battery power within 20 milliseconds.</p></td></tr></tbody></table>
 

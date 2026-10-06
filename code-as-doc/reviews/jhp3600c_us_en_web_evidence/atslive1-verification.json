@@ -1,0 +1,59 @@
+{
+  "source_page": 18,
+  "crop": [
+    28.0,
+    270.0,
+    343.0,
+    450.0
+  ],
+  "removed_label_regions": [
+    [
+      55.019,
+      287.317,
+      69.145,
+      295.449
+    ],
+    [
+      222.518,
+      287.317,
+      242.99,
+      295.449
+    ],
+    [
+      234.144,
+      360.709,
+      312.913,
+      375.909
+    ]
+  ],
+  "retained_geometry_pixel_identical_at12x": true,
+  "all_four_edges_pixel_identical_at12x": true,
+  "numeric_markers_remaining": [
+    "1",
+    "2",
+    "1",
+    "2"
+  ],
+  "regions": {
+    "lock-hands": [
+      53,
+      299,
+      146,
+      343
+    ],
+    "unlock-hands": [
+      221,
+      298,
+      310,
+      342
+    ],
+    "products-cables": [
+      113,
+      276,
+      222,
+      445
+    ]
+  },
+  "native_frames_preserved": "complete structural operation views and outer panel, all with artwork inside",
+  "bare_art_review": "No independent empty caption frame; gray panel, hands, connectors, native step markers, products and leaders remain."
+}

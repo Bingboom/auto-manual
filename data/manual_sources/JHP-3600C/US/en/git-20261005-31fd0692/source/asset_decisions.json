@@ -1723,7 +1723,7 @@
   },
   {
     "slot": "ats_lock",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1743,7 +1743,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/ats_lock.png",
-    "sha256": "8d7d73c646e277f20557e4596a15bce55c28e1cb924060ec9af8a708e662ea4e"
+    "sha256": "8d7d73c646e277f20557e4596a15bce55c28e1cb924060ec9af8a708e662ea4e",
+    "rejection": "Burned Lock / Unlock / power cable captions; replaced by native base and shared ReferenceFigure live labels."
   },
   {
     "slot": "mts_single",
@@ -2889,6 +2890,66 @@
           83.38027210884354,
           17.60348101265823,
           5.735374149659853
+        ],
+        "color": "#555555"
+      }
+    ],
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "ats_lock",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets/jbp3600a_eu_en/locking_native.png",
+      "docs/renderers/web/assets/jbp2000b_eu_en/locking.png",
+      "docs/renderers/web/assets/ja_ts05a_us_shared/ats.png"
+    ],
+    "identity_check": "Battery topology, product housing and socket routing differ; isolated ATS product has no lock/unlock/cable connection panel.",
+    "physical_page": 18,
+    "bbox": [
+      28,
+      270,
+      343,
+      450
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Complete native gray/white panel, all structural frames, hands, cables, leaders, engravings and numeric sequence markers preserved; no independent empty caption frames. Three external captions are live HTML.",
+    "final_path": "assets/ats_live.png",
+    "sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_ats_live.json",
+    "text_policy": "numeric-only",
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          8.577460317460316,
+          9.62055555555556,
+          10.152698412698413,
+          4.8238888888888845
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 1,
+        "rect": [
+          61.75174603174603,
+          9.62055555555556,
+          10.311746031746031,
+          4.8238888888888845
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 2,
+        "rect": [
+          63.492063492063494,
+          50.39388888888889,
+          29.206349206349206,
+          8.444444444444438
         ],
         "color": "#555555"
       }

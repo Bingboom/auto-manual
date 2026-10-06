@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-placementlive1"
+    "technical_version": "git-20261005-31fd0692-atslive1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -134,8 +134,13 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 115971,
-      "sha256": "59a4a7c2fb1ab23a479cb2c664c73bc61551b8862c9a3d263edf8dba15b08490"
+      "size": 118019,
+      "sha256": "8f91aa33933c16eeb40614266b6fac1152f216282633d8f2895df0047002beb9"
+    },
+    {
+      "path": "source/ats_live.pdf",
+      "size": 288077,
+      "sha256": "ce1b3bf98702459331814586ac1e6e6619c4f75694b295fdd893d23c20811643"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -144,8 +149,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 563977,
-      "sha256": "eec8d33d67b4a62a6bb4acb332ad0677289dc9706dc5fb97f3426cc8e22978b7"
+      "size": 571559,
+      "sha256": "91f4983b539775dbeaa0a1b8e3f2058e47b4ec1c10b3a9aca5b0d24250c8c0df"
     },
     {
       "path": "source/coverage_audit.json",
@@ -194,8 +199,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 11137,
-      "sha256": "4183f28a7f9b54ebd618c2daf9fd094543e72da8064adb9c15de5e8d16d57ee0"
+      "size": 11618,
+      "sha256": "78ab115de52449686a1fdb02d98c0c2aa8766b20b6e42d3a108284656d5b73d1"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -234,8 +239,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 11137,
-      "sha256": "4183f28a7f9b54ebd618c2daf9fd094543e72da8064adb9c15de5e8d16d57ee0"
+      "size": 11618,
+      "sha256": "78ab115de52449686a1fdb02d98c0c2aa8766b20b6e42d3a108284656d5b73d1"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -451,6 +456,11 @@
       "path": "web/en/assets/ats_app.png",
       "size": 72959,
       "sha256": "f5cc470998ef9e5274a1b9814a1d2c0afa3419bbbc00ad5463e3dcfc17cb41de"
+    },
+    {
+      "path": "web/en/assets/ats_live.png",
+      "size": 57371,
+      "sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb"
     },
     {
       "path": "web/en/assets/ats_lock.png",
@@ -829,13 +839,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 741279,
-      "sha256": "e27383f303a5e614aca65d7876c547990a5157518d19d6d22ac13cc2f5094fbc"
+      "size": 749370,
+      "sha256": "4f2fdf2e70d2fc7375560909c10733bf943acf206a0a639c61dc97a1161c6fbd"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 129548,
-      "sha256": "8ce0b6fde987e5b20b92f2cd2dce794d51948d0f14b984d8a66e00a77b25890e"
+      "size": 132046,
+      "sha256": "f1e4df0cc1b5c8e93496e1091007bf6319c9fbd44e93e3bf956b51c1445f5d61"
     }
   ],
   "repo_inputs": [

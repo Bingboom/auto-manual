@@ -67,7 +67,7 @@
     "assets/placement_framefree.png",
     "assets/cascade.png",
     "assets/epo.png",
-    "assets/ats_lock.png",
+    "assets/ats_live.png",
     "assets/mts_single.png",
     "assets/mts_cascade.png",
     "assets/charge120.png",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "4fb3e87cd4aeea63bca1afb71fbd3b7bb30f25152d28acf0449d6321ae30c8c2",
-  "content_sha256": "ddc2cd264012694bb0f7fcbd488121cc3883386067c9541119c09fbf948b7bd4",
+  "bundle_sha256": "a8b09d33379f8e4270a2a32ccebb2ad6345833f3bd1cab1c15465e3877d2ab04",
+  "content_sha256": "dee31747a3ae7e5bd45d1615ae121bd2d787d493d075ba0440162be030da20c0",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -140,6 +140,7 @@
       "assets/app_result.png": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14",
       "assets/app_store_badges.png": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
       "assets/ats_app.png": "f5cc470998ef9e5274a1b9814a1d2c0afa3419bbbc00ad5463e3dcfc17cb41de",
+      "assets/ats_live.png": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
       "assets/ats_lock.png": "8d7d73c646e277f20557e4596a15bce55c28e1cb924060ec9af8a708e662ea4e",
       "assets/battery_packs.png": "a889607cf11ae91cfa2e95512d755ef1193a240fd7bd2c0eb31f5ef15d3dee45",
       "assets/battery_placement.png": "9a5a1b08b4d75ab45df34f9444cf7bc934d4427a2d5d753d5c3a4d254d03bd20",
@@ -221,7 +222,7 @@
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-OPERATION": 4,
-      "HB-SPECIAL-REFERENCE-FIGURE": 8,
+      "HB-SPECIAL-REFERENCE-FIGURE": 9,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -2065,7 +2066,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "4183f28a7f9b54ebd618c2daf9fd094543e72da8064adb9c15de5e8d16d57ee0"
+      "sha256": "78ab115de52449686a1fdb02d98c0c2aa8766b20b6e42d3a108284656d5b73d1"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -8873,23 +8874,229 @@
         },
         {
           "asset_refs": [
-            "assets/ats_lock.png"
+            "assets/ats_live.png"
           ],
           "block_id": "connections:block-0025",
-          "content_sha256": "6f8541811672e5cb81ba5b44252bf75b4d7358fcc3f52f906f0861b408d96b97",
+          "content_sha256": "6e13f1676c6e110231f95d264a5f65eb0303c8148a0854b9eb6144669eb0ce79",
           "kind": "flow",
           "payload": {
-            "alt": "Lock Unlock 1 2 1 2 Power input/output cable in the ATS package",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "ATS locking, unlocking and power cable connection",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-source-reference",
+                      "data-reference": "{\"id\": \"ats-lock\", \"image_key\": \"assets/ats_live.png\", \"web_replace_key\": \"reference.ats-lock\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb\", \"panel_top\": 0, \"panel_fill\": \"#e6e7e8\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [8.577460317460316, 9.62055555555556, 10.152698412698413, 4.8238888888888845], \"color\": \"#555555\"}, {\"line\": 1, \"rect\": [61.75174603174603, 9.62055555555556, 10.311746031746031, 4.8238888888888845], \"color\": \"#555555\"}, {\"line\": 2, \"rect\": [63.492063492063494, 50.39388888888889, 29.206349206349206, 8.444444444444438], \"color\": \"#555555\"}]}}"
+                    }
+                  }
+                },
+                "source": "assets/ats_live.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Lock"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Unlock"
+                          }
+                        ],
+                        "kind": "strong"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Power input/output cable in"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "the ATS package"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "line-block"
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/ats_live.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
+                  "labels": [
+                    {
+                      "color": "#555555",
+                      "line": 0,
+                      "rect": [
+                        8.577460317460316,
+                        9.62055555555556,
+                        10.152698412698413,
+                        4.8238888888888845
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 1,
+                      "rect": [
+                        61.75174603174603,
+                        9.62055555555556,
+                        10.311746031746031,
+                        4.8238888888888845
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 2,
+                      "rect": [
+                        63.492063492063494,
+                        50.39388888888889,
+                        29.206349206349206,
+                        8.444444444444438
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#e6e7e8",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 3,
+                "composite_locale": "",
+                "image_key": "assets/ats_live.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "631b05d7f912e5bf8846f4c29b322dce159a6d4bc10023603c165136e6a84265",
+                "web_replace_key": "reference.ats-lock"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "ats-lock",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "ATS locking, unlocking and power cable connection",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<strong>Lock</strong>",
+                      "text": "Lock"
+                    },
+                    {
+                      "html": "<strong>Unlock</strong>",
+                      "text": "Unlock"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Power input/output cable in<br/>the ATS package</span>",
+                      "text": "Power input/output cable in the ATS package"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-ats-lock",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ats_lock.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-25"
         },
@@ -9538,7 +9745,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "7ed02eb60c1b99c65d8f8eea27eaa7f01cb5167bc1df4f353a2030128dd1d78e"
+      "source_sha256": "250034aaadfd1dbe77686da859f19bd0e59706d37389d46ad468785d45015c3f"
     },
     {
       "blocks": [

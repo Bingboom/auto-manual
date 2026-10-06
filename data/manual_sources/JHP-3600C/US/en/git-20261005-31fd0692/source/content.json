@@ -5876,17 +5876,223 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/ats_lock.png",
-          "alt": "Lock Unlock 1 2 1 2 Power input/output cable in the ATS package",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "source/content.json#reference-ats-lock",
+            "language": "en",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "ats-lock"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "ATS locking, unlocking and power cable connection"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "<strong>Lock</strong>",
+                    "text": "Lock"
+                  },
+                  {
+                    "html": "<strong>Unlock</strong>",
+                    "text": "Unlock"
+                  },
+                  {
+                    "html": "<span style=\"display:block;width:100%;\">Power input/output cable in<br/>the ATS package</span>",
+                    "text": "Power input/output cable in the ATS package"
+                  }
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/ats_live.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "capture_following_lines": 3,
+              "captions_embedded": false,
+              "captions_origin": "carrier",
+              "caption_centers_pct": null,
+              "composite_locale": "",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
+                "panel_top": 0,
+                "panel_fill": "#e6e7e8",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      8.577460317460316,
+                      9.62055555555556,
+                      10.152698412698413,
+                      4.8238888888888845
+                    ],
+                    "color": "#555555"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      61.75174603174603,
+                      9.62055555555556,
+                      10.311746031746031,
+                      4.8238888888888845
+                    ],
+                    "color": "#555555"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      63.492063492063494,
+                      50.39388888888889,
+                      29.206349206349206,
+                      8.444444444444438
+                    ],
+                    "color": "#555555"
+                  }
+                ]
+              },
+              "image_key": "assets/ats_live.png",
+              "web_replace_key": "reference.ats-lock",
+              "source_fragment_sha256": "631b05d7f912e5bf8846f4c29b322dce159a6d4bc10023603c165136e6a84265"
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/ats_live.png",
+              "alt": "ATS locking, unlocking and power cable connection",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-reference",
+                    "data-reference": "{\"id\": \"ats-lock\", \"image_key\": \"assets/ats_live.png\", \"web_replace_key\": \"reference.ats-lock\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb\", \"panel_top\": 0, \"panel_fill\": \"#e6e7e8\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [8.577460317460316, 9.62055555555556, 10.152698412698413, 4.8238888888888845], \"color\": \"#555555\"}, {\"line\": 1, \"rect\": [61.75174603174603, 9.62055555555556, 10.311746031746031, 4.8238888888888845], \"color\": \"#555555\"}, {\"line\": 2, \"rect\": [63.492063492063494, 50.39388888888889, 29.206349206349206, 8.444444444444438], \"color\": \"#555555\"}]}}"
+                  }
+                }
+              }
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "line-block"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Lock"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Unlock"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "style": "display:block;width:100%;"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Power input/output cable in"
+                        },
+                        {
+                          "kind": "line_break"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "the ATS package"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "component",
