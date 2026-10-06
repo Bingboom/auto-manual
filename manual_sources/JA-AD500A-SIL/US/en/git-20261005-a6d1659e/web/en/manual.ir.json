@@ -8,8 +8,8 @@
     "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "010843e7d5ba162401f90b6b1b3be3e12d4a316ef6cd127e5532541585588fe8",
-  "content_sha256": "9e06aed7ef4950f25c4a16e3031ee016669ce38338e99562a2577ee1322f5ddd",
+  "bundle_sha256": "95850693788deb3121839feb0c63a24cd0cbd50d398a1d711b9234f407220c76",
+  "content_sha256": "9e426549c312f0633aea269febb9f02d8fbb7b85666c0c4f07a55d02bbffd8f7",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -21,7 +21,7 @@
       "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
       "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
     },
-    "block_count": 44,
+    "block_count": 33,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 3,
       "HB-SPECIAL-INBOX": 1,
@@ -1301,8 +1301,8 @@
         },
         {
           "path": "render.py",
-          "sha256": "df6833e0b993e1c55cc164a9d939400af45e4c7ec509e29e2bc45c3c770c5ad9",
-          "size": 3484
+          "sha256": "50ebaa35b686f1b6cd4aceefd1d854ed53f274e8b228acac990dcc3fc9c6a21d",
+          "size": 3562
         },
         {
           "path": "source/asset_recipe.json",
@@ -1331,8 +1331,8 @@
         },
         {
           "path": "source/page/contact_en.rst",
-          "sha256": "e36b5e5b4e72c6496a5dbe3ad8f590e41ad767cc88f9ace713bcbc5ebd90cc3e",
-          "size": 331
+          "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb",
+          "size": 662
         },
         {
           "path": "source/page/product_overview_en.rst",
@@ -1363,7 +1363,8 @@
         "native × and en-dash used for measurement/range signs",
         "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
         "source heading case retained; warranty continuation is one section",
-        "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label"
+        "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
+        "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction"
       ],
       "original_source": {
         "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
@@ -5381,242 +5382,150 @@
     {
       "blocks": [
         {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0001",
-          "content_sha256": "53932a5ea0abc8f4fedae2b790e774805f381f17556d6252ad00b46f12163de8",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "CONTACT US"
-              }
-            ],
-            "kind": "heading",
-            "level": 1,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0002",
-          "content_sha256": "a010ad3b29f207f5cf9887b6e2d96d9a76c325013642ce6ebc8c18d61d11904f",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "JACKERY INC."
-                  }
-                ],
-                "kind": "strong"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0003",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "contact_en.rst#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0004",
-          "content_sha256": "203c3770b713d11bb9f0f23db73df11e78f47b6f33a3cec7e3b1f1e4672d2185",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0005",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "contact_en.rst#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0006",
-          "content_sha256": "e962ae4b0a8781dfb503d8a348d6d939a2b9986870d116930861a083a597cb71",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "1-888-502-2236 (US)"
-                  }
-                ],
-                "kind": "link",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": [
-                        "reference",
-                        "external"
-                      ]
-                    }
-                  }
-                },
-                "target": "tel:18885022236"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0007",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "contact_en.rst#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0008",
-          "content_sha256": "0ba3d1745a08f428ac5c96861f8b1b0ccc14fd1561e6e14f2fe97def211118cc",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "hello@jackery.com"
-                  }
-                ],
-                "kind": "link",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": [
-                        "reference",
-                        "external"
-                      ]
-                    }
-                  }
-                },
-                "target": "mailto:hello@jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0009",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "contact_en.rst#block-9"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0010",
-          "content_sha256": "3cc8794adbad4168ea169969c4d3f72fa27242210b71b7222907ac3108ef1719",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "www.jackery.com"
-                  }
-                ],
-                "kind": "link",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": [
-                        "reference",
-                        "external"
-                      ]
-                    }
-                  }
-                },
-                "target": "https://www.jackery.com"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "contact_en.rst#block-10"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "contact_en.rst:block-0011",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "contact_en.rst#block-11"
-        },
-        {
           "asset_refs": [
             "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
           ],
-          "block_id": "contact_en.rst:block-0012",
-          "content_sha256": "68a779eea646b2d893bfee4c538b3021018e73c063dbdad29a5094bfc313b0cf",
+          "block_id": "contact_en.rst:block-0001",
+          "content_sha256": "c454fb44aef12e9aac35fabea5e1a90c78f8de69437fd52cbcfbeb52f481714c",
           "kind": "flow",
           "payload": {
-            "alt": "Jackery contact QR from the original back cover",
-            "kind": "image",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "JACKERY INC."
+                      }
+                    ],
+                    "kind": "strong"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "1-888-502-2236 (US)"
+                      }
+                    ],
+                    "kind": "link",
+                    "target": "tel:18885022236"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "hello@jackery.com"
+                      }
+                    ],
+                    "kind": "link",
+                    "target": "mailto:hello@jackery.com"
+                  },
+                  {
+                    "kind": "line_break"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "www.jackery.com"
+                      }
+                    ],
+                    "kind": "link",
+                    "target": "https://www.jackery.com"
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "children": [
+                  {
+                    "alt": "Jackery contact QR from the original back cover",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "style": "width:100%;height:auto;"
+                        }
+                      }
+                    },
+                    "source": "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "contact-qr"
+                      ],
+                      "style": "width:96px;max-width:100%;"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "width: 96px;"
+                  "aria-label": "Jackery contact information",
+                  "class": [
+                    "manual-contact-footer"
+                  ],
+                  "role": "contentinfo",
+                  "style": "margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;"
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
-          "source_ref": "contact_en.rst#block-12"
+          "source_ref": "contact_en.rst#block-1"
         }
       ],
       "language": "en",
@@ -5624,7 +5533,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/contact_en.rst",
       "source_ref": "contact_en.rst",
-      "source_sha256": "e36b5e5b4e72c6496a5dbe3ad8f590e41ad767cc88f9ace713bcbc5ebd90cc3e"
+      "source_sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
     }
   ],
   "region": "US",

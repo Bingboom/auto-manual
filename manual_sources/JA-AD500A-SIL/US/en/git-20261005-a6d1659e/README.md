@@ -18,6 +18,12 @@ use the existing ReferenceFigure overlay, including on mobile. The artwork
 recipe records the inventory/reuse decisions and pins all six extracted images;
 these assets have not been promoted to an online registry.
 
+The back cover's company/address/phone/email/website/QR remain in an untitled
+page-end contact block. The operator corrected the previously added
+“CONTACT US” chapter: it is not a back-cover chapter and is now absent from
+headings and navigation. The contents contain only the original five chapters.
+The QR is constrained to 96px on both desktop and mobile, preserving its bytes.
+
 ## Rebuild
 
 From the repository root, with the project's Python dependencies installed:
@@ -34,6 +40,8 @@ RST → manual-ir/v2 → shared Web/MyST pipeline. It does not implement an HTML
 renderer or register a phase2 target. `web/en/` contains the frozen MyST, IR,
 CSS and packaged artwork. `output_inventory.json` records output/evidence
 hashes separately from source inputs.
+The adapter invokes the existing frozen-IR replay to retain the page-end
+block and QR width through MyST export, instead of flattening that container.
 
 ## Verification and scope
 

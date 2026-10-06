@@ -108,3 +108,21 @@ This completes preparation of the English intake candidate. Operator English
 baseline confirmation, merge/publication and locale expansion remain outside
 this result; all package publication flags remain false. No live business-plane
 writes were made, and root/other-window artifacts were preserved.
+
+## Operator correction: back-cover copy without an added chapter
+
+The operator clarified: “封底的内容可以放上去 但是 封底 没有 CONTACT US这个章节”.
+The previous standalone contact heading/navigation entry was an intake
+structure error. It has been removed. Exact back-cover company/address/phone/
+email/website copy and the unchanged QR are retained in an untitled page-end
+block; QR width is 96px at desktop and mobile. `evidence/source-contact-proof.png`
+shows the original AI back-cover area (physical page 1, pt [308,480,563,579]).
+
+Candidate 6 uses the existing frozen-IR replay for final MyST export, retaining
+the native footer container rather than flattening its width constraint. Strict
+Sphinx and source-free exact-MyST replay pass. Comparison with candidate 3 shows
+identical body copy except for the deleted added heading, and identical six
+artwork assets. Actual desktop/mobile inspection confirms zero contact headings,
+the original five-chapter navigation, all contact copy, 96px QR and no document
+overflow. Corrected screenshots and `evidence/footer-correction.json` supersede
+the earlier footer display; historical evidence remains retained.

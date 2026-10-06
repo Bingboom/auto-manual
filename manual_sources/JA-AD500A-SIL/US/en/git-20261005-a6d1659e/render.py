@@ -20,6 +20,7 @@ from tools.manual_ir import read_manual_ir, write_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.document import validate_document
 from tools.markdown_bundle import export_markdown_from_bundle
+from tools.web.frozen_ai_web import replay_package
 
 
 def main():
@@ -69,6 +70,7 @@ def main():
     })
     validate_document(ir)
     write_manual_ir(ir, output / "manual.ir.json")
+    replay_package(output)
     with (output / "conf.py").open("a") as stream:
         stream.write("language = 'en'\n")
     print(json.dumps({"output": str(output), "components": counts}, indent=2))

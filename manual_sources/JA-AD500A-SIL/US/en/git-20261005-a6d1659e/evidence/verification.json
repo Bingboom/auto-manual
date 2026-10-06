@@ -1,6 +1,6 @@
 {
   "target": "JA-AD500A-SIL/US/en",
-  "candidate": "web-candidate-3",
+  "candidate": "web-candidate-6",
   "status": "English candidate, not operator-confirmed baseline or publication",
   "desktop_viewport": [
     1440,
@@ -35,5 +35,28 @@
     "source_free_cold_replay": true,
     "tampered_asset_rejected": true,
     "regression_target": "JE-1000F/US/en using committed phase2 test fixture only"
-  }
+  },
+  "footer_correction": {
+    "candidate": "web-candidate-6",
+    "operator_correction": "封底的内容可以放上去 但是 封底 没有 CONTACT US这个章节",
+    "contact_headings": 0,
+    "toc": [
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "CHARGING",
+      "SPECIFICATIONS",
+      "WARRANTY"
+    ],
+    "contact_source": "back-cover, physical page 1; proof crop pt [308,480,563,579]",
+    "source_copy_preserved": true,
+    "all_other_body_words_unchanged": true,
+    "artwork_bytes_unchanged": true,
+    "qr_width_desktop_px": 96,
+    "qr_width_mobile_px": 96,
+    "mobile_scroll_width": 390,
+    "strict_sphinx": true,
+    "source_free_replay_exact_myst_parity": true,
+    "publication_eligible": false
+  },
+  "historical_browser_evidence": "Unmodified candidate-3 screenshots retained; footer-corrected screenshots show candidate-6."
 }

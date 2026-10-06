@@ -49,13 +49,18 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 196643,
-      "sha256": "1375ced24845447ae48eff92a56115bbc99017662fc7165bc169d9237279f996"
+      "size": 193591,
+      "sha256": "c1e3b4ac5306a63b5454cc49f3eea78ad72a69ed72a67db177d7029230d1aa34"
     },
     {
       "path": "web/en/manual_jaad500asil_us_en.md",
-      "size": 13518,
-      "sha256": "394c4ecbb2fe1a22d9d01f2726731e0711068da45bce9ea7c93c7b77e8bd2651"
+      "size": 14347,
+      "sha256": "7a96821da85a1ce1589e1252ae3b9f46b5c16d1ebc330fd36545b9649b57ba56"
+    },
+    {
+      "path": "evidence/browser/desktop-footer-corrected.jpg",
+      "size": 84761,
+      "sha256": "8a870ddc2f69525b1d8bdcd8440e23077933616ec4bcde39a8921478a0ba6844"
     },
     {
       "path": "evidence/browser/desktop-solar.jpg",
@@ -66,6 +71,11 @@
       "path": "evidence/browser/mobile-car.jpg",
       "size": 53071,
       "sha256": "a4cb35d1ff9fb49bc1db01816d49d435c5355308c12f30e92c2fc67b5bf69508"
+    },
+    {
+      "path": "evidence/browser/mobile-footer-corrected.jpg",
+      "size": 39704,
+      "sha256": "2873ec50bddba7cd00bf5a84acdf5661004e13eee965b924409e8a4476278499"
     },
     {
       "path": "evidence/browser/mobile-full.jpg",
@@ -103,6 +113,11 @@
       "sha256": "8978320bc5362a93dab9e76c0ae2c0b04a4858a9f5cd185d7213e900b856e89d"
     },
     {
+      "path": "evidence/footer-correction.json",
+      "size": 672,
+      "sha256": "90f271806f85f24f8f686b581389b14ad42999d3a9656fed62a807edf89be29a"
+    },
+    {
       "path": "evidence/guardrails.log",
       "size": 425,
       "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
@@ -113,9 +128,19 @@
       "sha256": "2ae03e05e4d27a443b4cacd3dabfe7773e2e7ec926aaef004cd5c2236808746a"
     },
     {
+      "path": "evidence/source-contact-proof.png",
+      "size": 48528,
+      "sha256": "b72db886de44d904e9d430a80f0555d9131aae42033d09ada168b5f1bee07085"
+    },
+    {
       "path": "evidence/sphinx-3.log",
       "size": 2079,
       "sha256": "867b94917892b9709cc0a818113e78233fbeb4548f62f2ea032ce5cc33d4724b"
+    },
+    {
+      "path": "evidence/sphinx-6.log",
+      "size": 2079,
+      "sha256": "547075c3d49eb6cc8aa9eb8952d4e8b6eb833109ad93af88998b89e986c67354"
     },
     {
       "path": "evidence/sphinx-cold-3.log",
@@ -134,8 +159,8 @@
     },
     {
       "path": "evidence/verification.json",
-      "size": 1075,
-      "sha256": "1a959bdfdd00062d9c412fb5af152e543fa77688a22bcffe86a686393473396e"
+      "size": 1941,
+      "sha256": "621d4b2b39f18298c656f4b056b3f23da7182ea7964f7cb651b01a69441c42da"
     }
   ]
 }

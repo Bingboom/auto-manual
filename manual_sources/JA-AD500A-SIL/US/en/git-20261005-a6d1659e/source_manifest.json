@@ -72,7 +72,8 @@
     "native × and en-dash used for measurement/range signs",
     "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
     "source heading case retained; warranty continuation is one section",
-    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label"
+    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
+    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction"
   ],
   "source_concerns": [
     {
@@ -118,8 +119,8 @@
     },
     {
       "path": "render.py",
-      "size": 3484,
-      "sha256": "df6833e0b993e1c55cc164a9d939400af45e4c7ec509e29e2bc45c3c770c5ad9"
+      "size": 3562,
+      "sha256": "50ebaa35b686f1b6cd4aceefd1d854ed53f274e8b228acac990dcc3fc9c6a21d"
     },
     {
       "path": "source/asset_recipe.json",
@@ -148,8 +149,8 @@
     },
     {
       "path": "source/page/contact_en.rst",
-      "size": 331,
-      "sha256": "e36b5e5b4e72c6496a5dbe3ad8f590e41ad767cc88f9ace713bcbc5ebd90cc3e"
+      "size": 662,
+      "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
     },
     {
       "path": "source/page/product_overview_en.rst",
