@@ -8390,8 +8390,8 @@
         },
         {
           "kind": "image",
-          "source": "assets/app_result.png",
-          "alt": "HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only.",
+          "source": "assets/app_connect_result_steps.png",
+          "alt": "Reference App screenshots: scanning, Wi-Fi configuration and connected device. Generic Explorer 1000 example with steps 2.3, 2.4 and 2.5.",
           "presentation": {
             "html": {
               "attributes": {
@@ -8400,6 +8400,16 @@
               }
             }
           },
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "The above screenshots are for reference only."
+            }
+          ],
           "schema_version": "manual-flow/v2"
         },
         {

@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-app2"
+    "technical_version": "git-20261005-31fd0692-app3"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -129,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 96072,
-      "sha256": "d8b570d87a9fab549c0e16da5914f08454d8c01e928242a3ded111c03b356396"
+      "size": 97536,
+      "sha256": "333047b34577760dd4acb3069ebebd0481a56cc5ef030faf3096a5e3b1df9ad6"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 453746,
-      "sha256": "db0fe1b0c75bc9d89f26f8c83737c69d45aa15e0a62f994fdb3a247de0fbe862"
+      "size": 454064,
+      "sha256": "189e3e71261e60ef0d9d141c233168140b79325d155a76d96b38d59b89552356"
     },
     {
       "path": "source/coverage_audit.json",
@@ -381,6 +381,11 @@
       "path": "web/en/assets/app_add.png",
       "size": 58893,
       "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7"
+    },
+    {
+      "path": "web/en/assets/app_connect_result_steps.png",
+      "size": 288384,
+      "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3"
     },
     {
       "path": "web/en/assets/app_control.png",
@@ -729,13 +734,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 622161,
-      "sha256": "691c1e579ac3b5283655c9b9fb9c47b8c4225544e75f579a17c3b2dfd02ae012"
+      "size": 622912,
+      "sha256": "a1977e61754dbbdc09cff7e2b76ee85151e4e7f7d605306f7efe76976d28a3a8"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 101851,
-      "sha256": "25d980bc787d20658a6ed875ae347c3ddd705d695756f34eef29abfc788c6f58"
+      "size": 101961,
+      "sha256": "772d07e382fda9fdae8c17cf4ad265daf2481720186ccf59747d1ffa5e25470e"
     }
   ],
   "repo_inputs": [
@@ -758,6 +763,11 @@
       "path": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
       "size": 35420,
       "sha256": "e8bbc69e5895945ca94faeb288db522650ca4ff8b67a18a2c918b5ab93e2ffd0"
+    },
+    {
+      "path": "docs/renderers/contracts/assets/app/app_connect_result_steps.png",
+      "size": 288384,
+      "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3"
     },
     {
       "path": "docs/renderers/contracts/assets/app/app_download_qr.png",

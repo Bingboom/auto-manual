@@ -80,15 +80,15 @@
     "assets/app_download_qr.png",
     "assets/app_add.png",
     "assets/app_control.png",
-    "assets/app_result.png",
+    "assets/app_connect_result_steps.png",
     "assets/ess_connection.png",
     "assets/ess_station_package.png",
     "assets/ess_battery_package.png",
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "87794dad2933d6f6db53d1b4c7a6855661d3c6d9f5b32bab522d7f6b0971c197",
-  "content_sha256": "e3acf33c1e8b35485b2ac761eae067a3a30f17d5250303416685d6643a8e7a0d",
+  "bundle_sha256": "917329ab0da579e0c20422f6dee0f9d592868a37996712d284804f9816cc9409",
+  "content_sha256": "f6a35e2de0f08eaa739186d3e3fe2997b99f69e7214ad9e439c33d5e6dcd9b78",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -127,6 +127,7 @@
       "assets/ac.png": "e98fc6c1a0542dbdda3c71c4be43392f26ec3da41b93648d21d5a34dd4af1611",
       "assets/ad437a82a4fe_ac-bottom.svg": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
       "assets/app_add.png": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
+      "assets/app_connect_result_steps.png": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
       "assets/app_control.png": "92b9e84fdc173d030100697e12b8415a4ac35c8c074bac8a7fa2196703897c61",
       "assets/app_download.png": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471",
       "assets/app_download_qr.png": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
@@ -195,7 +196,7 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 226,
+    "block_count": 227,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-APP": 2,
@@ -11989,13 +11990,13 @@
         },
         {
           "asset_refs": [
-            "assets/app_result.png"
+            "assets/app_connect_result_steps.png"
           ],
           "block_id": "app:block-0015",
-          "content_sha256": "d407dd2c250712afb596d0c7359f53f1ca72ca988513833124e06f3b5c282545",
+          "content_sha256": "3c5a9fe11d1f068b0044b7d5e5352af75302570979fde031e468657d2a5d5dcf",
           "kind": "flow",
           "payload": {
-            "alt": "HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only.",
+            "alt": "Reference App screenshots: scanning, Wi-Fi configuration and connected device. Generic Explorer 1000 example with steps 2.3, 2.4 and 2.5.",
             "kind": "image",
             "presentation": {
               "html": {
@@ -12006,13 +12007,30 @@
               }
             },
             "schema_version": "manual-flow/v2",
-            "source": "assets/app_result.png"
+            "source": "assets/app_connect_result_steps.png"
           },
           "source_ref": "native-pdf/app#block-15"
         },
         {
           "asset_refs": [],
           "block_id": "app:block-0016",
+          "content_sha256": "5b94adefaf2fbc05540502dff637eb19f876e6978631794d3f435cb3c47f31d6",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "The above screenshots are for reference only."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/app#block-16"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "app:block-0017",
           "content_sha256": "8caa13c61e81aca2155cdc7f84628a388e8cde9ca77d59313c9581d719e0f627",
           "kind": "flow",
           "payload": {
@@ -12106,11 +12124,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-16"
+          "source_ref": "native-pdf/app#block-17"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0017",
+          "block_id": "app:block-0018",
           "content_sha256": "789583daed61416b99269befeaf6c8fe4b41384f5346e06e976034e8624dba9d",
           "kind": "flow",
           "payload": {
@@ -12124,11 +12142,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-17"
+          "source_ref": "native-pdf/app#block-18"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0018",
+          "block_id": "app:block-0019",
           "content_sha256": "f7f24b3510d4a95597bb478ed41d053bf4cfedce59e4d87e87432e6807e87dac",
           "kind": "flow",
           "payload": {
@@ -12141,11 +12159,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-18"
+          "source_ref": "native-pdf/app#block-19"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0019",
+          "block_id": "app:block-0020",
           "content_sha256": "d88a753241cb36c17ab83bfaa7da32b383bf1ba10990c27a54a07138130501a8",
           "kind": "flow",
           "payload": {
@@ -12159,11 +12177,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-19"
+          "source_ref": "native-pdf/app#block-20"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0020",
+          "block_id": "app:block-0021",
           "content_sha256": "662d2a6fadaec80c406e4e1ebffc278e3bf364459d2caba9904fb10da1821a82",
           "kind": "flow",
           "payload": {
@@ -12177,11 +12195,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-20"
+          "source_ref": "native-pdf/app#block-21"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0021",
+          "block_id": "app:block-0022",
           "content_sha256": "1fd5d8b00610ddc57b63f840c6740c04e0446b41d67c133212cc0178dbc7bcbc",
           "kind": "flow",
           "payload": {
@@ -12209,11 +12227,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-21"
+          "source_ref": "native-pdf/app#block-22"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0022",
+          "block_id": "app:block-0023",
           "content_sha256": "aac4359c45cbfb9fb945e1435c130062ae628e855ac67777c4b6343a91373f0b",
           "kind": "flow",
           "payload": {
@@ -12227,11 +12245,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-22"
+          "source_ref": "native-pdf/app#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0023",
+          "block_id": "app:block-0024",
           "content_sha256": "36334fd0beff5df0e307744ce86bb1325454d103ad44d019aaf20fc74fe49a2d",
           "kind": "flow",
           "payload": {
@@ -12259,11 +12277,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-23"
+          "source_ref": "native-pdf/app#block-24"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0024",
+          "block_id": "app:block-0025",
           "content_sha256": "cae86568515ac4d366e3f261f49b93088c7cf93757fd0c8a652e22609ea8ef22",
           "kind": "flow",
           "payload": {
@@ -12277,11 +12295,11 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-24"
+          "source_ref": "native-pdf/app#block-25"
         },
         {
           "asset_refs": [],
-          "block_id": "app:block-0025",
+          "block_id": "app:block-0026",
           "content_sha256": "fc0398c2a815a07f61bacc9acfe2f706c2ea2d9417e7631ce3ee92e0380a4516",
           "kind": "flow",
           "payload": {
@@ -12294,7 +12312,7 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/app#block-25"
+          "source_ref": "native-pdf/app#block-26"
         }
       ],
       "language": "en",
@@ -12302,7 +12320,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#app",
       "source_ref": "native-pdf/app",
-      "source_sha256": "b1f31e339e431a132c3abcbf27bdc6353bdc612c2c41fcc7e8a5522784f9b656"
+      "source_sha256": "e8cfa840b0a95e2706c7a076289bd65b9b1ac80fd3719331c5717f1f91f51da0"
     },
     {
       "blocks": [

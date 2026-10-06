@@ -2100,7 +2100,10 @@
       "max_width_rem": 36.75,
       "preserve_complete_frame_and_step_numbers": true,
       "asset_bytes": "unchanged"
-    }
+    },
+    "reuse_status": "superseded-do-not-reuse",
+    "withdrawal_reason": "Top phone edges were cropped; user directed common reference screenshot reuse.",
+    "replacement": "assets/app_connect_result_steps.png"
   },
   {
     "slot": "ess_connection",
@@ -2425,5 +2428,28 @@
       275,
       119
     ]
+  },
+  {
+    "slot": "app.result.shared",
+    "decision": "reuse byte-identical existing shared reference UI per user instruction",
+    "candidate": "docs/renderers/contracts/assets/app/app_connect_result_steps.png",
+    "final_path": "assets/app_connect_result_steps.png",
+    "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+    "physical_page": 29,
+    "bbox": [
+      37,
+      139,
+      333,
+      297
+    ],
+    "content_mode": "app-ui-reference-only",
+    "background_policy": "complete phone frames/status bars/bottom UI/steps; no recrop or bitmap editing",
+    "identity_check": "Existing governed shared three-screen scan/Wi-Fi/result example; opened and visually checked all four edges. Native source displays HP3600 Pro Max / HomePower 3600 Pro Max, 100%, 33 C, USB/AC/DC; generic shared reference shows Explorer 1000, 80%, 25 C, DC/AC. Retained native manual steps and explicit source reference-only notice; this is an intentional shared demonstration exception, not product specifications.",
+    "reuse_status": "approved-shared-reference-binding",
+    "web_size_policy": {
+      "shared_class": "hb-app-phone-trio",
+      "max_width_rem": 36.75,
+      "preserve_complete_frame_and_step_numbers": true
+    }
   }
 ]
