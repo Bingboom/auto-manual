@@ -84,16 +84,34 @@ as a compatibility path, not the target. The machine card carries the same fact 
 Assembly / Shared IR instead, change the badge to IR-native · Same-source. The panel's coverage tiles (versions, fresh vs receipt, generation mode, revisions, callout severity, images without alt) are filled at view time by `_static/machine-surface-stats.js` from the deployed `machine_surface_manifest.json` and `manual-deployment.json`, because the manifest is written after pages render; without JS or either file the panel keeps a note and the download link. Build times, snapshot dates and hashes sit in
 the collapsed 页面版本与更新 / 数据更新时间 disclosure.
 
-Inside the shell the root page has four bounded zones on one container width
+Inside the shell the root page has these bounded zones on one container width
 (`.wrap`, 1200px):
 
 1. **Search hero** (light grey band): title and the cross-manual search box.
-2. **Filter toolbar** (sticky below the top bar): product-type chips and the
-   language filter.
-3. **Catalog**: region heading and count, then one section per product type
-   (`便携储能` / `加电包` / `太阳能板` / `配件`) with a responsive card grid.
-   Sections with no visible card after filtering are hidden.
-4. **Footer** (light grey band), which also holds the Read the Docs ad placement.
+   People who already own a product search the model here.
+2. **按用电需求找说明书**: one tile per power need (随身供电 / 通用电器供电 /
+   可扩容储能 / 专用场景备电) with a one-line scenario and the products that
+   have a manual in the selected region; a tile with none there is hidden.
+   A tile click filters the catalog to that need.
+3. **Filter toolbar** (sticky below the top bar): 全部, one chip per need and
+   配套产品, plus the language filter. Chips without a manual in the selected
+   region are hidden; a hidden active chip falls back to 全部.
+4. **Catalog**: region heading and count, then one section per need, then
+   「配套产品」 with one section per kind (扩容电池 / 太阳能补能 / 充电器 /
+   连接配件 / 保护与搬运), each with a responsive card grid. Sections with no
+   visible card after filtering are hidden.
+5. **Footer** (light grey band), which also holds the Read the Docs ad placement.
+
+The need and accessory groups are product positioning, curated in
+`settings.json` → `navigation` (`needs` rows with `id`, `title`, `note`,
+`models`; `ecosystem` rows with `id`, `title`, `models`); the build never infers
+them. `tools/rtd/portal_navigation.py` rejects a model listed twice, a duplicate
+or non-lower-case id, or a row without title/models, and fails the build. Card
+order inside a group follows the table. A published model the table does not
+list yet appears under 「其他说明书」 instead of disappearing; add it to the right
+row. Capability comparison and compatibility lookup are deliberately absent until
+a confirmed data source exists. Without `navigation` the page falls back to one
+section per product type (`便携储能` / `加电包` / `太阳能板` / `配件`).
 
 Cards show the product image, model, edition, a language summary (first
 published language plus the count; the full list is in the tooltip) and a

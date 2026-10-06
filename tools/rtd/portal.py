@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, repo_root, static_dir_of
 from tools.rtd.publication_catalog import group_publications, publication_identity
+from tools.rtd.portal_navigation import navigation_view
 from tools.rtd.analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd.alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 from tools.rtd.deliverables import DELIVERABLES_PAGE, DELIVERABLES_TEMPLATE, deliverables_page_context
@@ -229,6 +230,7 @@ def page_context(app, pagename, templatename, context, doctree):
         return None
     context["portal"] = settings
     context["products"] = products
+    context["navigation"] = navigation_view(settings, products)
     context["site_nav"] = site_nav(app)
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
