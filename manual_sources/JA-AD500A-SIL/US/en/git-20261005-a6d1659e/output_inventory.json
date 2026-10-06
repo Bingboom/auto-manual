@@ -49,13 +49,18 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 197476,
-      "sha256": "c7956855ddbf35b34cc085adbac3f03872b8f44d205b83539ce0617171e56d13"
+      "size": 197561,
+      "sha256": "f19f93cf3e6502f74346c512ae094da4e03dd1bfe8466b4f7116e5d5cce8d0b9"
     },
     {
       "path": "web/en/manual_jaad500asil_us_en.md",
-      "size": 15775,
-      "sha256": "6e30a5d7ab77e9ced4bc1e2f77f1f52b9f506e9b6239439db8eb8f3e120660b5"
+      "size": 15695,
+      "sha256": "02be37674428987636bddd56cc1f52f93d3d1ee8a5342ee18a8822f28534db7e"
+    },
+    {
+      "path": "evidence/browser/desktop-car-pill-compact.jpg",
+      "size": 92502,
+      "sha256": "ea8839f395b0cb3dfcad79cf158de88b2372a41c33118058fe7716acf38700e4"
     },
     {
       "path": "evidence/browser/desktop-footer-corrected.jpg",
@@ -86,6 +91,11 @@
       "path": "evidence/browser/desktop-solar.jpg",
       "size": 96228,
       "sha256": "beeccd57f72a4378361e81b8fcd34fd42dbe1fddf846b787c8b58220ac290765"
+    },
+    {
+      "path": "evidence/browser/mobile-car-pill-compact.jpg",
+      "size": 48652,
+      "sha256": "2a2408b83b33cae5a4f49ef105cec4f99b11a8b00a9b7a6e0abc646a63244815"
     },
     {
       "path": "evidence/browser/mobile-car.jpg",
@@ -131,6 +141,11 @@
       "path": "evidence/browser/mobile-warranty.jpg",
       "size": 67801,
       "sha256": "cd6c6dbf3f6fcea09453177b4d215854d748f9dd82e4836c53d125377b770e83"
+    },
+    {
+      "path": "evidence/car-pill-correction.json",
+      "size": 752,
+      "sha256": "89e04b072b99392e5fde4fa2fb4bb0145618cae2b1647c0a992d8fe578473fef"
     },
     {
       "path": "evidence/cold-replay.json",
@@ -201,6 +216,11 @@
       "path": "evidence/sphinx-cold-3.log",
       "size": 2087,
       "sha256": "7e1e07f4417cdeca652fdd141dfa1292de584c0ddbe4f2eb1073e8286181b6f2"
+    },
+    {
+      "path": "evidence/strict-car-pill-compact.log",
+      "size": 2083,
+      "sha256": "1fe0e2cd08925720a01635209b3a91120fc9d709d586141fa34a5ec2c5ba7e73"
     },
     {
       "path": "evidence/strict-intro-removed.log",

@@ -172,3 +172,17 @@ Candidate 11 passes strict Sphinx and exact source-free replay. Body text and
 all six images are unchanged from candidate 10b. Actual 1440px and 390px
 screenshots show the complete diagram with no clipping or horizontal overflow.
 The report and screenshots are retained in the snapshot evidence directory.
+
+## Operator correction: compact car-cable capsule
+
+The operator requested a single-line car-cable note on desktop and less
+vertical blank space. The existing source-bound live-copy rectangle is now
+`[57,83.5,40,4]` percent, widening the capsule while reducing its minimum
+height. No forced nowrap, new renderer or shared CSS was added. Native copy,
+other labels and all artwork bytes remain unchanged.
+
+Candidate 12 passes strict Sphinx, exact source-free replay and body-text
+comparison against candidate 11. At 1440px the note uses one line and the
+capsule height drops from 83.58px to 28.14px; at 390px it wraps naturally onto
+two lines in a 19.34px capsule. Both views have no horizontal overflow or text
+clipping. Corrected screenshots and measurements are retained in evidence.

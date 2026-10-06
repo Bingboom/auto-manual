@@ -48,6 +48,12 @@ shared standalone image rule; no shared CSS or artwork was changed. Candidate
 and all six artwork bytes. See `evidence/overview-size-correction.json` and
 `evidence/browser/*-overview-smaller.jpg`.
 
+The car-cable note now has a compact source-bound capsule: one line at
+1440px desktop, with natural two-line wrapping at 390px. The source rectangle
+was widened and shortened; native copy, all artwork and shared CSS are
+unchanged. Candidate 12 passes strict Sphinx and exact source-free replay.
+See `evidence/car-pill-correction.json` and the matching browser screenshots.
+
 ## Rebuild
 
 From the repository root, with the project's Python dependencies installed:

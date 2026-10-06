@@ -75,7 +75,8 @@
     "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
     "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
     "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
-    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged"
+    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
+    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art"
   ],
   "source_concerns": [
     {
@@ -146,8 +147,8 @@
     },
     {
       "path": "source/page/charging_en.rst",
-      "size": 3355,
-      "sha256": "b89e67ab2ee722452ad87c695265b95540f63b9092c54d7d3a642486aca2917a"
+      "size": 3294,
+      "sha256": "69db9d9335a1537f698a315c616abdcd09b2351dbc9829712da72fd8a7cc5923"
     },
     {
       "path": "source/page/contact_en.rst",
