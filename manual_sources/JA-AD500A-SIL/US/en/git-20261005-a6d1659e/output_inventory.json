@@ -311,6 +311,11 @@
       "path": "evidence/verification.json",
       "size": 2854,
       "sha256": "4248e5fbd9d305f8318dcc2b8f2561a73842bafeeb474ef6406cb59fd6325d45"
+    },
+    {
+      "path": "evidence/.gitattributes",
+      "size": 109,
+      "sha256": "09e340a0fc288366ebbb4e6579787dcb437496508c6918c70575ca51c178200f"
     }
   ]
 }

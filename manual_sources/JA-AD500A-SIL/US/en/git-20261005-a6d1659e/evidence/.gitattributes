@@ -1,0 +1,2 @@
+# Preserve the extraction receipt bytes across checkouts.
+overview-textless-intake-artifacts.csv text eol=lf
