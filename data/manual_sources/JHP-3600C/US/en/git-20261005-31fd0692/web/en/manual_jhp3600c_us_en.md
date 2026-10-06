@@ -3,16 +3,20 @@
 #furo-main-content #jackery-homepower-3600-pro-max-user-manual > h1,
 #furo-main-content section#fcc > h1,
 #furo-main-content section#contact-us > h1,
-#furo-main-content .hb-source-hidden-heading,
+#furo-main-content h2.hb-source-hidden-heading,
 #furo-main-content section#package-list section > h3 {
   display: none;
 }
-#furo-main-content section#important > h1 {
+#furo-main-content section#important > h2 {
+  display: block;
   padding: 0;
   background: transparent !important;
   color: var(--hb-text);
   border-radius: 0;
   font-size: 1.12rem;
+}
+#furo-main-content section#important > h2::before {
+  display: none;
 }
 /* Native safety subsection strips differ from ordinary dot-led sections. */
 #furo-main-content section:has(> .hb-safety-instruction) > section > h2::before {
@@ -94,7 +98,7 @@
 
 <span id="important"></span>
 
-# IMPORTANT
+## IMPORTANT
 
 <p>Congratulations on your new Jackery HomePower 3600 Pro Max. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.</p>
 

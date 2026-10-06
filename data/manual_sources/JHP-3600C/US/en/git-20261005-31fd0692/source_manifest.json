@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-headings1"
+    "technical_version": "git-20261005-31fd0692-headings2"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -80,7 +80,8 @@
     "Operator correction against native physical p6: suppress the added visible FCC chapter heading and its bullet/spacing through source-local CSS; retain the chapter anchor and compliance copy unchanged.",
     "Operator correction against native physical p7: PRODUCT OVERVIEW uses a full-width dark title bar with white copy; FRONT VIEW and RIGHT SIDE VIEW keep source-sized round markers flush with the artwork left edge. Source copy and approved complete labeled artwork remain unchanged.",
     "Operator LCD table correction: 28 leading status labels (12 On:, 4 Blink:, 12 Off:) in 12 rows carry explicit strong emphasis in the existing ComponentSpec rich HTML; all wording, plain-text descriptions, icons and other rows remain unchanged.",
-    "Whole-manual heading correction: source-native chapter levels map directly to shared H1 dark bars and H2 round-marker styles, instead of compensating chapter by chapter in CSS. Reviewed exceptions: plain preface, hidden document/FCC/contact/panel labels, safety subbars, warranty shared card tabs, numbered App steps, and small gray source pills. Native product bars and specification group accessibility levels corrected. See source/heading_audit.json; copy and artwork remain unchanged."
+    "Whole-manual heading correction: source-native chapter levels map directly to shared H1 dark bars and H2 round-marker styles, instead of compensating chapter by chapter in CSS. Reviewed exceptions: plain preface, hidden document/FCC/contact/panel labels, safety subbars, warranty shared card tabs, numbered App steps, and small gray source pills. Native product bars and specification group accessibility levels corrected. See source/heading_audit.json; copy and artwork remain unchanged.",
+    "Heading browser follow-up: retain plain preface under hidden document identity for Furo chapter navigation; force the duplicate ATS carrier label hidden against generic H2 specificity; UPS heading provenance includes physical p14 and p15."
   ],
   "retained_source_anomalies": [
     {
@@ -128,7 +129,7 @@
     {
       "path": "source/content.json",
       "size": 420707,
-      "sha256": "6720ed90dfb4de865963fa678f3d2a4888171567159889ee1bc51864878cb9d4"
+      "sha256": "ab287385a581942f8e817cad1d80a02d4657e40d24fc291738ddf1d8f8bf198d"
     },
     {
       "path": "source/coverage_audit.json",
@@ -137,8 +138,8 @@
     },
     {
       "path": "source/heading_audit.json",
-      "size": 22719,
-      "sha256": "4ec5f4f9c8f092cc3412d5f930f5d5b2ac873f4cae25f7f8de7cb35b4e764504"
+      "size": 22906,
+      "sha256": "73b63c17af5d2e47a6c812390f9f9fe838640d3129b9cd55fed329d35e6aea97"
     },
     {
       "path": "source/native_pages.json",
@@ -152,8 +153,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 2785,
-      "sha256": "b0949926a6015fbb330bc04307fad0b5db5b6dcf85f810849860b398d0c0fd74"
+      "size": 2876,
+      "sha256": "4c81f6afc1629d0c80506ccb3efe72a352133bd533a8ad8e0a8877ee305695fc"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -187,8 +188,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 2785,
-      "sha256": "b0949926a6015fbb330bc04307fad0b5db5b6dcf85f810849860b398d0c0fd74"
+      "size": 2876,
+      "sha256": "4c81f6afc1629d0c80506ccb3efe72a352133bd533a8ad8e0a8877ee305695fc"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -683,12 +684,12 @@
     {
       "path": "web/en/manual.ir.json",
       "size": 586940,
-      "sha256": "9a70b221a7a4550321e074b40e8781a2ba138fe782d16fd50c4427fe3a723629"
+      "sha256": "4e1fecb8c4c457acaa53fe2fa525c691fde542727113961e58d5c3a08933dfa6"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 97517,
-      "sha256": "fab6087bc99398ee1820c1f3681d4104f72e53589cf9a8d8511ee013065203ad"
+      "size": 97609,
+      "sha256": "d4828d82dbacc97ff41a92e1a3f1816fafdfbb3477366d629ea3f77874b26db7"
     }
   ],
   "repo_inputs": [

@@ -86,8 +86,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "8be1fda61b433b1ffed4788140c604127ebc29babe3d55791ea84041e488e24d",
-  "content_sha256": "be3e3bd374e3f6ce7c8e55585252015af6cb265bcab404676499d9be0b7bc554",
+  "bundle_sha256": "b6a3ddc8652c0dcfc06000a84f6000cf1c321a48d0bf85c000a7f020ed7f4346",
+  "content_sha256": "0e4616cc57c4d29538246571d315742da17b6da3f16bec61a09257f2696b97be",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2035,7 +2035,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "b0949926a6015fbb330bc04307fad0b5db5b6dcf85f810849860b398d0c0fd74"
+      "sha256": "4c81f6afc1629d0c80506ccb3efe72a352133bd533a8ad8e0a8877ee305695fc"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -2222,7 +2222,7 @@
         {
           "asset_refs": [],
           "block_id": "important:block-0002",
-          "content_sha256": "128016346d97831325b2c92f90363e5a88a51f1732fdfe06e24af3599aea2e2e",
+          "content_sha256": "ef7049e04d79b575a7912be92d381890e009bcab561c7b9fb349cfb319791395",
           "kind": "flow",
           "payload": {
             "anchor": "important",
@@ -2233,7 +2233,7 @@
               }
             ],
             "kind": "heading",
-            "level": 1,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/important#block-2"
@@ -2312,7 +2312,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#important",
       "source_ref": "native-pdf/important",
-      "source_sha256": "c276a911bb05fa98ee49e88fb08851966f2b79609461468427b8fe59670647da"
+      "source_sha256": "bff14e261d8ba7dd2ad01928814f5f99b1f5c648fb9c26a8800793d5c192fbda"
     },
     {
       "blocks": [

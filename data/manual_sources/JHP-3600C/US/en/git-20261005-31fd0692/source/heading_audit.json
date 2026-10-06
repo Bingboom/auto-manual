@@ -19,12 +19,13 @@
       "chapter": "important",
       "title": "IMPORTANT",
       "previous_level": 2,
-      "native_level": 1,
+      "native_level": 2,
       "role": "preface-plain",
       "source_physical_pages": [
         2
       ],
-      "carrier": false
+      "carrier": false,
+      "navigation_note": "Preface stays beneath the hidden document identity; native chapter bars follow as H1 siblings, preserving shared Furo TOC."
     },
     {
       "chapter": "safety",
@@ -272,6 +273,7 @@
       "native_level": 1,
       "role": "native-chapter-bar",
       "source_physical_pages": [
+        14,
         15
       ],
       "carrier": false
@@ -283,6 +285,7 @@
       "native_level": 2,
       "role": "native-dot",
       "source_physical_pages": [
+        14,
         15
       ],
       "carrier": false
@@ -294,6 +297,7 @@
       "native_level": 2,
       "role": "native-dot",
       "source_physical_pages": [
+        14,
         15
       ],
       "carrier": false

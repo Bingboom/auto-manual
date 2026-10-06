@@ -259,7 +259,7 @@ and [restored user pane](jhp3600c_us_en_web_evidence/lcdstatus-final-preview-lcd
 show the corrected local preview. Root `tmp/` remains untouched; no push or publication.
 
 
-## Whole-manual shared heading correction (headings1)
+## Whole-manual shared heading correction (headings2)
 
 The stylesheet was loaded, but the whole-book intake shifted native chapter
 H1 to H2 and section H2 to H3 beneath a synthetic document title. Generic H2
@@ -279,8 +279,15 @@ tabs; numbered App steps; six small gray labels. The two accessory product bars
 use native H1. Thirteen specification group headings carry accessible level 2;
 the duplicate ATS component label is hidden beneath its source product bar.
 
-Technical version: `git-20261005-31fd0692-headings1`. All 84 actual standalone
+Technical version: `git-20261005-31fd0692-headings2`. All 84 actual standalone
 HTML headings match the reviewed source level in order. Removing only heading
 metadata reproduces the previous semantic source exactly: body wording,
 component semantics and artwork are unchanged. Deterministic rebuild,
 source coverage, strict standalone Sphinx and document links pass.
+
+The interim headings1 browser check found that Furo hides the TOC when the first
+H1 has no child heading. The plain preface remains at level 2 under the hidden
+document identity, while native chapter bars remain H1 siblings. Existing Furo
+navigation is thus preserved without a template fork or extension. A stronger
+source selector also hides the redundant ATS carrier against generic H2 rules.
+Headings2 is a separately sealed candidate; the interim release stays intact.
