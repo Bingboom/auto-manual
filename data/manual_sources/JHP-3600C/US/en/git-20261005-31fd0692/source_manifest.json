@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-atspills1"
+    "technical_version": "git-20261005-31fd0692-fccbalance1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 496995,
-      "sha256": "0c26e4ed439255333901f90d519d7dce5f32ff17ae1919584ade3a28a813e34b"
+      "size": 497748,
+      "sha256": "f5d0eb36327e36d7a40a879415ec64da477e002d003ca8053b97da3d906b63e5"
     },
     {
       "path": "source/coverage_audit.json",
@@ -214,8 +214,8 @@
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "size": 109918,
-      "sha256": "02b9a4087ff477239a7e59748da24a36f34e1eb688137b6f89b457606274f6dc"
+      "size": 111288,
+      "sha256": "1a7be825ac510198de6af33ce5253d9b0a53e92df8aae06cd676dc7d99a41643"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 668576,
-      "sha256": "681801047079f307923f5a0bcb457f7365b4c04e082a669bbfb7a4e940684ea0"
+      "size": 669355,
+      "sha256": "297b5b611d551975d3b356950557b409368fb077fc284fa150e1f4eb5203ccfe"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 107806,
-      "sha256": "89807a23c6dcc9fc21a2ca6883725220a6acbe94c99158cfb3a8689e1cfcd095"
+      "size": 107846,
+      "sha256": "a63b7c8ac3850d8ae114e8ee92b8f987d41ae48278eaf162e55ee42702079c70"
     }
   ],
   "repo_inputs": [
@@ -896,8 +896,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_fcc_components.css",
-      "size": 1933,
-      "sha256": "59d5a6043a5eaf75e3e9798dff7126eaa3f7d34f4a2dcdaa04e7bb97af9c7445"
+      "size": 3303,
+      "sha256": "6b224f2c57d89563ae34d9da7639d6f1b858b1f8ea785b4780a60033a1da1b58"
     },
     {
       "path": "docs/renderers/contracts/web_inbox_components.css",

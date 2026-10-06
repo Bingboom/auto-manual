@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "9e90f4e85151a2952f0ab4aa7e74ffce15d4b360c7e220411f0a9f23c69a0e63",
-  "content_sha256": "5589a290207e295c37f28d7ba3b7825f72b31990d2eb7568d8b2ab19594b395b",
+  "bundle_sha256": "21eb73f5b1164abe8efc287bd5914fd0858a3eb482a3bc3fc8c5367ecfed33d1",
+  "content_sha256": "2cb44bba0153245fd5ffd3e8f3a21d13d29f995d71eff459ffdec40c1cce026f",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1435,7 +1435,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "02b9a4087ff477239a7e59748da24a36f34e1eb688137b6f89b457606274f6dc",
+    "frozen_stylesheet_sha256": "1a7be825ac510198de6af33ce5253d9b0a53e92df8aae06cd676dc7d99a41643",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -3524,124 +3524,137 @@
             "assets/45f309ed8b3f_fcc_mark.png"
           ],
           "block_id": "fcc:block-0002",
-          "content_sha256": "eb189a334aa16e9e0386277ad81f6abdd3bda9e39e33f5f2af07085a5da8c555",
+          "content_sha256": "80768e11218cd40d9b09e85e70a6da26efe1a18476fe80521e268ea741351b39",
           "kind": "flow",
           "payload": {
-            "carrier_flow": [
+            "children": [
               {
-                "children": [
+                "carrier_flow": [
                   {
-                    "kind": "text",
-                    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                      }
+                    ],
+                    "kind": "paragraph"
                   }
                 ],
-                "kind": "paragraph"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
-                  }
-                ],
-                "kind": "paragraph"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
-                  }
-                ],
-                "kind": "paragraph"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
-                  }
-                ],
-                "kind": "paragraph"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
-                  }
-                ],
-                "kind": "paragraph"
-              }
-            ],
-            "component_spec": {
-              "assets": [
-                {
-                  "asset_ref": "assets/45f309ed8b3f_fcc_mark.png",
-                  "locale_policy": "shared",
-                  "role": "compliance_mark"
-                }
-              ],
-              "component_id": "HB-SPECIAL-FCC",
-              "language": "en",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "FCC",
-                  "content_kind": "inline_text",
-                  "role": "accessibility_label"
-                },
-                {
-                  "content": [
-                    "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
-                  ],
-                  "content_kind": "line_items",
-                  "role": "opening_copy"
-                },
-                {
-                  "content": [
+                "component_spec": {
+                  "assets": [
                     {
-                      "kind": "paragraph",
-                      "label": "NOTE:",
-                      "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
-                    },
-                    {
-                      "kind": "paragraph",
-                      "label": "",
-                      "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
-                    },
-                    {
-                      "items": [
-                        "Reorient or relocate the receiving antenna.",
-                        "Increase the separation between the equipment and receiver.",
-                        "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
-                        "Consult the dealer or an experienced radio/TV technician for help."
-                      ],
-                      "kind": "list"
-                    },
-                    {
-                      "kind": "paragraph",
-                      "label": "MODIFICATION:",
-                      "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                      "asset_ref": "assets/45f309ed8b3f_fcc_mark.png",
+                      "locale_policy": "shared",
+                      "role": "compliance_mark"
                     }
                   ],
-                  "content_kind": "ordered_blocks",
-                  "role": "body_blocks"
+                  "component_id": "HB-SPECIAL-FCC",
+                  "language": "en",
+                  "metadata": {},
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "FCC",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": [
+                        "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
+                      ],
+                      "content_kind": "line_items",
+                      "role": "opening_copy"
+                    },
+                    {
+                      "content": [
+                        {
+                          "kind": "paragraph",
+                          "label": "NOTE:",
+                          "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+                        },
+                        {
+                          "kind": "paragraph",
+                          "label": "",
+                          "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                        },
+                        {
+                          "items": [
+                            "Reorient or relocate the receiving antenna.",
+                            "Increase the separation between the equipment and receiver.",
+                            "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+                            "Consult the dealer or an experienced radio/TV technician for help."
+                          ],
+                          "kind": "list"
+                        },
+                        {
+                          "kind": "paragraph",
+                          "label": "MODIFICATION:",
+                          "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                        }
+                      ],
+                      "content_kind": "ordered_blocks",
+                      "role": "body_blocks"
+                    },
+                    {
+                      "content": 2,
+                      "content_kind": "block_index",
+                      "role": "column_break"
+                    }
+                  ],
+                  "source_ref": "pdf:p6:fcc",
+                  "token_roles": [
+                    "component.special.fcc"
+                  ],
+                  "variant": "two-column"
                 },
-                {
-                  "content": 2,
-                  "content_kind": "block_index",
-                  "role": "column_break"
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-fcc-balanced-flow"
                 }
-              ],
-              "source_ref": "pdf:p6:fcc",
-              "token_roles": [
-                "component.special.fcc"
-              ],
-              "variant": "two-column"
+              }
             },
-            "kind": "component",
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/fcc#block-2"
@@ -3652,7 +3665,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#fcc",
       "source_ref": "native-pdf/fcc",
-      "source_sha256": "81e036cfee830b9f53d25d4474c3df6f15b2358db06752fdc9ce657372640da8"
+      "source_sha256": "6788de0e109ea1701d28df7b34e0d5b06c941028679d66b94ff3b55aac33e976"
     },
     {
       "blocks": [

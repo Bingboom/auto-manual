@@ -2621,3 +2621,5 @@ Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/
 原稿中的独立深色胶囊正文提示可用 `p.hb-prose-pill > strong` 冻结到 Manual Flow；保留完整原文并拆成独立段落，共享 CSS 负责圆角、字色和窄屏换行。
 
 图内说明使用现有 ReferenceFigure 的 `base-art-live-copy` 和来源坐标；保留底图原字节，去掉图外重复段落。完整有框插图可套 `hb-reference-contained-copy`，在手机上保留同一图框内的可读文字。
+
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。

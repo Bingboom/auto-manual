@@ -698,6 +698,8 @@ Web App 的编号步骤标题保留源文大小写，不加圆点，与步骤正
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 

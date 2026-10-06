@@ -1132,117 +1132,130 @@
         },
         {
           "schema_version": "manual-flow/v2",
-          "kind": "component",
-          "component_spec": {
-            "component_id": "HB-SPECIAL-FCC",
-            "variant": "two-column",
-            "source_ref": "pdf:p6:fcc",
-            "language": "en",
-            "slots": [
-              {
-                "role": "accessibility_label",
-                "content_kind": "inline_text",
-                "content": "FCC"
-              },
-              {
-                "role": "opening_copy",
-                "content_kind": "line_items",
-                "content": [
-                  "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
-                ]
-              },
-              {
-                "role": "body_blocks",
-                "content_kind": "ordered_blocks",
-                "content": [
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-fcc-balanced-flow"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-FCC",
+                "variant": "two-column",
+                "source_ref": "pdf:p6:fcc",
+                "language": "en",
+                "slots": [
                   {
-                    "kind": "paragraph",
-                    "label": "NOTE:",
-                    "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "FCC"
                   },
                   {
-                    "kind": "paragraph",
-                    "label": "",
-                    "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
-                  },
-                  {
-                    "kind": "list",
-                    "items": [
-                      "Reorient or relocate the receiving antenna.",
-                      "Increase the separation between the equipment and receiver.",
-                      "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
-                      "Consult the dealer or an experienced radio/TV technician for help."
+                    "role": "opening_copy",
+                    "content_kind": "line_items",
+                    "content": [
+                      "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
                     ]
                   },
                   {
-                    "kind": "paragraph",
-                    "label": "MODIFICATION:",
-                    "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                    "role": "body_blocks",
+                    "content_kind": "ordered_blocks",
+                    "content": [
+                      {
+                        "kind": "paragraph",
+                        "label": "NOTE:",
+                        "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+                      },
+                      {
+                        "kind": "paragraph",
+                        "label": "",
+                        "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                      },
+                      {
+                        "kind": "list",
+                        "items": [
+                          "Reorient or relocate the receiving antenna.",
+                          "Increase the separation between the equipment and receiver.",
+                          "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+                          "Consult the dealer or an experienced radio/TV technician for help."
+                        ]
+                      },
+                      {
+                        "kind": "paragraph",
+                        "label": "MODIFICATION:",
+                        "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                      }
+                    ]
+                  },
+                  {
+                    "role": "column_break",
+                    "content_kind": "block_index",
+                    "content": 2
                   }
-                ]
+                ],
+                "assets": [
+                  {
+                    "role": "compliance_mark",
+                    "asset_ref": "assets/45f309ed8b3f_fcc_mark.png",
+                    "locale_policy": "shared"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.fcc"
+                ],
+                "metadata": {},
+                "schema_version": "component-spec/v1"
               },
-              {
-                "role": "column_break",
-                "content_kind": "block_index",
-                "content": 2
-              }
-            ],
-            "assets": [
-              {
-                "role": "compliance_mark",
-                "asset_ref": "assets/45f309ed8b3f_fcc_mark.png",
-                "locale_policy": "shared"
-              }
-            ],
-            "token_roles": [
-              "component.special.fcc"
-            ],
-            "metadata": {},
-            "schema_version": "component-spec/v1"
-          },
-          "carrier_flow": [
-            {
-              "kind": "paragraph",
-              "children": [
+              "carrier_flow": [
                 {
-                  "kind": "text",
-                  "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
-                }
-              ]
-            },
-            {
-              "kind": "paragraph",
-              "children": [
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
+                    }
+                  ]
+                },
                 {
-                  "kind": "text",
-                  "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
-                }
-              ]
-            },
-            {
-              "kind": "paragraph",
-              "children": [
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+                    }
+                  ]
+                },
                 {
-                  "kind": "text",
-                  "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
-                }
-              ]
-            },
-            {
-              "kind": "paragraph",
-              "children": [
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                    }
+                  ]
+                },
                 {
-                  "kind": "text",
-                  "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
-                }
-              ]
-            },
-            {
-              "kind": "paragraph",
-              "children": [
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
+                    }
+                  ]
+                },
                 {
-                  "kind": "text",
-                  "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                    }
+                  ]
                 }
               ]
             }

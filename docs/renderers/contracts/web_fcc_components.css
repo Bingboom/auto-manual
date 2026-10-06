@@ -83,3 +83,43 @@
     border-radius: 0.72rem;
   }
 }
+
+/* Opt-in readable Web flow: balance ordered copy instead of fixing the source
+   block boundary as a desktop column boundary. Print projections stay intact. */
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-grid {
+  display: block;
+  column-count: 2;
+  column-gap: clamp(1.2rem, 3vw, 2.2rem);
+  column-fill: balance;
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column { display: contents; }
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-opening {
+  display: block;
+  margin-bottom: var(--hb-fcc-flow-gap);
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-opening::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-mark {
+  float: left;
+  width: clamp(3.8rem, 20%, 5rem) !important;
+  margin: 0 0.8rem 0.35rem 0 !important;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column > p,
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column > ul {
+  margin-bottom: var(--hb-fcc-flow-gap) !important;
+  orphans: 3;
+  widows: 3;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column ul { display: block; }
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column li {
+  break-inside: avoid;
+  margin-bottom: var(--hb-fcc-flow-gap) !important;
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-fcc-balanced-flow .hb-fcc-grid { column-count: 1; }
+}
