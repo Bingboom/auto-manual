@@ -64,3 +64,40 @@
 #furo-main-content section#fcc > h2 {
   display: none;
 }
+
+/* Native p7: full-width dark overview bar and flush-left view markers. */
+#furo-main-content section#product-overview > h2 {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding: 0.72rem 1rem 0.68rem;
+  border-radius: var(--hb-h1-radius);
+  background: var(--hb-brand-dark) !important;
+  color: var(--hb-paper);
+  font-size: clamp(1.28rem, 2.5vw, 1.58rem);
+  line-height: 1.14;
+}
+#furo-main-content section#product-overview > h2::before {
+  display: none;
+}
+#furo-main-content section#product-overview > h2 .headerlink {
+  color: rgba(255, 255, 255, 0.7);
+}
+#furo-main-content section#product-overview > section > h3 {
+  padding: 0;
+  align-items: center;
+  gap: 0.58rem;
+}
+#furo-main-content section#product-overview > section > h3::before {
+  width: 0.72rem;
+  height: 0.72rem;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  #furo-main-content section#product-overview > h2 {
+    padding: 0.68rem 0.78rem 0.64rem;
+    border-radius: 0 0 0.48rem 0.48rem;
+    font-size: clamp(1.12rem, 6vw, 1.34rem);
+  }
+}

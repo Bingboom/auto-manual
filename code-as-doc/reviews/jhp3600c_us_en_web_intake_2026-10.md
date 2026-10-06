@@ -202,3 +202,17 @@ has zero layout height on both. [Desktop](jhp3600c_us_en_web_evidence/fcc-deskto
 [mobile](jhp3600c_us_en_web_evidence/fcc-mobile-fcc1.jpg) and
 [restored user pane](jhp3600c_us_en_web_evidence/fcc-final-preview-fcc1.jpg) record
 the local preview. This correction has not been pushed or published.
+
+
+## Operator overview heading correction (overview1)
+
+Native physical p7 (printed p04) has a full-width dark PRODUCT OVERVIEW bar
+with white copy, followed by flush-left round FRONT VIEW / RIGHT SIDE VIEW
+markers. The generic Web H2 marker style missed the bar, and theme H3 padding
+added an 8px inset. Source-local CSS restores the bar with shared color/radius
+tokens and removes that inset while using the native-sized round markers.
+The existing complete labeled front/side artwork is reused without extraction
+or byte changes; semantic copy is byte-identical to the previous source.
+
+Technical version: `git-20261005-31fd0692-overview1`. Deterministic rebuild
+and strict standalone Sphinx pass. The preceding releases remain sealed.

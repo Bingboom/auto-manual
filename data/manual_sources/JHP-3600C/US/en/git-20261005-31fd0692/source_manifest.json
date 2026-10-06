@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-fcc1"
+    "technical_version": "git-20261005-31fd0692-overview1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -77,7 +77,8 @@
     "Page furniture and non-English preface copy excluded.",
     "Operator p4 correction: visible product-title bar suppressed while retaining Sphinx document identity; source column boundaries, bold leads and dark safety/subsection bars restored through frozen source-local presentation and shared safety mobile stacking.",
     "Web symbol selection uses explicit shared glyph variants and withdrawal hashes. Two existing SVGs repaired in shared library, WEEE reused unchanged; eight missing suitable transparent variants supplied once to shared library. All target copies stay byte-identical.",
-    "Operator correction against native physical p6: suppress the added visible FCC chapter heading and its bullet/spacing through source-local CSS; retain the chapter anchor and compliance copy unchanged."
+    "Operator correction against native physical p6: suppress the added visible FCC chapter heading and its bullet/spacing through source-local CSS; retain the chapter anchor and compliance copy unchanged.",
+    "Operator correction against native physical p7: PRODUCT OVERVIEW uses a full-width dark title bar with white copy; FRONT VIEW and RIGHT SIDE VIEW keep source-sized round markers flush with the artwork left edge. Source copy and approved complete labeled artwork remain unchanged."
   ],
   "retained_source_anomalies": [
     {
@@ -144,8 +145,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 2098,
-      "sha256": "896a29b75653290f5e2044e223006352a56d1d620b4d1fb1adf0cb500c07532f"
+      "size": 3140,
+      "sha256": "c85213184aa950b2b9e21cf66e17f9760c70a12c73cfd76c07b58ed8b36cadf0"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -179,8 +180,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 2098,
-      "sha256": "896a29b75653290f5e2044e223006352a56d1d620b4d1fb1adf0cb500c07532f"
+      "size": 3140,
+      "sha256": "c85213184aa950b2b9e21cf66e17f9760c70a12c73cfd76c07b58ed8b36cadf0"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -675,12 +676,12 @@
     {
       "path": "web/en/manual.ir.json",
       "size": 584731,
-      "sha256": "6f88158416a841e70fccc9a6104ef3da74db5945b7d3fbc858edce7fc71bd0b6"
+      "sha256": "eb960d87f8a313ef89f44bbc529aaa98e9add8461690fdfdc09c49795de8bae5"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 95997,
-      "sha256": "b02dc2d103d892f69caa093e41e803fb77931e242c6c7fcadcde66f21cdff1d3"
+      "size": 97039,
+      "sha256": "2bbd0965cf7e6cbf7108a1c2bcf5148b424113d3c51e887befa529782be473f7"
     }
   ],
   "repo_inputs": [
