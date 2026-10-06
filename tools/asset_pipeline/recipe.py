@@ -32,7 +32,7 @@ SHA256_RE = re.compile(r"^[0-9a-fA-F]{64}$")
 SOURCE_KEY_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]*$")
 SAFE_PATH_RE = re.compile(r"^[A-Za-z0-9._/-]+$")
 LOCALE_RE = re.compile(r"^(?:[a-z]{2,3}(?:-[A-Z]{2})?|mul|und)$")
-ALLOWED_OUTPUT_FORMATS = frozenset({"pdf", "png"})
+ALLOWED_OUTPUT_FORMATS = frozenset({"pdf", "png", "svg"})
 ALLOWED_GRAPHICS_MODES = frozenset({"preserve", "remove_if_touched"})
 SENSITIVE_TOKENS = frozenset(
     {
@@ -629,6 +629,14 @@ def _scope(value: Any, location: str) -> ScopeSpec:
     return ScopeSpec(models=models, regions=regions, locales=locales)
 
 
+def _validate_svg_outputs(outputs, transforms, location):
+    if not any(output.format == "svg" for output in outputs):
+        return
+    retained = next((t for t in transforms if t.op == "retain_vector_drawings"), None)
+    if retained is None or retained.fill_rgb_overrides or retained.stroke_suppressed_indices:
+        raise _fail(f"{location}.outputs", "SVG requires unchanged retain_vector_drawings")
+
+
 def _assets(value: Any, *, source: SourceSpec) -> tuple[AssetSpec, ...]:
     assets: list[AssetSpec] = []
     output_paths: set[str] = set()
@@ -685,6 +693,7 @@ def _assets(value: Any, *, source: SourceSpec) -> tuple[AssetSpec, ...]:
             _output(item, f"{location}.outputs[{item_index}]")
             for item_index, item in enumerate(_list(data["outputs"], f"{location}.outputs"))
         )
+        _validate_svg_outputs(outputs, transforms, location)
         if not outputs:
             raise _fail(f"{location}.outputs", "must contain at least one output")
         if sum(output.format == "pdf" for output in outputs) > 1:

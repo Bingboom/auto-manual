@@ -1051,57 +1051,57 @@
             "assets": [
               {
                 "role": "icons",
-                "asset_ref": "assets/24e567ffad05_warning_triangle.png",
+                "asset_ref": "assets/symbol_warning_triangle.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/1d9fa89da31d_read_manual.png",
+                "asset_ref": "assets/symbol_read_manual.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/7638826b2324_electric_shock.png",
+                "asset_ref": "assets/symbol_electric_shock.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/85e5185e22e4_battery_charging.png",
+                "asset_ref": "assets/symbol_battery_charging.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/8de051db1a3a_explosive_material.png",
+                "asset_ref": "assets/symbol_explosive_material.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/5e156fb879ab_heavy_object.png",
+                "asset_ref": "assets/symbol_heavy_object.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/908c33c16c06_do_not_dismantle.png",
+                "asset_ref": "assets/symbol_do_not_dismantle.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/460a4a9a19fd_no_open_flame.png",
+                "asset_ref": "assets/symbol_no_open_flame.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/45d63066ac4d_keep_away_from_children.png",
+                "asset_ref": "assets/symbol_keep_away_from_children.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/f913a65f0774_li_ion.png",
+                "asset_ref": "assets/symbol_li_ion.svg",
                 "locale_policy": "exact"
               },
               {
                 "role": "icons",
-                "asset_ref": "assets/7e4de290ea13_weee.png",
+                "asset_ref": "assets/symbol_weee.png",
                 "locale_policy": "exact"
               }
             ],

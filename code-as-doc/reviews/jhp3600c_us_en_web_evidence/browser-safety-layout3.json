@@ -1,0 +1,123 @@
+{
+  "source_git_ref": "10b89f4343a001bc9b91d5ccb8c4503a69d5ce7a",
+  "version": "git-20261005-31fd0692-layout3",
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#safety",
+  "desktop": {
+    "columns": [
+      {
+        "display": "table-cell",
+        "width": 408.515625,
+        "x": 314.59375,
+        "y": 162.921875
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625,
+        "x": 723.109375,
+        "y": 162.921875
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625,
+        "x": 314.59375,
+        "y": 558.0546875
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625,
+        "x": 723.109375,
+        "y": 558.0546875
+      }
+    ],
+    "failedImages": [],
+    "safetyHeading": {
+      "background": "rgb(52, 48, 49)",
+      "color": "rgb(255, 255, 255)"
+    },
+    "scroll": 1440,
+    "titleDisplay": "none",
+    "viewport": {
+      "height": 1200,
+      "width": 1440
+    },
+    "warningIcon": {
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/e1/e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5.svg"
+    }
+  },
+  "mobile": {
+    "columns": [
+      {
+        "display": "block",
+        "width": 358,
+        "x": 16,
+        "y": 230.8203125
+      },
+      {
+        "display": "block",
+        "width": 358,
+        "x": 16,
+        "y": 675.8828125
+      },
+      {
+        "display": "block",
+        "width": 358,
+        "x": 16,
+        "y": 1188.7890625
+      },
+      {
+        "display": "block",
+        "width": 358,
+        "x": 16,
+        "y": 1745.84375
+      }
+    ],
+    "failedImages": [],
+    "safetyHeading": {
+      "background": "rgb(52, 48, 49)",
+      "color": "rgb(255, 255, 255)"
+    },
+    "scroll": 390,
+    "titleDisplay": "none",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "warningIconLoaded": true
+  },
+  "narrow": {
+    "columns": [
+      {
+        "display": "block",
+        "width": 288,
+        "x": 16,
+        "y": 279.0234375
+      },
+      {
+        "display": "block",
+        "width": 288,
+        "x": 16,
+        "y": 850.4140625
+      },
+      {
+        "display": "block",
+        "width": 288,
+        "x": 16,
+        "y": 1468.59375
+      },
+      {
+        "display": "block",
+        "width": 288,
+        "x": 16,
+        "y": 2130.921875
+      }
+    ],
+    "safetyBackground": "rgb(52, 48, 49)",
+    "scroll": 320,
+    "viewport": {
+      "height": 844,
+      "width": 320
+    },
+    "warningIconLoaded": true
+  }
+}

@@ -1127,6 +1127,31 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 丝印和屏幕／App 内容保留，不能按灰色或白色批量删除图形。交付前检查独立图标自身的透明区域，并在白色、灰色／棋盘背景上
 以 12 倍检查轮廓，再回到网页组件中验收。
 
+**符号表的新冻结稿准入。** `seal_frozen_web_evidence` 从实际 IR 的
+`HB-TABLE-SYMBOL-ICON` 读取全部符号行，要求 `source_manifest.json` 提供
+`symbol_asset_admission`（`auto-manual-symbol-asset-admission/v1`），逐行包含
+资产路径/哈希、权威 PDF 物理页、`drawing_indices`、`glyph_bbox`、
+`caption_bbox`、`row_bbox`、`caption_text`、说明区域的 `caption_sha256`
+及 `shared_symbol_key`。
+`locales` 按语言记录，顺序必须与实际组件行一致；缺项或文件名相同不能跳过。
+选材统一从 [`shared/symbols/manifest.json`](../web/assets/shared/symbols/manifest.json)
+按语义与明确图形变体选择（例如 `read-manual/book-information`），冻结复制须字节
+不变。`withdrawn` 按哈希停用旧错误素材，改名或搬进新包仍拒绝；旧文件保留历史
+来源，但不再作为新稿的 Web 小符号候选。先修共用库一次，再复用；已有适合图形
+不得重复提取。独立完整面板和历史封存不受此停用影响。
+程序重新读取权威 PDF，保留原生路径及祖先变换/透明度，排除位于符号范围外的
+页面/单元格对象，再检查资产真实透明边缘、归一化 alpha 与预乘 RGB。
+RGBA 中画有矩形灰底、只有语义相同但轮廓不同、源页/说明/哈希不符均拒绝封存。
+固定像素容差为每通道平均误差 2%，不能由候选稿放宽；仍需桌面、窄屏和棋盘底视觉验收。
+
+源文字可提取时逐行比对原文；转曲说明的逐字转录与坐标必须人工核对，程序核验
+该说明区域的原稿渲染哈希及组件文字绑定，哈希不等于 OCR 或人工批准。
+新 SVG 使用现有 asset-intake 的 `crop` + `retain_vector_drawings` recipe，
+不允许在此输出中覆盖填色或删除笔画；保留原始组透明度。已有 PDF/PNG 提取行为
+不变。注册表晋级仍按原流程确认像素；源绑定通过不自动批准晋级。
+这项准入仅作用于**新外部冻结稿封存**，历史回执继续按原封存库存验证；普通大图
+和完整面板不受小符号透明检查影响。
+
 **完整大图面板与小图标分开处理。** 当目标沿用源稿的成品面板（如整张充电图、
 UPS、扩容连接图、配件排、节能组合操作面板或 App 按键说明面板）时，灰底、白色说明区、圆角边框和徽标属于要保留的
 原稿版式，不能套用独立图标的去底规则。按完整面板裁取并核对四边，绑定对应

@@ -14,6 +14,7 @@ from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from tools.web.component_admission import require_fresh_component_admission
+from tools.web.symbol_asset_admission import require_symbol_asset_admission
 from tools.utils.path_utils import PathSegments
 from tools.web.language_release_evidence import (
     RECEIPT_FILENAME,
@@ -104,6 +105,7 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
     require_fresh_component_admission(
         markdown_dir, model=target["model"], region=target["region"], language=language,
     )
+    require_symbol_asset_admission(markdown_dir, source_root, manifest, language)
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
     if actual != inputs:
         raise RuntimeError("frozen Web source input files differ from manifest")

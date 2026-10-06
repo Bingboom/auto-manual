@@ -2,7 +2,7 @@
 
 Status: active
 
-Local English candidate implemented and verified; operator visual confirmation is pending.
+The current local English candidate includes the safety layout correction and checked shared symbol variants (symbols1). Visual confirmation of this revised candidate is pending.
 
 ## Source and scope
 
@@ -33,7 +33,7 @@ Shared safety symbols/LCD semantics are checked first. Exact matching files are 
 
 ## Implemented source
 
-The [frozen manifest](../../data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source_manifest.json) binds the unchanged original PDF, complete positioned extraction, 399 selected/recovered fields, semantic chapter data, 83 asset decisions, shared IR, MyST and scaffold. It also pins 169 repository renderer/component/style inputs. `rebuild.py` verifies both inventories before compiling through the shared APIs. No new family config, phase2 enrollment, parallel renderer or public CLI is added.
+The [frozen manifest](../../data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source_manifest.json) binds the unchanged original PDF, complete positioned extraction, 399 selected/recovered fields, semantic chapter data, 84 asset decisions, shared IR, MyST and scaffold. It also pins 204 repository renderer/component/style/asset inputs. `rebuild.py` verifies both inventories before compiling through the shared APIs. No new family config, phase2 enrollment, parallel renderer or public CLI is added.
 
 The result has 20 chapters, 26 warning/note/tip components, a 33-row glossary covering LCD numbers 1–31 (18 and 28 have two subrows), 14 native specification groups, FCC/Inbox/auto-resume/LCD-mode/symbol/troubleshooting compositions and native 3+2-year warranty cards. Eight source-specific LCD symbols are stored with true alpha under the shared Web LCD asset directory; existing matching safety/button/LCD assets are reused byte-identically. Dense finished panels remain image-led with accessible native copy; no whole source page is used as a Web page.
 
@@ -77,7 +77,7 @@ Operator visual confirmation of this English baseline is pending. No remote bran
 
 ## Local publication candidate
 
-Source commit: `7bf6b36750532f891968c1b3064e8ca9b50dd0ac`. At this exact ref the existing US regression gate passed again, the frozen MyST passed strict Sphinx, and [language evidence](jhp3600c_us_en_web_evidence/language_projection_receipt.json) sealed source inventory, version, commit, MyST and verification HTML.
+Previous candidate (superseded by the revised candidate below). Source commit: `7bf6b36750532f891968c1b3064e8ca9b50dd0ac`. At this exact ref the existing US regression gate passed again, the frozen MyST passed strict Sphinx, and [language evidence](jhp3600c_us_en_web_evidence/language_projection_receipt.json) sealed source inventory, version, commit, MyST and verification HTML.
 
 A read-only archive of Hello-Docs/main at `83cc003714a81a6d8fa1e89b9b38829b76ed598e` supplied the existing `docs/publish/**` base. The shared assembler produced a local-only 106-target candidate. All 5,609 pre-existing files under `docs/publish/sources/**` remain byte-identical to that base; no target was removed. [Candidate fingerprint](jhp3600c_us_en_web_evidence/candidate.json).
 
@@ -95,3 +95,73 @@ The candidate is assembled at `/tmp/jhp3600c-publish-base/docs/publish`, with is
 Mobile LCD scrolling was exercised: the table's scroll position advanced to 286 px within its 354 px figure while the page stayed 390 px wide. [Scrolled description view](jhp3600c_us_en_web_evidence/mobile-lcd-scrolled.jpg).
 
 Final aggregate [desktop screenshot](jhp3600c_us_en_web_evidence/final-desktop.jpg) and [mobile screenshot](jhp3600c_us_en_web_evidence/final-mobile.jpg) record the actual portal candidate, including its language selector.
+
+
+## Operator safety layout correction (layout3)
+
+The operator's annotated screenshots showed that the previous local candidate's product-title bar, bullet-style safety heading and single-column safety body did not match physical p4. The prior content/build/overflow checks did not establish visual fidelity for this page.
+
+The visible product-title bar is now suppressed while its Sphinx document identity and chapter navigation remain available. Safety uses a white-on-dark full-width chapter bar, a reused filled warning triangle with bold source label/risk text, the original 6+5 safety list split, and the original 5+9 operating list split. Both bold leads and nested temperature/ventilation subitems remain native selectable text; grounding stays full width. Shared safety styles stack the columns in source order at 640px and below. Frozen source-local `presentation.css` supplies the title/bar geometry and warning-column sizing without changing shared rendering or other targets.
+
+No wording, values, warning labels or reading order changed: semantic leaf comparison against the preceding commit passed, and all other chapters remain structurally identical. There are now 84 asset decisions; the added triangle is a byte-identical shared SVG with explicit p4 provenance. All 1,128 positioned English/contact lines remain covered with no unmatched lines.
+
+Current source commit: `10b89f4343a001bc9b91d5ccb8c4503a69d5ce7a`. Technical candidate version: `git-20261005-31fd0692-layout3`. The preceding sealed release remains intact; the revised release has a separate versioned directory and [new source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-layout3.json). Deterministic rebuild, cold IR replay, strict target Sphinx, Ruff and 26 shared replay/table/evidence tests passed. [Revised candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-layout3.json) records 106 targets and all 5,609 pre-existing source files byte-identical to the read-only Hello-Docs base.
+
+The local preview URL remains `http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`. [Desktop safety](jhp3600c_us_en_web_evidence/safety-desktop-layout3.jpg), [mobile safety](jhp3600c_us_en_web_evidence/safety-mobile-layout3.jpg), [mobile operating subitems](jhp3600c_us_en_web_evidence/safety-mobile-operating-layout3.jpg), [320px](jhp3600c_us_en_web_evidence/safety-narrow-layout3.jpg), [top without product bar](jhp3600c_us_en_web_evidence/top-without-product-bar-layout3.jpg) and [DOM measurements](jhp3600c_us_en_web_evidence/browser-safety-layout3.json) verify the actual assembled portal page. Desktop cells are equal-width and top-aligned; 390px/320px stack left then right, with viewport/document widths equal. The warning icon loads and all aggregate HTML images resolve to packaged local files. No push, PR, production publication or live data write occurred. Root `tmp/` was preserved.
+
+
+The intermediate layout2 standalone preview passed, but the aggregate's global stylesheet did not load source-local CSS. The shared frozen replay now accepts a package-contained, hash-bound `source_stylesheet` declaration and retains its style block in MyST, so the existing assembler carries it into each document. Historical packages without that declaration retain their existing replay. A regression test covers aggregate HTML preservation, style tampering, path escape and HTML closure rejection. Layout3 passed strict standalone and aggregate Sphinx, deterministic rebuild/cold IR+CSS replay, Ruff, maintainability, document links and the existing-target US fixture check. This remains a local candidate pending operator visual approval, with no remote push or publication.
+
+## Shared symbol correction and recurrence prevention (symbols1)
+
+The original name/meaning-only reuse decision was wrong. Several common PNGs
+contained cell backgrounds; the read-manual glyph was a person instead of the
+source's open book/information mark, and the Li-ion artwork included an extra
+`32`. The legacy decisions remain explicitly marked as superseded provenance.
+
+Selection now starts at the shared [Web symbol catalog](../../docs/renderers/web/assets/shared/symbols/manifest.json).
+Two existing native SVGs were repaired once in that common library (warning,
+book/information), WEEE reuses the pre-existing shared PNG unchanged, and eight
+missing suitable transparent variants are supplied once through the existing
+asset-intake recipe. No per-language or per-model second library is introduced.
+Every consumed target copy matches the selected shared variant byte-for-byte.
+The variant assets remain local review candidates; no live registry promotion.
+
+The catalog withdraws the eleven legacy asset hashes for new Web symbol tables.
+Renaming or copying a withdrawn file does not restore eligibility. The legacy
+print/Word source files and previous sealed releases are preserved. New external
+frozen Web sealing requires complete actual ComponentSpec row coverage, explicit
+shared glyph keys, unchanged shared bytes, authoritative PDF page/objects/caption
+bindings, real alpha and normalized native-glyph comparison. No candidate metadata
+can disable these checks. Historical stored receipts retain their sealed rules;
+ordinary complete panels do not enter this small-symbol gate.
+
+The source symbol captions are outlined. Their reviewed transcription and row
+coordinates are bound to independently rendered source caption pixels; this is
+not OCR or automated approval. Desktop/mobile and source comparisons remain
+required. [Before/after and source artwork](jhp3600c_us_en_web_evidence/symbols-shared-before-after.png)
+shows all eleven symbols on a checkerboard alongside the legacy and PDF artwork.
+
+Validation: 84 focused tests pass, including renamed withdrawn bytes, RGB gray
+background, RGBA rectangle, inset rectangle with transparent borders, transparent
+wrong glyph after rehash, row/meaning swap, source/caption tampering, traversal,
+shared-byte mismatch, preservation of original group opacity, native SVG recipe
+extraction, and seal rejection before evidence creation. Ruff, maintainability,
+doc links, source line coverage, deterministic rebuild and strict standalone and
+aggregate Sphinx pass. The US JE-1000F check is an existing-target regression only;
+its missing local Spec_Master snapshot is reported by the command and is not a
+JHP-3600C content check.
+
+The preceding full run tested 5,180 cases with one existing macOS path-alias error
+(`/var` versus `/private/var`) in identity provenance. The unchanged test passes
+with canonical `TMPDIR=/private/tmp`; the complete suite passes with that setting for this change: **5,194 tests
+in 745.862 seconds, 35 skipped**. No unrelated identity-path repair is included.
+
+Local browser checks: 1440px uses two equal symbol panels; 390px and 320px stack
+panels in native order with no page overflow. All eleven symbol images load and
+all page images resolve. [Desktop](jhp3600c_us_en_web_evidence/symbols-desktop-symbols1.jpg),
+[desktop lower](jhp3600c_us_en_web_evidence/symbols-desktop-lower-symbols1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/symbols-mobile-symbols1.jpg),
+[mobile right panel](jhp3600c_us_en_web_evidence/symbols-mobile-right-symbols1.jpg),
+[narrow](jhp3600c_us_en_web_evidence/symbols-narrow-symbols1.jpg).
+Root `tmp/` is untouched; this remains an isolated Git-only local candidate.

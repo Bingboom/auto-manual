@@ -1,7 +1,7 @@
 [
   {
     "slot": "symbol.warning_triangle",
-    "decision": "reuse byte-identical",
+    "decision": "reuse corrected existing shared SVG",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -9,15 +9,49 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/24e567ffad05_warning_triangle.png",
-    "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "identity_check": "Shared glyph variant warning/outline-triangle-tinted; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/24e567ffad05_warning_triangle.png",
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      25,
+      26,
+      27
+    ],
+    "bbox": [
+      37.21780014038086,
+      313.3468017578125,
+      60.99679946899414,
+      334.622802734375
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "provenance": {
+      "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-1.svg",
+      "source_sha256": "2a1cdabb87511d378a9d4e18b30a1e61d3fce5fb9c7be11a665d1dac9dfeef5c",
+      "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+      "retained_path_indices": [
+        56,
+        57,
+        58
+      ]
+    }
   },
   {
     "slot": "symbol.read_manual",
-    "decision": "reuse byte-identical",
+    "decision": "reuse corrected existing shared SVG",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -25,15 +59,49 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/read_manual.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/1d9fa89da31d_read_manual.png",
-    "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "identity_check": "Shared glyph variant read-manual/book-information; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/1d9fa89da31d_read_manual.png",
+      "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      722,
+      723,
+      724
+    ],
+    "bbox": [
+      37.44700241088867,
+      346.7795104980469,
+      60.768001556396484,
+      364.8424987792969
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "read-manual/book-information",
+    "provenance": {
+      "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-2.svg",
+      "source_sha256": "0273da6c2ff50078df7273974e47c2357d6e98bda546af36970c0564a75bb265",
+      "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+      "retained_path_indices": [
+        62,
+        63,
+        64
+      ]
+    }
   },
   {
     "slot": "symbol.electric_shock",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -41,15 +109,49 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/7638826b2324_electric_shock.png",
-    "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "identity_check": "Shared glyph variant electric-shock/bolt-triangle-tinted; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_electric_shock.svg",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/7638826b2324_electric_shock.png",
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      657,
+      658,
+      659
+    ],
+    "bbox": [
+      37.68410110473633,
+      375.1519775390625,
+      61.48809814453125,
+      396.45098876953125
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        657,
+        658,
+        659
+      ]
+    }
   },
   {
     "slot": "symbol.battery_charging",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -57,15 +159,57 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/85e5185e22e4_battery_charging.png",
-    "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "identity_check": "Shared glyph variant battery-charging/flame-battery-triangle-tinted; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_battery_charging.svg",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/85e5185e22e4_battery_charging.png",
+      "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      660,
+      661,
+      662,
+      663,
+      664,
+      665,
+      666
+    ],
+    "bbox": [
+      37.68410110473633,
+      405.91070556640625,
+      61.48809814453125,
+      427.209716796875
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        660,
+        661,
+        662,
+        663,
+        664,
+        665,
+        666
+      ]
+    }
   },
   {
     "slot": "symbol.explosive_material",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -73,15 +217,51 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/8de051db1a3a_explosive_material.png",
-    "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material.svg",
+    "identity_check": "Shared glyph variant explosive-material/burst-triangle-tinted; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_explosive_material.svg",
+    "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/8de051db1a3a_explosive_material.png",
+      "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      667,
+      668,
+      669,
+      670
+    ],
+    "bbox": [
+      37.52119827270508,
+      435.9815673828125,
+      61.97819900512695,
+      457.4765930175781
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "explosive-material/burst-triangle-tinted",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        667,
+        668,
+        669,
+        670
+      ]
+    }
   },
   {
     "slot": "symbol.heavy_object",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -89,15 +269,59 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/5e156fb879ab_heavy_object.png",
-    "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "identity_check": "Shared glyph variant heavy-object/person-load-triangle-tinted; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_heavy_object.svg",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/5e156fb879ab_heavy_object.png",
+      "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      731,
+      732,
+      733,
+      734,
+      735,
+      736,
+      737,
+      738
+    ],
+    "bbox": [
+      36.653499603271484,
+      468.17047119140625,
+      61.11150360107422,
+      489.6654968261719
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        731,
+        732,
+        733,
+        734,
+        735,
+        736,
+        737,
+        738
+      ]
+    }
   },
   {
     "slot": "symbol.do_not_dismantle",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -105,15 +329,49 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/908c33c16c06_do_not_dismantle.png",
-    "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+    "identity_check": "Shared glyph variant do-not-dismantle/screwdriver-prohibited; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_do_not_dismantle.svg",
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/908c33c16c06_do_not_dismantle.png",
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      642,
+      643,
+      644
+    ],
+    "bbox": [
+      195.13780212402344,
+      314.50030517578125,
+      215.28379821777344,
+      334.6343078613281
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        642,
+        643,
+        644
+      ]
+    }
   },
   {
     "slot": "symbol.no_open_flame",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -121,15 +379,55 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/460a4a9a19fd_no_open_flame.png",
-    "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "identity_check": "Shared glyph variant no-open-flame/fire-match-prohibited; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_no_open_flame.svg",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/460a4a9a19fd_no_open_flame.png",
+      "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      725,
+      726,
+      727,
+      728,
+      729,
+      730
+    ],
+    "bbox": [
+      195.15609741210938,
+      344.2041931152344,
+      216.42010498046875,
+      365.4662170410156
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        725,
+        726,
+        727,
+        728,
+        729,
+        730
+      ]
+    }
   },
   {
     "slot": "symbol.keep_away_from_children",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -137,15 +435,51 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/45d63066ac4d_keep_away_from_children.png",
-    "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "identity_check": "Shared glyph variant keep-away-from-children/adult-child-prohibited; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_keep_away_from_children.svg",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/45d63066ac4d_keep_away_from_children.png",
+      "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      739,
+      740,
+      741,
+      742
+    ],
+    "bbox": [
+      195.15699768066406,
+      375.34039306640625,
+      216.4199981689453,
+      396.6033935546875
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        739,
+        740,
+        741,
+        742
+      ]
+    }
   },
   {
     "slot": "symbol.li_ion",
-    "decision": "reuse byte-identical",
+    "decision": "shared library repair: source-native variant where no matching suitable asset exists",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -153,15 +487,61 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/li_ion.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/f913a65f0774_li_ion.png",
-    "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "identity_check": "Shared glyph variant li-ion/recycle-li-ion; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_li_ion.svg",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/f913a65f0774_li_ion.png",
+      "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      645,
+      646,
+      647,
+      648,
+      649,
+      650,
+      651,
+      652,
+      653
+    ],
+    "bbox": [
+      194.49859619140625,
+      404.9814758300781,
+      214.64219665527344,
+      427.3057861328125
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "li-ion/recycle-li-ion",
+    "provenance": {
+      "source": "authority PDF original vectors; suitable existing candidates absent",
+      "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "physical_page": 5,
+      "drawing_indices": [
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653
+      ]
+    }
   },
   {
     "slot": "symbol.weee",
-    "decision": "reuse byte-identical",
+    "decision": "reuse existing shared PNG byte-identical",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -169,11 +549,39 @@
       "docs/renderers/latex/assets",
       "docs/templates/word_template/common_assets"
     ],
-    "candidate": "docs/templates/word_template/common_assets/symbols/weee.png",
-    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
-    "final_path": "assets/7e4de290ea13_weee.png",
-    "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
-    "background_policy": "preserve existing transparency/frame"
+    "candidate": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+    "identity_check": "Shared glyph variant weee/crossed-bin-bar; compared with authoritative physical p5; true alpha and source caption binding.",
+    "final_path": "assets/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "background_policy": "exclude native gray cell drawings 2/3; preserve original glyph groups/tint; real transparent SVG",
+    "superseded_selection": {
+      "decision": "reuse byte-identical",
+      "candidate": "docs/templates/word_template/common_assets/symbols/weee.png",
+      "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+      "final_path": "assets/7e4de290ea13_weee.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "background_policy": "preserve existing transparency/frame"
+    },
+    "physical_page": 5,
+    "drawing_indices": [
+      654,
+      655,
+      656
+    ],
+    "bbox": [
+      196.93980407714844,
+      449.77850341796875,
+      214.37179565429688,
+      474.56201171875
+    ],
+    "rejection": "symbol requires real transparent margins; opaque backdrop detected",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+    "promotion_status": "local candidate; no asset registry promotion",
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "provenance": {
+      "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+      "decision": "reuse existing shared file byte-identical"
+    }
   },
   {
     "slot": "fcc",

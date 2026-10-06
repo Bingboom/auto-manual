@@ -51,6 +51,8 @@ def rebuild(output: Path) -> None:
     manifest = json.loads(manifest_path.read_text())
     check_inventory(SOURCE_ROOT, manifest["inputs"])
     check_inventory(REPO_ROOT, manifest["repo_inputs"])
+    # Shared variant copies are immutable inputs; obsolete hashes are refused
+    # again at fresh sealing, independent of the source-local inventory.
     shutil.copytree(SOURCE_ROOT / "web/en/assets", output / "assets")
     filename = "manual_" + source["model"].replace("-", "").lower()
     filename += "_" + source["region"].lower() + "_" + source["language"] + ".md"

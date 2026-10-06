@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-layout3"
+    "technical_version": "git-20261005-31fd0692-symbols1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -75,7 +75,8 @@
     "Source-local specification carriers retain the shared h2 hook with explicit aria-level 3/4 and exclude component headings from chapter TOC.",
     "Vector + in App step 2.1 transcribed from source visual.",
     "Page furniture and non-English preface copy excluded.",
-    "Operator p4 correction: visible product-title bar suppressed while retaining Sphinx document identity; source column boundaries, bold leads and dark safety/subsection bars restored through frozen source-local presentation and shared safety mobile stacking."
+    "Operator p4 correction: visible product-title bar suppressed while retaining Sphinx document identity; source column boundaries, bold leads and dark safety/subsection bars restored through frozen source-local presentation and shared safety mobile stacking.",
+    "Web symbol selection uses explicit shared glyph variants and withdrawal hashes. Two existing SVGs repaired in shared library, WEEE reused unchanged; eight missing suitable transparent variants supplied once to shared library. All target copies stay byte-identical."
   ],
   "retained_source_anomalies": [
     {
@@ -112,18 +113,18 @@
     },
     {
       "path": "rebuild.py",
-      "size": 5821,
-      "sha256": "81e212d0e2de7ad5793e3d67ec54fe6fb5edc54de5d6a1f9f33241b6b7da78e5"
+      "size": 5972,
+      "sha256": "27d9edda149f7b7445ceba5282f599f62f06c5a6878a96f9013fa568615d30dc"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 71162,
-      "sha256": "d21dae545d5d7eeb76586e0f11e1308ad66e01565d37ba6cf1ae089062fa3d18"
+      "size": 87796,
+      "sha256": "eeabed22fafc1dacffdcae57b1b7e5f444841a05d9c7b0efeed536de3a4da683"
     },
     {
       "path": "source/content.json",
-      "size": 418688,
-      "sha256": "254e2d29a459d69110f3d52c6b96b65e530414feb660384430656ff72160e179"
+      "size": 418622,
+      "sha256": "b008df6a0256d5e652a26bf16f1dac9771c36dea4fea63697ed1ac5193caa0b3"
     },
     {
       "path": "source/coverage_audit.json",
@@ -144,6 +145,36 @@
       "path": "source/presentation.css",
       "size": 1963,
       "sha256": "7d6047daf6728a3a4665cb77ad0cdc48d005e572425542e1a167a63208f1d6df"
+    },
+    {
+      "path": "source/shared_svg_repairs.json",
+      "size": 826,
+      "sha256": "4ecf16866e1cc66135507475f50c69ab8fd9c4c1a10d750cbcefdbf4e26e47c0"
+    },
+    {
+      "path": "source/shared_symbol_candidates.json",
+      "size": 14580,
+      "sha256": "ddd72af57804199986816a5a5d82f51304b44061ec3071c757eab9e73a0d3b33"
+    },
+    {
+      "path": "source/shared_symbol_selection.json",
+      "size": 10140,
+      "sha256": "9d72706f5ebab92983e8898ec9b62834137f60761403b46cca5ed6316c167352"
+    },
+    {
+      "path": "source/symbol_asset_admission.json",
+      "size": 10654,
+      "sha256": "87736e00b67089725c4842e970b61628165f010d3269233050d264cd38a163b6"
+    },
+    {
+      "path": "source/symbol_asset_check.json",
+      "size": 1333,
+      "sha256": "8f413016ec55a6e024d9fa3b2812a4561088036709a2162661f961b89113c888"
+    },
+    {
+      "path": "source/symbol_rejected_candidates.json",
+      "size": 2321,
+      "sha256": "b087b508cc8165b3da1f8de8ddc26f3c6a8a43f672ca8b4d3537acee9965bf76"
     },
     {
       "path": "web/en/_static/source_presentation.css",
@@ -561,6 +592,61 @@
       "sha256": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939"
     },
     {
+      "path": "web/en/assets/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "web/en/assets/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "web/en/assets/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "web/en/assets/symbol_explosive_material.svg",
+      "size": 6183,
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+    },
+    {
+      "path": "web/en/assets/symbol_heavy_object.svg",
+      "size": 4856,
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+    },
+    {
+      "path": "web/en/assets/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "web/en/assets/symbol_li_ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "web/en/assets/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "web/en/assets/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "web/en/assets/symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/en/assets/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
       "path": "web/en/assets/ups120.png",
       "size": 56520,
       "sha256": "4a7768c38f4a2093f1c107c8edecd1c672915a97ed79f5c39886f3c8e8f7b5d6"
@@ -587,16 +673,26 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 583724,
-      "sha256": "b20562261ba0ee107ee5d061d4b2db27901a7c05597a43729c5d491423474522"
+      "size": 584731,
+      "sha256": "b8f73d869f37e004ddac7096ba3be4a4576bed6c9da9584d2a3ff7e6b9f49ec6"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 95928,
-      "sha256": "76b9f74615ad1c724a1715d2db35b3ce93f014e1fd8322ef3ff8330a6cb41d83"
+      "size": 95862,
+      "sha256": "0b0eecf68db0889e5e0540711848815df4c72eb73eb94dc62883a613c8250260"
     }
   ],
   "repo_inputs": [
+    {
+      "path": "data/asset_recipes/asset-extraction-recipe-v1.schema.json",
+      "size": 14697,
+      "sha256": "fadf45f8513d14517cbd9ebff9089a3078f2a2d8fb0bc72fb80ee32bacd4f068"
+    },
+    {
+      "path": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+      "size": 35420,
+      "sha256": "e8bbc69e5895945ca94faeb288db522650ca4ff8b67a18a2c918b5ab93e2ffd0"
+    },
     {
       "path": "docs/renderers/contracts/assets/product_overview_front_en.svg",
       "size": 394332,
@@ -746,6 +842,161 @@
       "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
       "size": 2895,
       "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/README.md",
+      "size": 1258,
+      "sha256": "a364820a0010760b35f8f606143518a3c4c23e869cd2f968d0cd6a096892512a"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 10140,
+      "sha256": "9d72706f5ebab92983e8898ec9b62834137f60761403b46cca5ed6316c167352"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material.svg",
+      "size": 6183,
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+      "size": 4856,
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/README.md",
+      "size": 1237,
+      "sha256": "d2253fe1b0941670550315b5b56f5a23fab821e4e72ba10c5d2aaee2026661c7"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+      "size": 3145,
+      "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "size": 2690,
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+      "size": 3078,
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+      "size": 4690,
+      "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+      "size": 2783,
+      "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+      "size": 3813,
+      "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+      "size": 4144,
+      "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+      "size": 4388,
+      "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+      "size": 5391,
+      "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+      "size": 5378,
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-1.svg",
+      "size": 324453,
+      "sha256": "2a1cdabb87511d378a9d4e18b30a1e61d3fce5fb9c7be11a665d1dac9dfeef5c"
+    },
+    {
+      "path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-2.svg",
+      "size": 324540,
+      "sha256": "0273da6c2ff50078df7273974e47c2357d6e98bda546af36970c0564a75bb265"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33582,
+      "sha256": "3ad0ca8635c5223e1ff20e84783e3e65839bcb12b9ec598288f5cbc94cca5d2c"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 2559,
+      "sha256": "a80631df3952f6bfa919e79ec90d6c2d02b35d64cb1a512e118598dc3ff225fd"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
     },
     {
       "path": "tools/component_specs/__init__.py",
@@ -1324,8 +1575,8 @@
     },
     {
       "path": "tools/web/frozen_source_evidence.py",
-      "size": 10144,
-      "sha256": "45c61f04698512bab74bea68b0694ad5694dc7a6068ec419d75d23eff50ad8e7"
+      "size": 10302,
+      "sha256": "86438798d4d2e199d5735ecea02e3d30360d1c9a0a9491c7283e4083bea6fb0b"
     },
     {
       "path": "tools/web/frozen_web_component_coverage.py",
@@ -1408,6 +1659,11 @@
       "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
     },
     {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 1835,
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+    },
+    {
       "path": "tools/web/spec_component.py",
       "size": 7162,
       "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
@@ -1416,6 +1672,11 @@
       "path": "tools/web/stylesheets.py",
       "size": 1546,
       "sha256": "046eac77a12eadf1422e5bf2614352d0ad96ce22af6ad8382fe603a5c8e2ab44"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 7827,
+      "sha256": "a1939d64575d3b0717c2f064527f16a5c399030ffb9c3d94cc81d7cd5d99d830"
     },
     {
       "path": "tools/web/symbol_components.py",
@@ -1442,5 +1703,384 @@
       "size": 3977,
       "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
     }
-  ]
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": [
+        {
+          "asset_ref": "assets/symbol_warning_triangle.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            25,
+            26,
+            27
+          ],
+          "glyph_bbox": [
+            37.21780014038086,
+            313.3468017578125,
+            60.99679946899414,
+            334.622802734375
+          ],
+          "caption_bbox": [
+            73,
+            309,
+            183,
+            339
+          ],
+          "row_bbox": [
+            28,
+            309,
+            183,
+            339
+          ],
+          "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+          "caption_sha256": "6632a43c2d28e496c79259c971d73a0f9333647549616cb90b1fcc58898786f2",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "shared_symbol_key": "warning/outline-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol_read_manual.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            722,
+            723,
+            724
+          ],
+          "glyph_bbox": [
+            37.44700241088867,
+            346.7795104980469,
+            60.768001556396484,
+            364.8424987792969
+          ],
+          "caption_bbox": [
+            73,
+            339,
+            183,
+            369
+          ],
+          "row_bbox": [
+            28,
+            339,
+            183,
+            369
+          ],
+          "caption_text": "Read the user manual before operation.",
+          "caption_sha256": "f4fe203dec8fa773061bfd60f243cb199fd5bcb4ce1a2fc16ea67d7a3331bb81",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "shared_symbol_key": "read-manual/book-information"
+        },
+        {
+          "asset_ref": "assets/symbol_electric_shock.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            657,
+            658,
+            659
+          ],
+          "glyph_bbox": [
+            37.68410110473633,
+            375.1519775390625,
+            61.48809814453125,
+            396.45098876953125
+          ],
+          "caption_bbox": [
+            73,
+            369,
+            183,
+            401
+          ],
+          "row_bbox": [
+            28,
+            369,
+            183,
+            401
+          ],
+          "caption_text": "Risk of electric shock",
+          "caption_sha256": "7f9cc88bf81edf3f8e3cff92371912565c21229125605a03c12e60b5f593efb4",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+          "shared_symbol_key": "electric-shock/bolt-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol_battery_charging.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666
+          ],
+          "glyph_bbox": [
+            37.68410110473633,
+            405.91070556640625,
+            61.48809814453125,
+            427.209716796875
+          ],
+          "caption_bbox": [
+            73,
+            401,
+            183,
+            431
+          ],
+          "row_bbox": [
+            28,
+            401,
+            183,
+            431
+          ],
+          "caption_text": "Battery charging",
+          "caption_sha256": "55b3b217ed4125de54b461d6af64fc8a39e52262627e2a43e4f734d38a9b2120",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+          "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol_explosive_material.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            667,
+            668,
+            669,
+            670
+          ],
+          "glyph_bbox": [
+            37.52119827270508,
+            435.9815673828125,
+            61.97819900512695,
+            457.4765930175781
+          ],
+          "caption_bbox": [
+            73,
+            431,
+            183,
+            462
+          ],
+          "row_bbox": [
+            28,
+            431,
+            183,
+            462
+          ],
+          "caption_text": "Explosive material",
+          "caption_sha256": "c5210236d217fa66e4653f92dffc356ad51ef5d87bae0fac6f951619f15434d6",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+          "shared_symbol_key": "explosive-material/burst-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol_heavy_object.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            731,
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738
+          ],
+          "glyph_bbox": [
+            36.653499603271484,
+            468.17047119140625,
+            61.11150360107422,
+            489.6654968261719
+          ],
+          "caption_bbox": [
+            73,
+            462,
+            183,
+            497
+          ],
+          "row_bbox": [
+            28,
+            462,
+            183,
+            497
+          ],
+          "caption_text": "Heavy object",
+          "caption_sha256": "7d42e4d82e6abfd5a347f778f0e216670b012883e82f4728bf37af59037a3bf4",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+          "shared_symbol_key": "heavy-object/person-load-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol_do_not_dismantle.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            642,
+            643,
+            644
+          ],
+          "glyph_bbox": [
+            195.13780212402344,
+            314.50030517578125,
+            215.28379821777344,
+            334.6343078613281
+          ],
+          "caption_bbox": [
+            226,
+            309,
+            343,
+            339
+          ],
+          "row_bbox": [
+            187,
+            309,
+            344,
+            339
+          ],
+          "caption_text": "Do not dismantle the product.",
+          "caption_sha256": "983f8a057093dee2a27bcbb4bc0de2b67708f2b827345c0923bbc865753da55f",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited"
+        },
+        {
+          "asset_ref": "assets/symbol_no_open_flame.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            725,
+            726,
+            727,
+            728,
+            729,
+            730
+          ],
+          "glyph_bbox": [
+            195.15609741210938,
+            344.2041931152344,
+            216.42010498046875,
+            365.4662170410156
+          ],
+          "caption_bbox": [
+            226,
+            339,
+            343,
+            370
+          ],
+          "row_bbox": [
+            187,
+            339,
+            344,
+            370
+          ],
+          "caption_text": "Keep the product away from fire.",
+          "caption_sha256": "b44f9740cb14523d8b035087cc910fc4a82595c27c154314beb608d4ce46ebb0",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited"
+        },
+        {
+          "asset_ref": "assets/symbol_keep_away_from_children.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            739,
+            740,
+            741,
+            742
+          ],
+          "glyph_bbox": [
+            195.15699768066406,
+            375.34039306640625,
+            216.4199981689453,
+            396.6033935546875
+          ],
+          "caption_bbox": [
+            226,
+            370,
+            343,
+            401
+          ],
+          "row_bbox": [
+            187,
+            370,
+            344,
+            401
+          ],
+          "caption_text": "Keep away from children.",
+          "caption_sha256": "dc45f73fe4b2e1d7f2b41eb1057e9ffb767977c635ad81f7d0e4ee39d89a2597",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited"
+        },
+        {
+          "asset_ref": "assets/symbol_li_ion.svg",
+          "physical_page": 5,
+          "drawing_indices": [
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653
+          ],
+          "glyph_bbox": [
+            194.49859619140625,
+            404.9814758300781,
+            214.64219665527344,
+            427.3057861328125
+          ],
+          "caption_bbox": [
+            226,
+            401,
+            343,
+            431
+          ],
+          "row_bbox": [
+            187,
+            401,
+            344,
+            431
+          ],
+          "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "caption_sha256": "b586432641e2831427a247a6ee499977fe0d3b9b088ac985c3a22f3cee7e209a",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+          "shared_symbol_key": "li-ion/recycle-li-ion"
+        },
+        {
+          "asset_ref": "assets/symbol_weee.png",
+          "physical_page": 5,
+          "drawing_indices": [
+            654,
+            655,
+            656
+          ],
+          "glyph_bbox": [
+            196.93980407714844,
+            449.77850341796875,
+            214.37179565429688,
+            474.56201171875
+          ],
+          "caption_bbox": [
+            226,
+            431,
+            343,
+            497
+          ],
+          "row_bbox": [
+            187,
+            431,
+            344,
+            497
+          ],
+          "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+          "caption_sha256": "3ed69f2752ea33f9060c2f87b1c1f9852262767183f952f1600211786587778c",
+          "caption_mode": "reviewed-outlined-transcription",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "shared_symbol_key": "weee/crossed-bin-bar"
+        }
+      ]
+    }
+  }
 }

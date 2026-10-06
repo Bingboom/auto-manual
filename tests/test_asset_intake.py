@@ -41,6 +41,33 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_symbol_svg_runs_through_recipe_pipeline(self):
+        from tools.web.symbol_asset_admission import compare_symbol
+        from tools.asset_pipeline.models import RecipeValidationError
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.pdf"
+            with fitz.open() as doc:
+                page = doc.new_page(width=120, height=100)
+                page.draw_rect((5, 5, 90, 90), color=None, fill=(.8, .8, .8))
+                page.draw_circle((45, 45), 12, color=(0, 0, 0), width=2)
+                doc.save(source)
+            payload = self._single_page_payload(sha256_file(source))
+            asset = payload["assets"][0]
+            asset["transforms"] = [{"op": "crop", "bbox_pt": [30, 30, 60, 60]},
+                                   {"op": "retain_vector_drawings", "drawing_indices": [1],
+                                    "fill_rgb_overrides": {}, "stroke_suppressed_indices": []}]
+            asset["outputs"] = [{"format": "svg", "path": "shared/symbol.svg"}]
+            recipe = self._write_recipe(root / "recipe.json", payload)
+            result = run_intake(source_path=source, recipe=recipe, output_root=root / "run")
+            output = result.output_root / "artifacts/shared/symbol.svg"
+            compare_symbol(output.read_bytes(), ".svg", output.read_bytes())
+            for transforms in ([asset["transforms"][0]],
+                               [asset["transforms"][0], {**asset["transforms"][1], "fill_rgb_overrides": {"1": [1, 0, 0]}}]):
+                asset["transforms"] = transforms
+                with self.assertRaisesRegex(RecipeValidationError, "unchanged retain_vector"):
+                    self._write_recipe(root / "invalid.json", payload)
+
     def test_native_pdf_region_swap_preserves_unaffected_art(self):
         from types import SimpleNamespace
         from tools.asset_pipeline.extract import _prepare_asset_source

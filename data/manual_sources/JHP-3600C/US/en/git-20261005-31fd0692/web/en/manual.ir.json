@@ -1,17 +1,17 @@
 {
   "asset_refs": [
     "assets/e1746d6937db_warning_triangle_dark.svg",
-    "assets/24e567ffad05_warning_triangle.png",
-    "assets/1d9fa89da31d_read_manual.png",
-    "assets/7638826b2324_electric_shock.png",
-    "assets/85e5185e22e4_battery_charging.png",
-    "assets/8de051db1a3a_explosive_material.png",
-    "assets/5e156fb879ab_heavy_object.png",
-    "assets/908c33c16c06_do_not_dismantle.png",
-    "assets/460a4a9a19fd_no_open_flame.png",
-    "assets/45d63066ac4d_keep_away_from_children.png",
-    "assets/f913a65f0774_li_ion.png",
-    "assets/7e4de290ea13_weee.png",
+    "assets/symbol_warning_triangle.svg",
+    "assets/symbol_read_manual.svg",
+    "assets/symbol_electric_shock.svg",
+    "assets/symbol_battery_charging.svg",
+    "assets/symbol_explosive_material.svg",
+    "assets/symbol_heavy_object.svg",
+    "assets/symbol_do_not_dismantle.svg",
+    "assets/symbol_no_open_flame.svg",
+    "assets/symbol_keep_away_from_children.svg",
+    "assets/symbol_li_ion.svg",
+    "assets/symbol_weee.png",
     "assets/45f309ed8b3f_fcc_mark.png",
     "assets/inbox_unit.png",
     "assets/inbox_ac.png",
@@ -86,8 +86,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "c9cdbdacd82c06b5f66dec98e9a7b6d4922ca74c3901517068a369344583b4fc",
-  "content_sha256": "46a99ddf56e4509d1d9a8ea98fb3b6d71cee4a4b91eb5d66696365eb935af67b",
+  "bundle_sha256": "5132efd90d7b9868fe8088d446cb4c28215da2d93570f390f891139567f9a539",
+  "content_sha256": "25e7f0c77847df9158a86e942af5d7730e6dd6f31aeb9872bd7dc23a2bc3cbe6",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -173,6 +173,17 @@
       "assets/power.png": "0f9ef585164439b9b5728b6b548354f2ca3879ea5ba82a2258d269ddf818b264",
       "assets/solar200.png": "2ad7cea648c11ea0309f1ff586bdaf340914d7502b3a75a1b5f5c2253604ebaa",
       "assets/solar500.png": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939",
+      "assets/symbol_battery_charging.svg": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+      "assets/symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "assets/symbol_electric_shock.svg": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+      "assets/symbol_explosive_material.svg": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+      "assets/symbol_heavy_object.svg": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+      "assets/symbol_keep_away_from_children.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+      "assets/symbol_li_ion.svg": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "assets/symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+      "assets/symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+      "assets/symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/ups120.png": "4a7768c38f4a2093f1c107c8edecd1c672915a97ed79f5c39886f3c8e8f7b5d6",
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
@@ -3261,76 +3272,76 @@
         },
         {
           "asset_refs": [
-            "assets/24e567ffad05_warning_triangle.png",
-            "assets/1d9fa89da31d_read_manual.png",
-            "assets/7638826b2324_electric_shock.png",
-            "assets/85e5185e22e4_battery_charging.png",
-            "assets/8de051db1a3a_explosive_material.png",
-            "assets/5e156fb879ab_heavy_object.png",
-            "assets/908c33c16c06_do_not_dismantle.png",
-            "assets/460a4a9a19fd_no_open_flame.png",
-            "assets/45d63066ac4d_keep_away_from_children.png",
-            "assets/f913a65f0774_li_ion.png",
-            "assets/7e4de290ea13_weee.png"
+            "assets/symbol_warning_triangle.svg",
+            "assets/symbol_read_manual.svg",
+            "assets/symbol_electric_shock.svg",
+            "assets/symbol_battery_charging.svg",
+            "assets/symbol_explosive_material.svg",
+            "assets/symbol_heavy_object.svg",
+            "assets/symbol_do_not_dismantle.svg",
+            "assets/symbol_no_open_flame.svg",
+            "assets/symbol_keep_away_from_children.svg",
+            "assets/symbol_li_ion.svg",
+            "assets/symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "2109efaea359794e048e1ed0d4077148cf3f848263997468afe7e09dc1d170dc",
+          "content_sha256": "3662b3d5e898dab14a56707bdd3ef5ddffc2a332a979caadcd45896d947f4c2c",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/24e567ffad05_warning_triangle.png",
+                  "asset_ref": "assets/symbol_warning_triangle.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/1d9fa89da31d_read_manual.png",
+                  "asset_ref": "assets/symbol_read_manual.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/7638826b2324_electric_shock.png",
+                  "asset_ref": "assets/symbol_electric_shock.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/85e5185e22e4_battery_charging.png",
+                  "asset_ref": "assets/symbol_battery_charging.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/8de051db1a3a_explosive_material.png",
+                  "asset_ref": "assets/symbol_explosive_material.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/5e156fb879ab_heavy_object.png",
+                  "asset_ref": "assets/symbol_heavy_object.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/908c33c16c06_do_not_dismantle.png",
+                  "asset_ref": "assets/symbol_do_not_dismantle.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/460a4a9a19fd_no_open_flame.png",
+                  "asset_ref": "assets/symbol_no_open_flame.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/45d63066ac4d_keep_away_from_children.png",
+                  "asset_ref": "assets/symbol_keep_away_from_children.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/f913a65f0774_li_ion.png",
+                  "asset_ref": "assets/symbol_li_ion.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/7e4de290ea13_weee.png",
+                  "asset_ref": "assets/symbol_weee.png",
                   "locale_policy": "exact",
                   "role": "icons"
                 }
@@ -3461,7 +3472,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#symbols",
       "source_ref": "native-pdf/symbols",
-      "source_sha256": "4313cf55a1bdd7164bc90ea1f94dca907d6051fd309352b6f90ed0dd40fd130b"
+      "source_sha256": "035a694c68454c86313204703ac973f3ebcd622c4c7ee43134308c3c06279f44"
     },
     {
       "blocks": [
