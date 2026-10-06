@@ -10,7 +10,7 @@ import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any, BinaryIO
 
-from tools.asset_pipeline.native_svg import native_symbol_svg
+from tools.asset_pipeline.native_svg import native_art_svg
 from tools.asset_pipeline.leaders import (
     find_leader_geometries,
     suppress_leader_strokes,
@@ -787,7 +787,7 @@ def _asset_artifacts(
                         if transform is None:
                             raise ArtifactValidationError("SVG requires retain_vector_drawings")
                         try:
-                            destination.write_bytes(native_symbol_svg(
+                            destination.write_bytes(native_art_svg(
                                 page, list(transform.drawing_indices), list(clip),
                             ))
                         except ValueError as exc:

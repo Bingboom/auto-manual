@@ -60,6 +60,44 @@ class TestAssetIntake(unittest.TestCase):
                     self.assertEqual((255, 255, 255, 255), pix.pixel(22, 12))
                     self.assertEqual((0, 0, 0, 255), pix.pixel(17, 22))
 
+    def test_native_panel_omits_caption_path_without_deleting_white_product(self):
+        from tools.asset_pipeline.native_svg import native_art_svg, native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((5, 5, 95, 95), color=None, fill=(.8, .8, .8))
+            page.draw_circle((25, 35), 15, color=(0, 0, 0), fill=(1, 1, 1))
+            page.draw_rect((50, 70, 90, 80), color=None, fill=(1, 1, 1))
+            svg = native_art_svg(page, [0, 1], [4, 4, 96, 96])
+            root = ET.fromstring(svg)
+            self.assertEqual(3, len(root.findall('.//{http://www.w3.org/2000/svg}path')))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                pix = selected[0].get_pixmap(alpha=True)
+                self.assertEqual((204, 204, 204, 255), pix.pixel(60, 70))
+                self.assertEqual((255, 255, 255, 255), pix.pixel(20, 30))
+            with self.assertRaisesRegex(ValueError, 'every drawing'):
+                native_symbol_svg(page, [0, 1], [4, 4, 96, 96])
+            with self.assertRaisesRegex(ValueError, 'valid drawing'):
+                native_art_svg(page, [3], [4, 4, 96, 96])
+
+    def test_native_panel_preserves_original_source_clipping_groups(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.w3.org/2000/svg}'
+        with fitz.open() as source, fitz.open() as target:
+            source.new_page(width=200, height=200).draw_rect(
+                (0, 0, 200, 200), color=None, fill=(.6, .6, .6))
+            page = target.new_page(width=100, height=100)
+            page.show_pdf_page(fitz.Rect(20, 20, 80, 80), source, 0, clip=fitz.Rect(80, 80, 120, 120))
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 90, 90]))
+            original_clips = [n.attrib for n in original.iter(ns + 'g') if 'clip-path' in n.attrib]
+            self.assertTrue(original_clips)
+            self.assertEqual(original_clips,
+                             [n.attrib for n in selected.iter(ns + 'g') if 'clip-path' in n.attrib])
+            self.assertEqual(ET.tostring(original.find(ns + 'defs')),
+                             ET.tostring(selected.find(ns + 'defs')))
+
     def test_native_symbol_svg_runs_through_recipe_pipeline(self):
         from tools.web.symbol_asset_admission import compare_symbol
         from tools.asset_pipeline.models import RecipeValidationError

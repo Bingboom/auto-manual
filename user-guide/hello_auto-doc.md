@@ -2151,3 +2151,6 @@ Frozen Web heading inline spans remain inside MyST titles, including the shared
 assembly. Key combinations use `HB-TABLE-KEY-COMBINATIONS`, with authored button
 pairs and shared hold-duration clocks. Match product markings before choosing
 a shared button variant; function names alone do not establish artwork reuse.
+
+
+新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。

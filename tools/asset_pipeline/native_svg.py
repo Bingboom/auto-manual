@@ -3,10 +3,24 @@ from __future__ import annotations
 
 from copy import deepcopy
 import xml.etree.ElementTree as ET
+import re
 
 import fitz
 
 SVG = '{http://www.w3.org/2000/svg}'
+
+
+def _path_key(path: ET.Element) -> tuple[str, ...]:
+    tokens = re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?',
+                        path.get('d', '').rstrip('Zz '))
+    # MuPDF sometimes closes a stroke explicitly and the fill implicitly.
+    command = next((t for t in reversed(tokens) if t.isalpha()), '')
+    if (len(tokens) > 5 and tokens[0] == 'M' and command in {'M', 'L'}
+            and tokens[-2:] == tokens[1:3]):
+        tokens = tokens[:-2]
+        if tokens[-1] == 'L':
+            tokens.pop()
+    return tuple(tokens)
 
 
 def _drawing_paths(drawings: list[dict], visible: list[ET.Element]) -> list[list[ET.Element]]:
@@ -22,7 +36,7 @@ def _drawing_paths(drawings: list[dict], visible: list[ET.Element]) -> list[list
             paths = visible[offset:offset + count]
             if count == 2 and (
                 paths[0].get('transform') != paths[1].get('transform')
-                or paths[0].get('d', '').rstrip('Zz ') != paths[1].get('d', '').rstrip('Zz ')
+                or _path_key(paths[0]) != _path_key(paths[1])
             ):
                 raise ValueError('native PDF fill/stroke SVG mapping is unsupported')
             mapped.append(paths)
@@ -45,6 +59,28 @@ def native_symbol_svg(page: fitz.Page, indices: list[int], glyph_bbox: list[floa
     inside = [i for i, d in enumerate(drawings) if box.contains(d['rect'])]
     if not indices or sorted(set(indices)) != indices or indices != inside:
         raise ValueError('symbol selection must include every drawing inside glyph bounds')
+    return _selected_svg(page, drawings, indices, box)
+
+
+def native_art_svg(page: fitz.Page, indices: list[int], crop_bbox: list[float]) -> bytes:
+    """Retain reviewed panel paths with original clipping, opacity and transforms.
+
+    Unlike a symbol glyph, a panel may deliberately omit a caption frame and
+    contain source paths that extend beyond the crop under a clipping group.
+    This is not symbol admission; native_symbol_svg keeps its completeness rule.
+    """
+    drawings = page.get_drawings()
+    box = fitz.Rect(crop_bbox)
+    if box.is_empty or not page.rect.contains(box):
+        raise ValueError("art crop bounds outside source page")
+    if (not indices or sorted(set(indices)) != indices
+            or any(not isinstance(i, int) or isinstance(i, bool) or not 0 <= i < len(drawings)
+                   for i in indices)):
+        raise ValueError("art selection requires ordered valid drawing indices")
+    return _selected_svg(page, drawings, indices, box)
+
+
+def _selected_svg(page, drawings, indices, box) -> bytes:
     root = ET.fromstring(page.get_svg_image(text_as_path=False))
     visible = []
 
@@ -75,8 +111,8 @@ def native_symbol_svg(page: fitz.Page, indices: list[int], glyph_bbox: list[floa
 
     selected = prune(root)
     if selected is None:
-        raise ValueError('empty native symbol')
-    # Small margin is outside original drawing bounds. No white/gray overlay.
+        raise ValueError('empty native artwork')
+    # Crop the source geometry without repainting or flattening its clipping.
     selected.set('viewBox', f'{box.x0} {box.y0} {box.width} {box.height}')
     selected.set('width', str(box.width))
     selected.set('height', str(box.height))

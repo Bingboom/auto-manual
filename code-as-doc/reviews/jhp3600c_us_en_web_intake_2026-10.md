@@ -359,3 +359,43 @@ and [restored user pane](jhp3600c_us_en_web_evidence/final-preview-styles4.jpg).
 The browser viewport is restored to its default 641×770 pane. Root `tmp/` remains
 untouched. This records local browser acceptance only; operator approval and
 production publication remain separate.
+
+## car1 — Native car labels and CSS-only caption frame (2026-10-06)
+
+The p24 car figure used text-stripped artwork but retained its empty white
+capsule. Its source text was only represented approximately by ALT. The new
+source uses the existing `HB-SPECIAL-REFERENCE-FIGURE` / `base-art-live-copy`
+component with exact, selectable `Vehicle` and
+`*The car charging cable is sold separately.` labels. The capsule is drawn by
+shared `.hb-reference-live-pill`; the full native gray panel stays in the art.
+
+The same-model and shared inventory remains in `source/asset_decisions.json`.
+No available shared figure matches this US housing/port geometry. The corrected
+asset is replayable through `manual_jhp3600c_us_car_framefree.json`, with the
+original PDF hash, p24 crop, retained drawing indices and excluded caption
+object 1068. Generic retained-path SVG export now preserves source clipping,
+opacity and transforms; symbol reconstruction still requires every drawing
+inside the glyph bounds. The old PNG is retained for traceability and marked
+`superseded-do-not-reuse`; it fails the new caption-region check.
+
+The shared artwork contract, Codex extraction skill, UI prompt and operator
+playbook prohibit acquiring/reusing independent empty caption frames and require
+bare-art review before CSS labels. Fresh frozen-Web sealing checks actual
+ReferenceFigure specs, bound asset hashes and contrasting CSS fill rectangles.
+A baked fill occupying >=85% of the inset rectangle fails. Same-tone,
+outline-only and undeclared frames still require visual review; this check is
+not OCR or an arbitrary image classifier. Historical receipt verification is
+unchanged. No live asset registry promotion or online writes were performed.
+
+Completed before source commit: 37 focused regressions, repository ruff,
+maintainability guardrails, skill quick validation, document links, source line
+coverage (zero unmatched), recipe pipeline byte parity, deterministic source
+replay and strict standalone Sphinx. Bare SVG inspected in-browser at 12x;
+standalone desktop, 390px and 320px show the exact labels, CSS capsule and no
+page overflow. At 320px the CSS capsule grows to two lines.
+
+Full-suite results, final aggregate browser checks and source-HEAD receipt are
+recorded separately in the car1 evidence after completion. The generic
+`build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
+remains blocked by this worktree's missing local `data/phase2/Spec_Master.csv`;
+no unrelated snapshot was fabricated or synchronized under Git-only scope.

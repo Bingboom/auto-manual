@@ -75,7 +75,7 @@
     "assets/ats_app.png",
     "assets/solar500.png",
     "assets/solar200.png",
-    "assets/car_charging.png",
+    "assets/car_charging_framefree.svg",
     "assets/app_download.png",
     "assets/app_add.png",
     "assets/app_control.png",
@@ -86,8 +86,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "0a2145b62eb9df4de3dbe4122714ab4ebb958de6e6b1154cc235e9ad335c0f2c",
-  "content_sha256": "724c91ae51581cbda932daf0ad3f96391d67f212ed8448206cbc514344097225",
+  "bundle_sha256": "a99b96b36ab479e24bc022127029e7817988daee17fbedfe9f1c30a4fd1a4e17",
+  "content_sha256": "c637ec4dd71dfb141573eadffba8de9dbb1a62314a55412c39593442880f3baf",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -137,6 +137,7 @@
       "assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
       "assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
       "assets/car_charging.png": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52",
+      "assets/car_charging_framefree.svg": "c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4",
       "assets/cascade.png": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb",
       "assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
       "assets/charge120.png": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
@@ -196,6 +197,7 @@
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -8774,23 +8776,176 @@
         },
         {
           "asset_refs": [
-            "assets/car_charging.png"
+            "assets/car_charging_framefree.svg"
           ],
           "block_id": "charging:block-0028",
-          "content_sha256": "83f5f8ece3df097eb23013055d4ef8ce340a2809cca99db8fc38de69bbc79e2c",
+          "content_sha256": "b38e9ca590fac83040f9b1ab6a8ba262925e360745e933a591d36ab05bf15d55",
           "kind": "flow",
           "payload": {
-            "alt": "Vehicle 12V charging. The car charging cable is sold separately.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "Vehicle 12V charging",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"car_charging\", \"web_replace_key\": \"reference.car-charging\", \"capture_following_lines\": 2, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4\", \"panel_top\": 0, \"panel_fill\": \"#ebecec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [67, 10.4, 15, 9]}, {\"line\": 1, \"rect\": [49.37, 75.12, 47.65, 10.07], \"fill\": \"#ffffff\"}]}}"
+                    }
+                  }
+                },
+                "source": "assets/car_charging_framefree.svg"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "Vehicle"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "*The car charging cable is sold separately."
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/car_charging_framefree.svg",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        67,
+                        10.4,
+                        15,
+                        9
+                      ]
+                    },
+                    {
+                      "fill": "#ffffff",
+                      "line": 1,
+                      "rect": [
+                        49.37,
+                        75.12,
+                        47.65,
+                        10.07
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#ebecec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 2,
+                "composite_locale": "",
+                "image_key": "assets/car_charging_framefree.svg",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "f9599ae31169819cc42790390af38e034fa626df0ca011212a46b36ffd4fb797",
+                "web_replace_key": "reference.car-charging"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "car_charging",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "Vehicle 12V charging",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "Vehicle",
+                      "text": "Vehicle"
+                    },
+                    {
+                      "html": "*The car charging cable is sold separately.",
+                      "text": "*The car charging cable is sold separately."
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-car_charging",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/car_charging.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-28"
         },
@@ -8931,7 +9086,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "5f05ca38253b83def0414fa7ba8d42ac3a0d41864553ea879766790df2c9a5e1"
+      "source_sha256": "8efe9e1f2571628964554bb843769810209ac4a339839dae9816c4ffa1b46553"
     },
     {
       "blocks": [

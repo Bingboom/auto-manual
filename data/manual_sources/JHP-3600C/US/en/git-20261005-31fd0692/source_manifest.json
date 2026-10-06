@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-styles4"
+    "technical_version": "git-20261005-31fd0692-car1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -124,13 +124,18 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 91890,
-      "sha256": "fb4b53c671e703a8f77e6495d0fcf9d0e87ae8b189c39935d3263316374607c3"
+      "size": 93791,
+      "sha256": "983648eeb77941605cff5d7360b7193d0082fbd252ca25cfe25ae646e787951f"
+    },
+    {
+      "path": "source/caption_frame_asset_audit.json",
+      "size": 1364,
+      "sha256": "0c22a6b9e12a3afd97052879fb6659081d4dc13aad9392812016b0780fb6ad39"
     },
     {
       "path": "source/content.json",
-      "size": 444186,
-      "sha256": "9967d1c24e555f626f4531789ef2debda879b859f79d8da3ccf067958cbc9b57"
+      "size": 449519,
+      "sha256": "63f907013313f42d1a6db0e12923411393ec0fb73a4f0920eeee457cdad13990"
     },
     {
       "path": "source/coverage_audit.json",
@@ -428,6 +433,11 @@
       "sha256": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52"
     },
     {
+      "path": "web/en/assets/car_charging_framefree.svg",
+      "size": 409983,
+      "sha256": "c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4"
+    },
+    {
       "path": "web/en/assets/cascade.png",
       "size": 67699,
       "sha256": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb"
@@ -704,13 +714,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 612096,
-      "sha256": "817a32b38b846d0ea5aeeb129835934df11733b5b1d1d8366baa60762240a30b"
+      "size": 617906,
+      "sha256": "87af600c200ac9b17fca93533d45d1448b5a910b300f63a0b81838798d68dcbe"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 99400,
-      "sha256": "b3242ff5108bddce057a0c5deb6bc5af6f05554ddfa9d9fbdbe0c5f73ef6129b"
+      "size": 100805,
+      "sha256": "81a7083f6928c36da60e3fc939d803958ea254c3f9d7997e59d9cca6a6e163b1"
     }
   ],
   "repo_inputs": [
@@ -718,6 +728,11 @@
       "path": "data/asset_recipes/asset-extraction-recipe-v1.schema.json",
       "size": 14697,
       "sha256": "fadf45f8513d14517cbd9ebff9089a3078f2a2d8fb0bc72fb80ee32bacd4f068"
+    },
+    {
+      "path": "data/asset_recipes/manual_jhp3600c_us_car_framefree.json",
+      "size": 50212,
+      "sha256": "ce46f1cc1bf7e55b48e230b0c7f0012892311ddfea9b398c816e3253d60fef80"
     },
     {
       "path": "data/asset_recipes/manual_jhp3600c_us_native_buttons.json",
@@ -1041,13 +1056,13 @@
     },
     {
       "path": "tools/asset_pipeline/extract.py",
-      "size": 33582,
-      "sha256": "3ad0ca8635c5223e1ff20e84783e3e65839bcb12b9ec598288f5cbc94cca5d2c"
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
     },
     {
       "path": "tools/asset_pipeline/native_svg.py",
-      "size": 3548,
-      "sha256": "9d02a9b5bc404d44bb1b1bee2878677dc9c4851925076a2fa90013ae9e17175e"
+      "size": 5129,
+      "sha256": "c92f7316e059325353dddba02dfb1966819a20262c57962e39c59e7739db06d1"
     },
     {
       "path": "tools/asset_pipeline/recipe.py",
@@ -1465,6 +1480,11 @@
       "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
     },
     {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
       "path": "tools/web/component_admission.py",
       "size": 3214,
       "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
@@ -1631,8 +1651,8 @@
     },
     {
       "path": "tools/web/frozen_source_evidence.py",
-      "size": 10302,
-      "sha256": "86438798d4d2e199d5735ecea02e3d30360d1c9a0a9491c7283e4083bea6fb0b"
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
     },
     {
       "path": "tools/web/frozen_web_component_coverage.py",

@@ -13,6 +13,7 @@ import shutil
 from typing import Any
 from urllib.parse import unquote, urlsplit
 
+from tools.web.caption_frame_admission import require_caption_frame_admission
 from tools.web.component_admission import require_fresh_component_admission
 from tools.web.symbol_asset_admission import require_symbol_asset_admission
 from tools.utils.path_utils import PathSegments
@@ -106,6 +107,7 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
         markdown_dir, model=target["model"], region=target["region"], language=language,
     )
     require_symbol_asset_admission(markdown_dir, source_root, manifest, language)
+    caption_frames = require_caption_frame_admission(markdown_dir)
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
     if actual != inputs:
         raise RuntimeError("frozen Web source input files differ from manifest")
@@ -122,6 +124,7 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
         "schema_version": RECEIPT_SCHEMA, "model": target["model"],
         "region": target["region"], "language": language,
         "version": target["technical_version"], "git_ref": git_ref.strip(),
+        "caption_frame_admission": caption_frames,
         "source_manifest": {"path": SOURCE_FILENAME, "sha256": _sha256(source_manifest_path)},
         "markdown": {"manual": markdown_name, "files": markdown_files, "sha256": _json_sha256(markdown_files)},
         "html": {"files": html_files, "sha256": _json_sha256(html_files)},

@@ -1983,7 +1983,10 @@
     ],
     "final_path": "assets/car_charging.png",
     "sha256": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52",
-    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay",
+    "reuse_status": "superseded-do-not-reuse",
+    "withdrawal_reason": "Retains an empty source caption capsule and omitted live labels; do not select for new Web candidates.",
+    "replacement": "assets/car_charging_framefree.svg"
   },
   {
     "slot": "app_download",
@@ -2311,5 +2314,64 @@
     "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
     "background_policy": "transparent outside white circular button face; no page/table backdrop",
     "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "car_charging",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 24,
+    "bbox": [
+      25,
+      27,
+      341,
+      170
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve complete gray panel and product/vehicle geometry; independent caption frame is CSS only.",
+    "erase_regions": [
+      [
+        [
+          242,
+          40,
+          274,
+          56
+        ],
+        null
+      ],
+      [
+        [
+          182,
+          134,
+          333,
+          149
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/car_charging_framefree.svg",
+    "sha256": "c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4",
+    "erase_method": "Retain original SVG paths and clip ancestors; omit PDF text and caption frame drawing 1068; no color deletion, whiteout or geometry replay.",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_car_framefree.json",
+    "reuse_status": "active",
+    "removed_caption_frame": {
+      "drawing_index": 1068,
+      "bbox": [
+        181.00558471679688,
+        134.41329956054688,
+        331.58758544921875,
+        148.80630493164062
+      ]
+    },
+    "native_live_labels": [
+      "Vehicle",
+      "*The car charging cable is sold separately."
+    ]
   }
 ]
