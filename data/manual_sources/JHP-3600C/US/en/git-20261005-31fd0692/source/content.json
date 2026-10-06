@@ -8033,7 +8033,8 @@
           "presentation": {
             "html": {
               "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;",
+                "class": "hb-app-add-device-phone-art hb-app-phone-pair"
               }
             }
           },
@@ -8394,7 +8395,8 @@
           "presentation": {
             "html": {
               "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;",
+                "class": "hb-app-add-device-phone-art hb-app-phone-trio"
               }
             }
           },

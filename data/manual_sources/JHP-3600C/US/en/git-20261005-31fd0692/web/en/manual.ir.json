@@ -87,8 +87,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "2ec956ce624b2bdbb9fc294dcff59d3b045ba397acf8c513c1335c94b5b8df3f",
-  "content_sha256": "0241ebe3e26268870cf87d7dcdea6c8b2085d038d6250729dd185bd332b67d35",
+  "bundle_sha256": "87794dad2933d6f6db53d1b4c7a6855661d3c6d9f5b32bab522d7f6b0971c197",
+  "content_sha256": "e3acf33c1e8b35485b2ac761eae067a3a30f17d5250303416685d6643a8e7a0d",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -11570,7 +11570,7 @@
             "assets/app_add.png"
           ],
           "block_id": "app:block-0007",
-          "content_sha256": "6ec02b5999c754bdb8508a3e89b0cd0a1aebf0bd71984e054d7f71519a49d485",
+          "content_sha256": "2b5e076f01c887c91127794b161ba28481a72ece6fcd01fd361d7a298308b0a8",
           "kind": "flow",
           "payload": {
             "alt": "2.2 2.1",
@@ -11578,6 +11578,7 @@
             "presentation": {
               "html": {
                 "attributes": {
+                  "class": "hb-app-add-device-phone-art hb-app-phone-pair",
                   "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
                 }
               }
@@ -11991,7 +11992,7 @@
             "assets/app_result.png"
           ],
           "block_id": "app:block-0015",
-          "content_sha256": "5e9eb41078d2849e9701cb9308c9f30b74d368fb2b67bb429746dd1035219a5c",
+          "content_sha256": "d407dd2c250712afb596d0c7359f53f1ca72ca988513833124e06f3b5c282545",
           "kind": "flow",
           "payload": {
             "alt": "HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only.",
@@ -11999,6 +12000,7 @@
             "presentation": {
               "html": {
                 "attributes": {
+                  "class": "hb-app-add-device-phone-art hb-app-phone-trio",
                   "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
                 }
               }
@@ -12300,7 +12302,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#app",
       "source_ref": "native-pdf/app",
-      "source_sha256": "e0d3a8da48cea221610aad6341a71289b1bf06105abbd728655b3c45940891d2"
+      "source_sha256": "b1f31e339e431a132c3abcbf27bdc6353bdc612c2c41fcc7e8a5522784f9b656"
     },
     {
       "blocks": [

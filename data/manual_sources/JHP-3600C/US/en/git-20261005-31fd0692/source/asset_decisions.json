@@ -2040,7 +2040,13 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/app_add.png",
-    "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7"
+    "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
+    "web_size_policy": {
+      "shared_class": "hb-app-phone-pair",
+      "max_width_rem": 22,
+      "preserve_complete_frame_and_step_numbers": true,
+      "asset_bytes": "unchanged"
+    }
   },
   {
     "slot": "app_control",
@@ -2088,7 +2094,13 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/app_result.png",
-    "sha256": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14"
+    "sha256": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14",
+    "web_size_policy": {
+      "shared_class": "hb-app-phone-trio",
+      "max_width_rem": 36.75,
+      "preserve_complete_frame_and_step_numbers": true,
+      "asset_bytes": "unchanged"
+    }
   },
   {
     "slot": "ess_connection",

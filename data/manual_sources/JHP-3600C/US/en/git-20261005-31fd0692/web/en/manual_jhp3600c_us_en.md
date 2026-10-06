@@ -470,7 +470,7 @@
 
 <p>2.2 Press the <strong>POWER</strong> button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the <strong>"Icon Flashed"</strong> button, and allow the App to connect to nearby devices and enable Bluetooth permissions.</p>
 
-<img alt="2.2 2.1" src="assets/app_add.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<img alt="2.2 2.1" class="hb-app-add-device-phone-art hb-app-phone-pair" src="assets/app_add.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 
 <img alt="Main Power Button USB Power AC Power Button Button" src="assets/app_control.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 
@@ -486,7 +486,7 @@
 
 <p>2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.</p>
 
-<img alt="HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only." src="assets/app_result.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<img alt="HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only." class="hb-app-add-device-phone-art hb-app-phone-trio" src="assets/app_result.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><p>The Jackery app can connect to only one power station via Bluetooth at a time. Returning to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically.</p></td></tr></tbody></table>
 
