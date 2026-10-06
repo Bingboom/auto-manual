@@ -1794,5 +1794,17 @@
     "erase_regions": [],
     "final_path": "assets/ess_ats_package.png",
     "sha256": "802b6803d4fd7643a82401aa8f8ec25638bce53af5b458483f687acb7e096344"
+  },
+  {
+    "slot": "safety.risk-warning-triangle",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+    "identity_check": "Filled dark triangle with white exclamation matches the risk banner on authoritative physical p4; reused shared symbol after visual comparison.",
+    "final_path": "assets/e1746d6937db_warning_triangle_dark.svg",
+    "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+    "background_policy": "preserve SVG transparency"
   }
 ]

@@ -91,82 +91,121 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "component",
-          "component_spec": {
-            "component_id": "HB-CALLOUT-STRIP",
-            "variant": "warning",
-            "source_ref": "pdf:p4:risk-banner",
-            "language": "en",
-            "slots": [
-              {
-                "role": "label",
-                "content_kind": "inline_text",
-                "content": "WARNING"
-              },
-              {
-                "role": "body",
-                "content_kind": "rich_text",
-                "content": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+          "kind": "figure",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "hb-symbol-signal-composition hb-safety-instruction"
               }
-            ],
-            "assets": [],
-            "token_roles": [
-              "component.callout"
-            ],
-            "metadata": {},
-            "schema_version": "component-spec/v1"
+            }
           },
-          "carrier_flow": [
+          "children": [
             {
-              "kind": "table",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "manual-callout-table manual-callout-table"
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-CALLOUT-STRIP",
+                "variant": "warning",
+                "source_ref": "pdf:p4:risk-banner",
+                "language": "en",
+                "slots": [
+                  {
+                    "role": "label",
+                    "content_kind": "inline_text",
+                    "content": "WARNING"
+                  },
+                  {
+                    "role": "body",
+                    "content_kind": "rich_text",
+                    "content": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
                   }
-                }
+                ],
+                "assets": [],
+                "token_roles": [
+                  "component.callout"
+                ],
+                "metadata": {},
+                "schema_version": "component-spec/v1"
               },
-              "children": [
+              "carrier_flow": [
                 {
-                  "kind": "table_body",
+                  "kind": "table",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "manual-callout-table manual-callout-table hb-symbol-signal-table"
+                      }
+                    }
+                  },
                   "children": [
                     {
-                      "kind": "table_row",
+                      "kind": "table_body",
                       "children": [
                         {
-                          "kind": "table_cell",
-                          "header": false,
-                          "presentation": {
-                            "html": {
-                              "attributes": {
-                                "class": "manual-callout-label"
-                              }
-                            }
-                          },
+                          "kind": "table_row",
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "WARNING"
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_cell",
-                          "header": false,
-                          "presentation": {
-                            "html": {
-                              "attributes": {
-                                "class": "manual-callout-body"
-                              }
-                            }
-                          },
-                          "children": [
-                            {
-                              "kind": "paragraph",
+                              "kind": "table_cell",
+                              "header": false,
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": "manual-callout-label hb-symbol-signal-label-cell"
+                                  }
+                                }
+                              },
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+                                  "kind": "inline_group",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": "hb-source-risk-label"
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/e1746d6937db_warning_triangle_dark.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "strong",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "WARNING"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "table_cell",
+                              "header": false,
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": "manual-callout-body hb-symbol-signal-meaning-cell"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "paragraph",
+                                  "children": [
+                                    {
+                                      "kind": "strong",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -182,122 +221,159 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Always follow these basic precautions when using this product."
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-two-col-table"
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "list",
-          "ordered": false,
+          },
           "children": [
             {
-              "kind": "list_item",
+              "kind": "table_body",
               "children": [
                 {
-                  "kind": "text",
-                  "text": "Read all the instructions before using the product."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Avoid placing hands or fingers inside the product."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
-                }
-              ]
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "list",
-          "ordered": false,
-          "children": [
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
+                  "kind": "table_row",
+                  "children": [
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Always follow these basic precautions when using this product."
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Read all the instructions before using the product."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Avoid placing hands or fingers inside the product."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_cell",
+                      "header": false,
+                      "children": [
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -316,197 +392,234 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "SAVE THESE INSTRUCTIONS"
+          "kind": "table",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "manual-two-col-table"
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "list",
-          "ordered": false,
+          },
           "children": [
             {
-              "kind": "list_item",
+              "kind": "table_body",
               "children": [
                 {
-                  "kind": "text",
-                  "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:"
-                },
-                {
-                  "kind": "list",
-                  "ordered": false,
+                  "kind": "table_row",
                   "children": [
                     {
-                      "kind": "list_item",
+                      "kind": "table_cell",
+                      "header": false,
                       "children": [
                         {
-                          "kind": "text",
-                          "text": "Charging temperature: -4°F to 113°F (-20°C to 45°C )"
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "SAVE THESE INSTRUCTIONS"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges:"
+                                },
+                                {
+                                  "kind": "list",
+                                  "ordered": false,
+                                  "children": [
+                                    {
+                                      "kind": "list_item",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Charging temperature: -4°F to 113°F (-20°C to 45°C )"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "list_item",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Discharging temperature: -4°F to 113°F (-20°C to 45°C )"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
+                                },
+                                {
+                                  "kind": "list",
+                                  "ordered": false,
+                                  "children": [
+                                    {
+                                      "kind": "list_item",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Charging in damp or poorly ventilated spaces may cause safety hazards."
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "list_item",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Water can cause short circuits or damage to the charger, leading to safety risks."
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Unplug the power cord from a power outlet during a storm."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
                     {
-                      "kind": "list_item",
+                      "kind": "table_cell",
+                      "header": false,
                       "children": [
                         {
-                          "kind": "text",
-                          "text": "Discharging temperature: -4°F to 113°F (-20°C to 45°C )"
+                          "kind": "list",
+                          "ordered": false,
+                          "children": [
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Ensure the device(s) are powered off before connecting them to the product."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not charge the product using a damaged or broken charging cord or plug."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "DO NOT place the unit upside down or on its side during use or storage."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "DO NOT use the product's accessories with other devices or equipment."
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "list_item",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible."
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
-                },
-                {
-                  "kind": "list",
-                  "ordered": false,
-                  "children": [
-                    {
-                      "kind": "list_item",
-                      "children": [
-                        {
-                          "kind": "text",
-                          "text": "Charging in damp or poorly ventilated spaces may cause safety hazards."
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "list_item",
-                      "children": [
-                        {
-                          "kind": "text",
-                          "text": "Water can cause short circuits or damage to the charger, leading to safety risks."
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Unplug the power cord from a power outlet during a storm."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
-                }
-              ]
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "list",
-          "ordered": false,
-          "children": [
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Ensure the device(s) are powered off before connecting them to the product."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not charge the product using a damaged or broken charging cord or plug."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "DO NOT place the unit upside down or on its side during use or storage."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "DO NOT use the product's accessories with other devices or equipment."
-                }
-              ]
-            },
-            {
-              "kind": "list_item",
-              "children": [
-                {
-                  "kind": "text",
-                  "text": "Solar charge time depends on weather conditions. Place your solar panel where it will get as much direct sunlight as possible."
                 }
               ]
             }

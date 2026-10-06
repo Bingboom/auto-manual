@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692"
+    "technical_version": "git-20261005-31fd0692-layout2"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -74,7 +74,8 @@
     "Specification submodes separated into native lines; four source footnotes remain separate paragraphs.",
     "Source-local specification carriers retain the shared h2 hook with explicit aria-level 3/4 and exclude component headings from chapter TOC.",
     "Vector + in App step 2.1 transcribed from source visual.",
-    "Page furniture and non-English preface copy excluded."
+    "Page furniture and non-English preface copy excluded.",
+    "Operator p4 correction: visible product-title bar suppressed while retaining Sphinx document identity; source column boundaries, bold leads and dark safety/subsection bars restored through frozen source-local presentation and shared safety mobile stacking."
   ],
   "retained_source_anomalies": [
     {
@@ -111,18 +112,18 @@
     },
     {
       "path": "rebuild.py",
-      "size": 5454,
-      "sha256": "05db96d8882626956b9d863b5c3b2529c975073c5d345dffa834f3e15511bc2b"
+      "size": 5708,
+      "sha256": "3490b6fa1e71d05615f55615d60dc2f6f7535052ecce5d246fa9f253230bcd56"
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 70517,
-      "sha256": "b65443dff4749b4b83e8af19ac5b9abbf6d25efcf97f34368ea5603b5d2e2735"
+      "size": 71162,
+      "sha256": "d21dae545d5d7eeb76586e0f11e1308ad66e01565d37ba6cf1ae089062fa3d18"
     },
     {
       "path": "source/content.json",
-      "size": 409658,
-      "sha256": "e733727dbe798b9be63141324ee4db10db036dfa759bfe1fb1add0cffe39deed"
+      "size": 418688,
+      "sha256": "254e2d29a459d69110f3d52c6b96b65e530414feb660384430656ff72160e179"
     },
     {
       "path": "source/coverage_audit.json",
@@ -140,9 +141,14 @@
       "sha256": "0a034c23cc5df33e960c6c23ce3cb5a61dc7f3c1e98acf5e43b69410426f1960"
     },
     {
+      "path": "source/presentation.css",
+      "size": 1963,
+      "sha256": "7d6047daf6728a3a4665cb77ad0cdc48d005e572425542e1a167a63208f1d6df"
+    },
+    {
       "path": "web/en/_static/web_manual.css",
-      "size": 101156,
-      "sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db"
+      "size": 103120,
+      "sha256": "a47a18709b18cccc936863e2895e9fbd8b45fdbfc199437a5d6ac801c4dcb24b"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -380,6 +386,11 @@
       "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
     },
     {
+      "path": "web/en/assets/e1746d6937db_warning_triangle_dark.svg",
+      "size": 336,
+      "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5"
+    },
+    {
       "path": "web/en/assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
       "size": 1481,
       "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
@@ -571,13 +582,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 575167,
-      "sha256": "3b8c7870101df4470d15ab05240d660e1771e1fb24abc9a77a25396ef5c10656"
+      "size": 583558,
+      "sha256": "683d142d48207bca03c2d6bc822871e51af71fe9c789a0ff24994bf36dc4377d"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 93450,
-      "sha256": "af9d5449c6448aa3828ded1e4de8e7f77bbaff95b525a99c74d844fa65567ec4"
+      "size": 93946,
+      "sha256": "b63b44104697c0be09245f8d5ee3680b686a705ecc412c40c0e648a09448a601"
     }
   ],
   "repo_inputs": [

@@ -59,6 +59,10 @@ def rebuild(output: Path) -> None:
     )
     with (output / "conf.py").open("a") as stream:
         stream.write("\nlanguage = " + repr(source["language"]) + "\n")
+    # Source-local geometry corrections; shared styles still own components and breakpoints.
+    css = output / "_static/web_manual.css"
+    with css.open("a") as stream:
+        stream.write("\n" + (SOURCE_ROOT / "source/presentation.css").read_text())
     registry = load_component_registry()
     theme = load_manual_theme(component_registry=registry)
     contract = load_web_manual_contract(model=source["model"], region=source["region"])
