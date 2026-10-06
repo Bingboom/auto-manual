@@ -73,3 +73,25 @@ AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off AUTO_MANUAL_PRESENTATION_PROFILE=web python3 
 ```
 
 Operator visual confirmation of this English baseline is pending. No remote branch push, PR, merge, production RTD deployment or online record write is part of the completed local intake boundary.
+
+
+## Local publication candidate
+
+Source commit: `7bf6b36750532f891968c1b3064e8ca9b50dd0ac`. At this exact ref the existing US regression gate passed again, the frozen MyST passed strict Sphinx, and [language evidence](jhp3600c_us_en_web_evidence/language_projection_receipt.json) sealed source inventory, version, commit, MyST and verification HTML.
+
+A read-only archive of Hello-Docs/main at `83cc003714a81a6d8fa1e89b9b38829b76ed598e` supplied the existing `docs/publish/**` base. The shared assembler produced a local-only 106-target candidate. All 5,609 pre-existing files under `docs/publish/sources/**` remain byte-identical to that base; no target was removed. [Candidate fingerprint](jhp3600c_us_en_web_evidence/candidate.json).
+
+Aggregate preflight passed:
+
+```bash
+python3 -m tools.publish_branch_assembly --releases-root tmp/jhp3600c-releases --output-dir /tmp/jhp3600c-publish-base/docs/publish
+python3 -m sphinx -W -b html -D extensions=myst_parser,tools.rtd.portal /tmp/jhp3600c-publish-base/docs/publish/web /tmp/jhp3600c-publish-html
+```
+
+The portal emitted its local query corpus/deployment receipt, and every aggregate HTML image points to a packaged local file. These are local preflight receipts, not an RTD production build receipt. The final local page is `http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`; its desktop/mobile DOM and packaged images were checked. The short local alias is `http://127.0.0.1:8765/manual_jhp3600c_us_en.html`.
+
+The candidate is assembled at `/tmp/jhp3600c-publish-base/docs/publish`, with isolated versioned release evidence under this worktree's `tmp/jhp3600c-releases`. Source and permanent QC evidence are committed in the engineering branch. Candidate publication/PR/merge/deployment and human English-baseline confirmation remain pending.
+
+Mobile LCD scrolling was exercised: the table's scroll position advanced to 286 px within its 354 px figure while the page stayed 390 px wide. [Scrolled description view](jhp3600c_us_en_web_evidence/mobile-lcd-scrolled.jpg).
+
+Final aggregate [desktop screenshot](jhp3600c_us_en_web_evidence/final-desktop.jpg) and [mobile screenshot](jhp3600c_us_en_web_evidence/final-mobile.jpg) record the actual portal candidate, including its language selector.

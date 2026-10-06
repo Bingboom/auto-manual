@@ -34,5 +34,23 @@
   ],
   "source_native_lines": 1128,
   "unmatched_native_lines": 0,
-  "operator_confirmation": "pending; agent browser evidence only"
+  "operator_confirmation": "pending; agent browser evidence only",
+  "final_aggregate_page": "JHP-3600C/US/en/md/manual_jhp3600c_us_en.html",
+  "final_aggregate_desktop": {
+    "width": 1440,
+    "document_scroll_width": 1440,
+    "image_instances": 86,
+    "loaded_image_failures": []
+  },
+  "final_aggregate_mobile": {
+    "width": 390,
+    "document_scroll_width": 390,
+    "loaded_image_failures": []
+  },
+  "lcd_horizontal_scroll_test": {
+    "viewport": 390,
+    "figure_width": 354,
+    "table_width": 640,
+    "scroll_left": 286
+  }
 }
