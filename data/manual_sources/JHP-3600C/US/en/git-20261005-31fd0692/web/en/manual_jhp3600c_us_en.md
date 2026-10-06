@@ -22,7 +22,7 @@
 #furo-main-content section:has(> .hb-safety-instruction) > section > h2::before {
   display: none;
 }
-#furo-main-content section:has(> .hb-safety-instruction) > section > h2 {
+#furo-main-content section:has(> .hb-safety-instruction) > section > h2:first-of-type {
   display: block;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;

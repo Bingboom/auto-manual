@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-headings2"
+    "technical_version": "git-20261005-31fd0692-headings3"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -81,7 +81,8 @@
     "Operator correction against native physical p7: PRODUCT OVERVIEW uses a full-width dark title bar with white copy; FRONT VIEW and RIGHT SIDE VIEW keep source-sized round markers flush with the artwork left edge. Source copy and approved complete labeled artwork remain unchanged.",
     "Operator LCD table correction: 28 leading status labels (12 On:, 4 Blink:, 12 Off:) in 12 rows carry explicit strong emphasis in the existing ComponentSpec rich HTML; all wording, plain-text descriptions, icons and other rows remain unchanged.",
     "Whole-manual heading correction: source-native chapter levels map directly to shared H1 dark bars and H2 round-marker styles, instead of compensating chapter by chapter in CSS. Reviewed exceptions: plain preface, hidden document/FCC/contact/panel labels, safety subbars, warranty shared card tabs, numbered App steps, and small gray source pills. Native product bars and specification group accessibility levels corrected. See source/heading_audit.json; copy and artwork remain unchanged.",
-    "Heading browser follow-up: retain plain preface under hidden document identity for Furo chapter navigation; force the duplicate ATS carrier label hidden against generic H2 specificity; UPS heading provenance includes physical p14 and p15."
+    "Heading browser follow-up: retain plain preface under hidden document identity for Furo chapter navigation; force the duplicate ATS carrier label hidden against generic H2 specificity; UPS heading provenance includes physical p14 and p15.",
+    "Hash-target regression: native safety H2 strips keep their shared dark fill when Furo applies :target heading highlighting; source selector outranks the theme highlight."
   ],
   "retained_source_anomalies": [
     {
@@ -153,8 +154,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 2876,
-      "sha256": "4c81f6afc1629d0c80506ccb3efe72a352133bd533a8ad8e0a8877ee305695fc"
+      "size": 2890,
+      "sha256": "41810b7c34adf09b2c7229dfe61a2e41cc73a4ac6d823dd1d714edb6496fc489"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -188,8 +189,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 2876,
-      "sha256": "4c81f6afc1629d0c80506ccb3efe72a352133bd533a8ad8e0a8877ee305695fc"
+      "size": 2890,
+      "sha256": "41810b7c34adf09b2c7229dfe61a2e41cc73a4ac6d823dd1d714edb6496fc489"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -684,12 +685,12 @@
     {
       "path": "web/en/manual.ir.json",
       "size": 586940,
-      "sha256": "4e1fecb8c4c457acaa53fe2fa525c691fde542727113961e58d5c3a08933dfa6"
+      "sha256": "32227c18e91805576f053cb039afbd5cc18fbc1d0f9617b802fc19cc4d0a147f"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 97609,
-      "sha256": "d4828d82dbacc97ff41a92e1a3f1816fafdfbb3477366d629ea3f77874b26db7"
+      "size": 97623,
+      "sha256": "3adc35cca26d4a9496f463b3e2e6fa6175b12fd04fff18515a223fdba7047ea5"
     }
   ],
   "repo_inputs": [
