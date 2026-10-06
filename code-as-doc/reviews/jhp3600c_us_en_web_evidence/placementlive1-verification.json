@@ -1,0 +1,47 @@
+{
+  "left-product-cable": {
+    "bbox": [
+      40,
+      330,
+      171,
+      406
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "right-stack-cable": {
+    "bbox": [
+      220,
+      314,
+      308,
+      421
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "distance-leaders": {
+    "bbox": [
+      105,
+      405,
+      168,
+      409
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "removed_caption_drawings": [
+    11611,
+    11612
+  ],
+  "removed_outer_frames": [
+    20,
+    21
+  ],
+  "crop": [
+    26,
+    287,
+    342,
+    434
+  ],
+  "bare_art_review": "No caption frames or external wording remain; native product/cable/distance leaders preserved."
+}

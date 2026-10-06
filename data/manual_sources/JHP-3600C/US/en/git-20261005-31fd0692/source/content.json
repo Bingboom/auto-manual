@@ -4823,17 +4823,204 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/battery_placement.png",
-          "alt": "Side-by-side placement Stacked placement \u2265 0.66 ft (\u2248200 mm)",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "source/content.json#reference-battery-placement",
+            "language": "en",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "battery-placement"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "Battery pack placement configurations"
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "<strong>Side-by-side placement</strong>",
+                    "text": "Side-by-side placement"
+                  },
+                  {
+                    "html": "<strong>Stacked placement</strong>",
+                    "text": "Stacked placement"
+                  },
+                  {
+                    "html": "\u2265 0.66 ft (\u2248200 mm)",
+                    "text": "\u2265 0.66 ft (\u2248200 mm)"
+                  }
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/placement_framefree.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "capture_following_lines": 3,
+              "captions_embedded": false,
+              "captions_origin": "carrier",
+              "caption_centers_pct": null,
+              "composite_locale": "",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      2.427848101265822,
+                      6.870068027210877,
+                      26.524050632911393,
+                      9.314965986394547
+                    ],
+                    "fill": "#ebebec"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      52.7246835443038,
+                      6.870068027210877,
+                      21.934493670886074,
+                      9.314965986394547
+                    ],
+                    "fill": "#ebebec"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      27.491455696202536,
+                      83.38027210884354,
+                      17.60348101265823,
+                      5.735374149659853
+                    ],
+                    "color": "#555555"
+                  }
+                ]
+              },
+              "image_key": "assets/placement_framefree.png",
+              "web_replace_key": "reference.battery-placement",
+              "source_fragment_sha256": "2d36a695acf774dfbeab7dfc8dadc84353fd457af0f29514266558fe235e2e9e"
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "image",
+              "source": "assets/placement_framefree.png",
+              "alt": "Battery pack placement configurations",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-reference",
+                    "data-reference": "{\"id\": \"battery-placement\", \"image_key\": \"assets/placement_framefree.png\", \"web_replace_key\": \"reference.battery-placement\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [2.427848101265822, 6.870068027210877, 26.524050632911393, 9.314965986394547], \"fill\": \"#ebebec\"}, {\"line\": 1, \"rect\": [52.7246835443038, 6.870068027210877, 21.934493670886074, 9.314965986394547], \"fill\": \"#ebebec\"}, {\"line\": 2, \"rect\": [27.491455696202536, 83.38027210884354, 17.60348101265823, 5.735374149659853], \"color\": \"#555555\"}]}}"
+                  }
+                }
+              }
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "line-block"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Side-by-side placement"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Stacked placement"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "\u2265 0.66 ft (\u2248200 mm)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "component",

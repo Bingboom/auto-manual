@@ -221,6 +221,20 @@
 
 #furo-main-content #energy-saving-mode .hb-operation-step[data-step-id="toggle"] { width: 32%; }
 
+/* Native two-placement geometry; shared ReferenceFigure draws live caption pills. */
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::before,
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::after {
+  content: ""; position: absolute; box-sizing: border-box; pointer-events: none; z-index: 1;
+  border: max(1px, .25cqw) solid #e6e7e8; border-radius: 1.6cqw;
+}
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::before { left: 0.6092%; top: 0.9403%; width: 48.8035%; height: 97.7456%; }
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::after { left: 50.6754%; top: 0.9403%; width: 48.5256%; height: 97.7456%; }
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-live-label { z-index: 2; font-size: max(.5rem, 2.09cqw); }
+#furo-main-content [data-reference-id="battery-placement"] [data-source-line="2"] { font-size: max(.5rem, 1.92cqw); white-space: nowrap; }
+@media (max-width: 480px) {
+  #furo-main-content [data-reference-id="battery-placement"] [data-source-line="2"] { left: 4%; width: 43%; justify-content: center; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -391,7 +405,7 @@
 
 <p>If you are using only one battery pack, you may place it in either of the following configurations:</p>
 
-<img alt="Side-by-side placement Stacked placement ≥ 0.66 ft (≈200 mm)" src="assets/battery_placement.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="battery-placement" data-source-fragment-sha256="2d36a695acf774dfbeab7dfc8dadc84353fd457af0f29514266558fe235e2e9e" data-web-base-art-ref="assets/placement_framefree.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.battery-placement"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="battery-placement.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "battery-placement", "image_key": "assets/placement_framefree.png", "web_replace_key": "reference.battery-placement", "capture_following_lines": 3, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [2.427848101265822, 6.870068027210877, 26.524050632911393, 9.314965986394547], "fill": "#ebebec"}, {"line": 1, "rect": [52.7246835443038, 6.870068027210877, 21.934493670886074, 9.314965986394547], "fill": "#ebebec"}, {"line": 2, "rect": [27.491455696202536, 83.38027210884354, 17.60348101265823, 5.735374149659853], "color": "#555555"}]}}' src="assets/placement_framefree.png"/><span class="hb-reference-live-label hb-reference-live-pill" data-source-line="0" style="--hb-x:2.4278%;--hb-y:6.8701%;--hb-width:26.5241%;--hb-height:9.315%;--hb-fill:#ebebec"><strong>Side-by-side placement</strong></span><span class="hb-reference-live-label hb-reference-live-pill" data-source-line="1" style="--hb-x:52.7247%;--hb-y:6.8701%;--hb-width:21.9345%;--hb-height:9.315%;--hb-fill:#ebebec"><strong>Stacked placement</strong></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="2" style="--hb-x:27.4915%;--hb-y:83.3803%;--hb-width:17.6035%;--hb-height:5.7354%;--hb-label-color:#555555">≥ 0.66 ft (≈200 mm)</span></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><ul><li>Ensure all products are powered off before connecting the HomePower 3600 Pro Max to the Jackery Battery Pack 3600.</li><li>To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.</li></ul></td></tr></tbody></table>
 

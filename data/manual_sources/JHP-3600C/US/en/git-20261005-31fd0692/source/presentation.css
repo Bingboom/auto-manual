@@ -219,3 +219,17 @@
 }
 
 #furo-main-content #energy-saving-mode .hb-operation-step[data-step-id="toggle"] { width: 32%; }
+
+/* Native two-placement geometry; shared ReferenceFigure draws live caption pills. */
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::before,
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::after {
+  content: ""; position: absolute; box-sizing: border-box; pointer-events: none; z-index: 1;
+  border: max(1px, .25cqw) solid #e6e7e8; border-radius: 1.6cqw;
+}
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::before { left: 0.6092%; top: 0.9403%; width: 48.8035%; height: 97.7456%; }
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-art-panel::after { left: 50.6754%; top: 0.9403%; width: 48.5256%; height: 97.7456%; }
+#furo-main-content [data-reference-id="battery-placement"] .hb-reference-live-label { z-index: 2; font-size: max(.5rem, 2.09cqw); }
+#furo-main-content [data-reference-id="battery-placement"] [data-source-line="2"] { font-size: max(.5rem, 1.92cqw); white-space: nowrap; }
+@media (max-width: 480px) {
+  #furo-main-content [data-reference-id="battery-placement"] [data-source-line="2"] { left: 4%; width: 43%; justify-content: center; }
+}

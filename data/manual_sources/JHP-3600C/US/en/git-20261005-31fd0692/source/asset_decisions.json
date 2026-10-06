@@ -1619,7 +1619,7 @@
   },
   {
     "slot": "battery_placement",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1639,7 +1639,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/battery_placement.png",
-    "sha256": "9a5a1b08b4d75ab45df34f9444cf7bc934d4427a2d5d753d5c3a4d254d03bd20"
+    "sha256": "9a5a1b08b4d75ab45df34f9444cf7bc934d4427a2d5d753d5c3a4d254d03bd20",
+    "rejection": "Burned title pills and distance copy; replaced by frame-free native art plus shared ReferenceFigure live HTML/CSS."
   },
   {
     "slot": "cascade",
@@ -2825,6 +2826,73 @@
       677
     ],
     "native_outer_frame": "610 removed through blank bottom-left edge region; shared Operation stage draws frame",
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "battery_placement",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets/jbp3600a_eu_en/stacking_clean.png",
+      "docs/renderers/web/assets/jbp2000b_jp/stacking.png",
+      "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/reference-battery_stack.png"
+    ],
+    "identity_check": "Candidate housings, sockets, battery count and placement differ from target native side-by-side / stacked pair.",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      287,
+      342,
+      434
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve native products/engravings/cable/distance leaders. Two title pills and both structural frames are CSS; all external wording is native editable HTML.",
+    "final_path": "assets/placement_framefree.png",
+    "sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_placement_framefree.json",
+    "excluded_caption_drawings": [
+      11611,
+      11612
+    ],
+    "outer_frames_css": [
+      20,
+      21
+    ],
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          2.427848101265822,
+          6.870068027210877,
+          26.524050632911393,
+          9.314965986394547
+        ],
+        "fill": "#ebebec"
+      },
+      {
+        "line": 1,
+        "rect": [
+          52.7246835443038,
+          6.870068027210877,
+          21.934493670886074,
+          9.314965986394547
+        ],
+        "fill": "#ebebec"
+      },
+      {
+        "line": 2,
+        "rect": [
+          27.491455696202536,
+          83.38027210884354,
+          17.60348101265823,
+          5.735374149659853
+        ],
+        "color": "#555555"
+      }
+    ],
     "reuse_status": "active",
     "registry_promotion": "not performed; Git-only review candidate"
   }
