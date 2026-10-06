@@ -31,6 +31,15 @@ native source presentation retains the dark complete grid, rounded outline,
 left alignment and compact cell spacing. A source width constraint permits
 wrapping at 390px instead of inheriting the generic table's 576px minimum.
 
+The Web body starts directly at **WHAT’S IN THE BOX**. The operator removed
+the added Model and US / English / User Manual introduction lines. The
+cover-title-only source file is retained for provenance and omitted from Web
+page assembly; identity remains in target metadata and native specifications.
+Candidate 10b's strict build and exact source-free replay passed; all content
+from the first chapter onward and all six artwork bytes are unchanged from
+candidate 9. Desktop and 390px screenshots are in `evidence/browser/`, with
+checks in `evidence/intro-correction.json`.
+
 ## Rebuild
 
 From the repository root, with the project's Python dependencies installed:

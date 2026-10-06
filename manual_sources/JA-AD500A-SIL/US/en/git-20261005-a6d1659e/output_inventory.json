@@ -49,18 +49,23 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 199710,
-      "sha256": "ca2ef6c0972f6b4a50f264c90a5ce804447f17c7f4acb76486846e7833881ec1"
+      "size": 197648,
+      "sha256": "d0764e491a654336d6419cf1056b85a07e456775090ad2e9f5e8c6d91fc48f67"
     },
     {
       "path": "web/en/manual_jaad500asil_us_en.md",
-      "size": 15796,
-      "sha256": "6a69c091327e51c72ecd8168a21755523c9b8a4bdeaa8911e582d53eda3a4c0a"
+      "size": 15710,
+      "sha256": "1df92b9e21c3b9b5d623a06af7da7e66eb7b39226e3df3debfecaa66973360cb"
     },
     {
       "path": "evidence/browser/desktop-footer-corrected.jpg",
       "size": 84761,
       "sha256": "8a870ddc2f69525b1d8bdcd8440e23077933616ec4bcde39a8921478a0ba6844"
+    },
+    {
+      "path": "evidence/browser/desktop-intro-removed.jpg",
+      "size": 60104,
+      "sha256": "6b712d0a9c770052759626dd527cadda4a9666a7feb41d241edda883483ac132"
     },
     {
       "path": "evidence/browser/desktop-led-corrected.jpg",
@@ -91,6 +96,11 @@
       "path": "evidence/browser/mobile-full.jpg",
       "size": 393124,
       "sha256": "4376a15b59c3bd699213d336f49e241e21cc68352b9b1549335948ccfa8ac43f"
+    },
+    {
+      "path": "evidence/browser/mobile-intro-removed.jpg",
+      "size": 25399,
+      "sha256": "0403d60c99deddcfd083dccf507a704f3a16000ebb4891e830c8bf9189bba29b"
     },
     {
       "path": "evidence/browser/mobile-led-corrected.jpg",
@@ -138,6 +148,11 @@
       "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
     },
     {
+      "path": "evidence/intro-correction.json",
+      "size": 579,
+      "sha256": "f69c6f69393c9bc6315ac201c48e9206f5ea807e142658a27eb0ee4dc59e4f7a"
+    },
+    {
       "path": "evidence/led-table-correction.json",
       "size": 822,
       "sha256": "6ccbda61f1133bbbc64f74cbf503e358609510d2104e4c3be0ed05618114071d"
@@ -171,6 +186,11 @@
       "path": "evidence/sphinx-cold-3.log",
       "size": 2087,
       "sha256": "7e1e07f4417cdeca652fdd141dfa1292de584c0ddbe4f2eb1073e8286181b6f2"
+    },
+    {
+      "path": "evidence/strict-intro-removed.log",
+      "size": 2087,
+      "sha256": "c743dcc7999a36c1a8a2b7832d225c6d20d4fe3a09bb5a3cb597f85bad406472"
     },
     {
       "path": "evidence/us-check-default.log",

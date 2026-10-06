@@ -1,10 +1,3 @@
-<p>Model: <strong>JA-AD500A-SIL</strong></p>
-
-
-
-
-<p>US · English · User Manual</p>
-
 # WHAT'S IN THE BOX
 
 <figure aria-label="WHAT'S IN THE BOX" class="hb-inbox-composition" data-card-count="2" data-component-id="HB-SPECIAL-INBOX" data-inbox-variant="responsive-card-grid"><ol class="hb-inbox-grid"><li class="hb-inbox-card" data-item-number="1"><img alt="Jackery DC Input Module" class="hb-inbox-art" src="assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png"/><div class="hb-inbox-label">

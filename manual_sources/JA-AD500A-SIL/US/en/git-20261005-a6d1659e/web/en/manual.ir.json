@@ -8,8 +8,8 @@
     "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "768d9d2bf44112f79536d9cb9a76889f8ea37bf9cc611768236cba5bac4efa1d",
-  "content_sha256": "c2c6677c96bf4a2b6d6366c4105e4efc38155d476cd333723c41df1f3525c72f",
+  "bundle_sha256": "3ef7426b3619674a386152b2308652d3433cf9d79a9ca5e316f9ec13983e44b3",
+  "content_sha256": "a43ba1388a05f4d66169a60b7bae9791613cb9205350d16f7458bfa36bd4d5f1",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -21,7 +21,7 @@
       "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
       "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
     },
-    "block_count": 35,
+    "block_count": 32,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 3,
       "HB-SPECIAL-INBOX": 1,
@@ -1316,8 +1316,8 @@
         },
         {
           "path": "source/page/00_preface_en.rst",
-          "sha256": "7566b4e9f291852cb519e78b29640fab58446dd8e2688942d767b0122794040e",
-          "size": 103
+          "sha256": "c44099c3a1100a69573ec8ac6ae8e2f6409faa89c494f4f7e98e60f9ad36315d",
+          "size": 47
         },
         {
           "path": "source/page/box_contents_en.rst",
@@ -1365,7 +1365,8 @@
         "source heading case retained; warranty continuation is one section",
         "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
         "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
-        "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation"
+        "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
+        "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX"
       ],
       "original_source": {
         "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
@@ -1374,7 +1375,6 @@
         "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da"
       },
       "page_order": [
-        "00_preface_en.rst",
         "box_contents_en.rst",
         "product_overview_en.rst",
         "charging_en.rst",
@@ -2002,7 +2002,7 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_jaad500asil_us_en.md",
-    "page_count": 7,
+    "page_count": 6,
     "page_declarations": {},
     "page_slots": {},
     "pending_source_review": [
@@ -2191,71 +2191,6 @@
   },
   "model": "JA-AD500A-SIL",
   "pages": [
-    {
-      "blocks": [
-        {
-          "asset_refs": [],
-          "block_id": "00_preface_en.rst:block-0001",
-          "content_sha256": "daf96769f91a6e92975bf8c1867a223aea5f532c5b294cbb65fe480d341fad6f",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: "
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "JA-AD500A-SIL"
-                  }
-                ],
-                "kind": "strong"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "00_preface_en.rst#block-1"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "00_preface_en.rst:block-0002",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "00_preface_en.rst#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "00_preface_en.rst:block-0003",
-          "content_sha256": "237f43d7141f993b5a11bd38e01de5297b25f59d68d2b06058063fd6afce960b",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "US · English · User Manual"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "00_preface_en.rst#block-3"
-        }
-      ],
-      "language": "en",
-      "page_id": "00_preface_en.rst",
-      "skipped_raw": 0,
-      "source_path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/00_preface_en.rst",
-      "source_ref": "00_preface_en.rst",
-      "source_sha256": "7566b4e9f291852cb519e78b29640fab58446dd8e2688942d767b0122794040e"
-    },
     {
       "blocks": [
         {

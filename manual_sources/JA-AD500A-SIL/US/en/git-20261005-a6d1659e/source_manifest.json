@@ -22,7 +22,6 @@
   "live_bitable_dependency": false,
   "publication_eligible": false,
   "page_order": [
-    "00_preface_en.rst",
     "box_contents_en.rst",
     "product_overview_en.rst",
     "charging_en.rst",
@@ -74,7 +73,8 @@
     "source heading case retained; warranty continuation is one section",
     "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
     "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
-    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation"
+    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
+    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX"
   ],
   "source_concerns": [
     {
@@ -135,8 +135,8 @@
     },
     {
       "path": "source/page/00_preface_en.rst",
-      "size": 103,
-      "sha256": "7566b4e9f291852cb519e78b29640fab58446dd8e2688942d767b0122794040e"
+      "size": 47,
+      "sha256": "c44099c3a1100a69573ec8ac6ae8e2f6409faa89c494f4f7e98e60f9ad36315d"
     },
     {
       "path": "source/page/box_contents_en.rst",

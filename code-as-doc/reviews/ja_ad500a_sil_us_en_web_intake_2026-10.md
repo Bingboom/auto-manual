@@ -143,3 +143,18 @@ confirms the complete grid/header alignment. On phone the table fits within
 its 358px wrapper (355px table), wraps the long status copy and does not clip
 behind the generic 576px table minimum. No shared renderer or CSS changed;
 the source declares the existing table presentation and its dimensions.
+
+## Operator correction: remove the added introduction
+
+The operator marked both `Model: JA-AD500A-SIL` and
+`US · English · User Manual` for deletion. The Web body now starts directly
+at **WHAT’S IN THE BOX**. The title-only cover source remains committed for
+provenance and is omitted from the Web page order, avoiding an empty normalized
+preface. Target metadata and original specification identity remain intact.
+
+Candidate 10b passes strict Sphinx and exact source-free IR replay. Its MyST
+from the first chapter onward is byte-identical to candidate 9, as are all six
+artwork assets. Actual 1440px desktop and 390px phone views confirm the first
+chapter at the top, no added intro and no document horizontal overflow.
+Corrected screenshots, strict log and `evidence/intro-correction.json` are
+retained; earlier candidates and evidence remain preserved.
