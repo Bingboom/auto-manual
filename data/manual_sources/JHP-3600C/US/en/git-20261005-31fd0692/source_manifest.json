@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-charge240caption1"
+    "technical_version": "git-20261005-31fd0692-specsubrows1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 525520,
-      "sha256": "87cb0b9b356a1cabf63d6245e677e019ccad61451bee611bf40bb73fee648334"
+      "size": 527964,
+      "sha256": "9b97921d0ea6de84c6cdeb7e1be1503f6932d1e5f85289f06af0c99c2c18f339"
     },
     {
       "path": "source/coverage_audit.json",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 701023,
-      "sha256": "991abffd877c62ee88406c5afe91bdc981434e960ee40ad741fa189daf43344a"
+      "size": 703611,
+      "sha256": "1dfaa270a5e297670fbcc5e2726afe5317deba5db8c1333721444657215b2633"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 114041,
-      "sha256": "8edcca2d6a797eda0f73e910f6b1eb3ed24c571f24cb06bafbe6a020c567b38d"
+      "size": 114369,
+      "sha256": "fe5c8c3045bee797dea85b839089f05570c3208ac89a90199c2f1c55b0f3cbae"
     }
   ],
   "repo_inputs": [

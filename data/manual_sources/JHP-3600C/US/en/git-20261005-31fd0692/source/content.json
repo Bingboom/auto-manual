@@ -7613,10 +7613,14 @@
                 "content": [
                   {
                     "label": "1 × AC Input",
-                    "label_rowspan": 1,
+                    "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W\nBypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+                        "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+                        "references": []
+                      },
+                      {
+                        "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
                         "references": [
                           "①"
                         ]
@@ -7701,7 +7705,8 @@
                               "kind": "text",
                               "text": "1 × AC Input"
                             }
-                          ]
+                          ],
+                          "row_span": 2
                         },
                         {
                           "kind": "table_cell",
@@ -7710,10 +7715,18 @@
                             {
                               "kind": "text",
                               "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W"
-                            },
-                            {
-                              "kind": "line_break"
-                            },
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
                             {
                               "kind": "text",
                               "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
@@ -7808,13 +7821,17 @@
                   },
                   {
                     "label": "AC Output in Bypass Mode①",
-                    "label_rowspan": 1,
+                    "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W④ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W④ Max\n240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
+                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W④ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W④ Max",
                         "references": [
                           "④"
                         ]
+                      },
+                      {
+                        "text": "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
+                        "references": []
                       }
                     ],
                     "references": [
@@ -7982,15 +7999,21 @@
                               "kind": "text",
                               "text": "AC Output in Bypass Mode①"
                             }
-                          ]
+                          ],
+                          "row_span": 2
                         },
                         {
                           "kind": "table_cell",
                           "header": false,
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "120V AC Input:"
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "120V AC Input:"
+                                }
+                              ]
                             },
                             {
                               "kind": "line_break"
@@ -8005,13 +8028,26 @@
                             {
                               "kind": "text",
                               "text": "NEMA 14-50R: 240V~ 60Hz, 1440W④ Max"
-                            },
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
                             {
-                              "kind": "line_break"
-                            },
-                            {
-                              "kind": "text",
-                              "text": "240V AC Input:"
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "240V AC Input:"
+                                }
+                              ]
                             },
                             {
                               "kind": "line_break"
@@ -10837,10 +10873,14 @@
                 "content": [
                   {
                     "label": "1 × AC Input",
-                    "label_rowspan": 1,
+                    "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W\nBypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+                        "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+                        "references": []
+                      },
+                      {
+                        "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
                         "references": [
                           "①"
                         ]
@@ -10925,7 +10965,8 @@
                               "kind": "text",
                               "text": "1 × AC Input"
                             }
-                          ]
+                          ],
+                          "row_span": 2
                         },
                         {
                           "kind": "table_cell",
@@ -10934,10 +10975,18 @@
                             {
                               "kind": "text",
                               "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W"
-                            },
-                            {
-                              "kind": "line_break"
-                            },
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
                             {
                               "kind": "text",
                               "text": "Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
@@ -11032,10 +11081,14 @@
                   },
                   {
                     "label": "AC Output in Bypass Mode①",
-                    "label_rowspan": 1,
+                    "label_rowspan": 2,
                     "values": [
                       {
-                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W⁴ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W⁴ Max\n240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
+                        "text": "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W⁴ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W⁴ Max",
+                        "references": []
+                      },
+                      {
+                        "text": "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
                         "references": []
                       }
                     ],
@@ -11204,15 +11257,21 @@
                               "kind": "text",
                               "text": "AC Output in Bypass Mode①"
                             }
-                          ]
+                          ],
+                          "row_span": 2
                         },
                         {
                           "kind": "table_cell",
                           "header": false,
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "120V AC Input:"
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "120V AC Input:"
+                                }
+                              ]
                             },
                             {
                               "kind": "line_break"
@@ -11227,13 +11286,26 @@
                             {
                               "kind": "text",
                               "text": "NEMA 14-50R: 240V~ 60Hz, 1440W⁴ Max"
-                            },
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
                             {
-                              "kind": "line_break"
-                            },
-                            {
-                              "kind": "text",
-                              "text": "240V AC Input:"
+                              "kind": "strong",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "240V AC Input:"
+                                }
+                              ]
                             },
                             {
                               "kind": "line_break"
