@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-ups120style1"
+    "technical_version": "git-20261005-31fd0692-ups240style1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -114,13 +114,13 @@
     },
     {
       "path": "__pycache__/audit_source.cpython-312.pyc",
-      "size": 9856,
-      "sha256": "8a5bfec49f18eabd761659c89475ce76b00065f69ad6ea957dd16403dcd5bd77"
+      "size": 9817,
+      "sha256": "4ac0828afa1d114a9d194426b47f8d2e4fc59f10ea0eb14b6757dfe9dd9cefeb"
     },
     {
       "path": "audit_source.py",
-      "size": 5654,
-      "sha256": "e1e316153ec387d928a4f7f852454798ba7dbe81cfffede2f5adb9d26ae3ebe0"
+      "size": 5676,
+      "sha256": "c3d4071a850948a3b22e3256e7aff81c8c2f096fcb2f67619e1d3c75bebbb88b"
     },
     {
       "path": "rebuild.py",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 501404,
-      "sha256": "4c4d9d9823e63d61ea4479805ed8b685af86404aa31ddd6cd5a22945b3fb3c9c"
+      "size": 504068,
+      "sha256": "2a7f403b19c92a8d06fafd7ec91fa4906c4c572a0f480730a8dc9a9fc8e9b6ec"
     },
     {
       "path": "source/coverage_audit.json",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 674701,
-      "sha256": "3525f5d9462fdb3653781b2c69fdc8294f970cfc5ab55ca108311fad17546020"
+      "size": 678677,
+      "sha256": "63037820cd827e0f502663793998ecd0cb6d8f41d2717e54388969bf0ad12351"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 108083,
-      "sha256": "a93ede09efdbf542dfb2f80028d758590157b95b6087bc6ce7ff569499384b30"
+      "size": 108219,
+      "sha256": "666c1f2ddbc791d632e6af3eecdecf8314669ba92681bc5c1fda6425ef705444"
     }
   ],
   "repo_inputs": [

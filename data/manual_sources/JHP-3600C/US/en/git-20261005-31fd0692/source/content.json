@@ -3599,14 +3599,126 @@
           "schema_version": "manual-flow/v2"
         },
         {
+          "schema_version": "manual-flow/v2",
           "kind": "paragraph",
           "children": [
             {
               "kind": "text",
-              "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off."
+              "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery."
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "All AC output ports support UPS operation under 240V input:"
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "NEMA 14-50R (240V~ 60Hz):"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " Up to "
+                },
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "9600W"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " bypass output"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "NEMA 5-20R ×2 (120V~ 60Hz):"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " Up to "
+                },
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "2400W per port, 4800W total"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " bypass output"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection)."
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "When the 240V grid power fails, the system automatically switches to battery power with a transfer time of "
+            },
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "<10 ms"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": ". When the battery is depleted, all AC outputs turn off."
+            }
+          ]
         },
         {
           "kind": "image",

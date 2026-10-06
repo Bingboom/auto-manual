@@ -250,7 +250,15 @@
 
 ## WITH 240V AC INPUT
 
-<p>Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of &lt;10 ms. When the battery is depleted, all AC outputs turn off.</p>
+<p>Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery.</p>
+
+<p>All AC output ports support UPS operation under 240V input:</p>
+
+<ul><li><strong>NEMA 14-50R (240V~ 60Hz):</strong> Up to <strong>9600W</strong> bypass output</li><li><strong>NEMA 5-20R ×2 (120V~ 60Hz):</strong> Up to <strong>2400W per port, 4800W total</strong> bypass output</li></ul>
+
+<p>The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection).</p>
+
+<p>When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <strong>&lt;10 ms</strong>. When the battery is depleted, all AC outputs turn off.</p>
 
 <img alt="240V AC expansion input using a Jackery 40A Charging Cable (sold separately)." src="assets/ups240.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 

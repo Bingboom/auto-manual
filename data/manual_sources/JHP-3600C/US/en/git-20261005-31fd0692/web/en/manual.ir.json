@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a6df196908b49b1b3158a68075466fc0b155eea009be002a02b44fb2bd956387",
-  "content_sha256": "445314578d1ebc13f185b5e6f39880ac840e146a39dbd56b1a9827ca233a70c5",
+  "bundle_sha256": "dbcde305b0342dda8e31d2a3bff2dd05cf8225bee1698acf566c37a9131c0279",
+  "content_sha256": "0c4fb974df92e1c0ffc549465203098242672685162dc2cdcbc64899d43af65e",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -209,7 +209,7 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 227,
+    "block_count": 231,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-APP": 2,
@@ -6367,13 +6367,13 @@
         {
           "asset_refs": [],
           "block_id": "ups:block-0013",
-          "content_sha256": "5c7ff2bbcb7616d1b5f59d01e090bebd798635d5779f9cf2a3c69171c79689c6",
+          "content_sha256": "5433e166872e046edd035b94cc2c4b99eb6235b834002f92497d9074e98879ec",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off."
+                "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery."
               }
             ],
             "kind": "paragraph",
@@ -6382,10 +6382,150 @@
           "source_ref": "native-pdf/ups#block-13"
         },
         {
+          "asset_refs": [],
+          "block_id": "ups:block-0014",
+          "content_sha256": "c3c0fbf9996c6ee3dfd63d826df848d6a0a3937c83d053f163c1ecc67570881b",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "All AC output ports support UPS operation under 240V input:"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-14"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0015",
+          "content_sha256": "75e0c6751f44445a1c2e47df78aeef22868c9f549476910dbb7946129cee55b4",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "NEMA 14-50R (240V~ 60Hz):"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " Up to "
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "9600W"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " bypass output"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "NEMA 5-20R ×2 (120V~ 60Hz):"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " Up to "
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "2400W per port, 4800W total"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " bypass output"
+                  }
+                ],
+                "kind": "list_item"
+              }
+            ],
+            "kind": "list",
+            "ordered": false,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-15"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0016",
+          "content_sha256": "40eb2a894b33b3f28d4779dcd8d50cdaa9badcf9ec13edca12b4a5dbfd572722",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection)."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-16"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0017",
+          "content_sha256": "6b06549dedab51be913ee6a58a02275e4b216d19a59d6802f3dcc43966c5a8d7",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "When the 240V grid power fails, the system automatically switches to battery power with a transfer time of "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "<10 ms"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": ". When the battery is depleted, all AC outputs turn off."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-17"
+        },
+        {
           "asset_refs": [
             "assets/ups240.png"
           ],
-          "block_id": "ups:block-0014",
+          "block_id": "ups:block-0018",
           "content_sha256": "7fcf8d6b2f1ff40502d6f2757645c8e49bdcef64f4f1b5fe19ba684347928260",
           "kind": "flow",
           "payload": {
@@ -6401,7 +6541,7 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/ups240.png"
           },
-          "source_ref": "native-pdf/ups#block-14"
+          "source_ref": "native-pdf/ups#block-18"
         }
       ],
       "language": "en",
@@ -6409,7 +6549,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ups",
       "source_ref": "native-pdf/ups",
-      "source_sha256": "813140512f4e791d0425f7753140fcce3fded27c4c135abcfaa8edda5078eb4e"
+      "source_sha256": "9e2f71fbf417b068517e0ffae13bdb669043af344639f7647dc27a589c344952"
     },
     {
       "blocks": [

@@ -61,11 +61,11 @@ def audit() -> dict:
     omissions = json.loads((PACKAGE / "source/illustrative_detail_omissions.json").read_text())
     check_retired_artwork(content, decisions)
     # Native lines may span strong/emphasis children; audit the same joined
-    # semantic paragraphs that the shared flow API presents to readers.
+    # semantic paragraphs and list items that the shared flow API presents.
     paragraphs = BeautifulSoup(flow_nodes_to_html(tuple(
         node for chapter in content["chapters"] for node in chapter["nodes"]
-        if node["kind"] == "paragraph"
-    )), "html.parser").find_all("p")
+        if node["kind"] in {"paragraph", "list"}
+    )), "html.parser").find_all(["p", "li"])
     corpus = (*strings(content), *(normalize(p.get_text()) for p in paragraphs))
     pdf = next(PACKAGE.glob("*.pdf"))
     assert hashlib.sha256(pdf.read_bytes()).hexdigest() == content["source_sha256"]
