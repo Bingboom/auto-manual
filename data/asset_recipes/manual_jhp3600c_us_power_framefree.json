@@ -1270,7 +1270,7 @@
       "outputs": [
         {
           "format": "pdf",
-          "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/power_framefree.pdf",
+          "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source/power_framefree.pdf",
           "expected_sha256": "882a84908a76943c4e05eedb6ca9bbba9e529fb325cdeb2d35c01cdf3911390c"
         },
         {

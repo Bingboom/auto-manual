@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-powerlive1"
+    "technical_version": "git-20261005-31fd0692-powerlive2"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -171,6 +171,11 @@
       "path": "source/positioned_copy.json",
       "size": 145765,
       "sha256": "0a034c23cc5df33e960c6c23ce3cb5a61dc7f3c1e98acf5e43b69410426f1960"
+    },
+    {
+      "path": "source/power_framefree.pdf",
+      "size": 71911,
+      "sha256": "882a84908a76943c4e05eedb6ca9bbba9e529fb325cdeb2d35c01cdf3911390c"
     },
     {
       "path": "source/presentation.css",
@@ -688,11 +693,6 @@
       "sha256": "0f9ef585164439b9b5728b6b548354f2ca3879ea5ba82a2258d269ddf818b264"
     },
     {
-      "path": "web/en/assets/power_framefree.pdf",
-      "size": 71911,
-      "sha256": "882a84908a76943c4e05eedb6ca9bbba9e529fb325cdeb2d35c01cdf3911390c"
-    },
-    {
       "path": "web/en/assets/power_framefree.png",
       "size": 35623,
       "sha256": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24"
@@ -789,8 +789,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 712855,
-      "sha256": "ee9ab442c62765e030f07e1f17c98537185a866d3d0ef0a5737871a531090d08"
+      "size": 712751,
+      "sha256": "ec732c7b23e36262eab4c83b5651375948544abb206eee5069cb2ce2709aff3c"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
