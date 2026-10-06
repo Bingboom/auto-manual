@@ -1422,7 +1422,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "e91ad4169088c142b37546a47d8b80692b1aac37713682eb304e5e672e7b4e1b",
+    "frozen_stylesheet_sha256": "41f880dec58b454b70072dfed0986e24cf069df31b8aa56299b1d82e6cab2918",
     "manual_theme": {
       "component_roles": {
         "component.callout": {

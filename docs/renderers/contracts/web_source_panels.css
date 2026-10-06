@@ -240,10 +240,17 @@ figure:has(> img.hb-readable-diagram) {
 
 /* Source model identity belongs to its chapter strip and can wrap in narrow readers. */
 #furo-main-content h1:has(.hb-heading-model) {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.6rem;
+}
+#furo-main-content h1:has(.hb-heading-model) > .headerlink {
+  position: absolute;
+  right: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 #furo-main-content .hb-heading-model {
   flex: 0 0 auto;
