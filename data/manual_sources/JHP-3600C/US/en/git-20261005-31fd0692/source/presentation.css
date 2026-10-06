@@ -180,3 +180,19 @@
     margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
   }
 }
+
+/* AC native artwork retains only product markings and connection geometry. */
+#furo-main-content #ac-output-on-off .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content #ac-output-on-off .hb-operation-prerequisite { background: var(--hb-fill); font-weight: 400; }
+@media (min-width: 761px) {
+  #furo-main-content #ac-output-on-off .hb-operation-step-label { font-size: 3.1646cqw; }
+  #furo-main-content #ac-output-on-off .hb-operation-step-instruction { font-size: 1.8987cqw; }
+  #furo-main-content #ac-output-on-off .hb-operation-prerequisite { font-size: 2.0886cqw; }
+}
+@media (max-width: 760px) {
+  #furo-main-content #ac-output-on-off .hb-operation-art-box { display: flex; flex-direction: column; }
+  #furo-main-content #ac-output-on-off .hb-operation-prerequisite {
+    position: static; order: -1; width: auto; max-width: none; min-width: 0;
+    margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
+  }
+}

@@ -182,6 +182,22 @@
   }
 }
 
+/* AC native artwork retains only product markings and connection geometry. */
+#furo-main-content #ac-output-on-off .hb-operation-stage { border-color: #e6e7e8; }
+#furo-main-content #ac-output-on-off .hb-operation-prerequisite { background: var(--hb-fill); font-weight: 400; }
+@media (min-width: 761px) {
+  #furo-main-content #ac-output-on-off .hb-operation-step-label { font-size: 3.1646cqw; }
+  #furo-main-content #ac-output-on-off .hb-operation-step-instruction { font-size: 1.8987cqw; }
+  #furo-main-content #ac-output-on-off .hb-operation-prerequisite { font-size: 2.0886cqw; }
+}
+@media (max-width: 760px) {
+  #furo-main-content #ac-output-on-off .hb-operation-art-box { display: flex; flex-direction: column; }
+  #furo-main-content #ac-output-on-off .hb-operation-prerequisite {
+    position: static; order: -1; width: auto; max-width: none; min-width: 0;
+    margin: 0.65rem 0.65rem 0; padding: 0.5rem 0.75rem; border-radius: 0.8rem;
+  }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -278,7 +294,7 @@
 
 ## AC OUTPUT ON/OFF
 
-<img alt="Prerequisite: The product is powered on. On Press once Off Press once" src="assets/ac.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-operation-figure hb-operation-layout-status-right hb-base-art-live-copy" data-component-id="HB-SPECIAL-OPERATION" data-operation-id="ac-output" data-source-fragment-sha256="592f4d39ad8d0b073531155b2ab927e879656c1c980e125cfa84f089cfc2ed8c" data-web-base-art-ref="assets/ac_framefree.png" data-web-presentation-mode="base-art-live-copy"><div class="hb-operation-stage"><div class="hb-operation-canvas"><div class="hb-operation-art-box"><img alt="" class="hb-operation-art" src="assets/ac_framefree.png"/><div class="hb-operation-prerequisite" data-callout-id="operation.ac-output.prerequisite" style="--hb-x:4.3707%;--hb-y:6.36197%;--hb-width:41.3244%;--hb-height:8.1506%;--hb-max-width:45.5%;--hb-fill:#ebebec"><p><strong>Prerequisite:</strong> The product is powered on.</p></div></div><div class="line-block hb-operation-steps" data-callout-id="operation.ac-output.steps"><div class="hb-operation-step" data-callout-id="operation.ac-output.on" data-step-id="on" style="--hb-step-x:80.1653%;--hb-step-y:25.3536%;--hb-step-width:18%"><div class="line hb-operation-step-label" data-step-id="on" data-step-part="label"><strong>On</strong></div><div class="line hb-operation-step-instruction" data-step-id="on" data-step-part="instruction">Press once</div></div><div class="hb-operation-step" data-callout-id="operation.ac-output.off" data-step-id="off" style="--hb-step-x:80.1653%;--hb-step-y:40.8387%;--hb-step-width:18%"><div class="line hb-operation-step-label" data-step-id="off" data-step-part="label"><strong>Off</strong></div><div class="line hb-operation-step-instruction" data-step-id="off" data-step-part="instruction">Press once</div></div></div></div></div></figure>
 
 ## ENERGY SAVING MODE
 

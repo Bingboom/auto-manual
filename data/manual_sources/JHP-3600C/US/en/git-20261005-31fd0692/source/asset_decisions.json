@@ -1411,7 +1411,7 @@
   },
   {
     "slot": "ac",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1431,7 +1431,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/ac.png",
-    "sha256": "e98fc6c1a0542dbdda3c71c4be43392f26ec3da41b93648d21d5a34dd4af1611"
+    "sha256": "e98fc6c1a0542dbdda3c71c4be43392f26ec3da41b93648d21d5a34dd4af1611",
+    "rejection": "Top border cropped at y45 instead of native y43.02; burned external operation copy and prerequisite capsule; replaced with shared Operation live text and CSS frames."
   },
   {
     "slot": "energy_saving",
@@ -2764,6 +2765,36 @@
       765
     ],
     "native_outer_frame": "740 removed by bounded prerequisite-frame removal; shared Operation stage draws frame",
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "ac",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets/je3600a_eu_en/operation_ac.png",
+      "docs/templates/word_template/common_assets/operation/ac_output.png",
+      "docs/renderers/latex/assets/op_ac_output.png"
+    ],
+    "identity_check": "Shared Explorer 1000 housing and single socket differ; Explorer 3600 wheeled housing, vertical AC switch and EU socket differ. Native target uses horizontal AC and NEMA 14-50R / 5-20R sockets.",
+    "physical_page": 12,
+    "bbox": [
+      29,
+      41,
+      345,
+      209
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve native white product surfaces, gray button faces, outlined engravings and complete leaders; prerequisite capsule and outer frame are CSS.",
+    "final_path": "assets/ac_framefree.png",
+    "sha256": "265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_ac_framefree.json",
+    "removed_caption_drawings": [
+      613
+    ],
+    "native_outer_frame": "597 removed by bounded prerequisite-frame removal; shared Operation stage draws frame",
     "reuse_status": "active",
     "registry_promotion": "not performed; Git-only review candidate"
   }

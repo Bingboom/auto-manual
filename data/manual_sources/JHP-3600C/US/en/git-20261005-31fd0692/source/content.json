@@ -2758,17 +2758,241 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/ac.png",
-          "alt": "Prerequisite: The product is powered on. On Press once Off Press once",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-OPERATION",
+            "variant": "status-right",
+            "source_ref": "native-pdf/p12#ac",
+            "language": "en",
+            "slots": [
+              {
+                "role": "operation_id",
+                "content_kind": "inline_text",
+                "content": "ac-output"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "AC OUTPUT ON/OFF"
+              },
+              {
+                "role": "steps",
+                "content_kind": "ordered_steps",
+                "content": [
+                  {
+                    "id": "on",
+                    "parts": [
+                      {
+                        "role": "label",
+                        "html": "<strong>On</strong>",
+                        "text": "On"
+                      },
+                      {
+                        "role": "instruction",
+                        "html": "Press once",
+                        "text": "Press once"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "off",
+                    "parts": [
+                      {
+                        "role": "label",
+                        "html": "<strong>Off</strong>",
+                        "text": "Off"
+                      },
+                      {
+                        "role": "instruction",
+                        "html": "Press once",
+                        "text": "Press once"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "role": "prerequisite",
+                "content_kind": "rich_text",
+                "content": "<p><strong>Prerequisite:</strong> The product is powered on.</p>"
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "artwork",
+                "asset_ref": "assets/ac_framefree.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.operation"
+            ],
+            "metadata": {
+              "presentation_mode": "base-art-live-copy",
+              "web_presentation": {
+                "id": "ac-output",
+                "layout": "status-right",
+                "step_ids": [
+                  "on",
+                  "off"
+                ],
+                "image_key": "assets/ac_framefree.png",
+                "capture_following_lines": 0,
+                "capture_prerequisite": true,
+                "presentation_mode": "base-art-live-copy",
+                "base_art_layout": {
+                  "art_sha256": "265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19",
+                  "step_anchors": [
+                    [
+                      80.1653,
+                      25.3536
+                    ],
+                    [
+                      80.1653,
+                      40.8387
+                    ]
+                  ],
+                  "step_width": 18,
+                  "prerequisite_rect": [
+                    4.3707,
+                    6.36197,
+                    41.3244,
+                    8.1506
+                  ],
+                  "prerequisite_max_width": 45.5,
+                  "prerequisite_fill": "#ebebec"
+                }
+              }
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
+          "carrier_flow": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Prerequisite:"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": " The product is powered on."
+                }
+              ]
+            },
+            {
+              "kind": "image",
+              "source": "assets/ac_framefree.png",
+              "alt": "AC OUTPUT ON/OFF"
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "line-block"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "On"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Press once"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "strong",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Off"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": [
+                          "line"
+                        ]
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Press once"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "heading",
