@@ -1602,7 +1602,7 @@
                     "number_text": "1",
                     "name_html": "<p>Wi-Fi</p>",
                     "name_text": "Wi-Fi",
-                    "description_html": "<p>On: Wi-Fi connected.<br />Blink: Ready to connect to Wi-Fi.<br />Off: Wi-Fi disconnected.</p>",
+                    "description_html": "<p><strong>On:</strong> Wi-Fi connected.<br /><strong>Blink:</strong> Ready to connect to Wi-Fi.<br /><strong>Off:</strong> Wi-Fi disconnected.</p>",
                     "description_text": "On: Wi-Fi connected. Blink: Ready to connect to Wi-Fi. Off: Wi-Fi disconnected.",
                     "icon_alt": "Wi-Fi",
                     "asset_index": 0
@@ -1612,7 +1612,7 @@
                     "number_text": "2",
                     "name_html": "<p>Bluetooth</p>",
                     "name_text": "Bluetooth",
-                    "description_html": "<p>On: Bluetooth Connected.<br />Blink: Ready to connect to Bluetooth.<br />Off: Bluetooth disconnected.</p>",
+                    "description_html": "<p><strong>On:</strong> Bluetooth Connected.<br /><strong>Blink:</strong> Ready to connect to Bluetooth.<br /><strong>Off:</strong> Bluetooth disconnected.</p>",
                     "description_text": "On: Bluetooth Connected. Blink: Ready to connect to Bluetooth. Off: Bluetooth disconnected.",
                     "icon_alt": "Bluetooth",
                     "asset_index": 1
@@ -1622,7 +1622,7 @@
                     "number_text": "3",
                     "name_html": "<p>Quiet Charging Mode</p>",
                     "name_text": "Quiet Charging Mode",
-                    "description_html": "<p>On: The noise during charging is significantly minimized, while the charging power is reduced, and the charging speed slows down.<br />Off: Quiet Charging Mode is disabled.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</p>",
+                    "description_html": "<p><strong>On:</strong> The noise during charging is significantly minimized, while the charging power is reduced, and the charging speed slows down.<br /><strong>Off:</strong> Quiet Charging Mode is disabled.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</p>",
                     "description_text": "On: The noise during charging is significantly minimized, while the charging power is reduced, and the charging speed slows down. Off: Quiet Charging Mode is disabled. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
                     "icon_alt": "Quiet Charging Mode",
                     "asset_index": 2
@@ -1632,7 +1632,7 @@
                     "number_text": "4",
                     "name_html": "<p>Battery Saving Mode</p>",
                     "name_text": "Battery Saving Mode",
-                    "description_html": "<p>On: Limits the maximum usable capacity of the battery to extend its life.<br />Off: Battery Saving Mode is disabled.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.<br />Note 1: This feature is not available when the product is connected to battery pack(s).<br />Note 2: When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.</p>",
+                    "description_html": "<p><strong>On:</strong> Limits the maximum usable capacity of the battery to extend its life.<br /><strong>Off:</strong> Battery Saving Mode is disabled.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.<br />Note 1: This feature is not available when the product is connected to battery pack(s).<br />Note 2: When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.</p>",
                     "description_text": "On: Limits the maximum usable capacity of the battery to extend its life. Off: Battery Saving Mode is disabled. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off. Note 1: This feature is not available when the product is connected to battery pack(s). Note 2: When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.",
                     "icon_alt": "Battery Saving Mode",
                     "asset_index": 3
@@ -1652,7 +1652,7 @@
                     "number_text": "6",
                     "name_html": "<p>Charging Power Limit</p>",
                     "name_text": "Charging Power Limit",
-                    "description_html": "<p>On: Charging Power limit is enabled in the Jackery app.<br />Off: Charging Power limit is disabled in the Jackery app. The setting is retained when the device is powered off.</p>",
+                    "description_html": "<p><strong>On:</strong> Charging Power limit is enabled in the Jackery app.<br /><strong>Off:</strong> Charging Power limit is disabled in the Jackery app. The setting is retained when the device is powered off.</p>",
                     "description_text": "On: Charging Power limit is enabled in the Jackery app. Off: Charging Power limit is disabled in the Jackery app. The setting is retained when the device is powered off.",
                     "icon_alt": "Charging Power Limit",
                     "asset_index": 5
@@ -1672,7 +1672,7 @@
                     "number_text": "8",
                     "name_html": "<p>TOU Mode</p>",
                     "name_text": "TOU Mode",
-                    "description_html": "<p>On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling.<br />Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</p>",
+                    "description_html": "<p><strong>On:</strong> TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling.<br /><strong>Off:</strong> TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic.<br />Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.</p>",
                     "description_text": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling. Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.",
                     "icon_alt": "TOU Mode",
                     "asset_index": 7
@@ -1682,7 +1682,7 @@
                     "number_text": "9",
                     "name_html": "<p>Parallel</p>",
                     "name_text": "Parallel",
-                    "description_html": "<p>On: The parallel connection is set up successfully.<br />Blink: The parallel connection is setting up.<br />Off: The parallel connection is not set up.</p>",
+                    "description_html": "<p><strong>On:</strong> The parallel connection is set up successfully.<br /><strong>Blink:</strong> The parallel connection is setting up.<br /><strong>Off:</strong> The parallel connection is not set up.</p>",
                     "description_text": "On: The parallel connection is set up successfully. Blink: The parallel connection is setting up. Off: The parallel connection is not set up.",
                     "icon_alt": "Parallel",
                     "asset_index": 8
@@ -1792,7 +1792,7 @@
                     "number_text": "19",
                     "name_html": "<p>Transfer Switch Indicator</p>",
                     "name_text": "Transfer Switch Indicator",
-                    "description_html": "<p>On: The product is successfully connected to a transfer switch (ATS).<br />Off: The product is not connected to a transfer switch (ATS).</p>",
+                    "description_html": "<p><strong>On:</strong> The product is successfully connected to a transfer switch (ATS).<br /><strong>Off:</strong> The product is not connected to a transfer switch (ATS).</p>",
                     "description_text": "On: The product is successfully connected to a transfer switch (ATS). Off: The product is not connected to a transfer switch (ATS).",
                     "icon_alt": "Transfer Switch Indicator",
                     "asset_index": 19
@@ -1822,7 +1822,7 @@
                     "number_text": "22",
                     "name_html": "<p>Low Battery Indicator</p>",
                     "name_text": "Low Battery Indicator",
-                    "description_html": "<p>On: The battery level is below 20%.<br />Blink: The battery level is below 5%.<br />Off: The battery level is not below 20% or the product is charging.</p>",
+                    "description_html": "<p><strong>On:</strong> The battery level is below 20%.<br /><strong>Blink:</strong> The battery level is below 5%.<br /><strong>Off:</strong> The battery level is not below 20% or the product is charging.</p>",
                     "description_text": "On: The battery level is below 20%. Blink: The battery level is below 5%. Off: The battery level is not below 20% or the product is charging.",
                     "icon_alt": "Low Battery Indicator",
                     "asset_index": 22
@@ -1842,7 +1842,7 @@
                     "number_text": "24",
                     "name_html": "<p>Smart Meter indicator</p>",
                     "name_text": "Smart Meter indicator",
-                    "description_html": "<p>On: A smart meter is online.<br />Off: No smart meter is added to the system, or the smart meter is offline.</p>",
+                    "description_html": "<p><strong>On:</strong> A smart meter is online.<br /><strong>Off:</strong> No smart meter is added to the system, or the smart meter is offline.</p>",
                     "description_text": "On: A smart meter is online. Off: No smart meter is added to the system, or the smart meter is offline.",
                     "icon_alt": "Smart Meter indicator",
                     "asset_index": 24
@@ -1852,7 +1852,7 @@
                     "number_text": "25",
                     "name_html": "<p>Discharge Timer</p>",
                     "name_text": "Discharge Timer",
-                    "description_html": "<p>On: A discharge timer is set.<br />Off: No discharge timer is set.<br />Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.</p>",
+                    "description_html": "<p><strong>On:</strong> A discharge timer is set.<br /><strong>Off:</strong> No discharge timer is set.<br />Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.</p>",
                     "description_text": "On: A discharge timer is set. Off: No discharge timer is set. Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.",
                     "icon_alt": "Discharge Timer",
                     "asset_index": 25
@@ -1872,7 +1872,7 @@
                     "number_text": "27",
                     "name_html": "<p>Energy Saving Mode</p>",
                     "name_text": "Energy Saving Mode",
-                    "description_html": "<p>On: Energy Saving Mode is enabled.<br />Off: Energy Saving Mode is disabled.</p>",
+                    "description_html": "<p><strong>On:</strong> Energy Saving Mode is enabled.<br /><strong>Off:</strong> Energy Saving Mode is disabled.</p>",
                     "description_text": "On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled.",
                     "icon_alt": "Energy Saving Mode",
                     "asset_index": 27

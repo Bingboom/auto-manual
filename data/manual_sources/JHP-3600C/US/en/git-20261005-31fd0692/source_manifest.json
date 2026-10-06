@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-overview1"
+    "technical_version": "git-20261005-31fd0692-lcdstatus1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -78,7 +78,8 @@
     "Operator p4 correction: visible product-title bar suppressed while retaining Sphinx document identity; source column boundaries, bold leads and dark safety/subsection bars restored through frozen source-local presentation and shared safety mobile stacking.",
     "Web symbol selection uses explicit shared glyph variants and withdrawal hashes. Two existing SVGs repaired in shared library, WEEE reused unchanged; eight missing suitable transparent variants supplied once to shared library. All target copies stay byte-identical.",
     "Operator correction against native physical p6: suppress the added visible FCC chapter heading and its bullet/spacing through source-local CSS; retain the chapter anchor and compliance copy unchanged.",
-    "Operator correction against native physical p7: PRODUCT OVERVIEW uses a full-width dark title bar with white copy; FRONT VIEW and RIGHT SIDE VIEW keep source-sized round markers flush with the artwork left edge. Source copy and approved complete labeled artwork remain unchanged."
+    "Operator correction against native physical p7: PRODUCT OVERVIEW uses a full-width dark title bar with white copy; FRONT VIEW and RIGHT SIDE VIEW keep source-sized round markers flush with the artwork left edge. Source copy and approved complete labeled artwork remain unchanged.",
+    "Operator LCD table correction: 28 leading status labels (12 On:, 4 Blink:, 12 Off:) in 12 rows carry explicit strong emphasis in the existing ComponentSpec rich HTML; all wording, plain-text descriptions, icons and other rows remain unchanged."
   ],
   "retained_source_anomalies": [
     {
@@ -125,8 +126,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 418622,
-      "sha256": "b008df6a0256d5e652a26bf16f1dac9771c36dea4fea63697ed1ac5193caa0b3"
+      "size": 419098,
+      "sha256": "18007faad3c8a5ae4398da03d7b17a585d4e5fe25645df66361bb88ea37a42f3"
     },
     {
       "path": "source/coverage_audit.json",
@@ -675,13 +676,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 584731,
-      "sha256": "eb960d87f8a313ef89f44bbc529aaa98e9add8461690fdfdc09c49795de8bae5"
+      "size": 585207,
+      "sha256": "f1ac016471d816d19c750b61207cf65dd899faebe877e1d13a0b8b0128090188"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 97039,
-      "sha256": "2bbd0965cf7e6cbf7108a1c2bcf5148b424113d3c51e887befa529782be473f7"
+      "size": 97515,
+      "sha256": "077c98e1aafad3bab92fa01582cfd2be5253b4e102cda73b42ac92943036ef3e"
     }
   ],
   "repo_inputs": [

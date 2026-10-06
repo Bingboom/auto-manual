@@ -230,3 +230,16 @@ page has no horizontal overflow. The FCC heading remains hidden.
 [mobile](jhp3600c_us_en_web_evidence/overview-mobile-overview1.jpg) and
 [restored user pane](jhp3600c_us_en_web_evidence/overview-final-preview-overview1.jpg)
 show the local candidate. Root `tmp/` stays untouched; no remote push or publication.
+
+
+## Operator LCD status emphasis correction (lcdstatus1)
+
+The LCD description table now marks all leading status words with explicit
+`strong` emphasis in its existing ComponentSpec rich HTML: 12 `On:`, 4 `Blink:`
+and 12 `Off:` labels across rows 1, 2, 3, 4, 6, 8, 9, 19, 22, 24, 25 and 27.
+The rich-text input carries the correction through shared rendering and frozen
+replay. Removing only those new tags reproduces the previous semantic source
+exactly; wording, plain-text fields, icons and other rows are unchanged.
+
+Technical version: `git-20261005-31fd0692-lcdstatus1`. Deterministic rebuild,
+source line coverage and strict standalone Sphinx pass. Previous seals remain.
