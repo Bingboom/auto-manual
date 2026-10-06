@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "dbcde305b0342dda8e31d2a3bff2dd05cf8225bee1698acf566c37a9131c0279",
-  "content_sha256": "0c4fb974df92e1c0ffc549465203098242672685162dc2cdcbc64899d43af65e",
+  "bundle_sha256": "fea52a4e3e00c69407466619ebf2a343ba2d3fb272e707e94b1e3f015c348865",
+  "content_sha256": "b21d67faa8f4f730d0b128d6a1835f2e3e9787d1e505e035645d5c87e1e4d714",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -215,7 +215,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 4,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -6526,20 +6526,172 @@
             "assets/ups240.png"
           ],
           "block_id": "ups:block-0018",
-          "content_sha256": "7fcf8d6b2f1ff40502d6f2757645c8e49bdcef64f4f1b5fe19ba684347928260",
+          "content_sha256": "b329f58bdb6c0053a3a7f29f2e596d73f84eb725eb47544ca8d8bdef0d1bae93",
           "kind": "flow",
           "payload": {
-            "alt": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
-            "kind": "image",
+            "children": [
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"ups240\", \"web_replace_key\": \"reference.ups240\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [66.0, 62.8, 31.5, 11.5]}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/ups240.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Jackery 40A Charging Cable"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "(sold separately)"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:center;"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/ups240.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
+                      "labels": [
+                        {
+                          "line": 0,
+                          "rect": [
+                            66.0,
+                            62.8,
+                            31.5,
+                            11.5
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "overlay",
+                      "panel_fill": "#eaebec",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 1,
+                    "composite_locale": "",
+                    "image_key": "assets/ups240.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "8cbc7d194bb7b63b7aedde2879904ad55207e3b2ac0f92b21e866f8a68fab59e",
+                    "web_replace_key": "reference.ups240"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "ups240",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "240V AC expansion input using a Jackery 40A Charging Cable (sold separately).",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:center;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
+                          "text": "Jackery 40A Charging Cable (sold separately)"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "source/content.json#reference-ups240",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                  "class": "hb-reference-contained-copy"
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ups240.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ups#block-18"
         }
@@ -6549,7 +6701,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ups",
       "source_ref": "native-pdf/ups",
-      "source_sha256": "9e2f71fbf417b068517e0ffae13bdb669043af344639f7647dc27a589c344952"
+      "source_sha256": "3082f6e5355fb9295b6c922dc4e4f4703c1c5449498f6f238af3259cd64152a0"
     },
     {
       "blocks": [

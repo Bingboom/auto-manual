@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-ups240style1"
+    "technical_version": "git-20261005-31fd0692-ups240caption1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 504068,
-      "sha256": "2a7f403b19c92a8d06fafd7ec91fa4906c4c572a0f480730a8dc9a9fc8e9b6ec"
+      "size": 510065,
+      "sha256": "bf2fc5acaf22c85d7bec6a1bd371c816bb5f37ac97139a0182d04325c4ebafe6"
     },
     {
       "path": "source/coverage_audit.json",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 678677,
-      "sha256": "63037820cd827e0f502663793998ecd0cb6d8f41d2717e54388969bf0ad12351"
+      "size": 684978,
+      "sha256": "6e2f2dd83a5c22fe03207712b3a00aae75102017ed9aa5b1909923f01067803e"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 108219,
-      "sha256": "666c1f2ddbc791d632e6af3eecdecf8314669ba92681bc5c1fda6425ef705444"
+      "size": 109427,
+      "sha256": "23cea599c3744a32d7092d8e69b60a602397a1aa2d2aae0fb44c3047becff4c0"
     }
   ],
   "repo_inputs": [
