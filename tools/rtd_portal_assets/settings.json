@@ -21,6 +21,21 @@
   "regions": {"US": "US", "EU": "EU", "UK": "EU", "CN": "CN", "JP": "JP"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],
   "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
+  "navigation": {
+    "needs": [
+      {"id": "portable", "title": "随身供电", "note": "手机、电脑、摄影设备", "models": ["JE-100C", "JE-300D"]},
+      {"id": "appliance", "title": "通用电器供电", "note": "露营、移动作业、临时备电", "models": ["JE-500A", "JE-1000F", "JE-2000F", "JE-3000C"]},
+      {"id": "expandable", "title": "可扩容储能", "note": "需要更长续航，后续可增加电池", "models": ["JE-1000H", "JE-2000E", "JE-3600A"]},
+      {"id": "dedicated", "title": "专用场景备电", "note": "围绕特定设备保障供电", "models": ["JE-1000E-SIL"]}
+    ],
+    "ecosystem": [
+      {"id": "battery", "title": "扩容电池", "models": ["JBP-2000B", "JBP-3600A"]},
+      {"id": "solar", "title": "太阳能补能", "models": ["JS-40C", "JS-100F", "JS-100I", "JS-200E"]},
+      {"id": "charger", "title": "充电器", "models": ["JA-AD01A", "JA-AD600A"]},
+      {"id": "connect", "title": "连接配件", "models": ["JA-CA05B", "JA-CA3SA"]},
+      {"id": "carry", "title": "保护与搬运", "models": ["JA-CC30A", "JAAC-WHE-100-EUA1"]}
+    ]
+  },
   "languages": ["English", "Français", "Español", "Deutsch", "Italiano", "Português", "Nederlands", "Polski", "Українська", "Ελληνικά", "עברית", "العربية", "简体中文", "日本語"],
   "language_labels": {"en": "English", "fr": "Français", "es": "Español", "de": "Deutsch", "it": "Italiano", "pt": "Português", "nl": "Nederlands", "pl": "Polski", "uk": "Українська", "el": "Ελληνικά", "he": "עברית", "ar": "العربية", "zh": "简体中文", "ja": "日本語"},
   "feedback_channels": [

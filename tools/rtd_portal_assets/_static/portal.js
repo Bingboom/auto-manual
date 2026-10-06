@@ -3,6 +3,8 @@ const $ = selector => document.querySelector(selector);
 const cards = [...document.querySelectorAll('.card')];
 let category = 'All products';
 let resultLimit = 12;
+const filtersOf = card => (card.dataset.filters || card.dataset.category).split('|');
+const modelFilters = new Map(cards.map(card => [card.querySelector('[data-manual]').dataset.model, filtersOf(card)]));
 
 function render() {
   const selected = $('#region').selectedOptions[0];
@@ -10,7 +12,7 @@ function render() {
   let count = 0;
   cards.forEach(card => {
     card.hidden = card.dataset.region !== selected.dataset.binding
-      || (category !== 'All products' && card.dataset.category !== category)
+      || (category !== 'All products' && !filtersOf(card).includes(category))
       || (query && !query.split(/\s+/).every(token => card.dataset.search.includes(token)))
       || ($('#search-language').value !== 'all' && !JSON.parse(card.querySelector('[data-manual]').dataset.languages).some(item => item.url && (item.code === $('#search-language').value || (item.code === 'current' && $('#search-language').value === 'legacy'))));
     if (!card.hidden) count += 1;
@@ -29,6 +31,10 @@ function render() {
     group.hidden = visible === 0;
     group.querySelector('.group-count').textContent = `${visible} 份`;
   });
+  document.querySelectorAll('.family').forEach(family => {
+    family.hidden = !family.querySelector('.card:not([hidden])');
+  });
+  renderNeeds(selected.dataset.binding);
   $('#empty').hidden = count !== 0;
   $('#clear').hidden = !$('#search').value;
   renderContent(query, selected.dataset.binding);
@@ -44,7 +50,42 @@ function chooseCategory(value) {
   render();
 }
 
-$('#region').addEventListener('change', render);
+function renderNeeds(region) {
+  // Scenario tiles follow the region: hide models without a manual there, and empty tiles.
+  document.querySelectorAll('.need').forEach(tile => {
+    const names = [...tile.querySelectorAll('.need-models i')];
+    names.forEach(name => { name.hidden = name.dataset.region !== region; });
+    const shown = names.filter(name => !name.hidden).length;
+    tile.hidden = shown === 0;
+    tile.querySelector('.need-count').textContent = `${shown} 份说明书`;
+  });
+  const needs = document.querySelector('.needs');
+  if (needs) needs.hidden = !needs.querySelector('.need:not([hidden])');
+  const inRegion = cards.filter(card => card.dataset.region === region);
+  const eco = document.querySelector('.needs-eco');
+  if (eco) eco.hidden = !inRegion.some(card => filtersOf(card).includes('ecosystem'));
+  // Only offer filters that have a manual in this region.
+  document.querySelectorAll('button[data-category]').forEach(button => {
+    const value = button.dataset.category;
+    button.hidden = value !== 'All products' && !inRegion.some(card => filtersOf(card).includes(value));
+  });
+}
+
+document.querySelectorAll('[data-need]').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    $('#search').value = '';
+    chooseCategory(link.dataset.need);
+    $('#products').scrollIntoView({block: 'start'});
+    $('#products').focus({preventScroll: true});
+  });
+});
+
+$('#region').addEventListener('change', () => {
+  const chip = document.querySelector(`button[data-category="${CSS.escape(category)}"]`);
+  renderNeeds($('#region').selectedOptions[0].dataset.binding);
+  if (chip && chip.hidden) chooseCategory('All products'); else render();
+});
 $('#search').addEventListener('input', () => { resultLimit = 12; render(); });
 $('#search-language').addEventListener('change', render);
 $('#clear').addEventListener('click', () => {
@@ -99,7 +140,7 @@ function renderContent(query, region) {
   const tokens = query.split(/\s+/).filter(Boolean);
   const language = $('#search-language').value;
   const hits = (window.manualSearchIndex || []).filter(item => item.region === region
-    && (category === 'All products' || item.category === category)
+    && (category === 'All products' || (modelFilters.get(item.model) || [item.category]).includes(category))
     && (language === 'all' || language === item.lang)
     && tokens.every(t => (item.model + ' ' + item.name + ' ' + item.title + ' ' + item.text).toLowerCase().includes(t)))
     .map(item => ({...item, score: tokens.reduce((score, t) => score + (item.model.toLowerCase().includes(t) ? 100 : 0) + (item.title.toLowerCase().includes(t) ? 20 : 0), 0)}))
