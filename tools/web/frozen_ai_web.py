@@ -72,7 +72,11 @@ def replay_package(package: Path) -> tuple[str, ...]:
                     # Sphinx normalizes underscores in explicit MyST labels;
                     # source chapter links must retain their exact IR anchors.
                     chunks.append(f'<span id="{item["id"]}"></span>')
-                chunks.append(f"{'#' * int(item.name[1])} {item.get_text(' ', strip=True)}")
+                # Authored inline spans (e.g. an accessory badge) belong to
+                # the heading, while MyST still owns its navigation anchor.
+                title = (item.decode_contents().strip() if item.find("span")
+                         else item.get_text(' ', strip=True))
+                chunks.append(f"{'#' * int(item.name[1])} {title}")
             else:
                 chunks.append(str(item))
     path = package / ir.metadata["markdown_filename"]

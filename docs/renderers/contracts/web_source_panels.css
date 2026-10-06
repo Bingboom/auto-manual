@@ -1,5 +1,79 @@
 /* Source-authored figure/table compositions and bounded target refinements. */
 
+/* Accessory availability is a separate source label inside a navigable title. */
+#furo-main-content :is(h1, h2, h3):has(.hb-sold-separately) {
+  flex-wrap: wrap;
+}
+#furo-main-content .hb-heading-title { flex: 0 1 auto; }
+#furo-main-content .hb-sold-separately {
+  display: inline-block;
+  flex: none;
+  padding: 0.35em 0.85em;
+  margin-left: 0.4em;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+#furo-main-content h1 .hb-sold-separately {
+  margin-left: auto;
+  background: var(--hb-paper);
+  color: var(--hb-brand-dark);
+  font-size: 0.62em;
+}
+#furo-main-content h1:has(.hb-sold-separately) {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Authored button pairs retain editable captions in the shared table. */
+#furo-main-content .hb-key-button-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.4rem;
+  text-align: center;
+}
+#furo-main-content .hb-key-button {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+}
+#furo-main-content .hb-key-button img {
+  width: 4.4rem !important;
+  height: 4.4rem !important;
+  margin: 0 !important;
+}
+#furo-main-content .hb-key-button-plus {
+  display: grid;
+  height: 4.4rem;
+  align-items: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+#furo-main-content .hb-key-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-bottom: 0.7rem;
+  font-size: 1.15rem;
+}
+#furo-main-content .hb-key-combination-table th:not(.hb-key-buttons) {
+  background: var(--hb-paper) !important;
+}
+#furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) {
+  min-width: 44rem;
+}
+#furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) td {
+  padding: 0.8rem 0.7rem !important;
+}
+
 /* Dense localized leader diagrams retain readable type on narrow screens. */
 figure:has(> img.hb-readable-diagram) {
   overflow-x: auto;

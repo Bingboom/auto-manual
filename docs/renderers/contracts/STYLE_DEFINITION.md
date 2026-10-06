@@ -1119,6 +1119,14 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 按钮外的名称、组合加号与长按说明由原生 HTML 排版。相同按钮不按语言重裁，
 形状或丝印不同的按钮不能仅凭名称替换。
 
+按键组合使用 `HB-TABLE-KEY-COMBINATIONS` 的三列表格，不用普通表格仿排。
+原生 carrier 以 `.hb-key-button-pair` 保留两个按钮和各自名称（POWER/USB/AC
+强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
+首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
+`usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
+标题中的另售说明使用原生 `.hb-sold-separately` 圆角标签，文字仍在标题内；
+冻结重放保留内联标签并继续生成 MyST 导航标题，不能摊成带破折号的标题文字。
+
 完成选材后，先按消费组件确定图的类型，再决定背景处理。**透明底规则针对 LCD／
 状态图标、独立按钮符号等小图**，移除这些小图外围的页面/单元格底色和边框。
 “小图”按功能角色判断，不按网页显示尺寸判断；大图缩小显示仍是大图，不能因

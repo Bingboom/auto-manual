@@ -2145,3 +2145,9 @@ alone does not establish the final portal layout. See the [build guide](../code-
 ### FridgeGuard US native FR/ES local candidate
 
 French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](../code-as-doc/reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.
+
+Frozen Web heading inline spans remain inside MyST titles, including the shared
+`hb-sold-separately` badge; verify both the heading and its navigation link after
+assembly. Key combinations use `HB-TABLE-KEY-COMBINATIONS`, with authored button
+pairs and shared hold-duration clocks. Match product markings before choosing
+a shared button variant; function names alone do not establish artwork reuse.

@@ -204,7 +204,7 @@
 
 ## KEY COMBINATION
 
-<div class="table-wrapper docutils container"><table class="manual-table"><tbody><tr><th>Buttons</th><th>Operation</th><th>Function</th></tr><tr><td><img alt="Main POWER button" src="assets/457285c35d6d_power.svg"/> + <img alt="USB power button" src="assets/3355388bad22_dc_usb.svg"/><p>Main POWER button + USB power button</p></td><td>3s Press and hold both for 3s</td><td>Reset Wi-Fi and Bluetooth</td></tr><tr><td><img alt="Main POWER button" src="assets/457285c35d6d_power.svg"/> + <img alt="AC power button" src="assets/74bcd0bb2a82_ac.svg"/><p>Main POWER button + AC power button</p></td><td>3s Press and hold both for 3s</td><td>Turn on/off the Energy Saving Mode</td></tr><tr><td><img alt="USB power button" src="assets/3355388bad22_dc_usb.svg"/> + <img alt="AC power button" src="assets/74bcd0bb2a82_ac.svg"/><p>USB power button + AC power button</p></td><td>1s Press and hold both for 1s</td><td>Turn on/off Wi-Fi and Bluetooth</td></tr></tbody></table></div>
+<figure aria-label="Buttons / Operation / Function" class="hb-key-combination-composition" data-component-id="HB-TABLE-KEY-COMBINATIONS" tabindex="0"><table class="hb-key-combination-table"><colgroup><col class="hb-key-col-buttons"/><col class="hb-key-col-operation"/><col class="hb-key-col-function"/></colgroup><thead><tr><th class="hb-key-buttons" scope="col">Buttons</th><th class="hb-key-operation" scope="col">Operation</th><th class="hb-key-function" scope="col">Function</th></tr></thead><tbody><tr><td class="hb-key-buttons"><div class="hb-key-button-pair"><div class="hb-key-button"><img alt="" src="assets/7b5fa9057ca9_power-bottom.svg"/><p>Main <strong>POWER</strong> button</p></div><span class="hb-key-button-plus"> + </span><div class="hb-key-button"><img alt="" src="assets/4025f864c192_usb-bottom.svg"/><p><strong>USB</strong> power button</p></div></div></td><td class="hb-key-operation"><p class="hb-key-duration" data-duration-icon="clock">3s</p><p>Press and hold both for 3s</p></td><td class="hb-key-function">Reset Wi-Fi and Bluetooth</td></tr><tr><td class="hb-key-buttons"><div class="hb-key-button-pair"><div class="hb-key-button"><img alt="" src="assets/7b5fa9057ca9_power-bottom.svg"/><p>Main <strong>POWER</strong> button</p></div><span class="hb-key-button-plus"> + </span><div class="hb-key-button"><img alt="" src="assets/ad437a82a4fe_ac-bottom.svg"/><p><strong>AC</strong> power button</p></div></div></td><td class="hb-key-operation"><p class="hb-key-duration" data-duration-icon="clock">3s</p><p>Press and hold both for 3s</p></td><td class="hb-key-function">Turn on/off the Energy Saving Mode</td></tr><tr><td class="hb-key-buttons"><div class="hb-key-button-pair"><div class="hb-key-button"><img alt="" src="assets/4025f864c192_usb-bottom.svg"/><p><strong>USB</strong> power button</p></div><span class="hb-key-button-plus"> + </span><div class="hb-key-button"><img alt="" src="assets/ad437a82a4fe_ac-bottom.svg"/><p><strong>AC</strong> power button</p></div></div></td><td class="hb-key-operation"><p class="hb-key-duration" data-duration-icon="clock">1s</p><p>Press and hold both for 1s</p></td><td class="hb-key-function">Turn on/off Wi-Fi and Bluetooth</td></tr></tbody></table></figure>
 
 ## AC AND DC OUTPUT RESUME FUNCTION
 
@@ -236,7 +236,7 @@
 
 # CONNECTIONS
 
-## CONNECT TO BATTERY PACK(S) — SOLD SEPARATELY
+## <span class="hb-heading-title">CONNECT TO BATTERY PACK(S)</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <p>This product supports up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual.</p>
 
@@ -278,7 +278,7 @@
 
 ## BACKUP POWER CONNECTION
 
-<h3 class="hb-source-pill-heading" id="connect-to-ats-sold-separately">CONNECT TO ATS — SOLD SEPARATELY</h3>
+<h3 class="hb-source-pill-heading" id="connect-to-ats-sold-separately"><span class="hb-heading-title">CONNECT TO ATS</span> <span class="hb-sold-separately">SOLD SEPARATELY</span></h3>
 
 <p>The HomePower 3600 Pro Max can supply backup power to home circuits through a Jackery Automatic Transfer Switch (ATS). For detailed installation and operation, refer to the Jackery ATS User Manual.</p>
 
@@ -286,7 +286,7 @@
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>When UPS mode is enabled on the ATS, the power station remains active and continuously consumes power. During a grid outage, the system switches to battery power within 20 milliseconds.</p></td></tr></tbody></table>
 
-## CONNECT TO MTS — SOLD SEPARATELY
+## <span class="hb-heading-title">CONNECT TO MTS</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <p>The HomePower 3600 Pro Max can be connected to a Manual Transfer Switch (MTS) to power selected home circuits. Choose the appropriate method based on your installation mode.</p>
 
@@ -354,7 +354,7 @@
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>Once the AC Expansion Port is successfully connected to an ATS, the AC Input port will no longer be used for charging. In this configuration, the HomePower 3600 Pro Max can be charged through the following ports: AC Expansion Port DC8020 Ports</p></td></tr></tbody></table>
 
-## CHARGING VIA SOLAR PANELS — SOLD SEPARATELY
+## <span class="hb-heading-title">CHARGING VIA SOLAR PANELS</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <p>The Jackery HomePower 3600 Pro Max has two DC8020 input ports, and each supports either a direct connection to a 500W solar panel or a serial connection of three 200W solar panels via a connector. If one DC8020 input port needs to connect two or more solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).</p>
 
@@ -366,7 +366,7 @@
 
 <p>It is recommended to use the Jackery solar panels to charge the product. Ensure that the working voltage (Vmp) of the solar panel is within the DC input range (16V-60V) of the HomePower 3600 Pro Max. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels.</p>
 
-## CHARGING WITH A CAR CHARGER — SOLD SEPARATELY
+## <span class="hb-heading-title">CHARGING WITH A CAR CHARGER</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <p>This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.</p>
 
@@ -568,7 +568,7 @@
 
 <p>④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W.</p>
 
-# Jackery Battery Pack 3600 — SOLD SEPARATELY
+# <span class="hb-heading-title">Jackery Battery Pack 3600</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <h2 aria-level="2" class="hb-spec-group" role="heading">GENERAL INFO</h2>
 
@@ -582,7 +582,7 @@
 
 <figure aria-label="ENVIRONMENTAL OPERATING TEMPERATURE" class="hb-spec-table-composition"><table class="manual-table manual-spec-table hb-spec-table"><colgroup><col class="hb-spec-col-label"/><col class="hb-spec-col-value"/></colgroup><tbody><tr><th class="manual-spec-label hb-spec-label" scope="row">Charge Temperature</th><td class="manual-spec-value hb-spec-value">-4°F to 113°F / -20°C to 45°C</td></tr><tr><th class="manual-spec-label hb-spec-label" scope="row">Discharge Temperature</th><td class="manual-spec-value hb-spec-value">-4°F to 113°F / -20°C to 45°C</td></tr></tbody></table></figure>
 
-# Jackery Automatic Transfer Switch — SOLD SEPARATELY
+# <span class="hb-heading-title">Jackery Automatic Transfer Switch</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 
 <h2 aria-hidden="true" aria-level="2" class="hb-spec-group hb-source-hidden-heading" role="heading">Jackery Automatic Transfer Switch</h2>
 

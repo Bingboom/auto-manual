@@ -296,3 +296,30 @@ A hash-target browser regression exposed Furo's transparent heading highlight
 overriding the native safety subbar fill while retaining white copy. The source
 exception now outranks that theme selector. Final version is headings3; both
 interim sealed releases remain available for provenance.
+
+
+## Key combinations and accessory labels (styles4)
+
+The operator identified a generic table in place of the native key-combination
+panel, and availability copy flattened into seven titles. The key table now
+declares the existing `HB-TABLE-KEY-COMBINATIONS` ComponentSpec with its original
+three-column copy and a native carrier. Shared CSS owns the gray first column,
+white operation/function columns, paired button captions with POWER/USB/AC
+emphasis, plus signs, and shared CSS clocks for 3s/3s/1s. The component scrolls
+inside its frame on narrow screens. Seven `SOLD SEPARATELY` labels use the shared
+dark rounded badge; inline heading spans survive MyST replay and navigation.
+
+Visual inventory exposed a separate artwork mismatch: old shared POWER/AC marks
+were above their switches, and DC/USB did not match native USB. Three original
+PDF p13 lower-marking variants are added to the existing shared button directory
+as Git review candidates. The new recipe retains every path inside each glyph,
+including circular face, border, switch, indicator and outlined marking, while
+excluding the table backdrop. No colors or strokes are changed. Existing assets
+remain intact; prior target bindings record their superseded status. No online
+registry promotion is performed in this Git-only task.
+
+MuPDF emits filled-and-stroked objects as two SVG paths on this page. The shared
+vector selector now accepts the verified paired mapping and retains both paths
+and ancestor transforms/opacity; unsupported mappings still fail. A regression
+checks transparent edges, a white face, and a black indicator. Source line
+coverage still has zero unmatched lines. Final browser/build evidence follows.

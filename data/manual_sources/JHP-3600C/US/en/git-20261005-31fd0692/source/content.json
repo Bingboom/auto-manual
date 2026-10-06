@@ -2551,28 +2551,67 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "group",
-          "role": "container",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "class": "table-wrapper docutils container"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-KEY-COMBINATIONS",
+            "variant": "three-column",
+            "source_ref": "pdf:p13:key-combinations",
+            "language": "en",
+            "slots": [
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "content": [
+                  "Buttons",
+                  "Operation",
+                  "Function"
+                ]
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "content": [
+                  [
+                    "Main POWER button + USB power button",
+                    "3s Press and hold both for 3s",
+                    "Reset Wi-Fi and Bluetooth"
+                  ],
+                  [
+                    "Main POWER button + AC power button",
+                    "3s Press and hold both for 3s",
+                    "Turn on/off the Energy Saving Mode"
+                  ],
+                  [
+                    "USB power button + AC power button",
+                    "1s Press and hold both for 1s",
+                    "Turn on/off Wi-Fi and Bluetooth"
+                  ]
+                ]
               }
-            }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.key-combinations"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
           },
-          "children": [
+          "carrier_flow": [
             {
               "kind": "table",
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "manual-table"
+                    "class": [
+                      "hb-key-combination-table"
+                    ]
                   }
                 }
               },
               "children": [
                 {
-                  "kind": "table_body",
+                  "kind": "table_head",
                   "children": [
                     {
                       "kind": "table_row",
@@ -2608,7 +2647,12 @@
                           ]
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "kind": "table_body",
+                  "children": [
                     {
                       "kind": "table_row",
                       "children": [
@@ -2617,25 +2661,115 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "image",
-                              "source": "assets/457285c35d6d_power.svg",
-                              "alt": "Main POWER button"
-                            },
-                            {
-                              "kind": "text",
-                              "text": " + "
-                            },
-                            {
-                              "kind": "image",
-                              "source": "assets/3355388bad22_dc_usb.svg",
-                              "alt": "USB power button"
-                            },
-                            {
-                              "kind": "paragraph",
+                              "kind": "group",
+                              "role": "container",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-button-pair"
+                                    ]
+                                  }
+                                }
+                              },
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Main POWER button + USB power button"
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/7b5fa9057ca9_power-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Main "
+                                        },
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "POWER"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " button"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "inline_group",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button-plus"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": " + "
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/4025f864c192_usb-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "USB"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " power button"
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -2646,8 +2780,32 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "3s Press and hold both for 3s"
+                              "kind": "paragraph",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-duration"
+                                    ],
+                                    "data-duration-icon": "clock"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "3s"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Press and hold both for 3s"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2671,25 +2829,115 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "image",
-                              "source": "assets/457285c35d6d_power.svg",
-                              "alt": "Main POWER button"
-                            },
-                            {
-                              "kind": "text",
-                              "text": " + "
-                            },
-                            {
-                              "kind": "image",
-                              "source": "assets/74bcd0bb2a82_ac.svg",
-                              "alt": "AC power button"
-                            },
-                            {
-                              "kind": "paragraph",
+                              "kind": "group",
+                              "role": "container",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-button-pair"
+                                    ]
+                                  }
+                                }
+                              },
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Main POWER button + AC power button"
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/7b5fa9057ca9_power-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "text",
+                                          "text": "Main "
+                                        },
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "POWER"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " button"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "inline_group",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button-plus"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": " + "
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/ad437a82a4fe_ac-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "AC"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " power button"
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -2700,8 +2948,32 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "3s Press and hold both for 3s"
+                              "kind": "paragraph",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-duration"
+                                    ],
+                                    "data-duration-icon": "clock"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "3s"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Press and hold both for 3s"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2725,25 +2997,111 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "image",
-                              "source": "assets/3355388bad22_dc_usb.svg",
-                              "alt": "USB power button"
-                            },
-                            {
-                              "kind": "text",
-                              "text": " + "
-                            },
-                            {
-                              "kind": "image",
-                              "source": "assets/74bcd0bb2a82_ac.svg",
-                              "alt": "AC power button"
-                            },
-                            {
-                              "kind": "paragraph",
+                              "kind": "group",
+                              "role": "container",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-button-pair"
+                                    ]
+                                  }
+                                }
+                              },
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "USB power button + AC power button"
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/4025f864c192_usb-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "USB"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " power button"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "inline_group",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button-plus"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": " + "
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "group",
+                                  "role": "container",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": [
+                                          "hb-key-button"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "kind": "image",
+                                      "source": "assets/ad437a82a4fe_ac-bottom.svg",
+                                      "alt": ""
+                                    },
+                                    {
+                                      "kind": "paragraph",
+                                      "children": [
+                                        {
+                                          "kind": "strong",
+                                          "children": [
+                                            {
+                                              "kind": "text",
+                                              "text": "AC"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "text",
+                                          "text": " power button"
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -2754,8 +3112,32 @@
                           "header": false,
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "1s Press and hold both for 1s"
+                              "kind": "paragraph",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": [
+                                      "hb-key-duration"
+                                    ],
+                                    "data-duration-icon": "clock"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "1s"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Press and hold both for 1s"
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2775,8 +3157,7 @@
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "heading",
@@ -3085,8 +3466,44 @@
           "level": 2,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CONNECT TO BATTERY PACK(S)"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "CONNECT TO BATTERY PACK(S) — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -3599,8 +4016,44 @@
           "level": 3,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CONNECT TO ATS"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "CONNECT TO ATS — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2",
@@ -3734,8 +4187,44 @@
           "level": 2,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CONNECT TO MTS"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "CONNECT TO MTS — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -4819,8 +5308,44 @@
           "level": 2,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CHARGING VIA SOLAR PANELS"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "CHARGING VIA SOLAR PANELS — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -4967,8 +5492,44 @@
           "level": 2,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "CHARGING WITH A CAR CHARGER"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "CHARGING WITH A CAR CHARGER — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -9568,8 +10129,44 @@
           "level": 1,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Jackery Battery Pack 3600"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Jackery Battery Pack 3600 — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -10242,8 +10839,44 @@
           "level": 1,
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-heading-title"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Jackery Automatic Transfer Switch"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Jackery Automatic Transfer Switch — SOLD SEPARATELY"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-sold-separately"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SOLD SEPARATELY"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"

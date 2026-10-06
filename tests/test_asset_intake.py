@@ -41,6 +41,25 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_filled_stroked_button_keeps_both_paths_and_transparent_edges(self):
+        from tools.asset_pipeline.native_svg import native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((0, 0, 100, 100), color=None, fill=(.8, .8, .8))
+            page.draw_circle((50, 50), 20, color=(0, 0, 0), fill=(1, 1, 1), width=2)
+            page.draw_circle((45, 50), 3, color=None, fill=(0, 0, 0))
+            svg = native_symbol_svg(page, [1, 2], [28, 28, 72, 72])
+            paths = ET.fromstring(svg).findall('.//{http://www.w3.org/2000/svg}path')
+            self.assertEqual(3, len(paths))
+            self.assertEqual(paths[0].get('d').rstrip('Z'), paths[1].get('d').rstrip('Z'))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                with fitz.open(stream=selected.convert_to_pdf(), filetype='pdf') as rendered:
+                    pix = rendered[0].get_pixmap(alpha=True)
+                    self.assertEqual(0, pix.pixel(0, 0)[3])
+                    self.assertEqual((255, 255, 255, 255), pix.pixel(22, 12))
+                    self.assertEqual((0, 0, 0, 255), pix.pixel(17, 22))
+
     def test_native_symbol_svg_runs_through_recipe_pipeline(self):
         from tools.web.symbol_asset_admission import compare_symbol
         from tools.asset_pipeline.models import RecipeValidationError

@@ -43,6 +43,30 @@ def _words(text):
 
 
 class FrozenHeadingReplayTests(unittest.TestCase):
+    def test_inline_availability_badge_stays_in_navigable_heading(self):
+        with tempfile.TemporaryDirectory() as directory:
+            package = Path(directory)
+            (package / "_static").mkdir()
+            css = package / "_static/web_manual.css"
+            css.write_text("")
+            ir = SimpleNamespace(metadata={
+                "frozen_stylesheet_sha256": file_sha256(css),
+                "markdown_filename": "manual.md",
+            })
+            fragments = ('<h2 id="car-charging"><span class="hb-heading-title">'
+                         'CHARGING WITH A CAR CHARGER</span> '
+                         '<span class="hb-sold-separately">SOLD SEPARATELY</span></h2>',)
+            with patch("tools.web.frozen_ai_web.read_manual_ir", return_value=ir), \
+                 patch("tools.web.frozen_ai_web.render_document_fragments", return_value=fragments):
+                replay_package(package)
+            output = (package / "manual.md").read_text()
+            self.assertIn('## <span class="hb-heading-title">', output)
+            heading = BeautifulSoup(MarkdownIt("commonmark", {"html": True}).render(output),
+                                    "html.parser").h2
+            self.assertEqual("SOLD SEPARATELY", heading.select_one(".hb-sold-separately").text)
+            self.assertEqual("CHARGING WITH A CAR CHARGER SOLD SEPARATELY", heading.text)
+            self.assertIn('<span id="car-charging"></span>', output)
+
     def test_source_presentation_survives_portal_style_replacement_and_rejects_tampering(self):
         with tempfile.TemporaryDirectory() as directory:
             package = Path(directory)

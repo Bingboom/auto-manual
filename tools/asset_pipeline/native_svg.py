@@ -9,6 +9,28 @@ import fitz
 SVG = '{http://www.w3.org/2000/svg}'
 
 
+def _drawing_paths(drawings: list[dict], visible: list[ET.Element]) -> list[list[ET.Element]]:
+    if len(visible) == len(drawings):
+        return [[path] for path in visible]
+    if len(visible) == sum(2 if d['type'] == 'fs' else 1 for d in drawings):
+        # MuPDF may emit a fill-and-stroke drawing as two original SVG paths.
+        # Retain both, including their ancestor opacity/transform groups.
+        mapped = []
+        offset = 0
+        for drawing in drawings:
+            count = 2 if drawing['type'] == 'fs' else 1
+            paths = visible[offset:offset + count]
+            if count == 2 and (
+                paths[0].get('transform') != paths[1].get('transform')
+                or paths[0].get('d', '').rstrip('Zz ') != paths[1].get('d', '').rstrip('Zz ')
+            ):
+                raise ValueError('native PDF fill/stroke SVG mapping is unsupported')
+            mapped.append(paths)
+            offset += count
+        return mapped
+    raise ValueError('native PDF drawing/SVG path mapping is unsupported')
+
+
 def native_symbol_svg(page: fitz.Page, indices: list[int], glyph_bbox: list[float]) -> bytes:
     """Keep source paths and ancestors; omit page/cell objects by geometry.
 
@@ -34,9 +56,8 @@ def native_symbol_svg(page: fitz.Page, indices: list[int], glyph_bbox: list[floa
             collect(child, in_defs)
 
     collect(root)
-    if len(visible) != len(drawings):
-        raise ValueError('native PDF drawing/SVG path mapping is unsupported')
-    keep = {id(visible[i]) for i in indices}
+    mapped = _drawing_paths(drawings, visible)
+    keep = {id(path) for i in indices for path in mapped[i]}
 
     def prune(node):
         if node.tag == SVG + 'defs':
