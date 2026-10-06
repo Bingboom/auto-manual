@@ -165,3 +165,14 @@ all page images resolve. [Desktop](jhp3600c_us_en_web_evidence/symbols-desktop-s
 [mobile right panel](jhp3600c_us_en_web_evidence/symbols-mobile-right-symbols1.jpg),
 [narrow](jhp3600c_us_en_web_evidence/symbols-narrow-symbols1.jpg).
 Root `tmp/` is untouched; this remains an isolated Git-only local candidate.
+
+Final source commit: `c6206a0a1dde99817aee3b324d267be5d883d18e`; candidate version:
+`git-20261005-31fd0692-symbols1`. [Fresh source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-symbols1.json)
+verifies at that commit. [Validation record](jhp3600c_us_en_web_evidence/validation-symbols1.json),
+[withdrawn-byte record](jhp3600c_us_en_web_evidence/withdrawn-symbols1.json),
+[browser measurements](jhp3600c_us_en_web_evidence/browser-symbols1.json) and
+[final candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-symbols1.json)
+record the boundary. The final 106-target assembly preserves all 5,609 original
+source files byte-for-byte and passes strict Sphinx. The final local preview was
+reloaded and checked against the selected shared symbol pool. No push, PR, merge,
+production deployment or online data/registry write occurred.

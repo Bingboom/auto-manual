@@ -1,6 +1,6 @@
 {
   "version": "git-20261005-31fd0692-symbols1",
-  "boundary": "local working-tree preview; final source receipt to be sealed at committed ref",
+  "boundary": "Local browser validation; final frozen source receipt verified at committed ref. Source Markdown and symbol bytes unchanged from verified responsive preview.",
   "desktop": {
     "documentWidth": 1440,
     "imageCount": 11,
@@ -100,5 +100,6 @@
     "titleDisplay": "none",
     "viewport": 320,
     "warningLoaded": true
-  }
+  },
+  "source_git_ref": "c6206a0a1dde99817aee3b324d267be5d883d18e"
 }
