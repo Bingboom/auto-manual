@@ -108,3 +108,16 @@
   #furo-main-content [data-reference-id="cascade"] [data-source-line="0"] { top: 4%; }
   #furo-main-content [data-reference-id="cascade"] [data-source-line="1"] { top: 43%; }
 }
+
+/* Preserve the source 6pt/316pt caption ratio with the shared mobile 8px floor. */
+#furo-main-content [data-reference-id="charge120"] [data-source-line="0"] {
+  font-size: max(.5rem, 1.9cqw);
+}
+/* On small phones the native blank lower region admits a wider two-line caption. */
+@media (max-width: 400px) {
+  #furo-main-content [data-reference-id="charge120"] [data-source-line="0"] {
+    left: 40%;
+    top: 78%;
+    width: 57%;
+  }
+}

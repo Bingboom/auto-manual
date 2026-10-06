@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-epocaption1"
+    "technical_version": "git-20261005-31fd0692-charge120overlay1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -53,7 +53,7 @@
       33,
       34
     ],
-    "body_printed_pages": "01–31",
+    "body_printed_pages": "01\u201331",
     "cover_contact_metadata": [
       1,
       97
@@ -69,8 +69,8 @@
   "normalizations": [
     "Whitespace and PDF ligatures expanded; safety subitems retained as nested lists.",
     "Positioned trademark marks restored after USB Type-C and USB-C.",
-    "LiFePO4 baseline digit represented as subscript ₄.",
-    "Printed p28 literal 1440W4 is retained as 1440W⁴, unlike circled ④ on printed p23.",
+    "LiFePO4 baseline digit represented as subscript \u2084.",
+    "Printed p28 literal 1440W4 is retained as 1440W\u2074, unlike circled \u2463 on printed p23.",
     "Specification submodes separated into native lines; four source footnotes remain separate paragraphs.",
     "Source-local specification carriers retain the shared h2 hook with explicit aria-level 3/4 and exclude component headings from chapter TOC.",
     "Vector + in App step 2.1 transcribed from source visual.",
@@ -93,7 +93,7 @@
     {
       "physical_page": 31,
       "text": "1440W4",
-      "disposition": "retain plain superscript 4; source p26 uses circled ④"
+      "disposition": "retain plain superscript 4; source p26 uses circled \u2463"
     },
     {
       "physical_page": 30,
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 521084,
-      "sha256": "356ba9fee6bd01748e7eb523b0dbb5272bb63ea4ac1c9e9f1c83478e996e98bf"
+      "size": 520283,
+      "sha256": "d50dfbd50157c44db715e3d8179f779f7b2c4bd331ee669e4f486d04ddc2dbef"
     },
     {
       "path": "source/coverage_audit.json",
@@ -174,8 +174,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 3883,
-      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
+      "size": 4321,
+      "sha256": "f597548d7a012cd5964189167f5d6f70b3fbe44aaeead4341de2cf18aa1cbe45"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -209,8 +209,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 3883,
-      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
+      "size": 4321,
+      "sha256": "f597548d7a012cd5964189167f5d6f70b3fbe44aaeead4341de2cf18aa1cbe45"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 696629,
-      "sha256": "9dad65bb45d514f1326a04cf65b6503fd18a1568de24e14ece641b98bfac1054"
+      "size": 695802,
+      "sha256": "0c13329dfe7695943abaa7f251db178079feb78f9e94948c7e0e98c8a15bf20f"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 112197,
-      "sha256": "54b90422d4dc2aa7ea912fb06c2b37584ae0e665d6575b78d84cd2615f283445"
+      "size": 112604,
+      "sha256": "7e3c128389dd94d2ebc6f1bcf16f4cf5d509510b5523f0d102d8adf187cd585e"
     }
   ],
   "repo_inputs": [

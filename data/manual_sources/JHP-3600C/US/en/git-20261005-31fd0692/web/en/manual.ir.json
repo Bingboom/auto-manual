@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "8c8380ec3ee58e5b9d48abdc8fbeae9dd40dd2650e9beea35c7f2960b0dc6e97",
-  "content_sha256": "15d285697b8b81df5567b04d51fb2a119348bca92bb5f230a3a4051a398ee104",
+  "bundle_sha256": "a263a8c6ada286f00d68dcefcc7435c31e61459f8024958d54074da53bebc266",
+  "content_sha256": "f6e1e75c5c5ae9352dc65629ed7b8f7bf0e9b4649679ebe3170ca2f5739b6a47",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2059,7 +2059,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
+      "sha256": "f597548d7a012cd5964189167f5d6f70b3fbe44aaeead4341de2cf18aa1cbe45"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -8717,47 +8717,32 @@
             "assets/charge120.png"
           ],
           "block_id": "charging:block-0006",
-          "content_sha256": "5003ca36b097dee759cd0b5d7bb5d13e1aa8003b392d345092ffe76ad1561033",
+          "content_sha256": "f2e5f6d807f225f84f2609312035ef64902307066a0ab2d57bf58ff7dd4582a4",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "carrier_flow": [
-                  {
-                    "alt": "120V AC charging cable connection to power station and wall outlet",
-                    "kind": "image",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "hb-source-reference"
-                          ],
-                          "data-reference": "{\"id\": \"charge120\", \"web_replace_key\": \"reference.charge120\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"labels\": [{\"line\": 0, \"rect\": [57.65, 79.53, 38.3, 14.3]}]}}"
-                        }
-                      }
-                    },
-                    "source": "assets/charge120.png"
-                  },
+                "alt": "120V AC charging cable connection to power station and wall outlet",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"charge120\", \"web_replace_key\": \"reference.charge120\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"labels\": [{\"line\": 0, \"rect\": [57.65, 79.53, 38.3, 14.3]}], \"mobile_labels\": \"overlay\"}}"
+                    }
+                  }
+                },
+                "source": "assets/charge120.png"
+              },
+              {
+                "children": [
                   {
                     "children": [
                       {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
-                          }
-                        ],
-                        "kind": "group",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": [
-                                "line"
-                              ]
-                            }
-                          }
-                        },
-                        "role": "container"
+                        "kind": "text",
+                        "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
                       }
                     ],
                     "kind": "group",
@@ -8765,7 +8750,7 @@
                       "html": {
                         "attributes": {
                           "class": [
-                            "line-block"
+                            "line"
                           ]
                         }
                       }
@@ -8773,96 +8758,98 @@
                     "role": "container"
                   }
                 ],
-                "component_spec": {
-                  "assets": [
-                    {
-                      "asset_ref": "assets/charge120.png",
-                      "locale_policy": "exact",
-                      "role": "source_art"
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
                     }
-                  ],
-                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                  "language": "en",
-                  "metadata": {
-                    "base_art_layout": {
-                      "art_sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
-                      "labels": [
-                        {
-                          "line": 0,
-                          "rect": [
-                            57.65,
-                            79.53,
-                            38.3,
-                            14.3
-                          ]
-                        }
-                      ],
-                      "panel_fill": "#eaebec",
-                      "panel_top": 0,
-                      "preserve_frame": true
-                    },
-                    "caption_centers_pct": null,
-                    "captions_embedded": false,
-                    "captions_origin": "carrier",
-                    "capture_following_lines": 1,
-                    "composite_locale": "",
-                    "image_key": "assets/charge120.png",
-                    "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "745df4a7ea075ce41c64f033431fb9f1878294233924d1bf9196b8fa897804b6",
-                    "web_replace_key": "reference.charge120"
-                  },
-                  "schema_version": "component-spec/v1",
-                  "slots": [
-                    {
-                      "content": "charge120",
-                      "content_kind": "inline_text",
-                      "role": "reference_id"
-                    },
-                    {
-                      "content": "120V AC charging cable connection to power station and wall outlet",
-                      "content_kind": "inline_text",
-                      "role": "accessibility_label"
-                    },
-                    {
-                      "content": "live",
-                      "content_kind": "inline_text",
-                      "role": "caption_mode"
-                    },
-                    {
-                      "content": "equal",
-                      "content_kind": "inline_text",
-                      "role": "caption_layout"
-                    },
-                    {
-                      "content": [
-                        {
-                          "html": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
-                          "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
-                        }
-                      ],
-                      "content_kind": "ordered_labels",
-                      "role": "captions"
-                    }
-                  ],
-                  "source_ref": "source/content.json#reference-charge120",
-                  "token_roles": [
-                    "component.special.reference-figure"
-                  ],
-                  "variant": "semantic-fallback"
+                  }
                 },
-                "kind": "component"
+                "role": "container"
               }
             ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "hb-reference-contained-copy",
-                  "style": "--hb-art-page-bleed-bottom:1.9%;"
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/charge120.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
                 }
-              }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        57.65,
+                        79.53,
+                        38.3,
+                        14.3
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#eaebec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 1,
+                "composite_locale": "",
+                "image_key": "assets/charge120.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "d9cfa89ca214f7f7c1a057180577ad0b4dd7cb4c7c24d81fcbf415fa6224e99d",
+                "web_replace_key": "reference.charge120"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "charge120",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "120V AC charging cable connection to power station and wall outlet",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+                      "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-charge120",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/charging#block-6"
@@ -10081,7 +10068,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "84dc538b3cc1b59512e6a26c13eb627681857011f377daec5ee9c4e04825673b"
+      "source_sha256": "3b309d1e17ef529b0901b52deb519dc0fe421db55a056de74ca58c9ae3ad56bd"
     },
     {
       "blocks": [
