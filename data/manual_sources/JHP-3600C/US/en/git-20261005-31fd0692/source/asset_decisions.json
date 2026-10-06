@@ -1,0 +1,1798 @@
+[
+  {
+    "slot": "symbol.warning_triangle",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/24e567ffad05_warning_triangle.png",
+    "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.read_manual",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/1d9fa89da31d_read_manual.png",
+    "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.electric_shock",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/7638826b2324_electric_shock.png",
+    "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.battery_charging",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/85e5185e22e4_battery_charging.png",
+    "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.explosive_material",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/8de051db1a3a_explosive_material.png",
+    "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.heavy_object",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/5e156fb879ab_heavy_object.png",
+    "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.do_not_dismantle",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/908c33c16c06_do_not_dismantle.png",
+    "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.no_open_flame",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/460a4a9a19fd_no_open_flame.png",
+    "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.keep_away_from_children",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/45d63066ac4d_keep_away_from_children.png",
+    "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.li_ion",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/f913a65f0774_li_ion.png",
+    "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "symbol.weee",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/weee.png",
+    "identity_check": "Same source safety pictogram and semantic role; inspected source p02.",
+    "final_path": "assets/7e4de290ea13_weee.png",
+    "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "fcc",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/latex/assets/fcc_mark.png",
+    "identity_check": "Shared FCC mark, same mark in source p03.",
+    "final_path": "assets/45f309ed8b3f_fcc_mark.png",
+    "sha256": "45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "inbox_unit",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 6,
+    "bbox": [
+      77,
+      237,
+      135,
+      306
+    ],
+    "content_mode": "fixed-product-markings",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/inbox_unit.png",
+    "sha256": "98a08132d482146545340cebfb4093bfaa3b63487bacfb95abe2b6e4f8619bb0"
+  },
+  {
+    "slot": "inbox_ac",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 6,
+    "bbox": [
+      245,
+      237,
+      282,
+      306
+    ],
+    "content_mode": "fixed-product-markings",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/inbox_ac.png",
+    "sha256": "f6ea4630900d41df0e9eaa35be9c229a0dfa13d3dcee83d0a0308298b5ab479d"
+  },
+  {
+    "slot": "inbox_terminal",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 6,
+    "bbox": [
+      85,
+      380,
+      135,
+      433
+    ],
+    "content_mode": "fixed-product-markings",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/inbox_terminal.png",
+    "sha256": "da72fe85ec858bdaf30fe06f6dc8cf4e431f7a003ffaab66ea9be6bc7b12f310"
+  },
+  {
+    "slot": "document",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+    "identity_check": "Same language-neutral document pictogram; source p03.",
+    "final_path": "assets/87ac44e52863_manual_icon1.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "overview_front",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 7,
+    "bbox": [
+      25,
+      81,
+      344,
+      267
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/overview_front.png",
+    "sha256": "2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a"
+  },
+  {
+    "slot": "overview_side",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 7,
+    "bbox": [
+      25,
+      295,
+      344,
+      496
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/overview_side.png",
+    "sha256": "f2417a55844d72eb3bcad857a0a2e9ace04db5f89cb4c1f62dae22f7459ae5a4"
+  },
+  {
+    "slot": "lcd_map",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 8,
+    "bbox": [
+      25,
+      60,
+      344,
+      236
+    ],
+    "content_mode": "fixed-product-markings",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/lcd_map.png",
+    "sha256": "6e59ceb432be306dbed1dca0216dc3a894c9272b7e60ca61d90bf5e501a17349"
+  },
+  {
+    "slot": "lcd.wifi",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.bluetooth",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.quiet-charging",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.battery-saving",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.charging-plan",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.charging-power-limit",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.self-powered",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.tou",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd_parallel",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 9,
+    "bbox": [
+      49,
+      173,
+      81,
+      201
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_parallel.png",
+    "sha256": "1aacd9dc96bbc2ec22ff2364e88a896dd567a0f561f101dd85c93be10779dd04",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_parallel.png"
+  },
+  {
+    "slot": "lcd.ups",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.ac-power",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.output-voltage-frequency",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.input-power",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.remaining-charge-time",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.ac-wall-charging",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.car-charging",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.solar-charging",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd_ac-expansion-in",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 9,
+    "bbox": [
+      55,
+      429,
+      72,
+      450
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_ac-expansion-in.png",
+    "sha256": "5651765e549c201fe8afe43c3358a6de619cc034d1af10451aecff647be0e93e",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_ac-expansion-in.png"
+  },
+  {
+    "slot": "lcd_ac-expansion-out",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 9,
+    "bbox": [
+      49,
+      462,
+      81,
+      495
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_ac-expansion-out.png",
+    "sha256": "435f17477214a56e10fe0039aeb7799ab958f1dcdab4f0314829842028937397",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_ac-expansion-out.png"
+  },
+  {
+    "slot": "lcd_transfer-switch",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 10,
+    "bbox": [
+      49,
+      29,
+      81,
+      72
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_transfer-switch.png",
+    "sha256": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_transfer-switch.png"
+  },
+  {
+    "slot": "lcd_ev-charging",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 10,
+    "bbox": [
+      49,
+      74,
+      81,
+      101
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_ev-charging.png",
+    "sha256": "905ff8481cf04c39c16ecafb0da3697978765eea977e457920905172f5960b39",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_ev-charging.png"
+  },
+  {
+    "slot": "lcd.battery-power",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.low-battery",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.remaining-battery-percentage",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd_smart-meter",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 10,
+    "bbox": [
+      49,
+      203,
+      81,
+      233
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_smart-meter.png",
+    "sha256": "2eec7e59289bb32c1dd8f173fab2c13b9592740e7c3e882d70c07ba29012baa4",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_smart-meter.png"
+  },
+  {
+    "slot": "lcd.discharge-timer",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd_connected-batteries",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 10,
+    "bbox": [
+      49,
+      274,
+      81,
+      302
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_connected-batteries.png",
+    "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_connected-batteries.png"
+  },
+  {
+    "slot": "lcd.energy-saving",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.high-temperature",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.low-temperature",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd_fault-code",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 10,
+    "bbox": [
+      49,
+      405,
+      81,
+      424
+    ],
+    "content_mode": "standalone-transparent-icon",
+    "background_policy": "true alpha, monochrome source icon with grey cell background removed",
+    "erase_regions": [],
+    "final_path": "assets/lcd_fault-code.png",
+    "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "shared_path": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png"
+  },
+  {
+    "slot": "lcd.output-power",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "lcd.remaining-discharge-time",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "identity_check": "Same LCD symbol shape and meaning, visually compared to PDF p8–10; source-native labels remain live.",
+    "final_path": "assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "power",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      73,
+      343,
+      241
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/power.png",
+    "sha256": "0f9ef585164439b9b5728b6b548354f2ca3879ea5ba82a2258d269ddf818b264"
+  },
+  {
+    "slot": "usb",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      262,
+      343,
+      420
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/usb.png",
+    "sha256": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
+  },
+  {
+    "slot": "ac",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 12,
+    "bbox": [
+      29,
+      45,
+      344,
+      209
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ac.png",
+    "sha256": "e98fc6c1a0542dbdda3c71c4be43392f26ec3da41b93648d21d5a34dd4af1611"
+  },
+  {
+    "slot": "energy_saving",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 12,
+    "bbox": [
+      28,
+      235,
+      345,
+      463
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/energy_saving.png",
+    "sha256": "cfac4f314dcf9b7598b9618845fe920b40bde79fcfe8c53b92cc7aa65b34eec7"
+  },
+  {
+    "slot": "lcd_device",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 13,
+    "bbox": [
+      47,
+      58,
+      143,
+      214
+    ],
+    "content_mode": "fixed-product-markings",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/lcd_device.png",
+    "sha256": "62379420cc83084f91f8566033f7c77f9be1e74e30fd415e840baace983f7e77"
+  },
+  {
+    "slot": "button.power",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/power.svg",
+    "identity_check": "Same power/USB/AC circular switch artwork; native source button names retained.",
+    "final_path": "assets/457285c35d6d_power.svg",
+    "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "button.dc_usb",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+    "identity_check": "Same power/USB/AC circular switch artwork; native source button names retained.",
+    "final_path": "assets/3355388bad22_dc_usb.svg",
+    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "button.ac",
+    "decision": "reuse byte-identical",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/ac.svg",
+    "identity_check": "Same power/USB/AC circular switch artwork; native source button names retained.",
+    "final_path": "assets/74bcd0bb2a82_ac.svg",
+    "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+    "background_policy": "preserve existing transparency/frame"
+  },
+  {
+    "slot": "ups120",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 15,
+    "bbox": [
+      26,
+      25,
+      343,
+      202
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ups120.png",
+    "sha256": "4a7768c38f4a2093f1c107c8edecd1c672915a97ed79f5c39886f3c8e8f7b5d6"
+  },
+  {
+    "slot": "ups240",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 15,
+    "bbox": [
+      27,
+      307,
+      344,
+      498
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          242,
+          424,
+          332,
+          446
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/ups240.png",
+    "sha256": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "battery_packs",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      103,
+      342,
+      267
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/battery_packs.png",
+    "sha256": "a889607cf11ae91cfa2e95512d755ef1193a240fd7bd2c0eb31f5ef15d3dee45"
+  },
+  {
+    "slot": "battery_placement",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      287,
+      342,
+      434
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/battery_placement.png",
+    "sha256": "9a5a1b08b4d75ab45df34f9444cf7bc934d4427a2d5d753d5c3a4d254d03bd20"
+  },
+  {
+    "slot": "cascade",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 17,
+    "bbox": [
+      26,
+      256,
+      343,
+      427
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          246,
+          274,
+          335,
+          301
+        ],
+        null
+      ],
+      [
+        [
+          263,
+          343,
+          336,
+          374
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/cascade.png",
+    "sha256": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "epo",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 18,
+    "bbox": [
+      26,
+      79,
+      343,
+      186
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          263,
+          104,
+          280,
+          118
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/epo.png",
+    "sha256": "73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "ats_lock",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 18,
+    "bbox": [
+      28,
+      270,
+      343,
+      450
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ats_lock.png",
+    "sha256": "8d7d73c646e277f20557e4596a15bce55c28e1cb924060ec9af8a708e662ea4e"
+  },
+  {
+    "slot": "mts_single",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 19,
+    "bbox": [
+      28,
+      210,
+      344,
+      443
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/mts_single.png",
+    "sha256": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e"
+  },
+  {
+    "slot": "mts_cascade",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 20,
+    "bbox": [
+      26,
+      63,
+      343,
+      425
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/mts_cascade.png",
+    "sha256": "c75112da83e54852c756ddf4757afdd26b1d3c5ef468b3ccc807e07d8a242fcf"
+  },
+  {
+    "slot": "charge120",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 21,
+    "bbox": [
+      28,
+      187,
+      344,
+      292
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          207,
+          267,
+          332,
+          287
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/charge120.png",
+    "sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "charge240",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 21,
+    "bbox": [
+      28,
+      389,
+      344,
+      494
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          163,
+          465,
+          327,
+          488
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/charge240.png",
+    "sha256": "78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "ats_app",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 22,
+    "bbox": [
+      27,
+      155,
+      342,
+      348
+    ],
+    "content_mode": "app-ui",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          45,
+          167,
+          239,
+          205
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/ats_app.png",
+    "sha256": "f5cc470998ef9e5274a1b9814a1d2c0afa3419bbbc00ad5463e3dcfc17cb41de",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "solar500",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 23,
+    "bbox": [
+      28,
+      27,
+      344,
+      161
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/solar500.png",
+    "sha256": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939"
+  },
+  {
+    "slot": "solar200",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 23,
+    "bbox": [
+      28,
+      168,
+      344,
+      334
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/solar200.png",
+    "sha256": "2ad7cea648c11ea0309f1ff586bdaf340914d7502b3a75a1b5f5c2253604ebaa"
+  },
+  {
+    "slot": "car_charging",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 24,
+    "bbox": [
+      25,
+      27,
+      341,
+      170
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          242,
+          40,
+          274,
+          56
+        ],
+        null
+      ],
+      [
+        [
+          182,
+          134,
+          333,
+          149
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/car_charging.png",
+    "sha256": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "app_download",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 28,
+    "bbox": [
+      35,
+      69,
+      275,
+      119
+    ],
+    "content_mode": "app-ui",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/app_download.png",
+    "sha256": "2e43ff97156a883232a9fa3229de6f69790851ef918929edcefd2b0366f4b471"
+  },
+  {
+    "slot": "app_add",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 28,
+    "bbox": [
+      106,
+      213,
+      269,
+      375
+    ],
+    "content_mode": "app-ui",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/app_add.png",
+    "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7"
+  },
+  {
+    "slot": "app_control",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 28,
+    "bbox": [
+      27,
+      378,
+      343,
+      463
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/app_control.png",
+    "sha256": "92b9e84fdc173d030100697e12b8415a4ac35c8c074bac8a7fa2196703897c61"
+  },
+  {
+    "slot": "app_result",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 29,
+    "bbox": [
+      37,
+      139,
+      333,
+      297
+    ],
+    "content_mode": "app-ui",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/app_result.png",
+    "sha256": "3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14"
+  },
+  {
+    "slot": "ess_connection",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 30,
+    "bbox": [
+      28,
+      139,
+      343,
+      401
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [
+      [
+        [
+          247,
+          234,
+          330,
+          256
+        ],
+        null
+      ],
+      [
+        [
+          256,
+          278,
+          330,
+          301
+        ],
+        null
+      ],
+      [
+        [
+          39,
+          373,
+          215,
+          394
+        ],
+        null
+      ]
+    ],
+    "final_path": "assets/ess_connection.png",
+    "sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616",
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+  },
+  {
+    "slot": "ess_station_package",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      43,
+      344,
+      142
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ess_station_package.png",
+    "sha256": "25212b960f5d747cf167797525284b53bffb232be451d4dbb4b6c8558a0cde7f"
+  },
+  {
+    "slot": "ess_battery_package",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      158,
+      344,
+      239
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ess_battery_package.png",
+    "sha256": "db076d82d6678c7cf9ef72c708953135614fb7083cbe60f2c56959d649fbce62"
+  },
+  {
+    "slot": "ess_ats_package",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "No existing JHP-3600C US matching housing, NEMA 5-20R/14-50R routing, cascade/EPO/ATS/MTS diagram or this App UI. Other models are not interchangeable.",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      255,
+      344,
+      420
+    ],
+    "content_mode": "source-finished-panel",
+    "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
+    "erase_regions": [],
+    "final_path": "assets/ess_ats_package.png",
+    "sha256": "802b6803d4fd7643a82401aa8f8ec25638bce53af5b458483f687acb7e096344"
+  }
+]

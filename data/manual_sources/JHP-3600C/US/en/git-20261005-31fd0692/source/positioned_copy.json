@@ -1,0 +1,4805 @@
+[
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      130,
+      53,
+      343,
+      78
+    ],
+    "raw_text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC \nSHOCK, OR INJURY TO PERSONS",
+    "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      27,
+      79,
+      185,
+      100
+    ],
+    "raw_text": "Always follow these basic precautions when \nusing this product.",
+    "text": "Always follow these basic precautions when using this product."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      30,
+      244,
+      143,
+      257
+    ],
+    "raw_text": "OPERATING INSTRUCTIONS ",
+    "text": "OPERATING INSTRUCTIONS"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      25,
+      258,
+      134,
+      271
+    ],
+    "raw_text": "SAVE THESE INSTRUCTIONS",
+    "text": "SAVE THESE INSTRUCTIONS"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      30,
+      451,
+      145,
+      465
+    ],
+    "raw_text": "GROUNDING INSTRUCTIONS",
+    "text": "GROUNDING INSTRUCTIONS"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 4,
+    "bbox": [
+      25,
+      466,
+      344,
+      499
+    ],
+    "raw_text": "This product must be grounded. If it should malfunction or breakdown, grounding provides a path of least \nresistance for electric current to reduce the risk of electric shock. This product is equipped with a cord having an \nequipment grounding conductor and a grounding plug. The plug must be plugged into an outlet that is properly \ninstalled and grounded in accordance with all local codes ordinances.",
+    "text": "This product must be grounded. If it should malfunction or breakdown, grounding provides a path of least resistance for electric current to reduce the risk of electric shock. This product is equipped with a cord having an equipment grounding conductor and a grounding plug. The plug must be plugged into an outlet that is properly installed and grounded in accordance with all local codes ordinances."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      25,
+      341,
+      58
+    ],
+    "raw_text": "WARNING – Improper connection of the equipment grounding conductor is able to result in a risk of electric \nshock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do \nnot modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a \nqualified electrician.",
+    "text": "WARNING – Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt as to whether the product is properly grounded. Do not modify the plug provided with the product – if it will not fit the outlet, have a proper outlet installed by a qualified electrician."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      60,
+      341,
+      93
+    ],
+    "raw_text": "This device is intended for indoor use only (Please place this device in a similar \nindoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). \nDANGER\n※ This device is not waterproof or dustproof. Keep away from rain and humid \nenvironments during use.",
+    "text": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors, e.g., Home, RVs, tents, cabins, etc.). DANGER ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      99,
+      343,
+      114
+    ],
+    "raw_text": "USER MAINTENANCE INSTRUCTIONS",
+    "text": "USER MAINTENANCE INSTRUCTIONS"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      115,
+      343,
+      141
+    ],
+    "raw_text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is \nexpected. As the number of charge and discharge cycles increases and storage time extends, this degradation \nwill gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.",
+    "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells."
+  },
+  {
+    "field": "signal-table",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      187,
+      342,
+      208
+    ],
+    "raw_text": "Hazardous practices that may result in severe injury, death, and/or property \nWARNING \ndamage.",
+    "text": "Hazardous practices that may result in severe injury, death, and/or property WARNING damage."
+  },
+  {
+    "field": "signal-table",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      214,
+      342,
+      235
+    ],
+    "raw_text": "Hazardous practices that may result in personal injury and/or property \n CAUTION\ndamage.",
+    "text": "Hazardous practices that may result in personal injury and/or property CAUTION damage."
+  },
+  {
+    "field": "signal-table",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      239,
+      342,
+      261
+    ],
+    "raw_text": "Hazardous practices that may result in equipment damage, data loss, \nNOTE\nperformance deterioration, or unanticipated results.",
+    "text": "Hazardous practices that may result in equipment damage, data loss, NOTE performance deterioration, or unanticipated results."
+  },
+  {
+    "field": "signal-table",
+    "physical_page": 5,
+    "bbox": [
+      25,
+      265,
+      342,
+      284
+    ],
+    "raw_text": "TIP\nSupplements the important information or operation tips in the text.",
+    "text": "TIP Supplements the important information or operation tips in the text."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Read the user manual before operation.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Risk of electric shock",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Battery charging",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Explosive material",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      29,
+      291,
+      182,
+      499
+    ],
+    "text": "Heavy object",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      187,
+      291,
+      342,
+      499
+    ],
+    "text": "Do not dismantle the product.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      187,
+      291,
+      342,
+      499
+    ],
+    "text": "Keep the product away from fire.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      187,
+      291,
+      342,
+      499
+    ],
+    "text": "Keep away from children.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      187,
+      291,
+      342,
+      499
+    ],
+    "text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 5,
+    "bbox": [
+      187,
+      291,
+      342,
+      499
+    ],
+    "text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "method": "manual transcription from rendered source",
+    "reason": "Outlined source text is not returned by PDF text extraction; rendered p02 manually transcribed."
+  },
+  {
+    "field": "fcc-opening",
+    "physical_page": 6,
+    "bbox": [
+      32,
+      30,
+      192,
+      81
+    ],
+    "raw_text": "This device complies with part 15 of the FCC \nRules. Operation is subject to the following two \nconditions: \n(1) This device may not cause harmful \ninterference, and \n(2) This device must accept any interference received, \nincluding interference that may cause undesired operation.",
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation."
+  },
+  {
+    "field": "fcc-note",
+    "physical_page": 6,
+    "bbox": [
+      32,
+      81,
+      192,
+      105
+    ],
+    "raw_text": "NOTE: This equipment has been tested and found to comply \nwith the limits for a Class B digital device, pursuant to part \n15 of the FCC Rules. ",
+    "text": "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules."
+  },
+  {
+    "field": "fcc-body",
+    "physical_page": 6,
+    "bbox": [
+      32,
+      105,
+      192,
+      156
+    ],
+    "raw_text": "These limits are designed to provide reasonable protection \nagainst harmful interference in a residential installation. This \nequipment generates, uses, and can radiate radio \nfrequency energy and, if not installed and used in \naccordance with the instructions, may cause harmful \ninterference to communications. However, there is no \nguarantee that radio interference will not occur in a ",
+    "text": "These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a"
+  },
+  {
+    "field": "fcc-body-continuation",
+    "physical_page": 6,
+    "bbox": [
+      195,
+      31,
+      341,
+      76
+    ],
+    "raw_text": "particular installation. \nIf this equipment does cause harmful interference to \nradio or television reception, which can be \ndetermined by turning the equipment off and on, the \nuser is encouraged to try to correct the interference \nby one or more of the following measures:",
+    "text": "particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+  },
+  {
+    "field": "fcc-measures",
+    "physical_page": 6,
+    "bbox": [
+      193,
+      77,
+      342,
+      130
+    ],
+    "raw_text": "• Reorient or relocate the receiving antenna.\n• Increase the separation between the equipment and \nreceiver.\n• Connect the equipment into an outlet on a circuit \ndifferent from that to which the receiver is connected.\n• Consult the dealer or an experienced radio/TV \ntechnician for help.",
+    "text": "• Reorient or relocate the receiving antenna. • Increase the separation between the equipment and receiver. • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. • Consult the dealer or an experienced radio/TV technician for help."
+  },
+  {
+    "field": "fcc-modification",
+    "physical_page": 6,
+    "bbox": [
+      193,
+      131,
+      342,
+      157
+    ],
+    "raw_text": "MODIFICATION: Any changes or modifications not \nexpressly approved by the grantee of this device could \nvoid the user’s authority to operate the device.",
+    "text": "MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 6,
+    "bbox": [
+      25,
+      473,
+      340,
+      494
+    ],
+    "raw_text": "The car charging cable is not included but is available for purchase separately \nTIPS\non our website. For assistance, please contact Jackery customer service.",
+    "text": "The car charging cable is not included but is available for purchase separately TIPS on our website. For assistance, please contact Jackery customer service."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 7,
+    "bbox": [
+      25,
+      81,
+      344,
+      267
+    ],
+    "raw_text": "LCD\nAC Output\n(NEMA 14-50R)\n240V~ 60Hz, 16.7A Max, \nMain Power Button\n4000W Max \nUSB-C Output\nAC Output\n100W Max, 5V⎓3A, 9V⎓3A, \n(NEMA 5-20R)\n12V⎓3A, 15V⎓3A, 20V⎓5A\n120V~ 60Hz, 16.7A Max, 2000W \nper port, 4000W in Total\nUSB-A Output\nL1 and L2 respectively \n18W Max, 5-6V⎓3A, \nfrom left to right\n6-9V⎓2A, 9-12V⎓1.5A\nAC Power Button\nUSB Power Button",
+    "text": "LCD AC Output (NEMA 14-50R) 240V~ 60Hz, 16.7A Max, Main Power Button 4000W Max USB-C Output AC Output 100W Max, 5V⎓3A, 9V⎓3A, (NEMA 5-20R) 12V⎓3A, 15V⎓3A, 20V⎓5A 120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total USB-A Output L1 and L2 respectively 18W Max, 5-6V⎓3A, from left to right 6-9V⎓2A, 9-12V⎓1.5A AC Power Button USB Power Button"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 7,
+    "bbox": [
+      25,
+      295,
+      344,
+      496
+    ],
+    "raw_text": "AC Expansion Port\nFor ATS connection or \ncascading parallel connection\nInput/Output: 240V~ 60Hz, \n16.7A Max, 4000W\nParallel Communication\nFor communication connection in \ncascade parallel operation\nEPO (Emergency Power Off)\nTo connect to an external \nDC Expansion Port\nemergency stop button\nConnect to Battery Pack\nDC Input (2×DC8020 Ports)\n12-16V⎓8A Max, Double to 8A Max\n16-60V⎓12A Max, Double to 24A / \nAC Input\n1200W Max\n100V-120V~ 60 Hz, 15A Max ",
+    "text": "AC Expansion Port For ATS connection or cascading parallel connection Input/Output: 240V~ 60Hz, 16.7A Max, 4000W Parallel Communication For communication connection in cascade parallel operation EPO (Emergency Power Off) To connect to an external DC Expansion Port emergency stop button Connect to Battery Pack DC Input (2×DC8020 Ports) 12-16V⎓8A Max, Double to 8A Max 16-60V⎓12A Max, Double to 24A / AC Input 1200W Max 100V-120V~ 60 Hz, 15A Max"
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      241,
+      167,
+      268
+    ],
+    "raw_text": "Wi-Fi",
+    "text": "Wi-Fi"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      241,
+      344,
+      268
+    ],
+    "raw_text": "On: Wi-Fi connected.\nBlink: Ready to connect to Wi-Fi.\nOff: Wi-Fi disconnected.",
+    "text": "On: Wi-Fi connected. Blink: Ready to connect to Wi-Fi. Off: Wi-Fi disconnected."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      268,
+      167,
+      296
+    ],
+    "raw_text": "Bluetooth",
+    "text": "Bluetooth"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      268,
+      344,
+      296
+    ],
+    "raw_text": "On:  Bluetooth Connected.\nBlink: Ready to connect to Bluetooth.\nOff: Bluetooth disconnected.",
+    "text": "On: Bluetooth Connected. Blink: Ready to connect to Bluetooth. Off: Bluetooth disconnected."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      296,
+      167,
+      343
+    ],
+    "raw_text": "Quiet Charging Mode",
+    "text": "Quiet Charging Mode"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      296,
+      344,
+      343
+    ],
+    "raw_text": "On: The noise during charging is significantly minimized, while \nthe charging power is reduced, and the charging speed slows \ndown.\nOff: Quiet Charging Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is \nretained when the device is powered off.",
+    "text": "On: The noise during charging is significantly minimized, while the charging power is reduced, and the charging speed slows down. Off: Quiet Charging Mode is disabled. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      343,
+      167,
+      419
+    ],
+    "raw_text": "Battery Saving Mode",
+    "text": "Battery Saving Mode"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      343,
+      344,
+      419
+    ],
+    "raw_text": "On: Limits the maximum usable capacity of the battery to \nextend its life.\nOff: Battery Saving Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is \nretained when the device is powered off.\nNote 1: This feature is not available when the product is \nconnected to battery pack(s).\nNote 2: When this feature is enabled, the product \noccasionally performs a full charge and discharge cycle to \ncalibrate the SOC.",
+    "text": "On: Limits the maximum usable capacity of the battery to extend its life. Off: Battery Saving Mode is disabled. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off. Note 1: This feature is not available when the product is connected to battery pack(s). Note 2: When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      419,
+      167,
+      467
+    ],
+    "raw_text": "Charging Plan",
+    "text": "Charging Plan"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      419,
+      344,
+      467
+    ],
+    "raw_text": "Customizes the charging time of the product. Suitable for \nsituations with fluctuating electricity prices, it allows for \ncharging plans based on peak and off-peak electricity \ntimes, reducing electricity costs. \nEnable/disable this feature in the Jackery App. The setting \nis retained when the device is powered off.",
+    "text": "Customizes the charging time of the product. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 8,
+    "bbox": [
+      85,
+      467,
+      167,
+      496
+    ],
+    "raw_text": "Charging Power Limit",
+    "text": "Charging Power Limit"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 8,
+    "bbox": [
+      168,
+      467,
+      344,
+      496
+    ],
+    "raw_text": "On: Charging Power limit is enabled in the Jackery app.\nOff: Charging Power limit is disabled in the Jackery app.\nThe setting is retained when the device is powered off.",
+    "text": "On: Charging Power limit is enabled in the Jackery app. Off: Charging Power limit is disabled in the Jackery app. The setting is retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      28,
+      167,
+      86
+    ],
+    "raw_text": "Self-powered Mode",
+    "text": "Self-powered Mode"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      28,
+      344,
+      86
+    ],
+    "raw_text": "Maximizes the use of solar energy and reduces reliance on \ngrid electricity by prioritizing stored solar energy, reducing \nelectricity costs. The power station must be connected to \nboth solar panels and the grid simultaneously, with the load \npower limited by bypass power.\nEnable/disable this feature in the Jackery App. The setting \nis retained when the device is powered off.",
+    "text": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      86,
+      167,
+      172
+    ],
+    "raw_text": "TOU Mode",
+    "text": "TOU Mode"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      86,
+      344,
+      172
+    ],
+    "raw_text": "On: TOU mode is enabled (default backup SOC: 60%). \nDuring peak periods, the product prioritizes discharging the \nbattery to reduce peak electricity costs when the stored \nenergy exceeds the backup SOC. During off-peak periods, \nthe product charges the battery from the grid to achieve \npeak-shaving and valley-filling.\nOff: TOU mode is disabled. The product does not follow the \nTOU (time-of-use) strategy and operates according to the \ndefault power supply and charging logic.\nEnable/disable this feature in the Jackery App. The setting \nis retained when the device is powered off.",
+    "text": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off-peak periods, the product charges the battery from the grid to achieve peak-shaving and valley-filling. Off: TOU mode is disabled. The product does not follow the TOU (time-of-use) strategy and operates according to the default power supply and charging logic. Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      172,
+      167,
+      202
+    ],
+    "raw_text": "Parallel",
+    "text": "Parallel"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      172,
+      344,
+      202
+    ],
+    "raw_text": "On: The parallel connection is set up successfully.\nBlink: The parallel connection is setting up.\nOff: The parallel connection is not set up.",
+    "text": "On: The parallel connection is set up successfully. Blink: The parallel connection is setting up. Off: The parallel connection is not set up."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      202,
+      167,
+      221
+    ],
+    "raw_text": "UPS",
+    "text": "UPS"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      202,
+      344,
+      221
+    ],
+    "raw_text": "The UPS indicator remains on when grid power is available \nand turns off when grid power is lost.",
+    "text": "The UPS indicator remains on when grid power is available and turns off when grid power is lost."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      221,
+      167,
+      239
+    ],
+    "raw_text": "AC Power Indicator",
+    "text": "AC Power Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      221,
+      344,
+      239
+    ],
+    "raw_text": "The AC output (pure sine wave) is on.",
+    "text": "The AC output (pure sine wave) is on."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      239,
+      167,
+      315
+    ],
+    "raw_text": "Output Voltage and \nFrequency",
+    "text": "Output Voltage and Frequency"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      239,
+      344,
+      315
+    ],
+    "raw_text": "Displays the output voltage and frequency when the AC \noutput is enabled via the AC power button or when the AC \nExtension port is supplying power. \n• 120V: Displayed when the product is charging from the \n120V AC input while simultaneously delivering power \nthrough the AC output ports.\n• 120/240V: Displayed when the 240V AC output is active, \nor when the product is connected to a transfer switch \nand operating in bypass mode.",
+    "text": "Displays the output voltage and frequency when the AC output is enabled via the AC power button or when the AC Extension port is supplying power. • 120V: Displayed when the product is charging from the 120V AC input while simultaneously delivering power through the AC output ports. • 120/240V: Displayed when the 240V AC output is active, or when the product is connected to a transfer switch and operating in bypass mode."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      315,
+      167,
+      331
+    ],
+    "raw_text": "Input Power",
+    "text": "Input Power"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      315,
+      344,
+      331
+    ],
+    "raw_text": "Displays the AC input power used for battery charging in watts.",
+    "text": "Displays the AC input power used for battery charging in watts."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      331,
+      167,
+      352
+    ],
+    "raw_text": "Remaining Charge Time",
+    "text": "Remaining Charge Time"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      331,
+      344,
+      352
+    ],
+    "raw_text": "Displays the remaining charging time.",
+    "text": "Displays the remaining charging time."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      352,
+      167,
+      375
+    ],
+    "raw_text": "AC Wall Charging \nIndicator",
+    "text": "AC Wall Charging Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      352,
+      344,
+      375
+    ],
+    "raw_text": "The product is charged via the AC Input using grid power.",
+    "text": "The product is charged via the AC Input using grid power."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      375,
+      167,
+      398
+    ],
+    "raw_text": "Car Charging Indicator",
+    "text": "Car Charging Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      375,
+      344,
+      398
+    ],
+    "raw_text": "The product is charged via the DC Input (DC8020) using DC \n12V (car charging).",
+    "text": "The product is charged via the DC Input (DC8020) using DC 12V (car charging)."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      398,
+      167,
+      425
+    ],
+    "raw_text": "Solar Charging \nIndicator",
+    "text": "Solar Charging Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      398,
+      344,
+      425
+    ],
+    "raw_text": "The product is charged via the DC Input (DC8020) using \nsolar panel(s).",
+    "text": "The product is charged via the DC Input (DC8020) using solar panel(s)."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      425,
+      167,
+      461
+    ],
+    "raw_text": "AC Expansion Indicator \n(Charging)",
+    "text": "AC Expansion Indicator (Charging)"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      425,
+      344,
+      461
+    ],
+    "raw_text": "The product can be charged from the grid through a \nJackery Automatic Transfer Switch (ATS).",
+    "text": "The product can be charged from the grid through a Jackery Automatic Transfer Switch (ATS)."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 9,
+    "bbox": [
+      83,
+      461,
+      167,
+      496
+    ],
+    "raw_text": "AC Expansion Indicator \n(Discharging)",
+    "text": "AC Expansion Indicator (Discharging)"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 9,
+    "bbox": [
+      168,
+      461,
+      344,
+      496
+    ],
+    "raw_text": "The product supplies power to your home loads through the \nconnected ATS.",
+    "text": "The product supplies power to your home loads through the connected ATS."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      28,
+      167,
+      73
+    ],
+    "raw_text": "Transfer Switch \nIndicator",
+    "text": "Transfer Switch Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      28,
+      344,
+      73
+    ],
+    "raw_text": "On: The product is successfully connected to a transfer \nswitch (ATS).\nOff: The product is not connected to a transfer switch (ATS).",
+    "text": "On: The product is successfully connected to a transfer switch (ATS). Off: The product is not connected to a transfer switch (ATS)."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      73,
+      167,
+      102
+    ],
+    "raw_text": "EV Charging",
+    "text": "EV Charging"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      73,
+      344,
+      102
+    ],
+    "raw_text": "The Ground Adapter (sold separately) is connected to the \nproduct successfully.",
+    "text": "The Ground Adapter (sold separately) is connected to the product successfully."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      102,
+      167,
+      136
+    ],
+    "raw_text": "Battery Power \nIndicator",
+    "text": "Battery Power Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      102,
+      344,
+      136
+    ],
+    "raw_text": "When the product is being charged, the orange circle \naround the battery percentage will light up in sequence. \nWhen charging other devices, the orange circle will stay on.",
+    "text": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      136,
+      167,
+      174
+    ],
+    "raw_text": "Low Battery Indicator",
+    "text": "Low Battery Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      136,
+      344,
+      174
+    ],
+    "raw_text": "On: The battery level is below 20%.\nBlink: The battery level is below 5%.\nOff: The battery level is not below 20% or the product is \ncharging.",
+    "text": "On: The battery level is below 20%. Blink: The battery level is below 5%. Off: The battery level is not below 20% or the product is charging."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      174,
+      167,
+      202
+    ],
+    "raw_text": "Remaining Battery \nPercentage",
+    "text": "Remaining Battery Percentage"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      174,
+      344,
+      202
+    ],
+    "raw_text": "Displays the remaining battery percentage.",
+    "text": "Displays the remaining battery percentage."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      202,
+      167,
+      234
+    ],
+    "raw_text": "Smart Meter indicator",
+    "text": "Smart Meter indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      202,
+      344,
+      234
+    ],
+    "raw_text": "On: A smart meter is online.\nOff: No smart meter is added to the system, or the smart \nmeter is offline.",
+    "text": "On: A smart meter is online. Off: No smart meter is added to the system, or the smart meter is offline."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      234,
+      167,
+      273
+    ],
+    "raw_text": "Discharge Timer",
+    "text": "Discharge Timer"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      234,
+      344,
+      273
+    ],
+    "raw_text": "On: A discharge timer is set.\nOff: No discharge timer is set.\nEnable/disable this feature in the Jackery App. The setting \nis not retained when the device is powered off.",
+    "text": "On: A discharge timer is set. Off: No discharge timer is set. Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      273,
+      167,
+      303
+    ],
+    "raw_text": "Connected Batteries",
+    "text": "Connected Batteries"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      273,
+      344,
+      303
+    ],
+    "raw_text": "Displays the quantity of battery packs if any are connected.",
+    "text": "Displays the quantity of battery packs if any are connected."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      303,
+      167,
+      333
+    ],
+    "raw_text": "Energy Saving Mode",
+    "text": "Energy Saving Mode"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      303,
+      344,
+      333
+    ],
+    "raw_text": "On: Energy Saving Mode is enabled.\nOff: Energy Saving Mode is disabled.",
+    "text": "On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      333,
+      167,
+      365
+    ],
+    "raw_text": "High Temperature \nIndicator",
+    "text": "High Temperature Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      333,
+      344,
+      365
+    ],
+    "raw_text": "High temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.",
+    "text": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      365,
+      167,
+      401
+    ],
+    "raw_text": "Low Temperature \nIndicator",
+    "text": "Low Temperature Indicator"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      365,
+      344,
+      401
+    ],
+    "raw_text": "Low temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.",
+    "text": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      401,
+      167,
+      428
+    ],
+    "raw_text": "Fault code",
+    "text": "Fault code"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      401,
+      344,
+      428
+    ],
+    "raw_text": "A product error has occurred. Please refer to the \nTroubleshooting section for details.",
+    "text": "A product error has occurred. Please refer to the Troubleshooting section for details."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      428,
+      167,
+      460
+    ],
+    "raw_text": "Output Power",
+    "text": "Output Power"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      428,
+      344,
+      460
+    ],
+    "raw_text": "Displays the total output power (AC + USB) in watts.\nDisplays OFF for 1 second before the product powers off.",
+    "text": "Displays the total output power (AC + USB) in watts. Displays OFF for 1 second before the product powers off."
+  },
+  {
+    "field": "lcd-label",
+    "physical_page": 10,
+    "bbox": [
+      87,
+      460,
+      167,
+      496
+    ],
+    "raw_text": "Remaining \nDischarge Time",
+    "text": "Remaining Discharge Time"
+  },
+  {
+    "field": "lcd-description",
+    "physical_page": 10,
+    "bbox": [
+      168,
+      460,
+      344,
+      496
+    ],
+    "raw_text": "Displays the remaining discharging time.",
+    "text": "Displays the remaining discharging time."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      73,
+      343,
+      241
+    ],
+    "raw_text": "On\nPress once\nOﬀ\nPress and hold for 3s\n3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2\nhours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the \nAC or USB power button is ON but the product is neither charging nor discharging.",
+    "text": "On Press once Off Press and hold for 3s 3s Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      262,
+      343,
+      420
+    ],
+    "raw_text": "On\nPrerequisite: The product is powered on.\nPress once\nOﬀ\nPress once",
+    "text": "On Prerequisite: The product is powered on. Press once Off Press once"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 11,
+    "bbox": [
+      28,
+      425,
+      341,
+      494
+    ],
+    "raw_text": "• USB-C 100W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the \nconnected user device or accessory does not meet safety requirements, there may be a \nfire risk. Before using these ports, ensure that the connected device or accessory has fire \nsafety protection. \nCAUTION\n• Only connect the Jackery HomePower 3600 Pro Max to devices or accessories that \ncomply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent \nstandards). \n• To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W). ",
+    "text": "• USB-C 100W MAX is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection. CAUTION • Only connect the Jackery HomePower 3600 Pro Max to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards). • To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W)."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 12,
+    "bbox": [
+      29,
+      45,
+      344,
+      209
+    ],
+    "raw_text": "Prerequisite: The product is powered on.\nOn\nPress once\nOﬀ\nPress once",
+    "text": "Prerequisite: The product is powered on. On Press once Off Press once"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 12,
+    "bbox": [
+      28,
+      235,
+      345,
+      463
+    ],
+    "raw_text": "To prevent unnecessary battery consumption from forgetting to turn oﬀ the output, the product \nenables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving \nMode icon will be displayed on the LCD screen. If no device is connected or the connected device's \npower consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the \nproduct will automatically turn oﬀ the outputs. Please set the Energy Saving Mode duration in the \nJackery App.\nTo disable the energy saving mode, press and hold both the AC power button and the main power \nbutton for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear \non the LCD screen, and the product will not automatically turn oﬀ the AC or USB output.\nWhen powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to \nprevent the output from shutting down automatically during operation.\nMain power button\nAC power button\nOn/Oﬀ\n3s\nPress and hold for 3s",
+    "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App. To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output. When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation. Main power button AC power button On/Off 3s Press and hold for 3s"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 12,
+    "bbox": [
+      27,
+      472,
+      343,
+      494
+    ],
+    "raw_text": "Energy Saving Mode resumes its previous state after powering on. Manual switching is \nNOTE\nrequired for mode changes.",
+    "text": "Energy Saving Mode resumes its previous state after powering on. Manual switching is NOTE required for mode changes."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      65,
+      240,
+      93
+    ],
+    "raw_text": "Turn on",
+    "text": "Turn on"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      65,
+      334,
+      93
+    ],
+    "raw_text": "Press the Main Power Button or \nwhen the product is charging.",
+    "text": "Press the Main Power Button or when the product is charging."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      93,
+      240,
+      108
+    ],
+    "raw_text": "Turn oﬀ",
+    "text": "Turn off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      93,
+      334,
+      108
+    ],
+    "raw_text": "Press the Main Power Button.",
+    "text": "Press the Main Power Button."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      108,
+      240,
+      136
+    ],
+    "raw_text": "Auto-oﬀ",
+    "text": "Auto-off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      108,
+      334,
+      136
+    ],
+    "raw_text": "The LCD turns oﬀ automatically \nand enters sleep mode after 2 \nminutes of inactivity.",
+    "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      136,
+      240,
+      166
+    ],
+    "raw_text": "Turn on",
+    "text": "Turn on"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      136,
+      334,
+      166
+    ],
+    "raw_text": "Press the Main Power Button \ntwice when the product is \npowered on.",
+    "text": "Press the Main Power Button twice when the product is powered on."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      166,
+      240,
+      182
+    ],
+    "raw_text": "Turn oﬀ",
+    "text": "Turn off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      166,
+      334,
+      182
+    ],
+    "raw_text": "Press the Main Power Button.",
+    "text": "Press the Main Power Button."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      200,
+      182,
+      240,
+      215
+    ],
+    "raw_text": "Auto-oﬀ",
+    "text": "Auto-off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      243,
+      182,
+      334,
+      215
+    ],
+    "raw_text": "The LCD turns oﬀ \nautomatically after 2 hours of \ninactivity.",
+    "text": "The LCD turns off automatically after 2 hours of inactivity."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      27,
+      232,
+      341,
+      246
+    ],
+    "raw_text": "You can also set the screen display mode in the Jackery App.",
+    "text": "You can also set the screen display mode in the Jackery App."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      160,
+      290,
+      233,
+      327
+    ],
+    "raw_text": "3s\nPress and hold both for 3s",
+    "text": "3s Press and hold both for 3s"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      250,
+      290,
+      338,
+      327
+    ],
+    "raw_text": "Reset Wi-Fi and Bluetooth",
+    "text": "Reset Wi-Fi and Bluetooth"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      160,
+      332,
+      233,
+      368
+    ],
+    "raw_text": "3s\nPress and hold both for 3s",
+    "text": "3s Press and hold both for 3s"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      250,
+      332,
+      338,
+      368
+    ],
+    "raw_text": "Turn on/off the \nEnergy Saving Mode",
+    "text": "Turn on/off the Energy Saving Mode"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      160,
+      375,
+      233,
+      412
+    ],
+    "raw_text": "1s\nPress and hold both for 1s",
+    "text": "1s Press and hold both for 1s"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 13,
+    "bbox": [
+      250,
+      375,
+      338,
+      412
+    ],
+    "raw_text": "Turn on/off Wi-Fi and \nBluetooth",
+    "text": "Turn on/off Wi-Fi and Bluetooth"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      42,
+      340,
+      65
+    ],
+    "raw_text": "This function memorizes the output status and automatically resumes AC and DC outputs under \ndeﬁned conditions.",
+    "text": "This function memorizes the output status and automatically resumes AC and DC outputs under defined conditions."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      28,
+      81,
+      212,
+      95
+    ],
+    "raw_text": "Power-on/Restart after shutdown or restart",
+    "text": "Power-on/Restart after shutdown or restart"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      28,
+      97,
+      212,
+      115
+    ],
+    "raw_text": "Battery SOC ≥ discharge limit +10% after reaching limit",
+    "text": "Battery SOC ≥ discharge limit +10% after reaching limit"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      28,
+      125,
+      212,
+      140
+    ],
+    "raw_text": "OTA upgrade completed",
+    "text": "OTA upgrade completed"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      217,
+      81,
+      340,
+      95
+    ],
+    "raw_text": "Manual output oﬀ (button/App)",
+    "text": "Manual output off (button/App)"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      217,
+      97,
+      340,
+      114
+    ],
+    "raw_text": "Energy Saving mode output oﬀ",
+    "text": "Energy Saving mode output off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      217,
+      114,
+      340,
+      125
+    ],
+    "raw_text": "Protection-triggered output oﬀ",
+    "text": "Protection-triggered output off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      217,
+      125,
+      340,
+      140
+    ],
+    "raw_text": "Discharge timer-triggered output oﬀ",
+    "text": "Discharge timer-triggered output off"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      27,
+      69,
+      211,
+      80
+    ],
+    "raw_text": "Auto Resume Conditions",
+    "text": "Auto Resume Conditions"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      215,
+      69,
+      341,
+      80
+    ],
+    "raw_text": "Not Auto Resume Conditions",
+    "text": "Not Auto Resume Conditions"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      204,
+      343,
+      259
+    ],
+    "raw_text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup \nelectric power to a load when the mains grid power fails. In the event of a sudden loss of grid power, the \nHomePower 3600 Pro Max will automatically switch to stored power within 10 ms to keep your appliances running.\nIn UPS mode, the unit's peak output varies with grid input voltages before power outages. The actual output \npower returns to the rated output power during outages.",
+    "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails. In the event of a sudden loss of grid power, the HomePower 3600 Pro Max will automatically switch to stored power within 10 ms to keep your appliances running. In UPS mode, the unit's peak output varies with grid input voltages before power outages. The actual output power returns to the rated output power during outages."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      270,
+      342,
+      320
+    ],
+    "raw_text": "• This product does not support 0 ms switching. Do not connect it to equipment that \nrequires a 0 ms switching power supply, such as data servers or workstations.\nCAUTION\n• Before use, please test compatibility with your device multiple times.\n• Do not connect loads exceeding the maximum output power of the product. Otherwise, \noverload protection will be triggered. ",
+    "text": "• This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations. CAUTION • Before use, please test compatibility with your device multiple times. • Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 14,
+    "bbox": [
+      26,
+      344,
+      343,
+      499
+    ],
+    "raw_text": "Connect the product to a 120V wall outlet using the AC charging cable.\nPress the AC power button to enable AC power delivery. \nTotal Loads ≤1440 W:\nThe product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be \nused. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to \nbattery power within 10 ms when grid power fails.\nIf only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection.\nTotal Loads >1440W:\nEach NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The \nNEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W.\nWhen operating above 1440W with 120V AC input,  the product still supports 120V/240V outputs. In this condition, \nthe AC outputs consume battery power. If the battery becomes fully discharged, the connected load may \nexperience overload shutdown and power interruption.",
+    "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads >1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 15,
+    "bbox": [
+      26,
+      222,
+      343,
+      306
+    ],
+    "raw_text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). \nPress the AC power button to enable AC power delivery. \nAll AC output ports support UPS operation under 240V input:\n     NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output\n     NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output\nThe maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection).\nWhen the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 \nms. When the battery is depleted, all AC outputs turn off.",
+    "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 16,
+    "bbox": [
+      25,
+      75,
+      343,
+      98
+    ],
+    "raw_text": "This product supports up to 5 battery packs to meet the need for large power capacity. For details on how to use \nit, please refer to the Jackery Battery Pack 3600 User Manual.",
+    "text": "This product supports up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the Jackery Battery Pack 3600 User Manual."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      103,
+      342,
+      267
+    ],
+    "raw_text": "≥ 0.66 ft (≈200 mm)\n≥ 0.66 ft (≈200 mm)",
+    "text": "≥ 0.66 ft (≈200 mm) ≥ 0.66 ft (≈200 mm)"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 16,
+    "bbox": [
+      25,
+      270,
+      343,
+      282
+    ],
+    "raw_text": "If you are using only one battery pack, you may place it in either of the following configurations:",
+    "text": "If you are using only one battery pack, you may place it in either of the following configurations:"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      287,
+      342,
+      434
+    ],
+    "raw_text": "Side-by-side placement\nStacked placement\n≥ 0.66 ft (≈200 mm)",
+    "text": "Side-by-side placement Stacked placement ≥ 0.66 ft (≈200 mm)"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 16,
+    "bbox": [
+      26,
+      444,
+      343,
+      494
+    ],
+    "raw_text": "• Ensure all products are powered off before connecting the HomePower 3600 Pro Max to \nthe Jackery Battery Pack 3600.\nCAUTION\n• To ensure proper operation of the product, make sure the air intake and exhaust vents on \nboth sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the \nvents and any objects to allow for proper heat dissipation.",
+    "text": "• Ensure all products are powered off before connecting the HomePower 3600 Pro Max to the Jackery Battery Pack 3600. CAUTION • To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 17,
+    "bbox": [
+      25,
+      39,
+      343,
+      61
+    ],
+    "raw_text": "Cascade connection allows 2 HomePower 3600 Pro Max units to operate as a combined system, increasing total \noutput power.",
+    "text": "Cascade connection allows 2 HomePower 3600 Pro Max units to operate as a combined system, increasing total output power."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 17,
+    "bbox": [
+      28,
+      72,
+      342,
+      149
+    ],
+    "text": "Jackery 40A Charging Cable · Jackery Parallel Communication Cable — Sold separately",
+    "method": "manual transcription from rendered source",
+    "reason": "Native source accessories visually confirmed; package captions are preserved as native inventory."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 17,
+    "bbox": [
+      25,
+      177,
+      343,
+      199
+    ],
+    "raw_text": "1.  Ensure both units are powered OFF and completely disconnected from power sources.\n2. Connect Parallel Communication ports on both units.",
+    "text": "1. Ensure both units are powered OFF and completely disconnected from power sources. 2. Connect Parallel Communication ports on both units."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 17,
+    "bbox": [
+      27,
+      207,
+      341,
+      233
+    ],
+    "raw_text": "Do not skip this step. Without communication, the units cannot synchronize data \nCAUTION\nand may be damaged.",
+    "text": "Do not skip this step. Without communication, the units cannot synchronize data CAUTION and may be damaged."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 17,
+    "bbox": [
+      25,
+      240,
+      343,
+      253
+    ],
+    "raw_text": "3. Connect the first unit's 240V Output Port (NEMA 14-50R) to the second unit's AC Expansion Port.",
+    "text": "3. Connect the first unit's 240V Output Port (NEMA 14-50R) to the second unit's AC Expansion Port."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 17,
+    "bbox": [
+      25,
+      430,
+      343,
+      443
+    ],
+    "raw_text": "System information will synchronize across both displays.",
+    "text": "System information will synchronize across both displays."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 17,
+    "bbox": [
+      28,
+      459,
+      341,
+      485
+    ],
+    "raw_text": "After cascading, the total system output power via the NEMA 14-50R port of the \nCAUTION\nsecond device is 8000W. The total load MUST NOT exceed total power.",
+    "text": "After cascading, the total system output power via the NEMA 14-50R port of the CAUTION second device is 8000W. The total load MUST NOT exceed total power."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 18,
+    "bbox": [
+      26,
+      38,
+      344,
+      79
+    ],
+    "raw_text": "The EPO (Emergency Power Off) interface is used to connect an external emergency-stop switch (prepared by the \nuser).\nWhen an emergency occurs, pressing the EPO button immediately shuts down all AC and DC inputs and outputs.\nA screw terminal block is provided with the product for installing the external emergency-stop switch.",
+    "text": "The EPO (Emergency Power Off) interface is used to connect an external emergency-stop switch (prepared by the user). When an emergency occurs, pressing the EPO button immediately shuts down all AC and DC inputs and outputs. A screw terminal block is provided with the product for installing the external emergency-stop switch."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 18,
+    "bbox": [
+      26,
+      235,
+      344,
+      267
+    ],
+    "raw_text": "The HomePower 3600 Pro Max can supply backup power to home circuits through a Jackery Automatic Transfer \nSwitch (ATS).\nFor detailed installation and operation, refer to the Jackery ATS User Manual.",
+    "text": "The HomePower 3600 Pro Max can supply backup power to home circuits through a Jackery Automatic Transfer Switch (ATS). For detailed installation and operation, refer to the Jackery ATS User Manual."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 18,
+    "bbox": [
+      28,
+      270,
+      343,
+      450
+    ],
+    "raw_text": "Lock\nUnlock\n1\n2\n1\n2\nPower input/output cable in \nthe ATS package",
+    "text": "Lock Unlock 1 2 1 2 Power input/output cable in the ATS package"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 18,
+    "bbox": [
+      28,
+      460,
+      343,
+      494
+    ],
+    "raw_text": "When UPS mode is enabled on the ATS, the power station remains active and \nNOTE\ncontinuously consumes power.\nDuring a grid outage, the system switches to battery power within 20 milliseconds.",
+    "text": "When UPS mode is enabled on the ATS, the power station remains active and NOTE continuously consumes power. During a grid outage, the system switches to battery power within 20 milliseconds."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 19,
+    "bbox": [
+      26,
+      39,
+      347,
+      63
+    ],
+    "raw_text": "The HomePower 3600 Pro Max can be connected to a Manual Transfer Switch (MTS) to power selected home circuits.\nChoose the appropriate method based on your installation mode.",
+    "text": "The HomePower 3600 Pro Max can be connected to a Manual Transfer Switch (MTS) to power selected home circuits. Choose the appropriate method based on your installation mode."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      66,
+      344,
+      86
+    ],
+    "raw_text": "NOTE\nAll cables used in this section are sold separately or included with the separately sold MTS.",
+    "text": "NOTE All cables used in this section are sold separately or included with the separately sold MTS."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 19,
+    "bbox": [
+      26,
+      114,
+      345,
+      154
+    ],
+    "raw_text": "For optimal performance when using the HP3600 Pro Max with a Manual Transfer Switch (MTS), it is recommended \nthat the AC input be connected to a non-GFCI protected circuit. If GFCI protection is required, it is recommended \nthat GFCI devices be installed on the load side.\nThis configuration helps improve system compatibility and supports reliable AC bypass operation.",
+    "text": "For optimal performance when using the HP3600 Pro Max with a Manual Transfer Switch (MTS), it is recommended that the AC input be connected to a non-GFCI protected circuit. If GFCI protection is required, it is recommended that GFCI devices be installed on the load side. This configuration helps improve system compatibility and supports reliable AC bypass operation."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 19,
+    "bbox": [
+      26,
+      186,
+      344,
+      208
+    ],
+    "raw_text": "In automatic mode, the HomePower 3600 Pro Max receives AC input and provides UPS-like backup power through \nthe MTS.",
+    "text": "In automatic mode, the HomePower 3600 Pro Max receives AC input and provides UPS-like backup power through the MTS."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 19,
+    "bbox": [
+      28,
+      210,
+      344,
+      443
+    ],
+    "raw_text": "Power OFF the HomePower \n1.\n3600 Pro Max.\nCharging Cable in \nConnect the HomePower \n2.\nthe MTS package\n3600 Pro Max to a 240V AC \npower supply.\nConnect the 240V Output \n3.\nPort (NEMA 14-50R) to the \nMTS inlet.\nNEMA 14-50R\nTurn the load switch of the \n4.\nMTS to backup.\nTurn ON the unit and enable \n5.\nAC Output.\nJackery 40A Charging Cable \n(sold separately)",
+    "text": "Power OFF the HomePower 1. 3600 Pro Max. Charging Cable in Connect the HomePower 2. the MTS package 3600 Pro Max to a 240V AC power supply. Connect the 240V Output 3. Port (NEMA 14-50R) to the MTS inlet. NEMA 14-50R Turn the load switch of the 4. MTS to backup. Turn ON the unit and enable 5. AC Output. Jackery 40A Charging Cable (sold separately)"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      446,
+      344,
+      470
+    ],
+    "raw_text": "When grid power is present, AC power passes through to the MTS.\nDuring a power outage, the system automatically switches to battery power within 10 milliseconds.",
+    "text": "When grid power is present, AC power passes through to the MTS. During a power outage, the system automatically switches to battery power within 10 milliseconds."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      476,
+      344,
+      495
+    ],
+    "raw_text": "NOTE\nAutomatic switching requires the AC input to remain connected at all times.",
+    "text": "NOTE Automatic switching requires the AC input to remain connected at all times."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 20,
+    "bbox": [
+      25,
+      39,
+      342,
+      52
+    ],
+    "raw_text": "When two units are connected in cascade parallel mode, the system can deliver higher output power to the MTS.",
+    "text": "When two units are connected in cascade parallel mode, the system can deliver higher output power to the MTS."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 20,
+    "bbox": [
+      26,
+      63,
+      343,
+      425
+    ],
+    "raw_text": "Complete the Cascade Parallel \n1.\nConnection steps described earlier.\nConnect the second device’s \n2.\n240V Output Port (NEMA 14-50R) \nto the MTS inlet.\nTurn ON both units and enable \n3.\nAC Output.\nCharging Cable in \nthe MTS package\nJackery 40A Charging Cable \nNEMA 14-50R\n(sold separately)\nJackery Parallel \nCommunication Cable\n(sold separately)",
+    "text": "Complete the Cascade Parallel 1. Connection steps described earlier. Connect the second device’s 2. 240V Output Port (NEMA 14-50R) to the MTS inlet. Turn ON both units and enable 3. AC Output. Charging Cable in the MTS package Jackery 40A Charging Cable NEMA 14-50R (sold separately) Jackery Parallel Communication Cable (sold separately)"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 20,
+    "bbox": [
+      27,
+      437,
+      343,
+      465
+    ],
+    "raw_text": "After cascading, the maximum output to the MTS is 8000W. The total load \nCAUTION\nMUST NOT exceed total power.",
+    "text": "After cascading, the maximum output to the MTS is 8000W. The total load CAUTION MUST NOT exceed total power."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 21,
+    "bbox": [
+      25,
+      51,
+      348,
+      104
+    ],
+    "raw_text": "Green energy first: We advocate using green energy first. This product supports two modes of charging at the same \ntime: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same \ntime, the product will give priority to solar charging, and both methods will be used to charge the battery at the \nmaximum permissible power.\nFully charge the product before its first use.",
+    "text": "Green energy first: We advocate using green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging, and both methods will be used to charge the battery at the maximum permissible power. Fully charge the product before its first use."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 21,
+    "bbox": [
+      27,
+      106,
+      343,
+      163
+    ],
+    "raw_text": "• The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C \nto 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). \nOperating the product beyond this temperature range may restrict its charging and \nNOTE\ndischarging capabilities, or even prevent it from charging or discharging.\n• The charging power and battery capacity of the product may vary due to temperature \nfluctuations.",
+    "text": "• The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to 45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating the product beyond this temperature range may restrict its charging and NOTE discharging capabilities, or even prevent it from charging or discharging. • The charging power and battery capacity of the product may vary due to temperature fluctuations."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 21,
+    "bbox": [
+      205,
+      266,
+      339,
+      287
+    ],
+    "raw_text": "Connect the AC charging cable to the AC \ninput port of the product and a wall outlet.",
+    "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 21,
+    "bbox": [
+      27,
+      294,
+      344,
+      323
+    ],
+    "raw_text": "Make sure the AC charging cable is fully and securely plugged into the AC input port. \nCAUTION\nAn incomplete connection may cause unstable current, overheating, poor contact, or \ndevice malfunction.",
+    "text": "Make sure the AC charging cable is fully and securely plugged into the AC input port. CAUTION An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 21,
+    "bbox": [
+      26,
+      347,
+      348,
+      369
+    ],
+    "raw_text": "The HomePower 3600 Pro Max supports charging through its 240V AC Expansion Port. Depending on your \ninstallation, the 240V AC input may come from a 240V AC outlet or from a Jackery Automatic Transfer Switch (ATS).",
+    "text": "The HomePower 3600 Pro Max supports charging through its 240V AC Expansion Port. Depending on your installation, the 240V AC input may come from a 240V AC outlet or from a Jackery Automatic Transfer Switch (ATS)."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 21,
+    "bbox": [
+      162,
+      465,
+      330,
+      488
+    ],
+    "raw_text": "Connect the product to a 240V AC power supply using a \nJackery 40A Charging Cable (Sold Separately).",
+    "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately)."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 22,
+    "bbox": [
+      27,
+      28,
+      345,
+      70
+    ],
+    "raw_text": "• Ensure the Jackery 40A Charging Cable is fully and securely plugged into both the 240V \noutlet and the AC Expansion Port.\nCAUTION\n• An incomplete connection may cause unstable current, overheating, poor contact, or \ndevice malfunction.",
+    "text": "• Ensure the Jackery 40A Charging Cable is fully and securely plugged into both the 240V outlet and the AC Expansion Port. CAUTION • An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 22,
+    "bbox": [
+      26,
+      97,
+      344,
+      110
+    ],
+    "raw_text": "Connect your Jackery ATS to the product to enable charging via the Transfer Switch.",
+    "text": "Connect your Jackery ATS to the product to enable charging via the Transfer Switch."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 22,
+    "bbox": [
+      27,
+      116,
+      344,
+      148
+    ],
+    "raw_text": "The backup reserve setting applies in all operating modes of the ATS.\nNOTE\nWhen the remaining capacity of the HomePower 3600 Pro Max exceeds the configured \nbackup reserve, charging will stop automatically.",
+    "text": "The backup reserve setting applies in all operating modes of the ATS. NOTE When the remaining capacity of the HomePower 3600 Pro Max exceeds the configured backup reserve, charging will stop automatically."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 22,
+    "bbox": [
+      46,
+      169,
+      232,
+      204
+    ],
+    "raw_text": "To charge it immediately, follow the instructions below:\n1. Tap Power Station in the energe flow of the ATS dashboard.\n2. On the Power Station page, tap Charge now.",
+    "text": "To charge it immediately, follow the instructions below: 1. Tap Power Station in the energe flow of the ATS dashboard. 2. On the Power Station page, tap Charge now."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 22,
+    "bbox": [
+      27,
+      361,
+      344,
+      422
+    ],
+    "raw_text": "Once the AC Expansion Port is successfully connected to an ATS, the AC Input port will no \nlonger be used for charging. \nIn this configuration, the HomePower 3600 Pro Max can be charged through the following \nNOTE\nports:\n    AC Expansion Port\n    DC8020 Ports",
+    "text": "Once the AC Expansion Port is successfully connected to an ATS, the AC Input port will no longer be used for charging. In this configuration, the HomePower 3600 Pro Max can be charged through the following NOTE ports: AC Expansion Port DC8020 Ports"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 22,
+    "bbox": [
+      26,
+      457,
+      345,
+      498
+    ],
+    "raw_text": "The Jackery HomePower 3600 Pro Max has two DC8020 input ports, and each supports either a direct connection \nto a 500W solar panel or a serial connection of three 200W solar panels via a connector. If one DC8020 input port \nneeds to connect two or more solar panels simultaneously, please refer to the figure below for charging through the \nsolar panel connector (sold separately, not included as standard).",
+    "text": "The Jackery HomePower 3600 Pro Max has two DC8020 input ports, and each supports either a direct connection to a 500W solar panel or a serial connection of three 200W solar panels via a connector. If one DC8020 input port needs to connect two or more solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard)."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 23,
+    "bbox": [
+      28,
+      27,
+      344,
+      161
+    ],
+    "raw_text": "SolarSaga 500 X × 2",
+    "text": "SolarSaga 500 X × 2"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 23,
+    "bbox": [
+      28,
+      168,
+      344,
+      334
+    ],
+    "raw_text": "SolarSaga 200 × 6",
+    "text": "SolarSaga 200 × 6"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 23,
+    "bbox": [
+      27,
+      340,
+      344,
+      398
+    ],
+    "raw_text": "Ensure that the input voltage for both DC input ports is the same. Failure to do so may \ndamage the product. For example:\n    Use the same model of Jackery solar panels and the same number of panels when \nCAUTION\nconnecting solar panels to both DC8020 Input ports. \n   Do not charge the product using both a car charger and a solar panel simultaneously. \nDoing so may blow the car fuse or result in charging failure.",
+    "text": "Ensure that the input voltage for both DC input ports is the same. Failure to do so may damage the product. For example: Use the same model of Jackery solar panels and the same number of panels when CAUTION connecting solar panels to both DC8020 Input ports. Do not charge the product using both a car charger and a solar panel simultaneously. Doing so may blow the car fuse or result in charging failure."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 23,
+    "bbox": [
+      26,
+      407,
+      346,
+      440
+    ],
+    "raw_text": "It is recommended to use the Jackery solar panels to charge the product. Ensure that the working voltage (Vmp) of \nthe solar panel is within the DC input range (16V-60V) of the HomePower 3600 Pro Max. Jackery is not responsible \nfor any damage or loss resulting from the use of third-party solar panels.",
+    "text": "It is recommended to use the Jackery solar panels to charge the product. Ensure that the working voltage (Vmp) of the solar panel is within the DC input range (16V-60V) of the HomePower 3600 Pro Max. Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 23,
+    "bbox": [
+      26,
+      472,
+      345,
+      494
+    ],
+    "raw_text": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet \n(car cigarette lighter) provide a good connection.",
+    "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 24,
+    "bbox": [
+      27,
+      175,
+      343,
+      230
+    ],
+    "raw_text": "• Please start the vehicle before charging your power station.\n• If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it \ncauses non-standard operation. The Company will not be responsible for any loss caused \nCAUTION\nby non-standard operation.\n• Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not \ncharge this product in a 24V vehicle to avoid personal injury and property loss.",
+    "text": "• Please start the vehicle before charging your power station. • If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused CAUTION by non-standard operation. • Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in a 24V vehicle to avoid personal injury and property loss."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 24,
+    "bbox": [
+      24,
+      269,
+      347,
+      291
+    ],
+    "raw_text": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, \nplease contact Jackery Customer Support.",
+    "text": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      310,
+      342,
+      337
+    ],
+    "raw_text": "Restart the product.",
+    "text": "Restart the product."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      337,
+      342,
+      352
+    ],
+    "raw_text": "Connect the product to loads to discharge its battery until the fault disappears.",
+    "text": "Connect the product to loads to discharge its battery until the fault disappears."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      352,
+      342,
+      365
+    ],
+    "raw_text": "Charge the product via solar panels or an AC wall outlet until the fault disappears.",
+    "text": "Charge the product via solar panels or an AC wall outlet until the fault disappears."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      365,
+      342,
+      431
+    ],
+    "raw_text": "1.  Wait for the grid to normalize before charging the product via an AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance \non both sides of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environmental \ntemperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault \ndisappears.\n5. Restart the product.",
+    "text": "1. Wait for the grid to normalize before charging the product via an AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product. 3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures. 4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears. 5. Restart the product."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      431,
+      342,
+      464
+    ],
+    "raw_text": "1.  Remove all DC inputs from the product.\n2. Check the working voltage (Vmp) of the connected solar panels. The product allows a \nmaximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears.",
+    "text": "1. Remove all DC inputs from the product. 2. Check the working voltage (Vmp) of the connected solar panels. The product allows a maximum DC input voltage of 60V. 3. Restart the product and keep it idle. Wait until the fault disappears."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      464,
+      342,
+      479
+    ],
+    "raw_text": "Contact Jackery Customer Support",
+    "text": "Contact Jackery Customer Support"
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 24,
+    "bbox": [
+      70,
+      479,
+      342,
+      493
+    ],
+    "raw_text": "Remove the load connected to the USB ports of the product. Wait until the fault disappears.",
+    "text": "Remove the load connected to the USB ports of the product. Wait until the fault disappears."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 25,
+    "bbox": [
+      70,
+      46,
+      342,
+      74
+    ],
+    "raw_text": "1.  Turn oﬀ the AC outputs and power oﬀ both units.\n2. Disconnect the cables between the units and connect the two units again.\n3. Restart both units and enable their AC outputs.",
+    "text": "1. Turn off the AC outputs and power off both units. 2. Disconnect the cables between the units and connect the two units again. 3. Restart both units and enable their AC outputs."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 25,
+    "bbox": [
+      70,
+      76,
+      342,
+      103
+    ],
+    "raw_text": "1.  Restart the battery packs and the HP3600 Pro Max, respectively.\n2. If the fault persists, disconnect the battery pack from the HP3600 Pro Max and connect them \nagain.",
+    "text": "1. Restart the battery packs and the HP3600 Pro Max, respectively. 2. If the fault persists, disconnect the battery pack from the HP3600 Pro Max and connect them again."
+  },
+  {
+    "field": "fault-measures",
+    "physical_page": 25,
+    "bbox": [
+      70,
+      103,
+      342,
+      131
+    ],
+    "raw_text": "1.  After the emergency condition is cleared, press the EPO button again.\n2. If you need to power AC or DC loads, press the AC or DC power button to re-enable the \noutput.",
+    "text": "1. After the emergency condition is cleared, press the EPO button again. 2. If you need to power AC or DC loads, press the AC or DC power button to re-enable the output."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 25,
+    "bbox": [
+      32,
+      194,
+      343,
+      207
+    ],
+    "raw_text": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+    "text": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 25,
+    "bbox": [
+      32,
+      207,
+      343,
+      233
+    ],
+    "raw_text": "• 1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)\n• 3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)\n• 12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)",
+    "text": "• 1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH) • 3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH) • 12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 25,
+    "bbox": [
+      32,
+      233,
+      343,
+      262
+    ],
+    "raw_text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become \nunchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the \nproduct every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+    "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      344,
+      184,
+      358
+    ],
+    "raw_text": "Product Name",
+    "text": "Product Name"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      344,
+      348,
+      358
+    ],
+    "raw_text": "Jackery HomePower 3600 Pro Max",
+    "text": "Jackery HomePower 3600 Pro Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      358,
+      184,
+      370
+    ],
+    "raw_text": "Model No.",
+    "text": "Model No."
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      358,
+      348,
+      370
+    ],
+    "raw_text": "JHP-3600C",
+    "text": "JHP-3600C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      370,
+      184,
+      382
+    ],
+    "raw_text": "Capacity",
+    "text": "Capacity"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      370,
+      348,
+      382
+    ],
+    "raw_text": "80Ah / 44.8V DC (3584 Wh)",
+    "text": "80Ah / 44.8V DC (3584 Wh)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      382,
+      184,
+      394
+    ],
+    "raw_text": "Cell Chemistry",
+    "text": "Cell Chemistry"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      382,
+      348,
+      394
+    ],
+    "raw_text": "LiFePO₄ ",
+    "text": "LiFePO₄"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      394,
+      184,
+      406
+    ],
+    "raw_text": "Weight",
+    "text": "Weight"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      394,
+      348,
+      406
+    ],
+    "raw_text": "About 73.85 lbs/33.5 kg",
+    "text": "About 73.85 lbs/33.5 kg"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      406,
+      184,
+      418
+    ],
+    "raw_text": "Dimensions",
+    "text": "Dimensions"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      406,
+      348,
+      418
+    ],
+    "raw_text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm",
+    "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      418,
+      184,
+      430
+    ],
+    "raw_text": "Cycle Life",
+    "text": "Cycle Life"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      418,
+      348,
+      430
+    ],
+    "raw_text": "6000 Cycles (retained capacity ≥70% SOH)",
+    "text": "6000 Cycles (retained capacity ≥70% SOH)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      430,
+      184,
+      442
+    ],
+    "raw_text": "Maximum Short Circuit Current and Duration",
+    "text": "Maximum Short Circuit Current and Duration"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      430,
+      348,
+      442
+    ],
+    "raw_text": "1520A, 2.56ms",
+    "text": "1520A, 2.56ms"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      442,
+      184,
+      454
+    ],
+    "raw_text": "UPS",
+    "text": "UPS"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      442,
+      348,
+      454
+    ],
+    "raw_text": "＜10 ms",
+    "text": "＜10 ms"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      454,
+      184,
+      466
+    ],
+    "raw_text": "Inverter Topology",
+    "text": "Inverter Topology"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      454,
+      348,
+      466
+    ],
+    "raw_text": "Isolated",
+    "text": "Isolated"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      466,
+      184,
+      478
+    ],
+    "raw_text": "Power Factor",
+    "text": "Power Factor"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      466,
+      348,
+      478
+    ],
+    "raw_text": "≥0.98",
+    "text": "≥0.98"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 25,
+    "bbox": [
+      28,
+      478,
+      184,
+      493
+    ],
+    "raw_text": "Entire Unit",
+    "text": "Entire Unit"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 25,
+    "bbox": [
+      184,
+      478,
+      348,
+      493
+    ],
+    "raw_text": "Type 1 ",
+    "text": "Type 1"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      43,
+      135,
+      69
+    ],
+    "raw_text": "1 × AC Input\n  ",
+    "text": "1 × AC Input"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      43,
+      348,
+      69
+    ],
+    "raw_text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W\nBypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+    "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      69,
+      135,
+      95
+    ],
+    "raw_text": "2 × DC8020 Ports",
+    "text": "2 × DC8020 Ports"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      69,
+      348,
+      95
+    ],
+    "raw_text": "12-16V⎓8A Max, Double to 8A Max; \n16-60V②⎓12A Max, Double to 24A, 1200W Max",
+    "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      121,
+      135,
+      135
+    ],
+    "raw_text": "2 × AC (NEMA 5-20R)",
+    "text": "2 × AC (NEMA 5-20R)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      121,
+      348,
+      135
+    ],
+    "raw_text": "120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total",
+    "text": "120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      135,
+      135,
+      148
+    ],
+    "raw_text": "1 × AC (NEMA 14-50R)",
+    "text": "1 × AC (NEMA 14-50R)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      135,
+      348,
+      148
+    ],
+    "raw_text": "240V~ 60Hz, 16.7A Max, 4000W Rated, 8000W Surge peak",
+    "text": "240V~ 60Hz, 16.7A Max, 4000W Rated, 8000W Surge peak"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      148,
+      135,
+      161
+    ],
+    "raw_text": "Total AC Output③",
+    "text": "Total AC Output③"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      148,
+      348,
+      161
+    ],
+    "raw_text": "4000W Rated, 8000W Surge peak",
+    "text": "4000W Rated, 8000W Surge peak"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      161,
+      135,
+      246
+    ],
+    "raw_text": "AC Output in Bypass Mode①",
+    "text": "AC Output in Bypass Mode①"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      161,
+      348,
+      246
+    ],
+    "raw_text": "120V AC Input: \nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per \nport, 1440W④ in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W④ Max\n240V AC Input: \nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, \n4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
+    "text": "120V AC Input: NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W④ in Total NEMA 14-50R: 240V~ 60Hz, 1440W④ Max 240V AC Input: NEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total NEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      246,
+      135,
+      258
+    ],
+    "raw_text": "1 × USB-C Output",
+    "text": "1 × USB-C Output"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      246,
+      348,
+      258
+    ],
+    "raw_text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+    "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      258,
+      135,
+      274
+    ],
+    "raw_text": "1 × USB-A Output ",
+    "text": "1 × USB-A Output"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      258,
+      348,
+      274
+    ],
+    "raw_text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+    "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      301,
+      135,
+      316
+    ],
+    "raw_text": "1 × AC Expansion Port",
+    "text": "1 × AC Expansion Port"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      301,
+      348,
+      316
+    ],
+    "raw_text": "240V~ 60Hz, 16.7A Max, 4000W Max",
+    "text": "240V~ 60Hz, 16.7A Max, 4000W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      316,
+      135,
+      344
+    ],
+    "raw_text": "1 × DC Expansion Port",
+    "text": "1 × DC Expansion Port"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      316,
+      348,
+      344
+    ],
+    "raw_text": "36.4V-50.4V⎓126A Max (Input)\n36.4V-50.4V⎓60A Max (Output)",
+    "text": "36.4V-50.4V⎓126A Max (Input) 36.4V-50.4V⎓60A Max (Output)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      373,
+      135,
+      388
+    ],
+    "raw_text": "Charge Temperature",
+    "text": "Charge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      373,
+      348,
+      388
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      388,
+      135,
+      401
+    ],
+    "raw_text": "Discharge Temperature",
+    "text": "Discharge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      388,
+      348,
+      401
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 26,
+    "bbox": [
+      28,
+      401,
+      135,
+      414
+    ],
+    "raw_text": "Altitude",
+    "text": "Altitude"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 26,
+    "bbox": [
+      135,
+      401,
+      348,
+      414
+    ],
+    "raw_text": "≤3000m",
+    "text": "≤3000m"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 26,
+    "bbox": [
+      26,
+      419,
+      348,
+      434
+    ],
+    "raw_text": "®\n®\n※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.",
+    "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+    "normalization": "Restore positioned registered-trademark glyphs after each native name."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 26,
+    "bbox": [
+      26,
+      446,
+      354,
+      490
+    ],
+    "raw_text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.\n② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.\n③ Indicates that two or more AC output ports work together.\n④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet \na total load requirement of up to 2880 W. ",
+    "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports. ② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected. ③ Indicates that two or more AC output ports work together. ④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      33,
+      57,
+      343,
+      80
+    ],
+    "raw_text": "This warranty applies only to customers who purchase from the official Jackery website, \nJackery-branded third-party platforms, or local authorized dealers.",
+    "text": "This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      26,
+      82,
+      343,
+      95
+    ],
+    "raw_text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+    "text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+  },
+  {
+    "field": "warranty-body",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      113,
+      342,
+      157
+    ],
+    "raw_text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects \nin workmanship and material under normal consumer use during the applicable warranty period identified in \nthe 'Warranty Period' section below, subject to the exclusions set forth below.\nThis warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor \nauthorize any person to assume for us, any other liability in connection with the sale of our products.",
+    "text": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below. This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      213,
+      212,
+      260
+    ],
+    "raw_text": "The standard warranty period for Jackery HomePower 3600 \nPro Max is 36 months. In each case, the warranty period is \nmeasured starting on the date of purchase by the original \nconsumer purchaser. The sales receipt from the first consumer \npurchaser, or other reasonable documentary proof, is required \nin order to establish the start date of the warranty period.",
+    "text": "The standard warranty period for Jackery HomePower 3600 Pro Max is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      213,
+      212,
+      260
+    ],
+    "raw_text": "The standard warranty period for Jackery HomePower 3600 \nPro Max is 36 months. In each case, the warranty period is \nmeasured starting on the date of purchase by the original \nconsumer purchaser. The sales receipt from the first consumer \npurchaser, or other reasonable documentary proof, is required \nin order to establish the start date of the warranty period.",
+    "text": "The standard warranty period for Jackery HomePower 3600 Pro Max is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      216,
+      213,
+      342,
+      254
+    ],
+    "raw_text": "To activate the Warranty Extension, you \nmust register your product online or \ncontact our customer service team at \nhello@jackery.com to extend the \nstandard warranty period.",
+    "text": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty period."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 27,
+    "bbox": [
+      216,
+      213,
+      342,
+      254
+    ],
+    "raw_text": "To activate the Warranty Extension, you \nmust register your product online or \ncontact our customer service team at \nhello@jackery.com to extend the \nstandard warranty period.",
+    "text": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello@jackery.com to extend the standard warranty period."
+  },
+  {
+    "field": "warranty-body",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      284,
+      342,
+      311
+    ],
+    "raw_text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the \napplicable warranty period due to a defect in workmanship or materials. The repaired/replaced product \nassumes the remaining warranty of the original date of purchase.",
+    "text": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or materials. The repaired/replaced product assumes the remaining warranty of the original date of purchase."
+  },
+  {
+    "field": "warranty-body",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      338,
+      342,
+      358
+    ],
+    "raw_text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to \nany subsequent owner.",
+    "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+  },
+  {
+    "field": "warranty-body",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      383,
+      342,
+      450
+    ],
+    "raw_text": "Jackery's warranty does not apply to:\n• Any product that has been misused, abused, modified, damaged by accident, or used for anything \nother than normal consumer use as authorized in Jackery's current product literature.\n• Attempted repair by anyone other than an authorized facility.\n• Any product purchased through an online auction house.\n• Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within \nseven days after you purchase the product and at least once every 6 months thereafter.",
+    "text": "Jackery's warranty does not apply to: • Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature. • Attempted repair by anyone other than an authorized facility. • Any product purchased through an online auction house. • Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+  },
+  {
+    "field": "warranty-body",
+    "physical_page": 27,
+    "bbox": [
+      34,
+      477,
+      342,
+      490
+    ],
+    "raw_text": "Jackery reserves the right to the final interpretation of the above after-sales policy.",
+    "text": "Jackery reserves the right to the final interpretation of the above after-sales policy."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 28,
+    "bbox": [
+      45,
+      122,
+      178,
+      152
+    ],
+    "raw_text": "Search for \"Jackery\" in Google Play or \nthe App Store to install the App. After \nthat, you can register and log in.",
+    "text": "Search for \"Jackery\" in Google Play or the App Store to install the App. After that, you can register and log in."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 28,
+    "bbox": [
+      196,
+      122,
+      306,
+      153
+    ],
+    "raw_text": "Alternatively, scan the QR \ncode below to download and \ninstall the App.",
+    "text": "Alternatively, scan the QR code below to download and install the App."
+  },
+  {
+    "field": "visual-recovery",
+    "physical_page": 28,
+    "bbox": [
+      27,
+      169,
+      178,
+      181
+    ],
+    "text": "2.1 Click the + button to add your device;",
+    "method": "manual transcription from rendered source",
+    "reason": "The source + is vector artwork and absent from native text extraction."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 28,
+    "bbox": [
+      26,
+      180,
+      343,
+      211
+    ],
+    "raw_text": "2.2 Press the POWER button on the device to turn on. The Wi-Fi and Bluetooth icons on the device \nﬂash to indicate that the device has entered the network conﬁguration mode. Tap the \"Icon Flashed\" \nbutton, and allow the App to connect to nearby devices and enable Bluetooth permissions.",
+    "text": "2.2 Press the POWER button on the device to turn on. The Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuration mode. Tap the \"Icon Flashed\" button, and allow the App to connect to nearby devices and enable Bluetooth permissions."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 28,
+    "bbox": [
+      106,
+      213,
+      269,
+      375
+    ],
+    "raw_text": "2.2\n2.1",
+    "text": "2.2 2.1"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 28,
+    "bbox": [
+      27,
+      378,
+      343,
+      463
+    ],
+    "raw_text": "Main Power \nButton\nUSB Power \nAC Power\nButton\nButton",
+    "text": "Main Power Button USB Power AC Power Button Button"
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 28,
+    "bbox": [
+      28,
+      466,
+      343,
+      498
+    ],
+    "raw_text": "After the device is turned on and not connected to the App within 2 hours, it will \nNOTE\nautomatically turn oﬀ Wi-Fi and Bluetooth. You must then press and hold the USB power \nbutton and the AC power button to turn on Wi-Fi and Bluetooth again.",
+    "text": "After the device is turned on and not connected to the App within 2 hours, it will NOTE automatically turn off Wi-Fi and Bluetooth. You must then press and hold the USB power button and the AC power button to turn on Wi-Fi and Bluetooth again."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      25,
+      343,
+      38
+    ],
+    "raw_text": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.",
+    "text": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      40,
+      342,
+      86
+    ],
+    "raw_text": "If the message \"the device has been bound\" appears during the binding process, the \nfollowing two ways can be used for connection:\nNOTE\n• The device owner will share this device with other users through the App.\n• Press and hold the POWER button and USB power button for 3 seconds to reset the \ndevice's Wi-Fi and Bluetooth, and then re-bind the device.",
+    "text": "If the message \"the device has been bound\" appears during the binding process, the following two ways can be used for connection: NOTE • The device owner will share this device with other users through the App. • Press and hold the POWER button and USB power button for 3 seconds to reset the device's Wi-Fi and Bluetooth, and then re-bind the device."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      87,
+      342,
+      100
+    ],
+    "raw_text": "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.",
+    "text": "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      100,
+      342,
+      120
+    ],
+    "raw_text": "Please select a Wi-Fi network in 2.4 GHz band. The device does not support a Wi-Fi \nNOTE\nnetwork in the 5 GHz band.",
+    "text": "Please select a Wi-Fi network in 2.4 GHz band. The device does not support a Wi-Fi NOTE network in the 5 GHz band."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      122,
+      342,
+      136
+    ],
+    "raw_text": "2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on.",
+    "text": "2.5 After the device is successfully added to the App, the Wi-Fi icon on the device will always be on."
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 29,
+    "bbox": [
+      37,
+      139,
+      333,
+      297
+    ],
+    "raw_text": "HomePower 3600 Pro Max\nHP3600 Pro Max\n2.3\n2.4\n2.5\nThe above screenshots are for reference only.",
+    "text": "HomePower 3600 Pro Max HP3600 Pro Max 2.3 2.4 2.5 The above screenshots are for reference only."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      298,
+      342,
+      327
+    ],
+    "raw_text": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning \nCAUTION\nto the device list automatically disconnects Bluetooth. Tap the power station in the list \nagain to reconnect automatically.",
+    "text": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning CAUTION to the device list automatically disconnects Bluetooth. Tap the power station in the list again to reconnect automatically."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      340,
+      342,
+      363
+    ],
+    "raw_text": "Click the Settings icon in the upper right corner of the main interface of the device to open the \nsettings page, and click the Unbind button at the bottom of the page to unbind the device.",
+    "text": "Click the Settings icon in the upper right corner of the main interface of the device to open the settings page, and click the Unbind button at the bottom of the page to unbind the device."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      389,
+      342,
+      428
+    ],
+    "raw_text": "• Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and \nBluetooth icons on the screen light up.\n• Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth \nicons on the screen light up.",
+    "text": "• Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and Bluetooth icons on the screen light up. • Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth icons on the screen light up."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      438,
+      342,
+      468
+    ],
+    "raw_text": "• Hold the USB power button and the AC power button at the same time until the Wi-Fi and \nBluetooth icons on the screen are oﬀ.\n• Wi-Fi and Bluetooth will be automatically turned oﬀ if no device is connected within 2 hours.",
+    "text": "• Hold the USB power button and the AC power button at the same time until the Wi-Fi and Bluetooth icons on the screen are off. • Wi-Fi and Bluetooth will be automatically turned off if no device is connected within 2 hours."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 29,
+    "bbox": [
+      29,
+      478,
+      342,
+      499
+    ],
+    "raw_text": "Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi and \nBluetooth to factory settings. The connected App account will be unbound.",
+    "text": "Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi and Bluetooth to factory settings. The connected App account will be unbound."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 30,
+    "bbox": [
+      25,
+      58,
+      343,
+      96
+    ],
+    "raw_text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL \nWARNING\nELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED \nBEFORE COMMENCING WORK.",
+    "text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL WARNING ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 30,
+    "bbox": [
+      25,
+      98,
+      347,
+      138
+    ],
+    "raw_text": "Use the power input/output cable in the ATS package to connect the HomePower 3600 Pro Max AC expansion \nport to the ATS AC input/output port.\nUse the expansion cable included with the battery pack package to connect the HomePower 3600 Pro Max to the \nbattery pack, to connect its DC expansion port (A) to the battery pack's DC expansion port (B).",
+    "text": "Use the power input/output cable in the ATS package to connect the HomePower 3600 Pro Max AC expansion port to the ATS AC input/output port. Use the expansion cable included with the battery pack package to connect the HomePower 3600 Pro Max to the battery pack, to connect its DC expansion port (A) to the battery pack's DC expansion port (B)."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 30,
+    "bbox": [
+      247,
+      234,
+      330,
+      256
+    ],
+    "raw_text": "Power input/output cable \nin the ATS package",
+    "text": "Power input/output cable in the ATS package"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 30,
+    "bbox": [
+      256,
+      278,
+      330,
+      301
+    ],
+    "raw_text": "Expansion cable in the \nbattery pack package",
+    "text": "Expansion cable in the battery pack package"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 30,
+    "bbox": [
+      39,
+      372,
+      215,
+      395
+    ],
+    "raw_text": "For detailed installation and connection instructions, refer to \nthe user manuals for the ATS and battery pack.",
+    "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+  },
+  {
+    "field": "callout-body",
+    "physical_page": 30,
+    "bbox": [
+      25,
+      407,
+      345,
+      494
+    ],
+    "raw_text": "Smart Home Backup System (AC ESS) Installation Position\n• Indoor installation.\n• The area is completely waterproof.\n• The wall is flat and level.\n• Ambient temperature range: -4°F to 113°F / -20°C to 45°C.\nCAUTION\n• The temperature and humidity are maintained at a constant level.\n• Install in a well-ventilated place.\n• Do not place in an area within the reach of children or pets.\n• The installation area shall avoid direct sunlight.\n• No flammable or explosive materials close to inverter and battery.",
+    "text": "Smart Home Backup System (AC ESS) Installation Position • Indoor installation. • The area is completely waterproof. • The wall is flat and level. • Ambient temperature range: -4°F to 113°F / -20°C to 45°C. CAUTION • The temperature and humidity are maintained at a constant level. • Install in a well-ventilated place. • Do not place in an area within the reach of children or pets. • The installation area shall avoid direct sunlight. • No flammable or explosive materials close to inverter and battery."
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      75,
+      135,
+      88
+    ],
+    "raw_text": "Product Name",
+    "text": "Product Name"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      75,
+      348,
+      88
+    ],
+    "raw_text": "Jackery HomePower 3600 Pro Max",
+    "text": "Jackery HomePower 3600 Pro Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      88,
+      135,
+      100
+    ],
+    "raw_text": "Model No.",
+    "text": "Model No."
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      88,
+      348,
+      100
+    ],
+    "raw_text": "JHP-3600C",
+    "text": "JHP-3600C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      100,
+      135,
+      112
+    ],
+    "raw_text": "Capacity",
+    "text": "Capacity"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      100,
+      348,
+      112
+    ],
+    "raw_text": "80Ah / 44.8V DC (3584 Wh)",
+    "text": "80Ah / 44.8V DC (3584 Wh)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      112,
+      135,
+      124
+    ],
+    "raw_text": "Cell Chemistry",
+    "text": "Cell Chemistry"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      112,
+      348,
+      124
+    ],
+    "raw_text": "LiFePO₄ ",
+    "text": "LiFePO₄"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      124,
+      135,
+      136
+    ],
+    "raw_text": "Weight",
+    "text": "Weight"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      124,
+      348,
+      136
+    ],
+    "raw_text": "About 73.85 lbs/33.5 kg",
+    "text": "About 73.85 lbs/33.5 kg"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      136,
+      135,
+      148
+    ],
+    "raw_text": "Dimensions",
+    "text": "Dimensions"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      136,
+      348,
+      148
+    ],
+    "raw_text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm",
+    "text": "14.76 × 10.83 × 17.72 in / 37.5×27.5×45.0 cm"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      148,
+      135,
+      160
+    ],
+    "raw_text": "Cycle Life",
+    "text": "Cycle Life"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      148,
+      348,
+      160
+    ],
+    "raw_text": "6000 Cycles (retained capacity ≥70% SOH)",
+    "text": "6000 Cycles (retained capacity ≥70% SOH)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      160,
+      135,
+      180
+    ],
+    "raw_text": "Maximum Short Circuit \nCurrent and Duration",
+    "text": "Maximum Short Circuit Current and Duration"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      160,
+      348,
+      180
+    ],
+    "raw_text": "1520A, 2.56ms",
+    "text": "1520A, 2.56ms"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      180,
+      135,
+      192
+    ],
+    "raw_text": "UPS",
+    "text": "UPS"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      180,
+      348,
+      192
+    ],
+    "raw_text": "＜10 ms",
+    "text": "＜10 ms"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      192,
+      135,
+      204
+    ],
+    "raw_text": "Inverter Topology",
+    "text": "Inverter Topology"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      192,
+      348,
+      204
+    ],
+    "raw_text": "Isolated",
+    "text": "Isolated"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      204,
+      135,
+      216
+    ],
+    "raw_text": "Power Factor",
+    "text": "Power Factor"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      204,
+      348,
+      216
+    ],
+    "raw_text": "≥0.98",
+    "text": "≥0.98"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      216,
+      135,
+      230
+    ],
+    "raw_text": "Entire Unit",
+    "text": "Entire Unit"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      216,
+      348,
+      230
+    ],
+    "raw_text": "Type 1 ",
+    "text": "Type 1"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      267,
+      135,
+      292
+    ],
+    "raw_text": "1 × AC Input\n  ",
+    "text": "1 × AC Input"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      267,
+      348,
+      292
+    ],
+    "raw_text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W\nBypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W",
+    "text": "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W Bypass Mode① : 100V-120V~ 60Hz, 12A Max, 1440W"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      292,
+      135,
+      320
+    ],
+    "raw_text": "2 × DC8020 Ports",
+    "text": "2 × DC8020 Ports"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      292,
+      348,
+      320
+    ],
+    "raw_text": "12-16V⎓8A Max, Double to 8A Max; \n16-60V②⎓12A Max, Double to 24A, 1200W Max",
+    "text": "12-16V⎓8A Max, Double to 8A Max; 16-60V②⎓12A Max, Double to 24A, 1200W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      347,
+      135,
+      361
+    ],
+    "raw_text": "2 × AC (NEMA 5-20R)",
+    "text": "2 × AC (NEMA 5-20R)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      347,
+      348,
+      361
+    ],
+    "raw_text": "120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total",
+    "text": "120V~ 60Hz, 16.7A Max, 2000W per port, 4000W in Total"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      361,
+      135,
+      374
+    ],
+    "raw_text": "1 × AC (NEMA 14-50R)",
+    "text": "1 × AC (NEMA 14-50R)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      361,
+      348,
+      374
+    ],
+    "raw_text": "240V~ 60Hz, 16.7A Max, 4000W Rated, 8000W Surge peak",
+    "text": "240V~ 60Hz, 16.7A Max, 4000W Rated, 8000W Surge peak"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      374,
+      135,
+      387
+    ],
+    "raw_text": "Total AC Output③",
+    "text": "Total AC Output③"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      374,
+      348,
+      387
+    ],
+    "raw_text": "4000W Rated, 8000W Surge peak",
+    "text": "4000W Rated, 8000W Surge peak"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      387,
+      135,
+      471
+    ],
+    "raw_text": "AC Output in Bypass Mode①",
+    "text": "AC Output in Bypass Mode①"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      387,
+      348,
+      471
+    ],
+    "raw_text": "120V AC Input: \nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per \nport, 1440W4 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W4 Max\n240V AC Input: \nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, \n4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max",
+    "text": "120V AC Input: NEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W4 in Total NEMA 14-50R: 240V~ 60Hz, 1440W4 Max 240V AC Input: NEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total NEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      471,
+      135,
+      483
+    ],
+    "raw_text": "1 × USB-C Output",
+    "text": "1 × USB-C Output"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      471,
+      348,
+      483
+    ],
+    "raw_text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+    "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 31,
+    "bbox": [
+      28,
+      483,
+      135,
+      499
+    ],
+    "raw_text": "1 × USB-A Output ",
+    "text": "1 × USB-A Output"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 31,
+    "bbox": [
+      135,
+      483,
+      348,
+      499
+    ],
+    "raw_text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+    "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      44,
+      135,
+      58
+    ],
+    "raw_text": "1 × AC Expansion Port",
+    "text": "1 × AC Expansion Port"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      135,
+      44,
+      348,
+      58
+    ],
+    "raw_text": "240V~ 60Hz, 16.7A Max, 4000W Max",
+    "text": "240V~ 60Hz, 16.7A Max, 4000W Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      58,
+      135,
+      86
+    ],
+    "raw_text": "1 × DC Expansion Port",
+    "text": "1 × DC Expansion Port"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      135,
+      58,
+      348,
+      86
+    ],
+    "raw_text": "36.4V-50.4V⎓126A Max (Input)\n36.4V-50.4V⎓60A Max (Output)",
+    "text": "36.4V-50.4V⎓126A Max (Input) 36.4V-50.4V⎓60A Max (Output)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      115,
+      135,
+      130
+    ],
+    "raw_text": "Charge Temperature",
+    "text": "Charge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      135,
+      115,
+      348,
+      130
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      130,
+      135,
+      143
+    ],
+    "raw_text": "Discharge Temperature",
+    "text": "Discharge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      135,
+      130,
+      348,
+      143
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      143,
+      135,
+      157
+    ],
+    "raw_text": "Altitude",
+    "text": "Altitude"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      135,
+      143,
+      348,
+      157
+    ],
+    "raw_text": "≤3000m",
+    "text": "≤3000m"
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 32,
+    "bbox": [
+      26,
+      161,
+      348,
+      177
+    ],
+    "raw_text": "®\n®\n※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.",
+    "text": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.",
+    "normalization": "Restore positioned registered-trademark glyphs after each native name."
+  },
+  {
+    "field": "native-copy",
+    "physical_page": 32,
+    "bbox": [
+      26,
+      188,
+      354,
+      233
+    ],
+    "raw_text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.\n② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.\n③ Indicates that two or more AC output ports work together.\n④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet \na total load requirement of up to 2880 W. ",
+    "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports. ② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected. ③ Indicates that two or more AC output ports work together. ④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      296,
+      180,
+      308
+    ],
+    "raw_text": "Product Name",
+    "text": "Product Name"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      296,
+      348,
+      308
+    ],
+    "raw_text": "Jackery Battery Pack 3600",
+    "text": "Jackery Battery Pack 3600"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      308,
+      180,
+      319
+    ],
+    "raw_text": "Model No.",
+    "text": "Model No."
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      308,
+      348,
+      319
+    ],
+    "raw_text": "JBP-3600A",
+    "text": "JBP-3600A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      319,
+      180,
+      330
+    ],
+    "raw_text": "Capacity",
+    "text": "Capacity"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      319,
+      348,
+      330
+    ],
+    "raw_text": "80Ah/44.8Vdc (3584Wh) ",
+    "text": "80Ah/44.8Vdc (3584Wh)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      330,
+      180,
+      341
+    ],
+    "raw_text": "Cell Chemistry",
+    "text": "Cell Chemistry"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      330,
+      348,
+      341
+    ],
+    "raw_text": "LiFePO₄ ",
+    "text": "LiFePO₄"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      341,
+      180,
+      352
+    ],
+    "raw_text": "Weight",
+    "text": "Weight"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      341,
+      348,
+      352
+    ],
+    "raw_text": "About 55.1 lbs/25 kg",
+    "text": "About 55.1 lbs/25 kg"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      352,
+      180,
+      363
+    ],
+    "raw_text": "Dimensions",
+    "text": "Dimensions"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      352,
+      348,
+      363
+    ],
+    "raw_text": "14.8 x 12.5 x 9.0 in/37.5 x 31.7x 22.9 cm",
+    "text": "14.8 x 12.5 x 9.0 in/37.5 x 31.7x 22.9 cm"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      363,
+      180,
+      376
+    ],
+    "raw_text": "Cycle Life",
+    "text": "Cycle Life"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      363,
+      348,
+      376
+    ],
+    "raw_text": "6000 cycles to 70%+ capacity",
+    "text": "6000 cycles to 70%+ capacity"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      401,
+      180,
+      414
+    ],
+    "raw_text": "DC Expansion Port (Input)",
+    "text": "DC Expansion Port (Input)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      401,
+      348,
+      414
+    ],
+    "raw_text": "36.4V-50.4V⎓60A Max",
+    "text": "36.4V-50.4V⎓60A Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      414,
+      180,
+      426
+    ],
+    "raw_text": "DC Expansion Port (Output)",
+    "text": "DC Expansion Port (Output)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      414,
+      348,
+      426
+    ],
+    "raw_text": "36.4V-50.4V⎓100A Max",
+    "text": "36.4V-50.4V⎓100A Max"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      426,
+      180,
+      440
+    ],
+    "raw_text": "Maximum Short Circuit Current and Duration",
+    "text": "Maximum Short Circuit Current and Duration"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      426,
+      348,
+      440
+    ],
+    "raw_text": "1160A/860μs",
+    "text": "1160A/860μs"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      467,
+      180,
+      479
+    ],
+    "raw_text": "Charge Temperature",
+    "text": "Charge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      467,
+      348,
+      479
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 32,
+    "bbox": [
+      28,
+      479,
+      180,
+      493
+    ],
+    "raw_text": "Discharge Temperature",
+    "text": "Discharge Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 32,
+    "bbox": [
+      180,
+      479,
+      348,
+      493
+    ],
+    "raw_text": "-4°F to 113°F / -20°C to 45°C",
+    "text": "-4°F to 113°F / -20°C to 45°C"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      60,
+      178,
+      73
+    ],
+    "raw_text": "Product Name",
+    "text": "Product Name"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      60,
+      348,
+      73
+    ],
+    "raw_text": "Jackery Automatic Transfer Switch",
+    "text": "Jackery Automatic Transfer Switch"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      73,
+      178,
+      87
+    ],
+    "raw_text": "Model No.",
+    "text": "Model No."
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      73,
+      348,
+      87
+    ],
+    "raw_text": "JA-TS05A",
+    "text": "JA-TS05A"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      87,
+      178,
+      101
+    ],
+    "raw_text": "AC Voltage (Nominal)",
+    "text": "AC Voltage (Nominal)"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      87,
+      348,
+      101
+    ],
+    "raw_text": "120V/240V~ 60Hz",
+    "text": "120V/240V~ 60Hz"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      101,
+      178,
+      115
+    ],
+    "raw_text": "Feed-In Type",
+    "text": "Feed-In Type"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      101,
+      348,
+      115
+    ],
+    "raw_text": "Split Phase",
+    "text": "Split Phase"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      115,
+      178,
+      129
+    ],
+    "raw_text": "Maximum Input Current",
+    "text": "Maximum Input Current"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      115,
+      348,
+      129
+    ],
+    "raw_text": "100A Grid / 84A Power Station",
+    "text": "100A Grid / 84A Power Station"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      129,
+      178,
+      143
+    ],
+    "raw_text": "Maximum Output Current",
+    "text": "Maximum Output Current"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      129,
+      348,
+      143
+    ],
+    "raw_text": "100A Home Load / 33.4A Power Station",
+    "text": "100A Home Load / 33.4A Power Station"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      143,
+      178,
+      157
+    ],
+    "raw_text": "Maximum Input Short-Circuit Current",
+    "text": "Maximum Input Short-Circuit Current"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      143,
+      348,
+      157
+    ],
+    "raw_text": "10 KA",
+    "text": "10 KA"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      157,
+      178,
+      171
+    ],
+    "raw_text": "Power Consumption in Standby Mode",
+    "text": "Power Consumption in Standby Mode"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      157,
+      348,
+      171
+    ],
+    "raw_text": "About 5W",
+    "text": "About 5W"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      171,
+      178,
+      185
+    ],
+    "raw_text": "Overvoltage Category",
+    "text": "Overvoltage Category"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      171,
+      348,
+      185
+    ],
+    "raw_text": "IV",
+    "text": "IV"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      185,
+      178,
+      199
+    ],
+    "raw_text": "UPS",
+    "text": "UPS"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      185,
+      348,
+      199
+    ],
+    "raw_text": "≤20 ms",
+    "text": "≤20 ms"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      199,
+      178,
+      228
+    ],
+    "raw_text": "Enclosure Type",
+    "text": "Enclosure Type"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      199,
+      348,
+      228
+    ],
+    "raw_text": "Distribution Box: NEMA Type 3R\nPlug Box: NEMA Type 1",
+    "text": "Distribution Box: NEMA Type 3R Plug Box: NEMA Type 1"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      228,
+      178,
+      242
+    ],
+    "raw_text": "Pollution Degree",
+    "text": "Pollution Degree"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      228,
+      348,
+      242
+    ],
+    "raw_text": "III",
+    "text": "III"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      242,
+      178,
+      256
+    ],
+    "raw_text": "Main Circuit",
+    "text": "Main Circuit"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      242,
+      348,
+      256
+    ],
+    "raw_text": "2 AWG (100A)",
+    "text": "2 AWG (100A)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      256,
+      178,
+      270
+    ],
+    "raw_text": "Load Circuit",
+    "text": "Load Circuit"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      256,
+      348,
+      270
+    ],
+    "raw_text": "2AWG-4/0AWG (100A)",
+    "text": "2AWG-4/0AWG (100A)"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      270,
+      178,
+      284
+    ],
+    "raw_text": "Communication",
+    "text": "Communication"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      270,
+      348,
+      284
+    ],
+    "raw_text": "Wi-Fi and Bluetooth",
+    "text": "Wi-Fi and Bluetooth"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      284,
+      178,
+      298
+    ],
+    "raw_text": "Dimensions",
+    "text": "Dimensions"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      284,
+      348,
+      298
+    ],
+    "raw_text": "27 x 14.4 x 5.7 in/68.5 x 36.5 x 14.4 cm",
+    "text": "27 x 14.4 x 5.7 in/68.5 x 36.5 x 14.4 cm"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      298,
+      178,
+      312
+    ],
+    "raw_text": "Weight",
+    "text": "Weight"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      298,
+      348,
+      312
+    ],
+    "raw_text": "About 23.1 lbs/10.5 kg",
+    "text": "About 23.1 lbs/10.5 kg"
+  },
+  {
+    "field": "spec-label",
+    "physical_page": 33,
+    "bbox": [
+      28,
+      312,
+      178,
+      327
+    ],
+    "raw_text": "Operating Temperature",
+    "text": "Operating Temperature"
+  },
+  {
+    "field": "spec-value",
+    "physical_page": 33,
+    "bbox": [
+      178,
+      312,
+      348,
+      327
+    ],
+    "raw_text": "-4°F to 122°F / -20°C to 50°C",
+    "text": "-4°F to 122°F / -20°C to 50°C"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      43,
+      344,
+      142
+    ],
+    "raw_text": "Jackery HomePower \nAC Charging Cable\nScrew terminal block\nDocuments\n3600 Pro Max",
+    "text": "Jackery HomePower AC Charging Cable Screw terminal block Documents 3600 Pro Max"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      158,
+      344,
+      239
+    ],
+    "raw_text": "Model: JBP-3600A\nSold \nseparately\nUSER MANUAL\nJackery Battery Pack 3600\nCONTACT US:\n1-888-502-2236 (US) \nhello@jackery.com\nwww.jackery.com \nUser Manual\nJackery Battery Pack 3600\nExpansion Cable",
+    "text": "Model: JBP-3600A Sold separately USER MANUAL Jackery Battery Pack 3600 CONTACT US: 1-888-502-2236 (US) hello@jackery.com www.jackery.com User Manual Jackery Battery Pack 3600 Expansion Cable"
+  },
+  {
+    "field": "figure-accessible-copy",
+    "physical_page": 34,
+    "bbox": [
+      28,
+      255,
+      344,
+      420
+    ],
+    "raw_text": "Upward\nA scale of 1:1\nJackery Automatic\nMarking-off Template\nPower Input/Output Cable\nNeutral Wire\nCable Gland\nTransfer Switch\nModel: JA-TS05A\nModel: JA-TS05A\nQuick Guide\nJackery Automatic Transfer Switch\nSold \nUSER MANUAL\nINSTALLATION MANUAL\nJackery Automatic Transfer Switch \nJackery Automatic Transfer Switch \nseparately\nCONTACT US:\nCONTACT US:\n1-888-502-2236 (US) \n1-888-502-2236 (US) \nhello@jackery.com\nhello@jackery.com\nwww.jackery.com \nwww.jackery.com \nNeutral-Ground Bonding\nJumper (with screws)\nOwner's Manual\nInstallation Manual\nQuick Start Guide",
+    "text": "Upward A scale of 1:1 Jackery Automatic Marking-off Template Power Input/Output Cable Neutral Wire Cable Gland Transfer Switch Model: JA-TS05A Model: JA-TS05A Quick Guide Jackery Automatic Transfer Switch Sold USER MANUAL INSTALLATION MANUAL Jackery Automatic Transfer Switch Jackery Automatic Transfer Switch separately CONTACT US: CONTACT US: 1-888-502-2236 (US) 1-888-502-2236 (US) hello@jackery.com hello@jackery.com www.jackery.com www.jackery.com Neutral-Ground Bonding Jumper (with screws) Owner's Manual Installation Manual Quick Start Guide"
+  }
+]

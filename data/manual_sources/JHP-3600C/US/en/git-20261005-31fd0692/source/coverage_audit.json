@@ -1,0 +1,173 @@
+{
+  "schema_version": "source-native-line-coverage/v1",
+  "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "counts": {
+    "2": {
+      "semantic_copy_including_alt": 12,
+      "finished_panel": 0,
+      "lines": 12
+    },
+    "4": {
+      "semantic_copy_including_alt": 88,
+      "finished_panel": 0,
+      "lines": 88
+    },
+    "5": {
+      "semantic_copy_including_alt": 26,
+      "finished_panel": 0,
+      "lines": 26
+    },
+    "6": {
+      "semantic_copy_including_alt": 41,
+      "finished_panel": 0,
+      "lines": 41
+    },
+    "7": {
+      "semantic_copy_including_alt": 41,
+      "finished_panel": 0,
+      "lines": 41
+    },
+    "8": {
+      "semantic_copy_including_alt": 38,
+      "finished_panel": 0,
+      "lines": 38
+    },
+    "9": {
+      "semantic_copy_including_alt": 61,
+      "finished_panel": 0,
+      "lines": 61
+    },
+    "10": {
+      "semantic_copy_including_alt": 54,
+      "finished_panel": 0,
+      "lines": 54
+    },
+    "11": {
+      "semantic_copy_including_alt": 23,
+      "finished_panel": 0,
+      "lines": 23
+    },
+    "12": {
+      "semantic_copy_including_alt": 23,
+      "finished_panel": 0,
+      "lines": 23
+    },
+    "13": {
+      "semantic_copy_including_alt": 44,
+      "finished_panel": 0,
+      "lines": 44
+    },
+    "14": {
+      "semantic_copy_including_alt": 38,
+      "finished_panel": 0,
+      "lines": 38
+    },
+    "15": {
+      "semantic_copy_including_alt": 11,
+      "finished_panel": 0,
+      "lines": 11
+    },
+    "16": {
+      "semantic_copy_including_alt": 17,
+      "finished_panel": 0,
+      "lines": 17
+    },
+    "17": {
+      "semantic_copy_including_alt": 24,
+      "finished_panel": 0,
+      "lines": 24
+    },
+    "18": {
+      "semantic_copy_including_alt": 19,
+      "finished_panel": 0,
+      "lines": 19
+    },
+    "19": {
+      "semantic_copy_including_alt": 35,
+      "finished_panel": 0,
+      "lines": 35
+    },
+    "20": {
+      "semantic_copy_including_alt": 20,
+      "finished_panel": 0,
+      "lines": 20
+    },
+    "21": {
+      "semantic_copy_including_alt": 26,
+      "finished_panel": 0,
+      "lines": 26
+    },
+    "22": {
+      "semantic_copy_including_alt": 30,
+      "finished_panel": 0,
+      "lines": 30
+    },
+    "23": {
+      "semantic_copy_including_alt": 16,
+      "finished_panel": 0,
+      "lines": 16
+    },
+    "24": {
+      "semantic_copy_including_alt": 33,
+      "finished_panel": 0,
+      "lines": 33
+    },
+    "25": {
+      "semantic_copy_including_alt": 43,
+      "finished_panel": 0,
+      "lines": 43
+    },
+    "26": {
+      "semantic_copy_including_alt": 46,
+      "finished_panel": 0,
+      "lines": 46
+    },
+    "27": {
+      "semantic_copy_including_alt": 43,
+      "finished_panel": 0,
+      "lines": 43
+    },
+    "28": {
+      "semantic_copy_including_alt": 23,
+      "finished_panel": 0,
+      "lines": 23
+    },
+    "29": {
+      "semantic_copy_including_alt": 35,
+      "finished_panel": 0,
+      "lines": 35
+    },
+    "30": {
+      "semantic_copy_including_alt": 27,
+      "finished_panel": 0,
+      "lines": 27
+    },
+    "31": {
+      "semantic_copy_including_alt": 53,
+      "finished_panel": 0,
+      "lines": 53
+    },
+    "32": {
+      "semantic_copy_including_alt": 48,
+      "finished_panel": 0,
+      "lines": 48
+    },
+    "33": {
+      "semantic_copy_including_alt": 36,
+      "finished_panel": 0,
+      "lines": 36
+    },
+    "34": {
+      "semantic_copy_including_alt": 49,
+      "finished_panel": 0,
+      "lines": 49
+    },
+    "97": {
+      "semantic_copy_including_alt": 5,
+      "finished_panel": 0,
+      "lines": 5
+    }
+  },
+  "unmatched": [],
+  "limitations": "Positioned extractable lines only; short glyphs, outlined symbols, image text, reading order and visual cropping also require recorded PDF/browser inspection."
+}

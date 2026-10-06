@@ -1,0 +1,38 @@
+{
+  "page": "manual_jhp3600c_us_en.html",
+  "viewports": [
+    {
+      "width": 1440,
+      "document_scroll_width": 1440
+    },
+    {
+      "width": 390,
+      "document_scroll_width": 390
+    },
+    {
+      "width": 320,
+      "document_scroll_width": 320
+    }
+  ],
+  "image_instances": 86,
+  "table_instances": 48,
+  "broken_loaded_images": [],
+  "mobile_scroll_containers": [
+    "LCD DISPLAY: 640px table within 354px overflow:auto figure",
+    "Auto Resume: 640px table within 354px overflow:auto figure",
+    "Troubleshooting: 640px table within 354px overflow:auto figure"
+  ],
+  "visually_inspected": [
+    "English preface/safety",
+    "symbol and FCC compositions",
+    "Inbox cards",
+    "overview and finished operation panels",
+    "ordinary connection panels and complete borders",
+    "source-specific LCD icons with alpha",
+    "native specifications and warranty",
+    "complete App phone frames"
+  ],
+  "source_native_lines": 1128,
+  "unmatched_native_lines": 0,
+  "operator_confirmation": "pending; agent browser evidence only"
+}
