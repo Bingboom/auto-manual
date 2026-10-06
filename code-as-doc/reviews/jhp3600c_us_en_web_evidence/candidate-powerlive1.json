@@ -1,0 +1,11 @@
+{
+  "source_commit": "e46a29dc528f4ddc36eb79fc9c249e6c145064a1",
+  "technical_version": "git-20261005-31fd0692-powerlive1",
+  "baseline_ref": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+  "baseline_files_byte_identical": 5609,
+  "candidate_targets": 106,
+  "scope": "local-only",
+  "assembly_admitted": false,
+  "assembly_rejection": "PDF vector evidence in Web assets",
+  "superseded_by": "git-20261005-31fd0692-powerlive2"
+}
