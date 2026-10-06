@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-layout2"
+    "technical_version": "git-20261005-31fd0692-layout3"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -112,8 +112,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 5708,
-      "sha256": "3490b6fa1e71d05615f55615d60dc2f6f7535052ecce5d246fa9f253230bcd56"
+      "size": 5821,
+      "sha256": "81e212d0e2de7ad5793e3d67ec54fe6fb5edc54de5d6a1f9f33241b6b7da78e5"
     },
     {
       "path": "source/asset_decisions.json",
@@ -146,9 +146,14 @@
       "sha256": "7d6047daf6728a3a4665cb77ad0cdc48d005e572425542e1a167a63208f1d6df"
     },
     {
+      "path": "web/en/_static/source_presentation.css",
+      "size": 1963,
+      "sha256": "7d6047daf6728a3a4665cb77ad0cdc48d005e572425542e1a167a63208f1d6df"
+    },
+    {
       "path": "web/en/_static/web_manual.css",
-      "size": 103120,
-      "sha256": "a47a18709b18cccc936863e2895e9fbd8b45fdbfc199437a5d6ac801c4dcb24b"
+      "size": 101156,
+      "sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -582,13 +587,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 583558,
-      "sha256": "683d142d48207bca03c2d6bc822871e51af71fe9c789a0ff24994bf36dc4377d"
+      "size": 583724,
+      "sha256": "b20562261ba0ee107ee5d061d4b2db27901a7c05597a43729c5d491423474522"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 93946,
-      "sha256": "b63b44104697c0be09245f8d5ee3680b686a705ecc412c40c0e648a09448a601"
+      "size": 95928,
+      "sha256": "76b9f74615ad1c724a1715d2db35b3ce93f014e1fd8322ef3ff8330a6cb41d83"
     }
   ],
   "repo_inputs": [
@@ -1254,8 +1259,8 @@
     },
     {
       "path": "tools/web/frozen_ai_web.py",
-      "size": 9145,
-      "sha256": "ab869e82792890b21d3d3ad8db52772f9d80e66cb3d2d28400ef7744e822b4a0"
+      "size": 10261,
+      "sha256": "530acff830aab4b5ffaa8f4fff7b15ece6cde83a4b09669f3986966f5b434d73"
     },
     {
       "path": "tools/web/frozen_pdf_app.py",

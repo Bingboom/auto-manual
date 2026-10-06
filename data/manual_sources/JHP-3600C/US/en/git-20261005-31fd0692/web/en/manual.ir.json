@@ -1400,7 +1400,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "a47a18709b18cccc936863e2895e9fbd8b45fdbfc199437a5d6ac801c4dcb24b",
+    "frozen_stylesheet_sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -2021,6 +2021,10 @@
         34
       ],
       "sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7"
+    },
+    "source_stylesheet": {
+      "path": "_static/source_presentation.css",
+      "sha256": "7d6047daf6728a3a4665cb77ad0cdc48d005e572425542e1a167a63208f1d6df"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {

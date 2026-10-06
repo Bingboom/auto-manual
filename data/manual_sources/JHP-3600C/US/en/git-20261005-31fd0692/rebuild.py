@@ -60,9 +60,8 @@ def rebuild(output: Path) -> None:
     with (output / "conf.py").open("a") as stream:
         stream.write("\nlanguage = " + repr(source["language"]) + "\n")
     # Source-local geometry corrections; shared styles still own components and breakpoints.
-    css = output / "_static/web_manual.css"
-    with css.open("a") as stream:
-        stream.write("\n" + (SOURCE_ROOT / "source/presentation.css").read_text())
+    source_css = output / "_static/source_presentation.css"
+    shutil.copy2(SOURCE_ROOT / "source/presentation.css", source_css)
     registry = load_component_registry()
     theme = load_manual_theme(component_registry=registry)
     contract = load_web_manual_contract(model=source["model"], region=source["region"])
@@ -91,6 +90,10 @@ def rebuild(output: Path) -> None:
         "manual_theme": theme, "manual_theme_sha256": theme_sha256(theme),
         "web_contract": contract, "composites": [], "page_declarations": {},
         "frozen_stylesheet_sha256": file_sha256(output / "_static/web_manual.css"),
+        "source_stylesheet": {
+            "path": "_static/source_presentation.css",
+            "sha256": file_sha256(source_css),
+        },
         "component_inventory": {
             identity: sum(s.component_id == identity for s in specs)
             for identity in sorted({s.component_id for s in specs})

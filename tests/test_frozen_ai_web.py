@@ -43,6 +43,36 @@ def _words(text):
 
 
 class FrozenHeadingReplayTests(unittest.TestCase):
+    def test_source_presentation_survives_portal_style_replacement_and_rejects_tampering(self):
+        with tempfile.TemporaryDirectory() as directory:
+            package = Path(directory)
+            (package / "_static").mkdir()
+            css = package / "_static/web_manual.css"
+            css.write_text("/* shared */")
+            source_css = package / "_static/source.css"
+            source_css.write_text(".source-safety { background: #333; }")
+            ir = SimpleNamespace(metadata={
+                "frozen_stylesheet_sha256": file_sha256(css),
+                "markdown_filename": "manual.md",
+                "source_stylesheet": {"path": "_static/source.css", "sha256": file_sha256(source_css)},
+            })
+            with patch("tools.web.frozen_ai_web.read_manual_ir", return_value=ir), \
+                 patch("tools.web.frozen_ai_web.render_document_fragments", return_value=("<h1>Manual</h1>",)):
+                replay_package(package)
+                # The aggregate copies MyST while choosing its own global CSS.
+                html = MarkdownIt("commonmark", {"html": True}).render((package / "manual.md").read_text())
+                self.assertIn(source_css.read_text(), BeautifulSoup(html, "html.parser").style.string)
+                source_css.write_text("/* altered */")
+                with self.assertRaisesRegex(ValueError, "source stylesheet missing or changed"):
+                    replay_package(package)
+                source_css.write_text("</style><script>unexpected</script>")
+                ir.metadata["source_stylesheet"]["sha256"] = file_sha256(source_css)
+                with self.assertRaisesRegex(ValueError, "source stylesheet contains HTML"):
+                    replay_package(package)
+                ir.metadata["source_stylesheet"]["path"] = "../escape.css"
+                with self.assertRaisesRegex(ValueError, "source stylesheet missing or changed"):
+                    replay_package(package)
+
     def test_styled_document_heading_enters_myst_navigation(self):
         with tempfile.TemporaryDirectory() as directory:
             package = Path(directory)

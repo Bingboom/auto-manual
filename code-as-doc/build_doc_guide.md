@@ -1,5 +1,14 @@
 # Windows Build Guide
 
+Frozen external Web sources can bind a source-local presentation sheet in Manual IR
+metadata as `source_stylesheet: {path, sha256}`. `replay_package` requires that file
+to remain inside the package with matching bytes and emits its CSS in the document's
+MyST HTML style block. This preserves reviewed source geometry when the aggregate
+portal selects its own global stylesheet. Historical packages without the declaration
+keep their existing output. Freeze the CSS input and renderer hashes; reject changed,
+missing, escaped or HTML-containing stylesheets. Verify both standalone and aggregate
+desktop/mobile pages, since a standalone target's `conf.py` does not configure the portal.
+
 
 生产完成触发、冻结快照审核与线上哈希确认见 [工作台数据持续更新](dev/workspace_data_refresh.md)。
 

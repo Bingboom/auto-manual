@@ -44,6 +44,24 @@ def replay_package(package: Path) -> tuple[str, ...]:
     # Only document headings become MyST for Sphinx navigation. Registered
     # component markup passes through unchanged, including its own headings.
     chunks = []
+    # A portal build owns its global CSS, so source-authored presentation must
+    # travel with this document rather than depend on the target's conf.py.
+    source_style = ir.metadata.get("source_stylesheet")
+    if source_style is not None:
+        if (not isinstance(source_style, dict)
+                or not isinstance(source_style.get("path"), str)
+                or not isinstance(source_style.get("sha256"), str)):
+            raise ValueError("invalid frozen source stylesheet declaration")
+        relative = Path(source_style["path"])
+        stylesheet = (package / relative).resolve()
+        if (relative.is_absolute() or not stylesheet.is_relative_to(package.resolve())
+                or not stylesheet.is_file()
+                or file_sha256(stylesheet) != source_style["sha256"]):
+            raise ValueError("frozen source stylesheet missing or changed")
+        style_text = stylesheet.read_text(encoding="utf-8")
+        if "</style" in style_text.lower():
+            raise ValueError("frozen source stylesheet contains HTML")
+        chunks.append("<style>\n" + style_text + "\n</style>")
     for fragment in fragments:
         soup = BeautifulSoup(fragment, "html.parser")
         for item in soup.contents:

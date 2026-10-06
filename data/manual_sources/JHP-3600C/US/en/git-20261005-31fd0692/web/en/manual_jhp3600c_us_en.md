@@ -1,3 +1,68 @@
+<style>
+/* Operator correction against native p4. Shared safety styles own mobile stacking. */
+#furo-main-content #jackery-homepower-3600-pro-max-user-manual > h1 {
+  display: none;
+}
+#furo-main-content section:has(> .hb-safety-instruction) > h2:first-of-type {
+  display: block;
+  margin: 1.3rem 0 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--hb-h1-radius);
+  background: var(--hb-brand-dark) !important;
+  color: var(--hb-paper);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+}
+#furo-main-content section:has(> .hb-safety-instruction) > h2::before,
+#furo-main-content section:has(> .hb-safety-instruction) > section > h3::before {
+  display: none;
+}
+#furo-main-content section:has(> .hb-safety-instruction) > section > h3 {
+  display: block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--hb-brand-dark) !important;
+  color: var(--hb-paper);
+}
+#furo-main-content .manual-two-col-table {
+  width: 100%;
+  table-layout: fixed;
+}
+#furo-main-content .manual-two-col-table > tbody > tr > td {
+  width: 50%;
+  vertical-align: top;
+  padding: 0 0.7rem 0 0;
+}
+#furo-main-content .manual-two-col-table > tbody > tr > td + td {
+  padding: 0 0 0 0.7rem;
+}
+#furo-main-content .hb-safety-instruction .manual-callout-label {
+  width: 32% !important;
+  white-space: normal;
+}
+#furo-main-content .hb-safety-instruction .manual-callout-body {
+  width: 68% !important;
+  font-size: 0.94rem;
+  line-height: 1.2;
+}
+#furo-main-content .hb-source-risk-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.1rem;
+}
+#furo-main-content .hb-source-risk-label img {
+  margin: 0;
+}
+@media (max-width: 640px) {
+  #furo-main-content .hb-safety-instruction .manual-callout-label,
+  #furo-main-content .hb-safety-instruction .manual-callout-body { width: 100% !important; }
+  #furo-main-content .hb-source-risk-label { font-size: 0.86rem; gap: 0.3rem; }
+  #furo-main-content .hb-source-risk-label img { width: 1.3rem; }
+}
+
+</style>
+
 # Jackery HomePower 3600 Pro Max User Manual
 
 <span id="important"></span>
