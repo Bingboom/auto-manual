@@ -3972,6 +3972,7 @@ figure:has(> img.hb-readable-diagram) {
   border-radius: 999px;
   background: var(--hb-brand-dark);
   color: var(--hb-paper);
+  font-size: 1.1em;
   font-weight: 700;
   line-height: 1.35;
 }

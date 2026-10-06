@@ -489,3 +489,5 @@ Final local package1 source commit: `be3ad420f7fb7ea86c1bed54073cff3cd56c34ed`; 
 #### Charging introduction — charging1
 
 Physical p21: restored native bold `Green energy first:` and split `Fully charge the product before its first use.` into its own selectable dark/white/bold prose capsule using shared `hb-prose-pill`. Native wording remains byte-identical after joining the two paragraphs with a space; all other chapters are identical to package1. No artwork, callout severity or title hierarchy changes.
+
+Native font inspection confirms the first-charge capsule uses 6.6pt bold vs 6.0pt body. Shared prose capsule therefore uses 1.1em, preserving this ratio (charging2).
