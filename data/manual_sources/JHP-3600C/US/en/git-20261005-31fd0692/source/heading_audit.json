@@ -424,7 +424,9 @@
       ],
       "carrier": false,
       "displayed_title": "CONNECT TO ATS SOLD SEPARATELY",
-      "availability_style": "hb-sold-separately"
+      "availability_style": "hb-sold-separately",
+      "presentation_class": "hb-heading-label-pair",
+      "background_policy": "Separate light title and dark availability capsules; transparent heading container"
     },
     {
       "chapter": "connections",

@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "6f1fc450266782a0399256b34d8ee07b21615d7e5c2395beef3a455be2b8d4e5",
-  "content_sha256": "5fc83fe476a2a6de15379df89d34475d39f7e92ebb0965103b496cfb4fbb3ee7",
+  "bundle_sha256": "9e90f4e85151a2952f0ab4aa7e74ffce15d4b360c7e220411f0a9f23c69a0e63",
+  "content_sha256": "5589a290207e295c37f28d7ba3b7825f72b31990d2eb7568d8b2ab19594b395b",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1435,7 +1435,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "ec7ed9e1be4cbeb2904a1d656b4f83aa3c171a7d1a5250705bd8366a71fa90c8",
+    "frozen_stylesheet_sha256": "02b9a4087ff477239a7e59748da24a36f34e1eb688137b6f89b457606274f6dc",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -6927,7 +6927,7 @@
         {
           "asset_refs": [],
           "block_id": "connections:block-0023",
-          "content_sha256": "a9e0824e877d4414e09a4d815dd05da2c5da62c7d3e4d2cde4fd323178dc6ec7",
+          "content_sha256": "fe5915f8658ecf422d23d0f812f638c1a9546e1fbd026fd7d2e3ad7948474de9",
           "kind": "flow",
           "payload": {
             "anchor": "connect-to-ats-sold-separately",
@@ -6979,7 +6979,7 @@
               "html": {
                 "attributes": {
                   "class": [
-                    "hb-source-pill-heading"
+                    "hb-heading-label-pair"
                   ]
                 }
               }
@@ -7672,7 +7672,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "d0067556f5cf3b1a803d447e3bb57be0c00337b3d37499a62f59605bfc1b94e2"
+      "source_sha256": "f48b3b406adc4c07ae0e22a3eab0f38633c35ed5c9a88b094c279aa71144ec29"
     },
     {
       "blocks": [

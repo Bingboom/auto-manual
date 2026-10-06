@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-spacing1"
+    "technical_version": "git-20261005-31fd0692-atspills1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 496996,
-      "sha256": "7690bfad1b0a3faee8e1428bef6c83b64f8bd5f92f1147a0041e8dc2e4259035"
+      "size": 496995,
+      "sha256": "0c26e4ed439255333901f90d519d7dce5f32ff17ae1919584ade3a28a813e34b"
     },
     {
       "path": "source/coverage_audit.json",
@@ -149,8 +149,8 @@
     },
     {
       "path": "source/heading_audit.json",
-      "size": 23961,
-      "sha256": "26b8b77467f4a79707221b642512e4ef53b5dd6b0c6143f78cd7f51297505f68"
+      "size": 24127,
+      "sha256": "434b77ad47844f38c1fb2d508554fb520a979c5bfac6b06e5a6b1b9101e03e35"
     },
     {
       "path": "source/illustrative_detail_omissions.json",
@@ -214,8 +214,8 @@
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "size": 109167,
-      "sha256": "ec7ed9e1be4cbeb2904a1d656b4f83aa3c171a7d1a5250705bd8366a71fa90c8"
+      "size": 109918,
+      "sha256": "02b9a4087ff477239a7e59748da24a36f34e1eb688137b6f89b457606274f6dc"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 668577,
-      "sha256": "7db5f758a3776d4fe74c51de482011b6b287d86bd856359270ac90ef55c1c946"
+      "size": 668576,
+      "sha256": "681801047079f307923f5a0bcb457f7365b4c04e082a669bbfb7a4e940684ea0"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 107807,
-      "sha256": "4b7b06b1f7a2d18801edba2a818c0cec3bb6cce878c662cfdc1203b6c82c6e5b"
+      "size": 107806,
+      "sha256": "89807a23c6dcc9fc21a2ca6883725220a6acbe94c99158cfb3a8689e1cfcd095"
     }
   ],
   "repo_inputs": [
@@ -971,8 +971,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_source_panels.css",
-      "size": 12757,
-      "sha256": "ea3cca627470d7422be1b6ee51cbd5e8b1c28801873c3c61be45af4eeb9308ba"
+      "size": 13508,
+      "sha256": "20a0b4b42fb41a7366d8c8cfcbdca5b043c995de42343189973f51d147740e83"
     },
     {
       "path": "docs/renderers/contracts/web_symbols_fcc_components.css",

@@ -3598,6 +3598,34 @@ body {
   gap: 0.6rem;
 }
 
+/* Native small title and availability capsules are independent siblings. */
+#furo-main-content h3.hb-heading-label-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.65rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  text-transform: none;
+}
+#furo-main-content h3.hb-heading-label-pair::before { display: none; }
+#furo-main-content .hb-heading-label-pair > .hb-heading-title {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--hb-surface);
+}
+#furo-main-content .hb-heading-label-pair > .hb-sold-separately {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0;
+}
+
 /* Authored button pairs retain editable captions in the shared table. */
 #furo-main-content .hb-key-button-pair {
   display: grid;

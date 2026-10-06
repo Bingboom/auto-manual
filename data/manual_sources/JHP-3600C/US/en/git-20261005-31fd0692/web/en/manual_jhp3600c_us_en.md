@@ -290,7 +290,7 @@
 
 ## BACKUP POWER CONNECTION
 
-<h3 class="hb-source-pill-heading" id="connect-to-ats-sold-separately"><span class="hb-heading-title">CONNECT TO ATS</span> <span class="hb-sold-separately">SOLD SEPARATELY</span></h3>
+<h3 class="hb-heading-label-pair" id="connect-to-ats-sold-separately"><span class="hb-heading-title">CONNECT TO ATS</span> <span class="hb-sold-separately">SOLD SEPARATELY</span></h3>
 
 <p>The HomePower 3600 Pro Max can supply backup power to home circuits through a Jackery Automatic Transfer Switch (ATS). For detailed installation and operation, refer to the Jackery ATS User Manual.</p>
 

@@ -1124,6 +1124,8 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
 首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
 `usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
+原稿的小标题与另售标签为两个独立胶囊时，使用共享 `h3.hb-heading-label-pair`，仅 `.hb-heading-title` 绘制浅灰底，`.hb-sold-separately` 保持深色底；标题容器透明，窄屏可换行，禁止整行套一个底板。
+
 标题中的另售说明使用原生 `.hb-sold-separately` 圆角标签，文字仍在标题内；
 冻结重放保留内联标签并继续生成 MyST 导航标题，不能摊成带破折号的标题文字。
 

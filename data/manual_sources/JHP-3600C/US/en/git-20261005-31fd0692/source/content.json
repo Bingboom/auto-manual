@@ -4061,7 +4061,7 @@
             "html": {
               "attributes": {
                 "class": [
-                  "hb-source-pill-heading"
+                  "hb-heading-label-pair"
                 ]
               }
             }
