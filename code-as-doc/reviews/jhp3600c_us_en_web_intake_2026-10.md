@@ -399,3 +399,26 @@ recorded separately in the car1 evidence after completion. The generic
 `build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
 remains blocked by this worktree's missing local `data/phase2/Spec_Master.csv`;
 no unrelated snapshot was fabricated or synchronized under Git-only scope.
+
+car1 final acceptance: source commit `49c3d8ff47f6f663c977398992f9c369912ca851`,
+version `git-20261005-31fd0692-car1`; full unittest **5,203 passed, 35 skipped,
+837.624s**. Fresh receipt verified against the exact source commit. Strict
+aggregate Sphinx passed after removing this turn's temporary preview symlink
+from the output tree; the receipt's symlink rejection was kept intact. Aggregate
+contains 106 targets and all 5,609 baseline source files remain byte-identical.
+Final browser assertions passed at 1440/390/320: 84 heading roles, 28 bold LCD
+status labels, seven availability pills, loaded shared key-combination artwork,
+two live car labels, one CSS caption capsule, no old car PNG reference and no
+page/label overflow. Primary checkout still has only its pre-existing `tmp/`.
+
+Evidence: [validation](jhp3600c_us_en_web_evidence/validation-car1.json),
+[browser DOM](jhp3600c_us_en_web_evidence/browser-car1.json),
+[source-HEAD receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-car1.json),
+[desktop](jhp3600c_us_en_web_evidence/car-caption-desktop-car1.png),
+[390px](jhp3600c_us_en_web_evidence/car-caption-mobile-car1.png),
+[320px](jhp3600c_us_en_web_evidence/car-caption-320-car1.png),
+[bare native art at 12x](jhp3600c_us_en_web_evidence/native-car-framefree-12x-car1.png),
+[baseline parity](jhp3600c_us_en_web_evidence/baseline-source-parity-car1.json), and
+[final user-window preview](jhp3600c_us_en_web_evidence/final-preview-car1.png).
+Local commits only; no push/PR/merge/publication. The generic phase2 fixture
+check limitation above remains explicit and is not counted as a passing check.
