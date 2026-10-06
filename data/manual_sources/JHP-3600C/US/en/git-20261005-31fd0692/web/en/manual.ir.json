@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a263a8c6ada286f00d68dcefcc7435c31e61459f8024958d54074da53bebc266",
-  "content_sha256": "f6e1e75c5c5ae9352dc65629ed7b8f7bf0e9b4649679ebe3170ca2f5739b6a47",
+  "bundle_sha256": "ec920a6740b33d5bd6f25285c069744832096f02dcded6bfe354b254e62efc09",
+  "content_sha256": "685c0d0ad935ebf9a56272738dbeb7c7c433a836d5badf515b297c58eb7fe31b",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -8857,7 +8857,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0007",
-          "content_sha256": "33293ee9d5cd2e6fa970cb1d0ca4e160a9ceef0ad4ba14682a0669f51a4f4bc0",
+          "content_sha256": "0d1174e240c4c647690862c2ae94cfd7527a864e9dd93844bb08c2d71dd84546",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -8889,11 +8889,26 @@
                               {
                                 "children": [
                                   {
-                                    "kind": "text",
-                                    "text": "Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Make sure the AC charging cable is fully and securely plugged into the AC input port."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+                                      }
+                                    ],
+                                    "kind": "list_item"
                                   }
                                 ],
-                                "kind": "paragraph"
+                                "kind": "list",
+                                "ordered": false
                               }
                             ],
                             "header": false,
@@ -8936,9 +8951,17 @@
                   "role": "label"
                 },
                 {
-                  "content": "Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.",
+                  "content": "Make sure the AC charging cable is fully and securely plugged into the AC input port.\nAn incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.",
                   "content_kind": "rich_text",
                   "role": "body"
+                },
+                {
+                  "content": [
+                    "Make sure the AC charging cable is fully and securely plugged into the AC input port.",
+                    "An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+                  ],
+                  "content_kind": "list_items",
+                  "role": "items"
                 }
               ],
               "source_ref": "pdf:p21:(27, 294, 344, 323)",
@@ -10068,7 +10091,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "3b309d1e17ef529b0901b52deb519dc0fe421db55a056de74ca58c9ae3ad56bd"
+      "source_sha256": "0c800f840518b1f9051fbb4a162b610b7e407f62d40e56a799c4ce157e0964fa"
     },
     {
       "blocks": [
