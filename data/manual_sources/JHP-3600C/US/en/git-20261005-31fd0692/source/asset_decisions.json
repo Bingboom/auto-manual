@@ -1748,7 +1748,7 @@
   },
   {
     "slot": "mts_single",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1768,7 +1768,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/mts_single.png",
-    "sha256": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e"
+    "sha256": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e",
+    "rejection": "Burned numbered instructions and cable captions; replaced by native base with explicit NEMA marking retention and shared live copy."
   },
   {
     "slot": "mts_cascade",
@@ -2950,6 +2951,108 @@
           50.39388888888889,
           29.206349206349206,
           8.444444444444438
+        ],
+        "color": "#555555"
+      }
+    ],
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "mts_single",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets",
+      "assets/mts_cascade.png"
+    ],
+    "identity_check": "Only native cascade alternative found; two-unit topology and communication cable differ. No shared matching MTS single-unit panel.",
+    "physical_page": 19,
+    "bbox": [
+      28,
+      210,
+      344,
+      443
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve complete native panel, product/MTS box/button/hand/cables/leaders; no independent empty caption frame. Five steps and two cable captions are live HTML.",
+    "retained_native_text": "NEMA 14-50R retained by explicit operator request; AC button marking is native product artwork.",
+    "final_path": "assets/mts_single_live.png",
+    "sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_mts_single_live.json",
+    "text_policy": "fixed-product-markings",
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          5.063291139240507,
+          3.5238197424892688,
+          30.696202531645568,
+          9.44206008583691
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 1,
+        "rect": [
+          5.063291139240507,
+          14.098326180257509,
+          30.696202531645568,
+          9.442060085836921
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 2,
+        "rect": [
+          5.063291139240507,
+          26.66583690987124,
+          30.696202531645568,
+          9.44206008583691
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 3,
+        "rect": [
+          5.063291139240507,
+          39.82802575107297,
+          30.696202531645568,
+          9.44206008583691
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 4,
+        "rect": [
+          5.063291139240507,
+          50.12467811158799,
+          30.696202531645568,
+          9.44206008583691
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 5,
+        "rect": [
+          48.65632911392405,
+          12.902145922746787,
+          19.69810126582279,
+          6.953218884120156
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 6,
+        "rect": [
+          70.88607594936708,
+          77.88326180257512,
+          27.531645569620252,
+          6.523175965665217
         ],
         "color": "#555555"
       }

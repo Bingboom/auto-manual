@@ -242,6 +242,33 @@
   #furo-main-content [data-reference-id="ats-lock"] [data-source-line="2"] { top: 41.5%; }
 }
 
+/* Native MTS steps/cable captions use shared ReferenceFigure with source geometry. */
+#furo-main-content [data-reference-id="mts-single"] .hb-reference-live-label { font-size: max(.5rem, 1.8987cqw); align-items: flex-start; }
+#furo-main-content [data-reference-id="mts-single"] .hb-mts-step { display: grid; grid-template-columns: 4.3cqw minmax(0,1fr); width: 100%; }
+#furo-main-content [data-reference-id="mts-single"] .hb-mts-step-number { font-size: 3.1646cqw; line-height: 1.16; padding: .34cqw 0 0 .63cqw; }
+#furo-main-content [data-reference-id="mts-single"] .hb-mts-step-body { display: block; line-height: 1.18; }
+#furo-main-content [data-reference-id="mts-single"] [data-source-line="0"] .hb-mts-step-body { line-height: 1.5; }
+#furo-main-content [data-reference-id="mts-single"] [data-source-line="6"] { text-align: center; }
+@media (max-width: 760px) {
+  #furo-main-content [data-reference-id="mts-single"] .hb-reference-art-panel { display: grid; grid-template-columns: minmax(0,1fr); }
+  #furo-main-content [data-reference-id="mts-single"] .hb-reference-art { grid-column: 1; grid-row: 6; align-self: start; }
+  #furo-main-content [data-reference-id="mts-single"] .hb-reference-live-label:has(.hb-mts-step) { position: static; display: block; grid-column: 1; width: auto; min-height: 0; margin: 0; padding: .55rem .9rem; background: #e6e7e8; font-size: 1rem; }
+  #furo-main-content [data-reference-id="mts-single"] .hb-mts-step { grid-template-columns: 1.6rem minmax(0,1fr); }
+  #furo-main-content [data-reference-id="mts-single"] .hb-mts-step-number { font-size: 1rem; line-height: 1.5; padding: 0; }
+  #furo-main-content [data-reference-id="mts-single"] .hb-mts-step-body { line-height: 1.5; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="0"] { border-radius: 1rem 1rem 0 0; padding-top: .9rem; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="4"] { border-radius: 0 0 1rem 1rem; padding-bottom: .9rem; margin-bottom: .75rem; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="5"],
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="6"] { position: static; display: block; grid-column: 1; grid-row: 6; align-self: start; min-height: 0; margin-bottom: 0; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="5"] { margin-left: 32%; margin-top: 6.5cqw; width: 35%; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="6"] { margin-left: 66%; margin-top: 57.4266cqw; width: 32%; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="0"] { grid-row: 1; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="1"] { grid-row: 2; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="2"] { grid-row: 3; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="3"] { grid-row: 4; }
+  #furo-main-content [data-reference-id="mts-single"] [data-source-line="4"] { grid-row: 5; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -468,7 +495,7 @@
 
 <p>In automatic mode, the HomePower 3600 Pro Max receives AC input and provides UPS-like backup power through the MTS.</p>
 
-<img alt="Power OFF the HomePower 1. 3600 Pro Max. Charging Cable in Connect the HomePower 2. the MTS package 3600 Pro Max to a 240V AC power supply. Connect the 240V Output 3. Port (NEMA 14-50R) to the MTS inlet. NEMA 14-50R Turn the load switch of the 4. MTS to backup. Turn ON the unit and enable 5. AC Output. Jackery 40A Charging Cable (sold separately)" src="assets/mts_single.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="mts-single" data-source-fragment-sha256="1746d0869092d423a28c2c6af4bf0b79c24dd917dd66c0ec5bc8823a615091bc" data-web-base-art-ref="assets/mts_single_live.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.mts-single"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="mts-single.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#e6e7e8"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "mts-single", "image_key": "assets/mts_single_live.png", "web_replace_key": "reference.mts-single", "capture_following_lines": 7, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c", "panel_top": 0, "panel_fill": "#e6e7e8", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [5.063291139240507, 3.5238197424892688, 30.696202531645568, 9.44206008583691], "color": "#555555"}, {"line": 1, "rect": [5.063291139240507, 14.098326180257509, 30.696202531645568, 9.442060085836921], "color": "#555555"}, {"line": 2, "rect": [5.063291139240507, 26.66583690987124, 30.696202531645568, 9.44206008583691], "color": "#555555"}, {"line": 3, "rect": [5.063291139240507, 39.82802575107297, 30.696202531645568, 9.44206008583691], "color": "#555555"}, {"line": 4, "rect": [5.063291139240507, 50.12467811158799, 30.696202531645568, 9.44206008583691], "color": "#555555"}, {"line": 5, "rect": [48.65632911392405, 12.902145922746787, 19.69810126582279, 6.953218884120156], "color": "#555555"}, {"line": 6, "rect": [70.88607594936708, 77.88326180257512, 27.531645569620252, 6.523175965665217], "color": "#555555"}]}}' src="assets/mts_single_live.png"/><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="0" style="--hb-x:5.0633%;--hb-y:3.5238%;--hb-width:30.6962%;--hb-height:9.4421%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">1.</strong><span class="hb-mts-step-body">Power OFF the HomePower 3600 Pro Max.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="1" style="--hb-x:5.0633%;--hb-y:14.0983%;--hb-width:30.6962%;--hb-height:9.4421%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">2.</strong><span class="hb-mts-step-body">Connect the HomePower 3600 Pro Max to a 240V AC power supply.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="2" style="--hb-x:5.0633%;--hb-y:26.6658%;--hb-width:30.6962%;--hb-height:9.4421%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">3.</strong><span class="hb-mts-step-body">Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="3" style="--hb-x:5.0633%;--hb-y:39.828%;--hb-width:30.6962%;--hb-height:9.4421%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">4.</strong><span class="hb-mts-step-body">Turn the load switch of the MTS to backup.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="4" style="--hb-x:5.0633%;--hb-y:50.1247%;--hb-width:30.6962%;--hb-height:9.4421%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">5.</strong><span class="hb-mts-step-body">Turn ON the unit and enable AC Output.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="5" style="--hb-x:48.6563%;--hb-y:12.9021%;--hb-width:19.6981%;--hb-height:6.9532%;--hb-label-color:#555555"><span style="display:block;width:100%;">Charging Cable in<br/>the MTS package</span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="6" style="--hb-x:70.8861%;--hb-y:77.8833%;--hb-width:27.5316%;--hb-height:6.5232%;--hb-label-color:#555555"><span style="display:block;width:100%;">Jackery 40A Charging Cable<br/>(sold separately)</span></span></div></div></figure>
 
 <p>When grid power is present, AC power passes through to the MTS. During a power outage, the system automatically switches to battery power within 10 milliseconds.</p>
 

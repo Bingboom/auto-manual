@@ -68,7 +68,7 @@
     "assets/cascade.png",
     "assets/epo.png",
     "assets/ats_live.png",
-    "assets/mts_single.png",
+    "assets/mts_single_live.png",
     "assets/mts_cascade.png",
     "assets/charge120.png",
     "assets/charge240.png",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a8b09d33379f8e4270a2a32ccebb2ad6345833f3bd1cab1c15465e3877d2ab04",
-  "content_sha256": "dee31747a3ae7e5bd45d1615ae121bd2d787d493d075ba0440162be030da20c0",
+  "bundle_sha256": "d783cfb7764690ce58c782388a6cb9565aacc130464349ad38b340390db32410",
+  "content_sha256": "6f9866e9aa99d54fdff30ae7293aab42f79fed911b94162bf2c06508b3ee5946",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -184,6 +184,7 @@
       "assets/lcd_transfer-switch.png": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
       "assets/mts_cascade.png": "c75112da83e54852c756ddf4757afdd26b1d3c5ef468b3ccc807e07d8a242fcf",
       "assets/mts_single.png": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e",
+      "assets/mts_single_live.png": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
       "assets/overview_front.png": "2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a",
       "assets/overview_side.png": "f2417a55844d72eb3bcad857a0a2e9ace04db5f89cb4c1f62dae22f7459ae5a4",
       "assets/package_ats.png": "d4b0c8520d453b857c36a108e97914d5d2ad4f5e54c5cb41fbbbe5464ae9b1ee",
@@ -222,7 +223,7 @@
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-OPERATION": 4,
-      "HB-SPECIAL-REFERENCE-FIGURE": 9,
+      "HB-SPECIAL-REFERENCE-FIGURE": 10,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -2066,7 +2067,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "6d15867b259e6cd7528005469446ae6d0752969f4e7133e72e9bf26a2196d3dd"
+      "sha256": "ae9b16addb9b9f7d8437e92588b023821738dc9f107e39e6afa0586618bb1cbd"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -9449,23 +9450,562 @@
         },
         {
           "asset_refs": [
-            "assets/mts_single.png"
+            "assets/mts_single_live.png"
           ],
           "block_id": "connections:block-0034",
-          "content_sha256": "9b2d26c31e6d0b27b7e7f60cb3111e6dd70628878bc4427676da68dd3dacff57",
+          "content_sha256": "f03498cf795b2536c093bea3b94c3f52a64d5c8b6d3dbee6ea4b92d8e642a836",
           "kind": "flow",
           "payload": {
-            "alt": "Power OFF the HomePower 1. 3600 Pro Max. Charging Cable in Connect the HomePower 2. the MTS package 3600 Pro Max to a 240V AC power supply. Connect the 240V Output 3. Port (NEMA 14-50R) to the MTS inlet. NEMA 14-50R Turn the load switch of the 4. MTS to backup. Turn ON the unit and enable 5. AC Output. Jackery 40A Charging Cable (sold separately)",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "Single-unit HomePower and MTS connection; native NEMA 14-50R marking retained.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-source-reference",
+                      "data-reference": "{\"id\": \"mts-single\", \"image_key\": \"assets/mts_single_live.png\", \"web_replace_key\": \"reference.mts-single\", \"capture_following_lines\": 7, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c\", \"panel_top\": 0, \"panel_fill\": \"#e6e7e8\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [5.063291139240507, 3.5238197424892688, 30.696202531645568, 9.44206008583691], \"color\": \"#555555\"}, {\"line\": 1, \"rect\": [5.063291139240507, 14.098326180257509, 30.696202531645568, 9.442060085836921], \"color\": \"#555555\"}, {\"line\": 2, \"rect\": [5.063291139240507, 26.66583690987124, 30.696202531645568, 9.44206008583691], \"color\": \"#555555\"}, {\"line\": 3, \"rect\": [5.063291139240507, 39.82802575107297, 30.696202531645568, 9.44206008583691], \"color\": \"#555555\"}, {\"line\": 4, \"rect\": [5.063291139240507, 50.12467811158799, 30.696202531645568, 9.44206008583691], \"color\": \"#555555\"}, {\"line\": 5, \"rect\": [48.65632911392405, 12.902145922746787, 19.69810126582279, 6.953218884120156], \"color\": \"#555555\"}, {\"line\": 6, \"rect\": [70.88607594936708, 77.88326180257512, 27.531645569620252, 6.523175965665217], \"color\": \"#555555\"}]}}"
+                    }
+                  }
+                },
+                "source": "assets/mts_single_live.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Power OFF the HomePower 3600 Pro Max."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "3."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "4."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Turn the load switch of the MTS to backup."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Turn ON the unit and enable AC Output."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Charging Cable in"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "the MTS package"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery 40A Charging Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "line-block"
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/mts_single_live.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
+                  "labels": [
+                    {
+                      "color": "#555555",
+                      "line": 0,
+                      "rect": [
+                        5.063291139240507,
+                        3.5238197424892688,
+                        30.696202531645568,
+                        9.44206008583691
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 1,
+                      "rect": [
+                        5.063291139240507,
+                        14.098326180257509,
+                        30.696202531645568,
+                        9.442060085836921
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 2,
+                      "rect": [
+                        5.063291139240507,
+                        26.66583690987124,
+                        30.696202531645568,
+                        9.44206008583691
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 3,
+                      "rect": [
+                        5.063291139240507,
+                        39.82802575107297,
+                        30.696202531645568,
+                        9.44206008583691
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 4,
+                      "rect": [
+                        5.063291139240507,
+                        50.12467811158799,
+                        30.696202531645568,
+                        9.44206008583691
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 5,
+                      "rect": [
+                        48.65632911392405,
+                        12.902145922746787,
+                        19.69810126582279,
+                        6.953218884120156
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 6,
+                      "rect": [
+                        70.88607594936708,
+                        77.88326180257512,
+                        27.531645569620252,
+                        6.523175965665217
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#e6e7e8",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 7,
+                "composite_locale": "",
+                "image_key": "assets/mts_single_live.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "1746d0869092d423a28c2c6af4bf0b79c24dd917dd66c0ec5bc8823a615091bc",
+                "web_replace_key": "reference.mts-single"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "mts-single",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "Single-unit HomePower and MTS connection; native NEMA 14-50R marking retained.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">1.</strong><span class=\"hb-mts-step-body\">Power OFF the HomePower 3600 Pro Max.</span></span>",
+                      "text": "1. Power OFF the HomePower 3600 Pro Max."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">2.</strong><span class=\"hb-mts-step-body\">Connect the HomePower 3600 Pro Max to a 240V AC power supply.</span></span>",
+                      "text": "2. Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">3.</strong><span class=\"hb-mts-step-body\">Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet.</span></span>",
+                      "text": "3. Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">4.</strong><span class=\"hb-mts-step-body\">Turn the load switch of the MTS to backup.</span></span>",
+                      "text": "4. Turn the load switch of the MTS to backup."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">5.</strong><span class=\"hb-mts-step-body\">Turn ON the unit and enable AC Output.</span></span>",
+                      "text": "5. Turn ON the unit and enable AC Output."
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Charging Cable in<br/>the MTS package</span>",
+                      "text": "Charging Cable in the MTS package"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
+                      "text": "Jackery 40A Charging Cable (sold separately)"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-mts-single",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/mts_single.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-34"
         },
@@ -9745,7 +10285,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "250034aaadfd1dbe77686da859f19bd0e59706d37389d46ad468785d45015c3f"
+      "source_sha256": "12f8e0fe570e816c28d9303351503c79bce0d9ffeae77b48af7e0e8975fa7212"
     },
     {
       "blocks": [

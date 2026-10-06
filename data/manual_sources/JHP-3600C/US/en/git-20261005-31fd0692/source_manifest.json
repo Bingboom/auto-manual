@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-atslive2"
+    "technical_version": "git-20261005-31fd0692-mtssinglelive1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -134,8 +134,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 118019,
-      "sha256": "8f91aa33933c16eeb40614266b6fac1152f216282633d8f2895df0047002beb9"
+      "size": 120994,
+      "sha256": "e464b68ff433fb3a23da78024e34dedb1deb6be423c9e78f0cec5651fa98b15d"
     },
     {
       "path": "source/ats_live.pdf",
@@ -149,8 +149,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 571559,
-      "sha256": "91f4983b539775dbeaa0a1b8e3f2058e47b4ec1c10b3a9aca5b0d24250c8c0df"
+      "size": 592272,
+      "sha256": "cf69c38c5fd0c527d4586284ecca31a675a13c2f8c58560fcbaa1b9fca98d4d9"
     },
     {
       "path": "source/coverage_audit.json",
@@ -178,6 +178,11 @@
       "sha256": "7bd6195c25ce96a8714edab88a1091f844d226645436b5ddfee9afcb15f7ac6b"
     },
     {
+      "path": "source/mts_single_live.pdf",
+      "size": 108742,
+      "sha256": "777d6389e05dfd9a6177b3c66375d4d11af5c7d83178179f75714d282e9f4194"
+    },
+    {
       "path": "source/native_pages.json",
       "size": 191442,
       "sha256": "bf07417e5eb6b567e73de08c48ee26478529196342d748c9681d2448964fda43"
@@ -199,8 +204,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 11622,
-      "sha256": "6d15867b259e6cd7528005469446ae6d0752969f4e7133e72e9bf26a2196d3dd"
+      "size": 14633,
+      "sha256": "ae9b16addb9b9f7d8437e92588b023821738dc9f107e39e6afa0586618bb1cbd"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -239,8 +244,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 11622,
-      "sha256": "6d15867b259e6cd7528005469446ae6d0752969f4e7133e72e9bf26a2196d3dd"
+      "size": 14633,
+      "sha256": "ae9b16addb9b9f7d8437e92588b023821738dc9f107e39e6afa0586618bb1cbd"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -678,6 +683,11 @@
       "sha256": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e"
     },
     {
+      "path": "web/en/assets/mts_single_live.png",
+      "size": 79952,
+      "sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c"
+    },
+    {
       "path": "web/en/assets/overview_front.png",
       "size": 64865,
       "sha256": "2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a"
@@ -839,13 +849,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 749370,
-      "sha256": "eb4390120b9bfbc7824bda3cf4fe7e2a73b70cc6eb971964d309eaa071e264d8"
+      "size": 771276,
+      "sha256": "28292d3b37d39cf274410744fa87fe7eb4f2226aa2f5f7864ac7ba6cd2f67c7a"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 132050,
-      "sha256": "2a99f2ad44e73e81010ed9efa22b3ef2aab0a1b2747c858c15586e0098307cc8"
+      "size": 138947,
+      "sha256": "098243e47432607468cc1c61af99b2074ef951713a9d5cf6d0e4f76a600d9be8"
     }
   ],
   "repo_inputs": [
