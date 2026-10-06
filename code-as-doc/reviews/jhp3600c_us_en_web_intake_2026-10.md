@@ -462,3 +462,24 @@ Evidence: [validation](jhp3600c_us_en_web_evidence/validation-ess2.json), [brows
 ## Product title availability recheck (sold2)
 
 The operator highlighted the Battery Pack 3600 and Automatic Transfer Switch title availability labels against native pp32–33. Current ess2 source already splits both headings into `hb-heading-title` and the existing shared `hb-sold-separately` span. A fresh browser inspection confirms one white pill per dark product strip, dark 700-weight text, 999px radius, no visible dash, and contained labels without page overflow at 1440px, 390px and 320px. No source, artwork or CSS modification was required. [Current desktop evidence](jhp3600c_us_en_web_evidence/sold-product-desktop-sold2.png) and [DOM checks](jhp3600c_us_en_web_evidence/browser-sold2.json) record this acceptance. The preview was refreshed and positioned on the product section. Local evidence commit only.
+
+## PACKAGE LIST reuse decisions before extraction (package1)
+
+| Slot | Candidates checked | Identity/content | Decision and reason | Source | Boundary policy |
+| --- | --- | --- | --- | --- | --- |
+| Station items | Frozen `inbox_unit.png`, `inbox_ac.png`, `inbox_terminal.png`, common `manual_icon1.png` | Same JHP-3600C front silhouette, US charging plug, terminal and document icon | Reuse existing bytes; no extraction | Existing p6 assets and shared document icon | CSS whole-panel outline; editable labels |
+| Battery items | `docs/renderers/web/assets/jbp3600a_eu_en/inbox_unit_clean.png`, `inbox_cable_clean.png`, shared document icon | Same JBP-3600A front silhouette and expansion cable; no region-specific ports exposed | Reuse existing bytes; generic document pictogram replaces English cover miniature for language-neutral illustration | Existing clean package art | CSS dashed outline and availability capsule |
+| ATS items | Target panels, manual_sources, Web/LaTeX assets, template common assets and asset recipes | No complete matching JA-TS05A, marking template, power cable, neutral wire, gland or bonding jumper individual art | Extract six original illustrations because existing three-panel PNGs clip the upper outline and contain copy | Native PDF physical p34 | No baked frame/caption text; CSS panel outline and item labels |
+| Availability label | Existing shared capsule rules and native p34 | Decorative cart and gray caption capsule | Draw both capsule and decorative cart with CSS; no new glyph asset | Native p34 visual reference | Native selectable Sold separately wording |
+
+All document covers use the existing generic document icon, with native selectable labels distinguishing User Manual, Owner's Manual, Installation Manual and Quick Start Guide. Tiny cover text is illustrative detail and will be explicitly recorded as omitted, not counted as preserved copy. New art is a Git-only quarantined candidate; no online registry write is in scope.
+
+Native SVG selection on p34 fails the existing fill/stroke mapping guard. The six needed illustrations therefore use the existing crop-only high-resolution PNG pipeline, preserving original clipping and opacity. No mapping guard is weakened and no paths are replayed into an unclipped drawing.
+
+#### PACKAGE LIST editable groups — package1
+
+- Physical p34 three groups now use shared package panel/list CSS, native captions, complete solid/dashed outlines and CSS availability capsules/cart. 4/3/9 item labels preserve native order; mobile uses two columns. No empty text frame or capsule remains in bound item art.
+- Reused station unit/AC/terminal bytes are exposed under `jhp3600c_us_shared`; battery/cable reuse existing `jbp3600a_eu_en`; all document illustrations reuse `common_assets/in_the_box/manual_icon1.png`. Six ATS assets use the pinned crop-only quarantine recipe; native source 12x four-edge inspection and repeat pipeline bytes agree. Product/template fixed printed markings remain.
+- Retired whole package panels remain traceable as `superseded-do-not-reuse`. Their bboxes are excluded from coverage. `illustrative_detail_omissions.json` explicitly records the four miniature covers; native item labels remain visible. The audit excludes image paths/CSS/anchors from the semantic corpus; removing the Neutral Wire caption is correctly rejected by a negative control.
+- Source-local replay and audit also reject any rebinding of retired package art; a negative control for `ess_station_package.png` passed. This keeps old bytes for traceability without allowing future accidental reuse.
+- Focused Manual Flow/render contract/Web presentation tests passed (89); Ruff, doc links, source-native coverage (zero unmatched), strict standalone Sphinx and 116-file byte-identical replay passed. Browser 1440/390/320 verified all images loaded, 16 editable item labels, complete CSS borders, two availability labels and no horizontal overflow.

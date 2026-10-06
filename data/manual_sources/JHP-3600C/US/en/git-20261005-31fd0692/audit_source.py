@@ -31,13 +31,35 @@ def strings(value):
             yield from strings(child)
     elif isinstance(value, dict):
         for key, child in value.items():
-            if key not in {"carrier_flow", "source_ref"}:
+            if key not in {"carrier_flow", "source_ref", "source", "source_path",
+                           "anchor", "presentation"}:
                 yield from strings(child)
+
+
+def check_retired_artwork(content, decisions) -> None:
+    """Retain obsolete bytes for traceability, but refuse a new binding."""
+    def bound_images(value):
+        if isinstance(value, dict):
+            if value.get("kind") == "image":
+                yield value["source"]
+            for child in value.values():
+                yield from bound_images(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from bound_images(child)
+
+    retired = {row["final_path"] for row in decisions
+               if row.get("decision") == "superseded-do-not-reuse"}
+    rejected = retired.intersection(bound_images(content))
+    if rejected:
+        raise ValueError("retired artwork cannot be rebound: " + ", ".join(sorted(rejected)))
 
 
 def audit() -> dict:
     content = json.loads((PACKAGE / "source/content.json").read_text())
     decisions = json.loads((PACKAGE / "source/asset_decisions.json").read_text())
+    omissions = json.loads((PACKAGE / "source/illustrative_detail_omissions.json").read_text())
+    check_retired_artwork(content, decisions)
     # Native lines may span strong/emphasis children; audit the same joined
     # semantic paragraphs that the shared flow API presents to readers.
     paragraphs = BeautifulSoup(flow_nodes_to_html(tuple(
@@ -53,7 +75,10 @@ def audit() -> dict:
     document = fitz.open(pdf)
     counts, unmatched = {}, []
     for physical in [2, *range(4, 35), 97]:
-        counts[str(physical)] = {"semantic_copy_including_alt": 0, "finished_panel": 0, "lines": 0}
+        counts[str(physical)] = {
+            "semantic_copy_including_alt": 0, "finished_panel": 0,
+            "illustrative_detail_omitted": 0, "lines": 0,
+        }
         for block in document[physical - 1].get_text("dict")["blocks"]:
             for line in block.get("lines", []):
                 # The preface page contains three languages; only the top English region is authoritative.
@@ -70,6 +95,7 @@ def audit() -> dict:
                 rect = fitz.Rect(line["bbox"])
                 covered = any(
                     row.get("physical_page") == physical
+                    and row.get("decision") != "superseded-do-not-reuse"
                     and (rect & fitz.Rect(row["bbox"])).get_area() > rect.get_area() * .90
                     and not any((rect & fitz.Rect(erase[0])).get_area() > rect.get_area() * .30
                                 for erase in row.get("erase_regions", []))
@@ -77,6 +103,10 @@ def audit() -> dict:
                 )
                 if covered:
                     counts[str(physical)]["finished_panel"] += 1
+                elif any(row["physical_page"] == physical
+                         and (rect & fitz.Rect(row["bbox"])).get_area() > rect.get_area() * .90
+                         for row in omissions):
+                    counts[str(physical)]["illustrative_detail_omitted"] += 1
                 else:
                     unmatched.append({"physical_page": physical, "text": text, "bbox": line["bbox"]})
     return {"schema_version": "source-native-line-coverage/v1", "source_sha256": content["source_sha256"],

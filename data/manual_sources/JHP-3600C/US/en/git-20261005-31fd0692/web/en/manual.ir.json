@@ -82,13 +82,18 @@
     "assets/app_control.png",
     "assets/app_connect_result_steps.png",
     "assets/ess_connection.png",
-    "assets/ess_station_package.png",
-    "assets/ess_battery_package.png",
-    "assets/ess_ats_package.png"
+    "assets/package_battery.png",
+    "assets/package_expansion.png",
+    "assets/package_ats.png",
+    "assets/package_template.png",
+    "assets/package_power_cable.png",
+    "assets/package_neutral_wire.png",
+    "assets/package_gland.png",
+    "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "0d6b48f1e66aa7baa73aad9c8af7b62378bfd2bac640474849cfbc5b7e5e8682",
-  "content_sha256": "30d2454e3625cbb8a98f12660a48a62423003bfac79a15a187439f99d9130a59",
+  "bundle_sha256": "65c9d68cb11dbe2cea33e121abf30db1657b67e1c9e8e5c4c95ab276964d681d",
+  "content_sha256": "98bcdcd2d3acf1701f498df80bcef558ba02fa926eb7d4ef8680e93bd9b23e69",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -178,6 +183,14 @@
       "assets/mts_single.png": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e",
       "assets/overview_front.png": "2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a",
       "assets/overview_side.png": "f2417a55844d72eb3bcad857a0a2e9ace04db5f89cb4c1f62dae22f7459ae5a4",
+      "assets/package_ats.png": "d4b0c8520d453b857c36a108e97914d5d2ad4f5e54c5cb41fbbbe5464ae9b1ee",
+      "assets/package_battery.png": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+      "assets/package_expansion.png": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+      "assets/package_gland.png": "17764661f009821a873f6b96d90c9f9aaed659e62325a616de19c946916656a4",
+      "assets/package_jumper.png": "247740c71cda195f02994f84c1f4071745dc9e7786000372b2c7888106e3517b",
+      "assets/package_neutral_wire.png": "3c0b2ffecf95738354bbf7c5050dbefde0ee5d896b96f55e1241808d479a7fa8",
+      "assets/package_power_cable.png": "815fe005bfdcc05e07270558a6650a53631b01d04b7995fe2809ab882e905f16",
+      "assets/package_template.png": "7393bdf6e7ad9575e3240d88b1d5954970344a23bd91d1221d47381524c84dce",
       "assets/power.png": "0f9ef585164439b9b5728b6b548354f2ca3879ea5ba82a2258d269ddf818b264",
       "assets/solar200.png": "2ad7cea648c11ea0309f1ff586bdaf340914d7502b3a75a1b5f5c2253604ebaa",
       "assets/solar500.png": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939",
@@ -1422,7 +1435,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "41f880dec58b454b70072dfed0986e24cf069df31b8aa56299b1d82e6cab2918",
+    "frozen_stylesheet_sha256": "a5e18551a05963756fb39a5a7fa7523f58f8adeec792edd44f164acf1603f5ff",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -16058,23 +16071,220 @@
         },
         {
           "asset_refs": [
-            "assets/ess_station_package.png"
+            "assets/inbox_unit.png",
+            "assets/inbox_ac.png",
+            "assets/inbox_terminal.png",
+            "assets/87ac44e52863_manual_icon1.png"
           ],
           "block_id": "ess-package:block-0003",
-          "content_sha256": "480e1962650d0d69059e46b6bb7eb2560a3860a74b03a52f5a43919ca10312e7",
+          "content_sha256": "223109b0b0862187626155d0390665a2d77b3625e201d93593cee8ebbd554f0c",
           "kind": "flow",
           "payload": {
-            "alt": "Jackery HomePower AC Charging Cable Screw terminal block Documents 3600 Pro Max",
-            "kind": "image",
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/inbox_unit.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--unit"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery HomePower 3600 Pro Max"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/inbox_ac.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--ac"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "AC Charging Cable"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/inbox_terminal.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--terminal"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Screw terminal block"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/87ac44e52863_manual_icon1.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--document"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Documents"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "list",
+                "ordered": false,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-package-grid"
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                  "class": [
+                    "hb-package-panel"
+                  ]
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ess_station_package.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-package#block-3"
         },
@@ -16098,23 +16308,233 @@
         },
         {
           "asset_refs": [
-            "assets/ess_battery_package.png"
+            "assets/package_battery.png",
+            "assets/package_expansion.png",
+            "assets/87ac44e52863_manual_icon1.png"
           ],
           "block_id": "ess-package:block-0005",
-          "content_sha256": "df70feea48784c642d9e7ca21c4bed2fded649c33f72c6e4a984c5fb7fbdc64c",
+          "content_sha256": "b764976cc4504d1462f304677cc051f5e2a5aa8a9253e966efa188022ded204b",
           "kind": "flow",
           "payload": {
-            "alt": "Model: JBP-3600A Sold separately USER MANUAL Jackery Battery Pack 3600 CONTACT US: 1-888-502-2236 (US) hello@jackery.com www.jackery.com User Manual Jackery Battery Pack 3600 Expansion Cable",
-            "kind": "image",
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_battery.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--battery"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery Battery Pack 3600"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_expansion.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--expansion"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Expansion Cable"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/87ac44e52863_manual_icon1.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--document"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "User Manual"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [],
+                                "kind": "inline_group"
+                              }
+                            ],
+                            "hidden": true,
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-cart"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Sold separately"
+                              }
+                            ],
+                            "kind": "inline_group"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-sold"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-availability"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "list",
+                "ordered": false,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-package-grid"
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                  "class": [
+                    "hb-package-panel",
+                    "hb-package-panel--optional"
+                  ]
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ess_battery_package.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-package#block-5"
         },
@@ -16138,23 +16558,502 @@
         },
         {
           "asset_refs": [
-            "assets/ess_ats_package.png"
+            "assets/package_ats.png",
+            "assets/package_template.png",
+            "assets/package_power_cable.png",
+            "assets/package_neutral_wire.png",
+            "assets/package_gland.png",
+            "assets/package_jumper.png",
+            "assets/87ac44e52863_manual_icon1.png"
           ],
           "block_id": "ess-package:block-0007",
-          "content_sha256": "2854713c8d34d6bcd69fc6dc8da3d740dfe42d515ec35830807f78a3449b828a",
+          "content_sha256": "7d3be019312281d2f2f163a4601fb499590f503d571ed8d04c32c782b80d9800",
           "kind": "flow",
           "payload": {
-            "alt": "Upward A scale of 1:1 Jackery Automatic Marking-off Template Power Input/Output Cable Neutral Wire Cable Gland Transfer Switch Model: JA-TS05A Model: JA-TS05A Quick Guide Jackery Automatic Transfer Switch Sold USER MANUAL INSTALLATION MANUAL Jackery Automatic Transfer Switch Jackery Automatic Transfer Switch separately CONTACT US: CONTACT US: 1-888-502-2236 (US) 1-888-502-2236 (US) hello@jackery.com hello@jackery.com www.jackery.com www.jackery.com Neutral-Ground Bonding Jumper (with screws) Owner's Manual Installation Manual Quick Start Guide",
-            "kind": "image",
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_ats.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--ats"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery Automatic Transfer Switch"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_template.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--template"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Marking-off Template"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_power_cable.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--power_cable"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Power Input/Output Cable"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_neutral_wire.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--neutral_wire"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Neutral Wire"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_gland.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--gland"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Cable Gland"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/package_jumper.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--jumper"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Neutral-Ground Bonding Jumper (with screws)"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/87ac44e52863_manual_icon1.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--document"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Owner's Manual"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/87ac44e52863_manual_icon1.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--document"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Installation Manual"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "alt": "",
+                            "kind": "image",
+                            "source": "assets/87ac44e52863_manual_icon1.png"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-art",
+                                "hb-package-art--document"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Quick Start Guide"
+                          }
+                        ],
+                        "kind": "paragraph"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-item"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [],
+                                "kind": "inline_group"
+                              }
+                            ],
+                            "hidden": true,
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-package-cart"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Sold separately"
+                              }
+                            ],
+                            "kind": "inline_group"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "hb-package-sold"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "list_item",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-package-availability"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "list",
+                "ordered": false,
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-package-grid",
+                        "hb-package-grid--five"
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+                  "class": [
+                    "hb-package-panel",
+                    "hb-package-panel--optional"
+                  ]
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ess_ats_package.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-package#block-7"
         }
@@ -16164,7 +17063,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess-package",
       "source_ref": "native-pdf/ess-package",
-      "source_sha256": "526d6ee3d24d7a3669b51b24ef3bc387c2798a6dff3475887143836a423f6578"
+      "source_sha256": "21e39dfec54b8186f4bc16221f420d6232a66b4cc97cc057c4c5781606f8a05c"
     },
     {
       "blocks": [

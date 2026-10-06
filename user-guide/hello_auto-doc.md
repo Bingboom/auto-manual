@@ -2159,3 +2159,5 @@ a shared button variant; function names alone do not establish artwork reuse.
 `HB-CALLOUT-STRIP/warning` 的 `hb-source-warning-lockup` 声明；图内说明通过
 ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样式声明见
 [原稿标题型号与完整警告框](../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
+
+PACKAGE LIST 的配件名称与 “Sold separately” 应为可编辑网页文字，分组外框及标签框由共享 CSS 绘制。使用现有匹配配件图和通用文档图标；新语言沿用同一套图片，只替换原稿标签。退役整图不可再次绑定，缩略封面细节的省略须在原稿覆盖记录中说明。

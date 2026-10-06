@@ -1529,3 +1529,7 @@ labels keep the existing language-data lookup behavior.
 共用 SVG 和原语种信号词，body 的原稿加粗使用语义 strong。共享样式处理描边、
 列宽及手机堆叠，不增设型号专属告警适配器。普通接线图内标签继续使用现有
 ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注）放在图内对应位置。
+
+### 可编辑 PACKAGE LIST 分组
+
+原稿将多个配件放在一个外框内时，可用共享 `hb-package-panel` / `hb-package-grid` 保持分组和原稿顺序；四列或 `hb-package-grid--five` 五列在窄屏统一降为两列。每件配件使用已核对的共用无外部标签图片，名称保留为原生段落；实线/虚线完整外框及 `hb-package-sold` availability capsule 均由共享 CSS 绘制，禁止底图保留空白标签框或 capsule。说明书缩略封面可换成现有通用文档图标，以可编辑名称区分文档；省略的微型封面印刷细节必须在原稿覆盖记录中注明，不能用已停用整图的 bbox 冒充保留。固定产品铭文及实物模板印刷仍属实物图形。

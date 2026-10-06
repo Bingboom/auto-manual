@@ -2192,7 +2192,7 @@
   },
   {
     "slot": "ess_station_package",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -2212,11 +2212,12 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/ess_station_package.png",
-    "sha256": "25212b960f5d747cf167797525284b53bffb232be451d4dbb4b6c8558a0cde7f"
+    "sha256": "25212b960f5d747cf167797525284b53bffb232be451d4dbb4b6c8558a0cde7f",
+    "superseded_reason": "Clipped upper panel borders and baked caption frames/labels; replaced by shared package grids and CSS frames."
   },
   {
     "slot": "ess_battery_package",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -2236,11 +2237,12 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/ess_battery_package.png",
-    "sha256": "db076d82d6678c7cf9ef72c708953135614fb7083cbe60f2c56959d649fbce62"
+    "sha256": "db076d82d6678c7cf9ef72c708953135614fb7083cbe60f2c56959d649fbce62",
+    "superseded_reason": "Clipped upper panel borders and baked caption frames/labels; replaced by shared package grids and CSS frames."
   },
   {
     "slot": "ess_ats_package",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -2260,7 +2262,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/ess_ats_package.png",
-    "sha256": "802b6803d4fd7643a82401aa8f8ec25638bce53af5b458483f687acb7e096344"
+    "sha256": "802b6803d4fd7643a82401aa8f8ec25638bce53af5b458483f687acb7e096344",
+    "superseded_reason": "Clipped upper panel borders and baked caption frames/labels; replaced by shared package grids and CSS frames."
   },
   {
     "slot": "safety.risk-warning-triangle",
@@ -2483,5 +2486,173 @@
       "max_width_rem": 36.75,
       "preserve_complete_frame_and_step_numbers": true
     }
+  },
+  {
+    "slot": "package_ats",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/ats.png",
+    "final_path": "assets/package_ats.png",
+    "sha256": "d4b0c8520d453b857c36a108e97914d5d2ad4f5e54c5cb41fbbbe5464ae9b1ee",
+    "physical_page": 34,
+    "bbox": [
+      61.8,
+      264.6,
+      94.7,
+      327.4
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_template",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/template.png",
+    "final_path": "assets/package_template.png",
+    "sha256": "7393bdf6e7ad9575e3240d88b1d5954970344a23bd91d1221d47381524c84dce",
+    "physical_page": 34,
+    "bbox": [
+      122.7,
+      265.1,
+      155.5,
+      327.9
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_power_cable",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/power_cable.png",
+    "final_path": "assets/package_power_cable.png",
+    "sha256": "815fe005bfdcc05e07270558a6650a53631b01d04b7995fe2809ab882e905f16",
+    "physical_page": 34,
+    "bbox": [
+      194.2,
+      271,
+      223.2,
+      325.4
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_neutral_wire",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/neutral_wire.png",
+    "final_path": "assets/package_neutral_wire.png",
+    "sha256": "3c0b2ffecf95738354bbf7c5050dbefde0ee5d896b96f55e1241808d479a7fa8",
+    "physical_page": 34,
+    "bbox": [
+      261.8,
+      287.5,
+      267.2,
+      323.1
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_gland",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/gland.png",
+    "final_path": "assets/package_gland.png",
+    "sha256": "17764661f009821a873f6b96d90c9f9aaed659e62325a616de19c946916656a4",
+    "physical_page": 34,
+    "bbox": [
+      296,
+      301.5,
+      313.7,
+      322.1
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_jumper",
+    "decision": "new source extraction",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/ja_ts05a_us_shared/jumper.png",
+    "final_path": "assets/package_jumper.png",
+    "sha256": "247740c71cda195f02994f84c1f4071745dc9e7786000372b2c7888106e3517b",
+    "physical_page": 34,
+    "bbox": [
+      65.4,
+      361.7,
+      87.8,
+      383
+    ],
+    "erase_regions": []
+  },
+  {
+    "slot": "package_unit",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/jhp3600c_us_shared/unit.png",
+    "final_path": "assets/inbox_unit.png",
+    "sha256": "98a08132d482146545340cebfb4093bfaa3b63487bacfb95abe2b6e4f8619bb0"
+  },
+  {
+    "slot": "package_ac",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/jhp3600c_us_shared/ac.png",
+    "final_path": "assets/inbox_ac.png",
+    "sha256": "f6ea4630900d41df0e9eaa35be9c229a0dfa13d3dcee83d0a0308298b5ab479d"
+  },
+  {
+    "slot": "package_terminal",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/jhp3600c_us_shared/terminal.png",
+    "final_path": "assets/inbox_terminal.png",
+    "sha256": "da72fe85ec858bdaf30fe06f6dc8cf4e431f7a003ffaab66ea9be6bc7b12f310"
+  },
+  {
+    "slot": "package_battery",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_unit_clean.png",
+    "final_path": "assets/package_battery.png",
+    "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44"
+  },
+  {
+    "slot": "package_expansion",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_cable_clean.png",
+    "final_path": "assets/package_expansion.png",
+    "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7"
+  },
+  {
+    "slot": "package_document",
+    "decision": "byte-identical shared reuse",
+    "identity_check": "Reviewed against native p34; external item labels and frames are editable HTML/CSS. Document cover detail replaced by generic document symbol.",
+    "content_mode": "editable_html_with_asset",
+    "background_policy": "White product art; no external caption frame, panel border or availability capsule.",
+    "source_path": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+    "final_path": "assets/87ac44e52863_manual_icon1.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
   }
 ]

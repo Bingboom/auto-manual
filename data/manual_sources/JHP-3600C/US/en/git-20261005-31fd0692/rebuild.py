@@ -16,6 +16,8 @@ SOURCE_ROOT = Path(__file__).resolve().parent
 REPO_ROOT = next(p for p in SOURCE_ROOT.parents if (p / "build.py").is_file())
 sys.path.insert(0, str(REPO_ROOT))
 
+from audit_source import check_retired_artwork  # noqa: E402
+
 from tools.component_specs.registry import load_component_registry, registry_sha256  # noqa: E402
 from tools.component_specs.theme import load_manual_theme, theme_sha256  # noqa: E402
 from tools.manual_ir import (  # noqa: E402
@@ -51,6 +53,7 @@ def rebuild(output: Path) -> None:
     manifest = json.loads(manifest_path.read_text())
     check_inventory(SOURCE_ROOT, manifest["inputs"])
     check_inventory(REPO_ROOT, manifest["repo_inputs"])
+    check_retired_artwork(source, json.loads((SOURCE_ROOT / "source/asset_decisions.json").read_text()))
     # Shared variant copies are immutable inputs; obsolete hashes are refused
     # again at fresh sealing, independent of the source-local inventory.
     shutil.copytree(SOURCE_ROOT / "web/en/assets", output / "assets")
