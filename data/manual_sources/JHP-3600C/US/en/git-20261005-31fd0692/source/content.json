@@ -4640,14 +4640,47 @@
           "schema_version": "manual-flow/v2"
         },
         {
+          "schema_version": "manual-flow/v2",
           "kind": "paragraph",
           "children": [
             {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Green energy first:"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Green energy first: We advocate using green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging, and both methods will be used to charge the battery at the maximum permissible power. Fully charge the product before its first use."
+              "text": " We advocate using green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging, and both methods will be used to charge the battery at the maximum permissible power."
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "paragraph",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-prose-pill"
+                ]
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Fully charge the product before its first use."
+                }
+              ]
+            }
+          ]
         },
         {
           "kind": "component",

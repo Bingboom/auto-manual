@@ -2617,3 +2617,5 @@ ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样�
 [原稿标题型号与完整警告框](../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
 
 Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/list/image/paragraph 表达，使用共享 `hb-package-panel` 样式绘制完整外框、原生配件名称和 availability capsule。先复用已核对配件图；冻结副本必须与记录的共用源 hash 一致。旧整图标记 `superseded-do-not-reuse`，不参与当前原稿图片覆盖；微型文档封面替换为共用文档图标时单独记录 illustration-only omission，并保留原生配件名称。
+
+原稿中的独立深色胶囊正文提示可用 `p.hb-prose-pill > strong` 冻结到 Manual Flow；保留完整原文并拆成独立段落，共享 CSS 负责圆角、字色和窄屏换行。

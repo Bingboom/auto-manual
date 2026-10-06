@@ -3961,3 +3961,18 @@ figure:has(> img.hb-readable-diagram) {
   #furo-main-content .hb-package-art { height: 7.5rem; }
   #furo-main-content .hb-package-sold { flex-wrap: wrap; text-align: center; border-radius: 1.3rem; }
 }
+
+/* Source-emphasized standalone prose stays selectable and wraps on mobile. */
+#furo-main-content p.hb-prose-pill {
+  display: table;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0.75rem 0;
+  padding: 0.22em 0.65em;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-weight: 700;
+  line-height: 1.35;
+}
+#furo-main-content p.hb-prose-pill strong { color: inherit; }
