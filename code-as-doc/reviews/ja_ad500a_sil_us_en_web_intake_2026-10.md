@@ -186,3 +186,34 @@ comparison against candidate 11. At 1440px the note uses one line and the
 capsule height drops from 83.58px to 28.14px; at 390px it wraps naturally onto
 two lines in a 19.34px capsule. Both views have no horizontal overflow or text
 clipping. Corrected screenshots and measurements are retained in evidence.
+
+## Operator request: language-neutral overview and editable labels
+
+| Figure | Inventoried candidates | Identity/content | Decision | Reason | Source | Background/bounds |
+| --- | --- | --- | --- | --- | --- | --- |
+| Product overview | Current snapshot `assets/overview.png`; JA-AD500A-SIL/HTO889 entries in `data/asset_registry.csv`, `data/asset_recipes`, `manual_sources`, shared Web/LaTeX/common assets | Current crop matches supplied US source; no suitable textless model-matching asset found in those inventories | New corrective textless derivative; reuse exact crop and product artwork | Operator explicitly requests native labels and reusable base art; current English annotations are vector outlines, not text spans | Original AI SHA a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da, page 1, pt [582,688,791,923] | Complete drawing on original white canvas; retain all leaders, edges, shading and product markings |
+
+The original recipe and labeled overview stay byte-identical. A separate
+source-local corrective recipe records removal of outlined annotation paths
+on isolated white canvas; ordinary text redaction cannot remove these outlines.
+No registry promotion or live business-plane write is authorized by this Git-only
+request. The shared reference component will place six editable English lines;
+future locales reuse this exact base art and supply native text/anchor decisions.
+
+The final neutral PNG SHA is
+`910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2`.
+PNG and vector PDF outputs are pinned in the separate recipe and frozen input
+manifest. Original source/recipe/labeled asset are unchanged. Production PNG
+pixels outside the three white-canvas annotation regions and all four edges
+are identical to the original crop. 12x label-edge inspection finds no residual
+strokes or severed leaders; 12x cropped-PDF rendering has minor antialias phase
+differences (max channel 14), recorded without an exact raster-parity claim.
+
+Candidate 13b uses the existing ReferenceFigure with six live lines, retains
+640px desktop and full phone width, and has three required reference figures.
+Strict Sphinx, source-free exact-MyST replay, changed-new-base-art rejection and
+21 reference/IR tests pass. The rest of body copy and the other five active
+artwork assets are unchanged. Actual 1440px desktop and 390px phone show all
+six native lines once, aligned above intact leaders, without clipping or
+horizontal overflow. Final screenshots, before/after pair, extraction manifest,
+artifact list and verification reports are in the frozen evidence directory.

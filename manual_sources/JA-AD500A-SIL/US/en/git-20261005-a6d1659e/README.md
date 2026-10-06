@@ -14,7 +14,7 @@ version has been inferred.
 The solar diagram preserves **SolarSaga 100 Air × 4** and the original **DC8020**
 label at its leader endpoint, following the operator's instruction
 “这个dc8020直接保留在底图”. It has no duplicate live DC8020 caption. Car labels
-use the existing ReferenceFigure overlay, including on mobile. The artwork
+use the existing ReferenceFigure overlay, including on mobile. The original artwork
 recipe records the inventory/reuse decisions and pins all six extracted images;
 these assets have not been promoted to an online registry.
 
@@ -53,6 +53,32 @@ The car-cable note now has a compact source-bound capsule: one line at
 was widened and shortened; native copy, all artwork and shared CSS are
 unchanged. Candidate 12 passes strict Sphinx and exact source-free replay.
 See `evidence/car-pill-correction.json` and the matching browser screenshots.
+
+## Reusable overview base art
+
+`assets/overview-textless.png` and `assets/overview-textless.pdf` are the
+language-neutral overview base art (locale `und`). The six external annotation
+lines are selectable/editable native copy in `source/page/product_overview_en.rst`:
+DC Input, port count, car input, PV input, LED Light and Plug. The existing
+ReferenceFigure component places them at declared anchors. Product Jackery
+markings, shading, full cable loop and all leaders remain in the artwork.
+The 640px desktop bound and phone-width scaling are retained.
+
+`source/overview_textless_recipe.json` is a separate hash-pinned corrective
+recipe through the existing asset pipeline. Original AI, labeled overview and
+original six-asset recipe are preserved unchanged. Outlined labels on isolated
+white canvas are removed; no vector geometry under the product or leaders is
+removed. At production 4x all pixels outside those regions and all four edges
+are identical. The three removal areas are also visually checked at 12x.
+A cropped vector PDF has minor raster antialias differences at 12x (maximum
+channel difference 14); it is not claimed to rasterize byte-identically.
+
+Future languages reuse these exact base-art bytes and provide native labels
+in their own source; this change does not create translated manuals or an
+approved multilingual baseline. No online registry promotion was performed.
+Candidate 13b passes strict Sphinx, exact source-free replay, changed-base-art
+rejection and 21 reference/IR tests. Actual desktop and 390px screenshots,
+before/after pair, recipe receipt and pixel checks are retained in `evidence/`.
 
 ## Rebuild
 

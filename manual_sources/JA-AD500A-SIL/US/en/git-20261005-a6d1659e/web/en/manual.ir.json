@@ -2,30 +2,30 @@
   "asset_refs": [
     "assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
     "assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
-    "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png",
+    "assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
     "assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
     "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
     "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "3ead59d6017f70fb1ae29e4bd23c63bc92e67eb030e2d55a972f80b682f46ccc",
-  "content_sha256": "1bc61a3ffcbfdfb0a6e10a0ee5b4543aa03b5f78d5cbf85bb2555b687ac288ab",
+  "bundle_sha256": "94f11c59398be7fc45ada1798791bcc35ad66a2c996dd009a01e946c75939379",
+  "content_sha256": "f50a1c20327db279c0687cee502ad24788daee3fef6e3f43c737d587bfc12653",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
     "asset_sha256": {
       "assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd",
       "assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d",
+      "assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
       "assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290",
       "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa",
-      "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
       "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
     },
     "block_count": 31,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 3,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE": 3,
       "HB-TABLE-SPEC": 2,
       "HB-WARRANTY-LEAD": 1,
       "HB-WARRANTY-SECTION": 5,
@@ -1335,11 +1335,6 @@
           "size": 662
         },
         {
-          "path": "source/page/product_overview_en.rst",
-          "sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc",
-          "size": 2580
-        },
-        {
           "path": "source/page/spec_en.rst",
           "sha256": "e07f1c72caa820f4a88e257a077c5254ff30c519f8eab90f7b4357662c95ef23",
           "size": 818
@@ -1353,6 +1348,26 @@
           "path": "source/panel_map.json",
           "sha256": "b6df97b46c6d1d3c2327a8b0b2d284af87a93804abb90935855e509387eb64ab",
           "size": 992
+        },
+        {
+          "path": "source/page/product_overview_en.rst",
+          "sha256": "a0017021e3670fdacd52a08c3a12e73d6eff69bec908170f4d7533d4034882cf",
+          "size": 4080
+        },
+        {
+          "path": "assets/overview-textless.png",
+          "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+          "size": 72743
+        },
+        {
+          "path": "source/overview_textless_recipe.json",
+          "sha256": "482989149b6dcf34148430d70291a7afa9bf59c4dd732d7c29e870cf3fdeb0fc",
+          "size": 3203
+        },
+        {
+          "path": "assets/overview-textless.pdf",
+          "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+          "size": 1016968
         }
       ],
       "language_scope": "single",
@@ -1368,7 +1383,8 @@
         "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
         "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
         "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
-        "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art"
+        "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art",
+        "Product overview external annotations are native editable Web text on one und-locale base art; immutable Jackery product markings and complete leaders remain in the drawing"
       ],
       "original_source": {
         "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
@@ -1398,7 +1414,7 @@
       "required_components": {
         "HB-CALLOUT-STRIP": 3,
         "HB-SPECIAL-INBOX": 1,
-        "HB-SPECIAL-REFERENCE-FIGURE": 2,
+        "HB-SPECIAL-REFERENCE-FIGURE": 3,
         "HB-TABLE-SPEC": 2,
         "HB-WARRANTY-LEAD": 1,
         "HB-WARRANTY-SECTION": 5,
@@ -2453,23 +2469,414 @@
         },
         {
           "asset_refs": [
-            "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png"
+            "assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png"
           ],
           "block_id": "product_overview_en.rst:block-0002",
-          "content_sha256": "4d373cb94acdc2dfb16d70d5c0cddb0ea5978f375b1592ee2eb887a5e44201a1",
+          "content_sha256": "7ba532336b10b4f5284b2a02a0c565c94a4aa84129e9e09caee46d47efb11c4a",
           "kind": "flow",
           "payload": {
-            "alt": "DC Input — 2 × DC8020 Ports: Car: 11–16V⎓8A Max; PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max. LED Light. Plug.",
-            "kind": "image",
+            "children": [
+              {
+                "kind": "text",
+                "text": "\n"
+              },
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Jackery DC Input Module product overview",
+                    "kind": "image",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "hb-source-reference"
+                          ],
+                          "data-reference": "{\"id\": \"product-overview\", \"web_replace_key\": \"reference.product-overview\", \"capture_following_lines\": 6, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2\", \"panel_top\": 0, \"panel_fill\": \"#ffffff\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [58, 0.3, 34, 3.4]}, {\"line\": 1, \"rect\": [46, 3.7, 46, 3.2]}, {\"line\": 2, \"rect\": [45, 6.9, 47, 3.0]}, {\"line\": 3, \"rect\": [20, 10, 72, 3.5]}, {\"line\": 4, \"rect\": [65, 30.2, 27, 3.7]}, {\"line\": 5, \"rect\": [71, 51.8, 21, 3.7]}]}}"
+                        }
+                      }
+                    },
+                    "source": "assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DC Input"
+                                  }
+                                ],
+                                "kind": "strong"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2 × DC8020 Ports:"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Car: 11–16V⎓8A Max"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "LED Light"
+                                  }
+                                ],
+                                "kind": "strong"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Plug"
+                                  }
+                                ],
+                                "kind": "strong"
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "style": "display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": [
+                                "line"
+                              ]
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line-block"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+                      "labels": [
+                        {
+                          "line": 0,
+                          "rect": [
+                            58,
+                            0.3,
+                            34,
+                            3.4
+                          ]
+                        },
+                        {
+                          "line": 1,
+                          "rect": [
+                            46,
+                            3.7,
+                            46,
+                            3.2
+                          ]
+                        },
+                        {
+                          "line": 2,
+                          "rect": [
+                            45,
+                            6.9,
+                            47,
+                            3.0
+                          ]
+                        },
+                        {
+                          "line": 3,
+                          "rect": [
+                            20,
+                            10,
+                            72,
+                            3.5
+                          ]
+                        },
+                        {
+                          "line": 4,
+                          "rect": [
+                            65,
+                            30.2,
+                            27,
+                            3.7
+                          ]
+                        },
+                        {
+                          "line": 5,
+                          "rect": [
+                            71,
+                            51.8,
+                            21,
+                            3.7
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "overlay",
+                      "panel_fill": "#ffffff",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 6,
+                    "composite_locale": "",
+                    "image_key": "../../assets/overview-textless.png",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "03a978eb60364c91932613b5cad5355a9d019942d924c359c9da77c6c7ce921d",
+                    "web_replace_key": "reference.product-overview"
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "product-overview",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Jackery DC Input Module product overview",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1\"><strong>DC Input</strong></span>",
+                          "text": "DC Input"
+                        },
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1\">2 × DC8020 Ports:</span>",
+                          "text": "2 × DC8020 Ports:"
+                        },
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1\">Car: 11–16V⎓8A Max</span>",
+                          "text": "Car: 11–16V⎓8A Max"
+                        },
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.1em;line-height:1.1\">PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max</span>",
+                          "text": "PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max"
+                        },
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1\"><strong>LED Light</strong></span>",
+                          "text": "LED Light"
+                        },
+                        {
+                          "html": "<span style=\"display:block;width:100%;text-align:right;font-size:1.3em;line-height:1.1\"><strong>Plug</strong></span>",
+                          "text": "Plug"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/product_overview_en.rst#reference-product-overview",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              },
+              {
+                "kind": "text",
+                "text": "\n"
+              }
+            ],
+            "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "width:min(100%,40rem)!important;max-width:100%!important;height:auto!important;"
+                  "class": [
+                    "manual-overview-composition"
+                  ],
+                  "style": "width:min(100%,40rem);margin-inline:auto;"
                 }
               }
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png"
+            "role": "container",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "product_overview_en.rst#block-2"
         },
@@ -3086,7 +3493,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/product_overview_en.rst",
       "source_ref": "product_overview_en.rst",
-      "source_sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc"
+      "source_sha256": "a0017021e3670fdacd52a08c3a12e73d6eff69bec908170f4d7533d4034882cf"
     },
     {
       "blocks": [

@@ -31,7 +31,7 @@
   ],
   "required_components": {
     "HB-SPECIAL-INBOX": 1,
-    "HB-SPECIAL-REFERENCE-FIGURE": 2,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
     "HB-CALLOUT-STRIP": 3,
     "HB-TABLE-SPEC": 2,
     "HB-WARRANTY-LEAD": 1,
@@ -76,7 +76,8 @@
     "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
     "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
     "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
-    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art"
+    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art",
+    "Product overview external annotations are native editable Web text on one und-locale base art; immutable Jackery product markings and complete leaders remain in the drawing"
   ],
   "source_concerns": [
     {
@@ -156,11 +157,6 @@
       "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
     },
     {
-      "path": "source/page/product_overview_en.rst",
-      "size": 2580,
-      "sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc"
-    },
-    {
       "path": "source/page/spec_en.rst",
       "size": 818,
       "sha256": "e07f1c72caa820f4a88e257a077c5254ff30c519f8eab90f7b4357662c95ef23"
@@ -174,6 +170,26 @@
       "path": "source/panel_map.json",
       "size": 992,
       "sha256": "b6df97b46c6d1d3c2327a8b0b2d284af87a93804abb90935855e509387eb64ab"
+    },
+    {
+      "path": "source/page/product_overview_en.rst",
+      "size": 4080,
+      "sha256": "a0017021e3670fdacd52a08c3a12e73d6eff69bec908170f4d7533d4034882cf"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "source/overview_textless_recipe.json",
+      "size": 3203,
+      "sha256": "482989149b6dcf34148430d70291a7afa9bf59c4dd732d7c29e870cf3fdeb0fc"
+    },
+    {
+      "path": "assets/overview-textless.pdf",
+      "size": 1016968,
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891"
     }
   ],
   "repo_inputs": [
