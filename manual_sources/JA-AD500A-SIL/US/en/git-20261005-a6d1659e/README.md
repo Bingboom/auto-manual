@@ -40,6 +40,14 @@ from the first chapter onward and all six artwork bytes are unchanged from
 candidate 9. Desktop and 390px screenshots are in `evidence/browser/`, with
 checks in `evidence/intro-correction.json`.
 
+The complete product overview is centered and bounded at **640px (40rem)**
+on desktop, following the operator's request to make the whole diagram smaller.
+It scales to the available phone width. The source-local width overrides the
+shared standalone image rule; no shared CSS or artwork was changed. Candidate
+11 passes strict Sphinx and exact source-free replay, with unchanged body text
+and all six artwork bytes. See `evidence/overview-size-correction.json` and
+`evidence/browser/*-overview-smaller.jpg`.
+
 ## Rebuild
 
 From the repository root, with the project's Python dependencies installed:

@@ -8,8 +8,8 @@
     "assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "3ef7426b3619674a386152b2308652d3433cf9d79a9ca5e316f9ec13983e44b3",
-  "content_sha256": "a43ba1388a05f4d66169a60b7bae9791613cb9205350d16f7458bfa36bd4d5f1",
+  "bundle_sha256": "9991261de658828d29b3415d496d849da6d2182d21294a2bb37d5b8c38887291",
+  "content_sha256": "3f74c920c1684163e23cc614c3ff7269f1eea8f5fe6f8c8d905ff1450cab5857",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -21,7 +21,7 @@
       "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
       "assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
     },
-    "block_count": 32,
+    "block_count": 31,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 3,
       "HB-SPECIAL-INBOX": 1,
@@ -1336,8 +1336,8 @@
         },
         {
           "path": "source/page/product_overview_en.rst",
-          "sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c",
-          "size": 2489
+          "sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc",
+          "size": 2580
         },
         {
           "path": "source/page/spec_en.rst",
@@ -1366,7 +1366,8 @@
         "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
         "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
         "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
-        "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX"
+        "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
+        "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged"
       ],
       "original_source": {
         "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
@@ -2454,7 +2455,7 @@
             "assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png"
           ],
           "block_id": "product_overview_en.rst:block-0002",
-          "content_sha256": "53a5bd597a29cbb40f00bbb1ce380b4c2bfa2a8afe3c4ec360237dc6d318a48c",
+          "content_sha256": "4d373cb94acdc2dfb16d70d5c0cddb0ea5978f375b1592ee2eb887a5e44201a1",
           "kind": "flow",
           "payload": {
             "alt": "DC Input — 2 × DC8020 Ports: Car: 11–16V⎓8A Max; PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max. LED Light. Plug.",
@@ -2462,7 +2463,7 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "style": "width: 75%;"
+                  "style": "width:min(100%,40rem)!important;max-width:100%!important;height:auto!important;"
                 }
               }
             },
@@ -2474,18 +2475,6 @@
         {
           "asset_refs": [],
           "block_id": "product_overview_en.rst:block-0003",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "product_overview_en.rst#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "product_overview_en.rst:block-0004",
           "content_sha256": "92f87efc9fccf01a7ada117b1eb301f080bcba91bad96c47ed4c3c32145d754a",
           "kind": "flow",
           "payload": {
@@ -2504,11 +2493,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "product_overview_en.rst#block-4"
+          "source_ref": "product_overview_en.rst#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "product_overview_en.rst:block-0005",
+          "block_id": "product_overview_en.rst:block-0004",
           "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
           "kind": "flow",
           "payload": {
@@ -2516,11 +2505,11 @@
             "schema_version": "manual-flow/v2",
             "text": "\n"
           },
-          "source_ref": "product_overview_en.rst#block-5"
+          "source_ref": "product_overview_en.rst#block-4"
         },
         {
           "asset_refs": [],
-          "block_id": "product_overview_en.rst:block-0006",
+          "block_id": "product_overview_en.rst:block-0005",
           "content_sha256": "f306b54fe5a2e46572760759ad785586c89da37d0e3266416a028d2d68777a39",
           "kind": "flow",
           "payload": {
@@ -3088,7 +3077,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "product_overview_en.rst#block-6"
+          "source_ref": "product_overview_en.rst#block-5"
         }
       ],
       "language": "en",
@@ -3096,7 +3085,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/source/page/product_overview_en.rst",
       "source_ref": "product_overview_en.rst",
-      "source_sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c"
+      "source_sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc"
     },
     {
       "blocks": [

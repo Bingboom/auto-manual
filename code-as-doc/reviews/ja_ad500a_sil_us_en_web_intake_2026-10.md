@@ -158,3 +158,17 @@ artwork assets. Actual 1440px desktop and 390px phone views confirm the first
 chapter at the top, no added intro and no document horizontal overflow.
 Corrected screenshots, strict log and `evidence/intro-correction.json` are
 retained; earlier candidates and evidence remain preserved.
+
+## Operator correction: reduce the complete product overview
+
+The operator requested a smaller whole overview diagram. Its previous RST
+75% width was overridden by the shared standalone-image 100% rule, resulting
+in an 842.8125px-wide image at 1440px. The source now declares a centered,
+proportional `min(100%,40rem)` width that takes precedence: actual desktop
+width is 640px and phone width is 358px. The original full diagram, labels,
+leaders and bytes remain intact; no shared CSS/renderer changed.
+
+Candidate 11 passes strict Sphinx and exact source-free replay. Body text and
+all six images are unchanged from candidate 10b. Actual 1440px and 390px
+screenshots show the complete diagram with no clipping or horizontal overflow.
+The report and screenshots are retained in the snapshot evidence directory.

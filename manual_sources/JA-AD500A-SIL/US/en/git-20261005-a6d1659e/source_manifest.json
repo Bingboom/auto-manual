@@ -74,7 +74,8 @@
     "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
     "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
     "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
-    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX"
+    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
+    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged"
   ],
   "source_concerns": [
     {
@@ -155,8 +156,8 @@
     },
     {
       "path": "source/page/product_overview_en.rst",
-      "size": 2489,
-      "sha256": "17f5c372a841eca30fb375b9fb976e73ae18f1a2dc15951d13cf6b18ace5fd3c"
+      "size": 2580,
+      "sha256": "dd950edf46f78c62b6df2dbae3aa374c6eb7bc1a624eec6fb68ef0f62c2c3ecc"
     },
     {
       "path": "source/page/spec_en.rst",

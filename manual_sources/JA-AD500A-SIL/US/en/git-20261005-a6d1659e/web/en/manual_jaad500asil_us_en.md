@@ -8,10 +8,7 @@
 
 # PRODUCT OVERVIEW
 
-<img alt="DC Input — 2 × DC8020 Ports: Car: 11–16V⎓8A Max; PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max. LED Light. Plug." src="assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png" style="width: 75%;"/>
-
-
-
+<img alt="DC Input — 2 × DC8020 Ports: Car: 11–16V⎓8A Max; PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max. LED Light. Plug." src="assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png" style="width:min(100%,40rem)!important;max-width:100%!important;height:auto!important;"/>
 
 <p id="led-light"><strong>LED Light</strong></p>
 

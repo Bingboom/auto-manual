@@ -49,13 +49,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 197648,
-      "sha256": "d0764e491a654336d6419cf1056b85a07e456775090ad2e9f5e8c6d91fc48f67"
+      "size": 197476,
+      "sha256": "c7956855ddbf35b34cc085adbac3f03872b8f44d205b83539ce0617171e56d13"
     },
     {
       "path": "web/en/manual_jaad500asil_us_en.md",
-      "size": 15710,
-      "sha256": "1df92b9e21c3b9b5d623a06af7da7e66eb7b39226e3df3debfecaa66973360cb"
+      "size": 15775,
+      "sha256": "6e30a5d7ab77e9ced4bc1e2f77f1f52b9f506e9b6239439db8eb8f3e120660b5"
     },
     {
       "path": "evidence/browser/desktop-footer-corrected.jpg",
@@ -76,6 +76,11 @@
       "path": "evidence/browser/desktop-led-detail.jpg",
       "size": 10546,
       "sha256": "41e5c606d745adb5eb46fef9ce5180e78c4a8285a1f612aa9eeba1517854d8e1"
+    },
+    {
+      "path": "evidence/browser/desktop-overview-smaller.jpg",
+      "size": 60446,
+      "sha256": "e669674f4e895d0ca30b75532c7aecd2cd187b075d5eefb7faf8e1aefd9cdd44"
     },
     {
       "path": "evidence/browser/desktop-solar.jpg",
@@ -106,6 +111,11 @@
       "path": "evidence/browser/mobile-led-corrected.jpg",
       "size": 35573,
       "sha256": "f36a3f80151f692dc4c36dc0d24d38a68609f8d83c0e8d931d030bff7ea326a1"
+    },
+    {
+      "path": "evidence/browser/mobile-overview-smaller.jpg",
+      "size": 29888,
+      "sha256": "1bd5a41dd3d6b8df8b9c6ab3f8e39d634fd408707900a450be3aacb9f29173fb"
     },
     {
       "path": "evidence/browser/mobile-solar.jpg",
@@ -163,6 +173,11 @@
       "sha256": "2ae03e05e4d27a443b4cacd3dabfe7773e2e7ec926aaef004cd5c2236808746a"
     },
     {
+      "path": "evidence/overview-size-correction.json",
+      "size": 692,
+      "sha256": "10013d4c326ac4d71058be4ca427377d565b2222a0fdff5fcf5661e0a2095d7f"
+    },
+    {
       "path": "evidence/source-contact-proof.png",
       "size": 48528,
       "sha256": "b72db886de44d904e9d430a80f0555d9131aae42033d09ada168b5f1bee07085"
@@ -191,6 +206,11 @@
       "path": "evidence/strict-intro-removed.log",
       "size": 2087,
       "sha256": "c743dcc7999a36c1a8a2b7832d225c6d20d4fe3a09bb5a3cb597f85bad406472"
+    },
+    {
+      "path": "evidence/strict-overview-smaller.log",
+      "size": 2083,
+      "sha256": "59c455132c801b4681077c564509e3539b13460ec6ae24e4f747b44a496443ea"
     },
     {
       "path": "evidence/us-check-default.log",
