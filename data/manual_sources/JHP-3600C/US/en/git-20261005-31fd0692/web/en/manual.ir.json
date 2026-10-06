@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "42991b6816eddfd00d20d662be2017a69483bd4b371ab8ed3ba59b45165072fb",
-  "content_sha256": "1fc305f35f8fc7a374bbbbd5460918c89b350044abd1ff2281b709fb95e9bf73",
+  "bundle_sha256": "8c8380ec3ee58e5b9d48abdc8fbeae9dd40dd2650e9beea35c7f2960b0dc6e97",
+  "content_sha256": "15d285697b8b81df5567b04d51fb2a119348bca92bb5f230a3a4051a398ee104",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -215,7 +215,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE": 6,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -7578,20 +7578,152 @@
             "assets/epo.png"
           ],
           "block_id": "connections:block-0021",
-          "content_sha256": "e62f574423d0e04c13c8d5cb59d7dc0ac2c621014df6f053e7ea072a5e90747e",
+          "content_sha256": "de4e95198ba69040b5db0af86327f9279f5673589228ab7e31282ce7283ec404",
           "kind": "flow",
           "payload": {
-            "alt": "External EPO emergency-stop switch connected at the screw terminal block.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "External EPO emergency-stop switch connected at the screw terminal block.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"epo\", \"web_replace_key\": \"reference.epo\", \"capture_following_lines\": 1, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [73.5, 24, 7.5, 10]}]}}"
+                    }
+                  }
+                },
+                "source": "assets/epo.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "EPO"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;text-align:center;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/epo.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        73.5,
+                        24,
+                        7.5,
+                        10
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#eaebec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 1,
+                "composite_locale": "",
+                "image_key": "assets/epo.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "752b470651184cfcecf2b17c0acde40b8926b80e655de7b9dae2336add947cdf",
+                "web_replace_key": "reference.epo"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "epo",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "External EPO emergency-stop switch connected at the screw terminal block.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:center;\">EPO</span>",
+                      "text": "EPO"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-epo",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/epo.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-21"
         },
@@ -8361,7 +8493,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "030e01cb3111350f4a51579bafba8c3a48020dd61382491f8f7ec558c0ff31c3"
+      "source_sha256": "0ae6a7223dc65dc822c831a7e754b8dc175fb1faac6f68f9c7a330c5bfc737ba"
     },
     {
       "blocks": [
