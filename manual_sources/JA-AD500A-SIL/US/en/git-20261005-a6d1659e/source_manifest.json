@@ -1,0 +1,181 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261005-a6d1659e"
+  },
+  "original_source": {
+    "filename": "16-0102-000239 说明书 HTO889A-US-JAK RoHS REACH.ai",
+    "path": "source/original.ai",
+    "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+    "physical_page_count": 1
+  },
+  "printed_manual_version": null,
+  "source_authority": "operator-supplied PDF-compatible Illustrator, visual transcription of outlined English",
+  "baseline_main": "ed4d4ec5071d000d590d5b53322aea6c12186f7c",
+  "language_scope": "single",
+  "source_role": "Git-only English prepared native Web intake candidate",
+  "live_bitable_dependency": false,
+  "publication_eligible": false,
+  "page_order": [
+    "00_preface_en.rst",
+    "box_contents_en.rst",
+    "product_overview_en.rst",
+    "charging_en.rst",
+    "spec_en.rst",
+    "warranty_en.rst",
+    "contact_en.rst"
+  ],
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 2,
+    "HB-CALLOUT-STRIP": 3,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "chapter_source_panels": {
+    "00_preface_en.rst": [
+      "cover"
+    ],
+    "box_contents_en.rst": [
+      "printed-01"
+    ],
+    "product_overview_en.rst": [
+      "printed-02"
+    ],
+    "charging_en.rst": [
+      "printed-03",
+      "printed-04",
+      "printed-05"
+    ],
+    "spec_en.rst": [
+      "printed-05"
+    ],
+    "warranty_en.rst": [
+      "printed-05",
+      "printed-06"
+    ],
+    "contact_en.rst": [
+      "cover",
+      "back"
+    ]
+  },
+  "normalizations": [
+    "source wrapping joined",
+    "drawn DC sign represented by Unicode ⎓",
+    "native × and en-dash used for measurement/range signs",
+    "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
+    "source heading case retained; warranty continuation is one section",
+    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label"
+  ],
+  "source_concerns": [
+    {
+      "panel": "printed-06",
+      "issue": "battery-cell exclusion in a DC module warranty",
+      "disposition": "preserved verbatim pending source-owner decision"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [
+    "English operator layout/baseline confirmation"
+  ],
+  "inputs": [
+    {
+      "path": "assets/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 88312,
+      "sha256": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "render.py",
+      "size": 3484,
+      "sha256": "df6833e0b993e1c55cc164a9d939400af45e4c7ec509e29e2bc45c3c770c5ad9"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8344,
+      "sha256": "e80d4f5a6e051f3e0862214ade2f3de016c1bbe6370a217d5fe3117b3f9afd4c"
+    },
+    {
+      "path": "source/original.ai",
+      "size": 5210211,
+      "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da"
+    },
+    {
+      "path": "source/page/00_preface_en.rst",
+      "size": 103,
+      "sha256": "7566b4e9f291852cb519e78b29640fab58446dd8e2688942d767b0122794040e"
+    },
+    {
+      "path": "source/page/box_contents_en.rst",
+      "size": 307,
+      "sha256": "7fe935b3b0575cb7e15107008cd35458e4099d52739514dc2c9d8aae0da84c14"
+    },
+    {
+      "path": "source/page/charging_en.rst",
+      "size": 3355,
+      "sha256": "b89e67ab2ee722452ad87c695265b95540f63b9092c54d7d3a642486aca2917a"
+    },
+    {
+      "path": "source/page/contact_en.rst",
+      "size": 331,
+      "sha256": "e36b5e5b4e72c6496a5dbe3ad8f590e41ad767cc88f9ace713bcbc5ebd90cc3e"
+    },
+    {
+      "path": "source/page/product_overview_en.rst",
+      "size": 595,
+      "sha256": "3ebe53a86b088a99683531242a542c430fc5e0e6ef28cc81bfbc2b69185a0416"
+    },
+    {
+      "path": "source/page/spec_en.rst",
+      "size": 818,
+      "sha256": "e07f1c72caa820f4a88e257a077c5254ff30c519f8eab90f7b4357662c95ef23"
+    },
+    {
+      "path": "source/page/warranty_en.rst",
+      "size": 2845,
+      "sha256": "44ae7fa5a954893cd339ebb8a0560aea1ecbb4791e5eaff9a5954b58ddf02478"
+    },
+    {
+      "path": "source/panel_map.json",
+      "size": 992,
+      "sha256": "b6df97b46c6d1d3c2327a8b0b2d284af87a93804abb90935855e509387eb64ab"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "63aa713e1b62891e670e7e1d268e213a06f16f692a2ee3957cf0a3e096b868f2"
+    }
+  ]
+}

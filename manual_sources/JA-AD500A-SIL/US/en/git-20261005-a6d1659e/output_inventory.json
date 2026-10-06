@@ -1,0 +1,141 @@
+{
+  "schema_version": "git-web-intake-output-inventory/v1",
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 101156,
+      "sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db"
+    },
+    {
+      "path": "web/en/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/en/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/en/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/en/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/en/assets/ir/b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c/overview.png",
+      "size": 88312,
+      "sha256": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c"
+    },
+    {
+      "path": "web/en/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 818,
+      "sha256": "f5aa90e6547fffb6e37ea7f6f57795056085655130c519335efe592b9d850dbb"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 83,
+      "sha256": "b1942e0eb2a5457743039751d47389c1c5c092d0c5edf5fac3c1f719ac6604bf"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 196643,
+      "sha256": "1375ced24845447ae48eff92a56115bbc99017662fc7165bc169d9237279f996"
+    },
+    {
+      "path": "web/en/manual_jaad500asil_us_en.md",
+      "size": 13518,
+      "sha256": "394c4ecbb2fe1a22d9d01f2726731e0711068da45bce9ea7c93c7b77e8bd2651"
+    },
+    {
+      "path": "evidence/browser/desktop-solar.jpg",
+      "size": 96228,
+      "sha256": "beeccd57f72a4378361e81b8fcd34fd42dbe1fddf846b787c8b58220ac290765"
+    },
+    {
+      "path": "evidence/browser/mobile-car.jpg",
+      "size": 53071,
+      "sha256": "a4cb35d1ff9fb49bc1db01816d49d435c5355308c12f30e92c2fc67b5bf69508"
+    },
+    {
+      "path": "evidence/browser/mobile-full.jpg",
+      "size": 393124,
+      "sha256": "4376a15b59c3bd699213d336f49e241e21cc68352b9b1549335948ccfa8ac43f"
+    },
+    {
+      "path": "evidence/browser/mobile-solar.jpg",
+      "size": 39307,
+      "sha256": "00c4ba9551a3cdda37956a590b2307e91097af0622179c98ac549f384c6b0bea"
+    },
+    {
+      "path": "evidence/browser/mobile-specs.jpg",
+      "size": 47225,
+      "sha256": "a48bfe46b920ad67f9e65bd2336c89a9d86e235a9535fee837e43564115b9c48"
+    },
+    {
+      "path": "evidence/browser/mobile-warranty.jpg",
+      "size": 67801,
+      "sha256": "cd6c6dbf3f6fcea09453177b4d215854d748f9dd82e4836c53d125377b770e83"
+    },
+    {
+      "path": "evidence/cold-replay.json",
+      "size": 262,
+      "sha256": "58caa78852be45f85daa39b6b14251789c1985e079d9968c62e7d8663b2af690"
+    },
+    {
+      "path": "evidence/component-tests-corrected.log",
+      "size": 137,
+      "sha256": "bcb761e76d2e08acbc5c804ae2afd2d7a91e0787cd66386fc35997597572f866"
+    },
+    {
+      "path": "evidence/doc-links-final.log",
+      "size": 127,
+      "sha256": "8978320bc5362a93dab9e76c0ae2c0b04a4858a9f5cd185d7213e900b856e89d"
+    },
+    {
+      "path": "evidence/guardrails.log",
+      "size": 425,
+      "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
+    },
+    {
+      "path": "evidence/overlay-tests.log",
+      "size": 119,
+      "sha256": "2ae03e05e4d27a443b4cacd3dabfe7773e2e7ec926aaef004cd5c2236808746a"
+    },
+    {
+      "path": "evidence/sphinx-3.log",
+      "size": 2083,
+      "sha256": "027e2ae1db5333a96103ea4c85f9e8d34dbfd2f8fdfbad79a433e98375fed2af"
+    },
+    {
+      "path": "evidence/sphinx-cold-3.log",
+      "size": 2091,
+      "sha256": "1ccd88ff857c86a43b7af1a689991334a2b9562c43a1ba8e1bf061bf029bb84f"
+    },
+    {
+      "path": "evidence/us-check-default.log",
+      "size": 2710,
+      "sha256": "79a746862f11c7e6c8471ce60508b160caf131e0b33d6edffbc9a84744abb197"
+    },
+    {
+      "path": "evidence/us-check-fixture.log",
+      "size": 1952,
+      "sha256": "b8adbfff8304c13c8002c1c9c8da46fa86e6d37576d6e8d9b5a92009fc1d90d3"
+    },
+    {
+      "path": "evidence/verification.json",
+      "size": 1075,
+      "sha256": "1a959bdfdd00062d9c412fb5af152e543fa77688a22bcffe86a686393473396e"
+    }
+  ]
+}

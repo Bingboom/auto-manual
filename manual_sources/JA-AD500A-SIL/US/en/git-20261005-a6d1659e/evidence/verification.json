@@ -1,0 +1,39 @@
+{
+  "target": "JA-AD500A-SIL/US/en",
+  "candidate": "web-candidate-3",
+  "status": "English candidate, not operator-confirmed baseline or publication",
+  "desktop_viewport": [
+    1440,
+    1000
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "image_count": 6,
+  "image_loads": 6,
+  "desktop_scroll_width": 1440,
+  "mobile_scroll_width": 390,
+  "broken_fragment_links": [],
+  "spec_input_rowspan": 2,
+  "solar": {
+    "operator_instruction": "这个dc8020直接保留在底图",
+    "captions_embedded": true,
+    "duplicate_live_caption": false,
+    "panel_identity": "SolarSaga 100 Air × 4"
+  },
+  "car": {
+    "live_copy": true,
+    "mobile_labels": "overlay",
+    "observed_clipping": false
+  },
+  "source_note": "Battery-cell warranty exclusion retained verbatim; paper version unknown",
+  "validation": {
+    "focused_component_tests": 38,
+    "overlay_contract_tests": 20,
+    "strict_sphinx": true,
+    "source_free_cold_replay": true,
+    "tampered_asset_rejected": true,
+    "regression_target": "JE-1000F/US/en using committed phase2 test fixture only"
+  }
+}
