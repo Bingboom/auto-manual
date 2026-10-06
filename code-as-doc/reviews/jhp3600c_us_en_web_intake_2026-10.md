@@ -243,3 +243,17 @@ exactly; wording, plain-text fields, icons and other rows are unchanged.
 
 Technical version: `git-20261005-31fd0692-lcdstatus1`. Deterministic rebuild,
 source line coverage and strict standalone Sphinx pass. Previous seals remain.
+
+Source commit: `50db389f24bbb3fe98c3d9d300c2718e72a5c5a8`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-lcdstatus1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-lcdstatus1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-lcdstatus1.json) bind
+the result. Strict aggregate Sphinx passes. The 106-target assembly retains
+all 5,609 existing source files unchanged. Browser checks at 1440px and 390px
+confirm all 28 labels have computed weight 700 while their paragraph weight
+stays 400; no leading status label is unmarked. The existing mobile LCD table
+scrolls to its description column (286px), with no page overflow.
+[Desktop](jhp3600c_us_en_web_evidence/lcdstatus-desktop-lcdstatus1.jpg),
+[mobile description](jhp3600c_us_en_web_evidence/lcdstatus-mobile-lcdstatus1.jpg)
+and [restored user pane](jhp3600c_us_en_web_evidence/lcdstatus-final-preview-lcdstatus1.jpg)
+show the corrected local preview. Root `tmp/` remains untouched; no push or publication.
