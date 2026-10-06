@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-ups240caption2"
+    "technical_version": "git-20261005-31fd0692-cascadecaption1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 509169,
-      "sha256": "590661f10c0f4e11879deff74848891ae8c6a0605645193e5f8c89a822eb0216"
+      "size": 516376,
+      "sha256": "bdd2591407355914bd5fef31d45909d2a707f7ccc224840ac158c4cc0d8ae0b0"
     },
     {
       "path": "source/coverage_audit.json",
@@ -174,8 +174,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 3591,
-      "sha256": "6b758d4938257d667796b28694db081e8e356360d56aee689d1174c351391fa3"
+      "size": 3883,
+      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -209,8 +209,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 3591,
-      "sha256": "6b758d4938257d667796b28694db081e8e356360d56aee689d1174c351391fa3"
+      "size": 3883,
+      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -779,13 +779,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 684056,
-      "sha256": "72122bd87bbcfa2d3e0018d67cec7e18d6700daf84c1f4767a61e31f41902bcf"
+      "size": 691657,
+      "sha256": "7e862e361aae54d0f9b566c92d7c191d98b36334452cd7adff5f96f2093b276b"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 109380,
-      "sha256": "d685ff665b851d7485f712eea816b18cf5b975f74764b744169f425a5ef44711"
+      "size": 111103,
+      "sha256": "9aacfc132f46e1b8923635b2b3ac086eb7c43b27327375423b2564a550db46e7"
     }
   ],
   "repo_inputs": [

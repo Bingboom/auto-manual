@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "6197616736396ed355a526245fe32e4460a2b4e6de2529027350d9fba11ad465",
-  "content_sha256": "8e2a7e693722357ba2c146cb9cc268ce0dc6aa65e53bb926c9cc0a29697454fc",
+  "bundle_sha256": "42991b6816eddfd00d20d662be2017a69483bd4b371ab8ed3ba59b45165072fb",
+  "content_sha256": "1fc305f35f8fc7a374bbbbd5460918c89b350044abd1ff2281b709fb95e9bf73",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -215,7 +215,7 @@
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 4,
+      "HB-SPECIAL-REFERENCE-FIGURE": 5,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -2059,7 +2059,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "6b758d4938257d667796b28694db081e8e356360d56aee689d1174c351391fa3"
+      "sha256": "d5d7c8158318eb6c63c66888d2f54cbcc607b05358fb0aad8bf6ef79e62d9cf8"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -7209,20 +7209,217 @@
             "assets/cascade.png"
           ],
           "block_id": "connections:block-0016",
-          "content_sha256": "4324dedd29e9f146a1b5d41384fae72612953eb2a08b76b1b74aa761d0e78635",
+          "content_sha256": "df2af0d0e37c26e457f5f2b92d6d7e2bcab51fd763dfb17eb30a13622cd1c70f",
           "kind": "flow",
           "payload": {
-            "alt": "Connect first NEMA 14-50R output to the second AC expansion port, and connect both parallel communication ports.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "Connect first NEMA 14-50R output to the second AC expansion port, and connect both parallel communication ports.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-source-reference"
+                      ],
+                      "data-reference": "{\"id\": \"cascade\", \"web_replace_key\": \"reference.cascade\", \"capture_following_lines\": 2, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb\", \"panel_top\": 0, \"panel_fill\": \"#eaebec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [70, 12.5, 28, 10.5]}, {\"line\": 1, \"rect\": [75.5, 52.5, 22.5, 17]}]}}"
+                    }
+                  }
+                },
+                "source": "assets/cascade.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery 40A Charging Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;text-align:center;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery Parallel"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "Communication Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;text-align:center;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": [
+                            "line"
+                          ]
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "line-block"
+                      ]
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/cascade.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        70,
+                        12.5,
+                        28,
+                        10.5
+                      ]
+                    },
+                    {
+                      "line": 1,
+                      "rect": [
+                        75.5,
+                        52.5,
+                        22.5,
+                        17
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#eaebec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 2,
+                "composite_locale": "",
+                "image_key": "assets/cascade.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "c60ec15d4bf1517051d54892dec0f5108a0bf37546fc6822eb9ad5cbee46dfd1",
+                "web_replace_key": "reference.cascade"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "cascade",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "Connect first NEMA 14-50R output to the second AC expansion port, and connect both parallel communication ports.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:center;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
+                      "text": "Jackery 40A Charging Cable (sold separately)"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:center;\">Jackery Parallel<br/>Communication Cable<br/>(sold separately)</span>",
+                      "text": "Jackery Parallel Communication Cable (sold separately)"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-cascade",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/cascade.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-16"
         },
@@ -8164,7 +8361,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "f48b3b406adc4c07ae0e22a3eab0f38633c35ed5c9a88b094c279aa71144ec29"
+      "source_sha256": "030e01cb3111350f4a51579bafba8c3a48020dd61382491f8f7ec558c0ff31c3"
     },
     {
       "blocks": [

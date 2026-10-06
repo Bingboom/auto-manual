@@ -104,6 +104,12 @@
 #furo-main-content #v-ac-outlet { margin: 0.4rem 0 0.2rem; }
 #furo-main-content #v-ac-outlet + img { margin-top: 0.3rem !important; }
 
+/* Source labels stay above their original horizontal leaders at the mobile floor. */
+@media (max-width: 40rem) {
+  #furo-main-content [data-reference-id="cascade"] [data-source-line="0"] { top: 4%; }
+  #furo-main-content [data-reference-id="cascade"] [data-source-line="1"] { top: 43%; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -294,7 +300,7 @@
 
 <p>3. Connect the first unit's 240V Output Port (NEMA 14-50R) to the second unit's AC Expansion Port.</p>
 
-<img alt="Connect first NEMA 14-50R output to the second AC expansion port, and connect both parallel communication ports." src="assets/cascade.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="cascade" data-source-fragment-sha256="c60ec15d4bf1517051d54892dec0f5108a0bf37546fc6822eb9ad5cbee46dfd1" data-web-base-art-ref="assets/cascade.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.cascade"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="cascade.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#eaebec"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "cascade", "web_replace_key": "reference.cascade", "capture_following_lines": 2, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb", "panel_top": 0, "panel_fill": "#eaebec", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [70, 12.5, 28, 10.5]}, {"line": 1, "rect": [75.5, 52.5, 22.5, 17]}]}}' src="assets/cascade.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:70%;--hb-y:12.5%;--hb-width:28%;--hb-height:10.5%"><span style="display:block;width:100%;text-align:center;">Jackery 40A Charging Cable<br/>(sold separately)</span></span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:75.5%;--hb-y:52.5%;--hb-width:22.5%;--hb-height:17%"><span style="display:block;width:100%;text-align:center;">Jackery Parallel<br/>Communication Cable<br/>(sold separately)</span></span></div></div></figure>
 
 <p>System information will synchronize across both displays.</p>
 

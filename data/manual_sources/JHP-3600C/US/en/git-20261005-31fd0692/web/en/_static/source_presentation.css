@@ -102,3 +102,9 @@
 #furo-main-content p:has(+ #v-ac-outlet) { margin-bottom: 0.4rem; }
 #furo-main-content #v-ac-outlet { margin: 0.4rem 0 0.2rem; }
 #furo-main-content #v-ac-outlet + img { margin-top: 0.3rem !important; }
+
+/* Source labels stay above their original horizontal leaders at the mobile floor. */
+@media (max-width: 40rem) {
+  #furo-main-content [data-reference-id="cascade"] [data-source-line="0"] { top: 4%; }
+  #furo-main-content [data-reference-id="cascade"] [data-source-line="1"] { top: 43%; }
+}
