@@ -3804,3 +3804,52 @@ figure:has(> img.hb-readable-diagram) {
 @media (max-width: 40rem) {
   #furo-main-content .hb-operation-diagram { grid-template-columns: 1fr; }
 }
+
+/* Source model identity belongs to its chapter strip and can wrap in narrow readers. */
+#furo-main-content h1:has(.hb-heading-model) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+#furo-main-content .hb-heading-model {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+/* Opt-in native warning: one outlined white panel, icon + signal, bold live body. */
+#furo-main-content table.hb-source-warning-lockup {
+  border-color: var(--hb-brand-dark) !important;
+  background: var(--hb-paper);
+}
+#furo-main-content .hb-source-warning-lockup .manual-callout-label {
+  width: 32% !important;
+}
+#furo-main-content .hb-source-warning-lockup .manual-callout-body {
+  width: 68%;
+  background: var(--hb-paper) !important;
+  vertical-align: middle !important;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup img {
+  flex: 0 0 auto;
+  width: 2.6rem !important;
+  height: 2.6rem;
+  margin: 0 !important;
+}
+@media (max-width: 40rem) {
+  #furo-main-content .hb-source-warning-lockup :is(.manual-callout-label, .manual-callout-body) {
+    width: 100% !important;
+  }
+}

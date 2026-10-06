@@ -90,3 +90,10 @@
 #furo-main-content section#jackery-automatic-transfer-switch-sold-separately > h1 {
   text-transform: none;
 }
+
+/* Source geometry at the shared 8px mobile floor: keep labels above leaders/inside the panel. */
+@media (max-width: 40rem) {
+  #furo-main-content [data-reference-id="ess_connection"] [data-source-line="0"] { top: 32%; }
+  #furo-main-content [data-reference-id="ess_connection"] [data-source-line="2"] { top: 87%; }
+  #furo-main-content [data-reference-id="ess_connection"] .hb-reference-live-label br { display: none; }
+}

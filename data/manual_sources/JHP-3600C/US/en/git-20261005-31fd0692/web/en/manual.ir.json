@@ -87,8 +87,8 @@
     "assets/ess_ats_package.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "917329ab0da579e0c20422f6dee0f9d592868a37996712d284804f9816cc9409",
-  "content_sha256": "f6a35e2de0f08eaa739186d3e3fe2997b99f69e7214ad9e439c33d5e6dcd9b78",
+  "bundle_sha256": "0d6b48f1e66aa7baa73aad9c8af7b62378bfd2bac640474849cfbc5b7e5e8682",
+  "content_sha256": "30d2454e3625cbb8a98f12660a48a62423003bfac79a15a187439f99d9130a59",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -196,13 +196,13 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 227,
+    "block_count": 222,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -1422,7 +1422,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "0b2b363eb27863ab28397643b542d07bacfbbd78e14cac25ae69e33530f78baf",
+    "frozen_stylesheet_sha256": "e91ad4169088c142b37546a47d8b80692b1aac37713682eb304e5e672e7b4e1b",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -2046,7 +2046,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "41810b7c34adf09b2c7229dfe61a2e41cc73a4ac6d823dd1d714edb6496fc489"
+      "sha256": "17b1ab3244346a082670c96ea6132072fcd4481d3955c7ca3d1a0ce0c7ca763a"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -12327,14 +12327,46 @@
         {
           "asset_refs": [],
           "block_id": "ess:block-0001",
-          "content_sha256": "40e1b35a9888e03fba3e6483c2d472576e597a2fa6e8467d15c18dff69bbd1f8",
+          "content_sha256": "88834b4d125155ecf69460f4c04d542c69ed1ffa5022195d485ab97cde19b170",
           "kind": "flow",
           "payload": {
             "anchor": "ess",
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "SMART HOME BACKUP SYSTEM (AC ESS)"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-heading-title"
+                    }
+                  }
+                }
+              },
+              {
                 "kind": "text",
-                "text": "SMART HOME BACKUP SYSTEM (AC ESS)"
+                "text": " "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Model: HB3600C-TS05A"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-heading-model"
+                    }
+                  }
+                }
               }
             ],
             "kind": "heading",
@@ -12344,26 +12376,11 @@
           "source_ref": "native-pdf/ess#block-1"
         },
         {
-          "asset_refs": [],
+          "asset_refs": [
+            "assets/e1746d6937db_warning_triangle_dark.svg"
+          ],
           "block_id": "ess:block-0002",
-          "content_sha256": "84d4bae7925b520d84db95c9dab5f3c6af03a6fe9df476bfdc25ea639ac76044",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: HB3600C-TS05A"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/ess#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "ess:block-0003",
-          "content_sha256": "63e8c4c7f7dde7c3c322850095484b942a638ba5cc035513d21dfeac827e0ec5",
+          "content_sha256": "da6086c300d39594a72003d73eb7223b4f76b01a04111976117768146d2807a0",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -12376,8 +12393,30 @@
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "WARNING"
+                                "children": [
+                                  {
+                                    "alt": "",
+                                    "kind": "image",
+                                    "source": "assets/e1746d6937db_warning_triangle_dark.svg"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "WARNING"
+                                      }
+                                    ],
+                                    "kind": "strong"
+                                  }
+                                ],
+                                "kind": "inline_group",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": "hb-warning-lockup"
+                                    }
+                                  }
+                                }
                               }
                             ],
                             "header": false,
@@ -12395,8 +12434,13 @@
                               {
                                 "children": [
                                   {
-                                    "kind": "text",
-                                    "text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK."
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK."
+                                      }
+                                    ],
+                                    "kind": "strong"
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -12423,7 +12467,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "manual-callout-table manual-callout-table"
+                      "class": "manual-callout-table hb-source-warning-lockup"
                     }
                   }
                 }
@@ -12456,11 +12500,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess#block-3"
+          "source_ref": "native-pdf/ess#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "ess:block-0004",
+          "block_id": "ess:block-0003",
           "content_sha256": "52fffdc03db609c0a583a5484f749825a5784610499ebeb7b124fb39abe1824b",
           "kind": "flow",
           "payload": {
@@ -12473,84 +12517,245 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess#block-4"
+          "source_ref": "native-pdf/ess#block-3"
         },
         {
           "asset_refs": [
             "assets/ess_connection.png"
           ],
-          "block_id": "ess:block-0005",
-          "content_sha256": "3d04f82b5d419a4877288bdbb3898bb580bc379330976aaa7c241d29a69afbb6",
+          "block_id": "ess:block-0004",
+          "content_sha256": "f9e5e5fa1c4ba4fb867d6d2f0845908097c569112066f48a5c3ebf852e714ad2",
           "kind": "flow",
           "payload": {
-            "alt": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B.",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+            "carrier_flow": [
+              {
+                "alt": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-source-reference",
+                      "data-reference": "{\"id\": \"ess_connection\", \"image_key\": \"assets/ess_connection.png\", \"web_replace_key\": \"reference.ess-connection\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616\", \"panel_top\": 0, \"panel_fill\": \"#ebecec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [69.52, 36.26, 26.35, 8.4]}, {\"line\": 1, \"rect\": [72.38, 53.05, 23.5, 8.78]}, {\"line\": 2, \"rect\": [3.49, 89.31, 55.87, 8.02]}]}}"
+                    }
+                  }
+                },
+                "source": "assets/ess_connection.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Power input/output cable "
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "in the ATS package"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;text-align:right;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Expansion cable in the "
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "battery pack package"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;text-align:right;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "line-block"
+                    }
+                  }
+                },
+                "role": "container"
+              }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/ess_connection.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
                 }
-              }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616",
+                  "labels": [
+                    {
+                      "line": 0,
+                      "rect": [
+                        69.52,
+                        36.26,
+                        26.35,
+                        8.4
+                      ]
+                    },
+                    {
+                      "line": 1,
+                      "rect": [
+                        72.38,
+                        53.05,
+                        23.5,
+                        8.78
+                      ]
+                    },
+                    {
+                      "line": 2,
+                      "rect": [
+                        3.49,
+                        89.31,
+                        55.87,
+                        8.02
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#ebecec",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 3,
+                "composite_locale": "",
+                "image_key": "assets/ess_connection.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "224c6c0736d9edfe7dd275eed4d0be56e71f355b264bb98f2f85357e6829e040",
+                "web_replace_key": "reference.ess-connection"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "ess_connection",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:right;\">Power input/output cable <br/>in the ATS package</span>",
+                      "text": "Power input/output cable in the ATS package"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;text-align:right;\">Expansion cable in the <br/>battery pack package</span>",
+                      "text": "Expansion cable in the battery pack package"
+                    },
+                    {
+                      "html": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack.",
+                      "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-ess_connection",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/ess_connection.png"
-          },
-          "source_ref": "native-pdf/ess#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "ess:block-0006",
-          "content_sha256": "f05d0cdb9409d3e79ac208607350088d9d7860eb94bba02602ec8af6a2123cf3",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Power input/output cable in the ATS package"
-              }
-            ],
-            "kind": "paragraph",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess#block-6"
+          "source_ref": "native-pdf/ess#block-4"
         },
         {
           "asset_refs": [],
-          "block_id": "ess:block-0007",
-          "content_sha256": "db430a47aa771f359975517e122c20a86c95c163238311c8785d8c7ca5fb37c1",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Expansion cable in the battery pack package"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/ess#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "ess:block-0008",
-          "content_sha256": "0a7bd80aace1653a07ed996c4de32caf3999dd93754eceefa12de34923593dae",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/ess#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "ess:block-0009",
+          "block_id": "ess:block-0005",
           "content_sha256": "11bedef234432f4d2fcfa5f9f81e4953b0abbae993002d9e1761c76ae8d7e275",
           "kind": "flow",
           "payload": {
@@ -12746,7 +12951,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess#block-9"
+          "source_ref": "native-pdf/ess#block-5"
         }
       ],
       "language": "en",
@@ -12754,21 +12959,53 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess",
       "source_ref": "native-pdf/ess",
-      "source_sha256": "2e17471127cf795bb939715ae3cdb9f97b5ac96ce81ac48ffee556764111031e"
+      "source_sha256": "6e307f6fbecf9741b6dff9262f9cee6e1e0286d4a36f8fb813be4ea78ef20415"
     },
     {
       "blocks": [
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0001",
-          "content_sha256": "ea49cf2fe13d263692cb0b587532a2aea0fb73aae266a7f7ba7378d3bb9b236b",
+          "content_sha256": "69c33d2ac84ea14ea73ee273222755ad9e805a15b7439640c0f13e8596b00dca",
           "kind": "flow",
           "payload": {
             "anchor": "ess-specifications",
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "SPECIFICATIONS"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-heading-title"
+                    }
+                  }
+                }
+              },
+              {
                 "kind": "text",
-                "text": "SPECIFICATIONS — SMART HOME BACKUP SYSTEM"
+                "text": " "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Model: JHP-3600C"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-heading-model"
+                    }
+                  }
+                }
               }
             ],
             "kind": "heading",
@@ -12780,23 +13017,6 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0002",
-          "content_sha256": "2705e9f5a97b7068bc8bb8c9746d90e099ada8e498a8542bf439eb1b072f8907",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Model: JHP-3600C"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/ess-specifications#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "ess-specifications:block-0003",
           "content_sha256": "6184d758b1295efb62fe36d6d2e26a96503b8800f27bf77033f8d72ca01aa0a7",
           "kind": "flow",
           "payload": {
@@ -13308,11 +13528,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-3"
+          "source_ref": "native-pdf/ess-specifications#block-2"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0004",
+          "block_id": "ess-specifications:block-0003",
           "content_sha256": "a68354967d027a09525a347740ee22f9ffbe4b2fe5dfb4adb9800e2535d4d2ee",
           "kind": "flow",
           "payload": {
@@ -13475,11 +13695,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-4"
+          "source_ref": "native-pdf/ess-specifications#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0005",
+          "block_id": "ess-specifications:block-0004",
           "content_sha256": "61e94571d8c73531b07ffd1513ad6cd20e843ec807ca76436390550505685497",
           "kind": "flow",
           "payload": {
@@ -13814,11 +14034,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-5"
+          "source_ref": "native-pdf/ess-specifications#block-4"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0006",
+          "block_id": "ess-specifications:block-0005",
           "content_sha256": "9cd8fe65b11d299e508772a7180ab35e7f8b327b88c7c0d5aa76345966e15609",
           "kind": "flow",
           "payload": {
@@ -13977,11 +14197,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-6"
+          "source_ref": "native-pdf/ess-specifications#block-5"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0007",
+          "block_id": "ess-specifications:block-0006",
           "content_sha256": "b0b08071a3e01b8043ea6705056517f21750fc7580b89a727d343329559b153b",
           "kind": "flow",
           "payload": {
@@ -14169,11 +14389,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-7"
+          "source_ref": "native-pdf/ess-specifications#block-6"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0008",
+          "block_id": "ess-specifications:block-0007",
           "content_sha256": "5ceb8cbf1c0e40aec335e5ce76ae5cb948ffb40ad64cacaf76ca1c9ea24b70c1",
           "kind": "flow",
           "payload": {
@@ -14186,11 +14406,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-8"
+          "source_ref": "native-pdf/ess-specifications#block-7"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0009",
+          "block_id": "ess-specifications:block-0008",
           "content_sha256": "123224fb4c59d72231207d847831800ca3bcad85dfad6c5d0a72bfbe27f06a4b",
           "kind": "flow",
           "payload": {
@@ -14203,11 +14423,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-9"
+          "source_ref": "native-pdf/ess-specifications#block-8"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0010",
+          "block_id": "ess-specifications:block-0009",
           "content_sha256": "120475770a867ab1d400adddf7764cdc6f1281a8679121453784dbca118aecd0",
           "kind": "flow",
           "payload": {
@@ -14220,11 +14440,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-10"
+          "source_ref": "native-pdf/ess-specifications#block-9"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0011",
+          "block_id": "ess-specifications:block-0010",
           "content_sha256": "3bb90b61881391baa463f10586e512d2ed69e021307e8aa9bd504121c6745cc7",
           "kind": "flow",
           "payload": {
@@ -14237,11 +14457,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-11"
+          "source_ref": "native-pdf/ess-specifications#block-10"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0012",
+          "block_id": "ess-specifications:block-0011",
           "content_sha256": "546c0d35944edabfeb08e8895d3d65e4f47071e5392bb5a0137db860db0946be",
           "kind": "flow",
           "payload": {
@@ -14254,11 +14474,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-12"
+          "source_ref": "native-pdf/ess-specifications#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0013",
+          "block_id": "ess-specifications:block-0012",
           "content_sha256": "d49dff158da4a809e8e684f336f8bb60456a9ebd619a9230fcc0b0980cef0461",
           "kind": "flow",
           "payload": {
@@ -14308,11 +14528,11 @@
             "level": 1,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-13"
+          "source_ref": "native-pdf/ess-specifications#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0014",
+          "block_id": "ess-specifications:block-0013",
           "content_sha256": "10f555c73169564d7a3c1531aa123bc6ad96983693e52a41be2fa2964ddbe338",
           "kind": "flow",
           "payload": {
@@ -14644,11 +14864,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-14"
+          "source_ref": "native-pdf/ess-specifications#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0015",
+          "block_id": "ess-specifications:block-0014",
           "content_sha256": "b5324019311b7179bd831da022893ca7f7f2e1b158963e6661822df44f0fcfea",
           "kind": "flow",
           "payload": {
@@ -14836,11 +15056,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-15"
+          "source_ref": "native-pdf/ess-specifications#block-14"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0016",
+          "block_id": "ess-specifications:block-0015",
           "content_sha256": "52a8c4becd90aba3e5be20bfe7da5560a67759f09132d87187274a29967573b7",
           "kind": "flow",
           "payload": {
@@ -14992,11 +15212,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-16"
+          "source_ref": "native-pdf/ess-specifications#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0017",
+          "block_id": "ess-specifications:block-0016",
           "content_sha256": "d1359f8a0e39117562468ede3a82745a420e50fad53abee70637acb7fe1106ee",
           "kind": "flow",
           "payload": {
@@ -15046,11 +15266,11 @@
             "level": 1,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-17"
+          "source_ref": "native-pdf/ess-specifications#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "ess-specifications:block-0018",
+          "block_id": "ess-specifications:block-0017",
           "content_sha256": "9d475e10da03676a5cde44901d82c5329748585e869f311a63285afd6e7ab646",
           "kind": "flow",
           "payload": {
@@ -15787,7 +16007,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ess-specifications#block-18"
+          "source_ref": "native-pdf/ess-specifications#block-17"
         }
       ],
       "language": "en",
@@ -15795,7 +16015,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess-specifications",
       "source_ref": "native-pdf/ess-specifications",
-      "source_sha256": "66d45b2de09b55fd7938c423f7e92f7d31e529cc365170275d5b4a9c74a33da2"
+      "source_sha256": "89764defdaaa4ac848cf86790a23b9b7208702cdcbb23693cc441da907cbd931"
     },
     {
       "blocks": [

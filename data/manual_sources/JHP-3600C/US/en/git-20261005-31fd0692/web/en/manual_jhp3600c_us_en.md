@@ -92,6 +92,13 @@
   text-transform: none;
 }
 
+/* Source geometry at the shared 8px mobile floor: keep labels above leaders/inside the panel. */
+@media (max-width: 40rem) {
+  #furo-main-content [data-reference-id="ess_connection"] [data-source-line="0"] { top: 32%; }
+  #furo-main-content [data-reference-id="ess_connection"] [data-source-line="2"] { top: 87%; }
+  #furo-main-content [data-reference-id="ess_connection"] .hb-reference-live-label br { display: none; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -512,29 +519,19 @@
 
 <span id="ess"></span>
 
-# SMART HOME BACKUP SYSTEM (AC ESS)
+# <span class="hb-heading-title">SMART HOME BACKUP SYSTEM (AC ESS)</span> <span class="hb-heading-model">Model: HB3600C-TS05A</span>
 
-<p>Model: HB3600C-TS05A</p>
-
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">WARNING</td><td class="manual-callout-body"><p>RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK.</p></td></tr></tbody></table>
+<table class="manual-callout-table hb-source-warning-lockup"><tbody><tr><td class="manual-callout-label"><span class="hb-warning-lockup"><img alt="" src="assets/e1746d6937db_warning_triangle_dark.svg"/><strong>WARNING</strong></span></td><td class="manual-callout-body"><p><strong>RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK.</strong></p></td></tr></tbody></table>
 
 <p>Use the power input/output cable in the ATS package to connect the HomePower 3600 Pro Max AC expansion port to the ATS AC input/output port. Use the expansion cable included with the battery pack package to connect the HomePower 3600 Pro Max to the battery pack, to connect its DC expansion port (A) to the battery pack's DC expansion port (B).</p>
 
-<img alt="JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B." src="assets/ess_connection.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
-
-<p>Power input/output cable in the ATS package</p>
-
-<p>Expansion cable in the battery pack package</p>
-
-<p>For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack.</p>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="ess_connection" data-source-fragment-sha256="224c6c0736d9edfe7dd275eed4d0be56e71f355b264bb98f2f85357e6829e040" data-web-base-art-ref="assets/ess_connection.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.ess-connection"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="ess_connection.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ebecec"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "ess_connection", "image_key": "assets/ess_connection.png", "web_replace_key": "reference.ess-connection", "capture_following_lines": 3, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616", "panel_top": 0, "panel_fill": "#ebecec", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [69.52, 36.26, 26.35, 8.4]}, {"line": 1, "rect": [72.38, 53.05, 23.5, 8.78]}, {"line": 2, "rect": [3.49, 89.31, 55.87, 8.02]}]}}' src="assets/ess_connection.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:69.52%;--hb-y:36.26%;--hb-width:26.35%;--hb-height:8.4%"><span style="display:block;width:100%;text-align:right;">Power input/output cable <br/>in the ATS package</span></span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:72.38%;--hb-y:53.05%;--hb-width:23.5%;--hb-height:8.78%"><span style="display:block;width:100%;text-align:right;">Expansion cable in the <br/>battery pack package</span></span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:3.49%;--hb-y:89.31%;--hb-width:55.87%;--hb-height:8.02%">For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack.</span></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><p>Smart Home Backup System (AC ESS) Installation Position</p><ul><li>Indoor installation.</li><li>The area is completely waterproof.</li><li>The wall is flat and level.</li><li>Ambient temperature range: -4°F to 113°F / -20°C to 45°C.</li><li>The temperature and humidity are maintained at a constant level.</li><li>Install in a well-ventilated place.</li><li>Do not place in an area within the reach of children or pets.</li><li>The installation area shall avoid direct sunlight.</li><li>No flammable or explosive materials close to inverter and battery.</li></ul></td></tr></tbody></table>
 
 <span id="ess-specifications"></span>
 
-# SPECIFICATIONS — SMART HOME BACKUP SYSTEM
-
-<p>Model: JHP-3600C</p>
+# <span class="hb-heading-title">SPECIFICATIONS</span> <span class="hb-heading-model">Model: JHP-3600C</span>
 
 <h2 aria-level="2" class="hb-spec-group" role="heading">GENERAL INFO</h2>
 

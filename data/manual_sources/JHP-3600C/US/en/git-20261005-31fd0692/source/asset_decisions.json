@@ -2156,7 +2156,39 @@
     ],
     "final_path": "assets/ess_connection.png",
     "sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616",
-    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay"
+    "erase_method": "remove source text while retaining original vector graphics/background; no fill overlay",
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          69.52,
+          36.26,
+          26.35,
+          8.4
+        ]
+      },
+      {
+        "line": 1,
+        "rect": [
+          72.38,
+          53.05,
+          23.5,
+          8.78
+        ]
+      },
+      {
+        "line": 2,
+        "rect": [
+          3.49,
+          89.31,
+          55.87,
+          8.02
+        ]
+      }
+    ],
+    "reuse_status": "reuse-current-frame-complete-art-byte-identical",
+    "web_copy_policy": "three source labels inside their native positions; no duplicated paragraphs below"
   },
   {
     "slot": "ess_station_package",

@@ -8640,18 +8640,40 @@
           "anchor": "ess",
           "children": [
             {
-              "kind": "text",
-              "text": "SMART HOME BACKUP SYSTEM (AC ESS)"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-heading-title"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SMART HOME BACKUP SYSTEM (AC ESS)"
+                }
+              ]
+            },
             {
               "kind": "text",
-              "text": "Model: HB3600C-TS05A"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-heading-model"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Model: HB3600C-TS05A"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -8688,7 +8710,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "manual-callout-table manual-callout-table"
+                    "class": "manual-callout-table hb-source-warning-lockup"
                   }
                 }
               },
@@ -8711,8 +8733,30 @@
                           },
                           "children": [
                             {
-                              "kind": "text",
-                              "text": "WARNING"
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "class": "hb-warning-lockup"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "image",
+                                  "source": "assets/e1746d6937db_warning_triangle_dark.svg",
+                                  "alt": ""
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "WARNING"
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         },
@@ -8731,8 +8775,13 @@
                               "kind": "paragraph",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK."
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "RISK OF ELECTRIC SHOCK. ALWAYS ENSURE THAT ALL ELECTRICAL EQUIPMENT IS SAFELY DE-ENERGIZED BEFORE COMMENCING WORK."
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -8758,47 +8807,229 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "image",
-          "source": "assets/ess_connection.png",
-          "alt": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B.",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "source_ref": "source/content.json#reference-ess_connection",
+            "language": "en",
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "content": "ess_connection"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B."
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "content": "live"
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "content": "equal"
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "content": [
+                  {
+                    "html": "<span style=\"display:block;width:100%;text-align:right;\">Power input/output cable <br/>in the ATS package</span>",
+                    "text": "Power input/output cable in the ATS package"
+                  },
+                  {
+                    "html": "<span style=\"display:block;width:100%;text-align:right;\">Expansion cable in the <br/>battery pack package</span>",
+                    "text": "Expansion cable in the battery pack package"
+                  },
+                  {
+                    "html": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack.",
+                    "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+                  }
+                ]
               }
-            }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "asset_ref": "assets/ess_connection.png",
+                "locale_policy": "exact"
+              }
+            ],
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "metadata": {
+              "capture_following_lines": 3,
+              "captions_embedded": false,
+              "captions_origin": "carrier",
+              "caption_centers_pct": null,
+              "composite_locale": "",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616",
+                "panel_top": 0,
+                "panel_fill": "#ebecec",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      69.52,
+                      36.26,
+                      26.35,
+                      8.4
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      72.38,
+                      53.05,
+                      23.5,
+                      8.78
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      3.49,
+                      89.31,
+                      55.87,
+                      8.02
+                    ]
+                  }
+                ]
+              },
+              "image_key": "assets/ess_connection.png",
+              "web_replace_key": "reference.ess-connection",
+              "source_fragment_sha256": "224c6c0736d9edfe7dd275eed4d0be56e71f355b264bb98f2f85357e6829e040"
+            },
+            "schema_version": "component-spec/v1"
           },
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+          "carrier_flow": [
             {
-              "kind": "text",
-              "text": "Power input/output cable in the ATS package"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "image",
+              "source": "assets/ess_connection.png",
+              "alt": "JHP-3600C AC expansion port to JA-TS05A ATS, and DC expansion port A to battery pack port B.",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-source-reference",
+                    "data-reference": "{\"id\": \"ess_connection\", \"image_key\": \"assets/ess_connection.png\", \"web_replace_key\": \"reference.ess-connection\", \"capture_following_lines\": 3, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616\", \"panel_top\": 0, \"panel_fill\": \"#ebecec\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [69.52, 36.26, 26.35, 8.4]}, {\"line\": 1, \"rect\": [72.38, 53.05, 23.5, 8.78]}, {\"line\": 2, \"rect\": [3.49, 89.31, 55.87, 8.02]}]}}"
+                  }
+                }
+              }
+            },
             {
-              "kind": "text",
-              "text": "Expansion cable in the battery pack package"
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "line-block"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "style": "display:block;width:100%;text-align:right;"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Power input/output cable "
+                        },
+                        {
+                          "kind": "line_break"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "in the ATS package"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "inline_group",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "style": "display:block;width:100%;text-align:right;"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Expansion cable in the "
+                        },
+                        {
+                          "kind": "line_break"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "battery pack package"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+                    }
+                  ]
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "component",
@@ -9005,18 +9236,40 @@
           "anchor": "ess-specifications",
           "children": [
             {
-              "kind": "text",
-              "text": "SPECIFICATIONS — SMART HOME BACKUP SYSTEM"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-heading-title"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "SPECIFICATIONS"
+                }
+              ]
+            },
             {
               "kind": "text",
-              "text": "Model: JHP-3600C"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-heading-model"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Model: JHP-3600C"
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"

@@ -853,18 +853,19 @@
     },
     {
       "chapter": "ess",
-      "title": "SMART HOME BACKUP SYSTEM (AC ESS)",
+      "title": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A",
       "previous_level": 2,
       "native_level": 1,
       "role": "native-chapter-bar",
       "source_physical_pages": [
         30
       ],
-      "carrier": false
+      "carrier": false,
+      "shared_model_label": "hb-heading-model"
     },
     {
       "chapter": "ess-specifications",
-      "title": "SPECIFICATIONS — SMART HOME BACKUP SYSTEM",
+      "title": "SPECIFICATIONS Model: JHP-3600C",
       "previous_level": 2,
       "native_level": 1,
       "role": "native-chapter-bar",
@@ -873,7 +874,9 @@
         32,
         33
       ],
-      "carrier": false
+      "carrier": false,
+      "shared_model_label": "hb-heading-model",
+      "navigation_note": "Native title restored to SPECIFICATIONS; distinct source anchor ess-specifications retained."
     },
     {
       "chapter": "ess-specifications",

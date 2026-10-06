@@ -6,7 +6,7 @@
     "languages": [
       "en"
     ],
-    "technical_version": "git-20261005-31fd0692-app3"
+    "technical_version": "git-20261005-31fd0692-ess1"
   },
   "source_role": "user-selected-authoritative-PDF-git-only-Web-intake",
   "original_source": {
@@ -129,8 +129,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 97536,
-      "sha256": "333047b34577760dd4acb3069ebebd0481a56cc5ef030faf3096a5e3b1df9ad6"
+      "size": 98208,
+      "sha256": "e77bf169510560863a43cbf9b40a59d8e437ef221d214dc39db29f4dc6e58902"
     },
     {
       "path": "source/caption_frame_asset_audit.json",
@@ -139,8 +139,8 @@
     },
     {
       "path": "source/content.json",
-      "size": 454064,
-      "sha256": "189e3e71261e60ef0d9d141c233168140b79325d155a76d96b38d59b89552356"
+      "size": 463635,
+      "sha256": "8f9abbb2737b8a41c88ac12731051bfa1041be694c93b8646e9e1c54b1e86ce2"
     },
     {
       "path": "source/coverage_audit.json",
@@ -149,8 +149,8 @@
     },
     {
       "path": "source/heading_audit.json",
-      "size": 23735,
-      "sha256": "f24e61b38ebfca0ed30d9b45430115f39f8484c7a3bf610dd1a4fc1f0a21a654"
+      "size": 23961,
+      "sha256": "26b8b77467f4a79707221b642512e4ef53b5dd6b0c6143f78cd7f51297505f68"
     },
     {
       "path": "source/key_combination_asset_audit.json",
@@ -169,8 +169,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 2890,
-      "sha256": "41810b7c34adf09b2c7229dfe61a2e41cc73a4ac6d823dd1d714edb6496fc489"
+      "size": 3314,
+      "sha256": "17b1ab3244346a082670c96ea6132072fcd4481d3955c7ca3d1a0ce0c7ca763a"
     },
     {
       "path": "source/shared_svg_repairs.json",
@@ -204,13 +204,13 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 2890,
-      "sha256": "41810b7c34adf09b2c7229dfe61a2e41cc73a4ac6d823dd1d714edb6496fc489"
+      "size": 3314,
+      "sha256": "17b1ab3244346a082670c96ea6132072fcd4481d3955c7ca3d1a0ce0c7ca763a"
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "size": 103114,
-      "sha256": "0b2b363eb27863ab28397643b542d07bacfbbd78e14cac25ae69e33530f78baf"
+      "size": 104486,
+      "sha256": "e91ad4169088c142b37546a47d8b80692b1aac37713682eb304e5e672e7b4e1b"
     },
     {
       "path": "web/en/assets/1d9fa89da31d_read_manual.png",
@@ -734,13 +734,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 622912,
-      "sha256": "a1977e61754dbbdc09cff7e2b76ee85151e4e7f7d605306f7efe76976d28a3a8"
+      "size": 631674,
+      "sha256": "02f5f0129fb9c670fcffdc5479a57bd5441d7d6b87cda80936b6371567bacb16"
     },
     {
       "path": "web/en/manual_jhp3600c_us_en.md",
-      "size": 101961,
-      "sha256": "772d07e382fda9fdae8c17cf4ad265daf2481720186ccf59747d1ffa5e25470e"
+      "size": 104246,
+      "sha256": "17fd717520b3c8ca6b1ee07f76b09866a5884e6efc4ab789f339597bb0dd0dc7"
     }
   ],
   "repo_inputs": [
@@ -921,8 +921,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_source_panels.css",
-      "size": 6704,
-      "sha256": "a885fbfd0715fac7045b7c91b66012c2233b2be5efd334b8d685814c1aac0646"
+      "size": 8076,
+      "sha256": "344f6ed9a145a32f3aef515165c221ac1e009b698da0764a5d786c64808a26b9"
     },
     {
       "path": "docs/renderers/contracts/web_symbols_fcc_components.css",

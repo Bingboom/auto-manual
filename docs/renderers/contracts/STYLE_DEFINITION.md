@@ -1516,3 +1516,16 @@ RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
 semantics while retaining the exact localized label. At most one such role
 may occur in a label cell; conflicting roles are rejected. Unmarked legacy
 labels keep the existing language-data lookup behavior.
+
+### 原稿标题型号与完整警告框
+
+原稿标题条右侧带型号时，在同一个可导航 H1 中声明 `hb-heading-title` 与
+`hb-heading-model`，保留 `Model:` 原文；共享 `web_source_panels.css` 负责字号、
+右对齐和窄屏换行。不要把型号移到标题下方段落，也不要把用于区分章节的内部名称
+附加到原稿标题文字。
+
+原稿为整行白底、深色描边的图标警告框时，在现有 `HB-CALLOUT-STRIP/warning`
+载体上声明 `hb-source-warning-lockup`；label 中使用 `hb-warning-lockup` 绑定现有
+共用 SVG 和原语种信号词，body 的原稿加粗使用语义 strong。共享样式处理描边、
+列宽及手机堆叠，不增设型号专属告警适配器。普通接线图内标签继续使用现有
+ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注）放在图内对应位置。
