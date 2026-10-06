@@ -49,7 +49,8 @@ hashes separately from source inputs.
 - Actual browser inspection at 1440px desktop and 390px mobile found all six
   images loaded, no document horizontal overflow or broken fragment links,
   and intact native specifications/warranty. See `evidence/verification.json`
-  and the browser screenshots. The LED table uses its shared horizontal scroll
+  and the browser screenshots. Sphinx log copies omit trailing terminal spaces;
+  original session logs remain in the retained discovery directory. The LED table uses its shared horizontal scroll
   surface on small screens.
 
 No live source table, queue, asset registry, build record or HTML_link was

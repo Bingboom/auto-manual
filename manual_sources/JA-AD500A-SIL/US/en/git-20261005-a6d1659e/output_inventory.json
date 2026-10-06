@@ -114,13 +114,13 @@
     },
     {
       "path": "evidence/sphinx-3.log",
-      "size": 2083,
-      "sha256": "027e2ae1db5333a96103ea4c85f9e8d34dbfd2f8fdfbad79a433e98375fed2af"
+      "size": 2079,
+      "sha256": "867b94917892b9709cc0a818113e78233fbeb4548f62f2ea032ce5cc33d4724b"
     },
     {
       "path": "evidence/sphinx-cold-3.log",
-      "size": 2091,
-      "sha256": "1ccd88ff857c86a43b7af1a689991334a2b9562c43a1ba8e1bf061bf029bb84f"
+      "size": 2087,
+      "sha256": "7e1e07f4417cdeca652fdd141dfa1292de584c0ddbe4f2eb1073e8286181b6f2"
     },
     {
       "path": "evidence/us-check-default.log",
