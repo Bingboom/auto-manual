@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "21eb73f5b1164abe8efc287bd5914fd0858a3eb482a3bc3fc8c5367ecfed33d1",
-  "content_sha256": "2cb44bba0153245fd5ffd3e8f3a21d13d29f995d71eff459ffdec40c1cce026f",
+  "bundle_sha256": "a6df196908b49b1b3158a68075466fc0b155eea009be002a02b44fb2bd956387",
+  "content_sha256": "445314578d1ebc13f185b5e6f39880ac840e146a39dbd56b1a9827ca233a70c5",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -209,7 +209,7 @@
       "assets/ups240.png": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
       "assets/usb.png": "3567da8becd8008e19b7149b6ffb1e5de9f4d0a77e3c7fba5e6531d889dd0d0f"
     },
-    "block_count": 222,
+    "block_count": 227,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 26,
       "HB-SPECIAL-APP": 2,
@@ -6110,13 +6110,13 @@
         {
           "asset_refs": [],
           "block_id": "ups:block-0005",
-          "content_sha256": "97a43c47eab2d69078ef1045d7b56627ee96a1f51fa980b7125e551248831d27",
+          "content_sha256": "3d94ce3500d3793c49cde07fed0226a8102e4cf7d31710b758c164ffdd9fbc70",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads >1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption."
+                "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery."
               }
             ],
             "kind": "paragraph",
@@ -6125,10 +6125,210 @@
           "source_ref": "native-pdf/ups#block-5"
         },
         {
+          "asset_refs": [],
+          "block_id": "ups:block-0006",
+          "content_sha256": "97f651c60ebdb034322a15fd8832b8379c24a6178e9b5581c0a177f057985501",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Total Loads ≤1440 W:"
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-prose-pill"
+                  ]
+                }
+              }
+            },
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-6"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0007",
+          "content_sha256": "5ee3661960b5ff50c3b10d5e49c3e3c0e4a445fcd8bf5b08407d18a6125d0f1c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "120 V input with both 120 V and 240 V outputs"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": ", and switches to battery power within 10 ms when grid power fails."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-7"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0008",
+          "content_sha256": "2ff58910a1d2f058e682186fb67589dd6335e842064af16c3da54be9ddb6ff9b",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "If only one 120V port is required, "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "use the left NEMA 5-20R (L1)"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " port as the primary connection."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-8"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0009",
+          "content_sha256": "043fb1486260e19ff846825ee8cd63a7b8e48921425c6427a8151c1c328aa8ac",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Total Loads >1440W:"
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-prose-pill"
+                  ]
+                }
+              }
+            },
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-9"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0010",
+          "content_sha256": "f8fec9d2107d884b259d49c66da0630dc638dd25aa30e55120bdddc1966e1f41",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Each NEMA 5-20R port supports up to "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "1440 W"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": ", with a combined maximum of "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2880 W"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " across both ports. The NEMA 14-50R port supports up to "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2880 W"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": ". All three AC ports together support a total output of up to "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2880 W"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": ". When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption."
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/ups#block-10"
+        },
+        {
           "asset_refs": [
             "assets/ups120.png"
           ],
-          "block_id": "ups:block-0006",
+          "block_id": "ups:block-0011",
           "content_sha256": "8c802983bd7ec800dca53140d520717d9b5e12e5c0f4b037f5b5515860e38c58",
           "kind": "flow",
           "payload": {
@@ -6144,11 +6344,11 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/ups120.png"
           },
-          "source_ref": "native-pdf/ups#block-6"
+          "source_ref": "native-pdf/ups#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "ups:block-0007",
+          "block_id": "ups:block-0012",
           "content_sha256": "2f85aa51e8de8ed98c39917e0ff05468eab661c70228c4fe059e9eeecd420299",
           "kind": "flow",
           "payload": {
@@ -6162,11 +6362,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ups#block-7"
+          "source_ref": "native-pdf/ups#block-12"
         },
         {
           "asset_refs": [],
-          "block_id": "ups:block-0008",
+          "block_id": "ups:block-0013",
           "content_sha256": "5c7ff2bbcb7616d1b5f59d01e090bebd798635d5779f9cf2a3c69171c79689c6",
           "kind": "flow",
           "payload": {
@@ -6179,13 +6379,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/ups#block-8"
+          "source_ref": "native-pdf/ups#block-13"
         },
         {
           "asset_refs": [
             "assets/ups240.png"
           ],
-          "block_id": "ups:block-0009",
+          "block_id": "ups:block-0014",
           "content_sha256": "7fcf8d6b2f1ff40502d6f2757645c8e49bdcef64f4f1b5fe19ba684347928260",
           "kind": "flow",
           "payload": {
@@ -6201,7 +6401,7 @@
             "schema_version": "manual-flow/v2",
             "source": "assets/ups240.png"
           },
-          "source_ref": "native-pdf/ups#block-9"
+          "source_ref": "native-pdf/ups#block-14"
         }
       ],
       "language": "en",
@@ -6209,7 +6409,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ups",
       "source_ref": "native-pdf/ups",
-      "source_sha256": "7f5a3ee6b5d8517104540fb8d508fcbbd68a9f009f0a635bceaa449f98acb314"
+      "source_sha256": "813140512f4e791d0425f7753140fcce3fded27c4c135abcfaa8edda5078eb4e"
     },
     {
       "blocks": [

@@ -234,7 +234,17 @@
 
 ## WITH 120V AC INPUT
 
-<p>Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads &gt;1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.</p>
+<p>Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery.</p>
+
+<p class="hb-prose-pill"><strong>Total Loads ≤1440 W:</strong></p>
+
+<p>The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports <strong>120 V input with both 120 V and 240 V outputs</strong>, and switches to battery power within 10 ms when grid power fails.</p>
+
+<p>If only one 120V port is required, <strong>use the left NEMA 5-20R (L1)</strong> port as the primary connection.</p>
+
+<p class="hb-prose-pill"><strong>Total Loads &gt;1440W:</strong></p>
+
+<p>Each NEMA 5-20R port supports up to <strong>1440 W</strong>, with a combined maximum of <strong>2880 W</strong> across both ports. The NEMA 14-50R port supports up to <strong>2880 W</strong>. All three AC ports together support a total output of up to <strong>2880 W</strong>. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. <strong>If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.</strong></p>
 
 <img alt="120V wall input, AC loads, and HomePower 3600 Pro Max connection diagram." src="assets/ups120.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
 
