@@ -1,0 +1,68 @@
+{
+  "version": "git-20261005-31fd0692-styles4",
+  "source_git_ref": "36a2629946ab01dbd40079a7c23552b0b98203f2",
+  "heading_source_git_ref": "c12696732e1f5464564d373e4f02ec2c584a0d30",
+  "full_unittest": {
+    "tests": 5196,
+    "skipped": 35,
+    "result": "OK",
+    "seconds": 884.248,
+    "TMPDIR": "/private/tmp"
+  },
+  "focused_unittest": {
+    "tests": 33,
+    "result": "OK",
+    "scope": "final vector selector and frozen-heading replay"
+  },
+  "ruff": "PASS",
+  "maintainability": "PASS",
+  "doc_link_integrity": "PASS",
+  "strict_standalone_sphinx": "PASS",
+  "strict_aggregate_sphinx": "PASS",
+  "deterministic_rebuild": "byte-identical",
+  "source_coverage_unmatched": 0,
+  "source_heading_count": 84,
+  "availability_badges": 7,
+  "preserved_badge_navigation_entries": 6,
+  "key_combination_component_count": 1,
+  "shared_button_variants": 3,
+  "existing_source_files": 5609,
+  "changed_existing_source_files": 0,
+  "target_count": 106,
+  "existing_fixture_build_check": {
+    "result": "UNAVAILABLE",
+    "command": "python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US",
+    "reason": "Local data/phase2/Spec_Master.csv snapshot is absent; no online sync performed. This existing JE-1000F fixture does not validate JHP-3600C native content."
+  },
+  "logs": [
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-unittest.log",
+      "sha256": "3d6162be8ac2f8b2a35e0d45304872c74d9549607fd285b12d1a41ad882c4495"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-focused.log",
+      "sha256": "9c2cb7780b8fd27fee02140a6404572fe58520b05838abda89cb3a8ba9c8de15"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-standalone-sphinx.log",
+      "sha256": "f033e1eb5394cf20a3f3beee8a909a1288e931ebe329cdb169e0c7111168bf9e"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-final-standalone-sphinx.log",
+      "sha256": "530ed1d4e03e927252f82e2eb4939e41fc1073da39763923ca69102695d1486b"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-aggregate-sphinx.log",
+      "sha256": "f2be12b609a73ea30cd69192418d65b15fab241f59e383eb7539e095c67ac177"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-assembly.log",
+      "sha256": "142b1040d9cb13c3ea0fee008e24958aa7aad376789d9a363a7f4e9beb59f3eb"
+    },
+    {
+      "path": "tmp/jhp-styles4-validation/jhp-styles4-build-check.log",
+      "sha256": "76b7530e44290769465ef948de99781021c120b567f00289ad77209a7e60cbb1"
+    }
+  ],
+  "limits": "Git-only local candidate. No push, PR, merge, publication, online registry promotion or operator approval implied."
+}

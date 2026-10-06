@@ -323,3 +323,39 @@ vector selector now accepts the verified paired mapping and retains both paths
 and ancestor transforms/opacity; unsupported mappings still fail. A regression
 checks transparent edges, a white face, and a black indicator. Source line
 coverage still has zero unmatched lines. Final browser/build evidence follows.
+
+
+Final source commit: `36a2629946ab01dbd40079a7c23552b0b98203f2`, including the
+heading correction at `c12696732e1f5464564d373e4f02ec2c584a0d30`.
+[Seal receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-styles4.json),
+[validation](jhp3600c_us_en_web_evidence/validation-styles4.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-styles4.json) bind the
+final `git-20261005-31fd0692-styles4` local candidate. All 84 heading roles, native
+levels, hidden exceptions, bar colors and round-marker alignment pass at 1440px,
+390px and 320px. Hash-targeted safety strips retain their dark/white treatment.
+All 28 LCD status labels remain weight 700. Seven availability labels have
+rounded source-appropriate contrast: dark/white on ordinary headings and
+white/dark inside accessory chapter bars. No page overflows; narrow key tables
+scroll inside their own frame. All six button image references load unchanged
+from the three shared variants; POWER/USB/AC captions are weight 700.
+
+Strict standalone and aggregate Sphinx, byte-identical replay, source coverage,
+ruff, maintainability and doc links pass. Full unittest: 5,196 tests, 35 skipped;
+final focused tests: 33 pass. The 106-target assembly preserves all 5,609 baseline
+source files byte-for-byte. The generic JE-1000F US fixture check cannot complete
+because this isolated checkout lacks its local phase2 snapshot; the failed
+command and output are recorded in validation. No online synchronization was
+performed, and no PR is opened with an incomplete generic fixture check.
+
+Visual evidence: [headings desktop](jhp3600c_us_en_web_evidence/headings-desktop-styles4.jpg),
+[headings mobile](jhp3600c_us_en_web_evidence/headings-mobile-styles4.jpg),
+[key table desktop](jhp3600c_us_en_web_evidence/key-combinations-desktop-styles4.jpg),
+[mobile buttons](jhp3600c_us_en_web_evidence/key-combinations-mobile-buttons-styles4.jpg),
+[mobile operation column](jhp3600c_us_en_web_evidence/key-combinations-mobile-operation-styles4.jpg),
+[availability desktop](jhp3600c_us_en_web_evidence/sold-separately-desktop-styles4.jpg),
+[availability mobile](jhp3600c_us_en_web_evidence/sold-separately-mobile-styles4.jpg),
+[12x original-vector variants](jhp3600c_us_en_web_evidence/native-buttons-12x-styles4.png),
+and [restored user pane](jhp3600c_us_en_web_evidence/final-preview-styles4.jpg).
+The browser viewport is restored to its default 641×770 pane. Root `tmp/` remains
+untouched. This records local browser acceptance only; operator approval and
+production publication remain separate.
