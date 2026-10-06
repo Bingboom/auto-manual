@@ -59,3 +59,8 @@
   #furo-main-content .hb-source-risk-label { font-size: 0.86rem; gap: 0.3rem; }
   #furo-main-content .hb-source-risk-label img { width: 1.3rem; }
 }
+
+/* Native p6 starts with the FCC card, without a visible chapter heading. */
+#furo-main-content section#fcc > h2 {
+  display: none;
+}

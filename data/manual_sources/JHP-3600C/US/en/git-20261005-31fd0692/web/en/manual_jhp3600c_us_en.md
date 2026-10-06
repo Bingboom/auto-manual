@@ -61,6 +61,11 @@
   #furo-main-content .hb-source-risk-label img { width: 1.3rem; }
 }
 
+/* Native p6 starts with the FCC card, without a visible chapter heading. */
+#furo-main-content section#fcc > h2 {
+  display: none;
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual

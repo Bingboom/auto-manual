@@ -176,3 +176,16 @@ record the boundary. The final 106-target assembly preserves all 5,609 original
 source files byte-for-byte and passes strict Sphinx. The final local preview was
 reloaded and checked against the selected shared symbol pool. No push, PR, merge,
 production deployment or online data/registry write occurred.
+
+
+## Operator FCC heading correction (fcc1)
+
+The annotated Web screenshot requests removal of the added visible “● FCC”
+chapter heading. Native physical p6 starts directly with the compliance card.
+Source-local `presentation.css` suppresses that heading, including its generated
+bullet and layout box; the FCC chapter anchor, original compliance component,
+copy and artwork are unchanged. The technical candidate version is
+`git-20261005-31fd0692-fcc1`; previous sealed releases remain intact.
+
+Deterministic rebuild and strict standalone Sphinx pass. The correction is
+limited to this source package and stays in the isolated Git-only worktree.
