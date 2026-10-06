@@ -135,6 +135,12 @@
   }
 }
 
+/* Native specification footnotes form four continuous lines, without body paragraph gaps. */
+#furo-main-content #specifications > p.manual-spec-footnote,
+#furo-main-content #specifications-model-jhp-3600c > p.manual-spec-footnote {
+  margin: 0;
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -477,13 +483,13 @@
 
 <p>※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
 
-<p>① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.</p>
+<p class="manual-spec-footnote">① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.</p>
 
-<p>② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.</p>
+<p class="manual-spec-footnote">② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.</p>
 
-<p>③ Indicates that two or more AC output ports work together.</p>
+<p class="manual-spec-footnote">③ Indicates that two or more AC output ports work together.</p>
 
-<p>④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W.</p>
+<p class="manual-spec-footnote">④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W.</p>
 
 <span id="warranty"></span>
 
@@ -607,13 +613,13 @@
 
 <p>※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum.</p>
 
-<p>① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.</p>
+<p class="manual-spec-footnote">① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports.</p>
 
-<p>② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.</p>
+<p class="manual-spec-footnote">② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected.</p>
 
-<p>③ Indicates that two or more AC output ports work together.</p>
+<p class="manual-spec-footnote">③ Indicates that two or more AC output ports work together.</p>
 
-<p>④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W.</p>
+<p class="manual-spec-footnote">④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W.</p>
 
 # <span class="hb-heading-title">Jackery Battery Pack 3600</span> <span class="hb-sold-separately">SOLD SEPARATELY</span>
 

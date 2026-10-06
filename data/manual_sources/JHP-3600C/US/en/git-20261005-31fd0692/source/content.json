@@ -8482,7 +8482,16 @@
               "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -8492,7 +8501,16 @@
               "text": "② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -8502,7 +8520,16 @@
               "text": "③ Indicates that two or more AC output ports work together."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -8512,7 +8539,16 @@
               "text": "④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -11740,7 +11776,16 @@
               "text": "① The product can charge the battery from the AC wall outlet or ATS while delivering power through the AC output ports."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -11750,7 +11795,16 @@
               "text": "② Indicates the permissible working voltage (Vmp) range for the solar panel that can be connected."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -11760,7 +11814,16 @@
               "text": "③ Indicates that two or more AC output ports work together."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "paragraph",
@@ -11770,7 +11833,16 @@
               "text": "④ When connected to loads higher than 1440 W under 120V AC input, the product withdraws power from the battery to meet a total load requirement of up to 2880 W."
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "manual-spec-footnote"
+                ]
+              }
+            }
+          }
         },
         {
           "kind": "heading",

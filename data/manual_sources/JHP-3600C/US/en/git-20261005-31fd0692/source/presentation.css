@@ -133,3 +133,9 @@
     width: 57%;
   }
 }
+
+/* Native specification footnotes form four continuous lines, without body paragraph gaps. */
+#furo-main-content #specifications > p.manual-spec-footnote,
+#furo-main-content #specifications-model-jhp-3600c > p.manual-spec-footnote {
+  margin: 0;
+}

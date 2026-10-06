@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "98715a7130b19c7c392e37823be81436d508feaba1898baafc503e5f082493bb",
-  "content_sha256": "7c4ee195cea2e777dc8b87c2908c3f63e53a1771be2d08628a352ff90520352e",
+  "bundle_sha256": "4e87df2d0653e06364c278d031dd1a41983ac886ab7eb17a02312b438376ae7e",
+  "content_sha256": "ed3ed55ee274626e33a59b93f0dba4e2370b8aa275d83ad2ad4655ab6cbbc97c",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2059,7 +2059,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "b25d7a7e16d643a83504e7c77cdc0fa900317f28890f866fae65b91a649ab364"
+      "sha256": "5f1e99186d47d0f17fb5460de476b3eb5101883e2d1e473ef5cf3c3d78a57d4b"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -11907,7 +11907,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0008",
-          "content_sha256": "123224fb4c59d72231207d847831800ca3bcad85dfad6c5d0a72bfbe27f06a4b",
+          "content_sha256": "878dff2319e19cf14e39503aa77e65e6b6057c4186fa3238ae9b729b2e47d906",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11917,6 +11917,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-8"
@@ -11924,7 +11933,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0009",
-          "content_sha256": "120475770a867ab1d400adddf7764cdc6f1281a8679121453784dbca118aecd0",
+          "content_sha256": "6409a703507b45dd45654e0613ec70df870934267698a1dff96930518a6d5f2b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11934,6 +11943,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-9"
@@ -11941,7 +11959,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0010",
-          "content_sha256": "3bb90b61881391baa463f10586e512d2ed69e021307e8aa9bd504121c6745cc7",
+          "content_sha256": "1e5701f176ef380d6f5904646784a45ab068e109850273a12fb93ee4c4abb361",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11951,6 +11969,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-10"
@@ -11958,7 +11985,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0011",
-          "content_sha256": "546c0d35944edabfeb08e8895d3d65e4f47071e5392bb5a0137db860db0946be",
+          "content_sha256": "da5b7d16120583677f91b8e4a4161781e2923e8c6e164a6940b1cb8d8e87a2d0",
           "kind": "flow",
           "payload": {
             "children": [
@@ -11968,6 +11995,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-11"
@@ -11978,7 +12014,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#specifications",
       "source_ref": "native-pdf/specifications",
-      "source_sha256": "5f3719d8415e444106fde338e36c9a5c820c456f21fe8c9baebbf753e015d99b"
+      "source_sha256": "7443a86fa52320d92625a19c0ef8b3613214c60693aa12f184cc101d65b6ecb0"
     },
     {
       "blocks": [
@@ -15586,7 +15622,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0008",
-          "content_sha256": "123224fb4c59d72231207d847831800ca3bcad85dfad6c5d0a72bfbe27f06a4b",
+          "content_sha256": "878dff2319e19cf14e39503aa77e65e6b6057c4186fa3238ae9b729b2e47d906",
           "kind": "flow",
           "payload": {
             "children": [
@@ -15596,6 +15632,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-8"
@@ -15603,7 +15648,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0009",
-          "content_sha256": "120475770a867ab1d400adddf7764cdc6f1281a8679121453784dbca118aecd0",
+          "content_sha256": "6409a703507b45dd45654e0613ec70df870934267698a1dff96930518a6d5f2b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -15613,6 +15658,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-9"
@@ -15620,7 +15674,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0010",
-          "content_sha256": "3bb90b61881391baa463f10586e512d2ed69e021307e8aa9bd504121c6745cc7",
+          "content_sha256": "1e5701f176ef380d6f5904646784a45ab068e109850273a12fb93ee4c4abb361",
           "kind": "flow",
           "payload": {
             "children": [
@@ -15630,6 +15684,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-10"
@@ -15637,7 +15700,7 @@
         {
           "asset_refs": [],
           "block_id": "ess-specifications:block-0011",
-          "content_sha256": "546c0d35944edabfeb08e8895d3d65e4f47071e5392bb5a0137db860db0946be",
+          "content_sha256": "da5b7d16120583677f91b8e4a4161781e2923e8c6e164a6940b1cb8d8e87a2d0",
           "kind": "flow",
           "payload": {
             "children": [
@@ -15647,6 +15710,15 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-spec-footnote"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/ess-specifications#block-11"
@@ -17190,7 +17262,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#ess-specifications",
       "source_ref": "native-pdf/ess-specifications",
-      "source_sha256": "669d5b4be3693cbf54cede37c4adf83bd51fae9cc86526e12af2fa5c7028d487"
+      "source_sha256": "97f1c75bdd01d3376f3af9799cacb71f474010f735f02c84d1c8332b51ee6a11"
     },
     {
       "blocks": [
