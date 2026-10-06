@@ -97,3 +97,8 @@
   #furo-main-content [data-reference-id="ess_connection"] [data-source-line="2"] { top: 87%; }
   #furo-main-content [data-reference-id="ess_connection"] .hb-reference-live-label br { display: none; }
 }
+
+/* Keep the native outlet label close to its introduction and diagram. */
+#furo-main-content p:has(+ #v-ac-outlet) { margin-bottom: 0.4rem; }
+#furo-main-content #v-ac-outlet { margin: 0.4rem 0 0.2rem; }
+#furo-main-content #v-ac-outlet + img { margin-top: 0.3rem !important; }
