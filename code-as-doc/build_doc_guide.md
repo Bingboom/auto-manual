@@ -2626,3 +2626,5 @@ Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/
 图内说明使用现有 ReferenceFigure 的 `base-art-live-copy` 和来源坐标；保留底图原字节，去掉图外重复段落。完整有框插图可套 `hb-reference-contained-copy`，在手机上保留同一图框内的可读文字。
 
 FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+
+JBP-3600A EU 九语产品概览复用已审图稿，正视图和左视图分别沿用英语版的 25rem、34rem 上限。尺寸规则必须同时匹配英语原路径与八语内容寻址路径；更新共享 CSS 后，需重建冻结发布产物，不能只修改历史快照。
