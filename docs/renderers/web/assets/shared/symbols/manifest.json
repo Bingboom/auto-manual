@@ -190,6 +190,45 @@
         "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
         "decision": "reuse existing shared file byte-identical"
       }
+    },
+    {
+      "key": "li-ion/htp017-recycle-li-ion",
+      "path": "native-v1/symbol_li_ion_htp017.svg",
+      "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-2000B/EU/native-0924/HTP017-EU-9国说明书-0924.ai",
+        "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+        "physical_page": 48,
+        "drawing_indices": [
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ],
+        "glyph_bbox": [
+          37.86470031738281,
+          470.8490905761719,
+          56.008399963378906,
+          491.173095703125
+        ],
+        "decision": "existing Li-ion variants fail native glyph comparison; retain original PDF SVG paths and ancestors with real transparent margins"
+      }
+    },
+    {
+      "key": "battery-weee/crossed-bin-no-bar",
+      "path": "native-v1/symbol_battery_weee.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png",
+        "decision": "reuse published glyph unchanged; HTP017 four native caption/glyph rows pass source-bound admission"
+      }
     }
   ],
   "withdrawn": [
