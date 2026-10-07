@@ -12,6 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from tools.rtd import system_evolution as evolution
 from tools.rtd import system_workspace as workspace
 from tools.rtd.source_registry import load_registry
+from tools.rtd.system_tooling import hook_facts, skill_facts
 from tools.utils.path_utils import repo_root
 
 ROOT = repo_root()
@@ -43,9 +44,9 @@ class SystemEvolutionTests(unittest.TestCase):
     def test_history_is_the_only_timeline_source_and_future_is_distinct(self):
         view = evolution.evolution_view(root=ROOT, domain=DOMAIN, repositories=REPOS)
         self.assertEqual(view["problems"], [])
-        self.assertEqual(len(view["stages"]), 9)
+        self.assertEqual(len(view["stages"]), 12)
         self.assertEqual([s["status"] for s in view["stages"]],
-                         ["recorded"] * 3 + ["in_progress", "ongoing", "ongoing", "recorded", "ongoing", "planned"])
+                         ["recorded"] * 3 + ["in_progress", "ongoing", "ongoing", "recorded", "ongoing"] + ["planned"] * 4)
         self.write_story()
         self.assertEqual(self.view()["stages"][0]["summary"], DATA["stages"][0]["summary"])
         self.data["stages"][0]["summary"] = "源文件中的修订立即出现在展示中"
@@ -149,6 +150,7 @@ class SystemEvolutionTests(unittest.TestCase):
         payload = '<img src=x onerror="alert(1)">'
         self.data["stages"][0]["summary"] = payload
         self.data["crosscutting"][0]["detail"] = payload
+        self.data["architecture"]["agent"][1]["summary"] = payload
         self.write_story()
         contract = workspace.load_contract(workspace.DEFAULT_CONTRACT)
         registry = {**REGISTRY, "evolution": self.domain}
@@ -159,16 +161,28 @@ class SystemEvolutionTests(unittest.TestCase):
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("system_workspace.html")
         page = template.render(**context)
         self.assertIn('id="tab-evolution"', page)
-        self.assertEqual(page.count('class="sw-evolution-details"'), 10)
+        self.assertIn('id="tab-architecture"', page)
+        self.assertIn('class="access-node is-planned" id="architecture-agent_mcp"', page)
+        self.assertIn("Human Approval · 人工批准", page)
+        self.assertIn("当前路径：正式发布 Web", page)
+        self.assertIn("现在在仓库里已经能做什么", page)
+        self.assertIn("AI 文件页码自动修正", page)
+        self.assertIn("现有 hooks：什么时候自动检查", page)
+        architecture_panel = page.split('id="tab-architecture"', 1)[1].split('id="tab-evolution"', 1)[0]
+        self.assertNotIn("读到内容以后", architecture_panel)
+        self.assertNotIn("产品知识 · 阅读与理解", architecture_panel)
+        self.assertEqual(page.count('class="sw-evolution-details"'), 13)
         self.assertIn('class="sw-crosscutting" id="evolution-engineering"', page)
         chapters = page.split('<section class="evo-chapter"', 1)[1].split('<aside class="sw-crosscutting"', 1)[0]
         self.assertNotIn('id="evolution-engineering"', chapters)
         self.assertEqual(page.count('class="evo-chapter"'), len(DATA["chapters"]))
-        self.assertEqual(page.count('class="evo-row is-'), 10)
+        self.assertEqual(page.count('class="evo-row is-'), 13)
         self.assertEqual(page.count('class="evo-bar'), 8)
-        self.assertEqual(page.count('class="evo-plan"'), 1)
-        self.assertEqual(page.count('<li class="is-'), len(DATA["now"]))
-        self.assertEqual(page.count('class="sw-timeline-row '), 9)
+        self.assertEqual(page.count('class="evo-plan"'), 4)
+        progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
+        self.assertIn('aria-label="当前工作"', progress_panel)
+        self.assertNotIn('class="evo-now"', page)
+        self.assertEqual(page.count('class="sw-timeline-row '), 12)
         self.assertNotIn(payload, page)
         self.assertIn("&lt;img", page)
         self.assertIn("后半圈 · 未来建设方向", page)
@@ -181,6 +195,60 @@ class SystemEvolutionTests(unittest.TestCase):
         findings = workspace._evolution_findings(contract, self.root, registry)
         self.assertTrue(findings)
         self.assertTrue(all(f.severity == "error" for f in findings))
+
+    def test_access_states_evidence_and_optional_compatibility(self):
+        self.write_story()
+        architecture = self.view()["architecture"]
+        self.assertEqual(architecture["agent"][-1]["status"], "planned")
+        self.assertEqual(architecture["enterprise"][-1]["status"], "planned")
+        self.data["architecture"]["agent"].reverse()
+        self.data["architecture"]["enterprise"].reverse()
+        self.write_story()
+        diagram = self.view()["architecture"]["diagram"]
+        self.assertEqual(diagram["agent_mcp"]["status"], "planned")
+        self.assertEqual(diagram["agent_existing"]["status"], "recorded")
+        self.assertEqual(diagram["enterprise_systems"]["status"], "planned")
+        for group in ("human", "agent", "enterprise", "core", "surfaces", "capabilities", "hooks"):
+            for row in DATA["architecture"][group]:
+                for ref in row["evidence"]:
+                    self.assertTrue((ROOT / ref.split(":", 2)[2]).exists(), ref)
+        for stage in self.view()["stages"]:
+            if stage["status"] == "planned":
+                self.assertNotIn("start", stage)
+                self.assertNotIn("end", stage)
+        del self.data["architecture"]
+        self.write_story()
+        self.assertIsNone(self.view()["architecture"])
+        self.assertEqual(self.view()["problems"], [])
+
+    def test_capability_evidence_names_real_skills_and_configured_hooks(self):
+        skills = {s["id"] for s in skill_facts(ROOT)}
+        hooks = {h["script"] for h in hook_facts(ROOT) if h["exists"]}
+        for row in DATA["architecture"]["capabilities"]:
+            skill_refs = [ref.split(":", 2)[2] for ref in row["evidence"] if ref.endswith("/SKILL.md")]
+            self.assertTrue(skill_refs, row["id"])
+            for ref in skill_refs:
+                self.assertIn(Path(ref).parent.name, skills)
+        for row in DATA["architecture"]["hooks"]:
+            self.assertTrue(any(ref.split(":", 2)[2] in hooks for ref in row["evidence"]))
+
+    def test_malformed_access_view_falls_back_instead_of_claiming_capabilities(self):
+        for mutate in (lambda a: a.update(agent=[]), lambda a: a["agent"].pop(),
+                       lambda a: a.update(core="wrong"),
+                       lambda a: a["agent"][0].update(status="launched"),
+                       lambda a: a["agent"][1].update(id=a["human"][0]["id"]),
+                       lambda a: a["agent"][1].update(id="bad-id"),
+                       lambda a: a["agent"][1].update(evidence=[]),
+                       lambda a: a["agent"][1].update(evidence=["file:auto-manual:../secret"]),
+                       lambda a: a.update(artwork_flow=["Apply"]),
+                       lambda a: a.update(adapter_note="")):
+            with self.subTest(mutate=mutate):
+                self.data = copy.deepcopy(DATA)
+                mutate(self.data["architecture"])
+                self.write_story()
+                view = self.view()
+                self.assertTrue(view["problems"])
+                self.assertNotIn("architecture", view)
 
 
 if __name__ == "__main__":

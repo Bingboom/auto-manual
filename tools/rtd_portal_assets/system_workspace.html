@@ -14,7 +14,16 @@
 <body class="app system-workspace">
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
-{%- macro evidence_links(rows) -%}{% for ev in rows %}{% if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>{% else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>{% endif %}{% endfor %}{%- endmacro -%}
+{%- macro evidence_links(rows) -%}
+{%- for ev in rows %}
+{%- if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>
+{%- elif ev.label.startswith('操作者确认 ') %}
+{%- set confirmed_on = ev.label[-10:] %}
+<span title="{{ ev.title|replace(confirmed_on, confirmed_on[:7])|e }}">{{ ev.label[:-3]|e }}</span>
+{%- else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>
+{%- endif %}
+{%- endfor %}
+{%- endmacro -%}
 {%- macro lane_tags(tags, with_horizon) -%}{% if tags %}<div class="sw-tags">{% for tag in tags %}<span class="sw-tag is-{{ tag.horizon|e }}">{% if with_horizon %}{{ tag.horizon_label|e }} · {% endif %}{{ tag.title|e }}</span>{% endfor %}</div>{% endif %}{%- endmacro -%}
 {%- macro progress_bar(row) -%}<div class="sw-bar" role="img" aria-label="{{ row.label|e }}：完成 {{ row.done }} / {{ row.total }}"><span style="width:{{ row.percent }}%"></span></div>{%- endmacro -%}
 {%- macro capability_card(card) -%}
@@ -61,13 +70,18 @@
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
     </section>
 
-    <details class="page-meta"><summary>页面版本与更新</summary>
-    <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
-      <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
-      <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
-      <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
-    </div>
-    </details>
+    <nav class="page-tabs" role="tablist" aria-label="系统建设分类">
+      <a role="tab" href="#tab-progress" data-tab="tab-progress" aria-selected="true">当前工作</a>
+      {% if evolution and evolution.architecture %}<a role="tab" href="#tab-architecture" data-tab="tab-architecture">系统架构</a>{% endif %}
+      <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
+      {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
+      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
+      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
+    </nav>
+
+    <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="当前工作">
+
     {%- if gates %}
     <div class="kpi-row" aria-label="阶段进度">
       {%- for gate in gates|rejectattr('fold') %}
@@ -76,16 +90,6 @@
       {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，按月快照</em></div>{% endif %}
     </div>
     {%- endif %}
-    <nav class="page-tabs" role="tablist" aria-label="系统建设分类">
-      <a role="tab" href="#tab-progress" data-tab="tab-progress" aria-selected="true">建设进度</a>
-      <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
-      {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
-      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
-      {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
-      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
-    </nav>
-
-    <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="建设进度">
 
     {%- if focus %}
     <section class="sw-section" id="focus">
@@ -303,6 +307,12 @@
     </div>
     {%- endif %}
 
+    {% if evolution and evolution.architecture %}
+    <div class="tab-panel" id="tab-architecture" role="tabpanel" aria-label="系统架构">
+      {% include "_system_architecture.html" %}
+    </div>
+    {% endif %}
+
     {% if evolution %}
     <div class="tab-panel" id="tab-evolution" role="tabpanel" aria-label="系统演变">
       <section class="sw-section sw-evolution" id="evolution">
@@ -312,23 +322,15 @@
         <header class="evo-head">
           <h2>{{ evolution.title|e }}</h2>
           <p>{{ evolution.intro|e }}</p>
-          <p class="evo-source">记录更新于 {{ evolution.updated_on|e }}，数字为注明日期的历史快照 · <a href="{{ evolution.source.href|e }}" target="_blank" rel="noopener">完整演进史 ↗</a></p>
         </header>
-
-        {% if evolution.now %}
-        <section class="evo-now" aria-labelledby="evo-now-title">
-          <h3 id="evo-now-title">现在走到哪里</h3>
-          <ul>{% for row in evolution.now %}<li class="is-{{ row.status|e }}"><span class="evo-dot" aria-hidden="true"></span><b>{{ row.label|e }}</b><span>{{ row.state|e }}</span></li>{% endfor %}</ul>
-        </section>
-        {% endif %}
 
         {% if evolution.timeline %}
         <figure class="evo-chart" aria-labelledby="evo-chart-title">
           <figcaption id="evo-chart-title">各项能力的时间跨度<span class="evo-legend"><i class="is-recorded"></i>已完成<i class="is-ongoing"></i>持续开展<i class="is-in_progress"></i>建设中<i class="is-planned"></i>未来方向 · 末端渐隐表示仍在进行</span></figcaption>
           <div class="evo-chart-scroll"><div class="evo-chart-grid">
-            <div class="evo-axis" aria-hidden="true"><span></span><div class="evo-track">{% for tick in evolution.timeline.ticks %}<i style="left:{{ tick.left }}%">{{ tick.label }}</i>{% endfor %}<em class="evo-today" style="left:{{ evolution.timeline.today }}%">今天</em></div></div>
+            <div class="evo-axis" aria-hidden="true"><span></span><div class="evo-track">{% for tick in evolution.timeline.ticks %}<i style="left:{{ tick.left }}%">{{ tick.label }}</i>{% endfor %}<em class="evo-today" style="left:{{ evolution.timeline.today }}%">截至 {{ evolution.updated_on[:7]|e }}</em></div></div>
             {% for chapter in evolution.chapters %}{% for stage in chapter.stages %}
-            <div class="evo-row is-{{ stage.status|e }}"><a href="#evolution-{{ stage.id|e }}">{{ stage.title|e }}</a><div class="evo-track">
+            <div class="evo-row is-{{ stage.status|e }}"><a href="#evolution-{{ stage.id|e }}" title="{{ stage.title|e }}">{{ stage.title|e }}</a><div class="evo-track">
               <span class="evo-today-line" style="left:{{ evolution.timeline.today }}%" aria-hidden="true"></span>
               {% if stage.bar %}<span class="evo-bar{% if stage.bar.open %} is-open{% endif %}" style="left:{{ stage.bar.left }}%;width:{{ stage.bar.width }}%" title="{{ stage.period|e }} · {{ stage.status_label|e }}"></span>
               {% else %}<span class="evo-plan" style="left:{{ evolution.timeline.today }}%">{{ stage.status_label|e }}</span>{% endif %}
@@ -371,6 +373,9 @@
         {%- endmacro %}
 
         {% for chapter in evolution.chapters %}
+        {% if chapter.stages|selectattr('status', 'equalto', 'planned')|list|length == chapter.stages|length %}
+        <p class="evo-next">建设历程 ↑ <span>↓ 长期方向 · 试点和排期待确定</span></p>
+        {% endif %}
         <section class="evo-chapter" aria-labelledby="evo-chapter-{{ loop.index }}">
           <header class="evo-chapter-head"><span class="evo-chapter-no">{{ loop.index }}</span><div><h3 id="evo-chapter-{{ loop.index }}">{{ chapter.title|e }}</h3><p>{{ chapter.question|e }}</p></div></header>
           <ol class="sw-timeline">{% for stage in chapter.stages %}{{ stage_item(stage) }}{% endfor %}</ol>
@@ -428,6 +433,13 @@
         <h2>数据来源</h2>
         <p>页面上每类数字和状态以哪里为准、怎么取、多久算过期、取不到时显示什么。登记在 source_registry.yaml，页面按它读取。</p>
       </div></div>
+      <details class="page-meta"><summary>页面版本与更新</summary>
+        <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
+          <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
+          <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
+          <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
+        </div>
+      </details>
       <div class="sw-hooks-wrap">
         <table class="sw-hooks sw-sources">
           <thead><tr><th>数据</th><th>以哪里为准</th><th>怎么取</th><th>新鲜度</th><th>取不到时</th><th>用在</th></tr></thead>

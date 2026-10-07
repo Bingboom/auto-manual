@@ -191,7 +191,7 @@
 .sw-ledger.is-done { color: var(--sw-available); background: var(--sw-available-bg); }
 
 /* Working today */
-.sw-open-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.sw-open-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .sw-open { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 20px; transition: .17s; }
 .sw-open:hover { transform: translateY(-3px); border-color: #d9dde4; box-shadow: 0 8px 25px #20262f08; }
 .sw-open small { font-size:13px; letter-spacing: 1px; color: var(--orange); font-weight: 700; min-height: 13px; }
@@ -257,21 +257,9 @@
 .evo-head .evo-source { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
 .evo-source a { color: var(--evo-text); text-decoration: underline; text-underline-offset: 3px; }
 
-/* Now: four delivery chains, state before history. */
-.evo-now { margin: 28px 0 0; }
-.evo-now h3, .evo-chart figcaption { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 10px; }
-.evo-now ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; }
-.evo-now li { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 10px; row-gap: 4px; padding: 16px 18px; min-width: 0; }
-.evo-now li + li { border-left: 1px solid var(--line); }
-.evo-now b { font-size: 16px; color: var(--evo-ink); }
-.evo-now li > span:last-child { grid-column: 2; font-size: 13px; line-height: 1.6; color: var(--evo-text); }
-.evo-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 7px; background: var(--evo-done); }
-.is-ongoing > .evo-dot { background: var(--evo-live); }
-.is-in_progress > .evo-dot { background: var(--evo-build); }
-.is-planned > .evo-dot { background: transparent; border: 1.5px dashed var(--evo-plan); }
-
 /* Overview: one month scale for every bar. */
 .evo-chart { margin: 32px 0 0; }
+.evo-chart figcaption { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 10px; }
 .evo-legend { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-weight: 400; margin-left: 14px; }
 .evo-legend i { display: inline-block; width: 18px; height: 8px; border-radius: 4px; margin-left: 8px; background: var(--evo-done); }
 .evo-legend i.is-ongoing { background: var(--evo-live); }
@@ -281,9 +269,9 @@
 .evo-chart-grid { min-width: 640px; display: grid; gap: 7px; }
 .evo-axis, .evo-row { display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 14px; align-items: center; }
 .evo-track { position: relative; height: 16px; }
-.evo-axis .evo-track { height: 22px; border-bottom: 1px solid var(--line); }
+.evo-axis .evo-track { height: 44px; border-bottom: 1px solid var(--line); }
 .evo-axis i { position: absolute; bottom: 5px; font-style: normal; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.evo-today { position: absolute; top: -2px; transform: translateX(-50%); font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--orange); background: #fff; padding: 0 4px; }
+.evo-today { position: absolute; top: -2px; transform: translateX(-50%); font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--orange); background: #fff; padding: 0 4px; white-space: nowrap; }
 .evo-today-line { position: absolute; top: -4px; bottom: -4px; border-left: 1.5px solid var(--orange); opacity: .55; }
 .evo-row > a { font-size: 13px; color: var(--evo-text); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .evo-row > a:hover { color: var(--evo-ink); text-decoration: underline; }
@@ -341,14 +329,7 @@
 .sw-crosscutting-signposts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 4px 0 14px; padding: 0; }
 .sw-crosscutting-signposts li { padding-top: 10px; border-top: 2px solid var(--evo-plan); font-size: 13px; line-height: 1.6; color: var(--evo-text); overflow-wrap: anywhere; }
 
-@media (max-width: 900px) {
-  .evo-now ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .evo-now li:nth-child(3) { border-left: 0; }
-  .evo-now li:nth-child(n+3) { border-top: 1px solid var(--line); }
-}
 @media (max-width: 660px) {
-  .evo-now ul { grid-template-columns: minmax(0, 1fr); }
-  .evo-now li + li { border-left: 0; border-top: 1px solid var(--line); }
   .evo-chapter-head { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
   .evo-chapter-no { font-size: 24px; }
   .sw-timeline, .sw-feedback { margin-left: 0; }
@@ -356,3 +337,68 @@
   .sw-crosscutting-signposts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .evo-axis, .evo-row { grid-template-columns: 132px minmax(0, 1fr); }
 }
+
+/* Access layers share the workspace status tokens and the history source. */
+#tab-architecture, .sw-evolution [id] { scroll-margin-top: calc(var(--app-topbar) + 80px); }
+.access-node { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; }
+.access-node + .access-node { margin-top: 10px; }
+.access-node.is-planned, .access-adapter { border: 1px dashed var(--evo-plan); background: var(--evo-plan-bg); }
+.access-node header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.access-node h4 { margin: 0; font-size: 15px; line-height: 1.65; color: var(--evo-ink); }
+.access-node p, .access-capabilities > p, .access-adapter p { margin: 8px 0; font-size: 13px; line-height: 1.85; color: var(--evo-text); overflow-wrap: anywhere; }
+.access-evidence { font-size: 12px; color: var(--muted); }
+.access-evidence summary { cursor: pointer; }
+.access-evidence .sw-refs { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 8px; overflow-wrap: anywhere; }
+.access-surfaces { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.access-surfaces > .access-node { margin-top: 0; }
+.access-capabilities { margin-top: 28px; }
+.access-capabilities > h3 { margin: 0; font-size: 18px; color: var(--evo-ink); }
+.access-hook-details { margin-top: 16px; font-size: 13px; color: var(--evo-text); }
+.access-hook-details > summary { cursor: pointer; padding: 10px 0; }
+.access-local-note { padding: 12px 14px; border-left: 2px solid var(--line); }
+.access-adapter { margin-top: 28px; padding: 18px 20px; border-radius: 12px; }
+.access-adapter > summary { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; cursor: pointer; font-size: 16px; font-weight: 600; }
+.access-adapter > summary::before { content: '+'; color: var(--muted); }
+.access-adapter[open] > summary::before { content: '−'; }
+.access-adapter h4 { font-size: 14px; margin: 18px 0 8px; }
+.access-adapter ul { margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.9; color: var(--evo-text); }
+.access-adapter .sw-evolution-flow { margin-top: 16px; }
+.access-approval .is-approval { color: var(--sw-validated); font-weight: 700; }
+.access-adapter summary:focus-visible, .access-evidence summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.evo-next { margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 14px 0; border-top: 1px dashed var(--evo-plan); border-bottom: 1px dashed var(--evo-plan); color: var(--muted); font-size: 13px; }
+.evo-next span { margin-left: auto; }
+.sw-timeline-row.is-planned { border-bottom-style: dashed; }
+@media (max-width: 660px) {
+  .access-surfaces { grid-template-columns: minmax(0, 1fr); }
+  .access-node { padding: 14px; }
+  .evo-next span { margin-left: 0; }
+}
+
+/* One architecture drawing; source accounts stay collapsed below it. */
+.access-map { margin: 24px 0 0; }
+.access-map figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; margin-bottom: 12px; font-size: 14px; font-weight: 600; color: var(--evo-ink); }
+.access-map figcaption span { color: var(--muted); font-size: 12px; font-weight: 400; }
+.access-map-scroll { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 8px; }
+.access-map svg { display: block; width: 100%; min-width: 900px; height: auto; }
+.access-map text { font-family: inherit; }
+.map-box rect { fill: #fff; stroke: #aeb6c2; stroke-width: 1.2; }
+.map-box.is-planned rect { fill: var(--evo-plan-bg); stroke: var(--evo-plan); stroke-dasharray: 6 4; }
+.map-title, .map-core-title { text-anchor: middle; font-size: 16px; font-weight: 650; fill: var(--evo-ink); }
+.map-copy { text-anchor: middle; font-size: 13px; fill: var(--evo-text); }
+.map-state { text-anchor: end; font-size: 11px; fill: var(--evo-done); }
+.is-planned .map-state { fill: var(--evo-plan); }
+.is-ongoing .map-state { fill: var(--evo-live); }
+.map-layer { text-anchor: middle; font-size: 14px; font-weight: 650; fill: var(--evo-text); }
+.map-core rect { fill: var(--evo-live-bg); stroke: var(--evo-live); stroke-width: 1.4; }
+.map-edge, .map-branch { fill: none; stroke: #657383; stroke-width: 1.5; }
+.map-edge { marker-end: url(#map-arrow); }
+.map-edge.is-both { marker-start: url(#map-arrow); }
+.map-edge.is-planned { stroke-dasharray: 6 4; }
+#map-arrow path { fill: #657383; }
+.map-edge-label { font-size: 12px; fill: var(--muted); }
+.map-note { font-size: 15px; font-weight: 600; fill: var(--evo-ink); }
+.map-note-copy { font-size: 13px; fill: var(--evo-text); }
+.access-map-hint { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+.access-foundation { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 12px; }
+.access-foundation > summary { cursor: pointer; font-size: 14px; color: var(--evo-text); }
+.access-foundation > summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
