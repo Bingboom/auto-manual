@@ -268,8 +268,9 @@ def site_nav(app) -> dict:
 def collect_workspace_pages(app):
     """Add the workspace entry, its system page and its deliverables page, leaving the manual-center root alone.
 
-    The workspace always exists: the manual center links to it, and the system
-    and deliverables pages live inside it. The deliverables page always renders
+    The workspace exists as a separate entry, with the system and deliverables
+    pages inside it. Public manual navigation does not link into it.
+    The deliverables page always renders
     (a missing input shows as 无数据); the system page drops out on an authoring
     error. The AI sharing package is an optional entry, so moving or withdrawing
     it hides only its own links.
@@ -279,6 +280,12 @@ def collect_workspace_pages(app):
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
+    from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
+
+    yield PAGE, {**learning_context(ASSETS, settings, products), "site_nav": site_nav(app)}, TEMPLATE
+    from tools.rtd.market_policy import PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context
+
+    yield MARKET_PAGE, {**market_context(workspace_content(app)), "site_nav": site_nav(app)}, MARKET_TEMPLATE
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
@@ -294,7 +301,7 @@ def collect_workspace_pages(app):
 
 
 def copy_workspace_content(app, exception) -> None:
-    """Copy the reviewed personal reading package into the built static site."""
+    """Copy the approved sharing package; policy source screenshots stay off-site."""
     if exception is not None:
         return
     source = workspace_content(app) / "ai-share"
@@ -302,9 +309,7 @@ def copy_workspace_content(app, exception) -> None:
         return
     output_root = Path(app.outdir)
     copytree_replace_no_symlinks(
-        source,
-        output_root / "ai-share",
-        destination_root=output_root,
+        source, output_root / "ai-share", destination_root=output_root,
         label="personal AI sharing package",
     )
 

@@ -71,6 +71,13 @@ read-only served HTML/resource hash verification. `rtd_portal.setup` registers
 its callback; queue, publication assembly and link writers are not callers.
 See the [Git-only receipt contract](rtd_deployment_receipt.md).
 
+[`tools/rtd/product_learning.py`](../../tools/rtd/product_learning.py) binds the
+product knowledge list to actual published manual identities.
+[`tools/rtd/market_policy.py`](../../tools/rtd/market_policy.py) reads and validates
+the business-owned policy snapshot; the portal renders its list and copies source
+images. Neither module calls Feishu or runs publication. See
+[knowledge and policy pages](rtd_manual_portal.md#产品知识本地预览).
+
 [`tools/manual_knowledge/`](../../tools/manual_knowledge/) owns the rendered EU
 manual reading model: semantic HTML/table extraction and the bounded JSON export.
 `rtd_portal` runs its writer after HTML and before the deployment receipt.
@@ -772,3 +779,8 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 `component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.
 
 `component_specs/lcd_mode_source.py` owns standalone LCD image/action-matrix recognition, preserving authored headers through the shared reference table. `plain_inventory.py` admits complete three-item lists as well as one-row inventories. `app_label_source.py` preserves a separating note outside the explicitly bound shared panel.
+
+
+### RTD 产品知识
+
+`tools/rtd/product_learning.py` 将工程维护的通用课程词条与冻结产品目录关联；`tools/rtd/portal.py` 只注册页面。首页 `navigation` 是产品定位分组的同一来源，知识页不建立第二份型号定位表。
