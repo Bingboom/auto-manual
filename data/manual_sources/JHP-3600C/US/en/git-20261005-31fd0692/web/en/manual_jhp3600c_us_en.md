@@ -269,6 +269,32 @@
   #furo-main-content [data-reference-id="mts-single"] [data-source-line="4"] { grid-row: 5; }
 }
 
+/* Native cascade MTS geometry; shared ReferenceFigure holds all external copy. */
+#furo-main-content [data-reference-id="mts-cascade"] .hb-reference-live-label { font-size: max(.5rem,1.8927cqw); align-items: flex-start; }
+#furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step { display: grid; grid-template-columns: 4.3cqw minmax(0,1fr); width: 100%; }
+#furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step-number { font-size: 3.1546cqw; line-height: 1.16; padding: .34cqw 0 0 .63cqw; }
+#furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step-body { display: block; line-height: 1.18; }
+#furo-main-content [data-reference-id="mts-cascade"] [data-source-line="0"] .hb-mts-step-body { line-height: 1.5; }
+#furo-main-content [data-reference-id="mts-cascade"] [data-source-line="4"],
+#furo-main-content [data-reference-id="mts-cascade"] [data-source-line="5"] { text-align: center; }
+@media (max-width: 760px) {
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-reference-art-panel { display: grid; grid-template-columns: minmax(0,1fr); }
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-reference-art { grid-column: 1; grid-row: 4; align-self: start; }
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-reference-live-label:has(.hb-mts-step) { position: static; display: block; grid-column: 1; width: auto; min-height: 0; margin: 0; padding: .55rem .9rem; background: #e6e7e8; font-size: 1rem; }
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step { grid-template-columns: 1.6rem minmax(0,1fr); }
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step-number { font-size: 1rem; line-height: 1.5; padding: 0; }
+ #furo-main-content [data-reference-id="mts-cascade"] .hb-mts-step-body { line-height: 1.5; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="0"] { grid-row: 1; border-radius: 1rem 1rem 0 0; padding-top: .9rem; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="1"] { grid-row: 2; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="2"] { grid-row: 3; border-radius: 0 0 1rem 1rem; padding-bottom: .9rem; margin-bottom: .75rem; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="3"],
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="4"],
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="5"] { position: static; display: block; grid-column: 1; grid-row: 4; align-self: start; min-height: 0; margin-bottom: 0; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="3"] { margin-left: 8.5174%; margin-top: 28.2cqw; width: 25%; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="4"] { margin-left: 40%; margin-top: 40cqw; width: 38%; }
+ #furo-main-content [data-reference-id="mts-cascade"] [data-source-line="5"] { margin-left: 68%; margin-top: 87.7cqw; width: 30%; }
+}
+
 </style>
 
 # Jackery HomePower 3600 Pro Max User Manual
@@ -505,7 +531,7 @@
 
 <p>When two units are connected in cascade parallel mode, the system can deliver higher output power to the MTS.</p>
 
-<img alt="Complete the Cascade Parallel 1. Connection steps described earlier. Connect the second device’s 2. 240V Output Port (NEMA 14-50R) to the MTS inlet. Turn ON both units and enable 3. AC Output. Charging Cable in the MTS package Jackery 40A Charging Cable NEMA 14-50R (sold separately) Jackery Parallel Communication Cable (sold separately)" src="assets/mts_cascade.png" style="display:block;max-width:100%;height:auto;margin:1rem auto;"/>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="mts-cascade" data-source-fragment-sha256="b8300e0b0965353286bc85f060dc73f601bbab2c104a017bda75f7aaaf9c8aa1" data-web-base-art-ref="assets/mts_cascade_live.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.mts-cascade"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="mts-cascade.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#e6e7e8"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "mts-cascade", "image_key": "assets/mts_cascade_live.png", "web_replace_key": "reference.mts-cascade", "capture_following_lines": 6, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477", "panel_top": 0, "panel_fill": "#e6e7e8", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [56.782334384858046, 5.276270718232044, 36.59305993690852, 6.629834254143646], "color": "#555555"}, {"line": 1, "rect": [56.782334384858046, 12.082265193370162, 36.59305993690852, 6.629834254143646], "color": "#555555"}, {"line": 2, "rect": [56.782334384858046, 20.171408839779005, 36.59305993690852, 6.629834254143646], "color": "#555555"}, {"line": 3, "rect": [8.517350157728707, 26.382292817679556, 24.9211356466877, 4.833176795580114], "color": "#555555"}, {"line": 4, "rect": [43.217665615141954, 36.6271546961326, 31.861198738170348, 5.085552486187842], "color": "#555555"}, {"line": 5, "rect": [69.08517350157729, 76.8868232044199, 22.397476340694006, 6.81483425414364], "color": "#555555"}]}}' src="assets/mts_cascade_live.png"/><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="0" style="--hb-x:56.7823%;--hb-y:5.2763%;--hb-width:36.5931%;--hb-height:6.6298%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">1.</strong><span class="hb-mts-step-body">Complete the Cascade Parallel Connection steps described earlier.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="1" style="--hb-x:56.7823%;--hb-y:12.0823%;--hb-width:36.5931%;--hb-height:6.6298%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">2.</strong><span class="hb-mts-step-body">Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="2" style="--hb-x:56.7823%;--hb-y:20.1714%;--hb-width:36.5931%;--hb-height:6.6298%;--hb-label-color:#555555"><span class="hb-mts-step"><strong class="hb-mts-step-number">3.</strong><span class="hb-mts-step-body">Turn ON both units and enable AC Output.</span></span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="3" style="--hb-x:8.5174%;--hb-y:26.3823%;--hb-width:24.9211%;--hb-height:4.8332%;--hb-label-color:#555555"><span style="display:block;width:100%;">Charging Cable in<br/>the MTS package</span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="4" style="--hb-x:43.2177%;--hb-y:36.6272%;--hb-width:31.8612%;--hb-height:5.0856%;--hb-label-color:#555555"><span style="display:block;width:100%;">Jackery 40A Charging Cable<br/>(sold separately)</span></span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="5" style="--hb-x:69.0852%;--hb-y:76.8868%;--hb-width:22.3975%;--hb-height:6.8148%;--hb-label-color:#555555"><span style="display:block;width:100%;">Jackery Parallel<br/>Communication Cable<br/>(sold separately)</span></span></div></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><p>After cascading, the maximum output to the MTS is 8000W. The total load MUST NOT exceed total power.</p></td></tr></tbody></table>
 

@@ -1773,7 +1773,7 @@
   },
   {
     "slot": "mts_cascade",
-    "decision": "new source extraction",
+    "decision": "superseded-do-not-reuse",
     "searched": [
       "manual_sources",
       "data/manual_sources",
@@ -1793,7 +1793,8 @@
     "background_policy": "transparent for standalone icon; complete source panel/frame otherwise",
     "erase_regions": [],
     "final_path": "assets/mts_cascade.png",
-    "sha256": "c75112da83e54852c756ddf4757afdd26b1d3c5ef468b3ccc807e07d8a242fcf"
+    "sha256": "c75112da83e54852c756ddf4757afdd26b1d3c5ef468b3ccc807e07d8a242fcf",
+    "rejection": "Burned three numbered instructions and three cable captions; replaced by native base with explicit NEMA marking retention and shared live copy."
   },
   {
     "slot": "charge120",
@@ -3053,6 +3054,98 @@
           77.88326180257512,
           27.531645569620252,
           6.523175965665217
+        ],
+        "color": "#555555"
+      }
+    ],
+    "reuse_status": "active",
+    "registry_promotion": "not performed; Git-only review candidate"
+  },
+  {
+    "slot": "mts_cascade",
+    "decision": "new source extraction",
+    "searched": [
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/renderers/latex/assets",
+      "docs/templates/word_template/common_assets",
+      "assets/mts_single_live.png"
+    ],
+    "identity_check": "Native single-unit textless alternative has one unit and no parallel communication cable. No shared matching MTS cascade panel.",
+    "physical_page": 20,
+    "bbox": [
+      26,
+      63,
+      343,
+      425
+    ],
+    "content_mode": "base-art-live-copy",
+    "background_policy": "Preserve complete native panel, product/MTS box/button/hand/cables/leaders; no independent empty caption frame. Three steps and three cable captions are live HTML.",
+    "retained_native_text": "NEMA 14-50R retained by explicit operator request; AC button marking is native product artwork.",
+    "final_path": "assets/mts_cascade_live.png",
+    "sha256": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477",
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_mts_cascade_live.json",
+    "text_policy": "fixed-product-markings",
+    "web_component": "HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy",
+    "web_label_positions": [
+      {
+        "line": 0,
+        "rect": [
+          56.782334384858046,
+          5.276270718232044,
+          36.59305993690852,
+          6.629834254143646
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 1,
+        "rect": [
+          56.782334384858046,
+          12.082265193370162,
+          36.59305993690852,
+          6.629834254143646
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 2,
+        "rect": [
+          56.782334384858046,
+          20.171408839779005,
+          36.59305993690852,
+          6.629834254143646
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 3,
+        "rect": [
+          8.517350157728707,
+          26.382292817679556,
+          24.9211356466877,
+          4.833176795580114
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 4,
+        "rect": [
+          43.217665615141954,
+          36.6271546961326,
+          31.861198738170348,
+          5.085552486187842
+        ],
+        "color": "#555555"
+      },
+      {
+        "line": 5,
+        "rect": [
+          69.08517350157729,
+          76.8868232044199,
+          22.397476340694006,
+          6.81483425414364
         ],
         "color": "#555555"
       }

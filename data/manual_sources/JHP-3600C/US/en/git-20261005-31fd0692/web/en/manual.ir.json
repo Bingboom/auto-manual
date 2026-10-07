@@ -69,7 +69,7 @@
     "assets/epo.png",
     "assets/ats_live.png",
     "assets/mts_single_live.png",
-    "assets/mts_cascade.png",
+    "assets/mts_cascade_live.png",
     "assets/charge120.png",
     "assets/charge240.png",
     "assets/ats_app.png",
@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "d783cfb7764690ce58c782388a6cb9565aacc130464349ad38b340390db32410",
-  "content_sha256": "6f9866e9aa99d54fdff30ae7293aab42f79fed911b94162bf2c06508b3ee5946",
+  "bundle_sha256": "c08ca94205028c3a6188f2a697d5e1136acdb0b07f61b8e731c72bc829daa875",
+  "content_sha256": "adaf007add36c80ce6b8ce167cee245024783a8a8316bfbe5c92a0da90376fe1",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -183,6 +183,7 @@
       "assets/lcd_smart-meter.png": "2eec7e59289bb32c1dd8f173fab2c13b9592740e7c3e882d70c07ba29012baa4",
       "assets/lcd_transfer-switch.png": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
       "assets/mts_cascade.png": "c75112da83e54852c756ddf4757afdd26b1d3c5ef468b3ccc807e07d8a242fcf",
+      "assets/mts_cascade_live.png": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477",
       "assets/mts_single.png": "74d7a74af319edb3a6a705a8daf62580da92a1f60eb95a60e016bbaff5ea717e",
       "assets/mts_single_live.png": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
       "assets/overview_front.png": "2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a",
@@ -223,7 +224,7 @@
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-OPERATION": 4,
-      "HB-SPECIAL-REFERENCE-FIGURE": 10,
+      "HB-SPECIAL-REFERENCE-FIGURE": 11,
       "HB-TABLE-AUTO-RESUME": 1,
       "HB-TABLE-KEY-COMBINATIONS": 1,
       "HB-TABLE-LCD-ICON": 1,
@@ -2067,7 +2068,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "ae9b16addb9b9f7d8437e92588b023821738dc9f107e39e6afa0586618bb1cbd"
+      "sha256": "4bb5dc2af01483b92085d676324eff017babc0d1a75f9dda476d2ea14d952da7"
     },
     "title": "Jackery HomePower 3600 Pro Max User Manual",
     "web_contract": {
@@ -10161,23 +10162,477 @@
         },
         {
           "asset_refs": [
-            "assets/mts_cascade.png"
+            "assets/mts_cascade_live.png"
           ],
           "block_id": "connections:block-0039",
-          "content_sha256": "21a7da53e9aace0f974d364447ede12269787156bf8baeb69409813f7fa10969",
+          "content_sha256": "67648154fb5fcdfcdaa43e4aec4fe669eb28cec5b69f414b5fe9c45612c56cda",
           "kind": "flow",
           "payload": {
-            "alt": "Complete the Cascade Parallel 1. Connection steps described earlier. Connect the second device’s 2. 240V Output Port (NEMA 14-50R) to the MTS inlet. Turn ON both units and enable 3. AC Output. Charging Cable in the MTS package Jackery 40A Charging Cable NEMA 14-50R (sold separately) Jackery Parallel Communication Cable (sold separately)",
-            "kind": "image",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "style": "display:block;max-width:100%;height:auto;margin:1rem auto;"
-                }
+            "carrier_flow": [
+              {
+                "alt": "Cascade parallel HomePower and MTS connection; native NEMA 14-50R marking retained.",
+                "kind": "image",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "hb-source-reference",
+                      "data-reference": "{\"id\": \"mts-cascade\", \"image_key\": \"assets/mts_cascade_live.png\", \"web_replace_key\": \"reference.mts-cascade\", \"capture_following_lines\": 6, \"presentation_mode\": \"base-art-live-copy\", \"base_art_layout\": {\"art_sha256\": \"a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477\", \"panel_top\": 0, \"panel_fill\": \"#e6e7e8\", \"preserve_frame\": true, \"mobile_labels\": \"overlay\", \"labels\": [{\"line\": 0, \"rect\": [56.782334384858046, 5.276270718232044, 36.59305993690852, 6.629834254143646], \"color\": \"#555555\"}, {\"line\": 1, \"rect\": [56.782334384858046, 12.082265193370162, 36.59305993690852, 6.629834254143646], \"color\": \"#555555\"}, {\"line\": 2, \"rect\": [56.782334384858046, 20.171408839779005, 36.59305993690852, 6.629834254143646], \"color\": \"#555555\"}, {\"line\": 3, \"rect\": [8.517350157728707, 26.382292817679556, 24.9211356466877, 4.833176795580114], \"color\": \"#555555\"}, {\"line\": 4, \"rect\": [43.217665615141954, 36.6271546961326, 31.861198738170348, 5.085552486187842], \"color\": \"#555555\"}, {\"line\": 5, \"rect\": [69.08517350157729, 76.8868232044199, 22.397476340694006, 6.81483425414364], \"color\": \"#555555\"}]}}"
+                    }
+                  }
+                },
+                "source": "assets/mts_cascade_live.png"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Complete the Cascade Parallel Connection steps described earlier."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "3."
+                              }
+                            ],
+                            "kind": "strong",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Turn ON both units and enable AC Output."
+                              }
+                            ],
+                            "kind": "inline_group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "hb-mts-step-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-mts-step"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Charging Cable in"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "the MTS package"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery 40A Charging Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Jackery Parallel"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "Communication Cable"
+                          },
+                          {
+                            "kind": "line_break"
+                          },
+                          {
+                            "kind": "text",
+                            "text": "(sold separately)"
+                          }
+                        ],
+                        "kind": "inline_group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "display:block;width:100%;"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "line-block"
+                    }
+                  }
+                },
+                "role": "container"
               }
+            ],
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/mts_cascade_live.png",
+                  "locale_policy": "exact",
+                  "role": "source_art"
+                }
+              ],
+              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+              "language": "en",
+              "metadata": {
+                "base_art_layout": {
+                  "art_sha256": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477",
+                  "labels": [
+                    {
+                      "color": "#555555",
+                      "line": 0,
+                      "rect": [
+                        56.782334384858046,
+                        5.276270718232044,
+                        36.59305993690852,
+                        6.629834254143646
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 1,
+                      "rect": [
+                        56.782334384858046,
+                        12.082265193370162,
+                        36.59305993690852,
+                        6.629834254143646
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 2,
+                      "rect": [
+                        56.782334384858046,
+                        20.171408839779005,
+                        36.59305993690852,
+                        6.629834254143646
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 3,
+                      "rect": [
+                        8.517350157728707,
+                        26.382292817679556,
+                        24.9211356466877,
+                        4.833176795580114
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 4,
+                      "rect": [
+                        43.217665615141954,
+                        36.6271546961326,
+                        31.861198738170348,
+                        5.085552486187842
+                      ]
+                    },
+                    {
+                      "color": "#555555",
+                      "line": 5,
+                      "rect": [
+                        69.08517350157729,
+                        76.8868232044199,
+                        22.397476340694006,
+                        6.81483425414364
+                      ]
+                    }
+                  ],
+                  "mobile_labels": "overlay",
+                  "panel_fill": "#e6e7e8",
+                  "panel_top": 0,
+                  "preserve_frame": true
+                },
+                "caption_centers_pct": null,
+                "captions_embedded": false,
+                "captions_origin": "carrier",
+                "capture_following_lines": 6,
+                "composite_locale": "",
+                "image_key": "assets/mts_cascade_live.png",
+                "presentation_mode": "base-art-live-copy",
+                "source_fragment_sha256": "b8300e0b0965353286bc85f060dc73f601bbab2c104a017bda75f7aaaf9c8aa1",
+                "web_replace_key": "reference.mts-cascade"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "mts-cascade",
+                  "content_kind": "inline_text",
+                  "role": "reference_id"
+                },
+                {
+                  "content": "Cascade parallel HomePower and MTS connection; native NEMA 14-50R marking retained.",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": "live",
+                  "content_kind": "inline_text",
+                  "role": "caption_mode"
+                },
+                {
+                  "content": "equal",
+                  "content_kind": "inline_text",
+                  "role": "caption_layout"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">1.</strong><span class=\"hb-mts-step-body\">Complete the Cascade Parallel Connection steps described earlier.</span></span>",
+                      "text": "1. Complete the Cascade Parallel Connection steps described earlier."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">2.</strong><span class=\"hb-mts-step-body\">Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet.</span></span>",
+                      "text": "2. Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+                    },
+                    {
+                      "html": "<span class=\"hb-mts-step\"><strong class=\"hb-mts-step-number\">3.</strong><span class=\"hb-mts-step-body\">Turn ON both units and enable AC Output.</span></span>",
+                      "text": "3. Turn ON both units and enable AC Output."
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Charging Cable in<br/>the MTS package</span>",
+                      "text": "Charging Cable in the MTS package"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Jackery 40A Charging Cable<br/>(sold separately)</span>",
+                      "text": "Jackery 40A Charging Cable (sold separately)"
+                    },
+                    {
+                      "html": "<span style=\"display:block;width:100%;\">Jackery Parallel<br/>Communication Cable<br/>(sold separately)</span>",
+                      "text": "Jackery Parallel Communication Cable (sold separately)"
+                    }
+                  ],
+                  "content_kind": "ordered_labels",
+                  "role": "captions"
+                }
+              ],
+              "source_ref": "source/content.json#reference-mts-cascade",
+              "token_roles": [
+                "component.special.reference-figure"
+              ],
+              "variant": "semantic-fallback"
             },
-            "schema_version": "manual-flow/v2",
-            "source": "assets/mts_cascade.png"
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/connections#block-39"
         },
@@ -10285,7 +10740,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#connections",
       "source_ref": "native-pdf/connections",
-      "source_sha256": "12f8e0fe570e816c28d9303351503c79bce0d9ffeae77b48af7e0e8975fa7212"
+      "source_sha256": "2b5fd1d0490f5ec629dc68bc4d6c72aa4fc080104e0a24bfe5b0655aba40540f"
     },
     {
       "blocks": [
