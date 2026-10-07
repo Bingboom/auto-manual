@@ -1,0 +1,782 @@
+{
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#power-on-off",
+  "source_commit": "639834bfcbbde3806108e82ea19d7d883911b5fc",
+  "audits": [
+    {
+      "component": {
+        "bottom": 801.234375,
+        "height": 602.4296875,
+        "left": 314.59375,
+        "right": 1131.625,
+        "top": 198.8046875,
+        "width": 817.03125
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 801.234375,
+          "height": 602.4296875,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 198.8046875,
+          "width": 817.03125
+        },
+        "src": "../../../../_static/manual-assets/_pool/63/6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 276.90625,
+            "height": 56.875,
+            "left": 355.9609375,
+            "right": 606.7578125,
+            "top": 220.03125,
+            "width": 250.796875
+          },
+          "text": "1.\nPower OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 340.609375,
+            "height": 56.875,
+            "left": 355.9609375,
+            "right": 606.7578125,
+            "top": 283.734375,
+            "width": 250.796875
+          },
+          "text": "2.\nConnect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 416.3203125,
+            "height": 56.875,
+            "left": 355.9609375,
+            "right": 606.7578125,
+            "top": 359.4453125,
+            "width": 250.796875
+          },
+          "text": "3.\nConnect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 495.609375,
+            "height": 56.875,
+            "left": 355.9609375,
+            "right": 606.7578125,
+            "top": 438.734375,
+            "width": 250.796875
+          },
+          "text": "4.\nTurn the load switch of the MTS to backup."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 557.640625,
+            "height": 56.875,
+            "left": 355.9609375,
+            "right": 606.7578125,
+            "top": 500.765625,
+            "width": 250.796875
+          },
+          "text": "5.\nTurn ON the unit and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 318.40625,
+            "height": 41.8828125,
+            "left": 712.125,
+            "right": 873.0625,
+            "top": 276.5234375,
+            "width": 160.9375
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 707.2890625,
+            "height": 39.296875,
+            "left": 893.75,
+            "right": 1118.6875,
+            "top": 667.9921875,
+            "width": 224.9375
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        },
+        {
+          "text": "4.",
+          "weight": "700"
+        },
+        {
+          "text": "5.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "15.513px",
+          "rect": {
+            "bottom": 266.578125,
+            "height": 46.546875,
+            "left": 391.0859375,
+            "right": 606.7578125,
+            "top": 220.03125,
+            "width": 215.671875
+          },
+          "text": "Power OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "fontSize": "15.513px",
+          "rect": {
+            "bottom": 338.6484375,
+            "height": 54.9140625,
+            "left": 391.0859375,
+            "right": 606.7578125,
+            "top": 283.734375,
+            "width": 215.671875
+          },
+          "text": "Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "fontSize": "15.513px",
+          "rect": {
+            "bottom": 414.359375,
+            "height": 54.9140625,
+            "left": 391.0859375,
+            "right": 606.7578125,
+            "top": 359.4453125,
+            "width": 215.671875
+          },
+          "text": "Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "15.513px",
+          "rect": {
+            "bottom": 475.34375,
+            "height": 36.609375,
+            "left": 391.0859375,
+            "right": 606.7578125,
+            "top": 438.734375,
+            "width": 215.671875
+          },
+          "text": "Turn the load switch of the MTS to backup."
+        },
+        {
+          "fontSize": "15.513px",
+          "rect": {
+            "bottom": 537.375,
+            "height": 36.609375,
+            "left": 391.0859375,
+            "right": 606.7578125,
+            "top": 500.765625,
+            "width": 215.671875
+          },
+          "text": "Turn ON the unit and enable AC Output."
+        }
+      ],
+      "viewport": 1440
+    },
+    {
+      "component": {
+        "bottom": 878.46875,
+        "height": 657.0078125,
+        "left": 16,
+        "right": 625,
+        "top": 221.4609375,
+        "width": 609
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 878.46875,
+          "height": 449.0390625,
+          "left": 16,
+          "right": 625,
+          "top": 429.4296875,
+          "width": 609
+        },
+        "src": "../../../../_static/manual-assets/_pool/63/6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 263.0546875,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 221.4609375,
+            "width": 609
+          },
+          "text": "1.\nPower OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 304.6484375,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 263.0546875,
+            "width": 609
+          },
+          "text": "2.\nConnect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 346.2421875,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 304.6484375,
+            "width": 609
+          },
+          "text": "3.\nConnect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 387.8359375,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 346.2421875,
+            "width": 609
+          },
+          "text": "4.\nTurn the load switch of the MTS to backup."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 429.4296875,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 387.8359375,
+            "width": 609
+          },
+          "text": "5.\nTurn ON the unit and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 495.8203125,
+            "height": 26.8125,
+            "left": 210.875,
+            "right": 424.0234375,
+            "top": 469.0078125,
+            "width": 213.1484375
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 805.96875,
+            "height": 26.8125,
+            "left": 417.9375,
+            "right": 612.8125,
+            "top": 779.15625,
+            "width": 194.875
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        },
+        {
+          "text": "4.",
+          "weight": "700"
+        },
+        {
+          "text": "5.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 254.2578125,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 230.2578125,
+            "width": 554.609375
+          },
+          "text": "Power OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 295.8515625,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 271.8515625,
+            "width": 554.609375
+          },
+          "text": "Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 337.4453125,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 313.4453125,
+            "width": 554.609375
+          },
+          "text": "Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 379.0390625,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 355.0390625,
+            "width": 554.609375
+          },
+          "text": "Turn the load switch of the MTS to backup."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 420.6328125,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 396.6328125,
+            "width": 554.609375
+          },
+          "text": "Turn ON the unit and enable AC Output."
+        }
+      ],
+      "viewport": 641
+    },
+    {
+      "component": {
+        "bottom": 833.90625,
+        "height": 567.9296875,
+        "left": 16,
+        "right": 374,
+        "top": 265.9765625,
+        "width": 358
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 833.90625,
+          "height": 263.9609375,
+          "left": 16,
+          "right": 374,
+          "top": 569.9453125,
+          "width": 358
+        },
+        "src": "../../../../_static/manual-assets/_pool/63/6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 331.5703125,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 265.9765625,
+            "width": 358
+          },
+          "text": "1.\nPower OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 397.1640625,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 331.5703125,
+            "width": 358
+          },
+          "text": "2.\nConnect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 462.7578125,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 397.1640625,
+            "width": 358
+          },
+          "text": "3.\nConnect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 528.3515625,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 462.7578125,
+            "width": 358
+          },
+          "text": "4.\nTurn the load switch of the MTS to backup."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 569.9453125,
+            "height": 41.59375,
+            "left": 16,
+            "right": 374,
+            "top": 528.3515625,
+            "width": 358
+          },
+          "text": "5.\nTurn ON the unit and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 611.7578125,
+            "height": 18.546875,
+            "left": 130.5546875,
+            "right": 255.8515625,
+            "top": 593.2109375,
+            "width": 125.296875
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 794.078125,
+            "height": 18.546875,
+            "left": 252.2734375,
+            "right": 366.828125,
+            "top": 775.53125,
+            "width": 114.5546875
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        },
+        {
+          "text": "4.",
+          "weight": "700"
+        },
+        {
+          "text": "5.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 322.7734375,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 274.7734375,
+            "width": 303.609375
+          },
+          "text": "Power OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 388.3671875,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 340.3671875,
+            "width": 303.609375
+          },
+          "text": "Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 453.9609375,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 405.9609375,
+            "width": 303.609375
+          },
+          "text": "Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 519.5546875,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 471.5546875,
+            "width": 303.609375
+          },
+          "text": "Turn the load switch of the MTS to backup."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 561.1484375,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 537.1484375,
+            "width": 303.609375
+          },
+          "text": "Turn ON the unit and enable AC Output."
+        }
+      ],
+      "viewport": 390
+    },
+    {
+      "component": {
+        "bottom": 832.3515625,
+        "height": 564.3203125,
+        "left": 16,
+        "right": 304,
+        "top": 268.03125,
+        "width": 288
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 832.3515625,
+          "height": 212.3515625,
+          "left": 16,
+          "right": 304,
+          "top": 620,
+          "width": 288
+        },
+        "src": "../../../../_static/manual-assets/_pool/63/6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 333.625,
+            "height": 65.59375,
+            "left": 16,
+            "right": 304,
+            "top": 268.03125,
+            "width": 288
+          },
+          "text": "1.\nPower OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 423.21875,
+            "height": 89.59375,
+            "left": 16,
+            "right": 304,
+            "top": 333.625,
+            "width": 288
+          },
+          "text": "2.\nConnect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 488.8125,
+            "height": 65.59375,
+            "left": 16,
+            "right": 304,
+            "top": 423.21875,
+            "width": 288
+          },
+          "text": "3.\nConnect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 554.40625,
+            "height": 65.59375,
+            "left": 16,
+            "right": 304,
+            "top": 488.8125,
+            "width": 288
+          },
+          "text": "4.\nTurn the load switch of the MTS to backup."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 620,
+            "height": 65.59375,
+            "left": 16,
+            "right": 304,
+            "top": 554.40625,
+            "width": 288
+          },
+          "text": "5.\nTurn ON the unit and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 657.265625,
+            "height": 18.546875,
+            "left": 108.15625,
+            "right": 208.953125,
+            "top": 638.71875,
+            "width": 100.796875
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 813.203125,
+            "height": 27.8203125,
+            "left": 206.078125,
+            "right": 298.234375,
+            "top": 785.3828125,
+            "width": 92.15625
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        },
+        {
+          "text": "4.",
+          "weight": "700"
+        },
+        {
+          "text": "5.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 324.828125,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 276.828125,
+            "width": 233.609375
+          },
+          "text": "Power OFF the HomePower 3600 Pro Max."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 414.421875,
+            "height": 72,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 342.421875,
+            "width": 233.609375
+          },
+          "text": "Connect the HomePower 3600 Pro Max to a 240V AC power supply."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 480.015625,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 432.015625,
+            "width": 233.609375
+          },
+          "text": "Connect the 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 545.609375,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 497.609375,
+            "width": 233.609375
+          },
+          "text": "Turn the load switch of the MTS to backup."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 611.203125,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 563.203125,
+            "width": 233.609375
+          },
+          "text": "Turn ON the unit and enable AC Output."
+        }
+      ],
+      "viewport": 320
+    }
+  ]
+}

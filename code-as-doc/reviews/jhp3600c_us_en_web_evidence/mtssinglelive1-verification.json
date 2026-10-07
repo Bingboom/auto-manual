@@ -61,5 +61,10 @@
       311
     ]
   },
-  "bare_art_review": "Complete native panel, product/cables, MTS box, AC button/hand and all leaders preserved. No independent empty caption frame."
+  "bare_art_review": "Complete native panel, product/cables, MTS box, AC button/hand and all leaders preserved. No independent empty caption frame.",
+  "source_commit": "639834bfcbbde3806108e82ea19d7d883911b5fc",
+  "base_sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
+  "frozen_replay_files_byte_identical": 123,
+  "aggregate_targets": 106,
+  "baseline_files_byte_identical": 5609
 }
