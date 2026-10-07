@@ -310,3 +310,29 @@ checks at 1440×1000 and 390×844 retain complete native labels, loaded artwork,
 working chapter anchors and no page horizontal overflow. Source issues above
 remain review issues, not hidden intake corrections. Preview/browser/hash/cold-replay
 reports are retained with the candidates and under `/tmp/jaad500-fr-es-20261007/`.
+
+## 2026-10-07 authorized native French and Spanish publication
+
+The operator instructed “上线发布” after receiving the FR/ES previews and draft
+PR #1449. MA-262 binds candidate e657ed079246dbe6beb3b8db2154ab6cdb0ece6a
+and original PDF 28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530.
+This is an actual release instruction; documented native source concerns remain
+accepted exceptions, with no invented separate editorial approval.
+
+Discovery: current engineering main 07859f7eae1fe90b72ee950025b28b12cf2c36ff;
+candidate PR #1449 has all 18 checks successful. Prepared US source follows
+normal shared component, asset-hash and frozen-input gates; no phase2 target
+or EU/UK enrollment change. Existing English and candidate snapshots stay intact.
+
+Plan: distinct approved package, fresh prepared-RST assembly, strict HTML and
+exact reviewed MyST/CSS/HTML parity, cold replay and tampered-art rejection.
+At final source commit seal FR/ES frozen evidence, assemble only those routes
+over current Hello-Docs main, strict-build with myst_parser and tools.rtd.portal,
+gate both PRs on final-head all-green checks, then verify actual RTD commit,
+deployment receipt, native resources and live desktop/mobile presentation.
+Preserve existing pending publication candidates and persistent publish branch.
+
+Approved FR/ES package freshly assembles all seven component kinds; normal US
+admission passes. Strict HTML, MyST and CSS are byte-identical to the actual
+desktop/mobile-reviewed candidates. Source-free replay is exact and changed
+artwork is rejected. `approval-parity.json` records both locale hashes.

@@ -1,0 +1,519 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "US",
+    "languages": [
+      "fr",
+      "es"
+    ],
+    "technical_version": "git-20261007-28c58312-reviewed"
+  },
+  "original_source": {
+    "filename": "Jackery DC Input Module User Manual V2.0-2026-05-25.pdf",
+    "path": "source/original.pdf",
+    "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+    "physical_page_count": 22
+  },
+  "printed_manual_version": null,
+  "source_authority": "Operator-supplied PDF; visual transcription of native outlined text, LED table crosschecked with embedded PDF text",
+  "baseline_main": "07859f7eae1fe90b72ee950025b28b12cf2c36ff",
+  "source_role": "Git-only operator-approved native French/Spanish prepared Web release",
+  "live_bitable_dependency": false,
+  "publication_eligible": true,
+  "page_order": {
+    "fr": [
+      "box_contents_fr.rst",
+      "product_overview_fr.rst",
+      "charging_fr.rst",
+      "spec_fr.rst",
+      "warranty_fr.rst",
+      "contact_fr.rst"
+    ],
+    "es": [
+      "box_contents_es.rst",
+      "product_overview_es.rst",
+      "charging_es.rst",
+      "spec_es.rst",
+      "warranty_es.rst",
+      "contact_es.rst"
+    ]
+  },
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-CALLOUT-STRIP": 3,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "chapter_source_panels": {
+    "fr": {
+      "box_contents": [
+        10
+      ],
+      "product_overview": [
+        11
+      ],
+      "charging": [
+        12,
+        13,
+        14
+      ],
+      "spec": [
+        14
+      ],
+      "warranty": [
+        14,
+        15
+      ],
+      "contact": [
+        22
+      ]
+    },
+    "es": {
+      "box_contents": [
+        16
+      ],
+      "product_overview": [
+        17
+      ],
+      "charging": [
+        18,
+        19,
+        20
+      ],
+      "spec": [
+        20
+      ],
+      "warranty": [
+        20,
+        21
+      ],
+      "contact": [
+        22
+      ]
+    }
+  },
+  "normalizations": [
+    "source wrapping joined",
+    "drawn DC sign represented by Unicode ⎓",
+    "native × and en-dash used for measurement/range signs",
+    "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
+    "source heading case retained; warranty continuation is one section",
+    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
+    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
+    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
+    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
+    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
+    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art",
+    "Product overview external annotations are native editable Web text on one und-locale base art; immutable Jackery product markings and complete leaders remain in the drawing",
+    "Native FR/ES PDF text; joined source line wraps; drawn DC sign rendered ⎓; paragraph and numeric meaning unchanged",
+    "Localized LED table header padding reduced from 0.6rem to 0.4rem so Couleur remains one word at 390px; column widths and all body words unchanged."
+  ],
+  "source_concerns": [
+    {
+      "language": "fr",
+      "pdf_page": 11,
+      "issue": "Oiture and English Double to in native overview",
+      "disposition": "native wording retained"
+    },
+    {
+      "language": "fr",
+      "pdf_page": 14,
+      "issue": "Sortie CC labels 11–16/16–60 input rows; Entrée CC labels 42–58 output row",
+      "disposition": "preserved as printed; requires operator/source-owner correction decision"
+    },
+    {
+      "language": "es",
+      "pdf_page": 21,
+      "issue": "DERECHOS DE INTERPRETACIÓN repeats original-buyer/non-transfer clause",
+      "disposition": "native copy retained"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        13,
+        19
+      ],
+      "issue": "PV Voc guidance refers to downstream FridgeGuard/Battery Pack ranges",
+      "disposition": "retained; no technical correction authorized"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        15,
+        21
+      ],
+      "issue": "Battery-cell charging condition in module warranty",
+      "disposition": "retained per operator instruction 你先不用删"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [],
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 595,
+      "sha256": "13aba66f55e3642b800721a5cc2b8b48f4cab278df2815601d1b6451f83f2544"
+    },
+    {
+      "path": "approval-parity.json",
+      "size": 933,
+      "sha256": "b2616607abbf2751de8a55494c928bc32f9320535c939c9f2a5df655cb3aa949"
+    },
+    {
+      "path": "approval.json",
+      "size": 2254,
+      "sha256": "b92b0f955b64c66a39c78b8ef816ab6eb13e0bc299ec245d03f493c3f199a678"
+    },
+    {
+      "path": "assets/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "evidence/browser/es-desktop-car-final.png",
+      "size": 104864,
+      "sha256": "9c3f01f00702c07a48c37f80c5fcf8130a8e4bc68ebb3ff5ed70d7e776601989"
+    },
+    {
+      "path": "evidence/browser/es-desktop-full-final.png",
+      "size": 666270,
+      "sha256": "e494a64ce13f30c4339c7a86cfec400aed53902169402ba2b2a6e468663d8870"
+    },
+    {
+      "path": "evidence/browser/es-desktop-warranty-final.png",
+      "size": 153292,
+      "sha256": "dc6a11a4799d34408d6c2a3ca81e3e7f31efcedd0c54e2c2d64714b987fe6eb5"
+    },
+    {
+      "path": "evidence/browser/es-mobile-full-final.png",
+      "size": 416928,
+      "sha256": "95ae964ad54a1bdc331f965f131bdba7bba8fe3e13d50ff36e543b8290ab1492"
+    },
+    {
+      "path": "evidence/browser/es-mobile-overview-final.png",
+      "size": 36255,
+      "sha256": "211b5dbe31fb6496990117c080aaac87bad2e3c177aae0c9fbec893f719fd077"
+    },
+    {
+      "path": "evidence/browser/es-mobile-spec-final.png",
+      "size": 49795,
+      "sha256": "745ab442d10034870a907062a37c06629e8bf2773a5acb5941a5767138b543db"
+    },
+    {
+      "path": "evidence/browser/fr-desktop-full-final.png",
+      "size": 661248,
+      "sha256": "1b282f56988b959340bbb53b40161730c5aeafed11ed2f839c104169669b43a9"
+    },
+    {
+      "path": "evidence/browser/fr-desktop-overview-final.png",
+      "size": 59501,
+      "sha256": "cacc5a339cefdaa4e95e0e8aba5ac6008f1d165e09fad573d0ebf3c620410dff"
+    },
+    {
+      "path": "evidence/browser/fr-mobile-full-final.png",
+      "size": 417959,
+      "sha256": "16fc2324a7a94988284acb01927004c562a585fab1f39a8a2f967eea31f7433a"
+    },
+    {
+      "path": "evidence/browser/fr-mobile-overview-final.png",
+      "size": 35477,
+      "sha256": "1a3e0e0e974762dc814a49b3b1e47257dc2e84166dea7ab6604a3972594f774f"
+    },
+    {
+      "path": "evidence/browser/fr-mobile-warranty-final.png",
+      "size": 70636,
+      "sha256": "0fff3059fff136682643a5f6ba5b8d4f56c7bb7f90fa285d7f865c2b0ded2a3f"
+    },
+    {
+      "path": "evidence/browser-checks.json",
+      "size": 1166,
+      "sha256": "260e1a0e93bf2fb29354dbb666326d52ac0366fd17f0e9d17ac39bd8610af045"
+    },
+    {
+      "path": "evidence/component-tests.log",
+      "size": 1079,
+      "sha256": "1e865e9df09fc14ab1f1693027314204cc4daf1ac8e369f019217af088b2771c"
+    },
+    {
+      "path": "evidence/doc-links.log",
+      "size": 127,
+      "sha256": "9e2798ebbac8e0f5781fce224f3c2bcdd7f9e93caf0c09ecb5d042b169ecccbc"
+    },
+    {
+      "path": "evidence/final-parity.json",
+      "size": 220,
+      "sha256": "b49ee05edd8f11aeaf2471dd38fd9aacd6feff9a0d25cd69ea1cc178bec32a08"
+    },
+    {
+      "path": "evidence/guardrails.log",
+      "size": 425,
+      "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
+    },
+    {
+      "path": "evidence/ruff.log",
+      "size": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "evidence/strict-es-final.log",
+      "size": 2079,
+      "sha256": "f5f7370210402685b8c4f455ce6cdbe5a79c36c4b38422c16efc3186d638c31a"
+    },
+    {
+      "path": "evidence/strict-fr-final.log",
+      "size": 2078,
+      "sha256": "3f2c6c16fb2c44358052923d1ceb535dcd3747200c007b01ebd05408682db334"
+    },
+    {
+      "path": "evidence/us-regression.log",
+      "size": 2149,
+      "sha256": "f9983054505936be4833b3d24cd1edb58ed7f1babf781594fddb7d0b148f615f"
+    },
+    {
+      "path": "evidence/verification.json",
+      "size": 1287,
+      "sha256": "7e8a476eb63ed466fc7dcbd9381ed9cfe22e8763572c97425389997902a67f7b"
+    },
+    {
+      "path": "render.py",
+      "size": 4479,
+      "sha256": "469a9a2932ac08dcb279b662e801b5cb37f8590238eab9683d65394c5845a6dd"
+    },
+    {
+      "path": "source/native_copy.json",
+      "size": 13561,
+      "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 3410276,
+      "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+    },
+    {
+      "path": "source/page/box_contents_es.rst",
+      "size": 325,
+      "sha256": "9c1a41ed40e55292f47ad8474c06b9061d7a72fc23e4eaaa89b3131b18fd802d"
+    },
+    {
+      "path": "source/page/box_contents_fr.rst",
+      "size": 334,
+      "sha256": "78801518c24f331a4e04f909986cb5a45c53efd837d0f1fdc6dd7636e1b6c747"
+    },
+    {
+      "path": "source/page/charging_es.rst",
+      "size": 3545,
+      "sha256": "d2dbd28f016a983b0de35d2257d893c555d605e5480ed2b2dc5a0fd68576bf51"
+    },
+    {
+      "path": "source/page/charging_fr.rst",
+      "size": 3707,
+      "sha256": "d4e442e187088900f5c7fa84137a7b8932456486740c41743a94c7d495a2fe94"
+    },
+    {
+      "path": "source/page/contact_es.rst",
+      "size": 662,
+      "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+    },
+    {
+      "path": "source/page/contact_fr.rst",
+      "size": 662,
+      "sha256": "4df0572685a176f1ab801372a919b8109759cc37e595df57f6f298ef2ad877cb"
+    },
+    {
+      "path": "source/page/product_overview_es.rst",
+      "size": 4145,
+      "sha256": "f4830f2f0079f184f177389a5a04224e7c3431b041cbc5cc7fe70d5fbf857e33"
+    },
+    {
+      "path": "source/page/product_overview_fr.rst",
+      "size": 4097,
+      "sha256": "6fbd7193f9be54a3e822fc68373c2b1d9fd9afe24f1c35c1023ce52fb9463b7c"
+    },
+    {
+      "path": "source/page/spec_es.rst",
+      "size": 879,
+      "sha256": "bb4db5db468038dc67e15a2ff007631f49d2d5515f456bb3ed7a4eeb7927a65e"
+    },
+    {
+      "path": "source/page/spec_fr.rst",
+      "size": 854,
+      "sha256": "48b7512256d5bfc6ab4232e8b97f390a37920de8a428cbffe90aa758cb24c691"
+    },
+    {
+      "path": "source/page/warranty_es.rst",
+      "size": 3220,
+      "sha256": "8f824dfc1ad7af0f713820b8fc525c98f9f2ac9ccf9babf3a14b6c2860428547"
+    },
+    {
+      "path": "source/page/warranty_fr.rst",
+      "size": 3390,
+      "sha256": "bb237bfdb36aa0c285cac61a55c199d54a781b35b89abe444b2b53bd709443c8"
+    },
+    {
+      "path": "web/es/_static/web_manual.css",
+      "size": 111201,
+      "sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b"
+    },
+    {
+      "path": "web/es/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/es/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/es/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/es/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/es/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/es/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/es/conf.py",
+      "size": 818,
+      "sha256": "d41f44d83b0040d61d3faae5d257a07ab57458f2a4ce539ce736573bd52a3d7b"
+    },
+    {
+      "path": "web/es/index.md",
+      "size": 83,
+      "sha256": "30c015e71623fd51c39aedca23935c4d5656651f577bc9863a8566e946665851"
+    },
+    {
+      "path": "web/es/manual.ir.json",
+      "size": 225701,
+      "sha256": "53631c29d3de7d1aab75e79dc373eddea847cb97eab32d8d1490b8b806334d5c"
+    },
+    {
+      "path": "web/es/manual_bundle.html",
+      "size": 21045,
+      "sha256": "9cc76744fbb3be352173dbc554d7103d6e379a989233d0d6ab37616dc9312b90"
+    },
+    {
+      "path": "web/es/manual_jaad500asil_us_es.md",
+      "size": 19203,
+      "sha256": "6a2062de21be4ce4223d241f139f23252993d8e5128f2d2ffb81e4e370764598"
+    },
+    {
+      "path": "web/fr/_static/web_manual.css",
+      "size": 111201,
+      "sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b"
+    },
+    {
+      "path": "web/fr/assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "web/fr/assets/ir/3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "web/fr/assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "web/fr/assets/ir/93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "web/fr/assets/ir/98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "web/fr/assets/ir/c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "web/fr/conf.py",
+      "size": 818,
+      "sha256": "b9afdce6c7e96748663258050f26e6f9d0ccc7b145a837961146a3d0e78e47b0"
+    },
+    {
+      "path": "web/fr/index.md",
+      "size": 83,
+      "sha256": "87788b370ff520c2ee7b561611d1358a6f54c20041e4f8aff84126e9f02ba2b0"
+    },
+    {
+      "path": "web/fr/manual.ir.json",
+      "size": 226515,
+      "sha256": "63cb5f7942a3bdffc4a7ec41983ee2cebf0c3c0b2519d32e85508562df63bcb9"
+    },
+    {
+      "path": "web/fr/manual_bundle.html",
+      "size": 21342,
+      "sha256": "afced81d431ce0afa6deb7755080751fb0ce7dfa82f819e991f6a8e13f1ce747"
+    },
+    {
+      "path": "web/fr/manual_jaad500asil_us_fr.md",
+      "size": 19500,
+      "sha256": "e8834969b5ec56aa07c256a9b8fd5ff4dc68c79e332dfca0ddd471ebdc268eac"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "40aa888c93dddef8fcbba3e8034c0843525adfc1058c72bd3db947cc389c3db4"
+    }
+  ],
+  "web_roots": {
+    "fr": "web/fr",
+    "es": "web/es"
+  },
+  "english_baseline": {
+    "path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed",
+    "manifest_sha256": "d24e3a11daf168221d9061eada6a0ba475cdd3be8ee8846508b67eb7d1529eba",
+    "source_commit": "ba0f95313d7cc763d5360549e081a413cb89a4eb",
+    "structure": "same chapter order, component types/counts, table geometry, reference IDs and art hashes; native text governs all copy"
+  },
+  "filename_version_label": "V2.0-2026-05-25; filename metadata only, no printed version located"
+}
