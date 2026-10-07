@@ -2630,3 +2630,10 @@ Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/
 图内说明使用现有 ReferenceFigure 的 `base-art-live-copy` 和来源坐标；保留底图原字节，去掉图外重复段落。完整有框插图可套 `hb-reference-contained-copy`，在手机上保留同一图框内的可读文字。
 
 FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+
+JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共用底图加原生标签；尺寸、单位、固定铭刻和 A–F 对应编号保留。各语替换文字时复用同一底图，详见[共用底图复核](../docs/renderers/contracts/STYLE_DEFINITION.md#ja-ad600a-eu-共用底图复核)。
+
+仅含一段声明的 FCC 可用 `hb-fcc-composition hb-fcc-statement` 复用完整 FCC 的浅灰圆角面板和紧凑正文，保持单栏和原稿内容；完整 FCC 的 NOTE / MODIFICATION 不应补入短声明。原生 H2 标题保留在 section 中，正文和左侧共用 FCC 标志由既有受保护 figure 通过原生 flow 输出；共享 CSS 将它们排在同一面板中。
+
+
+短版 FCC 的标题/正文/标志排版由共享 `web_fcc_statement.css` 承载，接入既有样式组装列表；完整 FCC 样式保持原模块，不提高维护性行数上限。

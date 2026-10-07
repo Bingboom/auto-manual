@@ -1,5 +1,5 @@
-DISCLAIMER
-==========
+1. DISCLAIMER
+=============
 
 Welcome, and thank you for choosing the Jackery DC-DC Charger. This manual is your guide to safely installing and using your new product. Please read all instructions carefully before starting and keep this guide for future reference.
 

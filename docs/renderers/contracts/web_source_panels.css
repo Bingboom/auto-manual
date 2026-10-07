@@ -463,3 +463,275 @@ figure:has(> img.hb-readable-diagram) {
     clip-path: inset(0 0 var(--hb-art-page-bleed-bottom, 0%) 0);
   }
 }
+
+/* Authored numbered instructions stay paired with their complete source frame. */
+#furo-main-content .hb-step-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 1.25rem;
+  padding: 1.2rem 0;
+  border: 0;
+  border-bottom: 1px dashed var(--hb-line-soft);
+  border-radius: 0;
+  margin: 0;
+}
+#furo-main-content .hb-step-pair > img {
+  width: 100% !important;
+  margin: 0 !important;
+}
+#furo-main-content .hb-step-copy {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: .65rem .55rem;
+  align-items: start;
+}
+#furo-main-content .hb-step-copy > p:not(.rubric) { grid-column: 2; margin: 0; }
+#furo-main-content .hb-step-copy > .rubric + p { padding-top: .2rem; }
+#furo-main-content .hb-step-copy > .rubric {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+}
+#furo-main-content .hb-step-copy p:last-child { margin-bottom: 0; }
+/* Shared wiring art carries live captions at its original source coordinates. */
+#furo-main-content .hb-step-pair > .hb-reference-figure { margin: 0; }
+#furo-main-content .hb-reference-figure:is([data-reference-id="wiring-fuse"], [data-reference-id="wiring-acc"]) .hb-reference-live-label {
+  font-size: 4.63576cqw;
+  line-height: 1.145;
+  color: var(--hb-label-color, #404040);
+}
+#furo-main-content [data-reference-id="wiring-fuse"] .hb-reference-live-pill {
+  padding: 0;
+  border: .2cqw solid #454546;
+  border-radius: .65cqw;
+}
+#furo-main-content [data-reference-id="wiring-fuse"] [data-source-line="2"] {
+  justify-content: center;
+  text-align: center;
+}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {
+  align-items: start;
+  font-size: 3.97351cqw;
+  line-height: 1.2;
+}
+#furo-main-content .hb-source-note {
+  background: var(--hb-surface-strong);
+  border: 0;
+  border-radius: .55rem;
+}
+#furo-main-content .hb-source-note > :last-child { margin-bottom: 0; }
+#furo-main-content .hb-source-installation-note {
+  padding: .5rem 1rem;
+  margin: .5rem 0 .65rem;
+}
+#furo-main-content .hb-source-installation-note > p { margin: 0; }
+#furo-main-content img.hb-status-device-art {
+  display: block;
+  width: min(100%, 26rem) !important;
+  margin-inline: auto !important;
+}
+#furo-main-content .hb-source-status { padding: 0; border: 0; overflow-x: auto; }
+#furo-main-content table.hb-source-status-table {
+  width: 100%;
+  min-width: 36rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+#furo-main-content :is(.hb-lamp-green, .hb-lamp-red, .hb-lamp-blinking, .hb-lamp-off) {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  white-space: nowrap;
+}
+#furo-main-content :is(.hb-lamp-green, .hb-lamp-red, .hb-lamp-blinking, .hb-lamp-off)::before {
+  content: '';
+  display: inline-block;
+  width: 1.25rem;
+  height: .6rem;
+  border-radius: 999px;
+  background: #00ae58;
+  flex: none;
+}
+#furo-main-content .hb-lamp-red::before { background: #ed1c24; }
+#furo-main-content .hb-lamp-blinking::before { box-shadow: 0 0 0 3px #00ae5840; }
+#furo-main-content .hb-lamp-off::before { background: #fff; border: 1px solid #9a9a9a; }
+#furo-main-content .hb-source-period { padding: 0; border: 0; }
+#furo-main-content table.hb-source-period-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border: 0;
+}
+#furo-main-content .hb-source-period-table td {
+  border: 0;
+  background: var(--hb-paper) !important;
+  vertical-align: middle;
+}
+#furo-main-content .hb-source-period-table td:first-child {
+  width: 25%;
+  text-align: center;
+  background: var(--hb-paper) !important;
+}
+#furo-main-content .hb-source-period-table td:first-child p:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 2.9rem;
+  line-height: 1;
+  margin: 0 auto .35rem;
+}
+@media (max-width: 40rem) {
+  #furo-main-content .hb-step-pair { grid-template-columns: 1fr; gap: .85rem; }
+  #furo-main-content table.hb-source-period-table { display: block; }
+  #furo-main-content .hb-source-period-table colgroup { display: none; }
+  #furo-main-content .hb-source-period-table :is(tbody, tr, td) { display: block; width: 100%; box-sizing: border-box; }
+  #furo-main-content .hb-source-period-table td:first-child { width: 100%; }
+}
+
+#furo-main-content .hb-source-safety-heading > .rubric { margin: 0; font-weight: 700; }
+#furo-main-content .hb-source-status-table :is(th, td) {
+  padding: .65rem .5rem;
+  border-block: 1px solid #999;
+  vertical-align: middle;
+}
+#furo-main-content .hb-source-status-table th { background: var(--hb-surface-strong); }
+#furo-main-content .hb-source-status-table p { margin: 0 0 .45rem; }
+#furo-main-content .hb-source-status-table p:last-child { margin-bottom: 0; }
+#furo-main-content :is(.hb-lamp-green, .hb-lamp-blinking) { color: #008844; }
+#furo-main-content .hb-lamp-red { color: #ed1c24; }
+
+/* Source warning lockup keeps the signal below its icon. */
+#furo-main-content .hb-source-safety-heading:has(> .rubric) {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: .25rem 1rem;
+  background: var(--hb-surface-strong);
+  border-color: var(--hb-brand-dark);
+}
+#furo-main-content .hb-source-safety-heading:has(> .rubric) > img { grid-column: 1; grid-row: 1; justify-self: center; }
+#furo-main-content .hb-source-safety-heading > .rubric { grid-column: 1; grid-row: 2; text-align: center; }
+#furo-main-content .hb-source-safety-heading:has(> .rubric) > p:not(.rubric) { grid-column: 2; grid-row: 1 / span 2; }
+#furo-main-content .hb-source-compatibility > p { font-weight: 700; }
+#furo-main-content .hb-source-power { background: var(--hb-surface-strong); border: 0; border-radius: 0; }
+#furo-main-content .hb-source-power > .rubric { margin: 0 0 .35rem; font-weight: 700; }
+#furo-main-content .hb-source-power > .rubric:not(:first-child) { border-top: 1px solid #999; padding-top: .6rem; }
+#furo-main-content .hb-source-power > :last-child { margin-bottom: 0; }
+@media (max-width: 40rem) {
+  #furo-main-content .hb-source-safety-heading:has(> .rubric) > p:not(.rubric) { grid-column: 1 / -1; grid-row: 3; }
+}
+
+/* Source letter markers replace numeric decoration without changing item identity. */
+.hb-inbox-card:has(.hb-inbox-marker)::before { display: none; }
+#furo-main-content .hb-inbox-marker {
+  position: absolute;
+  top: .8rem;
+  left: 50%;
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  transform: translateX(-50%);
+  place-items: center;
+  border-radius: 50%;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-weight: 700;
+}
+#furo-main-content .hb-inbox-composition:has(.hb-inbox-marker) .hb-inbox-card {
+  min-height: 15rem;
+  padding-top: 2.5rem;
+}
+#furo-main-content .hb-inbox-composition:has(.hb-inbox-marker) .hb-inbox-label {
+  gap: .45rem;
+  font-weight: 400;
+}
+@media (max-width: 520px) {
+  #furo-main-content .hb-inbox-composition:has(.hb-inbox-marker) .hb-inbox-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #furo-main-content .hb-inbox-composition:has(.hb-inbox-marker) .hb-inbox-card { min-height: 15rem; }
+}
+
+#furo-main-content .hb-inbox-composition:has(.hb-inbox-marker) .hb-inbox-label p { margin: 0; }
+#furo-main-content .hb-inbox-label p:has(> .hb-inbox-marker) { height: 0; }
+
+/* A source primary item occupies its own row; subsequent items keep source order. */
+#furo-main-content .hb-inbox-composition:has(.hb-inbox-primary) .hb-inbox-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: auto;
+}
+#furo-main-content .hb-inbox-card:has(.hb-inbox-primary) { grid-column: 1 / -1; width: calc((100% - 2.7rem) / 4); }
+@media (max-width: 520px) {
+  #furo-main-content .hb-inbox-composition:has(.hb-inbox-primary) .hb-inbox-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #furo-main-content .hb-inbox-card:has(.hb-inbox-primary) { width: calc((100% - .55rem) / 2); }
+}
+
+/* Source prose warranty preserves title case, compact paragraphs and a round badge. */
+#furo-main-content section:has(> .hb-source-warranty-note) {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.45;
+}
+#furo-main-content section:has(> .hb-source-warranty-note) > section { margin: .85rem 0 0; }
+#furo-main-content section:has(> .hb-source-warranty-note) h2 {
+  margin: 0 0 .2rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  text-transform: none;
+}
+#furo-main-content section:has(> .hb-source-warranty-note) h2::before { display: none; }
+#furo-main-content section:has(> .hb-source-warranty-note) p { margin: 0 0 .15rem; }
+#furo-main-content section:has(> .hb-source-warranty-note) .hb-source-note {
+  margin: .65rem 0 .5rem;
+  padding: .5rem .75rem;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+#furo-main-content section:has(> .hb-source-warranty-note) .hb-source-period { margin: .25rem 0 .5rem; }
+#furo-main-content section:has(> .hb-source-warranty-note) .hb-source-period-table td { padding: .4rem .6rem; }
+#furo-main-content section:has(> .hb-source-warranty-note) .hb-source-period-table td:first-child { padding-left: 0; }
+#furo-main-content section:has(> .hb-source-warranty-note) .hb-source-period-table td:first-child p:first-child { margin: 0 auto .35rem; }
+#furo-main-content .hb-source-period-table td:first-child p:nth-child(2) {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+#furo-main-content .hb-source-period-table td:first-child p:last-child { font-size: .72rem; font-weight: 700; }
+
+/* Shared overview diagrams retain native leaders and invariant letter keys. */
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label {
+  font-size: 2.14724cqw;
+  line-height: 1.286;
+  color: #404040;
+  align-items: start;
+}
+#furo-main-content .hb-reference-figure[data-reference-id="installation-diagram"] .hb-reference-live-label {
+  font-size: 2.51572cqw;
+  line-height: 1.25;
+  color: #404040;
+}
+#furo-main-content .hb-reference-figure[data-reference-id="installation-diagram"] .hb-reference-live-label[data-source-line="0"] {
+  font-size: 2.00814cqw;
+  line-height: 1.213;
+}
+#furo-main-content .hb-reference-figure[data-reference-id="installation-diagram"] .hb-reference-live-label[data-source-line="7"] {
+  font-size: 2.04403cqw;
+  line-height: 1.2;
+  justify-content: start;
+  padding: 0 .31cqw;
+  border-radius: 2cqw;
+}

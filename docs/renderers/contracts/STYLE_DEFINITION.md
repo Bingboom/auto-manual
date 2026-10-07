@@ -646,8 +646,9 @@ HTML/CSS 按 `prerequisite_fill` 绘制；只有前缀加粗，不把说明移�
 
 跨语言可复用已核对的同一底图和组件；跨型号复用前必须核对主机、接口和地区差异。
 共享样式不代表可以借用另一型号的底图。底图、源文字、SHA-256 和百分比标签位置
-必须一起登记；`base-art-live-copy` 复用现有 `manual-ir/v2 → ComponentSpec → 公共
-Web 渲染器`，不能用目标专属 HTML 或截图绕开它。
+必须一起登记；独立线缆名称也使用 ReferenceFigure 的活文字标签，产品实物
+铭刻继续保留。无文字框的标签不额外生成胶囊。`base-art-live-copy` 复用现有
+`manual-ir/v2 → ComponentSpec → 公共 Web 渲染器`，不能用目标专属 HTML 或截图绕开它。
 
 新增目标要登记必需的组件槽位。校验分别检查源文字只出现一次、组件实际使用、
 布局所绑定的底图哈希，以及去字区域无残字/空文字框；最后对照 PDF 检查桌面和
@@ -699,6 +700,8 @@ IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽�
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
 FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+短版 FCC 声明在既有受保护 `figure` 载体上声明 `hb-fcc-composition hb-fcc-statement`，复用浅灰圆角 FCC 面板；共享样式保留单栏、紧凑标题和正文，标题取消通用圆点。原稿标题、段落和标题锚点由原生 flow 承载，不增加原稿未含的 NOTE / MODIFICATION 条款；FCC 标志复用注册表 `mark/fcc` 的现有主资产，按操作者指定放在左侧，不套用完整两栏 FCC 语义实例。
+
 
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
@@ -1507,6 +1510,32 @@ headers retain bold type across languages; normal first-column weight applies
 only to body cells. Function and description cells are vertically centered
 within each row, including when localized text wraps across multiple lines.
 
+Authored `hb-step-pair` containers pair a native `hb-step-copy` rubric number
+with exactly one complete figure: two columns on desktop and copy followed by
+art on narrow displays. Within each copy block, the circular number occupies
+a fixed first column and prose starts on its right; continuation paragraphs
+remain in the prose column. Copy and artwork align at their top edges. This uses the existing protected `hb-source-operation`
+boundary; it does not require an operation-footer transform. `hb-source-note`
+retains a gray notice, and `hb-source-power` retains the source's grouped power
+instructions. A rubric within `hb-source-safety-heading` keeps the source signal
+below the common icon without triggering a second warning-card transform.
+
+Within `hb-source-status`, the native roles `hb-lamp-green`, `hb-lamp-red`,
+`hb-lamp-blinking`, and `hb-lamp-off` add simple lamp shapes alongside editable
+color text. Blinking has a static halo. The four-column status table scrolls
+inside its own container on narrow screens. `hb-source-period-table` retains
+a two-column period badge/prose composition on desktop and stacks on mobile.
+The explicit `hb-source-warranty-note` marker on the protected introductory
+notice scopes its containing chapter to compact source prose and title-case H2s
+without decorative dots. The period badge uses a white numeral inside a dark
+circle on white, followed by the unit and a bold subtitle. This declaration is
+independent of product IDs, chapter IDs and localized heading wording.
+Authored `hb-inbox-marker` labels replace numeric decoration; an optional
+`hb-inbox-primary` source role puts the main item on its own row. Subsequent
+items use four desktop columns and two mobile columns, retaining source order.
+These opt-in compositions live in `web_source_panels.css`; ordinary inboxes
+and warranty transformations retain their existing shared components.
+
 When the operator requests preservation of original panel backgrounds, retain
 the complete source panel (including gray shapes and rounded edges). The
 standalone-device crop and the complete illustration panel are different
@@ -1541,3 +1570,24 @@ ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注�
 原稿中独立的深色圆角正文提示使用原生 `p.hb-prose-pill > strong`；共享样式使用品牌深色底、白色粗体、内容宽度及可换行胶囊。它仍是正文，不升级为标题或更改警告级别。引导短语使用原生 `strong`，其后的正文维持普通字重。
 
 原稿图内的说明文字应绑定 `HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy` 的原稿坐标，不另放图外重复段落。完整底图使用 `preserve_frame`；需要手机可读字号时，`hb-reference-contained-copy` 容器让共用组件的默认手机排版仍处于同一原稿色调的圆角图框内，图片保持原字节和完整边缘。桌面坐标布局不受影响。
+
+
+### JA-AD600A EU 共用底图复核
+
+操作者要求图内需要翻译的说明与底图分离；尺寸、单位、固定铭刻和对应编号可保留。
+英文当前通过既有 ReferenceFigure 接入五张共用底图，共 26 个原生说明标签；
+九语均复用同一图形，各语文字仍应来自各语原稿。本地预览不提供点击编辑功能。
+
+| 图示 | 已检查候选与决定 | 原稿及底图策略 |
+|---|---|---|
+| 产品概览 | 既有 `product_overview.png` 留有英文；同型号其他语言及 shared/template 无匹配无字图，新增共用 PDF/PNG | 当前 AI 实际第 5 页；去除六处说明，保留铭刻、产品轮廓及全部虚线引线 |
+| 安装总图 | 既有 `installation_diagram.png` 留有英文；无匹配共用裸图，新增共用 PDF/PNG | 当前 AI 实际第 9 页；去除八处说明及独立脚注底框，保留灰色放大面板、车辆、线缆和 A–F 编号；脚注框由 CSS 绘制 |
+| 保险丝、ACC 接线、端口连接 | 复用本轮已核实的 `ja_ad600a_eu_shared` 底图，不重新提取 | 现有底图哈希不变，十二处原生标签独立于图形 |
+
+新增两图的原稿 SHA-256、四个输出哈希及删除区域锁定在
+[`manual_ja_ad600a_eu_overview_bases.json`](../../../data/asset_recipes/manual_ja_ad600a_eu_overview_bases.json)，
+对应标签坐标和必需槽位锁定在 `ja-ad600a-eu-v1` target overlay。
+旧图及原始 recipe 保留追溯，本轮未写入资产注册表或线上业务表。
+
+
+短版 FCC 的标题/正文/标志排版由共享 `web_fcc_statement.css` 承载，接入既有样式组装列表；完整 FCC 样式保持原模块，不提高维护性行数上限。

@@ -159,7 +159,8 @@ class JaAd600aEuEnTargetTests(unittest.TestCase):
         self.assertEqual(artwork_hash, manifest["source_artwork_sha256"])
         self.assertEqual(15, manifest["source_artwork_page_count"])
         self.assertEqual(16, len(recipe["assets"]))
-        self.assertEqual(16, len(manifest["illustrations"]))
+        self.assertEqual(25, len(manifest["illustrations"]))
+        self.assertEqual(8, len(manifest["superseded_illustrations"]))
         self.assertTrue(all(asset["build_eligible"] for asset in recipe["assets"]))
         self.assertTrue(all(asset["gate"]["status"] == "approved" for asset in recipe["assets"]))
         self.assertEqual(
@@ -190,8 +191,11 @@ class JaAd600aEuEnTargetTests(unittest.TestCase):
     def test_source_snapshot_locks_exact_pdf_and_git_inputs(self) -> None:
         payload = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual("auto-manual-git-source-snapshot/v1", payload["schema_version"])
-        self.assertEqual("Gl6Pm2Db8D39waXaU9LzewOeJxLq0Ee4", payload["authority"]["dingtalk_node"])
-        self.assertEqual("4-17", payload["authority"]["source_pdf_english_physical_pages"])
+        self.assertEqual("HTO814-EU-9国语言-0924 (1).ai", payload["authority"]["source_pdf_name"])
+        self.assertEqual(129, payload["authority"]["source_pdf_page_count"])
+        self.assertEqual("65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348", payload["authority"]["source_pdf_sha256"])
+        self.assertEqual("4-17", payload["previous_authority"]["source_pdf_english_physical_pages"])
+        self.assertEqual("3-16", payload["authority"]["source_pdf_english_physical_pages"])
         lines = []
         for entry in payload["files"]:
             path = FIXTURE / entry["path"]
@@ -213,18 +217,73 @@ class JaAd600aEuEnTargetTests(unittest.TestCase):
         self.assertEqual(9, len(self.ir.pages))
         self.assertEqual(9, len(soup.select(".hb-inbox-card")))
         self.assertEqual(1, len(soup.select(".hb-spec-table-composition")))
-        self.assertEqual(5, len(soup.select(".hb-operation-figure")))
-        self.assertEqual(5, len(soup.select('[data-component-id="HB-SPECIAL-OPERATION"]')))
-        self.assertEqual(1, len(soup.select('[data-component-id="HB-WARRANTY-YEARS"]')))
-        self.assertEqual(5, len(soup.select('[data-component-id="HB-WARRANTY-SECTION"]')))
-        self.assertEqual(2, len(soup.select(".manual-callout-table, .hb-callout-strip")))
-        self.assertEqual(16, len(soup.find_all("img")))
+        self.assertEqual(10, len(soup.select(".hb-step-pair")))
+        self.assertEqual(0, len(soup.select(".hb-operation-figure")))
+        self.assertEqual(0, len(soup.select('[data-component-id="HB-WARRANTY-SECTION"]')))
+        self.assertEqual(3, len(soup.select(".hb-source-safety-heading")))
+        self.assertEqual(1, len(soup.select(".hb-source-period-table")))
+        self.assertEqual(28, len(soup.find_all("img")))
+        connection = soup.select_one(
+            'figure.hb-reference-figure[data-reference-id="charger-connection"]'
+        )
+        self.assertIsNotNone(connection)
+        self.assertEqual(
+            ["ACC Cable", "Output Cable", "Input Cable with Fuse"],
+            [label.get_text(" ", strip=True)
+             for label in connection.select(".hb-reference-live-label")],
+        )
+        self.assertEqual("base-art-live-copy", connection["data-web-presentation-mode"])
+        self.assertNotIn("connection_diagram.png", str(connection))
+        for reference_id, expected in (
+            ("wiring-fuse", ["Fuse", "3~4 N·m", "6m Input Cable",
+                             "Note: Tighten terminals ① and ② with a torque of 3–4 N·m.",
+                             "Washer", "Lock Washer", "Nut"]),
+            ("wiring-acc", ["ACC Cable", "Vehicle ACC Cable"]),
+            ("product-overview", ["Mounting Hole", "Status Indicator Light", "Power Button",
+                                  "Input Port", "ACC Port", "Output Port"]),
+            ("installation-diagram", ["Vehicle ACC", "DC-DC Charger", "6m Input Cable", "Fuse",
+                                      "1.5m Output Cable", "6m ACC Cable", "Jackery Portable Power Station",
+                                      "* Wiring and cable bundling should be carried out based on the actual conditions of the vehicle."]),
+        ):
+            reference = soup.select_one(f'figure[data-reference-id="{reference_id}"]')
+            self.assertIsNotNone(reference)
+            self.assertEqual("base-art-live-copy", reference["data-web-presentation-mode"])
+            self.assertEqual(expected, [label.get_text(" ", strip=True)
+                                       for label in reference.select(".hb-reference-live-label")])
+            self.assertEqual(1, len(reference.select("img")))
+            self.assertEqual(1, len(reference.select('[data-preserve-art-frame="true"]')))
+        self.assertEqual(list("ABCDEFGHI"), [x.get_text() for x in soup.select(".hb-inbox-marker")])
+        self.assertEqual(["1", "2", "3", "1", "2", "3", "4", "1", "2", "3"],
+                         [x.get_text() for x in soup.select(".hb-step-copy .rubric")])
+        self.assertEqual(4, len(soup.select(".hb-source-status-table tbody tr")))
+        for role in ("green", "red", "blinking", "off"):
+            self.assertEqual(1, len(soup.select(".hb-lamp-" + role)))
+        for pair in soup.select(".hb-step-pair"):
+            self.assertEqual(1, len(pair.select(".hb-step-copy")))
+            self.assertEqual(1, len(pair.select("img[data-web-finished-panel-sha256]")))
+        self.assertEqual(8, len(soup.select("h1")))
+        self.assertEqual(list("12345678"), [x.get_text()[0] for x in soup.select("h1")])
+        prechecks = soup.find("h2", string="7.4 Pre-Installation Checks")
+        first_checks = prechecks.find_next("ol")
+        self.assertEqual(5, len(first_checks.find_all("li", recursive=False)))
+        warning = first_checks.find_next_sibling("div")
+        self.assertIn("not waterproof", warning.get_text())
+        self.assertEqual("6", warning.find_next_sibling("ol").get("start"))
+
+        self.assertEqual(0, len(soup.select(".hb-inbox-primary")))
+        self.assertEqual(0, len(soup.select(".hb-source-safety-heading .manual-callout-table")))
+        self.assertEqual(2, len(soup.select(".hb-source-safety-heading > .rubric")))
+        self.assertEqual(1, len(soup.select(".hb-source-power")))
+        for number in range(1, 9):
+            self.assertIn(f"Q{number}:", soup.get_text())
+        self.assertNotIn("Vehicle installation overview", soup.get_text())
 
         coverage = self.ir.metadata["web_figure_coverage"]
         operation = coverage["summary"]["by_section"]["operation"]
-        self.assertEqual(5, operation["total"])
-        self.assertEqual(5, operation["by_status"]["finished-panel"])
-        self.assertEqual(0, operation["by_status"]["editable-fallback"])
+        self.assertEqual(15, operation["total"])
+        self.assertEqual(10, operation["by_status"]["finished-panel"])
+        self.assertEqual(4, operation["by_status"]["base-art-live-copy"])
+        self.assertEqual(1, operation["by_status"]["editable-fallback"])
         self.assertEqual(0, operation["by_status"]["missing"])
 
         text = soup.get_text(" ", strip=True)
@@ -234,10 +293,57 @@ class JaAd600aEuEnTargetTests(unittest.TestCase):
             "Explorer 3000 v2",
             "2 YEARS",
             "3–4 N·m",
+            "set the torque to 4 N·m before tightening",
+            "tighten them manually until they can no longer be turned",
+            "Anderson Connector",
+            "DC8020 Connector",
+            "OT Terminal",
         ):
             self.assertIn(required, text)
         for forbidden in ("LCD DISPLAY", "UPS MODE", "APP CONTROL"):
             self.assertNotIn(forbidden, text.upper())
+
+    def test_corrective_recipe_is_independent_and_hash_pinned(self) -> None:
+        path = ROOT / "data/asset_recipes/manual_ja_ad600a_eu_en_0924_steps.json"
+        recipe = json.loads(path.read_text())
+        self.assertEqual(11, len(recipe["assets"]))
+        self.assertEqual(129, recipe["source"]["expected_page_count"])
+        registry = load_registry(ROOT / "data" / "asset_registry.csv")
+        for asset in recipe["assets"]:
+            self.assertTrue(asset["build_eligible"])
+            self.assertEqual("approved", asset["gate"]["status"])
+            self.assertEqual(["crop"], [x["op"] for x in asset["transforms"]])
+            output = asset["outputs"][0]
+            resolution = resolve_asset(registry, repo_root=ROOT, asset_key=asset["asset_key"],
+                                       format_name="png", language="en", model="JA-AD600A", region="EU")
+            self.assertEqual(output["expected_sha256"], resolution.declared_hash)
+            self.assertEqual(output["expected_sha256"], hashlib.sha256((ROOT / resolution.path).read_bytes()).hexdigest())
+        payload = json.loads(SOURCE_MANIFEST.read_text())
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), payload["assets"]["corrective_recipes"][0]["sha256"])
+
+    def test_shared_wiring_bases_keep_immutable_source_recipes_and_hashes(self) -> None:
+        path = ROOT / "data/asset_recipes/manual_ja_ad600a_eu_wiring_bases.json"
+        recipe = json.loads(path.read_text())
+        self.assertEqual(3, len(recipe["assets"]))
+        self.assertEqual(129, recipe["source"]["expected_page_count"])
+        for asset in recipe["assets"]:
+            self.assertEqual(12, asset["page"])
+            self.assertEqual(["en", "fr", "de", "it", "es", "pt", "pl", "sv", "nl"],
+                             asset["scope"]["locales"])
+            self.assertEqual("approved", asset["gate"]["status"])
+            for output in asset["outputs"]:
+                actual = ROOT / "docs/renderers/web" / output["path"]
+                self.assertEqual(output["expected_sha256"],
+                                 hashlib.sha256(actual.read_bytes()).hexdigest())
+        selection = recipe["assets"][0]["transforms"][1]["drawing_indices"]
+        self.assertNotIn(1438, selection)
+        self.assertNotIn(1439, selection)
+        self.assertIn(1222, selection)  # original inset clipping is retained
+        source = json.loads(SOURCE_MANIFEST.read_text())
+        binding = next(x for x in source["assets"]["corrective_recipes"]
+                       if x["path"] == str(path.relative_to(ROOT)))
+        self.assertEqual(str(path.relative_to(ROOT)), binding["path"])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), binding["sha256"])
 
     def test_public_ir_cold_replay_reads_no_rst_csv_or_contract(self) -> None:
         script = r'''
