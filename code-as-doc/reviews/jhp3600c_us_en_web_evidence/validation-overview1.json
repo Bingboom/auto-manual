@@ -1,0 +1,18 @@
+{
+  "version": "git-20261005-31fd0692-overview1",
+  "source_git_ref": "d89212af49cfbcb08a57b1f6e23e682a390d59d5",
+  "existing_sources_unchanged": 5609,
+  "target_count": 106,
+  "semantic_source_unchanged": true,
+  "overview_artwork_reused_unchanged": true,
+  "strict_standalone_sphinx": "passed",
+  "deterministic_rebuild": "passed",
+  "doc_links": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "browser_desktop_width": 1440,
+  "browser_mobile_width": 390,
+  "browser_heading_background": "rgb(52, 48, 49)",
+  "browser_heading_color": "rgb(255, 255, 255)",
+  "browser_view_heading_padding": "0px",
+  "browser_overflow": false
+}

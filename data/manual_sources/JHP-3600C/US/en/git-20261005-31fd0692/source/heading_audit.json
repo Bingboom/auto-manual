@@ -1,0 +1,1086 @@
+{
+  "schema_version": "source-heading-review/v1",
+  "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "shared_style_source": "docs/renderers/contracts/web_manual.css",
+  "scope": "All authored flow and specification carrier headings; shared components retain their own labels. Native page styles reviewed; no body or artwork changes.",
+  "headings": [
+    {
+      "chapter": "important",
+      "title": "Jackery HomePower 3600 Pro Max User Manual",
+      "previous_level": 1,
+      "native_level": 1,
+      "role": "document-identity-hidden",
+      "source_physical_pages": [
+        2
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "important",
+      "title": "IMPORTANT",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "preface-plain",
+      "source_physical_pages": [
+        2
+      ],
+      "carrier": false,
+      "navigation_note": "Preface stays beneath the hidden document identity; native chapter bars follow as H1 siblings, preserving shared Furo TOC."
+    },
+    {
+      "chapter": "safety",
+      "title": "IMPORTANT SAFETY INFORMATION",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        4,
+        5
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "safety",
+      "title": "OPERATING INSTRUCTIONS",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "safety-subbar",
+      "source_physical_pages": [
+        4,
+        5
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "safety",
+      "title": "GROUNDING INSTRUCTIONS",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "safety-subbar",
+      "source_physical_pages": [
+        4,
+        5
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "safety",
+      "title": "USER MAINTENANCE INSTRUCTIONS",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "safety-subbar",
+      "source_physical_pages": [
+        4,
+        5
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "symbols",
+      "title": "MEANING OF SYMBOLS",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        5
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "fcc",
+      "title": "FCC",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "synthetic-chapter-hidden",
+      "source_physical_pages": [
+        6
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "inbox",
+      "title": "WHAT'S IN THE BOX",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        6
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "overview",
+      "title": "PRODUCT OVERVIEW",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        7
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "overview",
+      "title": "FRONT VIEW",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        7
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "overview",
+      "title": "RIGHT SIDE VIEW",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        7
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "lcd",
+      "title": "LCD DISPLAY",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        8,
+        9,
+        10
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "OPERATIONS",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "POWER ON/OFF",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "USB OUTPUT ON/OFF",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "AC OUTPUT ON/OFF",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "ENERGY SAVING MODE",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "LCD SCREEN",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "KEY COMBINATION",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "operations",
+      "title": "AC AND DC OUTPUT RESUME FUNCTION",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ups",
+      "title": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        14,
+        15
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ups",
+      "title": "WITH 120V AC INPUT",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        14,
+        15
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ups",
+      "title": "WITH 240V AC INPUT",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        14,
+        15
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "CONNECTIONS",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "CONNECT TO BATTERY PACK(S) — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false,
+      "displayed_title": "CONNECT TO BATTERY PACK(S) SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "connections",
+      "title": "CASCADE PARALLEL CONNECTION",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "Required Accessories",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "Connection Steps",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "CONNECT TO EPO SWITCH",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "BACKUP POWER CONNECTION",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "CONNECT TO ATS — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false,
+      "displayed_title": "CONNECT TO ATS SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately",
+      "presentation_class": "hb-heading-label-pair",
+      "background_policy": "Separate light title and dark availability capsules; transparent heading container"
+    },
+    {
+      "chapter": "connections",
+      "title": "CONNECT TO MTS — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false,
+      "displayed_title": "CONNECT TO MTS SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "connections",
+      "title": "MTS Installation Notice",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "SINGLE UNIT CONNECTION WITH MTS",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "connections",
+      "title": "CASCADE PARALLEL CONNECTION WITH MTS",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "CHARGING",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "CHARGING VIA 120V AC WALL OUTLET",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "CHARGING VIA 240V AC INPUT",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "240V AC Outlet",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "TRANSFER SWITCH (ATS)",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "source-small-pill",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "charging",
+      "title": "CHARGING VIA SOLAR PANELS — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false,
+      "displayed_title": "CHARGING VIA SOLAR PANELS SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "charging",
+      "title": "CHARGING WITH A CAR CHARGER — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        21,
+        22,
+        23
+      ],
+      "carrier": false,
+      "displayed_title": "CHARGING WITH A CAR CHARGER SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "troubleshooting",
+      "title": "TROUBLESHOOTING",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        24,
+        25
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "storage",
+      "title": "STORAGE",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        25
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "specifications",
+      "title": "SPECIFICATIONS",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "specifications",
+      "title": "GENERAL INFO",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "specifications",
+      "title": "INPUT PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "specifications",
+      "title": "OUTPUT PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "specifications",
+      "title": "EXPANSION PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "specifications",
+      "title": "ENVIRONMENTAL SPECIFICATIONS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        25,
+        26
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "warranty",
+      "title": "WARRANTY",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Limited Warranty",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Warranty Period",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Repair or replacement",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Limited to Original Consumer Buyer",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Exclusions",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "warranty",
+      "title": "Interpretation Rights",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "shared-warranty-card-tab",
+      "source_physical_pages": [
+        27
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "APP SETUP",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "1. Download the App and log in",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "2. Add device",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "3. Unbind the device",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "4. Notes",
+      "previous_level": 3,
+      "native_level": 2,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "4.1 To turn on Wi-Fi & Bluetooth:",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "4.2 To turn off Wi-Fi & Bluetooth:",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "app",
+      "title": "4.3 To reset Wi-Fi & Bluetooth:",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "numbered-step",
+      "source_physical_pages": [
+        28,
+        29
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ess",
+      "title": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        30
+      ],
+      "carrier": false,
+      "shared_model_label": "hb-heading-model"
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "SPECIFICATIONS Model: JHP-3600C",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "native-chapter-bar",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": false,
+      "shared_model_label": "hb-heading-model",
+      "navigation_note": "Native title restored to SPECIFICATIONS; distinct source anchor ess-specifications retained."
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "GENERAL INFO",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "INPUT PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "OUTPUT PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "EXPANSION PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "ENVIRONMENTAL SPECIFICATIONS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "Jackery Battery Pack 3600 — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 1,
+      "role": "native-product-bar",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": false,
+      "displayed_title": "Jackery Battery Pack 3600 SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "GENERAL INFO",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "INPUT/OUTPUT PORTS",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "specification-group",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "Jackery Automatic Transfer Switch — SOLD SEPARATELY",
+      "previous_level": 3,
+      "native_level": 1,
+      "role": "native-product-bar",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": false,
+      "displayed_title": "Jackery Automatic Transfer Switch SOLD SEPARATELY",
+      "availability_style": "hb-sold-separately"
+    },
+    {
+      "chapter": "ess-specifications",
+      "title": "Jackery Automatic Transfer Switch",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "duplicate-component-label-hidden",
+      "source_physical_pages": [
+        31,
+        32,
+        33
+      ],
+      "carrier": true
+    },
+    {
+      "chapter": "ess-package",
+      "title": "PACKAGE LIST",
+      "previous_level": 2,
+      "native_level": 2,
+      "role": "native-dot",
+      "source_physical_pages": [
+        34
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ess-package",
+      "title": "Jackery HomePower 3600 Pro Max",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "synthetic-panel-label-hidden",
+      "source_physical_pages": [
+        34
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ess-package",
+      "title": "Jackery Battery Pack 3600 — Sold separately",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "synthetic-panel-label-hidden",
+      "source_physical_pages": [
+        34
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "ess-package",
+      "title": "Jackery Automatic Transfer Switch — Sold separately",
+      "previous_level": 3,
+      "native_level": 3,
+      "role": "synthetic-panel-label-hidden",
+      "source_physical_pages": [
+        34
+      ],
+      "carrier": false
+    },
+    {
+      "chapter": "contact",
+      "title": "CONTACT US",
+      "previous_level": 2,
+      "native_level": 1,
+      "role": "synthetic-chapter-hidden",
+      "source_physical_pages": [
+        97
+      ],
+      "carrier": false
+    }
+  ]
+}

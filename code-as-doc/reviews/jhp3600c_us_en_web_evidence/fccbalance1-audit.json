@@ -1,0 +1,124 @@
+[
+  {
+    "availabilityLabels": 7,
+    "bottomDifference": 4.8515625,
+    "columns": "2",
+    "grid": {
+      "bottom": 551.125,
+      "height": 369.921875,
+      "left": 343.390625,
+      "right": 1102.828125,
+      "top": 181.203125,
+      "width": 759.4375,
+      "x": 343.390625,
+      "y": 181.203125
+    },
+    "headings": 84,
+    "logoLoaded": true,
+    "measureCount": 4,
+    "pageOverflow": false,
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation.NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:Reorient or relocate the receiving antenna.Increase the separation between the equipment and receiver.Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.Consult the dealer or an experienced radio/TV technician for help.MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "textBounds": [
+      {
+        "bottom": 551.125,
+        "top": 181.203125
+      },
+      {
+        "bottom": 546.2734375,
+        "top": 181.203125
+      }
+    ],
+    "width": 1440,
+    "allTextUnchanged": true
+  },
+  {
+    "availabilityLabels": 7,
+    "bottomDifference": 0,
+    "columns": "2",
+    "grid": {
+      "bottom": 793.96875,
+      "height": 440.4296875,
+      "left": 321.3125,
+      "right": 942.6875,
+      "top": 353.5390625,
+      "width": 621.375,
+      "x": 321.3125,
+      "y": 353.5390625
+    },
+    "headings": 84,
+    "logoLoaded": true,
+    "measureCount": 4,
+    "pageOverflow": false,
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation.NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:Reorient or relocate the receiving antenna.Increase the separation between the equipment and receiver.Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.Consult the dealer or an experienced radio/TV technician for help.MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "textBounds": [
+      {
+        "bottom": 793.96875,
+        "top": 353.5390625
+      },
+      {
+        "bottom": 793.96875,
+        "top": 353.5390625
+      }
+    ],
+    "width": 1024,
+    "allTextUnchanged": true
+  },
+  {
+    "availabilityLabels": 7,
+    "bottomDifference": null,
+    "columns": "1",
+    "grid": {
+      "bottom": 1014.4609375,
+      "height": 787.78125,
+      "left": 32,
+      "right": 358,
+      "top": 226.6796875,
+      "width": 326,
+      "x": 32,
+      "y": 226.6796875
+    },
+    "headings": 84,
+    "logoLoaded": true,
+    "measureCount": 4,
+    "pageOverflow": false,
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation.NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:Reorient or relocate the receiving antenna.Increase the separation between the equipment and receiver.Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.Consult the dealer or an experienced radio/TV technician for help.MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "textBounds": [
+      {
+        "bottom": 1006.1484375,
+        "top": 226.6796875
+      },
+      null
+    ],
+    "width": 390,
+    "allTextUnchanged": true
+  },
+  {
+    "availabilityLabels": 7,
+    "bottomDifference": null,
+    "columns": "1",
+    "grid": {
+      "bottom": 647.5859375,
+      "height": 1004.6875,
+      "left": 32,
+      "right": 288,
+      "top": -357.1015625,
+      "width": 256,
+      "x": 32,
+      "y": -357.1015625
+    },
+    "headings": 84,
+    "logoLoaded": true,
+    "measureCount": 4,
+    "pageOverflow": false,
+    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation.NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to communications. However, there is no guarantee that radio interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:Reorient or relocate the receiving antenna.Increase the separation between the equipment and receiver.Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.Consult the dealer or an experienced radio/TV technician for help.MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.",
+    "textBounds": [
+      {
+        "bottom": 639.2734375,
+        "top": -357.1015625
+      },
+      null
+    ],
+    "width": 320,
+    "allTextUnchanged": true
+  }
+]

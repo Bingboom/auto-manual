@@ -1,0 +1,8 @@
+{
+  "baseline_main": "f40abc51f25166672a8ba18ae442b9c07d187213",
+  "baseline_source_files_unchanged": 5624,
+  "candidate_targets": 107,
+  "strict_portal_sphinx": "passed",
+  "source_commit": "8ebf69713",
+  "scope": "docs/publish/** only"
+}

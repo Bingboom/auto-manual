@@ -1,0 +1,110 @@
+{
+  "pageOverflow": false,
+  "panels": [
+    {
+      "border": "1.5px solid rgb(166, 166, 166)",
+      "columns": "162.305px 162.305px",
+      "labels": [
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Jackery HomePower 3600 Pro Max"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "AC Charging Cable"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Screw terminal block"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Documents"
+        }
+      ],
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "border": "1.5px dashed rgb(166, 166, 166)",
+      "columns": "162.305px 162.305px",
+      "labels": [
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Jackery Battery Pack 3600"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Expansion Cable"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "User Manual"
+        }
+      ],
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "border": "1.5px dashed rgb(166, 166, 166)",
+      "columns": "162.305px 162.305px",
+      "labels": [
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Jackery Automatic Transfer Switch"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Marking-off Template"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Power Input/Output Cable"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Neutral Wire"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Cable Gland"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Neutral-Ground Bonding Jumper (with screws)"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Owner's Manual"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Installation Manual"
+        },
+        {
+          "overflow": false,
+          "size": "14.4px",
+          "text": "Quick Start Guide"
+        }
+      ],
+      "loaded": true,
+      "overflow": false
+    }
+  ],
+  "viewport": 390
+}

@@ -41,6 +41,90 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_filled_stroked_button_keeps_both_paths_and_transparent_edges(self):
+        from tools.asset_pipeline.native_svg import native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((0, 0, 100, 100), color=None, fill=(.8, .8, .8))
+            page.draw_circle((50, 50), 20, color=(0, 0, 0), fill=(1, 1, 1), width=2)
+            page.draw_circle((45, 50), 3, color=None, fill=(0, 0, 0))
+            svg = native_symbol_svg(page, [1, 2], [28, 28, 72, 72])
+            paths = ET.fromstring(svg).findall('.//{http://www.w3.org/2000/svg}path')
+            self.assertEqual(3, len(paths))
+            self.assertEqual(paths[0].get('d').rstrip('Z'), paths[1].get('d').rstrip('Z'))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                with fitz.open(stream=selected.convert_to_pdf(), filetype='pdf') as rendered:
+                    pix = rendered[0].get_pixmap(alpha=True)
+                    self.assertEqual(0, pix.pixel(0, 0)[3])
+                    self.assertEqual((255, 255, 255, 255), pix.pixel(22, 12))
+                    self.assertEqual((0, 0, 0, 255), pix.pixel(17, 22))
+
+    def test_native_panel_omits_caption_path_without_deleting_white_product(self):
+        from tools.asset_pipeline.native_svg import native_art_svg, native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((5, 5, 95, 95), color=None, fill=(.8, .8, .8))
+            page.draw_circle((25, 35), 15, color=(0, 0, 0), fill=(1, 1, 1))
+            page.draw_rect((50, 70, 90, 80), color=None, fill=(1, 1, 1))
+            svg = native_art_svg(page, [0, 1], [4, 4, 96, 96])
+            root = ET.fromstring(svg)
+            self.assertEqual(3, len(root.findall('.//{http://www.w3.org/2000/svg}path')))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                pix = selected[0].get_pixmap(alpha=True)
+                self.assertEqual((204, 204, 204, 255), pix.pixel(60, 70))
+                self.assertEqual((255, 255, 255, 255), pix.pixel(20, 30))
+            with self.assertRaisesRegex(ValueError, 'every drawing'):
+                native_symbol_svg(page, [0, 1], [4, 4, 96, 96])
+            with self.assertRaisesRegex(ValueError, 'valid drawing'):
+                native_art_svg(page, [3], [4, 4, 96, 96])
+
+    def test_native_panel_preserves_original_source_clipping_groups(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.w3.org/2000/svg}'
+        with fitz.open() as source, fitz.open() as target:
+            source.new_page(width=200, height=200).draw_rect(
+                (0, 0, 200, 200), color=None, fill=(.6, .6, .6))
+            page = target.new_page(width=100, height=100)
+            page.show_pdf_page(fitz.Rect(20, 20, 80, 80), source, 0, clip=fitz.Rect(80, 80, 120, 120))
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 90, 90]))
+            original_clips = [n.attrib for n in original.iter(ns + 'g') if 'clip-path' in n.attrib]
+            self.assertTrue(original_clips)
+            self.assertEqual(original_clips,
+                             [n.attrib for n in selected.iter(ns + 'g') if 'clip-path' in n.attrib])
+            self.assertEqual(ET.tostring(original.find(ns + 'defs')),
+                             ET.tostring(selected.find(ns + 'defs')))
+
+    def test_native_symbol_svg_runs_through_recipe_pipeline(self):
+        from tools.web.symbol_asset_admission import compare_symbol
+        from tools.asset_pipeline.models import RecipeValidationError
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.pdf"
+            with fitz.open() as doc:
+                page = doc.new_page(width=120, height=100)
+                page.draw_rect((5, 5, 90, 90), color=None, fill=(.8, .8, .8))
+                page.draw_circle((45, 45), 12, color=(0, 0, 0), width=2)
+                doc.save(source)
+            payload = self._single_page_payload(sha256_file(source))
+            asset = payload["assets"][0]
+            asset["transforms"] = [{"op": "crop", "bbox_pt": [30, 30, 60, 60]},
+                                   {"op": "retain_vector_drawings", "drawing_indices": [1],
+                                    "fill_rgb_overrides": {}, "stroke_suppressed_indices": []}]
+            asset["outputs"] = [{"format": "svg", "path": "shared/symbol.svg"}]
+            recipe = self._write_recipe(root / "recipe.json", payload)
+            result = run_intake(source_path=source, recipe=recipe, output_root=root / "run")
+            output = result.output_root / "artifacts/shared/symbol.svg"
+            compare_symbol(output.read_bytes(), ".svg", output.read_bytes())
+            for transforms in ([asset["transforms"][0]],
+                               [asset["transforms"][0], {**asset["transforms"][1], "fill_rgb_overrides": {"1": [1, 0, 0]}}]):
+                asset["transforms"] = transforms
+                with self.assertRaisesRegex(RecipeValidationError, "unchanged retain_vector"):
+                    self._write_recipe(root / "invalid.json", payload)
+
     def test_native_pdf_region_swap_preserves_unaffected_art(self):
         from types import SimpleNamespace
         from tools.asset_pipeline.extract import _prepare_asset_source

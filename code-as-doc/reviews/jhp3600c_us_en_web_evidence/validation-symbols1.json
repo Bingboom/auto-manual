@@ -1,0 +1,57 @@
+{
+  "version": "git-20261005-31fd0692-symbols1",
+  "source_git_ref": "c6206a0a1dde99817aee3b324d267be5d883d18e",
+  "full_unittest": {
+    "tests": 5194,
+    "skipped": 35,
+    "result": "OK",
+    "TMPDIR": "/private/tmp"
+  },
+  "focused_unittest": {
+    "tests": 84,
+    "result": "OK"
+  },
+  "source_input_count": 116,
+  "repo_input_count": 204,
+  "existing_source_files": 5609,
+  "changed_existing_source_files": 0,
+  "target_count": 106,
+  "logs": [
+    {
+      "path": "tmp/jhp-symbol-focused.log",
+      "sha256": "a495940b124c8deaf79f4fb396af753b12c7446a2c43097c2c0f5df7e1b900aa"
+    },
+    {
+      "path": "tmp/jhp-symbol-unittest.log",
+      "sha256": "8511ee798dc83512b717689add1554daf45387f3b890e31531c9dbc519f416b7"
+    },
+    {
+      "path": "tmp/jhp-symbol-ruff.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "tmp/jhp-symbol-guardrails.log",
+      "sha256": "ff9cd5515d1786fa81cfd30b2dfed211a077378696011d3850739150c8a6517c"
+    },
+    {
+      "path": "tmp/jhp-symbol-doclinks.log",
+      "sha256": "3aaf24303027f83522a606655ccda4756cf13f73815e77169fda72de46fea13f"
+    },
+    {
+      "path": "tmp/jhp-symbol-source-audit.log",
+      "sha256": "cf68de37aef222b3783a9b2851d9284aa2326c5eda76049ea3eb68b3f5a85729"
+    },
+    {
+      "path": "tmp/jhp-symbol-sphinx.log",
+      "sha256": "1029be3b55624383772f357793e169fd9e7d59122a7bd04397236a4a6618e545"
+    },
+    {
+      "path": "tmp/jhp-symbol-final-aggregate.log",
+      "sha256": "f2be12b609a73ea30cd69192418d65b15fab241f59e383eb7539e095c67ac177"
+    },
+    {
+      "path": "tmp/jhp-symbol-intake-v2.log",
+      "sha256": "4ac934644dcfb69b5e482d9f31390d8c783c14406a7ca0a89778a20a67ecf10d"
+    }
+  ]
+}

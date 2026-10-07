@@ -1,5 +1,4 @@
 /* Searchable, editable FCC composition projected from HB-SPECIAL-FCC. */
-
 /* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
 #furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
   position: absolute !important;
@@ -17,7 +16,6 @@
 .hb-fcc-composition {
   --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
   --hb-fcc-radius: 1rem;
-
   margin: 0 auto 2.25rem;
   padding: clamp(1.15rem, 2.5vw, 1.8rem);
   overflow: hidden;
@@ -65,7 +63,6 @@
 .hb-fcc-opening-copy .line {
   margin: 0;
 }
-
 #furo-main-content .hb-fcc-column ul {
   display: grid;
   gap: var(--hb-fcc-flow-gap);
@@ -77,9 +74,47 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 0.35rem;
   }
-
   .hb-fcc-composition {
     padding: 1rem;
     border-radius: 0.72rem;
   }
+}
+
+/* Balance ordered Web copy across columns; print projections stay intact. */
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-grid {
+  display: block;
+  column-count: 2;
+  column-gap: clamp(1.2rem, 3vw, 2.2rem);
+  column-fill: balance;
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column { display: contents; }
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-opening {
+  display: block;
+  margin-bottom: var(--hb-fcc-flow-gap);
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-opening::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-mark {
+  float: left;
+  width: clamp(3.8rem, 20%, 5rem) !important;
+  margin: 0 0.8rem 0.35rem 0 !important;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column > p,
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column > ul {
+  margin-bottom: var(--hb-fcc-flow-gap) !important;
+  orphans: 3;
+  widows: 3;
+}
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column ul { display: block; }
+#furo-main-content .hb-fcc-balanced-flow .hb-fcc-column li {
+  break-inside: avoid;
+  margin-bottom: var(--hb-fcc-flow-gap) !important;
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-fcc-balanced-flow .hb-fcc-grid { column-count: 1; }
 }

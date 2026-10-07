@@ -10,6 +10,7 @@ import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any, BinaryIO
 
+from tools.asset_pipeline.native_svg import native_art_svg
 from tools.asset_pipeline.leaders import (
     find_leader_geometries,
     suppress_leader_strokes,
@@ -768,7 +769,8 @@ def _asset_artifacts(
             page = source.load_page(asset.page - 1)
             with tempfile.TemporaryDirectory(prefix="asset-vector-") as temp_dir:
                 retained_pdf = None
-                if _retained_vector_transform(asset) is not None:
+                if (_retained_vector_transform(asset) is not None
+                        and any(o.format != "svg" for o in asset.outputs)):
                     retained_pdf = Path(temp_dir) / "retained.pdf"
                     _save_retained_vector_pdf(
                         fitz, source, asset, clip, retained_pdf
@@ -780,6 +782,16 @@ def _asset_artifacts(
                             shutil.copyfile(retained_pdf, destination)
                         else:
                             _save_asset_pdf(fitz, source, asset, clip, destination)
+                    elif output.format == "svg":
+                        transform = _retained_vector_transform(asset)
+                        if transform is None:
+                            raise ArtifactValidationError("SVG requires retain_vector_drawings")
+                        try:
+                            destination.write_bytes(native_art_svg(
+                                page, list(transform.drawing_indices), list(clip),
+                            ))
+                        except ValueError as exc:
+                            raise ArtifactValidationError(str(exc)) from exc
                     elif output.format == "png":
                         if output.scale is None:
                             raise ArtifactValidationError(

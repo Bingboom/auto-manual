@@ -81,7 +81,9 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         # Verify independently refuses a self-consistent receipt whose source
         # inventory happens to include an unapproved manual IR.
         with (patch('tools.web.frozen_source_evidence.require_publishable_manual_ir'),
-              patch('tools.web.frozen_source_evidence.require_fresh_component_admission')):
+              patch('tools.web.frozen_source_evidence.require_fresh_component_admission'),
+              patch('tools.web.frozen_source_evidence.require_symbol_asset_admission'),
+              patch('tools.web.frozen_source_evidence.require_caption_frame_admission', return_value=[])):
             self.seal()
         with self.assertRaisesRegex(RuntimeError, 'pending source review'):
             self.verify()

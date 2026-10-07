@@ -44,6 +44,24 @@ def replay_package(package: Path) -> tuple[str, ...]:
     # Only document headings become MyST for Sphinx navigation. Registered
     # component markup passes through unchanged, including its own headings.
     chunks = []
+    # A portal build owns its global CSS, so source-authored presentation must
+    # travel with this document rather than depend on the target's conf.py.
+    source_style = ir.metadata.get("source_stylesheet")
+    if source_style is not None:
+        if (not isinstance(source_style, dict)
+                or not isinstance(source_style.get("path"), str)
+                or not isinstance(source_style.get("sha256"), str)):
+            raise ValueError("invalid frozen source stylesheet declaration")
+        relative = Path(source_style["path"])
+        stylesheet = (package / relative).resolve()
+        if (relative.is_absolute() or not stylesheet.is_relative_to(package.resolve())
+                or not stylesheet.is_file()
+                or file_sha256(stylesheet) != source_style["sha256"]):
+            raise ValueError("frozen source stylesheet missing or changed")
+        style_text = stylesheet.read_text(encoding="utf-8")
+        if "</style" in style_text.lower():
+            raise ValueError("frozen source stylesheet contains HTML")
+        chunks.append("<style>\n" + style_text + "\n</style>")
     for fragment in fragments:
         soup = BeautifulSoup(fragment, "html.parser")
         for item in soup.contents:
@@ -54,7 +72,11 @@ def replay_package(package: Path) -> tuple[str, ...]:
                     # Sphinx normalizes underscores in explicit MyST labels;
                     # source chapter links must retain their exact IR anchors.
                     chunks.append(f'<span id="{item["id"]}"></span>')
-                chunks.append(f"{'#' * int(item.name[1])} {item.get_text(' ', strip=True)}")
+                # Authored inline spans (e.g. an accessory badge) belong to
+                # the heading, while MyST still owns its navigation anchor.
+                title = (item.decode_contents().strip() if item.find("span")
+                         else item.get_text(' ', strip=True))
+                chunks.append(f"{'#' * int(item.name[1])} {title}")
             else:
                 chunks.append(str(item))
     path = package / ir.metadata["markdown_filename"]

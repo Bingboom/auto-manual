@@ -1,0 +1,92 @@
+{
+  "source_git_ref": "49c3d8ff47f6f663c977398992f9c369912ca851",
+  "technical_version": "git-20261005-31fd0692-car1",
+  "receipt_verified": true,
+  "receipt_sha256": "c9d27a3948db1f15d933dc88e97f4580419657f127e6f82e27b9ea2c4fbe8462",
+  "unittest": {
+    "tests": 5203,
+    "seconds": 837.624,
+    "skipped": 35,
+    "result": "OK"
+  },
+  "focused": {
+    "tests": 37,
+    "result": "OK"
+  },
+  "ruff": "passed",
+  "maintainability": "passed",
+  "skill_quick_validate": "passed",
+  "doc_links": {
+    "checked": 2356,
+    "broken": 0
+  },
+  "native_source_line_coverage_unmatched": 0,
+  "asset_pipeline_byte_parity": true,
+  "deterministic_replay": true,
+  "strict_standalone_sphinx": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "aggregate_targets": 106,
+  "baseline_sources": {
+    "baseline_commit": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+    "files_checked": 5609,
+    "failures": []
+  },
+  "browser": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "heading_roles_checked": 84,
+    "lcd_status_words_bold": 28,
+    "sold_badges": 7,
+    "key_images_loaded": true,
+    "live_labels": [
+      "Vehicle",
+      "*The car charging cable is sold separately."
+    ],
+    "css_caption_pills": 1,
+    "old_car_png_references": 0,
+    "document_overflow": false
+  },
+  "caption_admission": {
+    "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+    "physical_page": 24,
+    "old_asset": {
+      "path": "assets/car_charging.png",
+      "sha256": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52",
+      "reuse_status": "superseded-do-not-reuse",
+      "fresh_gate_rejection": "baked caption frame remains in base art; remove it and draw it with shared CSS"
+    },
+    "current_admission": [
+      {
+        "source_ref": "source/content.json#reference-car_charging",
+        "asset_ref": "assets/car_charging_framefree.svg",
+        "labels": [
+          {
+            "line": 1,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3600c_us_car_framefree.json",
+    "native_geometry": {
+      "removed_caption_drawing_index": 1068,
+      "preserved": "original source SVG ancestors, clip paths, transforms and opacity; full gray panel, white housing, connectors, cord, magnification circles"
+    },
+    "live_copy": [
+      "Vehicle",
+      "*The car charging cable is sold separately."
+    ],
+    "caption_renderer": "shared .hb-reference-live-pill",
+    "limitations": "Automatic check covers declared contrasting filled ReferenceFigure caption rectangles, not outline-only/same-tone/undeclared frames. Naked art and desktop/mobile browser QC remain required."
+  },
+  "generic_check": {
+    "command": "python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US",
+    "result": "blocked",
+    "reason": "Local data/phase2/Spec_Master.csv missing; no online sync under Git-only scope."
+  },
+  "scope": "Git-only, local commit/release/preview. No push, PR, merge, deployment or live registry writes. Primary tmp preserved."
+}

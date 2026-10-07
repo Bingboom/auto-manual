@@ -1,0 +1,49 @@
+{
+  "art_sha256": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619",
+  "native_geometry": [
+    {
+      "region": "product",
+      "bbox": [
+        58,
+        299,
+        150,
+        412
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "button-hand",
+      "bbox": [
+        191,
+        275,
+        287,
+        345
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "ports-devices",
+      "bbox": [
+        190,
+        355,
+        312,
+        401
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    }
+  ],
+  "source_node_changes": [
+    [
+      "operations",
+      4
+    ]
+  ],
+  "shared_operation_tests": 15,
+  "source_coverage_unmatched": 0,
+  "source_outer_frame_removed": 740,
+  "prerequisite_capsule_removed": 765,
+  "frozen_replay_files_byte_identical": 118
+}

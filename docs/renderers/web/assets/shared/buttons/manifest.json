@@ -83,6 +83,127 @@
         ]
       },
       "text_policy": "fixed-product-markings"
+    },
+    {
+      "semantic_key": "button/power-bottom",
+      "asset": "power-bottom.svg",
+      "source": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
+      "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+      "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+      "path_count": 8,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "product_marking": "POWER",
+      "marking_position": "below-switch",
+      "provenance": {
+        "physical_page": 13,
+        "glyph_bbox_pt": [
+          50.3,
+          291.0,
+          74.7,
+          315.5
+        ],
+        "drawing_indices": [
+          319,
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          326
+        ]
+      },
+      "promotion_status": "git-review-candidate"
+    },
+    {
+      "semantic_key": "button/usb-bottom",
+      "asset": "usb-bottom.svg",
+      "source": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
+      "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+      "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+      "path_count": 6,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "product_marking": "USB",
+      "marking_position": "below-switch",
+      "provenance": {
+        "physical_page": 13,
+        "glyph_bbox_pt": [
+          111.2,
+          291.0,
+          135.6,
+          315.5
+        ],
+        "drawing_indices": [
+          327,
+          328,
+          329,
+          330,
+          331,
+          332
+        ]
+      },
+      "promotion_status": "git-review-candidate"
+    },
+    {
+      "semantic_key": "button/ac-bottom",
+      "asset": "ac-bottom.svg",
+      "source": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf",
+      "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+      "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+      "path_count": 5,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "product_marking": "AC",
+      "marking_position": "below-switch",
+      "provenance": {
+        "physical_page": 13,
+        "glyph_bbox_pt": [
+          111.1,
+          333.1,
+          135.6,
+          357.6
+        ],
+        "drawing_indices": [
+          312,
+          313,
+          314,
+          315,
+          316
+        ]
+      },
+      "promotion_status": "git-review-candidate"
     }
   ]
 }

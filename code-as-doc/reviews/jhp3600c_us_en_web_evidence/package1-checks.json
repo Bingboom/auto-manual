@@ -1,0 +1,18 @@
+{
+  "tests": 89,
+  "frozen_replay_files": 116,
+  "pipeline_repeat_assets": 6,
+  "native_zoom": 12,
+  "source_coverage_unmatched": 0,
+  "negative_controls": [
+    "missing Neutral Wire caption rejected",
+    "retired whole panel rebinding rejected"
+  ],
+  "standalone_sphinx": "strict -W -E passed",
+  "doc_links": "passed",
+  "viewports": [
+    1440,
+    390,
+    320
+  ]
+}

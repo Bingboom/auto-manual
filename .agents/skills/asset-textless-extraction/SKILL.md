@@ -36,14 +36,25 @@ review record or treat the record as an implemented build gate.
   backdrops and export real transparency. Preserve product shading, button
   faces and markings. White fill or CSS blending is not transparency.
 - **Complete panels, including text-free App control panels:** preserve native
-  gray backgrounds, white caption bands, rounded borders, badges and complete
-  leader geometry. Removing labels does not authorize removing the panel.
+  gray backgrounds, structural panel borders and complete leader geometry.
+  **Independent caption boxes, pills and speech bubbles must be removed together
+  with their text; all empty text frames are forbidden in acquired/reused base
+  art and must be drawn with shared CSS.** White product surfaces and screenshot
+  UI remain artwork. Inspect bare art before adding live text; keeping the panel
+  is not permission to keep an empty caption frame.
 - **App screenshots:** prefer matching existing screenshots; preserve all phone
   edges, corners, status bars and bottom UI. Do not crop to interior content.
 - Never delete gray/white objects by color alone. Compare any new extraction
   with all four source edges at 12x, then verify the target Web component on
   desktop and mobile. Transparency checks apply only to these small icons. Classify by semantic role,
   not display size: shrinking a complete diagram does not turn it into an icon.
+
+Fresh frozen-Web sealing checks actual pixels in declared ReferenceFigure CSS
+caption rectangles through `tools/web/caption_frame_admission.py`. A contrasting
+filled capsule still baked into the art fails admission, even if the renderer
+adds CSS on top. Same-tone/outline-only frames and undeclared boxes still need
+bare-art review. Rejected old assets remain traceable but are marked
+`superseded-do-not-reuse` in their existing asset decision record.
 
 ## Core rules
 

@@ -1,5 +1,22 @@
 # Windows Build Guide
 
+Frozen external Web sources can bind a source-local presentation sheet in Manual IR
+metadata as `source_stylesheet: {path, sha256}`. `replay_package` requires that file
+to remain inside the package with matching bytes and emits its CSS in the document's
+MyST HTML style block. This preserves reviewed source geometry when the aggregate
+portal selects its own global stylesheet. Historical packages without the declaration
+keep their existing output. Freeze the CSS input and renderer hashes; reject changed,
+missing, escaped or HTML-containing stylesheets. Verify both standalone and aggregate
+desktop/mobile pages, since a standalone target's `conf.py` does not configure the portal.
+
+
+Fresh external frozen symbol tables require source-bound asset admission before evidence sealing.
+The actual symbol rows must pass native PDF glyph and real transparency checks, including RGBA
+rectangles; name/meaning matching alone is insufficient. See the
+[Web artwork contract](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+for fields, outlined-caption review and the fixed pixel tolerance. Existing sealed receipts keep their
+original verification. Asset-intake supports unchanged retained native vectors as SVG, preserving
+group opacity; SVG cannot use fill overrides or stroke suppression.
 
 生产完成触发、冻结快照审核与线上哈希确认见 [工作台数据持续更新](dev/workspace_data_refresh.md)。
 
@@ -2584,3 +2601,25 @@ Figure coverage checks resolve source-declared reference artwork hashes from the
 ### FridgeGuard US native FR/ES local candidate
 
 French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.
+
+Frozen Web heading inline spans remain inside MyST titles, including the shared
+`hb-sold-separately` badge; use shared `h3.hb-heading-label-pair` when the native small title and availability badge have separate capsule backgrounds. Verify both the heading and its navigation link after
+assembly. Key combinations use `HB-TABLE-KEY-COMBINATIONS`, with authored button
+pairs and shared hold-duration clocks. Match product markings before choosing
+a shared button variant; function names alone do not establish artwork reuse.
+
+
+新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
+原稿标题条内型号使用共享 `hb-heading-model`，整行图标警告使用
+`HB-CALLOUT-STRIP/warning` 的 `hb-source-warning-lockup` 声明；图内说明通过
+ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样式声明见
+[原稿标题型号与完整警告框](../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
+
+Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/list/image/paragraph 表达，使用共享 `hb-package-panel` 样式绘制完整外框、原生配件名称和 availability capsule。先复用已核对配件图；冻结副本必须与记录的共用源 hash 一致。旧整图标记 `superseded-do-not-reuse`，不参与当前原稿图片覆盖；微型文档封面替换为共用文档图标时单独记录 illustration-only omission，并保留原生配件名称。
+
+原稿中的独立深色胶囊正文提示可用 `p.hb-prose-pill > strong` 冻结到 Manual Flow；保留完整原文并拆成独立段落，共享 CSS 负责圆角、字色和窄屏换行。
+
+图内说明使用现有 ReferenceFigure 的 `base-art-live-copy` 和来源坐标；保留底图原字节，去掉图外重复段落。完整有框插图可套 `hb-reference-contained-copy`，在手机上保留同一图框内的可读文字。
+
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。

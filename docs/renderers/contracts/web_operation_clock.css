@@ -6,7 +6,8 @@
   font-size: max(0.65rem, 2.1cqw);
 }
 
-.hb-base-art-live-copy .hb-operation-duration[data-duration-icon="clock"]::before {
+.hb-base-art-live-copy .hb-operation-duration[data-duration-icon="clock"]::before,
+.hb-key-duration[data-duration-icon="clock"]::before {
   content: "";
   flex: none;
   width: 1.45em;

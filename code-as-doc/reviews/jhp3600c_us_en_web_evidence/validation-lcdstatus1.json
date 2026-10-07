@@ -1,0 +1,38 @@
+{
+  "version": "git-20261005-31fd0692-lcdstatus1",
+  "source_git_ref": "50db389f24bbb3fe98c3d9d300c2718e72a5c5a8",
+  "existing_sources_unchanged": 5609,
+  "target_count": 106,
+  "wording_and_artwork_unchanged": true,
+  "status_labels": {
+    "On:": 12,
+    "Blink:": 4,
+    "Off:": 12
+  },
+  "changed_rows": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    9,
+    19,
+    22,
+    24,
+    25,
+    27
+  ],
+  "source_line_coverage": "passed",
+  "strict_standalone_sphinx": "passed",
+  "deterministic_rebuild": "passed",
+  "doc_links": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "browser_desktop_width": 1440,
+  "browser_mobile_width": 390,
+  "browser_bold_label_count": 28,
+  "browser_bold_weight": 700,
+  "browser_body_weight": 400,
+  "browser_page_overflow": false,
+  "mobile_table_scroll_left": 286
+}

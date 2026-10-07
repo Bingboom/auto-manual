@@ -698,6 +698,8 @@ Web App 的编号步骤标题保留源文大小写，不加圆点，与步骤正
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
@@ -1119,6 +1121,16 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 按钮外的名称、组合加号与长按说明由原生 HTML 排版。相同按钮不按语言重裁，
 形状或丝印不同的按钮不能仅凭名称替换。
 
+按键组合使用 `HB-TABLE-KEY-COMBINATIONS` 的三列表格，不用普通表格仿排。
+原生 carrier 以 `.hb-key-button-pair` 保留两个按钮和各自名称（POWER/USB/AC
+强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
+首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
+`usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
+原稿的小标题与另售标签为两个独立胶囊时，使用共享 `h3.hb-heading-label-pair`，仅 `.hb-heading-title` 绘制浅灰底，`.hb-sold-separately` 保持深色底；标题容器透明，窄屏可换行，禁止整行套一个底板。
+
+标题中的另售说明使用原生 `.hb-sold-separately` 圆角标签，文字仍在标题内；
+冻结重放保留内联标签并继续生成 MyST 导航标题，不能摊成带破折号的标题文字。
+
 完成选材后，先按消费组件确定图的类型，再决定背景处理。**透明底规则针对 LCD／
 状态图标、独立按钮符号等小图**，移除这些小图外围的页面/单元格底色和边框。
 “小图”按功能角色判断，不按网页显示尺寸判断；大图缩小显示仍是大图，不能因
@@ -1126,6 +1138,31 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 不能改铺白底或用 CSS 混合模式冒充透明。产品本体的颜色、材质阴影、按键面、
 丝印和屏幕／App 内容保留，不能按灰色或白色批量删除图形。交付前检查独立图标自身的透明区域，并在白色、灰色／棋盘背景上
 以 12 倍检查轮廓，再回到网页组件中验收。
+
+**符号表的新冻结稿准入。** `seal_frozen_web_evidence` 从实际 IR 的
+`HB-TABLE-SYMBOL-ICON` 读取全部符号行，要求 `source_manifest.json` 提供
+`symbol_asset_admission`（`auto-manual-symbol-asset-admission/v1`），逐行包含
+资产路径/哈希、权威 PDF 物理页、`drawing_indices`、`glyph_bbox`、
+`caption_bbox`、`row_bbox`、`caption_text`、说明区域的 `caption_sha256`
+及 `shared_symbol_key`。
+`locales` 按语言记录，顺序必须与实际组件行一致；缺项或文件名相同不能跳过。
+选材统一从 [`shared/symbols/manifest.json`](../web/assets/shared/symbols/manifest.json)
+按语义与明确图形变体选择（例如 `read-manual/book-information`），冻结复制须字节
+不变。`withdrawn` 按哈希停用旧错误素材，改名或搬进新包仍拒绝；旧文件保留历史
+来源，但不再作为新稿的 Web 小符号候选。先修共用库一次，再复用；已有适合图形
+不得重复提取。独立完整面板和历史封存不受此停用影响。
+程序重新读取权威 PDF，保留原生路径及祖先变换/透明度，排除位于符号范围外的
+页面/单元格对象，再检查资产真实透明边缘、归一化 alpha 与预乘 RGB。
+RGBA 中画有矩形灰底、只有语义相同但轮廓不同、源页/说明/哈希不符均拒绝封存。
+固定像素容差为每通道平均误差 2%，不能由候选稿放宽；仍需桌面、窄屏和棋盘底视觉验收。
+
+源文字可提取时逐行比对原文；转曲说明的逐字转录与坐标必须人工核对，程序核验
+该说明区域的原稿渲染哈希及组件文字绑定，哈希不等于 OCR 或人工批准。
+新 SVG 使用现有 asset-intake 的 `crop` + `retain_vector_drawings` recipe，
+不允许在此输出中覆盖填色或删除笔画；保留原始组透明度。已有 PDF/PNG 提取行为
+不变。注册表晋级仍按原流程确认像素；源绑定通过不自动批准晋级。
+这项准入仅作用于**新外部冻结稿封存**，历史回执继续按原封存库存验证；普通大图
+和完整面板不受小符号透明检查影响。
 
 **完整大图面板与小图标分开处理。** 当目标沿用源稿的成品面板（如整张充电图、
 UPS、扩容连接图、配件排、节能组合操作面板或 App 按键说明面板）时，灰底、白色说明区、圆角边框和徽标属于要保留的
@@ -1135,6 +1172,11 @@ UPS、扩容连接图、配件排、节能组合操作面板或 App 按键说明
 图下重排，也不能额外叠加第二个时钟或边框。
 是否采用成品面板由目标明确声明，不能以此把正文、表格或普通图默认转成截图。
 普通 `base-art-live-copy` 不属于上述成品面板例外。图中独立承载说明文字的白色/灰色胶囊、气泡或提示框仍按「新录入网页的图文分工」去除，由共享 CSS 绘制；不能把“保留面板背景”理解为保留空文字框。验收同时看裸底图和桌面/窄屏页面，IR 组件计数不能证明图片中没有空框。
+
+后续获取或复用底图时，**禁止保留独立空白文字框**，包括白/灰说明框、胶囊和气泡；统一用共享 CSS 绘制。先验收裸底图，再验收文字叠加页面。旧错图保留路径/哈希用于追溯，但在既有取图决策中标记 `superseded-do-not-reuse`，不能再次选作主资产。产品白色表面、截图 UI 和完整面板背景按角色保留，禁止按颜色批量删除。
+
+新冻结 Web 候选的封装入口运行 `tools/web/caption_frame_admission.py`：从实际 ReferenceFigure ComponentSpec 读取 CSS 填充文字框坐标及底图哈希，检查该区域的真实像素，拦截仍占据文字框内部的同色不透明填充（占比 ≥85%）。门禁只针对与面板底色有对比的已声明填充框，不是任意图片识别；同色框、仅轮廓框及未声明区域仍需裸图视觉核验。历史冻结版本回放不追溯改写。
+
 无字底图加原生标签的 App 控制面板同样保留灰底和完整引线；是否含文字与是否
 保留面板背景是两个独立决定。App 截图须保留手机四边、圆角、顶部状态栏和底部
 界面，不得只按内部内容收紧裁切。原图已含步骤编号时，不再叠加第二套编号。
@@ -1478,3 +1520,24 @@ RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
 semantics while retaining the exact localized label. At most one such role
 may occur in a label cell; conflicting roles are rejected. Unmarked legacy
 labels keep the existing language-data lookup behavior.
+
+### 原稿标题型号与完整警告框
+
+原稿标题条右侧带型号时，在同一个可导航 H1 中声明 `hb-heading-title` 与
+`hb-heading-model`，保留 `Model:` 原文；共享 `web_source_panels.css` 负责字号、
+右对齐和窄屏换行。不要把型号移到标题下方段落，也不要把用于区分章节的内部名称
+附加到原稿标题文字。
+
+原稿为整行白底、深色描边的图标警告框时，在现有 `HB-CALLOUT-STRIP/warning`
+载体上声明 `hb-source-warning-lockup`；label 中使用 `hb-warning-lockup` 绑定现有
+共用 SVG 和原语种信号词，body 的原稿加粗使用语义 strong。共享样式处理描边、
+列宽及手机堆叠，不增设型号专属告警适配器。普通接线图内标签继续使用现有
+ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注）放在图内对应位置。
+
+### 可编辑 PACKAGE LIST 分组
+
+原稿将多个配件放在一个外框内时，可用共享 `hb-package-panel` / `hb-package-grid` 保持分组和原稿顺序；四列或 `hb-package-grid--five` 五列在窄屏统一降为两列。每件配件使用已核对的共用无外部标签图片，名称保留为原生段落；实线/虚线完整外框及 `hb-package-sold` availability capsule 均由共享 CSS 绘制，禁止底图保留空白标签框或 capsule。说明书缩略封面可换成现有通用文档图标，以可编辑名称区分文档；省略的微型封面印刷细节必须在原稿覆盖记录中注明，不能用已停用整图的 bbox 冒充保留。固定产品铭文及实物模板印刷仍属实物图形。
+
+原稿中独立的深色圆角正文提示使用原生 `p.hb-prose-pill > strong`；共享样式使用品牌深色底、白色粗体、内容宽度及可换行胶囊。它仍是正文，不升级为标题或更改警告级别。引导短语使用原生 `strong`，其后的正文维持普通字重。
+
+原稿图内的说明文字应绑定 `HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy` 的原稿坐标，不另放图外重复段落。完整底图使用 `preserve_frame`；需要手机可读字号时，`hb-reference-contained-copy` 容器让共用组件的默认手机排版仍处于同一原稿色调的圆角图框内，图片保持原字节和完整边缘。桌面坐标布局不受影响。

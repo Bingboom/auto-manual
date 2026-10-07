@@ -1,0 +1,62 @@
+{
+  "source_git_ref": "6c72996742b72f226a8052dcab65627e89ca05d7",
+  "technical_version": "git-20261005-31fd0692-app1",
+  "receipt_sha256": "6f68503643d7991439372e7b6a3533b7c6f12faa14d00e7afbac81bc20f12e77",
+  "focused": {
+    "tests": 26,
+    "skipped": 1,
+    "result": "OK"
+  },
+  "ruff": "passed",
+  "doc_links": {
+    "checked": 2365,
+    "broken": 0
+  },
+  "native_source_line_coverage_unmatched": 0,
+  "rich_span_audit_negative_control": "omitting POWER rejects native source line",
+  "deterministic_replay": {
+    "files": 107,
+    "byte_identical": true
+  },
+  "strict_standalone_sphinx": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "aggregate_targets": 106,
+  "baseline_sources": {
+    "baseline_commit": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+    "files_checked": 5609,
+    "failures": []
+  },
+  "shared_assets": {
+    "store_sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "qr_sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "qr_identity": "https://download.jackery.com/app/jackery.html",
+    "qr_verified_from": [
+      "shared QR file",
+      "retained original crop",
+      "native physical p28 render"
+    ],
+    "old_crop": "superseded-do-not-reuse"
+  },
+  "browser": {
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "two_columns": true,
+    "artwork_above_native_copy": true,
+    "shared_circular_plus": true,
+    "native_bold": [
+      "POWER",
+      "\"Icon Flashed\""
+    ],
+    "headings_checked": 84,
+    "lcd_status_words_bold": 28,
+    "sold_badges": 7,
+    "key_images_loaded": true,
+    "old_download_crop_references": 0,
+    "document_overflow": false
+  },
+  "full_suite": "previous car1 full suite retained; this source/App binding correction ran relevant focused tests",
+  "boundary": "local Git-only; no push, PR, merge, deployment or online data writes"
+}

@@ -1,6 +1,10 @@
 # Hello Auto Doc
 
 
+外部冻结稿的符号表在封存前自动核对真实透明度和权威 PDF 的原始图形。
+共用文件名、符号含义一致或文件有 alpha 通道，都不能代替准入；转曲说明仍需逐行视觉核对。
+字段和边界见 [Web 素材规则](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
 说明书工作台首页优先展示生产概览、资产引用、回流复用缺口与交付风险。使用“口径与证据”查看来源时间、去重和对象；活动尚未记录不能读作 0。Word/印刷包链接仍在交付矩阵，操作导航移至“工作入口、系统健康与架构”，运行失败和待处理任务入口保留在首页。参考 [工作台统计契约](../code-as-doc/dev/workspace_production_evidence.md)。
 
 网页备注若出现双层项目符号，应核对冻结源中的表格结构；若出现深底深字，应同时核对引用块背景和文字颜色。修复后须分别检查桌面、窄屏与深色主题；本地预览不代表 RTD 已发布。
@@ -2132,6 +2136,34 @@ For source-bound illustration labels, `img.hb-source-reference` with `data-refer
 
 Figure coverage checks resolve source-declared reference artwork hashes from the frozen page ComponentSpec before falling back to a global profile entry. Missing, duplicate or invalid declared evidence still fails; the measured hash must match the packaged artwork.
 
+Frozen external Web manuals may retain reviewed source-specific geometry through
+a hash-bound presentation sheet replayed with the document. This allows an approved
+safety title, warning panel and native column split to survive the manual-center
+assembly. Confirm the assembled page on desktop and mobile; a standalone preview
+alone does not establish the final portal layout. See the [build guide](../code-as-doc/build_doc_guide.md).
+
 ### FridgeGuard US native FR/ES local candidate
 
 French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](../code-as-doc/reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.
+
+Frozen Web heading inline spans remain inside MyST titles, including the shared
+`hb-sold-separately` badge; use shared `h3.hb-heading-label-pair` when the native small title and availability badge have separate capsule backgrounds. Verify both the heading and its navigation link after
+assembly. Key combinations use `HB-TABLE-KEY-COMBINATIONS`, with authored button
+pairs and shared hold-duration clocks. Match product markings before choosing
+a shared button variant; function names alone do not establish artwork reuse.
+
+
+新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
+原稿标题条内型号使用共享 `hb-heading-model`，整行图标警告使用
+`HB-CALLOUT-STRIP/warning` 的 `hb-source-warning-lockup` 声明；图内说明通过
+ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样式声明见
+[原稿标题型号与完整警告框](../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
+
+PACKAGE LIST 的配件名称与 “Sold separately” 应为可编辑网页文字，分组外框及标签框由共享 CSS 绘制。使用现有匹配配件图和通用文档图标；新语言沿用同一套图片，只替换原稿标签。退役整图不可再次绑定，缩略封面细节的省略须在原稿覆盖记录中说明。
+
+原稿里单独成行的深色圆角提示应保留为可选取的独立正文段落，使用共享 `hb-prose-pill`，不要拼入前段或转换为标题。
+
+原稿放在图内的说明，应保留在图内；桌面沿用原稿位置，手机可在同一灰色图框内排为可读说明，不能重复放在图外。
+
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。

@@ -1,5 +1,107 @@
 /* Source-authored figure/table compositions and bounded target refinements. */
 
+/* Accessory availability is a separate source label inside a navigable title. */
+#furo-main-content :is(h1, h2, h3):has(.hb-sold-separately) {
+  flex-wrap: wrap;
+}
+#furo-main-content .hb-heading-title { flex: 0 1 auto; }
+#furo-main-content .hb-sold-separately {
+  display: inline-block;
+  flex: none;
+  padding: 0.35em 0.85em;
+  margin-left: 0.4em;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 0.82em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+#furo-main-content h1 .hb-sold-separately {
+  margin-left: auto;
+  background: var(--hb-paper);
+  color: var(--hb-brand-dark);
+  font-size: 0.62em;
+}
+#furo-main-content h1:has(.hb-sold-separately) {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Native small title and availability capsules are independent siblings. */
+#furo-main-content h3.hb-heading-label-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.65rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  text-transform: none;
+}
+#furo-main-content h3.hb-heading-label-pair::before { display: none; }
+#furo-main-content .hb-heading-label-pair > .hb-heading-title {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--hb-surface);
+}
+#furo-main-content .hb-heading-label-pair > .hb-sold-separately {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+/* Authored button pairs retain editable captions in the shared table. */
+#furo-main-content .hb-key-button-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.4rem;
+  text-align: center;
+}
+#furo-main-content .hb-key-button {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+}
+#furo-main-content .hb-key-button img {
+  width: 4.4rem !important;
+  height: 4.4rem !important;
+  margin: 0 !important;
+}
+#furo-main-content .hb-key-button-plus {
+  display: grid;
+  height: 4.4rem;
+  align-items: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+#furo-main-content .hb-key-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-bottom: 0.7rem;
+  font-size: 1.15rem;
+}
+#furo-main-content .hb-key-combination-table th:not(.hb-key-buttons) {
+  background: var(--hb-paper) !important;
+}
+#furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) {
+  min-width: 44rem;
+}
+#furo-main-content .hb-key-combination-table:has(.hb-key-button-pair) td {
+  padding: 0.8rem 0.7rem !important;
+}
+
 /* Dense localized leader diagrams retain readable type on narrow screens. */
 figure:has(> img.hb-readable-diagram) {
   overflow-x: auto;
@@ -162,4 +264,202 @@ figure:has(> img.hb-readable-diagram) {
 }
 @media (max-width: 40rem) {
   #furo-main-content .hb-operation-diagram { grid-template-columns: 1fr; }
+}
+
+/* Source model identity belongs to its chapter strip and can wrap in narrow readers. */
+#furo-main-content h1:has(.hb-heading-model) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+#furo-main-content h1:has(.hb-heading-model) > .headerlink {
+  position: absolute;
+  right: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#furo-main-content .hb-heading-model {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+/* Opt-in native warning: one outlined white panel, icon + signal, bold live body. */
+#furo-main-content table.hb-source-warning-lockup {
+  border-color: var(--hb-brand-dark) !important;
+  background: var(--hb-paper);
+}
+#furo-main-content .hb-source-warning-lockup .manual-callout-label {
+  width: 32% !important;
+}
+#furo-main-content .hb-source-warning-lockup .manual-callout-body {
+  width: 68%;
+  background: var(--hb-paper) !important;
+  vertical-align: middle !important;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+}
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup img {
+  flex: 0 0 auto;
+  width: 2.6rem !important;
+  height: 2.6rem;
+  margin: 0 !important;
+}
+@media (max-width: 40rem) {
+  #furo-main-content .hb-source-warning-lockup :is(.manual-callout-label, .manual-callout-body) {
+    width: 100% !important;
+  }
+}
+
+/* Package groups use language-neutral item art and native editable labels.
+   The whole outline and availability capsule belong to CSS, never base art. */
+#furo-main-content .hb-package-panel {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1rem;
+  border: 1.5px solid #a6a6a6;
+  border-radius: 1.4rem;
+  background: var(--hb-paper);
+}
+#furo-main-content .hb-package-panel--optional { border-style: dashed; }
+#furo-main-content .hb-package-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#furo-main-content .hb-package-grid--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+#furo-main-content .hb-package-grid > li { margin: 0; padding: 0; min-width: 0; }
+#furo-main-content .hb-package-item { text-align: center; }
+#furo-main-content .hb-package-art {
+  display: flex;
+  height: 8.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.7rem;
+}
+#furo-main-content .hb-package-art img {
+  display: block;
+  width: auto !important;
+  max-width: 90% !important;
+  height: auto !important;
+  max-height: 100%;
+  margin: 0 !important;
+  object-fit: contain;
+}
+#furo-main-content :is(.hb-package-art--terminal, .hb-package-art--gland, .hb-package-art--jumper) img { max-height: 4.6rem; }
+#furo-main-content .hb-package-art--neutral_wire img { max-height: 6rem; }
+#furo-main-content .hb-package-art--document img { max-height: 6rem; }
+#furo-main-content .hb-package-item p { margin: 0; font-size: 0.9rem; line-height: 1.4; }
+#furo-main-content .hb-package-availability { display: flex; align-items: center; justify-content: center; }
+#furo-main-content .hb-package-sold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 999px;
+  background: #a6a6a6;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+#furo-main-content .hb-package-cart {
+  position: relative;
+  flex: 0 0 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background: #fff;
+}
+#furo-main-content .hb-package-cart span {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.65rem;
+  width: 1rem;
+  height: 0.7rem;
+  border: 2px solid #a6a6a6;
+  border-top: 3px solid #a6a6a6;
+  transform: skew(-10deg);
+}
+#furo-main-content .hb-package-cart span::before {
+  content: "";
+  position: absolute;
+  width: 0.3rem;
+  height: 0.8rem;
+  left: -0.3rem;
+  top: -0.25rem;
+  border-top: 2px solid #a6a6a6;
+  border-right: 2px solid #a6a6a6;
+}
+#furo-main-content .hb-package-cart::after {
+  content: "";
+  position: absolute;
+  top: 1.55rem;
+  left: 0.75rem;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background: #a6a6a6;
+  box-shadow: 0.7rem 0 #a6a6a6;
+}
+@media (max-width: 600px) {
+  #furo-main-content .hb-package-panel { padding: 1rem 0.65rem; }
+  #furo-main-content .hb-package-grid,
+  #furo-main-content .hb-package-grid--five { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem 0.6rem; }
+  #furo-main-content .hb-package-art { height: 7.5rem; }
+  #furo-main-content .hb-package-sold { flex-wrap: wrap; text-align: center; border-radius: 1.3rem; }
+}
+
+/* Source-emphasized standalone prose stays selectable and wraps on mobile. */
+#furo-main-content p.hb-prose-pill {
+  display: table;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0.75rem 0;
+  padding: 0.22em 0.65em;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.35;
+}
+#furo-main-content p.hb-prose-pill strong { color: inherit; }
+
+/* Complete framed art with a native inset caption: keep readable mobile copy
+   inside the same panel, while preserving every pixel of the approved art. */
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-art-panel {
+    background: var(--hb-panel-fill);
+    border-radius: var(--hb-panel-radius);
+    overflow: hidden;
+  }
+  #furo-main-content .hb-reference-contained-copy .hb-reference-live-label {
+    margin: 0.35rem 0.8rem 0.7rem;
+  }
+}
+@media (min-width: 761px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-live-label {
+    font-size: 1.9cqw;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-contained-copy .hb-reference-art-panel > .hb-reference-art {
+    /* Only a source-declared crop's exterior page bleed; default masks none. */
+    clip-path: inset(0 0 var(--hb-art-page-bleed-bottom, 0%) 0);
+  }
 }

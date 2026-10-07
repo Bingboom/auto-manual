@@ -1,0 +1,233 @@
+{
+  "source_git_ref": "e12ab22b09c4d9f715a61816858961009c659f88",
+  "technical_version": "git-20261005-31fd0692-app3",
+  "receipt_sha256": "6b478f2dbc9691bca6123a9e2ddd5bcb02b9b22b99baea168e8a90c539e233a9",
+  "strict_standalone_sphinx": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "aggregate_targets": 106,
+  "native_source_line_coverage_unmatched": 0,
+  "deterministic_replay": {
+    "files": 108,
+    "byte_identical": true
+  },
+  "baseline_sources": {
+    "files_checked": 5609,
+    "failures": [],
+    "commit": "83cc003714a81a6d8fa1e89b9b38829b76ed598e"
+  },
+  "shared_artwork": {
+    "path": "docs/renderers/contracts/assets/app/app_connect_result_steps.png",
+    "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+    "bytes": "unchanged",
+    "native_difference": "Shared reference shows generic Explorer 1000 rather than HomePower 3600 Pro Max; user-directed common example reuse, source reference-only notice retained as live copy.",
+    "preserved": "all four phone edges, corners, status bars, bottom UI, embedded steps 2.3/2.4/2.5",
+    "old_crop": "superseded-do-not-reuse; no rendered references"
+  },
+  "browser": {
+    "checks": "passed",
+    "snapshots": [
+      {
+        "phones": {
+          "documentWidth": 1440,
+          "images": [
+            {
+              "availableWidth": 817.03125,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": -570.34375,
+                "height": 349.8359375,
+                "width": 352,
+                "x": 547.109375,
+                "y": -920.1796875
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 817.03125,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                2180,
+                1260
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 565.4609375,
+                "height": 339.8515625,
+                "width": 588,
+                "x": 429.109375,
+                "y": 225.609375
+              },
+              "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            1440,
+            1000
+          ]
+        },
+        "reference": {
+          "alt": "Reference App screenshots: scanning, Wi-Fi configuration and connected device. Generic Explorer 1000 example with steps 2.3, 2.4 and 2.5.",
+          "oldImageReferences": 0,
+          "referenceNoteCount": 1,
+          "referenceNoteSelectable": [
+            "auto"
+          ],
+          "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+        },
+        "regression": {
+          "headingRoles": 84,
+          "lcdStatusBold": true,
+          "soldBadges": 7,
+          "priorAppEmphasis": true
+        }
+      },
+      {
+        "phones": {
+          "documentWidth": 390,
+          "images": [
+            {
+              "availableWidth": 358,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": -991.515625,
+                "height": 349.8359375,
+                "width": 352,
+                "x": 19,
+                "y": -1341.3515625
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 358,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                2180,
+                1260
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 366.9375,
+                "height": 206.9140625,
+                "width": 358,
+                "x": 16,
+                "y": 160.0234375
+              },
+              "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        "reference": {
+          "alt": "Reference App screenshots: scanning, Wi-Fi configuration and connected device. Generic Explorer 1000 example with steps 2.3, 2.4 and 2.5.",
+          "oldImageReferences": 0,
+          "referenceNoteCount": 1,
+          "referenceNoteSelectable": [
+            "auto"
+          ],
+          "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+        },
+        "regression": {
+          "headingRoles": 84,
+          "lcdStatusBold": true,
+          "soldBadges": 7,
+          "priorAppEmphasis": true
+        }
+      },
+      {
+        "phones": {
+          "documentWidth": 320,
+          "images": [
+            {
+              "availableWidth": 288,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": -1069.7109375,
+                "height": 286.2265625,
+                "width": 288,
+                "x": 16,
+                "y": -1355.9375
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 288,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                2180,
+                1260
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 350.9296875,
+                "height": 166.453125,
+                "width": 288,
+                "x": 16,
+                "y": 184.4765625
+              },
+              "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            320,
+            844
+          ]
+        },
+        "reference": {
+          "alt": "Reference App screenshots: scanning, Wi-Fi configuration and connected device. Generic Explorer 1000 example with steps 2.3, 2.4 and 2.5.",
+          "oldImageReferences": 0,
+          "referenceNoteCount": 1,
+          "referenceNoteSelectable": [
+            "auto"
+          ],
+          "src": "../../../../_static/manual-assets/_pool/17/17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3.png"
+        },
+        "regression": {
+          "headingRoles": 84,
+          "lcdStatusBold": true,
+          "soldBadges": 7,
+          "priorAppEmphasis": true
+        }
+      }
+    ]
+  },
+  "boundary": "local Git-only; no push/PR/merge/deployment/online writes"
+}
