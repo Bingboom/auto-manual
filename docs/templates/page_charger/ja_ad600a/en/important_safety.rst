@@ -1,9 +1,11 @@
-IMPORTANT SAFETY INSTRUCTIONS
-=============================
+5. IMPORTANT SAFETY INSTRUCTIONS
+================================
 
-During vehicle operation, the DC-DC charger utilizes the generator's surplus power to charge the portable power station. The actual charging power depends on the vehicle's driving conditions, model, and overall condition.
+.. container:: hb-source-operation hb-source-note
 
-To ensure safe operation, it is crucial to observe the following guidelines:
+   During vehicle operation, the DC-DC charger utilizes the generator's surplus power to charge the portable power station. The actual charging power depends on the vehicle's driving conditions, model, and overall condition.
+
+To ensure safe operation, it's crucial to observe the following guidelines:
 
 - Keep this manual for future reference.
 - Always operate or store the product under the conditions specified in this manual.
@@ -13,17 +15,16 @@ To ensure safe operation, it is crucial to observe the following guidelines:
 Product Compatibility
 ---------------------
 
-.. raw:: html
+.. container:: hb-source-safety-heading hb-source-compatibility
 
-   <table class="manual-callout-table" lang="en">
-     <tbody><tr>
-       <td class="manual-callout-label">WARNING</td>
-       <td class="manual-callout-body">This product is only compatible with Jackery portable power stations with a DC8020 input port. Do not use adapters to connect it to a DC7909 or USB-C input port. Such a connection may cause device damage, fire, or explosion and pose serious personal safety risks.</td>
-     </tr></tbody>
-   </table>
+   .. image:: renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg
+      :alt: Warning
+      :width: 40px
 
-- This product is compatible only with 12V/24V car batteries. Before use, ensure that your vehicle's rated voltage is either 12V or 24V, and always follow electrical safety guidelines.
-- This product is compatible with Jackery portable power stations equipped with a DC8020 input port. Some compatible models are listed below. For more information, contact customer service or visit the official Jackery website.
+   This product is only compatible with Jackery portable power stations with a DC8020 input port. Users are strictly prohibited from using adapters to connect this product to a DC7909 or USB-C input port of a portable power station. Such connecting may cause device damage, fire, or even explosion, posing serious personal safety risks.
+
+- This product is compatible only with 12V/24V car batteries. Before using the product, ensure that your vehicle's rated voltage is either 12V or 24V, and always follow electrical safety guidelines during use.
+- This product is compatible with Jackery portable power stations equipped with a DC8020 input port. Refer to the table below for some compatible models. For more information, please contact customer service or visit the official Jackery website.
 
 .. list-table:: Compatible portable power stations
    :header-rows: 1
@@ -65,46 +66,65 @@ Product Compatibility
      - Around 600W
      - Around 5.6 Hour
 
-The charging-time data is based on simulated tests at a constant temperature of 25°C. In actual use, charging power may vary with driving conditions, vehicle model, and overall condition. Charging time may also be affected by ambient temperature.
+Note: The charging time data for this product is based on simulated tests conducted under a constant temperature of 25°C. In actual use, charging power may vary due to driving conditions, vehicle model, and overall condition. Charging times may also be affected by changes in ambient temperature.
 
 **Standard Test Environment:** Constant 25°C
 
 **Data Source:** Jackery Lab
 
-Powering On the Product
------------------------
+.. image:: asset:web/ja-ad600a/eu/en/status-device
+   :alt: Product with green status indicator on the top surface.
+   :class: hb-status-device-art
+   :width: 100%
 
-- **Short press the power button:** When there is no ACC signal input, briefly press the power button to power on the device.
-- **Powering on via ACC signal:** If the ACC wire is connected, the device automatically powers on when it detects an ACC signal input, such as after the vehicle is started.
+.. container:: hb-source-operation hb-source-power
 
-Standby and Shutdown
---------------------
+   .. rubric:: Powering On the Product
 
-When there is no ACC signal input or the voltage falls below the startup threshold, the product enters standby mode. If standby lasts longer than 24 hours or the voltage drops below the protection threshold, the device automatically shuts down. Restart it using the powering-on steps above.
+   1. **Short press the power button:** When there is no ACC signal input, you can power on the device by briefly pressing the power button.
+   2. **Powering on via ACC signal:** If the ACC wire is connected, the device will automatically power on when it detects an ACC signal input (e.g., after the vehicle is started).
 
-While in standby mode, if there is no ACC signal input, you can also manually shut down the device by pressing and holding the power button for 3 seconds.
+   .. rubric:: Standby and Shutdown
 
-.. list-table:: Status indicator
-   :header-rows: 1
-   :widths: 18 18 25 39
+   When there is no ACC signal input or the voltage falls below the startup threshold, the product will enter standby mode. If standby lasts longer than 24 hours or the voltage drops below the protection threshold, the device will automatically shut down. To restart it, follow the same steps as described above.
 
-   * - Light Status
-     - Light Color
-     - Product Status
-     - Remarks
-   * - Solid
-     - Green
-     - Charging
-     - —
-   * - Solid
-     - Red
-     - Abnormal
-     - If any issues are detected, promptly contact Jackery customer service for support.
-   * - Blinking
-     - Green
-     - Connection is normal, waiting for charging.
-     - Possible causes are an unstable output-cable connection, a damaged cable, or a fully charged portable power station. If the issue persists after troubleshooting, contact Jackery customer service.
-   * - No light
-     - No color
-     - The product is not powered on.
-     - If the problem remains after completing wiring and starting the vehicle, contact Jackery customer service.
+   While in standby mode, if there is no ACC signal input, you can also manually shut down the device by pressing and holding the power button for 3 seconds.
+
+.. role:: hb-lamp-green
+.. role:: hb-lamp-red
+.. role:: hb-lamp-blinking
+.. role:: hb-lamp-off
+
+.. container:: hb-source-operation hb-source-status
+
+   .. list-table::
+      :class: hb-source-status-table
+      :header-rows: 1
+      :widths: 18 18 25 39
+
+      * - Light Status
+        - Light Color
+        - Product Status
+        - Remarks
+      * - Solid
+        - :hb-lamp-green:`Green`
+        - Charging
+        - /
+      * - Solid
+        - :hb-lamp-red:`Red`
+        - Abnormal
+        - If any issues are detected, promptly contact Jackery customer service for support.
+      * - Blinking
+        - :hb-lamp-blinking:`Green`
+        - Connection is normal, waiting for charging.
+        - If the same issue occurs after connecting the portable power station, possible causes include:
+
+          1. Unstable connection between the output cable and the portable power station.
+          2. Damaged cable.
+          3. The portable power station is fully charged.
+
+          If the issue persists after troubleshooting, please contact Jackery customer service for support.
+      * - No light
+        - :hb-lamp-off:`No color`
+        - The product is not powered on.
+        - If the problem remains after completing wiring and starting the vehicle, please contact Jackery customer service.
