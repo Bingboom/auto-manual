@@ -1,6 +1,5 @@
-/* Searchable, editable FCC composition projected from HB-SPECIAL-FCC. */
 /* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
-#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
+#furo-main-content section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child {
   position: absolute !important;
   width: 1px !important;
   height: 1px !important;
@@ -13,7 +12,8 @@
   white-space: nowrap !important;
 }
 
-.hb-fcc-composition {
+.hb-fcc-composition,
+#furo-main-content section:has(> figure.hb-fcc-statement) {
   --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
   --hb-fcc-radius: 1rem;
   margin: 0 auto 2.25rem;

@@ -1,0 +1,62 @@
+[
+  {
+    "chapter": 9,
+    "node": 24,
+    "old": "Câble d’entrée/sortie d’alimentation dans l’emballage du ATS",
+    "native": "Câble d’alimentation entrée/sortie dans le paquet ATS",
+    "page": 49,
+    "blocks": [
+      12,
+      13
+    ]
+  },
+  {
+    "chapter": 9,
+    "node": 33,
+    "old": "Câble de charge Jackery 40 A (vendu séparément)",
+    "native": "Câble de charge Jackery de 40 A (vendu séparément)",
+    "page": 50,
+    "blocks": [
+      17,
+      18
+    ]
+  },
+  {
+    "chapter": 9,
+    "node": 38,
+    "old": "Câble de charge dans le paquet MTS",
+    "native": "Câble de recharge inclus dans le kit MTS",
+    "page": 51,
+    "blocks": 8
+  },
+  {
+    "chapter": 9,
+    "node": 38,
+    "old": "Câble de charge Jackery 40 A (vendu séparément)",
+    "native": "Câble de charge Jackery de 40 A (vendu séparément)",
+    "page": 51,
+    "blocks": [
+      9,
+      10
+    ]
+  },
+  {
+    "chapter": 17,
+    "node": 13,
+    "old": "Courant et durée maximum du court-circuit",
+    "native": "Maximum Short Circuit Current and Duration",
+    "page": 63,
+    "blocks": 20
+  },
+  {
+    "chapter": 17,
+    "node": 14,
+    "old": "-4 °F à 113 °F (-20 °C à 45 °C)",
+    "native": "-4°F to 113°F / -20°C to 45°C",
+    "page": 63,
+    "blocks": [
+      26,
+      27
+    ]
+  }
+]

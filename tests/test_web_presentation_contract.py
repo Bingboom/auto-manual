@@ -131,12 +131,23 @@ class WebPresentationContractTests(unittest.TestCase):
         )
         self.assertEqual([], contract["preface"]["targets"])
         requirement = contract["figure_coverage"]["requirements"][0]
-        self.assertEqual("ja-ad600a-eu-en-finished-figures-v1", requirement["policy_id"])
-        self.assertEqual(5, len(requirement["required_slots"]))
+        self.assertEqual("ja-ad600a-eu-en-shared-labels-v5", requirement["policy_id"])
+        self.assertEqual(13, len(requirement["required_slots"]))
+        self.assertEqual(
+            {"reference.charger-connection": ["base-art-live-copy"],
+             "reference.wiring-fuse": ["base-art-live-copy"],
+             "reference.wiring-acc": ["base-art-live-copy"],
+             "reference.product-overview": ["base-art-live-copy"],
+             "reference.installation-diagram": ["base-art-live-copy"]},
+            requirement["slot_status_overrides"],
+        )
+        self.assertIn("reference.charger-connection", requirement["required_slots"])
         self.assertEqual(
             ["finished-panel", "approved-composite"],
             requirement["allowed_statuses"],
         )
+        self.assertEqual([], contract["operations"]["figures"])
+        self.assertEqual([], contract["warranty"]["source_patterns"])
         self.assertIsNone(contract["operations"]["lcd_mode_table"])
         self.assertIsNone(contract["operations"]["auto_resume_table"])
 

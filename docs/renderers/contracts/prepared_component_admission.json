@@ -1,6 +1,6 @@
 {
   "schema_version": "prepared-component-admission/v1",
-  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.",
+  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.; JA-AD600A EU English 0924 AI (SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348) operator-reviewed 2026-10-07 MA-264: nine source pages, one spec, nine-item inbox, five live-copy reference figures, exact compatibility/status/period tables, source-native warning and ten paired installation prose/illustrations. Historical stored evidence remains unchanged.",
   "debt_reasons": {
     "diagram-labels": "Source illustration labels; not an operation UI table. Preserve complete labels until the annotated-figure adapter owns this layout.",
     "regulatory-radio": "Regulatory radio-frequency declaration; not an LCD or operation table. Preserve exact source rows.",
@@ -11,7 +11,8 @@
     "callout-intake": "Localized authored note/caution table still needs the callout adapter; preserve wording pending migration.",
     "operation-intake": "Legacy JE-3600A operation table needs a source-compatible adapter; do not infer the newer three-state structure.",
     "app-finished-panel": "Historical App chapter retains governed finished panels and original QR/store artwork. Migrate download, inline-control and add-device separately.",
-    "warranty-intake": "Historical source-defined warranty chapter awaits compact/full warranty classification. Do not synthesize full clauses."
+    "warranty-intake": "Historical source-defined warranty chapter awaits compact/full warranty classification. Do not synthesize full clauses.",
+    "charger-warranty-period": "Operator-reviewed JA-AD600A 0924 warranty period uses an exact source-authored two-column badge/prose table. Preserve the native period composition; do not synthesize the historical portable-host warranty cards."
   },
   "targets": {
     "JA-AD01A/EU/en": {
@@ -86,24 +87,24 @@
         },
         "product_overview_en.rst": {
           "slot": "product_overview_en",
-          "components": {}
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
         },
         "important_safety_en.rst": {
           "slot": "important_safety_en",
-          "components": {
-            "HB-CALLOUT-STRIP/warning": 1
-          },
+          "components": {},
           "debt": [
             {
-              "location": "7/6",
+              "location": "7/7",
               "kind": "table",
               "sha256": "637a3b909828c96c9dc417a127dfd587ba30cdd0fcf0f924b9aea126887d101e",
               "category": "charger-compatibility"
             },
             {
-              "location": "11/7",
+              "location": "7/19/1",
               "kind": "table",
-              "sha256": "0f6be23e3793a489bec5ca258956e670af039760f99b7672f9ffb58cb6ae8b11",
+              "sha256": "b302b3ebed48960cac144594aa80164cc024f4934e994d40e74365a9b994b36d",
               "category": "charger-status"
             }
           ]
@@ -115,18 +116,20 @@
         "installation_en.rst": {
           "slot": "installation_en",
           "components": {
-            "HB-SPECIAL-OPERATION/footer-panel": 5,
-            "HB-CALLOUT-STRIP/warning": 1
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
           }
         },
         "warranty_en.rst": {
           "slot": "warranty_en",
-          "components": {
-            "HB-WARRANTY-LEAD/intro-panel": 1,
-            "HB-WARRANTY-SECTION/rounded-card": 5,
-            "HB-WARRANTY-YEARS/numeric-badges": 1
-          },
-          "chapter": "warranty"
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "0ae9ec3011b0bbc9d67e8e23b92d2b0ab858363d88ee9a2506c7b2b460c66cb5",
+              "category": "charger-warranty-period"
+            }
+          ]
         }
       }
     },

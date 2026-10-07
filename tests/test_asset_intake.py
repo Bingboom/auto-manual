@@ -41,6 +41,41 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_panel_preserves_in_crop_images_and_their_transform(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.w3.org/2000/svg}'
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((5, 5, 95, 95), color=None, fill=(.8, .8, .8))
+            pixels = fitz.Pixmap(fitz.csRGB, fitz.IRect(0, 0, 2, 2))
+            pixels.clear_with(255)
+            page.insert_image(fitz.Rect(20, 30, 40, 50), pixmap=pixels)
+            page.insert_image(fitz.Rect(70, 70, 90, 90), pixmap=pixels)
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 60, 60]))
+            images = list(selected.iter(ns + 'image'))
+            self.assertEqual(1, len(images))
+            self.assertEqual(list(original.iter(ns + 'image'))[0].attrib, images[0].attrib)
+            transforms = [n.get('transform') for n in selected.iter(ns + 'g')]
+            self.assertIn('matrix(10,0,0,10,20,30)', transforms)
+    def test_native_compound_fill_stroke_keeps_every_original_subpath(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            shape = page.new_shape()
+            shape.draw_circle((30, 40), 15)
+            shape.draw_circle((70, 60), 10)
+            shape.finish(color=(0, 0, 0), fill=(.8, .8, .8), closePath=True)
+            shape.commit()
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [5, 5, 95, 95]))
+            ns = './/{http://www.w3.org/2000/svg}path'
+            self.assertEqual(2, len(selected.findall(ns)))
+            self.assertEqual([p.attrib for p in original.findall(ns)],
+                             [p.attrib for p in selected.findall(ns)])
+
     def test_native_filled_stroked_button_keeps_both_paths_and_transparent_edges(self):
         from tools.asset_pipeline.native_svg import native_symbol_svg
         import xml.etree.ElementTree as ET
