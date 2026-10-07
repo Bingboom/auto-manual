@@ -199,6 +199,11 @@
       "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
     },
     {
+      "path": "evidence/browser-checks.json",
+      "size": 1166,
+      "sha256": "260e1a0e93bf2fb29354dbb666326d52ac0366fd17f0e9d17ac39bd8610af045"
+    },
+    {
       "path": "evidence/browser/es-desktop-car-final.png",
       "size": 104864,
       "sha256": "9c3f01f00702c07a48c37f80c5fcf8130a8e4bc68ebb3ff5ed70d7e776601989"
@@ -252,11 +257,6 @@
       "path": "evidence/browser/fr-mobile-warranty-final.png",
       "size": 70636,
       "sha256": "0fff3059fff136682643a5f6ba5b8d4f56c7bb7f90fa285d7f865c2b0ded2a3f"
-    },
-    {
-      "path": "evidence/browser-checks.json",
-      "size": 1166,
-      "sha256": "260e1a0e93bf2fb29354dbb666326d52ac0366fd17f0e9d17ac39bd8610af045"
     },
     {
       "path": "evidence/component-tests.log",
