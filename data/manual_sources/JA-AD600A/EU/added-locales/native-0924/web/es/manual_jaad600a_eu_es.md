@@ -365,10 +365,8 @@ Nota: Los datos de tiempo de carga de este producto se basan en pruebas simulada
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<ul class="simple">
-<li><p>Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos.</p></li>
-</ul>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos.</p>
 </div>
 
 

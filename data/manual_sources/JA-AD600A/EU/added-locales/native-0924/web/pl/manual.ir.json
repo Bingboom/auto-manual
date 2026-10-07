@@ -28,8 +28,8 @@
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pl",
-  "bundle_sha256": "e1f7f75a22b3bdc6b36e54e4e7d514f5e9ede4e2a55fccecb2d6bc7902d798fd",
-  "content_sha256": "1a4fc062b0dfe874308fcc98752c387efde8fd94e093cded2dcc91700c32b841",
+  "bundle_sha256": "4d9307ccca19f8f705979f1fbcacb7b8ca9ed4eb4f35f33d6453264ac58d3090",
+  "content_sha256": "a9999af16421e1145f30969c50957c0444a0773a0b8aee0339e4d4d9e9489c93",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12070,7 +12070,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_pl.rst:block-0012",
-          "content_sha256": "63f746930113a64f194175a7cd374525acdde91d63c79c4fee280d3d66cf6cbf",
+          "content_sha256": "ee44d65dbeb88acfae6cd8ad7f79af685737d5eb3f88d4dd02f7c5f97bd0d138",
           "kind": "flow",
           "payload": {
             "anchor": "instalacja-produktu-1",
@@ -12103,7 +12103,7 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "*Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych."
+                        "text": "Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych."
                       }
                     ],
                     "kind": "paragraph"
@@ -12120,6 +12120,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13887,7 +13888,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pl/installation_pl.rst",
       "source_ref": "installation_pl.rst",
-      "source_sha256": "5d20edd47e2d1a4e8ee21aa26fd565ff64de5d88d0589c882b49411e0e3d6ff0"
+      "source_sha256": "c4c418ed4a7edf89ee2f6b47bde4be1898c3fae94617d2f81394700d3c2b0f69"
     },
     {
       "blocks": [

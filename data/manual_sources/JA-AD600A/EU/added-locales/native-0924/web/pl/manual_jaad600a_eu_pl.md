@@ -363,8 +363,8 @@ Uwaga: Dane dotyczące czasu ładowania dla tego produktu opierają się na symu
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<p>*Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych.</p>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych.</p>
 </div>
 
 

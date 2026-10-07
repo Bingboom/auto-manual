@@ -364,10 +364,8 @@ Opmerking: De informatie over de oplaadtijd van dit product is gebaseerd op gesi
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<ul class="simple">
-<li><p>Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen.</p></li>
-</ul>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen.</p>
 </div>
 
 

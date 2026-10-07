@@ -161,9 +161,9 @@
 7.6 Cavo ACC del veicolo
 ------------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni.
+   Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni.
 
 
 Metodo 1: Fissare il prodotto alla carrozzeria del veicolo.

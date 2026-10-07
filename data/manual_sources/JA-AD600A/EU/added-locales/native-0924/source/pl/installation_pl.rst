@@ -173,9 +173,9 @@
 7.6 Instalacja produktu
 -----------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   *Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych.
+   Przed wywierceniem otworów lub zamocowaniem ładowarki DC-DC sprawdź obszar za planowanym miejscem montażu, aby uniknąć uszkodzenia wiązek przewodów lub innych elementów wewnętrznych.
 
 
 Metoda 1: Zamocuj produkt do nadwozia pojazdu.

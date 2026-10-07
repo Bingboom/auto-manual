@@ -173,9 +173,9 @@
 7.6 Installation du produit
 ---------------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes.
+   Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes.
 
 
 Méthode 1 : Fixer le produit sur la carrosserie du véhicule.

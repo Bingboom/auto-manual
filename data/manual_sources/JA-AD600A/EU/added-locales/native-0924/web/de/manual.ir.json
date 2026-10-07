@@ -27,8 +27,8 @@
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/de",
-  "bundle_sha256": "ca163fac3f7f76e8bef42bbc0ba843d0f82cd0607104f3cfdc4232ff39fe2f68",
-  "content_sha256": "983ba23747b0b3ec7d276cb1328052072fa857c40a03cbf37f32f7fe2eae823f",
+  "bundle_sha256": "c04d963358c6ac496a859d0e59355dbb22bbd974ef0e96e6b25d5d5d02f8e00a",
+  "content_sha256": "9e3628df329b9b6c40a7721481f72eb6000189ae6d58a498ea6675356124cead",
   "language": "de",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12151,7 +12151,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_de.rst:block-0012",
-          "content_sha256": "1dd3f5b9672ff8ff47d2fbc554af6df67a89cc10652edd0a6b97ed5bfc4674d7",
+          "content_sha256": "8f47ad9cad7dac8bd982d215ce4165239453937e500832b30f7227178b0d6287",
           "kind": "flow",
           "payload": {
             "anchor": "produktinstallation-1",
@@ -12184,38 +12184,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12229,6 +12201,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13880,7 +13853,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/de/installation_de.rst",
       "source_ref": "installation_de.rst",
-      "source_sha256": "13da7d70c341ec6e8bbd35a7b46258206cd36bf6df69c0ff5fdd26b8fc804ff3"
+      "source_sha256": "2b7ca402133ec1f3bccbce58b8907af31278c936d2fc58bbacfb4fa3575b13a2"
     },
     {
       "blocks": [

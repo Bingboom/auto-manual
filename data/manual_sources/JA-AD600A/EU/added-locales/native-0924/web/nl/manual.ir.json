@@ -28,8 +28,8 @@
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl",
-  "bundle_sha256": "7a079907d66ab8a149e9fb7cbaf2cfe1591f169225e730304221c36e42c94f61",
-  "content_sha256": "584e2977b427838b71f4c84a1983d25e95bfb5afda7f4969f1ae76cb152cbbb9",
+  "bundle_sha256": "fa3c3ce4dd08aaf335300c2abd5b5cb66872dbf59888d54e9fcc1dcc465dd36d",
+  "content_sha256": "dae5504e769d57707d8bb814fa60251bb43804ce2e4c0e647fde277c973a9d69",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12080,7 +12080,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_nl.rst:block-0012",
-          "content_sha256": "2d292d555179c9458eeac43ba716b79c09f862d8095a56502fe7435f5ee68712",
+          "content_sha256": "4202542886f7418a562bd4eaa14618082b349fae34c18d7333e2d1e2ec4bfda0",
           "kind": "flow",
           "payload": {
             "anchor": "installatie-van-het-product-1",
@@ -12113,38 +12113,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12158,6 +12130,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13925,7 +13898,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst",
       "source_ref": "installation_nl.rst",
-      "source_sha256": "3b2a1f891632f441ab2cc037fa7fd4b492d8190323aac3257705af7071a6e7a1"
+      "source_sha256": "efff4afd339ee3c488114dc2500ebf1f9482c79dcc9bce61971ace889a61656e"
     },
     {
       "blocks": [

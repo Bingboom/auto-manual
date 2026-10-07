@@ -174,9 +174,9 @@
 7.6 Produktinstallation
 -----------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen.
+   Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen.
 
 
 Methode 1: Befestigung des Produkts an der Fahrzeugkarosserie.

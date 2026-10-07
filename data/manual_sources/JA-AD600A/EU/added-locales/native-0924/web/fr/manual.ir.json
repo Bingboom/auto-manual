@@ -28,8 +28,8 @@
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/fr",
-  "bundle_sha256": "bb7474f25f8aff393c7364666ef6b01f0636d07822d93d8d69ed27bec6d4352b",
-  "content_sha256": "66a21f2149f6c0d75cdd5c133aec6936c21fcaccdb632c69a6fce6a1ac145c72",
+  "bundle_sha256": "974b8b91953c704937524e99c20de616a50a1e2a8917ca11dd719fbb0576a3bc",
+  "content_sha256": "6a88ef0af620ec036f75dfc049f5a8e2b42fe4612bab000f26048b308b4e07e7",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12147,7 +12147,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_fr.rst:block-0012",
-          "content_sha256": "99b4f404ecf06401b7cce1945163d8e35d68bfb0b1f5d8e3fbaae849da4ca8a4",
+          "content_sha256": "11957966f852ea851df438fd4d5a05e66ce0d73dacfc264083247ffd4f58999f",
           "kind": "flow",
           "payload": {
             "anchor": "installation-du-produit-1",
@@ -12180,38 +12180,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12225,6 +12197,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13992,7 +13965,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/fr/installation_fr.rst",
       "source_ref": "installation_fr.rst",
-      "source_sha256": "e8a4ba74c299a95a7bc3632f25260c8ad2944b8aef2f88c68d4909f611a7b56b"
+      "source_sha256": "86f82de19111fa5e6414a40a715eb578393fa0a9093427921ae3d0d10b253b3e"
     },
     {
       "blocks": [

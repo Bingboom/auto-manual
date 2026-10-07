@@ -28,8 +28,8 @@
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es",
-  "bundle_sha256": "4e599b1da2911fb261676ac2631050c13013b27af6800288fbac431a70a3cb5e",
-  "content_sha256": "385562f57e4dc0a2413216a42404c094e1b078c9e51a2a0aada7245ede9c17d0",
+  "bundle_sha256": "7fcf75f9a08f65725c5cb95915c36900b728118af153fab433bc5d70fea31a7c",
+  "content_sha256": "2abcd0ef76adb9ac606942678dbfcea138caf0da6fae57ce9d9ff4438af94c02",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12091,7 +12091,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_es.rst:block-0012",
-          "content_sha256": "92876faff56b536a5b6e7fa6ffe745e41800cc07c40e611e09cba28a6d7d5f61",
+          "content_sha256": "4d8563e9d1b505bfac352e01157a16c68710063600f915bec3cb43733b504749",
           "kind": "flow",
           "payload": {
             "anchor": "instalacion-del-producto-1",
@@ -12124,38 +12124,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12169,6 +12141,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13936,7 +13909,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst",
       "source_ref": "installation_es.rst",
-      "source_sha256": "fcf1a4fd6ae0442b361c1996cd6e4646fce045d9d1633c6ec35cd38f6297147b"
+      "source_sha256": "5e24a03697b32f807333aa25dce81de8983c4bf8b67982c4cfc63865762797b7"
     },
     {
       "blocks": [

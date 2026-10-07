@@ -173,9 +173,9 @@
 7.6 Instalación del producto
 ----------------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos.
+   Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos.
 
 
 Método 1: Fije el producto a la carrocería del vehículo.

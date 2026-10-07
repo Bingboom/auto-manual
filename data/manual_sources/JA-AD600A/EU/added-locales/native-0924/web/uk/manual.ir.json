@@ -28,8 +28,8 @@
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/uk",
-  "bundle_sha256": "0a7ab7a74a0cf315f5960eb58fe2202bc56edc03109f0bceafe04ec86782c309",
-  "content_sha256": "c6eed1cf7ba7d0c1893233721cbdd0b879dd0a0d7fe36b048520030318e64e61",
+  "bundle_sha256": "d1fa06b1312f5c36fc1cbbe2a8b3c4e90a10dd3d61230d16939d624f02b86344",
+  "content_sha256": "fad2333fd2d08a0d796cf1ae96db88c0dfaa17b07f7e70f3eb7084caf069c05c",
   "language": "uk",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12070,7 +12070,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_uk.rst:block-0012",
-          "content_sha256": "672f124c4c626ce9702c4c4556ecac41b6c2f3d7c87e3b74fe980c7b0c91344a",
+          "content_sha256": "7cc144f0b00b71c1af93aee67ff67697c1530546ae14fa8d3e3ccabe7f8ce8f6",
           "kind": "flow",
           "payload": {
             "anchor": "section-7",
@@ -12103,38 +12103,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Перед свердлінням отворів або кріпленням зарядного пристрою DC-DC огляньте область позаду передбачуваного місця встановлення, щоб уникнути пошкодження джгутів проводів або інших внутрішніх компонентів."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Перед свердлінням отворів або кріпленням зарядного пристрою DC-DC огляньте область позаду передбачуваного місця встановлення, щоб уникнути пошкодження джгутів проводів або інших внутрішніх компонентів."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12148,6 +12120,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13915,7 +13888,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/uk/installation_uk.rst",
       "source_ref": "installation_uk.rst",
-      "source_sha256": "e096b6724e6f622e0ef15c1093f7615e4e8dc78bb7cd872f4fa1aec9d0df3307"
+      "source_sha256": "445aedd5097e7b99567e02d1fd3cd0169013b383ae78b867e46010c078dec2be"
     },
     {
       "blocks": [

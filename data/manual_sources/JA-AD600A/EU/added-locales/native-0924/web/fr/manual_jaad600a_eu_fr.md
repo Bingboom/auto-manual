@@ -370,10 +370,8 @@ Remarque : Les données relatives au temps de charge de ce produit sont basées 
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<ul class="simple">
-<li><p>Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes.</p></li>
-</ul>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes.</p>
 </div>
 
 

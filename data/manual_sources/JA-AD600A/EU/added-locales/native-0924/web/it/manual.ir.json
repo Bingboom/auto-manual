@@ -27,8 +27,8 @@
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
   ],
   "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/it",
-  "bundle_sha256": "4632685e0f94620a9189f341b95988d1e5bba65176f31c9034e1801e3476c5b0",
-  "content_sha256": "41e7578e9bb763419d538c765b3416c589cbfe78d2185efb3abb5312a3f80d4b",
+  "bundle_sha256": "e89796ec5d1bdc9a5bf08ff183595b49216ecc72c8779db81b395177bf3afbdc",
+  "content_sha256": "8248dc85543e78e96178988822d59ae15021c4bbbea41eaf617ff6ecf4b8d19c",
   "language": "it",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12146,7 +12146,7 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_it.rst:block-0012",
-          "content_sha256": "a0bbc6a61b34dc036dae31f71d47b583650a33f68208f3d2eb2a23879a694f82",
+          "content_sha256": "e939444027e8cb77119bbb05c72beaa7dbcc4cc883652690e387e62a9aec50c3",
           "kind": "flow",
           "payload": {
             "anchor": "cavo-acc-del-veicolo",
@@ -12179,38 +12179,10 @@
                     "children": [
                       {
                         "kind": "text",
-                        "text": "\n"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni."
-                              }
-                            ],
-                            "kind": "paragraph"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "kind": "text",
-                        "text": "\n"
+                        "text": "Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni."
                       }
                     ],
-                    "kind": "list",
-                    "ordered": false,
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": [
-                            "simple"
-                          ]
-                        }
-                      }
-                    }
+                    "kind": "paragraph"
                   },
                   {
                     "kind": "text",
@@ -12224,6 +12196,7 @@
                       "class": [
                         "hb-source-operation",
                         "hb-source-note",
+                        "hb-source-installation-note",
                         "docutils",
                         "container"
                       ]
@@ -13875,7 +13848,7 @@
       "skipped_raw": 0,
       "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/it/installation_it.rst",
       "source_ref": "installation_it.rst",
-      "source_sha256": "7857e2a3e2c89d3ff86ac6b77466cb5ab622cbc11a84f25ce5c9ce8f0b31016a"
+      "source_sha256": "eecda42c8fce26bb1a171f572bd596e000f987c4df04fb3e99917396d82690c9"
     },
     {
       "blocks": [

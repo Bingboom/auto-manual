@@ -194,5 +194,85 @@
     "runs": 16,
     "overflowing_cell_texts": 0,
     "single_visible_spec_title": true
+  },
+  "mounting_note_acceptance": {
+    "languages": [
+      "fr",
+      "es",
+      "de",
+      "it",
+      "uk",
+      "pt",
+      "nl",
+      "pl"
+    ],
+    "browser_widths": [
+      1280,
+      390
+    ],
+    "runs": 16,
+    "list_items": 0,
+    "paragraphs": 1,
+    "vertical_padding_px": 8,
+    "native_words_unchanged": true,
+    "note_height_reduced_in_all_runs": true,
+    "cold_replay": [
+      {
+        "language": "fr",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "es",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "de",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "it",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "uk",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "pt",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "nl",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      },
+      {
+        "language": "pl",
+        "body_parity": true,
+        "dom_parity": true,
+        "assets_parity": true,
+        "strict_sphinx": true
+      }
+    ]
   }
 }

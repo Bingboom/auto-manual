@@ -368,10 +368,8 @@ Hinweis: Die Ladezeitangaben für dieses Produkt basieren auf simulierten Tests 
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<ul class="simple">
-<li><p>Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen.</p></li>
-</ul>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Überprüfen Sie vor dem Bohren oder Befestigen des DC-DC-Ladegeräts den Bereich hinter der vorgesehenen Montageposition, um Kabelbäume oder andere interne Komponenten nicht zu beschädigen.</p>
 </div>
 
 

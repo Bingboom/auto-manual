@@ -368,10 +368,8 @@ Nota: I dati relativi al tempo di carica di questo prodotto si basano su test si
 
 
 
-<div class="hb-source-operation hb-source-note docutils container">
-<ul class="simple">
-<li><p>Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni.</p></li>
-</ul>
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Prima di praticare fori o fissare il DC-DC charger, ispezionare l’area dietro il punto di montaggio previsto per evitare di danneggiare eventuali cablaggi o altri componenti interni.</p>
 </div>
 
 

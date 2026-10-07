@@ -173,9 +173,9 @@
 7.6 Instalação do produto
 -------------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Antes de perfurar ou fixar o carregador DC-DC, inspecione a área atrás do local de montagem para evitar danificar chicotes elétricos ou outros componentes internos.
+   Antes de perfurar ou fixar o carregador DC-DC, inspecione a área atrás do local de montagem para evitar danificar chicotes elétricos ou outros componentes internos.
 
 
 Método 1: Fixe o produto à carroceria do veículo.

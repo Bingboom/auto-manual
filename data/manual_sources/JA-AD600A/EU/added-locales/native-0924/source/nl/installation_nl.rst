@@ -171,9 +171,9 @@
 7.6 Installatie van het product
 -------------------------------
 
-.. container:: hb-source-operation hb-source-note
+.. container:: hb-source-operation hb-source-note hb-source-installation-note
 
-   * Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen.
+   Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen.
 
 
 Methode 1: Bevestig het product aan de carrosserie van het voertuig.
