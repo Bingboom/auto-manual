@@ -14,6 +14,8 @@ END = "<!-- system-evolution:end -->"
 SCHEMA = "system-evolution/v1"
 STATUS_LABELS = {"recorded": "已完成", "ongoing": "持续开展",
                  "in_progress": "建设中", "planned": "未来方向"}
+DIAGRAM_NODE_IDS = ("human_portal", "agent_existing", "agent_mcp", "enterprise_systems",
+                    "trusted_content", "human_output", "machine_output", "file_pretranslation")
 
 
 class EvolutionError(ValueError):
@@ -134,6 +136,48 @@ def _now(rows: object) -> list[dict]:
     return now
 
 
+def _architecture(data: object, repositories: dict[str, str]) -> dict | None:
+    """Optional access view from the same history, with evidence for every node."""
+    if data is None:
+        return None
+    if not isinstance(data, dict):
+        raise EvolutionError("architecture must be a mapping")
+    view = {key: _text(data, key) for key in
+            ("title", "intro", "adapter_note", "artwork_note")}
+    identifiers = []
+    by_id = {}
+    for group in ("human", "agent", "enterprise", "core", "surfaces", "capabilities", "hooks"):
+        rows = data.get(group)
+        if not isinstance(rows, list) or not rows:
+            raise EvolutionError(f"architecture {group} needs nodes")
+        nodes = []
+        for row in rows:
+            if not isinstance(row, dict):
+                raise EvolutionError("architecture node must be a mapping")
+            node = {key: _text(row, key) for key in ("id", "title", "status", "summary")}
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", node["id"]):
+                raise EvolutionError("architecture id must be lower_snake_case")
+            if node["status"] not in STATUS_LABELS:
+                raise EvolutionError("unknown architecture status")
+            refs = row.get("evidence")
+            if not isinstance(refs, list) or not refs:
+                raise EvolutionError("architecture node needs evidence")
+            nodes.append({**node, "status_label": "已有基础" if node["status"] == "recorded"
+                          else STATUS_LABELS[node["status"]],
+                          "evidence": [_evidence(ref, repositories) for ref in refs]})
+            identifiers.append(node["id"])
+            by_id[node["id"]] = nodes[-1]
+        view[group] = nodes
+    if len(set(identifiers)) != len(identifiers):
+        raise EvolutionError("duplicate architecture id")
+    if not set(DIAGRAM_NODE_IDS).issubset(by_id):
+        raise EvolutionError("architecture is missing a diagram node")
+    view["diagram"] = {node_id: by_id[node_id] for node_id in DIAGRAM_NODE_IDS}
+    for key in ("adapter_flow", "initial_capabilities", "later_capabilities", "artwork_flow"):
+        view[key] = _texts(data, key)
+    return view
+
+
 def _timeline(entries: list[dict], updated: dt.date) -> dict | None:
     """Month axis shared by every bar; positions are percentages of one scale."""
     spans = [entry for entry in entries if "start" in entry]
@@ -191,6 +235,7 @@ def _story(text: str, repositories: dict[str, str]) -> dict[str, Any]:
     return {"title": _text(data, "title"), "intro": _text(data, "intro"),
             "updated_on": updated.isoformat(), "stages": stages, "crosscutting": crosscutting,
             "chapters": chapters, "timeline": timeline, "now": now,
+            "architecture": _architecture(data.get("architecture"), repositories),
             "feedback": {"title": _text(feedback, "title"), "note": _text(feedback, "note"),
                          "steps": _texts(feedback, "steps")}}
 
