@@ -15,7 +15,9 @@
       "contract_overrides": {
         "warranty": {
           "source_patterns": [
-            "warranty_en"
+            "warranty_en",
+            "warranty_fr",
+            "warranty_es"
           ],
           "section_count": 6,
           "period_years": [
@@ -24,16 +26,22 @@
         },
         "reference_figures": {
           "source_patterns": [
-            "charging_en"
+            "charging_en",
+            "charging_fr",
+            "charging_es"
           ],
           "figures": [
             {
               "id": "solar-connection",
               "source_patterns": [
-                "charging_en"
+                "charging_en",
+                "charging_fr",
+                "charging_es"
               ],
               "semantic_source_patterns": [
-                "charging_en"
+                "charging_en",
+                "charging_fr",
+                "charging_es"
               ],
               "image_key": "solar.png",
               "captions_embedded": true,

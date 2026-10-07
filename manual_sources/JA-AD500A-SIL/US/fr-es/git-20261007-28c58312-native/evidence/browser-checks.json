@@ -1,0 +1,80 @@
+{
+  "fr_mobile": {
+    "clippedLabels": [],
+    "headings": [
+      "CONTENU DE LA BOÎTE¶",
+      "APERÇU DU PRODUIT¶",
+      "CHARGE¶",
+      "SPÉCIFICATIONS¶",
+      "GARANTIE¶"
+    ],
+    "images": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "es_mobile": {
+    "clippedLabels": [],
+    "headings": [
+      "CONTENIDO DE LA CAJA¶",
+      "DESCRIPCIÓN GENERAL DEL PRODUCTO¶",
+      "CARGANDO¶",
+      "ESPECIFICACIONES¶",
+      "GARANTÍA¶"
+    ],
+    "images": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "es_desktop": {
+    "clippedLabels": [],
+    "images": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "overflow": false,
+    "viewport": [
+      1440,
+      1000
+    ]
+  },
+  "fr_desktop": {
+    "clippedLabels": [],
+    "images": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "overflow": false,
+    "viewport": [
+      1440,
+      1000
+    ]
+  }
+}

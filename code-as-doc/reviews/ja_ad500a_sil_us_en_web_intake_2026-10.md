@@ -245,3 +245,94 @@ prepared-source/public-slot validation path. Strict Sphinx succeeds. MyST,
 CSS and final manual HTML are byte-identical to reviewed candidate 13b;
 source-free cold replay is exact and a changed neutral base-art is rejected.
 The old candidate remains unchanged. `approval-parity.json` retains evidence.
+
+## 2026-10-07 native French and Spanish candidate intake
+
+The operator requested “就补 法语和西语” and supplied
+`Jackery DC Input Module User Manual V2.0-2026-05-25.pdf` (SHA-256
+`28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530`).
+Cover and specifications identify JA-AD500A-SIL, US. The PDF has 22 physical
+pages; FR body = 10–15 (printed 07–12), ES = 16–21 (printed 13–18), shared
+back cover = 22. V2.0/date are filename labels, not a verified printed version.
+Native outlined copy was visually transcribed from every relevant page; native
+LED tables were also checked against the retained selectable PDF text. These
+are source-native imports, not translations of English. The preceding instruction
+“你先不用删” remains in force for the battery-cell warranty exclusion.
+
+Candidates live in
+[`git-20261007-28c58312-native`](../../manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-native/README.md).
+The previously published English snapshot and its original AI are unchanged.
+This request prepares the two candidates; it does not extend MA-259 to their
+merge/publication. Publication eligibility remains false.
+
+### Artwork inventory and reuse decisions
+
+| Slot | Candidate checked | Decision and evidence |
+| --- | --- | --- |
+| Inbox module/manual | Six active approved English assets plus PDF pp10/16 | Reuse the same module and miniature English manual-cover artwork; native captions are live text. |
+| Product overview | Approved textless English PNG plus PDF pp11/17 | Reuse intact drawing and leaders; replace the six external labels with native copy, same reference ID and geometry. |
+| Solar connection | Approved solar PNG plus PDF pp12/18 | Reuse the complete four-panel SolarSaga 100 Air drawing, adapters and frame; DC8020 remains embedded as instructed. No localized visible text needs removal. |
+| Car connection | Approved textless car PNG plus PDF pp13/19 | Reuse drawing/frame and reference anchors; Vehicle and sold-separately note use native live labels and wrap naturally. |
+| Footer QR | Approved contact QR plus shared PDF p22 | Reuse exact contact block/QR without an added CONTACT US chapter. |
+
+All six PNGs are byte-identical to the approved English assets. No extraction,
+registry promotion, new per-model config, component, renderer or locale stylesheet
+was introduced. The existing target overlay admits only warranty_fr/es and
+charging_fr/es alongside the unchanged English patterns. The source-local adapter
+uses the existing prepared RST → shared ComponentSpec/IR → MyST/replay path.
+
+### Source concerns preserved for review
+
+- FR PDF p14 labels the 11–16V/16–60V rows `Sortie CC` and the 42–58V
+  row `Entrée CC`; the input/output labels are reversed against EN/ES.
+- FR PDF p11 prints `Oiture` and retains English `Double to`; ES p20 also
+  retains `Double to`. Native source wording is retained.
+- ES PDF p21 `DERECHOS DE INTERPRETACIÓN` repeats the original-buyer and
+  non-transferability sentence instead of an interpretation-rights clause.
+- FR/ES PDF pp13/19 keep downstream 36.8–56V and 40–57.6V PV Voc advice.
+  The disputed electrical ranges have not been editorially corrected.
+- FR/ES PDF pp15/21 include the battery-cell charging exclusion; it is retained
+  under the operator's latest instruction.
+
+### Validation
+
+Both candidates pass strict Sphinx. Every field of the native transcription is
+present in the rendered body; all component types/order/reference IDs match the
+English baseline. Each has 1 Inbox, 3 ReferenceFigure, 3 callouts, 2 specification
+components, 1 warranty lead, 5 warranty sections and 1 year card. LED column widths
+and input rowspan=2 are unchanged; native year units are AN/AÑO. Localized LED
+header horizontal padding is reduced from 0.6rem to 0.4rem so French `Couleur`
+remains whole at 390px; no shared stylesheet or body text changed.
+
+Source-free cold replay reproduces exact MyST; changed-artwork replay is rejected.
+84 existing presentation/contract/reference tests pass; Ruff passes. Actual browser
+checks at 1440×1000 and 390×844 retain complete native labels, loaded artwork,
+working chapter anchors and no page horizontal overflow. Source issues above
+remain review issues, not hidden intake corrections. Preview/browser/hash/cold-replay
+reports are retained with the candidates and under `/tmp/jaad500-fr-es-20261007/`.
+
+## 2026-10-07 authorized native French and Spanish publication
+
+The operator instructed “上线发布” after receiving the FR/ES previews and draft
+PR #1449. MA-262 binds candidate e657ed079246dbe6beb3b8db2154ab6cdb0ece6a
+and original PDF 28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530.
+This is an actual release instruction; documented native source concerns remain
+accepted exceptions, with no invented separate editorial approval.
+
+Discovery: current engineering main 07859f7eae1fe90b72ee950025b28b12cf2c36ff;
+candidate PR #1449 has all 18 checks successful. Prepared US source follows
+normal shared component, asset-hash and frozen-input gates; no phase2 target
+or EU/UK enrollment change. Existing English and candidate snapshots stay intact.
+
+Plan: distinct approved package, fresh prepared-RST assembly, strict HTML and
+exact reviewed MyST/CSS/HTML parity, cold replay and tampered-art rejection.
+At final source commit seal FR/ES frozen evidence, assemble only those routes
+over current Hello-Docs main, strict-build with myst_parser and tools.rtd.portal,
+gate both PRs on final-head all-green checks, then verify actual RTD commit,
+deployment receipt, native resources and live desktop/mobile presentation.
+Preserve existing pending publication candidates and persistent publish branch.
+
+Approved FR/ES package freshly assembles all seven component kinds; normal US
+admission passes. Strict HTML, MyST and CSS are byte-identical to the actual
+desktop/mobile-reviewed candidates. Source-free replay is exact and changed
+artwork is rejected. `approval-parity.json` records both locale hashes.
