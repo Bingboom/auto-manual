@@ -81,7 +81,7 @@ focus:
       revs: [REV-44]
     - id: shared_ir
       horizon: next
-      title: IR 共享
+      title: Shared IR（共享底稿）
       goal: 先明确公共语义与各格式排版边界，再用代表目标验证共享收益
       action: 完成 REV-39 边界设计；按 REV-40 及其依赖验收代表目标，再决定扩展。IDML 独立验收不阻塞 Web 交付
       card: document_production
@@ -100,7 +100,7 @@ focus:
       horizon: deferred
       title: 多 Agent · 按需再启动
       goal: 当前只保留设计参考，不进入交付主线
-      action: 出现持续的交接或并发瓶颈后，再评估是否启动；不作为网页、语料、SSOT 或 IR 的前置条件
+      action: 出现持续的交接或并发瓶颈后，再评估是否启动；不作为网页、语料、SSOT 或 Shared IR（共享底稿）的前置条件
   regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
   skeleton_families:
     - {family: MAIN, label: 便携电源}
@@ -238,7 +238,7 @@ capabilities:
           - "file:auto-manual:tools/build_queue/build_execution.py"
           - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
       - id: shared_ir
-        label: 共享中间表示
+        label: Shared IR（共享底稿）
         status: validated
         note: 代表手册的各格式从同一套语义组件生成；不代表版面逐像素一致
         evidence:
@@ -493,17 +493,13 @@ now_next:
   now_labels:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
-    REV-39: IR 共享：公共语义边界摸底
+    REV-39: Shared IR（共享底稿）：共用内容结构边界摸底
 
 working_today:
   - id: manual_center
     label: 手册中心
     note: 按产品、市场、语言浏览在线手册
     page: index
-  - id: live_manual
-    label: 代表手册 · Explorer 1000（JE-1000F）美规英语
-    note: 版本号从发布清单读取
-    publication: {model: JE-1000F, region: US, lang: en}
   - id: knowledge
     label: 知识库与 AI 分享
     note: 分享资料与实践记录
