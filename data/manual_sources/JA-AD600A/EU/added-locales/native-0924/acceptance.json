@@ -1,0 +1,114 @@
+{
+  "source_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348",
+  "source_body_checks": [
+    {
+      "language": "fr",
+      "native_roles": 186,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "es",
+      "native_roles": 186,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "de",
+      "native_roles": 185,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "it",
+      "native_roles": 185,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "uk",
+      "native_roles": 186,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "pt",
+      "native_roles": 184,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "nl",
+      "native_roles": 186,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    },
+    {
+      "language": "pl",
+      "native_roles": 186,
+      "blank_roles": 0,
+      "cold_body_parity": true,
+      "asset_parity": true
+    }
+  ],
+  "strict_sphinx_locales": [
+    "fr",
+    "es",
+    "de",
+    "it",
+    "uk",
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "browser_widths": [
+    1280,
+    390
+  ],
+  "browser_runs": 16,
+  "missing_source_roles": 0,
+  "overflowing_labels": 0,
+  "shared_image_hashes": {
+    "inbox_m6_nuts.png": "8d5b841dc3efab625b871f37912e056575f713d1f386841ad471ee8824f4e1c7",
+    "status_device.png": "209c4187aab93e4e3a8a7577875a6b4d31ca325a1ac542ea9d517292ee3b906f",
+    "fcc_mark.png": "45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90",
+    "connection_base.png": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427",
+    "dimensions.png": "c66743652b31b8642db123cb809912a6f610b7adc28e48ac3b751a49b25c435f",
+    "body_clearance.png": "eb21bcf111a7dd76141b96d10afef09dd9109a3dbab6058b5e8072d14575095c",
+    "inbox_input_cable.png": "b237253debc460c0ed6213369715ea67e20d6e32a2def888253807b820fe65ee",
+    "body_secure.png": "ad6701a141a97bc4832f90ccd756b0522e27bcbb2be7a2f617a97d597ac4a54b",
+    "body_drill.png": "b23a42ec957232b48dff17f43b77d0b521f4fa9126403ed8d6596284bb856f39",
+    "inbox_st55_screws.png": "fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647",
+    "body_mark.png": "fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96",
+    "inbox_fuse.png": "69ed53354910bb15207fbcf5b4989c32b2831d1054e5673ed2aa2c13edd46c93",
+    "panel_mark.png": "2f9c40282fac46a23e7f1a24a353284fa78070862b7f476e8733d940efc888d4",
+    "inbox_user_guide.png": "f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac",
+    "wiring_fuse_base.svg": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207",
+    "inbox_output_cable.png": "28488e52ce07c55da409f6ddf49be32eda4d5f2320c9a5f4b95c50c33dac15f6",
+    "inbox_m6_bolts.png": "adc406430c2f56a7939df30b91b83eeb168141d7351272d8c3520075400bcc95",
+    "wiring_acc_base.png": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b",
+    "product_overview_base.png": "c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca",
+    "panel_drill.png": "6e2822b857dd34567734038d31ab7bd5c6553390dc1d828a159cc33dbe69d855",
+    "wiring_battery.png": "7bdcb4dd3da42b2eff652baae3998703d1c291b8771bb6394feb7a190750ca3f",
+    "panel_secure.png": "312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff",
+    "symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "installation_diagram_base.png": "0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f",
+    "inbox_charger.png": "97287dee4780335316be5e85624256bc4786ecb7bebe2a3aaaa84489331780e8",
+    "inbox_acc_cable.png": "21cc25108335bcc939730216745e339d36d6ba2f531094b8b95b98b5d78e7fc6"
+  },
+  "outlined_source_regions_recovered": 9,
+  "cold_parity_normalization": [
+    "local file URI provenance",
+    "dependent source-fragment provenance hash"
+  ],
+  "publications": [
+    "English release is separate; these eight locales are local review only"
+  ]
+}

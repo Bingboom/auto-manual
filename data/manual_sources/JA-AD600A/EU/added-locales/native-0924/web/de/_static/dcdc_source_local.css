@@ -1,0 +1,13 @@
+/* Source-local language reflow; invariant bases remain byte-identical. */
+#furo-main-content .hb-spec-table-composition > .hb-spec-section {display:none;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label {overflow-wrap:anywhere;hyphens:manual;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label[data-source-line="0"] {width:25%;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label:is([data-source-line="1"], [data-source-line="3"], [data-source-line="5"]) {width:14%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="0"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {color:#f04444;}
+
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="2"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {font-size:3.1cqw;line-height:1.15;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="4"] {left:12%;top:86.5%;width:28%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="5"] {left:42%;top:86.5%;width:35%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="6"] {left:82%;top:86.5%;width:17%;font-size:3.7cqw;min-height:12%;}
