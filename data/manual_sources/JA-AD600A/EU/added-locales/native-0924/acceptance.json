@@ -110,5 +110,80 @@
   ],
   "publications": [
     "English release is separate; these eight locales are local review only"
+  ],
+  "faq_acceptance": {
+    "pairs_per_locale": 8,
+    "bold_questions": 8,
+    "bold_native_answer_labels": 8,
+    "answers_separate_paragraphs": true,
+    "maintenance_numbers_retained": [
+      1,
+      2,
+      3
+    ],
+    "native_copy_unchanged": true,
+    "browser_widths": [
+      1280,
+      390
+    ],
+    "browser_runs": 16
+  },
+  "faq_cold_parity": [
+    {
+      "language": "fr",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "es",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "de",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "it",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "uk",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "pt",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "nl",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    },
+    {
+      "language": "pl",
+      "body_parity": true,
+      "dom_parity": true,
+      "assets_parity": true,
+      "strict_sphinx": true
+    }
   ]
 }

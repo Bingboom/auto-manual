@@ -13,3 +13,5 @@ This intake is an external frozen Web source through shared MaterializedBundle â
 From the repository root, run python3 data/manual_sources/JA-AD600A/EU/added-locales/native-0924/rebuild.py --language fr --output <unused-directory>. Then run python3 -m sphinx -W -b html <unused-directory> <separate-html-directory>. Hash checks refuse changed frozen inputs. Source edits require a deliberate inventory refresh and renewed source/body/layout review. Shared renderer changes never go into generated HTML.
 
 Eight-language publication is pending a separate operator instruction. These packages are not deployed by the English release.
+
+FAQ correction: all eight locales now preserve the approved English question/answer structure: eight fully bold questions followed by separate answers with bold native answer labels. Q2 retains all three numbered maintenance instructions in one answer paragraph as in English. Original wording, including Spanish numbering, is unchanged. The Portuguese source visibly omits P1 before its first question; German F4 visibly contains an English answer, both preserved. Renewed FAQ browser acceptance covers 1280 and 390 pixels.

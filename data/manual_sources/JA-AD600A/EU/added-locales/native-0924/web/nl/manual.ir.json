@@ -27,9 +27,9 @@
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
-  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl",
-  "bundle_sha256": "980a47922fbb6adbf44783dc924025e0c214920755ad8c67f939eddd5d63433b",
-  "content_sha256": "326e21256cd57b1586324195a6c1f69e51a3afde583598332c3cddda196f37e0",
+  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl",
+  "bundle_sha256": "7a079907d66ab8a149e9fb7cbaf2cfe1591f169225e730304221c36e42c94f61",
+  "content_sha256": "584e2977b427838b71f4c84a1983d25e95bfb5afda7f4969f1ae76cb152cbbb9",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -61,7 +61,7 @@
       "assets/ir/fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647/inbox_st55_screws.png": "fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647",
       "assets/ir/fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96/body_mark.png": "fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96"
     },
-    "block_count": 94,
+    "block_count": 92,
     "component_registry": {
       "components": {
         "HB-CALLOUT-STRIP": {
@@ -4245,7 +4245,7 @@
             "path": "assets/ir/bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207/wiring_fuse_base.svg",
             "sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
           "locale": "nl",
           "page_id": "installation_nl.rst",
           "section": "operation",
@@ -4260,7 +4260,7 @@
             "path": "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png",
             "sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
           "locale": "nl",
           "page_id": "installation_nl.rst",
           "section": "operation",
@@ -4275,7 +4275,7 @@
             "path": "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
             "sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
           "locale": "nl",
           "page_id": "installation_nl.rst",
           "section": "operation",
@@ -4749,7 +4749,7 @@
       "language": "nl",
       "page_id": "disclaimer_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/disclaimer_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/disclaimer_nl.rst",
       "source_ref": "disclaimer_nl.rst",
       "source_sha256": "0ed0586a0eae2a79f58c1c7ca2f43932fc82e5f5d2c3beaa8a555a389b68553e"
     },
@@ -4797,7 +4797,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications_nl.rst:block-0003",
-          "content_sha256": "497b4fea098572f4ceacc176d98e076fda9c5b2c35b104fd6150a6cb9c1182cd",
+          "content_sha256": "add8de065c62deb0e5fd084652409fc5f0e1e2640b67edb20b509ebf2076ae90",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5588,7 +5588,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/specifications_nl.rst#specification-1",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/specifications_nl.rst#specification-1",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5615,7 +5615,7 @@
       "language": "nl",
       "page_id": "specifications_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/specifications_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/specifications_nl.rst",
       "source_ref": "specifications_nl.rst",
       "source_sha256": "a506f69b52bb8f350c9227e36215d00e4ec97d0e72adb5ef60e2a62d2ba6e734"
     },
@@ -5652,7 +5652,7 @@
       "language": "nl",
       "page_id": "dimensions_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/dimensions_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/dimensions_nl.rst",
       "source_ref": "dimensions_nl.rst",
       "source_sha256": "f9551aba3a1fa6ecec310e63b80aa3161714ecfae8ba02aed9479d0c91850e17"
     },
@@ -5689,7 +5689,7 @@
             "assets/ir/f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac/inbox_user_guide.png"
           ],
           "block_id": "box_contents_nl.rst:block-0002",
-          "content_sha256": "46308d2d4c108b4ca410014185e8c7e1c86ecec5b7d9417f572d86bd437f74e0",
+          "content_sha256": "980cb3d1e40c9aca57269e8633305c89696160b9a064c3bec677db56a6600bad",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -6729,7 +6729,7 @@
                   "role": "tip_body"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/box_contents_nl.rst",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/box_contents_nl.rst",
               "token_roles": [
                 "component.special.inbox"
               ],
@@ -6744,7 +6744,7 @@
       "language": "nl",
       "page_id": "box_contents_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/box_contents_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/box_contents_nl.rst",
       "source_ref": "box_contents_nl.rst",
       "source_sha256": "78c7f58085bc3cf1af64cb2161f39e23c76f9f23d84921a971760145b7ecfab6"
     },
@@ -6773,7 +6773,7 @@
             "assets/ir/c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca/product_overview_base.png"
           ],
           "block_id": "product_overview_nl.rst:block-0002",
-          "content_sha256": "17072ee77beb1fce4ed4e2421fda0d73d5b15e46a75bbebd6c2c62aa7652a396",
+          "content_sha256": "d0ec743aa029eb333eb58f23dffa775ffb19d1d992f7d906266808e39c50ecbd",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7089,7 +7089,7 @@
                   "role": "captions"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/product_overview_nl.rst#reference-product-overview",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/product_overview_nl.rst#reference-product-overview",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -7116,7 +7116,7 @@
       "language": "nl",
       "page_id": "product_overview_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/product_overview_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/product_overview_nl.rst",
       "source_ref": "product_overview_nl.rst",
       "source_sha256": "f4dae53f8a829e8301b8bd547604c9f63324d0cfb4cebd42ee862f26e2aff59e"
     },
@@ -9109,7 +9109,7 @@
       "language": "nl",
       "page_id": "important_safety_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/important_safety_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/important_safety_nl.rst",
       "source_ref": "important_safety_nl.rst",
       "source_sha256": "bb9050bbed288bb593ebea8141e00187714b9aad25c1fb765bdfa80d881ad9db"
     },
@@ -9136,13 +9136,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0002",
-          "content_sha256": "19d56af97ecb4f008e5a9c0aeb0a1d80246b9129c4002f4ed36405d999933944",
+          "content_sha256": "c75e2a69f77dd94398829ee4388870cdf3d6013b44149cc41fb4302b54a0c36b",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Vraag 1: Is er voor de installatie van dit product een professional nodig?"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 1: Is er voor de installatie van dit product een professional nodig?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9165,13 +9170,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0004",
-          "content_sha256": "4c4e1b57479852a8e0c63082cb5abb20c4331434d6e790a707939f065735bcf3",
+          "content_sha256": "ef592a8046403f28813ae6be625ad1a670470b0dc579c7b02c9c1d4789eba7dd",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Antwoord: Om zeker te zijn van de veiligheid en een nette bekabeling, wordt aanbevolen om de installatie te laten uitvoeren door een gespecialiseerd onderhoudsbedrijf. Niet-professionals zouden niet moeten proberen het zelf te installeren."
+                "text": " Om zeker te zijn van de veiligheid en een nette bekabeling, wordt aanbevolen om de installatie te laten uitvoeren door een gespecialiseerd onderhoudsbedrijf. Niet-professionals zouden niet moeten proberen het zelf te installeren."
               }
             ],
             "kind": "paragraph",
@@ -9194,13 +9208,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0006",
-          "content_sha256": "81df4efb768f233b493027a9b82b402af498fab2c2c69f2f1a68102a0af56d45",
+          "content_sha256": "0ab247c7870b3e15d2f2fc0c4bcfb195a529702ba33ec1ea23d675b8cda27d56",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Vraag 2: Wat moet er worden gecontroleerd tijdens het maandelijkse onderhoud van het product?"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 2: Wat moet er worden gecontroleerd tijdens het maandelijkse onderhoud van het product?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9223,13 +9242,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0008",
-          "content_sha256": "0b52853881d6a62bc0b40cafc13f63c3f172cce5fd0145d291f4391678c37890",
+          "content_sha256": "3b68f1811b10fa4843e48c706e163807f181c4c74f8d9cb2a33413aa748fb014",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Antwoord: 1. Reinig het productoppervlak met een droge doek. Gebruik bij hardnekkige vlekken een verdund, neutraal schoonmaakmiddel."
+                "text": " 1. Reinig het productoppervlak met een droge doek. Gebruik bij hardnekkige vlekken een verdund, neutraal schoonmaakmiddel. 2. Controleer de connectoren, bedrading, schroeven en zekeringen op schade of veroudering. Als u hulp nodig heeft, neem dan contact op met de klantenservice van Jackery. 3. Zorg ervoor dat het product stevig is geïnstalleerd en vermijd direct zonlicht en omgevingen met hoge temperaturen."
               }
             ],
             "kind": "paragraph",
@@ -9252,65 +9280,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0010",
-          "content_sha256": "fbbac2123915eafee469e4ec6663eea652189734411abfb3535834e183471e49",
+          "content_sha256": "b50698c2e6323a28b7dc50862fb47de0956448456b052118631fe15a6072b979",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "\n"
-              },
-              {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "Controleer de connectoren, bedrading, schroeven en zekeringen op schade of veroudering. Als u hulp nodig heeft, neem dan contact op met de klantenservice van Jackery."
-                      }
-                    ],
-                    "kind": "paragraph"
+                    "kind": "text",
+                    "text": "Vraag 3: Zal dit product de accu van het voertuig leegtrekken?"
                   }
                 ],
-                "kind": "list_item"
-              },
-              {
-                "kind": "text",
-                "text": "\n"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "Zorg ervoor dat het product stevig is geïnstalleerd en vermijd direct zonlicht en omgevingen met hoge temperaturen."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "kind": "text",
-                "text": "\n"
+                "kind": "strong"
               }
             ],
-            "kind": "list",
-            "ordered": true,
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": [
-                    "arabic",
-                    "simple"
-                  ]
-                }
-              }
-            },
-            "schema_version": "manual-flow/v2",
-            "start": 2
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "faq_nl.rst#block-10"
         },
@@ -9329,13 +9314,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0012",
-          "content_sha256": "9e53f347633d8dd43533662f4fc9f28ecd1f3dcd8941c288d2222477d49075fe",
+          "content_sha256": "f7f9b044f18bb29217796b2c9fc9dbc14c683c4a5daf409a582707d14b66bdc4",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 3: Zal dit product de accu van het voertuig leegtrekken?"
+                "text": " Om te voorkomen dat de startaccu van het voertuig of de huisaccu van de camper te ver ontlaadt, bewaakt het product de spanning over de accupolen. Als de spanning onder de startdrempelwaarde zakt, stopt het product automatisch met werken. Wanneer het voertuig niet draait, gaat het product in de stand-bymodus en wordt het na 24 uur automatisch uitgeschakeld."
               }
             ],
             "kind": "paragraph",
@@ -9358,13 +9352,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0014",
-          "content_sha256": "fe0e33336aec3fecefa824f35472c91083947894bf385ef8ac75d08fa8ec2707",
+          "content_sha256": "4aa798125a2cd8fa69bacf92fd67cb2599644ce9b9205ee381d2f65d2a266640",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Antwoord: Om te voorkomen dat de startaccu van het voertuig of de huisaccu van de camper te ver ontlaadt, bewaakt het product de spanning over de accupolen. Als de spanning onder de startdrempelwaarde zakt, stopt het product automatisch met werken. Wanneer het voertuig niet draait, gaat het product in de stand-bymodus en wordt het na 24 uur automatisch uitgeschakeld."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 4: Waarom werkt het product niet?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9387,13 +9386,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0016",
-          "content_sha256": "881975ef325300b14fc8c3b790bcc4c865238461d51029cf6ff7ddb3f379323c",
+          "content_sha256": "1e09de78426959aef9af52fb4715eb84c3ce56f8fb36faed864284d1853e50cf",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 4: Waarom werkt het product niet?"
+                "text": " Bij sommige oudere of specifieke voertuigmodellen is de spanning lager, waardoor die niet overeenkomt met de bedrijfsspanning van het product. Als de spanning van het product hoger is dan de systeemspanning van het voertuig (12 V/24 V) en het product na het inschakelen niet werkt, neem dan contact op met de klantenservice van Jackery voor assistentie."
               }
             ],
             "kind": "paragraph",
@@ -9416,13 +9424,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0018",
-          "content_sha256": "9f64b9d752cb69b8820742fb17452b134f54b0d8a54da8117b27a3f4673a592a",
+          "content_sha256": "559c79ff14ef6443cbc64f8c02aeda216fb5ab49ce252d63a16e22f7ad4b2a4c",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Antwoord: Bij sommige oudere of specifieke voertuigmodellen is de spanning lager, waardoor die niet overeenkomt met de bedrijfsspanning van het product. Als de spanning van het product hoger is dan de systeemspanning van het voertuig (12 V/24 V) en het product na het inschakelen niet werkt, neem dan contact op met de klantenservice van Jackery voor assistentie."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 5: Verhoogt dit product het brandstofverbruik?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9445,13 +9458,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0020",
-          "content_sha256": "1fc1c6cf1494ed71754458a12ecedda9ed982e8821fdf881b541f96fbc6859de",
+          "content_sha256": "98ebf111d9f483c1424a3310e456666531fc69262c54bb5324c1a3b8ea01dc46",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 5: Verhoogt dit product het brandstofverbruik?"
+                "text": " Nee. Het product maakt gebruik van het overtollige vermogen van de generator, waardoor het efficiënt, energiebesparend en milieuvriendelijk is."
               }
             ],
             "kind": "paragraph",
@@ -9474,13 +9496,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0022",
-          "content_sha256": "6c02a34cd72e7a94d40ba5b0a409892f7d4e0092bc75c03677edff8567204979",
+          "content_sha256": "575d04b4bc1b3734fbc7ef38904584696e6e99a5640b558322e0869019a947a7",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Antwoord: Nee. Het product maakt gebruik van het overtollige vermogen van de generator, waardoor het efficiënt, energiebesparend en milieuvriendelijk is."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 6: Welke veiligheidsvoorzieningen heeft dit product?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9503,13 +9530,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0024",
-          "content_sha256": "cde67c738df62f8a6282bedc04deff7c1c3397e2eb37230297919af8e0dc710b",
+          "content_sha256": "0690ba6ccdd7ded8d8e90e2411ea37f4767e46754f27fc193f01b39fae321313",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 6: Welke veiligheidsvoorzieningen heeft dit product?"
+                "text": " Dit product biedt bescherming tegen overspanning, onderspanning, overstroom, overbelasting, kortsluiting en hoge/lage temperaturen om veilig en betrouwbaar opladen te garanderen. Bovendien voorkomt de intelligente spanningsdetectie overmatige ontlading van de accu, zodat het voertuig normaal kan starten."
               }
             ],
             "kind": "paragraph",
@@ -9532,13 +9568,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0026",
-          "content_sha256": "69e5be3a8a698c71a0689f149fe1198f525ed1222b064b0749303e502c4ffbf2",
+          "content_sha256": "5295b6a186811b4b40587a457f13b1b041b4abc02abc6fe3fb8dae8492d7a59e",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Antwoord: Dit product biedt bescherming tegen overspanning, onderspanning, overstroom, overbelasting, kortsluiting en hoge/lage temperaturen om veilig en betrouwbaar opladen te garanderen. Bovendien voorkomt de intelligente spanningsdetectie overmatige ontlading van de accu, zodat het voertuig normaal kan starten."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 7: Waarom is het oplaadvermogen instabiel?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9561,13 +9602,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0028",
-          "content_sha256": "b16bd3874a9a52657f74c2aecf62cf68738f5f46b6ad2099844b85a100315454",
+          "content_sha256": "fe38c81bb5a9872c89b36e1c7ba3dbf1753f1255f878dea627bda0160e9c21a5",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 7: Waarom is het oplaadvermogen instabiel?"
+                "text": " Het oplaadvermogen past zich dynamisch aan op basis van de rij- en wegomstandigheden van het voertuig. Dit helpt de accu van het voertuig te beschermen en zorgt tegelijkertijd voor maximale laadefficiëntie. Het is normaal dat het vermogen verschilt."
               }
             ],
             "kind": "paragraph",
@@ -9590,13 +9640,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0030",
-          "content_sha256": "c40e9acec4b6b9ef294349f49298f770569a3dd0354f397f203a16d4fe020ce7",
+          "content_sha256": "b1d111470f6e0618d7ef49ab765557521a07fd985d6689c0e071332866cfff9e",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Antwoord: Het oplaadvermogen past zich dynamisch aan op basis van de rij- en wegomstandigheden van het voertuig. Dit helpt de accu van het voertuig te beschermen en zorgt tegelijkertijd voor maximale laadefficiëntie. Het is normaal dat het vermogen verschilt."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Vraag 8: Zal het geluid dat het product tijdens het gebruik maakt de slaap verstoren?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9619,56 +9674,36 @@
         {
           "asset_refs": [],
           "block_id": "faq_nl.rst:block-0032",
-          "content_sha256": "171d06eca7b50471c9182b7d0f6e57bfc12d6ed1c05b332773d3b32a9b57108a",
+          "content_sha256": "6eb0961b13a996c3086ac88b61ff5bb6b2d161d3ccf14a4b5527d2db7d708329",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Antwoord:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "Vraag 8: Zal het geluid dat het product tijdens het gebruik maakt de slaap verstoren?"
+                "text": " Het product is ontworpen zonder ventilator en het geluidsniveau ligt onder 40 dB, wat voldoet aan de geluidsnormen voor een slaapomgeving."
               }
             ],
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "faq_nl.rst#block-32"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "faq_nl.rst:block-0033",
-          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
-          "kind": "flow",
-          "payload": {
-            "kind": "text",
-            "schema_version": "manual-flow/v2",
-            "text": "\n"
-          },
-          "source_ref": "faq_nl.rst#block-33"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "faq_nl.rst:block-0034",
-          "content_sha256": "4c6856515c2f41819329f49ef0454ce1a660e0df83ab0f41182ab6a3012ed315",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Antwoord: Het product is ontworpen zonder ventilator en het geluidsniveau ligt onder 40 dB, wat voldoet aan de geluidsnormen voor een slaapomgeving."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "faq_nl.rst#block-34"
         }
       ],
       "language": "nl",
       "page_id": "faq_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/faq_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/faq_nl.rst",
       "source_ref": "faq_nl.rst",
-      "source_sha256": "94c81c18db276d969adbb14f8d0321f18a18d2b1e466057677d23ee03a30a50c"
+      "source_sha256": "260e37e354647c62d38b94ee6f36d8751e0c9ac498c4e90768588541433e48a7"
     },
     {
       "blocks": [
@@ -9695,7 +9730,7 @@
             "assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png"
           ],
           "block_id": "installation_nl.rst:block-0002",
-          "content_sha256": "babdf13e59f30608bfd32a315fb8f46d003402cc2479323d2b8ece85e354a02a",
+          "content_sha256": "d4749eade46fd685154cdb4203545c83b811250db28ff9ec734c690e1520ebd3",
           "kind": "flow",
           "payload": {
             "anchor": "installatiediagram",
@@ -10111,7 +10146,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/installation_nl.rst#reference-installation-diagram",
+                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst#reference-installation-diagram",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -10949,7 +10984,7 @@
             "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png"
           ],
           "block_id": "installation_nl.rst:block-0010",
-          "content_sha256": "34ecded94cf2aa7015d2d6870ccc45485230d9f72bb1f402462c39f88aabe3df",
+          "content_sha256": "f0e6e5771f10c5d9fae5769c738500cd331bef9d8c4dbcb65d2cc50956435118",
           "kind": "flow",
           "payload": {
             "anchor": "stappen-voor-de-bedrading",
@@ -11476,9 +11511,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 7,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "fccea96167c8325b45130481cedfb831f259c7f49fbf656aca7ed3e0a63599a5",
+                            "source_fragment_sha256": "44385028f51d234be317aef676c8d5067f02cd6f8dbe936fab5f779eeb75baf5",
                             "web_replace_key": "reference.wiring-fuse"
                           },
                           "schema_version": "component-spec/v1",
@@ -11538,7 +11573,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/installation_nl.rst#reference-wiring-fuse",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst#reference-wiring-fuse",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -11923,9 +11958,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 2,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "2b1a70bf6f82c10c7819e89621957c8bf6585de3485e8f3a3dda375bf9880666",
+                            "source_fragment_sha256": "634ef63c7b0b323943a7f9e973300f9bc66c6d874cd3cd1c84dd4aa1cebc6cb2",
                             "web_replace_key": "reference.wiring-acc"
                           },
                           "schema_version": "component-spec/v1",
@@ -11965,7 +12000,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/installation_nl.rst#reference-wiring-acc",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst#reference-wiring-acc",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -13108,7 +13143,7 @@
             "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
           ],
           "block_id": "installation_nl.rst:block-0014",
-          "content_sha256": "c8675a6f4de1b87694ab7c1b56f8ca883438553165c76012f0eb8201f34be567",
+          "content_sha256": "0feea6fa1f486d6054e90aeccdda497e630348ba384b546c71f8e29f632734a2",
           "kind": "flow",
           "payload": {
             "anchor": "het-product-aansluiten-op-een-draagbaar-powerstation",
@@ -13389,9 +13424,9 @@
                     "captions_origin": "carrier",
                     "capture_following_lines": 3,
                     "composite_locale": "",
-                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
                     "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "860edbb9342ea0afe2fc264da2b07e9022ce1ab6e7c2b2edc051f3a4d5c50f52",
+                    "source_fragment_sha256": "3c861115021cee9f5a15f954e63375cbd3a5e465677ccfde2dc30cf9e11e9c3b",
                     "web_replace_key": "reference.charger-connection"
                   },
                   "schema_version": "component-spec/v1",
@@ -13435,7 +13470,7 @@
                       "role": "captions"
                     }
                   ],
-                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/installation_nl.rst#reference-charger-connection",
+                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst#reference-charger-connection",
                   "token_roles": [
                     "component.special.reference-figure"
                   ],
@@ -13888,7 +13923,7 @@
       "language": "nl",
       "page_id": "installation_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/installation_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/installation_nl.rst",
       "source_ref": "installation_nl.rst",
       "source_sha256": "3b2a1f891632f441ab2cc037fa7fd4b492d8190323aac3257705af7071a6e7a1"
     },
@@ -14584,7 +14619,7 @@
       "language": "nl",
       "page_id": "warranty_nl.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/nl/warranty_nl.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/nl/warranty_nl.rst",
       "source_ref": "warranty_nl.rst",
       "source_sha256": "a9544e99a19c0861fd6428558f747319127825bac98ab1aca46ec71f8c104678"
     }

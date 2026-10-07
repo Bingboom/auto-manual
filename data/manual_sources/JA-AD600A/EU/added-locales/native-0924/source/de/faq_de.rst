@@ -1,41 +1,34 @@
 6. FAQ
 ======
 
-F1: Ist für die Installation dieses Produkts eine Fachkraft erforderlich?
+**F1: Ist für die Installation dieses Produkts eine Fachkraft erforderlich?**
 
-A: Um Sicherheit und eine fachgerechte Verkabelung zu gewährleisten, wird empfohlen, die Installation von einer Fachwerkstatt durchführen zu lassen. Laien sollten die Installation nicht selbst durchführen.
+**A:** Um Sicherheit und eine fachgerechte Verkabelung zu gewährleisten, wird empfohlen, die Installation von einer Fachwerkstatt durchführen zu lassen. Laien sollten die Installation nicht selbst durchführen.
 
-F2: Was sollte bei der monatlichen Wartung des Produkts überprüft werden?
+**F2: Was sollte bei der monatlichen Wartung des Produkts überprüft werden?**
 
-A:
+**A:** 1. Reinigen Sie die Produktoberfläche mit einem trockenen Tuch. Verwenden Sie bei hartnäckigen Verschmutzungen ein verdünntes neutrales Reinigungsmittel. 2. Überprüfen Sie Steckverbinder, Verkabelung, Schrauben und Sicherungen auf Beschädigungen oder Alterungserscheinungen. Wenn Unterstützung erforderlich ist, wenden Sie sich an den Jackery-Kundendienst. 3. Stellen Sie sicher, dass das Produkt sicher installiert ist, und vermeiden Sie direkte Sonneneinstrahlung sowie hohe Umgebungstemperaturen.
 
-1. Reinigen Sie die Produktoberfläche mit einem trockenen Tuch. Verwenden Sie bei hartnäckigen Verschmutzungen ein verdünntes neutrales Reinigungsmittel.
+**F3: Entlädt dieses Produkt die Fahrzeugbatterie?**
 
-2. Überprüfen Sie Steckverbinder, Verkabelung, Schrauben und Sicherungen auf Beschädigungen oder Alterungserscheinungen. Wenn Unterstützung erforderlich ist, wenden Sie sich an den Jackery-Kundendienst.
+**A:** Um eine übermäßige Entladung der Starterbatterie des Fahrzeugs oder der Bordbatterie eines Wohnmobils zu verhindern, überwacht das Produkt die Spannung an den Batterieklemmen. Fällt die Spannung unter den Startschwellwert, stellt das Produkt den Betrieb automatisch ein. Wenn das Fahrzeug nicht läuft, wechselt das Produkt in den Standby-Modus und schaltet sich nach 24 Stunden automatisch ab.
 
-3. Stellen Sie sicher, dass das Produkt sicher installiert ist, und vermeiden Sie direkte Sonneneinstrahlung sowie hohe Umgebungstemperaturen.
+**F4: Warum funktioniert das Produkt nicht?**
 
-F3: Entlädt dieses Produkt die Fahrzeugbatterie?
+**A:** Some older or specific vehicle models may have a lower system voltage that does not match the product's operating voltage. If the product's operating voltage is higher than the vehicle's system voltage (12 V/24 V) and the product fails to operate after being switched on, please contact Jackery customer service for assistance.
 
-A: Um eine übermäßige Entladung der Starterbatterie des Fahrzeugs oder der Bordbatterie eines Wohnmobils zu verhindern, überwacht das Produkt die Spannung an den Batterieklemmen. Fällt die Spannung unter den Startschwellwert, stellt das Produkt den Betrieb automatisch ein. Wenn das Fahrzeug nicht läuft, wechselt das Produkt in den Standby-Modus und schaltet sich nach 24 Stunden automatisch ab.
+**F5: Erhöht dieses Produkt den Kraftstoffverbrauch?**
 
-F4: Warum funktioniert das Produkt nicht?
+**A:** Nein. Das Produkt nutzt die überschüssige Leistung des Generators und arbeitet dadurch effizient, energiesparend und umweltfreundlich.
 
-A: Some older or specific vehicle models may have a lower system voltage that does not match the product's operating voltage. If the product's operating voltage is higher than the vehicle's system voltage (12 V/24 V) and the product fails to operate after being switched on, please contact Jackery customer service for assistance.
+**F6: Über welche Schutzfunktionen verfügt dieses Produkt?**
 
-F5: Erhöht dieses Produkt den Kraftstoffverbrauch?
+**A:** Dieses Produkt verfügt über Überspannungs-, Unterspannungs-, Überstrom-, Überlast-, Kurzschluss- sowie Hoch-/Niedrigtemperaturschutz, um ein sicheres und zuverlässiges Laden zu gewährleisten. Zusätzlich verhindert die intelligente Spannungsüberwachung eine übermäßige Batterieentladung und stellt sicher, dass das Fahrzeug normal gestartet werden kann.
 
-A: Nein. Das Produkt nutzt die überschüssige Leistung des Generators und arbeitet dadurch effizient, energiesparend und umweltfreundlich.
+**F7: Warum ist die Ladeleistung instabil?**
 
-F6: Über welche Schutzfunktionen verfügt dieses Produkt?
+**A:** Die Ladeleistung passt sich dynamisch an die Fahr- und Straßenbedingungen des Fahrzeugs an. Dadurch wird die Fahrzeugbatterie geschont und gleichzeitig eine maximale Ladeeffizienz erreicht. Schwankungen der Ladeleistung sind normal.
 
-A: Dieses Produkt verfügt über Überspannungs-, Unterspannungs-, Überstrom-, Überlast-, Kurzschluss- sowie Hoch-/Niedrigtemperaturschutz, um ein sicheres und zuverlässiges Laden zu gewährleisten. Zusätzlich verhindert die intelligente Spannungsüberwachung eine übermäßige Batterieentladung und stellt sicher, dass das Fahrzeug normal gestartet werden kann.
+**F8: Beeinträchtigt das Betriebsgeräusch den Schlaf?**
 
-F7: Warum ist die Ladeleistung instabil?
-
-A: Die Ladeleistung passt sich dynamisch an die Fahr- und Straßenbedingungen des Fahrzeugs an. Dadurch wird die Fahrzeugbatterie geschont und gleichzeitig eine maximale Ladeeffizienz erreicht. Schwankungen der Ladeleistung sind normal.
-
-F8: Beeinträchtigt das Betriebsgeräusch den Schlaf?
-
-A: Das Produkt ist lüfterlos konstruiert und hat einen Geräuschpegel von unter 40 dB, was den Anforderungen an eine schlafgeeignete Umgebung entspricht.
-
+**A:** Das Produkt ist lüfterlos konstruiert und hat einen Geräuschpegel von unter 40 dB, was den Anforderungen an eine schlafgeeignete Umgebung entspricht.

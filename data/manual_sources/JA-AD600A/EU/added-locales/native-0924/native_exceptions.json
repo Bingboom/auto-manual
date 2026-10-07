@@ -46,5 +46,10 @@
   "english_warning_label_in_source": [
     "de",
     "it"
-  ]
+  ],
+  "faq_source_exceptions": {
+    "pt": "first question has no P1 marker in the original artwork",
+    "de": "F4 answer is English in the original artwork",
+    "es": "question 7 marker is PREGUNTA 7# in the original artwork"
+  }
 }

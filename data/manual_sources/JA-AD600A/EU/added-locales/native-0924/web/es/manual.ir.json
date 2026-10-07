@@ -27,9 +27,9 @@
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
     "assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"
   ],
-  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es",
-  "bundle_sha256": "a488d76afdc450f4629781f6508512565a0f24d768d83a66f929e93c8ad497de",
-  "content_sha256": "4c458f1594737df6ee60fb950cb363092bfd4d0e79b623dd85e8c060883346e2",
+  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es",
+  "bundle_sha256": "4e599b1da2911fb261676ac2631050c13013b27af6800288fbac431a70a3cb5e",
+  "content_sha256": "385562f57e4dc0a2413216a42404c094e1b078c9e51a2a0aada7245ede9c17d0",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -61,7 +61,7 @@
       "assets/ir/fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647/inbox_st55_screws.png": "fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647",
       "assets/ir/fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96/body_mark.png": "fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96"
     },
-    "block_count": 78,
+    "block_count": 92,
     "component_registry": {
       "components": {
         "HB-CALLOUT-STRIP": {
@@ -4245,7 +4245,7 @@
             "path": "assets/ir/bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207/wiring_fuse_base.svg",
             "sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
           "locale": "es",
           "page_id": "installation_es.rst",
           "section": "operation",
@@ -4260,7 +4260,7 @@
             "path": "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png",
             "sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
           "locale": "es",
           "page_id": "installation_es.rst",
           "section": "operation",
@@ -4275,7 +4275,7 @@
             "path": "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
             "sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
           "locale": "es",
           "page_id": "installation_es.rst",
           "section": "operation",
@@ -4736,7 +4736,7 @@
       "language": "es",
       "page_id": "disclaimer_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/disclaimer_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/disclaimer_es.rst",
       "source_ref": "disclaimer_es.rst",
       "source_sha256": "41d3f11163cb0309a6e360c35a23e916ecb41d14d94d78b63b9ee50cf1b8ab87"
     },
@@ -4784,7 +4784,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications_es.rst:block-0003",
-          "content_sha256": "6871c7ce90918399986cd02108942f833c48043696d6ff6bc9b0119f8bfca0d8",
+          "content_sha256": "131a08c27ad7b2018457a7aec0b191a049a2c311469435e1c680750c1043e7ac",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5575,7 +5575,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/specifications_es.rst#specification-1",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/specifications_es.rst#specification-1",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5602,7 +5602,7 @@
       "language": "es",
       "page_id": "specifications_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/specifications_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/specifications_es.rst",
       "source_ref": "specifications_es.rst",
       "source_sha256": "e2d0b5339836450623c8873f04e47ad5aa8150e8a14546c6ba86ea31c45adde4"
     },
@@ -5639,7 +5639,7 @@
       "language": "es",
       "page_id": "dimensions_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/dimensions_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/dimensions_es.rst",
       "source_ref": "dimensions_es.rst",
       "source_sha256": "f9551aba3a1fa6ecec310e63b80aa3161714ecfae8ba02aed9479d0c91850e17"
     },
@@ -5676,7 +5676,7 @@
             "assets/ir/f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac/inbox_user_guide.png"
           ],
           "block_id": "box_contents_es.rst:block-0002",
-          "content_sha256": "113cb8dfd8818631bbf26feb09f42fcfcf91e31ba42d074b4b6f657d96c7c5b5",
+          "content_sha256": "d0e71e902f68fadfa40df0e3fc25a930115e93520e03c3f75fc860684d5606bd",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -6716,7 +6716,7 @@
                   "role": "tip_body"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/box_contents_es.rst",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/box_contents_es.rst",
               "token_roles": [
                 "component.special.inbox"
               ],
@@ -6731,7 +6731,7 @@
       "language": "es",
       "page_id": "box_contents_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/box_contents_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/box_contents_es.rst",
       "source_ref": "box_contents_es.rst",
       "source_sha256": "01c2cce3be23eb7d60c5e6a4c5452f1ac98cc192782feebe5933d5916e643a40"
     },
@@ -6760,7 +6760,7 @@
             "assets/ir/c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca/product_overview_base.png"
           ],
           "block_id": "product_overview_es.rst:block-0002",
-          "content_sha256": "2f885341132769dfac312cc09ee3ab2c2779203c1094c47ab9423bdf1fdee48c",
+          "content_sha256": "82a922a18a81186ae3960122e02eb27cc8fa3e6995485d22ade877f438dd27cf",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7076,7 +7076,7 @@
                   "role": "captions"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/product_overview_es.rst#reference-product-overview",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/product_overview_es.rst#reference-product-overview",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -7103,7 +7103,7 @@
       "language": "es",
       "page_id": "product_overview_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/product_overview_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/product_overview_es.rst",
       "source_ref": "product_overview_es.rst",
       "source_sha256": "d709dde262430a2082cffe6528506c221c1faf67537e4adf1641195b74ff029c"
     },
@@ -9130,7 +9130,7 @@
       "language": "es",
       "page_id": "important_safety_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/important_safety_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/important_safety_es.rst",
       "source_ref": "important_safety_es.rst",
       "source_sha256": "78ef345064c4cded33a70fff95b096f896901bf200b0a435674e5515a3c0f11d"
     },
@@ -9157,13 +9157,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0002",
-          "content_sha256": "d96228bb60e5cbb1ee626308fab505643f788a051ff859eaefd2bfb58ed3f490",
+          "content_sha256": "90fc1b11616b538e470a89670646e0166f2f947e125d30a961f167314b0bf4fa",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "PREGUNTA #1: ¿Es necesario contar con un profesional para la instalación de este producto? Respuesta: Para garantizar la seguridad y un cableado ordenado, se recomienda que la instalación la realice un taller de modificación profesional. Los no profesionales no deben intentar instalarlo por sí mismos."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #1: ¿Es necesario contar con un profesional para la instalación de este producto?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9186,13 +9191,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0004",
-          "content_sha256": "e97722ee547b07890dcbcfd8a1899276d996ca9e29629d3044d54645be0674e7",
+          "content_sha256": "6cdfa99c646b8a1f9da1b1a0a0cfa09e5fb1e8fd245cae0080b4a4ee6736e714",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "PREGUNTA #2 ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del producto? Respuesta: 1. Limpie la superficie del producto con un paño seco. Para las manchas difíciles, utilice un detergente neutro diluido."
+                "text": " Para garantizar la seguridad y un cableado ordenado, se recomienda que la instalación la realice un taller de modificación profesional. Los no profesionales no deben intentar instalarlo por sí mismos."
               }
             ],
             "kind": "paragraph",
@@ -9215,65 +9229,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0006",
-          "content_sha256": "3fea09c33c7c4963c4bd9f12c8b6da4b8678ca94bd446c58b36d062239eb3bce",
+          "content_sha256": "e807ca81311e13df0453674ccda5bdfba753d3c45bfa1aed8fb1e457b542e3f0",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "\n"
-              },
-              {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "Revise los conectores, el cableado, los tornillos y los fusibles en busca de daños o envejecimiento. Si necesita ayuda, póngase en contacto con el servicio de atención al cliente de Jackery."
-                      }
-                    ],
-                    "kind": "paragraph"
+                    "kind": "text",
+                    "text": "PREGUNTA #2 ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del producto?"
                   }
                 ],
-                "kind": "list_item"
-              },
-              {
-                "kind": "text",
-                "text": "\n"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "Asegúrese de que el producto esté instalado de forma segura y evite la luz solar directa y los entornos de alta temperatura."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "kind": "text",
-                "text": "\n"
+                "kind": "strong"
               }
             ],
-            "kind": "list",
-            "ordered": true,
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": [
-                    "arabic",
-                    "simple"
-                  ]
-                }
-              }
-            },
-            "schema_version": "manual-flow/v2",
-            "start": 2
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
           },
           "source_ref": "faq_es.rst#block-6"
         },
@@ -9292,13 +9263,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0008",
-          "content_sha256": "86f899c5a9841aa2a65b3bbf567ae6df8c61cfd00aca03cf53af472551084f7f",
+          "content_sha256": "3cf617537a5375e5b9ecdf90e7a10c6f184eb3664ab7af622309d168a50f368f",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "PREGUNTA #3: El uso de este producto, ¿agota la batería del vehículo? Respuesta: Para evitar la descarga excesiva de la batería de arranque de un automóvil o de una batería de un vehículo recreativo, el producto monitorea el voltaje en la batería. Cuando el voltaje sea menor que el voltaje de inicio, el producto dejará de funcionar automáticamente; Si el vehículo no arranca, el producto entrará en modo de espera y se apagará automáticamente después de 24 horas."
+                "text": " 1. Limpie la superficie del producto con un paño seco. Para las manchas difíciles, utilice un detergente neutro diluido. 2. Revise los conectores, el cableado, los tornillos y los fusibles en busca de daños o envejecimiento. Si necesita ayuda, póngase en contacto con el servicio de atención al cliente de Jackery. 3. Asegúrese de que el producto esté instalado de forma segura y evite la luz solar directa y los entornos de alta temperatura."
               }
             ],
             "kind": "paragraph",
@@ -9321,13 +9301,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0010",
-          "content_sha256": "f3ca86b160d17ae41f331fbf469379c05e862f4d864e253a5b6f6bfc3cbd78e6",
+          "content_sha256": "4f39f9eef94008560e0bc9e85540facc124355f45ec3617b26c50e6c0def2ac2",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "PREGUNTA #4: ¿Por qué no funciona el producto? Respuesta: Algunos modelos de vehículos antiguos o específicos tienen un voltaje más bajo, que puede no coincidir con el voltaje de funcionamiento del producto. Si el voltaje es superior al voltaje del sistema del vehículo (12V/24V) y el producto no funciona después de encenderlo, comuníquese con el servicio al cliente de Jackery para obtener asistencia."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #3: El uso de este producto, ¿agota la batería del vehículo?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9350,13 +9335,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0012",
-          "content_sha256": "cd7af42f1212ad16a7a64aa4e06075f64b8da65acf4c33f456796278bf5116d0",
+          "content_sha256": "769cf2e81ae1a7518a17760dd4eeba39c5c44d88ab0c0d468777bee2f11f520a",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "PREGUNTA #5: EL uso de este producto, ¿aumentará el consumo de combustible? Respuesta: No. El producto utiliza la energía sobrante del generador, por lo que es eficiente, ahorra energía y es respetuoso con el medio ambiente."
+                "text": " Para evitar la descarga excesiva de la batería de arranque de un automóvil o de una batería de un vehículo recreativo, el producto monitorea el voltaje en la batería. Cuando el voltaje sea menor que el voltaje de inicio, el producto dejará de funcionar automáticamente; Si el vehículo no arranca, el producto entrará en modo de espera y se apagará automáticamente después de 24 horas."
               }
             ],
             "kind": "paragraph",
@@ -9379,13 +9373,18 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0014",
-          "content_sha256": "06c7007ec1fa3b39d9bf25bcfaafc0701488462ac43cb3bf3e13d5f34c10dbfe",
+          "content_sha256": "85bd89412019567fff971f269f516fdbc2e7c70136dec68d9cec73910d001e98",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "PREGUNTA #6: ¿Con qué características de protección de seguridad cuenta este producto? Respuesta: Este producto incluye protección contra sobretensión, subtensión, sobrecorriente, sobrecarga, cortocircuito y alta/baja temperatura para garantizar una carga segura y fiable. Además, la función inteligente de detección de tensión evita la descarga excesiva de la batería, garantizando que el vehículo arranque con normalidad."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #4: ¿Por qué no funciona el producto?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -9408,13 +9407,22 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0016",
-          "content_sha256": "02b800c0bfe9792785be0f2095cb30407cb831ba4796e7cc0b8c349581c4808d",
+          "content_sha256": "e420a858a94b539a028cc750b5060a0645038d0f41cbcad03e60426cf449cdae",
           "kind": "flow",
           "payload": {
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
                 "kind": "text",
-                "text": "PREGUNTA 7#: ¿Por qué es inestable la potencia de carga? Respuesta: La potencia de carga se ajusta dinámicamente según las condiciones de conducción del vehículo y las condiciones de la carretera. Esto ayuda a proteger la batería del vehículo al tiempo que logra la máxima eficiencia de carga. Las fluctuaciones de energía son normales."
+                "text": " Algunos modelos de vehículos antiguos o específicos tienen un voltaje más bajo, que puede no coincidir con el voltaje de funcionamiento del producto. Si el voltaje es superior al voltaje del sistema del vehículo (12V/24V) y el producto no funciona después de encenderlo, comuníquese con el servicio al cliente de Jackery para obtener asistencia."
               }
             ],
             "kind": "paragraph",
@@ -9437,27 +9445,286 @@
         {
           "asset_refs": [],
           "block_id": "faq_es.rst:block-0018",
-          "content_sha256": "85805516ed473618a26f9aeca31d18b5a79715b9ac4e8440173dc736d743cdad",
+          "content_sha256": "ff4dff8738e84805e04da7eb6eb9fc05a65a428e99e1fb8f62bcbc3bbf2f597f",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "PREGUNTA #8: El ruido de funcionamiento del producto, ¿puede afectar al sueño? Respuesta: El producto está diseñado sin ventilador y su nivel de ruido es inferior a 40 dB, por lo que cumple las normas sobre ruido en entornos de sueño."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #5: EL uso de este producto, ¿aumentará el consumo de combustible?"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "faq_es.rst#block-18"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0019",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-19"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0020",
+          "content_sha256": "b94d5935a6f1022c3b5965ce81479bc3d35a7015b9775459d61db952571a6f35",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " No. El producto utiliza la energía sobrante del generador, por lo que es eficiente, ahorra energía y es respetuoso con el medio ambiente."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-20"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0021",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-21"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0022",
+          "content_sha256": "1e01769890cb88ae0d455093594eaefa263f7fa72070cee45a5e7409efcb68b6",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #6: ¿Con qué características de protección de seguridad cuenta este producto?"
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-22"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0023",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-23"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0024",
+          "content_sha256": "27fc85f738b89fed0702f8eec82456f3c60df2829993f165a4c3b0f1ce3404c0",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " Este producto incluye protección contra sobretensión, subtensión, sobrecorriente, sobrecarga, cortocircuito y alta/baja temperatura para garantizar una carga segura y fiable. Además, la función inteligente de detección de tensión evita la descarga excesiva de la batería, garantizando que el vehículo arranque con normalidad."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-24"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0025",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-25"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0026",
+          "content_sha256": "7ef398033d387a0d2e2e023c8284b426c80a25d747a5b11259edef2721d80abf",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA 7#: ¿Por qué es inestable la potencia de carga?"
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-26"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0027",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-27"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0028",
+          "content_sha256": "9cbd6c9d1ea7dde01273f01443d1683d562aa0f2856fb0f71cba455cdb31845d",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " La potencia de carga se ajusta dinámicamente según las condiciones de conducción del vehículo y las condiciones de la carretera. Esto ayuda a proteger la batería del vehículo al tiempo que logra la máxima eficiencia de carga. Las fluctuaciones de energía son normales."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-28"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0029",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-29"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0030",
+          "content_sha256": "9dd9e119d689e9930a7805c25054ca8e729ed3f17f1f153c645254f7736b307c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "PREGUNTA #8: El ruido de funcionamiento del producto, ¿puede afectar al sueño?"
+                  }
+                ],
+                "kind": "strong"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-30"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0031",
+          "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+          "kind": "flow",
+          "payload": {
+            "kind": "text",
+            "schema_version": "manual-flow/v2",
+            "text": "\n"
+          },
+          "source_ref": "faq_es.rst#block-31"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "faq_es.rst:block-0032",
+          "content_sha256": "e2320634d06d51c7f777668d1449626759bd2a7dd124b9d5883b393002cf7bc2",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Respuesta:"
+                  }
+                ],
+                "kind": "strong"
+              },
+              {
+                "kind": "text",
+                "text": " El producto está diseñado sin ventilador y su nivel de ruido es inferior a 40 dB, por lo que cumple las normas sobre ruido en entornos de sueño."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "faq_es.rst#block-32"
         }
       ],
       "language": "es",
       "page_id": "faq_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/faq_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/faq_es.rst",
       "source_ref": "faq_es.rst",
-      "source_sha256": "ed4fe706b86a5666fc94e8c18cb868f1aa11843b4e7920e2593b4a71b446a640"
+      "source_sha256": "44b9541ce33fda1f7129762f447b807d742731b5859affdea05648aa1ff9004c"
     },
     {
       "blocks": [
@@ -9484,7 +9751,7 @@
             "assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png"
           ],
           "block_id": "installation_es.rst:block-0002",
-          "content_sha256": "5ae51f10b3e10fde257e70a7c9e074371cf63c635eb83f52f3c0f064e1a84a48",
+          "content_sha256": "badd8374fa6978ec218611e2a14d596f4368beccbf6afad22fd42e75c6d1abfa",
           "kind": "flow",
           "payload": {
             "anchor": "diagrama-de-instalacion",
@@ -9900,7 +10167,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/installation_es.rst#reference-installation-diagram",
+                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst#reference-installation-diagram",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -10738,7 +11005,7 @@
             "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png"
           ],
           "block_id": "installation_es.rst:block-0010",
-          "content_sha256": "e35e79815dfc4ab6c1d82f33089146cf6a1b70cc345df04f27769f6de498c465",
+          "content_sha256": "a0473895bc968e4920242b2cf529ae7ac5b2b0a6abefaf9945666399d255d6bb",
           "kind": "flow",
           "payload": {
             "anchor": "pasos-de-cableado",
@@ -11242,9 +11509,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 7,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "ca1ead545acb102ec682d96d9c519900cf4409f1b46499d4d63147a6958dcd2b",
+                            "source_fragment_sha256": "8f2f03939cd825677accbdd29a16242be09416290f0486fc676c4a359f26a65c",
                             "web_replace_key": "reference.wiring-fuse"
                           },
                           "schema_version": "component-spec/v1",
@@ -11304,7 +11571,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/installation_es.rst#reference-wiring-fuse",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst#reference-wiring-fuse",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -11702,9 +11969,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 2,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "e6cd51d0981b1ee21ea5c7a10f4045a7e8f62fb79cf7695d381c190c9ea1a0b5",
+                            "source_fragment_sha256": "b3c45025cc39ea9e3a477ce8d7a413b9323b4052c56f280f790e7fd1ed711330",
                             "web_replace_key": "reference.wiring-acc"
                           },
                           "schema_version": "component-spec/v1",
@@ -11744,7 +12011,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/installation_es.rst#reference-wiring-acc",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst#reference-wiring-acc",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -12887,7 +13154,7 @@
             "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
           ],
           "block_id": "installation_es.rst:block-0014",
-          "content_sha256": "72ff3c1c18a470b80aa395443a6f44fc8be17b8b87f9c0ef95d22168e742ac52",
+          "content_sha256": "55070ffb0ed69c7c4508d3f570b2161e3560093041e1af212a7940195503d8d6",
           "kind": "flow",
           "payload": {
             "anchor": "conexion-del-producto-y-de-la-central-electrica-portatil",
@@ -13168,9 +13435,9 @@
                     "captions_origin": "carrier",
                     "capture_following_lines": 3,
                     "composite_locale": "",
-                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
                     "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "94f3f79245813334ef76a2339ba866a05c957b3ce39e6f881020aa15354cab59",
+                    "source_fragment_sha256": "a851bf157fb5e77ba3a6a3bed62657684bec46a7b59740b50a1d6da68df7278e",
                     "web_replace_key": "reference.charger-connection"
                   },
                   "schema_version": "component-spec/v1",
@@ -13214,7 +13481,7 @@
                       "role": "captions"
                     }
                   ],
-                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/installation_es.rst#reference-charger-connection",
+                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst#reference-charger-connection",
                   "token_roles": [
                     "component.special.reference-figure"
                   ],
@@ -13667,7 +13934,7 @@
       "language": "es",
       "page_id": "installation_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/installation_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/installation_es.rst",
       "source_ref": "installation_es.rst",
       "source_sha256": "fcf1a4fd6ae0442b361c1996cd6e4646fce045d9d1633c6ec35cd38f6297147b"
     },
@@ -14391,7 +14658,7 @@
       "language": "es",
       "page_id": "warranty_es.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/auto-manual2/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/es/warranty_es.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/es/warranty_es.rst",
       "source_ref": "warranty_es.rst",
       "source_sha256": "835b05ab93732d4e30d3fdea6bf24aa5d4051daf08ac4612c9306fead2b54733"
     }
