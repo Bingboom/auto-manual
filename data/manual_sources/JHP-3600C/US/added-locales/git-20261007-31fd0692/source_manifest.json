@@ -33,7 +33,7 @@
     {
       "path": "README.md",
       "size": 4371,
-      "sha256": "1a0ea20b2f5104f6edc14ed0cca6cf29bc8df56403dfe17ff4807b476e45aa1b"
+      "sha256": "db2807e799822c57bde49273495ce9a44069531f2c3291467c49a45d646e157b"
     },
     {
       "path": "rebuild.py",
@@ -1245,7 +1245,7 @@
     {
       "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
       "size": 41357,
-      "sha256": "63aa713e1b62891e670e7e1d268e213a06f16f692a2ee3957cf0a3e096b868f2"
+      "sha256": "40aa888c93dddef8fcbba3e8034c0843525adfc1058c72bd3db947cc389c3db4"
     },
     {
       "path": "docs/renderers/contracts/web_registration_components.css",

@@ -1,0 +1,9 @@
+{
+  "final_myst_css_html_identical_to_browser_review": true,
+  "intermediate_bundle_only_absolute_output_uris_and_fragment_hashes_differ": true,
+  "languages": [
+    "fr",
+    "es"
+  ],
+  "publication_eligible": false
+}

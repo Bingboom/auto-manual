@@ -14,7 +14,7 @@ python3 data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692/val
 python3 -m sphinx -W --keep-going -b html tmp/jhp3600c-fr-replay tmp/jhp3600c-fr-site
 ```
 
-Replace `fr` with `es` for Spanish. The frozen `web/<locale>` folders are shared Manual IR, MyST, Sphinx scaffold, styles and assets, ready for the existing frozen-Web publication pipeline after review. This package does not enroll a phase2/print target or write a live queue, Base or HTML_link. MA-262 records the operator authorization for this extension.
+Replace `fr` with `es` for Spanish. The frozen `web/<locale>` folders are shared Manual IR, MyST, Sphinx scaffold, styles and assets, ready for the existing frozen-Web publication pipeline after review. This package does not enroll a phase2/print target or write a live queue, Base or HTML_link. MA-263 records the operator authorization for this extension.
 
 `source/<locale>/copy_bindings.json` records native selections. `native_exceptions.json` records per-node corrections where repeated English labels must bind to different native captions. `illustrative_copy_exceptions.json` admits only specific small labels remaining inside approved illustrative artwork. Repeated warning/tip labels introduced by PDF reading order are separated into their existing label slots and removed from body copy. Inherited `source_ref` values describe English blueprint geometry; `copy_bindings.json`, native pages and per-node exceptions provide native wording provenance. The validation script fails on other source-line omissions or asset hash changes. Its line coverage is a useful omission check, not proof of sentence placement; semantic mapping and source review remain necessary.
 

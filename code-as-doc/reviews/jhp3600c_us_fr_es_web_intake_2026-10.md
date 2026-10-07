@@ -2,7 +2,7 @@
 
 Status: done
 
-Boundary: operator-authorized release in progress under MA-262.
+Boundary: operator-authorized release in progress under MA-263.
 
 ## Authority and accepted baseline
 
@@ -75,10 +75,12 @@ English source and frozen outputs passed their existing manifest hashes and rema
 
 ## Authorized publication preflight (2026-10-07)
 
-The operator requested “发布上线”; MA-262 covers the engineering PR and matching isolated Hello-Docs publication PR. This supersedes the candidate-only authorization boundary above. No live business-plane writes are permitted.
+The operator requested “发布上线”; MA-263 covers the engineering PR and matching isolated Hello-Docs publication PR. This supersedes the candidate-only authorization boundary above. No live business-plane writes are permitted.
 
 Canonical-temp full regression passed: **5210 tests, 35 skips**, by setting only `tempfile.tempdir = str(Path(tempfile.gettempdir()).resolve())` inside the test process before unittest discovery. This removes the macOS `/var` alias from test fixtures without changing repository code or host settings. The fixture-backed `build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root tmp/jhp3600c-fr-es/publish-regression --no-clean --skip-root-index` passed; it validates repository regression, not the new FR/ES native bodies.
 
 Formal frozen release preflight passed for both languages, with all source-root files inventoried by path/size/SHA-256. Native symbol admission binds all eleven shared assets per locale to physical p36/p67 glyphs and exact native captions; all 22 comparisons passed existing glyph/transparency thresholds without new artwork or shared-registry changes. The French source ligature in “ﬂamme” is retained exactly for source-caption equality. Strict Sphinx and source coverage passed for the final frozen bodies. English assets and package remain unchanged.
 
 Logs and preflight receipts are preserved in `tmp/jhp3600c-fr-es/`; actual publication receipts will bind the final merged engineering commit rather than the preliminary preflight ref.
+
+Latest-main composition: synchronized `dd86eabb9` (another model native-locale intake). Only that model’s target overlay changed; no shared renderer/core logic changed. Its existing MA-262 is preserved and this task is renumbered MA-263 after `next_registry_id.py ma`. Updated the pinned repository-overlay hash; current-main cold replay must remain byte-identical.
