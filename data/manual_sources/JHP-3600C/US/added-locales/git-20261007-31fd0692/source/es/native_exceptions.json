@@ -1,0 +1,115 @@
+[
+  {
+    "chapter": 9,
+    "node": 24,
+    "old": "Cable de entrada/salida de alimentación",
+    "native": "alimentación en el paquete",
+    "page": 80,
+    "blocks": 12
+  },
+  {
+    "chapter": 9,
+    "node": 33,
+    "old": "Câble de charge Jackery 40 A (vendu séparément)",
+    "native": "Cable de carga Jackery de 40 A (se vende por separado)",
+    "page": 81,
+    "blocks": 19
+  },
+  {
+    "chapter": 9,
+    "node": 38,
+    "old": "Cable de carga en el paquete del MTS",
+    "native": "Cable de carga en el paquete del MTS",
+    "page": 82,
+    "blocks": 7
+  },
+  {
+    "chapter": 9,
+    "node": 38,
+    "old": "Câble de charge Jackery 40 A (vendu séparément)",
+    "native": "Cable de carga Jackery de 40 A (se vende por separado)",
+    "page": 82,
+    "blocks": 8
+  },
+  {
+    "chapter": 9,
+    "node": 38,
+    "old": "Cable de comunicación en paralelo de Jackery (se vende por separado)",
+    "native": "Cable de comunicación paralela Jackery (se vende por separado)",
+    "page": 82,
+    "blocks": [
+      4,
+      5
+    ]
+  },
+  {
+    "chapter": 17,
+    "node": 13,
+    "old": "Courant et durée maximum du court-circuit",
+    "native": "Maximum Short Circuit Current and Duration",
+    "page": 94,
+    "blocks": 20
+  },
+  {
+    "chapter": 17,
+    "node": 14,
+    "old": "-4 °F a 113 °F (-20 °C a 45 °C)",
+    "native": "-4 °F a 113 °F / -20 °C a 45 °C",
+    "page": 94,
+    "blocks": [
+      26,
+      27
+    ]
+  },
+  {
+    "chapter": 10,
+    "node": 6,
+    "old": "PRECAUCIÓN",
+    "native": "ATTENTION",
+    "page": 83,
+    "blocks": 5
+  },
+  {
+    "chapter": 15,
+    "node": 8,
+    "old": "NOTA",
+    "native": "REMARQUE",
+    "page": 90,
+    "blocks": 1
+  },
+  {
+    "chapter": 17,
+    "node": 12,
+    "old": "JBP-3600A",
+    "native": "JBP-3600 A",
+    "page": 94,
+    "blocks": 11
+  },
+  {
+    "chapter": 17,
+    "node": 16,
+    "old": "JA-TS05A",
+    "native": "JA-TS05 A",
+    "page": 95,
+    "blocks": 13
+  },
+  {
+    "chapter": 17,
+    "node": 16,
+    "old": "UPS",
+    "native": "UPS (SAI)",
+    "page": 95,
+    "blocks": 11
+  },
+  {
+    "chapter": 7,
+    "node": 15,
+    "old": "Botón de encendido principal",
+    "native": "Botón principal de encendido",
+    "page": 75,
+    "blocks": [
+      5,
+      6
+    ]
+  }
+]
