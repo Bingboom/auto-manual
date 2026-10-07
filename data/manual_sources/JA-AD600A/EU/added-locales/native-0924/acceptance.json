@@ -274,5 +274,95 @@
         "strict_sphinx": true
       }
     ]
-  }
+  },
+  "publication_component_admission": [
+    {
+      "language": "fr",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "es",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "de",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "it",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "uk",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "pt",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "nl",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    },
+    {
+      "language": "pl",
+      "issues": [],
+      "components": {
+        "HB-TABLE-SPEC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 5
+      },
+      "debt_nodes": 3,
+      "native_body_unchanged": true
+    }
+  ]
 }

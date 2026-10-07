@@ -48,6 +48,9 @@ def rebuild(language: str, output: Path) -> None:
     config = {
         "build": {"web_entry_source_patterns": ["disclaimer*"]},
         "paths": {"web_illustration_manifest": str(SOURCE_ROOT / f"illustrations_{language}.json")},
+        "pages": [{"type": "rst_include", "slot_id": name + "_" + language,
+                   "lang": language, "file": str(root / f"{name}_{language}.rst")}
+                  for name in names],
     }
     output.mkdir(parents=True)
     export_markdown_from_bundle(

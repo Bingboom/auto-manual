@@ -19,3 +19,5 @@ FAQ correction: all eight locales now preserve the approved English question/ans
 Localized reflow follow-up hides redundant specification subheadings that repeated the section title. Status-table column widths reserve room for native light-state/color wording, and lamp labels wrap within their own cells. Source values and the shared English renderer remain unchanged.
 
 The 7.6 mounting precaution in all eight locales uses a plain paragraph and the existing shared compact installation-note style (0.5rem vertical padding). Its bullet marker is removed; source wording, other lists and surrounding installation steps are preserved.
+
+Publication admission under MA-267 declares each native RST page/slot through the shared assembly planner and enrolls all eight targets in prepared_component_admission.json. Requirements follow the independently reviewed English structure; only three source-authored charger tables per language retain exact reviewed-node debt pins in the existing categories. No admission check is bypassed.

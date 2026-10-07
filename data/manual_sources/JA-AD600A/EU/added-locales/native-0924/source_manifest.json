@@ -73,13 +73,13 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4395,
-      "sha256": "eb099e5f3a77fe2e7c3cfe9b97045ac52a69ac78d280e1df5a1741f749879bb0"
+      "size": 4788,
+      "sha256": "69cd4ec3f4d9011009271d5a791e1139a38908c6cd6d532b3e12788322a120fa"
     },
     {
       "path": "acceptance.json",
-      "size": 7691,
-      "sha256": "82b789fe17315a75055e9bd0f3f170078991b7969ad17c04b45f189cd2f97786"
+      "size": 9710,
+      "sha256": "5f198f488fa8a88c613c1c360a12171d1946518d53eda09fbf6fc715bdb1661b"
     },
     {
       "path": "assets/ja_ad600a_eu_en/body_clearance.png",
@@ -258,8 +258,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 3146,
-      "sha256": "959ef548b1ac430c61414e4b4fa3102904255d7e19b6f63e1e05805b6aec8a4a"
+      "size": 3343,
+      "sha256": "a76136cbf9d726024e442bf7bdc098ab3154fce9b1d1a6cfb88bb84631922edf"
     },
     {
       "path": "source/de/box_contents_de.rst",
@@ -858,8 +858,8 @@
     },
     {
       "path": "web/de/manual.ir.json",
-      "size": 514898,
-      "sha256": "75ba093c643aa9bb4dff6e7bba21237d1c1ca0564b4f49321485d35664841c72"
+      "size": 515318,
+      "sha256": "c08fc370662c14db257039e3c89ba8791dfdb47af251efe3a20c1e9587f41a5b"
     },
     {
       "path": "web/de/manual_bundle.html",
@@ -1023,8 +1023,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 516142,
-      "sha256": "46cdb96566043d0af14d31bf6ee4eadb5e6fffd5c9696103fcb81535ef86111d"
+      "size": 516562,
+      "sha256": "ab518b23b25ba5db8460fa40e780a64f0e8075bd69d01ee6d97ddf9848a79511"
     },
     {
       "path": "web/es/manual_bundle.html",
@@ -1188,8 +1188,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 519020,
-      "sha256": "588a5b7238cbb4cca251f0b23b51e78a2f7b5c52589280aa253e0f205ceed120"
+      "size": 519440,
+      "sha256": "f25d30134b915da453611f4dc3d9516afa459d8db45dfcb63b90838f681b10ee"
     },
     {
       "path": "web/fr/manual_bundle.html",
@@ -1348,8 +1348,8 @@
     },
     {
       "path": "web/it/manual.ir.json",
-      "size": 514143,
-      "sha256": "85334226e32277447748d0547de5e65b29c634fa6acb520dc602779f8ede8c25"
+      "size": 514563,
+      "sha256": "5d98e8c918c8d265cdc74fdbdc03b6e66bfee6e1be7241a07f22bcfcee1a72b7"
     },
     {
       "path": "web/it/manual_bundle.html",
@@ -1513,8 +1513,8 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 514150,
-      "sha256": "783f79ba9dc5cebb9d45cb84ba2136707f3c9b15f98d7e9a504418b2c7d9f26e"
+      "size": 514570,
+      "sha256": "3e1c932e7ad86a180a9f91aeab3612766cd396302b51f1b63f45174cade33e25"
     },
     {
       "path": "web/nl/manual_bundle.html",
@@ -1678,8 +1678,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 514386,
-      "sha256": "e423fa0212a891c8bf0293bec904d67a0ee60fa325d137338b492fbf9ea394aa"
+      "size": 514806,
+      "sha256": "f41147d7d0bb0f6a2a4938584b4cd78dc1040aea95375567830f936cc29c02d3"
     },
     {
       "path": "web/pl/manual_bundle.html",
@@ -1838,8 +1838,8 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 510872,
-      "sha256": "f4f72935be30ee48069388e6c6f306c3f0f57e96f1d9b9f5ea1f6064f07d664e"
+      "size": 511292,
+      "sha256": "0cfb33d950059866a555643cedbbe572063d7cfe1b78505ce143d1f4363f277d"
     },
     {
       "path": "web/pt/manual_bundle.html",
@@ -2003,8 +2003,8 @@
     },
     {
       "path": "web/uk/manual.ir.json",
-      "size": 529314,
-      "sha256": "3f48de3ffbb0fa96c48cec330719ad963ca6e9f86c33a4514cbea8a7cc27b064"
+      "size": 529734,
+      "sha256": "b90086c2fbdc21c22d244a6139a1b3b5adbbd1274c51ef673366061fff4936d7"
     },
     {
       "path": "web/uk/manual_bundle.html",
@@ -2025,6 +2025,11 @@
     {
       "path": "docs/renderers/web/charger_eu_en_JA-AD600A_illustrations.json",
       "sha256": "8b616a6e9cbc04df9d8c918fe37aa8461fb40fdd0ee0f300addb14099c25adb1"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "size": 288643,
+      "sha256": "63f7b5196a7037885a1ae384e05fb3e803a426ae624f31cca46d91a712d8785f"
     }
   ]
 }

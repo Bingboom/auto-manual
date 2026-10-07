@@ -1,6 +1,6 @@
 {
   "schema_version": "prepared-component-admission/v1",
-  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.; JA-AD600A EU English 0924 AI (SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348) operator-reviewed 2026-10-07 MA-264: nine source pages, one spec, nine-item inbox, five live-copy reference figures, exact compatibility/status/period tables, source-native warning and ten paired installation prose/illustrations. Historical stored evidence remains unchanged.",
+  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters; JE-100C EU nine source-reviewed locales 2026-10-01 under MA-226: six notices, symbol icons, four LCD catalogs, authored action table and exact compact warranty chapters; JBP-3600A EU nine reviewed locales 2026-10-03 MA-244: source pages and independent native/delta acceptance; 15 English semantic pages, shared symbols/Inbox/LCD/operation/reference/troubleshooting/spec/warranty, native panels and IT source-only spec/warranty differences retained. See manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/approval.json.; JA-AD600A EU English 0924 AI (SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348) operator-reviewed 2026-10-07 MA-264: nine source pages, one spec, nine-item inbox, five live-copy reference figures, exact compatibility/status/period tables, source-native warning and ten paired installation prose/illustrations. Historical stored evidence remains unchanged. JA-AD600A EU fr/es/de/it/uk/pt/nl/pl source-reviewed 0924 AI, SHA25665297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348, operator-authorized MA-267 on 2026-10-07: same nine-page English applicability and shared spec/Inbox/five live-copy references; each original compatibility/status/period table pinned by full reviewed node digest. No new debt category or blanket chapter waiver; native FCC/warranty/FAQ exceptions and compact plain installation notes are retained. See data/manual_sources/JA-AD600A/EU/added-locales/native-0924/acceptance.json.",
   "debt_reasons": {
     "diagram-labels": "Source illustration labels; not an operation UI table. Preserve complete labels until the annotated-figure adapter owns this layout.",
     "regulatory-radio": "Regulatory radio-frequency declaration; not an LCD or operation table. Preserve exact source rows.",
@@ -7090,6 +7090,566 @@
         "regulatory_compliance.rst": {
           "slot": "regulatory_compliance",
           "components": {}
+        }
+      }
+    },
+    "JA-AD600A/EU/fr": {
+      "pages": {
+        "disclaimer_fr.rst": {
+          "slot": "disclaimer_fr",
+          "components": {}
+        },
+        "specifications_fr.rst": {
+          "slot": "specifications_fr",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_fr.rst": {
+          "slot": "dimensions_fr",
+          "components": {}
+        },
+        "box_contents_fr.rst": {
+          "slot": "box_contents_fr",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_fr.rst": {
+          "slot": "product_overview_fr",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_fr.rst": {
+          "slot": "important_safety_fr",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "a927678cdb1855029080322c6fdce46a710619a353a3b19f5571c79999696685",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "5435b42ac1f08c04d738294a735b9526209274aa4eb0986867c6b1d01f7b645b",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_fr.rst": {
+          "slot": "faq_fr",
+          "components": {}
+        },
+        "installation_fr.rst": {
+          "slot": "installation_fr",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_fr.rst": {
+          "slot": "warranty_fr",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "22213e30b2400a452a88860eee3f134763361fab88d01c204c7207ece0e1ee10",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/es": {
+      "pages": {
+        "disclaimer_es.rst": {
+          "slot": "disclaimer_es",
+          "components": {}
+        },
+        "specifications_es.rst": {
+          "slot": "specifications_es",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_es.rst": {
+          "slot": "dimensions_es",
+          "components": {}
+        },
+        "box_contents_es.rst": {
+          "slot": "box_contents_es",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_es.rst": {
+          "slot": "product_overview_es",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_es.rst": {
+          "slot": "important_safety_es",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "c41062ef40a00c4b94e97e4d430136acd2ae359764045f1f2f3f8aee405b11aa",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "16ea0b1e8945b90dfb2a04e88bad83f50c1471ef53dbe3fc7c2836de2a9c384e",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_es.rst": {
+          "slot": "faq_es",
+          "components": {}
+        },
+        "installation_es.rst": {
+          "slot": "installation_es",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_es.rst": {
+          "slot": "warranty_es",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "83ac073215c189384129f02ff46c8e009270bbb0f190d8480adae0f22ae7d1a6",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/de": {
+      "pages": {
+        "disclaimer_de.rst": {
+          "slot": "disclaimer_de",
+          "components": {}
+        },
+        "specifications_de.rst": {
+          "slot": "specifications_de",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_de.rst": {
+          "slot": "dimensions_de",
+          "components": {}
+        },
+        "box_contents_de.rst": {
+          "slot": "box_contents_de",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_de.rst": {
+          "slot": "product_overview_de",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_de.rst": {
+          "slot": "important_safety_de",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "0bf566b300bc24081e242583ef9dbf82a7eefe9715bca977d66949a935454855",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "9286a9a8719e5afaadb54e273eb314d22370dc0cd5ce0359a9a426ba475baf42",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_de.rst": {
+          "slot": "faq_de",
+          "components": {}
+        },
+        "installation_de.rst": {
+          "slot": "installation_de",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_de.rst": {
+          "slot": "warranty_de",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "5e7bbca42bfcd937ee5dc83d5ceb88e9d8c81e50b219596eec6288783be93d9b",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/it": {
+      "pages": {
+        "disclaimer_it.rst": {
+          "slot": "disclaimer_it",
+          "components": {}
+        },
+        "specifications_it.rst": {
+          "slot": "specifications_it",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_it.rst": {
+          "slot": "dimensions_it",
+          "components": {}
+        },
+        "box_contents_it.rst": {
+          "slot": "box_contents_it",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_it.rst": {
+          "slot": "product_overview_it",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_it.rst": {
+          "slot": "important_safety_it",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "d331a787a1192a6ee42edb66f462007653bb96f92e2b64a84f6d01624e1f2a7d",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "30ef95c714820bb9c574ead8b26204a25e01c08a9f16f84f74c892108cb87109",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_it.rst": {
+          "slot": "faq_it",
+          "components": {}
+        },
+        "installation_it.rst": {
+          "slot": "installation_it",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_it.rst": {
+          "slot": "warranty_it",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "f8ac13311847cd99756edfc90c28df99e79d6000010e1b4a0b11e84faea542bf",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/uk": {
+      "pages": {
+        "disclaimer_uk.rst": {
+          "slot": "disclaimer_uk",
+          "components": {}
+        },
+        "specifications_uk.rst": {
+          "slot": "specifications_uk",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_uk.rst": {
+          "slot": "dimensions_uk",
+          "components": {}
+        },
+        "box_contents_uk.rst": {
+          "slot": "box_contents_uk",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_uk.rst": {
+          "slot": "product_overview_uk",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_uk.rst": {
+          "slot": "important_safety_uk",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "90a51a1d956bc6ee6d0167716dcf8ccc4a930e9ca79d6541aa28944e601597a3",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "6b0e1a719b74a9dd1aa1fbfff2a9b42bbe5e054603bf2d65a151f117d6ab60c8",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_uk.rst": {
+          "slot": "faq_uk",
+          "components": {}
+        },
+        "installation_uk.rst": {
+          "slot": "installation_uk",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_uk.rst": {
+          "slot": "warranty_uk",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "e7f9dbdf7e47757df98b422c00d5d9fa448515a1cd498fc731d0e378be204915",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/pt": {
+      "pages": {
+        "disclaimer_pt.rst": {
+          "slot": "disclaimer_pt",
+          "components": {}
+        },
+        "specifications_pt.rst": {
+          "slot": "specifications_pt",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_pt.rst": {
+          "slot": "dimensions_pt",
+          "components": {}
+        },
+        "box_contents_pt.rst": {
+          "slot": "box_contents_pt",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_pt.rst": {
+          "slot": "product_overview_pt",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_pt.rst": {
+          "slot": "important_safety_pt",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "c4e7a1b68dedf02e4144bec20ea6188f4dbfad987526f0ffca664727734ece42",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "57afc60eb2594563332546895ffb3fc894af993d8b5d0dd669c7beec07c5e76f",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_pt.rst": {
+          "slot": "faq_pt",
+          "components": {}
+        },
+        "installation_pt.rst": {
+          "slot": "installation_pt",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_pt.rst": {
+          "slot": "warranty_pt",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "2cc7ce642fb30ac8333ccc10676cf242cd692ebf70505eb62c6cacb6e34855de",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/nl": {
+      "pages": {
+        "disclaimer_nl.rst": {
+          "slot": "disclaimer_nl",
+          "components": {}
+        },
+        "specifications_nl.rst": {
+          "slot": "specifications_nl",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_nl.rst": {
+          "slot": "dimensions_nl",
+          "components": {}
+        },
+        "box_contents_nl.rst": {
+          "slot": "box_contents_nl",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_nl.rst": {
+          "slot": "product_overview_nl",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_nl.rst": {
+          "slot": "important_safety_nl",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "8bdfc31ffcc49b2c8026c64d73c229ccfa429a8e76fa37ddf6d5eaa8f958eb4b",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "7a5f2ec445c908d3862151d00e754ec84cbad2a775fd3eb2624d12bc42052a18",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_nl.rst": {
+          "slot": "faq_nl",
+          "components": {}
+        },
+        "installation_nl.rst": {
+          "slot": "installation_nl",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_nl.rst": {
+          "slot": "warranty_nl",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "8c16a6ea9aab602886150d271a5753a7f3ab6b1f8ace7c57204a35040e54dafd",
+              "category": "charger-warranty-period"
+            }
+          ]
+        }
+      }
+    },
+    "JA-AD600A/EU/pl": {
+      "pages": {
+        "disclaimer_pl.rst": {
+          "slot": "disclaimer_pl",
+          "components": {}
+        },
+        "specifications_pl.rst": {
+          "slot": "specifications_pl",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 1
+          }
+        },
+        "dimensions_pl.rst": {
+          "slot": "dimensions_pl",
+          "components": {}
+        },
+        "box_contents_pl.rst": {
+          "slot": "box_contents_pl",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_overview_pl.rst": {
+          "slot": "product_overview_pl",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+          }
+        },
+        "important_safety_pl.rst": {
+          "slot": "important_safety_pl",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/7",
+              "kind": "table",
+              "sha256": "fcd5d35afa794e4c8c276478e07bcca8461498d48ea3da5ebdcce6ce2e391ebc",
+              "category": "charger-compatibility"
+            },
+            {
+              "location": "7/15/1",
+              "kind": "table",
+              "sha256": "63023cbc6a0850e7ffce308a28a49cbd9cf70925cc63271ad33fe06ade775bdd",
+              "category": "charger-status"
+            }
+          ]
+        },
+        "faq_pl.rst": {
+          "slot": "faq_pl",
+          "components": {}
+        },
+        "installation_pl.rst": {
+          "slot": "installation_pl",
+          "components": {
+            "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 4
+          }
+        },
+        "warranty_pl.rst": {
+          "slot": "warranty_pl",
+          "components": {},
+          "debt": [
+            {
+              "location": "7/3/1",
+              "kind": "table",
+              "sha256": "cc5e894188bf65be377f060a489a19f3512fc16564b1948d9c423c7fe7a7385c",
+              "category": "charger-warranty-period"
+            }
+          ]
         }
       }
     }

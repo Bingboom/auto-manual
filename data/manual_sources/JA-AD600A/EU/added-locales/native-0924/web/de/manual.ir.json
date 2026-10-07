@@ -3669,7 +3669,17 @@
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "page_count": 9,
     "page_declarations": {},
-    "page_slots": {},
+    "page_slots": {
+      "box_contents_de.rst": "box_contents_de",
+      "dimensions_de.rst": "dimensions_de",
+      "disclaimer_de.rst": "disclaimer_de",
+      "faq_de.rst": "faq_de",
+      "important_safety_de.rst": "important_safety_de",
+      "installation_de.rst": "installation_de",
+      "product_overview_de.rst": "product_overview_de",
+      "specifications_de.rst": "specifications_de",
+      "warranty_de.rst": "warranty_de"
+    },
     "projection": "whole-document-components/v1",
     "skipped_raw": 0,
     "title": "Jackery DC-DC Charger",
@@ -4216,7 +4226,7 @@
           "asset_ref": "product_overview_base.png",
           "locale": "de",
           "page_id": "product_overview_de.rst",
-          "section": "reference",
+          "section": "overview",
           "slot_id": "reference.product-overview",
           "source_images": [
             "product_overview_base.png"
@@ -4446,7 +4456,7 @@
             },
             "total": 14
           },
-          "reference": {
+          "overview": {
             "by_status": {
               "approved-composite": 0,
               "base-art-live-copy": 1,
