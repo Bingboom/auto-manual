@@ -1444,7 +1444,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "1a7be825ac510198de6af33ce5253d9b0a53e92df8aae06cd676dc7d99a41643",
+    "frozen_stylesheet_sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b",
     "manual_theme": {
       "component_roles": {
         "component.callout": {

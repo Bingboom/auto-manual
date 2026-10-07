@@ -2211,7 +2211,6 @@ body {
 }
 
 /* Searchable, editable FCC composition projected from HB-SPECIAL-FCC. */
-
 /* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
 #furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
   position: absolute !important;
@@ -2229,7 +2228,6 @@ body {
 .hb-fcc-composition {
   --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
   --hb-fcc-radius: 1rem;
-
   margin: 0 auto 2.25rem;
   padding: clamp(1.15rem, 2.5vw, 1.8rem);
   overflow: hidden;
@@ -2277,7 +2275,6 @@ body {
 .hb-fcc-opening-copy .line {
   margin: 0;
 }
-
 #furo-main-content .hb-fcc-column ul {
   display: grid;
   gap: var(--hb-fcc-flow-gap);
@@ -2289,15 +2286,13 @@ body {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.35rem;
   }
-
   .hb-fcc-composition {
     padding: 1rem;
     border-radius: 0.72rem;
   }
 }
 
-/* Opt-in readable Web flow: balance ordered copy instead of fixing the source
-   block boundary as a desktop column boundary. Print projections stay intact. */
+/* Balance ordered Web copy across columns; print projections stay intact. */
 #furo-main-content .hb-fcc-balanced-flow .hb-fcc-grid {
   display: block;
   column-count: 2;
