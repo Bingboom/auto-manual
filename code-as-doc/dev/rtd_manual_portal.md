@@ -49,10 +49,12 @@ its market list from the same settings, and CN/JP display their own market notes
 
 Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
-`_static/site-shell.css`: a left sidebar under the 工作资料 brand (说明书 group: 说明书资料库, 搜索说明书正文;
-知识库 group: 概览, 分享资料, 系统建设, 说明书工作台, 最近更新) and a sticky top bar
-(breadcrumb, the 知识库 / 工作资料 switch and page-specific controls such as the
-region selector). Optional entries follow the same rules as before: 分享资料 only
+`_static/site-shell.css`. The public manual library passes `internal=false` to
+both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
+and its top bar keeps the breadcrumb and region selector. It has no internal
+knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
+知识库 group (产品知识, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台,
+最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
 with the sharing package, 系统建设 only when its context builds (computed once
 per build and shared with the root sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
@@ -161,8 +163,9 @@ figures therefore keep working without another host. The two interfaces share
 the RTD project's visibility settings; the workspace path is navigation, not a
 separate access-control boundary.
 
-The workspace itself exists in every portal build: the manual center always
-links to it, and the system page lives inside it. The sharing package is an
+The workspace itself exists in every portal build; knowledge pages link back
+to the manual center, but the manual-center homepage does not link into the
+workspace. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the workspace hides the
 share navigation link, card, search box and update line, and the system page
 hides its share link. Nothing else changes. With the package present, both
@@ -770,3 +773,24 @@ Removing an override restores native-image / configured-fallback precedence.
 
 These overrides affect homepage presentation only, not manual content or
 frozen publication snapshots.
+
+
+## 产品知识
+
+按操作者 2026-10-06 的最终选择，产品知识、市场与政策和产品案例与说明书共用现有 `ht-doc` 公开 RTD 项目，无需登录。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；直接分享知识页链接即可访问。
+
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`；适用产品复用首页 `settings.json` 的 `navigation` 定位分组。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
+
+通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
+
+产品知识采用纵向列表，每项将可访问的 SVG 功能示意与原理、产品应用、限制和来源放在一起；AC 输出单独说明共享功率、启动冲击、输出匹配、升功率、保护与旁路切换。示意图不代表某型号内部电路。
+
+AC 教学图使用可访问的静态 SVG 电气示意：H 桥、LC 滤波、并联负载和联锁切换。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。JHP-3600C US 的备电案例独立呈现，来源链接指向正式发布的 Read the Docs 说明书；分相、旁路、ATS/MTS 与级联条件按说明书描述。
+
+## 市场与政策
+
+`/market/policy.html` 与产品知识并列，用纵向列表记录“政策变化 → 原理解释 → 产品影响”。国家、主题、资料状态和关键词可组合筛选。每条记录显示适用地区和时间；“政策要点已核实”只表示政策事实已查官方出处，产品影响单独标注为分析判断。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
+
+工程面的 `tools/rtd/market_policy.py` 读取业务内容目录下的 `market-policy/records.json`（`schema_version: 1`）。默认业务目录为 Hello-Docs 的 `docs/knowledge/`，本地预览可用 `rtd_knowledge_dir` 指向临时目录。该快照及原始截图不放入 auto-manual；当前未接入飞书多维表，也不在线读取飞书。
+
+记录保留 `id`、国家/地区、标题、时间、`verified`/`unverified`/`demand` 状态、标签、变化、原理、影响和核对日期；可选 `boundary` 记录必要的适用条件，不填时页面不显示该段；`sources` 保存出处类型、标题、HTTPS 链接和核对范围，但页面只展示标题与链接。已核实记录至少需要一条官方出处，`demand` 只代表业务需求依据，其第一段显示“需求变化”。未核实线索和业务需求可用非空 `evidence_note` 保存录入依据，该字段不在页面显示，也不能代替已核实政策的官方出处。`knowledge` 关联产品知识锚点。可选 `flow`、`image` 和 `image_alt` 不在页面渲染；源图只参与本地审阅校验，构建不复制到网站，本次业务快照不上传原始截图。缺少快照显示空页；记录无效则构建失败。未启用 JavaScript 时全部记录与参考链接仍可读。

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>产品知识 · 工作资料</title><meta name="description" content="围绕已发布产品，学习参数、电池管理、逆变、充电、扩容和备电的最少必要知识。">
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/product-knowledge.css', 1) }}">
+<script defer src="{{ pathto('_static/product-knowledge.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app">
+<a class="skip" href="#knowledge-list">跳到知识列表</a>
+{{ site_sidebar('product-knowledge', site_nav) }}
+<div class="app-content">
+{{ site_topbar('工作资料', '产品知识') }}
+<main class="learning">
+<header class="learning-head"><span class="eyebrow">从实际产品理解原理</span><h1>产品知识</h1><p>先看 AC 输出：能不能接、能不能启动、能不能同时用，以及接市电和断电时怎样供电。再了解续航、补能与扩容。按列表逐项阅读原理示意与说明，再打开对应型号的说明书核对。</p><a href="{{ pathto('index') }}">返回说明书资料库 ↗</a> <a class="sibling-page" href="{{ pathto('market/policy') }}">市场与政策 →</a></header>
+<section class="energy" aria-labelledby="energy-title"><div class="section-title"><h2 id="energy-title">先看懂能量怎样流动</h2><span>功能示意 · 具体电路以型号设计为准</span></div>
+<div class="energy-flow" aria-label="市电、太阳能或汽车补能，经充电转换向电池储能，再经逆变或直流转换为设备供电">
+<button type="button" data-topic="charging"><small>能量从哪里来</small><strong>市电 · 太阳能 · 汽车</strong><span>充电转换 / MPPT</span></button><span class="flow-arrow" aria-hidden="true">→</span>
+<button type="button" data-topic="battery"><small>能量怎样存起来</small><strong>电池＋BMS</strong><span>储能、监测与保护</span></button><span class="flow-arrow" aria-hidden="true">→</span>
+<button type="button" data-topic="inverter"><small>怎样给设备供电</small><strong>逆变 / 直流转换</strong><span>AC 家电 / USB 与 DC 设备</span></button>
+</div><p class="energy-note">交流产品通常需要逆变；直流产品走 DC/USB 路径。备电产品还涉及市电旁路与供电切换。可扩容产品增加电池和系统协调。</p></section>
+<section class="filter-section" aria-label="选择学习范围">
+<div class="selectors"><label>区域<select id="learning-region">{% for region, binding in portal.regions.items() %}<option value="{{ binding|e }}"{% if region == portal.default_region %} selected{% endif %}>{{ region|e }}</option>{% endfor %}<option value="all">全部区域</option></select></label><label>围绕产品学习<select id="learning-product"><option value="all">全部已发布产品</option>{% for product in learning_products %}<option value="{{ product.model|e }}" data-region="{{ product.region|e }}">{{ product.name|e }} · {{ product.model|e }} · {{ product.edition|e }}</option>{% endfor %}</select></label></div>
+<div class="topic-filters" role="group" aria-label="知识标签"><button type="button" class="selected" data-tag="all" aria-pressed="true">全部知识</button>{% for tag in tags %}<button type="button" data-tag="{{ tag.id|e }}" aria-pressed="false">{{ tag.title|e }}</button>{% endfor %}</div>
+<p id="learning-count" role="status" aria-live="polite">{{ topics|length }} 项知识</p>
+</section>
+<section id="knowledge-list" class="knowledge-list" aria-label="最少必要知识">
+{% for topic in topics %}
+<article class="knowledge-item{% if 'inverter' in topic.tags %} circuit-item{% endif %}" id="{{ topic.id|e }}" data-tags="{{ topic.tags|join(' ')|e }}" data-models="{{ topic.models|join(' ')|e }}">
+<div class="card-top"><span class="card-number">{{ '%02d'|format(loop.index) }}</span><div class="card-tags">{% for tag in tags if tag.id in topic.tags %}<span>{{ tag.title|e }}</span>{% endfor %}</div></div>
+<h2>{{ topic.title|e }}</h2><div class="topic-content"><figure class="principle-figure">
+{% if 'inverter' in topic.tags %}
+{% set circuit = 'circuit-transfer.svg' if topic.id == 'ups' else ('circuit-parallel.svg' if topic.id == 'ac-total' else 'circuit-inverter.svg') %}
+<img class="circuit-art" src="{{ pathto('_static/' ~ circuit, 1) }}" alt="{{ topic.title|e }}：典型电气教学电路，非产品内部原理图">
+{% else %}{% include "_knowledge_diagram.html" %}{% endif %}
+<figcaption>{% if 'inverter' in topic.tags %}典型电气教学示意 · {% endif %}{{ topic.diagram_caption|e }}</figcaption></figure>
+<div class="topic-explanation"><p class="answer">{{ topic.answer|e }}</p>
+<div class="application"><h3>放到实际产品里看</h3><p>{{ topic.application|e }}</p></div>
+<div class="boundary"><h3>别混淆</h3><p>{{ topic.boundary|e }}</p></div>
+<details class="references"><summary>查看相关产品说明书 <span class="reference-count"></span></summary><p class="read-hint">阅读位置：{{ topic.read|e }}</p><ul>{% for ref in topic.references %}<li data-region="{{ ref.region|e }}" data-model="{{ ref.model|e }}"><a href="{{ pathto(ref.url[:-5]) }}">{{ ref.name|e }} <small>{{ ref.model|e }} · {{ ref.region|e }} · {{ ref.language|e }}</small><span aria-hidden="true">↗</span></a></li>{% endfor %}</ul></details>
+</div></div></article>
+{% endfor %}
+</section>
+<section class="backup-example" aria-labelledby="backup-example-title">
+<h2 id="backup-example-title">HomePower 3600 Pro Max：从插座备电走向家庭回路备电</h2>
+<p>来源：<a href="https://ht-doc.readthedocs.io/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。图仅说明典型电气关系，不还原该产品内部电路。</p>
+<ol class="backup-lessons">
+<li><h3>120V 与 240V：先看接在哪两条导线上</h3>
+<figure class="principle-figure"><img class="circuit-art" src="{{ pathto('_static/circuit-split-phase.svg', 1) }}" alt="典型中心抽头交流源，L1–N 与 L2–N 各 120V，L1–L2 为 240V"><figcaption>中心抽头绕组是解释分相电压的教学例子。说明书只声明隔离式逆变，不据此推定其内部采用图中绕组。</figcaption></figure>
+<p>说明书：两个 NEMA 5-20R 插座各 120V、2000W 每口，合计 4000W；NEMA 14-50R 为 240V、4000W 额定。整机 AC 额定合计仍为 4000W，不能把 120V 与 240V 插座功率再次相加。L1、L2 分配与每相限制需一起检查。</p></li>
+<li><h3>电池逆变与市电旁路：同一插座的限制随模式改变</h3>
+<p>电池供电由逆变系统承担；旁路受市电输入与通路限制。说明书的 120V 输入旁路上限为 1440W，并有脚注：负载超过 1440W 时由电池补能，合计负载可达 2880W。该条件不能套用到普通电源。240V 输入旁路又有独立规格，不能拿正常逆变额定功率替代旁路规格。</p>
+<p>原理要点：补能功能需要电源转换、同步与控制配合；上面的切换图只描述选择供电路径，不描绘这种混合供电内部电路。</p></li>
+<li><h3>主机切换、ATS 与 MTS：切换发生在哪一层？</h3>
+<figure class="principle-figure"><img class="circuit-art" src="{{ pathto('_static/circuit-transfer.svg', 1) }}" alt="典型市电和备电源互锁切换触点"><figcaption>联锁使负载选择一路供电；图中双极开关仅为教学例子，不作为 ATS 或家庭配电安装接线图。</figcaption></figure>
+<p>规格表标明主机 UPS ＜10ms；ATS 系统说明为启用 UPS 模式后，停电在 20ms 内转电池供电，ATS 规格为 ≤20ms。单机接 MTS 的自动备电示例要求 AC 输入持续连接、MTS 置备电位，此时自动切换由主机完成；MTS 本身仍是手动选择装置。不要把主机切换时间当作所有系统的切换时间。</p></li>
+<li><h3>扩容与主机级联：增加的是 Wh 还是 W？</h3>
+<p>增加电池主要增加储能。说明书中的两台主机级联并联连接，还要求 AC 扩展连接与专用并联通信；第二台 NEMA 14-50R 输出可达系统合计 8000W。多台交流源协同需要频率、相位、电压与功率控制，不能直接把普通 AC 插座并在一起。</p>
+<p>家庭回路备电还涉及 ATS/MTS、接地与中性线、保护和 EPO 急停。说明书声明 EPO 会停止全部 AC/DC 输入输出；具体安装与操作应阅读该系统及切换装置的完整说明书。</p></li>
+</ol></section>
+<div id="learning-empty" hidden><h2>当前筛选没有相关知识</h2><p>换一个标签，或查看全部知识。</p><button type="button" id="learning-reset">清除筛选</button></div>
+<footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">查找完整说明书 →</a></footer>
+</main>
+</div>{{ site_script() }}</body></html>

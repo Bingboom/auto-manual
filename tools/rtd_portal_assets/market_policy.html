@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>市场与政策 · 工作资料</title>
+<meta name="description" content="按地区记录市场与政策，了解背后原理及产品影响。">
+<link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/market-policy.css', 1) }}">
+<script defer src="{{ pathto('_static/market-policy.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app">
+<a class="skip" href="#policy-list">跳到资料列表</a>
+{{ site_sidebar('market-policy', site_nav) }}
+<div class="app-content">
+{{ site_topbar('工作资料', '市场与政策') }}
+<main class="market">
+<header class="market-head">
+  <h1>市场与政策</h1>
+  <div class="head-links"><a href="{{ pathto('products/knowledge') }}">产品知识 →</a>{% if reviewed %}<span>政策资料核对：<time datetime="{{ reviewed|e }}">{{ reviewed|e }}</time></span>{% endif %}</div>
+</header>
+<p class="reading-order">政策变化 <span aria-hidden="true">→</span> 原理解释 <span aria-hidden="true">→</span> 产品影响</p>
+{% if records %}
+<section id="policy-filters" class="policy-filters" aria-label="筛选市场与政策资料" hidden>
+  <div class="filter-fields">
+    <label>国家<select id="policy-country"><option value="all">全部国家</option>{% for country in countries %}<option value="{{ country|e }}">{{ country|e }}</option>{% endfor %}</select></label>
+    <label>资料状态<select id="policy-status"><option value="all">全部资料</option><option value="verified">政策要点已核实</option><option value="demand">业务需求依据</option><option value="unverified">待核实线索</option></select></label>
+    <label class="search-field">搜索<input id="policy-search" type="search" placeholder="标题、原理或关键词" autocomplete="off"></label>
+  </div>
+  <div class="policy-tags" role="group" aria-label="资料标签"><button type="button" data-tag="all" aria-pressed="true">全部主题</button>{% for tag in market_tags %}<button type="button" data-tag="{{ tag|e }}" aria-pressed="false">{{ tag|e }}</button>{% endfor %}</div>
+</section>
+<div class="list-summary"><p id="policy-count" role="status" aria-live="polite">{{ records|length }} 条资料</p><button type="button" id="policy-reset" hidden>清除筛选</button></div>
+<section id="policy-list" class="policy-list" aria-label="市场与政策资料列表">
+{% for record in records %}
+<article class="policy-item" id="{{ record.id|e }}" data-country="{{ record.country|e }}" data-status="{{ record.status|e }}" data-tags="{{ record.tags|tojson|forceescape }}">
+  <header class="item-head">
+    <div class="item-country"><span class="item-number">{{ '%02d'|format(loop.index) }}</span><strong>{{ record.country|e }}</strong></div>
+    <div class="item-heading"><div class="item-status"><span class="verification {{ record.status|e }}">{{ '政策要点已核实' if record.status == 'verified' else ('业务需求依据' if record.status == 'demand' else '待核实线索') }}</span><span class="item-tags">{{ record.tags|join(' · ')|e }}</span></div><h2>{{ record.title|e }}</h2><p class="item-meta"><span>{{ record.region|e }}</span><span>{{ record.timeline|e }}</span></p></div>
+  </header>
+  <dl class="policy-body">
+    <div><dt><span>01</span>{{ '需求变化' if record.status == 'demand' else '政策变化' }}</dt><dd><p>{{ record.change|e }}</p></dd></div>
+    <div><dt><span>02</span>原理解释</dt><dd><p>{{ record.mechanism|e }}</p></dd></div>
+    <div><dt><span>03</span>产品影响<small>分析判断</small></dt><dd><p>{{ record.impact|e }}</p>{% if record.get('boundary') %}<p class="scope-note"><strong>适用边界</strong> {{ record.boundary|e }}</p>{% endif %}{% if record.knowledge %}<p class="knowledge-links"><span>相关产品知识</span>{% for link in record.knowledge %}<a href="{{ pathto('products/knowledge') }}#{{ link.id|e }}">{{ link.title|e }} ↗</a>{% endfor %}</p>{% endif %}</dd></div>
+    {% if record.sources %}<div class="source-row"><dt>参考链接</dt><dd><ul class="sources">{% for source in record.sources %}<li><a href="{{ source.url|e }}">{{ source.title|e }} ↗</a></li>{% endfor %}</ul></dd></div>{% endif %}
+  </dl>
+</article>
+{% endfor %}
+</section>
+<div id="policy-empty" class="empty-state" hidden><h2>没有匹配的资料</h2><p>调整国家、主题或关键词，或清除筛选查看全部资料。</p><button type="button" id="policy-empty-reset">查看全部资料</button></div>
+{% else %}<section id="policy-list" class="empty-state"><h2>暂未录入市场与政策资料</h2><p>每条资料记录适用地区、变化时间、原理解释与产品影响。</p></section>{% endif %}
+<footer class="market-footer"><p>政策适用范围以对应地区和日期为准；具体型号的功能与兼容条件请查看对应说明书。</p><noscript><p>全部资料可直接阅读；筛选功能需要启用 JavaScript。</p></noscript><a href="{{ pathto('index') }}">查找产品说明书 →</a></footer>
+</main>
+</div>{{ site_script() }}</body></html>

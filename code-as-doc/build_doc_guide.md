@@ -94,6 +94,9 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
+The manual library exposes only manual navigation; product knowledge,
+market/policy notes and product cases use direct knowledge-page links in the same
+public RTD project. These pages do not require login.
 The consumer-facing feedback channel is the after-sales mailbox
 `hello@jackery.com` (a plain `mailto:` entry in the `feedback_channels`
 portal setting); GitHub Issues stays the internal/dealer triage board.
