@@ -1267,6 +1267,7 @@
     "declared_languages": [
       "pt"
     ],
+    "frozen_stylesheet_sha256": "e6161c0bd93f8870dba044810c478e2b85b516e9d524a122e3165400fc2cf3b8",
     "illustration_provenance": {
       "illustrations": [
         {
@@ -3667,6 +3668,7 @@
       "theme_id": "hb-manual-default"
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+    "markdown_filename": "manual_jaad600a_eu_pt.md",
     "page_count": 9,
     "page_declarations": {},
     "page_slots": {
@@ -3682,6 +3684,10 @@
     },
     "projection": "whole-document-components/v1",
     "skipped_raw": 0,
+    "source_stylesheet": {
+      "path": "_static/dcdc_source_local.css",
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
+    },
     "title": "Jackery DC-DC Charger",
     "web_contract": {
       "app_download": {

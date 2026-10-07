@@ -73,13 +73,13 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 4788,
-      "sha256": "69cd4ec3f4d9011009271d5a791e1139a38908c6cd6d532b3e12788322a120fa"
+      "size": 5205,
+      "sha256": "595687a9d51f1f19b380ba963db3e4c2090e0c4eeba0af22b04e2ae1997139df"
     },
     {
       "path": "acceptance.json",
-      "size": 9710,
-      "sha256": "5f198f488fa8a88c613c1c360a12171d1946518d53eda09fbf6fc715bdb1661b"
+      "size": 11194,
+      "sha256": "952dd484cedb915fa332e9259485a424da411628864a769272f332374a1a0d34"
     },
     {
       "path": "assets/ja_ad600a_eu_en/body_clearance.png",
@@ -258,8 +258,8 @@
     },
     {
       "path": "rebuild.py",
-      "size": 3343,
-      "sha256": "a76136cbf9d726024e442bf7bdc098ab3154fce9b1d1a6cfb88bb84631922edf"
+      "size": 4490,
+      "sha256": "f5173daea15c4ba63c0b0095b39bb5e4c569c820934ef214312b3bb6f2acec24"
     },
     {
       "path": "source/de/box_contents_de.rst",
@@ -858,8 +858,8 @@
     },
     {
       "path": "web/de/manual.ir.json",
-      "size": 515318,
-      "sha256": "c08fc370662c14db257039e3c89ba8791dfdb47af251efe3a20c1e9587f41a5b"
+      "size": 515635,
+      "sha256": "48a75f6cbf24802d5c9a7a7d62defa4723eb6a2cb6009cf81c903bfa6046f1f1"
     },
     {
       "path": "web/de/manual_bundle.html",
@@ -868,8 +868,8 @@
     },
     {
       "path": "web/de/manual_jaad600a_eu_de.md",
-      "size": 50597,
-      "sha256": "f42e2bfd04617b624a6cee7d3c7e4f7e8e21e998ea4de9af0269d0aa2cfd1c3c"
+      "size": 52839,
+      "sha256": "6e7386ed4de8b7c6d1474f5af324775a27c674baca1654a1e4381218c94f956b"
     },
     {
       "path": "web/es/_static/dcdc_source_local.css",
@@ -1023,8 +1023,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 516562,
-      "sha256": "ab518b23b25ba5db8460fa40e780a64f0e8075bd69d01ee6d97ddf9848a79511"
+      "size": 516879,
+      "sha256": "081b805f803bf56dd2d09c4e72f05fd7c4b17b7e3883c5f0e3d18ff39000fd59"
     },
     {
       "path": "web/es/manual_bundle.html",
@@ -1033,8 +1033,8 @@
     },
     {
       "path": "web/es/manual_jaad600a_eu_es.md",
-      "size": 50725,
-      "sha256": "7a8a271adbaddb3a7f8938fe0bdf3eb4d9d57a5bd4ac70af0c264c73006bde35"
+      "size": 52967,
+      "sha256": "010682778a5305194c7b76cb22ef20e91727f9b8396c94278259ebff8685d855"
     },
     {
       "path": "web/fr/_static/dcdc_source_local.css",
@@ -1188,8 +1188,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 519440,
-      "sha256": "f25d30134b915da453611f4dc3d9516afa459d8db45dfcb63b90838f681b10ee"
+      "size": 519757,
+      "sha256": "a45760a18584420fbadb99a3146fb7eb1e8215cb7df8d73b51a08e2da87af32f"
     },
     {
       "path": "web/fr/manual_bundle.html",
@@ -1198,8 +1198,8 @@
     },
     {
       "path": "web/fr/manual_jaad600a_eu_fr.md",
-      "size": 51071,
-      "sha256": "e39e253804a25fd54d98e1b9f53e30cae345044092a7dfc22067208e31b36267"
+      "size": 53313,
+      "sha256": "cd17dc068e51f6cef6b6b76344028965256f6a6705dfef514e4f3e7e703e837b"
     },
     {
       "path": "web/it/_static/dcdc_source_local.css",
@@ -1348,8 +1348,8 @@
     },
     {
       "path": "web/it/manual.ir.json",
-      "size": 514563,
-      "sha256": "5d98e8c918c8d265cdc74fdbdc03b6e66bfee6e1be7241a07f22bcfcee1a72b7"
+      "size": 514880,
+      "sha256": "0f222c25bdf9d3b52c718bde005fc2dc5938b215c0851f894e4cc86324de59c0"
     },
     {
       "path": "web/it/manual_bundle.html",
@@ -1358,8 +1358,8 @@
     },
     {
       "path": "web/it/manual_jaad600a_eu_it.md",
-      "size": 49912,
-      "sha256": "289c81fa1273d286412fd1dd09102ac2f745caec57ef9d38d34910d5d6b13887"
+      "size": 52154,
+      "sha256": "cde474a623f25f2ab01bf3e6db5fcdbfc0de26cebdd6c2eb892689d2b79ff6fe"
     },
     {
       "path": "web/nl/_static/dcdc_source_local.css",
@@ -1513,8 +1513,8 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 514570,
-      "sha256": "3e1c932e7ad86a180a9f91aeab3612766cd396302b51f1b63f45174cade33e25"
+      "size": 514887,
+      "sha256": "5c718cd18677cb447bcebf4748b1d66ff950907ec67c33053338ce8b7471d262"
     },
     {
       "path": "web/nl/manual_bundle.html",
@@ -1523,8 +1523,8 @@
     },
     {
       "path": "web/nl/manual_jaad600a_eu_nl.md",
-      "size": 50111,
-      "sha256": "ee19e67a91ad9ecc8288ef7a59995098e5ab8c4fadff6e91b9fde61006e9d004"
+      "size": 52353,
+      "sha256": "d46060dab32c89fe2524826c419b2e8a6cf545975411821356f2acf9f24897f3"
     },
     {
       "path": "web/pl/_static/dcdc_source_local.css",
@@ -1678,8 +1678,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 514806,
-      "sha256": "f41147d7d0bb0f6a2a4938584b4cd78dc1040aea95375567830f936cc29c02d3"
+      "size": 515123,
+      "sha256": "71bbfad58e0cf15320eb020621bc7b71af84de46845298de99d023bfd891f473"
     },
     {
       "path": "web/pl/manual_bundle.html",
@@ -1688,8 +1688,8 @@
     },
     {
       "path": "web/pl/manual_jaad600a_eu_pl.md",
-      "size": 50517,
-      "sha256": "789803594c127d23c83172afcb889db630bfcba6787efcaa7eb8aedc043d8e41"
+      "size": 52759,
+      "sha256": "b66474ea4bcea58017989b956bfbca2aede807378983cf13e5c7a3354782711f"
     },
     {
       "path": "web/pt/_static/dcdc_source_local.css",
@@ -1838,8 +1838,8 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 511292,
-      "sha256": "0cfb33d950059866a555643cedbbe572063d7cfe1b78505ce143d1f4363f277d"
+      "size": 511609,
+      "sha256": "dfca7535a39fe957ea1e87e70a72e48d2a4387faaef3f1f23e066c53726999c7"
     },
     {
       "path": "web/pt/manual_bundle.html",
@@ -1848,8 +1848,8 @@
     },
     {
       "path": "web/pt/manual_jaad600a_eu_pt.md",
-      "size": 48929,
-      "sha256": "cd5825582ba383307577cc3a06e0babe28ab301278e6f31c84abd0587a2993c6"
+      "size": 51171,
+      "sha256": "8ebdb044fdef44e3d32dccf3617039de2463b998c7ec9889f2de68a058957dcb"
     },
     {
       "path": "web/uk/_static/dcdc_source_local.css",
@@ -2003,8 +2003,8 @@
     },
     {
       "path": "web/uk/manual.ir.json",
-      "size": 529734,
-      "sha256": "b90086c2fbdc21c22d244a6139a1b3b5adbbd1274c51ef673366061fff4936d7"
+      "size": 530051,
+      "sha256": "437e0755098ca267cdfd78fc2b40f0f32ccfa75266e6e96a6590b44e6c0a5e9d"
     },
     {
       "path": "web/uk/manual_bundle.html",
@@ -2013,8 +2013,8 @@
     },
     {
       "path": "web/uk/manual_jaad600a_eu_uk.md",
-      "size": 64804,
-      "sha256": "f64c0309aaf4c4f420cb811e8d1f957f1433746bda37b8ef9ddff36fa9aa4936"
+      "size": 67046,
+      "sha256": "4ef30cc5ec4c85ab4715cbf319e0859b9711964fb2a573426bd41cf11d28baaa"
     }
   ],
   "repo_inputs": [

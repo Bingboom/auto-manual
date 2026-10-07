@@ -1,3 +1,25 @@
+<style>
+/* Source-local language reflow; invariant bases remain byte-identical. */
+#furo-main-content h2:has(+ .hb-spec-table-composition) {display:none;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label {overflow-wrap:anywhere;hyphens:manual;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label[data-source-line="0"] {width:25%;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label:is([data-source-line="1"], [data-source-line="3"], [data-source-line="5"]) {width:14%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="0"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {color:#f04444;}
+
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="2"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {font-size:3.1cqw;line-height:1.15;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="4"] {left:12%;top:86.5%;width:28%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="5"] {left:42%;top:86.5%;width:35%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="6"] {left:82%;top:86.5%;width:17%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-source-status-table col:nth-child(1) {width:22%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(2) {width:24%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(3) {width:22%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(4) {width:32%!important;}
+#furo-main-content .hb-source-status-table :is(.hb-lamp-green,.hb-lamp-red,.hb-lamp-blinking,.hb-lamp-off) {max-width:100%;white-space:normal;}
+
+</style>
+
 # 1. ZASTRZEŻENIE
 
 Witamy i dziękujemy za wybór urządzenia Jackery DC-DC Charger. Niniejsza instrukcja jest przewodnikiem po bezpiecznej instalacji i użytkowaniu nowego produktu. Prosimy o uważne przeczytanie wszystkich instrukcji przed przystąpieniem do eksploatacji oraz o zachowanie tego przewodnika na przyszłość. Jackery zastrzega sobie prawo do ostatecznej interpretacji niniejszego dokumentu i wszystkich powiązanych dokumentów dotyczących produktu, zgodnie z wymogami prawnymi i regulacyjnymi. Aby uzyskać informacje na temat aktualizacji, zmian lub wycofania produktu z rynku, należy zapoznać się z najnowszymi oficjalnymi komunikatami.

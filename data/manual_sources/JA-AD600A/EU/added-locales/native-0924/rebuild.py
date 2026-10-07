@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
 import hashlib
 import json
 import os
@@ -15,6 +16,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from tools.gen_index_bundle_models import MaterializedBundle  # noqa: E402
 from tools.markdown_bundle import export_markdown_from_bundle  # noqa: E402
+from tools.manual_ir import read_manual_ir, write_manual_ir  # noqa: E402
 
 
 def rebuild(language: str, output: Path) -> None:
@@ -53,11 +55,28 @@ def rebuild(language: str, output: Path) -> None:
                   for name in names],
     }
     output.mkdir(parents=True)
-    export_markdown_from_bundle(
+    markdown_path = export_markdown_from_bundle(
         config, "JA-AD600A", "EU", f"manual_jaad600a_eu_{language}.md",
         materialized_bundle=bundle, output_dir=output,
     )
     shutil.copy2(SOURCE_ROOT / "presentation.css", output / "_static/dcdc_source_local.css")
+    # Portal assembly owns global CSS; carry the reviewed source-local rules
+    # with this document, preserving the shared exporter's body verbatim.
+    stylesheet = output / "_static/dcdc_source_local.css"
+    style_text = stylesheet.read_text()
+    if "</style" in style_text.lower():
+        raise ValueError("source stylesheet contains HTML")
+    ir = read_manual_ir(output / "manual.ir.json")
+    metadata = {**ir.metadata,
+                "markdown_filename": markdown_path.name,
+                "frozen_stylesheet_sha256": hashlib.sha256(
+                    (output / "_static/web_manual.css").read_bytes()).hexdigest(),
+                "source_stylesheet": {
+                    "path": "_static/dcdc_source_local.css",
+                    "sha256": hashlib.sha256(stylesheet.read_bytes()).hexdigest()}}
+    write_manual_ir(replace(ir, metadata=metadata), output / "manual.ir.json")
+    markdown_path.write_text("<style>\n" + style_text + "\n</style>\n\n" +
+                             markdown_path.read_text())
     with (output / "conf.py").open("a") as stream:
         stream.write(f"\nlanguage = {language!r}\nhtml_css_files.append('dcdc_source_local.css')\n")
 
