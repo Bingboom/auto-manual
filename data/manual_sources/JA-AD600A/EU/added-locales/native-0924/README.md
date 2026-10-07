@@ -15,3 +15,5 @@ From the repository root, run python3 data/manual_sources/JA-AD600A/EU/added-loc
 Eight-language publication is pending a separate operator instruction. These packages are not deployed by the English release.
 
 FAQ correction: all eight locales now preserve the approved English question/answer structure: eight fully bold questions followed by separate answers with bold native answer labels. Q2 retains all three numbered maintenance instructions in one answer paragraph as in English. Original wording, including Spanish numbering, is unchanged. The Portuguese source visibly omits P1 before its first question; German F4 visibly contains an English answer, both preserved. Renewed FAQ browser acceptance covers 1280 and 390 pixels.
+
+Localized reflow follow-up hides redundant specification subheadings that repeated the section title. Status-table column widths reserve room for native light-state/color wording, and lamp labels wrap within their own cells. Source values and the shared English renderer remain unchanged.

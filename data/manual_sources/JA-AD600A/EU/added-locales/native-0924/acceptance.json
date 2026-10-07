@@ -185,5 +185,14 @@
       "assets_parity": true,
       "strict_sphinx": true
     }
-  ]
+  ],
+  "localized_status_acceptance": {
+    "browser_widths": [
+      1280,
+      390
+    ],
+    "runs": 16,
+    "overflowing_cell_texts": 0,
+    "single_visible_spec_title": true
+  }
 }

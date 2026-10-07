@@ -73,13 +73,13 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3841,
-      "sha256": "e2d424fe2469bb8e7a223ba84b9b68123c4e34cfeaefc6c7a51d436354a95158"
+      "size": 4131,
+      "sha256": "dfb1aa3b43432267e4521632565aeba045d73008432cdc56c95ad8daf3d125ee"
     },
     {
       "path": "acceptance.json",
-      "size": 5817,
-      "sha256": "248fcb4ac2f902912601b4c64257de5c8743e0570140020ef68ecb9e33a67bac"
+      "size": 5997,
+      "sha256": "ea1da31d0cefa5714d7f3e04e45465365343393c3212ed4be3c2b9be1738aa0c"
     },
     {
       "path": "assets/ja_ad600a_eu_en/body_clearance.png",
@@ -253,8 +253,8 @@
     },
     {
       "path": "presentation.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "rebuild.py",
@@ -713,8 +713,8 @@
     },
     {
       "path": "web/de/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/de/_static/web_manual.css",
@@ -873,8 +873,8 @@
     },
     {
       "path": "web/es/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/es/_static/web_manual.css",
@@ -1038,8 +1038,8 @@
     },
     {
       "path": "web/fr/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/fr/_static/web_manual.css",
@@ -1203,8 +1203,8 @@
     },
     {
       "path": "web/it/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/it/_static/web_manual.css",
@@ -1363,8 +1363,8 @@
     },
     {
       "path": "web/nl/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/nl/_static/web_manual.css",
@@ -1528,8 +1528,8 @@
     },
     {
       "path": "web/pl/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -1693,8 +1693,8 @@
     },
     {
       "path": "web/pt/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/pt/_static/web_manual.css",
@@ -1853,8 +1853,8 @@
     },
     {
       "path": "web/uk/_static/dcdc_source_local.css",
-      "size": 1756,
-      "sha256": "d19dce8f032e7c752e43ef5a5554df2dee4e26906b6a1440739c65b577fd9ced"
+      "size": 2223,
+      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
     },
     {
       "path": "web/uk/_static/web_manual.css",
