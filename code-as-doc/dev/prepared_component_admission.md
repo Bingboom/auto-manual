@@ -156,3 +156,6 @@ components. French requires two `HB-CALLOUT-STRIP/note` instances; Spanish
 requires one caution and one note. Their three obsolete ordinary-table debt
 pins were removed when sealing the transparent-symbol repair on 2026-10-05.
 The required component counts remain independent of candidate inventories.
+
+
+JA-AD600A/EU/en 的 0924 原稿修正版于2026-10-07按 MA-264 登记：保留9页/slot、规格及九项包装组件，新增5个原生 ReferenceFigure 要求；警告和10步配图由已审源容器承载，未冒充旧 footer-panel/callout/warranty ComponentSpec。兼容、灯状态和原稿质保周期三张表按准确节点/位置/哈希登记，质保正文仍是原生标题段落。旧绑定只适用于历史 stored 证据，不能作为新修正版门禁。

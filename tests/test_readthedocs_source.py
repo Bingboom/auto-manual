@@ -123,11 +123,11 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("#furo-main-content .hb-fcc-column", css_text)
             self.assertIn("gap: var(--hb-fcc-flow-gap)", css_text)
             self.assertIn(
-                "section:has(> figure.hb-fcc-composition) > h1:first-child",
+                "section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child",
                 css_text,
             )
             fcc_heading_css = css_text.split(
-                "#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child",
+                "#furo-main-content section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child",
                 1,
             )[1].split("}", 1)[0]
             self.assertIn("clip-path: inset(50%)", fcc_heading_css)
