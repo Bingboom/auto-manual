@@ -1,0 +1,38 @@
+{
+  "candidate": "13b",
+  "strict_sphinx": true,
+  "source_free_replay_exact": true,
+  "changed_base_art_rejected": "document asset missing or changed: assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+  "original_body_copy_unchanged": true,
+  "new_native_lines": [
+    "DC Input",
+    "2 × DC8020 Ports:",
+    "Car: 11–16V⎓8A Max",
+    "PV: 16–60V⎓13A Max, Double to 24A Max / 500W Max",
+    "LED Light",
+    "Plug"
+  ],
+  "other_five_assets_unchanged": true,
+  "original_labeled_overview_preserved": true,
+  "original_six_asset_recipe_unchanged": true,
+  "active_reference_component_count": 3,
+  "textless_asset_locale": "und",
+  "text_policy": "fixed-product-markings",
+  "browser": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "desktop_figure_width": 640,
+    "mobile": [
+      390,
+      844
+    ],
+    "mobile_figure_width": 358,
+    "six_native_lines_once": true,
+    "no_label_clipping": true,
+    "horizontal_overflow": false
+  },
+  "focused_tests": 21,
+  "no_registry_promotion": true
+}

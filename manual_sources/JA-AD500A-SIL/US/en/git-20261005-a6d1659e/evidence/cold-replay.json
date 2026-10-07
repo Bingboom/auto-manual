@@ -1,0 +1,7 @@
+{
+  "body_text_equal": true,
+  "images": 6,
+  "source_files_present": false,
+  "replay_without_source": true,
+  "tampered_asset_rejected": "document asset missing or changed: assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png"
+}

@@ -1,0 +1,5 @@
+path,repo_path,asset_key,kind,format,source_page,gate_status,build_eligible,visual_review_required,text_policy,sha256,expected_sha256,byte_size
+artifacts/archive/pages/page-0001.pdf,,,archive_page,pdf,1,archive,FALSE,FALSE,,4ba3280740950b9baadc9c63c59c74774d041db32a87c2b157f64f991e87df20,,1016902
+artifacts/archive/previews/page-0001.png,,,archive_preview,png,1,archive,FALSE,FALSE,,f6e3eb922c3b94aa79802040accc018bbcf123d4bf860b5ed441474dbbe61741,,49685
+artifacts/assets/overview-textless.pdf,assets/overview-textless.pdf,web/ja-ad500a-sil/us/overview-textless,asset_export,pdf,1,quarantine,FALSE,TRUE,fixed-product-markings,daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891,daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891,1016968
+artifacts/assets/overview-textless.png,assets/overview-textless.png,web/ja-ad500a-sil/us/overview-textless,asset_export,png,1,quarantine,FALSE,TRUE,fixed-product-markings,910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2,910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2,72743
