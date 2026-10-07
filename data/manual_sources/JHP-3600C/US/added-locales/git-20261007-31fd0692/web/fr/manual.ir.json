@@ -92,8 +92,8 @@
     "assets/package_jumper.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "11f7abb8474daa08b9fe37c07cb7882ef8ef9e3b9c24954f00f8e405615d82af",
-  "content_sha256": "d191404cd496b1e1b7546d5b4768744e41fa9e0922915b6c4ffc3ef48e7ae639",
+  "bundle_sha256": "0777dbc8271cd80ff52ba3e8785850b21f3706d33e8c4dfdbe983e5f7c530215",
+  "content_sha256": "f68928e3f600f7bd734f77fe59e2b6b9d46c99e4aeee0cabf1f2e01145989587",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -3276,7 +3276,7 @@
             "assets/symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "4bd85423176950e7ca443af2c6d07e8904fb0a10b70e8c62b7255872bb8cea42",
+          "content_sha256": "2f1cae3d74e883db76ad43e4b73b89303a52ca1260b6a188cd71e91d72da023e",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -3418,9 +3418,9 @@
                       },
                       {
                         "asset_index": 7,
-                        "icon_alt": "Ne pas fumer ni utiliser de flamme nue",
-                        "meaning_html": "Ne pas fumer ni utiliser de flamme nue",
-                        "meaning_text": "Ne pas fumer ni utiliser de flamme nue"
+                        "icon_alt": "Ne pas fumer ni utiliser de ﬂamme nue",
+                        "meaning_html": "Ne pas fumer ni utiliser de ﬂamme nue",
+                        "meaning_text": "Ne pas fumer ni utiliser de ﬂamme nue"
                       },
                       {
                         "asset_index": 8,
@@ -3463,7 +3463,7 @@
       "skipped_raw": 0,
       "source_path": "source/fr/content.json#symbols",
       "source_ref": "native-pdf/symbols",
-      "source_sha256": "ec0b0c0a4d077f8c429ef01c9ca39d43b1237f4649a2fcfde670a64d2e8167ee"
+      "source_sha256": "f547810adfbd2c6fad2a0a1a12aca8df85a4a08138f9ae7c700d3370e3cad0a1"
     },
     {
       "blocks": [

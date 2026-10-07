@@ -1,6 +1,6 @@
 # JHP-3600C / US French and Spanish Web candidates
 
-This Git-only extension inherits the published English structure from `../../en/git-20261005-31fd0692`. The same 97-page PDF remains authoritative; it is referenced, not duplicated. French uses physical pages 35–65, Spanish 66–96, with native p2 prefaces and shared p97 contact copy. `source_manifest.json` locks source inputs, consumed assets, shared repository contracts and frozen output hashes.
+This Git-only extension inherits the published English structure from `../../en/git-20261005-31fd0692`. The same 97-page PDF remains authoritative; the exact existing Git blob is included in this standalone package for source-bound sealing. French uses physical pages 35–65, Spanish 66–96, with native p2 prefaces and shared p97 contact copy. `source_manifest.json` locks source inputs, consumed assets, shared repository contracts and frozen output hashes.
 
 Each locale has 20 chapters and the same shared ComponentSpec inventory as English. Of 90 consumed assets, 86 are byte-identical approved English assets. Four panels use native source artwork: front overview, side overview, App buttons and complete App connection screenshots. The generic shared Explorer1000 App result screenshot differs from the native HomePower3600 Plus UI and is deliberately excluded from these two locale outputs. All eleven ReferenceFigures retain live editable native captions; blank caption frames remain CSS. Dense overview labels and App UI remain source-finished panels as in the accepted English content mode.
 
@@ -14,7 +14,7 @@ python3 data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692/val
 python3 -m sphinx -W --keep-going -b html tmp/jhp3600c-fr-replay tmp/jhp3600c-fr-site
 ```
 
-Replace `fr` with `es` for Spanish. The frozen `web/<locale>` folders are shared Manual IR, MyST, Sphinx scaffold, styles and assets, ready for the existing frozen-Web publication pipeline after review. This package does not enroll a phase2/print target or write a live queue, Base or HTML_link. The English merge authorization does not cover this new extension.
+Replace `fr` with `es` for Spanish. The frozen `web/<locale>` folders are shared Manual IR, MyST, Sphinx scaffold, styles and assets, ready for the existing frozen-Web publication pipeline after review. This package does not enroll a phase2/print target or write a live queue, Base or HTML_link. MA-262 records the operator authorization for this extension.
 
 `source/<locale>/copy_bindings.json` records native selections. `native_exceptions.json` records per-node corrections where repeated English labels must bind to different native captions. `illustrative_copy_exceptions.json` admits only specific small labels remaining inside approved illustrative artwork. Repeated warning/tip labels introduced by PDF reading order are separated into their existing label slots and removed from body copy. Inherited `source_ref` values describe English blueprint geometry; `copy_bindings.json`, native pages and per-node exceptions provide native wording provenance. The validation script fails on other source-line omissions or asset hash changes. Its line coverage is a useful omission check, not proof of sentence placement; semantic mapping and source review remain necessary.
 
