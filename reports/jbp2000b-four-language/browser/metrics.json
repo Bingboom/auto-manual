@@ -2,6 +2,7 @@
   {
     "lang": "uk",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -86,17 +87,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 99,
-        "scrollWidth": 99,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6349.0390625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6325.84375
+        },
+        "scrollWidth": 105,
         "text": "Заблокувати"
       },
       {
-        "clientWidth": 104,
-        "scrollWidth": 104,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6494.0390625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6470.84375
+        },
+        "scrollWidth": 105,
         "text": "Розблокувати"
       }
     ],
     "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6356.037561010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6334.3394270177605
+      },
+      {
+        "bottom": 6356.758815329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6335.060681337118
+      },
+      {
+        "bottom": 6501.8218987747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6480.123764781924
+      },
+      {
+        "bottom": 6501.885115453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6480.186981460769
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -106,6 +145,7 @@
   {
     "lang": "pt",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -190,17 +230,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 73,
-        "scrollWidth": 73,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6557.40625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6534.2109375
+        },
+        "scrollWidth": 105,
         "text": "Bloquear"
       },
       {
-        "clientWidth": 97,
-        "scrollWidth": 97,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6702.40625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6679.2109375
+        },
+        "scrollWidth": 105,
         "text": "Desbloquear"
       }
     ],
     "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6564.404748510567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6542.7066145177605
+      },
+      {
+        "bottom": 6565.126002829924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6543.427868837118
+      },
+      {
+        "bottom": 6710.1890862747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6688.490952281924
+      },
+      {
+        "bottom": 6710.252302953575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6688.554168960769
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -210,6 +288,7 @@
   {
     "lang": "nl",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -294,17 +373,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 99,
-        "scrollWidth": 99,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6595.4296875,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6572.234375
+        },
+        "scrollWidth": 105,
         "text": "Vergrendelen"
       },
       {
-        "clientWidth": 103,
-        "scrollWidth": 103,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6740.4296875,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6717.234375
+        },
+        "scrollWidth": 105,
         "text": "Ontgrendelen"
       }
     ],
     "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6602.428186010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6580.7300520177605
+      },
+      {
+        "bottom": 6603.149440329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6581.451306337118
+      },
+      {
+        "bottom": 6748.2125237747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6726.514389781924
+      },
+      {
+        "bottom": 6748.275740453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6726.577606460769
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -314,6 +431,7 @@
   {
     "lang": "pl",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -398,17 +516,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 103,
-        "scrollWidth": 103,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6648.0078125,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6624.8125
+        },
+        "scrollWidth": 105,
         "text": "Zablokowanie"
       },
       {
-        "clientWidth": 108,
-        "scrollWidth": 108,
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6793.0078125,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6769.8125
+        },
+        "scrollWidth": 105,
         "text": "Odblokowanie"
       }
     ],
     "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6655.006311010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6633.3081770177605
+      },
+      {
+        "bottom": 6655.727565329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6634.029431337118
+      },
+      {
+        "bottom": 6800.7906487747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6779.092514781924
+      },
+      {
+        "bottom": 6800.853865453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6779.155731460769
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -418,6 +574,7 @@
   {
     "lang": "uk",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -502,17 +659,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 99,
-        "scrollWidth": 99,
+        "clientWidth": 107,
+        "rect": {
+          "bottom": 7283.6484375,
+          "left": 26.3984375,
+          "right": 133.609375,
+          "top": 7262.5234375
+        },
+        "scrollWidth": 107,
         "text": "Заблокувати"
       },
       {
-        "clientWidth": 104,
-        "scrollWidth": 104,
+        "clientWidth": 113,
+        "rect": {
+          "bottom": 7311.96875,
+          "left": 26.3984375,
+          "right": 138.9609375,
+          "top": 7290.84375
+        },
+        "scrollWidth": 113,
         "text": "Розблокувати"
       }
     ],
     "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7104.323313033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7092.503776163444
+      },
+      {
+        "bottom": 7104.716198985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7092.896662114996
+      },
+      {
+        "bottom": 7183.735826382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7171.91628951214
+      },
+      {
+        "bottom": 7183.770262148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7171.950725278215
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -522,6 +717,7 @@
   {
     "lang": "pt",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -606,17 +802,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 73,
-        "scrollWidth": 73,
+        "clientWidth": 81,
+        "rect": {
+          "bottom": 7318.7421875,
+          "left": 26.3984375,
+          "right": 107.3671875,
+          "top": 7297.6171875
+        },
+        "scrollWidth": 81,
         "text": "Bloquear"
       },
       {
-        "clientWidth": 97,
-        "scrollWidth": 97,
+        "clientWidth": 106,
+        "rect": {
+          "bottom": 7347.0625,
+          "left": 26.3984375,
+          "right": 131.9921875,
+          "top": 7325.9375
+        },
+        "scrollWidth": 106,
         "text": "Desbloquear"
       }
     ],
     "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7139.417063033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7127.597526163444
+      },
+      {
+        "bottom": 7139.809948985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7127.990412114996
+      },
+      {
+        "bottom": 7218.829576382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7207.01003951214
+      },
+      {
+        "bottom": 7218.864012148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7207.044475278215
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -626,6 +860,7 @@
   {
     "lang": "nl",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -710,17 +945,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 99,
-        "scrollWidth": 99,
+        "clientWidth": 108,
+        "rect": {
+          "bottom": 7464.53125,
+          "left": 26.3984375,
+          "right": 133.921875,
+          "top": 7443.40625
+        },
+        "scrollWidth": 108,
         "text": "Vergrendelen"
       },
       {
-        "clientWidth": 103,
-        "scrollWidth": 103,
+        "clientWidth": 112,
+        "rect": {
+          "bottom": 7492.8515625,
+          "left": 26.3984375,
+          "right": 138.015625,
+          "top": 7471.7265625
+        },
+        "scrollWidth": 112,
         "text": "Ontgrendelen"
       }
     ],
     "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7285.206125533948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7273.386588663444
+      },
+      {
+        "bottom": 7285.599011485499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7273.779474614996
+      },
+      {
+        "bottom": 7364.618638882644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7352.79910201214
+      },
+      {
+        "bottom": 7364.653074648719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7352.833537778215
+      }
+    ],
     "symbolPanels": [
       6,
       2
@@ -730,6 +1003,7 @@
   {
     "lang": "pl",
     "clocks": 1,
+    "coveredStepDigits": 0,
     "images": [
       {
         "ok": true,
@@ -814,17 +1088,55 @@
     ],
     "lockingLabels": [
       {
-        "clientWidth": 103,
-        "scrollWidth": 103,
+        "clientWidth": 112,
+        "rect": {
+          "bottom": 7695.6171875,
+          "left": 26.3984375,
+          "right": 138.171875,
+          "top": 7674.4921875
+        },
+        "scrollWidth": 112,
         "text": "Zablokowanie"
       },
       {
-        "clientWidth": 108,
-        "scrollWidth": 108,
+        "clientWidth": 116,
+        "rect": {
+          "bottom": 7723.9375,
+          "left": 26.3984375,
+          "right": 142.453125,
+          "top": 7702.8125
+        },
+        "scrollWidth": 116,
         "text": "Odblokowanie"
       }
     ],
     "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7516.292063033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7504.472526163444
+      },
+      {
+        "bottom": 7516.684948985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7504.865412114996
+      },
+      {
+        "bottom": 7595.704576382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7583.88503951214
+      },
+      {
+        "bottom": 7595.739012148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7583.919475278215
+      }
+    ],
     "symbolPanels": [
       6,
       2

@@ -1,6 +1,6 @@
 # JBP-2000B EU uk/pt/nl/pl acceptance candidate
 
-Agent verification completed on 2026-10-07. Operator review, merge and online publication are pending. This record is not an independent human approval. MA-257 explicitly excludes additional online languages.
+Agent verification completed on 2026-10-07. Final layout is revision r2; `sealed/` retains the retired r1 layout checkpoint, and `sealed-r2/` contains the final receipts. Operator review, merge and online publication are pending. This record is not an independent human approval. MA-257 explicitly excludes additional online languages.
 
 Target/source, original SHA, native physical pages, baseline reproduction and frozen replay procedure are documented in `manual_sources/JBP-2000B/EU/native-0924/README.md`. Native source controls all four locale bodies; the approved English release controls shared structure. Existing five locale files and published bodies are unchanged.
 
@@ -28,7 +28,7 @@ Native symbol panel geometry is six items left and two right, with battery WEEE 
 
 Each page has20 visible images:15 reused assets and5 newly sourced panels/glyphs. All packaged bytes and provenance are frozen in the source manifest. Native neutral panel hashes: power `af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b`; locking `9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a`.
 
-The initial vector replay experiment lost PDF clipping and was rejected; it is not shipped. Current before/after image pairs and12x corner checks are under `artwork/`. Source hands, button faces, full frame edges and numeric1/2 are preserved. Caption-frame admission passes, with baked-fill fractions below0.006. No asset registry or Base was written.
+The initial vector replay experiment lost PDF clipping and was rejected; it is not shipped. Current before/after image pairs and12x corner checks are under `artwork/`. Source hands, button faces, full frame edges and numeric1/2 are preserved. Caption-frame admission passes, with measured baked-fill fractions recorded by the final caption-frame gate. No asset registry or Base was written.
 
 ## Validation
 
@@ -36,8 +36,10 @@ The initial vector replay experiment lost PDF clipping and was rejected; it is n
 - Fresh source-specific component admission passes with no legacy debt in all four locales.
 - Source-bound symbol admission:32/32 rows pass; caption-frame admission:8/8 labels pass.
 - Four strict Sphinx HTML builds pass with `-W --keep-going`.
-- Browser1280×900 and390×844:8/8 checks,20/20 decoded images per page, zero horizontal overflow, one CSS clock each, native lock labels fit. `browser/metrics.json` and screenshots record the actual pages.
+- Browser1280×900 and390×844:8/8 checks,20/20 decoded images per page, zero horizontal overflow, one CSS clock each, native lock labels fit and intersect none of the four source step-digit regions (each checked with a1pt expanded margin). On mobile, native locking labels stack below the complete panel; on desktop they stay inside the left source margin, before the step numbers. `browser/metrics.json` and screenshots record the actual pages.
 - Existing policy/coverage/symbol/frame/frozen-evidence tests:60 tests pass.
 - Maintainer guardrails pass.
 
 Only owned candidate unused assets were pruned. Primary `tmp/`, historical packages, other worktrees, Base, queues, workflows, dependencies, schemas and CLI are untouched. Final engineering PR/CI, merge, mirror, publication PR and RTD/live acceptance remain separate gates.
+
+The r1 mobile overlay let long native labels cover step1. Revision r2 uses the existing shared stacked mobile treatment and a narrower desktop caption region. All eight viewport cases were repeated and verified with zero covered step-digit regions. Native copy and artwork bytes remain unchanged.

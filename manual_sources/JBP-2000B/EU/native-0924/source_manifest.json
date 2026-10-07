@@ -1166,8 +1166,8 @@
     },
     {
       "path": "README.md",
-      "size": 2922,
-      "sha256": "47ae125dd2828a5f712b5b54631701168049c123f407606e6f96a2df93282460"
+      "size": 3071,
+      "sha256": "e5525fef976f514bb69bda871498823ce4b16d83f1525da47bd1e7bae3caebfb"
     },
     {
       "path": "artwork-provenance.json",
@@ -1406,13 +1406,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 421059,
-      "sha256": "9b6f607832ecfcf4aa224cecfe291d7aafa997e5db34dfb2a844b78cab3dc4ce"
+      "size": 421055,
+      "sha256": "b0a7ea121a5cfc109e39e6cb1cfb11c8e286b89c90d470ee73a42c5a72a5d170"
     },
     {
       "path": "web/nl/manual_jbp2000b_eu_nl.md",
-      "size": 33113,
-      "sha256": "5b2c17a30d10a36abc56d1f4ef61d7af33eb45352610fad020e8d0f54593c82c"
+      "size": 33084,
+      "sha256": "15a7b8d59bf628eb9b8ac17f5adca2bde34dd5e8ebc2703024214345bb6ca94b"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -1536,13 +1536,13 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 423937,
-      "sha256": "832c0b22a2deab568ec1d25743f3f7a75bd4b4db79177752187a30ada404e92f"
+      "size": 423933,
+      "sha256": "b39810fdd61937ea001066294c27116df69c77023d31e90f0a53502f1df9c690"
     },
     {
       "path": "web/pl/manual_jbp2000b_eu_pl.md",
-      "size": 34343,
-      "sha256": "e5c28e20789756e65967165b02ff3133472de11fe305132724ea7dff1114a1c0"
+      "size": 34314,
+      "sha256": "33093dd9583552a60cd003c5144009704d1c18c676d43d24feb31c9f9faa2187"
     },
     {
       "path": "web/pt/_static/web_manual.css",
@@ -1666,13 +1666,13 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 421046,
-      "sha256": "dc1890c1639353f8a8c053cd1d90b3e74a8beea33e4a5dbf60a8569e6aed2fdb"
+      "size": 421042,
+      "sha256": "e550c5c758a29a4d546558cc988d170590ebd17cf30eb5e28e5058f3cc925dd0"
     },
     {
       "path": "web/pt/manual_jbp2000b_eu_pt.md",
-      "size": 33170,
-      "sha256": "9d6b2a8ceb0f859bb7bd01336819ff4cfbc5ca7b97018662aa3393a42db91809"
+      "size": 33141,
+      "sha256": "d3ac2ee66d523116ad3623b56535981024362ea7324548df1de96cf09105fd3a"
     },
     {
       "path": "web/uk/_static/web_manual.css",
@@ -1796,13 +1796,13 @@
     },
     {
       "path": "web/uk/manual.ir.json",
-      "size": 440594,
-      "sha256": "88a1c07822b9aad17dc00b68d321ac0aed7b27e8baf87a710c3b7589cdaaba7f"
+      "size": 440590,
+      "sha256": "d1b2008b940b223ee96a437352fac9a5caa2dead8a39218189131e342312db70"
     },
     {
       "path": "web/uk/manual_jbp2000b_eu_uk.md",
-      "size": 41219,
-      "sha256": "e0a462224ec6b6ecaf09d3f40ab4466a9622626911b2422ff9380f0730e5155a"
+      "size": 41190,
+      "sha256": "651cccd955af7399341767dff0340d0518712cd80eec94d61238cdde50c170ed"
     }
   ]
 }

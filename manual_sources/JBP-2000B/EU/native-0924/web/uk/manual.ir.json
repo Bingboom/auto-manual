@@ -23,7 +23,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "7ac332e7fced937a539a33e104a1ce2af5a896edb9918d0b4d425636a26dc449",
-  "content_sha256": "24682eb756b3cb7aa3788a3ca634eacde27062a59cb2889072723a5c1a87ae84",
+  "content_sha256": "d85930ae97074f6f67559bcfa2c92f32a45a9dd0c655ca9dfac2afa6a95b2ebd",
   "language": "uk",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2226,14 +2226,14 @@
               "panel_fill": "#ffffff",
               "panel_top": 0,
               "preserve_frame": true,
-              "mobile_labels": "overlay",
+              "mobile_labels": "stack",
               "labels": [
                 {
                   "line": 0,
                   "rect": [
-                    3,
+                    1,
                     47,
-                    19,
+                    16,
                     4
                   ],
                   "fill": "#434345",
@@ -2242,9 +2242,9 @@
                 {
                   "line": 1,
                   "rect": [
-                    3,
+                    1,
                     72,
-                    19,
+                    16,
                     4
                   ],
                   "fill": "#434345",
@@ -7528,7 +7528,7 @@
             "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
           ],
           "block_id": "connections_en.rst:block-0008",
-          "content_sha256": "8f19194d2c12349689aa411322d2caad2497ef0f3738446667c8ac4c4e9951ee",
+          "content_sha256": "270b3db40619c9cd6212a2538ef349b200219f2159ee1943b638b28262fd861c",
           "kind": "flow",
           "payload": {
             "kind": "component",
@@ -7595,14 +7595,14 @@
                   "panel_fill": "#ffffff",
                   "panel_top": 0,
                   "preserve_frame": true,
-                  "mobile_labels": "overlay",
+                  "mobile_labels": "stack",
                   "labels": [
                     {
                       "line": 0,
                       "rect": [
-                        3,
+                        1,
                         47,
-                        19,
+                        16,
                         4
                       ],
                       "fill": "#434345",
@@ -7611,9 +7611,9 @@
                     {
                       "line": 1,
                       "rect": [
-                        3,
+                        1,
                         72,
-                        19,
+                        16,
                         4
                       ],
                       "fill": "#434345",
