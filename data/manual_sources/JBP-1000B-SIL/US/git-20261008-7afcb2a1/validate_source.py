@@ -33,9 +33,18 @@ def validate(language: str, output: Path) -> dict:
     preface = {"en": 0, "fr": 5, "es": 10}[language]
     ids = [(p, i) for p in range(4 + offset, 20 + offset)
            for i in range(len(pages[p - 1]["blocks"]))]
-    ids += [(2, i) for i in range(preface, preface + 4)] + [(52, i) for i in range(3)]
+    ids += [(2, i) for i in range(preface, preface + 5)] + [(52, i) for i in range(3)]
     covered = 0
     failures = []
+    heading = main.select_one("h1.hb-preface-heading")
+    expected_heading = {"en": "US IMPORTANT", "fr": "FR IMPORTANT", "es": "ES IMPORTANTE"}[language]
+    if heading is None or heading.get_text(" ", strip=True).removesuffix("¶").strip() != expected_heading:
+        failures.append("native preface heading or region badge missing")
+    fcc = main.select_one('[data-component-id="HB-SPECIAL-FCC"]')
+    if fcc is None or len(fcc.select("ul > li")) != 4 or fcc.select_one('img[src="assets/fcc-mark.svg"]') is None:
+        failures.append("FCC component, transparent mark or four measures missing")
+    elif len(fcc.select("strong")) != 2:
+        failures.append("FCC NOTE/MODIFICATION native labels must remain bold")
     for page, index in ids:
         block = pages[page - 1]["blocks"][index]
         if block["bbox"][1] >= 500:  # Printed footer is outside the Web body.

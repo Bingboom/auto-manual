@@ -4395,3 +4395,26 @@ figure:has(> img.hb-readable-diagram) {
   padding: 0 .31cqw;
   border-radius: 2cqw;
 }
+
+/* Native preface headings use a region badge, rather than a chapter bar. */
+#furo-main-content h1.hb-preface-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--hb-text);
+}
+#furo-main-content .hb-preface-region {
+  display: inline-block;
+  padding: 0.03em 0.2em;
+  border-radius: 0.1em;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 0.72em;
+  line-height: 1.1;
+}
+#furo-main-content .hb-preface-heading .headerlink { color: var(--hb-text-muted); }
+#furo-main-content .hb-preface-prose p { margin: 0.45rem 0; line-height: 1.45; }

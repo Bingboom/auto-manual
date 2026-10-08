@@ -7,56 +7,104 @@
   "chapters": [
     {
       "id": "preface",
-      "title": "Jackery Battery Pack · JBP-1000B-SIL",
+      "title": "ES IMPORTANTE",
       "nodes": [
         {
+          "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 1,
           "anchor": "preface",
+          "level": 1,
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-preface-heading"
+                ]
+              }
+            }
+          },
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-preface-region"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "ES"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Jackery Battery Pack · JBP-1000B-SIL"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "IMPORTANTE"
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas."
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-preface-prose"
+                ]
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
+          },
           "children": [
             {
-              "kind": "text",
-              "text": "De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas."
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer."
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "* Las cifras son sólo de referencia. Consulte el producto real."
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com."
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "* Las cifras son sólo de referencia. Consulte el producto real."
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -423,24 +471,99 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-FCC",
+            "variant": "two-column",
+            "source_ref": "native-pdf/fcc/es",
+            "language": "es",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "FCC"
+              },
+              {
+                "role": "opening_copy",
+                "content_kind": "line_items",
+                "content": [
+                  "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones:",
+                  "(1) este dispositivo no debe causar interferencias dañinas, y",
+                  "(2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado."
+                ]
+              },
+              {
+                "role": "body_blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "label": "NOTA:",
+                    "text": "Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
+                  },
+                  {
+                    "kind": "paragraph",
+                    "label": "",
+                    "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas:"
+                  },
+                  {
+                    "kind": "list",
+                    "items": [
+                      "Reorientar o reubicar la antena receptora.",
+                      "Aumentar la separación entre el equipo y el receptor.",
+                      "Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor.",
+                      "Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda."
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "label": "MODIFICACIÓN:",
+                    "text": "Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
+                  }
+                ]
+              },
+              {
+                "role": "column_break",
+                "content_kind": "block_index",
+                "content": 1
+              }
+            ],
+            "assets": [
+              {
+                "role": "compliance_mark",
+                "asset_ref": "assets/fcc-mark.svg",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.fcc"
+            ],
+            "metadata": {
+              "source_physical_page": 37
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
             {
-              "kind": "text",
-              "text": "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado. NOTA: Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado. NOTA: Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas: --Reorientar o reubicar la antena receptora. --Aumentar la separación entre el equipo y el receptor. --Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor. --Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda. MODIFICACIÓN: Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas: --Reorientar o reubicar la antena receptora. --Aumentar la separación entre el equipo y el receptor. --Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor. --Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda. MODIFICACIÓN: Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         }
       ]
     },

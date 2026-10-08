@@ -38,19 +38,15 @@
 
 .native-inline-pack { display:inline-block; width:11px; height:15px; vertical-align:middle; margin:0 3px; }
 
+/* Native FCC geometry: compact mark above the left copy; shared panel/breakpoints. */
+#furo-main-content .hb-fcc-opening { display:block; }
+#furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }
+
 </style>
 
-<span id="preface"></span>
+<h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">FR</span> <span>IMPORTANT</span></h1>
 
-# Jackery Battery Pack · JBP-1000B-SIL
-
-<p>Félicitations pour votre nouveau Jackery Battery Pack. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les précautions à prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer ultérieurement.</p>
-
-<p>Conformément aux lois et réglementations en vigueur, le droit d'interprétation final de ce document et de tous les documents associés à ce produit appartient à l'entreprise. Bien que tous les efforts aient été déployés pour garantir l'exactitude de ce manuel, Jackery Inc. n'assume aucune responsabilité pour les erreurs qui pourraient y figurer.</p>
-
-<p>Veuillez noter qu'aucune autre notification ne sera faite en cas de mise à jour, de révision ou de résiliation. Pour la dernière version des manuels du produit, consultez support.jackery.com.</p>
-
-<p>* Les chiffres sont donnés à titre indicatif uniquement. Veuillez vous référer au produit réel.</p>
+<div class="hb-preface-prose"><p>Félicitations pour votre nouveau Jackery Battery Pack. Veuillez lire attentivement ce manuel avant d'utiliser le produit, en particulier les précautions à prendre pour garantir une utilisation correcte du produit. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer ultérieurement.</p><p>Conformément aux lois et réglementations en vigueur, le droit d'interprétation final de ce document et de tous les documents associés à ce produit appartient à l'entreprise. Bien que tous les efforts aient été déployés pour garantir l'exactitude de ce manuel, Jackery Inc. n'assume aucune responsabilité pour les erreurs qui pourraient y figurer.</p><p>Veuillez noter qu'aucune autre notification ne sera faite en cas de mise à jour, de révision ou de résiliation. Pour la dernière version des manuels du produit, consultez support.jackery.com.</p><p>* Les chiffres sont donnés à titre indicatif uniquement. Veuillez vous référer au produit réel.</p></div>
 
 <span id="safety"></span>
 
@@ -72,7 +68,7 @@
 
 # FCC
 
-<p>Cet appareil est conforme à la partie 15 des règles de la FCC. Son fonctionnement est soumis aux deux conditions suivantes : (1) cet appareil ne doit pas causer d’interférences nuisibles, et (2) cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant entraîner un fonctionnement indésirable. REMARQUE : Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC. Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d’une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n’est pas installé et utilisé conformément aux instructions, perturber les communications radios. Toutefois, il n’y a aucune garantie qu’aucune interférence ne se produise lors d’une installation particulière. Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l’utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes : --Réorientez ou déplacez l’antenne de réception. --Éloignez l’équipement du récepteur. --Connectez l’équipement à une prise d’un autre circuit que celui auquel le récepteur est connecté. --Consultez le revendeur ou bien demandez de l’aide à un technicien de radio/télévision expérimenté. MODIFICATION : Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l’autorisation de l’utilisateur à utiliser l’appareil.</p>
+<figure aria-label="FCC" class="hb-fcc-composition" data-component-id="HB-SPECIAL-FCC"><div class="hb-fcc-grid"><div class="hb-fcc-column hb-fcc-column-left"><div class="hb-fcc-opening"><img alt="FCC" class="hb-fcc-mark" loading="lazy" src="assets/fcc-mark.svg"/><div class="hb-fcc-opening-copy"><div class="line-block"><div class="line">Cet appareil est conforme à la partie 15 des règles de la FCC. Son fonctionnement est soumis aux deux conditions suivantes :</div><div class="line">(1) cet appareil ne doit pas causer d’interférences nuisibles, et</div><div class="line">(2) cet appareil doit accepter toute interférence reçue, y compris les interférences pouvant entraîner un fonctionnement indésirable.</div></div></div></div><p><strong>REMARQUE :</strong> Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC. Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d’une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n’est pas installé et utilisé conformément aux instructions, perturber les communications radios.</p></div><div class="hb-fcc-column hb-fcc-column-right"><p>Toutefois, il n’y a aucune garantie qu’aucune interférence ne se produise lors d’une installation particulière. Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l’utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes :</p><ul class="simple"><li><p>Réorientez ou déplacez l’antenne de réception.</p></li><li><p>Éloignez l’équipement du récepteur.</p></li><li><p>Connectez l’équipement à une prise d’un autre circuit que celui auquel le récepteur est connecté.</p></li><li><p>Consultez le revendeur ou bien demandez de l’aide à un technicien de radio/télévision expérimenté.</p></li></ul><p><strong>MODIFICATION :</strong> Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l’autorisation de l’utilisateur à utiliser l’appareil.</p></div></div></figure>
 
 <span id="inbox"></span>
 

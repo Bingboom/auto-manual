@@ -1,9 +1,9 @@
 {
   "final_verification": {
-    "accepted_at": "2026-10-08T16:41:22.514338+00:00",
-    "content_sha256": "6011b91038581245befd432f0500b408ee19ac72f23efe702ca6a10dbf43512a",
-    "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
-    "native_visible_lines": 446,
+    "accepted_at": "2026-10-08T22:42:02.339950+00:00",
+    "content_sha256": "c9d13f2a11a43bdd3992917f14a989e58d34259ac82b90a0fbc503cac6157c9d",
+    "stylesheet_sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde",
+    "native_visible_lines": 447,
     "viewports": [
       [
         1280,
@@ -14,11 +14,73 @@
         844
       ]
     ],
-    "loaded_images": 52,
+    "loaded_images": 53,
     "broken_images": 0,
     "page_horizontal_overflow": false,
     "clipped_live_labels": [],
     "english_before_locales_gate": "source/en/acceptance.json",
-    "scope": "Source-preserving layout acceptance; source content differences remain flagged."
-  }
+    "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+    "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+    "preface_heading": "FR IMPORTANT",
+    "preface_native_title_and_badge": true,
+    "preface_background": "transparent",
+    "preface_paragraphs": 4,
+    "fcc_component": "HB-SPECIAL-FCC/two-column",
+    "fcc_mark": "assets/fcc-mark.svg",
+    "fcc_measures": 4,
+    "fcc_bold_labels": 2,
+    "fcc_desktop_columns": 2,
+    "fcc_mobile_columns": 1
+  },
+  "verification_history": [
+    {
+      "accepted_at": "2026-10-08T16:41:22.514338+00:00",
+      "content_sha256": "6011b91038581245befd432f0500b408ee19ac72f23efe702ca6a10dbf43512a",
+      "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+      "native_visible_lines": 446,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 52,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged."
+    },
+    {
+      "accepted_at": "2026-10-08T22:23:54.530098+00:00",
+      "content_sha256": "e64d9b404076df15fc25d7de683267c011d0e67a704b7ccf217b0497cf1d612c",
+      "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 52,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4
+    }
+  ]
 }

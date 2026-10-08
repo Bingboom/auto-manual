@@ -7,6 +7,7 @@
     "assets/symbol-5.svg",
     "assets/symbol-6.svg",
     "assets/symbol-7.png",
+    "assets/fcc-mark.svg",
     "assets/inbox-1.png",
     "assets/inbox-2.png",
     "assets/inbox-3.png",
@@ -54,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "4ed6f194b1991ff516110fffde2bab8852efc1f37e082953a223c6ddb24a4efe",
-  "content_sha256": "bfbaeb17e26a6d8278c6468af4ef0c5cf6ccb5af55f33f1bae716ee74a553185",
+  "bundle_sha256": "e5c12af4cc29169d39f08a1ce64c051accf4f8bfe8c4a63a7b09256cc29b615a",
+  "content_sha256": "16e0e1d00663f4e0ea0f809638ef33ee7989e6e0b2ac41bc387130b571cb7f47",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -74,6 +75,7 @@
       "assets/concrete-result.png": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306",
       "assets/connection-icon.svg": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495",
       "assets/connections.png": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43",
+      "assets/fcc-mark.svg": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
       "assets/inbox-1.png": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe",
       "assets/inbox-2.png": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7",
       "assets/inbox-3.png": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512",
@@ -113,9 +115,10 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 95,
+    "block_count": 91,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
+      "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 14,
       "HB-TABLE-LCD-ICON": 1,
@@ -1334,7 +1337,7 @@
     "declared_languages": [
       "es"
     ],
-    "frozen_stylesheet_sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1",
+    "frozen_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -1944,7 +1947,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9"
+      "sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -2113,18 +2116,54 @@
         {
           "asset_refs": [],
           "block_id": "preface:block-0001",
-          "content_sha256": "692a24eac280a218e40bb1d8c53524f84fdd38d5547e6bbc0e189e9196848e9b",
+          "content_sha256": "16022a8459e7e51cfc278074649c7e4a96e777ae1f7a47d9011028275caa3f00",
           "kind": "flow",
           "payload": {
             "anchor": "preface",
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "ES"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-preface-region"
+                      ]
+                    }
+                  }
+                }
+              },
+              {
                 "kind": "text",
-                "text": "Jackery Battery Pack · JBP-1000B-SIL"
+                "text": " "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "IMPORTANTE"
+                  }
+                ],
+                "kind": "inline_group"
               }
             ],
             "kind": "heading",
             "level": 1,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-preface-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/preface#block-1"
@@ -2132,70 +2171,61 @@
         {
           "asset_refs": [],
           "block_id": "preface:block-0002",
-          "content_sha256": "619f8d8630f9d3847fbdc59c3684f4a3a92b30f6af99c9ebcdb1ec0600a3d912",
+          "content_sha256": "2945a05ac6e54dc42c9e743123a95df85a37524960451d22a9fcaaf7713e7127",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "* Las cifras son sólo de referencia. Consulte el producto real."
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-preface-prose"
+                  ]
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/preface#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0003",
-          "content_sha256": "4285a69f562b3cd95545e8fb07b789b8e50611a30be9b639265550a0d501a09a",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0004",
-          "content_sha256": "639fcf8e090703e3df24b4921871461efa003192a4f6ff37c756761212cd3d8a",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0005",
-          "content_sha256": "415b29c08ceff1ac5da5bdf6a9684624ce3c9b318d485c3e41e366a93da54799",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "* Las cifras son sólo de referencia. Consulte el producto real."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-5"
         }
       ],
       "language": "es",
@@ -2203,7 +2233,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#preface",
       "source_ref": "native-pdf/preface",
-      "source_sha256": "391e54468f5b8fede95ecd50ec8ba34b16db45e33cb28b1e9df96b727e9fdf56"
+      "source_sha256": "01a3ac5269d7b1e0cc61d44d3c13ffc77d617ac118bc7b73385da6e2b18e2080"
     },
     {
       "blocks": [
@@ -2628,38 +2658,108 @@
           "source_ref": "native-pdf/fcc#block-1"
         },
         {
-          "asset_refs": [],
+          "asset_refs": [
+            "assets/fcc-mark.svg"
+          ],
           "block_id": "fcc:block-0002",
-          "content_sha256": "45383395ee7ed0990c03f68b8bfa7d30a42c6b5469116c65d00d638c1081632a",
+          "content_sha256": "53ba416df861ae59b4bd3114022e471f84eb799a73acdc990fa28e79b5b2a509",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "kind": "text",
-                "text": "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado. NOTA: Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado. NOTA: Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas: --Reorientar o reubicar la antena receptora. --Aumentar la separación entre el equipo y el receptor. --Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor. --Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda. MODIFICACIÓN: Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/fcc-mark.svg",
+                  "locale_policy": "shared",
+                  "role": "compliance_mark"
+                }
+              ],
+              "component_id": "HB-SPECIAL-FCC",
+              "language": "es",
+              "metadata": {
+                "source_physical_page": 37
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "FCC",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    "Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones:",
+                    "(1) este dispositivo no debe causar interferencias dañinas, y",
+                    "(2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado."
+                  ],
+                  "content_kind": "line_items",
+                  "role": "opening_copy"
+                },
+                {
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "label": "NOTA:",
+                      "text": "Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "label": "",
+                      "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas:"
+                    },
+                    {
+                      "items": [
+                        "Reorientar o reubicar la antena receptora.",
+                        "Aumentar la separación entre el equipo y el receptor.",
+                        "Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor.",
+                        "Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda."
+                      ],
+                      "kind": "list"
+                    },
+                    {
+                      "kind": "paragraph",
+                      "label": "MODIFICACIÓN:",
+                      "text": "Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "body_blocks"
+                },
+                {
+                  "content": 1,
+                  "content_kind": "block_index",
+                  "role": "column_break"
+                }
+              ],
+              "source_ref": "native-pdf/fcc/es",
+              "token_roles": [
+                "component.special.fcc"
+              ],
+              "variant": "two-column"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/fcc#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "fcc:block-0003",
-          "content_sha256": "eabc1a44e9d71f416d4514a5cd24780712692db6184fa8c84384af9e3e77fab7",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas: --Reorientar o reubicar la antena receptora. --Aumentar la separación entre el equipo y el receptor. --Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor. --Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda. MODIFICACIÓN: Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/fcc#block-3"
         }
       ],
       "language": "es",
@@ -2667,7 +2767,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#fcc",
       "source_ref": "native-pdf/fcc",
-      "source_sha256": "c9f72acc09f65560b72850455750b4b5e824be05c6992b299bd74e8187a4d2de"
+      "source_sha256": "4b62c9cc3d01730d7f10795f4b5251fe754d047b42686fa2b54f42ba9bd39112"
     },
     {
       "blocks": [

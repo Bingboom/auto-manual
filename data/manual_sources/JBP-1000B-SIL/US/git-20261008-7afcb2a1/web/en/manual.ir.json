@@ -7,6 +7,7 @@
     "assets/symbol-5.svg",
     "assets/symbol-6.svg",
     "assets/symbol-7.png",
+    "assets/fcc-mark.svg",
     "assets/inbox-1.png",
     "assets/inbox-2.png",
     "assets/inbox-3.png",
@@ -54,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "7d7be184e14c6ee6791766a67a1c1bb1bb0ab0b09aa20f3f8e593f7793a5d14e",
-  "content_sha256": "d9a6203ccb845143a4bf9a81c61c0e98a7d0db68724ad11574fe91823ff0a2af",
+  "bundle_sha256": "fd03240c079989c815c4ae07a3b7e51212b7979ab3ba4dd9ec3526681851b5ba",
+  "content_sha256": "88a78d7ffdcf58bc4685caf0e66d8d9082acab92acb5bfae7d8d840ac0749f19",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -74,6 +75,7 @@
       "assets/concrete-result.png": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306",
       "assets/connection-icon.svg": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495",
       "assets/connections.png": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43",
+      "assets/fcc-mark.svg": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
       "assets/inbox-1.png": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe",
       "assets/inbox-2.png": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7",
       "assets/inbox-3.png": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512",
@@ -113,9 +115,10 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 96,
+    "block_count": 92,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
+      "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 14,
       "HB-TABLE-LCD-ICON": 1,
@@ -1334,7 +1337,7 @@
     "declared_languages": [
       "en"
     ],
-    "frozen_stylesheet_sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1",
+    "frozen_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
     "manual_theme": {
       "component_roles": {
         "component.callout": {
@@ -1944,7 +1947,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9"
+      "sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -2113,18 +2116,54 @@
         {
           "asset_refs": [],
           "block_id": "preface:block-0001",
-          "content_sha256": "692a24eac280a218e40bb1d8c53524f84fdd38d5547e6bbc0e189e9196848e9b",
+          "content_sha256": "abd212ea916c7aec10c34917f4855eb1bbb07c2efc528e1fb694bba04abdf65d",
           "kind": "flow",
           "payload": {
             "anchor": "preface",
             "children": [
               {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "US"
+                  }
+                ],
+                "kind": "inline_group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": [
+                        "hb-preface-region"
+                      ]
+                    }
+                  }
+                }
+              },
+              {
                 "kind": "text",
-                "text": "Jackery Battery Pack · JBP-1000B-SIL"
+                "text": " "
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "IMPORTANT"
+                  }
+                ],
+                "kind": "inline_group"
               }
             ],
             "kind": "heading",
             "level": 1,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-preface-heading"
+                  ]
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/preface#block-1"
@@ -2132,70 +2171,61 @@
         {
           "asset_refs": [],
           "block_id": "preface:block-0002",
-          "content_sha256": "ed8d352cce7ec3c947be4346022d6b31a884fbacfcfd032bc8ea8392562182a2",
+          "content_sha256": "9145cc80dc0154a9bb6c73c9a4cc4b64663b54e1cdcdf1405878958bc7fc9e8d",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com."
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "* The images are for reference purposes only. Please refer to the actual product."
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-preface-prose"
+                  ]
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/preface#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0003",
-          "content_sha256": "8c40f5911ee0d42e650cedf63e48db70fe1140352ffe87a4cc7a70d440b0f33f",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0004",
-          "content_sha256": "c46a35021369f17dcf69eff78eb9c77b87c115b4a812048e67e5ab7abdca1ef8",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "preface:block-0005",
-          "content_sha256": "93660096af93bd85249b4a75273a517405f91a2b960f0ed334ad274e3085c839",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "* The images are for reference purposes only. Please refer to the actual product."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/preface#block-5"
         }
       ],
       "language": "en",
@@ -2203,7 +2233,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#preface",
       "source_ref": "native-pdf/preface",
-      "source_sha256": "83b77aa722888c539cf873f73f3486814187dd9b702e5c568df1b68930d3a41f"
+      "source_sha256": "4360f1b184bafb3b2f461a770f814810c49a1f7968a83d85208d75a030cdb560"
     },
     {
       "blocks": [
@@ -2628,38 +2658,108 @@
           "source_ref": "native-pdf/fcc#block-1"
         },
         {
-          "asset_refs": [],
+          "asset_refs": [
+            "assets/fcc-mark.svg"
+          ],
           "block_id": "fcc:block-0002",
-          "content_sha256": "39699ac6b58f49dc6186328507cdf0b5255260830f65e077616a9f56f061f374",
+          "content_sha256": "1da4c9bd85f2ff5e27f96def33e0f23fd41b5f14cd3c15dbaa1856b2350204f9",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "kind": "text",
-                "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. "
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. "
+                  }
+                ],
+                "kind": "paragraph"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures: -- Reorient or relocate the receiving antenna. -- Increase the separation between the equipment and receiver. -- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. -- Consult the dealer or an experienced radio/TV technician for help. MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/fcc-mark.svg",
+                  "locale_policy": "shared",
+                  "role": "compliance_mark"
+                }
+              ],
+              "component_id": "HB-SPECIAL-FCC",
+              "language": "en",
+              "metadata": {
+                "source_physical_page": 5
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "FCC",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:",
+                    "(1) This device may not cause harmful interference, and",
+                    "(2) This device must accept any interference received, including interference that may cause undesired operation."
+                  ],
+                  "content_kind": "line_items",
+                  "role": "opening_copy"
+                },
+                {
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "label": "NOTE:",
+                      "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "label": "",
+                      "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                    },
+                    {
+                      "items": [
+                        "Reorient or relocate the receiving antenna.",
+                        "Increase the separation between the equipment and receiver.",
+                        "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+                        "Consult the dealer or an experienced radio/TV technician for help."
+                      ],
+                      "kind": "list"
+                    },
+                    {
+                      "kind": "paragraph",
+                      "label": "MODIFICATION:",
+                      "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "body_blocks"
+                },
+                {
+                  "content": 1,
+                  "content_kind": "block_index",
+                  "role": "column_break"
+                }
+              ],
+              "source_ref": "native-pdf/fcc/en",
+              "token_roles": [
+                "component.special.fcc"
+              ],
+              "variant": "two-column"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/fcc#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "fcc:block-0003",
-          "content_sha256": "40c6b4d4713821ab3f0f3d5d26456fbdbc3f88036741ad56fc16ffd7ca402f98",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures: -- Reorient or relocate the receiving antenna. -- Increase the separation between the equipment and receiver. -- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. -- Consult the dealer or an experienced radio/TV technician for help. MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/fcc#block-3"
         }
       ],
       "language": "en",
@@ -2667,7 +2767,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#fcc",
       "source_ref": "native-pdf/fcc",
-      "source_sha256": "e0e2853afdcf0774e9aa99ceefdc19567a9b96d2affa90822c5f2147952afbf7"
+      "source_sha256": "46a084080eb890019699bc115fcde93d0b041f51ef45e0f85144066c5746e927"
     },
     {
       "blocks": [

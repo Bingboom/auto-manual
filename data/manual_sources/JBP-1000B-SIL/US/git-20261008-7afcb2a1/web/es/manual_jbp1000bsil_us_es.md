@@ -38,19 +38,15 @@
 
 .native-inline-pack { display:inline-block; width:11px; height:15px; vertical-align:middle; margin:0 3px; }
 
+/* Native FCC geometry: compact mark above the left copy; shared panel/breakpoints. */
+#furo-main-content .hb-fcc-opening { display:block; }
+#furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }
+
 </style>
 
-<span id="preface"></span>
+<h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">ES</span> <span>IMPORTANTE</span></h1>
 
-# Jackery Battery Pack · JBP-1000B-SIL
-
-<p>Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas.</p>
-
-<p>De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer.</p>
-
-<p>Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com.</p>
-
-<p>* Las cifras son sólo de referencia. Consulte el producto real.</p>
+<div class="hb-preface-prose"><p>Felicitaciones por su nuevo Jackery Battery Pack. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas.</p><p>De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Aunque se ha hecho todo lo posible para garantizar la exactitud de este manual, Jackery Inc. no asume ninguna responsabilidad por los errores que puedan aparecer.</p><p>Tenga en cuenta que no se emitirán notificaciones adicionales en caso de actualizaciones, revisiones o terminación. Para obtener la última versión de los manuales del producto, visite support.jackery.com.</p><p>* Las cifras son sólo de referencia. Consulte el producto real.</p></div>
 
 <span id="safety"></span>
 
@@ -72,9 +68,7 @@
 
 # FCC
 
-<p>Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado. NOTA: Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio.</p>
-
-<p>Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas: --Reorientar o reubicar la antena receptora. --Aumentar la separación entre el equipo y el receptor. --Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor. --Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda. MODIFICACIÓN: Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo.</p>
+<figure aria-label="FCC" class="hb-fcc-composition" data-component-id="HB-SPECIAL-FCC"><div class="hb-fcc-grid"><div class="hb-fcc-column hb-fcc-column-left"><div class="hb-fcc-opening"><img alt="FCC" class="hb-fcc-mark" loading="lazy" src="assets/fcc-mark.svg"/><div class="hb-fcc-opening-copy"><div class="line-block"><div class="line">Este dispositivo cumple con la parte 15 de la normativa FCC. Su operación está sujeta a las siguientes dos condiciones:</div><div class="line">(1) este dispositivo no debe causar interferencias dañinas, y</div><div class="line">(2) este dispositivo debe aceptar cualquier interferencia recibida, incluyendo interferencias que puedan causar un funcionamiento no deseado.</div></div></div></div><p><strong>NOTA:</strong> Este aparato ha sido probado y cumple con los límites para un dispositivo digital de Clase B, de acuerdo con el Apartado 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este aparato genera, usa y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales en las comunicaciones por radio.</p></div><div class="hb-fcc-column hb-fcc-column-right"><p>Sin embargo, no hay garantía de que no se produzcan interferencias en una instalación concreta. Si este aparato causa interferencias dañinas en la recepción de radio o televisión, lo cual puede determinarse encendiendo y apagando el equipo, se recomienda al usuario que intente corregir la interferencia mediante una o varias de las siguientes medidas:</p><ul class="simple"><li><p>Reorientar o reubicar la antena receptora.</p></li><li><p>Aumentar la separación entre el equipo y el receptor.</p></li><li><p>Conecte el aparato a una toma de corriente en un circuito diferente al que está conectado el receptor.</p></li><li><p>Consulte con el distribuidor o con un técnico de radio o TV experimentado para recibir ayuda.</p></li></ul><p><strong>MODIFICACIÓN:</strong> Cualquier cambio o modificación no aprobado expresamente por el cesionario de este dispositivo podría anular la autoridad del usuario para utilizar el dispositivo.</p></div></div></figure>
 
 <span id="inbox"></span>
 

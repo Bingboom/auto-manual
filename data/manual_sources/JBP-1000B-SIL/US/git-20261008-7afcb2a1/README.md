@@ -4,7 +4,7 @@ The 52-page `Jackery Battery Pack-1.pdf` is authoritative. English uses physical
 
 The JBP-2000B shared battery-manual structure governs headings, safety tables, inbox, LCD glossary, callouts, specification tables and warranty. This source adds its own FridgeGuard positioning and vertical/wood/concrete installation content. Each locale has 18 chapters and the same ComponentSpec inventory. English desktop/mobile acceptance was recorded before native French and Spanish production; the final three-language verification is recorded in `source/<locale>/acceptance.json`.
 
-`source/<locale>/content.json` is editable semantic text, including figure captions. `web/<locale>` is the frozen Manual IR/MyST/Sphinx candidate. All three consume the same 52 artwork files. Five native safety glyph variants were added once to the shared symbol catalog; existing warning/WEEE bytes were reused. Independent caption frames remain CSS, diagram labels remain live text, and installation pictures retain full native panel bounds. The small LCD face markings, product logos and document-cover print remain illustrative art. None is substituted with a different model's picture.
+`source/<locale>/content.json` is editable semantic text, including figure captions. `web/<locale>` is the frozen Manual IR/MyST/Sphinx candidate. All three consume the same 53 artwork files. Five native safety glyph variants were added once to the shared symbol catalog; existing warning/WEEE bytes were reused. Independent caption frames remain CSS, diagram labels remain live text, and installation pictures retain full native panel bounds. The small LCD face markings, product logos and document-cover print remain illustrative art. None is substituted with a different model's picture.
 
 ## Rebuild and validate
 
@@ -27,3 +27,7 @@ The extraction recipe is `data/asset_recipes/manual_jbp1000b_sil_us_native.json`
 ## Native differences retained
 
 `source/native_exceptions.json` lists the source issues for review. In particular French p33 says **2 months** where English/Spanish say **12 months**. French p27 contains an English preparation heading and Spanish step 4; Spanish p42 step 1 is English. Spanish positioning/connections name FridgeGuard twice, and its interpretation-rights body repeats the original-buyer restriction. These remain native copy, not new translations or corrections.
+
+The native preface uses the shared `hb-preface-heading`, `hb-preface-region` and `hb-preface-prose` presentation classes: US IMPORTANT, FR IMPORTANT and ES IMPORTANTE retain native text, a transparent heading and compact prose. The validator covers all five native preface blocks, including its title/region block, and requires the correct leading heading instead of relying on prose coverage alone.
+
+FCC is bound to the existing HB-SPECIAL-FCC ComponentSpec: native opening/NOTE copy on the left, interference measures/MODIFICATION on the right; mobile follows left then right. Its compact mark-above-copy geometry is source-local CSS. The original transparent FCC SVG is added once to the shared catalog after the existing raster fails the matte check. The validator requires the component, mark, four list measures and two bold native labels.

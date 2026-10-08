@@ -36,3 +36,7 @@
 [data-reference-id="overview"] [data-source-line="4"] { font-weight:700; }
 
 .native-inline-pack { display:inline-block; width:11px; height:15px; vertical-align:middle; margin:0 3px; }
+
+/* Native FCC geometry: compact mark above the left copy; shared panel/breakpoints. */
+#furo-main-content .hb-fcc-opening { display:block; }
+#furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }

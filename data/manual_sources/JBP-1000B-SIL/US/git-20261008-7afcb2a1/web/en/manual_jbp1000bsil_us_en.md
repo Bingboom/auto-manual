@@ -38,19 +38,15 @@
 
 .native-inline-pack { display:inline-block; width:11px; height:15px; vertical-align:middle; margin:0 3px; }
 
+/* Native FCC geometry: compact mark above the left copy; shared panel/breakpoints. */
+#furo-main-content .hb-fcc-opening { display:block; }
+#furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }
+
 </style>
 
-<span id="preface"></span>
+<h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">US</span> <span>IMPORTANT</span></h1>
 
-# Jackery Battery Pack · JBP-1000B-SIL
-
-<p>Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.</p>
-
-<p>In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear.</p>
-
-<p>Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.</p>
-
-<p>* The images are for reference purposes only. Please refer to the actual product.</p>
+<div class="hb-preface-prose"><p>Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.</p><p>In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear.</p><p>Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.</p><p>* The images are for reference purposes only. Please refer to the actual product.</p></div>
 
 <span id="safety"></span>
 
@@ -72,9 +68,7 @@
 
 # FCC
 
-<p>This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. </p>
-
-<p>However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures: -- Reorient or relocate the receiving antenna. -- Increase the separation between the equipment and receiver. -- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. -- Consult the dealer or an experienced radio/TV technician for help. MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.</p>
+<figure aria-label="FCC" class="hb-fcc-composition" data-component-id="HB-SPECIAL-FCC"><div class="hb-fcc-grid"><div class="hb-fcc-column hb-fcc-column-left"><div class="hb-fcc-opening"><img alt="FCC" class="hb-fcc-mark" loading="lazy" src="assets/fcc-mark.svg"/><div class="hb-fcc-opening-copy"><div class="line-block"><div class="line">This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:</div><div class="line">(1) This device may not cause harmful interference, and</div><div class="line">(2) This device must accept any interference received, including interference that may cause undesired operation.</div></div></div></div><p><strong>NOTE:</strong> This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications.</p></div><div class="hb-fcc-column hb-fcc-column-right"><p>However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:</p><ul class="simple"><li><p>Reorient or relocate the receiving antenna.</p></li><li><p>Increase the separation between the equipment and receiver.</p></li><li><p>Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.</p></li><li><p>Consult the dealer or an experienced radio/TV technician for help.</p></li></ul><p><strong>MODIFICATION:</strong> Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device.</p></div></div></figure>
 
 <span id="inbox"></span>
 

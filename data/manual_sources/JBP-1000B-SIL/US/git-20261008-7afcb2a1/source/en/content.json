@@ -7,56 +7,104 @@
   "chapters": [
     {
       "id": "preface",
-      "title": "Jackery Battery Pack · JBP-1000B-SIL",
+      "title": "US IMPORTANT",
       "nodes": [
         {
+          "schema_version": "manual-flow/v2",
           "kind": "heading",
-          "level": 1,
           "anchor": "preface",
+          "level": 1,
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-preface-heading"
+                ]
+              }
+            }
+          },
           "children": [
             {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": [
+                      "hb-preface-region"
+                    ]
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "US"
+                }
+              ]
+            },
+            {
               "kind": "text",
-              "text": "Jackery Battery Pack · JBP-1000B-SIL"
+              "text": " "
+            },
+            {
+              "kind": "inline_group",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "IMPORTANT"
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference."
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": [
+                  "hb-preface-prose"
+                ]
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
+          },
           "children": [
             {
-              "kind": "text",
-              "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Congratulations on your new Jackery Battery Pack. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference."
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery Inc. assumes no responsibility for any errors that may appear."
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "* The images are for reference purposes only. Please refer to the actual product."
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com."
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "* The images are for reference purposes only. Please refer to the actual product."
+                }
+              ]
             }
           ],
           "schema_version": "manual-flow/v2"
@@ -423,24 +471,99 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-FCC",
+            "variant": "two-column",
+            "source_ref": "native-pdf/fcc/en",
+            "language": "en",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "FCC"
+              },
+              {
+                "role": "opening_copy",
+                "content_kind": "line_items",
+                "content": [
+                  "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions:",
+                  "(1) This device may not cause harmful interference, and",
+                  "(2) This device must accept any interference received, including interference that may cause undesired operation."
+                ]
+              },
+              {
+                "role": "body_blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "label": "NOTE:",
+                    "text": "This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications."
+                  },
+                  {
+                    "kind": "paragraph",
+                    "label": "",
+                    "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:"
+                  },
+                  {
+                    "kind": "list",
+                    "items": [
+                      "Reorient or relocate the receiving antenna.",
+                      "Increase the separation between the equipment and receiver.",
+                      "Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.",
+                      "Consult the dealer or an experienced radio/TV technician for help."
+                    ]
+                  },
+                  {
+                    "kind": "paragraph",
+                    "label": "MODIFICATION:",
+                    "text": "Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                  }
+                ]
+              },
+              {
+                "role": "column_break",
+                "content_kind": "block_index",
+                "content": 1
+              }
+            ],
+            "assets": [
+              {
+                "role": "compliance_mark",
+                "asset_ref": "assets/fcc-mark.svg",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.fcc"
+            ],
+            "metadata": {
+              "source_physical_page": 5
+            },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
             {
-              "kind": "text",
-              "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. "
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and (2) This device must accept any interference received, including interference that may cause undesired operation. NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. "
+                }
+              ]
+            },
             {
-              "kind": "text",
-              "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures: -- Reorient or relocate the receiving antenna. -- Increase the separation between the equipment and receiver. -- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. -- Consult the dealer or an experienced radio/TV technician for help. MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures: -- Reorient or relocate the receiving antenna. -- Increase the separation between the equipment and receiver. -- Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. -- Consult the dealer or an experienced radio/TV technician for help. MODIFICATION: Any changes or modifications not expressly approved by the grantee of this device could void the user’s authority to operate the device."
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         }
       ]
     },

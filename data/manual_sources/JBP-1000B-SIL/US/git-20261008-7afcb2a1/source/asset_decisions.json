@@ -2283,5 +2283,47 @@
     ],
     "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4",
     "recipe_asset_key": "web/jbp1000b-sil/us/vertical-result"
+  },
+  {
+    "id": "fcc-mark",
+    "decision": "native-variant-for-reuse",
+    "source_page": 5,
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "reason": "Only shared FCC raster candidate has an opaque grey corner and a partially translucent pale matte; original native vector is required for a transparent standalone mark.",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/latex/assets/fcc_mark.png",
+        "sha256": "45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90",
+        "status": "superseded-do-not-reuse-for-this-web-glyph",
+        "reason": "Corner RGBA (245,246,245,255), other corners retain pale translucent background. Existing print uses are outside this candidate."
+      }
+    ],
+    "background_policy": "Retain glyph vector and native tint only; round FCC panel is shared CSS.",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "bbox": [
+      34.94139862060547,
+      31.00440216064453,
+      50.76340103149414,
+      42.3114013671875
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          34.94139862060547,
+          31.00440216064453,
+          50.76340103149414,
+          42.3114013671875
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          707
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ]
   }
 ]

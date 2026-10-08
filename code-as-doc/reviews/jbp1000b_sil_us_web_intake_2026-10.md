@@ -52,3 +52,19 @@ The extraction recipe reproduced all 154 artifacts (50 exports, 52 archived page
 Final local previews: port 8892, /final/{en,fr,es}/manual_jbp1000bsil_us_{en,fr,es}.html. This intake is an engineering Git-only candidate. It has no merge, Hello-Docs mirror, RTD receipt or live acceptance claim.
 
 Full canonical-temp unittest regression: 5217 tests, OK (skipped=35), 717.283 seconds. Only the test process temporary path was resolved; no host configuration changed.
+
+## Native preface correction after operator screenshots
+
+The initial extraction consumed only four p2 prose blocks per locale and omitted the fifth native title/region block; its text census had the same gap. Restore US IMPORTANT / FR IMPORTANT / ES IMPORTANTE as the leading editable heading, replacing the invented product-name heading. Shared opt-in preface classes in web_source_panels.css remove the chapter bar, render the native badge and compact the four native paragraphs. No artwork bytes or other chapter headings change. Validation now includes all five p2 blocks and explicitly requires each locale's heading and badge. Native line counts are EN 399 / FR 447 / ES 444. Desktop 1280×900 and mobile 390×844 browser inspection passed in all three locales with no page overflow. Three strict Sphinx builds and frozen package parity pass. The prior 5217-test run describes the initial intake; this CSS/content refinement receives targeted verification and fresh source/admission checks.
+
+## FCC native composition correction
+
+Replace the three plain FCC paragraph carriers with the existing HB-SPECIAL-FCC/two-column ComponentSpec. Preserve the native words, split the four corrective measures into a semantic list and bind NOTE/REMARQUE/NOTA plus MODIFICATION/MODIFICACIÓN as bold labels. Shared FCC rules provide the rounded grey panel, desktop two-column geometry, mobile single-column reading order and hidden chapter bar. Source-local geometry puts the small mark above the left opening copy. French opening punctuation uses a nonbreaking space before its colon to avoid an isolated colon, without changing words.
+
+The only existing shared FCC raster (SHA-256 45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90) has an opaque grey corner and partially translucent pale matte. It is rejected for this transparent Web glyph and recorded in the existing asset decision log before extraction. Original p5 drawing 707 yields a complete transparent native FCC SVG; drawing 706 is the rounded page background and is excluded. The native glyph was inspected at 12x and added once to the existing shared catalog as fcc/nested-c-native-dark, with source/recipe/hash provenance; three languages reuse its exact bytes. No live registry promotion occurs.
+
+All three desktop/mobile FCC views passed at 1280×900 and 390×844, with two/one columns, four measures, two bold labels, 53 loaded images, zero broken images and no page overflow. The intake now has 53 shared artwork files (the initial 52 plus the admitted FCC mark). Source validation explicitly rejects a missing FCC component/mark/measures/labels. Targeted FCC, symbol, caption-frame and frozen-source tests pass: 49 tests. Fresh native coverage remains EN 399 / FR 447 / ES 444; three strict Sphinx builds pass.
+
+Final FCC recipe replay passed: 155 artifacts (51 exports and 104 archive/preview files), manifest SHA-256 4bebaf75a50ea2d35f1c3e1204f8bac88b4da6b94e3c38e510113e8b07f56ae8.
+
+Final cold replay passes all three locale package comparisons, native text coverage, 21 symbol admissions and CSS caption-frame admission. Negative probes reject missing preface and FCC roles; the wrong-input-hash probe is also rejected. Final French punctuation rebuild was reloaded and visually checked.

@@ -294,6 +294,21 @@
           42
         ]
       }
+    },
+    {
+      "key": "fcc/nested-c-native-dark",
+      "path": "native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 5,
+        "retained_path_indices": [
+          707
+        ],
+        "repair": "Complete native FCC glyph only, retaining source tint; exclude panel backdrop drawing 706"
+      }
     }
   ],
   "withdrawn": [
