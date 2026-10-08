@@ -277,6 +277,35 @@ def _text_span_rects(fitz: Any, page: Any, clip: Any) -> tuple[Any, ...]:
     return tuple(rects)
 
 
+def _leader_geometries_for_transform(
+    fitz: Any, page: Any, crop: Any, transform: Any
+) -> tuple[tuple[tuple[float, float, float, float], ...], ...]:
+    leader_kwargs = {}
+    if transform.halo_width_pt is not None:
+        leader_kwargs["halo_width"] = transform.halo_width_pt
+    if transform.line_width_pt is not None:
+        leader_kwargs["line_width"] = transform.line_width_pt
+    if transform.width_tolerance_pt is not None:
+        leader_kwargs["width_tolerance"] = transform.width_tolerance_pt
+    scope = tuple(transform.bbox_pt or tuple(crop))
+    leaders = find_leader_geometries(fitz, page, scope, **leader_kwargs)
+    if transform.bbox_pt is None:
+        return leaders
+    # The finder uses overlap to discover candidates, including zero-area
+    # horizontal strokes. Suppress only entire paths inside the declared area:
+    # a device-to-callout line crossing its edge must survive.
+    x0, y0, x1, y1 = scope
+    return tuple(
+        leader
+        for leader in leaders
+        if all(
+            x0 <= x <= x1 and y0 <= y <= y1
+            for segment in leader
+            for x, y in ((segment[0], segment[1]), (segment[2], segment[3]))
+        )
+    )
+
+
 def _prepare_asset_source(
     fitz: Any,
     source_path: Path,
@@ -311,16 +340,7 @@ def _prepare_asset_source(
             # The leaders sit above the artwork and carry a white halo, so a
             # whiteout can only punch a hole. Suppressing their own strokes
             # lets the grille and panel divider underneath render intact.
-            leader_kwargs = {}
-            if transform.halo_width_pt is not None:
-                leader_kwargs["halo_width"] = transform.halo_width_pt
-            if transform.line_width_pt is not None:
-                leader_kwargs["line_width"] = transform.line_width_pt
-            if transform.width_tolerance_pt is not None:
-                leader_kwargs["width_tolerance"] = transform.width_tolerance_pt
-            leaders = find_leader_geometries(
-                fitz, page, tuple(asset.crop_bbox), **leader_kwargs
-            )
+            leaders = _leader_geometries_for_transform(fitz, page, crop, transform)
             suppressed = suppress_leader_strokes(fitz, source, page, leaders)
             if suppressed != len(leaders) * 2:
                 raise ArtifactValidationError(

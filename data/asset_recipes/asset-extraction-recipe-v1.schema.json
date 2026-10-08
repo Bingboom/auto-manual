@@ -732,6 +732,10 @@
     "op": {
      "const": "drop_leader_strokes"
     },
+    "bbox_pt": {
+     "description": "Optional source-page top-left pt rectangle. Only paired leader paths wholly inside it are suppressed; omission retains the entire crop scope.",
+     "$ref": "#/$defs/bbox"
+    },
     "note": {
      "type": "string"
     },

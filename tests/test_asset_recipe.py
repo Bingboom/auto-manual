@@ -692,6 +692,19 @@ class TestAssetRecipe(unittest.TestCase):
         self.assertAlmostEqual(2.0, manifest["halo_width_pt"])
         self.assertAlmostEqual(0.202, manifest["line_width_pt"])
 
+    def test_leader_bbox_round_trip_and_invalid_geometry(self) -> None:
+        spec = _transform(
+            {"op": "drop_leader_strokes", "bbox_pt": [120, 20, 180, 40]},
+            "t",
+        )
+        self.assertEqual((120.0, 20.0, 180.0, 40.0), spec.bbox_pt)
+        self.assertEqual([120.0, 20.0, 180.0, 40.0], spec.as_manifest()["bbox_pt"])
+        self.assertNotIn("bbox_pt", _transform({"op": "drop_leader_strokes"}, "t").as_manifest())
+        for invalid in ([120, 20, 120, 40], [120, 20, 180, float("nan")]):
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(RecipeValidationError):
+                    _transform({"op": "drop_leader_strokes", "bbox_pt": invalid}, "t")
+
     def test_rejects_out_of_range_leader_width(self) -> None:
         for bad in (0, -1, 9, "2.0", True):
             with self.subTest(bad=bad):

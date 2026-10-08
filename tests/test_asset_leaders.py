@@ -17,6 +17,8 @@ from tools.asset_pipeline.leaders import (  # noqa: E402
     find_leader_geometries,
     suppress_leader_strokes,
 )
+from tools.asset_pipeline.extract import _leader_geometries_for_transform  # noqa: E402
+from tools.asset_pipeline.recipe import _transform  # noqa: E402
 
 
 class _Point:
@@ -137,6 +139,48 @@ class SuppressStrokesTest(unittest.TestCase):
     def test_no_leaders_is_a_no_op(self):
         stream = b"0 0 m 10 0 l S"
         self.assertEqual(self._run(stream, ())[0], 0)
+
+    def test_bbox_suppresses_only_whole_right_leader_in_real_pdf(self):
+        import fitz
+
+        doc = fitz.open()
+        page = doc.new_page(width=220, height=60)
+        for x0, x1 in ((20, 80), (120, 180)):
+            for width, color in ((2.0, (1, 1, 1)), (0.3, (0, 0, 0))):
+                page.draw_line((x0, 30), (x1, 30), color=color, width=width)
+        selected = _transform(
+            {
+                "op": "drop_leader_strokes",
+                "bbox_pt": [118, 27, 182, 33],
+                "halo_width_pt": 2.0,
+                "line_width_pt": 0.3,
+            },
+            "test",
+        )
+        crop = fitz.Rect(0, 0, 220, 60)
+        legacy = _transform({"op": "drop_leader_strokes", "halo_width_pt": 2.0, "line_width_pt": 0.3}, "test")
+        self.assertEqual(
+            find_leader_geometries(fitz, page, tuple(crop), halo_width=2.0, line_width=0.3),
+            _leader_geometries_for_transform(fitz, page, crop, legacy),
+        )
+        leaders = _leader_geometries_for_transform(fitz, page, crop, selected)
+        self.assertEqual(1, len(leaders))
+        self.assertEqual(2, suppress_leader_strokes(fitz, doc, page, leaders))
+        pixels = page.get_pixmap(matrix=fitz.Matrix(4, 4), alpha=False)
+        self.assertLess(max(pixels.pixel(200, 120)), 240)
+        self.assertEqual((255, 255, 255), pixels.pixel(600, 120))
+        # A selector that only crosses a stroke cannot erase the whole path.
+        partial = _transform(
+            {
+                "op": "drop_leader_strokes",
+                "bbox_pt": [50, 27, 60, 33],
+                "halo_width_pt": 2.0,
+                "line_width_pt": 0.3,
+            },
+            "test",
+        )
+        self.assertEqual((), _leader_geometries_for_transform(fitz, page, crop, partial))
+        doc.close()
 
 
 class RealRecipeTest(unittest.TestCase):
