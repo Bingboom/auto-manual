@@ -181,6 +181,9 @@ belong in the operating contract and roadmap, not in these stable invariants.
 
 Access layers connect people, AI clients and enterprise systems to the same
 content infrastructure; they do not add production engines or content authorities.
+The shared platform includes governed content, reuse, professional file processing
+and content queries. Document production is one capability path within this platform,
+not the boundary of the platform itself.
 
 - Human access uses Portal, Workspace and existing Bot workflows to read,
   submit work and review. Agent skills and bounded manual-query interfaces
@@ -188,8 +191,13 @@ content infrastructure; they do not add production engines or content authoritie
   page-number modification, PDF QC annotations, review backport and builds.
   Their coverage and approval rules remain capability-specific.
 - Planned enterprise integration references PLM/ERP product, SKU, BOM, material
-  and lifecycle records through interfaces or synchronization into governed
-  tables/snapshots. Enterprise systems remain authoritative for their records;
+  and lifecycle records through synchronization and field mapping into the
+  existing business tables. These tables support product information, content
+  modules, specifications, multilingual content and business maintenance/review;
+  validation, normalization and traceable snapshots connect them to production.
+  Content Authority continues to resolve facts from tables, Git-native originals
+  and approved assets before Assembly, Renderers and Publish.
+  Enterprise systems remain authoritative for their records;
   document production must not maintain a competing copy of enterprise master data.
 - Planned MCP access is a thin protocol adapter:
   `AI Client → MCP → Capability Interface → Core / Domain Services`.

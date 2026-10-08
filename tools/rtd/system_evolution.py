@@ -15,7 +15,8 @@ SCHEMA = "system-evolution/v1"
 STATUS_LABELS = {"recorded": "已完成", "ongoing": "持续开展",
                  "in_progress": "建设中", "planned": "未来方向"}
 DIAGRAM_NODE_IDS = ("human_portal", "agent_existing", "agent_mcp", "enterprise_systems",
-                    "trusted_content", "human_output", "machine_output", "file_pretranslation")
+                    "enterprise_tables", "data_snapshot", "trusted_content", "document_production",
+                    "human_output", "machine_output", "file_pretranslation")
 
 
 class EvolutionError(ValueError):
