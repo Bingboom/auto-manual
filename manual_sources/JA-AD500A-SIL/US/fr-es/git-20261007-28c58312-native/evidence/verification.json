@@ -1,0 +1,26 @@
+{
+  "fr": {
+    "native_copy_fields_in_rendered_body": "all matched",
+    "english_component_order_and_reference_ids": "exact match",
+    "led_table_column_geometry": "exact match",
+    "specification_input_rowspan": 2,
+    "artwork": "6 approved English assets, bytes identical",
+    "english_frozen_sources": "unchanged",
+    "cold_source_free_myst_replay": "exact",
+    "tampered_art_rejection": "document asset missing or changed: assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+    "strict_sphinx": "passed",
+    "html_sha256": "537cd64e640eb38cbe5c65f8551fef36d82398e5261a699539104fe255f277cd"
+  },
+  "es": {
+    "native_copy_fields_in_rendered_body": "all matched",
+    "english_component_order_and_reference_ids": "exact match",
+    "led_table_column_geometry": "exact match",
+    "specification_input_rowspan": 2,
+    "artwork": "6 approved English assets, bytes identical",
+    "english_frozen_sources": "unchanged",
+    "cold_source_free_myst_replay": "exact",
+    "tampered_art_rejection": "document asset missing or changed: assets/ir/0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd/solar.png",
+    "strict_sphinx": "passed",
+    "html_sha256": "ae041c655ee97fcebe1062e49a0819046f876839db391a8f7fee7c0965bb005f"
+  }
+}

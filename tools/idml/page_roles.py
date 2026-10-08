@@ -78,21 +78,25 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     ),
     PageRoleRule(
         PageRole.SAFETY,
+        semantic_stems=("01_safety",),
         stable_aliases=_localized_aliases("safety_info"),
         pattern=re.compile(rf"safety_{_LANGUAGE_PATTERN}"),
     ),
     PageRoleRule(
         PageRole.SPEC,
+        semantic_stems=("09_specifications",),
         stable_aliases=_localized_aliases("specifications"),
         pattern=re.compile(rf"spec_(?:{_LANGUAGE_PATTERN}|template)"),
     ),
     PageRoleRule(
         PageRole.LCD,
+        semantic_stems=("05_lcd",),
         stable_aliases=_localized_aliases("lcd_display"),
         pattern=re.compile(rf"lcd_icons_(?:{_LANGUAGE_PATTERN}|template)"),
     ),
     PageRoleRule(
         PageRole.SYMBOLS,
+        semantic_stems=("02_symbols",),
         stable_aliases=_localized_aliases("symbol_meaning"),
         pattern=re.compile(rf"symbols_(?:{_LANGUAGE_PATTERN}|template)"),
     ),
@@ -131,6 +135,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     ),
     PageRoleRule(
         PageRole.PRODUCT_OVERVIEW,
+        semantic_stems=("04_overview",),
         stable_aliases=_localized_aliases("product_overview"),
         pattern=re.compile(r"(?:p\d+_)?03_product_overview(?:_.+)?"),
     ),
@@ -141,7 +146,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     ),
     PageRoleRule(
         PageRole.OPERATION_GUIDE,
-        semantic_stems=("05_operation_guide", "05_operation_guide_placeholder"),
+        semantic_stems=("05_operation_guide", "05_operation_guide_placeholder", "06_operations"),
         stable_aliases=_localized_aliases("operation"),
         pattern=re.compile(r"(?:p\d+_)?05_operation_guide(?:_.+)?"),
     ),
@@ -158,7 +163,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     ),
     PageRoleRule(
         PageRole.STORAGE_MAINTENANCE,
-        semantic_stems=("09_storage", "09_storage_and_maintenance"),
+        semantic_stems=("09_storage", "09_storage_and_maintenance", "08_storage"),
         stable_aliases=_localized_aliases("storage"),
     ),
     PageRoleRule(
@@ -167,7 +172,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     ),
     PageRoleRule(
         PageRole.WARRANTY,
-        semantic_stems=("11_warranty",),
+        semantic_stems=("11_warranty", "10_warranty"),
         stable_aliases=_localized_aliases("warranty"),
     ),
     PageRoleRule(

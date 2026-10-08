@@ -1,6 +1,6 @@
 # 系统演进史（骨架与来路）
 
-Updated: 2026-10-04
+Updated: 2026-10-07
 
 ## 0. 本文角色
 
@@ -172,7 +172,7 @@ Word 之外长出 InDesign 印刷线。IDML 导出 MVP 07-04（#548），
 14 本手册的集中 rollout 在 09-30 完成（#1339–1342，Hello-Docs #157）。
 [rollout 验收](../dev/eu_shared_component_rollout_2026-09.md)
 记录了 14 个线上页面对比、217 次图片检查和 28 个桌面/手机案例。
-Web 整本样式与组件复用已经形成，整本 IR 共享随网页手册积累持续完善。
+Web 整本样式与组件复用已经形成，Shared IR（共享底稿）复用随网页手册积累持续完善。
 现有 Web 入口先构建冻结整本包，再从包生成网页；包可脱离 RST、CSV 重放。
 Word 仍逐页转换 RST，IDML 从 prepared RST 另建 IR。三者已有公共组件接口，
 但直接消费同一份冻结整本包仍待跨格式迁移；布局、分页和交付分别验收。
@@ -267,7 +267,42 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 
 ## 6. 下一阶段（方向，不计为已完成的历史环）
 
-**Shared IR：从已实现的 Web 整本共享扩展到更多输出端。** Web 整本复用已经实现，
+### 当前仓库技能与钩子基础（2026-10-07 核对）
+
+- [文件预翻译](../../.agents/skills/lark-tm-translation-preprocess/SKILL.md)与
+  [Markdown 文案复用](../../.agents/skills/manual-rewrite-with-tm/SKILL.md)已有技能入口。
+- [AI 手册校对与页码修正](../../.claude/skills/ai-manual-pagenum-fix/SKILL.md)
+  已有 PDF-compatible 图稿诊断、Illustrator 文字修改、导出与复核方法；修改页码
+  需要备份和确认编号规则。它不等于任意图稿修改都已自动化。
+- [PDF 检查结果标注](../../.agents/skills/pdf-annotate-qc/SKILL.md)、
+  [Word 修订回写](../../.agents/skills/manual-revision-backport/SKILL.md)、
+  [云文档回写](../../.agents/skills/cloud-doc-backport-ops/SKILL.md)与构建发布已有入口。
+- 操作者本机已安装 `pdf-manual-audit-highlight`：本次读取其技能说明，确认有
+  多语言 PDF 校对、参数检查、残留文字检查和可检索 PDF 高亮标注流程。
+  它是本机技能，当前不随仓库和 Hello-Docs 镜像分发，不虚构公开仓库文件链接。
+- [Claude 构建后提醒](../../.claude/hooks/README.md)已在项目 settings 配置；
+  [Git 推送钩子](../../.githooks/pre-push)已有派生文件、评审同步与分支检查脚本，
+  但需各检出设置 `core.hooksPath` 才会运行。本次检出的该设置为空，不能声称钩子
+  已在所有运行环境生效。技能负责操作流程，钩子负责指定事件下的自动提醒或检查。
+
+
+**Enterprise Access：从企业正式系统引用业务数据。** 与 IT 协作推进接入方向，
+PLM／ERP 接口或同步仍处于规划，当前输入仍是多维表与已导出的快照。
+产品、SKU、BOM、物料和生命周期记录以上游企业系统为准；文档侧只引用和冻结
+生产所需的数据，不重新维护一套企业主数据。字段、权限、同步与试点尚待确定。
+
+**Agent Access：MCP 作为薄的能力入口。** 现有 Bot、Agent 技能和手册查询
+继续使用既有接口；规划中的 MCP 只在 AI 客户端与能力接口之间做协议适配。
+翻译、图稿处理与构建服务独立于 MCP。首批候选是 TM、术语、预翻译、翻译 QA
+和手册上下文；后续评估将图稿提取、比对、补丁建议、批准后应用、验证及构建接入 MCP。
+以上是 MCP 暴露范围的规划，不代表能力从零开始，也不表示 MCP 已上线。
+正式图稿修改必须经过 Inspect → Compare → Propose Patch → Human Approval → Apply → Verify。
+
+Product Knowledge 与 Market Policy 是阅读与应用页面，各自保留内容依据与状态；
+它们不是所有产品参数、术语或政策事实的统一权威源。Machine Corpus 是已发布
+内容的派生面，当前 HTML compatibility 路径不因此改为 IR-native。
+
+**Shared IR（共享底稿）：从已实现的 Web 整本共享扩展到更多输出端。** Web 整本复用已经实现，
 IR 与共享组件随网页手册录入持续完善；
 长期线是扩大共同语义的覆盖，让 Web、Word、IDML 和 Machine Surface 直接消费
 同一份公共语义，各自负责表达。逐步替换 HTML → Machine 的兼容路径，
@@ -293,19 +328,192 @@ flowchart LR
 
 以下是本文面向公众的摘要，不是独立台账。事实变化先更新上面的历史与证据，
 再同步这段摘要；构建只读此块，所有文案按纯文本转义。
-`stages` 记录九个能力演变阶段；`crosscutting` 记录贯穿全过程的持续工作，
+可选 `architecture` 是同一记录的访问与生产关系视图，每个节点附状态与仓库依据，
+不设第二份架构数据或演进台账。规划节点不带虚构完成日期。
+`stages` 保留已有能力阶段，并接续未排期的未来方向；`crosscutting` 记录贯穿全过程的持续工作，
 用不编号的横向路标呈现，维护与重构不放入单一时间阶段。
 `recorded` 显示为“已完成”，表示该阶段能力已形成，不表示所有产品、格式或后续治理均验收完成；
 `ongoing` 显示为“持续开展”，表示已有基础但仍需持续维护和改进；
 `in_progress` 和 `planned` 明确区分当前建设与未来方向。数量如需展示，
 须写在附日期的历史说明中，不作为实时计数。
+页面中的历史阶段、经过说明与时间轴日期统一精确到月；记录更新、数据快照与构建时间保留原有精度。
 
 <!-- system-evolution:start -->
 ```yaml
 schema: system-evolution/v1
-updated_on: 2026-10-04
+updated_on: 2026-10-07
 title: 从一条自动化脚本，到持续演进的说明书工作台
-intro: 从自动生成一份说明书开始，逐步串联评审、发布与维护。当前 Web 文档链条最成熟，IDML 印刷版仍在试生产；内容和经验的积累继续支持后续工作。
+intro: 从自动生成一份说明书开始，记录系统怎样逐步支持评审、发布、样式复用和 AI 查询，为什么发生这些变化，以及后续准备向哪些方向发展。
+architecture:
+  title: 人、AI 和企业系统，共用一套内容与生产能力
+  intro: 人打开工作台使用内容，AI 调用专业能力，企业系统提供正式数据。平台共用可信内容与可复用底稿，同时支持文档生产、专业文件处理和内容查询。
+  human:
+  - id: human_portal
+    title: Portal／Workspace／Bot
+    status: recorded
+    summary: 浏览手册、查看生产入口与证据；通过既有 Bot 发起受控操作。
+    evidence:
+    - file:auto-manual:tools/rtd/portal.py
+    - file:auto-manual:integrations/openclaw/README.md
+  agent:
+  - id: agent_existing
+    title: 既有 Agent 技能与查询接口
+    status: recorded
+    summary: 在仓库工作环境中，已有 skills 支持文件预翻译、AI 图稿校对、页码修正、PDF 检查与标注、回写及构建；既有 Bot 和 EU 查询接口继续可用。
+    evidence:
+    - file:auto-manual:.agents/skills/README.md
+    - file:auto-manual:.claude/skills/README.md
+    - file:auto-manual:code-as-doc/dev/eu_manual_query.md
+  - id: agent_mcp
+    title: MCP 能力适配入口
+    status: planned
+    summary: 让同事使用的 AI 通过标准协议调用专业能力。当前未上线，不提供第二份内容源。
+    evidence:
+    - file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md
+  enterprise:
+  - id: enterprise_tables
+    title: 多维表（业务数据层）
+    status: recorded
+    summary: 业务人员在多维表中维护产品信息、内容模块、规格参数、多语言内容，并开展维护与评审；生产系统读取经检查后导出的数据。
+    evidence:
+    - file:auto-manual:user-guide/two_plane_map.md
+    - file:auto-manual:tools/data/sync_data.py
+  - id: data_snapshot
+    title: 数据校验与快照
+    status: recorded
+    summary: 同步时检查字段与结构、规范化数据，并在快照清单中记录导出时间、文件哈希与变更；后续生产使用可追溯的输入，支持重建与核验。
+    evidence:
+    - file:auto-manual:tools/sync_schema_sensor.py
+    - file:auto-manual:tools/data/sync_data_records.py
+    - file:auto-manual:tools/data/sync_data_runtime.py
+  - id: enterprise_systems
+    title: PLM／ERP · 企业权威数据源
+    status: planned
+    summary: 后续计划通过数据同步和字段映射，把产品、SKU、BOM、物料和生命周期数据接入多维表业务层；这些正式记录仍以企业系统为准。接入目前未上线。
+    evidence:
+    - file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md
+  core:
+  - id: trusted_content
+    title: 可信内容与数据
+    status: recorded
+    summary: 按事实类型认定来源：产品数据、正文、译文、模板与批准的素材各有自己的权威源。快照用于生产和追溯。
+    evidence:
+    - file:auto-manual:user-guide/two_plane_map.md
+    - file:auto-manual:tools/rtd_portal_assets/source_registry.yaml
+  - id: document_production
+    title: 文档生产与发布
+    status: ongoing
+    summary: 按事实类型选定内容来源（Content Authority），按型号、区域和语言组装（Assembly），经各格式渲染器输出（Renderers），审核后发布（Publish）。Web 已实现整本 Shared IR（共享底稿）与样式复用；Word／IDML 仍各有适配路径，共用覆盖持续完善。
+    evidence:
+    - file:auto-manual:tools/web/document_source.py
+    - file:auto-manual:tools/web/document_ir.py
+    - file:auto-manual:tools/word/bundle_html.py
+    - file:auto-manual:tools/idml/ir_projection.py
+  surfaces:
+  - id: human_output
+    title: 给人阅读：Web／Word／PDF／IDML
+    status: ongoing
+    summary: Web 文档链条最成熟；Word 与 PDF 有各自输出路径，IDML 印刷版仍是试生产。Portal 和 Workspace 提供阅读与工作入口。
+    evidence:
+    - file:auto-manual:tools/rtd_portal_assets/system_workspace.yaml
+    - file:auto-manual:code-as-doc/dev/rtd_manual_portal.md
+  - id: machine_output
+    title: 给程序查询：JSON／Machine Corpus
+    status: recorded
+    summary: 当前路径：正式发布 Web → HTML 语义提取 → JSON／Corpus → Agent／查询。保留版本、出处与核验回执；这是派生数据，不另维护一份正文。
+    evidence:
+    - file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md
+    - file:auto-manual:code-as-doc/dev/eu_manual_query.md
+  adapter_flow:
+  - AI Client · AI 客户端
+  - MCP · 协议适配
+  - Capability Interface · 能力接口
+  - Core · 翻译／图稿／构建服务
+  adapter_note: 未来方向是通过 MCP 开放能力，不是等 MCP 做完才有这些能力。现有 skills 和工具已在仓库环境中运行；MCP 只处理协议与能力暴露，业务服务继续独立运行。
+  initial_capabilities:
+  - TM 查询
+  - 术语查询
+  - 预翻译
+  - 翻译 QA
+  - 手册上下文查询
+  later_capabilities:
+  - 图稿／AI 文件内容提取
+  - 与权威资料比对
+  - 补丁建议
+  - 批准后应用修改
+  - 修改后验证
+  - Manual Build
+  artwork_flow:
+  - Inspect · 检查
+  - Compare · 比对
+  - Propose Patch · 提出补丁
+  - Human Approval · 人工批准
+  - Apply · 应用
+  - Verify · 验证
+  artwork_note: 未来图稿流程：未经人工批准，不应用修改到正式生产文件。AI 提供查询、比较和建议；批准不免除修改后的验证。
+  capabilities:
+  - id: file_pretranslation
+    title: 文件预翻译
+    status: recorded
+    summary: Word／云文档按翻译记忆库预填译文，并高亮命中内容；未命中的原文保留，生成后验证文件。Markdown 文案有独立的语料复用技能。
+    evidence:
+    - file:auto-manual:.agents/skills/lark-tm-translation-preprocess/SKILL.md
+    - file:auto-manual:.agents/skills/manual-rewrite-with-tm/SKILL.md
+  - id: ai_file_check
+    title: AI 图稿校对
+    status: recorded
+    summary: 对 PDF-compatible 的 Illustrator 文件读取文字、语言区间、目录与正文，检查页码、重复文字和语言残留；需要排版判断时查看导出图。
+    evidence:
+    - file:auto-manual:.claude/skills/ai-manual-pagenum-fix/SKILL.md
+    - file:auto-manual:.claude/skills/ai-manual-pagenum-fix/references/diagnosis-recipes.md
+  - id: ai_page_fix
+    title: AI 文件页码自动修正
+    status: recorded
+    summary: 备份并确认页码规则后，通过 Illustrator 脚本修改目录与页脚文字；保留可编辑 AI，导出 PDF，并复核改动页及保存结果。
+    evidence:
+    - file:auto-manual:.claude/skills/ai-manual-pagenum-fix/SKILL.md
+    - file:auto-manual:.claude/skills/ai-manual-pagenum-fix/references/jxa-illustrator-recipes.md
+  - id: pdf_qc
+    title: PDF 检查与问题标注
+    status: recorded
+    summary: 仓库工具生成内容检查结果，再用 PDF 标注技能高亮问题、附修改说明和源位置。标注交给审核人员，正式修改回到源文件。
+    evidence:
+    - file:auto-manual:.agents/skills/pdf-annotate-qc/SKILL.md
+    - file:auto-manual:tools/content_lint.py
+    - file:auto-manual:tools/pdf_annotate.py
+  - id: review_backport
+    title: 审核修改回写
+    status: recorded
+    summary: 读取 Word 修订或云文档修改，与当前源比较，按确认的范围回写评审文档、模板或正式数据，并检查是否还有遗漏。
+    evidence:
+    - file:auto-manual:.agents/skills/manual-revision-backport/SKILL.md
+    - file:auto-manual:.agents/skills/cloud-doc-backport-ops/SKILL.md
+  - id: manual_generation
+    title: 说明书构建与发布
+    status: recorded
+    summary: build.py 提供检查、草稿、发布等入口；本地发布与队列排障有对应技能。Web 是成熟主线，印刷 IDML 仍按试生产单独验证。
+    evidence:
+    - file:auto-manual:build.py
+    - file:auto-manual:.agents/skills/local-publish-queue-run/SKILL.md
+    - file:auto-manual:.agents/skills/hello-docs-pipeline-dispatch-triage/SKILL.md
+  hooks:
+  - id: hook_build_warning
+    title: Claude Code：构建后提醒
+    status: recorded
+    summary: 已配置 PostToolUse／Bash 钩子。运行 check、sync-review 或 publish 后，检查派生文件是否被改动并提醒；它只在 Claude Code 运行，不直接修改文件。
+    evidence:
+    - file:auto-manual:.claude/settings.json
+    - file:auto-manual:.claude/hooks/derived_surface_guard.py
+    - file:auto-manual:tests/test_derived_surface_guard.py
+  - id: hook_git_push
+    title: Git：推送前检查（启用后运行）
+    status: recorded
+    summary: 仓库已提供 pre-push 钩子：提醒共享模板与评审分支同步、提醒派生文件误入提交，并执行分支检查。各检出需配置 core.hooksPath 后才运行，不等于每个环境已经启用。
+    evidence:
+    - file:auto-manual:.githooks/pre-push
+    - file:auto-manual:scripts/derived_surface_push_check.py
+    - file:auto-manual:scripts/git_branch_guard.py
+    - file:auto-manual:tools/check_review_branch_sync.py
 now:
   - {label: Web 文档, state: 已成熟，持续发布与维护, status: ongoing}
   - {label: 印刷版 IDML, state: 试生产，逐项验证排版与印刷, status: in_progress}
@@ -324,9 +532,12 @@ chapters:
   - title: 能复用而不复制
     question: 新手册越来越多，怎样让版式和内容结构只维护一份？
     stages: [style_components, shared_ir]
-  - title: 能被查询，也能回馈
-    question: 已发布的内容，怎样被程序和 AI 准确引用，并让审核经验帮到下一次编写？
-    stages: [machine, review_experience]
+  - title: 能被程序和 AI 查询
+    question: 怎样查到具体内容，同时确认手册版本和原文出处？
+    stages: [machine]
+  - title: 长期方向：让更多人和系统参与
+    question: 企业数据怎样接入、AI 怎样调用能力、更多格式怎样共享底稿，审核经验怎样回到编写？
+    stages: [enterprise_integration, mcp_access, ir_expansion, review_experience]
 crosscutting:
   - id: engineering
     start: "2026-03"
@@ -336,7 +547,7 @@ crosscutting:
     metaphor: 随系统建设反复整理，让后续修改与扩展更稳妥
     summary: 在整个系统建设过程中，随功能增加和问题暴露，多次整理代码结构、明确各部分职责、补充测试和自动检查。维护与重构伴随各项能力建设持续开展。
     flow: [3 月 · 初始结构整理, 4 月 · 构建与队列拆分, 5 月 · 统一路径管理, 9～10 月 · 复杂度与模块治理]
-    detail: 优化日志记录了 03-08 的初始重构、04-05～08 的入口与构建／队列拆分及质量检查、05-30 的集中路径管理。09-28 至 10-03 是其中一轮集中治理：CC≥50 的函数 31 → 0，测试 facade patch 363 → 11，tools 顶层 .py 398 → 183；模块迁入包，11 处接线有保留理由。这些是各轮历史记录，后续仍继续维护和改进。
+    detail: 优化日志记录了 3 月的初始重构、4 月的入口与构建／队列拆分及质量检查、5 月的集中路径管理。9～10 月是其中一轮集中治理：CC≥50 的函数 31 → 0，测试 facade patch 363 → 11，tools 顶层 .py 398 → 183；模块迁入包，11 处接线有保留理由。这些是各轮历史记录，后续仍继续维护和改进。
     invariant: 每轮重构都要用相应测试、新旧输出或真实目标验证，确认既有行为保持稳定。
     evidence: ["file:auto-manual:code-as-doc/code_optimization_log.md", "file:auto-manual:code-as-doc/dev/code_quality_iterability_plan.md"]
 stages:
@@ -349,7 +560,7 @@ stages:
     metaphor: 数据与模板驱动的确定性构建
     summary: 把安全条目交给数据和模板，让同样的输入稳定生成同样的说明书。
     flow: [CSV + RST 模板, RST, PDF]
-    detail: 02-15 的内核先生成 PDF，03-05 才加入 Word。多机型、区域入口随后出现，生产原则开始从手工复制转为确定性构建。
+    detail: 2 月的内核先生成 PDF，3 月才加入 Word。多机型、区域入口随后出现，生产原则开始从手工复制转为确定性构建。
     invariant: 结构化数据 × 可复用模板 → 确定性构建。
     evidence: ["file:auto-manual:code-as-doc/architecture/system_evolution_history.md"]
   - id: targets
@@ -395,7 +606,7 @@ stages:
     metaphor: 把常用版式整理成组件，供后续页面调用
     summary: 开始把标题、警示框、规格表等常用版式从页面代码中提取出来，由组件统一管理样式。新页面提供自己的文字和数据，逐步减少重复设置版式的工作。
     flow: [整理常用版式, 建立样式组件, 在页面中调用, 逐步扩大复用]
-    detail: 这个阶段记录样式组件化建设的起点：7 月印刷侧组件拆包开始明确组件与页面编排的边界。后续共享样式合同和组件应用指南继续完善规则；随着网页手册录入，整本手册改为先整理成统一底稿再生成网页，见下一项。
+    detail: 这个阶段记录样式组件化建设的起点：7 月印刷侧组件拆包开始明确组件与页面编排的边界。后续共享样式合同和组件应用指南继续完善规则；随着网页手册录入，整本手册改为先整理成 Shared IR（共享底稿）再生成网页，见下一项。
     invariant: 页面负责安排组件的位置和顺序，组件负责自己的内部样式。
     evidence: ["file:auto-manual:docs/renderers/contracts/STYLE_DEFINITION.md", "file:auto-manual:code-as-doc/dev/style_component_usage_guide.md", "pr:auto-manual#577"]
   - id: corpus
@@ -406,32 +617,62 @@ stages:
     metaphor: 当前最成熟的文档链条，持续维护已发布内容
     summary: Web 文档已形成生成、审核、发布和持续更新的链条。随着型号和语言版本增加，工作台集中呈现已发布手册的入口、版本与来源。
     flow: [多语言 Web 文档, 发布与更新, 工作台目录, 版本与来源]
-    detail: 09-30 的 14 本手册 rollout 留下线上页面与桌面、手机验收证据。10 月工作台继续标出每个版本的内容权威源；发布规模、语料规模和能力成熟度分别呈现。
+    detail: 9 月的 14 本手册 rollout 留下线上页面与桌面、手机验收证据。10 月工作台继续标出每个版本的内容权威源；发布规模、语料规模和能力成熟度分别呈现。
     invariant: 共享语义约束组件；每个版本仍有自己的权威源与验收证据。
     evidence: ["file:auto-manual:code-as-doc/dev/eu_shared_component_rollout_2026-09.md", "pr:auto-manual#1351", "pr:auto-manual#1431"]
   - id: machine
     start: "2026-10"
     end: "2026-10"
-    period: 2026-10-01 ～ 10-04 · EU Phase 1 验收
+    period: 2026-10 · EU Phase 1 验收
     status: recorded
     title: 让程序和 AI 查找说明书内容
     metaphor: 查到具体内容，也能找到原文出处
     summary: 把网页手册的文字和表格按章节整理，供程序和 AI 查询。例如，查找某型号的充电说明时，可以找到对应原文、章节和手册版本，并附上网页出处。
     flow: [已发布的网页手册, 按章节整理内容, 记录版本与出处, 提供给程序和 AI 查询]
-    detail: 从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、版本清单与更新检查（#1435）、工作台覆盖情况（#1436）、代表手册人工抽查（#1437）及线上核验（#1439）已有证据，EU Phase 1 于 10-04 验收完成。知识观察与回流 Phase 2／3 尚未立项。图片只保留已有的文字说明，不识别图片中的文字。
+    detail: 从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、版本清单与更新检查（#1435）、工作台覆盖情况（#1436）、代表手册人工抽查（#1437）及线上核验（#1439）已有证据，EU Phase 1 于 10 月验收完成。知识观察与回流 Phase 2／3 尚未立项。图片只保留已有的文字说明，不识别图片中的文字。
     invariant: 查询内容来自正式发布的手册；修改仍回到原有文档、模板或数据，再重新生成。
     evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "pr:auto-manual#1437", "pr:auto-manual#1439", "file:auto-manual:code-as-doc/dev/machine_readable_pilot_audit.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
   - id: shared_ir
     start: "2026-09"
     period: 2026-09 起 · 每录入一本手册继续完善
     status: ongoing
-    title: 整本手册先整理成统一底稿，再生成网页
+    title: Shared IR（共享底稿）：Web 整本复用
     metaphor: 先有一份完整底稿，各种格式都从它出发
-    summary: 网页手册不再逐页拼装，而是先把整本内容（章节、正文、表格、步骤、插图和用到的样式组件）整理成一份统一的结构化底稿，再由底稿生成网页。每录入一本新手册，底稿能表达的情况就更完整。Word 和印刷版目前仍各自生成，以后计划也从同一份底稿出发。
-    flow: [录入一本手册, 整理成统一底稿, 由底稿生成网页, 补齐新遇到的情况]
-    detail: 技术上，这份底稿就是 IR（中间表示），保存为 manual.ir.json，包含整本内容、组件定义、素材和所用规则；保存下来的底稿不依赖原始 RST、CSV 也能重新生成同样的网页。上一项的样式组件是这件事的起点。Word 目前仍逐页转换，印刷版 IDML 另建自己的底稿；两者已能调用共用组件，直接使用同一份底稿是后续工作，代表试点按台账 REV-39、REV-40 推进。
+    summary: 网页手册不再逐页拼装，而是先把整本内容（章节、正文、表格、步骤、插图和用到的样式组件）整理成 Shared IR（共享底稿），再由底稿生成网页。每录入一本新手册，底稿能表达的情况就更完整。Word 和印刷版目前仍各自生成，以后计划也从同一份底稿出发。
+    flow: [录入一本手册, 整理成 Shared IR（共享底稿）, 由共享底稿生成网页, 补齐新遇到的情况]
+    detail: 技术上，这份底稿就是 Shared IR（共享底稿，技术上称中间表示），保存为 manual.ir.json，包含整本内容、组件定义、素材和所用规则；保存下来的底稿不依赖原始 RST、CSV 也能重新生成同样的网页。上一项的样式组件是这件事的起点。Word 目前仍逐页转换，印刷版 IDML 另建自己的底稿；两者已能调用共用组件，直接使用同一份底稿是后续工作，代表试点按台账 REV-39、REV-40 推进。
     invariant: 同一本手册只整理一份底稿；各格式从底稿生成，并各自负责排版与验收。
     evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:tools/web/document_source.py", "file:auto-manual:tools/web/document_ir.py", "file:auto-manual:tools/word/bundle_html.py", "file:auto-manual:tools/idml/ir_projection.py", "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"]
+  - id: enterprise_integration
+    period: 后续方向 · 接入范围与排期待定
+    status: planned
+    title: 接入 PLM／ERP 的正式业务数据
+    metaphor: 企业系统提供数据，说明书按需引用
+    summary: 与 IT 协作，计划把产品、SKU、BOM、物料和生命周期等正式数据通过接口或同步接入多维表与快照。具体字段、权限、同步方式和试点仍待确定。
+    flow: [企业正式系统, 数据接口或同步, 多维表与快照, 文档生产]
+    detail: 当前已有多维表和仓库快照；PLM／ERP 接入尚未完成。企业记录仍以上游正式系统为准，文档侧保留引用、版本与来源，不重新维护一套企业主数据。
+    invariant: 企业正式系统继续管理自己的权威记录，接入不产生第二套主数据。
+    evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:user-guide/two_plane_map.md"]
+  - id: mcp_access
+    period: 后续方向 · 能力试点与排期待定
+    status: planned
+    title: 通过 MCP 向其他 AI 开放专业能力
+    metaphor: 为已有能力增加标准调用入口
+    summary: 计划先开放翻译记忆查询、术语查询、预翻译、翻译检查和手册上下文查询，随后接入已有图稿、PDF 校对和文档构建能力。MCP 入口尚未上线，接口覆盖和写入边界需分别验收。
+    flow: [AI 客户端, MCP 协议适配, 能力接口, 核心服务]
+    detail: 文件预翻译、AI 图稿检查与页码修改、PDF 检查标注、回写和构建已有 skills／工具入口；这些现有能力不等于通用 MCP 服务。MCP 只负责协议与能力暴露；翻译、图稿处理和构建继续独立运行。正式图稿修改遵循检查、比对、提出补丁、人工批准、应用、验证。
+    invariant: MCP 是访问适配层；AI 的判断不能替代业务事实，也不能跳过正式文件修改的人工批准。
+    evidence: ["file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md", "file:auto-manual:integrations/openclaw/README.md", "file:auto-manual:code-as-doc/dev/eu_manual_query.md"]
+  - id: ir_expansion
+    period: 后续方向 · 按格式试点验收
+    status: planned
+    title: Shared IR（共享底稿）：扩展更多格式
+    metaphor: 在 Web 整本复用基础上继续扩展
+    summary: Web 的 Shared IR（共享底稿）和样式复用已经实现，并随录入持续完善。下一步计划扩大到 Word、IDML 和机读输出，让它们直接消费同一份公共语义；当前机读语料仍从已发布 HTML 提取。
+    flow: [已有 Web 的 Shared IR（共享底稿）, 扩大公共语义覆盖, 各格式直接消费, 分别验证与验收]
+    detail: 这是对现有 shared_ir 阶段的跨格式扩展，不能把规划理解成所有手册已经 Shared-IR-first。Word 与 IDML 当前仍有各自适配路径，机读输出明确使用 HTML compatibility；迁移保留现有交付基线。
+    invariant: 共用内容结构，各格式负责自己的表达；兼容路径与新路径分别标明和验收。
+    evidence: ["file:auto-manual:code-as-doc/dev/ir_document_closeout.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
   - id: review_experience
     period: 后续规划 · 试点与执行安排待确定
     status: planned
@@ -439,7 +680,7 @@ stages:
     metaphor: 保存确认过的措辞、修改理由和适用条件
     summary: 逐步把经过确认的译文、术语和修改经验记录下来，保留出处与适用条件，供后续说明书参考。具体范围、试点和执行安排仍需确定。
     flow: [记录确认过的修改, 保留出处与适用条件, 编写时参考, 审核后采用]
-    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于统一底稿建设。
+    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于 Shared IR（共享底稿）建设。
     invariant: 参考已有经验时核对出处与适用条件，经人工审核后再采用。
     evidence: ["file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
 feedback:

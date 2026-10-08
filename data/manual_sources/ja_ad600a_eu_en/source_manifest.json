@@ -5,15 +5,15 @@
     "region": "EU",
     "lang": "en",
     "version": "2.0",
-    "published_revision": "V2.0-2026-05-29"
+    "published_revision": "operator-20261007-65297e68"
   },
   "authority": {
     "policy": "operator-designated-current-source",
-    "dingtalk_node": "Gl6Pm2Db8D39waXaU9LzewOeJxLq0Ee4",
-    "source_pdf_name": "Jackery_DC-DC_Charger_User_Manual_JA-AD600A_EUUK_V2.0_2026-05-29.pdf",
-    "source_pdf_page_count": 88,
-    "source_pdf_english_physical_pages": "4-17",
-    "source_pdf_sha256": "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9"
+    "source_pdf_name": "HTO814-EU-9国语言-0924 (1).ai",
+    "source_file_type": "PDF-compatible Illustrator",
+    "source_pdf_page_count": 129,
+    "source_pdf_english_physical_pages": "3-16",
+    "source_pdf_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348"
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
@@ -23,9 +23,9 @@
     "product_plan": "docs/manifests/product_plans/ja_ad600a_eu.yaml",
     "product_plan_sha256": "cd986dc7aebcbb8034397a89a37c5f7057112b2ed05b39204e0f44081d194f30",
     "structured_copy": "docs/templates/page_charger/ja_ad600a/en",
-    "structured_copy_snapshot_sha256": "ece5e1aa1b017097e0919ca2e00c43cac2def96b31edb4f77038054bf0e66e6e",
+    "structured_copy_snapshot_sha256": "6c5369d34ce1dfe88cb12cf5a2a830d49bbb01f7b6da21ee323cf7ec1d963506",
     "data_root": "data/manual_sources/ja_ad600a_eu_en",
-    "snapshot_sha256": "27656d75fdd9c27cca387f1c5c14455e69fd65daf38858b7942dfd6bbba0f296",
+    "snapshot_sha256": "50aaff04deee3068e88ed86afe873df6e371e82de0cd3f734330dc979a27211a",
     "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
   },
   "files": [
@@ -39,7 +39,7 @@
     },
     {
       "path": "Spec_Master.csv",
-      "sha256": "dbe98783585cc15c51ac8c7972060b5071b507e247964bd362838193cd942494"
+      "sha256": "827edc6a716bc4d8025249d770a527225316909d31f0d303fa9d2c6baee85b13"
     },
     {
       "path": "Spec_Notes.csv",
@@ -58,8 +58,8 @@
     "recipe": "data/asset_recipes/manual_ja_ad600a_eu_en_web.json",
     "recipe_sha256": "29a4e1d946650d992afe61c83382a69fe181ca3899d7a8ac3c4a888c22cdfbf1",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-AD600A_illustrations.json",
-    "illustration_manifest_sha256": "4cb2244022ea035adbcf09b8c2d508360e0ab8a38306641f50af56b8aa9c800c",
-    "semantic_asset_count": 16,
+    "illustration_manifest_sha256": "8b616a6e9cbc04df9d8c918fe37aa8461fb40fdd0ee0f300addb14099c25adb1",
+    "semantic_asset_count": 25,
     "text_policy": "native-web-copy-with-ai-source-figure-exports",
     "artwork_source": {
       "name": "16-0102-000322 HTO814A-US JP EU-JAK 说明书 RoHS REACH.ai",
@@ -67,20 +67,57 @@
       "page_count": 15,
       "creator": "Adobe Illustrator 30.7 (Windows)",
       "status": "user-supplied editable design source"
-    }
+    },
+    "corrective_recipes": [
+      {
+        "path": "data/asset_recipes/manual_ja_ad600a_eu_en_0924_steps.json",
+        "sha256": "cdf381ac762e64d2db98d7a061ee4a6728a15b17732ac408ed13a7480eb2d3f9",
+        "source_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348"
+      },
+      {
+        "path": "data/asset_recipes/manual_ja_ad600a_eu_connection_base.json",
+        "sha256": "c920d5b6f5ca4bc3a6c23b1a4dcf1a555803afb7c3dac4fd25f4707b239204f5",
+        "source_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348"
+      },
+      {
+        "path": "data/asset_recipes/manual_ja_ad600a_eu_wiring_bases.json",
+        "sha256": "f6c9bcebb43b01161c064d50c2a0f39b9c651ade89e80a9b9cbc6feef4e8649d",
+        "source_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348"
+      },
+      {
+        "path": "data/asset_recipes/manual_ja_ad600a_eu_overview_bases.json",
+        "sha256": "534e4ddb6f4fe5b18fa1d463fb857a6145e372f616b774dfd8595a69b352806e",
+        "source_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348"
+      }
+    ],
+    "superseded_asset_count": 8
   },
   "normalizations": [
-    "Source line wraps and soft hyphenation were normalized for native Web prose.",
-    "Obvious source spelling 'Phillios screwdriver' was corrected to 'Phillips screwdriver'; the FAQ Q4 phrase 'If the voltage of is higher' remains source-faithful pending source-owner correction.",
-    "Paper cover, blank page, contents, printed page numbers, and non-English physical pages 18-88 are excluded from the English Web target.",
-    "Figures are exported from the user-supplied PDF-compatible Illustrator source. Inbox item crops exclude letter tags, connector labels, and layout grid marks; body copy remains native Web text and no full page is rasterized."
+    "Source line wraps, ligatures, hyphenated line endings and list punctuation were normalized for native Web prose; technical values remain unchanged.",
+    "Chapter/FAQ numbers, complete wiring precautions, fuse terminals ①/② guidance and the electric screwdriver 4 N·m setting are restored from the current operator source.",
+    "The FAQ Q4 phrase If the voltage of is higher and repeated Interpretation Rights wording remain documented source errata, without invented corrections.",
+    "Original 16-export artwork recipe remains immutable; matching drawings are reused unchanged. Ten complete step frames and the lit-status device are extracted separately from current AI, with original panel backgrounds retained. Shared warning triangle is reused byte-identically.",
+    "Paper cover, contents and pagination are excluded; only English physical pages 3–16 supply body copy. Metadata version 2.0 is retained from the existing target and is not an assertion of a printed source version.",
+    "Connection diagram uses a shared textless base from current AI physical page15 with native ReferenceFigure labels ACC Cable, Output Cable and Input Cable with Fuse; fixed product inscriptions remain artwork.",
+    "Fuse assembly and ACC splice use nine-locale shared bases from current AI physical page12 and nine native labels; fuse independent caption frames are CSS, invariant terminal numerals and fixed product markings remain artwork.",
+    "Product overview and installation diagram share nine-locale bases from current AI physical pages5/9; six overview labels and eight diagram labels live in native ReferenceFigure text. Invariant product engravings, dimensions, units and A–F keys remain in base artwork; the independent installation footer fill is shared CSS.",
+    "Operator requests natural consecutive A–I packaging order; A uses the same source marker as B–I and does not reserve a separate grid row.",
+    "FCC Compliance Statement keeps its source heading, paragraph and TOC anchor; shared portable-power FCC panel styling places byte-identical mark/fcc PNG on the left and native source text on the right as requested by the operator."
   ],
   "online_dependencies": {
-    "dingtalk_read_required_for_reproduction": true,
+    "dingtalk_read_required_for_reproduction": false,
     "bitable_read_required": false,
     "bitable_write_required": false,
     "queue_dispatch_required": false,
     "artwork_source_file_required_for_reproduction": true,
     "artwork_source_current_location_outside_git": true
+  },
+  "previous_authority": {
+    "policy": "operator-designated-current-source",
+    "dingtalk_node": "Gl6Pm2Db8D39waXaU9LzewOeJxLq0Ee4",
+    "source_pdf_name": "Jackery_DC-DC_Charger_User_Manual_JA-AD600A_EUUK_V2.0_2026-05-29.pdf",
+    "source_pdf_page_count": 88,
+    "source_pdf_english_physical_pages": "4-17",
+    "source_pdf_sha256": "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9"
   }
 }

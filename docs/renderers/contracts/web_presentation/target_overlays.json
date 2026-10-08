@@ -15,7 +15,9 @@
       "contract_overrides": {
         "warranty": {
           "source_patterns": [
-            "warranty_en"
+            "warranty_en",
+            "warranty_fr",
+            "warranty_es"
           ],
           "section_count": 6,
           "period_years": [
@@ -24,16 +26,22 @@
         },
         "reference_figures": {
           "source_patterns": [
-            "charging_en"
+            "charging_en",
+            "charging_fr",
+            "charging_es"
           ],
           "figures": [
             {
               "id": "solar-connection",
               "source_patterns": [
-                "charging_en"
+                "charging_en",
+                "charging_fr",
+                "charging_es"
               ],
               "semantic_source_patterns": [
-                "charging_en"
+                "charging_en",
+                "charging_fr",
+                "charging_es"
               ],
               "image_key": "solar.png",
               "captions_embedded": true,
@@ -714,27 +722,50 @@
         "legacy_target_components": false
       },
       "figure_coverage": {
-        "policy_id": "ja-ad600a-eu-en-finished-figures-v1",
+        "policy_id": "ja-ad600a-eu-en-shared-labels-v5",
         "locales": [
           "en"
         ],
         "required_slots": [
-          "operation.installation-diagram",
-          "operation.wiring-steps",
-          "operation.secure-vehicle-body",
-          "operation.secure-modification-panel",
-          "operation.connection-diagram"
+          "reference.product-overview",
+          "reference.installation-diagram",
+          "reference.wiring-fuse",
+          "finished-panel.wiring_battery",
+          "reference.wiring-acc",
+          "finished-panel.body_clearance",
+          "finished-panel.body_mark",
+          "finished-panel.body_drill",
+          "finished-panel.body_secure",
+          "finished-panel.panel_mark",
+          "finished-panel.panel_drill",
+          "finished-panel.panel_secure",
+          "reference.charger-connection"
         ],
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "reference.charger-connection": [
+            "base-art-live-copy"
+          ],
+          "reference.wiring-fuse": [
+            "base-art-live-copy"
+          ],
+          "reference.wiring-acc": [
+            "base-art-live-copy"
+          ],
+          "reference.product-overview": [
+            "base-art-live-copy"
+          ],
+          "reference.installation-diagram": [
+            "base-art-live-copy"
+          ]
+        }
       },
       "contract_overrides": {
         "warranty": {
-          "source_patterns": [
-            "*warranty*"
-          ],
+          "source_patterns": [],
           "section_count": 6,
           "period_years": [
             "2"
@@ -744,61 +775,342 @@
           "source_patterns": [
             "*installation*"
           ],
+          "figures": []
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "*installation*",
+            "*product_overview*"
+          ],
           "figures": [
             {
+              "id": "charger-connection",
+              "web_replace_key": "reference.charger-connection",
+              "capture_following_lines": 3,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      5.10423,
+                      76.83426,
+                      22,
+                      4.66666
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      32.69123,
+                      87.09703,
+                      24,
+                      4.66666
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      58.13624,
+                      88.45427,
+                      40,
+                      4.66666
+                    ]
+                  }
+                ]
+              },
+              "image_key": "connection_base.png"
+            },
+            {
+              "id": "wiring-fuse",
+              "web_replace_key": "reference.wiring-fuse",
+              "capture_following_lines": 7,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      6.68828,
+                      6.06895,
+                      22.89867,
+                      7.82042
+                    ],
+                    "fill": "#ffffff"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      68.07025,
+                      6.06895,
+                      27.55563,
+                      7.82042
+                    ],
+                    "fill": "#ffffff"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      14.8,
+                      50.8,
+                      25,
+                      13
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      41.47092,
+                      69.14923,
+                      56.62252,
+                      11.26761
+                    ],
+                    "color": "#dd4132"
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      12.62225,
+                      87.33768,
+                      17.88079,
+                      5.91549
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      42.87986,
+                      87.05176,
+                      29.13907,
+                      5.91549
+                    ]
+                  },
+                  {
+                    "line": 6,
+                    "rect": [
+                      88.64873,
+                      87.12077,
+                      8.27815,
+                      5.91549
+                    ]
+                  }
+                ]
+              },
+              "image_key": "wiring_fuse_base.svg"
+            },
+            {
+              "id": "wiring-acc",
+              "web_replace_key": "reference.wiring-acc",
+              "capture_following_lines": 2,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      13.01026,
+                      31.34406,
+                      25.16556,
+                      8.75
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      70.08774,
+                      29.56333,
+                      25.82781,
+                      17.70833
+                    ]
+                  }
+                ]
+              },
+              "image_key": "wiring_acc_base.png"
+            },
+            {
+              "id": "product-overview",
+              "web_replace_key": "reference.product-overview",
+              "capture_following_lines": 6,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      1.63678,
+                      24.84762,
+                      14.52887,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.65672,
+                      22.753,
+                      11.99359,
+                      20.76923
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      1.63678,
+                      67.29454,
+                      14.52887,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.55794,
+                      67.29454,
+                      11.75494,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      1.55089,
+                      85.63454,
+                      14.06261,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      86.65672,
+                      84.92915,
+                      11.99359,
+                      6.92308
+                    ]
+                  }
+                ]
+              },
+              "image_key": "product_overview_base.png",
+              "source_patterns": [
+                "*product_overview*"
+              ]
+            },
+            {
               "id": "installation-diagram",
-              "image_key": "installation_diagram",
-              "layout": "footer-panel",
-              "step_ids": [
-                "overview"
-              ],
-              "web_replace_key": "operation.installation-diagram"
-            },
-            {
-              "id": "wiring-steps",
-              "image_key": "wiring_steps",
-              "layout": "footer-panel",
-              "step_ids": [
-                "fuse",
-                "battery",
-                "acc"
-              ],
-              "web_replace_key": "operation.wiring-steps"
-            },
-            {
-              "id": "secure-vehicle-body",
-              "image_key": "secure_vehicle_body",
-              "layout": "footer-panel",
-              "step_ids": [
-                "clearance",
-                "mark",
-                "drill",
-                "secure"
-              ],
-              "web_replace_key": "operation.secure-vehicle-body"
-            },
-            {
-              "id": "secure-modification-panel",
-              "image_key": "secure_modification_panel",
-              "layout": "footer-panel",
-              "step_ids": [
-                "mark",
-                "drill",
-                "secure"
-              ],
-              "web_replace_key": "operation.secure-modification-panel"
-            },
-            {
-              "id": "connection-diagram",
-              "image_key": "connection_diagram",
-              "layout": "footer-panel",
-              "step_ids": [
-                "input",
-                "acc",
-                "output",
-                "power-station"
-              ],
-              "web_replace_key": "operation.connection-diagram"
+              "web_replace_key": "reference.installation-diagram",
+              "capture_following_lines": 8,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      15.41664,
+                      17.53846,
+                      12.25632,
+                      1.86653
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      5.36711,
+                      82.59046,
+                      23.87818,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      43.14824,
+                      82.59046,
+                      20.68824,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      78.41365,
+                      82.59046,
+                      20.01403,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      5.36682,
+                      87.97159,
+                      25.45079,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      43.14796,
+                      87.97159,
+                      20.68852,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 6,
+                    "rect": [
+                      78.3555,
+                      87.68629,
+                      21.33003,
+                      4.81928
+                    ]
+                  },
+                  {
+                    "line": 7,
+                    "rect": [
+                      0.0,
+                      95.47781,
+                      91.9189,
+                      3.07373
+                    ],
+                    "fill": "#e6e7e8"
+                  }
+                ]
+              },
+              "image_key": "installation_diagram_base.png",
+              "source_patterns": [
+                "*installation*"
+              ]
             }
           ]
         }

@@ -61,12 +61,13 @@ sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
 The 系统建设 and 说明书工作台 pages share two more shell components: a key-metric
-row (`.kpi-row`) under the page header and page tabs (`.page-tabs` /
+row (`.kpi-row`) and page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
 without JavaScript every panel shows; any in-page link or URL hash that
-points inside a panel opens that panel. 系统建设 tabs: 建设进度, 能力与流程,
-语言资产, 技能与钩子, 入口与数据来源, with the unfolded stage gates as the
-metric row. 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
+points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统架构,
+能力与流程, 语言资产, 技能与钩子, 系统演变, 入口与数据来源. The unfolded
+stage gates form the metric row inside 当前工作; other tabs do not repeat it.
+说明书工作台 tabs: 交付物 (the deliverables matrix, open by
 default), 工作入口, 生产与资产, with web manuals, language editions, Word and
 print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
 and states current maturity rather than a target architecture:
@@ -176,11 +177,56 @@ content, QR aliases and nested manual URLs are unchanged.
 
 ## System workspace page
 
+The 「当前工作」 tab keeps the existing `#tab-progress` anchor and owns current
+priorities, completion counts, ledger progress and next actions. Its metrics
+appear only in this panel. 「系统演变」 owns the historical stages, reasons for
+change, long-term directions and cross-cutting maintenance history. The two
+panels remain directly accessible through the shared tabs without repeating a
+current-state overview or navigation-hint paragraphs. The evolution introduction
+shows only its title and narrative; update metadata and provenance are available
+under 「入口与数据来源」.
+
+The 「系统架构」 tab (`#tab-architecture`) reads optional `architecture` from
+the same marked history summary as System Evolution. Each node has a status
+and repository evidence; malformed architecture follows the evolution fallback,
+while older summaries without this optional field remain readable.
+The drawing binds nodes by stable ID rather than array order; missing diagram
+nodes follow the same malformed-history fallback.
+A semantic SVG draws the enterprise input, shared content and capability platform, human and
+agent access, documents, derived corpus and capabilities. The existing enterprise
+path expands into business tables (product information, content modules,
+specifications, multilingual content and business review), then validation and
+traceable snapshots. Planned PLM/ERP synchronization and field mapping enter
+these tables. The shared core is labelled 「auto-manual」:
+content authority and reusable Shared IR form its foundation, while document
+production, professional file processing and content queries are its capabilities.
+Content Authority, Assembly, Renderers and Publish describe the document-production
+path within this platform. Git-native originals and approved assets remain content
+sources alongside tables; the diagram does not require every manual to start in
+Bitable. The drawing uses short node labels and a shared solid/dashed legend;
+definitions, detailed responsibilities and evidence remain in native disclosures, which
+hold the capability/skill/hook evidence and planned MCP scope. Shared IR is
+consistently labelled 「Shared IR（共享底稿）」 in the system view and evolution.
+PLM/ERP integration and MCP exposure remain planned, with dashed borders and
+explicit labels. MCP adapts protocols to capability interfaces, outside core
+services. Its planned artwork workflow retains human approval before Apply and
+verification afterward. Existing Bot/skills/query access is listed separately.
+Human output and derived machine output share the production system; current
+corpus extraction is HTML compatibility, not universal IR-native generation.
+Existing capabilities name actual repository skills for file pretranslation,
+AI-file diagnosis/renumbering, PDF QC annotations, backport and builds. Hook
+entries distinguish Claude PostToolUse configuration from Git pre-push scripts
+that require core.hooksPath activation. The installed PDF multilingual audit
+skill is explicitly local, outside mirror distribution. Personal Product Knowledge
+and Market Policy pages are not part of this architecture view. Future access and
+cross-format IR directions extend the existing stages without fabricated dates;
+review-experience accumulation remains the knowledge-feedback direction.
+
+
 The 「系统演变」 tab (`#tab-evolution`, individual stages at
 `#evolution-<id>`) describes how the manual workspace evolved from its first
 deterministic build through reusable style components, published content,
-machine consumption and future knowledge feedback. It reads top-down: 「现在走到哪里」
-(the optional `now` rows: one state per delivery chain), a month-scaled overview
+machine consumption and future knowledge feedback. It reads top-down: a month-scaled overview
 (stages with optional `start`/`end` as `YYYY-MM`; every bar, tick and the
 updated-on line share one scale, an open end fades, an undated stage shows as a
 dashed label), then the optional `chapters`, each a question the system had to
@@ -189,6 +235,9 @@ evidence stay in native disclosure. Chapters must place every stage exactly once
 without `chapters` the stages render as one flat list. Maintenance and refactoring
 close the story as 「支撑全程」 below the chapters, covering repeated work
 throughout system construction; September governance is one round.
+The parser still accepts legacy optional `now` rows, but the page does not
+render that duplicate current-state overview. Stage status labels remain on
+the timeline to distinguish completed milestones from work that continues.
 The optional `crosscutting` list shares the stage fields and evidence validation.
 IDs must be unique across both lists; existing `#evolution-engineering` links
 now resolve to the signpost.
@@ -219,6 +268,10 @@ Maintenance contract:
 - Historical quantities carry observation dates and a defined scope; they are
   not current dashboard totals. The strategy owns future boundaries, the roadmap
   and ledger own execution state, and the optimization log owns detailed changes.
+- Public stage periods, timeline and architecture cutoffs, narrative dates and
+  operator-confirmation labels use month precision. Record-update, snapshot,
+  freshness and build timestamps retain their original precision. Exact source
+  evidence dates remain in the authoritative records.
 - Stage flows and the feedback direction render as text lists; details and
   evidence use native disclosure. The existing shell handles tabs, keyboard
   navigation and deep links. Without JavaScript all panels remain readable.
@@ -229,10 +282,10 @@ Maintenance contract:
   Text is escaped, not executed as HTML.
 
 
-`/workspace/system/` (系统建设) opens with the current focus: the lanes being
+`/workspace/system/` (系统建设) opens on 当前工作 with the current focus: the lanes being
 ordered by delivery priority, each with its next action and ledger progress.
 Stage acceptance follows immediately; corpus statistics, capabilities and evidence
-remain available further down the page. The page is built at RTD time from
+remain available in their respective tabs. The page is built at RTD time from
 frozen inputs only. The build never contacts Feishu or GitHub; browser version
 checks read only the already-published same-origin receipt.
 
@@ -316,6 +369,8 @@ success and served page. A webhook returning 200 is only trigger acceptance.
 `tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
+The system page's 「页面版本与更新」 disclosure sits inside 「入口与数据来源」;
+it no longer occupies the page header.
 The page displays that identity. Its JS probes only the same-origin deployed
 receipt on entry, every minute while visible, and on returning to the tab.
 A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor

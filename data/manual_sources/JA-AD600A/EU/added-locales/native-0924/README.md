@@ -1,0 +1,27 @@
+# JA-AD600A/EU native eight-language Web intake
+
+The operator-designated PDF-compatible Illustrator source is HTO814-EU-9国语言-0924 (1).ai, SHA-256 65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348. Physical pages: fr 17–30, es 31–44, de 45–58, it 59–72, uk 73–86, pt 87–100, nl 101–114, pl 115–128. Paper covers, contents and pagination are excluded. The source language is Ukrainian (uk), not Swedish (sv).
+
+The reviewed English structure owns Web components, while each locale's native source owns copy, labels, values, warnings and warranty/legal content. No translation was generated. Seventy-two RST carriers and eight coordinate/text captures remain editable under source/. Frozen MyST/Manual IR packages under web/ retain twenty-six selectable figure captions per language, nine naturally ordered A–I item cards, ten paired installation steps, warning panels and the source warranty layout. All five text-free diagram bases and the other invariant artwork are byte-identical across locales. Product inscriptions, unit symbols, dimensions and letter/terminal keys may remain in artwork.
+
+Nine outlined German/Italian source regions were visually transcribed from their original-coordinate source crops, including installation safety/emergency, pre-installation checks, wiring precautions, daily precautions and warranty exclusions. The battery-cell exclusion in German and Italian remains native and was not imposed on other languages. Native exclusion bullets are retained in all languages. German and Italian warning panels retain the source English word Warning. These recoveries and source images are under source/outline_recovery/.
+
+Source-local exceptions are intentional: German, Italian and Portuguese do not contain the short FCC declaration shown in the other five source locales. They therefore have 27 manual images; the other five have 28 including the shared FCC mark. The Dutch Interpretation Rights section repeats the original warranty limitation sentence, and is retained without inventing a replacement. Line-wrap hyphens/ligatures were normalized. Invisible discretionary hyphens in selected German/Dutch compound figure labels only control wrapping and do not change spelling. Source compatibility values and native lamp-status tables are preserved. Unassigned captured words are paper header/language identifiers and invariant art dimensions/letter keys, not omitted body prose.
+
+This intake is an external frozen Web source through shared MaterializedBundle → MyST/Manual IR APIs. It enrolls no phase2/print target and writes no live Base, queue, asset or HTML-link record. Existing charger build.py check remains an English repository regression, not a validation of these eight native bodies.
+
+From the repository root, run python3 data/manual_sources/JA-AD600A/EU/added-locales/native-0924/rebuild.py --language fr --output <unused-directory>. Then run python3 -m sphinx -W -b html <unused-directory> <separate-html-directory>. Hash checks refuse changed frozen inputs. Source edits require a deliberate inventory refresh and renewed source/body/layout review. Shared renderer changes never go into generated HTML.
+
+Eight-language publication is pending a separate operator instruction. These packages are not deployed by the English release.
+
+FAQ correction: all eight locales now preserve the approved English question/answer structure: eight fully bold questions followed by separate answers with bold native answer labels. Q2 retains all three numbered maintenance instructions in one answer paragraph as in English. Original wording, including Spanish numbering, is unchanged. The Portuguese source visibly omits P1 before its first question; German F4 visibly contains an English answer, both preserved. Renewed FAQ browser acceptance covers 1280 and 390 pixels.
+
+Localized reflow follow-up hides redundant specification subheadings that repeated the section title. Status-table column widths reserve room for native light-state/color wording, and lamp labels wrap within their own cells. Source values and the shared English renderer remain unchanged.
+
+The 7.6 mounting precaution in all eight locales uses a plain paragraph and the existing shared compact installation-note style (0.5rem vertical padding). Its bullet marker is removed; source wording, other lists and surrounding installation steps are preserved.
+
+Publication admission under MA-267 declares each native RST page/slot through the shared assembly planner and enrolls all eight targets in prepared_component_admission.json. Requirements follow the independently reviewed English structure; only three source-authored charger tables per language retain exact reviewed-node debt pins in the existing categories. No admission check is bypassed.
+
+The reviewed source-local presentation.css now travels inside each generated MyST document as well as its hash-pinned IR metadata. Portal assembly uses global CSS and does not consume per-target conf.py CSS lists; embedding the source-local rules prevents native status widths, lamp wrapping and diagram caption placement from being lost. The shared exporter body is preserved verbatim; no generated HTML is edited.
+
+Packaging label blocks are constrained to card width and allow long native words to wrap. This source-local presentation fix does not change any source wording, illustration, numbering, or the published English.

@@ -13,6 +13,19 @@ SVG = '{http://www.w3.org/2000/svg}'
 def _path_key(path: ET.Element) -> tuple[str, ...]:
     tokens = re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?',
                         path.get('d', '').rstrip('Zz '))
+    # Compound paths can close each subpath explicitly for the stroke, while
+    # the fill already returns to its starting point. Compare those no-op
+    # closures too, without changing either original SVG path.
+    starts = [i for i, token in enumerate(tokens) if token == 'M']
+    for start, end in reversed(list(zip(starts, [*starts[1:], len(tokens)], strict=True))):
+        if end - start >= 6 and tokens[end - 1] == 'Z':
+            try:
+                closed = tuple(map(float, tokens[end - 3:end - 1]))
+                origin = tuple(map(float, tokens[start + 1:start + 3]))
+            except ValueError:
+                continue
+            if closed == origin:
+                del tokens[end - 1]
     # MuPDF sometimes closes a stroke explicitly and the fill implicitly.
     command = next((t for t in reversed(tokens) if t.isalpha()), '')
     if (len(tokens) > 5 and tokens[0] == 'M' and command in {'M', 'L'}
@@ -77,19 +90,35 @@ def native_art_svg(page: fitz.Page, indices: list[int], crop_bbox: list[float]) 
             or any(not isinstance(i, int) or isinstance(i, bool) or not 0 <= i < len(drawings)
                    for i in indices)):
         raise ValueError("art selection requires ordered valid drawing indices")
-    return _selected_svg(page, drawings, indices, box)
+    return _selected_svg(page, drawings, indices, box, preserve_images=True)
 
 
-def _selected_svg(page, drawings, indices, box) -> bytes:
+def _selected_svg(page, drawings, indices, box, *, preserve_images=False) -> bytes:
     root = ET.fromstring(page.get_svg_image(text_as_path=False))
     visible = []
+    image_ids = set()
 
-    def collect(node, in_defs=False):
+    def collect(node, in_defs=False, matrix=None):
+        matrix = fitz.Matrix(1, 0, 0, 1, 0, 0) if matrix is None else matrix
+        raw_transform = node.get('transform', '')
+        if raw_transform:
+            match = re.fullmatch(r'matrix\(([^)]+)\)', raw_transform)
+            if match is None:
+                raise ValueError('native PDF SVG transform is unsupported')
+            values = [float(v) for v in re.split(r'[\s,]+', match[1].strip())]
+            if len(values) != 6:
+                raise ValueError('native PDF SVG matrix is unsupported')
+            matrix = fitz.Matrix(*values) * matrix
         in_defs = in_defs or node.tag == SVG + 'defs'
         if not in_defs and node.tag == SVG + 'path':
             visible.append(node)
+        if preserve_images and not in_defs and node.tag == SVG + 'image':
+            x, y, width, height = [float(node.get(k, '0')) for k in ('x', 'y', 'width', 'height')]
+            bounds = fitz.Rect(x, y, x + width, y + height) * matrix
+            if bounds.intersects(box):
+                image_ids.add(id(node))
         for child in node:
-            collect(child, in_defs)
+            collect(child, in_defs, matrix)
 
     collect(root)
     mapped = _drawing_paths(drawings, visible)
@@ -100,6 +129,8 @@ def _selected_svg(page, drawings, indices, box) -> bytes:
             return deepcopy(node)
         if node.tag == SVG + 'path':
             return deepcopy(node) if id(node) in keep else None
+        if node.tag == SVG + 'image':
+            return deepcopy(node) if id(node) in image_ids else None
         if node.tag not in {SVG + 'svg', SVG + 'g'}:
             return None
         result = ET.Element(node.tag, node.attrib)

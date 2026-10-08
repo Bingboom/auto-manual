@@ -1,0 +1,101 @@
+{% set architecture = evolution.architecture %}
+{% macro node(row) -%}
+<article class="access-node is-{{ row.status|e }}" id="architecture-{{ row.id|e }}">
+  <header><h4>{{ row.title|e }}</h4>{{ badge(row.status, row.status_label) }}</header>
+  <p>{{ row.summary|e }}</p>
+  <details class="access-evidence"><summary>查看依据</summary><div class="sw-refs">{{ evidence_links(row.evidence) }}</div></details>
+</article>
+{%- endmacro %}
+<section class="sw-section sw-evolution sw-architecture" aria-labelledby="architecture-title">
+  <header class="evo-head">
+    <h2 id="architecture-title">{{ architecture.title|e }}</h2>
+    <p>{{ architecture.intro|e }}</p>
+    <p class="evo-source">截至 {{ evolution.updated_on[:7]|e }} · 与<a href="#tab-evolution">系统演变</a>共用一份记录 · 实线表示已有基础，虚线表示未来方向</p>
+  </header>
+
+  {% macro graph_box(row, x, y, width, height, title, lines) -%}
+  <g class="map-box is-{{ row.status|e }}" transform="translate({{ x }},{{ y }})">
+    <title>{{ row.title|e }} · {{ row.status_label|e }}：{{ row.summary|e }}</title>
+    <rect width="{{ width }}" height="{{ height }}" rx="10"/>
+    <text class="map-title" x="{{ width / 2 }}" y="27">{{ title|e }}</text>
+    {% for line in lines %}<text class="map-copy" x="{{ width / 2 }}" y="{{ 49 + loop.index0 * 19 }}">{{ line|e }}</text>{% endfor %}
+    {% if row.status == 'planned' %}<text class="map-state" x="{{ width - 12 }}" y="{{ height - 10 }}">规划</text>{% endif %}
+  </g>
+  {%- endmacro %}
+  <figure class="access-map" aria-labelledby="access-map-title">
+    <figcaption id="access-map-title">系统架构 <span>实线：已有基础 · 虚线：规划</span></figcaption>
+    <div class="access-map-scroll">
+    <svg viewBox="0 0 1080 780" role="img" aria-labelledby="access-svg-title access-svg-desc">
+      <title id="access-svg-title">Auto-Manual 系统架构：企业数据、人的入口与 AI 入口</title>
+      <desc id="access-svg-desc">企业数据经多维表、校验与快照进入 auto-manual；PLM／ERP 同步接入仍在规划。人和 AI 从不同入口使用内容与能力。共享底稿及组件支持文档生产、机读语料和专业文件处理；当前语料从发布 Web 提取，IR 直出和 MCP 接入仍在规划。具体能力、成熟度和来源依据在图下展开。</desc>
+      <defs>
+        <marker id="map-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"/></marker>
+      </defs>
+      <text class="map-layer" x="540" y="20">企业数据入口</text>
+      {{ graph_box(architecture.diagram.enterprise_systems, 365, 35, 350, 80, 'PLM／ERP', ['企业权威数据']) }}
+      <path class="map-edge is-planned" d="M540 115 V149"/>
+      <text class="map-edge-label" x="552" y="139">同步与映射</text>
+      {{ graph_box(architecture.diagram.enterprise_tables, 330, 150, 420, 72, '多维表 · 业务数据层', ['产品 · 内容 · 参数 · 多语言']) }}
+      <path class="map-edge" d="M540 222 V247"/>
+      {{ graph_box(architecture.diagram.data_snapshot, 390, 248, 300, 56, '数据校验与快照', []) }}
+      <path class="map-edge" d="M540 304 V344"/>
+
+      <text class="map-layer" x="138" y="337">人的入口</text>
+      {{ graph_box(architecture.diagram.human_portal, 20, 355, 235, 80, 'Portal / Workspace / Bot', ['阅读 · 提交 · 审核']) }}
+      <path class="map-edge is-both" d="M255 395 H319"/>
+
+      <g class="map-core is-{{ architecture.diagram.document_production.status|e }}">
+        <title>{{ architecture.diagram.document_production.summary|e }} {{ architecture.diagram.trusted_content.summary|e }}</title>
+        <rect x="320" y="345" width="440" height="112" rx="12"/>
+        <text class="map-core-title" x="540" y="375">auto-manual</text>
+        <text class="map-copy" x="540" y="411">内容复用 · 文档生产 · 样式组件</text>
+      </g>
+      <text class="map-layer" x="942" y="337">AI 入口</text>
+      {{ graph_box(architecture.diagram.agent_existing, 825, 355, 235, 80, '仓库 Skills / Bot', ['文件处理 · 手册查询']) }}
+      <path class="map-edge is-both" d="M825 395 H761"/>
+
+      <path class="map-branch" d="M540 457 V481 M180 481 H900"/>
+      <path class="map-edge" d="M180 481 V515"/>
+      <path class="map-edge" d="M900 481 V515"/>
+      <path class="map-edge is-planned" d="M540 481 V515"/>
+      <text class="map-edge-label" x="552" y="504">IR 直出 · 规划</text>
+      {{ graph_box(architecture.diagram.human_output, 40, 516, 280, 83, '文档输出', ['Web / Word / PDF / IDML', 'Web 成熟 · IDML 试生产']) }}
+      {{ graph_box(architecture.diagram.machine_output, 400, 516, 280, 83, '机读语料', ['来自已发布 Web']) }}
+      {{ graph_box(architecture.diagram.file_pretranslation, 760, 516, 280, 83, '专业能力', ['预翻译 · 校对 · 图稿处理']) }}
+      <path class="map-edge" d="M180 599 V631 H540 V600"/>
+      <text class="map-edge-label" x="350" y="652" text-anchor="middle">Web → 机读语料</text>
+      <path class="map-edge is-planned" d="M900 675 V600"/>
+      {{ graph_box(architecture.diagram.agent_mcp, 760, 676, 280, 81, 'MCP', ['AI 客户端的能力入口']) }}
+    </svg>
+    </div>
+    <p class="access-map-hint">窄屏可横向查看完整架构图；能力说明与文件依据在下方展开。</p>
+  </figure>
+
+  <details class="access-foundation">
+    <summary>已有能力、skills 与 hooks · 展开查看依据</summary>
+    <section class="access-capabilities" aria-labelledby="access-capabilities-title">
+      <h3 id="access-capabilities-title">现在在仓库里已经能做什么</h3>
+      <p>按现有 skills 和工具列出，直接在仓库工作环境中使用。MCP 是后续增加的标准访问入口。</p>
+      <div class="access-surfaces">{% for row in architecture.capabilities %}{{ node(row) }}{% endfor %}</div>
+      <p class="access-local-note">本机另已安装多语言 PDF 校对与高亮技能（pdf-manual-audit-highlight），可检查语言对齐、参数、残留文字并标注问题；它目前属于本机技能，不随仓库镜像分发。</p>
+      <details class="access-hook-details"><summary>现有 hooks：什么时候自动检查</summary><div class="access-surfaces">{% for row in architecture.hooks %}{{ node(row) }}{% endfor %}</div></details>
+    </section>
+    <details class="access-hook-details"><summary>入口、内容与输出的来源依据</summary>
+      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿。Web 整本复用已实现，更多格式的共用覆盖持续完善。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
+      <div class="access-surfaces">{% for group in ['human', 'agent', 'enterprise', 'core', 'surfaces'] %}{% for row in architecture[group] %}{{ node(row) }}{% endfor %}{% endfor %}</div>
+    </details>
+  </details>
+
+  <details class="access-adapter is-planned" id="architecture-mcp-detail">
+    <summary><span>MCP 将怎样开放能力</span>{{ badge('planned', '未来方向 · 尚未上线') }}</summary>
+    <p>{{ architecture.adapter_note|e }}</p>
+    <ol class="sw-evolution-flow" aria-label="规划中的 MCP 调用方向">{% for step in architecture.adapter_flow %}<li>{{ step|e }}</li>{% endfor %}</ol>
+    <div class="access-surfaces">
+      <div><h4>首批开放候选 · 翻译与查询</h4><ul>{% for item in architecture.initial_capabilities %}<li>{{ item|e }}</li>{% endfor %}</ul></div>
+      <div><h4>后续接入候选 · 图稿与构建</h4><ul>{% for item in architecture.later_capabilities %}<li>{{ item|e }}</li>{% endfor %}</ul></div>
+    </div>
+    <h4>正式图稿修改：人工批准是必经步骤</h4>
+    <ol class="sw-evolution-flow access-approval" aria-label="规划中的图稿修改流程">{% for step in architecture.artwork_flow %}<li{% if loop.index == 4 %} class="is-approval"{% endif %}>{{ step|e }}</li>{% endfor %}</ol>
+    <p>{{ architecture.artwork_note|e }}</p>
+  </details>
+</section>

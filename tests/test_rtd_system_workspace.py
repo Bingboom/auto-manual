@@ -715,6 +715,9 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
                         "数据来源")
             self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
             self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
+            progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
+            self.assertIn('class="kpi-row"', progress_panel)
+            self.assertNotIn('class="kpi-row"', page.split('id="tab-progress"', 1)[0])
             self.assertIn('id="lane-web"', page)
             lanes = ["web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
             self.assertEqual(sorted(lanes, key=lambda lane: page.index(f'id="lane-{lane}"')), lanes)
@@ -743,8 +746,8 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn("后半圈 · 未来建设方向", page)
             self.assertIn("system_workspace_corpus.json", page)
             self.assertIn("python tools/workspace_refresh.py refresh deliverables", page)
-            self.assertIn("版本 9.9", page)
-            self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
+            self.assertNotIn("代表手册 · Explorer 1000", page)
+            self.assertNotIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
             self.assertIn("语言资产", page)
             self.assertIn('class="sw-corpus-bars"', page)
