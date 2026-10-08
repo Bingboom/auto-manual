@@ -34,3 +34,7 @@ Physical p6 labels the F8 fault icon “남은 배터리 용량”. The operator
 ## LCD operation artwork correction
 
 Operator requested removal of the inherited partial frame. The reused EU operation_lcd.png contained a left frame fragment. Replaced it with a KR source p8 crop of device, hand and DISPLAY callout only; the native HTML owns the complete outer frame and table. Crop coordinates and hashes are locked in the illustration/source manifests.
+
+## Publication preparation
+
+Operator authorized submission/publication; MA-270 scopes engineering and Git-only release. The portal now registers KR and 한국어 so the target is discoverable after its snapshot merges. Family-manifest fold includes the Korean target as an explicit JE-100C diff. The Git-only release receipt binds check/Markdown/HTML source identity and passes cold IR replay and asset-tamper rejection.
