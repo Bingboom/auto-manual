@@ -19,64 +19,53 @@
     <rect width="{{ width }}" height="{{ height }}" rx="10"/>
     <text class="map-title" x="{{ width / 2 }}" y="27">{{ title|e }}</text>
     {% for line in lines %}<text class="map-copy" x="{{ width / 2 }}" y="{{ 49 + loop.index0 * 19 }}">{{ line|e }}</text>{% endfor %}
-    <text class="map-state" x="{{ width - 12 }}" y="{{ height - 10 }}">{{ row.status_label|e }}</text>
+    {% if row.status == 'planned' %}<text class="map-state" x="{{ width - 12 }}" y="{{ height - 10 }}">规划</text>{% endif %}
   </g>
   {%- endmacro %}
   <figure class="access-map" aria-labelledby="access-map-title">
-    <figcaption id="access-map-title">三类入口，共用内容与生产能力 <span>实线：已有基础／持续建设 · 虚线：未来方向</span></figcaption>
+    <figcaption id="access-map-title">系统架构 <span>实线：已有基础 · 虚线：规划</span></figcaption>
     <div class="access-map-scroll">
-    <svg viewBox="0 0 1080 810" role="img" aria-labelledby="access-svg-title access-svg-desc">
-      <title id="access-svg-title">Auto-Manual 系统架构：企业数据、人的入口、AI 入口与共享生产核心</title>
-      <desc id="access-svg-desc">现有多维表与快照提供可信内容，PLM／ERP 接入仍在规划。人通过 Portal、Workspace、Bot 使用系统，Agent 通过现有 skills 和查询调用能力。核心包含组装、组件和 Shared IR（共享底稿）。Web 整本复用已实现；当前机读语料从发布 HTML 派生。MCP 是规划中的协议适配层，AI 客户端经 MCP 和能力接口调用独立核心服务。</desc>
+    <svg viewBox="0 0 1080 780" role="img" aria-labelledby="access-svg-title access-svg-desc">
+      <title id="access-svg-title">Auto-Manual 系统架构：企业数据、人的入口与 AI 入口</title>
+      <desc id="access-svg-desc">企业数据经多维表、校验与快照进入 auto-manual；PLM／ERP 同步接入仍在规划。人和 AI 从不同入口使用内容与能力。共享底稿及组件支持文档生产、机读语料和专业文件处理；当前语料从发布 Web 提取，IR 直出和 MCP 接入仍在规划。具体能力、成熟度和来源依据在图下展开。</desc>
       <defs>
         <marker id="map-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"/></marker>
       </defs>
-      <text class="map-layer" x="540" y="20">Enterprise Access · 企业数据入口</text>
-      {{ graph_box(architecture.diagram.enterprise_systems, 365, 35, 350, 86, 'PLM／ERP · 企业正式数据', ['产品 / SKU / BOM / 物料 / 生命周期']) }}
-      <path class="map-edge is-planned" d="M540 121 V158"/>
-      <text class="map-edge-label" x="552" y="145">数据接口／同步 · 规划</text>
-      {{ graph_box(architecture.diagram.trusted_content, 330, 159, 420, 86, 'Data Layer · 可信内容与数据', ['现有多维表 → 版本快照；各类内容各有来源']) }}
-      <path class="map-edge" d="M540 245 V285"/>
-      <text class="map-edge-label" x="552" y="269">冻结输入 · 按目标生产</text>
+      <text class="map-layer" x="540" y="20">企业数据入口</text>
+      {{ graph_box(architecture.diagram.enterprise_systems, 365, 35, 350, 80, 'PLM／ERP', ['企业权威数据']) }}
+      <path class="map-edge is-planned" d="M540 115 V149"/>
+      <text class="map-edge-label" x="552" y="139">同步与映射</text>
+      {{ graph_box(architecture.diagram.enterprise_tables, 330, 150, 420, 72, '多维表 · 业务数据层', ['产品 · 内容 · 参数 · 多语言']) }}
+      <path class="map-edge" d="M540 222 V247"/>
+      {{ graph_box(architecture.diagram.data_snapshot, 390, 248, 300, 56, '数据校验与快照', []) }}
+      <path class="map-edge" d="M540 304 V344"/>
 
-      <text class="map-layer" x="138" y="276">Human Access · 人的入口</text>
-      {{ graph_box(architecture.diagram.human_portal, 20, 292, 235, 94, 'Portal / Workspace / Bot', ['阅读 · 提交任务 · 人工审核']) }}
-      <path class="map-edge is-both" d="M255 337 H319"/>
-      <text class="map-edge-label" x="287" y="326" text-anchor="middle">使用</text>
+      <text class="map-layer" x="138" y="337">人的入口</text>
+      {{ graph_box(architecture.diagram.human_portal, 20, 355, 235, 80, 'Portal / Workspace / Bot', ['阅读 · 提交 · 审核']) }}
+      <path class="map-edge is-both" d="M255 395 H319"/>
 
-      <g class="map-core">
-        <rect x="320" y="285" width="440" height="122" rx="12"/>
-        <text class="map-core-title" x="540" y="315">Content Infrastructure · 共享核心</text>
-        <text class="map-title" x="540" y="341">组装 · 样式组件 · Shared IR（共享底稿）</text>
-        <text class="map-copy" x="540" y="365">Web 整本复用已实现，随录入持续完善</text>
-        <text class="map-copy" x="540" y="386">内容检查 · 审核回写 · 构建与发布</text>
+      <g class="map-core is-{{ architecture.diagram.document_production.status|e }}">
+        <title>{{ architecture.diagram.document_production.summary|e }} {{ architecture.diagram.trusted_content.summary|e }}</title>
+        <rect x="320" y="345" width="440" height="112" rx="12"/>
+        <text class="map-core-title" x="540" y="375">auto-manual</text>
+        <text class="map-copy" x="540" y="411">内容复用 · 文档生产 · 样式组件</text>
       </g>
-      <text class="map-layer" x="942" y="276">Agent Access · AI 的入口</text>
-      {{ graph_box(architecture.diagram.agent_existing, 825, 292, 235, 94, '仓库 Skills / Bot / 查询', ['已有文件处理与手册查询能力']) }}
-      <path class="map-edge is-both" d="M825 337 H761"/>
-      <text class="map-edge-label" x="793" y="326" text-anchor="middle">调用</text>
+      <text class="map-layer" x="942" y="337">AI 入口</text>
+      {{ graph_box(architecture.diagram.agent_existing, 825, 355, 235, 80, '仓库 Skills / Bot', ['文件处理 · 手册查询']) }}
+      <path class="map-edge is-both" d="M825 395 H761"/>
 
-      <path class="map-branch" d="M540 407 V431 M180 454 V431 H900 V454"/>
-      <path class="map-edge" d="M180 431 V466"/>
-      <path class="map-edge" d="M900 431 V466"/>
-      <path class="map-edge is-planned" d="M540 431 V466"/>
-      <text class="map-edge-label" x="552" y="452">IR 直接生成 · 未来</text>
-      {{ graph_box(architecture.diagram.human_output, 40, 467, 280, 103, 'Documents · 文档输出', ['Web / Word / PDF / IDML', 'Web 成熟；IDML 仍在试生产']) }}
-      {{ graph_box(architecture.diagram.machine_output, 400, 467, 280, 103, 'Machine Corpus · 派生语料', ['JSON / 版本 / 章节 / 原文出处', '当前从已发布 HTML 提取']) }}
-      {{ graph_box(architecture.diagram.file_pretranslation, 760, 467, 280, 103, 'Capabilities · 专业能力', ['预翻译 · 图稿/PDF 校对 · 页码修正', '审核回写 · 说明书构建']) }}
-      <path class="map-edge" d="M180 570 V606 H540 V571"/>
-      <text class="map-edge-label" x="350" y="628" text-anchor="middle">当前：已发布 Web → HTML 语义提取 → Corpus</text>
-
-      <path class="map-edge is-planned" d="M900 633 V571"/>
-      <text class="map-edge-label" x="912" y="604">能力接口</text>
-      {{ graph_box(architecture.diagram.agent_mcp, 760, 634, 280, 81, 'MCP · 协议与能力适配', ['薄的访问层，核心服务独立运行']) }}
-      <path class="map-edge is-planned" d="M900 753 V716"/>
-      <text class="map-edge-label" x="912" y="738">调用 ↑</text>
-      {{ graph_box(architecture.diagram.agent_mcp, 760, 754, 280, 48, '同事使用的 AI / Agent', []) }}
-      <text class="map-note" x="40" y="681">Shared IR（共享底稿）</text>
-      <text class="map-note-copy" x="40" y="707">把章节、文字、表格、步骤与素材整理成一份结构化底稿。</text>
-      <text class="map-note-copy" x="40" y="730">已有：Web 整本复用；后续：更多格式直接共用这份底稿。</text>
-      <text class="map-note-copy" x="40" y="774">企业正式记录仍由上游系统管理；机读数据不另维护一份正文。</text>
+      <path class="map-branch" d="M540 457 V481 M180 481 H900"/>
+      <path class="map-edge" d="M180 481 V515"/>
+      <path class="map-edge" d="M900 481 V515"/>
+      <path class="map-edge is-planned" d="M540 481 V515"/>
+      <text class="map-edge-label" x="552" y="504">IR 直出 · 规划</text>
+      {{ graph_box(architecture.diagram.human_output, 40, 516, 280, 83, '文档输出', ['Web / Word / PDF / IDML', 'Web 成熟 · IDML 试生产']) }}
+      {{ graph_box(architecture.diagram.machine_output, 400, 516, 280, 83, '机读语料', ['来自已发布 Web']) }}
+      {{ graph_box(architecture.diagram.file_pretranslation, 760, 516, 280, 83, '专业能力', ['预翻译 · 校对 · 图稿处理']) }}
+      <path class="map-edge" d="M180 599 V631 H540 V600"/>
+      <text class="map-edge-label" x="350" y="652" text-anchor="middle">Web → 机读语料</text>
+      <path class="map-edge is-planned" d="M900 675 V600"/>
+      {{ graph_box(architecture.diagram.agent_mcp, 760, 676, 280, 81, 'MCP', ['AI 客户端的能力入口']) }}
     </svg>
     </div>
     <p class="access-map-hint">窄屏可横向查看完整架构图；能力说明与文件依据在下方展开。</p>
@@ -92,6 +81,7 @@
       <details class="access-hook-details"><summary>现有 hooks：什么时候自动检查</summary><div class="access-surfaces">{% for row in architecture.hooks %}{{ node(row) }}{% endfor %}</div></details>
     </section>
     <details class="access-hook-details"><summary>入口、内容与输出的来源依据</summary>
+      <p>Shared IR（共享底稿）把章节、文字、表格、步骤与素材整理为结构化底稿。Web 整本复用已实现，更多格式的共用覆盖持续完善。文档生产链路为 Content Authority → Assembly → Renderers → Publish；多维表、Git 原稿与批准素材各有内容权威。PLM／ERP 接入后，企业正式记录仍以上游为准。</p>
       <div class="access-surfaces">{% for group in ['human', 'agent', 'enterprise', 'core', 'surfaces'] %}{% for row in architecture[group] %}{{ node(row) }}{% endfor %}{% endfor %}</div>
     </details>
   </details>
