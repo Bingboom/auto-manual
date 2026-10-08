@@ -1,0 +1,37 @@
+[
+  {
+    "path": "lcd-icon-2.png",
+    "sha256": "7a9ba67e387f14bbbf5a484f9d9c5e5ed317f238dcd7fb3b9e3ce84e52b95c82",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-3.png",
+    "sha256": "6887264798ddb90c2000acea8c1d65982e69c484f735e56ccfca93b962836c18",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-1.png",
+    "sha256": "acdd38a303f1d0df32ede45a8f8329bc6081567d3d415024280806b666161a05",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-4.png",
+    "sha256": "758e28eaab8b230639c303eed0abf463460dc6977a7535264a15667b8e533f05",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-5.png",
+    "sha256": "6c7550d4406503c400f3a3242752d35f81a8955fba8cc68537ac8f9b334bfec4",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-7.png",
+    "sha256": "82bee2a923cbfa47d3f1d69ae3a6806b66bf17e6f1ecd58014e438440c106c6b",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-6.png",
+    "sha256": "2842796ebd9eadb2bff012cb867a0a771de33f14673cc28f91b69403120a6a99",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  }
+]

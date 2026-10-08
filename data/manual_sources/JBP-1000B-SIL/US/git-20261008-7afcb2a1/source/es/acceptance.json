@@ -1,0 +1,24 @@
+{
+  "final_verification": {
+    "accepted_at": "2026-10-08T16:41:22.534770+00:00",
+    "content_sha256": "e11adabf57345bf0ce92faebfae511c364b839418351a3ccfd67048d1006acc7",
+    "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+    "native_visible_lines": 443,
+    "viewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "loaded_images": 52,
+    "broken_images": 0,
+    "page_horizontal_overflow": false,
+    "clipped_live_labels": [],
+    "english_before_locales_gate": "source/en/acceptance.json",
+    "scope": "Source-preserving layout acceptance; source content differences remain flagged."
+  }
+}

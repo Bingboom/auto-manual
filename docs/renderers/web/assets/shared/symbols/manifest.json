@@ -190,6 +190,110 @@
         "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
         "decision": "reuse existing shared file byte-identical"
       }
+    },
+    {
+      "key": "read-manual/person-reading-circle",
+      "path": "native-v1/symbol_read_manual_person.svg",
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      }
+    },
+    {
+      "key": "no-open-flame/crossed-flame",
+      "path": "native-v1/symbol_no_open_flame_crossed.svg",
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57
+        ]
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-panel",
+      "path": "native-v1/symbol_keep_away_from_children_panel.svg",
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ]
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited-native-dark",
+      "path": "native-v1/symbol_do_not_dismantle_dark.svg",
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "Native dark source tint; complete glyph paths only; no cell background",
+        "retained_path_indices": [
+          31,
+          32,
+          33
+        ]
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-native-dark",
+      "path": "native-v1/symbol_li_ion_dark.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "Native dark source tint; complete glyph paths only; no cell background",
+        "retained_path_indices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      }
     }
   ],
   "withdrawn": [

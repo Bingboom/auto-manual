@@ -1,0 +1,50 @@
+{
+  "accepted": true,
+  "accepted_at": "2026-10-08T16:16:26.994500+00:00",
+  "language": "en",
+  "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+  "content_sha256": "bd354b1ff35f7cceec6dce5cceb083eda7c9f6efe6113c35042d2467723e72db",
+  "stylesheet_sha256": "d29d1ae1551befa4856ee8213d86f33ac186dc7c57c88220c9b96e39d36408fd",
+  "viewports": [
+    [
+      1280,
+      900
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "all artwork loaded",
+    "no page horizontal overflow",
+    "complete installation panels",
+    "responsive step cards",
+    "native glyph transparency and shape",
+    "editable overview labels",
+    "visible warranty headings"
+  ],
+  "sequence": "English accepted before native French/Spanish production",
+  "final_verification": {
+    "accepted_at": "2026-10-08T16:41:22.491767+00:00",
+    "content_sha256": "37a056a534ade5ad1eefbd5735be8a20a1e83d5201942b98552d7b0f1ff3f939",
+    "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+    "native_visible_lines": 398,
+    "viewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "loaded_images": 52,
+    "broken_images": 0,
+    "page_horizontal_overflow": false,
+    "clipped_live_labels": [],
+    "english_before_locales_gate": "source/en/acceptance.json",
+    "scope": "Source-preserving layout acceptance; source content differences remain flagged."
+  }
+}

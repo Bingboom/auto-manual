@@ -1,0 +1,2287 @@
+[
+  {
+    "id": "overview",
+    "decision": "native-extraction",
+    "source_page": 6,
+    "bbox": [
+      28,
+      55,
+      343,
+      273
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          55,
+          343,
+          273
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "f5bfe7c5232966ef9b9e340d39e2af02971e7b0ab67d29a4aca4ca2741eb69ca",
+    "recipe_asset_key": "web/jbp1000b-sil/us/overview"
+  },
+  {
+    "id": "lcd",
+    "decision": "native-extraction",
+    "source_page": 6,
+    "bbox": [
+      28,
+      305,
+      343,
+      499
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          305,
+          343,
+          499
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "6aed2d3c94bdb064019c4e805681cf0580475cf1d30e774fc5f6590149f82a67",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd"
+  },
+  {
+    "id": "power",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      27,
+      359,
+      343,
+      501
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          359,
+          343,
+          501
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          180,
+          359.5,
+          181,
+          359.7
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          250,
+          456.9,
+          251,
+          457.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          160,
+          470,
+          161,
+          471
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2",
+    "recipe_asset_key": "web/jbp1000b-sil/us/power"
+  },
+  {
+    "id": "lcd-button",
+    "decision": "native-extraction",
+    "source_page": 8,
+    "bbox": [
+      27,
+      47,
+      109,
+      206
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          47,
+          109,
+          206
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "4eca4a882c101ddd0f591f90980f1ece0a2b2c183f5ee51b950eef0744542679",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-button"
+  },
+  {
+    "id": "parallel",
+    "decision": "native-extraction",
+    "source_page": 9,
+    "bbox": [
+      28,
+      81,
+      343,
+      230
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          81,
+          343,
+          230
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "e364fb7856440be66a1f1807ab1e5e9d4498f9dfd5ebbf3681f8ad943c6c84b2",
+    "recipe_asset_key": "web/jbp1000b-sil/us/parallel"
+  },
+  {
+    "id": "stacked",
+    "decision": "native-extraction",
+    "source_page": 9,
+    "bbox": [
+      28,
+      260,
+      343,
+      408
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          260,
+          343,
+          408
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "1d92a2200cf6298882264168e06b57a0428416ccbdd0b6dabffb3b3d6c8a8769",
+    "recipe_asset_key": "web/jbp1000b-sil/us/stacked"
+  },
+  {
+    "id": "vertical-prep",
+    "decision": "native-extraction",
+    "source_page": 10,
+    "bbox": [
+      27,
+      57,
+      226,
+      143
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          57,
+          226,
+          143
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b",
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-prep"
+  },
+  {
+    "id": "vertical-1",
+    "decision": "native-extraction",
+    "source_page": 10,
+    "bbox": [
+      27,
+      145,
+      343,
+      263
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          145,
+          343,
+          263
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "df5af85aa4cec912595a70aaf4d6461889ec4a90c90781d53cb8398a59ba2db2",
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-1"
+  },
+  {
+    "id": "vertical-2",
+    "decision": "native-extraction",
+    "source_page": 10,
+    "bbox": [
+      27,
+      265,
+      343,
+      396
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          265,
+          343,
+          396
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "e1838872fc2b98344dd019529957120ec28ae314a8f08c82e13b801667e2565c",
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-2"
+  },
+  {
+    "id": "vertical-3",
+    "decision": "native-extraction",
+    "source_page": 10,
+    "bbox": [
+      27,
+      398,
+      343,
+      500
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          398,
+          343,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "369e68f44f31973ba40b9a5081697be0912c85520be746e631b87c1029b90b88",
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-3"
+  },
+  {
+    "id": "wood-prep",
+    "decision": "native-extraction",
+    "source_page": 11,
+    "bbox": [
+      27,
+      75,
+      245,
+      211
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          75,
+          245,
+          211
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          145,
+          105.9,
+          146,
+          106.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-prep"
+  },
+  {
+    "id": "wood-result",
+    "decision": "native-extraction",
+    "source_page": 11,
+    "bbox": [
+      250,
+      25,
+      342,
+      214
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          250,
+          25,
+          342,
+          214
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-result"
+  },
+  {
+    "id": "wood-1-2",
+    "decision": "native-extraction",
+    "source_page": 11,
+    "bbox": [
+      27,
+      215,
+      343,
+      332
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          215,
+          343,
+          332
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          28.4,
+          260,
+          28.6,
+          261
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-1-2"
+  },
+  {
+    "id": "wood-3",
+    "decision": "native-extraction",
+    "source_page": 11,
+    "bbox": [
+      28,
+      338,
+      228,
+      500
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          338,
+          228,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          29.1,
+          400,
+          29.3,
+          401
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-3"
+  },
+  {
+    "id": "wood-4",
+    "decision": "native-extraction",
+    "source_page": 11,
+    "bbox": [
+      231,
+      338,
+      343,
+      500
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          231,
+          338,
+          343,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          341.4,
+          400,
+          341.6,
+          401
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-4"
+  },
+  {
+    "id": "wood-5",
+    "decision": "native-extraction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      32,
+      343,
+      190
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          32,
+          343,
+          190
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5"
+  },
+  {
+    "id": "wood-6",
+    "decision": "native-extraction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      196,
+      343,
+      312
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          196,
+          343,
+          312
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6"
+  },
+  {
+    "id": "wood-7",
+    "decision": "native-extraction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      318,
+      343,
+      486
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          318,
+          343,
+          486
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7"
+  },
+  {
+    "id": "concrete-prep",
+    "decision": "native-extraction",
+    "source_page": 13,
+    "bbox": [
+      27,
+      42,
+      245,
+      179
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          42,
+          245,
+          179
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          140,
+          72.4,
+          141,
+          72.6
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-prep"
+  },
+  {
+    "id": "concrete-result",
+    "decision": "native-extraction",
+    "source_page": 13,
+    "bbox": [
+      248,
+      25,
+      340,
+      181
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          248,
+          25,
+          340,
+          181
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-result"
+  },
+  {
+    "id": "concrete-1-2",
+    "decision": "native-extraction",
+    "source_page": 13,
+    "bbox": [
+      27,
+      191,
+      343,
+      309
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          191,
+          343,
+          309
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          27.9,
+          240,
+          28.1,
+          241
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-1-2"
+  },
+  {
+    "id": "concrete-3",
+    "decision": "native-extraction",
+    "source_page": 13,
+    "bbox": [
+      27,
+      320,
+      343,
+      485
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          320,
+          343,
+          485
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          28.2,
+          360,
+          28.4,
+          361
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-3"
+  },
+  {
+    "id": "concrete-4",
+    "decision": "native-extraction",
+    "source_page": 14,
+    "bbox": [
+      27,
+      29,
+      204,
+      257
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          204,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          187.5,
+          103,
+          204,
+          136
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4"
+  },
+  {
+    "id": "concrete-5",
+    "decision": "native-extraction",
+    "source_page": 14,
+    "bbox": [
+      206,
+      29,
+      343,
+      257
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          206,
+          29,
+          343,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5"
+  },
+  {
+    "id": "concrete-6",
+    "decision": "native-extraction",
+    "source_page": 14,
+    "bbox": [
+      27,
+      261,
+      164,
+      493
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          261,
+          164,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6"
+  },
+  {
+    "id": "concrete-7",
+    "decision": "native-extraction",
+    "source_page": 14,
+    "bbox": [
+      166,
+      261,
+      343,
+      493
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          166,
+          261,
+          343,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7"
+  },
+  {
+    "id": "concrete-8",
+    "decision": "native-extraction",
+    "source_page": 15,
+    "bbox": [
+      27,
+      29,
+      144,
+      219
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          144,
+          219
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8"
+  },
+  {
+    "id": "concrete-9",
+    "decision": "native-extraction",
+    "source_page": 15,
+    "bbox": [
+      141,
+      27,
+      343,
+      216
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          141,
+          27,
+          343,
+          216
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9"
+  },
+  {
+    "id": "connections",
+    "decision": "native-extraction",
+    "source_page": 15,
+    "bbox": [
+      27,
+      294,
+      343,
+      468
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          294,
+          343,
+          468
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43",
+    "recipe_asset_key": "web/jbp1000b-sil/us/connections"
+  },
+  {
+    "id": "ac",
+    "decision": "native-extraction",
+    "source_page": 16,
+    "bbox": [
+      27,
+      104,
+      343,
+      287
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          104,
+          343,
+          287
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "9922b5883eba1359dd3c790baadf1f1390ea931f58734cd504846b05e8ad8684",
+    "recipe_asset_key": "web/jbp1000b-sil/us/ac"
+  },
+  {
+    "id": "solar",
+    "decision": "native-extraction",
+    "source_page": 16,
+    "bbox": [
+      25,
+      330,
+      343,
+      499
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          25,
+          330,
+          343,
+          499
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593",
+    "recipe_asset_key": "web/jbp1000b-sil/us/solar"
+  },
+  {
+    "id": "car",
+    "decision": "native-extraction",
+    "source_page": 17,
+    "bbox": [
+      26,
+      67,
+      343,
+      235
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          26,
+          67,
+          343,
+          235
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249,
+          178.3,
+          250,
+          178.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6",
+    "recipe_asset_key": "web/jbp1000b-sil/us/car"
+  },
+  {
+    "id": "inbox-1",
+    "decision": "native-extraction",
+    "source_page": 5,
+    "bbox": [
+      47,
+      251,
+      90,
+      337
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          47,
+          251,
+          90,
+          337
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe",
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-1"
+  },
+  {
+    "id": "inbox-2",
+    "decision": "native-extraction",
+    "source_page": 5,
+    "bbox": [
+      124,
+      260,
+      169,
+      327
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          124,
+          260,
+          169,
+          327
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7",
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-2"
+  },
+  {
+    "id": "inbox-3",
+    "decision": "native-extraction",
+    "source_page": 5,
+    "bbox": [
+      208,
+      274,
+      240,
+      317
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          208,
+          274,
+          240,
+          317
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512",
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-3"
+  },
+  {
+    "id": "inbox-4",
+    "decision": "native-extraction",
+    "source_page": 5,
+    "bbox": [
+      289,
+      269,
+      314,
+      323
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          289,
+          269,
+          314,
+          323
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "edd0594b5ed43fda95539fb8e55d1f5f172220dd6337c6f241c7bd5dfa6bf12b",
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-4"
+  },
+  {
+    "id": "symbol-2",
+    "decision": "native-variant-for-reuse",
+    "source_page": 4,
+    "bbox": [
+      37,
+      398,
+      63,
+      418
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          398,
+          63,
+          418
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_person.svg",
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-2"
+  },
+  {
+    "id": "symbol-4",
+    "decision": "native-variant-for-reuse",
+    "source_page": 4,
+    "bbox": [
+      37,
+      447,
+      63,
+      471
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          447,
+          63,
+          471
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_crossed.svg",
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-4"
+  },
+  {
+    "id": "symbol-5",
+    "decision": "native-variant-for-reuse",
+    "source_page": 4,
+    "bbox": [
+      37,
+      471,
+      64,
+      490
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          471,
+          64,
+          490
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_panel.svg",
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-5"
+  },
+  {
+    "id": "lcd-icon-1",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      45,
+      36,
+      87,
+      81
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          36,
+          87,
+          81
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "8d8047ecea4a37785c3c53d84773c7d5a5c915cac119ee3c0aa86be5708d04b9",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-1"
+  },
+  {
+    "id": "lcd-icon-2",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      45,
+      87,
+      87,
+      112
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          87,
+          87,
+          112
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          76,
+          77,
+          78,
+          79
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "deffe3c1940b51a394cd1cf6cf39a8730f6b660fd4737bd13114382d1fd1edac",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-2"
+  },
+  {
+    "id": "lcd-icon-3",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      45,
+      120,
+      87,
+      166
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          120,
+          87,
+          166
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "9753a7fc3d82f3b88db6bb4971932a069f9ce42397790177d483760a784a1c36",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-3"
+  },
+  {
+    "id": "lcd-icon-4",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      48,
+      173,
+      85,
+      199
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          173,
+          85,
+          199
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          138
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "8f38ec6c2df9eb218c50cc17e063e45f9dab9e758ed9f4cf66089fc32cc0fab7",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-4"
+  },
+  {
+    "id": "lcd-icon-5",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      45,
+      207,
+      87,
+      231
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          207,
+          87,
+          231
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          137
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "ab05e0bd13bc42df33fa10111bff6d745297598864e7c6c63ec06b5d0fdff8f3",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-5"
+  },
+  {
+    "id": "lcd-icon-6",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      48,
+      239,
+      85,
+      263
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          239,
+          85,
+          263
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          133,
+          134,
+          135
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "e25c242637b824f4259561078659381e2a223e6744434d919fa19d616afcbdb3",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-6"
+  },
+  {
+    "id": "lcd-icon-7",
+    "decision": "native-extraction",
+    "source_page": 7,
+    "bbox": [
+      48,
+      269,
+      85,
+      288
+    ],
+    "rejected_candidates": [
+      "jbp2000b_eu_en",
+      "je1000e_sil_us_en"
+    ],
+    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          269,
+          85,
+          288
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          130,
+          131,
+          132
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "sha256": "13072116535603add2b24cfc10c1f7f3c8f22b7c726f26d500515161a8467721",
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-7"
+  },
+  {
+    "id": "symbol-1",
+    "decision": "reuse-byte-identical",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "background_policy": "Actual transparent native glyph; visually matched original source.",
+    "rejected_candidates": [
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+        "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+        "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+        "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+        "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+        "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      }
+    ]
+  },
+  {
+    "id": "symbol-3",
+    "decision": "native-variant-for-reuse",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_dark.svg",
+    "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+    "background_policy": "Actual transparent native glyph; visually matched original source.",
+    "rejected_candidates": [
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+        "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+        "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+        "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+        "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+        "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      }
+    ],
+    "reason": "Existing shared outline has a different native tint/lettering; fixed 2% glyph comparison rejects it. New original variant is shared across all locales.",
+    "source_page": 4,
+    "bbox": [
+      39.45330047607422,
+      422.89501953125,
+      59.599300384521484,
+      443.0290222167969
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          39.45330047607422,
+          422.89501953125,
+          59.599300384521484,
+          443.0290222167969
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          31,
+          32,
+          33
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-3"
+  },
+  {
+    "id": "symbol-6",
+    "decision": "native-variant-for-reuse",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+    "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+    "background_policy": "Actual transparent native glyph; visually matched original source.",
+    "rejected_candidates": [
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+        "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+        "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+        "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+        "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+        "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      }
+    ],
+    "reason": "Existing shared outline has a different native tint/lettering; fixed 2% glyph comparison rejects it. New original variant is shared across all locales.",
+    "source_page": 4,
+    "bbox": [
+      195.44650268554688,
+      382.10089111328125,
+      215.53160095214844,
+      404.52410888671875
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          195.44650268554688,
+          382.10089111328125,
+          215.53160095214844,
+          404.52410888671875
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-6"
+  },
+  {
+    "id": "symbol-7",
+    "decision": "reuse-byte-identical",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "background_policy": "Actual transparent native glyph; visually matched original source.",
+    "rejected_candidates": [
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+        "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+        "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+        "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+        "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+        "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+        "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+      }
+    ]
+  },
+  {
+    "id": "connection-icon",
+    "decision": "native-extraction",
+    "source_page": 15,
+    "bbox": [
+      140,
+      469,
+      150,
+      480
+    ],
+    "drawing_indices": [
+      4871,
+      4872
+    ],
+    "sha256": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495",
+    "rejected_candidates": [
+      "docs/renderers/web/assets/shared/lcd/lcd_connected-batteries.png"
+    ],
+    "reason": "Shared glyph shows a battery and x8; this source has one narrow battery outline with a short line. Visually checked before extraction.",
+    "background_policy": "Transparent original SVG, complete original paths.",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          140,
+          469,
+          150,
+          480
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          4871,
+          4872
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/connection-icon"
+  },
+  {
+    "id": "vertical-result",
+    "decision": "native-extraction",
+    "reason": "No source-matched shared candidate; native vectors retained.",
+    "background_policy": "No independent caption frames.",
+    "source_page": 10,
+    "bbox": [
+      265,
+      25,
+      331,
+      143
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          265,
+          25,
+          331,
+          143
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4",
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-result"
+  }
+]
