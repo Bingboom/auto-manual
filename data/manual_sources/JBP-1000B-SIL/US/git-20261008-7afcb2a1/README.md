@@ -35,3 +35,5 @@ FCC is bound to the existing HB-SPECIAL-FCC ComponentSpec: native opening/NOTE c
 LCD indicator artwork uses a 4.5rem native-aspect display box with a 14% icon column and reduced horizontal cell padding. This source-local geometry keeps stacked readouts readable in all three locales and preserves internal mobile table scrolling. No artwork is recropped.
 
 The power figure and its existing Note ComponentSpec share a native-power-panel flow group. CSS draws the complete rounded frame and desktop inset Note; On/Off labels and instructions use compact source rectangles. The existing shared stacked mobile-label treatment keeps long instructions readable inside the same outer frame. All artwork bytes remain unchanged.
+
+LCD screen On/Off uses the existing HB-TABLE-LCD-MODE/two-state-three-action component with two merged three-row state cells, grey state/action columns and the shared rounded grid. Source-local portrait geometry stretches the unchanged native illustration to the table height on desktop; mobile stacks it above the internally scrollable table. All native text stays editable.

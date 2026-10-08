@@ -6,8 +6,6 @@
 .native-step-card p { margin: 0 0 .75rem; }
 .native-step-card .hb-reference-figure { margin: 0; }
 .native-step-card .hb-reference-live-label { font-size: max(10px, 2.8cqw) !important; }
-.native-lcd-actions { display: grid; grid-template-columns: 140px minmax(0,1fr); gap: 1rem; align-items: center; }
-.native-lcd-actions .hb-reference-figure { margin: 0; }
 [data-reference-id="wood-prep"] .hb-reference-art-panel::before,
 [data-reference-id="concrete-prep"] .hb-reference-art-panel::before { content: ""; position:absolute; border:1px dashed #858585; border-radius:12px; left:31%; top:10%; width:47%; height:82%; }
 [data-reference-id="wood-prep"] .hb-reference-live-label,
@@ -17,8 +15,6 @@
 .hb-inbox-card-art { max-height:180px; object-fit:contain; }
 @media(max-width:760px) {
  .native-step-grid { grid-template-columns: minmax(0,1fr); }
- .native-lcd-actions { grid-template-columns:minmax(0,1fr); }
- .native-lcd-actions .hb-reference-figure { width:120px; margin:auto; }
 }
 
 .native-step-card:has(img[src*="-result"]) .hb-reference-figure { max-width:120px; margin-inline:auto; }
@@ -65,6 +61,18 @@
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label { font-size:.88rem !important; }
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:1rem !important; margin-top:.7rem; }
+}
+
+/* Native portrait and the shared state table fill the same desktop row. */
+.hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1.4fr) minmax(0,3fr); align-items:stretch; }
+.hb-lcd-mode-portrait .hb-lcd-mode-art-panel { position:relative; aspect-ratio:246/477; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:absolute; left:0; top:0; width:auto !important; height:100% !important; max-width:none; max-height:none; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-state { font-weight:400; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-action { font-weight:600; }
+@media(max-width:760px) {
+ .hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1fr); }
+ .hb-lcd-mode-portrait .hb-lcd-mode-art-panel { aspect-ratio:auto; }
+ #furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:static; width:9rem !important; height:auto !important; max-width:100%; }
 }
 
 </style>
@@ -125,7 +133,7 @@
 
 ## LCD SCREEN ON/OFF
 
-<div class="native-lcd-actions"><div class="hb-reference-figure"><img alt="lcd-button" class="hb-reference-art" src="assets/lcd-button.png"/></div><div class="table-wrapper docutils container"><table class="manual-table"><tbody><tr><td>Shortly On</td><td>Turn on</td><td>Press the Main Power Button or when the product is charging.</td></tr><tr><td>Shortly On</td><td>Turn off</td><td>Press the Main Power Button.</td></tr><tr><td>Shortly On</td><td>Auto-off</td><td>The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.</td></tr><tr><td>Steady On (in charging or discharging state)</td><td>Turn on</td><td>Double-press the Main Power Button when the product is powered on.</td></tr><tr><td>Steady On (in charging or discharging state)</td><td>Turn off</td><td>Press the Main Power Button.</td></tr><tr><td>Steady On (in charging or discharging state)</td><td>Auto-off</td><td>The LCD turns off automatically after 2 hours of inactivity.</td></tr></tbody></table></div></div>
+<figure aria-label="LCD SCREEN ON/OFF" class="hb-lcd-mode-composition hb-lcd-mode-portrait" data-component-id="HB-TABLE-LCD-MODE"><div class="hb-lcd-mode-art-panel"><img alt="LCD SCREEN ON/OFF" class="hb-lcd-mode-art" src="assets/lcd-button.png"/></div><div class="hb-lcd-mode-table-panel"><table class="hb-lcd-mode-table"><colgroup><col class="hb-lcd-mode-col-state"/><col class="hb-lcd-mode-col-action"/><col class="hb-lcd-mode-col-copy"/></colgroup><tbody><tr><td class="hb-lcd-mode-state" rowspan="3">Shortly On</td><td class="hb-lcd-mode-action">Turn on</td><td class="hb-lcd-mode-copy">Press the Main Power Button or when the product is charging.</td></tr><tr><td class="hb-lcd-mode-action">Turn off</td><td class="hb-lcd-mode-copy">Press the Main Power Button.</td></tr><tr><td class="hb-lcd-mode-action">Auto-off</td><td class="hb-lcd-mode-copy">The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.</td></tr><tr><td class="hb-lcd-mode-state" rowspan="3">Steady On (in charging or discharging state)</td><td class="hb-lcd-mode-action">Turn on</td><td class="hb-lcd-mode-copy">Double-press the Main Power Button when the product is powered on.</td></tr><tr><td class="hb-lcd-mode-action">Turn off</td><td class="hb-lcd-mode-copy">Press the Main Power Button.</td></tr><tr><td class="hb-lcd-mode-action">Auto-off</td><td class="hb-lcd-mode-copy">The LCD turns off automatically after 2 hours of inactivity.</td></tr></tbody></table></div></figure>
 
 <span id="troubleshooting"></span>
 

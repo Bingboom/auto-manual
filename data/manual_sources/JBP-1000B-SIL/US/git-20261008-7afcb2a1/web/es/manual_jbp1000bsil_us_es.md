@@ -6,8 +6,6 @@
 .native-step-card p { margin: 0 0 .75rem; }
 .native-step-card .hb-reference-figure { margin: 0; }
 .native-step-card .hb-reference-live-label { font-size: max(10px, 2.8cqw) !important; }
-.native-lcd-actions { display: grid; grid-template-columns: 140px minmax(0,1fr); gap: 1rem; align-items: center; }
-.native-lcd-actions .hb-reference-figure { margin: 0; }
 [data-reference-id="wood-prep"] .hb-reference-art-panel::before,
 [data-reference-id="concrete-prep"] .hb-reference-art-panel::before { content: ""; position:absolute; border:1px dashed #858585; border-radius:12px; left:31%; top:10%; width:47%; height:82%; }
 [data-reference-id="wood-prep"] .hb-reference-live-label,
@@ -17,8 +15,6 @@
 .hb-inbox-card-art { max-height:180px; object-fit:contain; }
 @media(max-width:760px) {
  .native-step-grid { grid-template-columns: minmax(0,1fr); }
- .native-lcd-actions { grid-template-columns:minmax(0,1fr); }
- .native-lcd-actions .hb-reference-figure { width:120px; margin:auto; }
 }
 
 .native-step-card:has(img[src*="-result"]) .hb-reference-figure { max-width:120px; margin-inline:auto; }
@@ -65,6 +61,18 @@
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label { font-size:.88rem !important; }
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
  #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:1rem !important; margin-top:.7rem; }
+}
+
+/* Native portrait and the shared state table fill the same desktop row. */
+.hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1.4fr) minmax(0,3fr); align-items:stretch; }
+.hb-lcd-mode-portrait .hb-lcd-mode-art-panel { position:relative; aspect-ratio:246/477; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:absolute; left:0; top:0; width:auto !important; height:100% !important; max-width:none; max-height:none; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-state { font-weight:400; }
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-action { font-weight:600; }
+@media(max-width:760px) {
+ .hb-lcd-mode-composition.hb-lcd-mode-portrait { grid-template-columns:minmax(0,1fr); }
+ .hb-lcd-mode-portrait .hb-lcd-mode-art-panel { aspect-ratio:auto; }
+ #furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:static; width:9rem !important; height:auto !important; max-width:100%; }
 }
 
 </style>
@@ -125,7 +133,7 @@
 
 ## ENCENDER/APAGAR PANTALLA LCD
 
-<div class="native-lcd-actions"><div class="hb-reference-figure"><img alt="lcd-button" class="hb-reference-art" src="assets/lcd-button.png"/></div><table class="manual-table"><tbody><tr><td>En breve</td><td>Encender</td><td>Presione el botón de encendido principal o cuando el producto se esté cargando.</td></tr><tr><td>En breve</td><td>Apagar</td><td>Presione el botón de encendido principal.</td></tr><tr><td>En breve</td><td>Apagado automático</td><td>La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.</td></tr><tr><td>Estable en (durante el estado de carga o descarga)</td><td>Encender</td><td>Presione dos veces el botón de encendido principal cuando el producto está encendido.</td></tr><tr><td>Estable en (durante el estado de carga o descarga)</td><td>Apagar</td><td>Presione el botón de energía principal.</td></tr><tr><td>Estable en (durante el estado de carga o descarga)</td><td>Apagado automático</td><td>El modo de estable se apaga automáticamente después de 2 horas de inactividad.</td></tr></tbody></table></div>
+<figure aria-label="ENCENDER/APAGAR PANTALLA LCD" class="hb-lcd-mode-composition hb-lcd-mode-portrait" data-component-id="HB-TABLE-LCD-MODE"><div class="hb-lcd-mode-art-panel"><img alt="ENCENDER/APAGAR PANTALLA LCD" class="hb-lcd-mode-art" src="assets/lcd-button.png"/></div><div class="hb-lcd-mode-table-panel"><table class="hb-lcd-mode-table"><colgroup><col class="hb-lcd-mode-col-state"/><col class="hb-lcd-mode-col-action"/><col class="hb-lcd-mode-col-copy"/></colgroup><tbody><tr><td class="hb-lcd-mode-state" rowspan="3">En breve</td><td class="hb-lcd-mode-action">Encender</td><td class="hb-lcd-mode-copy">Presione el botón de encendido principal o cuando el producto se esté cargando.</td></tr><tr><td class="hb-lcd-mode-action">Apagar</td><td class="hb-lcd-mode-copy">Presione el botón de encendido principal.</td></tr><tr><td class="hb-lcd-mode-action">Apagado automático</td><td class="hb-lcd-mode-copy">La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.</td></tr><tr><td class="hb-lcd-mode-state" rowspan="3">Estable en (durante el estado de carga o descarga)</td><td class="hb-lcd-mode-action">Encender</td><td class="hb-lcd-mode-copy">Presione dos veces el botón de encendido principal cuando el producto está encendido.</td></tr><tr><td class="hb-lcd-mode-action">Apagar</td><td class="hb-lcd-mode-copy">Presione el botón de energía principal.</td></tr><tr><td class="hb-lcd-mode-action">Apagado automático</td><td class="hb-lcd-mode-copy">El modo de estable se apaga automáticamente después de 2 horas de inactividad.</td></tr></tbody></table></div></figure>
 
 <span id="troubleshooting"></span>
 

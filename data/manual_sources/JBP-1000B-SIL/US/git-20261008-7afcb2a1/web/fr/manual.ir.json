@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "392e6c35280f3adf2e42ef0c55859e5115e72322510575220bbc1a4d1167d4ea",
-  "content_sha256": "0e3c4b888eacfec1b915c5d8faaff8bf2110cc1a2f47060a071c53148ae1a75f",
+  "bundle_sha256": "c833f6b2b56bfe945aa719d3be023e7e23aec22a2adc10480efa63e63123cf59",
+  "content_sha256": "f438b5a9398340a57c5b9600fde69fcdb7c9826970e3f035f76c17d8648f9c34",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -122,6 +122,7 @@
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 14,
       "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
       "HB-TABLE-SPEC": 3,
       "HB-TABLE-SYMBOL-ICON": 1,
       "HB-TABLE-SYMBOL-SIGNAL": 1,
@@ -1947,7 +1948,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "fa9536b51f39a5941dda1333d793f1214e32eb14d31c7cd10899b275f6387276"
+      "sha256": "efa1bf09fdb0ac5ceb89fca61ef6b5e6177bfa5c0d225ed000733287f5ca7f86"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -4228,37 +4229,37 @@
             "assets/lcd-button.png"
           ],
           "block_id": "operations:block-0005",
-          "content_sha256": "f01887d3fa11c09fe22f8e6b672bd740acc17daeaa83baa5243de65a18cff19f",
+          "content_sha256": "e7324c74ad29899e6ddbfdc9e9512d9ea7d06afd0e7b59989ad5690b2cf915f8",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
                 "children": [
                   {
-                    "alt": "lcd-button",
-                    "kind": "image",
+                    "children": [
+                      {
+                        "alt": "lcd-button",
+                        "kind": "image",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-reference-art"
+                            }
+                          }
+                        },
+                        "source": "assets/lcd-button.png"
+                      }
+                    ],
+                    "kind": "group",
                     "presentation": {
                       "html": {
                         "attributes": {
-                          "class": "hb-reference-art"
+                          "class": "hb-reference-figure"
                         }
                       }
                     },
-                    "source": "assets/lcd-button.png"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "hb-reference-figure"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
+                    "role": "container"
+                  },
                   {
                     "children": [
                       {
@@ -4266,234 +4267,320 @@
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Allumer en discontinu"
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en discontinu"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
                           },
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Allumer"
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en discontinu"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Éteindre"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Appuyez sur le bouton d'alimentation principal."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
                           },
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en discontinu"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Arrêt automatique"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en continu (en cours de charge ou de décharge)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en continu (en cours de charge ou de décharge)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Éteindre"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Appuyez sur le bouton d'alimentation principal."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Allumer en continu (en cours de charge ou de décharge)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Arrêt automatique"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Le mode Allumer en continu s'éteint automatiquement après 2 heures d'inactivité."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
                           }
                         ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer en discontinu"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Éteindre"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Appuyez sur le bouton d'alimentation principal."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer en discontinu"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Arrêt automatique"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer en continu (en cours de charge ou de décharge)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer en continu (en cours de charge ou de décharge)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Éteindre"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Appuyez sur le bouton d'alimentation principal."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Allumer en continu (en cours de charge ou de décharge)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Arrêt automatique"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Le mode Allumer en continu s'éteint automatiquement après 2 heures d'inactivité."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
+                        "kind": "table_body"
                       }
                     ],
-                    "kind": "table_body"
+                    "kind": "table",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "manual-table"
+                        }
+                      }
+                    }
                   }
                 ],
-                "kind": "table",
+                "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "manual-table"
+                      "class": "native-lcd-actions"
                     }
                   }
-                }
+                },
+                "role": "container"
               }
             ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "native-lcd-actions"
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/lcd-button.png",
+                  "locale_policy": "shared",
+                  "role": "artwork"
                 }
-              }
+              ],
+              "component_id": "HB-TABLE-LCD-MODE",
+              "language": "fr",
+              "metadata": {
+                "artwork_layout": "portrait"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "AFFICHAGE LCD MARCHE/ARRÊT",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "actions": [
+                        {
+                          "action_html": "Allumer",
+                          "action_text": "Allumer",
+                          "description_html": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge.",
+                          "description_text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+                        },
+                        {
+                          "action_html": "Éteindre",
+                          "action_text": "Éteindre",
+                          "description_html": "Appuyez sur le bouton d'alimentation principal.",
+                          "description_text": "Appuyez sur le bouton d'alimentation principal."
+                        },
+                        {
+                          "action_html": "Arrêt automatique",
+                          "action_text": "Arrêt automatique",
+                          "description_html": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.",
+                          "description_text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+                        }
+                      ],
+                      "state_html": "Allumer en discontinu",
+                      "state_text": "Allumer en discontinu"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action_html": "Allumer",
+                          "action_text": "Allumer",
+                          "description_html": "Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé.",
+                          "description_text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque le produit est allumé."
+                        },
+                        {
+                          "action_html": "Éteindre",
+                          "action_text": "Éteindre",
+                          "description_html": "Appuyez sur le bouton d'alimentation principal.",
+                          "description_text": "Appuyez sur le bouton d'alimentation principal."
+                        },
+                        {
+                          "action_html": "Arrêt automatique",
+                          "action_text": "Arrêt automatique",
+                          "description_html": "Le mode Allumer en continu s'éteint automatiquement après 2 heures d'inactivité.",
+                          "description_text": "Le mode Allumer en continu s'éteint automatiquement après 2 heures d'inactivité."
+                        }
+                      ],
+                      "state_html": "Allumer en continu (en cours de charge ou de décharge)",
+                      "state_text": "Allumer en continu (en cours de charge ou de décharge)"
+                    }
+                  ],
+                  "content_kind": "ordered_groups",
+                  "role": "groups"
+                }
+              ],
+              "source_ref": "source/fr/content.json#operations/lcd-mode",
+              "token_roles": [
+                "component.table.lcd-mode"
+              ],
+              "variant": "two-state-three-action"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-5"
@@ -4504,7 +4591,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "aa915adc028f11f8a71ceae5e78a63037067097530480de8850ba553868627d9"
+      "source_sha256": "8ef5c2893200f5bb1ed901fed24bc5a9d701aa4991e1632bdf2495edf323c34f"
     },
     {
       "blocks": [

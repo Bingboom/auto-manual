@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "10f5cc1f5f1397e2cb6b2afcb8feee47a2268677edf0d56545fe0c08bb21988b",
-  "content_sha256": "5181f4501c7acc1c96ddb135f7142d661c24d32f547453a95127d45bc0a08b41",
+  "bundle_sha256": "8ab975d3b6ccd1cbda53e23b9762a6e7b1a83ad105d35f2d573f279682e4ec11",
+  "content_sha256": "b26e1756a8c2571c47720376912526cde15998a93fc8ac8878d6fd6e8ddcc526",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -122,6 +122,7 @@
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 14,
       "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
       "HB-TABLE-SPEC": 3,
       "HB-TABLE-SYMBOL-ICON": 1,
       "HB-TABLE-SYMBOL-SIGNAL": 1,
@@ -1947,7 +1948,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "fa9536b51f39a5941dda1333d793f1214e32eb14d31c7cd10899b275f6387276"
+      "sha256": "efa1bf09fdb0ac5ceb89fca61ef6b5e6177bfa5c0d225ed000733287f5ca7f86"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -4237,37 +4238,37 @@
             "assets/lcd-button.png"
           ],
           "block_id": "operations:block-0005",
-          "content_sha256": "4b8a64c4f635098927d825336c96c6fd8b03573c657f1f2a61305511f2df184a",
+          "content_sha256": "dd857b4dcd25a7098ea94fd1c9a26559122329e7d7aaae2a3c28251f754e86e9",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
                 "children": [
                   {
-                    "alt": "lcd-button",
-                    "kind": "image",
+                    "children": [
+                      {
+                        "alt": "lcd-button",
+                        "kind": "image",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "hb-reference-art"
+                            }
+                          }
+                        },
+                        "source": "assets/lcd-button.png"
+                      }
+                    ],
+                    "kind": "group",
                     "presentation": {
                       "html": {
                         "attributes": {
-                          "class": "hb-reference-art"
+                          "class": "hb-reference-figure"
                         }
                       }
                     },
-                    "source": "assets/lcd-button.png"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "hb-reference-figure"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
+                    "role": "container"
+                  },
                   {
                     "children": [
                       {
@@ -4275,234 +4276,320 @@
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "En breve"
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "En breve"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Encender"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
                           },
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Encender"
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "En breve"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Apagar"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Presione el botón de encendido principal."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
                           },
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "En breve"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Apagado automático"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
                               }
                             ],
-                            "header": false,
-                            "kind": "table_cell"
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Estable en (durante el estado de carga o descarga)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Encender"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Presione dos veces el botón de encendido principal cuando el producto está encendido."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Estable en (durante el estado de carga o descarga)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Apagar"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Presione el botón de energía principal."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Estable en (durante el estado de carga o descarga)"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Apagado automático"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "El modo de estable se apaga automáticamente después de 2 horas de inactividad."
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell"
+                              }
+                            ],
+                            "kind": "table_row"
                           }
                         ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "En breve"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Apagar"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Presione el botón de encendido principal."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "En breve"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Apagado automático"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Estable en (durante el estado de carga o descarga)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Encender"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Presione dos veces el botón de encendido principal cuando el producto está encendido."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Estable en (durante el estado de carga o descarga)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Apagar"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Presione el botón de energía principal."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Estable en (durante el estado de carga o descarga)"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Apagado automático"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "El modo de estable se apaga automáticamente después de 2 horas de inactividad."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
+                        "kind": "table_body"
                       }
                     ],
-                    "kind": "table_body"
+                    "kind": "table",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "manual-table"
+                        }
+                      }
+                    }
                   }
                 ],
-                "kind": "table",
+                "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "manual-table"
+                      "class": "native-lcd-actions"
                     }
                   }
-                }
+                },
+                "role": "container"
               }
             ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "native-lcd-actions"
+            "component_spec": {
+              "assets": [
+                {
+                  "asset_ref": "assets/lcd-button.png",
+                  "locale_policy": "shared",
+                  "role": "artwork"
                 }
-              }
+              ],
+              "component_id": "HB-TABLE-LCD-MODE",
+              "language": "es",
+              "metadata": {
+                "artwork_layout": "portrait"
+              },
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "ENCENDER/APAGAR PANTALLA LCD",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [
+                    {
+                      "actions": [
+                        {
+                          "action_html": "Encender",
+                          "action_text": "Encender",
+                          "description_html": "Presione el botón de encendido principal o cuando el producto se esté cargando.",
+                          "description_text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+                        },
+                        {
+                          "action_html": "Apagar",
+                          "action_text": "Apagar",
+                          "description_html": "Presione el botón de encendido principal.",
+                          "description_text": "Presione el botón de encendido principal."
+                        },
+                        {
+                          "action_html": "Apagado automático",
+                          "action_text": "Apagado automático",
+                          "description_html": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.",
+                          "description_text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+                        }
+                      ],
+                      "state_html": "En breve",
+                      "state_text": "En breve"
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action_html": "Encender",
+                          "action_text": "Encender",
+                          "description_html": "Presione dos veces el botón de encendido principal cuando el producto está encendido.",
+                          "description_text": "Presione dos veces el botón de encendido principal cuando el producto está encendido."
+                        },
+                        {
+                          "action_html": "Apagar",
+                          "action_text": "Apagar",
+                          "description_html": "Presione el botón de energía principal.",
+                          "description_text": "Presione el botón de energía principal."
+                        },
+                        {
+                          "action_html": "Apagado automático",
+                          "action_text": "Apagado automático",
+                          "description_html": "El modo de estable se apaga automáticamente después de 2 horas de inactividad.",
+                          "description_text": "El modo de estable se apaga automáticamente después de 2 horas de inactividad."
+                        }
+                      ],
+                      "state_html": "Estable en (durante el estado de carga o descarga)",
+                      "state_text": "Estable en (durante el estado de carga o descarga)"
+                    }
+                  ],
+                  "content_kind": "ordered_groups",
+                  "role": "groups"
+                }
+              ],
+              "source_ref": "source/es/content.json#operations/lcd-mode",
+              "token_roles": [
+                "component.table.lcd-mode"
+              ],
+              "variant": "two-state-three-action"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/operations#block-5"
@@ -4513,7 +4600,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "145febbfe52162076fb6fe162cfd0958566f1f10a879c13422be42da3fd4ad74"
+      "source_sha256": "778aa7d103df694f9db58b13d7e45ad32a06ca36e306cca05c47c36225ba99db"
     },
     {
       "blocks": [

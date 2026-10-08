@@ -80,3 +80,11 @@ LCD final cold replay passes strict Sphinx, frozen byte parity, unchanged native
 Operator comparison exposed the missing native rounded outer frame, separated full-width Note and loose state/instruction spacing. Group the existing reference-figure and Note ComponentSpecs without changing their words or art bytes. CSS uses shared panel/color tokens to restore the frame, desktop right-bottom inset Note and native light label/white body. Native state labels are enlarged; instruction rectangles are moved closer. EN/FR/ES pass desktop 1280×900 and mobile 390×844 visual checks, with five live labels and Note inside the frame, no page overflow. Mobile reuses the shared readable stacked labels to avoid the French long-press text overlapping the baked clock mark; the Note follows inside the same frame.
 
 Power final cold replay passes strict Sphinx, frozen byte parity, unchanged native copy/artwork census, 21 symbol admissions, CSS caption-frame admission and wrong-input rejection. The 29 reference/flow/callout/frozen-evidence tests pass.
+
+## LCD mode table correction
+
+The generic six-row table repeated states and missed the existing LCD mode presentation. Bind native words and the unchanged lcd-button.png to HB-TABLE-LCD-MODE/two-state-three-action. Its shared renderer restores two rowspan=3 state cells, grey state/action backgrounds, dark rules and rounded outer border. Source-local geometry sizes the portrait to the table height without distorting its aspect ratio; state text stays regular and actions medium-bold. The obsolete native-lcd-actions layout is removed.
+
+EN/FR/ES browser checks pass at 1280×900 and 390×844. Desktop image/table heights match: EN 389.164px, FR/ES 425.984px. Artwork remains complete, with no image/table overlap or page overflow. Mobile uses a 144px-wide native-aspect illustration above a 544px internally scrollable table in the 358px panel. The 28 existing LCD mode/section/flow/frozen-evidence tests pass; three strict Sphinx builds and native line/artwork census remain valid. This source refinement does not rerun the initial full-suite claim.
+
+LCD mode final cold replay passes all three locales: frozen parity, strict Sphinx, unchanged native text/artwork coverage, 21 symbol admissions, caption-frame admission and wrong-input rejection. Documentation link integrity passes with 0 broken links.

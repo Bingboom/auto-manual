@@ -1925,270 +1925,357 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "group",
-          "role": "container",
-          "presentation": {
-            "html": {
-              "attributes": {
-                "class": "native-lcd-actions"
-              }
-            }
-          },
-          "children": [
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "hb-reference-figure"
-                  }
-                }
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-LCD-MODE",
+            "variant": "two-state-three-action",
+            "source_ref": "source/en/content.json#operations/lcd-mode",
+            "language": "en",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "LCD SCREEN ON/OFF"
               },
-              "children": [
-                {
-                  "kind": "image",
-                  "source": "assets/lcd-button.png",
-                  "alt": "lcd-button",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-art"
+              {
+                "role": "groups",
+                "content_kind": "ordered_groups",
+                "content": [
+                  {
+                    "state_html": "Shortly On",
+                    "state_text": "Shortly On",
+                    "actions": [
+                      {
+                        "action_html": "Turn on",
+                        "action_text": "Turn on",
+                        "description_html": "Press the Main Power Button or when the product is charging.",
+                        "description_text": "Press the Main Power Button or when the product is charging."
+                      },
+                      {
+                        "action_html": "Turn off",
+                        "action_text": "Turn off",
+                        "description_html": "Press the Main Power Button.",
+                        "description_text": "Press the Main Power Button."
+                      },
+                      {
+                        "action_html": "Auto-off",
+                        "action_text": "Auto-off",
+                        "description_html": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity.",
+                        "description_text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity."
                       }
-                    }
+                    ]
+                  },
+                  {
+                    "state_html": "Steady On (in charging or discharging state)",
+                    "state_text": "Steady On (in charging or discharging state)",
+                    "actions": [
+                      {
+                        "action_html": "Turn on",
+                        "action_text": "Turn on",
+                        "description_html": "Double-press the Main Power Button when the product is powered on.",
+                        "description_text": "Double-press the Main Power Button when the product is powered on."
+                      },
+                      {
+                        "action_html": "Turn off",
+                        "action_text": "Turn off",
+                        "description_html": "Press the Main Power Button.",
+                        "description_text": "Press the Main Power Button."
+                      },
+                      {
+                        "action_html": "Auto-off",
+                        "action_text": "Auto-off",
+                        "description_html": "The LCD turns off automatically after 2 hours of inactivity.",
+                        "description_text": "The LCD turns off automatically after 2 hours of inactivity."
+                      }
+                    ]
                   }
-                }
-              ]
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "artwork",
+                "asset_ref": "assets/lcd-button.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.table.lcd-mode"
+            ],
+            "metadata": {
+              "artwork_layout": "portrait"
             },
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
             {
               "kind": "group",
               "role": "container",
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "table-wrapper docutils container"
+                    "class": "native-lcd-actions"
                   }
                 }
               },
               "children": [
                 {
-                  "kind": "table",
+                  "kind": "group",
+                  "role": "container",
                   "presentation": {
                     "html": {
                       "attributes": {
-                        "class": "manual-table"
+                        "class": "hb-reference-figure"
                       }
                     }
                   },
                   "children": [
                     {
-                      "kind": "table_body",
+                      "kind": "image",
+                      "source": "assets/lcd-button.png",
+                      "alt": "lcd-button",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "hb-reference-art"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "table-wrapper docutils container"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "table",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "manual-table"
+                          }
+                        }
+                      },
                       "children": [
                         {
-                          "kind": "table_row",
+                          "kind": "table_body",
                           "children": [
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Shortly On"
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Shortly On"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Turn on"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Press the Main Power Button or when the product is charging."
+                                    }
+                                  ]
                                 }
                               ]
                             },
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Turn on"
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Shortly On"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Turn off"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Press the Main Power Button."
+                                    }
+                                  ]
                                 }
                               ]
                             },
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Press the Main Power Button or when the product is charging."
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_row",
-                          "children": [
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Shortly On"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Shortly On"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Auto-off"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Turn off"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "Press the Main Power Button."
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_row",
-                          "children": [
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "Shortly On"
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity."
+                                    }
+                                  ]
                                 }
                               ]
                             },
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Auto-off"
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Steady On (in charging or discharging state)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Turn on"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Double-press the Main Power Button when the product is powered on."
+                                    }
+                                  ]
                                 }
                               ]
                             },
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "The LCD turns off automatically and enters sleep mode after 2 minutes of inactivity."
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_row",
-                          "children": [
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Steady On (in charging or discharging state)"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Steady On (in charging or discharging state)"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Turn off"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Turn on"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "Double-press the Main Power Button when the product is powered on."
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_row",
-                          "children": [
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "Steady On (in charging or discharging state)"
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Press the Main Power Button."
+                                    }
+                                  ]
                                 }
                               ]
                             },
                             {
-                              "kind": "table_cell",
-                              "header": false,
+                              "kind": "table_row",
                               "children": [
                                 {
-                                  "kind": "text",
-                                  "text": "Turn off"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Steady On (in charging or discharging state)"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Press the Main Power Button."
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kind": "table_row",
-                          "children": [
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Auto-off"
+                                    }
+                                  ]
+                                },
                                 {
-                                  "kind": "text",
-                                  "text": "Steady On (in charging or discharging state)"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "Auto-off"
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "table_cell",
-                              "header": false,
-                              "children": [
-                                {
-                                  "kind": "text",
-                                  "text": "The LCD turns off automatically after 2 hours of inactivity."
+                                  "kind": "table_cell",
+                                  "header": false,
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "The LCD turns off automatically after 2 hours of inactivity."
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -2200,8 +2287,7 @@
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         }
       ]
     },
