@@ -1,0 +1,615 @@
+<style>
+/* Source-local language reflow; invariant bases remain byte-identical. */
+#furo-main-content h2:has(+ .hb-spec-table-composition) {display:none;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label {overflow-wrap:anywhere;hyphens:manual;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label[data-source-line="0"] {width:25%;}
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] .hb-reference-live-label:is([data-source-line="1"], [data-source-line="3"], [data-source-line="5"]) {width:14%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="0"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {color:#f04444;}
+
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="2"] {font-size:3.8cqw;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="3"] {font-size:3.1cqw;line-height:1.15;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="4"] {left:12%;top:86.5%;width:28%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="5"] {left:42%;top:86.5%;width:35%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-reference-figure[data-reference-id="wiring-fuse"] .hb-reference-live-label[data-source-line="6"] {left:82%;top:86.5%;width:17%;font-size:3.7cqw;min-height:12%;}
+#furo-main-content .hb-source-status-table col:nth-child(1) {width:22%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(2) {width:24%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(3) {width:22%!important;}
+#furo-main-content .hb-source-status-table col:nth-child(4) {width:32%!important;}
+#furo-main-content .hb-source-status-table :is(.hb-lamp-green,.hb-lamp-red,.hb-lamp-blinking,.hb-lamp-off) {max-width:100%;white-space:normal;}
+
+</style>
+
+# 1. AVERTISSEMENT
+
+Merci d'avoir acheté le chargeur DC-DC Jackery (ci-après dénommé « le produit »). Veuillez lire attentivement ce guide d'utilisation avant utilisation, suivre les instructions pour une utilisation correcte et le conserver en lieu sûr. Jackery se réserve le droit d'interprétation finale de ce document et de tous les documents associés au produit, conformément aux exigences légales et réglementaires. Pour toute mise à jour, révision ou interruption du produit, veuillez vous référer aux annonces officielles les plus récentes.
+
+Les conditions suivantes ne sont pas couvertes par la garantie :
+
+- Dommages causés par des événements de force majeure tels que tremblements de terre, incendies, tempêtes, inondations ou glissements de terrain.
+
+- Dommages dus au non-respect des conditions de stockage spécifiées dans ce manuel.
+
+- Dommages causés par négligence, mauvaise utilisation, non-respect des instructions du manuel ou usage intentionnel inapproprié.
+
+- Dommages résultant du démontage non autorisé du produit, du remplacement de pièces ou de la modification du code logiciel.
+
+- Dommages dus à un transport inapproprié par le client.
+
+- Dommages ou conséquences négatives dus à des modifications, ajustements ou suppressions d'étiquettes contraires aux instructions de ce manuel.
+
+- Dommages ou conséquences négatives résultant de l'utilisation de ce produit pour alimenter des stations d'énergie portables autres que Jackery.
+
+- Blessures corporelles, incendies, pannes d'équipement ou autres conséquences négatives résultant de l'utilisation de ce produit dans les domaines de l'énergie atomique, de l'aviation, de la médecine ou d'autres secteurs où la sécurité est essentielle.
+
+# 2. SPÉCIFICATIONS TECHNIQUES
+
+## 2. SPÉCIFICATIONS TECHNIQUES
+
+
+
+<figure aria-label="2. SPÉCIFICATIONS TECHNIQUES" class="hb-spec-table-composition"><table class="hb-spec-table manual-table manual-spec-table"><colgroup><col class="hb-spec-col-label"/><col class="hb-spec-col-value"/></colgroup><tbody><tr><th class="hb-spec-label manual-spec-label" scope="row">Nom du produit </th><td class="hb-spec-value manual-spec-value">Jackery DC-DC Charger</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Modèle </th><td class="hb-spec-value manual-spec-value">JA-AD600A</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Entrée DC </th><td class="hb-spec-value manual-spec-value">⎓ 11.8V-32V , 60A</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Tension de sortie </th><td class="hb-spec-value manual-spec-value">⎓ 50V</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Courant de sortie </th><td class="hb-spec-value manual-spec-value">12A Max</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Puissance de sortie</th><td class="hb-spec-value manual-spec-value">600W Max</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Température de fonctionnement </th><td class="hb-spec-value manual-spec-value">-20℃~60℃</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Humidité de fonctionnement </th><td class="hb-spec-value manual-spec-value">5%~95%</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Température de stockage </th><td class="hb-spec-value manual-spec-value">-30℃~80℃</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Altitude de fonctionnement </th><td class="hb-spec-value manual-spec-value">≤3000m</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Indice de protection </th><td class="hb-spec-value manual-spec-value">IP40</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Poids </th><td class="hb-spec-value manual-spec-value">Environ 1,6 kg</td></tr><tr><th class="hb-spec-label manual-spec-label" scope="row">Dimensions </th><td class="hb-spec-value manual-spec-value">259×154,5×39,3 mm</td></tr></tbody></table></figure>
+
+
+
+<img src="assets/ir/c66743652b31b8642db123cb809912a6f610b7adc28e48ac3b751a49b25c435f/dimensions.png" class="manual-finished-illustration" style="width: 100%; height: auto;;width:100.0%" data-web-finished-panel-path="assets/ja_ad600a_eu_en/dimensions.png" data-web-finished-panel-sha256="c66743652b31b8642db123cb809912a6f610b7adc28e48ac3b751a49b25c435f" alt="dimensions" />
+
+# 3. CONTENU DE L'EMBALLAGE
+
+
+
+<figure aria-label="3. CONTENU DE L’EMBALLAGE" class="hb-inbox-composition" data-card-count="9" data-component-id="HB-SPECIAL-INBOX" data-inbox-variant="responsive-card-grid"><ol class="hb-inbox-grid"><li class="hb-inbox-card" data-item-number="1"><img alt="inbox_charger" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_charger.png" data-web-finished-panel-sha256="97287dee4780335316be5e85624256bc4786ecb7bebe2a3aaaa84489331780e8" src="assets/ir/97287dee4780335316be5e85624256bc4786ecb7bebe2a3aaaa84489331780e8/inbox_charger.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">A</span></p>
+<p><strong>Chargeur DC-DC Jackery</strong></p>
+</div></li><li class="hb-inbox-card" data-item-number="2"><img alt="inbox_input_cable" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_input_cable.png" data-web-finished-panel-sha256="b237253debc460c0ed6213369715ea67e20d6e32a2def888253807b820fe65ee" src="assets/ir/b237253debc460c0ed6213369715ea67e20d6e32a2def888253807b820fe65ee/inbox_input_cable.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">B</span></p>
+<p><strong>Câble d’entrée de 6 m</strong></p>
+<p>Connecteur Anderson</p>
+</div></li><li class="hb-inbox-card" data-item-number="3"><img alt="inbox_fuse" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_fuse.png" data-web-finished-panel-sha256="69ed53354910bb15207fbcf5b4989c32b2831d1054e5673ed2aa2c13edd46c93" src="assets/ir/69ed53354910bb15207fbcf5b4989c32b2831d1054e5673ed2aa2c13edd46c93/inbox_fuse.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">C</span></p>
+<p><strong>Fusible</strong></p>
+<p>Borne OT</p>
+</div></li><li class="hb-inbox-card" data-item-number="4"><img alt="inbox_output_cable" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_output_cable.png" data-web-finished-panel-sha256="28488e52ce07c55da409f6ddf49be32eda4d5f2320c9a5f4b95c50c33dac15f6" src="assets/ir/28488e52ce07c55da409f6ddf49be32eda4d5f2320c9a5f4b95c50c33dac15f6/inbox_output_cable.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">D</span></p>
+<p><strong>Câble de sortie de 1,5</strong></p>
+<p>Connecteur Connecteur Anderson DC8020</p>
+</div></li><li class="hb-inbox-card" data-item-number="5"><img alt="inbox_acc_cable" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_acc_cable.png" data-web-finished-panel-sha256="21cc25108335bcc939730216745e339d36d6ba2f531094b8b95b98b5d78e7fc6" src="assets/ir/21cc25108335bcc939730216745e339d36d6ba2f531094b8b95b98b5d78e7fc6/inbox_acc_cable.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">E</span></p>
+<p><strong>m Câble ACC de 6 m</strong></p>
+<p>Connecteur Anderson</p>
+</div></li><li class="hb-inbox-card" data-item-number="6"><img alt="inbox_st55_screws" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_st55_screws.png" data-web-finished-panel-sha256="fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647" src="assets/ir/fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647/inbox_st55_screws.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">F</span></p>
+<p><strong>Vis ST5,5 ×4</strong></p>
+</div></li><li class="hb-inbox-card" data-item-number="7"><img alt="inbox_m6_bolts" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_m6_bolts.png" data-web-finished-panel-sha256="adc406430c2f56a7939df30b91b83eeb168141d7351272d8c3520075400bcc95" src="assets/ir/adc406430c2f56a7939df30b91b83eeb168141d7351272d8c3520075400bcc95/inbox_m6_bolts.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">G</span></p>
+<p><strong>Boulon M6 ×4</strong></p>
+</div></li><li class="hb-inbox-card" data-item-number="8"><img alt="inbox_m6_nuts" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_m6_nuts.png" data-web-finished-panel-sha256="8d5b841dc3efab625b871f37912e056575f713d1f386841ad471ee8824f4e1c7" src="assets/ir/8d5b841dc3efab625b871f37912e056575f713d1f386841ad471ee8824f4e1c7/inbox_m6_nuts.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">H</span></p>
+<p><strong>Écrou M6 ×4</strong></p>
+</div></li><li class="hb-inbox-card" data-item-number="9"><img alt="inbox_user_guide" class="manual-finished-illustration hb-inbox-art" data-web-finished-panel-path="assets/ja_ad600a_eu_en/inbox_user_guide.png" data-web-finished-panel-sha256="f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac" src="assets/ir/f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac/inbox_user_guide.png"/><div class="hb-inbox-label">
+<p><span class="hb-inbox-marker">I</span></p>
+<p><strong>Guide d’utilisation</strong></p>
+</div></li></ol></figure>
+
+
+
+# 4. APERÇU DU PRODUIT
+
+
+
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="product-overview" data-source-fragment-sha256="9846ef439dfdfa61e2171f772bfc85f53a945d7b51878273233d8955d3a5493e" data-web-base-art-ref="product_overview_base.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.product-overview"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="product-overview.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="manual-finished-illustration hb-reference-art hb-composite-art" data-web-finished-panel-path="assets/ja_ad600a_eu_shared/product_overview_base.png" data-web-finished-panel-sha256="c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca" src="assets/ir/c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca/product_overview_base.png" style="width: 100%; height: auto;" width="100%"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:1.6368%;--hb-y:24.8476%;--hb-width:14.5289%;--hb-height:6.9231%">Trou de fixation</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:86.6567%;--hb-y:22.753%;--hb-width:11.9936%;--hb-height:20.7692%">Voyant d’état</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:1.6368%;--hb-y:67.2945%;--hb-width:14.5289%;--hb-height:6.9231%">Bouton d’alimentation</span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:86.5579%;--hb-y:67.2945%;--hb-width:11.7549%;--hb-height:6.9231%">Port d’entrée</span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:1.5509%;--hb-y:85.6345%;--hb-width:14.0626%;--hb-height:6.9231%">Port ACC</span><span class="hb-reference-live-label" data-source-line="5" style="--hb-x:86.6567%;--hb-y:84.9292%;--hb-width:11.9936%;--hb-height:6.9231%">Port de sortie</span></div></div></figure>
+
+
+
+# 5. INSTRUCTIONS DE SÉCURITÉ IMPORTANTES
+
+
+
+<div class="hb-source-operation hb-source-note docutils container">
+<p>Pendant la conduite, le chargeur DC-DC utilise l’excédent de puissance du générateur pour charger la station d’énergie portable. La puissance de charge effective dépend des conditions de conduite, du modèle et de l’état général du véhicule.</p>
+</div>
+
+
+
+Pour garantir une utilisation sûre, il est essentiel de respecter les consignes suivantes :
+
+- Conservez ce manuel pour référence future.
+
+- Utilisez ou stockez toujours le produit conformément aux conditions spécifiées dans ce manuel.
+
+- Lisez toutes les instructions et avertissements relatifs à ce produit, à la batterie du véhicule et à la station d'énergie Jackery, ainsi qu'à leurs manuels d\'utilisation respectifs.
+
+- Ne démontez pas le produit et ne remplacez pas ses pièces sans autorisation, car cela annulera la garantie et pourrait endommager le produit. Contactez le service à la clientèle de Jackery pour toute assistance concernant le remplacement des composants.
+
+## Compatibilité du produit
+
+
+
+<div class="hb-source-safety-heading hb-source-compatibility docutils container">
+<img alt="!" class="manual-finished-illustration" data-web-finished-panel-path="assets/shared/symbols/native-v1/symbol_warning_triangle.svg" data-web-finished-panel-sha256="0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a" src="assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg" style="width: 100%; height: auto;" width="100%"/>
+<p>Ce produit est uniquement compatible avec les stations d’énergie portables Jackery dotées d’un port d’entrée DC8020. L’utilisation d’adaptateurs pour connecter ce produit à un port d’entrée DC7909 ou USB-C est strictement interdite. Une telle connexion peut endommager l’appareil, provoquer un incendie, voire une explosion, mettant gravement en danger la sécurité personnelle.</p>
+</div>
+
+
+
+- Ce produit est uniquement compatible avec les batteries de voiture 12V/24V. Avant d'utiliser le produit, vérifiez que la tension nominale de votre véhicule est de 12V ou 24V et suivez toujours les consignes de sécurité électrique pendant son utilisation.
+
+- Ce produit est compatible avec les stations d'énergie portables Jackery équipées d'un port d'entrée DC8020. Veuillez consulter le tableau ci-dessous pour quelques modèles compatibles. Pour plus d'informations, veuillez contacter le service client ou visiter le site officiel de Jackery.
+
+| Station d\'Alimentation Portable | Capacité | Tension et courant de charge | Puissance de charge | TEMPS DE CHARGE (0-100%) |
+|----|----|----|----|----|
+| Explorer 1000 Plus | 1265 Wh | Environ 50V 8A | Environ 400W | Environ 3,5 heures |
+| Explorer 1000 v2 | 1070 Wh | Environ 50V 8A | Environ 400W | Environ 3,0 heures |
+| Explorer 2000 Plus | 2042 Wh | Environ 50V 12A | Environ 600W | Environ 3,7 heures |
+| Explorer 2000 v2 | 2042 Wh | Environ 50V 8A | Environ 400W | Environ 5,6 heures |
+| Explorer 3000 Pro | 3024 Wh | Environ 50V 12A | Environ 600W | Environ 5,5 heures |
+| Explorer 3000 v2 | 3072 Wh | Environ 50V 12A | Environ 600W | Environ 5,6 heures |
+
+Remarque : Les données relatives au temps de charge de ce produit sont basées sur des tests simulés réalisés à une température constante de 25°C. En usage réel, la puissance de charge peut varier en fonction des conditions de conduite, du modèle de véhicule et de son état général. Les temps de charge peuvent également être affectés par la température ambiante. Environnement de test standard : 25°C constant Source des données : Laboratoire Jackery
+
+<img src="assets/ir/209c4187aab93e4e3a8a7577875a6b4d31ca325a1ac542ea9d517292ee3b906f/status_device.png" class="hb-status-device-art manual-finished-illustration" style="width: 100%; height: auto;;width:100.0%" data-web-finished-panel-path="assets/ja_ad600a_eu_en/status_device.png" data-web-finished-panel-sha256="209c4187aab93e4e3a8a7577875a6b4d31ca325a1ac542ea9d517292ee3b906f" alt="status_device" />
+
+
+
+<div class="hb-source-operation hb-source-power docutils container">
+<p class="rubric">Mise en marche du produit</p>
+<ol class="arabic simple">
+<li><p>Appuyez brièvement sur le bouton d’alimentation : en l’absence de signal ACC, vous pouvez allumer l’appareil en appuyant brièvement sur le bouton d’alimentation.</p></li>
+<li><p>Mise en marche via signal ACC : si le câble ACC est connecté, l’appareil s’allumera automatiquement dès qu’un signal ACC sera détecté (par exemple, après le démarrage du véhicule).</p></li>
+</ol>
+<p class="rubric">Veille et arrêt</p>
+<p>Lorsqu’il n’y a pas de signal ACC ou si la tension chute en dessous du seuil de démarrage, le produit passe en mode veille. Si la veille dépasse 24 heures ou si la tension descend sous le seuil de protection, l’appareil s’éteint automatiquement. Pour le redémarrer, suivez les mêmes étapes décrites ci-dessus. En mode veille, s’il n’y a pas de signal ACC, vous pouvez également éteindre manuellement l’appareil en maintenant le bouton d’alimentation enfoncé pendant 3 secondes.</p>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-source-status docutils container">
+<table class="hb-source-status-table">
+<colgroup>
+<col style="width: 18.0%"/>
+<col style="width: 18.0%"/>
+<col style="width: 25.0%"/>
+<col style="width: 39.0%"/>
+</colgroup>
+<thead>
+<tr><th class="head"><p>STATUT DES LUMIÈRES</p></th>
+<th class="head"><p>Couleur des lumières</p></th>
+<th class="head"><p>État du produit</p></th>
+<th class="head"><p>REMARQUES</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>Fixe</p></td>
+<td><p><span class="hb-lamp-green">Vert</span></p></td>
+<td><p>En charge</p></td>
+<td><p>/</p></td>
+</tr>
+<tr><td><p>Fixe</p></td>
+<td><p><span class="hb-lamp-red">Rouge</span></p></td>
+<td><p>Anormal</p></td>
+<td><p>En cas de problème, contactez immédiatement le service à la clientèle Jackery pour obtenir de l’aide.</p></td>
+</tr>
+<tr><td><p>Clignotant</p></td>
+<td><p><span class="hb-lamp-blinking">Vert</span></p></td>
+<td><ol class="arabic simple">
+<li><p>Connexion normale, en attente de charge</p></li>
+</ol>
+</td>
+<td><p>Si le même problème persiste après avoir connecté la station d’énergie portable, les causes possibles incluent: Connexion instable entre le câble de sortie et la station d’énergie portable. 2. Câble endommagé. 3. La station d’énergie portable est complètement chargée. Si le problème persiste après le dépannage, contactez le service à la clientèle Jackery.</p></td>
+</tr>
+<tr><td><p>Aucune lumière</p></td>
+<td><p><span class="hb-lamp-off">Aucune couleur</span></p></td>
+<td><p>Le produit n’est pas sous tension</p></td>
+<td><p>Si le problème persiste après avoir terminé le câblage et démarré le véhicule, veuillez contacter le service à la clientèle Jackery.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+# 6. FAQ
+
+**Q1 : L'installation de ce produit nécessite-t-elle un professionnel ?**
+
+**A :** Pour garantir la sécurité et un câblage soigné, il est recommandé de faire installer le produit par un atelier de modification professionnel. Les personnes non qualifiées ne doivent pas tenter de l'installer elles-mêmes.
+
+**Q2 : Que faut-il vérifier lors de l'entretien mensuel du produit ?**
+
+**A :** 1. Nettoyez la surface du produit avec un chiffon sec. Pour les taches tenaces, utilisez un détergent neutre dilué. 2. Vérifiez que les connecteurs, le câblage, les vis et les fusibles ne sont pas endommagés ou vieillis. Si vous avez besoin d'aide, contactez le service à la clientèle de Jackery. 3. Assurez-vous que le produit est solidement installé et évitez l'exposition directe au soleil et aux environnements à haute température.
+
+**Q3 : Ce produit risque-t-il de décharger la batterie du véhicule ?**
+
+**A :** Pour éviter une décharge excessive de la batterie de démarrage du véhicule ou de la batterie domestique du VR, le produit surveille la tension aux bornes de la batterie. Si la tension chute en dessous du seuil de démarrage, le produit cessera automatiquement de fonctionner. Lorsque le véhicule est à l'arrêt, le produit passe en mode veille et s'éteint automatiquement après 24 heures.
+
+**Q4 : Pourquoi le produit ne fonctionne-t-il pas ?**
+
+**A :** Certains modèles de véhicules anciens ou spécifiques ont une tension plus faible, qui peut ne pas correspondre à la tension de fonctionnement du produit. Si la tension est supérieure à celle du système électrique du véhicule (12 V/24 V) et que le produit ne fonctionne pas après avoir été allumé, veuillez contacter le service client Jackery pour obtenir de l'aide.
+
+**Q5 : Ce produit augmentera-t-il la consommation de carburant ?**
+
+**A :** Non. Le produit utilise l'énergie excédentaire du générateur, ce qui le rend efficace, économique en énergie et respectueux de l'environnement.
+
+**Q6 : Quelles sont les protections de sécurité de ce produit ?**
+
+**A :** Ce produit est doté de protections contre les surtensions, sous-tensions, surintensités, surcharges, courts-circuits et températures extrêmes afin de garantir une charge sûre et fiable. De plus, la fonction de détection intelligente de la tension empêche une décharge excessive de la batterie, ce qui garantit un démarrage normal du véhicule.
+
+**Q7 : Pourquoi la puissance de charge est-elle instable ?**
+
+**A :** La puissance de charge s'ajuste dynamiquement en fonction des conditions de conduite et de la route. Cela permet de protéger la batterie du véhicule tout en optimisant l'efficacité de la charge. Les fluctuations de puissance sont normales.
+
+**Q8 : Le bruit de fonctionnement du produit peut-il affecter le sommeil ?**
+
+**A :** Le produit est conçu sans ventilateur et son niveau sonore est inférieur à 40 dB, conforme aux normes de bruit pour un environnement de sommeil.
+
+# 7. INSTALLATION DU PRODUIT
+
+## 7.1 Schéma d'installation
+
+
+
+<div class="hb-source-operation hb-installation-overview docutils container">
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="installation-diagram" data-source-fragment-sha256="cd5b9d88f6bfe570b2af4cb2ddfc0e8a2c61a01372fa7c06f9a90f425690adbe" data-web-base-art-ref="installation_diagram_base.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.installation-diagram"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="installation-diagram.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="manual-finished-illustration hb-reference-art hb-composite-art" data-web-finished-panel-path="assets/ja_ad600a_eu_shared/installation_diagram_base.png" data-web-finished-panel-sha256="0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f" src="assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png" style="width: 100%; height: auto;" width="100%"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:15.4166%;--hb-y:17.5385%;--hb-width:12.2563%;--hb-height:1.8665%">ACC du véhicule</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:5.3671%;--hb-y:82.5905%;--hb-width:23.8782%;--hb-height:2.3133%">Chargeur DC-DC</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:43.1482%;--hb-y:82.5905%;--hb-width:20.6882%;--hb-height:2.3133%">Câble d’entrée de 6 m</span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:78.4137%;--hb-y:82.5905%;--hb-width:20.014%;--hb-height:2.3133%">Fusible</span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:5.3668%;--hb-y:87.9716%;--hb-width:25.4508%;--hb-height:2.3133%">Câble de sortie de 1,5 m</span><span class="hb-reference-live-label" data-source-line="5" style="--hb-x:43.148%;--hb-y:87.9716%;--hb-width:20.6885%;--hb-height:2.3133%">Câble ACC de 6 m</span><span class="hb-reference-live-label" data-source-line="6" style="--hb-x:78.3555%;--hb-y:87.6863%;--hb-width:21.33%;--hb-height:4.8193%">Station d’énergie portable Jackery</span><span class="hb-reference-live-label hb-reference-live-pill" data-source-line="7" style="--hb-x:0%;--hb-y:95.4778%;--hb-width:91.9189%;--hb-height:3.0737%;--hb-fill:#e6e7e8">* Le câblage et le regroupement des fils doivent être effectués en fonction des conditions réelles du véhicule.</span></div></div></figure>
+</div>
+
+
+
+## 7.2 Instructions de sécurité importantes
+
+
+
+<div class="hb-source-safety-heading docutils container">
+<img alt="!" class="manual-finished-illustration" data-web-finished-panel-path="assets/shared/symbols/native-v1/symbol_warning_triangle.svg" data-web-finished-panel-sha256="0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a" src="assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg" style="width: 100%; height: auto;" width="100%"/>
+<p>suivez ces précautions de sécurité de base lors de l’utilisation de ce produit. Avertissement</p>
+</div>
+
+
+
+- Il est recommandé de confier l'installation à un professionnel.
+
+- Avant tout câblage ou connexion, prenez des mesures de protection personnelle telles que le port de lunettes de sécurité et de gants isolants, et respectez toujours les consignes de sécurité électrique.
+
+- Toujours éteindre le véhicule avant d'effectuer un travail électrique.
+
+- Maintenez le produit au sec pendant son utilisation.
+
+- Ne pas insérer d'objets étrangers dans les ports du produit.
+
+- Ne pas utiliser le produit si le câblage, les connecteurs ou le produit lui-même sont endommagés.
+
+- Évitez de placer les câbles à proximité de sources de chaleur, d'objets tranchants ou de zones sujettes aux frottements.
+
+- Fixez correctement les câbles pour éviter tout problème potentiel causé par l'usure ou des connexions lâches.
+
+- Avant de démarrer le véhicule et le produit, assurez-vous que le câblage est complet et que toutes les vis et connecteurs sont bien serrés.
+
+- Ne pas utiliser ce produit pour charger des stations d'énergie portables ou des batteries de secours endommagées ou non rechargeables.
+
+- Si le produit ne fonctionne pas correctement après avoir démarré le véhicule, vérifiez le voyant d'état et reportez-vous au manuel pour le dépannage.
+
+- Avant de brancher, débrancher ou modifier le câblage, assurez-vous que le véhicule est éteint, que le produit est hors tension et que la connexion est déconnectée.
+
+## 7.3 En cas d'urgence
+
+- En cas d'urgence (tel qu'un impact sévère), portez des gants isolants et déplacez le produit vers une zone dégagée, éloignée des matériaux inflammables et des personnes. Éliminez le produit conformément aux lois et réglementations locales.
+
+- Si le produit tombe accidentellement dans l'eau, est exposé à la pluie ou présente des traces d'humidité sur sa surface, ne le touchez pas directement, ni l'eau environnante. Prenez les précautions nécessaires contre les chocs électriques et déplacez le produit dans un endroit sûr, sec et bien ventilé. Ne pas utiliser ou toucher le produit avant qu\'il ne soit complètement sec. Si vous avez besoin d'aide, contactez immédiatement le service à la clientèle Jackery.
+
+- En cas d'incendie du produit, utilisez les méthodes d'extinction suivantes dans l'ordre : eau ou CO₂. brouillard d'eau, sable, couverture anti-feu, poudre sèche ou extincteur au
+
+## 7.4 Vérifications avant installation
+
+1.  Assurez-vous que le véhicule est éteint avant l'installation.
+
+2.  Confirmez que la tension du système du véhicule est de 12V ou 24V.
+
+3.  Assurez-vous que la tension de sortie du produit correspond à la tension d'entrée DC de la station d'énergie portable.
+
+4.  Identifiez l'emplacement de la batterie du véhicule et assurez-vous qu'il y a suffisamment d'espace pour faire passer le câble d'entrée.
+
+5.  Choisissez un emplacement d'installation approprié. Il est recommandé d'installer le produit dans le coffre, en laissant au moins 20 cm d'espace libre de chaque côté pour éviter toute surchauffe due à un fonctionnement prolongé. \* Il est recommandé d'installer le produit du même côté que la batterie. Par exemple, si la batterie est du côté gauche du véhicule, installez le produit du côté gauche.
+
+
+
+<div class="hb-source-safety-heading docutils container">
+<img alt="!" class="manual-finished-illustration" data-web-finished-panel-path="assets/shared/symbols/native-v1/symbol_warning_triangle.svg" data-web-finished-panel-sha256="0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a" src="assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg" style="width: 100%; height: auto;" width="100%"/>
+<p>Le chargeur DC-DC Jackery n'est pas étanche. Pour éviter d'endommager l'appareil, veuillez l'installer à l'intérieur du véhicule Avertissement pour éviter l'exposition à la pluie ou à des environnements humides.</p>
+</div>
+
+
+
+6.  Vérifiez la longueur des câbles. Ce produit est fourni avec un câble d'entrée de 6 mètres. Assurez-vous que cette longueur est suffisante pour relier la batterie du véhicule à l'emplacement prévu pour l'installation du chargeur DC-DC.
+
+7.  Vérifiez l'état des panneaux du véhicule le long du trajet du câblage. Pour garantir une installation propre, il peut être nécessaire de retirer et de réinstaller certains panneaux du véhicule.
+
+8.  Assurez-vous que le produit est complètement sec et exempt de tout dommage avant de procéder au câblage et à l'installation.
+
+9.  Préparez les outils nécessaires, y compris un tournevis cruciforme, une clé hexagonale, une clé à molette, un outil de démontage des clips de panneau, du fil, du ruban isolant, des colliers de serrage, une pince coupante et un stylo testeur.
+
+## 7.5 Étapes de câblage
+
+
+
+<div class="hb-source-operation hb-source-note docutils container">
+<p>PRÉCAUTIONS :</p>
+<ul class="simple">
+<li><p>Assurez-vous que les fils sont bien fixés pour éviter toute surchauffe ou court-circuit dû à des connexions lâches.</p></li>
+<li><p>Lorsque vous connectez la borne OT à la batterie du véhicule, assurez-vous que la connexion est solide pour éviter toute augmentation anormale de la température.</p></li>
+</ul>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">1</p>
+<ul class="simple">
+<li><p>Vérifiez que le véhicule est éteint.</p></li>
+</ul>
+<p>1 Connectez la borne OT du fusible à la borne positive du câble d’entrée de 6 m (en rouge) avec un couple de serrage de 3~4 N·m. Assurez-vous que l’ordre de montage de la borne ronde, de la rondelle, de la rondelle frein et de l’écrou est correct, puis appliquez le couple de serrage requis. Un couple insuffisant peut entraîner une connexion lâche et provoquer une surchauffe des fils, tandis qu’un couple supérieur à 6 N·m peut casser le fusible. Pendant l'installation, veuillez vérifier et vous assurer que les deux extrémités des bornes du fusible ① et ② sont bien serrées. Il est recommandé de les serrer manuellement jusqu'à ce qu'elles ne puissent plus tourner. (Si vous utilisez un tournevis électrique, réglez le couple à 4 N·m avant de serrer.)</p>
+</div>
+<div class="hb-step-art docutils container">
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="wiring-fuse" data-source-fragment-sha256="e5c915647cb0a0cf9145ad8f96d0d5dbd77ca7a6d59c232aa42b5c5ac2b8f70d" data-web-base-art-ref="file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.wiring-fuse"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="wiring-fuse.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference manual-finished-illustration hb-reference-art hb-composite-art" data-reference='{"id": "wiring-fuse", "web_replace_key": "reference.wiring-fuse", "capture_following_lines": 7, "presentation_mode": "base-art-live-copy", "asset_scope": "shared", "base_art_layout": {"art_sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [6.68828, 6.06895, 22.89867, 7.82042], "fill": "#ffffff"}, {"line": 1, "rect": [68.07025, 6.06895, 27.55563, 7.82042], "fill": "#ffffff"}, {"line": 2, "rect": [14.8, 50.8, 25, 13]}, {"line": 3, "rect": [41.47092, 69.14923, 56.62252, 11.26761], "color": "#dd4132"}, {"line": 4, "rect": [12.62225, 87.33768, 17.88079, 5.91549]}, {"line": 5, "rect": [42.87986, 87.05176, 29.13907, 5.91549]}, {"line": 6, "rect": [88.64873, 87.12077, 8.27815, 5.91549]}]}, "image_key": "wiring_fuse_base.svg"}' data-web-finished-panel-path="assets/ja_ad600a_eu_shared/wiring_fuse_base.svg" data-web-finished-panel-sha256="bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207" src="assets/ir/bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207/wiring_fuse_base.svg" style="width: 100%; height: auto;" width="100%"/><span class="hb-reference-live-label hb-reference-live-pill" data-source-line="0" style="--hb-x:6.6883%;--hb-y:6.069%;--hb-width:22.8987%;--hb-height:7.8204%;--hb-fill:#ffffff">Fusible</span><span class="hb-reference-live-label hb-reference-live-pill" data-source-line="1" style="--hb-x:68.0703%;--hb-y:6.069%;--hb-width:27.5556%;--hb-height:7.8204%;--hb-fill:#ffffff">3~4 N·m</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:14.8%;--hb-y:50.8%;--hb-width:25%;--hb-height:13%">Câble d’entrée de 6 m</span><span class="hb-reference-live-label hb-reference-source-badge" data-source-line="3" style="--hb-x:41.4709%;--hb-y:69.1492%;--hb-width:56.6225%;--hb-height:11.2676%;--hb-label-color:#dd4132">Remarque : Serrez les bornes ① et ② avec un couple de 3–4 N·m.</span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:12.6222%;--hb-y:87.3377%;--hb-width:17.8808%;--hb-height:5.9155%">Rondelle</span><span class="hb-reference-live-label" data-source-line="5" style="--hb-x:42.8799%;--hb-y:87.0518%;--hb-width:29.1391%;--hb-height:5.9155%">Rondelle frein</span><span class="hb-reference-live-label" data-source-line="6" style="--hb-x:88.6487%;--hb-y:87.1208%;--hb-width:8.2782%;--hb-height:5.9155%">Écrou</span></div></div></figure>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">2</p>
+<p>Connectez les bornes OT du câble d’entrée aux bornes positive et négative de la batterie du véhicule. Assurez-vous que le fil rouge est connecté à la borne positive et le fil noir à la borne négative.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="wiring_battery" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/wiring_battery.png" data-web-finished-panel-sha256="7bdcb4dd3da42b2eff652baae3998703d1c291b8771bb6394feb7a190750ca3f" src="assets/ir/7bdcb4dd3da42b2eff652baae3998703d1c291b8771bb6394feb7a190750ca3f/wiring_battery.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">3</p>
+<p>Coupez l’extrémité non connectée du câble ACC pour exposer le fil de cuivre et connectez-le à la ligne ACC du véhicule.</p>
+<p>※ Lors de la connexion du fil ACC, si vous n'êtes pas sûr de l'emplacement du câblage ou incertain quant à la méthode de connexion, il est recommandé de contacter le fabricant du véhicule pour confirmation avant de procéder à l'opération de câblage.</p>
+</div>
+<div class="hb-step-art docutils container">
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="wiring-acc" data-source-fragment-sha256="ca09482f3cba2a8e154b2078ecce0d7ce6c110c9bd421f8a043e67d55911b7fb" data-web-base-art-ref="file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.wiring-acc"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="wiring-acc.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference manual-finished-illustration hb-reference-art hb-composite-art" data-reference='{"id": "wiring-acc", "web_replace_key": "reference.wiring-acc", "capture_following_lines": 2, "presentation_mode": "base-art-live-copy", "asset_scope": "shared", "base_art_layout": {"art_sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [13.01026, 31.34406, 25.16556, 8.75]}, {"line": 1, "rect": [70.08774, 29.56333, 25.82781, 17.70833]}]}, "image_key": "wiring_acc_base.png"}' data-web-finished-panel-path="assets/ja_ad600a_eu_shared/wiring_acc_base.png" data-web-finished-panel-sha256="3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b" src="assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png" style="width: 100%; height: auto;" width="100%"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:13.0103%;--hb-y:31.3441%;--hb-width:25.1656%;--hb-height:8.75%">Câble ACC</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:70.0877%;--hb-y:29.5633%;--hb-width:25.8278%;--hb-height:17.7083%">Câble ACC du véhicule</span></div></div></figure>
+</div>
+</div>
+
+
+
+## 7.6 Installation du produit
+
+
+
+<div class="hb-source-operation hb-source-note hb-source-installation-note docutils container">
+<p>Avant de percer ou de fixer le chargeur DC-DC, vérifiez la zone située derrière l’emplacement prévu pour éviter d’endommager les faisceaux de câbles ou d’autres composants internes.</p>
+</div>
+
+
+
+Méthode 1 : Fixer le produit sur la carrosserie du véhicule.
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">1</p>
+<p>Maintenez un espace libre d’au moins 20 cm autour du produit (haut, bas, gauche, droite).</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="body_clearance" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/body_clearance.png" data-web-finished-panel-sha256="eb21bcf111a7dd76141b96d10afef09dd9109a3dbab6058b5e8072d14575095c" src="assets/ir/eb21bcf111a7dd76141b96d10afef09dd9109a3dbab6058b5e8072d14575095c/body_clearance.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">2</p>
+<p>Marquez les positions de perçage.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="body_mark" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/body_mark.png" data-web-finished-panel-sha256="fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96" src="assets/ir/fc909e0e6d1929d528b6845e0a5af500c0220bbf44f031daf44dbcf00da6ee96/body_mark.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">3</p>
+<p>Percez des trous aux emplacements marqués.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="body_drill" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/body_drill.png" data-web-finished-panel-sha256="b23a42ec957232b48dff17f43b77d0b521f4fa9126403ed8d6596284bb856f39" src="assets/ir/b23a42ec957232b48dff17f43b77d0b521f4fa9126403ed8d6596284bb856f39/body_drill.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">4</p>
+<p>Fixez le produit à l’aide de vis autotaraudeuses.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="body_secure" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/body_secure.png" data-web-finished-panel-sha256="ad6701a141a97bc4832f90ccd756b0522e27bcbb2be7a2f617a97d597ac4a54b" src="assets/ir/ad6701a141a97bc4832f90ccd756b0522e27bcbb2be7a2f617a97d597ac4a54b/body_secure.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+Méthode 2 : Fixer le produit sur un panneau de modification.
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">1</p>
+<p>Marquez les positions de perçage sur le panneau de modification.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="panel_mark" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/panel_mark.png" data-web-finished-panel-sha256="2f9c40282fac46a23e7f1a24a353284fa78070862b7f476e8733d940efc888d4" src="assets/ir/2f9c40282fac46a23e7f1a24a353284fa78070862b7f476e8733d940efc888d4/panel_mark.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">2</p>
+<p>Percez des trous aux emplacements marqués.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="panel_drill" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/panel_drill.png" data-web-finished-panel-sha256="6e2822b857dd34567734038d31ab7bd5c6553390dc1d828a159cc33dbe69d855" src="assets/ir/6e2822b857dd34567734038d31ab7bd5c6553390dc1d828a159cc33dbe69d855/panel_drill.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+
+
+<div class="hb-source-operation hb-step-pair docutils container">
+<div class="hb-step-copy docutils container">
+<p class="rubric">3</p>
+<p>Insérez les boulons M6 à travers le produit et dans les trous, puis serrez les écrous M6.</p>
+</div>
+<div class="hb-step-art docutils container">
+<img alt="panel_secure" class="manual-finished-illustration" data-web-finished-panel-path="assets/ja_ad600a_eu_en/panel_secure.png" data-web-finished-panel-sha256="312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff" src="assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png" style="width: 100%; height: auto;" width="100%"/>
+</div>
+</div>
+
+
+
+## 7.7 Connexion du produit et de la station d'énergie portable
+
+1.  Connectez le connecteur Anderson du câble d'entrée au port d'entrée du produit.
+
+2.  Connectez le connecteur Anderson du câble ACC au port ACC du produit.
+
+3.  Connectez le connecteur Anderson du câble de sortie au port de sortie du produit.
+
+4.  Connectez le connecteur DC8020 du câble de sortie à la station d'énergie portable.
+
+
+
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="charger-connection" data-source-fragment-sha256="45ff17e96eadb9c1d249d3d5a1b8db7929768b31fd5e8170c0007f5d0e114d73" data-web-base-art-ref="file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.charger-connection"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="charger-connection.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference manual-finished-illustration hb-reference-art hb-composite-art" data-reference='{"id": "charger-connection", "web_replace_key": "reference.charger-connection", "capture_following_lines": 3, "presentation_mode": "base-art-live-copy", "asset_scope": "shared", "base_art_layout": {"art_sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [5.10423, 76.83426, 22, 4.66666]}, {"line": 1, "rect": [32.69123, 87.09703, 24, 4.66666]}, {"line": 2, "rect": [58.13624, 88.45427, 40, 4.66666]}]}, "image_key": "connection_base.png"}' data-web-finished-panel-path="assets/ja_ad600a_eu_shared/connection_base.png" data-web-finished-panel-sha256="8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427" src="assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png" style="width: 100%; height: auto;" width="100%"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:5.1042%;--hb-y:76.8343%;--hb-width:22%;--hb-height:4.6667%">Câble ACC</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:32.6912%;--hb-y:87.097%;--hb-width:24%;--hb-height:4.6667%">Câble de sortie</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:58.1362%;--hb-y:88.4543%;--hb-width:40%;--hb-height:4.6667%">Câble d’entrée avec fusible</span></div></div></figure>
+
+
+
+## 7.8 Vérifications après installation
+
+1.  Vérifiez que toutes les vis du système de câblage sont bien serrées.
+
+2.  Inspectez et fixez tous les câbles pour éviter leur usure ou leur desserrage causés par les mouvements du véhicule.
+
+3.  Avant de démarrer le véhicule, assurez-vous que tout le câblage est terminé et que les vis et câbles sont en bon état.
+
+4.  Après le démarrage du véhicule, appuyez brièvement sur le bouton d'alimentation pour allumer le produit. Si le voyant s'allume en vert fixe, l'installation est réussie.
+
+## 7.9 Précautions d'utilisation quotidienne
+
+- Ne pas tirer sur le câblage avec force lors de la déconnexion du produit afin d'éviter tout dommage.
+
+- Une utilisation prolongée du produit peut entraîner un échauffement de son boîtier externe. Évitez tout contact direct pour prévenir les brûlures.
+
+- Vérifiez régulièrement le câblage chaque mois pour vous assurer que les bornes OT sont bien connectées et qu'il n'y a ni fissures, ni usure, ni corrosion sur les fils.
+
+- Nettoyez le produit avec un chiffon sec et doux ou un papier absorbant. Ne pas le laver directement avec de l'eau.
+
+- Lors de l'utilisation du produit, assurez-vous qu'aucun objet ne soit placé à moins de 20 cm dans toutes les directions afin d'éviter toute surchauffe des objets environnants.
+
+- Si vous constatez un vieillissement, un dommage ou tout autre problème sur le produit ou les câbles, cessez immédiatement son utilisation et contactez le service après-vente pour une réparation ou un remplacement.
+
+- Éteignez l'appareil lorsqu'il n'est pas utilisé.
+
+## Déclaration de conformité FCC
+
+
+
+<figure aria-label="Déclaration de conformité FCC" class="hb-fcc-composition hb-fcc-statement">
+<img alt="FCC" class="hb-fcc-mark" loading="lazy" src="assets/ir/45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90/fcc_mark.png"/>
+<p>Cet appareil est conforme à la partie 15 des règles de la FCC. Son fonctionnement est soumis aux deux conditions suivantes : (1) Cet appareil ne doit pas causer d'interférences nuisibles, et (2) cet appareil doit accepter toute interférence reçue, y compris celles pouvant entraîner un fonctionnement indésirable.</p>
+</figure>
+
+
+
+# 8. GARANTIE
+
+
+
+<div class="hb-source-operation hb-source-note hb-source-warranty-note docutils container">
+<p>Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.</p>
+</div>
+
+
+
+- La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.
+
+## Garantie limitée
+
+Jackery garantit à l\'acheteur et consommateur d\'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d\'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous. Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n\'assumerons pas et nous n\'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.
+
+## Période de garantie
+
+
+
+<div class="hb-source-operation hb-source-period docutils container">
+<table class="hb-source-period-table">
+<colgroup>
+<col style="width: 25.0%"/>
+<col style="width: 75.0%"/>
+</colgroup>
+<tbody>
+<tr><td><p><strong>2</strong></p>
+<p><strong>ANS</strong></p>
+<p>Garantie Standard</p>
+</td>
+<td><p>La période de garantie standard du Jackery DC-DC Charger est de 24 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+## Service de garantie
+
+Si un produit Jackery tombe en panne pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériaux, Jackery prendra en charge le service de garantie à ses frais, conformément aux lois locales applicables et à sa politique régionale de service après-vente. Le service de garantie peut inclure la réparation, le remplacement ou l'échange du produit. Tout produit réparé, remplacé ou échangé restera couvert pendant la période de garantie restante du produit d'origine.
+
+## Limitée à l\'acheteur et consommateur d\'origine
+
+La garantie d\'un produit Jackery est limitée à l\'acheteur et consommateur d\'origine, elle ne peut pas être transférée à un autre propriétaire.
+
+## Exclusions
+
+La garantie de Jackery ne s\'applique pas à :
+
+- Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n\'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle du produit de Jackery.
+
+- À une réparation tentée par quelqu\'un d\'autre qu\'un établissement agréé.
+
+- Tout autre produit acheté par l\'intermédiaire d\'une vente aux enchères en ligne.
+
+## Droits d\'interprétation
+
+Jackery se réserve le droit d\'interpréter de manière définitive la politique après-vente des clients ci-dessus.

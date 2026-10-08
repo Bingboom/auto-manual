@@ -1,0 +1,55 @@
+{
+  "fcc_absent_in_source": [
+    "de",
+    "it",
+    "pt"
+  ],
+  "warranty_interpretation_repeated_in_source": [
+    "nl"
+  ],
+  "normalizations": [
+    "PDF ligatures and line-wrap hyphens",
+    "discretionary soft hyphens for de/nl long diagram labels",
+    "semantic ordered-list markers and smart quotes"
+  ],
+  "excluded_paper_material": [
+    "covers",
+    "contents",
+    "running language/model headers",
+    "page numbers"
+  ],
+  "invariant_art_text": [
+    "dimensions and units",
+    "A–I keys",
+    "terminal numbers",
+    "product inscriptions"
+  ],
+  "outlined_prose_recovered": {
+    "de": [
+      "pre-checks-before-warning",
+      "wiring-precautions",
+      "warranty-body-4"
+    ],
+    "it": [
+      "installation-safety",
+      "emergency",
+      "pre-checks-before-warning",
+      "wiring-precautions",
+      "daily-precautions",
+      "warranty-body-4"
+    ]
+  },
+  "battery_cell_exclusion_in_source": [
+    "de",
+    "it"
+  ],
+  "english_warning_label_in_source": [
+    "de",
+    "it"
+  ],
+  "faq_source_exceptions": {
+    "pt": "first question has no P1 marker in the original artwork",
+    "de": "F4 answer is English in the original artwork",
+    "es": "question 7 marker is PREGUNTA 7# in the original artwork"
+  }
+}
