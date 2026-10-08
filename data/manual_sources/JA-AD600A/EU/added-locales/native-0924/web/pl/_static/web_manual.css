@@ -2098,13 +2098,34 @@ body {
   }
 }
 
-/* Separate annotated views keep their native Web headings outside the artwork. */
-#furo-main-content img[data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_front.png"] {
+/* Reviewed JBP-3600A EU panels share the English size limits across all nine
+   locales. Native artwork is content-addressed; headings stay outside the art. */
+#furo-main-content img:is(
+  [data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/96e16f6193c3f02545efbf70402055c8604baab742e902e954034c75cba3039c/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/9969623bcbf53b917876af5438b83157eba04cebf8c2b0009466684f97a1820e/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/1a94826b5c24e48fd1337f8c16e1b49a76fcce4b71d7a40d6e52dbee7d69c6c2/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/3c1871342b5a555b49b2ecc27e859163737c3255f51f86d3fcd1062b8fc25c53/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744/overview_front.png"],
+  [data-web-finished-panel-path="assets/ir/63334ce912c6e2124d16f1d159aebd87ab3a25a1840e46dbe7bb0d89d5a7b4a0/overview_front.png"]
+) {
   display: block;
   max-width: 25rem !important;
   margin: 1rem auto 2rem;
 }
-#furo-main-content img[data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_left.png"] {
+#furo-main-content img:is(
+  [data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/0a42032e2a296edaca8f76c7eb0c9bc9b009cb8dee896134b66f235ba771eb7c/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/0c5b47d3b45c6b84f62a2acfdc6a98677fdbc4c4a17b64cd3c5ce6e6e13c99c1/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/258e7756bba265b090ac4c94828a4eeeb8fedae757c3af4a8c42d4e70b15f256/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/1c59c9f8b41065513465f8234fec70976a425811ecc928483267c6096c586075/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db/overview_left.png"],
+  [data-web-finished-panel-path="assets/ir/ae05447328cffb2edf5ac51c3068db513fa0cdb31735bace965a2075e6d7b3f7/overview_left.png"]
+) {
   display: block;
   max-width: 34rem !important;
   margin: 1rem auto 2rem;

@@ -26,9 +26,9 @@
     "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png",
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
   ],
-  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt",
+  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt",
   "bundle_sha256": "42ff3ab716a0aac1e05cac0cdfef338fec63f52f1f029c16a59bd3bcb79b36c6",
-  "content_sha256": "5ff5dd3042cdb5720bf384dcbbffed5391a957ea0951297c021c39151201abb2",
+  "content_sha256": "775efcd1e8ce97707b26f989a184d660d1dfa690c26e6110319a0cc7930cabb7",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1267,7 +1267,7 @@
     "declared_languages": [
       "pt"
     ],
-    "frozen_stylesheet_sha256": "e6161c0bd93f8870dba044810c478e2b85b516e9d524a122e3165400fc2cf3b8",
+    "frozen_stylesheet_sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1",
     "illustration_provenance": {
       "illustrations": [
         {
@@ -3686,7 +3686,7 @@
     "skipped_raw": 0,
     "source_stylesheet": {
       "path": "_static/dcdc_source_local.css",
-      "sha256": "8642577141d2b2eb8f69ca5827d6d00203a9dc6efc3e18d032cadb6793ab9108"
+      "sha256": "af83381a8c46556f6804eef799a0f6efd00f915e68116e9e61b90349af6191b3"
     },
     "title": "Jackery DC-DC Charger",
     "web_contract": {
@@ -4259,7 +4259,7 @@
             "path": "assets/ir/bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207/wiring_fuse_base.svg",
             "sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
           "locale": "pt",
           "page_id": "installation_pt.rst",
           "section": "operation",
@@ -4274,7 +4274,7 @@
             "path": "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png",
             "sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
           "locale": "pt",
           "page_id": "installation_pt.rst",
           "section": "operation",
@@ -4289,7 +4289,7 @@
             "path": "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
             "sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
+          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
           "locale": "pt",
           "page_id": "installation_pt.rst",
           "section": "operation",
@@ -4740,7 +4740,7 @@
       "language": "pt",
       "page_id": "disclaimer_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/disclaimer_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/disclaimer_pt.rst",
       "source_ref": "disclaimer_pt.rst",
       "source_sha256": "991db5c5500e2da5f7829c3765a2b7f1c142ac4e8053d7a5af140120ce6b389f"
     },
@@ -4788,7 +4788,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications_pt.rst:block-0003",
-          "content_sha256": "2052c3866f755da7fc0503bf370079ab6514221329422c666651538898672564",
+          "content_sha256": "fd9bcb83a70df3e591859356a5682ca601a98afb5ded3068b05c506ee7a1bd32",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5579,7 +5579,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/specifications_pt.rst#specification-1",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/specifications_pt.rst#specification-1",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5606,7 +5606,7 @@
       "language": "pt",
       "page_id": "specifications_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/specifications_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/specifications_pt.rst",
       "source_ref": "specifications_pt.rst",
       "source_sha256": "d9f089a5b6cf4a54d798f534a9475c56d581fa2511d58c97a45905c133a5a387"
     },
@@ -5643,7 +5643,7 @@
       "language": "pt",
       "page_id": "dimensions_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/dimensions_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/dimensions_pt.rst",
       "source_ref": "dimensions_pt.rst",
       "source_sha256": "f9551aba3a1fa6ecec310e63b80aa3161714ecfae8ba02aed9479d0c91850e17"
     },
@@ -5680,7 +5680,7 @@
             "assets/ir/f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac/inbox_user_guide.png"
           ],
           "block_id": "box_contents_pt.rst:block-0002",
-          "content_sha256": "8030998ac32caee8c259640c494511ae0a5a2f07f3c0bb69e06e546e0d51db5e",
+          "content_sha256": "8b68883ca1126784d3ad4054b4024a9102a7bb178a69a0a191c4a5feec47ac65",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -6720,7 +6720,7 @@
                   "role": "tip_body"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/box_contents_pt.rst",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/box_contents_pt.rst",
               "token_roles": [
                 "component.special.inbox"
               ],
@@ -6735,7 +6735,7 @@
       "language": "pt",
       "page_id": "box_contents_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/box_contents_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/box_contents_pt.rst",
       "source_ref": "box_contents_pt.rst",
       "source_sha256": "14e15e99dc883ac82f72a1d6c192b3f66f4d26ba9b84e3fad5a6bf00c889a252"
     },
@@ -6764,7 +6764,7 @@
             "assets/ir/c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca/product_overview_base.png"
           ],
           "block_id": "product_overview_pt.rst:block-0002",
-          "content_sha256": "df65116a56fb75c20d6a695a7de9939150b6845655aa84061b78b356296faf1b",
+          "content_sha256": "18eb6910241ef7d50d27678946c25c85c65a9f914e0da9ec9d88d00774a93ae0",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7080,7 +7080,7 @@
                   "role": "captions"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/product_overview_pt.rst#reference-product-overview",
+              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/product_overview_pt.rst#reference-product-overview",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -7107,7 +7107,7 @@
       "language": "pt",
       "page_id": "product_overview_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/product_overview_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/product_overview_pt.rst",
       "source_ref": "product_overview_pt.rst",
       "source_sha256": "f1e420225dec946109179fc82710d160ffa7006fcfa238bb5427984d515d1c39"
     },
@@ -9134,7 +9134,7 @@
       "language": "pt",
       "page_id": "important_safety_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/important_safety_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/important_safety_pt.rst",
       "source_ref": "important_safety_pt.rst",
       "source_sha256": "29b84a18fcf4e96ec466c9355ca94589020f0e344b298f5e3ae60e97a988ca9e"
     },
@@ -9726,7 +9726,7 @@
       "language": "pt",
       "page_id": "faq_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/faq_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/faq_pt.rst",
       "source_ref": "faq_pt.rst",
       "source_sha256": "46ccd90d784fe0c8db4a2bab2b73b453cfd4bfb3e5148387590b765b543705d8"
     },
@@ -9755,7 +9755,7 @@
             "assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png"
           ],
           "block_id": "installation_pt.rst:block-0002",
-          "content_sha256": "4ef5e8210a285763d82e6060610d3b8c150e73b7a0f97a5ad479ed1b588deabb",
+          "content_sha256": "acd9035ab6884c619643911b6fa008a199cc9b4a5c6ad0eb753a6c0a12202cdf",
           "kind": "flow",
           "payload": {
             "anchor": "diagrama-da-instalacao",
@@ -10171,7 +10171,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/installation_pt.rst#reference-installation-diagram",
+                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/installation_pt.rst#reference-installation-diagram",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -11009,7 +11009,7 @@
             "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png"
           ],
           "block_id": "installation_pt.rst:block-0010",
-          "content_sha256": "be79b3eca85b1a23aebb366596c928691e5653d85bd1c6197cdef47c8ed86ca7",
+          "content_sha256": "36db5a5cabdd8bb7ac92e6ec8ad44727c1253a96af88eb7bae47941e317e6e5a",
           "kind": "flow",
           "payload": {
             "anchor": "etapas-da-fiacao",
@@ -11513,9 +11513,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 7,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "bf77e8db54da0ddcb6ea44d0310b7286c8cc0b3798cc27f72c2f924208bff1a4",
+                            "source_fragment_sha256": "baa07b6a4cd75892e1870b263786252a648f0727d0ef89b6b15eab1d2ee1a498",
                             "web_replace_key": "reference.wiring-fuse"
                           },
                           "schema_version": "component-spec/v1",
@@ -11575,7 +11575,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/installation_pt.rst#reference-wiring-fuse",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/installation_pt.rst#reference-wiring-fuse",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -11973,9 +11973,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 2,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "254ff13cc43e90c3ca7255f437ef5e2e65f708c427f11c98aaf246151bae918f",
+                            "source_fragment_sha256": "7847b302b15de3b4775b31a187ce77fe604fa83f184cb2f94ec8894fd163995f",
                             "web_replace_key": "reference.wiring-acc"
                           },
                           "schema_version": "component-spec/v1",
@@ -12015,7 +12015,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/installation_pt.rst#reference-wiring-acc",
+                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/installation_pt.rst#reference-wiring-acc",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -13131,7 +13131,7 @@
             "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
           ],
           "block_id": "installation_pt.rst:block-0014",
-          "content_sha256": "a2440c4acb096efef95d691b20cd959cb9f5eade477920424e92549127c9fd0d",
+          "content_sha256": "ff450b939675dd3ae13db669b725b807a5a0b6adae3c5f0ba490c2eec8b99e7d",
           "kind": "flow",
           "payload": {
             "anchor": "conectando-o-produto-e-a-estacao-de-energia-portatil",
@@ -13412,9 +13412,9 @@
                     "captions_origin": "carrier",
                     "capture_following_lines": 3,
                     "composite_locale": "",
-                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/assets/ja_ad600a_eu_shared/connection_base.png",
+                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
                     "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "7100432d7bc8d93f675576cd70c66f999d48cc3097d4f6c6153c7a6aa4b4cdcf",
+                    "source_fragment_sha256": "1389b8665bd97be984c5c87a46287427ee8ad5c036d9d79bd00c2f13844c25dc",
                     "web_replace_key": "reference.charger-connection"
                   },
                   "schema_version": "component-spec/v1",
@@ -13458,7 +13458,7 @@
                       "role": "captions"
                     }
                   ],
-                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/installation_pt.rst#reference-charger-connection",
+                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/installation_pt.rst#reference-charger-connection",
                   "token_roles": [
                     "component.special.reference-figure"
                   ],
@@ -13813,7 +13813,7 @@
       "language": "pt",
       "page_id": "installation_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/installation_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/installation_pt.rst",
       "source_ref": "installation_pt.rst",
       "source_sha256": "0309a513835bb841599a54f0e5f9682c43b5c4a4c48de26755c23a7bd27f16f5"
     },
@@ -14537,7 +14537,7 @@
       "language": "pt",
       "page_id": "warranty_pt.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-eight-source/pt/warranty_pt.rst",
+      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/pt/warranty_pt.rst",
       "source_ref": "warranty_pt.rst",
       "source_sha256": "ab1ab053261b5bec56bca18dd62e63a2d23cf53af246dd5e93b41a263bf06de0"
     }

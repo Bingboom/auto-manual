@@ -23,3 +23,5 @@ The 7.6 mounting precaution in all eight locales uses a plain paragraph and the 
 Publication admission under MA-267 declares each native RST page/slot through the shared assembly planner and enrolls all eight targets in prepared_component_admission.json. Requirements follow the independently reviewed English structure; only three source-authored charger tables per language retain exact reviewed-node debt pins in the existing categories. No admission check is bypassed.
 
 The reviewed source-local presentation.css now travels inside each generated MyST document as well as its hash-pinned IR metadata. Portal assembly uses global CSS and does not consume per-target conf.py CSS lists; embedding the source-local rules prevents native status widths, lamp wrapping and diagram caption placement from being lost. The shared exporter body is preserved verbatim; no generated HTML is edited.
+
+Packaging label blocks are constrained to card width and allow long native words to wrap. This source-local presentation fix does not change any source wording, illustration, numbering, or the published English.
