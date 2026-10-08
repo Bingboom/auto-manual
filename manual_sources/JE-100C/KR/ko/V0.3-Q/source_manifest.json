@@ -39,8 +39,8 @@
   "data_root": "manual_sources/JE-100C/KR/ko/V0.3-Q/phase2",
   "page_manifest": {
     "path": "docs/manifests/manual_je100c_kr-ko.yaml",
-    "size": 912,
-    "sha256": "9896dfe0fd4e437c5c80166bd2a0c5921a282e612c6169305945651be634172b"
+    "size": 897,
+    "sha256": "6b897cc6324bd18eb9bb8f9372bd1e5fe646e074d28c4cd343ee3a0fafde8e52"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je100c_kr_ko_illustrations.json",
@@ -49,12 +49,12 @@
   },
   "templates": [
     {
-      "path": "docs/templates/page_je100c_kr-ko/safety_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/01_safety.rst",
       "size": 3272,
       "sha256": "222471ecb4c7d694c1802d2c84cd399c6cf0a714b9f9acac5b4f331a938da195"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/symbols_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/02_symbols.rst",
       "size": 2816,
       "sha256": "9368fe5cc0c08f03131e2d448f19468639c75d52757e99e04ae60c0427bf36c3"
     },
@@ -64,17 +64,17 @@
       "sha256": "ec8d4587ab2d0529e7bc559c1b2c6a286f62af5c690e504a3dc83b2ce0a8e755"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/product_overview_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/04_overview.rst",
       "size": 400,
       "sha256": "302f5006a62eed01ed68dbf168f0f7e5ca26c1dd10559b7b7321e6b95c7c883a"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/lcd_display_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/05_lcd.rst",
       "size": 5472,
       "sha256": "c53ee567912b146da317bab69565ade40e7bd1f0cd519c5014dd87cd9632d5bc"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/operation_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/06_operations.rst",
       "size": 2906,
       "sha256": "19e8df1fb30acd2623c2f0f8aa193a1397e1eb720d2f69fa0171e14bcf60c6d9"
     },
@@ -84,17 +84,17 @@
       "sha256": "62f7afbf9a98274795be8c2f34e38c7950d8a3f8815828fd0aa83eeae833306a"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/storage_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/08_storage.rst",
       "size": 531,
       "sha256": "8ca1d6b5713a6a17e505fba21e0d1d45172dd6d96fa872a0086c3cbfbf5738a7"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/specifications_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/09_specifications.rst",
       "size": 1729,
       "sha256": "0305d36e006f31b24b93cccfad4c8ebdb2ca84c4046aa089544b0ab6ef4f3944"
     },
     {
-      "path": "docs/templates/page_je100c_kr-ko/warranty_ko.rst",
+      "path": "docs/templates/page_je100c_kr-ko/10_warranty.rst",
       "size": 616,
       "sha256": "f0defc7a0df4deaf6b8788aadb23cc113c920a690a36b6596a8a81dd1642926d"
     }

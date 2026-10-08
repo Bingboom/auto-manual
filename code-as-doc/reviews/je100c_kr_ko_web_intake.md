@@ -39,4 +39,4 @@ Operator requested removal of the inherited partial frame. The reused EU operati
 
 Operator authorized submission/publication; MA-270 scopes engineering and Git-only release. The portal now registers KR and 한국어 so the target is discoverable after its snapshot merges. Family-manifest fold includes the Korean target as an explicit JE-100C diff. The Git-only release receipt binds check/Markdown/HTML source identity and passes cold IR replay and asset-tamper rejection.
 
-CI registration uses established semantic template filenames and two target identity fixture rows, so the new KR target is checked rather than added to the skip baseline. Production builds continue to use the frozen Korean source snapshot.
+CI registration registers the numbered semantic template roles and two target identity fixture rows, so the new KR target is checked rather than added to the skip baseline. Production builds continue to use the frozen Korean source snapshot.

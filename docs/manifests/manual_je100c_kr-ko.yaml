@@ -1,12 +1,12 @@
 manifest_id: manual_je100c_kr_ko
 pages:
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/safety_ko.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/symbols_ko.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/01_safety.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/02_symbols.rst}
   - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/02_whats_in_the_box.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/product_overview_ko.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/lcd_display_ko.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/operation_ko.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/04_overview.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/05_lcd.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/06_operations.rst}
   - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/07_charging.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/storage_ko.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/specifications_ko.rst}
-  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/warranty_ko.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/08_storage.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/09_specifications.rst}
+  - {type: rst_include, lang: ko, file: templates/page_je100c_kr-ko/10_warranty.rst}
