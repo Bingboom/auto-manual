@@ -16,3 +16,6 @@
 #furo-main-content .hb-source-status-table col:nth-child(3) {width:22%!important;}
 #furo-main-content .hb-source-status-table col:nth-child(4) {width:32%!important;}
 #furo-main-content .hb-source-status-table :is(.hb-lamp-green,.hb-lamp-red,.hb-lamp-blinking,.hb-lamp-off) {max-width:100%;white-space:normal;}
+
+/* Keep long source-language words inside the nine packaging cards. */
+#furo-main-content .hb-inbox-label {width:100%;min-width:0;overflow-wrap:anywhere;}
