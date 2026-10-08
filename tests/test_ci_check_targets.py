@@ -50,6 +50,7 @@ class TestCiCheckTargets(unittest.TestCase):
 
         self.assertEqual(
             (
+                ("JE-100C", "KR", "ko"),
                 ("JE-1000F", "KR", "ko"),
                 ("JE-2000E", "KR", "ko"),
                 ("JE-3000C", "KR", "ko"),

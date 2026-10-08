@@ -70,7 +70,7 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertEqual(cards[0]["edition"], "EUUK")
         available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
         self.assertEqual(available, ["en", "fr"])
-        self.assertEqual(len(cards[0]["language_options"]), 14)
+        self.assertEqual(len(cards[0]["language_options"]), 15)
         self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
 
     def test_cn_and_jp_publications_keep_market_and_language_identity(self):

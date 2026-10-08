@@ -791,3 +791,5 @@ JE-1000E-SIL_US,US,TRUE,specifications,OUTPUT PORTS,3,3,dc_expansion,,DC Expansi
 JE-1000E-SIL_US,US,TRUE,specifications,OUTPUT PORTS,3,4,short_circuit,,Maximum Short Circuit Current and Duration,,1,,,1600A/1.25ms,,,,,,JE-1000E-SIL,,,,,,,,,,,,en,,,
 JE-1000E-SIL_US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,1,charge_temperature,,Charge Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-1000E-SIL,,,,,,,,,,,,en,,,
 JE-1000E-SIL_US,US,TRUE,specifications,ENVIRONMENTAL OPERATING TEMPERATURE,4,2,discharge_temperature,,Discharge Temperature,,1,,,-4°F to 113°F / -20°C to 45°C,,,,,,JE-1000E-SIL,,,,,,,,,,,,en,,,
+JE-100C_KR,KR,TRUE,specifications,일반 정보,1,1,product_name,,제품 이름,,1,,,Jackery 휴대용 파워뱅크 100D,,,,,,JE-100C,,,,,,,,,,,,ko,제품 이름,,Jackery 휴대용 파워뱅크 100D
+JE-100C_KR,KR,TRUE,specifications,일반 정보,1,2,model_no,,모델 번호,,1,,,JE-100C,,,,,,JE-100C,,,,,,,,,,,,ko,모델 번호,,JE-100C
