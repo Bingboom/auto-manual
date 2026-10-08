@@ -74,3 +74,9 @@ Final cold replay passes all three locale package comparisons, native text cover
 Operator comparison exposed undersized LCD indicator art under the shared fixed 3rem square fit. Source-local geometry increases icon width to 4.5rem (72px, +50%), preserves intrinsic SVG height, expands the icon column from 11% to 14% and reduces horizontal icon-cell padding. All 53 artwork bytes remain unchanged. Desktop 1280×900 and mobile 390×844 checks across EN/FR/ES confirm seven loaded icons, no image/cell overlap and no page overflow. Mobile retains the shared internal 640px table scroll rather than shrinking the icons.
 
 LCD final cold replay passes strict Sphinx, frozen byte parity, unchanged native coverage, all 21 symbol rows, CSS caption-frame admission and wrong-input rejection in all three languages.
+
+## Power composition correction
+
+Operator comparison exposed the missing native rounded outer frame, separated full-width Note and loose state/instruction spacing. Group the existing reference-figure and Note ComponentSpecs without changing their words or art bytes. CSS uses shared panel/color tokens to restore the frame, desktop right-bottom inset Note and native light label/white body. Native state labels are enlarged; instruction rectangles are moved closer. EN/FR/ES pass desktop 1280×900 and mobile 390×844 visual checks, with five live labels and Note inside the frame, no page overflow. Mobile reuses the shared readable stacked labels to avoid the French long-press text overlapping the baked clock mark; the Note follows inside the same frame.
+
+Power final cold replay passes strict Sphinx, frozen byte parity, unchanged native copy/artwork census, 21 symbol admissions, CSS caption-frame admission and wrong-input rejection. The 29 reference/flow/callout/frozen-evidence tests pass.

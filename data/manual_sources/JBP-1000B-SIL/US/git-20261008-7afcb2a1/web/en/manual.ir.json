@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "fd03240c079989c815c4ae07a3b7e51212b7979ab3ba4dd9ec3526681851b5ba",
-  "content_sha256": "88a78d7ffdcf58bc4685caf0e66d8d9082acab92acb5bfae7d8d840ac0749f19",
+  "bundle_sha256": "d51346aa02678c741223053ff111fdf027e742fafcf0e1356b0202c1b1ac774e",
+  "content_sha256": "e31bba243ddbf8c28478a4897be001cf2d5eeca38b1e9a58ba1a3ca7a8927829",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -115,7 +115,7 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 92,
+    "block_count": 91,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-FCC": 1,
@@ -1947,7 +1947,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "3e602eb54789fe9a6e86efea824be1990d674084c6dd7f962881ccc27c5158ba"
+      "sha256": "fa9536b51f39a5941dda1333d793f1214e32eb14d31c7cd10899b275f6387276"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -3866,258 +3866,250 @@
             "assets/power.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "c0b4dbdc65c1193689683b818ebbe8097291cc0422728e24aaee1e38e9fea1b4",
+          "content_sha256": "b1f6d649d26530376a73f8fabc0dec4154e7b70b3691a88eb3b3d637f8f9b591",
           "kind": "flow",
           "payload": {
-            "carrier_flow": [
+            "children": [
               {
-                "alt": "power",
-                "kind": "image",
-                "source": "assets/power.png"
-              },
-              {
-                "children": [
+                "carrier_flow": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "On"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
+                    "alt": "power",
+                    "kind": "image",
+                    "source": "assets/power.png"
                   },
                   {
                     "children": [
                       {
-                        "kind": "text",
-                        "text": "Press once"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "On"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
                       {
-                        "kind": "text",
-                        "text": "Oﬀ"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press once"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
                       {
-                        "kind": "text",
-                        "text": "Press and hold for 3s"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "line"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  },
-                  {
-                    "children": [
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Oﬀ"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
                       {
-                        "kind": "text",
-                        "text": "3s"
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "Press and hold for 3s"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      },
+                      {
+                        "children": [
+                          {
+                            "kind": "text",
+                            "text": "3s"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line"
+                            }
+                          }
+                        },
+                        "role": "container"
                       }
                     ],
                     "kind": "group",
                     "presentation": {
                       "html": {
                         "attributes": {
-                          "class": "line"
+                          "class": "line-block"
                         }
                       }
                     },
                     "role": "container"
                   }
                 ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "line-block"
-                    }
-                  }
-                },
-                "role": "container"
-              }
-            ],
-            "component_spec": {
-              "assets": [
-                {
-                  "asset_ref": "assets/power.png",
-                  "locale_policy": "shared",
-                  "role": "source_art"
-                }
-              ],
-              "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-              "language": "en",
-              "metadata": {
-                "base_art_layout": {
-                  "art_sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2",
-                  "labels": [
+                "component_spec": {
+                  "assets": [
                     {
-                      "line": 0,
-                      "rect": [
-                        71,
-                        10,
-                        27,
-                        9
-                      ]
-                    },
-                    {
-                      "line": 1,
-                      "rect": [
-                        71,
-                        20,
-                        27,
-                        7
-                      ]
-                    },
-                    {
-                      "line": 2,
-                      "rect": [
-                        71,
-                        29,
-                        27,
-                        9
-                      ]
-                    },
-                    {
-                      "line": 3,
-                      "rect": [
-                        71,
-                        38,
-                        27,
-                        7
-                      ]
-                    },
-                    {
-                      "line": 4,
-                      "rect": [
-                        77,
-                        46,
-                        12,
-                        8
-                      ]
+                      "asset_ref": "assets/power.png",
+                      "locale_policy": "shared",
+                      "role": "source_art"
                     }
                   ],
-                  "mobile_labels": "overlay",
-                  "panel_fill": "#ffffff",
-                  "panel_top": 0,
-                  "preserve_frame": true
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "base_art_layout": {
+                      "art_sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2",
+                      "labels": [
+                        {
+                          "line": 0,
+                          "rect": [
+                            71,
+                            10,
+                            27,
+                            9
+                          ]
+                        },
+                        {
+                          "line": 1,
+                          "rect": [
+                            71,
+                            18,
+                            27,
+                            7
+                          ]
+                        },
+                        {
+                          "line": 2,
+                          "rect": [
+                            71,
+                            29,
+                            27,
+                            9
+                          ]
+                        },
+                        {
+                          "line": 3,
+                          "rect": [
+                            71,
+                            36,
+                            27,
+                            7
+                          ]
+                        },
+                        {
+                          "line": 4,
+                          "rect": [
+                            77,
+                            46,
+                            12,
+                            8
+                          ]
+                        }
+                      ],
+                      "mobile_labels": "stack",
+                      "panel_fill": "#ffffff",
+                      "panel_top": 0,
+                      "preserve_frame": true
+                    },
+                    "caption_centers_pct": null,
+                    "captions_embedded": false,
+                    "captions_origin": "carrier",
+                    "capture_following_lines": 5,
+                    "composite_locale": "",
+                    "image_key": "power",
+                    "presentation_mode": "base-art-live-copy",
+                    "source_fragment_sha256": "7eee304b7982a18b667ba836dc8f5c694902a7e2a11fbf1d8c434c91fa18f9ab",
+                    "web_replace_key": ""
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "power",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "power",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "live",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    },
+                    {
+                      "content": [
+                        {
+                          "html": "On",
+                          "text": "On"
+                        },
+                        {
+                          "html": "Press once",
+                          "text": "Press once"
+                        },
+                        {
+                          "html": "Oﬀ",
+                          "text": "Oﬀ"
+                        },
+                        {
+                          "html": "Press and hold for 3s",
+                          "text": "Press and hold for 3s"
+                        },
+                        {
+                          "html": "3s",
+                          "text": "3s"
+                        }
+                      ],
+                      "content_kind": "ordered_labels",
+                      "role": "captions"
+                    }
+                  ],
+                  "source_ref": "en/pdf-page-7#reference-power",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
                 },
-                "caption_centers_pct": null,
-                "captions_embedded": false,
-                "captions_origin": "carrier",
-                "capture_following_lines": 5,
-                "composite_locale": "",
-                "image_key": "power",
-                "presentation_mode": "base-art-live-copy",
-                "source_fragment_sha256": "7eee304b7982a18b667ba836dc8f5c694902a7e2a11fbf1d8c434c91fa18f9ab",
-                "web_replace_key": ""
+                "kind": "component"
               },
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "power",
-                  "content_kind": "inline_text",
-                  "role": "reference_id"
-                },
-                {
-                  "content": "power",
-                  "content_kind": "inline_text",
-                  "role": "accessibility_label"
-                },
-                {
-                  "content": "live",
-                  "content_kind": "inline_text",
-                  "role": "caption_mode"
-                },
-                {
-                  "content": "equal",
-                  "content_kind": "inline_text",
-                  "role": "caption_layout"
-                },
-                {
-                  "content": [
-                    {
-                      "html": "On",
-                      "text": "On"
-                    },
-                    {
-                      "html": "Press once",
-                      "text": "Press once"
-                    },
-                    {
-                      "html": "Oﬀ",
-                      "text": "Oﬀ"
-                    },
-                    {
-                      "html": "Press and hold for 3s",
-                      "text": "Press and hold for 3s"
-                    },
-                    {
-                      "html": "3s",
-                      "text": "3s"
-                    }
-                  ],
-                  "content_kind": "ordered_labels",
-                  "role": "captions"
-                }
-              ],
-              "source_ref": "en/pdf-page-7#reference-power",
-              "token_roles": [
-                "component.special.reference-figure"
-              ],
-              "variant": "semantic-fallback"
-            },
-            "kind": "component",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/operations#block-3"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "operations:block-0004",
-          "content_sha256": "d54c0952d354f7ec3d2cfe60561c502f5b9963a7d66490ab9f6629327dab1009",
-          "kind": "flow",
-          "payload": {
-            "carrier_flow": [
               {
-                "children": [
+                "carrier_flow": [
                   {
                     "children": [
                       {
@@ -4125,91 +4117,106 @@
                           {
                             "children": [
                               {
-                                "kind": "text",
-                                "text": "Note"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-label"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours."
+                                    "text": "Note"
                                   }
                                 ],
-                                "kind": "paragraph"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-body"
+                                "header": false,
+                                "kind": "table_cell",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": "manual-callout-label"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours."
+                                      }
+                                    ],
+                                    "kind": "paragraph"
+                                  }
+                                ],
+                                "header": false,
+                                "kind": "table_cell",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": "manual-callout-body"
+                                    }
+                                  }
                                 }
                               }
-                            }
+                            ],
+                            "kind": "table_row"
                           }
                         ],
-                        "kind": "table_row"
+                        "kind": "table_body"
                       }
                     ],
-                    "kind": "table_body"
-                  }
-                ],
-                "kind": "table",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "manual-callout-table manual-callout-table"
+                    "kind": "table",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "manual-callout-table manual-callout-table"
+                        }
+                      }
                     }
                   }
-                }
+                ],
+                "component_spec": {
+                  "assets": [],
+                  "component_id": "HB-CALLOUT-STRIP",
+                  "language": "en",
+                  "metadata": {},
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "Note",
+                      "content_kind": "inline_text",
+                      "role": "label"
+                    },
+                    {
+                      "content": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+                      "content_kind": "rich_text",
+                      "role": "body"
+                    }
+                  ],
+                  "source_ref": "native-pdf/page-7",
+                  "token_roles": [
+                    "component.callout"
+                  ],
+                  "variant": "note"
+                },
+                "kind": "component"
               }
             ],
-            "component_spec": {
-              "assets": [],
-              "component_id": "HB-CALLOUT-STRIP",
-              "language": "en",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "Note",
-                  "content_kind": "inline_text",
-                  "role": "label"
-                },
-                {
-                  "content": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
-                  "content_kind": "rich_text",
-                  "role": "body"
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "native-power-panel"
+                  ]
                 }
-              ],
-              "source_ref": "native-pdf/page-7",
-              "token_roles": [
-                "component.callout"
-              ],
-              "variant": "note"
+              }
             },
-            "kind": "component",
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/operations#block-4"
+          "source_ref": "native-pdf/operations#block-3"
         },
         {
           "asset_refs": [],
-          "block_id": "operations:block-0005",
+          "block_id": "operations:block-0004",
           "content_sha256": "f1f00db05b334564651831091f4376170c634843f8e0c5c4840e965ccb64caba",
           "kind": "flow",
           "payload": {
@@ -4223,13 +4230,13 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/operations#block-5"
+          "source_ref": "native-pdf/operations#block-4"
         },
         {
           "asset_refs": [
             "assets/lcd-button.png"
           ],
-          "block_id": "operations:block-0006",
+          "block_id": "operations:block-0005",
           "content_sha256": "7243f48b85d68d6c5b8b24c3677c9887c0489d98b016f1bbd634dd50a625ad1e",
           "kind": "flow",
           "payload": {
@@ -4511,7 +4518,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/operations#block-6"
+          "source_ref": "native-pdf/operations#block-5"
         }
       ],
       "language": "en",
@@ -4519,7 +4526,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "69defd789b09a50a8d10b184656babb7eb0c508da4d2809a60527e400f7fd126"
+      "source_sha256": "770b02d5ad4ed518d707cea1e27254f4ec432128242e9c7f3934c3a945fe2159"
     },
     {
       "blocks": [

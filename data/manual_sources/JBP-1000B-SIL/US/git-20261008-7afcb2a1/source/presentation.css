@@ -47,3 +47,21 @@
 #furo-main-content .hb-lcd-col-description { width:54%; }
 #furo-main-content table.hb-lcd-icon-table td.hb-lcd-icon { padding-inline:.35rem !important; }
 #furo-main-content .hb-lcd-icon-art { width:4.5rem !important; height:auto !important; }
+
+/* CSS owns the native power panel and its inset live Note, never the base art. */
+.native-power-panel { position:relative; border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius); padding:.6rem; margin:.6rem 0 1.35rem; }
+.native-power-panel .hb-reference-figure { max-width:none; margin:0; }
+#furo-main-content .native-power-panel table.manual-callout-table { position:absolute; right:3%; bottom:5%; width:60% !important; margin:0 !important; font-size:.85rem; line-height:1.3; }
+#furo-main-content .native-power-panel .manual-callout-label { width:18% !important; padding:.7rem .5rem !important; background:var(--hb-surface) !important; }
+#furo-main-content .native-power-panel .manual-callout-body { padding:.7rem !important; background:var(--hb-paper) !important; }
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:max(10px,3.2cqw) !important; }
+@media(max-width:760px) {
+ #furo-main-content .native-power-panel table.manual-callout-table { position:static; width:100% !important; margin:.4rem 0 0 !important; }
+}
+
+@media(max-width:760px) {
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label { font-size:.88rem !important; }
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:1rem !important; margin-top:.7rem; }
+}

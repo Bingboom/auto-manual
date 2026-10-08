@@ -26,9 +26,9 @@
   ],
   "sequence": "English accepted before native French/Spanish production",
   "final_verification": {
-    "accepted_at": "2026-10-08T22:56:59.097484+00:00",
-    "content_sha256": "906b060df5145f2afb34cf599ff4ad63312ae487643b9db74a9de5b792853d64",
-    "stylesheet_sha256": "3e602eb54789fe9a6e86efea824be1990d674084c6dd7f962881ccc27c5158ba",
+    "accepted_at": "2026-10-08T23:15:23.625332+00:00",
+    "content_sha256": "753a47f48db3106aabcb780fb6d94ea1ada3a550236fd7bfaf8a0724d51f6db4",
+    "stylesheet_sha256": "fa9536b51f39a5941dda1333d793f1214e32eb14d31c7cd10899b275f6387276",
     "native_visible_lines": 399,
     "viewports": [
       [
@@ -149,6 +149,25 @@
         "panelWidth": 358,
         "tableWidth": 640
       }
+    },
+    "power_panel_css_frame": true,
+    "power_note_inset_desktop": true,
+    "power_mobile_labels": "shared readable stack",
+    "power_panel_checks": {
+      "desktop": {
+        "note_inside": true,
+        "note_position": "absolute",
+        "page_overflow": false,
+        "css_border": "2px",
+        "live_labels": 5
+      },
+      "mobile": {
+        "note_inside": true,
+        "note_position": "static",
+        "page_overflow": false,
+        "css_border": "2px",
+        "live_labels": 5
+      }
     }
   },
   "verification_history": [
@@ -233,6 +252,132 @@
       "fcc_bold_labels": 2,
       "fcc_desktop_columns": 2,
       "fcc_mobile_columns": 1
+    },
+    {
+      "accepted_at": "2026-10-08T22:56:59.097484+00:00",
+      "content_sha256": "906b060df5145f2afb34cf599ff4ad63312ae487643b9db74a9de5b792853d64",
+      "stylesheet_sha256": "3e602eb54789fe9a6e86efea824be1990d674084c6dd7f962881ccc27c5158ba",
+      "native_visible_lines": 399,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "US IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      }
     }
   ]
 }

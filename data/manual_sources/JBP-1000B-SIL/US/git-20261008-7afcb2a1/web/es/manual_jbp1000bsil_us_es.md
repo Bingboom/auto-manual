@@ -49,6 +49,24 @@
 #furo-main-content table.hb-lcd-icon-table td.hb-lcd-icon { padding-inline:.35rem !important; }
 #furo-main-content .hb-lcd-icon-art { width:4.5rem !important; height:auto !important; }
 
+/* CSS owns the native power panel and its inset live Note, never the base art. */
+.native-power-panel { position:relative; border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius); padding:.6rem; margin:.6rem 0 1.35rem; }
+.native-power-panel .hb-reference-figure { max-width:none; margin:0; }
+#furo-main-content .native-power-panel table.manual-callout-table { position:absolute; right:3%; bottom:5%; width:60% !important; margin:0 !important; font-size:.85rem; line-height:1.3; }
+#furo-main-content .native-power-panel .manual-callout-label { width:18% !important; padding:.7rem .5rem !important; background:var(--hb-surface) !important; }
+#furo-main-content .native-power-panel .manual-callout-body { padding:.7rem !important; background:var(--hb-paper) !important; }
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:max(10px,3.2cqw) !important; }
+@media(max-width:760px) {
+ #furo-main-content .native-power-panel table.manual-callout-table { position:static; width:100% !important; margin:.4rem 0 0 !important; }
+}
+
+@media(max-width:760px) {
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label { font-size:.88rem !important; }
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="0"],
+ #furo-main-content [data-reference-id="power"] .hb-reference-live-label[data-source-line="2"] { font-size:1rem !important; margin-top:.7rem; }
+}
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">ES</span> <span>IMPORTANTE</span></h1>
@@ -103,9 +121,7 @@
 
 ## ENCENDIDO/APAGADO
 
-<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="power" data-source-fragment-sha256="8c9a89327f12aa442ae5001db31f6153b0a4a71961c3cdd9fbd624d2feaf8f8f" data-web-base-art-ref="power" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="power.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/power.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:71%;--hb-y:10%;--hb-width:27%;--hb-height:9%">Encendido</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:71%;--hb-y:20%;--hb-width:27%;--hb-height:7%">Presione una vez</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:71%;--hb-y:29%;--hb-width:27%;--hb-height:9%">Apagado</span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:71%;--hb-y:38%;--hb-width:27%;--hb-height:7%">Mantén presionado durante 3 segundos</span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:77%;--hb-y:46%;--hb-width:12%;--hb-height:8%">3s</span></div></div></figure>
-
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTA</td><td class="manual-callout-body"><p>El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.</p></td></tr></tbody></table>
+<div class="native-power-panel"><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="power" data-source-fragment-sha256="8c9a89327f12aa442ae5001db31f6153b0a4a71961c3cdd9fbd624d2feaf8f8f" data-web-base-art-ref="power" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-preserve-art-frame="true" data-reference-id="power.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/power.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:71%;--hb-y:10%;--hb-width:27%;--hb-height:9%">Encendido</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:71%;--hb-y:18%;--hb-width:27%;--hb-height:7%">Presione una vez</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:71%;--hb-y:29%;--hb-width:27%;--hb-height:9%">Apagado</span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:71%;--hb-y:36%;--hb-width:27%;--hb-height:7%">Mantén presionado durante 3 segundos</span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:77%;--hb-y:46%;--hb-width:12%;--hb-height:8%">3s</span></div></div></figure><table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTA</td><td class="manual-callout-body"><p>El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.</p></td></tr></tbody></table></div>
 
 ## ENCENDER/APAGAR PANTALLA LCD
 

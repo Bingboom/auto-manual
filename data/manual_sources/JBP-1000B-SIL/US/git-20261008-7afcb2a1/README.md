@@ -33,3 +33,5 @@ The native preface uses the shared `hb-preface-heading`, `hb-preface-region` and
 FCC is bound to the existing HB-SPECIAL-FCC ComponentSpec: native opening/NOTE copy on the left, interference measures/MODIFICATION on the right; mobile follows left then right. Its compact mark-above-copy geometry is source-local CSS. The original transparent FCC SVG is added once to the shared catalog after the existing raster fails the matte check. The validator requires the component, mark, four list measures and two bold native labels.
 
 LCD indicator artwork uses a 4.5rem native-aspect display box with a 14% icon column and reduced horizontal cell padding. This source-local geometry keeps stacked readouts readable in all three locales and preserves internal mobile table scrolling. No artwork is recropped.
+
+The power figure and its existing Note ComponentSpec share a native-power-panel flow group. CSS draws the complete rounded frame and desktop inset Note; On/Off labels and instructions use compact source rectangles. The existing shared stacked mobile-label treatment keeps long instructions readable inside the same outer frame. All artwork bytes remain unchanged.
