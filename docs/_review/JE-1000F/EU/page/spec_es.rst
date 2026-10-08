@@ -25,7 +25,7 @@
    \hline
    \HBTypeSpecLabel{Dimensiones} & \HBTypeSpecValue{31,4 x 20,1 x 23,4 cm} \\
    \hline
-   \HBTypeSpecLabel{Ciclo de vida} & \HBTypeSpecValue{6000 ciclos de carga hasta 70 \% + de capacidad} \\
+   \HBTypeSpecLabel{Ciclo de vida} & \HBTypeSpecValue{4000 ciclos de carga hasta 70 \% + de capacidad} \\
    \end{tabularx}
    \end{spectable}
 
@@ -124,7 +124,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Ciclo de vida</th>
-            <td class="hb-spec-value">6000 ciclos de carga hasta 70 % + de capacidad</td>
+            <td class="hb-spec-value">4000 ciclos de carga hasta 70 % + de capacidad</td>
           </tr>
         </tbody>
       </table>
