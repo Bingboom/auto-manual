@@ -1,8 +1,8 @@
 {
   "final_verification": {
-    "accepted_at": "2026-10-08T22:42:02.341492+00:00",
+    "accepted_at": "2026-10-08T22:56:59.099059+00:00",
     "content_sha256": "f0f565c7d19ee9426b0ba4ebf36bc2ac3f06e386aa16cd2033d67c60f2c9a77d",
-    "stylesheet_sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde",
+    "stylesheet_sha256": "3e602eb54789fe9a6e86efea824be1990d674084c6dd7f962881ccc27c5158ba",
     "native_visible_lines": 444,
     "viewports": [
       [
@@ -30,7 +30,100 @@
     "fcc_measures": 4,
     "fcc_bold_labels": 2,
     "fcc_desktop_columns": 2,
-    "fcc_mobile_columns": 1
+    "fcc_mobile_columns": 1,
+    "lcd_icon_width_px": 72,
+    "lcd_icon_aspect_ratio": "native",
+    "lcd_browser_metrics": {
+      "desktop": {
+        "icons": [
+          {
+            "cell": 91.4453125,
+            "height": 77.140625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 42.8515625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 78.8515625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 50.59375,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 41.140625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 46.6953125,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 36.96875,
+            "loaded": true,
+            "width": 72
+          }
+        ],
+        "pageOverflow": false
+      },
+      "mobile": {
+        "icons": [
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          }
+        ],
+        "pageOverflow": false,
+        "panelWidth": 358,
+        "tableWidth": 640
+      }
+    }
   },
   "verification_history": [
     {
@@ -81,6 +174,39 @@
       "preface_native_title_and_badge": true,
       "preface_background": "transparent",
       "preface_paragraphs": 4
+    },
+    {
+      "accepted_at": "2026-10-08T22:42:02.341492+00:00",
+      "content_sha256": "f0f565c7d19ee9426b0ba4ebf36bc2ac3f06e386aa16cd2033d67c60f2c9a77d",
+      "stylesheet_sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde",
+      "native_visible_lines": 444,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "ES IMPORTANTE",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1
     }
   ]
 }

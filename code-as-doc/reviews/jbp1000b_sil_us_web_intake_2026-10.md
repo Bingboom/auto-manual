@@ -68,3 +68,9 @@ All three desktop/mobile FCC views passed at 1280×900 and 390×844, with two/on
 Final FCC recipe replay passed: 155 artifacts (51 exports and 104 archive/preview files), manifest SHA-256 4bebaf75a50ea2d35f1c3e1204f8bac88b4da6b94e3c38e510113e8b07f56ae8.
 
 Final cold replay passes all three locale package comparisons, native text coverage, 21 symbol admissions and CSS caption-frame admission. Negative probes reject missing preface and FCC roles; the wrong-input-hash probe is also rejected. Final French punctuation rebuild was reloaded and visually checked.
+
+## LCD icon size correction
+
+Operator comparison exposed undersized LCD indicator art under the shared fixed 3rem square fit. Source-local geometry increases icon width to 4.5rem (72px, +50%), preserves intrinsic SVG height, expands the icon column from 11% to 14% and reduces horizontal icon-cell padding. All 53 artwork bytes remain unchanged. Desktop 1280×900 and mobile 390×844 checks across EN/FR/ES confirm seven loaded icons, no image/cell overlap and no page overflow. Mobile retains the shared internal 640px table scroll rather than shrinking the icons.
+
+LCD final cold replay passes strict Sphinx, frozen byte parity, unchanged native coverage, all 21 symbol rows, CSS caption-frame admission and wrong-input rejection in all three languages.

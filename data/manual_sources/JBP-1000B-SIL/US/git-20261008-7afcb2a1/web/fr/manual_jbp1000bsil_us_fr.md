@@ -42,6 +42,13 @@
 #furo-main-content .hb-fcc-opening { display:block; }
 #furo-main-content .hb-fcc-mark { width:2.6rem !important; margin:0 0 .4rem !important; }
 
+/* Native LCD glyphs need a larger cell footprint, including stacked readouts. */
+#furo-main-content .hb-lcd-col-icon { width:14%; }
+#furo-main-content .hb-lcd-col-name { width:26%; }
+#furo-main-content .hb-lcd-col-description { width:54%; }
+#furo-main-content table.hb-lcd-icon-table td.hb-lcd-icon { padding-inline:.35rem !important; }
+#furo-main-content .hb-lcd-icon-art { width:4.5rem !important; height:auto !important; }
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">FR</span> <span>IMPORTANT</span></h1>
