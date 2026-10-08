@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "b7c7026b3eebea72e38e055b3807501331f2b886a294c821867b80ef24eaa7c4",
-  "content_sha256": "9bd0c2a9e93cddb527826755de3aa93747bed4366901037406dae63c0a1dd58a",
+  "bundle_sha256": "e8f22bb7a25951e8a5569a908816916fe4c90df4603933d7a28b2f0e3dfc56bb",
+  "content_sha256": "b0334ebee98ba52fa3a097cc82935decdc84872b107cd44fb27d9c0a5f72f5fe",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -4918,7 +4918,7 @@
         {
           "asset_refs": [],
           "block_id": "positioning:block-0009",
-          "content_sha256": "e116496b1154305192e31887834be311a117b2fb6f164bc453b7f6f3c5fef456",
+          "content_sha256": "0f99bd4c5306d2c1a44069b0a31a1cc6872af993da20a21626a744b653fc5653",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -4957,13 +4957,7 @@
                                       }
                                     ],
                                     "kind": "list_item"
-                                  }
-                                ],
-                                "kind": "list",
-                                "ordered": false
-                              },
-                              {
-                                "children": [
+                                  },
                                   {
                                     "children": [
                                       {
@@ -5048,7 +5042,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#positioning",
       "source_ref": "native-pdf/positioning",
-      "source_sha256": "f5d42ddae42854eb591cb66728d7c7a2b5f4b96942c44e503ab58758bfacac59"
+      "source_sha256": "7083c19e9c6b3e07d5cbb23c3db14c18c2ee3ebf8edbc06bdc5450026be0a31d"
     },
     {
       "blocks": [

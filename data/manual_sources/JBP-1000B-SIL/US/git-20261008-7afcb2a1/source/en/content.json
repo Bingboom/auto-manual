@@ -2599,13 +2599,7 @@
                                       "text": "Do not install the product on the non bearing structure, including gypsum board, thermal insulating wall, hollow brick, or the product may fall."
                                     }
                                   ]
-                                }
-                              ]
-                            },
-                            {
-                              "kind": "list",
-                              "ordered": false,
-                              "children": [
+                                },
                                 {
                                   "kind": "list_item",
                                   "children": [

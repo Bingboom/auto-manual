@@ -88,3 +88,7 @@ The generic six-row table repeated states and missed the existing LCD mode prese
 EN/FR/ES browser checks pass at 1280×900 and 390×844. Desktop image/table heights match: EN 389.164px, FR/ES 425.984px. Artwork remains complete, with no image/table overlap or page overflow. Mobile uses a 144px-wide native-aspect illustration above a 544px internally scrollable table in the 358px panel. The 28 existing LCD mode/section/flow/frozen-evidence tests pass; three strict Sphinx builds and native line/artwork census remain valid. This source refinement does not rerun the initial full-suite claim.
 
 LCD mode final cold replay passes all three locales: frozen parity, strict Sphinx, unchanged native text/artwork coverage, 21 symbol admissions, caption-frame admission and wrong-input rejection. Documentation link integrity passes with 0 broken links.
+
+## Bracket caution list spacing
+
+The English bracket caution carrier split its two bullets into separate unordered lists, creating an extra inter-list margin. Merge them into one two-item list, matching the existing French/Spanish carrier structure; preserve the ComponentSpec words and shared callout CSS. All three desktop/mobile checks confirm one list, two bullets, 5.4375px between items and no page overflow. Three strict Sphinx rebuilds preserve native coverage and all 53 artwork bytes.

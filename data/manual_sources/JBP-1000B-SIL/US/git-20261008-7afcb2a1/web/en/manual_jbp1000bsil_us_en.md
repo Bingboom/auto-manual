@@ -161,7 +161,7 @@
 
 ## WITH BRACKETS
 
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><ul><li>Do not install the product on the non bearing structure, including gypsum board, thermal insulating wall, hollow brick, or the product may fall.</li></ul><ul><li>Avoid the electrical wires, water pipes, gas pipes and other facilities inside the walls.</li></ul></td></tr></tbody></table>
+<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">CAUTION</td><td class="manual-callout-body"><ul><li>Do not install the product on the non bearing structure, including gypsum board, thermal insulating wall, hollow brick, or the product may fall.</li><li>Avoid the electrical wires, water pipes, gas pipes and other facilities inside the walls.</li></ul></td></tr></tbody></table>
 
 <span id="vertical"></span>
 
