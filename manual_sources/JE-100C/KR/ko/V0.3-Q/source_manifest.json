@@ -354,8 +354,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 747,
-      "sha256": "2803f8a99379a3a21d19aa19f97f4ffa2f4b06cabc8c2cf2ed99b8e822119e0a"
+      "size": 744,
+      "sha256": "5533699e5f632aaa0d9d13a9a7d2e48d046110bfb9dfd4af495e2f86bfc75970"
     },
     {
       "path": "phase2/Variable_Defaults.csv",
