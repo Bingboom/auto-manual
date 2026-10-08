@@ -192,8 +192,19 @@ and repository evidence; malformed architecture follows the evolution fallback,
 while older summaries without this optional field remain readable.
 The drawing binds nodes by stable ID rather than array order; missing diagram
 nodes follow the same malformed-history fallback.
-A semantic SVG draws the enterprise input, shared production core, human and
-agent access, documents, derived corpus and capabilities. Native disclosures
+A semantic SVG draws the enterprise input, shared content and capability platform, human and
+agent access, documents, derived corpus and capabilities. The existing enterprise
+path expands into business tables (product information, content modules,
+specifications, multilingual content and business review), then validation and
+traceable snapshots. Planned PLM/ERP synchronization and field mapping enter
+these tables. The shared core is labelled 「auto-manual」:
+content authority and reusable Shared IR form its foundation, while document
+production, professional file processing and content queries are its capabilities.
+Content Authority, Assembly, Renderers and Publish describe the document-production
+path within this platform. Git-native originals and approved assets remain content
+sources alongside tables; the diagram does not require every manual to start in
+Bitable. The drawing uses short node labels and a shared solid/dashed legend;
+definitions, detailed responsibilities and evidence remain in native disclosures, which
 hold the capability/skill/hook evidence and planned MCP scope. Shared IR is
 consistently labelled 「Shared IR（共享底稿）」 in the system view and evolution.
 PLM/ERP integration and MCP exposure remain planned, with dashed borders and

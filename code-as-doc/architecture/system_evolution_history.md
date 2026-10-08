@@ -346,7 +346,7 @@ title: 从一条自动化脚本，到持续演进的说明书工作台
 intro: 从自动生成一份说明书开始，记录系统怎样逐步支持评审、发布、样式复用和 AI 查询，为什么发生这些变化，以及后续准备向哪些方向发展。
 architecture:
   title: 人、AI 和企业系统，共用一套内容与生产能力
-  intro: 人打开工作台使用内容，AI 调用专业能力，企业系统提供正式数据。三类入口围绕同一套可信内容与文档生产体系扩展。
+  intro: 人打开工作台使用内容，AI 调用专业能力，企业系统提供正式数据。平台共用可信内容与可复用底稿，同时支持文档生产、专业文件处理和内容查询。
   human:
   - id: human_portal
     title: Portal／Workspace／Bot
@@ -372,16 +372,24 @@ architecture:
     - file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md
   enterprise:
   - id: enterprise_tables
-    title: 多维表 → 数据快照
+    title: 多维表（业务数据层）
     status: recorded
-    summary: 现有生产读取多维表导出的数据；快照保留版本，支持重建与核验。
+    summary: 业务人员在多维表中维护产品信息、内容模块、规格参数、多语言内容，并开展维护与评审；生产系统读取经检查后导出的数据。
     evidence:
     - file:auto-manual:user-guide/two_plane_map.md
     - file:auto-manual:tools/data/sync_data.py
+  - id: data_snapshot
+    title: 数据校验与快照
+    status: recorded
+    summary: 同步时检查字段与结构、规范化数据，并在快照清单中记录导出时间、文件哈希与变更；后续生产使用可追溯的输入，支持重建与核验。
+    evidence:
+    - file:auto-manual:tools/sync_schema_sensor.py
+    - file:auto-manual:tools/data/sync_data_records.py
+    - file:auto-manual:tools/data/sync_data_runtime.py
   - id: enterprise_systems
-    title: PLM／ERP → 数据接口或同步
+    title: PLM／ERP · 企业权威数据源
     status: planned
-    summary: 计划引用产品、SKU、BOM、物料和生命周期数据。正式记录由企业系统维护，文档侧不再复制维护。
+    summary: 后续计划通过数据同步和字段映射，把产品、SKU、BOM、物料和生命周期数据接入多维表业务层；这些正式记录仍以企业系统为准。接入目前未上线。
     evidence:
     - file:auto-manual:code-as-doc/architecture/System Evolution Strategy.md
   core:
@@ -393,9 +401,9 @@ architecture:
     - file:auto-manual:user-guide/two_plane_map.md
     - file:auto-manual:tools/rtd_portal_assets/source_registry.yaml
   - id: document_production
-    title: 组装、样式组件与 Shared IR（共享底稿）
+    title: 文档生产与发布
     status: ongoing
-    summary: 数据与模板按型号、区域和语言组装，经检查与人工审核后发布。Web 已实现整本底稿及样式复用；Word／IDML 仍各有适配路径，共用覆盖持续完善。
+    summary: 按事实类型选定内容来源（Content Authority），按型号、区域和语言组装（Assembly），经各格式渲染器输出（Renderers），审核后发布（Publish）。Web 已实现整本 Shared IR（共享底稿）与样式复用；Word／IDML 仍各有适配路径，共用覆盖持续完善。
     evidence:
     - file:auto-manual:tools/web/document_source.py
     - file:auto-manual:tools/web/document_ir.py

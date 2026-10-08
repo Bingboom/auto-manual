@@ -2404,7 +2404,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 `docs/publish/publish_manifest.json`，阶段门进度来自执行台账。“当前工作”内的“当前重点”按
 配置里的 `focus.lanes` 列出“交付主线 / 同期支撑 / IR 试点 / 稳定后扩展 / 按需后置”，数字取自发布清单、语料快照和
 `docs/manifests/skeletons/*/blueprint.yaml`，进度取自各线列出的阶段门或台账行。
-“系统架构”标签（`/workspace/system/#tab-architecture`）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。MCP 与 PLM／ERP 接入用虚线及“未来方向”标注；当前 Agent／Bot 和多维表快照单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
+“系统架构”标签（`/workspace/system/#tab-architecture`）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
 
 修改状态配置后运行 `python -m tools.rtd.system_workspace check`（加 `--online` 可再核对 PR 与链接）。
 构建同时生成页面版本回执 `_static/system-workspace-revision.json`。「入口与数据来源」内可展开「页面版本与更新」，页首与演变引言不再显示版本信息及辅助跳转提示。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](dev/rtd_manual_portal.md#published-version-and-refresh)。

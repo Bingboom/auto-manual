@@ -169,6 +169,11 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertIn("AI 文件页码自动修正", page)
         self.assertIn("现有 hooks：什么时候自动检查", page)
         architecture_panel = page.split('id="tab-architecture"', 1)[1].split('id="tab-evolution"', 1)[0]
+        self.assertIn("多维表 · 业务数据层", architecture_panel)
+        self.assertIn("数据校验与快照", architecture_panel)
+        self.assertIn("同步与映射", architecture_panel)
+        self.assertIn("Content Authority → Assembly → Renderers → Publish", architecture_panel)
+        self.assertNotIn("内容与能力平台", architecture_panel)
         self.assertNotIn("读到内容以后", architecture_panel)
         self.assertNotIn("产品知识 · 阅读与理解", architecture_panel)
         self.assertEqual(page.count('class="sw-evolution-details"'), 13)
@@ -208,6 +213,9 @@ class SystemEvolutionTests(unittest.TestCase):
         self.assertEqual(diagram["agent_mcp"]["status"], "planned")
         self.assertEqual(diagram["agent_existing"]["status"], "recorded")
         self.assertEqual(diagram["enterprise_systems"]["status"], "planned")
+        self.assertEqual(diagram["enterprise_tables"]["status"], "recorded")
+        self.assertEqual(diagram["data_snapshot"]["status"], "recorded")
+        self.assertEqual(diagram["document_production"]["status"], "ongoing")
         for group in ("human", "agent", "enterprise", "core", "surfaces", "capabilities", "hooks"):
             for row in DATA["architecture"][group]:
                 for ref in row["evidence"]:
@@ -234,6 +242,7 @@ class SystemEvolutionTests(unittest.TestCase):
 
     def test_malformed_access_view_falls_back_instead_of_claiming_capabilities(self):
         for mutate in (lambda a: a.update(agent=[]), lambda a: a["agent"].pop(),
+                       lambda a: a.update(enterprise=[r for r in a["enterprise"] if r["id"] != "data_snapshot"]),
                        lambda a: a.update(core="wrong"),
                        lambda a: a["agent"][0].update(status="launched"),
                        lambda a: a["agent"][1].update(id=a["human"][0]["id"]),
