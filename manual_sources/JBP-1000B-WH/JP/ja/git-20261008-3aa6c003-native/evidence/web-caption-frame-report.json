@@ -1,0 +1,13 @@
+[
+  {
+    "source_ref": "ja/pdf-page-16#reference-car-charge",
+    "asset_ref": "assets/car-charge.svg",
+    "labels": [
+      {
+        "line": 2,
+        "status": "passed",
+        "baked_fill_fraction": 0.0
+      }
+    ]
+  }
+]

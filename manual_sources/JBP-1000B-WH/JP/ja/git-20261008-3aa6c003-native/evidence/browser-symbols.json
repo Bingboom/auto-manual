@@ -1,0 +1,76 @@
+{
+  "desktop": {
+    "images": 54,
+    "overflow": 0,
+    "scrollWidth": 1280,
+    "symbolImages": [
+      {
+        "loaded": true,
+        "src": "assets/symbol_do_not_dismantle.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_warning_triangle.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_read_manual.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_no_open_flame.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_keep_away_from_children.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/native-li_ion.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_weee.svg"
+      }
+    ],
+    "unloaded": [],
+    "width": 1280
+  },
+  "mobile": {
+    "images": 54,
+    "overflow": 0,
+    "scrollWidth": 390,
+    "symbolImages": [
+      {
+        "loaded": true,
+        "src": "assets/symbol_do_not_dismantle.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_warning_triangle.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_read_manual.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_no_open_flame.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_keep_away_from_children.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/native-li_ion.svg"
+      },
+      {
+        "loaded": true,
+        "src": "assets/symbol_weee.svg"
+      }
+    ],
+    "unloaded": [],
+    "width": 390
+  }
+}

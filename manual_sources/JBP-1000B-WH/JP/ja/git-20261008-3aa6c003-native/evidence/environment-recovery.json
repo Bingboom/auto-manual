@@ -1,0 +1,8 @@
+{
+  "original_claim_correction": "Original five failures occurred in unchanged main code but were caused by validation environment, not proven code defects. Four JP failures selected ignored live-mirror CSVs instead of committed signal-word fixtures; the provenance failure selected an unresolved macOS /var temp alias. Moving temp files under the repo then introduced one relative-path backport expectation failure; it passes outside the repo.",
+  "final_environment": "Clean worktree without ignored root data snapshots; canonical TMPDIR outside the repository at /Users/pika/.codex/validation-tmp/jbp1000b-jp; scratch-only PyMuPDF 1.28.0 and inherited existing dependencies. No manifest or shared logic changed for these recoveries.",
+  "targeted_recovery_tests": 6,
+  "result": "passed",
+  "log": "environment-recovery.log",
+  "full_validation": "Final full unittest is running; the intermediate in-repo-TMPDIR run was stopped only after reproducing its exact environment cause. Original and intermediate logs retained; no CI waiver."
+}

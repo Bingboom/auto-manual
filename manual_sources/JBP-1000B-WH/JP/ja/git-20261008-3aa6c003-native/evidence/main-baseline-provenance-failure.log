@@ -1,0 +1,21 @@
+[env-preflight] WARN env.lock: 7 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), cryptography 50.0.0 (lock 49.0.0), numpy 2.5.2 (lock 2.5.1), packaging 26.3 (lock 26.2), soupsieve 2.9.2 (lock 2.8.4)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+E
+======================================================================
+ERROR: test_provenance_names_release_path_from_frozen_files_only (tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_manual_knowledge.py", line 264, in test_provenance_names_release_path_from_frozen_files_only
+    legacy = publication_identity(root, source, model='M', region='EU')['provenance']
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/rtd/publication_catalog.py", line 14, in publication_identity
+    relative = source.relative_to(root.resolve())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.real/.bin/python-3.12-mac-arm64/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpylufh70i/web/M/EU/md/manual.md' is not in the subpath of '/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpylufh70i/web'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.041s
+
+FAILED (errors=1)

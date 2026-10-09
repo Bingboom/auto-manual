@@ -1,0 +1,79 @@
+{
+  "target": {
+    "model": "JBP-1000B-WH",
+    "region": "JP",
+    "language": "ja"
+  },
+  "base_commit": "eb00c120a16c4d50781ff341064961bea16e6083",
+  "checks": [
+    {
+      "command": "python rebuild.py --output <fresh directory>",
+      "result": "passed",
+      "detail": "17 native chapters, independent prepared-document admission, zero legacy debt/issues; caption capsule baked_fill_fraction=0"
+    },
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html <fresh Web package> <fresh HTML>",
+      "result": "passed",
+      "log": "sphinx-sealed.log"
+    },
+    {
+      "command": "python -m unittest tests.test_jbp1000b_wh_jp_native_web",
+      "result": "passed",
+      "tests": 8,
+      "detail": "PDF-free deterministic cold replay; committed frozen-package parity; text/art tamper, unlisted asset and identity rejection; missing installation step rejected; native anomalies and reuse identity"
+    },
+    {
+      "command": "python -m unittest tests.test_asset_intake",
+      "result": "passed",
+      "tests": 21,
+      "runtime": "scratch-only Python with pymupdf 1.28.0 and existing root dependency path"
+    },
+    {
+      "command": "python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP",
+      "result": "passed-with-existing-terminology-warnings",
+      "boundary": "Shared JP regression only. Existing ignored local phase2 CSV/attachments copied byte-identically from root checkout for offline validation; no live reads/writes or registration."
+    },
+    {
+      "command": "python -m ruff check build.py integrations tools tests scripts <source package>/rebuild.py",
+      "result": "passed"
+    },
+    {
+      "command": "python tools/check_maintainability_guardrails.py",
+      "result": "passed"
+    },
+    {
+      "command": "python tools/check_doc_link_integrity.py",
+      "result": "passed",
+      "broken_links": 0
+    },
+    {
+      "command": "browser at 1280x900 and 390x844",
+      "result": "passed",
+      "image_count": 54,
+      "detail": "No unloaded images, page/internal overflow, labels outside panels or broken anchors. Source CSS fits mobile tables. Native SVG clipping groups checked visually."
+    },
+    {
+      "command": "tmp/jbp1000b-jp/asset-env/bin/python -m unittest -v",
+      "result": "failed-with-five-independently-reproduced-main-baseline-failures",
+      "exit_code": 1,
+      "tests": 5225,
+      "duration_seconds": 3181.06,
+      "failures": 1,
+      "errors": 4,
+      "skipped": 35,
+      "log": "unittest-final-summary.log",
+      "baseline": "All 5 reproduced separately; relevant main code/tests/template are byte-identical. See main-baseline-failures.json and its 3 reproduction logs.",
+      "runtime": "scratch-only PyMuPDF 1.28.0; inherited existing root dependencies with 7 requirements-lock differences warned",
+      "full_local_log": "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tmp/jbp1000b-jp/unittest-pinned-final.log",
+      "full_local_log_sha256": "61352f1c91bde0b90023276158bf31a80297f9667de35ec45d0cabc8260ba230"
+    }
+  ],
+  "recovery_notes": [
+    "Initial regression lacked ignored local snapshot/attachments; retried after byte-identical offline materialization and passed.",
+    "Root Python has pymupdf 1.28.2; pinned asset tests require 1.28.0. Full validation now uses scratch-only venv with the pinned version and inherited existing dependencies. No dependency manifest changed."
+  ],
+  "delivery_boundary": "Local candidate complete. No remote push, PR, merge, publication or business-plane write. AGENTS.md section 8.5 forbids opening a PR after any failed check; exception for the final five baseline failures remains pending. Remote repository live-verified PUBLIC; draft PR text/images/provenance would be publicly visible and public upload approval remains pending.",
+  "historical_record": true,
+  "superseded_by": "validation-release.json",
+  "correction": "The five earlier failures were local ignored-snapshot and macOS TMPDIR environment failures, not proven main defects. See environment-recovery.json and clean full suite."
+}

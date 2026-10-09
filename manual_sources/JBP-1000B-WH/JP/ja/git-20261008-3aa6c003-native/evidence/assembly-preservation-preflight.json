@@ -1,0 +1,12 @@
+{
+  "base": "c92cbc3a4debeddff196a3677acb46dad3ae909f",
+  "existing_files": 8562,
+  "existing_content_preserved": true,
+  "existing_target_records_preserved": 123,
+  "aggregate_changes": [
+    "publish_manifest.json",
+    "web/index.md"
+  ],
+  "target_count": 124,
+  "scope": "JBP-1000B-WH/JP/ja only"
+}
