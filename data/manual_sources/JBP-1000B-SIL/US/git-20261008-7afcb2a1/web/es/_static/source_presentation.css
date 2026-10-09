@@ -90,3 +90,6 @@
  #furo-main-content .native-vertical-result img { position:static; width:100% !important; height:auto !important; max-width:100%; }
  #furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.85rem !important; }
 }
+
+/* Native vertical-stand installation: each step occupies a full-width row. */
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) .native-step-grid { grid-template-columns:minmax(0,1fr); }

@@ -92,6 +92,9 @@
  #furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.85rem !important; }
 }
 
+/* Native vertical-stand installation: each step occupies a full-width row. */
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) .native-step-grid { grid-template-columns:minmax(0,1fr); }
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">US</span> <span>IMPORTANT</span></h1>

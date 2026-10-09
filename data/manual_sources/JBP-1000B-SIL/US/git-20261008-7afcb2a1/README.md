@@ -39,3 +39,5 @@ The power figure and its existing Note ComponentSpec share a native-power-panel 
 LCD screen On/Off uses the existing HB-TABLE-LCD-MODE/two-state-three-action component with two merged three-row state cells, grey state/action columns and the shared rounded grid. Source-local portrait geometry stretches the unchanged native illustration to the table height on desktop; mobile stacks it above the internally scrollable table. All native text stays editable.
 
 The vertical-stand opening keeps a native plain heading with its chapter navigation, an editable preparation caption inside the unchanged native prep artwork, and an unframed result picture spanning the left heading/intro/preparation. The existing HB-SPECIAL-REFERENCE-FIGURE base-art-live-copy renderer owns caption placement; source-local geometry stacks the two images on mobile and preserves native aspect ratios.
+
+Vertical-stand steps 1–3 each occupy a full-width row in EN/FR/ES, preserving editable native words and original artwork dimensions/aspect ratios. Desktop/mobile browser acceptance confirms three equal-width stacked cards with no page overflow.
