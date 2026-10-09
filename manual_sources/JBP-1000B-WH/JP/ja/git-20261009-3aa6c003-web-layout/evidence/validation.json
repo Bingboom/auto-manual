@@ -1,0 +1,67 @@
+{
+ "target": {
+  "model": "JBP-1000B-WH",
+  "region": "JP",
+  "language": "ja"
+ },
+ "technical_version": "git-20261009-3aa6c003-web-layout",
+ "derived_from": "git-20261008-3aa6c003-native (unchanged)",
+ "reviewed_candidate_commit": "4352254",
+ "acceptance": {
+  "operator_quote": "上线提交发布",
+  "date": "2026-10-09",
+  "merge": "operator review (AGENTS.md §8.6)"
+ },
+ "checks": [
+  {
+   "command": "python derive_web_layout.py (twice)",
+   "result": "passed",
+   "detail": "idempotent; every recipe output byte-identical to the package art"
+  },
+  {
+   "command": "python rebuild.py --output <fresh directory>",
+   "result": "passed",
+   "detail": "16 page slots / 12 print chapters; independent prepared-document admission issues=[]; publication_eligible=true"
+  },
+  {
+   "command": "python -m sphinx -n -W --keep-going -b html web/ja <fresh HTML>",
+   "result": "passed",
+   "log": "strict-sphinx.log"
+  },
+  {
+   "command": "python -m unittest tests.test_jbp1000b_wh_jp_web_layout tests.test_jbp1000b_wh_jp_native_web tests.test_symbol_asset_admission tests.test_caption_frame_admission tests.test_web_frozen_source_evidence",
+   "result": "passed",
+   "log": "target-tests.log"
+  },
+  {
+   "command": "python -m unittest",
+   "result": "5238/5239 passed, 36 skipped",
+   "log": "unittest-full-summary.log",
+   "detail": "single failure is a Python 3.13 argparse wrapping golden in test_bitable_schema_cli, unrelated"
+  },
+  {
+   "command": "python -m ruff check build.py integrations tools tests scripts <package>/rebuild.py <package>/derive_web_layout.py",
+   "result": "passed",
+   "log": "ruff.log"
+  },
+  {
+   "command": "python -m tools.check_maintainability_guardrails",
+   "result": "passed",
+   "log": "maintainability.log"
+  },
+  {
+   "command": "python -m tools.check_doc_link_integrity",
+   "result": "passed",
+   "log": "doc-links.log"
+  },
+  {
+   "command": "browser 1280x900 and 390x844",
+   "result": "passed",
+   "detail": "browser-acceptance.json"
+  }
+ ],
+ "not_run": [
+  "build.py check (JE-1000F JP regression): no phase2/build code changed; the native package records it as regression only"
+ ],
+ "release_boundary": "Release evidence is sealed at the merged engineering commit (Git-only transaction step 3); Hello-Docs publish-only PR and RTD verification follow."
+}

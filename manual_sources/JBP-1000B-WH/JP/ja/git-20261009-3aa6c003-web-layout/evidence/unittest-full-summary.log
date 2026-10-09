@@ -1,0 +1,9 @@
+python -m unittest  (full suite at candidate 4352254; sandbox Python 3.13, pinned PyMuPDF 1.28.0)
+FAIL: test_all_command_help_and_offline_failures_match_frozen_contract (tests.test_bitable_schema_cli.BitableSchemaCliTests.test_all_command_help_and_offline_failures_match_frozen_contract)
+Ran 5239 tests in 1305.852s
+FAILED (failures=1, skipped=36)
+Only failure: tests.test_bitable_schema_cli help-text golden differs in argparse line wrapping under Python 3.13
+(repository pins Python 3.12; CI is authoritative). The module does not touch this package or Web publishing.
+An earlier run had 7 more failures from isolated Sphinx subprocesses without user-site jinja2; installing the
+pinned dependencies into the system site cleared them. The acceptance commit changes only this package, its
+test module and docs; target-tests.log is the post-acceptance re-run.
