@@ -186,8 +186,8 @@
     },
     {
       "path": "evidence/target-tests.log",
-      "size": 4235,
-      "sha256": "f17fb293223fc3c0f0a66b275e33c94a7d9f3296f2dd4804cb5c2ac9c76bd5ec"
+      "size": 2473,
+      "sha256": "67cce8ed64e7722158779a861d783c4bb684a25f895336b8203f98bebc4d8962"
     },
     {
       "path": "render.py",
