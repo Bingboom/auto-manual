@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="20.0" height="20.0" viewBox="195.0 324.0 20.0 20.0"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+</defs>
+<g><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_4)"><path transform="matrix(1,0,0,-1,205.2199,325.14753)" d="M0 0C-4.847 0-8.777-3.929-8.777-8.777-8.777-13.626-4.847-17.555 0-17.555 4.849-17.555 8.778-13.626 8.778-8.777 8.778-3.929 4.849 0 0 0" fill="#dcddde" />
+<path transform="matrix(1,0,0,-1,211.1805,338.89125)" d="M0 0-.994-.994-12.061 10.073-11.067 11.066Z" fill="#454546" />
+<path transform="matrix(1,0,0,-1,205.2199,340.95265)" d="M0 0C-3.881 0-7.028 3.146-7.028 7.028-7.028 10.908-3.881 14.054 0 14.054 3.881 14.054 7.027 10.908 7.027 7.028 7.027 3.146 3.881 0 0 0M0 15.805C-4.847 15.805-8.777 11.876-8.777 7.028-8.777 2.179-4.847-1.75 0-1.75 4.849-1.75 8.778 2.179 8.778 7.028 8.778 11.876 4.849 15.805 0 15.805" fill="#454546" />
+</g></g></g></svg>

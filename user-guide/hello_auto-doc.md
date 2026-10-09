@@ -2195,4 +2195,4 @@ JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共�
 JBP-3600A EU 九语的正视图、左视图采用同一显示尺寸上限（25rem、34rem），保留各语图片原稿和比例，窄屏内按可用宽度缩放。
 
 
-SlimPower H1（JE-1000E-WH / JP / ja）使用[批准的日文冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/README.md)，保留原候选与原稿文字、图框和安全符号。`approval.json` 绑定原稿哈希、已审候选及独立章节/组件要求；回放前先验证批准身份，再通过共享 Manual IR / ComponentSpec 输出。日规沿用现有区域准入，不登记 phase2 或提升全局资产。正式发布仍按 Git-only 单语凭据、Hello-Docs 生成式发布 PR、RTD 回执/资源和桌面手机逐段核验，打印版本未知时保持未知。
+SlimPower H1（JE-1000E-WH / JP / ja）使用[批准的日文冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)，保留原候选与原稿文字、图框和安全符号。按操作者“封面 不要放进去网页版里面啊”，新 Web 版本从安全说明开始，印刷封面仅保留在原稿与来源存档；其余 16 章逐字节保持。`approval.json` 绑定原稿哈希、已审候选及独立章节/组件要求；回放前先验证批准身份，再通过共享 Manual IR / ComponentSpec 输出。日规沿用现有区域准入，不登记 phase2 或提升全局资产。正式发布仍按 Git-only 单语凭据、Hello-Docs 生成式发布 PR、RTD 回执/资源和桌面手机逐段核验，打印版本未知时保持未知。
