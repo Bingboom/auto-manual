@@ -7,6 +7,7 @@ from unittest import mock
 
 from tools import publish_asset_pool
 from tools.publish_asset_pool import POOL_SEGMENT, pool_publish_assets
+from tools.rtd.deployment_receipt import _dependencies
 
 SHARED = b"\x89PNG shared artwork"
 UNIQUE = b"\x89PNG unique artwork"
@@ -57,6 +58,59 @@ def _sources(text: str) -> list[str]:
 
 
 class PublishAssetPoolTests(unittest.TestCase):
+    def test_css_only_background_keeps_its_bytes_and_resolves_for_deployment(self) -> None:
+        for quote in ('"', "'", ""):
+            with self.subTest(quote=quote), TemporaryDirectory() as td:
+                root = Path(td)
+                manual = "JE-1/JP/ja/md/manual.md"
+                _tree(root, assets={"JE-1/JP/ja/md/assets/warning.svg": UNIQUE}, manuals={
+                    manual: f'<style>.signal {{ background: url({quote}assets/warning.svg{quote}); }}</style>',
+                })
+                report = pool_publish_assets(output_dir=root)
+                resources = _dependencies(manual.replace(".md", ".html"), (root / manual).read_bytes(),
+                                          "https://example.invalid/")
+                self.assertEqual(1, report.unique_assets)
+                self.assertEqual(1, len(resources))
+                self.assertEqual(UNIQUE, (root / resources.pop()).read_bytes())
+
+    def test_css_style_attribute_keeps_query_fragment_and_logical_identity(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            manual = "JE-1/JP/ja/md/manual.md"
+            _tree(root, assets={"JE-1/JP/ja/md/assets/native warning.svg": SHARED}, manuals={
+                manual: '<span style="mask-image: url(\'assets/native%20warning.svg?revision=1#shape\')" '
+                        'data-web-finished-panel-path="assets/native warning.svg"></span>',
+            })
+            pool_publish_assets(output_dir=root)
+            text = (root / manual).read_text()
+            self.assertIn("?revision=1#shape", text)
+            self.assertIn('data-web-finished-panel-path="assets/native warning.svg"', text)
+            resources = _dependencies(manual.replace(".md", ".html"), text.encode(), "https://example.invalid/")
+            self.assertEqual(1, len(resources))
+            self.assertEqual(SHARED, (root / resources.pop()).read_bytes())
+
+    def test_css_external_data_absolute_and_empty_urls_stay_unchanged(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            css = ('<style>.a { background: url("https://example.invalid/a.svg"); } '
+                   '.b { background: url(data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=); } '
+                   '.c { background: url(/absolute/c.svg); } .d { background: url(""); }</style>')
+            _tree(root, assets={"assets/panel.png": SHARED}, manuals={
+                "manual.md": css + '<img src="assets/panel.png">',
+            })
+            pool_publish_assets(output_dir=root)
+            self.assertIn(css, (root / "manual.md").read_text())
+
+    def test_losing_a_css_only_reference_fails_the_pooling_guard(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            _tree(root, assets={"assets/warning.svg": UNIQUE}, manuals={
+                "manual.md": '<style>.signal { background: url("assets/warning.svg"); }</style>',
+            })
+            with mock.patch.object(publish_asset_pool, "_rewrite_references", return_value=0):
+                with self.assertRaisesRegex(RuntimeError, "changed what these manuals point at"):
+                    pool_publish_assets(output_dir=root)
+
     def test_identical_artwork_across_languages_should_keep_one_copy(self) -> None:
         with TemporaryDirectory() as td:
             root = Path(td)

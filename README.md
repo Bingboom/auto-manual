@@ -19,6 +19,7 @@ Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/w
 FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
 SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/README.md)。
 封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide.md)。
+Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
 JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。

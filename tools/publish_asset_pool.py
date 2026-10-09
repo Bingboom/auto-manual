@@ -13,7 +13,7 @@ the headroom that new languages need.
 
 This module resolves every reference, stores one copy per unique content hash
 under a pool, repoints the references, and drops what is left over. Rewriting
-touches the ``src`` attribute only: ``data-web-finished-panel-path`` carries
+touches image sources and inline CSS ``url(...)`` references: ``data-web-finished-panel-path`` carries
 the logical asset identity that the published stylesheet selects on, so it has
 to survive unchanged.
 
@@ -36,6 +36,10 @@ POOL_SEGMENT = "_pool"
 
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
 _MARKDOWN_IMAGE_RE = re.compile(r"(!\[[^\]]*\]\()(\s*)([^)\s]+)")
+_CSS_URL_RE = re.compile(
+    r"(url\(\s*)(?:([\"'])(.*?)\2|([^\"')\s]+))(\s*\))",
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 @dataclass(frozen=True)
@@ -106,6 +110,10 @@ def _reference_values(text: str):
         yield match.group(3)
     for match in _MARKDOWN_IMAGE_RE.finditer(text):
         yield match.group(3)
+    for match in _CSS_URL_RE.finditer(text):
+        raw = match.group(3) if match.group(2) else match.group(4)
+        if raw:
+            yield raw
 
 
 def _collect_references(output_dir: Path) -> set[Path]:
@@ -148,7 +156,19 @@ def _rewrite_references(output_dir: Path, *, pooled_for: dict[Path, Path]) -> in
             rewritten += 1
             return f"{match.group(1)}{match.group(2)}{target}"
 
-        updated = _MARKDOWN_IMAGE_RE.sub(replace_markdown, _HTML_IMG_SRC_RE.sub(replace_html, text))
+        def replace_css(match: re.Match[str]) -> str:
+            nonlocal rewritten
+            raw = match.group(3) if match.group(2) else match.group(4)
+            target = pooled_target(raw) if raw else None
+            if target is None:
+                return match.group(0)
+            rewritten += 1
+            quote = match.group(2) or ""
+            return f"{match.group(1)}{quote}{target}{quote}{match.group(5)}"
+
+        updated = _CSS_URL_RE.sub(
+            replace_css, _MARKDOWN_IMAGE_RE.sub(replace_markdown, _HTML_IMG_SRC_RE.sub(replace_html, text)),
+        )
         if updated != text:
             markdown_path.write_text(updated, encoding="utf-8")
     return rewritten
