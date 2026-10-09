@@ -3458,5 +3458,23 @@
       "size": 84874,
       "sha256": "bf11595a317f4ff65eff23f85c53f1f1f984849a14e251283f073959d5423d00"
     }
-  ]
+  ],
+  "publication_authorization": {
+    "registry_id": "MA-278",
+    "registry_path": "code-as-doc/dev/merge_authorizations.md",
+    "operator_request": "推上发布",
+    "granted_on": "2026-10-09",
+    "reviewed_content_git_ref": "0d789b9795c279e6a354eb4bd1df7cdfe5105716",
+    "scope": {
+      "model": "JHP-3000D",
+      "region": "US",
+      "languages": [
+        "en",
+        "fr",
+        "es"
+      ]
+    },
+    "mode": "git-only",
+    "online_table_writes": false
+  }
 }
