@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "c833f6b2b56bfe945aa719d3be023e7e23aec22a2adc10480efa63e63123cf59",
-  "content_sha256": "f438b5a9398340a57c5b9600fde69fcdb7c9826970e3f035f76c17d8648f9c34",
+  "bundle_sha256": "91697fe5d48bb0fa6a3e529316b4cd2fede2a84a85cf004bc7513bccfdfbaa8b",
+  "content_sha256": "90895cc9c73b0b2ee516c1d9d772edd3214f953c1256196c2242a22c23146588",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -115,12 +115,12 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 90,
+    "block_count": 88,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 14,
+      "HB-SPECIAL-REFERENCE-FIGURE": 15,
       "HB-TABLE-LCD-ICON": 1,
       "HB-TABLE-LCD-MODE": 1,
       "HB-TABLE-SPEC": 3,
@@ -1948,7 +1948,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "efa1bf09fdb0ac5ceb89fca61ef6b5e6177bfa5c0d225ed000733287f5ca7f86"
+      "sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -5044,46 +5044,12 @@
           "source_ref": "native-pdf/vertical#block-1"
         },
         {
-          "asset_refs": [],
-          "block_id": "vertical:block-0002",
-          "content_sha256": "ec4fe01eb982283acdeeeabd9381d27c2163dab779cf233417bc05d59b5dcef7",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Le Jackery Battery Pack installé avec le support vertical peut être posé au sol. Veuillez suivre les étapes d'installation ci-dessous:"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/vertical#block-2"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "vertical:block-0003",
-          "content_sha256": "0fff10dc9c5c26c7831a3a4aae3c4c835f4ca5a1cba6b6180c86e38acbf5b918",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Préparation avant l'installation:"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/vertical#block-3"
-        },
-        {
           "asset_refs": [
             "assets/vertical-prep.png",
             "assets/vertical-result.png"
           ],
-          "block_id": "vertical:block-0004",
-          "content_sha256": "d2d4067e6c24a5dcf327c1c18b9dcce20dde5c0119ca519b36b5f5f17e58d502",
+          "block_id": "vertical:block-0002",
+          "content_sha256": "e47dc8089491a003b0befe7afa29d839ef872cd8fcd3554f67e19da764084e19",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5091,6 +5057,15 @@
                 "children": [
                   {
                     "children": [
+                      {
+                        "kind": "text",
+                        "text": "Le Jackery Battery Pack installé avec le support vertical peut être posé au sol. Veuillez suivre les étapes d'installation ci-dessous:"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "carrier_flow": [
                       {
                         "alt": "vertical-prep",
                         "kind": "image",
@@ -5102,24 +5077,122 @@
                           }
                         },
                         "source": "assets/vertical-prep.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Préparation avant l'installation:"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line-block"
+                            }
+                          }
+                        },
+                        "role": "container"
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/vertical-prep.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
                         }
-                      }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                4,
+                                3,
+                                92,
+                                14
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "overlay",
+                          "panel_fill": "#f7f7f7",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 1,
+                        "image_key": "vertical-prep",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "a5df22587bc1a27a0b0f2ccb6381fc9e34c1176025648391033f5b9622afaaa3",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "vertical-prep",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "Préparation avant l'installation:",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "Préparation avant l'installation:",
+                              "text": "Préparation avant l'installation:"
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "source/fr/content.json#vertical/preparation",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
                     },
-                    "role": "container"
+                    "kind": "component"
                   }
                 ],
                 "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-vertical-preparation"
                     }
                   }
                 },
@@ -5157,7 +5230,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-vertical-result"
                     }
                   }
                 },
@@ -5168,14 +5241,14 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": "native-vertical-opening"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/vertical#block-4"
+          "source_ref": "native-pdf/vertical#block-2"
         },
         {
           "asset_refs": [
@@ -5183,7 +5256,7 @@
             "assets/vertical-2.png",
             "assets/vertical-3.png"
           ],
-          "block_id": "vertical:block-0005",
+          "block_id": "vertical:block-0003",
           "content_sha256": "226ed91560d28ec600af03ccfecba3d5aab0b3727b8796dbf9bdfe150928f8ae",
           "kind": "flow",
           "payload": {
@@ -5341,7 +5414,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/vertical#block-5"
+          "source_ref": "native-pdf/vertical#block-3"
         }
       ],
       "language": "fr",
@@ -5349,7 +5422,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#vertical",
       "source_ref": "native-pdf/vertical",
-      "source_sha256": "c6b9a0dd822d781ae9309cfd073dd1ee5ed183a61c9b1d18b350427d4eb7228f"
+      "source_sha256": "3a8c77f2f4f9e4244b12170ae9871fec0c8c170ff7b6b2760e771f4acf252eee"
     },
     {
       "blocks": [

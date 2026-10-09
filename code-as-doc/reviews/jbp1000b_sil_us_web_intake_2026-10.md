@@ -92,3 +92,9 @@ LCD mode final cold replay passes all three locales: frozen parity, strict Sphin
 ## Bracket caution list spacing
 
 The English bracket caution carrier split its two bullets into separate unordered lists, creating an extra inter-list margin. Merge them into one two-item list, matching the existing French/Spanish carrier structure; preserve the ComponentSpec words and shared callout CSS. All three desktop/mobile checks confirm one list, two bullets, 5.4375px between items and no page overflow. Three strict Sphinx rebuilds preserve native coverage and all 53 artwork bytes.
+
+## Vertical stand opening correction
+
+Operator comparison exposed the chapter bar, preparation text outside its image and oversized equal-width cards. Preserve the chapter heading/TOC while rendering its native plain style. Move the native preparation caption into the existing HB-SPECIAL-REFERENCE-FIGURE base-art-live-copy component, with a hash-bound existing vertical-prep.png and locale-native live text. Remove the two opening card wrappers; put introduction and preparation art left, unframed result art right. The original 53 artwork files remain byte-identical; no recrop or extraction is performed.
+
+All three locales pass 1280×900 and 390×844 browser inspection: caption inside its panel with no clipping, transparent heading, preserved chapter navigation, no image overlap/page overflow, and native result aspect ratio (198/354). Desktop prep width is 449.227px; result 173.805×310.742px with 34.164px clearance. Mobile stacks a 358px preparation panel and 120px native-aspect result art. The 22 existing base-art/flow/frozen-evidence tests pass, along with strict Sphinx, frozen parity and unchanged native text/artwork census.

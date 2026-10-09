@@ -2628,33 +2628,13 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "El Jackery Battery Pack instalado con el soporte vertical se puede colocar en el suelo. Siga los pasos de instalación a continuación:"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Preparación antes de la instalación:"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
           "schema_version": "manual-flow/v2",
           "kind": "group",
           "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": "native-vertical-opening"
               }
             }
           },
@@ -2665,22 +2645,99 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-vertical-preparation"
                   }
                 }
               },
               "children": [
                 {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
+                  "kind": "paragraph",
                   "children": [
+                    {
+                      "kind": "text",
+                      "text": "El Jackery Battery Pack instalado con el soporte vertical se puede colocar en el suelo. Siga los pasos de instalación a continuación:"
+                    }
+                  ]
+                },
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "source/es/content.json#vertical/preparation",
+                    "language": "es",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "vertical-prep"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "Preparación antes de la instalación:"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "Preparación antes de la instalación:",
+                            "text": "Preparación antes de la instalación:"
+                          }
+                        ]
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/vertical-prep.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 1,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "art_sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b",
+                        "panel_top": 0,
+                        "panel_fill": "#f7f7f7",
+                        "preserve_frame": true,
+                        "mobile_labels": "overlay",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              4,
+                              3,
+                              92,
+                              14
+                            ]
+                          }
+                        ]
+                      },
+                      "image_key": "vertical-prep",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "40cde0db33ca2d5a799bcfcd09b0eca736b960b1cb1102dafb1d2dfd2a9c7437"
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
                     {
                       "kind": "image",
                       "source": "assets/vertical-prep.png",
@@ -2692,6 +2749,36 @@
                           }
                         }
                       }
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line-block"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Preparación antes de la instalación:"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -2703,7 +2790,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-vertical-result"
                   }
                 }
               },

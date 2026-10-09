@@ -75,6 +75,23 @@
  #furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art { position:static; width:9rem !important; height:auto !important; max-width:100%; }
 }
 
+/* Native vertical-stand opening: plain heading, live inset caption, unframed result. */
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) > h1 { background:transparent; color:var(--hb-brand-dark); border:0; border-radius:0; padding:0; font-size:1.15rem; line-height:1.3; margin-bottom:.35rem; }
+.native-vertical-opening { display:grid; grid-template-columns:minmax(0,2.7fr) minmax(0,1fr); gap:2.6rem; align-items:end; margin-bottom:1rem; }
+.native-vertical-preparation { min-width:0; }
+#furo-main-content .native-vertical-preparation > p { margin:0 0 .35rem; }
+.native-vertical-opening .hb-reference-figure { margin:0; max-width:none; }
+.native-vertical-result .hb-reference-figure { position:static; }
+.native-vertical-result { position:relative; align-self:stretch; margin-top:-2.2rem; }
+#furo-main-content .native-vertical-result img { position:absolute; right:0; top:0; height:100% !important; width:auto !important; max-width:none !important; }
+#furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.95rem !important; line-height:1.25; }
+@media(max-width:760px) {
+ .native-vertical-opening { grid-template-columns:minmax(0,1fr); gap:1rem; }
+ .native-vertical-result { width:7.5rem; margin:0 auto; }
+ #furo-main-content .native-vertical-result img { position:static; width:100% !important; height:auto !important; max-width:100%; }
+ #furo-main-content [data-reference-id="vertical-prep"] .hb-reference-live-label { font-size:.85rem !important; }
+}
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">ES</span> <span>IMPORTANTE</span></h1>
@@ -167,11 +184,7 @@
 
 # SOPORTE VERTICAL
 
-<p>El Jackery Battery Pack instalado con el soporte vertical se puede colocar en el suelo. Siga los pasos de instalación a continuación:</p>
-
-<p>Preparación antes de la instalación:</p>
-
-<div class="native-step-grid"><div class="native-step-card"><div class="hb-reference-figure"><img alt="vertical-prep" class="hb-reference-art" src="assets/vertical-prep.png"/></div></div><div class="native-step-card"><div class="hb-reference-figure"><img alt="Vertical stand installation result" class="hb-reference-art" src="assets/vertical-result.png"/></div></div></div>
+<div class="native-vertical-opening"><div class="native-vertical-preparation"><p>El Jackery Battery Pack instalado con el soporte vertical se puede colocar en el suelo. Siga los pasos de instalación a continuación:</p><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="vertical-prep" data-source-fragment-sha256="40cde0db33ca2d5a799bcfcd09b0eca736b960b1cb1102dafb1d2dfd2a9c7437" data-web-base-art-ref="vertical-prep" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="vertical-prep.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#f7f7f7"><img alt="" class="hb-reference-art hb-reference-art hb-composite-art" src="assets/vertical-prep.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:4%;--hb-y:3%;--hb-width:92%;--hb-height:14%">Preparación antes de la instalación:</span></div></div></figure></div><div class="native-vertical-result"><div class="hb-reference-figure"><img alt="Vertical stand installation result" class="hb-reference-art" src="assets/vertical-result.png"/></div></div></div>
 
 <div class="native-step-grid"><div class="native-step-card"><p>1. Remove two screws from the bottom of the product.</p><div class="hb-reference-figure"><img alt="vertical-1" class="hb-reference-art" src="assets/vertical-1.png"/></div></div><div class="native-step-card"><p>2. Alinee los orificios de montaje en la parte inferior del producto con los orificios en el soporte vertical.</p><div class="hb-reference-figure"><img alt="vertical-2" class="hb-reference-art" src="assets/vertical-2.png"/></div></div><div class="native-step-card"><p>3. Apriete los tornillos.</p><div class="hb-reference-figure"><img alt="vertical-3" class="hb-reference-art" src="assets/vertical-3.png"/></div></div></div>
 
