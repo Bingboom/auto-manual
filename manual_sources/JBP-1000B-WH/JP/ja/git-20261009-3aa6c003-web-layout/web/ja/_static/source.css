@@ -1,0 +1,149 @@
+/* Source-local presentation only; shared component geometry and tokens remain authoritative.
+   Web edition of the print manual: no printed cover/TOC, JE-1000F JP Web idiom. */
+
+/* Print titles are mixed case ("Jackery Battery Pack"); do not upper-case them. */
+#furo-main-content :is(h1, h2) { text-transform: none; }
+article span[id]:empty { display: block; scroll-margin-top: 2rem; }
+
+/* 使用上のご注意: pictogram explanations are dark bands inside the chapter. */
+#furo-main-content section:has(> figure:is(.hb-symbol-signal-composition, .hb-symbol-pair-composition)) > h2 {
+  display: block; max-width: var(--hb-reading-width); margin: 1.6rem 0 1rem; padding: .38rem 1rem;
+  border-radius: 2rem; background: var(--hb-brand-dark); color: var(--hb-paper); font-size: 1rem; line-height: 1.4;
+}
+#furo-main-content section:has(> figure:is(.hb-symbol-signal-composition, .hb-symbol-pair-composition)) > h2::before { display: none; }
+#furo-main-content section:has(> figure:is(.hb-symbol-signal-composition, .hb-symbol-pair-composition)) > h2 .headerlink { color: rgba(255, 255, 255, .7); }
+/* The print tables carry no column headings; keep them for assistive technology only. */
+#furo-main-content figure:is(.hb-symbol-signal-composition, .hb-symbol-pair-composition) table > thead > tr > th {
+  height: 0; padding: 0 !important; border: 0 !important; font-size: 0 !important; line-height: 0 !important;
+}
+#furo-main-content .hb-symbol-signal-composition .hb-symbol-signal-label-cell { background: var(--hb-surface) !important; text-align: center; }
+#furo-main-content .hb-symbol-signal-composition .hb-signal-badge {
+  width: auto; min-width: 0; min-height: 0; padding: 0; background: transparent; color: var(--hb-text);
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem); font-weight: 800; line-height: 1.2; white-space: nowrap;
+}
+#furo-main-content .hb-symbol-meaning strong { display: inline-block; margin-bottom: .1rem; }
+
+/* 同梱品: print notes sit in one grey panel; the disclaimer is a bold ■ line. */
+#furo-main-content .jbp-inbox-notes {
+  max-width: var(--hb-reading-width); margin: .2rem 0 .9rem; padding: .8rem 1rem;
+  border-radius: .9rem; background: var(--hb-surface); font-size: .95rem; line-height: 1.5;
+}
+#furo-main-content .jbp-inbox-notes p { margin: 0; }
+#furo-main-content .jbp-inbox-notes p + p { margin-top: .3rem; }
+#furo-main-content p.jbp-inbox-disclaimer { margin: .6rem 0 1.5rem; font-size: 1.05rem; }
+#furo-main-content p.jbp-inbox-disclaimer::before { content: "■"; margin-right: .15em; font-weight: 700; }
+
+/* 各部の名称: print callouts end at their leader lines; names bold, ratings small. */
+#furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label { justify-content: flex-end; text-align: right; font-weight: 700; }
+#furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label:is([data-source-line="1"], [data-source-line="2"]) { font-weight: 400; }
+
+/* Narrow source art keeps its print width. */
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-control"] { max-width: 10rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] .hb-reference-live-label { font-size: .8rem; }
+
+/* オン/オフ: the clock and "3s" stay on the drawing as printed. */
+@media (min-width: 761px) {
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-stage { container-type: inline-size; }
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-steps { min-height: 0; padding: 3.3cqw 0 0 .9cqw; background: transparent; }
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-step .line:first-child { font-size: 2.85cqw; line-height: 1.2; }
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-step .line + .line { font-size: 1.9cqw; line-height: 1.2; }
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-step + .hb-operation-step { margin-top: 2.55cqw; }
+  #furo-main-content .hb-operation-figure[data-operation-id="power"] .hb-operation-supporting-copy {
+    position: absolute; top: 46.9%; left: 82.4%; padding: 0; background: transparent; font-size: 2.22cqw; line-height: 1.3;
+  }
+}
+
+/* Inline LCD connection icon reads at text size. */
+#furo-main-content .manual-callout-body img { width: auto !important; height: 1.35em !important; margin: 0 .15em; vertical-align: -.3em; }
+
+/* 縦置 / 木製の壁: print places the installed unit beside the lead and preparation panel. */
+@media (min-width: 761px) {
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]),
+  #furo-main-content section:has(> figure[data-reference-id="wood-installed"]) {
+    display: grid; grid-template-columns: minmax(0, 1fr) 27%; column-gap: 1.25rem; align-items: start;
+  }
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]) > *,
+  #furo-main-content section:has(> figure[data-reference-id="wood-installed"]) > * { grid-column: 1 / -1; }
+  /* Grid items keep their margins; restore the flow rhythm of the other chapters. */
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]) > figure,
+  #furo-main-content section:has(> figure[data-reference-id="wood-installed"]) > figure { margin: 0 0 1.6rem; }
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]) > p:has(> span[id]:only-child:empty),
+  #furo-main-content section:has(> figure[data-reference-id="wood-installed"]) > p:has(> span[id]:only-child:empty) { margin: 0; }
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]) > h1 { grid-row: 1; }
+  #furo-main-content section:has(> figure[data-reference-id="stand-installed"]) > p:has(+ figure[data-reference-id="stand-preparation"]) { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+  #furo-main-content section > figure[data-reference-id="stand-preparation"] { grid-column: 1; grid-row: 3; }
+  #furo-main-content section > figure[data-reference-id="stand-installed"] { grid-column: 2; grid-row: 2 / span 2; align-self: center; margin: 0; }
+  #furo-main-content section:has(> figure[data-reference-id="wood-installed"]) > h2 { grid-column: 1; grid-row: 1; margin-top: 0; }
+  #furo-main-content section > figure[data-reference-id="wood-preparation"] { grid-column: 1; grid-row: 2; }
+  #furo-main-content section > figure[data-reference-id="wood-installed"] { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure:is([data-reference-id="stand-installed"], [data-reference-id="wood-installed"]) { max-width: 13rem; margin-inline: auto; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label { justify-content: flex-start; text-align: left; }
+}
+
+/* 保証について: print notes are grey capsules; scope details are indented. */
+#furo-main-content .hb-warranty-card p.jbp-warranty-note { display: table; padding: .2rem .65rem; border-radius: .45rem; background: var(--hb-surface); font-size: .84rem; }
+#furo-main-content .hb-warranty-card p.jbp-warranty-detail { padding-left: 1.25em; }
+#furo-main-content p.jbp-contact-line { width: fit-content; max-width: 100%; margin: .45rem 0 0; padding: .3rem .8rem; border-radius: .45rem; background: var(--hb-surface); font-size: .9rem; }
+#furo-main-content .hb-warranty-card + p.jbp-contact-line { margin-top: 1rem; }
+
+/* Preserve native table semantics while making this Japanese source readable without panning. */
+@media (max-width: 760px) {
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] table,
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] table { min-width: 0 !important; width: 100% !important; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-number { width: 8%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-icon { width: 14%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-name { width: 28%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-description { width: 50%; }
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] .hb-troubleshooting-col-code { width: 22%; }
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] .hb-troubleshooting-col-measures { width: 78%; }
+}
+
+/* Live labels keep the print type size relative to each panel (generated from figures.json). */
+@media (min-width: 761px) {
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label { font-size: 2.236cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label[data-source-line="1"] { font-size: 1.597cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="overview"] .hb-reference-live-label[data-source-line="2"] { font-size: 1.597cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="stand-preparation"] .hb-reference-live-label { font-size: 3.256cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="stand-1"] .hb-reference-live-label { font-size: 2.222cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="stand-2"] .hb-reference-live-label { font-size: 2.222cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="stand-3"] .hb-reference-live-label { font-size: 2.222cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-preparation"] .hb-reference-live-label { font-size: 3.223cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-preparation"] .hb-reference-live-label[data-source-line="1"] { font-size: 4.144cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-installed"] .hb-reference-live-label { font-size: 7.447cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-1-2"] .hb-reference-live-label { font-size: 2.239cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-3-4"] .hb-reference-live-label { font-size: 1.912cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-3-4"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.5; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-3-4"] .hb-reference-live-label[data-source-line="1"] { line-height: 1.5; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-3-4"] .hb-reference-live-label[data-source-line="2"] { font-size: 2.231cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-5"] .hb-reference-live-label { font-size: 2.222cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-5"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-5"] .hb-reference-live-label[data-source-line="5"] { font-size: 1.587cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-6"] .hb-reference-live-label { font-size: 2.251cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-6"] .hb-reference-live-label[data-source-line="2"] { font-size: 1.929cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-6"] .hb-reference-live-label[data-source-line="3"] { font-size: 1.608cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-7"] .hb-reference-live-label { font-size: 2.222cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="wood-7"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-preparation"] .hb-reference-live-label { font-size: 2.208cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-preparation"] .hb-reference-live-label[data-source-line="1"] { font-size: 2.839cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-1-2"] .hb-reference-live-label { font-size: 2.238cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-3"] .hb-reference-live-label { font-size: 2.236cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-3"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-4-5"] .hb-reference-live-label { font-size: 1.926cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-4-5"] .hb-reference-live-label[data-source-line="0"] { font-size: 2.247cqw; line-height: 1.71; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-4-5"] .hb-reference-live-label[data-source-line="1"] { font-size: 2.247cqw; line-height: 1.57; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-4-5"] .hb-reference-live-label[data-source-line="4"] { font-size: 2.247cqw; line-height: 1.71; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-6-7"] .hb-reference-live-label { font-size: 2.241cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-6-7"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-6-7"] .hb-reference-live-label[data-source-line="1"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-6-7"] .hb-reference-live-label[data-source-line="2"] { font-size: 1.921cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-6-7"] .hb-reference-live-label[data-source-line="3"] { font-size: 1.921cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-8-9"] .hb-reference-live-label { font-size: 2.262cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-8-9"] .hb-reference-live-label[data-source-line="0"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="concrete-8-9"] .hb-reference-live-label[data-source-line="1"] { line-height: 1.86; }
+  #furo-main-content .hb-reference-figure[data-reference-id="connection"] .hb-reference-live-label { font-size: 1.899cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="ac-charge"] .hb-reference-live-label { font-size: 1.905cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="solar-charge"] .hb-reference-live-label { font-size: 1.429cqw; }
+  #furo-main-content .hb-reference-figure[data-reference-id="solar-charge"] .hb-reference-live-label[data-source-line="1"] { font-size: 1.905cqw; }
+}

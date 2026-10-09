@@ -1,0 +1,113 @@
+[
+  {
+    "slug": "charge",
+    "physical_page": 6,
+    "crop": [
+      60,
+      181,
+      70,
+      197
+    ],
+    "drawing_indices": [
+      78
+    ],
+    "path": "assets/lcd-charge.svg",
+    "sha256": "9ba47b425dd127cd919700d80e28fc5c6e62757aae51f07d320cb2443eb46176",
+    "reason": "SlimPower source-specific glyph; shared portable-host glyph/markings differ. Native path selection excludes full-cell gray backdrop."
+  },
+  {
+    "slug": "ring",
+    "physical_page": 6,
+    "crop": [
+      54,
+      214,
+      82,
+      242
+    ],
+    "drawing_indices": [
+      77
+    ],
+    "path": "assets/lcd-ring.svg",
+    "sha256": "c387d389fc043de868f02bf048a19faf68a1a41e6f1827a853e78bf71c8f1e7d",
+    "reason": "SlimPower source-specific glyph; shared portable-host glyph/markings differ. Native path selection excludes full-cell gray backdrop."
+  },
+  {
+    "slug": "dc",
+    "physical_page": 6,
+    "crop": [
+      57,
+      259,
+      77,
+      273
+    ],
+    "drawing_indices": [
+      73,
+      74,
+      75
+    ],
+    "path": "assets/lcd-dc.svg",
+    "sha256": "d92d6ba0b407094be7fb6b1d02cd8434014f982ed626af7172b357b273ee88a2",
+    "reason": "SlimPower source-specific glyph; shared portable-host glyph/markings differ. Native path selection excludes full-cell gray backdrop."
+  },
+  {
+    "slug": "error",
+    "physical_page": 6,
+    "crop": [
+      58,
+      285,
+      72,
+      297
+    ],
+    "drawing_indices": [
+      70,
+      71,
+      72
+    ],
+    "path": "assets/lcd-error.svg",
+    "sha256": "87182fe3fb19dff98971aceaa7b839bb8c3a92c49b8ffda58e00f19c841ab54a",
+    "reason": "SlimPower source-specific glyph; shared portable-host glyph/markings differ. Native path selection excludes full-cell gray backdrop."
+  },
+  {
+    "slug": "li_ion",
+    "physical_page": 4,
+    "crop": [
+      192,
+      76,
+      217,
+      100
+    ],
+    "drawing_indices": [
+      753,
+      754,
+      755,
+      756,
+      757,
+      758,
+      759,
+      760,
+      761,
+      762,
+      763
+    ],
+    "path": "assets/native-li_ion.svg",
+    "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+    "reason": "source-specific native transparent glyph; shared variant has different fixed mark or multi-battery shape"
+  },
+  {
+    "slug": "connected-batteries",
+    "physical_page": 14,
+    "crop": [
+      211.5,
+      452,
+      221.7,
+      465
+    ],
+    "drawing_indices": [
+      2275,
+      2276
+    ],
+    "path": "assets/native-connected-batteries.svg",
+    "sha256": "ff46e52f1e6098b58234e1f4fad01ae3ae10ee0eb961037964336a6ec17c9a1b",
+    "reason": "source-specific native transparent glyph; shared variant has different fixed mark or multi-battery shape"
+  }
+]

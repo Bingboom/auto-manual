@@ -1,0 +1,74 @@
+{
+ "url": "http://127.0.0.1/<fresh strict Sphinx HTML of web/ja>/manual_jbp1000bwh_jp_ja.html",
+ "viewports": [
+  {
+   "imageCount": 49,
+   "unloadedImages": [],
+   "brokenAnchors": [],
+   "pageWidth": 1280,
+   "internalOverflow": [],
+   "labelOutsidePanel": [],
+   "viewport": {
+    "width": 1280,
+    "height": 900
+   }
+  },
+  {
+   "imageCount": 49,
+   "unloadedImages": [],
+   "brokenAnchors": [],
+   "pageWidth": 390,
+   "internalOverflow": [
+    "hb-lcd-mode-table"
+   ],
+   "labelOutsidePanel": [],
+   "viewport": {
+    "width": 390,
+    "height": 844
+   }
+  }
+ ],
+ "navigation_chapters": [
+  "使用上のご注意",
+  "同梱品",
+  "各部の名称",
+  "液晶画面",
+  "製品の使用方法について",
+  "Jackery Battery Pack と 本体の設置方法",
+  "縦置",
+  "ポータブル電源との併用",
+  "充電方法",
+  "トラブルシューティング",
+  "主な仕様",
+  "保証について"
+ ],
+ "checkedSections": [
+  "使用上のご注意 pictogram bands and tables",
+  "同梱品 notes",
+  "各部の名称 callouts",
+  "LCD table",
+  "on/off operation",
+  "縦置 / 木製 / コンクリート installation rows",
+  "troubleshooting FF",
+  "specification groups",
+  "warranty cards and contact lines",
+  "mobile 390px stack"
+ ],
+ "notes": [
+  "Navigation equals the 12 chapters of the print TOC (physical page 2); no printed cover.",
+  "No unloaded images, broken anchors, page overflow or overlay labels outside their panels at 1280 or 390.",
+  "At 390 the shared LCD-mode table scrolls inside its own overflow panel (hb-lcd-mode-table-panel); identical in the published native edition.",
+  "Mobile keeps the shared ReferenceFigure stacked-label behavior of the native edition."
+ ],
+ "screenshots": [
+  "desktop-symbols.png",
+  "desktop-wood-installation.png",
+  "mobile-symbols.png",
+  "mobile-wood-installation.png"
+ ],
+ "markdown_sha256": "a2413fb5138e3a484f5f692ceba9426c9768775f0f9b8cbc1b1ccd561fb75d27",
+ "stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+ "source_stylesheet_sha256": "d708113dcd3effb1b7d07f5cc27fff53125804d0971a97668efcaf94806efe55",
+ "frozen_ir_sha256": "ac840cd12843fc353005e8b04a1eb6539adff899b2ef0717a5830c37e75e4cb6",
+ "source_manifest_sha256": "a341146c75a8946dd77e9f55e219c168951510ca7d733ab9a7100486032a9a6b"
+}

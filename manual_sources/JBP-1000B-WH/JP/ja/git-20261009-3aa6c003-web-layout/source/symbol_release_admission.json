@@ -1,0 +1,318 @@
+{
+  "schema_version": "auto-manual-symbol-asset-admission/v1",
+  "locales": {
+    "ja": [
+      {
+        "asset_ref": "assets/symbol_do_not_dismantle.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          36,
+          54,
+          58,
+          75
+        ],
+        "drawing_indices": [
+          712,
+          713,
+          714,
+          715,
+          716,
+          717,
+          718,
+          719,
+          720,
+          721,
+          722,
+          723,
+          724,
+          725,
+          726,
+          727,
+          728
+        ],
+        "caption_bbox": [
+          69,
+          53,
+          176,
+          76
+        ],
+        "row_bbox": [
+          28,
+          51,
+          182,
+          77.5
+        ],
+        "caption_text": "製品を分解、改造を禁止する記号",
+        "caption_sha256": "9e5048d7648eb3754c227b54b4952ec946b08bfff316e64a889e6934dde1dccb",
+        "asset_sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+        "native_reference_sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_do_not_dismantle.svg",
+          "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "do-not-dismantle/screwdriver-circle-gray"
+      },
+      {
+        "asset_ref": "assets/symbol_warning_triangle.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          36,
+          87,
+          58,
+          107
+        ],
+        "drawing_indices": [
+          774
+        ],
+        "caption_bbox": [
+          69,
+          77,
+          176,
+          117
+        ],
+        "row_bbox": [
+          28,
+          76.5,
+          182,
+          117
+        ],
+        "caption_text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
+        "caption_sha256": "cd3f928e3d1c99174c01deb274bb1d5d3cde9a683fca3dd8b9cc376cb64b6d47",
+        "asset_sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
+        "native_reference_sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_warning_triangle.svg",
+          "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "warning/filled-triangle-gray"
+      },
+      {
+        "asset_ref": "assets/symbol_read_manual.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          37,
+          123,
+          57,
+          144
+        ],
+        "drawing_indices": [
+          737,
+          738,
+          739,
+          740,
+          741
+        ],
+        "caption_bbox": [
+          69,
+          118,
+          176,
+          148
+        ],
+        "row_bbox": [
+          28,
+          117,
+          182,
+          149
+        ],
+        "caption_text": "操作の前に取扱説明書をお読みください。",
+        "caption_sha256": "fd0504db96aeeae141c764758992acb6f4133e8bb56a6444b91f8abe71334a29",
+        "asset_sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
+        "native_reference_sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_read_manual.svg",
+          "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "read-manual/person-book-circle-gray"
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          35,
+          155,
+          60,
+          179
+        ],
+        "drawing_indices": [
+          742,
+          743,
+          744,
+          745,
+          746,
+          747,
+          748
+        ],
+        "caption_bbox": [
+          69,
+          153,
+          176,
+          184
+        ],
+        "row_bbox": [
+          28,
+          149,
+          182,
+          186
+        ],
+        "caption_text": "本製品を火気の近くに置かないでください。",
+        "caption_sha256": "ac293656e32d619bb3e308165d8e6b1f148e9229c6523ff0c8755a5e8c4ab969",
+        "asset_sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+        "native_reference_sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_no_open_flame.svg",
+          "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "no-open-flame/fire-match-crossed-gray"
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          37,
+          197,
+          57,
+          216
+        ],
+        "drawing_indices": [
+          764,
+          765,
+          766,
+          767,
+          768,
+          769,
+          770,
+          771,
+          772,
+          773
+        ],
+        "caption_bbox": [
+          69,
+          190,
+          176,
+          222
+        ],
+        "row_bbox": [
+          28,
+          186,
+          182,
+          224
+        ],
+        "caption_text": "小さなお子様の手の届かない場所に保管してください。",
+        "caption_sha256": "52b29bc70907ffe509c7f1e2c27d11a4d88f7553fea6c7fb27943e874cd1c427",
+        "asset_sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+        "native_reference_sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_keep_away_from_children.svg",
+          "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray"
+      },
+      {
+        "asset_ref": "assets/native-li_ion.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          192,
+          76,
+          217,
+          100
+        ],
+        "drawing_indices": [
+          753,
+          754,
+          755,
+          756,
+          757,
+          758,
+          759,
+          760,
+          761,
+          762,
+          763
+        ],
+        "caption_bbox": [
+          227,
+          53,
+          336,
+          125
+        ],
+        "row_bbox": [
+          185,
+          51,
+          341,
+          131
+        ],
+        "caption_text": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
+        "caption_sha256": "aa0b57d8a692def4b3aa727788d9bab2a95b790c77dcd0cd34d0ac76145f357d",
+        "asset_sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+        "native_reference_sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+        "comparison": {
+          "max_mean_channel_error": 0.0
+        },
+        "decision": "reuse-existing-byte-identical",
+        "superseded_candidate": {
+          "asset_ref": "assets/native-li_ion.svg",
+          "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+          "comparison": {
+            "max_mean_channel_error": 0.0
+          }
+        },
+        "shared_symbol_key": "li-ion/recycle-li-ion-32-gray"
+      },
+      {
+        "asset_ref": "assets/symbol_weee.svg",
+        "physical_page": 4,
+        "glyph_bbox": [
+          192,
+          163,
+          215,
+          196
+        ],
+        "drawing_indices": [
+          749,
+          750,
+          751,
+          752
+        ],
+        "caption_bbox": [
+          227,
+          134,
+          336,
+          224
+        ],
+        "row_bbox": [
+          185,
+          131,
+          341,
+          224
+        ],
+        "caption_text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。適切な廃棄およびリサイクルは、環境保護に役立ちます。本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。",
+        "caption_sha256": "f01ad1272e0b6e89fde7462d41cb46a68a204efcfcd81d48f741233149d61e44",
+        "asset_sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+        "native_reference_sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+        "comparison_error": "symbol glyph/background differs from authoritative PDF",
+        "decision": "source-specific-shared-variant-required",
+        "superseded_candidate": {
+          "asset_ref": "assets/symbol_weee.png",
+          "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "comparison": "symbol glyph/background differs from authoritative PDF"
+        },
+        "shared_symbol_key": "weee/crossed-bin-bar-gray"
+      }
+    ]
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "do_not_dismantle": {
+    "path": "assets/symbol_do_not_dismantle.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_gray_jp.svg",
+    "sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-circle-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_do_not_dismantle.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "warning_triangle": {
+    "path": "assets/symbol_warning_triangle.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle_gray_jp.svg",
+    "sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
+    "shared_symbol_key": "warning/filled-triangle-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_warning_triangle.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "shared_symbol_key": "warning/outline-triangle-tinted",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "read_manual": {
+    "path": "assets/symbol_read_manual.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_gray_jp.svg",
+    "sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
+    "shared_symbol_key": "read-manual/person-book-circle-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_read_manual.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+      "shared_symbol_key": "read-manual/book-information",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "no_open_flame": {
+    "path": "assets/symbol_no_open_flame.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+    "shared_symbol_key": "no-open-flame/fire-match-crossed-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_no_open_flame.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+      "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "keep_away_from_children": {
+    "path": "assets/symbol_keep_away_from_children.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+    "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_keep_away_from_children.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+      "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "li_ion": {
+    "path": "assets/native-li_ion.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
+    "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "shared_symbol_key": "li-ion/recycle-li-ion-32-gray",
+    "superseded_candidate": {
+      "path": "assets/native-li_ion.svg",
+      "source_path": "original PDF physical page 4",
+      "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+      "decision": "source-specific native transparent glyph; shared variant has different fixed mark or multi-battery shape",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "weee": {
+    "path": "assets/symbol_weee.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee_gray_jp.svg",
+    "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+    "shared_symbol_key": "weee/crossed-bin-bar-gray",
+    "decision": "reuse exact source-bound gray glyph variant; original generic candidate failed glyph admission",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion",
+    "superseded_candidate": {
+      "path": "assets/symbol_weee.png",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "shared_symbol_key": "weee/crossed-bin-bar",
+      "decision": "reuse byte-identical shared candidate glyph; source-compatible semantics; visual shape may differ",
+      "background_policy": "transparent standalone glyph; byte-identical reuse",
+      "publication_status": "offline-candidate-no-registry-promotion"
+    }
+  },
+  "10_Input_Power": {
+    "path": "assets/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+    "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+    "sha256": "182e6b96b78860011722a6f127073bca8eb297cea98a1f1ec1b46172141e5658",
+    "decision": "reuse unchanged; same Input/Output/percentage/time semantics",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "11_Remaining_Charge_Time": {
+    "path": "assets/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+    "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+    "sha256": "6bdbda943b9ad2457d9113f1f1fd4be8d60c2f97c2b8803e57a3af9612e03272",
+    "decision": "reuse unchanged; same Input/Output/percentage/time semantics",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "18_Remaining_Battery_Percentage": {
+    "path": "assets/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+    "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+    "sha256": "8c3c5ff517ff51988805f90c9262b743aa0da43a1058f83b784925179305f11e",
+    "decision": "reuse unchanged; same Input/Output/percentage/time semantics",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "26_Output_Power": {
+    "path": "assets/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "decision": "reuse unchanged; same Input/Output/percentage/time semantics",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "27_Remaining_Discharge_Time": {
+    "path": "assets/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+    "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+    "sha256": "14b7fae06ace57348de6185c2aac7435c2a88b340d44626388a6db75f6b65162",
+    "decision": "reuse unchanged; same Input/Output/percentage/time semantics",
+    "background_policy": "transparent standalone glyph; byte-identical reuse",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "connected-batteries": {
+    "path": "assets/native-connected-batteries.svg",
+    "source_path": "original PDF physical page 14",
+    "sha256": "ff46e52f1e6098b58234e1f4fad01ae3ae10ee0eb961037964336a6ec17c9a1b",
+    "decision": "source-specific native transparent glyph; shared variant has different fixed mark or multi-battery shape",
+    "publication_status": "offline-candidate-no-registry-promotion"
+  },
+  "li_ion_32": {
+    "path": "assets/native-li_ion.svg",
+    "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/native-li_ion_gray_jp.svg",
+    "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+    "shared_symbol_key": "li-ion/recycle-li-ion-32-gray",
+    "decision": "byte-identical existing native Li-ion32 registered as reusable Git variant",
+    "background_policy": "transparent standalone glyph; fixed native mark preserved",
+    "publication_status": "no-live-registry-promotion"
+  }
+}
