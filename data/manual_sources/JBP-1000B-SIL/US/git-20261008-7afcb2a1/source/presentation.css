@@ -75,7 +75,7 @@
 }
 
 /* Native vertical-stand opening: plain heading, live inset caption, unframed result. */
-#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) > h1 { background:transparent; color:var(--hb-brand-dark); border:0; border-radius:0; padding:0; font-size:1.15rem; line-height:1.3; margin-bottom:.35rem; }
+#furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical,#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > h1 { background:transparent; color:var(--hb-brand-dark); border:0; border-radius:0; padding:0; font-size:1.15rem; line-height:1.3; margin-bottom:.35rem; }
 .native-vertical-opening { display:grid; grid-template-columns:minmax(0,2.7fr) minmax(0,1fr); gap:2.6rem; align-items:end; margin-bottom:1rem; }
 .native-vertical-preparation { min-width:0; }
 #furo-main-content .native-vertical-preparation > p { margin:0 0 .35rem; }
@@ -93,3 +93,10 @@
 
 /* Native vertical-stand installation: each step occupies a full-width row. */
 #furo-main-content :is(#vertical-stand,#support-vertical,#soporte-vertical) .native-step-grid { grid-template-columns:minmax(0,1fr); }
+
+/* Native wall-mount title and compact introduction/subsection spacing. */
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > h1 .headerlink { color:inherit; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > p { margin:0; line-height:1.5; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section { margin-top:.65rem; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section > h2 { margin:0 0 .65rem; }
+#furo-main-content :is(#jackery-wall-mounted-bracket-sold-separately,#jackery-wall-mounted-bracket-vendus-separement,#jackery-wall-mounted-bracket-se-vende-por-separado) > section > h2::before { display:none; }

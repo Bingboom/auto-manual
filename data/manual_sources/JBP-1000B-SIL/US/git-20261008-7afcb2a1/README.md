@@ -41,3 +41,5 @@ LCD screen On/Off uses the existing HB-TABLE-LCD-MODE/two-state-three-action com
 The vertical-stand opening keeps a native plain heading with its chapter navigation, an editable preparation caption inside the unchanged native prep artwork, and an unframed result picture spanning the left heading/intro/preparation. The existing HB-SPECIAL-REFERENCE-FIGURE base-art-live-copy renderer owns caption placement; source-local geometry stacks the two images on mobile and preserves native aspect ratios.
 
 Vertical-stand steps 1–3 each occupy a full-width row in EN/FR/ES, preserving editable native words and original artwork dimensions/aspect ratios. Desktop/mobile browser acceptance confirms three equal-width stacked cards with no page overflow.
+
+Wall-mount headings use the native plain treatment; the title/introduction and introduction/subheading gaps are compact (about 6px and 10px). EN/FR/ES desktop/mobile validation retains chapter navigation and confirms wrapped headings without horizontal overflow.

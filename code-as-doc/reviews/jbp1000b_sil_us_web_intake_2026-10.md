@@ -102,3 +102,7 @@ All three locales pass 1280×900 and 390×844 browser inspection: caption inside
 ### Vertical-stand full-width installation rows
 
 The three installation steps now follow the native one-step-per-row composition through source-local CSS scoped to the three locale section IDs. All words and 53 artwork files remain unchanged. EN/FR/ES at 1280×900 and 390×844 have equal-width vertically ordered cards, loaded images at native aspect ratio and no page overflow. Strict Sphinx and native text/artwork coverage pass for all three locales.
+
+### Wall-mount heading and introductory spacing
+
+The wall-mount title reuses the source-local plain heading treatment already accepted for the vertical stand. Wooden/concrete-wall subheadings omit the native-absent round marker; the introduction is compact, with a 5.59px title gap and 10.40px subsection gap. EN/FR/ES at 1280×900 and 390×844 retain chapter navigation, contained headings and no page overflow. Native words and artwork remain unchanged; strict Sphinx/native coverage and cold replay pass.
