@@ -1,0 +1,52 @@
+{
+  "native_differences_retained": [
+    {
+      "page": 23,
+      "locale": "en",
+      "text": "Onine UPS",
+      "reason": "Native source spelling"
+    },
+    {
+      "page": 24,
+      "locale": "en",
+      "text": "Explorer 5000 Plus",
+      "reason": "Native AC ESS wording"
+    },
+    {
+      "page": 74,
+      "locale": "es",
+      "text": "VENDU SÉPARÉMENT",
+      "reason": "Native French label in Spanish source"
+    },
+    {
+      "page": 75,
+      "locale": "es",
+      "text": "Vendu séparément",
+      "reason": "Native French label in Spanish source"
+    },
+    {
+      "page": 52,
+      "locale": "es",
+      "text": "Cet appareil est destiné uniquement à une utilisation en intérieur",
+      "reason": "Native French danger copy in Spanish source"
+    },
+    {
+      "page": 57,
+      "locale": "es",
+      "text": "Carregamento / Descarregando",
+      "reason": "Native Portuguese terms inside the Spanish LCD glossary"
+    },
+    {
+      "page": 68,
+      "locale": "es",
+      "text": "Bouton d’alimentation principale",
+      "reason": "Native French App-control label in Spanish source"
+    },
+    {
+      "page": 62,
+      "locale": "es",
+      "text": "CONNECTIONS",
+      "reason": "Native English chapter heading in Spanish source"
+    }
+  ]
+}

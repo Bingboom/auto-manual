@@ -10,9 +10,51 @@ import fitz
 SVG = '{http://www.w3.org/2000/svg}'
 
 
+def _axis_path_tokens(tokens: list[str]) -> list[str]:
+    """Compare H/V closures as L endpoints without modifying original paths."""
+    arity = {'M': 2, 'L': 2, 'H': 1, 'V': 1, 'C': 6, 'S': 4,
+             'Q': 4, 'T': 2, 'A': 7}
+    result: list[str] = []
+    x = y = start_x = start_y = 0.0
+    index = 0
+    command = ''
+    while index < len(tokens):
+        if tokens[index].isalpha():
+            command = tokens[index]
+            index += 1
+            if command.upper() == 'Z':
+                x, y = start_x, start_y
+                result.append(command)
+                continue
+            if command not in arity:
+                # MuPDF emits absolute commands; unknown syntax stays fail-closed.
+                return tokens
+            if command not in {'H', 'V'}:
+                result.append(command)
+        count = arity[command]
+        values = tokens[index:index + count]
+        if len(values) != count or any(v.isalpha() for v in values):
+            return tokens
+        if command == 'H':
+            x = float(values[0])
+            result.extend(['L', f'{x:g}', f'{y:g}'])
+        elif command == 'V':
+            y = float(values[0])
+            result.extend(['L', f'{x:g}', f'{y:g}'])
+        else:
+            x, y = map(float, values[-2:])
+            result.extend(values)
+            if command == 'M':
+                start_x, start_y = x, y
+                command = 'L'
+        index += count
+    return result
+
+
 def _path_key(path: ET.Element) -> tuple[str, ...]:
     tokens = re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?',
                         path.get('d', '').rstrip('Zz '))
+    tokens = _axis_path_tokens(tokens)
     # Compound paths can close each subpath explicitly for the stroke, while
     # the fill already returns to its starting point. Compare those no-op
     # closures too, without changing either original SVG path.
@@ -93,10 +135,28 @@ def native_art_svg(page: fitz.Page, indices: list[int], crop_bbox: list[float]) 
     return _selected_svg(page, drawings, indices, box, preserve_images=True)
 
 
+def _image_bounds(node, definitions, matrix):
+    """Resolve direct or referenced embedded images in the current transform."""
+    if node.tag == SVG + 'image':
+        definition = node
+        x, y = (float(node.get(k, '0')) for k in ('x', 'y'))
+    elif node.tag == SVG + 'use':
+        reference = node.get('{http://www.w3.org/1999/xlink}href', node.get('href', ''))
+        definition = definitions.get(reference[1:]) if reference.startswith('#') else None
+        if definition is None:
+            return None
+        x, y = (float(node.get(k, '0')) + float(definition.get(k, '0')) for k in ('x', 'y'))
+    else:
+        return None
+    width, height = (float(definition.get(k, '0')) for k in ('width', 'height'))
+    return fitz.Rect(x, y, x + width, y + height) * matrix
+
+
 def _selected_svg(page, drawings, indices, box, *, preserve_images=False) -> bytes:
     root = ET.fromstring(page.get_svg_image(text_as_path=False))
     visible = []
     image_ids = set()
+    image_definitions = {node.get('id'): node for node in root.iter(SVG + 'image') if node.get('id')}
 
     def collect(node, in_defs=False, matrix=None):
         matrix = fitz.Matrix(1, 0, 0, 1, 0, 0) if matrix is None else matrix
@@ -112,10 +172,9 @@ def _selected_svg(page, drawings, indices, box, *, preserve_images=False) -> byt
         in_defs = in_defs or node.tag == SVG + 'defs'
         if not in_defs and node.tag == SVG + 'path':
             visible.append(node)
-        if preserve_images and not in_defs and node.tag == SVG + 'image':
-            x, y, width, height = [float(node.get(k, '0')) for k in ('x', 'y', 'width', 'height')]
-            bounds = fitz.Rect(x, y, x + width, y + height) * matrix
-            if bounds.intersects(box):
+        if preserve_images and not in_defs:
+            bounds = _image_bounds(node, image_definitions, matrix)
+            if bounds is not None and bounds.intersects(box):
                 image_ids.add(id(node))
         for child in node:
             collect(child, in_defs, matrix)
@@ -129,7 +188,7 @@ def _selected_svg(page, drawings, indices, box, *, preserve_images=False) -> byt
             return deepcopy(node)
         if node.tag == SVG + 'path':
             return deepcopy(node) if id(node) in keep else None
-        if node.tag == SVG + 'image':
+        if node.tag in {SVG + 'image', SVG + 'use'}:
             return deepcopy(node) if id(node) in image_ids else None
         if node.tag not in {SVG + 'svg', SVG + 'g'}:
             return None

@@ -1,0 +1,2662 @@
+{
+  "target": {
+    "model": "JHP-5000C",
+    "region": "US",
+    "language": "es"
+  },
+  "original_source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+  "accepted_at": "2026-10-09T20:11:23.600764+00:00",
+  "visible_copy_and_structure": {
+    "language": "es",
+    "visible_native_lines": 1142,
+    "chapters": 23,
+    "figures": 27,
+    "live_figure_labels": 228,
+    "lcd_entries": 26,
+    "spec_rows": [
+      11,
+      7,
+      9,
+      2,
+      11,
+      7,
+      9,
+      2,
+      9,
+      2,
+      2,
+      17
+    ],
+    "app_steps": 5,
+    "editable_app_plus": 1,
+    "unmapped_words": 0,
+    "failures": []
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.017332
+    },
+    {
+      "asset_ref": "assets/symbol_electric_shock.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.016538
+    },
+    {
+      "asset_ref": "assets/symbol_battery_charging.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.017821
+    },
+    {
+      "asset_ref": "assets/symbol_explosive_material.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 2.1e-05
+    },
+    {
+      "asset_ref": "assets/symbol_heavy_object.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.016753
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.00823
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.007841
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual.svg",
+      "physical_page": 53,
+      "max_mean_channel_error": 0.009391
+    }
+  ],
+  "caption_frame_admission": [
+    {
+      "source_ref": "native-pdf/page-58/power",
+      "asset_ref": "assets/power-es.svg",
+      "labels": [
+        {
+          "line": 6,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-58/ac-output",
+      "asset_ref": "assets/ac-output.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.019449
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-59/usb-output",
+      "asset_ref": "assets/usb-output.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-59/dc-output",
+      "asset_ref": "assets/dc-output.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.010147
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-61/ups",
+      "asset_ref": "assets/ups.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-62/sts-connect",
+      "asset_ref": "assets/sts-connect.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "same-tone-visual-review"
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-66/car",
+      "asset_ref": "assets/car-es.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "same-tone-visual-review"
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-75/package-battery",
+      "asset_ref": "assets/package-battery.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-75/package-sts",
+      "asset_ref": "assets/package-sts.svg",
+      "labels": [
+        {
+          "line": 42,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "lcd_native_admission": [
+    {
+      "row": 1,
+      "asset_ref": "assets/lcd-native-01.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 2,
+      "asset_ref": "assets/lcd-native-02.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 3,
+      "asset_ref": "assets/lcd-native-03.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 4,
+      "asset_ref": "assets/lcd-native-04.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 5,
+      "asset_ref": "assets/lcd-native-05.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 6,
+      "asset_ref": "assets/lcd-native-06.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 7,
+      "asset_ref": "assets/lcd-native-07.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 8,
+      "asset_ref": "assets/lcd-native-08.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 9,
+      "asset_ref": "assets/lcd-native-09.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 10,
+      "asset_ref": "assets/lcd-native-10.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 11,
+      "asset_ref": "assets/lcd-native-11.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 12,
+      "asset_ref": "assets/lcd-native-12.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 13,
+      "asset_ref": "assets/lcd-native-13.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 14,
+      "asset_ref": "assets/lcd-native-14.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 15,
+      "asset_ref": "assets/lcd-native-15.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 16,
+      "asset_ref": "assets/lcd-native-16.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 17,
+      "asset_ref": "assets/lcd-native-17.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 18,
+      "asset_ref": "assets/lcd-native-18.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 19,
+      "asset_ref": "assets/lcd-native-19.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 20,
+      "asset_ref": "assets/lcd-native-20.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 21,
+      "asset_ref": "assets/lcd-native-21.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 22,
+      "asset_ref": "assets/lcd-native-22.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 23,
+      "asset_ref": "assets/lcd-native-23.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 24,
+      "asset_ref": "assets/lcd-native-24.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 25,
+      "asset_ref": "assets/lcd-native-25.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "row": 26,
+      "asset_ref": "assets/lcd-native-26.svg",
+      "max_mean_channel_error": 0.0
+    }
+  ],
+  "duration_native_anchor_review": [
+    {
+      "language": "es",
+      "asset_sha256": "0a8aae1f356be47c4730ffad91db9a661a0bc4a581886119e25f0bdccad58c21",
+      "native_clock_position": true,
+      "graphic_error": 0.0
+    }
+  ],
+  "browser": [
+    {
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "broken": [],
+      "imageCount": 77,
+      "liveLabels": 228,
+      "outside": [],
+      "overlaps": [],
+      "occluded": [],
+      "clippedCards": [],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "ES\nIMPORTANTE",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE SEGURIDAD IMPORTANTES",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES DE USO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "SIGNIFICADO DE LOS SÍMBOLOS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FCC",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTENIDO DEL PAQUETE",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA FRONTAL",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL IZQUIERDA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL DERECHA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "PANTALLA LCD",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "OPERACIONES",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA USB",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CC",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PANTALLA LCD",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "RESOLUCIÓN DE PROBLEMAS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS DE RESPALDO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS EN LÍNEA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "(UPS)",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONNECTIONS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR AL PAQUETE DE BATERÍAS",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR A UN STS (SMART TRANSFER SWITCH)",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CARGANDO",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA A TRAVÉS DE UNA TOMA DE CORRIENTE DE RED DE CA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON STS",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "NOTA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON PANELES SOLARES",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON EL CARGADOR DE AUTO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ALMACENAMIENTO",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONFIGURACIÓN DE LA APLICACIÓN",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "1. Para descargar la aplicación e iniciar sesión",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "2.Añadir un dispositivo",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "3. Desvincular el dispositivo",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "4. Notas",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GARANTÍA",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Garantía limitada",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Período de garantía",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Reparación o reemplazo",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Limitado al comprador consumidor original",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Exclusions",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Derechos de interpretación",
+          "font": "17.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ESPECIFICACIONES",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GUÍA DE INSTALACIÓN DEL SISTEMA DE RESPALDO INTELIGENTE PARA EL HOGAR (AC ESS)",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY HOMEPOWER 5000 PLUS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ESPECIFICACIONES",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JHP-5000C",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY BATTERY PACK 5000 PLUS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN/SALIDA",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY SMART TRANSFER SWITCH",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JBP-5000A",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JA-TS02A",
+          "font": "17.92px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "LISTA DE PAQUETES",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTÁCTENOS",
+          "font": "25.28px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "JACKERY INC.",
+          "font": "17.92px",
+          "weight": "700"
+        }
+      ],
+      "figures": [
+        {
+          "id": "overview-front",
+          "width": 657.21875,
+          "height": 464.40625
+        },
+        {
+          "id": "overview-left",
+          "width": 657.21875,
+          "height": 433.296875
+        },
+        {
+          "id": "overview-right",
+          "width": 657.21875,
+          "height": 449.890625
+        },
+        {
+          "id": "lcd-map",
+          "width": 657.21875,
+          "height": 376.4375
+        },
+        {
+          "id": "power",
+          "width": 655.21875,
+          "height": 328.640625
+        },
+        {
+          "id": "ac-output",
+          "width": 655.21875,
+          "height": 385.1875
+        },
+        {
+          "id": "usb-output",
+          "width": 655.21875,
+          "height": 233.28125
+        },
+        {
+          "id": "dc-output",
+          "width": 655.21875,
+          "height": 224.3125
+        },
+        {
+          "id": "lcd-button",
+          "width": 657.21875,
+          "height": 538.15625
+        },
+        {
+          "id": "ups",
+          "width": 655.21875,
+          "height": 407.734375
+        },
+        {
+          "id": "battery-packs",
+          "width": 655.21875,
+          "height": 321.765625
+        },
+        {
+          "id": "sts-connect",
+          "width": 655.21875,
+          "height": 349.078125
+        },
+        {
+          "id": "ac-charge",
+          "width": 655.21875,
+          "height": 226.328125
+        },
+        {
+          "id": "sts-charge",
+          "width": 655.21875,
+          "height": 364.390625
+        },
+        {
+          "id": "low-pv-500",
+          "width": 657.21875,
+          "height": 281.203125
+        },
+        {
+          "id": "low-pv-200",
+          "width": 657.21875,
+          "height": 312.171875
+        },
+        {
+          "id": "high-pv",
+          "width": 657.21875,
+          "height": 466.390625
+        },
+        {
+          "id": "high-pv-lock",
+          "width": 657.21875,
+          "height": 287.609375
+        },
+        {
+          "id": "dual-pv",
+          "width": 657.21875,
+          "height": 343.140625
+        },
+        {
+          "id": "car",
+          "width": 657.21875,
+          "height": 293.140625
+        },
+        {
+          "id": "app-add",
+          "width": 480,
+          "height": 455.515625
+        },
+        {
+          "id": "app-control",
+          "width": 657.21875,
+          "height": 168.59375
+        },
+        {
+          "id": "app-results",
+          "width": 657.21875,
+          "height": 394.578125
+        },
+        {
+          "id": "ess",
+          "width": 655.21875,
+          "height": 583.90625
+        },
+        {
+          "id": "package-host",
+          "width": 655.21875,
+          "height": 230.84375
+        },
+        {
+          "id": "package-battery",
+          "width": 655.21875,
+          "height": 172.5
+        },
+        {
+          "id": "package-sts",
+          "width": 655.21875,
+          "height": 285
+        }
+      ],
+      "boldWeights": [
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700"
+      ],
+      "scrollSurfaces": [],
+      "language": "es",
+      "width": 1280,
+      "height": 900,
+      "errors": [],
+      "resourceErrors": []
+    },
+    {
+      "pageWidth": 768,
+      "viewport": 768,
+      "broken": [],
+      "imageCount": 77,
+      "liveLabels": 228,
+      "outside": [],
+      "overlaps": [],
+      "occluded": [],
+      "clippedCards": [],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "ES\nIMPORTANTE",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE SEGURIDAD IMPORTANTES",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES DE USO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "SIGNIFICADO DE LOS SÍMBOLOS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FCC",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTENIDO DEL PAQUETE",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA FRONTAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL IZQUIERDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL DERECHA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "PANTALLA LCD",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "OPERACIONES",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA USB",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CC",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PANTALLA LCD",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "RESOLUCIÓN DE PROBLEMAS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS DE RESPALDO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS EN LÍNEA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "(UPS)",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONNECTIONS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR AL PAQUETE DE BATERÍAS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR A UN STS (SMART TRANSFER SWITCH)",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CARGANDO",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA A TRAVÉS DE UNA TOMA DE CORRIENTE DE RED DE CA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON STS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "NOTA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON PANELES SOLARES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON EL CARGADOR DE AUTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ALMACENAMIENTO",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONFIGURACIÓN DE LA APLICACIÓN",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "1. Para descargar la aplicación e iniciar sesión",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "2.Añadir un dispositivo",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "3. Desvincular el dispositivo",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "4. Notas",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GARANTÍA",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Garantía limitada",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Período de garantía",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Reparación o reemplazo",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Limitado al comprador consumidor original",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Exclusions",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Derechos de interpretación",
+          "font": "15.04px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ESPECIFICACIONES",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GUÍA DE INSTALACIÓN DEL SISTEMA DE RESPALDO INTELIGENTE PARA EL HOGAR (AC ESS)",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY HOMEPOWER 5000 PLUS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ESPECIFICACIONES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JHP-5000C",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY BATTERY PACK 5000 PLUS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN/SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY SMART TRANSFER SWITCH",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JBP-5000A",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JA-TS02A",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "LISTA DE PAQUETES",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTÁCTENOS",
+          "font": "20.48px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "JACKERY INC.",
+          "font": "16px",
+          "weight": "700"
+        }
+      ],
+      "figures": [
+        {
+          "id": "overview-front",
+          "width": 687.9375,
+          "height": 486.109375
+        },
+        {
+          "id": "overview-left",
+          "width": 687.9375,
+          "height": 453.546875
+        },
+        {
+          "id": "overview-right",
+          "width": 687.9375,
+          "height": 470.921875
+        },
+        {
+          "id": "lcd-map",
+          "width": 680,
+          "height": 389.484375
+        },
+        {
+          "id": "power",
+          "width": 685.9375,
+          "height": 344.046875
+        },
+        {
+          "id": "ac-output",
+          "width": 685.9375,
+          "height": 403.25
+        },
+        {
+          "id": "usb-output",
+          "width": 685.9375,
+          "height": 244.21875
+        },
+        {
+          "id": "dc-output",
+          "width": 685.9375,
+          "height": 234.828125
+        },
+        {
+          "id": "lcd-button",
+          "width": 687.9375,
+          "height": 563.296875
+        },
+        {
+          "id": "ups",
+          "width": 685.9375,
+          "height": 426.84375
+        },
+        {
+          "id": "battery-packs",
+          "width": 685.9375,
+          "height": 336.84375
+        },
+        {
+          "id": "sts-connect",
+          "width": 685.9375,
+          "height": 365.453125
+        },
+        {
+          "id": "ac-charge",
+          "width": 685.9375,
+          "height": 236.9375
+        },
+        {
+          "id": "sts-charge",
+          "width": 685.9375,
+          "height": 381.484375
+        },
+        {
+          "id": "low-pv-500",
+          "width": 687.9375,
+          "height": 294.359375
+        },
+        {
+          "id": "low-pv-200",
+          "width": 687.9375,
+          "height": 326.765625
+        },
+        {
+          "id": "high-pv",
+          "width": 687.9375,
+          "height": 488.1875
+        },
+        {
+          "id": "high-pv-lock",
+          "width": 687.9375,
+          "height": 301.046875
+        },
+        {
+          "id": "dual-pv",
+          "width": 687.9375,
+          "height": 359.1875
+        },
+        {
+          "id": "car",
+          "width": 687.9375,
+          "height": 306.84375
+        },
+        {
+          "id": "app-add",
+          "width": 480,
+          "height": 455.515625
+        },
+        {
+          "id": "app-control",
+          "width": 687.9375,
+          "height": 176.484375
+        },
+        {
+          "id": "app-results",
+          "width": 687.9375,
+          "height": 413.015625
+        },
+        {
+          "id": "ess",
+          "width": 685.9375,
+          "height": 611.296875
+        },
+        {
+          "id": "package-host",
+          "width": 685.9375,
+          "height": 241.671875
+        },
+        {
+          "id": "package-battery",
+          "width": 685.9375,
+          "height": 180.59375
+        },
+        {
+          "id": "package-sts",
+          "width": 685.9375,
+          "height": 298.359375
+        }
+      ],
+      "boldWeights": [
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700"
+      ],
+      "scrollSurfaces": [],
+      "language": "es",
+      "width": 768,
+      "height": 1024,
+      "errors": [],
+      "resourceErrors": []
+    },
+    {
+      "pageWidth": 390,
+      "viewport": 390,
+      "broken": [],
+      "imageCount": 77,
+      "liveLabels": 228,
+      "outside": [],
+      "overlaps": [],
+      "occluded": [],
+      "clippedCards": [],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "ES\nIMPORTANTE",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE SEGURIDAD IMPORTANTES",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INSTRUCCIONES DE USO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "SIGNIFICADO DE LOS SÍMBOLOS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FCC",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTENIDO DEL PAQUETE",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA FRONTAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL IZQUIERDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "VISTA LATERAL DERECHA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "PANTALLA LCD",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "OPERACIONES",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA USB",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO DE SALIDA CC",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PANTALLA LCD",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "RESOLUCIÓN DE PROBLEMAS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS DE RESPALDO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "UPS EN LÍNEA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "(UPS)",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONNECTIONS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR AL PAQUETE DE BATERÍAS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CONECTAR A UN STS (SMART TRANSFER SWITCH)",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CARGANDO",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA A TRAVÉS DE UNA TOMA DE CORRIENTE DE RED DE CA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON STS",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "NOTA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON PANELES SOLARES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "CARGA CON EL CARGADOR DE AUTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ALMACENAMIENTO",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONFIGURACIÓN DE LA APLICACIÓN",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "1. Para descargar la aplicación e iniciar sesión",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "2.Añadir un dispositivo",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "3. Desvincular el dispositivo",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "4. Notas",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GARANTÍA",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Garantía limitada",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Período de garantía",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Reparación o reemplazo",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Limitado al comprador consumidor original",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Exclusions",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Derechos de interpretación",
+          "font": "14.72px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "ESPECIFICACIONES",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "GUÍA DE INSTALACIÓN DEL SISTEMA DE RESPALDO INTELIGENTE PARA EL HOGAR (AC ESS)",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY HOMEPOWER 5000 PLUS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "ESPECIFICACIONES",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JHP-5000C",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY BATTERY PACK 5000 PLUS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "PUERTOS DE ALIMENTACIÓN/SALIDA",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "TEMPERATURA AMBIENTAL DE FUNCIONAMIENTO",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "JACKERY SMART TRANSFER SWITCH",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "ESPECIFICACIONES\nVENDU SÉPARÉMENT",
+          "font": "14.08px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "INFORMACIÓN GENERAL",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JBP-5000A",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "MODELO: JA-TS02A",
+          "font": "16px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "LISTA DE PAQUETES",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H1",
+          "text": "CONTÁCTENOS",
+          "font": "21.44px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "JACKERY INC.",
+          "font": "16px",
+          "weight": "700"
+        }
+      ],
+      "figures": [
+        {
+          "id": "overview-front",
+          "width": 680,
+          "height": 480.5
+        },
+        {
+          "id": "overview-left",
+          "width": 680,
+          "height": 448.3125
+        },
+        {
+          "id": "overview-right",
+          "width": 680,
+          "height": 465.484375
+        },
+        {
+          "id": "lcd-map",
+          "width": 680,
+          "height": 389.484375
+        },
+        {
+          "id": "power",
+          "width": 680,
+          "height": 341.078125
+        },
+        {
+          "id": "ac-output",
+          "width": 680,
+          "height": 399.765625
+        },
+        {
+          "id": "usb-output",
+          "width": 680,
+          "height": 242.109375
+        },
+        {
+          "id": "dc-output",
+          "width": 680,
+          "height": 232.796875
+        },
+        {
+          "id": "lcd-button",
+          "width": 680,
+          "height": 556.796875
+        },
+        {
+          "id": "ups",
+          "width": 680,
+          "height": 423.15625
+        },
+        {
+          "id": "battery-packs",
+          "width": 680,
+          "height": 333.921875
+        },
+        {
+          "id": "sts-connect",
+          "width": 680,
+          "height": 362.28125
+        },
+        {
+          "id": "ac-charge",
+          "width": 680,
+          "height": 234.890625
+        },
+        {
+          "id": "sts-charge",
+          "width": 680,
+          "height": 378.171875
+        },
+        {
+          "id": "low-pv-500",
+          "width": 680,
+          "height": 290.953125
+        },
+        {
+          "id": "low-pv-200",
+          "width": 680,
+          "height": 323
+        },
+        {
+          "id": "high-pv",
+          "width": 680,
+          "height": 482.546875
+        },
+        {
+          "id": "high-pv-lock",
+          "width": 680,
+          "height": 297.578125
+        },
+        {
+          "id": "dual-pv",
+          "width": 680,
+          "height": 355.03125
+        },
+        {
+          "id": "car",
+          "width": 680,
+          "height": 303.296875
+        },
+        {
+          "id": "app-add",
+          "width": 358,
+          "height": 339.734375
+        },
+        {
+          "id": "app-control",
+          "width": 358,
+          "height": 91.828125
+        },
+        {
+          "id": "app-results",
+          "width": 358,
+          "height": 214.9375
+        },
+        {
+          "id": "ess",
+          "width": 680,
+          "height": 606
+        },
+        {
+          "id": "package-host",
+          "width": 680,
+          "height": 239.578125
+        },
+        {
+          "id": "package-battery",
+          "width": 680,
+          "height": 179.03125
+        },
+        {
+          "id": "package-sts",
+          "width": 680,
+          "height": 295.78125
+        }
+      ],
+      "boldWeights": [
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700",
+        "700"
+      ],
+      "scrollSurfaces": [
+        "native-figure native-overview-front native-dense",
+        "native-figure native-overview-left native-dense",
+        "native-figure native-overview-right native-dense",
+        "native-figure native-lcd-map native-dense",
+        "native-figure native-power native-dense native-operation",
+        "native-figure native-ac-output native-dense native-operation",
+        "native-figure native-usb-output native-dense native-operation",
+        "native-figure native-dc-output native-dense native-operation",
+        "native-figure native-lcd-button native-dense",
+        "native-figure native-ups native-dense native-operation",
+        "native-figure native-battery-packs native-dense native-operation",
+        "native-figure native-sts-connect native-dense native-operation",
+        "native-figure native-ac-charge native-dense native-operation",
+        "native-figure native-sts-charge native-dense native-operation",
+        "native-figure native-low-pv-500 native-dense",
+        "native-figure native-low-pv-200 native-dense",
+        "native-figure native-high-pv native-dense",
+        "native-figure native-high-pv-lock native-dense",
+        "native-figure native-dual-pv native-dense",
+        "native-figure native-car native-dense",
+        "native-figure native-ess native-dense native-operation",
+        "native-figure native-package-host native-dense native-operation",
+        "native-figure native-package-battery native-dense native-operation",
+        "native-figure native-package-sts native-dense native-operation"
+      ],
+      "language": "es",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "resourceErrors": []
+    }
+  ],
+  "visual_review": {
+    "reviewer": "Codex",
+    "status": "accepted-local-chromium",
+    "scope": [
+      "native PDF / Web figure pairs; complete devices, leaders, zoom circles, mesh and phone frames",
+      "native locale car artwork and footnote capsule; power clock position and note text",
+      "shared heading/table/FCC/inbox/key/warranty/App components",
+      "23 chapter starts at desktop/mobile; contained scrolling for dense native figures"
+    ],
+    "resolved": [
+      "caption plate layers obscuring earlier native lines",
+      "Spanish USB/DC status label spacing at all three widths",
+      "car white footnote capsule removed from every base art",
+      "native FR/ES power clock relocated using existing graphic only",
+      "empty English App heading removed at source",
+      "Spanish specification title separated from native sold-separately badge"
+    ],
+    "evidence_sha256": {
+      "es-1280-app.png": "e6e5a9ad340e72f9f925238dd2166bebfe9d966b079a6435f306c248b1697b53",
+      "es-1280-charging.png": "c48e9da395e760c62911fb6e41171621c2c488ae23b347811c3c535f5cd0c5b4",
+      "es-1280-connections.png": "3855815bedaf9e75fa49025524e3710c88eaa0a6d0e07e66351812093bad5a6a",
+      "es-1280-contact.png": "4d1a42854d6c56306daa14a25c69698463f1e181e43cd6139cbbc2b01a722de3",
+      "es-1280-ess-battery.png": "2b1777cbb4075fb83a0d2bad1b0f2e71a77d5893fcca742d5297f3fa049bfc0b",
+      "es-1280-ess-host.png": "fde3207e04b56ab3fc9b0fd2eee0ab09b8d987ba7948749d12b6eac74e2a5501",
+      "es-1280-ess-package.png": "af7ebc1d1386b1620d716f24e9b0d5a0d905f3b5641130cb59936354eef2be06",
+      "es-1280-ess-sts.png": "8a66d4fe13d4eebe48600d2443a72092538b750052d72e742ce55ba9dd9c7bb1",
+      "es-1280-ess.png": "081448135436cd41efd81087dae5606766652a70aebb2d9493fb0d7282c6a7c7",
+      "es-1280-fcc.png": "ad18a3975543a99ee6cde88e0b5d4896f029453a6668b76a50d0c3bd125e9460",
+      "es-1280-inbox.png": "3d9be4b3f93aaefe291a192a01b9b7b7ac7985677090de48da6793d028407862",
+      "es-1280-lcd.png": "92ae328a7c9e100da3ee3581d0cb7c09519707f3b7399ff2fd8680733da7d04b",
+      "es-1280-maintenance.png": "42fee4724ebffbdfadd70bc8440beade78a1eb7617f13f899632ba8cceb4edc1",
+      "es-1280-operations.png": "78eaf648f2d5664fc0c0d2cd54f1aeb0901ad3a5e5859281db829cdbd225c40d",
+      "es-1280-overview.png": "5e07aea849014d92a7805ada4dd9ad60a8f31efc3f556826eff112edfe08dada",
+      "es-1280-preface.png": "9038cce8a9a8dcef82ae115ea67b9410f4a48c6f7a524b90b4cb2d854c819cc7",
+      "es-1280-safety.png": "a640caa43898b96bff4b8b6021045306251db9be6a44ce9909b346fe8be23b88",
+      "es-1280-specifications.png": "2c59ef58e0a2941a33fe5b86ce9c9624b9003492d83e462c1bae897096cd40f4",
+      "es-1280-storage.png": "190140667a3ebef6f4b2e5a19fb29fa8539b273db92c62923f4206f96e75467c",
+      "es-1280-symbols.png": "466828e6b08074ed6a636e496fb120357c8ea16a30a655451999182b572a4896",
+      "es-1280-troubleshooting.png": "3315b305a4fa2887b5c6d0fb166fd08f28c03045e9d7a8438618209773a66904",
+      "es-1280-ups.png": "e83a4cf78db27d0bc026b7540de0c75cf0780da7695b7e7b5284d082db68a791",
+      "es-1280-warranty.png": "16a4b023ebd1906f3e80fcab6465a695052a03ab50e37e62a5df1cf915049d2d",
+      "es-390-app.png": "6ca5253c06c7a5c336d936ed13d63dfddd8f75920d2e6f809862ceabdc562fbb",
+      "es-390-charging.png": "d7c53e4f4cf2f6710011f3a4a572048630766a75ef47e9b46fe7cdc1788987f7",
+      "es-390-connections.png": "76421a0a14552f8c87cb369efe6ad8de3de2106aa80a1c8f956ba2a1986253ab",
+      "es-390-contact.png": "beb4bb9d7defdee62349bb88d151297151f3a406cafa7bb0670fe441ffeb976b",
+      "es-390-ess-battery.png": "d9f651a49bb28c1a7b02868cc203e9a72847a46be442b2728f649764a0e6e605",
+      "es-390-ess-host.png": "f35e980c726ef49723922a0f9e6e29b109bf65af1717d752583d13ae3616cb9a",
+      "es-390-ess-package.png": "43a552da0265166d6b4259a34b3dda11f6e6bb99920b9f37b22eef33a3c904d5",
+      "es-390-ess-sts.png": "c61094e02e45e90eece0719db222f9e4ee61543ca4231524d89d907e4486a8d9",
+      "es-390-ess.png": "0ab7b9814a2c6aba8b9dab926ee3d4bece228e5fbd18e9bb03d7864e6a65bb3c",
+      "es-390-fcc.png": "15c0c6f13b41da851787442aa0c206693fa5975c90d5957071fde8684834d14b",
+      "es-390-inbox.png": "bfe56a9b6a3955c07ff2fdcd86c154fae39bd339ccbe39e86958f402760c0727",
+      "es-390-lcd.png": "6ace2b92ad1eda5b5c948ee29f06897f8598481227ece5b98f8c2d675e43258c",
+      "es-390-maintenance.png": "993d85fec25834cc350a5618113a716988d40228e2e28bcba6facbcaf2974cd7",
+      "es-390-operations.png": "a6203601aaa8072be05eddb8dbef83dba2cd420c7c1f61ebb67132aaf7228f12",
+      "es-390-overview.png": "79793757c58abb6ac77adbac6a31da28d5649c7926c84eaa303ab811b58c66e2",
+      "es-390-preface.png": "62d93d71ae22e06b57d8d8991de86de81d181e8652dc81eef71ed8cc44679b36",
+      "es-390-safety.png": "85e56c0792636dc039f74bc2765a406e76736968ca92da311f98b164df680326",
+      "es-390-specifications.png": "6ee9f068cda9eb50e77f864e3ce9058bbcaf43e8e58044ead496845ce591a9cd",
+      "es-390-storage.png": "6dbc014709fac10a24ba9e99b8fa0e3eb827e004d7e5876c040b1bc905dcf104",
+      "es-390-symbols.png": "a0dc13b4d8767c9c6d7c09dcf7fe45e9229142fee243e805bd2a5dee8bc5712e",
+      "es-390-troubleshooting.png": "522fa433d0e5eafcca76d5dc386c3d844efdc478f3660788000e87889a56faa8",
+      "es-390-ups.png": "811daf3f5865fd31c4d038e91b89ed86611f673e531980c9d45c443a44809741",
+      "es-390-warranty.png": "3cd8cfbb9d5354f4cbc1339e972554a4a743657395b558ac32156bcc2303ec9c",
+      "es-figure-ac-charge.png": "37eb9db3e4b6b9835c6fd151be911de32dd901130ae677659ee967f2f0de422e",
+      "es-figure-ac-output.png": "079d242d58e0055cdd26f06fa0a5d6c45a03e03e4900da3b9bdcd382f1295276",
+      "es-figure-app-add.png": "e4a37937d62cde37f554945687f78a45b0efc1a950a5d3664fa16e63411ef2d7",
+      "es-figure-app-control.png": "75b2821428be6fa63e7cfb6700e5bd387d523a08f35a18cb52c0da2a86d9ce38",
+      "es-figure-app-results.png": "d9b0a294a8fa6da5386b1122ea410d0d91bfbc8960132337b8647ec8e24961cb",
+      "es-figure-battery-packs.png": "5820c87c50737cdb607355324612a53a8d6cfe8f728fc8c4500a693d5676486c",
+      "es-figure-car.png": "9e3970a4a6ab572c72df663b3c9e849d6e3c2a09c54b17f078cdf470c5619ba9",
+      "es-figure-dc-output.png": "bf29dab86793cb5c60605e00e1bd5844322fe763df0ef965907906d333d4aa65",
+      "es-figure-dual-pv.png": "8df51d81861c65a4365cae12419f9c2a9af83dbaa173086de55f6f831674d2ba",
+      "es-figure-ess.png": "dc4be0a9f563d3cd813ccaf602ee81b3055feef5053ea5df2175432f23fa1d19",
+      "es-figure-high-pv-lock.png": "cc84fb991896d4bb7823eabb16022e71403d8f35ed1c9d28630a3a8dc1de1139",
+      "es-figure-high-pv.png": "23465684ac8763fd6e5481d695dd609fd0e473b88d95865c10b3d5a90385ba4b",
+      "es-figure-lcd-button.png": "4fb1545261464f804c847f13cf278184c9f9570ad466639e2b1cb97485e08005",
+      "es-figure-lcd-map.png": "4f724b343739d00d197ec575a610e659f6ea328309b4905cd663055155f2bba5",
+      "es-figure-low-pv-200.png": "77d3a484d15b7e982702c134f54851b9de6de9e5b58497ffd82ce48f68185461",
+      "es-figure-low-pv-500.png": "27fe3321063666a4a27d4740b7220d8ba163c7d84191d71b5febb28f47fb9d41",
+      "es-figure-overview-front.png": "84b95639cad004e1d815884b22939ebaa7f2c651ee1590708f3ebe8a4f3add2a",
+      "es-figure-overview-left.png": "af8f5c9db2a851dead1d28beae9186f03cb5d5ab74996886da764530ef400c8c",
+      "es-figure-overview-right.png": "896c6579c640b5e5d8355a74b8ee8acf8dc228d5c4f5404c3185240cd2550a01",
+      "es-figure-package-battery.png": "84e6fc6661bd1c5a4df097851833add4680d69e84f6b37b716ef529742f4039f",
+      "es-figure-package-host.png": "5c646e70d398b446f6a08e54d07a6f15f9fd803e087b36f734e7995f80a682f9",
+      "es-figure-package-sts.png": "96580a8673b210395f83ab74a80afd97861a52f34a08617d807ea4cf6eeb88d5",
+      "es-figure-power.png": "30aa18bf1a534cd8a64aedf5a75fa91707dd9a587adf30501aa031efb6ab5a09",
+      "es-figure-sts-charge.png": "e94f77240e0545ecff9a0a92dcad47a059def0ae7de526f6504b46957e257bbe",
+      "es-figure-sts-connect.png": "77882e139b9397c256d743adfc278c3459f0c75ccf0e912586b1e9bb95b9fe5d",
+      "es-figure-ups.png": "c87b6e6708d04e53132d222cdf8c9afd70036cd1743ead21d31e7cafd879d335",
+      "es-figure-usb-output.png": "7c25f5d78fedba4106da34410b415e702b8fee9f903816dab75cb67839ef976d"
+    },
+    "final_heading_review": {
+      "status": "accepted",
+      "empty_visible_headings": 0,
+      "span_texts": [
+        "ESPECIFICACIONES",
+        "VENDU SÉPARÉMENT"
+      ],
+      "evidence_sha256": {
+        "spec-badge-focused.png": "84b861beeee9ed6721946fcbb8dc882fc84c11a4ff96cb2ca4ea549fab4b4f0d",
+        "app-focused.png": "bda3a578d1dd0168f9d9e57b3637bb62d0afd8c9eda2557da2a72fcbc6aca347"
+      }
+    }
+  },
+  "git_only": true,
+  "online_release_verified": false,
+  "browser_report_sha256": "2bf0b7830eaf3a66632103b193efea8887619f8b0b956e915206ad5f5c6c2517"
+}
