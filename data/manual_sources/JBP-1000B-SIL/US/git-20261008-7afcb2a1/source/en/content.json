@@ -3338,12 +3338,13 @@
           ]
         },
         {
+          "schema_version": "manual-flow/v2",
           "kind": "group",
           "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": "native-wall-wood-steps"
               }
             }
           },
@@ -3354,120 +3355,309 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wood-1-2"
                   }
                 }
               },
               "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "1. Install the Jackery FridgeGuard according to the user manual. 2. Remove two screws from the bottom of the Battery Pack."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/wood-1-2.png",
-                      "alt": "wood-1-2",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/wood-3.png",
-                      "alt": "wood-3",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "4. Use a stud finder to identify wood studs behind the wall."
-                    }
-                  ]
-                },
                 {
                   "kind": "component",
                   "component_spec": {
                     "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
                     "variant": "semantic-fallback",
-                    "source_ref": "en/pdf-page-1#reference-wood-4",
+                    "source_ref": "en/pdf-page-11#reference-wood-1-2",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "wood-1-2"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "wood-1-2"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "1. Install the Jackery FridgeGuard according to the user manual.",
+                            "text": "1. Install the Jackery FridgeGuard according to the user manual."
+                          },
+                          {
+                            "html": "2. Remove two screws from the bottom of the Battery Pack.",
+                            "text": "2. Remove two screws from the bottom of the Battery Pack."
+                          }
+                        ]
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/wood-1-2.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 2,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "art_sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c",
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              3,
+                              5,
+                              70,
+                              8
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
+                              3,
+                              13,
+                              70,
+                              8
+                            ]
+                          }
+                        ]
+                      },
+                      "image_key": "wood-1-2",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "55b6cbab18b38b1bd5ed9236d45d9057c4fabc99ee27c5323c4f4654f028b00c"
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/wood-1-2.png",
+                      "alt": "wood-1-2"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line-block"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1. Install the Jackery FridgeGuard according to the user manual."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "2. Remove two screws from the bottom of the Battery Pack."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-wall-panel native-wood-3"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-11#reference-wood-3",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "wood-3"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "wood-3"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack.",
+                            "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
+                          }
+                        ]
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/wood-3.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 1,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "art_sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e",
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              39,
+                              4,
+                              57,
+                              22
+                            ]
+                          }
+                        ]
+                      },
+                      "image_key": "wood-3",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "0f0ee4e4872b0c3e3052ae7f3ccb92033aa4c7b7adf5dcab8d1e35bbf6e2c893"
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/wood-3.png",
+                      "alt": "wood-3"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line-block"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-wall-panel native-wood-4"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-11#reference-wood-4",
                     "language": "en",
                     "slots": [
                       {
@@ -3495,6 +3685,10 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "4. Use a stud finder to identify wood studs behind the wall.",
+                            "text": "4. Use a stud finder to identify wood studs behind the wall."
+                          },
+                          {
                             "html": "wood stud",
                             "text": "wood stud"
                           }
@@ -3512,7 +3706,7 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 1,
+                      "capture_following_lines": 2,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
@@ -3523,10 +3717,19 @@
                         "panel_top": 0,
                         "panel_fill": "#ffffff",
                         "preserve_frame": true,
-                        "mobile_labels": "overlay",
+                        "mobile_labels": "stack",
                         "labels": [
                           {
                             "line": 0,
+                            "rect": [
+                              7,
+                              4,
+                              89,
+                              17
+                            ]
+                          },
+                          {
+                            "line": 1,
                             "rect": [
                               65,
                               32,
@@ -3538,7 +3741,7 @@
                       },
                       "image_key": "wood-4",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "45f1437b79bd4598f6c9469a172322743f29fa36a9ff737b2485138c802cd8c7"
+                      "source_fragment_sha256": "8532f600d1888686aec8ecab6595cf6a0b1b8598ebcf479335ea5538bef30f77"
                     },
                     "schema_version": "component-spec/v1"
                   },
@@ -3572,6 +3775,23 @@
                           "children": [
                             {
                               "kind": "text",
+                              "text": "4. Use a stud finder to identify wood studs behind the wall."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
                               "text": "wood stud"
                             }
                           ]
@@ -3588,29 +3808,11 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wood-5"
                   }
                 }
               },
               "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "5. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wood stud of the wall."
-                    }
-                  ]
-                },
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
-                    }
-                  ]
-                },
                 {
                   "kind": "component",
                   "component_spec": {
@@ -3644,6 +3846,14 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "5. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wood stud of the wall.",
+                            "text": "5. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wood stud of the wall."
+                          },
+                          {
+                            "html": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions.",
+                            "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
+                          },
+                          {
                             "html": "wood stud",
                             "text": "wood stud"
                           },
@@ -3673,21 +3883,39 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 4,
+                      "capture_following_lines": 6,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
                       "composite_locale": "",
                       "presentation_mode": "base-art-live-copy",
                       "base_art_layout": {
-                        "art_sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
+                        "art_sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8",
                         "panel_top": 0,
                         "panel_fill": "#ffffff",
                         "preserve_frame": true,
-                        "mobile_labels": "overlay",
+                        "mobile_labels": "stack",
                         "labels": [
                           {
                             "line": 0,
+                            "rect": [
+                              3,
+                              4,
+                              94,
+                              13
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
+                              3,
+                              16,
+                              94,
+                              10
+                            ]
+                          },
+                          {
+                            "line": 2,
                             "rect": [
                               33.5914225517949,
                               21.180884445769877,
@@ -3696,7 +3924,7 @@
                             ]
                           },
                           {
-                            "line": 1,
+                            "line": 3,
                             "rect": [
                               58.54291312302215,
                               20.575187779680082,
@@ -3705,7 +3933,7 @@
                             ]
                           },
                           {
-                            "line": 2,
+                            "line": 4,
                             "rect": [
                               44.887880735759495,
                               40.18031735963459,
@@ -3714,7 +3942,7 @@
                             ]
                           },
                           {
-                            "line": 3,
+                            "line": 5,
                             "rect": [
                               4.608386075949367,
                               67.2916557215437,
@@ -3726,7 +3954,7 @@
                       },
                       "image_key": "wood-5",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "b5a5d8f2a891c9f45d96bde5f725279e5c1895b97a2d1a41154909cbf841c6a2"
+                      "source_fragment_sha256": "2b2e0ec33e8ef722decbff96f3596fcdb2251284fd1aace8fe24cc9dd33a8ac8"
                     },
                     "schema_version": "component-spec/v1"
                   },
@@ -3760,6 +3988,40 @@
                           "children": [
                             {
                               "kind": "text",
+                              "text": "5. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wood stud of the wall."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
                               "text": "wood stud"
                             }
                           ]
@@ -3827,20 +4089,11 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wood-6"
                   }
                 }
               },
               "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "6. Drive the wood screw into the wall at the mounting point, leaving a 2-4mm gap between the screw and the wall."
-                    }
-                  ]
-                },
                 {
                   "kind": "component",
                   "component_spec": {
@@ -3874,6 +4127,10 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "6. Drive the wood screw into the wall at the mounting point, leaving a 2-4mm gap between the screw and the wall.",
+                            "text": "6. Drive the wood screw into the wall at the mounting point, leaving a 2-4mm gap between the screw and the wall."
+                          },
+                          {
                             "html": "2~4mm",
                             "text": "2~4mm"
                           },
@@ -3899,21 +4156,30 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 3,
+                      "capture_following_lines": 4,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
                       "composite_locale": "",
                       "presentation_mode": "base-art-live-copy",
                       "base_art_layout": {
-                        "art_sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
+                        "art_sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47",
                         "panel_top": 0,
                         "panel_fill": "#ffffff",
                         "preserve_frame": true,
-                        "mobile_labels": "overlay",
+                        "mobile_labels": "stack",
                         "labels": [
                           {
                             "line": 0,
+                            "rect": [
+                              3,
+                              4,
+                              94,
+                              15
+                            ]
+                          },
+                          {
+                            "line": 1,
                             "rect": [
                               66.37069605573824,
                               31.448272178912983,
@@ -3922,7 +4188,7 @@
                             ]
                           },
                           {
-                            "line": 1,
+                            "line": 2,
                             "rect": [
                               44.50158227848101,
                               21.35137360671471,
@@ -3931,7 +4197,7 @@
                             ]
                           },
                           {
-                            "line": 2,
+                            "line": 3,
                             "rect": [
                               1.9524996793722806,
                               39.25740472201643,
@@ -3943,7 +4209,7 @@
                       },
                       "image_key": "wood-6",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "798966082da154db4167471732b592462affa05cd9d62c71ca401e0c96150f52"
+                      "source_fragment_sha256": "f9258da45c467d5c0c9fa90b819c18ac6861abefd8c772747065f257b8305f87"
                     },
                     "schema_version": "component-spec/v1"
                   },
@@ -3964,6 +4230,23 @@
                         }
                       },
                       "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "6. Drive the wood screw into the wall at the mounting point, leaving a 2-4mm gap between the screw and the wall."
+                            }
+                          ]
+                        },
                         {
                           "kind": "group",
                           "role": "container",
@@ -4027,49 +4310,132 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wood-7"
                   }
                 }
               },
               "children": [
                 {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "7. Hang the Battery Pack onto the screw vertically. Drive a self-tapping screw through the mounting hole in the bottom bracket into the wall and tighten it. Then, fully tighten the wood screw."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-12#reference-wood-7",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "wood-7"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "wood-7"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "7. Hang the Battery Pack onto the screw vertically. Drive a self-tapping screw through the mounting hole in the bottom bracket into the wall and tighten it. Then, fully tighten the wood screw.",
+                            "text": "7. Hang the Battery Pack onto the screw vertically. Drive a self-tapping screw through the mounting hole in the bottom bracket into the wall and tighten it. Then, fully tighten the wood screw."
+                          }
+                        ]
                       }
-                    }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/wood-7.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 1,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "art_sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005",
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              3,
+                              3,
+                              94,
+                              18
+                            ]
+                          }
+                        ]
+                      },
+                      "image_key": "wood-7",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "8896d094dfd5aacc080be67064609c76730817f14eb96cd4f7de7fb383d7fb2a"
+                    },
+                    "schema_version": "component-spec/v1"
                   },
-                  "children": [
+                  "carrier_flow": [
                     {
                       "kind": "image",
                       "source": "assets/wood-7.png",
-                      "alt": "wood-7",
+                      "alt": "wood-7"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
                       "presentation": {
                         "html": {
                           "attributes": {
-                            "class": "hb-reference-art"
+                            "class": "line-block"
                           }
                         }
-                      }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "7. Hang the Battery Pack onto the screw vertically. Drive a self-tapping screw through the mounting hole in the bottom bracket into the wall and tighten it. Then, fully tighten the wood screw."
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "heading",
@@ -4083,22 +4449,13 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Preparation before installation:"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
+          "schema_version": "manual-flow/v2",
           "kind": "group",
           "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": "native-concrete-opening"
               }
             }
           },
@@ -4109,7 +4466,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-concrete-preparation"
                   }
                 }
               },
@@ -4119,7 +4476,7 @@
                   "component_spec": {
                     "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
                     "variant": "semantic-fallback",
-                    "source_ref": "en/pdf-page-1#reference-concrete-prep",
+                    "source_ref": "en/pdf-page-13#reference-concrete-prep",
                     "language": "en",
                     "slots": [
                       {
@@ -4147,6 +4504,10 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "Preparation before installation:",
+                            "text": "Preparation before installation:"
+                          },
+                          {
                             "html": "SOLD SEPARATELY",
                             "text": "SOLD SEPARATELY"
                           }
@@ -4164,7 +4525,7 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 1,
+                      "capture_following_lines": 2,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
@@ -4180,6 +4541,15 @@
                           {
                             "line": 0,
                             "rect": [
+                              4,
+                              3,
+                              75,
+                              13
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
                               54,
                               27,
                               25,
@@ -4190,7 +4560,7 @@
                       },
                       "image_key": "concrete-prep",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "da67856f4c4a9bcc3b8bc3541ae82c3c2ee5bd16013682412218f6f35d8812a1"
+                      "source_fragment_sha256": "4fd692538b2e960b76be9a03af84cfe0413257ed6a33cee87070b5009646a39b"
                     },
                     "schema_version": "component-spec/v1"
                   },
@@ -4224,6 +4594,23 @@
                           "children": [
                             {
                               "kind": "text",
+                              "text": "Preparation before installation:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
                               "text": "SOLD SEPARATELY"
                             }
                           ]
@@ -4240,7 +4627,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-concrete-result"
                   }
                 }
               },
@@ -4272,16 +4659,16 @@
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
+          "schema_version": "manual-flow/v2",
           "kind": "group",
           "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": "native-wall-concrete-steps"
               }
             }
           },
@@ -4292,140 +4679,28 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-concrete-1-2"
                   }
                 }
               },
               "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "1. Install the Jackery FridgeGuard according to the user manual. 2. Remove two screws from the bottom of the Battery Pack."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/concrete-1-2.png",
-                      "alt": "concrete-1-2",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/concrete-3.png",
-                      "alt": "concrete-3",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "4. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wall."
-                    }
-                  ]
-                },
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
-                    }
-                  ]
-                },
                 {
                   "kind": "component",
                   "component_spec": {
                     "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
                     "variant": "semantic-fallback",
-                    "source_ref": "en/pdf-page-14#reference-concrete-4",
+                    "source_ref": "en/pdf-page-13#reference-concrete-1-2",
                     "language": "en",
                     "slots": [
                       {
                         "role": "reference_id",
                         "content_kind": "inline_text",
-                        "content": "concrete-4"
+                        "content": "concrete-1-2"
                       },
                       {
                         "role": "accessibility_label",
                         "content_kind": "inline_text",
-                        "content": "concrete-4"
+                        "content": "concrete-1-2"
                       },
                       {
                         "role": "caption_mode",
@@ -4442,12 +4717,12 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
-                            "html": "406mm (16 in)",
-                            "text": "406mm (16 in)"
+                            "html": "1. Install the Jackery FridgeGuard according to the user manual.",
+                            "text": "1. Install the Jackery FridgeGuard according to the user manual."
                           },
                           {
-                            "html": "Jackery FridgeGuard",
-                            "text": "Jackery FridgeGuard"
+                            "html": "2. Remove two screws from the bottom of the Battery Pack.",
+                            "text": "2. Remove two screws from the bottom of the Battery Pack."
                           }
                         ]
                       }
@@ -4455,7 +4730,7 @@
                     "assets": [
                       {
                         "role": "source_art",
-                        "asset_ref": "assets/concrete-4.png",
+                        "asset_ref": "assets/concrete-1-2.png",
                         "locale_policy": "shared"
                       }
                     ],
@@ -4470,43 +4745,43 @@
                       "composite_locale": "",
                       "presentation_mode": "base-art-live-copy",
                       "base_art_layout": {
-                        "art_sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
+                        "art_sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1",
                         "panel_top": 0,
                         "panel_fill": "#ffffff",
                         "preserve_frame": true,
-                        "mobile_labels": "overlay",
+                        "mobile_labels": "stack",
                         "labels": [
                           {
                             "line": 0,
                             "rect": [
-                              24,
-                              30,
-                              31,
-                              7
+                              3,
+                              5,
+                              70,
+                              8
                             ]
                           },
                           {
                             "line": 1,
                             "rect": [
-                              41,
-                              78,
-                              55,
-                              7
+                              3,
+                              13,
+                              70,
+                              8
                             ]
                           }
                         ]
                       },
-                      "image_key": "concrete-4",
+                      "image_key": "concrete-1-2",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "a9f0718f0dba8a0a9d84f00a0831555a9ca0630b10b6b722cf4d1ab24f9fab38"
+                      "source_fragment_sha256": "bc32ed46c5b5af61025f5d7c1097f7389fc2deaacca1a5a336c67dd12f97eedd"
                     },
                     "schema_version": "component-spec/v1"
                   },
                   "carrier_flow": [
                     {
                       "kind": "image",
-                      "source": "assets/concrete-4.png",
-                      "alt": "concrete-4"
+                      "source": "assets/concrete-1-2.png",
+                      "alt": "concrete-1-2"
                     },
                     {
                       "kind": "group",
@@ -4519,6 +4794,410 @@
                         }
                       },
                       "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1. Install the Jackery FridgeGuard according to the user manual."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "2. Remove two screws from the bottom of the Battery Pack."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-wall-panel native-concrete-3"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-13#reference-concrete-3",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "concrete-3"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "concrete-3"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack.",
+                            "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
+                          }
+                        ]
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/concrete-3.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 1,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "art_sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30",
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              40,
+                              3,
+                              56,
+                              16
+                            ]
+                          }
+                        ]
+                      },
+                      "image_key": "concrete-3",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "ac58535bcc15f3ee633f7543a0a643c59699ce8eef6b1829815772d37f5567d6"
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/concrete-3.png",
+                      "alt": "concrete-3"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line-block"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "3. Securely attach the upper and lower mounting brackets to the back of the Battery Pack."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-wall-panel native-wall-pair native-concrete-4-5"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-14#reference-concrete-4-5",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "concrete-4-5"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "concrete-4-5"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "4. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wall.",
+                            "text": "4. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wall."
+                          },
+                          {
+                            "html": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions.",
+                            "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
+                          },
+                          {
+                            "html": "406mm (16 in)",
+                            "text": "406mm (16 in)"
+                          },
+                          {
+                            "html": "Jackery FridgeGuard",
+                            "text": "Jackery FridgeGuard"
+                          },
+                          {
+                            "html": "5. Drill a hole at the mounting point using an 8mm masonry impact drill to a depth of approximately 70mm. Insert an expansion bolt and loosen its nut by 2-4mm.",
+                            "text": "5. Drill a hole at the mounting point using an 8mm masonry impact drill to a depth of approximately 70mm. Insert an expansion bolt and loosen its nut by 2-4mm."
+                          },
+                          {
+                            "html": "70mm",
+                            "text": "70mm"
+                          },
+                          {
+                            "html": "2~4mm",
+                            "text": "2~4mm"
+                          },
+                          {
+                            "html": "8mm",
+                            "text": "8mm"
+                          }
+                        ]
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/concrete-4-5.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 8,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              3.6,
+                              4.8,
+                              48,
+                              11
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
+                              3.6,
+                              18.5,
+                              48,
+                              11
+                            ]
+                          },
+                          {
+                            "line": 2,
+                            "rect": [
+                              13.443037974683541,
+                              30.0,
+                              17.36392405063291,
+                              7.000000000000001
+                            ]
+                          },
+                          {
+                            "line": 3,
+                            "rect": [
+                              22.965189873417717,
+                              78.0,
+                              30.80696202531646,
+                              7.000000000000001
+                            ]
+                          },
+                          {
+                            "line": 4,
+                            "rect": [
+                              59,
+                              4.8,
+                              38,
+                              19
+                            ]
+                          },
+                          {
+                            "line": 5,
+                            "rect": [
+                              79.18987341772153,
+                              41.0,
+                              9.104430379746836,
+                              7.000000000000001
+                            ]
+                          },
+                          {
+                            "line": 6,
+                            "rect": [
+                              76.15506329113924,
+                              73.0,
+                              10.40506329113924,
+                              7.000000000000001
+                            ]
+                          },
+                          {
+                            "line": 7,
+                            "rect": [
+                              87.86075949367088,
+                              52.0,
+                              9.971518987341772,
+                              7.000000000000001
+                            ]
+                          }
+                        ],
+                        "art_sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
+                      },
+                      "image_key": "concrete-4-5",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "d87abb9f98d491263daa0f4dfb617bcfddc257459cdd95e401874504c299a298"
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/concrete-4-5.png",
+                      "alt": "concrete-4-5"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line-block"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "4. Measure a horizontal distance of 406mm (16 in) from the bolt position on the Jackery FridgeGuard, and mark the mounting point on the wall."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "* 406mm (16 in) is the recommended distance, and actual distance depends on wall conditions."
+                            }
+                          ]
+                        },
                         {
                           "kind": "group",
                           "role": "container",
@@ -4552,156 +5231,24 @@
                               "text": "Jackery FridgeGuard"
                             }
                           ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "5. Drill a hole at the mounting point using an 8mm masonry impact drill to a depth of approximately 70mm. Insert an expansion bolt and loosen its nut by 2-4mm."
-                    }
-                  ]
-                },
-                {
-                  "kind": "component",
-                  "component_spec": {
-                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                    "variant": "semantic-fallback",
-                    "source_ref": "en/pdf-page-1#reference-concrete-5",
-                    "language": "en",
-                    "slots": [
-                      {
-                        "role": "reference_id",
-                        "content_kind": "inline_text",
-                        "content": "concrete-5"
-                      },
-                      {
-                        "role": "accessibility_label",
-                        "content_kind": "inline_text",
-                        "content": "concrete-5"
-                      },
-                      {
-                        "role": "caption_mode",
-                        "content_kind": "inline_text",
-                        "content": "live"
-                      },
-                      {
-                        "role": "caption_layout",
-                        "content_kind": "inline_text",
-                        "content": "equal"
-                      },
-                      {
-                        "role": "captions",
-                        "content_kind": "ordered_labels",
-                        "content": [
-                          {
-                            "html": "70mm",
-                            "text": "70mm"
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
                           },
-                          {
-                            "html": "2~4mm",
-                            "text": "2~4mm"
-                          },
-                          {
-                            "html": "8mm",
-                            "text": "8mm"
-                          }
-                        ]
-                      }
-                    ],
-                    "assets": [
-                      {
-                        "role": "source_art",
-                        "asset_ref": "assets/concrete-5.png",
-                        "locale_policy": "shared"
-                      }
-                    ],
-                    "token_roles": [
-                      "component.special.reference-figure"
-                    ],
-                    "metadata": {
-                      "capture_following_lines": 3,
-                      "captions_embedded": false,
-                      "captions_origin": "carrier",
-                      "caption_centers_pct": null,
-                      "composite_locale": "",
-                      "presentation_mode": "base-art-live-copy",
-                      "base_art_layout": {
-                        "art_sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
-                        "panel_top": 0,
-                        "panel_fill": "#ffffff",
-                        "preserve_frame": true,
-                        "mobile_labels": "overlay",
-                        "labels": [
-                          {
-                            "line": 0,
-                            "rect": [
-                              52,
-                              41,
-                              21,
-                              7
-                            ]
-                          },
-                          {
-                            "line": 1,
-                            "rect": [
-                              45,
-                              73,
-                              24,
-                              7
-                            ]
-                          },
-                          {
-                            "line": 2,
-                            "rect": [
-                              72,
-                              52,
-                              23,
-                              7
-                            ]
-                          }
-                        ]
-                      },
-                      "image_key": "concrete-5",
-                      "web_replace_key": "",
-                      "source_fragment_sha256": "c0c60625d2ef6a1ea7b4fa5a4a61d36e0fd0ab71e593053c9907f6fc16b1bf98"
-                    },
-                    "schema_version": "component-spec/v1"
-                  },
-                  "carrier_flow": [
-                    {
-                      "kind": "image",
-                      "source": "assets/concrete-5.png",
-                      "alt": "concrete-5"
-                    },
-                    {
-                      "kind": "group",
-                      "role": "container",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "line-block"
-                          }
-                        }
-                      },
-                      "children": [
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "5. Drill a hole at the mounting point using an 8mm masonry impact drill to a depth of approximately 70mm. Insert an expansion bolt and loosen its nut by 2-4mm."
+                            }
+                          ]
+                        },
                         {
                           "kind": "group",
                           "role": "container",
@@ -4765,84 +5312,28 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wall-pair native-concrete-6-7"
                   }
                 }
               },
               "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "6. Hang the Battery Pack onto the expansion bolt vertically and mark the mounting point on the wall."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/concrete-6.png",
-                      "alt": "concrete-6",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "7. Remove the product. Drill a hole at the mounting point and insert an expansion bolt without the nut and washer into the hole."
-                    }
-                  ]
-                },
                 {
                   "kind": "component",
                   "component_spec": {
                     "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
                     "variant": "semantic-fallback",
-                    "source_ref": "en/pdf-page-1#reference-concrete-7",
+                    "source_ref": "en/pdf-page-14#reference-concrete-6-7",
                     "language": "en",
                     "slots": [
                       {
                         "role": "reference_id",
                         "content_kind": "inline_text",
-                        "content": "concrete-7"
+                        "content": "concrete-6-7"
                       },
                       {
                         "role": "accessibility_label",
                         "content_kind": "inline_text",
-                        "content": "concrete-7"
+                        "content": "concrete-6-7"
                       },
                       {
                         "role": "caption_mode",
@@ -4859,6 +5350,14 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "6. Hang the Battery Pack onto the expansion bolt vertically and mark the mounting point on the wall.",
+                            "text": "6. Hang the Battery Pack onto the expansion bolt vertically and mark the mounting point on the wall."
+                          },
+                          {
+                            "html": "7. Remove the product. Drill a hole at the mounting point and insert an expansion bolt without the nut and washer into the hole.",
+                            "text": "7. Remove the product. Drill a hole at the mounting point and insert an expansion bolt without the nut and washer into the hole."
+                          },
+                          {
                             "html": "70mm",
                             "text": "70mm"
                           },
@@ -4872,7 +5371,7 @@
                     "assets": [
                       {
                         "role": "source_art",
-                        "asset_ref": "assets/concrete-7.png",
+                        "asset_ref": "assets/concrete-6-7.png",
                         "locale_policy": "shared"
                       }
                     ],
@@ -4880,50 +5379,68 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 2,
+                      "capture_following_lines": 4,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
                       "composite_locale": "",
                       "presentation_mode": "base-art-live-copy",
                       "base_art_layout": {
-                        "art_sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
                         "panel_top": 0,
                         "panel_fill": "#ffffff",
                         "preserve_frame": true,
-                        "mobile_labels": "overlay",
+                        "mobile_labels": "stack",
                         "labels": [
                           {
                             "line": 0,
                             "rect": [
-                              61,
-                              39,
-                              24,
-                              7
+                              3.6,
+                              4.3,
+                              34,
+                              13
                             ]
                           },
                           {
                             "line": 1,
                             "rect": [
-                              75,
-                              50,
-                              20,
-                              7
+                              45.5,
+                              4.3,
+                              50.5,
+                              13
+                            ]
+                          },
+                          {
+                            "line": 2,
+                            "rect": [
+                              78.15506329113924,
+                              39.00000000000001,
+                              13.443037974683545,
+                              7.000000000000001
+                            ]
+                          },
+                          {
+                            "line": 3,
+                            "rect": [
+                              85.99683544303798,
+                              50.0,
+                              11.20253164556962,
+                              7.000000000000001
                             ]
                           }
-                        ]
+                        ],
+                        "art_sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
                       },
-                      "image_key": "concrete-7",
+                      "image_key": "concrete-6-7",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "e9b8f2a12516dd6c38815f9d180d037acc45d3b1908a69418abd6f0103020a04"
+                      "source_fragment_sha256": "205f597a27d503eba199f8dbf5cb6d2347e71aea68e3ad2b88f6d6500541e61f"
                     },
                     "schema_version": "component-spec/v1"
                   },
                   "carrier_flow": [
                     {
                       "kind": "image",
-                      "source": "assets/concrete-7.png",
-                      "alt": "concrete-7"
+                      "source": "assets/concrete-6-7.png",
+                      "alt": "concrete-6-7"
                     },
                     {
                       "kind": "group",
@@ -4936,6 +5453,40 @@
                         }
                       },
                       "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "6. Hang the Battery Pack onto the expansion bolt vertically and mark the mounting point on the wall."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "7. Remove the product. Drill a hole at the mounting point and insert an expansion bolt without the nut and washer into the hole."
+                            }
+                          ]
+                        },
                         {
                           "kind": "group",
                           "role": "container",
@@ -4982,96 +5533,162 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wall-panel native-wall-pair native-concrete-8-9"
                   }
                 }
               },
               "children": [
                 {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "8. Hang the product onto the upper expansion bolt."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "en/pdf-page-15#reference-concrete-8-9",
+                    "language": "en",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "concrete-8-9"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "concrete-8-9"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "live"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      },
+                      {
+                        "role": "captions",
+                        "content_kind": "ordered_labels",
+                        "content": [
+                          {
+                            "html": "8. Hang the product onto the upper expansion bolt.",
+                            "text": "8. Hang the product onto the upper expansion bolt."
+                          },
+                          {
+                            "html": "9. Lift the product to align the pre-installed bolt and lower it into place. Tighten the nut.",
+                            "text": "9. Lift the product to align the pre-installed bolt and lower it into place. Tighten the nut."
+                          }
+                        ]
                       }
-                    }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/concrete-8-9.png",
+                        "locale_policy": "shared"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "capture_following_lines": 2,
+                      "captions_embedded": false,
+                      "captions_origin": "carrier",
+                      "caption_centers_pct": null,
+                      "composite_locale": "",
+                      "presentation_mode": "base-art-live-copy",
+                      "base_art_layout": {
+                        "panel_top": 0,
+                        "panel_fill": "#ffffff",
+                        "preserve_frame": true,
+                        "mobile_labels": "stack",
+                        "labels": [
+                          {
+                            "line": 0,
+                            "rect": [
+                              4,
+                              5,
+                              28,
+                              12
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
+                              39,
+                              5,
+                              57,
+                              12
+                            ]
+                          }
+                        ],
+                        "art_sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
+                      },
+                      "image_key": "concrete-8-9",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "d8303152eae226cae56598e21d504a281e0e47da5ba446184fc2dfc1b240a3d9"
+                    },
+                    "schema_version": "component-spec/v1"
                   },
-                  "children": [
+                  "carrier_flow": [
                     {
                       "kind": "image",
-                      "source": "assets/concrete-8.png",
-                      "alt": "concrete-8",
+                      "source": "assets/concrete-8-9.png",
+                      "alt": "concrete-8-9"
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
                       "presentation": {
                         "html": {
                           "attributes": {
-                            "class": "hb-reference-art"
+                            "class": "line-block"
                           }
                         }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "kind": "group",
-              "role": "container",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-step-card"
-                  }
-                }
-              },
-              "children": [
-                {
-                  "kind": "paragraph",
-                  "children": [
-                    {
-                      "kind": "text",
-                      "text": "9. Lift the product to align the pre-installed bolt and lower it into place. Tighten the nut."
-                    }
-                  ]
-                },
-                {
-                  "kind": "group",
-                  "role": "container",
-                  "presentation": {
-                    "html": {
-                      "attributes": {
-                        "class": "hb-reference-figure"
-                      }
-                    }
-                  },
-                  "children": [
-                    {
-                      "kind": "image",
-                      "source": "assets/concrete-9.png",
-                      "alt": "concrete-9",
-                      "presentation": {
-                        "html": {
-                          "attributes": {
-                            "class": "hb-reference-art"
-                          }
+                      },
+                      "children": [
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "8. Hang the product onto the upper expansion bolt."
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "9. Lift the product to align the pre-installed bolt and lower it into place. Tighten the nut."
+                            }
+                          ]
                         }
-                      }
+                      ]
                     }
                   ]
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         }
       ]
     },

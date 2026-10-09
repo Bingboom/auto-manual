@@ -624,8 +624,8 @@
     "recipe_asset_key": "web/jbp1000b-sil/us/wood-4"
   },
   {
-    "id": "wood-5",
-    "decision": "native-extraction",
+    "id": "wood-5-legacy-framed",
+    "decision": "superseded-do-not-reuse",
     "source_page": 12,
     "bbox": [
       27,
@@ -637,7 +637,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -657,11 +657,13 @@
       }
     ],
     "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
-    "id": "wood-6",
-    "decision": "native-extraction",
+    "id": "wood-6-legacy-framed",
+    "decision": "superseded-do-not-reuse",
     "source_page": 12,
     "bbox": [
       27,
@@ -673,7 +675,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -693,11 +695,13 @@
       }
     ],
     "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
-    "id": "wood-7",
-    "decision": "native-extraction",
+    "id": "wood-7-legacy-framed",
+    "decision": "superseded-do-not-reuse",
     "source_page": 12,
     "bbox": [
       27,
@@ -709,7 +713,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -729,7 +733,9 @@
       }
     ],
     "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890",
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-prep",
@@ -913,7 +919,7 @@
   },
   {
     "id": "concrete-4",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 14,
     "bbox": [
       27,
@@ -925,7 +931,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -957,11 +963,13 @@
       }
     ],
     "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-5",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 14,
     "bbox": [
       206,
@@ -973,7 +981,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -993,11 +1001,13 @@
       }
     ],
     "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-6",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 14,
     "bbox": [
       27,
@@ -1009,7 +1019,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -1029,11 +1039,13 @@
       }
     ],
     "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-7",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 14,
     "bbox": [
       166,
@@ -1045,7 +1057,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -1065,11 +1077,13 @@
       }
     ],
     "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-8",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 15,
     "bbox": [
       27,
@@ -1081,7 +1095,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -1101,11 +1115,13 @@
       }
     ],
     "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-9",
-    "decision": "native-extraction",
+    "decision": "superseded-do-not-reuse",
     "source_page": 15,
     "bbox": [
       141,
@@ -1117,7 +1133,7 @@
       "jbp2000b_eu_en",
       "je1000e_sil_us_en"
     ],
-    "reason": "Different source glyph/product/installation geometry; original native paths retained.",
+    "reason": "Baked outer frame or neighboring-panel/cross-panel crop; retained in Git history and original recipe only.",
     "background_policy": "Preserve artwork/shading/structural leaders; no independent caption frames.",
     "transforms": [
       {
@@ -1137,7 +1153,9 @@
       }
     ],
     "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291",
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "connections",
@@ -2325,5 +2343,375 @@
         "stroke_suppressed_indices": []
       }
     ]
+  },
+  {
+    "id": "wood-5",
+    "decision": "native-panel-correction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      32,
+      343,
+      190
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          32,
+          343,
+          190
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          32.3,
+          100.1,
+          33.2
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5"
+  },
+  {
+    "id": "wood-6",
+    "decision": "native-panel-correction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      196,
+      343,
+      312
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          196,
+          343,
+          312
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          196.5,
+          100.1,
+          197.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6"
+  },
+  {
+    "id": "wood-7",
+    "decision": "native-panel-correction",
+    "source_page": 12,
+    "bbox": [
+      27,
+      318,
+      343,
+      486
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          318,
+          343,
+          486
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          318.1,
+          100.1,
+          318.8
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005",
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7"
+  },
+  {
+    "id": "concrete-4-5",
+    "decision": "native-panel-correction",
+    "source_page": 14,
+    "bbox": [
+      27,
+      29,
+      343,
+      257
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          343,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          29.7,
+          100.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          269.9,
+          29.7,
+          270.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4-5"
+  },
+  {
+    "id": "concrete-6-7",
+    "decision": "native-panel-correction",
+    "source_page": 14,
+    "bbox": [
+      27,
+      261,
+      343,
+      493
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          261,
+          343,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          261.7,
+          100.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          261.7,
+          250.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6-7"
+  },
+  {
+    "id": "concrete-8-9",
+    "decision": "native-panel-correction",
+    "source_page": 15,
+    "bbox": [
+      27,
+      27,
+      343,
+      216
+    ],
+    "rejected_candidates": [
+      "target old individual wall crops",
+      "same-model FR/ES shared crops",
+      "shared battery manual artwork"
+    ],
+    "reason": "Existing target crops contain baked panel outlines; concrete paired drawings cross the original division and were cut. No complete matching text-free pair in existing assets.",
+    "background_policy": "Native original groups/clips/opacity; omit only reviewed outer panel paths and all source text. Keep grey drill detail artwork; frames and editable copy are HTML/CSS.",
+    "removed_outer_panel_drawing_indices": [
+      337,
+      338
+    ],
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          27,
+          343,
+          216
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          79.9,
+          27.6,
+          80.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          27.6,
+          250.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3",
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8-9"
   }
 ]

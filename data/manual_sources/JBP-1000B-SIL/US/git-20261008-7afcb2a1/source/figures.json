@@ -529,7 +529,7 @@
     "recipe_asset_key": "web/jbp1000b-sil/us/wood-4"
   },
   {
-    "id": "wood-5",
+    "id": "wood-5-legacy-framed",
     "page": 12,
     "bbox": [
       27,
@@ -555,10 +555,12 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
-    "id": "wood-6",
+    "id": "wood-6-legacy-framed",
     "page": 12,
     "bbox": [
       27,
@@ -584,10 +586,12 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
-    "id": "wood-7",
+    "id": "wood-7-legacy-framed",
     "page": 12,
     "bbox": [
       27,
@@ -613,7 +617,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7"
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-prep",
@@ -812,7 +818,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-5",
@@ -841,7 +849,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-6",
@@ -870,7 +880,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-7",
@@ -899,7 +911,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-8",
@@ -928,7 +942,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "concrete-9",
@@ -957,7 +973,9 @@
         "fill": null
       }
     ],
-    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9"
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
   },
   {
     "id": "connections",
@@ -1609,5 +1627,327 @@
       }
     ],
     "recipe_asset_key": "web/jbp1000b-sil/us/vertical-result"
+  },
+  {
+    "id": "wood-5",
+    "page": 12,
+    "bbox": [
+      27,
+      32,
+      343,
+      190
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          32,
+          343,
+          190
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          32.3,
+          100.1,
+          33.2
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "wood-6",
+    "page": 12,
+    "bbox": [
+      27,
+      196,
+      343,
+      312
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          196,
+          343,
+          312
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          196.5,
+          100.1,
+          197.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "wood-7",
+    "page": 12,
+    "bbox": [
+      27,
+      318,
+      343,
+      486
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          318,
+          343,
+          486
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          318.1,
+          100.1,
+          318.8
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-4-5",
+    "page": 14,
+    "bbox": [
+      27,
+      29,
+      343,
+      257
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          343,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          29.7,
+          100.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          269.9,
+          29.7,
+          270.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4-5",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-6-7",
+    "page": 14,
+    "bbox": [
+      27,
+      261,
+      343,
+      493
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          261,
+          343,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          261.7,
+          100.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          261.7,
+          250.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6-7",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-8-9",
+    "page": 15,
+    "bbox": [
+      27,
+      27,
+      343,
+      216
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      337,
+      338
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          27,
+          343,
+          216
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          79.9,
+          27.6,
+          80.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          27.6,
+          250.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8-9",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
   }
 ]

@@ -110,3 +110,17 @@ The wall-mount title reuses the source-local plain heading treatment already acc
 ### Wooden-wall preparation and installation-result opening
 
 Reuse the existing admitted wood-prep/wood-result artwork. Move the unchanged preparation caption into the shared reference-figure live caption layer beside the existing sold-separately caption, preserving both original lines and source-bound hashes. Desktop lays out the heading/intro/wooden-wall heading/preparation on the left and enlarged result on the right; mobile uses the standard stacked fallback. Remove outer opening cards; CSS owns the preparation background, rounded panel and dashed frame. The 53 artwork files are unchanged. EN/FR/ES at 1280×900 and 390×844 pass contained-label/native-aspect/no-overflow checks; chapter navigation remains present. 22 reference/flow/frozen-evidence tests pass, along with three strict Sphinx/native coverage/cold replay/admission checks.
+
+## Native wall-panel composition correction
+
+The generic equal-column cards disagreed with the supplied native layout. Wooden-wall 1–2 now spans the full row; 3/4 keeps the native wide/narrow pair; 5, 6 and 7 each spans a row. Instructions occupy the existing blank picture areas as editable ReferenceFigure labels, with the two opening steps on separate lines. Concrete preparation/result is unframed outside its original preparation panel. Concrete 1–2 and 3 are full rows. Complete paired 4–5, 6–7, 8–9 crops preserve drills crossing their original divisions. CSS draws precisely those native divisions without another enclosing frame.
+
+| Slots | Candidates checked | Decision and reason | Source | Boundary policy |
+| --- | --- | --- | --- | --- |
+| Wood 1–4, both preparation/result sets | Target assets, same-model FR/ES shared inputs, shared battery art | Reuse target bytes; geometry matches | Existing figures/decisions hashes | Existing textless artwork, native labels, CSS frames |
+| Wood 5–7 | Existing target PNG and same shared FR/ES copies | Correct acquisition because a baked outer frame duplicates the CSS panel | PDF p12; correction recipe and decisions contain exact output hashes | Remove reviewed frame strokes only; retain native clip/opacity and all remaining pixels |
+| Concrete 4–5, 6–7, 8–9 | Six target split crops, shared locales and other battery art | Complete pair acquisition because the split crops sever cross-panel drills and include neighboring outlines; no complete matching pair exists | PDF p14–15; correction recipe and decisions contain exact output hashes | Preserve full pair and gray schematic detail; CSS owns original panel divisions |
+
+Original recipe is unchanged. Old defective nine hashes are superseded-do-not-reuse; six split concrete assets are withdrawn from active packages. No Base/queue or shared asset registry writes. All 50 active files are shared by EN/FR/ES; 44 existing artwork bytes are unchanged.
+
+Wall correction validation: all six EN/FR/ES cases at 1280×900 and 390×844 pass panel geometry, loaded images, no text collisions/clipping and no page overflow. At 12x the six corrected crops change pixels only inside reviewed original outer-frame bands. The separate corrective asset recipe replays all 110 hash-pinned archive/export artifacts. The 22 ReferenceFigure/flow/frozen-source tests, strict Sphinx, native coverage (399/447/444), documentation links and diff whitespace checks pass. Cold replay/admission receipts are sealed at the final committed head; no deployment is claimed.

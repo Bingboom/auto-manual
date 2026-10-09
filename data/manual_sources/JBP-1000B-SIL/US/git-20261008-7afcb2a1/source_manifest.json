@@ -8,8 +8,8 @@
     },
     {
       "path": "README.md",
-      "size": 7055,
-      "sha256": "acbfadd6bac64bf121ff2965a54e7641b0941ee2df3879122c5cd198ce802b1a"
+      "size": 8399,
+      "sha256": "8ba8db5e74056b356a13fae1a6245286af3792aeec0ae89a0d371ac89ccbf3b3"
     },
     {
       "path": "assets/ac.png",
@@ -32,34 +32,19 @@
       "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
     },
     {
-      "path": "assets/concrete-4.png",
-      "size": 29514,
-      "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a"
+      "path": "assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
     },
     {
-      "path": "assets/concrete-5.png",
-      "size": 19447,
-      "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220"
+      "path": "assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
     },
     {
-      "path": "assets/concrete-6.png",
-      "size": 19858,
-      "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc"
-    },
-    {
-      "path": "assets/concrete-7.png",
-      "size": 20574,
-      "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985"
-    },
-    {
-      "path": "assets/concrete-8.png",
-      "size": 29148,
-      "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8"
-    },
-    {
-      "path": "assets/concrete-9.png",
-      "size": 48839,
-      "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291"
+      "path": "assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
     },
     {
       "path": "assets/concrete-prep.png",
@@ -253,18 +238,18 @@
     },
     {
       "path": "assets/wood-5.png",
-      "size": 26214,
-      "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245"
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
     },
     {
       "path": "assets/wood-6.png",
-      "size": 21384,
-      "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec"
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
     },
     {
       "path": "assets/wood-7.png",
-      "size": 52849,
-      "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890"
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
     },
     {
       "path": "assets/wood-prep.png",
@@ -283,18 +268,18 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 64630,
-      "sha256": "83af825d7250f770131ea646e4134e3ea161dcbec19bfee561d83cb01bcc6c60"
+      "size": 75909,
+      "sha256": "40ea2213faf03453b2d9c5c17a9a5fc8c4d040afde04b4cc9a95f0fdfc94e0c8"
     },
     {
       "path": "source/en/acceptance.json",
-      "size": 56510,
-      "sha256": "0408794c048a8e8cfdb321877fb4a95ccc6a38f12afbbdc53423e1bd02f71823"
+      "size": 74610,
+      "sha256": "528006ecb562b78adb06cd8cd6b14bc49c61a2252611e36fbad38997f703d862"
     },
     {
       "path": "source/en/content.json",
-      "size": 248207,
-      "sha256": "f26df13e566a9ef7248c510448325c1ccb08fc3fdfffcf5213459bea9e70ce21"
+      "size": 278642,
+      "sha256": "95e0ba9061bb4a5bb02d4a72314756401bd4557b70c2556b71b7f60d53f56a5b"
     },
     {
       "path": "source/en/coverage.json",
@@ -303,13 +288,13 @@
     },
     {
       "path": "source/es/acceptance.json",
-      "size": 55875,
-      "sha256": "e42d03eeba6d32f3d20aa6dcb5423cf6ae09373da5492318368ec61361f7b75b"
+      "size": 73998,
+      "sha256": "bdb3a2efc52ee2275c86f5bcec8257aa93e816e32312fe8fc4ce9b0b148acc52"
     },
     {
       "path": "source/es/content.json",
-      "size": 250729,
-      "sha256": "6abc4a5f4537e8f4c58be0cf5c7bddabdde555f639e48330b19d13c8be856f56"
+      "size": 281757,
+      "sha256": "2bdc75c94e3c1e90c8b9d140c51fab289c9343d0e66ab4d8d5f94f197f401669"
     },
     {
       "path": "source/es/coverage.json",
@@ -318,18 +303,18 @@
     },
     {
       "path": "source/figures.json",
-      "size": 28112,
-      "sha256": "4759348660b18c0bddf731a0bd3ad2aef0f8d603d7426df5841991539fe2da31"
+      "size": 35428,
+      "sha256": "e082de98e7f2648039b9e71d3a779ffe2caedc051831b0000ce2bf4694daeb8a"
     },
     {
       "path": "source/fr/acceptance.json",
-      "size": 55818,
-      "sha256": "c5f18cf7b3af160c54a9cbcf30dff54c7e7c5d1da1a96a541f7434b7f570f8de"
+      "size": 73926,
+      "sha256": "12c74eb7aeca80e407b677ffbd049df8fae0e80b81e3af08ab016a070285d60a"
     },
     {
       "path": "source/fr/content.json",
-      "size": 251671,
-      "sha256": "78a8f1cf9c9c45346579b059d432951aebe8d3984d397100a5288901f0b42730"
+      "size": 282529,
+      "sha256": "f0a94bcdafda21fb07bdd48b5332f3c6dba0f0dffdd038fdc500d32040efef21"
     },
     {
       "path": "source/fr/coverage.json",
@@ -348,13 +333,13 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 11575,
-      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+      "size": 15233,
+      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
     },
     {
       "path": "source/retired_assets.json",
-      "size": 1417,
-      "sha256": "003465c0ac9d308e056b7aa7737fc0931f46161b9bd7c15c3deab0d2a775bcec"
+      "size": 3763,
+      "sha256": "2d758669fdad592e2a6ad530b03bacbe9f5e8cc488c00c1572667aa0b9bc8ed4"
     },
     {
       "path": "validate_source.py",
@@ -363,8 +348,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 11575,
-      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+      "size": 15233,
+      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -392,34 +377,19 @@
       "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
     },
     {
-      "path": "web/en/assets/concrete-4.png",
-      "size": 29514,
-      "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a"
+      "path": "web/en/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
     },
     {
-      "path": "web/en/assets/concrete-5.png",
-      "size": 19447,
-      "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220"
+      "path": "web/en/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
     },
     {
-      "path": "web/en/assets/concrete-6.png",
-      "size": 19858,
-      "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc"
-    },
-    {
-      "path": "web/en/assets/concrete-7.png",
-      "size": 20574,
-      "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985"
-    },
-    {
-      "path": "web/en/assets/concrete-8.png",
-      "size": 29148,
-      "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8"
-    },
-    {
-      "path": "web/en/assets/concrete-9.png",
-      "size": 48839,
-      "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291"
+      "path": "web/en/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
     },
     {
       "path": "web/en/assets/concrete-prep.png",
@@ -613,18 +583,18 @@
     },
     {
       "path": "web/en/assets/wood-5.png",
-      "size": 26214,
-      "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245"
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
     },
     {
       "path": "web/en/assets/wood-6.png",
-      "size": 21384,
-      "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec"
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
     },
     {
       "path": "web/en/assets/wood-7.png",
-      "size": 52849,
-      "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890"
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
     },
     {
       "path": "web/en/assets/wood-prep.png",
@@ -648,18 +618,18 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 352693,
-      "sha256": "8934a6ccc1f6e1854d70d0b13c1df300825f68d0d50bceb71cc97c168dab937c"
+      "size": 383600,
+      "sha256": "f89649f036177ebcc7b5e31c5efdc92e69c18d3de738ab42dbacf841a61e7509"
     },
     {
       "path": "web/en/manual_jbp1000bsil_us_en.md",
-      "size": 61433,
-      "sha256": "8876e5d02c0c858be857cc7b1a9e8626b219dbd4fd42723e883224ddc677f139"
+      "size": 69580,
+      "sha256": "45dea4da7da15ae41163955a81837b58c1234c6886de46a6d0af705fdf76c518"
     },
     {
       "path": "web/es/_static/source_presentation.css",
-      "size": 11575,
-      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+      "size": 15233,
+      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
     },
     {
       "path": "web/es/_static/web_manual.css",
@@ -687,34 +657,19 @@
       "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
     },
     {
-      "path": "web/es/assets/concrete-4.png",
-      "size": 29514,
-      "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a"
+      "path": "web/es/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
     },
     {
-      "path": "web/es/assets/concrete-5.png",
-      "size": 19447,
-      "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220"
+      "path": "web/es/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
     },
     {
-      "path": "web/es/assets/concrete-6.png",
-      "size": 19858,
-      "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc"
-    },
-    {
-      "path": "web/es/assets/concrete-7.png",
-      "size": 20574,
-      "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985"
-    },
-    {
-      "path": "web/es/assets/concrete-8.png",
-      "size": 29148,
-      "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8"
-    },
-    {
-      "path": "web/es/assets/concrete-9.png",
-      "size": 48839,
-      "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291"
+      "path": "web/es/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
     },
     {
       "path": "web/es/assets/concrete-prep.png",
@@ -908,18 +863,18 @@
     },
     {
       "path": "web/es/assets/wood-5.png",
-      "size": 26214,
-      "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245"
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
     },
     {
       "path": "web/es/assets/wood-6.png",
-      "size": 21384,
-      "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec"
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
     },
     {
       "path": "web/es/assets/wood-7.png",
-      "size": 52849,
-      "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890"
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
     },
     {
       "path": "web/es/assets/wood-prep.png",
@@ -943,18 +898,18 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 354822,
-      "sha256": "d5a77db18cf5c5edd692818eb41d57a629678194d2971abb5312e719b71cc78c"
+      "size": 386322,
+      "sha256": "09c7355b6341c462bf2853a701d783621d26ab17676f6f651cb62a0d7a31c7ec"
     },
     {
       "path": "web/es/manual_jbp1000bsil_us_es.md",
-      "size": 63951,
-      "sha256": "08872b41a7b6f2c874360404a1509c9bf34f411ed32cd395d220dde7d45edd9b"
+      "size": 72098,
+      "sha256": "c2462ed10ba38063d83f290af1a5c22f75567d3ec6a6fca23914cba5c9d4c80c"
     },
     {
       "path": "web/fr/_static/source_presentation.css",
-      "size": 11575,
-      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+      "size": 15233,
+      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
     },
     {
       "path": "web/fr/_static/web_manual.css",
@@ -982,34 +937,19 @@
       "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
     },
     {
-      "path": "web/fr/assets/concrete-4.png",
-      "size": 29514,
-      "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a"
+      "path": "web/fr/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
     },
     {
-      "path": "web/fr/assets/concrete-5.png",
-      "size": 19447,
-      "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220"
+      "path": "web/fr/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
     },
     {
-      "path": "web/fr/assets/concrete-6.png",
-      "size": 19858,
-      "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc"
-    },
-    {
-      "path": "web/fr/assets/concrete-7.png",
-      "size": 20574,
-      "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985"
-    },
-    {
-      "path": "web/fr/assets/concrete-8.png",
-      "size": 29148,
-      "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8"
-    },
-    {
-      "path": "web/fr/assets/concrete-9.png",
-      "size": 48839,
-      "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291"
+      "path": "web/fr/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
     },
     {
       "path": "web/fr/assets/concrete-prep.png",
@@ -1203,18 +1143,18 @@
     },
     {
       "path": "web/fr/assets/wood-5.png",
-      "size": 26214,
-      "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245"
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
     },
     {
       "path": "web/fr/assets/wood-6.png",
-      "size": 21384,
-      "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec"
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
     },
     {
       "path": "web/fr/assets/wood-7.png",
-      "size": 52849,
-      "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890"
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
     },
     {
       "path": "web/fr/assets/wood-prep.png",
@@ -1238,13 +1178,13 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 355783,
-      "sha256": "b162cf85fd41e1344382d4c4a7c2f1a9ffe484406854c952bcd574ca736c2339"
+      "size": 387113,
+      "sha256": "a8292634892ea69b7614b344541c6401b8466db67f078c2008c81bebd4ca3cdd"
     },
     {
       "path": "web/fr/manual_jbp1000bsil_us_fr.md",
-      "size": 64495,
-      "sha256": "ad4f4a6ae6c5877fb3de3eed1c71b0a3cec6ddf2864743746f2c26f7ce8127c8"
+      "size": 72642,
+      "sha256": "75f078693a47ed86874a4ee5fc034639635224bb6f7bc58f1d579fc18190aff5"
     }
   ],
   "repo_inputs": [
@@ -2177,6 +2117,11 @@
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
       "size": 1927,
       "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+      "size": 23307,
+      "sha256": "ebd9e0420de388c940d645dcf164896693d7ddfc28c76bf492d5028fb4f792f2"
     }
   ],
   "target": {

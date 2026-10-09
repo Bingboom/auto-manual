@@ -42,12 +42,9 @@
     "assets/concrete-result.png",
     "assets/concrete-1-2.png",
     "assets/concrete-3.png",
-    "assets/concrete-4.png",
-    "assets/concrete-5.png",
-    "assets/concrete-6.png",
-    "assets/concrete-7.png",
-    "assets/concrete-8.png",
-    "assets/concrete-9.png",
+    "assets/concrete-4-5.png",
+    "assets/concrete-6-7.png",
+    "assets/concrete-8-9.png",
     "assets/connections.png",
     "assets/connection-icon.svg",
     "assets/ac.png",
@@ -55,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "ccd23f536b146fd9d5c0d1e575bcedd801a6b039b5b42f4410678279ef0fc52d",
-  "content_sha256": "0f524357d8e65db1dbf7b4bc242415bbab6b99779af4553a80e584bb328e5670",
+  "bundle_sha256": "be9fec7eef80ac6d70d293288318d695b7cfd5370d48c8cc76bbbc2976a7c6ff",
+  "content_sha256": "65e3a59ba46317c210cc31e5358aedf7ff7c6d9309246b56d907e830e70e77e3",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -65,12 +62,9 @@
       "assets/car.png": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6",
       "assets/concrete-1-2.png": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1",
       "assets/concrete-3.png": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30",
-      "assets/concrete-4.png": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
-      "assets/concrete-5.png": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
-      "assets/concrete-6.png": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc",
-      "assets/concrete-7.png": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
-      "assets/concrete-8.png": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8",
-      "assets/concrete-9.png": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291",
+      "assets/concrete-4-5.png": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0",
+      "assets/concrete-6-7.png": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1",
+      "assets/concrete-8-9.png": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3",
       "assets/concrete-prep.png": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333",
       "assets/concrete-result.png": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306",
       "assets/connection-icon.svg": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495",
@@ -109,18 +103,18 @@
       "assets/wood-1-2.png": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c",
       "assets/wood-3.png": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e",
       "assets/wood-4.png": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd",
-      "assets/wood-5.png": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
-      "assets/wood-6.png": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
-      "assets/wood-7.png": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890",
+      "assets/wood-5.png": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8",
+      "assets/wood-6.png": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47",
+      "assets/wood-7.png": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005",
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 87,
+    "block_count": 86,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
-      "HB-SPECIAL-REFERENCE-FIGURE": 15,
+      "HB-SPECIAL-REFERENCE-FIGURE": 20,
       "HB-TABLE-LCD-ICON": 1,
       "HB-TABLE-LCD-MODE": 1,
       "HB-TABLE-SPEC": 3,
@@ -1948,7 +1942,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -5806,52 +5800,166 @@
             "assets/wood-7.png"
           ],
           "block_id": "wall-mount:block-0005",
-          "content_sha256": "93f3c7ba37df9c68b157f934f71dd7ac3b3e382208dc6dba6e01729f37f04991",
+          "content_sha256": "8a6490223b583895694bfa11715dbbae76cc338ef3c907746327ab55208e55d7",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation. 2. Retirez deux vis du bas du produit."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
+                    "carrier_flow": [
                       {
                         "alt": "wood-1-2",
                         "kind": "image",
+                        "source": "assets/wood-1-2.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2. Retirez deux vis du bas du produit."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "class": "hb-reference-art"
+                              "class": "line-block"
                             }
                           }
                         },
-                        "source": "assets/wood-1-2.png"
+                        "role": "container"
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/wood-1-2.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
                         }
-                      }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                3,
+                                5,
+                                70,
+                                8
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
+                                3,
+                                13,
+                                70,
+                                8
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 2,
+                        "composite_locale": "",
+                        "image_key": "wood-1-2",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "3fdab97011c74a14245da276ae459166c9dc58d943074540d8bacee48c6cc9ce",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "wood-1-2",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "wood-1-2",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation.",
+                              "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation."
+                            },
+                            {
+                              "html": "2. Retirez deux vis du bas du produit.",
+                              "text": "2. Retirez deux vis du bas du produit."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-11#reference-wood-1-2",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
                     },
-                    "role": "container"
+                    "kind": "component"
                   }
                 ],
                 "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-1-2"
                     }
                   }
                 },
@@ -5860,45 +5968,129 @@
               {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
+                    "carrier_flow": [
                       {
                         "alt": "wood-3",
                         "kind": "image",
+                        "source": "assets/wood-3.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "class": "hb-reference-art"
+                              "class": "line-block"
                             }
                           }
                         },
-                        "source": "assets/wood-3.png"
+                        "role": "container"
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/wood-3.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
                         }
-                      }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                39,
+                                4,
+                                57,
+                                22
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 1,
+                        "composite_locale": "",
+                        "image_key": "wood-3",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "28da43d761aa5ffc5cd0285fa7339e632f51ea924c71ff860961aec163842bf8",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "wood-3",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "wood-3",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit.",
+                              "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-11#reference-wood-3",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
                     },
-                    "role": "container"
+                    "kind": "component"
                   }
                 ],
                 "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-3"
                     }
                   }
                 },
@@ -5906,15 +6098,6 @@
               },
               {
                 "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "4. Utilice un buscador de montantes para identificar los montantes de madera detrás de la pared."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
                   {
                     "carrier_flow": [
                       {
@@ -5924,6 +6107,23 @@
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "4. Utilice un buscador de montantes para identificar los montantes de madera detrás de la pared."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -5970,6 +6170,15 @@
                             {
                               "line": 0,
                               "rect": [
+                                7,
+                                4,
+                                89,
+                                17
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
                                 65,
                                 32,
                                 32,
@@ -5977,7 +6186,7 @@
                               ]
                             }
                           ],
-                          "mobile_labels": "overlay",
+                          "mobile_labels": "stack",
                           "panel_fill": "#ffffff",
                           "panel_top": 0,
                           "preserve_frame": true
@@ -5985,11 +6194,11 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 1,
+                        "capture_following_lines": 2,
                         "composite_locale": "",
                         "image_key": "wood-4",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "55cdbf5c89891820f4ca74adc5e421e1690c91a5f1d883953bd8a4d5b1c7f569",
+                        "source_fragment_sha256": "54c4513fd1c6247169e21d0fa802a14246f3647576a45e1225be64ddecc11d68",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
@@ -6017,6 +6226,10 @@
                         {
                           "content": [
                             {
+                              "html": "4. Utilice un buscador de montantes para identificar los montantes de madera detrás de la pared.",
+                              "text": "4. Utilice un buscador de montantes para identificar los montantes de madera detrás de la pared."
+                            },
+                            {
                               "html": "Ossature en bois",
                               "text": "Ossature en bois"
                             }
@@ -6025,7 +6238,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-wood-4",
+                      "source_ref": "fr/pdf-page-11#reference-wood-4",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -6038,7 +6251,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-4"
                     }
                   }
                 },
@@ -6046,24 +6259,6 @@
               },
               {
                 "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "5. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
                   {
                     "carrier_flow": [
                       {
@@ -6073,6 +6268,40 @@
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -6165,10 +6394,28 @@
                       "language": "fr",
                       "metadata": {
                         "base_art_layout": {
-                          "art_sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
+                          "art_sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8",
                           "labels": [
                             {
                               "line": 0,
+                              "rect": [
+                                3,
+                                4,
+                                94,
+                                13
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
+                                3,
+                                16,
+                                94,
+                                10
+                              ]
+                            },
+                            {
+                              "line": 2,
                               "rect": [
                                 33.5914225517949,
                                 21.180884445769877,
@@ -6177,7 +6424,7 @@
                               ]
                             },
                             {
-                              "line": 1,
+                              "line": 3,
                               "rect": [
                                 58.54291312302215,
                                 20.575187779680082,
@@ -6186,7 +6433,7 @@
                               ]
                             },
                             {
-                              "line": 2,
+                              "line": 4,
                               "rect": [
                                 44.887880735759495,
                                 40.18031735963459,
@@ -6195,7 +6442,7 @@
                               ]
                             },
                             {
-                              "line": 3,
+                              "line": 5,
                               "rect": [
                                 4.608386075949367,
                                 67.2916557215437,
@@ -6204,7 +6451,7 @@
                               ]
                             }
                           ],
-                          "mobile_labels": "overlay",
+                          "mobile_labels": "stack",
                           "panel_fill": "#ffffff",
                           "panel_top": 0,
                           "preserve_frame": true
@@ -6212,11 +6459,11 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 4,
+                        "capture_following_lines": 6,
                         "composite_locale": "",
                         "image_key": "wood-5",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "4e6338802f7198c21d5237c33e746c8a676ead2fc0b6945e9ef6c9c01d1b1805",
+                        "source_fragment_sha256": "0f88bbfe20a5ae4ad3d75ac83656760eaab8520422e3ac36b8f6c72fbd895c1b",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
@@ -6244,6 +6491,14 @@
                         {
                           "content": [
                             {
+                              "html": "5. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur.",
+                              "text": "5. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
+                            },
+                            {
+                              "html": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur.",
+                              "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
+                            },
+                            {
                               "html": "Ossature en bois",
                               "text": "Ossature en bois"
                             },
@@ -6264,7 +6519,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-wood-5",
+                      "source_ref": "fr/pdf-page-12#reference-wood-5",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -6277,7 +6532,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-5"
                     }
                   }
                 },
@@ -6285,15 +6540,6 @@
               },
               {
                 "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "6. Enfoncez la vis à bois dans le mur au point de montage, en laissant un espace de 2-4 mm entre la vis et le mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
                   {
                     "carrier_flow": [
                       {
@@ -6303,6 +6549,23 @@
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "6. Enfoncez la vis à bois dans le mur au point de montage, en laissant un espace de 2-4 mm entre la vis et le mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -6378,10 +6641,19 @@
                       "language": "fr",
                       "metadata": {
                         "base_art_layout": {
-                          "art_sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
+                          "art_sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47",
                           "labels": [
                             {
                               "line": 0,
+                              "rect": [
+                                3,
+                                4,
+                                94,
+                                15
+                              ]
+                            },
+                            {
+                              "line": 1,
                               "rect": [
                                 66.37069605573824,
                                 31.448272178912983,
@@ -6390,7 +6662,7 @@
                               ]
                             },
                             {
-                              "line": 1,
+                              "line": 2,
                               "rect": [
                                 44.50158227848101,
                                 21.35137360671471,
@@ -6399,7 +6671,7 @@
                               ]
                             },
                             {
-                              "line": 2,
+                              "line": 3,
                               "rect": [
                                 1.9524996793722806,
                                 39.25740472201643,
@@ -6408,7 +6680,7 @@
                               ]
                             }
                           ],
-                          "mobile_labels": "overlay",
+                          "mobile_labels": "stack",
                           "panel_fill": "#ffffff",
                           "panel_top": 0,
                           "preserve_frame": true
@@ -6416,11 +6688,11 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 3,
+                        "capture_following_lines": 4,
                         "composite_locale": "",
                         "image_key": "wood-6",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "414a2e5bf010610403b51c9544e7a14807805764b3eda8a86993e6b6885526fa",
+                        "source_fragment_sha256": "6586e316e2054ea74cd6b969db1afc86c9867feb4b13a8b66155e95827c3f3ae",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
@@ -6448,6 +6720,10 @@
                         {
                           "content": [
                             {
+                              "html": "6. Enfoncez la vis à bois dans le mur au point de montage, en laissant un espace de 2-4 mm entre la vis et le mur.",
+                              "text": "6. Enfoncez la vis à bois dans le mur au point de montage, en laissant un espace de 2-4 mm entre la vis et le mur."
+                            },
+                            {
                               "html": "2~4mm",
                               "text": "2~4mm"
                             },
@@ -6464,7 +6740,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-wood-6",
+                      "source_ref": "fr/pdf-page-12#reference-wood-6",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -6477,7 +6753,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-6"
                     }
                   }
                 },
@@ -6486,45 +6762,129 @@
               {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "7. Accrochez le produit verticalement sur la vis. Enfoncez la vis auto-taraudeuse à travers le trou de montage du support inférieur dans le mur et serrez-la. Ensuite, serrez complètement la vis à bois."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
+                    "carrier_flow": [
                       {
                         "alt": "wood-7",
                         "kind": "image",
+                        "source": "assets/wood-7.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "7. Accrochez le produit verticalement sur la vis. Enfoncez la vis auto-taraudeuse à travers le trou de montage du support inférieur dans le mur et serrez-la. Ensuite, serrez complètement la vis à bois."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "class": "hb-reference-art"
+                              "class": "line-block"
                             }
                           }
                         },
-                        "source": "assets/wood-7.png"
+                        "role": "container"
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/wood-7.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
                         }
-                      }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                3,
+                                3,
+                                94,
+                                18
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 1,
+                        "composite_locale": "",
+                        "image_key": "wood-7",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "c6643809d5005607842e6439f1aecfc19da049b91ca3290ea7a2bb261f22f1fd",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "wood-7",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "wood-7",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "7. Accrochez le produit verticalement sur la vis. Enfoncez la vis auto-taraudeuse à travers le trou de montage du support inférieur dans le mur et serrez-la. Ensuite, serrez complètement la vis à bois.",
+                              "text": "7. Accrochez le produit verticalement sur la vis. Enfoncez la vis auto-taraudeuse à travers le trou de montage du support inférieur dans le mur et serrez-la. Ensuite, serrez complètement la vis à bois."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-12#reference-wood-7",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
                     },
-                    "role": "container"
+                    "kind": "component"
                   }
                 ],
                 "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wood-7"
                     }
                   }
                 },
@@ -6535,7 +6895,7 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": "native-wall-wood-steps"
                 }
               }
             },
@@ -6563,29 +6923,12 @@
           "source_ref": "native-pdf/wall-mount#block-6"
         },
         {
-          "asset_refs": [],
-          "block_id": "wall-mount:block-0007",
-          "content_sha256": "0fff10dc9c5c26c7831a3a4aae3c4c835f4ca5a1cba6b6180c86e38acbf5b918",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Préparation avant l'installation:"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/wall-mount#block-7"
-        },
-        {
           "asset_refs": [
             "assets/concrete-prep.png",
             "assets/concrete-result.png"
           ],
-          "block_id": "wall-mount:block-0008",
-          "content_sha256": "369881bb221b1ae2a17c6b081053114a30abd6b3ed4b466593421619b97deff6",
+          "block_id": "wall-mount:block-0007",
+          "content_sha256": "2ee2beaf5756044f371a2cb5f083f64829ff7a10507b9c8915f9eaf3f7856406",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6600,6 +6943,23 @@
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Préparation avant l'installation:"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -6646,6 +7006,15 @@
                             {
                               "line": 0,
                               "rect": [
+                                4,
+                                3,
+                                75,
+                                13
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
                                 54,
                                 27,
                                 25,
@@ -6661,11 +7030,11 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 1,
+                        "capture_following_lines": 2,
                         "composite_locale": "",
                         "image_key": "concrete-prep",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "74b7e91766c47d0bb5af118d5a55141ba5787aa073b9a5859879377f1dfd9b31",
+                        "source_fragment_sha256": "5811488c550a6bae636137fa36da767e29cc9330139cfce7bda0525817651cc5",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
@@ -6693,6 +7062,10 @@
                         {
                           "content": [
                             {
+                              "html": "Préparation avant l'installation:",
+                              "text": "Préparation avant l'installation:"
+                            },
+                            {
                               "html": "VENDUS SÉPARÉMENT",
                               "text": "VENDUS SÉPARÉMENT"
                             }
@@ -6701,7 +7074,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-concrete-prep",
+                      "source_ref": "fr/pdf-page-13#reference-concrete-prep",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -6714,7 +7087,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-concrete-preparation"
                     }
                   }
                 },
@@ -6752,7 +7125,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-concrete-result"
                     }
                   }
                 },
@@ -6763,154 +7136,365 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": "native-concrete-opening"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-8"
+          "source_ref": "native-pdf/wall-mount#block-7"
         },
         {
           "asset_refs": [
             "assets/concrete-1-2.png",
             "assets/concrete-3.png",
-            "assets/concrete-4.png",
-            "assets/concrete-5.png",
-            "assets/concrete-6.png",
-            "assets/concrete-7.png",
-            "assets/concrete-8.png",
-            "assets/concrete-9.png"
+            "assets/concrete-4-5.png",
+            "assets/concrete-6-7.png",
+            "assets/concrete-8-9.png"
           ],
-          "block_id": "wall-mount:block-0009",
-          "content_sha256": "5f937cc8eef80beceb310ff54af1fda63accd0ccb82b03e9a41f0746a2dc74e0",
+          "block_id": "wall-mount:block-0008",
+          "content_sha256": "dda1085221961a552e5f9efc3587dfb35d0163e4333564791d35882abf6087bc",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "children": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation. 2. Retirez deux vis du bas du produit."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
+                    "carrier_flow": [
                       {
                         "alt": "concrete-1-2",
                         "kind": "image",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": "hb-reference-art"
-                            }
-                          }
-                        },
                         "source": "assets/concrete-1-2.png"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-step-card"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "alt": "concrete-3",
-                        "kind": "image",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": "hb-reference-art"
-                            }
-                          }
-                        },
-                        "source": "assets/concrete-3.png"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-step-card"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "4. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "carrier_flow": [
-                      {
-                        "alt": "concrete-4",
-                        "kind": "image",
-                        "source": "assets/concrete-4.png"
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "2. Retirez deux vis du bas du produit."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line-block"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/concrete-1-2.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
+                        }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                3,
+                                5,
+                                70,
+                                8
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
+                                3,
+                                13,
+                                70,
+                                8
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 2,
+                        "composite_locale": "",
+                        "image_key": "concrete-1-2",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "0c1eb9168c00927c8d8d41bee7205b6b0c541adcb57c372394f2879125e109fe",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "concrete-1-2",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "concrete-1-2",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation.",
+                              "text": "1. Installez le Jackery FridgeGuard conformément au manuel d'utilisation."
+                            },
+                            {
+                              "html": "2. Retirez deux vis du bas du produit.",
+                              "text": "2. Retirez deux vis du bas du produit."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-13#reference-concrete-1-2",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
+                    },
+                    "kind": "component"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-wall-panel native-concrete-1-2"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "carrier_flow": [
+                      {
+                        "alt": "concrete-3",
+                        "kind": "image",
+                        "source": "assets/concrete-3.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "class": "line-block"
+                            }
+                          }
+                        },
+                        "role": "container"
+                      }
+                    ],
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/concrete-3.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
+                        }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                40,
+                                3,
+                                56,
+                                16
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 1,
+                        "composite_locale": "",
+                        "image_key": "concrete-3",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "f962dd2f41131579c575aa4401e00a0097bc44e50a30000a8dac12b8876ccc2b",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "concrete-3",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "concrete-3",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit.",
+                              "text": "3. Fixez solidement les supports de montage supérieur et inférieur à l'arrière du produit."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-13#reference-concrete-3",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
+                    },
+                    "kind": "component"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-wall-panel native-concrete-3"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "carrier_flow": [
+                      {
+                        "alt": "concrete-4-5",
+                        "kind": "image",
+                        "source": "assets/concrete-4-5.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "4. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -6944,143 +7528,24 @@
                               }
                             },
                             "role": "container"
-                          }
-                        ],
-                        "kind": "group",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": "line-block"
-                            }
-                          }
-                        },
-                        "role": "container"
-                      }
-                    ],
-                    "component_spec": {
-                      "assets": [
-                        {
-                          "asset_ref": "assets/concrete-4.png",
-                          "locale_policy": "shared",
-                          "role": "source_art"
-                        }
-                      ],
-                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                      "language": "fr",
-                      "metadata": {
-                        "base_art_layout": {
-                          "art_sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
-                          "labels": [
-                            {
-                              "line": 0,
-                              "rect": [
-                                24,
-                                30,
-                                31,
-                                7
-                              ]
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "5. Percez un trou au point de montage à l'aide d'une perceuse à percussion pour maçonnerie de 8 mm, jusqu'à une profondeur d'environ 70 mm. Insérez une cheville d'expansion et desserrez son écrou de 2 à 4 mm."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
                             },
-                            {
-                              "line": 1,
-                              "rect": [
-                                41,
-                                78,
-                                55,
-                                7
-                              ]
-                            }
-                          ],
-                          "mobile_labels": "overlay",
-                          "panel_fill": "#ffffff",
-                          "panel_top": 0,
-                          "preserve_frame": true
-                        },
-                        "caption_centers_pct": null,
-                        "captions_embedded": false,
-                        "captions_origin": "carrier",
-                        "capture_following_lines": 2,
-                        "composite_locale": "",
-                        "image_key": "concrete-4",
-                        "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "f991bc8f9293b3c809e19ee9fbbeb3c0a0e49463c43cfa5d6b3b7eed127a5ebd",
-                        "web_replace_key": ""
-                      },
-                      "schema_version": "component-spec/v1",
-                      "slots": [
-                        {
-                          "content": "concrete-4",
-                          "content_kind": "inline_text",
-                          "role": "reference_id"
-                        },
-                        {
-                          "content": "concrete-4",
-                          "content_kind": "inline_text",
-                          "role": "accessibility_label"
-                        },
-                        {
-                          "content": "live",
-                          "content_kind": "inline_text",
-                          "role": "caption_mode"
-                        },
-                        {
-                          "content": "equal",
-                          "content_kind": "inline_text",
-                          "role": "caption_layout"
-                        },
-                        {
-                          "content": [
-                            {
-                              "html": "406 mm (16 po)",
-                              "text": "406 mm (16 po)"
-                            },
-                            {
-                              "html": "Jackery FridgeGuard",
-                              "text": "Jackery FridgeGuard"
-                            }
-                          ],
-                          "content_kind": "ordered_labels",
-                          "role": "captions"
-                        }
-                      ],
-                      "source_ref": "fr/pdf-page-1#reference-concrete-4",
-                      "token_roles": [
-                        "component.special.reference-figure"
-                      ],
-                      "variant": "semantic-fallback"
-                    },
-                    "kind": "component"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-step-card"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "5. Percez un trou au point de montage à l'aide d'une perceuse à percussion pour maçonnerie de 8 mm, jusqu'à une profondeur d'environ 70 mm. Insérez une cheville d'expansion et desserrez son écrou de 2 à 4 mm."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "carrier_flow": [
-                      {
-                        "alt": "concrete-5",
-                        "kind": "image",
-                        "source": "assets/concrete-5.png"
-                      },
-                      {
-                        "children": [
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -7147,7 +7612,7 @@
                     "component_spec": {
                       "assets": [
                         {
-                          "asset_ref": "assets/concrete-5.png",
+                          "asset_ref": "assets/concrete-4-5.png",
                           "locale_policy": "shared",
                           "role": "source_art"
                         }
@@ -7156,37 +7621,82 @@
                       "language": "fr",
                       "metadata": {
                         "base_art_layout": {
-                          "art_sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
+                          "art_sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0",
                           "labels": [
                             {
                               "line": 0,
                               "rect": [
-                                52,
-                                41,
-                                21,
-                                7
+                                3.6,
+                                4.8,
+                                48,
+                                11
                               ]
                             },
                             {
                               "line": 1,
                               "rect": [
-                                45,
-                                73,
-                                24,
-                                7
+                                3.6,
+                                18.5,
+                                48,
+                                11
                               ]
                             },
                             {
                               "line": 2,
                               "rect": [
-                                72,
-                                52,
-                                23,
-                                7
+                                13.443037974683541,
+                                30.0,
+                                17.36392405063291,
+                                7.000000000000001
+                              ]
+                            },
+                            {
+                              "line": 3,
+                              "rect": [
+                                22.965189873417717,
+                                78.0,
+                                30.80696202531646,
+                                7.000000000000001
+                              ]
+                            },
+                            {
+                              "line": 4,
+                              "rect": [
+                                59,
+                                4.8,
+                                38,
+                                19
+                              ]
+                            },
+                            {
+                              "line": 5,
+                              "rect": [
+                                79.18987341772153,
+                                41.0,
+                                9.104430379746836,
+                                7.000000000000001
+                              ]
+                            },
+                            {
+                              "line": 6,
+                              "rect": [
+                                76.15506329113924,
+                                73.0,
+                                10.40506329113924,
+                                7.000000000000001
+                              ]
+                            },
+                            {
+                              "line": 7,
+                              "rect": [
+                                87.86075949367088,
+                                52.0,
+                                9.971518987341772,
+                                7.000000000000001
                               ]
                             }
                           ],
-                          "mobile_labels": "overlay",
+                          "mobile_labels": "stack",
                           "panel_fill": "#ffffff",
                           "panel_top": 0,
                           "preserve_frame": true
@@ -7194,22 +7704,22 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 3,
+                        "capture_following_lines": 8,
                         "composite_locale": "",
-                        "image_key": "concrete-5",
+                        "image_key": "concrete-4-5",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "c0c60625d2ef6a1ea7b4fa5a4a61d36e0fd0ab71e593053c9907f6fc16b1bf98",
+                        "source_fragment_sha256": "99f0df95ced595240b8b905105d6affb62f294c614a81640fc0e36baccadd3b1",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
                       "slots": [
                         {
-                          "content": "concrete-5",
+                          "content": "concrete-4-5",
                           "content_kind": "inline_text",
                           "role": "reference_id"
                         },
                         {
-                          "content": "concrete-5",
+                          "content": "concrete-4-5",
                           "content_kind": "inline_text",
                           "role": "accessibility_label"
                         },
@@ -7225,6 +7735,26 @@
                         },
                         {
                           "content": [
+                            {
+                              "html": "4. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur.",
+                              "text": "4. Mesurez une distance horizontale de 406 mm (16 po) à partir de la position du boulon sur le Jackery FridgeGuard, et marquez le point de montage sur le montant de bois du mur."
+                            },
+                            {
+                              "html": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur.",
+                              "text": "* 406 mm (16 po) est la distance recommandée, et la distance réelle dépend des conditions du mur."
+                            },
+                            {
+                              "html": "406 mm (16 po)",
+                              "text": "406 mm (16 po)"
+                            },
+                            {
+                              "html": "Jackery FridgeGuard",
+                              "text": "Jackery FridgeGuard"
+                            },
+                            {
+                              "html": "5. Percez un trou au point de montage à l'aide d'une perceuse à percussion pour maçonnerie de 8 mm, jusqu'à une profondeur d'environ 70 mm. Insérez une cheville d'expansion et desserrez son écrou de 2 à 4 mm.",
+                              "text": "5. Percez un trou au point de montage à l'aide d'une perceuse à percussion pour maçonnerie de 8 mm, jusqu'à une profondeur d'environ 70 mm. Insérez une cheville d'expansion et desserrez son écrou de 2 à 4 mm."
+                            },
                             {
                               "html": "70mm",
                               "text": "70mm"
@@ -7242,7 +7772,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-concrete-5",
+                      "source_ref": "fr/pdf-page-14#reference-concrete-4-5",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -7255,7 +7785,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wall-pair native-concrete-4-5"
                     }
                   }
                 },
@@ -7263,71 +7793,49 @@
               },
               {
                 "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "6. Accrochez le produit verticalement sur la cheville d'expansion et marquez le point de montage sur le mur."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "alt": "concrete-6",
-                        "kind": "image",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": "hb-reference-art"
-                            }
-                          }
-                        },
-                        "source": "assets/concrete-6.png"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-step-card"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "7. Retirez le produit. Percez un trou au point de montage et insérez une cheville d'expansion sans écrou ni rondelle dans le trou."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
                   {
                     "carrier_flow": [
                       {
-                        "alt": "concrete-7",
+                        "alt": "concrete-6-7",
                         "kind": "image",
-                        "source": "assets/concrete-7.png"
+                        "source": "assets/concrete-6-7.png"
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "6. Accrochez le produit verticalement sur la cheville d'expansion et marquez le point de montage sur le mur."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "7. Retirez le produit. Percez un trou au point de montage et insérez une cheville d'expansion sans écrou ni rondelle dans le trou."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -7377,7 +7885,7 @@
                     "component_spec": {
                       "assets": [
                         {
-                          "asset_ref": "assets/concrete-7.png",
+                          "asset_ref": "assets/concrete-6-7.png",
                           "locale_policy": "shared",
                           "role": "source_art"
                         }
@@ -7386,28 +7894,46 @@
                       "language": "fr",
                       "metadata": {
                         "base_art_layout": {
-                          "art_sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
+                          "art_sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1",
                           "labels": [
                             {
                               "line": 0,
                               "rect": [
-                                61,
-                                39,
-                                24,
-                                7
+                                3.6,
+                                4.3,
+                                34,
+                                13
                               ]
                             },
                             {
                               "line": 1,
                               "rect": [
-                                75,
-                                50,
-                                20,
-                                7
+                                45.5,
+                                4.3,
+                                50.5,
+                                13
+                              ]
+                            },
+                            {
+                              "line": 2,
+                              "rect": [
+                                78.15506329113924,
+                                39.00000000000001,
+                                13.443037974683545,
+                                7.000000000000001
+                              ]
+                            },
+                            {
+                              "line": 3,
+                              "rect": [
+                                85.99683544303798,
+                                50.0,
+                                11.20253164556962,
+                                7.000000000000001
                               ]
                             }
                           ],
-                          "mobile_labels": "overlay",
+                          "mobile_labels": "stack",
                           "panel_fill": "#ffffff",
                           "panel_top": 0,
                           "preserve_frame": true
@@ -7415,22 +7941,22 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 2,
+                        "capture_following_lines": 4,
                         "composite_locale": "",
-                        "image_key": "concrete-7",
+                        "image_key": "concrete-6-7",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "e9b8f2a12516dd6c38815f9d180d037acc45d3b1908a69418abd6f0103020a04",
+                        "source_fragment_sha256": "fec8c9100ad7f030bf1711bf4ab1f0f4f8126fe7cc30935b3f15d382e9ce36d5",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
                       "slots": [
                         {
-                          "content": "concrete-7",
+                          "content": "concrete-6-7",
                           "content_kind": "inline_text",
                           "role": "reference_id"
                         },
                         {
-                          "content": "concrete-7",
+                          "content": "concrete-6-7",
                           "content_kind": "inline_text",
                           "role": "accessibility_label"
                         },
@@ -7447,6 +7973,14 @@
                         {
                           "content": [
                             {
+                              "html": "6. Accrochez le produit verticalement sur la cheville d'expansion et marquez le point de montage sur le mur.",
+                              "text": "6. Accrochez le produit verticalement sur la cheville d'expansion et marquez le point de montage sur le mur."
+                            },
+                            {
+                              "html": "7. Retirez le produit. Percez un trou au point de montage et insérez une cheville d'expansion sans écrou ni rondelle dans le trou.",
+                              "text": "7. Retirez le produit. Percez un trou au point de montage et insérez une cheville d'expansion sans écrou ni rondelle dans le trou."
+                            },
+                            {
                               "html": "70mm",
                               "text": "70mm"
                             },
@@ -7459,7 +7993,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "fr/pdf-page-1#reference-concrete-7",
+                      "source_ref": "fr/pdf-page-14#reference-concrete-6-7",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -7472,7 +8006,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wall-pair native-concrete-6-7"
                     }
                   }
                 },
@@ -7481,92 +8015,159 @@
               {
                 "children": [
                   {
-                    "children": [
+                    "carrier_flow": [
                       {
-                        "kind": "text",
-                        "text": "8. Accrochez le produit sur la cheville d'expansion supérieure."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "alt": "concrete-8",
+                        "alt": "concrete-8-9",
                         "kind": "image",
+                        "source": "assets/concrete-8-9.png"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "8. Accrochez le produit sur la cheville d'expansion supérieure."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "9. Soulevez le produit pour aligner le boulon préinstallé et abaissez-le en place. Serrez l'écrou."
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          }
+                        ],
+                        "kind": "group",
                         "presentation": {
                           "html": {
                             "attributes": {
-                              "class": "hb-reference-art"
+                              "class": "line-block"
                             }
                           }
                         },
-                        "source": "assets/concrete-8.png"
+                        "role": "container"
                       }
                     ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
+                    "component_spec": {
+                      "assets": [
+                        {
+                          "asset_ref": "assets/concrete-8-9.png",
+                          "locale_policy": "shared",
+                          "role": "source_art"
                         }
-                      }
+                      ],
+                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                      "language": "fr",
+                      "metadata": {
+                        "base_art_layout": {
+                          "art_sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3",
+                          "labels": [
+                            {
+                              "line": 0,
+                              "rect": [
+                                4,
+                                5,
+                                28,
+                                12
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
+                                39,
+                                5,
+                                57,
+                                12
+                              ]
+                            }
+                          ],
+                          "mobile_labels": "stack",
+                          "panel_fill": "#ffffff",
+                          "panel_top": 0,
+                          "preserve_frame": true
+                        },
+                        "caption_centers_pct": null,
+                        "captions_embedded": false,
+                        "captions_origin": "carrier",
+                        "capture_following_lines": 2,
+                        "composite_locale": "",
+                        "image_key": "concrete-8-9",
+                        "presentation_mode": "base-art-live-copy",
+                        "source_fragment_sha256": "ec0a81497beec954d3b5d81d19d4a1bdf514723dfad5551b2964e9ba7eb193b5",
+                        "web_replace_key": ""
+                      },
+                      "schema_version": "component-spec/v1",
+                      "slots": [
+                        {
+                          "content": "concrete-8-9",
+                          "content_kind": "inline_text",
+                          "role": "reference_id"
+                        },
+                        {
+                          "content": "concrete-8-9",
+                          "content_kind": "inline_text",
+                          "role": "accessibility_label"
+                        },
+                        {
+                          "content": "live",
+                          "content_kind": "inline_text",
+                          "role": "caption_mode"
+                        },
+                        {
+                          "content": "equal",
+                          "content_kind": "inline_text",
+                          "role": "caption_layout"
+                        },
+                        {
+                          "content": [
+                            {
+                              "html": "8. Accrochez le produit sur la cheville d'expansion supérieure.",
+                              "text": "8. Accrochez le produit sur la cheville d'expansion supérieure."
+                            },
+                            {
+                              "html": "9. Soulevez le produit pour aligner le boulon préinstallé et abaissez-le en place. Serrez l'écrou.",
+                              "text": "9. Soulevez le produit pour aligner le boulon préinstallé et abaissez-le en place. Serrez l'écrou."
+                            }
+                          ],
+                          "content_kind": "ordered_labels",
+                          "role": "captions"
+                        }
+                      ],
+                      "source_ref": "fr/pdf-page-15#reference-concrete-8-9",
+                      "token_roles": [
+                        "component.special.reference-figure"
+                      ],
+                      "variant": "semantic-fallback"
                     },
-                    "role": "container"
+                    "kind": "component"
                   }
                 ],
                 "kind": "group",
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "9. Soulevez le produit pour aligner le boulon préinstallé et abaissez-le en place. Serrez l'écrou."
-                      }
-                    ],
-                    "kind": "paragraph"
-                  },
-                  {
-                    "children": [
-                      {
-                        "alt": "concrete-9",
-                        "kind": "image",
-                        "presentation": {
-                          "html": {
-                            "attributes": {
-                              "class": "hb-reference-art"
-                            }
-                          }
-                        },
-                        "source": "assets/concrete-9.png"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "hb-reference-figure"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wall-panel native-wall-pair native-concrete-8-9"
                     }
                   }
                 },
@@ -7577,14 +8178,14 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": "native-wall-concrete-steps"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-9"
+          "source_ref": "native-pdf/wall-mount#block-8"
         }
       ],
       "language": "fr",
@@ -7592,7 +8193,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#wall-mount",
       "source_ref": "native-pdf/wall-mount",
-      "source_sha256": "9e24719a1be5aa4e440bb64453349ee2b326365966637596c01a8309e88dd574"
+      "source_sha256": "4c35229721a0d099f9085ba6ed691407076c85b9da24f8607af313f155cb1112"
     },
     {
       "blocks": [
