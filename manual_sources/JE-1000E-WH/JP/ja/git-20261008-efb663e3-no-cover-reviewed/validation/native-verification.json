@@ -1,0 +1,65 @@
+{
+  "native_lines_checked": 609,
+  "missing": [],
+  "vector_plus_recoveries": 1,
+  "chapter_anchors": 16,
+  "local_image_elements": 60,
+  "cold_replay_identical": true,
+  "source_symbol_comparisons": [
+    {
+      "asset": "assets/symbol-unplug.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-do_not_dismantle.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-no_wet_hands.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-warning_triangle.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-read_manual.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-no_open_flame.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-keep_away_from_children.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-mandatory.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-keep_dry.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-prohibited.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-battery_recycle.svg",
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset": "assets/symbol-weee.svg",
+      "max_mean_channel_error": 0.0
+    }
+  ],
+  "frozen_web_identical": true,
+  "printed_cover_excluded": true,
+  "rejections": [
+    "frozen source input changed: source/chapters.json",
+    "source chapter map changed",
+    "unbound image/table; a shared ComponentSpec is required"
+  ]
+}
