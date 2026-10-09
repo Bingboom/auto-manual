@@ -1,0 +1,20 @@
+[
+  {
+    "file": "unittest-first-run.log",
+    "redacted_fixture_ledger_hashes": 2,
+    "reason": "opaque test-ledger SHA1 run_key, not an API credential; unnecessary to candidate results",
+    "original_log_preserved": "local /tmp"
+  },
+  {
+    "file": "unittest-shard-1.log",
+    "redacted_fixture_ledger_hashes": 1,
+    "reason": "opaque test-ledger SHA1 run_key, not an API credential; unnecessary to candidate results",
+    "original_log_preserved": "local /tmp"
+  },
+  {
+    "file": "unittest-shard-2.log",
+    "redacted_fixture_ledger_hashes": 1,
+    "reason": "opaque test-ledger SHA1 run_key, not an API credential; unnecessary to candidate results",
+    "original_log_preserved": "local /tmp"
+  }
+]

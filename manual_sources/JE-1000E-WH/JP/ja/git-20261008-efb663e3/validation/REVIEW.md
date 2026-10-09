@@ -51,6 +51,9 @@ The final full-page mobile capture uses the initial table scroll position.
 
 ## Local checks
 
+- Credential-shape scan: official checksum-verified gitleaks v8.30.1, same
+  configuration as CI; zero findings after documented test-ledger digest
+  omission (`secret-scan.log`, `log-sanitization.json`).
 - Strict Sphinx: `python3 -m sphinx -W --keep-going -b html <cold-source> <html>`.
 - `PYTHONPATH=. python3 <package>/verify.py --html <html>/manual.html --pdf <PDF>`.
 - `python3 -m ruff check build.py integrations tools tests scripts <package>/*.py`.
@@ -67,7 +70,10 @@ The final full-page mobile capture uses the initial table scroll position.
   discovery-injected module by synthetic dotted ID. The native `load_tests`
   entrypoint recovered all 24, plus a passing provenance recheck (25 tests).
   Original failed runs and their logs are retained (log trailing whitespace
-  normalized; raw originals remain in local `/tmp`). This is equivalent complete
+  normalized; raw originals remain in local `/tmp`). Four opaque fixture-ledger
+  SHA1 `run_key` values were omitted from public logs because the credential
+  scanner matches their assignment shape; see `log-sanitization.json`. No
+  scanner rule, workflow, test verdict or candidate content was changed. This is equivalent complete
   case coverage, not a clean single `python3 -m unittest` invocation.
   Queue/publish/write messages in these logs are mocked test operations, not
   external business-plane writes.

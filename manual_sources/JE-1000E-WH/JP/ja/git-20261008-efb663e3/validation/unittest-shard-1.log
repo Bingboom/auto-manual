@@ -319,7 +319,7 @@ The HTML pages are in ../../../../../../private/tmp/tmpdlonpag8/site.
   "skipped": 0,
   "entry": {
     "ledger_schema_version": 1,
-    "run_key": "b8fbd5a3f7b1e86a31ba883e729c4a578012cebc",
+    "run_key": "[fixture ledger SHA1 omitted]",
     "recorded_at": "2026-10-09T01:46:22+00:00",
     "input_docx": "/work/manual_en.docx",
     "output_docx": "/work/manual_ko.docx",

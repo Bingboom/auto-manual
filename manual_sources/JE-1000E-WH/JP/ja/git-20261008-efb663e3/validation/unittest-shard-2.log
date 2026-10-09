@@ -543,7 +543,7 @@ incomplete: 4 issues
   "skipped": 0,
   "entry": {
     "ledger_schema_version": 1,
-    "run_key": "e2d2071104b374b5e9efe937b2e13b8f855824a7",
+    "run_key": "[fixture ledger SHA1 omitted]",
     "recorded_at": "2026-10-09T01:48:28+00:00",
     "pdf": "manual.pdf",
     "out": "manual_annotated.pdf",

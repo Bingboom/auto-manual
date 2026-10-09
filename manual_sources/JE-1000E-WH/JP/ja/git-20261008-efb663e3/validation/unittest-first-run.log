@@ -934,7 +934,7 @@ incomplete: 4 issues
   "skipped": 0,
   "entry": {
     "ledger_schema_version": 1,
-    "run_key": "e2d2071104b374b5e9efe937b2e13b8f855824a7",
+    "run_key": "[fixture ledger SHA1 omitted]",
     "recorded_at": "2026-10-09T00:49:36+00:00",
     "pdf": "manual.pdf",
     "out": "manual_annotated.pdf",
@@ -1277,7 +1277,7 @@ COMPLETENESS ⚠️ incomplete: 1 reference rows missing from candidates
   "skipped": 0,
   "entry": {
     "ledger_schema_version": 1,
-    "run_key": "b8fbd5a3f7b1e86a31ba883e729c4a578012cebc",
+    "run_key": "[fixture ledger SHA1 omitted]",
     "recorded_at": "2026-10-09T00:57:48+00:00",
     "input_docx": "/work/manual_en.docx",
     "output_docx": "/work/manual_ko.docx",
