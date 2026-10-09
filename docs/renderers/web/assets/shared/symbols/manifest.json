@@ -350,6 +350,344 @@
       }
     },
     {
+      "key": "unplug/h1-jp-native",
+      "path": "native-v1/h1-jp-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-unplug.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "glyph_bbox": [
+          38,
+          272,
+          58,
+          292
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "do-not-dismantle/h1-jp-native",
+      "path": "native-v1/h1-jp-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-do_not_dismantle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "glyph_bbox": [
+          38,
+          298,
+          58,
+          318
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "no-wet-hands/h1-jp-native",
+      "path": "native-v1/h1-jp-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-no_wet_hands.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "glyph_bbox": [
+          38,
+          328,
+          58,
+          348
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "warning-triangle/h1-jp-native",
+      "path": "native-v1/h1-jp-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-warning_triangle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          107
+        ],
+        "glyph_bbox": [
+          37,
+          365,
+          59,
+          385
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "read-manual/h1-jp-native",
+      "path": "native-v1/h1-jp-read_manual.svg",
+      "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-read_manual.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          70,
+          71,
+          72,
+          73,
+          74
+        ],
+        "glyph_bbox": [
+          38,
+          400,
+          58,
+          420
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "no-open-flame/h1-jp-native",
+      "path": "native-v1/h1-jp-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-no_open_flame.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81
+        ],
+        "glyph_bbox": [
+          35,
+          430,
+          60,
+          453
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "keep-away-from-children/h1-jp-native",
+      "path": "native-v1/h1-jp-keep_away_from_children.svg",
+      "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-keep_away_from_children.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106
+        ],
+        "glyph_bbox": [
+          37,
+          467,
+          59,
+          487
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "mandatory/h1-jp-native",
+      "path": "native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-mandatory.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          55
+        ],
+        "glyph_bbox": [
+          195,
+          271,
+          215,
+          292
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "keep-dry/h1-jp-native",
+      "path": "native-v1/h1-jp-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-keep_dry.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69
+        ],
+        "glyph_bbox": [
+          195,
+          297,
+          215,
+          318
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "prohibited/h1-jp-native",
+      "path": "native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-prohibited.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          56,
+          57,
+          58
+        ],
+        "glyph_bbox": [
+          195,
+          324,
+          215,
+          344
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "battery-recycle/h1-jp-native",
+      "path": "native-v1/h1-jp-battery_recycle.svg",
+      "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-battery_recycle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96
+        ],
+        "glyph_bbox": [
+          193,
+          364,
+          217,
+          388
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "weee/h1-jp-native",
+      "path": "native-v1/h1-jp-weee.svg",
+      "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-weee.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          82,
+          83,
+          84,
+          85
+        ],
+        "glyph_bbox": [
+          192,
+          434,
+          216,
+          467
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
       "key": "do-not-dismantle/screwdriver-circle-gray",
       "path": "native-v1/symbol_do_not_dismantle_gray_jp.svg",
       "sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",

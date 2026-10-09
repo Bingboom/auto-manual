@@ -1,0 +1,14 @@
+{
+  "approved_target": "JE-1000E-WH/JP/ja",
+  "candidate_copy_identical": true,
+  "candidate_css_identical": true,
+  "candidate_artwork_identical": 60,
+  "candidate_chapters_identical": true,
+  "publication_eligible": true,
+  "approval_rejections": [
+    "publication approval identity changed",
+    "publication approval identity changed",
+    "missing approval rejected",
+    "approved copy, presentation or component requirements changed"
+  ]
+}
