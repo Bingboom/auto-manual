@@ -7287,7 +7287,7 @@
               {
                 "role": "lead",
                 "content_kind": "rich_text",
-                "content": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+                "content": "<strong>We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.</strong>"
               },
               {
                 "role": "local_note",

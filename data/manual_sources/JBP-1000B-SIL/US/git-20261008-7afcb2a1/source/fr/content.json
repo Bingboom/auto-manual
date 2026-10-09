@@ -7235,7 +7235,7 @@
               {
                 "role": "lead",
                 "content_kind": "rich_text",
-                "content": "Nous ne fournissons notre garantie qu&#x27;aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux."
+                "content": "<strong>Nous ne fournissons notre garantie qu&#x27;aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.</strong>"
               },
               {
                 "role": "local_note",

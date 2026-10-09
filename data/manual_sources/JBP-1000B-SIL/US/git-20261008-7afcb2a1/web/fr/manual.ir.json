@@ -52,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "99cf8c53bdf0f0d265179b27373c21ad65bf7d71047e76d7a062ecf13ed01ad9",
-  "content_sha256": "bb78b363497c5355bc2cf657465fe31fe1863e5e7f202f28cef974b9b6b1725d",
+  "bundle_sha256": "a727c473e02ab6024edbd49ce9bd745e32560789df8bf1a397c93c57d00571cb",
+  "content_sha256": "cd148f84a4ff004692a1d2a0abb46513b003fef8f2aaca3c723e7bf78fce6bbe",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -9945,7 +9945,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0002",
-          "content_sha256": "f290860c1d44fd0b1fb50b95770057a42ba2d941068bb07fac5d4553405fadef",
+          "content_sha256": "7207fdb64d5b71839d2f517dbfbc3d44ca0cbae4a777aad82a8525d0beca9668",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -9961,7 +9961,7 @@
                   "role": "accessibility_label"
                 },
                 {
-                  "content": "Nous ne fournissons notre garantie qu&#x27;aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.",
+                  "content": "<strong>Nous ne fournissons notre garantie qu&#x27;aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.</strong>",
                   "content_kind": "rich_text",
                   "role": "lead"
                 },
@@ -10391,7 +10391,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#warranty",
       "source_ref": "native-pdf/warranty",
-      "source_sha256": "04b364ca484cb341475107b9a5d220fccdaf97d7fb0b6e2b7277d4868dc8a859"
+      "source_sha256": "5c078f80aa2d98715d7fbfe2f17564bdfcd9db87da8bc1a48375f4bfad266a00"
     },
     {
       "blocks": [

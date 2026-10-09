@@ -353,7 +353,7 @@
 
 # GARANTÍA
 
-<figure aria-label="Warranty" class="hb-warranty-intro-composition" data-component-id="HB-WARRANTY-LEAD"><div class="hb-warranty-intro-panel">Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.</div><div class="hb-warranty-local-note">* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.</div></figure>
+<figure aria-label="Warranty" class="hb-warranty-intro-composition" data-component-id="HB-WARRANTY-LEAD"><div class="hb-warranty-intro-panel"><strong>Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.</strong></div><div class="hb-warranty-local-note">* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.</div></figure>
 
 ## GARANTÍA LIMITADA
 

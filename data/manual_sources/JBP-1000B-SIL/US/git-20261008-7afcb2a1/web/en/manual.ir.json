@@ -52,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "cadd72a36da306f441f89b2012aebaab73eb0f592b5c765177b7751752a00791",
-  "content_sha256": "cc9e9861d86ca8b365c3f84a45384ea8a22d2a3e7b99f475703df469bbf2e477",
+  "bundle_sha256": "5fec2c09a706c3154ff9e319a5ad639212181171254e4eaff2b7e0632eb9c853",
+  "content_sha256": "9095bca195d29c8cd79ef88f2bee5867da425cdf7ad8da4d7b65c8eba6d750b1",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -9997,7 +9997,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0002",
-          "content_sha256": "77310bceca807455c09fb451539ce184e5f94190e20d494e68f6a9497ec6f72a",
+          "content_sha256": "8ba8222135dfed67f1cd4b7ef9cfdda1d926f023424c6b202b11c31b5dcd1a08",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -10013,7 +10013,7 @@
                   "role": "accessibility_label"
                 },
                 {
-                  "content": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+                  "content": "<strong>We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.</strong>",
                   "content_kind": "rich_text",
                   "role": "lead"
                 },
@@ -10443,7 +10443,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#warranty",
       "source_ref": "native-pdf/warranty",
-      "source_sha256": "e00c2f49e13bfacea59f22ac5baf8040b0d8259c69e2e25661ddba576a225f46"
+      "source_sha256": "d32f65dfd1ff8364d6f085a2746e814514fee8aa253842139e25b659d814439b"
     },
     {
       "blocks": [
