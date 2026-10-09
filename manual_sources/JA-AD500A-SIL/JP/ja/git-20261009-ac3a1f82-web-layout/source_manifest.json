@@ -1,0 +1,268 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "JP",
+    "languages": [
+      "ja"
+    ],
+    "technical_version": "git-20261009-ac3a1f82-web-layout"
+  },
+  "original_source": {
+    "filename": "Jackery DC Input Module取扱説明書V2.0-20260525.pdf",
+    "path": "source/original.pdf",
+    "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+    "physical_page_count": 10
+  },
+  "printed_manual_version": null,
+  "source_authority": "operator-designated Japanese PDF; original Japanese governs all technical/legal copy. Web-layout edition of the approved package git-20261008-ac3a1f82-reviewed (MA-272) on operator instruction 2026-10-09 (「开新窗口 把这个的版面也调整了」, applying the JBP-1000B-WH JP rules 「全部修，一次做完」「封面和目录 不用体现在web版面上」「你参考 资料库里 现有的je-1000f的日语网页说明书」).",
+  "baseline_main": "eb00c120a16c4d50781ff341064961bea16e6083",
+  "language_scope": "single",
+  "source_role": "Git-only Japanese prepared native Web-layout edition of the approved release",
+  "live_bitable_dependency": false,
+  "publication_eligible": false,
+  "page_order": [
+    "00_preface_ja.rst",
+    "box_contents_ja.rst",
+    "product_overview_ja.rst",
+    "charging_ja.rst",
+    "spec_ja.rst",
+    "warranty_ja.rst",
+    "contact_ja.rst"
+  ],
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-CALLOUT-STRIP": 2,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "chapter_source_panels": {
+    "00_preface_ja.rst": [
+      1
+    ],
+    "box_contents_ja.rst": [
+      2
+    ],
+    "product_overview_ja.rst": [
+      3
+    ],
+    "charging_ja.rst": [
+      4,
+      5,
+      6
+    ],
+    "spec_ja.rst": [
+      7
+    ],
+    "warranty_ja.rst": [
+      7,
+      8,
+      9
+    ],
+    "contact_ja.rst": [
+      9,
+      10
+    ]
+  },
+  "normalizations": [
+    "Japanese source wraps joined; decorative bullets expressed as native lists; print page numbers omitted",
+    "source 出カ, halfwidth ｼｶﾞｰｿｹｯﾄ, commas/hyphens/numerals retained",
+    "cover repeated inside booklet artwork kept in image only; primary cover copy remains selectable",
+    "external diagram labels editable through shared ReferenceFigure; product markings retained",
+    "no added contact chapter",
+    "Web layout: printed cover identity lines (physical 1) are not part of the Web edition; the welcome lead and its four reader instructions remain at the top.",
+    "Web layout: rich-text structure, print line breaks, grey panels/capsules and source.css follow the PDF; no Japanese wording is edited."
+  ],
+  "source_concerns": [
+    {
+      "issue": "filename V2.0-20260525 vs PDF metadata 2026-05-06; no printed version",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "cover refers to safety chapter absent as standalone heading",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "DC input 8A versus 12V/10A vehicle text; host ranges differ from module range",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "spec labels use 出カ",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "voltage warning and geographic warranty scope concatenate phrases",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "warranty refers to portable power products",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [
+    "operator page-by-page review of the Web-layout candidate"
+  ],
+  "inputs": [
+    {
+      "path": "assets/car.png",
+      "size": 91687,
+      "sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 3197,
+      "sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 15546,
+      "sha256": "f01512af441ad341022a4116ac908c865d15f29660688fc2801c8b46c7b4dcfa"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview-textless.pdf",
+      "size": 1016968,
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 214039,
+      "sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8"
+    },
+    {
+      "path": "derive_web_layout.py",
+      "size": 14342,
+      "sha256": "97103f5c8ec2e9e9cb130f7d85bee03880dfadbc2cd7dae8b2215d26a1edbc57"
+    },
+    {
+      "path": "render.py",
+      "size": 7458,
+      "sha256": "1913333c4f68f68a4340f8908deb7f1ed185aec44790bd603833e07fee0bfd6c"
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "size": 8152,
+      "sha256": "cc4cfb583d3d45701f780c94112241acde56f81da44d889189a1a5e49f843f5e"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 5285,
+      "sha256": "b586bd8f4309803056291a614e28f0c4a544c07e97f97979405ef5552bc2b78b"
+    },
+    {
+      "path": "source/native_pages.json",
+      "size": 46041,
+      "sha256": "6628ad196c0206fc5165ce498827bb61c5f4c8d27636251fcc25c5237ed698f5"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 1263748,
+      "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777"
+    },
+    {
+      "path": "source/page/00_preface_ja.rst",
+      "size": 563,
+      "sha256": "e3924cf5160099db9fa872f84bab83a8778183266241b6974aa16247518f1e83"
+    },
+    {
+      "path": "source/page/box_contents_ja.rst",
+      "size": 391,
+      "sha256": "660112948d06424916a348f00569eadbfc4409be87f38c1f29a6a46ecf70835a"
+    },
+    {
+      "path": "source/page/charging_ja.rst",
+      "size": 5908,
+      "sha256": "32ea8806732698b782763308233684d2e3e9dab7b370aad95187717eee75ad26"
+    },
+    {
+      "path": "source/page/contact_ja.rst",
+      "size": 495,
+      "sha256": "1e28f9fcfb583bc579d9aea1a0de3db3e38b9a7894da839eb98eea01e2b27a89"
+    },
+    {
+      "path": "source/page/product_overview_ja.rst",
+      "size": 4165,
+      "sha256": "4776b64c70932be46e0be4832ac31620a0b954a65a3e4b0be74349c114d26e2d"
+    },
+    {
+      "path": "source/page/spec_ja.rst",
+      "size": 968,
+      "sha256": "56e5a7d035e8b535205c091055ec95747c4d47df0b6527d7eae5f261ffcd39c8"
+    },
+    {
+      "path": "source/page/warranty_ja.rst",
+      "size": 4507,
+      "sha256": "5bcffdd906357eb26d84eed3bbc61c5bc79568666fc49c37760bbaa36aaecde7"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 4270,
+      "sha256": "ba157c945942b1c2264a51b25efa8d9b9931ab6fc195fce987dcee30d9f44fde"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "filename_version": "V2.0-20260525",
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "reused_assets": [
+    {
+      "path": "assets/overview-textless.png",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/overview-textless.png",
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+      "region_difference_audited": true,
+      "locale": "und"
+    },
+    {
+      "path": "assets/overview-textless.pdf",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/overview-textless.pdf",
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+      "region_difference_audited": true,
+      "locale": "und"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "original_path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/assets/inbox-module.png",
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d",
+      "region_difference_audited": true,
+      "locale": "und"
+    }
+  ],
+  "publication_status": "review-candidate-no-release-authorization",
+  "derived_from": {
+    "package": "git-20261008-ac3a1f82-reviewed",
+    "authorization": "MA-272",
+    "manifest_sha256": "0babde2c5e53f01e3511bcc40c0ce6d7603f61351fd627f062e6e89408fb7291"
+  },
+  "web_exclusions": [
+    {
+      "physical_page": 1,
+      "role": "printed cover",
+      "lines": [
+        "取扱説明書",
+        "Jackery DC Input Module",
+        "型番:JA-AD500A-SIL",
+        "国内専用/For use only in Japan",
+        "写真はイメージです。実際の商品とは異なる場合があります。",
+        "カスタマーサポート: jackery.jp@jackery.com"
+      ]
+    }
+  ]
+}
