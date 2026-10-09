@@ -1,0 +1,49 @@
+{
+  "physical_page_3": {
+    "left_asset_indices": [
+      7,
+      2,
+      8,
+      3,
+      4,
+      5,
+      6
+    ],
+    "right_asset_indices": [
+      0,
+      9,
+      1,
+      10,
+      12
+    ],
+    "recycle_heading_and_body_share_one_icon": true
+  },
+  "physical_page_4": {
+    "upper_left_blocks": [
+      12,
+      13,
+      "14 water",
+      17
+    ],
+    "upper_right_blocks": [
+      18,
+      19,
+      20,
+      "14 grounding"
+    ],
+    "lower_blocks": [
+      11,
+      9,
+      10,
+      0,
+      2,
+      1,
+      "8 instruction",
+      "8 reason",
+      4,
+      3,
+      5
+    ]
+  },
+  "cover": "Repeated product and document names represented once in the title; source photograph caption follows bounded artwork."
+}
