@@ -1,0 +1,12 @@
+{
+  "source_lines_matched": 168,
+  "missing": [],
+  "coverage_boundary": "all native PDF lines >=3 characters except print folios and miniature booklet duplicate; LED cells independently exact",
+  "led_rows_exact": true,
+  "warranty_sections": 6,
+  "callouts": 2,
+  "unique_anchors": 32,
+  "local_resource_references": 22,
+  "original_pdf_sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+  "built_html_sha256": "3415d087c55e55c60b08717296065786e9de735303347f48f09bd108b4d088a1"
+}

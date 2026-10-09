@@ -1,0 +1,266 @@
+{
+  "_static/source_presentation.css": {
+    "size": 5575,
+    "sha256": "02af9439adf6a5fc3ddff3f79af3fe1548541311afda99b90abd103756335d14"
+  },
+  "_static/web_manual.css": {
+    "size": 124859,
+    "sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1"
+  },
+  "assets/ac-charge.png": {
+    "size": 44254,
+    "sha256": "3ff6fe9c38400ad9967b299406585682d4d256e40e9a160eb7cbd653f62c7ca4"
+  },
+  "assets/app-phones.png": {
+    "size": 54063,
+    "sha256": "6091ca3a9a468810d7a9a170870d106da10fd16a43119781d74391822e7a5dae"
+  },
+  "assets/app-power.png": {
+    "size": 17486,
+    "sha256": "51fea631deb0612b17621aab209e567caa93fa5c871853ffaccfb1958b9b42ac"
+  },
+  "assets/app-qr.png": {
+    "size": 16737,
+    "sha256": "1c08e307a374c9b3bb36c54cb31eccc32eb9f83c865e1536ddf59d23fcef34b8"
+  },
+  "assets/app-result.png": {
+    "size": 57732,
+    "sha256": "0bb98e4c12b8ccd70596e91b93acd6b4390ec9a59e1eea282edf18ec86874396"
+  },
+  "assets/app-stores.png": {
+    "size": 7445,
+    "sha256": "0fe3671dbe726b8ec6dc474a9f2c17d82e5e828087eeb8b329e5b5d55ddd9f4f"
+  },
+  "assets/back-qr.png": {
+    "size": 2771,
+    "sha256": "336ee0b98264061141abf5fbeb2542c961096e6263159f6d2e76c8f59067fc90"
+  },
+  "assets/battery.png": {
+    "size": 45089,
+    "sha256": "bbfb0afc92e1f28f010aaeaa51bd2a2d1e251e8c632c2c6b74e838ba81f6a47b"
+  },
+  "assets/car.png": {
+    "size": 77564,
+    "sha256": "afe8c490558dba225c3665ab1466b37de5912ce65d0eb54b9483a8a2756d48f8"
+  },
+  "assets/concrete_1.png": {
+    "size": 65277,
+    "sha256": "e18ba7aeb190f1d8778a08347799e374427994348075a63136669b9e728561cf"
+  },
+  "assets/concrete_2.png": {
+    "size": 170714,
+    "sha256": "2e5c885fec9e09dfc2538fe6dbabb35e4024b9e634a71bd979ccf861e2ee06a7"
+  },
+  "assets/concrete_3_4.png": {
+    "size": 59703,
+    "sha256": "8ba43b495c38e0af28a7c91d4a354dbdbd9c494db88adcd09e2b0bc630e60152"
+  },
+  "assets/concrete_5_6.png": {
+    "size": 60042,
+    "sha256": "dd90de301d86dcc03e6a7925136aab0cdab91b3a799334be7ea6adb98e784f67"
+  },
+  "assets/concrete_7_8.png": {
+    "size": 121206,
+    "sha256": "d7ef4dd0b138e1cbd8c3f4caa0a508658759c2f5faf4be479b1e2eb01f906e07"
+  },
+  "assets/concrete_prepare.png": {
+    "size": 81763,
+    "sha256": "931d991c33743651d014185db6b8477c349c31c6bb6a36bd0d11edfe19aa2c33"
+  },
+  "assets/cover-unit.png": {
+    "size": 25744,
+    "sha256": "6f9452323ac9073238cd789b8d334c380ee11d9f883aa0aaf0ccf00f435bf46a"
+  },
+  "assets/inbox-cable.png": {
+    "size": 4655,
+    "sha256": "ff0a0b94e65fd85e148c7f95b74414e38b3ad8f9a1ab6799322fbd657f04d2f2"
+  },
+  "assets/inbox-manual.png": {
+    "size": 2152,
+    "sha256": "4fa62f372acc9f233dfca89f889e0368314bbcb1b671917b0c2c1903bf2210e8"
+  },
+  "assets/inbox-stand.png": {
+    "size": 4920,
+    "sha256": "23d9dde69a836cb3fb8f78302e704a2ef516a3f346da1a156e653d99032d59e8"
+  },
+  "assets/inbox-unit.png": {
+    "size": 6422,
+    "sha256": "d3ee72ec024db25ea19e7422ee60beb7212d2a619208ca2160558500c2932f78"
+  },
+  "assets/lcd-01.png": {
+    "size": 3299,
+    "sha256": "bee1babea1dcbb8c2909321a1ffb3c62c1bdafe0fdedb0de7408dfb52f473f45"
+  },
+  "assets/lcd-02.png": {
+    "size": 4011,
+    "sha256": "06d5896b50c25c550c67d7973d8d0f4b39073a6f695222d9e719f93c26f5a360"
+  },
+  "assets/lcd-03.png": {
+    "size": 1732,
+    "sha256": "c85dd72ce7ae308c57e93a1ba56d185d68a42e69e4a392a411ec5ad5140e95ea"
+  },
+  "assets/lcd-04.png": {
+    "size": 1690,
+    "sha256": "13fa155bea6e8e5ad1a6dd6a693dbd39cacd6c178df5cd1fe815dff7124e2e81"
+  },
+  "assets/lcd-05.png": {
+    "size": 4374,
+    "sha256": "74e2d219427d3155588c28188dcc6b3b870a79f3a7fe8743b89764042b4510f5"
+  },
+  "assets/lcd-06.png": {
+    "size": 1623,
+    "sha256": "9ff96281355a0ff074cfffee4278d35223fba66e8d33e30dbe98bdeabc17a7d2"
+  },
+  "assets/lcd-07.png": {
+    "size": 1203,
+    "sha256": "7774684b5ddddb775baf4af7d7a9debccf2d618c3b97dbc914efd41ec441aed5"
+  },
+  "assets/lcd-08.png": {
+    "size": 2339,
+    "sha256": "07f13253f240494b2e9f6420312f39ecbf0a96b3dd2144d627165dc2682e41da"
+  },
+  "assets/lcd-09.png": {
+    "size": 2529,
+    "sha256": "b13b5c340ef67bf420c7ed2c62273180f70832e3607b648460dbfa0e19d1bb11"
+  },
+  "assets/lcd-10.png": {
+    "size": 1030,
+    "sha256": "0a6e904e69e110c2fcd2f26d43ea1c7e97aa5240282fda4aafb5e136db0a5c98"
+  },
+  "assets/lcd-11.png": {
+    "size": 2448,
+    "sha256": "b21ed34d174954cc1abb977753da0b0f7d081875f672d469cc736869d2232c3a"
+  },
+  "assets/lcd-12.png": {
+    "size": 4189,
+    "sha256": "2894a3ae3d0c7852c085b34276b9ed7a0d73375f7877b56ab6e131c5ad516b92"
+  },
+  "assets/lcd-map.png": {
+    "size": 100140,
+    "sha256": "c203da0caf4cc3538b1d9463dce4566161b82b65d3f1bc43835200a390fec7cd"
+  },
+  "assets/lcd_mode.png": {
+    "size": 30673,
+    "sha256": "e4d9be8aab4ba8beee23c037d3c0c59edf7c849289e31948be6b75879483d7c8"
+  },
+  "assets/maintenance.png": {
+    "size": 78297,
+    "sha256": "e4e0e0b9bd5f2b2fb9d90c9e7a8833b50784d9472db614cc9f1db160410bfa08"
+  },
+  "assets/overview.png": {
+    "size": 57045,
+    "sha256": "a43a6e8eaf044558850d4e4a571e3e54a8561a06f1f49ea89f92c865b69f31c4"
+  },
+  "assets/power.png": {
+    "size": 47172,
+    "sha256": "cc4a6c69ae614c0c80317f85d0f6b7e0e41efe8fd383bc4f8ff1eb18a093239f"
+  },
+  "assets/solar.png": {
+    "size": 154733,
+    "sha256": "a97a1453f0b2478730f27332e8bb654c9b905d69400a0d4ecba473f9f72bbf71"
+  },
+  "assets/stand_1.png": {
+    "size": 65851,
+    "sha256": "3d700619b6f0a2e9bfacfabdf51da7d8cb5072b6d37af10c162e4e6317da9ca1"
+  },
+  "assets/stand_2.png": {
+    "size": 69698,
+    "sha256": "9e7e01c816912104755cbb7e9d22380fb644f2f863bdc10b95901421e1242c4b"
+  },
+  "assets/stand_3.png": {
+    "size": 77153,
+    "sha256": "fd4927f5e7638076c1a0320b16ada12a513931f4ba1a8fd1a47678c0a53fcc9b"
+  },
+  "assets/stand_prepare.png": {
+    "size": 33646,
+    "sha256": "249e291b0c6cf8f9faac1251d4efec0750f68a99f6bd081b3630ea42c104eb21"
+  },
+  "assets/symbol-battery_recycle.svg": {
+    "size": 5303,
+    "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d"
+  },
+  "assets/symbol-do_not_dismantle.svg": {
+    "size": 4358,
+    "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b"
+  },
+  "assets/symbol-keep_away_from_children.svg": {
+    "size": 3409,
+    "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe"
+  },
+  "assets/symbol-keep_dry.svg": {
+    "size": 5105,
+    "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+  },
+  "assets/symbol-mandatory.svg": {
+    "size": 1292,
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+  },
+  "assets/symbol-no_open_flame.svg": {
+    "size": 2148,
+    "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8"
+  },
+  "assets/symbol-no_wet_hands.svg": {
+    "size": 3972,
+    "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+  },
+  "assets/symbol-prohibited.svg": {
+    "size": 1452,
+    "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+  },
+  "assets/symbol-read_manual.svg": {
+    "size": 3075,
+    "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30"
+  },
+  "assets/symbol-unplug.svg": {
+    "size": 2569,
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+  },
+  "assets/symbol-warning_triangle.svg": {
+    "size": 1363,
+    "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b"
+  },
+  "assets/symbol-weee.svg": {
+    "size": 2560,
+    "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92"
+  },
+  "assets/ups.png": {
+    "size": 94930,
+    "sha256": "90f9e334a6c527943284dd74b509fd7759f65b81054ead103552b1f12738bde4"
+  },
+  "assets/wood_1.png": {
+    "size": 65600,
+    "sha256": "3bcc5bdd18c39ad8c8638b24567b060adec52154ff52a4bc8f35cfe28b368a56"
+  },
+  "assets/wood_2_3.png": {
+    "size": 158513,
+    "sha256": "23c9c3de17ae0137f8c9036b653f6ea06d92a5aed55c6065640ae080ed1f9d4f"
+  },
+  "assets/wood_4_5.png": {
+    "size": 45986,
+    "sha256": "a73b9a922273a9bf788cf4013611b9bc196adab598dfb96d54c50fc7496c6f7b"
+  },
+  "assets/wood_6.png": {
+    "size": 82056,
+    "sha256": "b3bc37532b4a6a48d53fdea7b7ab2f1ac6ad712ac8835fda42824b567a7ea3eb"
+  },
+  "assets/wood_prepare.png": {
+    "size": 64026,
+    "sha256": "047da5e3737625ada189066eac35143ed0c3186dba2c9a2db242ebeefe715fdf"
+  },
+  "conf.py": {
+    "size": 847,
+    "sha256": "9f34f76db9b62717653575e1d1d25dbf4a1d15122776b1976726bf3ace05bf85"
+  },
+  "index.md": {
+    "size": 94,
+    "sha256": "eca924143f52cf05f935c83ca754fd52efd616a61b1a96f92c5520980b4bee0f"
+  },
+  "manual.ir.json": {
+    "size": 485100,
+    "sha256": "7e6dea4cc66ed970a3dd0aea898962d5a181720e379089a624579f2b1f9833d2"
+  },
+  "manual.md": {
+    "size": 86430,
+    "sha256": "3f48213cc0f23cbed3db0374292bbe52beda24ecac708efc1d058f0fe721c1ba"
+  }
+}

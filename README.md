@@ -17,6 +17,7 @@ Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev
 Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
 外部原稿按源文件哈希登记章节准入，见 [Git-only 发布流程](code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)。
 FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
+SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/README.md)。
 封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。

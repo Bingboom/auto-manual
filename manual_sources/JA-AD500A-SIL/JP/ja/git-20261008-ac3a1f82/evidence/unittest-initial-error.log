@@ -1,0 +1,21 @@
+Command: python3 -m unittest
+Environment: system Python 3.12; default macOS TMPDIR
+
+======================================================================
+ERROR: test_provenance_names_release_path_from_frozen_files_only (tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/tests/test_manual_knowledge.py", line 264, in test_provenance_names_release_path_from_frozen_files_only
+    legacy = publication_identity(root, source, model='M', region='EU')['provenance']
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/tools/rtd/publication_catalog.py", line 14, in publication_identity
+    relative = source.relative_to(root.resolve())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbeo5h7nt/web/M/EU/md/manual.md' is not in the subpath of '/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbeo5h7nt/web'
+
+----------------------------------------------------------------------
+Ran 5217 tests in 2200.590s
+
+FAILED (errors=1, skipped=35)
