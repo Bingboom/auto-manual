@@ -33,7 +33,7 @@ sys.path.insert(0, str(REPO))
 from tools.asset_pipeline.extract import extract_artifacts  # noqa: E402
 from tools.asset_pipeline.recipe import load_recipe  # noqa: E402
 
-STATUS = 'review-candidate-no-release-authorization'
+STATUS = 'operator-approved-git-only-release'
 # Inputs copied byte-for-byte from the approved package.
 UNCHANGED = [
     'source/original.pdf', 'source/native_pages.json', 'source/page/contact_ja.rst',
@@ -203,7 +203,9 @@ def manifest() -> None:
         'operator-designated Japanese PDF; original Japanese governs all technical/legal copy. Web-layout edition of '
         'the approved package git-20261008-ac3a1f82-reviewed (MA-272) on operator instruction 2026-10-09 '
         '(「开新窗口 把这个的版面也调整了」, applying the JBP-1000B-WH JP rules 「全部修，一次做完」'
-        '「封面和目录 不用体现在web版面上」「你参考 资料库里 现有的je-1000f的日语网页说明书」).'
+        '「封面和目录 不用体现在web版面上」「你参考 资料库里 现有的je-1000f的日语网页说明书」); '
+        'operator accepted reviewed candidate 618c31e for public Git-only JP/ja release on 2026-10-09 '
+        '(「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.'
     )
     data['normalizations'] = [n for n in data['normalizations'] if not n.startswith('Web layout:')] + [
         'Web layout: printed cover identity lines (physical 1) are not part of the Web edition; '
@@ -228,12 +230,27 @@ def manifest() -> None:
         json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
+def release_manifest() -> None:
+    """Inventory every package file for the Git-only release (seal_frozen_web_evidence)."""
+    data = read(PACKAGE / 'source_manifest.json')
+    files = sorted(
+        p for p in PACKAGE.rglob('*')
+        if p.is_file() and '__pycache__' not in p.parts and p.name != 'frozen_source_manifest.json'
+    )
+    data['inputs'] = [{'path': p.relative_to(PACKAGE).as_posix(), 'size': p.stat().st_size, 'sha256': sha256(p)}
+                      for p in files]
+    (PACKAGE / 'frozen_source_manifest.json').write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
 def main() -> None:
     copy_unchanged()
     recipe()
     render_assets()
     pages()
     manifest()
+    if (PACKAGE / 'web/ja').is_dir():
+        release_manifest()
     print(json.dumps({'package': PACKAGE.name, 'inputs': len(read(PACKAGE / 'source_manifest.json')['inputs'])}))
 
 

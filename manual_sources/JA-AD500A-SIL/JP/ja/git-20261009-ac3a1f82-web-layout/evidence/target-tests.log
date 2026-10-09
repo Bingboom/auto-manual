@@ -1,0 +1,43 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 5 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), idna 3.20 (lock 3.18), packaging 26.3 (lock 26.2)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+test_acceptance_cannot_cover_resealed_changed_source (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_acceptance_cannot_cover_resealed_changed_source) ... ok
+test_artwork_is_the_approved_artwork_except_the_inbox_manual_recrop (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_artwork_is_the_approved_artwork_except_the_inbox_manual_recrop) ... ok
+test_candidate_cannot_carry_or_claim_acceptance (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_candidate_cannot_carry_or_claim_acceptance) ... skipped 'edition already accepted'
+test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) ... ok
+test_cold_render_matches_committed_web (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_cold_render_matches_committed_web) ... ok
+test_derivation_is_reproducible (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_derivation_is_reproducible) ... {"package": "git-20261009-ac3a1f82-web-layout", "inputs": 22}
+FAIL
+test_identity_and_candidate_status (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_identity_and_candidate_status) ... ok
+test_navigation_is_the_print_chapters_without_cover (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_navigation_is_the_print_chapters_without_cover) ... ok
+test_release_manifest_inventories_every_package_file (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_release_manifest_inventories_every_package_file) ... FAIL
+test_visible_copy_is_the_approved_copy_without_cover (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_visible_copy_is_the_approved_copy_without_cover) ... ok
+
+======================================================================
+FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_derivation_is_reproducible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/auto-manual/tests/test_jaad500a_sil_jp_web_layout.py", line 93, in test_derivation_is_reproducible
+    self.assertEqual(before, after)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: {Posi[491 chars]'): 'bf97a073bd3a51f936e77dfeeb16ba19ad6e8b5dc[8961 chars]a89'} != {Posi[491 chars]'): '55dc57a6bf33df697f56fda9cd964a3f8ab94e449[8961 chars]a89'}
+Diff is 10052 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_release_manifest_inventories_every_package_file (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_release_manifest_inventories_every_package_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/auto-manual/tests/test_jaad500a_sil_jp_web_layout.py", line 161, in test_release_manifest_inventories_every_package_file
+    self.assertEqual(file_sha256(PACKAGE / record['path']), record['sha256'], record['path'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '82d73da1eaf355e6515d20b3d483428481361467d9c9abfd9864dfebfa8e0dcc' != '482a3f6a6c61cd3ed6d04754fbe425838f9dc152aa1f35a03fb101154ada44ef'
+- 82d73da1eaf355e6515d20b3d483428481361467d9c9abfd9864dfebfa8e0dcc
++ 482a3f6a6c61cd3ed6d04754fbe425838f9dc152aa1f35a03fb101154ada44ef
+ : evidence/target-tests.log
+
+----------------------------------------------------------------------
+Ran 10 tests in 10.375s
+
+FAILED (failures=2, skipped=1)
+exit=1

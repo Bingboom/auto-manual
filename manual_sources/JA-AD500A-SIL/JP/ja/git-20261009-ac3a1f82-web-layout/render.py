@@ -56,7 +56,7 @@ def check_inputs(source: Path, manifest: dict) -> None:
 
 
 def acceptance(source: Path, manifest: dict) -> dict | None:
-    """Return the operator acceptance that binds every reviewed source input, if any."""
+    """Return the operator acceptance that binds every reviewed source and artwork input, if any."""
     path = source / "source" / "approval.json"
     if manifest["publication_status"] == CANDIDATE:
         if path.exists() or manifest["publication_eligible"]:
@@ -65,7 +65,8 @@ def acceptance(source: Path, manifest: dict) -> dict | None:
     if manifest["publication_status"] != APPROVED or not path.is_file():
         raise ValueError("unknown publication status or missing acceptance")
     approval = json.loads(path.read_text(encoding="utf-8"))
-    reviewed = [entry for entry in manifest["inputs"] if entry["path"] != "source/approval.json"]
+    reviewed = [entry for entry in manifest["inputs"]
+                if entry["path"].startswith(("source/", "assets/")) and entry["path"] != "source/approval.json"]
     if (approval["operator_quote"] != "上线提交发布"
             or approval["original_source_sha256"] != manifest["original_source"]["sha256"]
             or approval["target"] != {"model": "JA-AD500A-SIL", "region": "JP", "language": "ja"}

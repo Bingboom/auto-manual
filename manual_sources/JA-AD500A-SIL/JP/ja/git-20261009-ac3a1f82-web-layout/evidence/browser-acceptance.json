@@ -1,0 +1,102 @@
+{
+  "page": "manual_jaad500asil_jp_ja.html",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "images": [
+        {
+          "src": "inbox-module.png",
+          "ok": true
+        },
+        {
+          "src": "inbox-manual.png",
+          "ok": true
+        },
+        {
+          "src": "overview-textless.png",
+          "ok": true
+        },
+        {
+          "src": "solar.png",
+          "ok": true
+        },
+        {
+          "src": "car.png",
+          "ok": true
+        },
+        {
+          "src": "contact-qr.png",
+          "ok": true
+        }
+      ],
+      "h1": [
+        "同梱品",
+        "各部の名称",
+        "接続",
+        "主な仕様",
+        "保証について"
+      ],
+      "nav": [
+        "同梱品",
+        "各部の名称",
+        "接続",
+        "主な仕様",
+        "保証について"
+      ],
+      "horizontal_overflow": false,
+      "title": "同梱品 - Jackery DC Input Module",
+      "source_stylesheet": true,
+      "failed_requests": [],
+      "all_images_loaded": true
+    },
+    "mobile": {
+      "width": 390,
+      "images": [
+        {
+          "src": "inbox-module.png",
+          "ok": true
+        },
+        {
+          "src": "inbox-manual.png",
+          "ok": true
+        },
+        {
+          "src": "overview-textless.png",
+          "ok": true
+        },
+        {
+          "src": "solar.png",
+          "ok": true
+        },
+        {
+          "src": "car.png",
+          "ok": true
+        },
+        {
+          "src": "contact-qr.png",
+          "ok": true
+        }
+      ],
+      "h1": [
+        "同梱品",
+        "各部の名称",
+        "接続",
+        "主な仕様",
+        "保証について"
+      ],
+      "nav": [
+        "同梱品",
+        "各部の名称",
+        "接続",
+        "主な仕様",
+        "保証について"
+      ],
+      "horizontal_overflow": false,
+      "title": "同梱品 - Jackery DC Input Module",
+      "source_stylesheet": true,
+      "failed_requests": [],
+      "all_images_loaded": true
+    }
+  },
+  "passed": true
+}

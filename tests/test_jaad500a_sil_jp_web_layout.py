@@ -79,8 +79,12 @@ class WebLayoutEditionTests(unittest.TestCase):
         else:
             approval = read(PACKAGE / 'source/approval.json')
             self.assertEqual(approval['operator_quote'], '上线提交发布')
-            self.assertEqual(approval['reviewed_inputs'],
-                             [r for r in manifest['inputs'] if r['path'] != 'source/approval.json'])
+            self.assertEqual(manifest['publication_status'], render_module.APPROVED)
+            self.assertTrue(manifest['publication_eligible'])
+            self.assertEqual(approval['target'], {'model': 'JA-AD500A-SIL', 'region': 'JP', 'language': 'ja'})
+            self.assertEqual(approval['reviewed_inputs'], [
+                r for r in manifest['inputs']
+                if r['path'].startswith(('source/', 'assets/')) and r['path'] != 'source/approval.json'])
 
     def test_derivation_is_reproducible(self):
         before = {p: file_sha256(p) for p in PACKAGE.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
@@ -136,6 +140,26 @@ class WebLayoutEditionTests(unittest.TestCase):
         (source / 'source_manifest.json').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'carries no release acceptance'):
             render_module.render(source, self.root / 'out')
+
+    def test_acceptance_cannot_cover_resealed_changed_source(self):
+        source = self.fixture()
+        if read(source / 'source_manifest.json')['publication_status'] != render_module.APPROVED:
+            self.skipTest('edition not yet accepted')
+        css = source / 'source/presentation.css'
+        css.write_text(css.read_text(encoding='utf-8') + '\nbody { color: red; }\n', encoding='utf-8')
+        reseal(source)
+        with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover'):
+            render_module.render(source, self.root / 'out')
+        self.assertFalse((self.root / 'out').exists())
+
+    def test_release_manifest_inventories_every_package_file(self):
+        release = read(PACKAGE / 'frozen_source_manifest.json')
+        files = sorted(p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob('*')
+                       if p.is_file() and '__pycache__' not in p.parts and p.name != 'frozen_source_manifest.json')
+        self.assertEqual([r['path'] for r in release['inputs']], files)
+        for record in release['inputs']:
+            self.assertEqual(file_sha256(PACKAGE / record['path']), record['sha256'], record['path'])
+        self.assertEqual(release['web_roots'], {'ja': 'web/ja'})
 
     def test_navigation_is_the_print_chapters_without_cover(self):
         markdown = (PACKAGE / 'web/ja' / MARKDOWN).read_text(encoding='utf-8')
