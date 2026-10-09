@@ -2196,3 +2196,5 @@ JBP-3600A EU 九语的正视图、左视图采用同一显示尺寸上限（25re
 
 
 SlimPower H1（JE-1000E-WH / JP / ja）使用[批准的日文冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)，保留原候选与原稿文字、图框和安全符号。按操作者“封面 不要放进去网页版里面啊”，新 Web 版本从安全说明开始，印刷封面仅保留在原稿与来源存档；其余 16 章逐字节保持。`approval.json` 绑定原稿哈希、已审候选及独立章节/组件要求；回放前先验证批准身份，再通过共享 Manual IR / ComponentSpec 输出。日规沿用现有区域准入，不登记 phase2 或提升全局资产。正式发布仍按 Git-only 单语凭据、Hello-Docs 生成式发布 PR、RTD 回执/资源和桌面手机逐段核验，打印版本未知时保持未知。
+
+JBP-1000B-WH / JP / ja 的 [Web 版式候选](../manual_sources/JBP-1000B-WH/JP/ja/git-20261009-3aa6c003-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准原生包机械派生，原生包与其发布凭据保持不变。按操作者“全部修，一次做完”“封面和目录 不用体现在web版面上”并参照 JE-1000F 日文 Web：导航与印刷目录 12 章一致，二级内容不再升为章，原稿并排的安装步骤合为整行图（跨面板插图完整），标签字号按原稿 pt 与面板宽度生成；日文措辞与 `*_text` 字段不变，由单元测试比对可见文字。状态为 `review-candidate-no-release-authorization`，操作者接受前不能封存或发布。
