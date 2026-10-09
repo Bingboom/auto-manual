@@ -190,6 +190,16 @@
       "sha256": "67cce8ed64e7722158779a861d783c4bb684a25f895336b8203f98bebc4d8962"
     },
     {
+      "path": "evidence/unittest-full-summary.log",
+      "size": 471,
+      "sha256": "4ee9f4f431beb5eb02b0c7b2b0ef87f524755fa63a9b07dba893710bd9c210f1"
+    },
+    {
+      "path": "evidence/validation.json",
+      "size": 2115,
+      "sha256": "3058afa3e5bc77c9ff68e605dc362afdcdd4f9745bf0feba58bd4984f82e21b6"
+    },
+    {
       "path": "render.py",
       "size": 7539,
       "sha256": "4369939d628677b1efd3b94bc338e38d4df769a404fc4fa7b10f3a4240e7c459"
