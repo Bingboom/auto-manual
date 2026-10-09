@@ -881,6 +881,25 @@
         ],
         "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
       }
+    },
+    {
+      "key": "read-manual/person-circle-jhp3000d-native",
+      "path": "native-v1/symbol_read_manual_person_jhp3000d.svg",
+      "sha256": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/Jackery HomePower 3000 User Manual.pdf",
+        "source_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+        "physical_page": 5,
+        "retained_path_indices": [
+          53,
+          54,
+          55,
+          56,
+          57
+        ],
+        "repair": "Exact original person-circle glyph and tint after all existing shared variants fail source-bound comparison; pipeline recipe retains native drawings only."
+      }
     }
   ],
   "withdrawn": [

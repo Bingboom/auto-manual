@@ -88,6 +88,10 @@ for old/new URL and version mapping, release-site evidence and recovery checks.
 These are planning/manual acceptance requirements; no new command, automated
 gate, hosting change or online write is introduced by the documentation update.
 
+Frozen Web source storage is bounded separately from served output and network
+inventories. The [Git-only release contract](dev/web_publish_pipeline.md#22-git-only-transaction)
+sets the 1 GiB source budget and retains the output, per-file and file-count limits.
+
 ## 1. Recommended Entrypoint
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
