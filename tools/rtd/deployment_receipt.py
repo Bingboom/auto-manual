@@ -33,7 +33,7 @@ MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_TOTAL_BYTES = 512 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
 # Keep their storage budget separate from served-output and network budgets.
-MAX_SOURCE_TOTAL_BYTES = 768 * 1024 * 1024
+MAX_SOURCE_TOTAL_BYTES = 1024 * 1024 * 1024
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45
 _CACHE = {".doctrees", "__pycache__", ".git"}
