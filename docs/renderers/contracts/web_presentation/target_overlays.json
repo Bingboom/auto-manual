@@ -1770,6 +1770,27 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "ja-ad500a-sil-jp-ja-v1",
+      "target": {
+        "model": "JA-AD500A-SIL",
+        "region": "JP"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "warranty_ja"
+          ],
+          "section_count": 6,
+          "period_years": []
+        }
+      }
     }
   ]
 }
