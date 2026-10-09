@@ -3019,22 +3019,13 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "Preparación antes de la instalación:"
-            }
-          ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
+          "schema_version": "manual-flow/v2",
           "kind": "group",
           "role": "container",
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-step-grid"
+                "class": "native-wood-opening"
               }
             }
           },
@@ -3045,7 +3036,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wood-preparation"
                   }
                 }
               },
@@ -3083,6 +3074,10 @@
                         "content_kind": "ordered_labels",
                         "content": [
                           {
+                            "html": "Preparación antes de la instalación:",
+                            "text": "Preparación antes de la instalación:"
+                          },
+                          {
                             "html": "SE VENDE POR SEPARADO",
                             "text": "SE VENDE POR SEPARADO"
                           }
@@ -3100,7 +3095,7 @@
                       "component.special.reference-figure"
                     ],
                     "metadata": {
-                      "capture_following_lines": 1,
+                      "capture_following_lines": 2,
                       "captions_embedded": false,
                       "captions_origin": "carrier",
                       "caption_centers_pct": null,
@@ -3116,6 +3111,15 @@
                           {
                             "line": 0,
                             "rect": [
+                              5,
+                              3,
+                              68,
+                              13
+                            ]
+                          },
+                          {
+                            "line": 1,
+                            "rect": [
                               57,
                               24,
                               21,
@@ -3126,7 +3130,7 @@
                       },
                       "image_key": "wood-prep",
                       "web_replace_key": "",
-                      "source_fragment_sha256": "4a925b625a3c4ec07d2f10a9326420e2c75a393a4bc7bf5a9294d2e9a15cf8f6"
+                      "source_fragment_sha256": "c84865c0e16ec2767e8bf0bb44e629ca104cacf161d0fcc71e421a95ada41cbb"
                     },
                     "schema_version": "component-spec/v1"
                   },
@@ -3160,6 +3164,23 @@
                           "children": [
                             {
                               "kind": "text",
+                              "text": "Preparación antes de la instalación:"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "group",
+                          "role": "container",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "line"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
                               "text": "SE VENDE POR SEPARADO"
                             }
                           ]
@@ -3176,7 +3197,7 @@
               "presentation": {
                 "html": {
                   "attributes": {
-                    "class": "native-step-card"
+                    "class": "native-wood-result"
                   }
                 }
               },
@@ -3301,8 +3322,7 @@
                 }
               ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "group",

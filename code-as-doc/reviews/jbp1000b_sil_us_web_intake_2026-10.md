@@ -106,3 +106,7 @@ The three installation steps now follow the native one-step-per-row composition 
 ### Wall-mount heading and introductory spacing
 
 The wall-mount title reuses the source-local plain heading treatment already accepted for the vertical stand. Wooden/concrete-wall subheadings omit the native-absent round marker; the introduction is compact, with a 5.59px title gap and 10.40px subsection gap. EN/FR/ES at 1280×900 and 390×844 retain chapter navigation, contained headings and no page overflow. Native words and artwork remain unchanged; strict Sphinx/native coverage and cold replay pass.
+
+### Wooden-wall preparation and installation-result opening
+
+Reuse the existing admitted wood-prep/wood-result artwork. Move the unchanged preparation caption into the shared reference-figure live caption layer beside the existing sold-separately caption, preserving both original lines and source-bound hashes. Desktop lays out the heading/intro/wooden-wall heading/preparation on the left and enlarged result on the right; mobile uses the standard stacked fallback. Remove outer opening cards; CSS owns the preparation background, rounded panel and dashed frame. The 53 artwork files are unchanged. EN/FR/ES at 1280×900 and 390×844 pass contained-label/native-aspect/no-overflow checks; chapter navigation remains present. 22 reference/flow/frozen-evidence tests pass, along with three strict Sphinx/native coverage/cold replay/admission checks.

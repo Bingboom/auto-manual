@@ -55,8 +55,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "161033b4ddc81b8489a710fb5a29d88d8b2b935be5f3bb1404d6899025649765",
-  "content_sha256": "8aacb298c7a5922d14a75c62cda97ef55bd0cebe3546d062db40babcd0aead50",
+  "bundle_sha256": "043b1db96882ce6fbf1699ad7344337ee4cc31501903eebe73efa8f6397e7368",
+  "content_sha256": "58f565ee36c0db14b4cb6c29a6723ebf2dba4a446899b4ccb7813c79cc7a3585",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -115,7 +115,7 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 89,
+    "block_count": 88,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-FCC": 1,
@@ -1948,7 +1948,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "8616eedb15e937a7c7d52c9b4422721f87b8a816874c488394f86dc9d7daaf7a"
+      "sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -5503,29 +5503,12 @@
           "source_ref": "native-pdf/wall-mount#block-3"
         },
         {
-          "asset_refs": [],
-          "block_id": "wall-mount:block-0004",
-          "content_sha256": "72bbe4ac28b7b8663d96f3bfaf6d9b5c180fc7127e81b3cf99b5f8c45a091bfd",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Preparation before installation:"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/wall-mount#block-4"
-        },
-        {
           "asset_refs": [
             "assets/wood-prep.png",
             "assets/wood-result.png"
           ],
-          "block_id": "wall-mount:block-0005",
-          "content_sha256": "07be14a203dfd268ca6285a76af3e1300b545342e5e23e6bc20bad8c33f2dd2d",
+          "block_id": "wall-mount:block-0004",
+          "content_sha256": "e5b55f305c94f2be70105a824ee484fc427e91d017cb64eaf808b317925ac1a0",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5540,6 +5523,23 @@
                       },
                       {
                         "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "Preparation before installation:"
+                              }
+                            ],
+                            "kind": "group",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "line"
+                                }
+                              }
+                            },
+                            "role": "container"
+                          },
                           {
                             "children": [
                               {
@@ -5586,6 +5586,15 @@
                             {
                               "line": 0,
                               "rect": [
+                                5,
+                                3,
+                                68,
+                                13
+                              ]
+                            },
+                            {
+                              "line": 1,
+                              "rect": [
                                 57,
                                 24,
                                 21,
@@ -5601,11 +5610,11 @@
                         "caption_centers_pct": null,
                         "captions_embedded": false,
                         "captions_origin": "carrier",
-                        "capture_following_lines": 1,
+                        "capture_following_lines": 2,
                         "composite_locale": "",
                         "image_key": "wood-prep",
                         "presentation_mode": "base-art-live-copy",
-                        "source_fragment_sha256": "8766b7c87fb7debf90925ed68c93bb3c068f7d202589bb1bbf37fa9d0ed369d0",
+                        "source_fragment_sha256": "9ded90a2e3a3f2ec103b041147b0fa54f2d72a3973f8d9f888cea00dc70f6626",
                         "web_replace_key": ""
                       },
                       "schema_version": "component-spec/v1",
@@ -5633,6 +5642,10 @@
                         {
                           "content": [
                             {
+                              "html": "Preparation before installation:",
+                              "text": "Preparation before installation:"
+                            },
+                            {
                               "html": "SOLD SEPARATELY",
                               "text": "SOLD SEPARATELY"
                             }
@@ -5654,7 +5667,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wood-preparation"
                     }
                   }
                 },
@@ -5785,7 +5798,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "native-step-card"
+                      "class": "native-wood-result"
                     }
                   }
                 },
@@ -5796,14 +5809,14 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-step-grid"
+                  "class": "native-wood-opening"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-5"
+          "source_ref": "native-pdf/wall-mount#block-4"
         },
         {
           "asset_refs": [
@@ -5814,7 +5827,7 @@
             "assets/wood-6.png",
             "assets/wood-7.png"
           ],
-          "block_id": "wall-mount:block-0006",
+          "block_id": "wall-mount:block-0005",
           "content_sha256": "c85e2815837fe302e4d23a18b8041333bcf9b50b8db1f155e4c685b81e163b80",
           "kind": "flow",
           "payload": {
@@ -6551,11 +6564,11 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-6"
+          "source_ref": "native-pdf/wall-mount#block-5"
         },
         {
           "asset_refs": [],
-          "block_id": "wall-mount:block-0007",
+          "block_id": "wall-mount:block-0006",
           "content_sha256": "8e1ee114c8ced66551f6541a915c928fbc6bf03e4f45e03d6ffce99f105d6ff0",
           "kind": "flow",
           "payload": {
@@ -6569,11 +6582,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-7"
+          "source_ref": "native-pdf/wall-mount#block-6"
         },
         {
           "asset_refs": [],
-          "block_id": "wall-mount:block-0008",
+          "block_id": "wall-mount:block-0007",
           "content_sha256": "72bbe4ac28b7b8663d96f3bfaf6d9b5c180fc7127e81b3cf99b5f8c45a091bfd",
           "kind": "flow",
           "payload": {
@@ -6586,14 +6599,14 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-8"
+          "source_ref": "native-pdf/wall-mount#block-7"
         },
         {
           "asset_refs": [
             "assets/concrete-prep.png",
             "assets/concrete-result.png"
           ],
-          "block_id": "wall-mount:block-0009",
+          "block_id": "wall-mount:block-0008",
           "content_sha256": "593d21c1f02ce252428cac69b47dcda6a001c5958b1f4fc47548379aba69a01e",
           "kind": "flow",
           "payload": {
@@ -6779,7 +6792,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-9"
+          "source_ref": "native-pdf/wall-mount#block-8"
         },
         {
           "asset_refs": [
@@ -6792,7 +6805,7 @@
             "assets/concrete-8.png",
             "assets/concrete-9.png"
           ],
-          "block_id": "wall-mount:block-0010",
+          "block_id": "wall-mount:block-0009",
           "content_sha256": "ec8b813d38dc82d582c354d940b7acb2438b0d92cc9def579b15e48f8e55d361",
           "kind": "flow",
           "payload": {
@@ -7593,7 +7606,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/wall-mount#block-10"
+          "source_ref": "native-pdf/wall-mount#block-9"
         }
       ],
       "language": "en",
@@ -7601,7 +7614,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#wall-mount",
       "source_ref": "native-pdf/wall-mount",
-      "source_sha256": "cb509162e7162690867571ecfbc60779111ddda4ed26f6ec5369847752d701a5"
+      "source_sha256": "2a25ec06365519f284747c5a22657816813d2947372d2af5ba4d72be316f975b"
     },
     {
       "blocks": [

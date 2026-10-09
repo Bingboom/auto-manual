@@ -43,3 +43,5 @@ The vertical-stand opening keeps a native plain heading with its chapter navigat
 Vertical-stand steps 1–3 each occupy a full-width row in EN/FR/ES, preserving editable native words and original artwork dimensions/aspect ratios. Desktop/mobile browser acceptance confirms three equal-width stacked cards with no page overflow.
 
 Wall-mount headings use the native plain treatment; the title/introduction and introduction/subheading gaps are compact (about 6px and 10px). EN/FR/ES desktop/mobile validation retains chapter navigation and confirms wrapped headings without horizontal overflow.
+
+The wooden-wall preparation caption now lives inside the unchanged admitted preparation artwork through HB-SPECIAL-REFERENCE-FIGURE. Desktop uses native left preparation/right wall-result composition with the result beside the opening headings; mobile stacks at the existing breakpoint. Extra outer cards are removed; the preparation tone, rounded panel and dashed accessory frame are CSS. No recrop or extraction occurs. EN/FR/ES labels are contained and native result aspect ratios retained.
