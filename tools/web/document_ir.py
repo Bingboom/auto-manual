@@ -15,7 +15,7 @@ from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.hashing import file_sha256
 from tools.web.composite_manifest import WebCompositeEntry, WebCompositeManifest
 from tools.web.presentation import transform_web_fragment
-from tools.web.language_navigation import add_web_language_navigation
+from tools.web.language_inventory import strip_web_language_inventory
 from tools.web.document_assets import stage_fragment_assets
 from tools.web.embedded_components import render_embedded_web_component
 from tools.utils.path_utils import get_paths
@@ -156,7 +156,7 @@ def _render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str
                 embedded_components_complete=embedded_components_complete,
             )
         fragments.append(stage_fragment_assets(fragment, Path(page.source_path), root, (paths.docs_dir, paths.root)))
-    return add_web_language_navigation(ir, tuple(fragments))
+    return strip_web_language_inventory(ir, tuple(fragments))
 
 
 def render_document_fragments(

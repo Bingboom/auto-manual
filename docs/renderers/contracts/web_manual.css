@@ -124,7 +124,7 @@ body {
 
 /* Match Furo's navigation-collapse breakpoint; clear the header and back-to-top. */
 @media (max-width: 63em) {
-  #furo-main-content :is(section[id], .hb-language-anchor, :target) {
+  #furo-main-content :is(section[id], :target) {
     scroll-margin-top: calc(var(--header-height, 3rem) + 3rem);
   }
 }
