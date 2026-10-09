@@ -1,0 +1,37 @@
+[
+  {
+    "asset_ref": "assets/symbol_do_not_dismantle.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/symbol_warning_triangle.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/symbol_read_manual.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/symbol_no_open_flame.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/symbol_keep_away_from_children.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/native-li_ion.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "asset_ref": "assets/symbol_weee.svg",
+    "physical_page": 4,
+    "max_mean_channel_error": 0.0
+  }
+]

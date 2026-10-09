@@ -1,0 +1,14 @@
+[env-preflight] WARN env.lock: 7 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), cryptography 50.0.0 (lock 49.0.0), numpy 2.5.2 (lock 2.5.1), packaging 26.3 (lock 26.2), soupsieve 2.9.2 (lock 2.8.4)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+./Users/pika/.codex/worktrees/jbp1000b-jp-release/auto-manual2/tools/web/caption_frame_admission.py:61: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(image.crop(box).getdata())
+............/Users/pika/.codex/worktrees/jbp1000b-jp-release/auto-manual2/tests/test_symbol_asset_admission.py:184: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  self.assertTrue(any(45 <= a <= 60 for a in alpha.getdata()))
+......./Users/pika/.codex/worktrees/jbp1000b-jp-release/auto-manual2/tests/test_symbol_asset_admission.py:189: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(image.getdata())
+......................
+----------------------------------------------------------------------
+Ran 42 tests in 17.039s
+
+OK
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

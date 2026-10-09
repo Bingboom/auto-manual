@@ -12,6 +12,13 @@ repair the missing suitable transparent artwork once using the asset-intake
 recipe; they are shared across subsequent targets/locales whose native glyphs
 match. They are local review candidates, without live registry promotion.
 
+The gray Japanese variants and the fixed Li-ion32 mark come from the supplied
+JBP-1000B-WH JP PDF. Six earlier generic candidates failed source glyph/tint
+comparison; the seventh reuses the existing native Li-ion32 bytes. Their
+physical-page, drawing-index and same-row caption bindings live in that source
+package's `source/symbol_release_admission.json`. All seven retain candidate
+status in this Git library, with no live registry promotion.
+
 Do not re-extract an admitted matching variant for a new model, page or language.
 When the authoritative glyph differs, document the difference and add a named
 variant to this common library. Preserve native tint and group opacity; remove

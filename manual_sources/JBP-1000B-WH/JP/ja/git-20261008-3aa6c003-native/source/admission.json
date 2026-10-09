@@ -1,0 +1,346 @@
+{
+  "target": {
+    "model": "JBP-1000B-WH",
+    "region": "JP",
+    "language": "ja"
+  },
+  "capabilities": {},
+  "expected_pages": [
+    "preface",
+    "safety",
+    "symbols",
+    "in_the_box",
+    "product_overview",
+    "lcd_display",
+    "operations",
+    "placement",
+    "stand",
+    "wall_wood",
+    "wall_concrete",
+    "connection",
+    "charging",
+    "troubleshooting",
+    "specifications",
+    "warranty",
+    "contact"
+  ],
+  "expected_slots": {
+    "preface": "preface",
+    "safety": "safety",
+    "symbols": "symbols",
+    "in_the_box": "in_the_box",
+    "product_overview": "product_overview",
+    "lcd_display": "lcd_display",
+    "operations": "operations",
+    "placement": "placement",
+    "stand": "stand",
+    "wall_wood": "wall_wood",
+    "wall_concrete": "wall_concrete",
+    "connection": "connection",
+    "charging": "charging",
+    "troubleshooting": "troubleshooting",
+    "specifications": "specifications",
+    "warranty": "warranty",
+    "contact": "contact"
+  },
+  "legacy_debt": [],
+  "chapters": [
+    {
+      "id": "preface",
+      "pages": [
+        "preface"
+      ],
+      "inspect_images": true,
+      "requirements": []
+    },
+    {
+      "id": "safety",
+      "pages": [
+        "safety"
+      ],
+      "inspect_images": true,
+      "requirements": []
+    },
+    {
+      "id": "symbols",
+      "pages": [
+        "symbols"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-TABLE-SYMBOL-SIGNAL",
+          "components": [
+            "HB-TABLE-SYMBOL-SIGNAL"
+          ],
+          "minimum": 1
+        },
+        {
+          "id": "HB-TABLE-SYMBOL-ICON",
+          "components": [
+            "HB-TABLE-SYMBOL-ICON"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "pages": [
+        "in_the_box"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-INBOX",
+          "components": [
+            "HB-SPECIAL-INBOX"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "product_overview",
+      "pages": [
+        "product_overview"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "pages": [
+        "lcd_display"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-TABLE-LCD-ICON",
+          "components": [
+            "HB-TABLE-LCD-ICON"
+          ],
+          "minimum": 1
+        },
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "pages": [
+        "operations"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-OPERATION",
+          "components": [
+            "HB-SPECIAL-OPERATION"
+          ],
+          "minimum": 1
+        },
+        {
+          "id": "HB-TABLE-LCD-MODE",
+          "components": [
+            "HB-TABLE-LCD-MODE"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "placement",
+      "pages": [
+        "placement"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 2
+        },
+        {
+          "id": "HB-CALLOUT-STRIP",
+          "components": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "stand",
+      "pages": [
+        "stand"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 5
+        }
+      ]
+    },
+    {
+      "id": "wall_wood",
+      "pages": [
+        "wall_wood"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 8
+        }
+      ]
+    },
+    {
+      "id": "wall_concrete",
+      "pages": [
+        "wall_concrete"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 9
+        }
+      ]
+    },
+    {
+      "id": "connection",
+      "pages": [
+        "connection"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 1
+        },
+        {
+          "id": "HB-CALLOUT-STRIP",
+          "components": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "minimum": 2
+        }
+      ]
+    },
+    {
+      "id": "charging",
+      "pages": [
+        "charging"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-SPECIAL-REFERENCE-FIGURE",
+          "components": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "minimum": 3
+        },
+        {
+          "id": "HB-CALLOUT-STRIP",
+          "components": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "pages": [
+        "troubleshooting"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-TABLE-TROUBLESHOOTING",
+          "components": [
+            "HB-TABLE-TROUBLESHOOTING"
+          ],
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "pages": [
+        "specifications"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-TABLE-SPEC",
+          "components": [
+            "HB-TABLE-SPEC"
+          ],
+          "minimum": 3
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "pages": [
+        "warranty"
+      ],
+      "inspect_images": true,
+      "requirements": [
+        {
+          "id": "HB-WARRANTY-LEAD",
+          "components": [
+            "HB-WARRANTY-LEAD"
+          ],
+          "minimum": 1
+        },
+        {
+          "id": "HB-WARRANTY-SECTION",
+          "components": [
+            "HB-WARRANTY-SECTION"
+          ],
+          "minimum": 7
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "pages": [
+        "contact"
+      ],
+      "inspect_images": true,
+      "requirements": []
+    }
+  ]
+}

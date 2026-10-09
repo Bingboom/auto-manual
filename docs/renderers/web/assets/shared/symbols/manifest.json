@@ -348,6 +348,201 @@
         "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png",
         "decision": "reuse published glyph unchanged; HTP017 four native caption/glyph rows pass source-bound admission"
       }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-circle-gray",
+      "path": "native-v1/symbol_do_not_dismantle_gray_jp.svg",
+      "sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          712,
+          713,
+          714,
+          715,
+          716,
+          717,
+          718,
+          719,
+          720,
+          721,
+          722,
+          723,
+          724,
+          725,
+          726,
+          727,
+          728
+        ],
+        "glyph_bbox": [
+          36,
+          54,
+          58,
+          75
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "warning/filled-triangle-gray",
+      "path": "native-v1/symbol_warning_triangle_gray_jp.svg",
+      "sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          774
+        ],
+        "glyph_bbox": [
+          36,
+          87,
+          58,
+          107
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "read-manual/person-book-circle-gray",
+      "path": "native-v1/symbol_read_manual_gray_jp.svg",
+      "sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          737,
+          738,
+          739,
+          740,
+          741
+        ],
+        "glyph_bbox": [
+          37,
+          123,
+          57,
+          144
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-crossed-gray",
+      "path": "native-v1/symbol_no_open_flame_gray_jp.svg",
+      "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          742,
+          743,
+          744,
+          745,
+          746,
+          747,
+          748
+        ],
+        "glyph_bbox": [
+          35,
+          155,
+          60,
+          179
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-frame-gray",
+      "path": "native-v1/symbol_keep_away_from_children_gray_jp.svg",
+      "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          764,
+          765,
+          766,
+          767,
+          768,
+          769,
+          770,
+          771,
+          772,
+          773
+        ],
+        "glyph_bbox": [
+          37,
+          197,
+          57,
+          216
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-32-gray",
+      "path": "native-v1/native-li_ion_gray_jp.svg",
+      "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          753,
+          754,
+          755,
+          756,
+          757,
+          758,
+          759,
+          760,
+          761,
+          762,
+          763
+        ],
+        "glyph_bbox": [
+          192,
+          76,
+          217,
+          100
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "weee/crossed-bin-bar-gray",
+      "path": "native-v1/symbol_weee_gray_jp.svg",
+      "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          749,
+          750,
+          751,
+          752
+        ],
+        "glyph_bbox": [
+          192,
+          163,
+          215,
+          196
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
     }
   ],
   "withdrawn": [

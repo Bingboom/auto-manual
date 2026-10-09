@@ -1,0 +1,77 @@
+{
+  "base_commit": "eb00c120a16c4d50781ff341064961bea16e6083",
+  "runtime": "scratch Python 3.12 with PyMuPDF 1.28.0 and inherited existing root dependencies",
+  "scope": "Unmodified main code/tests/templates; new native manual package not used in the reproductions. Baseline failures are reported, not waived.",
+  "failures": [
+    {
+      "test": "tests.test_idml_boxed_intro.BoxedIntroTests.test_actual_jp_page_is_complete_in_strict_public_ir",
+      "status": "error",
+      "cause": "JP signal-word definition table rejected as generic notice table",
+      "reproduction_log": "main-baseline-idml-failure.log"
+    },
+    {
+      "test": "tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_actual_jp_symbols_template_keeps_all_four_definitions",
+      "status": "error",
+      "cause": "JP signal-word definition table rejected as generic notice table",
+      "reproduction_log": "main-baseline-jp-failures.log"
+    },
+    {
+      "test": "tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_distinct_signal_word_definitions_preserve_table_rows [Japanese subtest]",
+      "status": "error",
+      "cause": "JP signal-word definition table rejected as generic notice table",
+      "reproduction_log": "main-baseline-jp-failures.log"
+    },
+    {
+      "test": "tests.test_jp_rst_content.JpPreparedContentTests.test_substitutions_and_display_width_columns_preserve_values",
+      "status": "failure",
+      "cause": "Generic 説明 notice table occupies auto-resume table index",
+      "reproduction_log": "main-baseline-jp-failures.log"
+    },
+    {
+      "test": "tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only",
+      "status": "error",
+      "cause": "macOS unresolved /var source cannot be made relative to resolved /private/var root",
+      "reproduction_log": "main-baseline-provenance-failure.log"
+    }
+  ],
+  "unchanged_files": [
+    {
+      "path": "tools/idml_rst_extract.py",
+      "sha256": "f2dcafa8ad1b490879f614b75b5e965942b73c01c52793ea9dc1d9cceb197932",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "tools/rtd/publication_catalog.py",
+      "sha256": "1d925b0f4ce450567a676b80807dfb93435e35c535bf9dbdf26e9774d92259e2",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "tests/test_idml_boxed_intro.py",
+      "sha256": "644ec2ca74cb5794313a1d103d1d9eb15f28f171e77ed1cfe7b1bdc587f98758",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "tests/test_jp_build_paths.py",
+      "sha256": "9ef3c00acb792e28ead41f20d9601ad70dbc7f224f73f68b609fe0a81f01dae2",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "tests/test_jp_rst_content.py",
+      "sha256": "324b6d8294c1a6266fda8cd6883f57be4e49f35a2e5db372e66289b5da85d126",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "tests/test_manual_knowledge.py",
+      "sha256": "b90c04b19db9eeeb34297ab7871dcd219f49eec8da4d2e5d3e10646e7ec17cf5",
+      "byte_identical_to_origin_main": true
+    },
+    {
+      "path": "docs/templates/page_jp/01_meaning_of_symbols.rst",
+      "sha256": "fa2bbc46dd81b1b94655e606e843ca1faaed069ae2d0ecfcb728edc1a2a6d638",
+      "byte_identical_to_origin_main": true
+    }
+  ],
+  "pr_gate": "AGENTS.md section 8.5 forbids opening a PR after any failed check. Operator exception remains unanswered.",
+  "public_repository": "Bingboom/auto-manual is public; uploading source text/art/provenance requires the pending operator decision.",
+  "root_cause_correction": "See environment-recovery.json and environment-recovery.log. These are validation-environment failures, not proven main code defects."
+}
