@@ -1,10 +1,10 @@
-# JBP-1000B-WH / JP / ja — Web-layout candidate
+# JBP-1000B-WH / JP / ja — Web-layout edition
 
 Operator instructions, 2026-10-09: “全部修，一次做完”, “封面和目录 不用体现在web版面上”, “你参考 资料库里 现有的je-1000f的日语网页说明书”.
-This candidate fixes the Web layout of the [approved native package](../git-20261008-3aa6c003-native/README.md) (MA-275) against the same PDF.
+This edition fixes the Web layout of the [approved native package](../git-20261008-3aa6c003-native/README.md) (MA-275) against the same PDF.
 The native package, its PDF and its release evidence remain immutable.
 
-**Status: `review-candidate-no-release-authorization`.** The IR is `publication_eligible=false` with a pending source review, so nothing here can be sealed or published until the operator accepts it.
+**Status: `operator-approved-git-only-release`.** After reviewing candidate `4352254` and its page-by-page comparisons the operator instructed “上线提交发布” and chose “B，你先开PR，我来审核合入”: the engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant. `source/approval.json` binds every reviewed `source/` input hash; the rebuilt IR is publication-eligible.
 
 ## What changed
 
@@ -32,7 +32,7 @@ The full table, with the PDF page and reason for each change, is the 2026-10-09 
 
 ## Reconstruction
 
-`derive_web_layout.py` derives every `source/` input from the native package. It is the maintenance entrypoint for this candidate. It:
+`derive_web_layout.py` derives every `source/` input from the native package except the hand-written `source/approval.json`. It is the maintenance entrypoint for this edition. Changing a reviewed input invalidates the acceptance: `rebuild.py` then refuses until a new operator acceptance is recorded. It:
 - copies unchanged inputs byte-for-byte;
 - regenerates `figures.json`, `asset_recipe.json`, `document.json`, `admission.json` and the generated tail of `presentation.css`;
 - renders the art with the shared asset pipeline;
@@ -60,10 +60,19 @@ Replace `web/ja` with a fresh rebuild after any source change. `rebuild.py` is u
 python -m unittest tests.test_jbp1000b_wh_jp_web_layout tests.test_jbp1000b_wh_jp_native_web
 ```
 
-To release after operator acceptance, follow the SlimPower H1 no-cover precedent:
-- Record the acceptance in `source/approval.json` and a new MA row, then set the approved status.
-- Rebuild `web/ja`.
-- Seal the Git-only release evidence: `frozen_source_manifest.json`, `evidence/`, receipt.
-- Publish through the Hello-Docs publish-only PR, then verify RTD on desktop and mobile.
+`evidence/validation.json` lists every command run for the accepted edition. The same folder holds:
+- the logs;
+- desktop and mobile browser acceptance with screenshots;
+- byte copies of the Web audit reports.
+
+The release-side `frozen_source_manifest.json` inventories every file of this package except itself and the two Web audit sidecars:
+- The sidecars are listed under `release_excluded_files`; byte copies are kept as `evidence/web-*`.
+- The inventory is regenerated whenever a file of this package changes.
+
+After the operator merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
+1. Seal `seal_frozen_web_evidence` at the actual merged `main` commit.
+2. Assemble from current Hello-Docs `main`.
+3. Open a `docs/publish/**`-only publish PR.
+4. Verify the RTD routes, aliases, resources and desktop/mobile pages.
 
 Not touched: live Base, queue, source tables, HTML_link, asset registry, workflows and dependencies. All recipe art stays `quarantine` / `build_eligible=false`.

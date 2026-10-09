@@ -35,7 +35,7 @@ from tools.asset_pipeline.extract import extract_artifacts  # noqa: E402
 from tools.asset_pipeline.recipe import load_recipe  # noqa: E402
 from tools.web.frozen_pdf_reference import labeled_artwork_node  # noqa: E402
 
-STATUS = 'review-candidate-no-release-authorization'
+STATUS = 'operator-approved-git-only-release'
 # Steps the PDF prints side by side become one row figure, as on the page.
 PAIRS = {
     'wood-3-4': ('wood-3', 'wood-4'),
@@ -480,7 +480,8 @@ def manifest() -> None:
         'Supplied original Japanese PDF visible content, physical pages 3–19. Web-layout candidate derived from '
         'the operator-approved native package git-20261008-3aa6c003-native (MA-275) on operator instruction '
         '2026-10-09 (「全部修，一次做完」「封面和目录 不用体现在web版面上」「你参考 资料库里 现有的je-1000f的日语网页说明书」); '
-        'awaiting operator acceptance before any release.'
+        'operator accepted reviewed candidate 4352254 for public Git-only JP/ja release on 2026-10-09 '
+        '(「上线提交发布」; merge by operator review). Acceptance is hash-bound in source/approval.json.'
     )
     data['normalizations'] = [n for n in data['normalizations'] if not n.startswith('Web layout:')] + [
         'Web layout: printed cover (physical 1) and print TOC (physical 2) are not part of the Web edition.',

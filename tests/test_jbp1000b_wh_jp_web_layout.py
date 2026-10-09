@@ -1,4 +1,4 @@
-"""Web-layout candidate of the JP pack: print structure, unchanged copy and replay."""
+"""Web-layout edition of the JP pack: print structure, unchanged copy, acceptance and replay."""
 from __future__ import annotations
 
 from collections import Counter
@@ -68,7 +68,7 @@ def headings(markdown: str):
     return [(len(m.group(1)), m.group(2)) for m in re.finditer(r'^(#+) (.+)$', markdown, re.M)]
 
 
-class WebLayoutCandidateTests(unittest.TestCase):
+class WebLayoutEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -79,20 +79,24 @@ class WebLayoutCandidateTests(unittest.TestCase):
         shutil.copytree(PACKAGE, dest, ignore=shutil.ignore_patterns('web', '__pycache__', '*.pdf'))
         return dest
 
-    def test_candidate_identity_status_and_applicability(self):
+    def test_identity_acceptance_and_applicability(self):
         manifest = read(PACKAGE / 'source_manifest.json')
         doc = read(PACKAGE / 'source/document.json')
         policy = read(PACKAGE / 'source/admission.json')
+        approval = read(PACKAGE / 'source/approval.json')
         self.assertEqual(manifest['original_source']['sha256'], SOURCE_SHA)
         self.assertEqual(manifest['target']['technical_version'], PACKAGE.name)
-        self.assertEqual(manifest['publication_status'], 'review-candidate-no-release-authorization')
-        self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
+        self.assertEqual(approval['operator_quote'], '上线提交发布')
+        self.assertEqual(approval['reviewed_source_commit'], '4352254')
+        self.assertEqual(approval['reviewed_inputs'], [
+            r for r in manifest['inputs'] if r['path'].startswith('source/') and r['path'] != 'source/approval.json'])
         self.assertEqual(doc['target'], {'model': 'JBP-1000B-WH', 'region': 'JP', 'language': 'ja'})
         self.assertEqual([p['page_id'] for p in doc['pages']], CHAPTERS)
         self.assertEqual(policy['expected_pages'], CHAPTERS)
         self.assertEqual(policy['legacy_debt'], [])
 
-    def test_cold_rebuild_matches_frozen_candidate_and_stays_unpublishable(self):
+    def test_cold_rebuild_matches_frozen_web_and_carries_acceptance(self):
         source = self.fixture()
         a, b = self.root / 'a', self.root / 'b'
         report = rebuild_module.rebuild(source, a)
@@ -106,9 +110,18 @@ class WebLayoutCandidateTests(unittest.TestCase):
         replay_package(a)
         self.assertEqual(before, (a / MARKDOWN).read_bytes())
         metadata = read(a / PathSegments.MANUAL_IR_JSON)['metadata']
-        self.assertFalse(metadata['publication_eligible'])
-        self.assertTrue(metadata['pending_source_review'])
-        self.assertIsNone(metadata['operator_source_acceptance'])
+        self.assertTrue(metadata['publication_eligible'])
+        self.assertEqual(metadata['pending_source_review'], [])
+        self.assertEqual(metadata['operator_source_acceptance']['operator_quote'], '上线提交发布')
+
+    def test_acceptance_cannot_cover_resealed_changed_source(self):
+        source = self.fixture()
+        css = source / 'source/presentation.css'
+        css.write_text(css.read_text(encoding='utf-8') + '\nbody { color: red; }\n', encoding='utf-8')
+        reseal_fixture(source)
+        with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover'):
+            rebuild_module.rebuild(source, self.root / 'output')
+        self.assertFalse((self.root / 'output').exists())
 
     def test_tampering_and_unlisted_inputs_are_rejected_before_output(self):
         for relative in ['source/document.json', 'source/assets/concrete-4-5.png', 'source/presentation.css']:
@@ -128,6 +141,9 @@ class WebLayoutCandidateTests(unittest.TestCase):
 
     def test_missing_installation_row_fails_independent_admission(self):
         source = self.fixture()
+        manifest = read(source / 'source_manifest.json')
+        manifest['publication_status'] = 'review-candidate-no-release-authorization'
+        (source / 'source_manifest.json').write_text(json.dumps(manifest, ensure_ascii=False))
         doc = read(source / 'source/document.json')
         chapter = next(p for p in doc['pages'] if p['page_id'] == 'wall_concrete')
         chapter['nodes'].pop()

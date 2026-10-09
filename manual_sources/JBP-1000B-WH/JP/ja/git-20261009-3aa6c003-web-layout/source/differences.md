@@ -67,5 +67,5 @@
 
 保留不改：LCD 输入/输出/百分比/剩余时间图标继续复用共享图标（Web 插图复用顺序，JE-1000F JP Web 同样使用）；ご注意/警告 表格样式与「エラーコード」表头换行与 JE-1000F JP Web 一致；手机端标注仍按共享 ReferenceFigure 规则排在图下。页面 `<title>` 以第一章「使用上のご注意」开头，与 SlimPower H1 无封面版相同。
 
-本包状态为 `review-candidate-no-release-authorization`，IR `publication_eligible=false`，不能被封存或发布。操作者核验接受后，另行登记批准（approval.json / MA）、改为批准状态、重建 `web/ja` 并按 Git-only 流程发布。
+操作者审阅候选 `4352254` 的逐页对比图后于 2026-10-09 指示「上线提交发布」，并选择「B，你先开PR，我来审核合入」。接受记录见 `source/approval.json`（绑定本包全部 `source/` 输入哈希），状态为 `operator-approved-git-only-release`，`web/ja` 据此重建。工程 PR 由操作者审核合入（AGENTS.md §8.6，无代理自合入授权）；合入后在实际 main 提交上封存 Git-only 发布证据，再提交 Hello-Docs 仅 `docs/publish/**` 的发布 PR 并核验 RTD。
 
