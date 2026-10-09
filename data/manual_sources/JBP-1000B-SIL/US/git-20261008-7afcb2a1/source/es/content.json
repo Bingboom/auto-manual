@@ -6112,7 +6112,7 @@
           "component_spec": {
             "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
             "variant": "semantic-fallback",
-            "source_ref": "es/pdf-page-1#reference-solar",
+            "source_ref": "es/pdf-page-48#reference-solar",
             "language": "es",
             "slots": [
               {
@@ -6179,7 +6179,7 @@
                     "rect": [
                       23.213929950066333,
                       51.03525015024039,
-                      14.267267383119595,
+                      20,
                       5.195262660641642
                     ]
                   },

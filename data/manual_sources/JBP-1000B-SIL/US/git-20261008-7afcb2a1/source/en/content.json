@@ -6125,7 +6125,7 @@
           "component_spec": {
             "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
             "variant": "semantic-fallback",
-            "source_ref": "en/pdf-page-1#reference-solar",
+            "source_ref": "en/pdf-page-16#reference-solar",
             "language": "en",
             "slots": [
               {
@@ -6159,6 +6159,10 @@
                   {
                     "html": "DC8020",
                     "text": "DC8020"
+                  },
+                  {
+                    "html": "*The Jackery DC Input Module is sold separately.",
+                    "text": "*The Jackery DC Input Module is sold separately."
                   }
                 ]
               }
@@ -6174,7 +6178,7 @@
               "component.special.reference-figure"
             ],
             "metadata": {
-              "capture_following_lines": 2,
+              "capture_following_lines": 3,
               "captions_embedded": false,
               "captions_origin": "carrier",
               "caption_centers_pct": null,
@@ -6192,7 +6196,7 @@
                     "rect": [
                       23.213929950066333,
                       51.03525015024039,
-                      14.267267383119595,
+                      20,
                       5.195262660641642
                     ]
                   },
@@ -6204,12 +6208,21 @@
                       8.331939121462263,
                       5.195262660641642
                     ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      4.5,
+                      86,
+                      69,
+                      10
+                    ]
                   }
                 ]
               },
               "image_key": "solar",
               "web_replace_key": "",
-              "source_fragment_sha256": "f22437451b71c691729af99ef4443af2145b0d02b6d23ae7128a0012024e57d7"
+              "source_fragment_sha256": "6e9715ab5c001e2431169d76130b0933db62eedb01b18fb39ffdce15e5ed1d06"
             },
             "schema_version": "component-spec/v1"
           },
@@ -6263,20 +6276,27 @@
                       "text": "DC8020"
                     }
                   ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "*The Jackery DC Input Module is sold separately."
+                    }
+                  ]
                 }
               ]
             }
           ]
-        },
-        {
-          "kind": "paragraph",
-          "children": [
-            {
-              "kind": "text",
-              "text": "*The Jackery DC Input Module is sold separately."
-            }
-          ],
-          "schema_version": "manual-flow/v2"
         },
         {
           "kind": "heading",

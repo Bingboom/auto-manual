@@ -52,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "107f785cf69fcf1367d49074e8bc6899d3ab6ef1b0786d96951c5cc3fa3398bd",
-  "content_sha256": "46d6fbc907e78a7ba62249163db4257d8067dc13c0fd62e77092a02219498335",
+  "bundle_sha256": "cadd72a36da306f441f89b2012aebaab73eb0f592b5c765177b7751752a00791",
+  "content_sha256": "cc9e9861d86ca8b365c3f84a45384ea8a22d2a3e7b99f475703df469bbf2e477",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -109,7 +109,7 @@
       "assets/wood-prep.png": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6",
       "assets/wood-result.png": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
     },
-    "block_count": 87,
+    "block_count": 86,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-FCC": 1,
@@ -1942,7 +1942,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -8741,7 +8741,7 @@
             "assets/solar.png"
           ],
           "block_id": "charging:block-0008",
-          "content_sha256": "d55ba705dbb94f3b013792634165f723d6feeae34f31157952c683c5dd77847f",
+          "content_sha256": "6fc22b19327278d30e5a083b4b8c43f43d979268401553229e1de8aa48d88b38",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -8785,6 +8785,23 @@
                       }
                     },
                     "role": "container"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "*The Jackery DC Input Module is sold separately."
+                      }
+                    ],
+                    "kind": "group",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "line"
+                        }
+                      }
+                    },
+                    "role": "container"
                   }
                 ],
                 "kind": "group",
@@ -8817,7 +8834,7 @@
                       "rect": [
                         23.213929950066333,
                         51.03525015024039,
-                        14.267267383119595,
+                        20,
                         5.195262660641642
                       ]
                     },
@@ -8829,6 +8846,15 @@
                         8.331939121462263,
                         5.195262660641642
                       ]
+                    },
+                    {
+                      "line": 2,
+                      "rect": [
+                        4.5,
+                        86,
+                        69,
+                        10
+                      ]
                     }
                   ],
                   "mobile_labels": "overlay",
@@ -8839,11 +8865,11 @@
                 "caption_centers_pct": null,
                 "captions_embedded": false,
                 "captions_origin": "carrier",
-                "capture_following_lines": 2,
+                "capture_following_lines": 3,
                 "composite_locale": "",
                 "image_key": "solar",
                 "presentation_mode": "base-art-live-copy",
-                "source_fragment_sha256": "f22437451b71c691729af99ef4443af2145b0d02b6d23ae7128a0012024e57d7",
+                "source_fragment_sha256": "6e9715ab5c001e2431169d76130b0933db62eedb01b18fb39ffdce15e5ed1d06",
                 "web_replace_key": ""
               },
               "schema_version": "component-spec/v1",
@@ -8877,13 +8903,17 @@
                     {
                       "html": "DC8020",
                       "text": "DC8020"
+                    },
+                    {
+                      "html": "*The Jackery DC Input Module is sold separately.",
+                      "text": "*The Jackery DC Input Module is sold separately."
                     }
                   ],
                   "content_kind": "ordered_labels",
                   "role": "captions"
                 }
               ],
-              "source_ref": "en/pdf-page-1#reference-solar",
+              "source_ref": "en/pdf-page-16#reference-solar",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -8897,23 +8927,6 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0009",
-          "content_sha256": "552e4a237abb27ce0da4b07944fd6eae1c906f2ec6e307c17f8a3f83ac960b53",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "*The Jackery DC Input Module is sold separately."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/charging#block-9"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "charging:block-0010",
           "content_sha256": "37ba00421a9499d2e8b0443896f4a4b7289472c750359ebe8f3df3a36e003a24",
           "kind": "flow",
           "payload": {
@@ -8927,11 +8940,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-10"
+          "source_ref": "native-pdf/charging#block-9"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0011",
+          "block_id": "charging:block-0010",
           "content_sha256": "db8577105dd7d37e651da38f814637d43c22d76c6a2ae808d08b4cf58515d459",
           "kind": "flow",
           "payload": {
@@ -8944,13 +8957,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-11"
+          "source_ref": "native-pdf/charging#block-10"
         },
         {
           "asset_refs": [
             "assets/car.png"
           ],
-          "block_id": "charging:block-0012",
+          "block_id": "charging:block-0011",
           "content_sha256": "f7e918aef4c282cbb50f929e621513f4ef2c078a4a6618ea6f858507719e885f",
           "kind": "flow",
           "payload": {
@@ -9133,7 +9146,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-12"
+          "source_ref": "native-pdf/charging#block-11"
         }
       ],
       "language": "en",
@@ -9141,7 +9154,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "37ce1d66a489d2eedabe5d5564f6e34fa542f93896a4f9a235a6cfaa2c9b3ca6"
+      "source_sha256": "d8964a9a99b57ea019abdaedb2f0345b5b14c5ddaf1e8b70e42ac259a920f1f2"
     },
     {
       "blocks": [

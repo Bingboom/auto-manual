@@ -168,6 +168,11 @@
  .native-concrete-8-9 .hb-reference-art-panel::before,.native-concrete-8-9 .hb-reference-art-panel::after { height:calc(100cqw * 189 / 316 * .98); }
 }
 
+/* Native solar diagram labels are smaller than prose and stay inside the art. */
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="1"] { font-size:max(8px,1.45cqw) !important; white-space:nowrap; line-height:1.2; }
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="2"] { font-size:max(9px,1.89cqw) !important; line-height:1.2; }
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">FR</span> <span>IMPORTANT</span></h1>
@@ -310,7 +315,7 @@
 
 <p>Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery DC Input Module(Vendu séparément), comme indiqué dans la figure ci-dessous. Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery DC Input Module.</p>
 
-<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar" data-source-fragment-sha256="f22437451b71c691729af99ef4443af2145b0d02b6d23ae7128a0012024e57d7" data-web-base-art-ref="solar" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="solar.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/solar.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:23.2139%;--hb-y:51.0353%;--hb-width:14.2673%;--hb-height:5.1953%">SolarSaga 500 X</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:57.8558%;--hb-y:76.2323%;--hb-width:8.3319%;--hb-height:5.1953%">DC8020</span></div></div></figure>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar" data-source-fragment-sha256="f22437451b71c691729af99ef4443af2145b0d02b6d23ae7128a0012024e57d7" data-web-base-art-ref="solar" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="solar.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/solar.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:23.2139%;--hb-y:51.0353%;--hb-width:20%;--hb-height:5.1953%">SolarSaga 500 X</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:57.8558%;--hb-y:76.2323%;--hb-width:8.3319%;--hb-height:5.1953%">DC8020</span></div></div></figure>
 
 ## CHARGEMENT PAR PRISE DE VOITURE(VENDU SÉPARÉMENT)
 

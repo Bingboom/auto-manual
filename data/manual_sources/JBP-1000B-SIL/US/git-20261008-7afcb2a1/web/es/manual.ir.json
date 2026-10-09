@@ -52,8 +52,8 @@
     "assets/car.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "90b35e31d47cf797b2540f80fe01b555a4fa4528a53cbd466b38e7e0d8044c56",
-  "content_sha256": "eca9b716cbadbf483d65b16c280ee861901f6fa81674f6562cb53f994cb6655f",
+  "bundle_sha256": "3ba85a5644e9fa56b7346e2e93ccf9450668a4799c43b4719f9cc8f24c352dc0",
+  "content_sha256": "6c174c357d71066b696b1b843d33aa92258bc6b028957dfd8c79379410f32d16",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1942,7 +1942,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936"
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
     },
     "title": "Jackery Battery Pack — JBP-1000B-SIL",
     "web_contract": {
@@ -8728,7 +8728,7 @@
             "assets/solar.png"
           ],
           "block_id": "charging:block-0008",
-          "content_sha256": "acd1593b1d7d180cebc5e5c4bc8353a62a08b276268fbea83068d48daa27ebe2",
+          "content_sha256": "5edcc653414c349edc6825785601f43c31225ad73b38b9be1349e3cd78376832",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -8804,7 +8804,7 @@
                       "rect": [
                         23.213929950066333,
                         51.03525015024039,
-                        14.267267383119595,
+                        20,
                         5.195262660641642
                       ]
                     },
@@ -8870,7 +8870,7 @@
                   "role": "captions"
                 }
               ],
-              "source_ref": "es/pdf-page-1#reference-solar",
+              "source_ref": "es/pdf-page-48#reference-solar",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -9111,7 +9111,7 @@
       "skipped_raw": 0,
       "source_path": "source/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "df9ca85a5c5aa2667458cc377de8f451d987500f2ac96ffab04f054f3826bc61"
+      "source_sha256": "ee13c4fe75661f9e9ea2f2710d93251b238e75491270535986131141e25ce913"
     },
     {
       "blocks": [

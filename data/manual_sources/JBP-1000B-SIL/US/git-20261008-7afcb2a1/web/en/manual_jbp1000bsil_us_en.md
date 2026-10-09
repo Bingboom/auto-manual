@@ -168,6 +168,11 @@
  .native-concrete-8-9 .hb-reference-art-panel::before,.native-concrete-8-9 .hb-reference-art-panel::after { height:calc(100cqw * 189 / 316 * .98); }
 }
 
+/* Native solar diagram labels are smaller than prose and stay inside the art. */
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="1"] { font-size:max(8px,1.45cqw) !important; white-space:nowrap; line-height:1.2; }
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="2"] { font-size:max(9px,1.89cqw) !important; line-height:1.2; }
+
 </style>
 
 <h1 class="hb-preface-heading" id="preface"><span class="hb-preface-region">US</span> <span>IMPORTANT</span></h1>
@@ -310,9 +315,7 @@
 
 <p>Charge your product with solar panels and Jackery DC Input Module as shown in the figure below. Please refer to the Jackery DC Input Module user manual for more information.</p>
 
-<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar" data-source-fragment-sha256="f22437451b71c691729af99ef4443af2145b0d02b6d23ae7128a0012024e57d7" data-web-base-art-ref="solar" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="solar.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/solar.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:23.2139%;--hb-y:51.0353%;--hb-width:14.2673%;--hb-height:5.1953%">SolarSaga 500 X</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:57.8558%;--hb-y:76.2323%;--hb-width:8.3319%;--hb-height:5.1953%">DC8020</span></div></div></figure>
-
-<p>*The Jackery DC Input Module is sold separately.</p>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="solar" data-source-fragment-sha256="6e9715ab5c001e2431169d76130b0933db62eedb01b18fb39ffdce15e5ed1d06" data-web-base-art-ref="solar" data-web-presentation-mode="base-art-live-copy"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="solar.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-reference-art hb-composite-art" src="assets/solar.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:23.2139%;--hb-y:51.0353%;--hb-width:20%;--hb-height:5.1953%">SolarSaga 500 X</span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:57.8558%;--hb-y:76.2323%;--hb-width:8.3319%;--hb-height:5.1953%">DC8020</span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:4.5%;--hb-y:86%;--hb-width:69%;--hb-height:10%">*The Jackery DC Input Module is sold separately.</span></div></div></figure>
 
 ## CHARGING WITH A CAR CHARGER (SOLD SEPARATELY)
 

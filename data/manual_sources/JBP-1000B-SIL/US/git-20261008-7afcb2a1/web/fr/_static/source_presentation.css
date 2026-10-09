@@ -166,3 +166,8 @@
  .native-concrete-6-7 .hb-reference-art-panel::before,.native-concrete-6-7 .hb-reference-art-panel::after { height:calc(100cqw * 232 / 316 * .98); }
  .native-concrete-8-9 .hb-reference-art-panel::before,.native-concrete-8-9 .hb-reference-art-panel::after { height:calc(100cqw * 189 / 316 * .98); }
 }
+
+/* Native solar diagram labels are smaller than prose and stay inside the art. */
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="0"],
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="1"] { font-size:max(8px,1.45cqw) !important; white-space:nowrap; line-height:1.2; }
+#furo-main-content [data-reference-id="solar"] .hb-reference-live-label[data-source-line="2"] { font-size:max(9px,1.89cqw) !important; line-height:1.2; }
