@@ -864,3 +864,18 @@ JE-1000E-SIL / US / en 的完整构建示例与源文件哈希见
 ### FridgeGuard US native FR/ES local candidate
 
 French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](../code-as-doc/reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.
+
+
+### SlimPower H1 日规日文 Git-only 回放
+
+使用[批准的冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/README.md)；先核对其 `approval.json` 与 MA-274。
+输出目录必须新建，旧候选和历史验证记录保留。
+
+```sh
+PKG=manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 "$PKG/rebuild.py" --output /tmp/h1-reviewed-new
+python3 -m sphinx -W --keep-going -b html /tmp/h1-reviewed-new /tmp/h1-reviewed-html-new
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 "$PKG/verify.py" --html /tmp/h1-reviewed-html-new/manual.html
+```
+
+本地回放不等于上线；继续使用现有 Git-only 发布出口，无线上表或队列操作。
