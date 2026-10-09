@@ -1327,8 +1327,8 @@
         },
         {
           "path": "source/differences.md",
-          "sha256": "b586bd8f4309803056291a614e28f0c4a544c07e97f97979405ef5552bc2b78b",
-          "size": 5285
+          "sha256": "11f38c76cb201d2bc75bdd6d3762c4b9d4eb8c7a40dd41987bba76a15ec68d06",
+          "size": 5750
         },
         {
           "path": "source/native_pages.json",
