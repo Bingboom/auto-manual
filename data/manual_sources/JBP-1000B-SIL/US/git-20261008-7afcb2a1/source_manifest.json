@@ -1365,8 +1365,8 @@
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
-      "size": 14626,
-      "sha256": "d5df462074dffc4def074dc28fbba5d304c0a1cc5716c51d71858684c917bc0c"
+      "size": 16092,
+      "sha256": "8e25b6b22b2f34336e998299805c6235b85502a3a6625626d4c91fef8b1272cc"
     },
     {
       "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",

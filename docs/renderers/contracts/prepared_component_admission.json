@@ -8722,6 +8722,374 @@
           }
         }
       }
+    },
+    "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3": {
+      "source": "HTP017-EU-9国说明书-0924.ai",
+      "review_record": "reports/jbp2000b-four-language/acceptance.md",
+      "targets": {
+        "JBP-2000B/EU/uk": {
+          "pages": {
+            "preface_important_en.rst": {
+              "slot": null,
+              "components": {}
+            },
+            "toc.rst": {
+              "slot": "toc",
+              "components": {}
+            },
+            "safety_info_en.rst": {
+              "slot": "safety_info_en",
+              "components": {}
+            },
+            "symbol_meaning_en.rst": {
+              "slot": "symbol_meaning_en",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "box_contents_en.rst": {
+              "slot": "box_contents_en",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview_en.rst": {
+              "slot": "product_overview_en",
+              "components": {}
+            },
+            "lcd_display_en.rst": {
+              "slot": "lcd_display_en",
+              "components": {
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1
+              }
+            },
+            "operation_en.rst": {
+              "slot": "operation_en",
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-OPERATION/status-right": 1
+              }
+            },
+            "connections_en.rst": {
+              "slot": "connections_en",
+              "components": {
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "troubleshooting_en.rst": {
+              "slot": "troubleshooting_en",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "charging_en.rst": {
+              "slot": "charging_en",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "storage_en.rst": {
+              "slot": "storage_en",
+              "components": {}
+            },
+            "specifications_en.rst": {
+              "slot": "specifications_en",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 3
+              }
+            },
+            "warranty_en.rst": {
+              "slot": "warranty_en",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "regulatory_compliance.rst": {
+              "slot": "regulatory_compliance",
+              "components": {}
+            }
+          }
+        },
+        "JBP-2000B/EU/pt": {
+          "pages": {
+            "preface_important_en.rst": {
+              "slot": null,
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1
+              }
+            },
+            "toc.rst": {
+              "slot": "toc",
+              "components": {}
+            },
+            "safety_info_en.rst": {
+              "slot": "safety_info_en",
+              "components": {}
+            },
+            "symbol_meaning_en.rst": {
+              "slot": "symbol_meaning_en",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "box_contents_en.rst": {
+              "slot": "box_contents_en",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview_en.rst": {
+              "slot": "product_overview_en",
+              "components": {}
+            },
+            "lcd_display_en.rst": {
+              "slot": "lcd_display_en",
+              "components": {
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1
+              }
+            },
+            "operation_en.rst": {
+              "slot": "operation_en",
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-OPERATION/status-right": 1
+              }
+            },
+            "connections_en.rst": {
+              "slot": "connections_en",
+              "components": {
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "troubleshooting_en.rst": {
+              "slot": "troubleshooting_en",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "charging_en.rst": {
+              "slot": "charging_en",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "storage_en.rst": {
+              "slot": "storage_en",
+              "components": {}
+            },
+            "specifications_en.rst": {
+              "slot": "specifications_en",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 3
+              }
+            },
+            "warranty_en.rst": {
+              "slot": "warranty_en",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "regulatory_compliance.rst": {
+              "slot": "regulatory_compliance",
+              "components": {}
+            }
+          }
+        },
+        "JBP-2000B/EU/nl": {
+          "pages": {
+            "preface_important_en.rst": {
+              "slot": null,
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1
+              }
+            },
+            "toc.rst": {
+              "slot": "toc",
+              "components": {}
+            },
+            "safety_info_en.rst": {
+              "slot": "safety_info_en",
+              "components": {}
+            },
+            "symbol_meaning_en.rst": {
+              "slot": "symbol_meaning_en",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "box_contents_en.rst": {
+              "slot": "box_contents_en",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview_en.rst": {
+              "slot": "product_overview_en",
+              "components": {}
+            },
+            "lcd_display_en.rst": {
+              "slot": "lcd_display_en",
+              "components": {
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1
+              }
+            },
+            "operation_en.rst": {
+              "slot": "operation_en",
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-OPERATION/status-right": 1
+              }
+            },
+            "connections_en.rst": {
+              "slot": "connections_en",
+              "components": {
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "troubleshooting_en.rst": {
+              "slot": "troubleshooting_en",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "charging_en.rst": {
+              "slot": "charging_en",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "storage_en.rst": {
+              "slot": "storage_en",
+              "components": {}
+            },
+            "specifications_en.rst": {
+              "slot": "specifications_en",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 3
+              }
+            },
+            "warranty_en.rst": {
+              "slot": "warranty_en",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "regulatory_compliance.rst": {
+              "slot": "regulatory_compliance",
+              "components": {}
+            }
+          }
+        },
+        "JBP-2000B/EU/pl": {
+          "pages": {
+            "preface_important_en.rst": {
+              "slot": null,
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1
+              }
+            },
+            "toc.rst": {
+              "slot": "toc",
+              "components": {}
+            },
+            "safety_info_en.rst": {
+              "slot": "safety_info_en",
+              "components": {}
+            },
+            "symbol_meaning_en.rst": {
+              "slot": "symbol_meaning_en",
+              "components": {
+                "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+                "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+              }
+            },
+            "box_contents_en.rst": {
+              "slot": "box_contents_en",
+              "components": {
+                "HB-SPECIAL-INBOX/three-card-responsive": 1
+              }
+            },
+            "product_overview_en.rst": {
+              "slot": "product_overview_en",
+              "components": {}
+            },
+            "lcd_display_en.rst": {
+              "slot": "lcd_display_en",
+              "components": {
+                "HB-TABLE-REFERENCE/lcd-descriptions": 1
+              }
+            },
+            "operation_en.rst": {
+              "slot": "operation_en",
+              "components": {
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-OPERATION/status-right": 1
+              }
+            },
+            "connections_en.rst": {
+              "slot": "connections_en",
+              "components": {
+                "HB-CALLOUT-STRIP/caution": 1,
+                "HB-CALLOUT-STRIP/note": 1,
+                "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+              }
+            },
+            "troubleshooting_en.rst": {
+              "slot": "troubleshooting_en",
+              "components": {
+                "HB-TABLE-TROUBLESHOOTING/two-column": 1
+              }
+            },
+            "charging_en.rst": {
+              "slot": "charging_en",
+              "components": {
+                "HB-CALLOUT-STRIP/warning": 1
+              }
+            },
+            "storage_en.rst": {
+              "slot": "storage_en",
+              "components": {}
+            },
+            "specifications_en.rst": {
+              "slot": "specifications_en",
+              "components": {
+                "HB-TABLE-SPEC/vertical": 3
+              }
+            },
+            "warranty_en.rst": {
+              "slot": "warranty_en",
+              "components": {
+                "HB-WARRANTY-LEAD/intro-panel": 1,
+                "HB-WARRANTY-SECTION/rounded-card": 5,
+                "HB-WARRANTY-YEARS/numeric-badges": 1
+              },
+              "chapter": "warranty"
+            },
+            "regulatory_compliance.rst": {
+              "slot": "regulatory_compliance",
+              "components": {}
+            }
+          }
+        }
+      }
     }
   }
 }
