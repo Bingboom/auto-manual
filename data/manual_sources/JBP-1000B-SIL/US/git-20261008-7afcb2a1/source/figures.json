@@ -1,0 +1,1953 @@
+[
+  {
+    "id": "overview",
+    "page": 6,
+    "bbox": [
+      28,
+      55,
+      343,
+      273
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          55,
+          343,
+          273
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/overview"
+  },
+  {
+    "id": "lcd",
+    "page": 6,
+    "bbox": [
+      28,
+      305,
+      343,
+      499
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          305,
+          343,
+          499
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd"
+  },
+  {
+    "id": "power",
+    "page": 7,
+    "bbox": [
+      27,
+      359,
+      343,
+      501
+    ],
+    "removed_caption_drawing_indices": [
+      8
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          359,
+          343,
+          501
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          180,
+          359.5,
+          181,
+          359.7
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          250,
+          456.9,
+          251,
+          457.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          160,
+          470,
+          161,
+          471
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/power"
+  },
+  {
+    "id": "lcd-button",
+    "page": 8,
+    "bbox": [
+      27,
+      47,
+      109,
+      206
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          47,
+          109,
+          206
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-button"
+  },
+  {
+    "id": "parallel",
+    "page": 9,
+    "bbox": [
+      28,
+      81,
+      343,
+      230
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          81,
+          343,
+          230
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/parallel"
+  },
+  {
+    "id": "stacked",
+    "page": 9,
+    "bbox": [
+      28,
+      260,
+      343,
+      408
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          260,
+          343,
+          408
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/stacked"
+  },
+  {
+    "id": "vertical-prep",
+    "page": 10,
+    "bbox": [
+      27,
+      57,
+      226,
+      143
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          57,
+          226,
+          143
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-prep"
+  },
+  {
+    "id": "vertical-1",
+    "page": 10,
+    "bbox": [
+      27,
+      145,
+      343,
+      263
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          145,
+          343,
+          263
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-1"
+  },
+  {
+    "id": "vertical-2",
+    "page": 10,
+    "bbox": [
+      27,
+      265,
+      343,
+      396
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          265,
+          343,
+          396
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-2"
+  },
+  {
+    "id": "vertical-3",
+    "page": 10,
+    "bbox": [
+      27,
+      398,
+      343,
+      500
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          398,
+          343,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-3"
+  },
+  {
+    "id": "wood-prep",
+    "page": 11,
+    "bbox": [
+      27,
+      75,
+      245,
+      211
+    ],
+    "removed_caption_drawing_indices": [
+      600
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          75,
+          245,
+          211
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          145,
+          105.9,
+          146,
+          106.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-prep"
+  },
+  {
+    "id": "wood-result",
+    "page": 11,
+    "bbox": [
+      250,
+      25,
+      342,
+      214
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          250,
+          25,
+          342,
+          214
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-result"
+  },
+  {
+    "id": "wood-1-2",
+    "page": 11,
+    "bbox": [
+      27,
+      215,
+      343,
+      332
+    ],
+    "removed_caption_drawing_indices": [
+      612
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          215,
+          343,
+          332
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          28.4,
+          260,
+          28.6,
+          261
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-1-2"
+  },
+  {
+    "id": "wood-3",
+    "page": 11,
+    "bbox": [
+      28,
+      338,
+      228,
+      500
+    ],
+    "removed_caption_drawing_indices": [
+      1093
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          28,
+          338,
+          228,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          29.1,
+          400,
+          29.3,
+          401
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-3"
+  },
+  {
+    "id": "wood-4",
+    "page": 11,
+    "bbox": [
+      231,
+      338,
+      343,
+      500
+    ],
+    "removed_caption_drawing_indices": [
+      1094
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          231,
+          338,
+          343,
+          500
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          341.4,
+          400,
+          341.6,
+          401
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-4"
+  },
+  {
+    "id": "wood-5-legacy-framed",
+    "page": 12,
+    "bbox": [
+      27,
+      32,
+      343,
+      190
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          32,
+          343,
+          190
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "wood-6-legacy-framed",
+    "page": 12,
+    "bbox": [
+      27,
+      196,
+      343,
+      312
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          196,
+          343,
+          312
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "wood-7-legacy-framed",
+    "page": 12,
+    "bbox": [
+      27,
+      318,
+      343,
+      486
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          318,
+          343,
+          486
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-prep",
+    "page": 13,
+    "bbox": [
+      27,
+      42,
+      245,
+      179
+    ],
+    "removed_caption_drawing_indices": [
+      793
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          42,
+          245,
+          179
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          140,
+          72.4,
+          141,
+          72.6
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-prep"
+  },
+  {
+    "id": "concrete-result",
+    "page": 13,
+    "bbox": [
+      248,
+      25,
+      340,
+      181
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          248,
+          25,
+          340,
+          181
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-result"
+  },
+  {
+    "id": "concrete-1-2",
+    "page": 13,
+    "bbox": [
+      27,
+      191,
+      343,
+      309
+    ],
+    "removed_caption_drawing_indices": [
+      805
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          191,
+          343,
+          309
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          27.9,
+          240,
+          28.1,
+          241
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-1-2"
+  },
+  {
+    "id": "concrete-3",
+    "page": 13,
+    "bbox": [
+      27,
+      320,
+      343,
+      485
+    ],
+    "removed_caption_drawing_indices": [
+      1415
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          320,
+          343,
+          485
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          28.2,
+          360,
+          28.4,
+          361
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-3"
+  },
+  {
+    "id": "concrete-4",
+    "page": 14,
+    "bbox": [
+      27,
+      29,
+      204,
+      257
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          204,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          187.5,
+          103,
+          204,
+          136
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-5",
+    "page": 14,
+    "bbox": [
+      206,
+      29,
+      343,
+      257
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          206,
+          29,
+          343,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-5",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-6",
+    "page": 14,
+    "bbox": [
+      27,
+      261,
+      164,
+      493
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          261,
+          164,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-7",
+    "page": 14,
+    "bbox": [
+      166,
+      261,
+      343,
+      493
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          166,
+          261,
+          343,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-7",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-8",
+    "page": 15,
+    "bbox": [
+      27,
+      29,
+      144,
+      219
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          144,
+          219
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "concrete-9",
+    "page": 15,
+    "bbox": [
+      141,
+      27,
+      343,
+      216
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          141,
+          27,
+          343,
+          216
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-9",
+    "status": "superseded-do-not-reuse",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json"
+  },
+  {
+    "id": "connections",
+    "page": 15,
+    "bbox": [
+      27,
+      294,
+      343,
+      468
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          294,
+          343,
+          468
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/connections"
+  },
+  {
+    "id": "ac",
+    "page": 16,
+    "bbox": [
+      27,
+      104,
+      343,
+      287
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          104,
+          343,
+          287
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/ac"
+  },
+  {
+    "id": "solar",
+    "page": 16,
+    "bbox": [
+      25,
+      330,
+      343,
+      499
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          25,
+          330,
+          343,
+          499
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/solar"
+  },
+  {
+    "id": "car",
+    "page": 17,
+    "bbox": [
+      26,
+      67,
+      343,
+      235
+    ],
+    "removed_caption_drawing_indices": [
+      6057
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          26,
+          67,
+          343,
+          235
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249,
+          178.3,
+          250,
+          178.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/car"
+  },
+  {
+    "id": "inbox-1",
+    "page": 5,
+    "bbox": [
+      47,
+      251,
+      90,
+      337
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          47,
+          251,
+          90,
+          337
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-1"
+  },
+  {
+    "id": "inbox-2",
+    "page": 5,
+    "bbox": [
+      124,
+      260,
+      169,
+      327
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          124,
+          260,
+          169,
+          327
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-2"
+  },
+  {
+    "id": "inbox-3",
+    "page": 5,
+    "bbox": [
+      208,
+      274,
+      240,
+      317
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          208,
+          274,
+          240,
+          317
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-3"
+  },
+  {
+    "id": "inbox-4",
+    "page": 5,
+    "bbox": [
+      289,
+      269,
+      314,
+      323
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          289,
+          269,
+          314,
+          323
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/inbox-4"
+  },
+  {
+    "id": "symbol-2",
+    "page": 4,
+    "bbox": [
+      37,
+      398,
+      63,
+      418
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          398,
+          63,
+          418
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-2"
+  },
+  {
+    "id": "symbol-4",
+    "page": 4,
+    "bbox": [
+      37,
+      447,
+      63,
+      471
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          447,
+          63,
+          471
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-4"
+  },
+  {
+    "id": "symbol-5",
+    "page": 4,
+    "bbox": [
+      37,
+      471,
+      64,
+      490
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          37,
+          471,
+          64,
+          490
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/symbol-5"
+  },
+  {
+    "id": "lcd-icon-1",
+    "page": 7,
+    "bbox": [
+      45,
+      36,
+      87,
+      81
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          36,
+          87,
+          81
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-1"
+  },
+  {
+    "id": "lcd-icon-2",
+    "page": 7,
+    "bbox": [
+      45,
+      87,
+      87,
+      112
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          87,
+          87,
+          112
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          76,
+          77,
+          78,
+          79
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-2"
+  },
+  {
+    "id": "lcd-icon-3",
+    "page": 7,
+    "bbox": [
+      45,
+      120,
+      87,
+      166
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          120,
+          87,
+          166
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-3"
+  },
+  {
+    "id": "lcd-icon-4",
+    "page": 7,
+    "bbox": [
+      48,
+      173,
+      85,
+      199
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          173,
+          85,
+          199
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          138
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-4"
+  },
+  {
+    "id": "lcd-icon-5",
+    "page": 7,
+    "bbox": [
+      45,
+      207,
+      87,
+      231
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          45,
+          207,
+          87,
+          231
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          137
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-5"
+  },
+  {
+    "id": "lcd-icon-6",
+    "page": 7,
+    "bbox": [
+      48,
+      239,
+      85,
+      263
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          239,
+          85,
+          263
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          133,
+          134,
+          135
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-6"
+  },
+  {
+    "id": "lcd-icon-7",
+    "page": 7,
+    "bbox": [
+      48,
+      269,
+      85,
+      288
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          48,
+          269,
+          85,
+          288
+        ]
+      },
+      {
+        "op": "retain_vector_drawings",
+        "drawing_indices": [
+          130,
+          131,
+          132
+        ],
+        "fill_rgb_overrides": {},
+        "stroke_suppressed_indices": []
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/lcd-icon-7"
+  },
+  {
+    "id": "vertical-result",
+    "page": 10,
+    "bbox": [
+      265,
+      25,
+      331,
+      143
+    ],
+    "removed_caption_drawing_indices": [],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          265,
+          25,
+          331,
+          143
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/vertical-result"
+  },
+  {
+    "id": "wood-5",
+    "page": 12,
+    "bbox": [
+      27,
+      32,
+      343,
+      190
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          32,
+          343,
+          190
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          32.3,
+          100.1,
+          33.2
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-5",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "wood-6",
+    "page": 12,
+    "bbox": [
+      27,
+      196,
+      343,
+      312
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          196,
+          343,
+          312
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          196.5,
+          100.1,
+          197.1
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-6",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "wood-7",
+    "page": 12,
+    "bbox": [
+      27,
+      318,
+      343,
+      486
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      0,
+      211,
+      212,
+      213
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          318,
+          343,
+          486
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          318.1,
+          100.1,
+          318.8
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/wood-7",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-4-5",
+    "page": 14,
+    "bbox": [
+      27,
+      29,
+      343,
+      257
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          29,
+          343,
+          257
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          29.7,
+          100.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          269.9,
+          29.7,
+          270.1,
+          30.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-4-5",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-6-7",
+    "page": 14,
+    "bbox": [
+      27,
+      261,
+      343,
+      493
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      2,
+      3,
+      1057,
+      1058
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          261,
+          343,
+          493
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          99.9,
+          261.7,
+          100.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          261.7,
+          250.1,
+          262.4
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-6-7",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  },
+  {
+    "id": "concrete-8-9",
+    "page": 15,
+    "bbox": [
+      27,
+      27,
+      343,
+      216
+    ],
+    "removed_caption_drawing_indices": [],
+    "removed_outer_panel_drawing_indices": [
+      337,
+      338
+    ],
+    "extraction_transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          27,
+          343,
+          216
+        ]
+      },
+      {
+        "op": "redact_text",
+        "images": "preserve",
+        "graphics": "preserve",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          79.9,
+          27.6,
+          80.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          249.9,
+          27.6,
+          250.1,
+          28.5
+        ],
+        "images": "preserve",
+        "graphics": "remove_if_touched",
+        "fill": null
+      }
+    ],
+    "recipe_asset_key": "web/jbp1000b-sil/us/concrete-8-9",
+    "recipe_path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json"
+  }
+]

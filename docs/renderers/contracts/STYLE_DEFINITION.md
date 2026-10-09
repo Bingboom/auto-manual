@@ -1591,3 +1591,7 @@ ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注�
 
 
 短版 FCC 的标题/正文/标志排版由共享 `web_fcc_statement.css` 承载，接入既有样式组装列表；完整 FCC 样式保持原模块，不提高维护性行数上限。
+
+### Native preface heading and prose
+
+Source-authored PDF prefaces use `h1.hb-preface-heading` with `.hb-preface-region` and `.hb-preface-prose` (shared rules in `web_source_panels.css`). The heading has a transparent background with the native region/language badge; prose uses compact 1.45 line height and 0.45rem paragraph margins. Keep the native title/region text and keep ordinary chapter H1 bars unchanged. This treatment is explicitly opt-in through authored classes, not a target/model selector.

@@ -1,0 +1,2903 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "inputs": [
+    {
+      "path": "Jackery Battery Pack-1.pdf",
+      "size": 4488603,
+      "sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
+    },
+    {
+      "path": "README.md",
+      "size": 9580,
+      "sha256": "30e848ed3ea234aec4ce9e17ba1914d28a0f3148a620c44731bd70f2852b16eb"
+    },
+    {
+      "path": "assets/ac.png",
+      "size": 48985,
+      "sha256": "9922b5883eba1359dd3c790baadf1f1390ea931f58734cd504846b05e8ad8684"
+    },
+    {
+      "path": "assets/car.png",
+      "size": 63960,
+      "sha256": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6"
+    },
+    {
+      "path": "assets/concrete-1-2.png",
+      "size": 41450,
+      "sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1"
+    },
+    {
+      "path": "assets/concrete-3.png",
+      "size": 112083,
+      "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
+    },
+    {
+      "path": "assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
+    },
+    {
+      "path": "assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
+    },
+    {
+      "path": "assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
+    },
+    {
+      "path": "assets/concrete-prep.png",
+      "size": 33941,
+      "sha256": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333"
+    },
+    {
+      "path": "assets/concrete-result.png",
+      "size": 16197,
+      "sha256": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306"
+    },
+    {
+      "path": "assets/connection-icon.svg",
+      "size": 2784,
+      "sha256": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495"
+    },
+    {
+      "path": "assets/connections.png",
+      "size": 59775,
+      "sha256": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43"
+    },
+    {
+      "path": "assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "assets/inbox-1.png",
+      "size": 4788,
+      "sha256": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe"
+    },
+    {
+      "path": "assets/inbox-2.png",
+      "size": 7458,
+      "sha256": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7"
+    },
+    {
+      "path": "assets/inbox-3.png",
+      "size": 1576,
+      "sha256": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512"
+    },
+    {
+      "path": "assets/inbox-4.png",
+      "size": 3713,
+      "sha256": "edd0594b5ed43fda95539fb8e55d1f5f172220dd6337c6f241c7bd5dfa6bf12b"
+    },
+    {
+      "path": "assets/lcd-button.png",
+      "size": 20811,
+      "sha256": "4eca4a882c101ddd0f591f90980f1ece0a2b2c183f5ee51b950eef0744542679"
+    },
+    {
+      "path": "assets/lcd-icon-1.svg",
+      "size": 9506,
+      "sha256": "8d8047ecea4a37785c3c53d84773c7d5a5c915cac119ee3c0aa86be5708d04b9"
+    },
+    {
+      "path": "assets/lcd-icon-2.svg",
+      "size": 3810,
+      "sha256": "deffe3c1940b51a394cd1cf6cf39a8730f6b660fd4737bd13114382d1fd1edac"
+    },
+    {
+      "path": "assets/lcd-icon-3.svg",
+      "size": 10391,
+      "sha256": "9753a7fc3d82f3b88db6bb4971932a069f9ce42397790177d483760a784a1c36"
+    },
+    {
+      "path": "assets/lcd-icon-4.svg",
+      "size": 2465,
+      "sha256": "8f38ec6c2df9eb218c50cc17e063e45f9dab9e758ed9f4cf66089fc32cc0fab7"
+    },
+    {
+      "path": "assets/lcd-icon-5.svg",
+      "size": 2775,
+      "sha256": "ab05e0bd13bc42df33fa10111bff6d745297598864e7c6c63ec06b5d0fdff8f3"
+    },
+    {
+      "path": "assets/lcd-icon-6.svg",
+      "size": 3529,
+      "sha256": "e25c242637b824f4259561078659381e2a223e6744434d919fa19d616afcbdb3"
+    },
+    {
+      "path": "assets/lcd-icon-7.svg",
+      "size": 3252,
+      "sha256": "13072116535603add2b24cfc10c1f7f3c8f22b7c726f26d500515161a8467721"
+    },
+    {
+      "path": "assets/lcd.png",
+      "size": 95101,
+      "sha256": "6aed2d3c94bdb064019c4e805681cf0580475cf1d30e774fc5f6590149f82a67"
+    },
+    {
+      "path": "assets/overview.png",
+      "size": 26997,
+      "sha256": "f5bfe7c5232966ef9b9e340d39e2af02971e7b0ab67d29a4aca4ca2741eb69ca"
+    },
+    {
+      "path": "assets/parallel.png",
+      "size": 60924,
+      "sha256": "e364fb7856440be66a1f1807ab1e5e9d4498f9dfd5ebbf3681f8ad943c6c84b2"
+    },
+    {
+      "path": "assets/power.png",
+      "size": 26920,
+      "sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 64621,
+      "sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593"
+    },
+    {
+      "path": "assets/stacked.png",
+      "size": 46791,
+      "sha256": "1d92a2200cf6298882264168e06b57a0428416ccbdd0b6dabffb3b3d6c8a8769"
+    },
+    {
+      "path": "assets/symbol-1.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "assets/symbol-2.svg",
+      "size": 4143,
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c"
+    },
+    {
+      "path": "assets/symbol-3.svg",
+      "size": 4993,
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8"
+    },
+    {
+      "path": "assets/symbol-4.svg",
+      "size": 3167,
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22"
+    },
+    {
+      "path": "assets/symbol-5.svg",
+      "size": 4685,
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd"
+    },
+    {
+      "path": "assets/symbol-6.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "assets/symbol-7.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "assets/vertical-1.png",
+      "size": 43168,
+      "sha256": "df5af85aa4cec912595a70aaf4d6461889ec4a90c90781d53cb8398a59ba2db2"
+    },
+    {
+      "path": "assets/vertical-2.png",
+      "size": 44465,
+      "sha256": "e1838872fc2b98344dd019529957120ec28ae314a8f08c82e13b801667e2565c"
+    },
+    {
+      "path": "assets/vertical-3.png",
+      "size": 49693,
+      "sha256": "369e68f44f31973ba40b9a5081697be0912c85520be746e631b87c1029b90b88"
+    },
+    {
+      "path": "assets/vertical-prep.png",
+      "size": 11262,
+      "sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b"
+    },
+    {
+      "path": "assets/vertical-result.png",
+      "size": 8861,
+      "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4"
+    },
+    {
+      "path": "assets/wood-1-2.png",
+      "size": 39436,
+      "sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c"
+    },
+    {
+      "path": "assets/wood-3.png",
+      "size": 77891,
+      "sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e"
+    },
+    {
+      "path": "assets/wood-4.png",
+      "size": 18576,
+      "sha256": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd"
+    },
+    {
+      "path": "assets/wood-5.png",
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
+    },
+    {
+      "path": "assets/wood-6.png",
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
+    },
+    {
+      "path": "assets/wood-7.png",
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
+    },
+    {
+      "path": "assets/wood-prep.png",
+      "size": 38124,
+      "sha256": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6"
+    },
+    {
+      "path": "assets/wood-result.png",
+      "size": 14306,
+      "sha256": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 6184,
+      "sha256": "5f77fd33216c3fdb481c5c9096fff87a442db03bfdbb2c5620a4ecf8f0c23966"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 75909,
+      "sha256": "40ea2213faf03453b2d9c5c17a9a5fc8c4d040afde04b4cc9a95f0fdfc94e0c8"
+    },
+    {
+      "path": "source/en/acceptance.json",
+      "size": 126224,
+      "sha256": "fb07ec8b43d12f4a08de4ad2a658d5ce546dfee4e2ff61503a283932ffe763f1"
+    },
+    {
+      "path": "source/en/content.json",
+      "size": 279344,
+      "sha256": "e50a544962548e505570f67fb5d6f6d4abc3e8b0a618af9e750501367dc96964"
+    },
+    {
+      "path": "source/en/coverage.json",
+      "size": 7219,
+      "sha256": "9e01f2ccb84431269c358239f2301437d82b7ce57394743b721a6c0aaa9d5e75"
+    },
+    {
+      "path": "source/es/acceptance.json",
+      "size": 122599,
+      "sha256": "a5441cf0242c092fb1c46e6fbd00efe2c0582ccc83290d4ff0d8a7d95ce06650"
+    },
+    {
+      "path": "source/es/content.json",
+      "size": 281759,
+      "sha256": "936d58da13490cc9eb647f55687f49e1ce389390a337af69b294676047bb013d"
+    },
+    {
+      "path": "source/es/coverage.json",
+      "size": 9611,
+      "sha256": "f20f0b3d5cdb93bde7132ba16b3b1e30c7c1eaed8212e40eafb8db51936a9305"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 35428,
+      "sha256": "e082de98e7f2648039b9e71d3a779ffe2caedc051831b0000ce2bf4694daeb8a"
+    },
+    {
+      "path": "source/fr/acceptance.json",
+      "size": 122615,
+      "sha256": "e3b233346deafc628d43bfe9b0522bbade2d1b7814197171f69b05f75df201c8"
+    },
+    {
+      "path": "source/fr/content.json",
+      "size": 282531,
+      "sha256": "e371d43c625f6c6beac545ec0515ad850a7d350937fc625e74851568d2587ed5"
+    },
+    {
+      "path": "source/fr/coverage.json",
+      "size": 9603,
+      "sha256": "3fb6e28887badfa0e280080cb33c48dcf9501097cc03169411e0cfe5b33d03ce"
+    },
+    {
+      "path": "source/native_blocks.json",
+      "size": 214565,
+      "sha256": "d3831819b5620cae72f9f546f0afffe396e20ca6facc477b623238fc16b104bc"
+    },
+    {
+      "path": "source/native_exceptions.json",
+      "size": 1514,
+      "sha256": "901c6ce7f7c3021cd3d3714c9d237bcb8a29b117474b4b4eae95ec1d9285bbfb"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 15739,
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+    },
+    {
+      "path": "source/retired_assets.json",
+      "size": 3763,
+      "sha256": "2d758669fdad592e2a6ad530b03bacbe9f5e8cc488c00c1572667aa0b9bc8ed4"
+    },
+    {
+      "path": "validate_source.py",
+      "size": 4909,
+      "sha256": "b8bfe5b4291b07ee47a193f14956cdd3f2ea074b9dcb7cc264c1f86fb0706342"
+    },
+    {
+      "path": "web/en/_static/source_presentation.css",
+      "size": 15739,
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 125530,
+      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+    },
+    {
+      "path": "web/en/assets/ac.png",
+      "size": 48985,
+      "sha256": "9922b5883eba1359dd3c790baadf1f1390ea931f58734cd504846b05e8ad8684"
+    },
+    {
+      "path": "web/en/assets/car.png",
+      "size": 63960,
+      "sha256": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6"
+    },
+    {
+      "path": "web/en/assets/concrete-1-2.png",
+      "size": 41450,
+      "sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1"
+    },
+    {
+      "path": "web/en/assets/concrete-3.png",
+      "size": 112083,
+      "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
+    },
+    {
+      "path": "web/en/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
+    },
+    {
+      "path": "web/en/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
+    },
+    {
+      "path": "web/en/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
+    },
+    {
+      "path": "web/en/assets/concrete-prep.png",
+      "size": 33941,
+      "sha256": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333"
+    },
+    {
+      "path": "web/en/assets/concrete-result.png",
+      "size": 16197,
+      "sha256": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306"
+    },
+    {
+      "path": "web/en/assets/connection-icon.svg",
+      "size": 2784,
+      "sha256": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495"
+    },
+    {
+      "path": "web/en/assets/connections.png",
+      "size": 59775,
+      "sha256": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43"
+    },
+    {
+      "path": "web/en/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/en/assets/inbox-1.png",
+      "size": 4788,
+      "sha256": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe"
+    },
+    {
+      "path": "web/en/assets/inbox-2.png",
+      "size": 7458,
+      "sha256": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7"
+    },
+    {
+      "path": "web/en/assets/inbox-3.png",
+      "size": 1576,
+      "sha256": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512"
+    },
+    {
+      "path": "web/en/assets/inbox-4.png",
+      "size": 3713,
+      "sha256": "edd0594b5ed43fda95539fb8e55d1f5f172220dd6337c6f241c7bd5dfa6bf12b"
+    },
+    {
+      "path": "web/en/assets/lcd-button.png",
+      "size": 20811,
+      "sha256": "4eca4a882c101ddd0f591f90980f1ece0a2b2c183f5ee51b950eef0744542679"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-1.svg",
+      "size": 9506,
+      "sha256": "8d8047ecea4a37785c3c53d84773c7d5a5c915cac119ee3c0aa86be5708d04b9"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-2.svg",
+      "size": 3810,
+      "sha256": "deffe3c1940b51a394cd1cf6cf39a8730f6b660fd4737bd13114382d1fd1edac"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-3.svg",
+      "size": 10391,
+      "sha256": "9753a7fc3d82f3b88db6bb4971932a069f9ce42397790177d483760a784a1c36"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-4.svg",
+      "size": 2465,
+      "sha256": "8f38ec6c2df9eb218c50cc17e063e45f9dab9e758ed9f4cf66089fc32cc0fab7"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-5.svg",
+      "size": 2775,
+      "sha256": "ab05e0bd13bc42df33fa10111bff6d745297598864e7c6c63ec06b5d0fdff8f3"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-6.svg",
+      "size": 3529,
+      "sha256": "e25c242637b824f4259561078659381e2a223e6744434d919fa19d616afcbdb3"
+    },
+    {
+      "path": "web/en/assets/lcd-icon-7.svg",
+      "size": 3252,
+      "sha256": "13072116535603add2b24cfc10c1f7f3c8f22b7c726f26d500515161a8467721"
+    },
+    {
+      "path": "web/en/assets/lcd.png",
+      "size": 95101,
+      "sha256": "6aed2d3c94bdb064019c4e805681cf0580475cf1d30e774fc5f6590149f82a67"
+    },
+    {
+      "path": "web/en/assets/overview.png",
+      "size": 26997,
+      "sha256": "f5bfe7c5232966ef9b9e340d39e2af02971e7b0ab67d29a4aca4ca2741eb69ca"
+    },
+    {
+      "path": "web/en/assets/parallel.png",
+      "size": 60924,
+      "sha256": "e364fb7856440be66a1f1807ab1e5e9d4498f9dfd5ebbf3681f8ad943c6c84b2"
+    },
+    {
+      "path": "web/en/assets/power.png",
+      "size": 26920,
+      "sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2"
+    },
+    {
+      "path": "web/en/assets/solar.png",
+      "size": 64621,
+      "sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593"
+    },
+    {
+      "path": "web/en/assets/stacked.png",
+      "size": 46791,
+      "sha256": "1d92a2200cf6298882264168e06b57a0428416ccbdd0b6dabffb3b3d6c8a8769"
+    },
+    {
+      "path": "web/en/assets/symbol-1.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/en/assets/symbol-2.svg",
+      "size": 4143,
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c"
+    },
+    {
+      "path": "web/en/assets/symbol-3.svg",
+      "size": 4993,
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8"
+    },
+    {
+      "path": "web/en/assets/symbol-4.svg",
+      "size": 3167,
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22"
+    },
+    {
+      "path": "web/en/assets/symbol-5.svg",
+      "size": 4685,
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd"
+    },
+    {
+      "path": "web/en/assets/symbol-6.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "web/en/assets/symbol-7.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "web/en/assets/vertical-1.png",
+      "size": 43168,
+      "sha256": "df5af85aa4cec912595a70aaf4d6461889ec4a90c90781d53cb8398a59ba2db2"
+    },
+    {
+      "path": "web/en/assets/vertical-2.png",
+      "size": 44465,
+      "sha256": "e1838872fc2b98344dd019529957120ec28ae314a8f08c82e13b801667e2565c"
+    },
+    {
+      "path": "web/en/assets/vertical-3.png",
+      "size": 49693,
+      "sha256": "369e68f44f31973ba40b9a5081697be0912c85520be746e631b87c1029b90b88"
+    },
+    {
+      "path": "web/en/assets/vertical-prep.png",
+      "size": 11262,
+      "sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b"
+    },
+    {
+      "path": "web/en/assets/vertical-result.png",
+      "size": 8861,
+      "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4"
+    },
+    {
+      "path": "web/en/assets/wood-1-2.png",
+      "size": 39436,
+      "sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c"
+    },
+    {
+      "path": "web/en/assets/wood-3.png",
+      "size": 77891,
+      "sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e"
+    },
+    {
+      "path": "web/en/assets/wood-4.png",
+      "size": 18576,
+      "sha256": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd"
+    },
+    {
+      "path": "web/en/assets/wood-5.png",
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
+    },
+    {
+      "path": "web/en/assets/wood-6.png",
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
+    },
+    {
+      "path": "web/en/assets/wood-7.png",
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
+    },
+    {
+      "path": "web/en/assets/wood-prep.png",
+      "size": 38124,
+      "sha256": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6"
+    },
+    {
+      "path": "web/en/assets/wood-result.png",
+      "size": 14306,
+      "sha256": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 834,
+      "sha256": "d6e6ae123e38d59ad1b9cae4974da0a57c6315bde83a90d99519a43eb36685a7"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 98,
+      "sha256": "b3f2bad32318b35a28d8f5180866bf3a7763e46de93c90188048e5cc7877ab2b"
+    },
+    {
+      "path": "web/en/manual.ir.json",
+      "size": 384060,
+      "sha256": "5b7d2bc0a1102ecf95adbffca6cb877dd6e558e7994d28e9c2ac0ae6bfb7e5a6"
+    },
+    {
+      "path": "web/en/manual_jbp1000bsil_us_en.md",
+      "size": 70217,
+      "sha256": "006531fec8daba4ceb7fbffd5923eefa7e5df58f92ce9548680bcef7be23aa4f"
+    },
+    {
+      "path": "web/es/_static/source_presentation.css",
+      "size": 15739,
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+    },
+    {
+      "path": "web/es/_static/web_manual.css",
+      "size": 125530,
+      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+    },
+    {
+      "path": "web/es/assets/ac.png",
+      "size": 48985,
+      "sha256": "9922b5883eba1359dd3c790baadf1f1390ea931f58734cd504846b05e8ad8684"
+    },
+    {
+      "path": "web/es/assets/car.png",
+      "size": 63960,
+      "sha256": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6"
+    },
+    {
+      "path": "web/es/assets/concrete-1-2.png",
+      "size": 41450,
+      "sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1"
+    },
+    {
+      "path": "web/es/assets/concrete-3.png",
+      "size": 112083,
+      "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
+    },
+    {
+      "path": "web/es/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
+    },
+    {
+      "path": "web/es/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
+    },
+    {
+      "path": "web/es/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
+    },
+    {
+      "path": "web/es/assets/concrete-prep.png",
+      "size": 33941,
+      "sha256": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333"
+    },
+    {
+      "path": "web/es/assets/concrete-result.png",
+      "size": 16197,
+      "sha256": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306"
+    },
+    {
+      "path": "web/es/assets/connection-icon.svg",
+      "size": 2784,
+      "sha256": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495"
+    },
+    {
+      "path": "web/es/assets/connections.png",
+      "size": 59775,
+      "sha256": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43"
+    },
+    {
+      "path": "web/es/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/es/assets/inbox-1.png",
+      "size": 4788,
+      "sha256": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe"
+    },
+    {
+      "path": "web/es/assets/inbox-2.png",
+      "size": 7458,
+      "sha256": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7"
+    },
+    {
+      "path": "web/es/assets/inbox-3.png",
+      "size": 1576,
+      "sha256": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512"
+    },
+    {
+      "path": "web/es/assets/inbox-4.png",
+      "size": 3713,
+      "sha256": "edd0594b5ed43fda95539fb8e55d1f5f172220dd6337c6f241c7bd5dfa6bf12b"
+    },
+    {
+      "path": "web/es/assets/lcd-button.png",
+      "size": 20811,
+      "sha256": "4eca4a882c101ddd0f591f90980f1ece0a2b2c183f5ee51b950eef0744542679"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-1.svg",
+      "size": 9506,
+      "sha256": "8d8047ecea4a37785c3c53d84773c7d5a5c915cac119ee3c0aa86be5708d04b9"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-2.svg",
+      "size": 3810,
+      "sha256": "deffe3c1940b51a394cd1cf6cf39a8730f6b660fd4737bd13114382d1fd1edac"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-3.svg",
+      "size": 10391,
+      "sha256": "9753a7fc3d82f3b88db6bb4971932a069f9ce42397790177d483760a784a1c36"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-4.svg",
+      "size": 2465,
+      "sha256": "8f38ec6c2df9eb218c50cc17e063e45f9dab9e758ed9f4cf66089fc32cc0fab7"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-5.svg",
+      "size": 2775,
+      "sha256": "ab05e0bd13bc42df33fa10111bff6d745297598864e7c6c63ec06b5d0fdff8f3"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-6.svg",
+      "size": 3529,
+      "sha256": "e25c242637b824f4259561078659381e2a223e6744434d919fa19d616afcbdb3"
+    },
+    {
+      "path": "web/es/assets/lcd-icon-7.svg",
+      "size": 3252,
+      "sha256": "13072116535603add2b24cfc10c1f7f3c8f22b7c726f26d500515161a8467721"
+    },
+    {
+      "path": "web/es/assets/lcd.png",
+      "size": 95101,
+      "sha256": "6aed2d3c94bdb064019c4e805681cf0580475cf1d30e774fc5f6590149f82a67"
+    },
+    {
+      "path": "web/es/assets/overview.png",
+      "size": 26997,
+      "sha256": "f5bfe7c5232966ef9b9e340d39e2af02971e7b0ab67d29a4aca4ca2741eb69ca"
+    },
+    {
+      "path": "web/es/assets/parallel.png",
+      "size": 60924,
+      "sha256": "e364fb7856440be66a1f1807ab1e5e9d4498f9dfd5ebbf3681f8ad943c6c84b2"
+    },
+    {
+      "path": "web/es/assets/power.png",
+      "size": 26920,
+      "sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2"
+    },
+    {
+      "path": "web/es/assets/solar.png",
+      "size": 64621,
+      "sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593"
+    },
+    {
+      "path": "web/es/assets/stacked.png",
+      "size": 46791,
+      "sha256": "1d92a2200cf6298882264168e06b57a0428416ccbdd0b6dabffb3b3d6c8a8769"
+    },
+    {
+      "path": "web/es/assets/symbol-1.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/es/assets/symbol-2.svg",
+      "size": 4143,
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c"
+    },
+    {
+      "path": "web/es/assets/symbol-3.svg",
+      "size": 4993,
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8"
+    },
+    {
+      "path": "web/es/assets/symbol-4.svg",
+      "size": 3167,
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22"
+    },
+    {
+      "path": "web/es/assets/symbol-5.svg",
+      "size": 4685,
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd"
+    },
+    {
+      "path": "web/es/assets/symbol-6.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "web/es/assets/symbol-7.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "web/es/assets/vertical-1.png",
+      "size": 43168,
+      "sha256": "df5af85aa4cec912595a70aaf4d6461889ec4a90c90781d53cb8398a59ba2db2"
+    },
+    {
+      "path": "web/es/assets/vertical-2.png",
+      "size": 44465,
+      "sha256": "e1838872fc2b98344dd019529957120ec28ae314a8f08c82e13b801667e2565c"
+    },
+    {
+      "path": "web/es/assets/vertical-3.png",
+      "size": 49693,
+      "sha256": "369e68f44f31973ba40b9a5081697be0912c85520be746e631b87c1029b90b88"
+    },
+    {
+      "path": "web/es/assets/vertical-prep.png",
+      "size": 11262,
+      "sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b"
+    },
+    {
+      "path": "web/es/assets/vertical-result.png",
+      "size": 8861,
+      "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4"
+    },
+    {
+      "path": "web/es/assets/wood-1-2.png",
+      "size": 39436,
+      "sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c"
+    },
+    {
+      "path": "web/es/assets/wood-3.png",
+      "size": 77891,
+      "sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e"
+    },
+    {
+      "path": "web/es/assets/wood-4.png",
+      "size": 18576,
+      "sha256": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd"
+    },
+    {
+      "path": "web/es/assets/wood-5.png",
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
+    },
+    {
+      "path": "web/es/assets/wood-6.png",
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
+    },
+    {
+      "path": "web/es/assets/wood-7.png",
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
+    },
+    {
+      "path": "web/es/assets/wood-prep.png",
+      "size": 38124,
+      "sha256": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6"
+    },
+    {
+      "path": "web/es/assets/wood-result.png",
+      "size": 14306,
+      "sha256": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
+    },
+    {
+      "path": "web/es/conf.py",
+      "size": 834,
+      "sha256": "3b58063a60a8b17e4ee1eb23f127f8ecf0560912c2c46d7af7d29e3b8559d2f3"
+    },
+    {
+      "path": "web/es/index.md",
+      "size": 98,
+      "sha256": "f205ea2bfebcf6bf45d7b2431aabb953a15ffe2e812b610be63b54bac38e57f5"
+    },
+    {
+      "path": "web/es/manual.ir.json",
+      "size": 386324,
+      "sha256": "4c0527dfc1a9258ebdcc6cbb2d7dc2bef704e08366efb773f08ebd114722adc5"
+    },
+    {
+      "path": "web/es/manual_jbp1000bsil_us_es.md",
+      "size": 72616,
+      "sha256": "e5fe6b29ec9cc6f2b4db4719dcde3f8c3f077f6d8d6900e137c08a35db8a8477"
+    },
+    {
+      "path": "web/fr/_static/source_presentation.css",
+      "size": 15739,
+      "sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f"
+    },
+    {
+      "path": "web/fr/_static/web_manual.css",
+      "size": 125530,
+      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+    },
+    {
+      "path": "web/fr/assets/ac.png",
+      "size": 48985,
+      "sha256": "9922b5883eba1359dd3c790baadf1f1390ea931f58734cd504846b05e8ad8684"
+    },
+    {
+      "path": "web/fr/assets/car.png",
+      "size": 63960,
+      "sha256": "8171b0c44df922056b9d1ec02251b2de2e9b473cc9782b9a2db6839f341d2fe6"
+    },
+    {
+      "path": "web/fr/assets/concrete-1-2.png",
+      "size": 41450,
+      "sha256": "4d4d6e711f092c4f4497a7abac9848c488382e8e69d27569d14d7ea53966f2c1"
+    },
+    {
+      "path": "web/fr/assets/concrete-3.png",
+      "size": 112083,
+      "sha256": "cb8c4d73ffa309c8d1fc497c937f841f5dfc8c154db055a4fea0d9fbe47eac30"
+    },
+    {
+      "path": "web/fr/assets/concrete-4-5.png",
+      "size": 50457,
+      "sha256": "2a96de3e7b35d32b2076ff2dcec0a2319e6a076bd49fe134cd245e61b63265b0"
+    },
+    {
+      "path": "web/fr/assets/concrete-6-7.png",
+      "size": 37967,
+      "sha256": "dc8744e5d975029f4a073772db02144e5eb44d4105ba2a322cf347faedb597f1"
+    },
+    {
+      "path": "web/fr/assets/concrete-8-9.png",
+      "size": 76269,
+      "sha256": "2bf50f079f9e6c20739b7994ce6789b8654867d34b82adf649e90859e41487a3"
+    },
+    {
+      "path": "web/fr/assets/concrete-prep.png",
+      "size": 33941,
+      "sha256": "dda1076fb9aa9aace32e620226b14af93fbf7d7f7be394d2c6c3afa225702333"
+    },
+    {
+      "path": "web/fr/assets/concrete-result.png",
+      "size": 16197,
+      "sha256": "9072c8bbc6b2080c1b6a35cac32c6fb75869405bbec37dcd70fef9f4e5e72306"
+    },
+    {
+      "path": "web/fr/assets/connection-icon.svg",
+      "size": 2784,
+      "sha256": "793851f4321a6b353b99546a43d9cdcdb521e5731f8094b04164b0dc25012495"
+    },
+    {
+      "path": "web/fr/assets/connections.png",
+      "size": 59775,
+      "sha256": "f4dc5ffd241da73b7315d059772419434765be7f3a6d29303b372e3b5f01ed43"
+    },
+    {
+      "path": "web/fr/assets/fcc-mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "web/fr/assets/inbox-1.png",
+      "size": 4788,
+      "sha256": "6ad7d21e9bff5064de852feeca2ca89d6cfde052c734d81a16e76a00089be1fe"
+    },
+    {
+      "path": "web/fr/assets/inbox-2.png",
+      "size": 7458,
+      "sha256": "76999afe1649ba9ad60476f4b0741b861d7695e270ac98123281613ddf016cc7"
+    },
+    {
+      "path": "web/fr/assets/inbox-3.png",
+      "size": 1576,
+      "sha256": "52065d1f8ccdb7ed82b68cbcea70cf64165e6b74ff29d4950f5ec1f1153b0512"
+    },
+    {
+      "path": "web/fr/assets/inbox-4.png",
+      "size": 3713,
+      "sha256": "edd0594b5ed43fda95539fb8e55d1f5f172220dd6337c6f241c7bd5dfa6bf12b"
+    },
+    {
+      "path": "web/fr/assets/lcd-button.png",
+      "size": 20811,
+      "sha256": "4eca4a882c101ddd0f591f90980f1ece0a2b2c183f5ee51b950eef0744542679"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-1.svg",
+      "size": 9506,
+      "sha256": "8d8047ecea4a37785c3c53d84773c7d5a5c915cac119ee3c0aa86be5708d04b9"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-2.svg",
+      "size": 3810,
+      "sha256": "deffe3c1940b51a394cd1cf6cf39a8730f6b660fd4737bd13114382d1fd1edac"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-3.svg",
+      "size": 10391,
+      "sha256": "9753a7fc3d82f3b88db6bb4971932a069f9ce42397790177d483760a784a1c36"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-4.svg",
+      "size": 2465,
+      "sha256": "8f38ec6c2df9eb218c50cc17e063e45f9dab9e758ed9f4cf66089fc32cc0fab7"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-5.svg",
+      "size": 2775,
+      "sha256": "ab05e0bd13bc42df33fa10111bff6d745297598864e7c6c63ec06b5d0fdff8f3"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-6.svg",
+      "size": 3529,
+      "sha256": "e25c242637b824f4259561078659381e2a223e6744434d919fa19d616afcbdb3"
+    },
+    {
+      "path": "web/fr/assets/lcd-icon-7.svg",
+      "size": 3252,
+      "sha256": "13072116535603add2b24cfc10c1f7f3c8f22b7c726f26d500515161a8467721"
+    },
+    {
+      "path": "web/fr/assets/lcd.png",
+      "size": 95101,
+      "sha256": "6aed2d3c94bdb064019c4e805681cf0580475cf1d30e774fc5f6590149f82a67"
+    },
+    {
+      "path": "web/fr/assets/overview.png",
+      "size": 26997,
+      "sha256": "f5bfe7c5232966ef9b9e340d39e2af02971e7b0ab67d29a4aca4ca2741eb69ca"
+    },
+    {
+      "path": "web/fr/assets/parallel.png",
+      "size": 60924,
+      "sha256": "e364fb7856440be66a1f1807ab1e5e9d4498f9dfd5ebbf3681f8ad943c6c84b2"
+    },
+    {
+      "path": "web/fr/assets/power.png",
+      "size": 26920,
+      "sha256": "1f9ef4ff14674cff09565fa38c0eff72b57a28e58b725b4e1430247106ed94f2"
+    },
+    {
+      "path": "web/fr/assets/solar.png",
+      "size": 64621,
+      "sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593"
+    },
+    {
+      "path": "web/fr/assets/stacked.png",
+      "size": 46791,
+      "sha256": "1d92a2200cf6298882264168e06b57a0428416ccbdd0b6dabffb3b3d6c8a8769"
+    },
+    {
+      "path": "web/fr/assets/symbol-1.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/fr/assets/symbol-2.svg",
+      "size": 4143,
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c"
+    },
+    {
+      "path": "web/fr/assets/symbol-3.svg",
+      "size": 4993,
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8"
+    },
+    {
+      "path": "web/fr/assets/symbol-4.svg",
+      "size": 3167,
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22"
+    },
+    {
+      "path": "web/fr/assets/symbol-5.svg",
+      "size": 4685,
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd"
+    },
+    {
+      "path": "web/fr/assets/symbol-6.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "web/fr/assets/symbol-7.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "web/fr/assets/vertical-1.png",
+      "size": 43168,
+      "sha256": "df5af85aa4cec912595a70aaf4d6461889ec4a90c90781d53cb8398a59ba2db2"
+    },
+    {
+      "path": "web/fr/assets/vertical-2.png",
+      "size": 44465,
+      "sha256": "e1838872fc2b98344dd019529957120ec28ae314a8f08c82e13b801667e2565c"
+    },
+    {
+      "path": "web/fr/assets/vertical-3.png",
+      "size": 49693,
+      "sha256": "369e68f44f31973ba40b9a5081697be0912c85520be746e631b87c1029b90b88"
+    },
+    {
+      "path": "web/fr/assets/vertical-prep.png",
+      "size": 11262,
+      "sha256": "219458c4ea76804254e797e70f3c9e5c363c987dd697696459daa1bf696e0d8b"
+    },
+    {
+      "path": "web/fr/assets/vertical-result.png",
+      "size": 8861,
+      "sha256": "a86c812598138ba3e92ce0c7b81607b60eeaa6c501cf79eccf1148d45f5569b4"
+    },
+    {
+      "path": "web/fr/assets/wood-1-2.png",
+      "size": 39436,
+      "sha256": "a111d1929f791144701b7e51c4d47e2fee8bfefc393c8dd3f5708dc29b3e7f2c"
+    },
+    {
+      "path": "web/fr/assets/wood-3.png",
+      "size": 77891,
+      "sha256": "79ab2776dbb99ab0f89282ab6472883a2769d6077bba806ef2da44c2219aab6e"
+    },
+    {
+      "path": "web/fr/assets/wood-4.png",
+      "size": 18576,
+      "sha256": "b565b35800b95a8c6b902b96dfb9bf705273b29c972d42d7f9693755bafe92dd"
+    },
+    {
+      "path": "web/fr/assets/wood-5.png",
+      "size": 24914,
+      "sha256": "7068e0de88b046129111b84d79b9d187d5c22aa539b8e25a2179380b6b8491b8"
+    },
+    {
+      "path": "web/fr/assets/wood-6.png",
+      "size": 20268,
+      "sha256": "8fa853385254ec5f50c44da2d2f788b865960fa4b5fe02a2739961c464860d47"
+    },
+    {
+      "path": "web/fr/assets/wood-7.png",
+      "size": 51552,
+      "sha256": "6a7fdfa876ca5717cecc6455b6ff2456c09b6b7a03dc5f4715b37456df219005"
+    },
+    {
+      "path": "web/fr/assets/wood-prep.png",
+      "size": 38124,
+      "sha256": "bd675bac2caf09a150a3afb2ea929c4d9476ba9072d080f622d4c51938e218d6"
+    },
+    {
+      "path": "web/fr/assets/wood-result.png",
+      "size": 14306,
+      "sha256": "932f87c7b05010084daa5d00018175803057f669335b4f4b455f422cea41de32"
+    },
+    {
+      "path": "web/fr/conf.py",
+      "size": 834,
+      "sha256": "7da40ccde78c35018f727dd2c5feaf9cc7ce2b75f8deb6b0af4e2d26f0245835"
+    },
+    {
+      "path": "web/fr/index.md",
+      "size": 98,
+      "sha256": "2441aa4d32ba3f0a5daf9e3ed5da1ac6a0c09bd3061d81a4239d56031ac43600"
+    },
+    {
+      "path": "web/fr/manual.ir.json",
+      "size": 387115,
+      "sha256": "f48641a851d8e4983b81d7f0a1e278049e878252e3ea375f908abd36029462fc"
+    },
+    {
+      "path": "web/fr/manual_jbp1000bsil_us_fr.md",
+      "size": 73160,
+      "sha256": "fabb3f7dc50b6a0405eec5dfb38fa3e870fcbbec64cd3d117a625418e282cd64"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "data/asset_recipes/asset-extraction-recipe-v1.schema.json",
+      "size": 14697,
+      "sha256": "fadf45f8513d14517cbd9ebff9089a3078f2a2d8fb0bc72fb80ee32bacd4f068"
+    },
+    {
+      "path": "data/asset_recipes/manual_jbp1000b_sil_us_native.json",
+      "size": 80321,
+      "sha256": "593e13a9822bfd10c9803f2482b7b01c984634b4630da883e4fdacf2545d1689"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3442,
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "size": 20333,
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "size": 10570,
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "size": 3224,
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "size": 4296,
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
+    },
+    {
+      "path": "docs/renderers/contracts/web_language_navigation.css",
+      "size": 1976,
+      "sha256": "c64c840c21ccf11abe3ea0f1baa54f64b263e0e1ae6eec8410070025c4ac7489"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47754,
+      "sha256": "59672a89a81fb8ec2dc7c5885505982d7b4dc1898344569871560f26bc7cf096"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "size": 603,
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280"
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "size": 649,
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "size": 110,
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "size": 307,
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "size": 2844,
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "size": 9656,
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "size": 3643,
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "size": 305,
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "size": 51955,
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "size": 916,
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 3803,
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "size": 24700,
+      "sha256": "b33255db10726aa17df4aa6d546d068dddfe528d0feacb48b77c0309d7f98536"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/README.md",
+      "size": 1985,
+      "sha256": "0b2914cf3cbd465ade51b508763c52eac63e02df252b09d89846ce161b99c72e"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 16092,
+      "sha256": "8e25b6b22b2f34336e998299805c6235b85502a3a6625626d4c91fef8b1272cc"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+      "size": 5934,
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_dark.svg",
+      "size": 4993,
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+      "size": 4992,
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material.svg",
+      "size": 6183,
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+      "size": 4856,
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_panel.svg",
+      "size": 4685,
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+      "size": 6007,
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_crossed.svg",
+      "size": 3167,
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_person.svg",
+      "size": 4143,
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+      "size": 7672,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 6924,
+      "sha256": "96ae849479273acd503732195ffec064a9c908bfdae2dee4b51540518083e3b2"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "size": 2388,
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e"
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "size": 3434,
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81"
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "size": 13511,
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e"
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "size": 2078,
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "size": 3347,
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37"
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "size": 1399,
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395"
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "size": 4900,
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917"
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "size": 2444,
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4"
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "size": 8691,
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e"
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "size": 8688,
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0"
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "size": 2837,
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "size": 6970,
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a"
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "size": 7291,
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7"
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "size": 2610,
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752"
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "size": 3732,
+      "sha256": "825274eeec31587ba7eac69055336acda5f3787997e8d7f1207523acf0eda242"
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "size": 2407,
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "size": 4570,
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "size": 2398,
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "size": 3371,
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "size": 1640,
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576"
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "size": 5386,
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7"
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "size": 6606,
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e"
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "size": 10395,
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172"
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "size": 3840,
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7"
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "size": 7060,
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840"
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "size": 5423,
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e"
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "size": 9879,
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80"
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "size": 3505,
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32"
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "size": 12564,
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423"
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "size": 6489,
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda"
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "size": 7944,
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1"
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "size": 18192,
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b"
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "size": 2356,
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3"
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "size": 2092,
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330"
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "size": 6354,
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1"
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "size": 10264,
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "size": 2029,
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "size": 10115,
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da"
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "size": 3677,
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad"
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "size": 21154,
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f"
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "size": 5651,
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1"
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "size": 10359,
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a"
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "size": 8641,
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec"
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "size": 4980,
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed"
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "size": 6881,
+      "sha256": "da903303a8371344ceea35abfab3c5a80c16025e8304b6d82acad82d2371df51"
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "size": 5434,
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e"
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "size": 953,
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b"
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "size": 5647,
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0"
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "size": 5841,
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25"
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "size": 8707,
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d"
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "size": 1830,
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e"
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "size": 21944,
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8"
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "size": 4662,
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb"
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "size": 1439,
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f"
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "size": 7405,
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2"
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "size": 2798,
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4"
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "size": 1606,
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e"
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "size": 17941,
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289"
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "size": 4057,
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861"
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "size": 5885,
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510"
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "size": 3512,
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42"
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "size": 3785,
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8"
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "size": 3939,
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84"
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "size": 1616,
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a"
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "size": 5459,
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba"
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "size": 10860,
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db"
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "size": 8938,
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "size": 10729,
+      "sha256": "c7e1ccb3c4cb6c9ae46a1e7eb44acf0a0dbcf62e269c395ee2a4a6b6062bfd13"
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "size": 14471,
+      "sha256": "d5692ca4d662e3b278d7f9e62016268c1963cb12497418fc3b06a56e0baff744"
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "size": 34,
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94"
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "size": 9601,
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8"
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "size": 1496,
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0"
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "size": 3257,
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903"
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "size": 1202,
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006"
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "size": 1147,
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a"
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "size": 15862,
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8"
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "size": 6582,
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "size": 2554,
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a"
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "size": 3739,
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "size": 3214,
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "size": 5563,
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f"
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "size": 1676,
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4"
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "size": 12260,
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72"
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "size": 8035,
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9"
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "size": 2398,
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1"
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "size": 7706,
+      "sha256": "7b2e36b360cca00b2d8390d9d9d47467f17aa0b0912b4a2a1d0ea346683c497f"
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "size": 4247,
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf"
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "size": 20325,
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513"
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "size": 19186,
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21"
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "size": 8140,
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540"
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "size": 3728,
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f"
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "size": 2001,
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0"
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "size": 968,
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3"
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "size": 30995,
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9"
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "size": 8918,
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326"
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "size": 4100,
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2"
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "size": 8154,
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a"
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "size": 16785,
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f"
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "size": 12143,
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b"
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "size": 10527,
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff"
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "size": 15401,
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924"
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "size": 15633,
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773"
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "size": 2024,
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f"
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "size": 4284,
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916"
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "size": 4773,
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61"
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "size": 9385,
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7"
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "size": 29164,
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c"
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "size": 5441,
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "size": 17942,
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc"
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "size": 6185,
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585"
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "size": 15285,
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "size": 1637,
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd"
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "size": 5724,
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5"
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "size": 4985,
+      "sha256": "e3c900bea7dca4ceaf05c91e752e757345a42cbec33a917aac38f3d2d79bfa55"
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "size": 2102,
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3"
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "size": 14683,
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
+    },
+    {
+      "path": "tools/web/language_navigation.py",
+      "size": 6872,
+      "sha256": "e391660c0db0f0095e3a66a9c179ce6921b1243c56ece4ddb5d308e9d7415f47"
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "size": 23128,
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "size": 739,
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20"
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "size": 3528,
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e"
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "size": 10484,
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805"
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "size": 3647,
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0"
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "size": 5730,
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "size": 65114,
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "size": 41571,
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "size": 5500,
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0"
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "size": 6340,
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "size": 1682,
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 1835,
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "size": 7162,
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1571,
+      "sha256": "82efb634e2d340698d42a092139bfe1429240d8c37b9531ac899581b12955082"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 7827,
+      "sha256": "a1939d64575d3b0717c2f064527f16a5c399030ffb9c3d94cc81d7cd5d99d830"
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "size": 3757,
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668"
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "size": 4036,
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2"
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "size": 6446,
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076"
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "size": 770,
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a"
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "size": 3977,
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+      "size": 1927,
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+    },
+    {
+      "path": "data/asset_recipes/manual_jbp1000b_sil_us_wall_panels.json",
+      "size": 23307,
+      "sha256": "ebd9e0420de388c940d645dcf164896693d7ddfc28c76bf492d5028fb4f792f2"
+    }
+  ],
+  "target": {
+    "model": "JBP-1000B-SIL",
+    "region": "US",
+    "languages": [
+      "en",
+      "fr",
+      "es"
+    ],
+    "technical_version": "git-20261008-7afcb2a1"
+  },
+  "original_source": {
+    "filename": "Jackery Battery Pack-1.pdf",
+    "sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137"
+  },
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "en": [
+        {
+          "asset_ref": "assets/symbol-1.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            24,
+            25,
+            26
+          ],
+          "glyph_bbox": [
+            39.52810576682867,
+            374.39202848903795,
+            60.67965918252634,
+            394.72360053736503
+          ],
+          "caption_bbox": [
+            73.99100036621094,
+            374.09999389648436,
+            168.72642211914064,
+            395.4199951171875
+          ],
+          "row_bbox": [
+            38.528106689453125,
+            373.1000061035156,
+            169.72642517089844,
+            396.41998291015625
+          ],
+          "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+          "caption_sha256": "5cd0dcbf0e8c23e7c52233460b1a4d64656b3d1e174ce57335c046e44268d485",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "shared_symbol_key": "warning/outline-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol-2.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "glyph_bbox": [
+            37.0,
+            398.0,
+            63.0,
+            418.0
+          ],
+          "caption_bbox": [
+            73.99100036621094,
+            405.1912109375,
+            176.70815734863282,
+            412.51121215820314
+          ],
+          "row_bbox": [
+            36.0,
+            397.0,
+            177.70816040039062,
+            419.0
+          ],
+          "caption_text": "Read the user manual before operation.",
+          "caption_sha256": "84132a33f22362e04a969815dc32a8a7edf4a17f398fda2111b077bad6659d9f",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+          "shared_symbol_key": "read-manual/person-reading-circle"
+        },
+        {
+          "asset_ref": "assets/symbol-3.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            31,
+            32,
+            33
+          ],
+          "glyph_bbox": [
+            39.45330047607422,
+            422.89501953125,
+            59.599300384521484,
+            443.0290222167969
+          ],
+          "caption_bbox": [
+            73.99100036621094,
+            429.3159973144531,
+            151.60332946777345,
+            436.63599853515626
+          ],
+          "row_bbox": [
+            38.45330047607422,
+            421.89501953125,
+            152.60333251953125,
+            444.0290222167969
+          ],
+          "caption_text": "Do not dismantle the product.",
+          "caption_sha256": "f6a90ab40068bc3671169091fadfad6f63556403fbda4315142b3941dae6b1c4",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-4.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "glyph_bbox": [
+            37.0,
+            447.0,
+            63.0,
+            471.0
+          ],
+          "caption_bbox": [
+            73.99100036621094,
+            452.73521728515624,
+            158.18166809082032,
+            460.0552185058594
+          ],
+          "row_bbox": [
+            36.0,
+            446.0,
+            159.18167114257812,
+            472.0
+          ],
+          "caption_text": "Keep the product away from fire.",
+          "caption_sha256": "3ea3a824d921f07afd80d2559b1c6b011e5a847d15a263958ddcfda38a019101",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+          "shared_symbol_key": "no-open-flame/crossed-flame"
+        },
+        {
+          "asset_ref": "assets/symbol-5.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "glyph_bbox": [
+            37.0,
+            471.0,
+            64.0,
+            490.0
+          ],
+          "caption_bbox": [
+            73.99100036621094,
+            476.7846252441406,
+            138.95240478515626,
+            484.10462646484376
+          ],
+          "row_bbox": [
+            36.0,
+            470.0,
+            139.95240783691406,
+            491.0
+          ],
+          "caption_text": "Keep away from children.",
+          "caption_sha256": "78cfdf955573c0d927fc74f9f5357c6b4bf885b8d8653e959df4e97b08f2e278",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+          "shared_symbol_key": "keep-away-from-children/adult-child-panel"
+        },
+        {
+          "asset_ref": "assets/symbol-6.svg",
+          "physical_page": 4,
+          "drawing_indices": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "glyph_bbox": [
+            195.44650268554688,
+            382.10089111328125,
+            215.53160095214844,
+            404.52410888671875
+          ],
+          "caption_bbox": [
+            226.22699279785155,
+            383.02940673828124,
+            336.30845336914064,
+            404.3494079589844
+          ],
+          "row_bbox": [
+            194.44650268554688,
+            381.10089111328125,
+            337.3084411621094,
+            405.52410888671875
+          ],
+          "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+          "caption_sha256": "801baf5a33bfb2972024d422082eb22e5bd95f35bdf804e298f674553f6b9778",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-7.png",
+          "physical_page": 4,
+          "drawing_indices": [
+            43,
+            44,
+            45
+          ],
+          "glyph_bbox": [
+            196.66074666669292,
+            438.1849060058594,
+            214.58176914338142,
+            464.2239685058594
+          ],
+          "caption_bbox": [
+            226.22699279785155,
+            420.291796875,
+            338.7837341308594,
+            483.61179809570314
+          ],
+          "row_bbox": [
+            195.66075134277344,
+            419.29180908203125,
+            339.7837219238281,
+            484.6117858886719
+          ],
+          "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+          "caption_sha256": "5836305dd49ce0a463e55d23a2c2543859304597f5807c3c4c3619fb54307f2c",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "shared_symbol_key": "weee/crossed-bin-bar"
+        }
+      ],
+      "fr": [
+        {
+          "asset_ref": "assets/symbol-1.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            26,
+            27,
+            28
+          ],
+          "glyph_bbox": [
+            38.73920760043832,
+            358.28530851833483,
+            59.89075647398483,
+            378.6168805666619
+          ],
+          "caption_bbox": [
+            74.06430358886719,
+            357.9926025390625,
+            165.81609802246095,
+            379.31260375976564
+          ],
+          "row_bbox": [
+            37.73920822143555,
+            356.99261474609375,
+            166.81610107421875,
+            380.3125915527344
+          ],
+          "caption_text": "Mlise en garde! Le non-respect des messages d’avertissement peut entraîner des blessures.",
+          "caption_sha256": "7c029f9e5085cfadfc20015946114bd60f85caf721d286ac2d803e4f65ee0cd3",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "shared_symbol_key": "warning/outline-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol-2.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            65,
+            66,
+            67,
+            68,
+            69
+          ],
+          "glyph_bbox": [
+            34.25888828643629,
+            379.45465655880975,
+            63.56785485258388,
+            401.99932662800035
+          ],
+          "caption_bbox": [
+            74.06430358886719,
+            387.88539428710936,
+            146.7755554199219,
+            395.2053955078125
+          ],
+          "row_bbox": [
+            33.258888244628906,
+            378.45465087890625,
+            147.7755584716797,
+            402.99932861328125
+          ],
+          "caption_text": "Lire le manuel de l’opérateur",
+          "caption_sha256": "f1a5b3f61155daedae0a315e588f2f89b697939e5f82ebcbd167844a0bf40bda",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+          "shared_symbol_key": "read-manual/person-reading-circle"
+        },
+        {
+          "asset_ref": "assets/symbol-3.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            33,
+            34,
+            35
+          ],
+          "glyph_bbox": [
+            38.95260238647461,
+            405.7270202636719,
+            59.098602294921875,
+            425.86102294921875
+          ],
+          "caption_bbox": [
+            74.06430358886719,
+            411.1477844238281,
+            146.9720886230469,
+            418.46778564453126
+          ],
+          "row_bbox": [
+            37.95260238647461,
+            404.7270202636719,
+            147.9720916748047,
+            426.86102294921875
+          ],
+          "caption_text": "Ne démontez pas le produit.",
+          "caption_sha256": "2e43902912b92962e0b0ff53436cd59bb2db38e55dbce548c9b82537b4755bcf",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-4.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "glyph_bbox": [
+            35.91949487564057,
+            429.4492617973129,
+            62.0753752970511,
+            453.59422096141697
+          ],
+          "caption_bbox": [
+            74.06430358886719,
+            435.748583984375,
+            171.92454223632814,
+            443.06858520507814
+          ],
+          "row_bbox": [
+            34.91949462890625,
+            428.4492492675781,
+            172.92454528808594,
+            454.5942077636719
+          ],
+          "caption_text": "Ne pas fumer ni utiliser de ﬂamme nue",
+          "caption_sha256": "50298bdad3e40e6a6ed244f044093a3718ac67f8209857d85463ed8cac258aca",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+          "shared_symbol_key": "no-open-flame/crossed-flame"
+        },
+        {
+          "asset_ref": "assets/symbol-5.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64
+          ],
+          "glyph_bbox": [
+            36.56430175380852,
+            454.5121363865158,
+            62.11098375687118,
+            472.4904457036025
+          ],
+          "caption_bbox": [
+            74.06329650878907,
+            459.79332275390624,
+            151.85369567871095,
+            467.1133239746094
+          ],
+          "row_bbox": [
+            35.564300537109375,
+            453.51214599609375,
+            152.85369873046875,
+            473.4904479980469
+          ],
+          "caption_text": "Les enfants ne sont pas admis",
+          "caption_sha256": "ddd5cd4c28d9cbefc782ec1cccb80bf59fcdffee3295c5a6f155e594ed8fa562",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+          "shared_symbol_key": "keep-away-from-children/adult-child-panel"
+        },
+        {
+          "asset_ref": "assets/symbol-6.svg",
+          "physical_page": 20,
+          "drawing_indices": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "glyph_bbox": [
+            197.03390190326797,
+            366.72680126424734,
+            214.0157044199742,
+            385.6841484427839
+          ],
+          "caption_bbox": [
+            228.06329650878905,
+            361.29490966796874,
+            332.899853515625,
+            389.6149108886719
+          ],
+          "row_bbox": [
+            196.03390502929688,
+            360.294921875,
+            333.89984130859375,
+            390.6148986816406
+          ],
+          "caption_text": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+          "caption_sha256": "f6c1e6f65fd14107646a544cff682722541837811eceb3e67901611fc850c033",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-7.png",
+          "physical_page": 20,
+          "drawing_indices": [
+            45,
+            46,
+            47
+          ],
+          "glyph_bbox": [
+            196.7339583366148,
+            420.09053984142486,
+            214.6549808133033,
+            446.12893967401413
+          ],
+          "caption_bbox": [
+            228.06329650878905,
+            399.7669250488281,
+            337.08472900390626,
+            470.08692626953126
+          ],
+          "row_bbox": [
+            195.7339630126953,
+            398.7669372558594,
+            338.084716796875,
+            471.0869140625
+          ],
+          "caption_text": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+          "caption_sha256": "ac8b59ba821bf9feb2d0b1b64fad30f3afd034e811d7f7960079f8deac2baf8b",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "shared_symbol_key": "weee/crossed-bin-bar"
+        }
+      ],
+      "es": [
+        {
+          "asset_ref": "assets/symbol-1.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            11,
+            12,
+            13
+          ],
+          "glyph_bbox": [
+            38.435107563817226,
+            334.1708981179442,
+            59.586656437363736,
+            354.5024701662713
+          ],
+          "caption_bbox": [
+            73.76050109863282,
+            333.87831420898436,
+            167.9925048828125,
+            355.1983154296875
+          ],
+          "row_bbox": [
+            37.43510818481445,
+            332.8783264160156,
+            168.9925079345703,
+            356.19830322265625
+          ],
+          "caption_text": "Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+          "caption_sha256": "ffd8af98c67ad666413e02fb4e114669f4d9d90d10f5e372332ce5e7524030cd",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "shared_symbol_key": "warning/outline-triangle-tinted"
+        },
+        {
+          "asset_ref": "assets/symbol-2.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "glyph_bbox": [
+            33.95489124664137,
+            355.34027667599725,
+            63.263857812788956,
+            377.88494674518785
+          ],
+          "caption_bbox": [
+            73.76050109863282,
+            363.77110595703124,
+            145.1736572265625,
+            371.0911071777344
+          ],
+          "row_bbox": [
+            32.954891204833984,
+            354.34027099609375,
+            146.1736602783203,
+            378.88494873046875
+          ],
+          "caption_text": "Lea el manual del operador",
+          "caption_sha256": "802ef1dc7b33fbaf94cb2da9cd2ba6d7893d4a4a027454d7eb8094e636652b9a",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+          "shared_symbol_key": "read-manual/person-reading-circle"
+        },
+        {
+          "asset_ref": "assets/symbol-3.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            18,
+            19,
+            20
+          ],
+          "glyph_bbox": [
+            38.64860153198242,
+            381.61260986328125,
+            58.79460144042969,
+            401.7466125488281
+          ],
+          "caption_bbox": [
+            73.76050109863282,
+            387.0335266113281,
+            137.41651611328126,
+            394.35352783203126
+          ],
+          "row_bbox": [
+            37.64860153198242,
+            380.61260986328125,
+            138.41651916503906,
+            402.7466125488281
+          ],
+          "caption_text": "No desarme el producto.",
+          "caption_sha256": "42704f7f70f9efebf80072132828ca6f7347d3d20bb558d9e01e4db194b8de09",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-4.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          "glyph_bbox": [
+            35.61539483901947,
+            405.33502037730227,
+            61.77127526043001,
+            429.478921445318
+          ],
+          "caption_bbox": [
+            73.76050109863282,
+            411.63429565429686,
+            160.72373657226564,
+            418.954296875
+          ],
+          "row_bbox": [
+            34.615394592285156,
+            404.33502197265625,
+            161.72373962402344,
+            430.4789123535156
+          ],
+          "caption_text": "No fumar ni hacer llamas abiertas",
+          "caption_sha256": "1af250859677ab9133468476b07240b430edddfca21b9c12a8bda108ed307d25",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+          "shared_symbol_key": "no-open-flame/crossed-flame"
+        },
+        {
+          "asset_ref": "assets/symbol-5.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49
+          ],
+          "glyph_bbox": [
+            36.26020171718743,
+            430.3977259861252,
+            61.806883720250084,
+            448.3760353032119
+          ],
+          "caption_bbox": [
+            73.76050109863282,
+            435.6801025390625,
+            127.59299926757812,
+            443.00010375976564
+          ],
+          "row_bbox": [
+            35.26020050048828,
+            429.3977355957031,
+            128.59300231933594,
+            449.37603759765625
+          ],
+          "caption_text": "No se permiten niños",
+          "caption_sha256": "ededd155efb9a3e52df8ff29de65dddd416519ee982ebbe4bd1ba96dd149d3cb",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+          "shared_symbol_key": "keep-away-from-children/adult-child-panel"
+        },
+        {
+          "asset_ref": "assets/symbol-6.svg",
+          "physical_page": 36,
+          "drawing_indices": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "glyph_bbox": [
+            196.72980443371148,
+            342.61235885201955,
+            213.71170862781196,
+            361.5697395366523
+          ],
+          "caption_bbox": [
+            227.7605010986328,
+            337.1817199707031,
+            325.26282958984376,
+            365.50172119140626
+          ],
+          "row_bbox": [
+            195.72979736328125,
+            336.1817321777344,
+            326.2628173828125,
+            366.501708984375
+          ],
+          "caption_text": "Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.",
+          "caption_sha256": "d4ee9c1350542035efd98cddf63c7d53cc0077076f0ac703ff40433a583c22d2",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+          "shared_symbol_key": "li-ion/recycle-li-ion-native-dark"
+        },
+        {
+          "asset_ref": "assets/symbol-7.png",
+          "physical_page": 36,
+          "drawing_indices": [
+            30,
+            31,
+            32
+          ],
+          "glyph_bbox": [
+            196.4299574821226,
+            395.9761221749442,
+            214.3509799588111,
+            422.01497541155135
+          ],
+          "caption_bbox": [
+            227.7605010986328,
+            375.65370483398436,
+            336.6145446777344,
+            445.9737060546875
+          ],
+          "row_bbox": [
+            195.42996215820312,
+            374.6537170410156,
+            337.6145324707031,
+            446.97369384765625
+          ],
+          "caption_text": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.",
+          "caption_sha256": "e23c95cccae275e1bb08e8b80b1ea5cddc0fdc69aca34e02e59e90ee4326bff9",
+          "caption_mode": "native-extractable-text",
+          "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+          "shared_symbol_key": "weee/crossed-bin-bar"
+        }
+      ]
+    }
+  },
+  "web_roots": {
+    "en": "web/en",
+    "fr": "web/fr",
+    "es": "web/es"
+  },
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "source_acceptance": {
+    "status": "desktop/mobile accepted",
+    "viewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "sequence": "English before French/Spanish",
+    "source_copy_policy": "Native locale wording; differences retained in source/native_exceptions.json"
+  }
+}
