@@ -13,7 +13,8 @@
       173.75804138183594,
       348.9937744140625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "fr",
@@ -29,7 +30,8 @@
       141.99261474609375,
       368.40338134765625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "fr",
@@ -45,7 +47,8 @@
       141.40347290039062,
       397.9433898925781
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "fr",
@@ -61,7 +64,8 @@
       147.64747619628906,
       426.96820068359375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "fr",
@@ -77,7 +81,8 @@
       147.51809692382812,
       455.7510681152344
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "fr",
@@ -93,7 +98,8 @@
       173.33241271972656,
       492.666259765625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "fr",
@@ -109,7 +115,8 @@
       335.9243469238281,
       493.203857421875
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "fr",
@@ -125,7 +132,8 @@
       337.7510986328125,
       423.68353271484375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "es",
@@ -141,7 +149,8 @@
       173.75804138183594,
       348.27801513671875
     ],
-    "known_reference_error": true
+    "known_reference_error": true,
+    "resolution": "source-error-preserved-correct-Spanish"
   },
   {
     "language": "es",
@@ -157,7 +166,8 @@
       140.80429077148438,
       367.6875915527344
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "es",
@@ -173,7 +183,8 @@
       132.15171813964844,
       397.22760009765625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "es",
@@ -189,7 +200,8 @@
       173.6757049560547,
       426.25238037109375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "es",
@@ -205,7 +217,8 @@
       123.55908203125,
       455.0351867675781
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "es",
@@ -221,7 +234,8 @@
       165.9980926513672,
       491.95037841796875
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "es",
@@ -237,7 +251,8 @@
       335.7569274902344,
       492.4880065917969
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "es",
@@ -253,7 +268,8 @@
       334.7142639160156,
       425.3396301269531
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -269,7 +285,8 @@
       171.2604217529297,
       351.33270263671875
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -285,7 +302,8 @@
       154.82666015625,
       377.7423095703125
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "de",
@@ -301,7 +319,8 @@
       120.57540130615234,
       400.2823181152344
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -317,7 +336,8 @@
       158.7024383544922,
       429.30712890625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -333,7 +353,8 @@
       170.96141052246094,
       458.08990478515625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "de",
@@ -349,7 +370,8 @@
       169.5759735107422,
       495.0050964355469
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -365,7 +387,8 @@
       336.59063720703125,
       496.7298583984375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "de",
@@ -381,7 +404,8 @@
       335.4752502441406,
       422.396728515625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "it",
@@ -397,7 +421,8 @@
       169.54229736328125,
       351.2008972167969
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "it",
@@ -413,7 +438,8 @@
       164.12095642089844,
       375.6112976074219
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "it",
@@ -429,7 +455,8 @@
       134.16038513183594,
       400.1505126953125
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "it",
@@ -445,7 +472,8 @@
       165.59933471679688,
       429.17529296875
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "it",
@@ -461,7 +489,8 @@
       176.0153350830078,
       457.9580993652344
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   },
   {
     "language": "it",
@@ -477,7 +506,8 @@
       176.33395385742188,
       494.873291015625
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "it",
@@ -493,7 +523,8 @@
       336.287109375,
       493.0364990234375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "approved-and-applied"
   },
   {
     "language": "it",
@@ -509,6 +540,7 @@
       338.0460510253906,
       420.50091552734375
     ],
-    "known_reference_error": false
+    "known_reference_error": false,
+    "resolution": "unchanged"
   }
 ]

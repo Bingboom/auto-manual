@@ -2132,6 +2132,8 @@ JE-1000E-SIL / US / en 使用用户提供的 AI 母版，走 Git-only 冻结源�
 
 Web symbol legends use warning triangles for WARNING/CAUTION; NOTE/TIP remain text-only badges, using the shared localized signal-word classification.
 
+原稿符号说明有串语等已知错误时，先确认保留／修正的文字，再由工程端登记绑定原 PDF 哈希、语言、页码和说明像素的批准勘误；候选包中的声明不能自行跳过检查。图形与共用符号仍需逐项匹配。印刷换行造成的断词合并为完整 Web 单词，正常词内连字符保留；修改后重新构建和封存各语言凭据。
+
 FCC binding is content-driven for every model and region: an exact FCC heading, `hb-source-fcc` declaration, or governed FCC source filename requires `HB-SPECIAL-FCC`. A Part 15 opening declares only a headingless orphan fragment; compact statements on mixed pages with other headings remain native source content. Whole-document source assembly rejects a missing or duplicate FCC claim; completed-IR rendering and legacy fragment rendering reject absent FCC output. The existing parser still requires the opening, localized column split, measures and modification copy. Unsupported or incomplete source structure fails with its source path; it never falls back to plain text. New targets need no model allowlist or per-model FCC configuration.
 
 LCD icon tables use the shared `HB-TABLE-LCD-ICON` four-column component. An authored `hb-lcd-icon-table` may opt into `hb-lcd-merge-number` and `hb-lcd-merge-description`: only adjacent identical number cells, or descriptions within the same number group, merge in Web output. Keep separate semantic source rows and real icon assets; do not substitute the three-column `hb-source-lcd-legend` when the source includes an icon column.

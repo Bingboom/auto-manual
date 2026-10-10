@@ -1,11 +1,11 @@
 {
-  "status": "proposed-contract-change-only",
-  "applied_to_committed_contract": false,
+  "status": "applied-to-trusted-source-profile",
+  "applied_to_committed_contract": true,
   "target": "JBP-2000B/EU/de",
   "page_id": "operation_de.rst",
   "location": "1/7",
   "old_node_sha256": "9d68203367b1223d8e33c139066ca6fe31adc54c9a13cd0a33619d6c245c7ae6",
   "revised_node_sha256": "1add917ee340ddf5ef80f5fc46baadd0106535a2d1c791985f8872b73d1c8231",
   "reason": "Existing callout table contains source-reviewed batch1465 copy corrections. No new debt category or new unbound table is admitted.",
-  "review_required": "This proposed trusted-profile fingerprint must be reviewed with the source candidate before being used for fresh sealing."
+  "review_required": "Engineering PR review remains; source-copy change was operator-confirmed."
 }

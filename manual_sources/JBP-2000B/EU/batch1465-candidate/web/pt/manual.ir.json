@@ -22,7 +22,7 @@
     "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
   ],
   "bundle_root": "web/pt",
-  "bundle_sha256": "17be11bedcb4217c0b56ec09930ac689a6ca7eebb17bc844b4553be0e7097ebc",
+  "bundle_sha256": "fcaf18c6b949c2d29e50284a37029aef2079c31335769c5347e4a1d03b9f735a",
   "content_sha256": "62ae6a52b68c02001e8d599fc3facbee4821f9dd43770dc24371333f1e5e14ff",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -93,7 +93,7 @@
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
-      "candidate_only": true
+      "candidate_only": false
     },
     "block_count": 75,
     "component_registry": {
@@ -1523,7 +1523,7 @@
         ],
         "model": "JBP-2000B",
         "region": "EU",
-        "technical_version": "batch1465-candidate"
+        "technical_version": "batch1465-reviewed"
       }
     },
     "frozen_stylesheet_sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b",
@@ -3856,24 +3856,22 @@
       "troubleshooting_en.rst": "troubleshooting_en",
       "warranty_en.rst": "warranty_en"
     },
-    "pending_release_admission": [
-      "source-bound symbol coverage for all languages",
-      "trusted component profile enrollment for revised source",
-      "fresh admission and language evidence sealing"
-    ],
+    "pending_release_admission": [],
     "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "revision_source_binding": {
       "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
       "baseline_source_ref": "c0c82cc5b038fccb7d15322f82253d35cf429bd8",
+      "caption_errata_contract_sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b",
+      "component_admission_contract_sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738",
       "original_source": {
         "filename": "JBP-2000B_修正版_竖版.pdf",
         "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
       },
       "review_record": {
         "path": "source-review.json",
-        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+        "sha256": "703f9b62ceb7147007a237c04dcfe83a9b258843f66b445399fa4588e68f82da"
       },
       "reviewed_changes": [
         {
@@ -3928,21 +3926,22 @@
         }
       ],
       "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "symbol_corrections": [],
       "target": {
         "language": "pt",
         "model": "JBP-2000B",
         "region": "EU"
       },
-      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+      "unreviewed_scope": []
     },
     "skipped_raw": 0,
     "source_review_record": {
       "path": "source-review.json",
-      "scope": "45 batch1465 copy corrections only",
-      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "scope": "45 batch1465 changes plus included symbol-caption corrections, excluding reference errors",
+      "sha256": "703f9b62ceb7147007a237c04dcfe83a9b258843f66b445399fa4588e68f82da",
       "status": "approved"
     },
-    "source_review_status": "approved-batch1465-copy",
+    "source_review_status": "approved-batch1465-and-symbol-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {

@@ -1,420 +1,172 @@
 {
-  "status": "candidate_only_not_publishable",
+  "status": "fresh_admitted_not_deployed",
+  "original_batch_changes": 45,
+  "included_symbol_caption_changes": 20,
+  "printed_word_split_repairs": 2,
+  "symbol_admission_rows": 64,
+  "spanish_reference_error_excluded": true,
   "ir_validation": [
     {
-      "language": "en",
-      "changed_paragraphs": 0,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": true
-    },
-    {
       "language": "fr",
-      "changed_paragraphs": 7,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "changed_paragraphs": 12,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "es",
-      "changed_paragraphs": 6,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "changed_paragraphs": 11,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "de",
-      "changed_paragraphs": 5,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "changed_paragraphs": 10,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "it",
-      "changed_paragraphs": 6,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "changed_paragraphs": 11,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "uk",
       "changed_paragraphs": 10,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "pt",
       "changed_paragraphs": 5,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "nl",
-      "changed_paragraphs": 3,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "changed_paragraphs": 5,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     },
     {
       "language": "pl",
       "changed_paragraphs": 3,
-      "ir_validation": "PASS",
-      "asset_identity": "UNCHANGED",
-      "publishable": false
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
     }
   ],
-  "renderer": [
-    {
-      "language": "en",
-      "renderer": "PASS"
-    },
+  "browser_checks": [
     {
       "language": "fr",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "es",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "de",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "it",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "uk",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "pt",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "nl",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
     },
     {
       "language": "pl",
-      "renderer": "PASS"
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "fr",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "es",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "de",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "it",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "uk",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pt",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "nl",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pl",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
     }
-  ],
-  "sphinx": [
-    {
-      "language": "en",
-      "returncode": 0
-    },
-    {
-      "language": "fr",
-      "returncode": 0
-    },
-    {
-      "language": "es",
-      "returncode": 0
-    },
-    {
-      "language": "de",
-      "returncode": 0
-    },
-    {
-      "language": "it",
-      "returncode": 0
-    },
-    {
-      "language": "uk",
-      "returncode": 0
-    },
-    {
-      "language": "pt",
-      "returncode": 0
-    },
-    {
-      "language": "nl",
-      "returncode": 0
-    },
-    {
-      "language": "pl",
-      "returncode": 0
-    }
-  ],
-  "pdf_match": [
-    {
-      "language": "it",
-      "frame": 771,
-      "page": 43,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "it",
-      "frame": 772,
-      "page": 43,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "it",
-      "frame": 773,
-      "page": 42,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "it",
-      "frame": 826,
-      "page": 45,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "it",
-      "frame": 828,
-      "page": 45,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "it",
-      "frame": 832,
-      "page": 43,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 908,
-      "page": 51,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 908,
-      "page": 51,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 909,
-      "page": 51,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 910,
-      "page": 50,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 963,
-      "page": 53,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 965,
-      "page": 53,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 969,
-      "page": 51,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1065,
-      "page": 27,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1066,
-      "page": 26,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1066,
-      "page": 26,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1154,
-      "page": 29,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1156,
-      "page": 29,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "es",
-      "frame": 1160,
-      "page": 27,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "de",
-      "frame": 1217,
-      "page": 35,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "de",
-      "frame": 1218,
-      "page": 34,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "de",
-      "frame": 1272,
-      "page": 37,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "de",
-      "frame": 1274,
-      "page": 37,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "de",
-      "frame": 1278,
-      "page": 35,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1407,
-      "page": 19,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1409,
-      "page": 19,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1410,
-      "page": 18,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1410,
-      "page": 18,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1505,
-      "page": 21,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1508,
-      "page": 21,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "fr",
-      "frame": 1515,
-      "page": 19,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pt",
-      "frame": 452,
-      "page": 59,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pt",
-      "frame": 417,
-      "page": 61,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pt",
-      "frame": 414,
-      "page": 61,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "nl",
-      "frame": 284,
-      "page": 67,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "nl",
-      "frame": 249,
-      "page": 69,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "nl",
-      "frame": 246,
-      "page": 69,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pl",
-      "frame": 116,
-      "page": 75,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pl",
-      "frame": 81,
-      "page": 77,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pl",
-      "frame": 78,
-      "page": 77,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pt",
-      "frame": 378,
-      "page": 58,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "pt",
-      "frame": 378,
-      "page": 58,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 877,
-      "page": 55,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": 880,
-      "page": 55,
-      "exact_pdf_match": true
-    },
-    {
-      "language": "uk",
-      "frame": "compatibility",
-      "page": 3,
-      "exact_pdf_match": true
-    }
-  ],
-  "unique_asset_sha256_checks": {
-    "passed": 51,
-    "total": 51
-  }
+  ]
 }

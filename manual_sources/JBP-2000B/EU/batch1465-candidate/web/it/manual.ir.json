@@ -1,11 +1,11 @@
 {
   "asset_refs": [
-    "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
-    "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
-    "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
-    "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
-    "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
-    "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+    "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+    "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+    "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+    "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+    "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+    "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
     "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
     "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
     "assets/ir/97378797f84abf92d40fdf97bdf655b8f6eab326f908700e99424c02f5d57306/jbp2000b_in_box_main_unit.png",
@@ -22,32 +22,32 @@
     "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png"
   ],
   "bundle_root": "web/it",
-  "bundle_sha256": "1ad9616ee5821791cb2c4de7e6e1c6a088911f10b1760c7db03ea99b6156a995",
-  "content_sha256": "33bdb2e6fa65b986170f1f83788ad51b719842b2a3c665a586d481c3008e430e",
+  "bundle_sha256": "88e81f2352871d3bf105e80ed6591c7ebe1e7b611289026f944f37d4af0dcafc",
+  "content_sha256": "04cdbc9b9723cee3000367a87ca96c317ca97893a48b0ce80b88c41618235c5c",
   "language": "it",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
     "asset_sha256": {
       "assets/ir/0857c9708d7e635f93233585d21cd2c41fd11e46983f7dab94bfe52b468d0fe3/jbp2000b_eu_connection_locking_it.png": "0857c9708d7e635f93233585d21cd2c41fd11e46983f7dab94bfe52b468d0fe3",
+      "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/ir/2f6216b28c08a64de215bcbae3c62e2c90219a0aa93d53ed77ee365fd21b11fc/jbp2000b_expansion_cable.png": "2f6216b28c08a64de215bcbae3c62e2c90219a0aa93d53ed77ee365fd21b11fc",
+      "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
       "assets/ir/4d5f74e927261d7c174b45b5c0eb039d0e7c11ff4ab4c932e5719d2138415975/jbp2000b_lcd_control.png": "4d5f74e927261d7c174b45b5c0eb039d0e7c11ff4ab4c932e5719d2138415975",
-      "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
       "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/ir/6ac9bc60991ebd6da65bcea1f62a1f82a737d8f38031144396d857f35ccbd8fc/jbp2000b_left_side_ports.png": "6ac9bc60991ebd6da65bcea1f62a1f82a737d8f38031144396d857f35ccbd8fc",
-      "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
       "assets/ir/87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a/manual_icon1.png": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
       "assets/ir/8951b52e1a2fd330c8e7b996a7b0b91442b5dce1e68c7d8139dddf2672b61a7e/jbp2000b_eu_stack_clearance.png": "8951b52e1a2fd330c8e7b996a7b0b91442b5dce1e68c7d8139dddf2672b61a7e",
       "assets/ir/97378797f84abf92d40fdf97bdf655b8f6eab326f908700e99424c02f5d57306/jbp2000b_in_box_main_unit.png": "97378797f84abf92d40fdf97bdf655b8f6eab326f908700e99424c02f5d57306",
+      "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
       "assets/ir/ad4a3f6c7140f14222b620191aed30bf8fcc230c8e16a10d86d9f4c7ef27353b/jbp2000b_lcd_screen.png": "ad4a3f6c7140f14222b620191aed30bf8fcc230c8e16a10d86d9f4c7ef27353b",
+      "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
       "assets/ir/c405e6a1fdd35bb593429ee85568e843e02ced8e8a43d672ef1cb8034774cce3/jbp2000b_front_controls.png": "c405e6a1fdd35bb593429ee85568e843e02ced8e8a43d672ef1cb8034774cce3",
       "assets/ir/c8332fadce5987fef4ecd43938fb3a61bda2211b588bd20fd7c52a18768b1799/jbp2000b_power_control.png": "c8332fadce5987fef4ecd43938fb3a61bda2211b588bd20fd7c52a18768b1799",
       "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
-      "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
       "assets/ir/e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f/jbp2000b_eu_ac_charging.png": "e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f",
-      "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
-      "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
-      "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
-      "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8"
+      "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef"
     },
     "baseline_source_provenance": {
       "bundle_root": "/private/tmp/jbp2000b-release-validation/it/docs/_build/JBP-2000B/EU/it/rst",
@@ -56,7 +56,7 @@
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
-      "candidate_only": true
+      "candidate_only": false
     },
     "block_count": 75,
     "component_registry": {
@@ -1266,6 +1266,23 @@
     "declared_languages": [
       "it"
     ],
+    "frozen_source_manifest": {
+      "original_source": {
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      },
+      "schema_version": "auto-manual-frozen-web-source/v1",
+      "source_sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
+      "target": {
+        "languages": [
+          "it"
+        ],
+        "model": "JBP-2000B",
+        "region": "EU",
+        "technical_version": "batch1465-reviewed"
+      }
+    },
+    "frozen_stylesheet_sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db",
     "illustration_provenance": null,
     "manual_theme": {
       "component_roles": {
@@ -1845,6 +1862,7 @@
       "theme_id": "hb-manual-default"
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+    "markdown_filename": "manual_jbp2000b_eu_it.md",
     "page_count": 15,
     "page_declarations": {
       "lcd_display_it.rst": "lcd_icons",
@@ -1867,24 +1885,22 @@
       "troubleshooting_it.rst": "troubleshooting_it",
       "warranty_it.rst": "warranty_it"
     },
-    "pending_release_admission": [
-      "source-bound symbol coverage for all languages",
-      "trusted component profile enrollment for revised source",
-      "fresh admission and language evidence sealing"
-    ],
+    "pending_release_admission": [],
     "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "revision_source_binding": {
       "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
       "baseline_source_ref": "e267ff15b3d20b0309ce9ad88e589882683c34e8",
+      "caption_errata_contract_sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b",
+      "component_admission_contract_sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738",
       "original_source": {
         "filename": "JBP-2000B_修正版_竖版.pdf",
         "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
       },
       "review_record": {
         "path": "source-review.json",
-        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+        "sha256": "703f9b62ceb7147007a237c04dcfe83a9b258843f66b445399fa4588e68f82da"
       },
       "reviewed_changes": [
         {
@@ -1949,21 +1965,63 @@
         }
       ],
       "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "symbol_corrections": [
+        {
+          "current": "Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi.",
+          "language": "it",
+          "new": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi.",
+          "physical_page": 40,
+          "reason": "Operator included the additional symbol-caption differences; printed line breaks folded.",
+          "row": 1
+        },
+        {
+          "current": "Prima dell'utilizzo, leggere il manuale d'istruzioni.",
+          "language": "it",
+          "new": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+          "physical_page": 40,
+          "reason": "Operator included the additional symbol-caption differences; printed line breaks folded.",
+          "row": 2
+        },
+        {
+          "current": "Non fumare né utilizzare fiamme libere.",
+          "language": "it",
+          "new": "Tenere il prodotto lontano da fiamme.",
+          "physical_page": 40,
+          "reason": "Operator included the additional symbol-caption differences; printed line breaks folded.",
+          "row": 4
+        },
+        {
+          "current": "Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente.",
+          "language": "it",
+          "new": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+          "physical_page": 40,
+          "reason": "Operator included the additional symbol-caption differences; printed line breaks folded.",
+          "row": 6
+        },
+        {
+          "current": "Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore.",
+          "language": "it",
+          "new": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+          "physical_page": 40,
+          "reason": "Operator included the additional symbol-caption differences; printed line breaks folded.",
+          "row": 7
+        }
+      ],
       "target": {
         "language": "it",
         "model": "JBP-2000B",
         "region": "EU"
       },
-      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+      "unreviewed_scope": []
     },
     "skipped_raw": 0,
     "source_review_record": {
       "path": "source-review.json",
-      "scope": "45 batch1465 copy corrections only",
-      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "scope": "45 batch1465 changes plus included symbol-caption corrections, excluding reference errors",
+      "sha256": "703f9b62ceb7147007a237c04dcfe83a9b258843f66b445399fa4588e68f82da",
       "status": "approved"
     },
-    "source_review_status": "approved-batch1465-copy",
+    "source_review_status": "approved-batch1465-and-symbol-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {
@@ -3375,17 +3433,17 @@
         },
         {
           "asset_refs": [
-            "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
-            "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
-            "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
-            "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
-            "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
-            "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+            "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+            "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+            "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+            "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+            "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+            "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
             "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
             "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
           ],
           "block_id": "symbol_meaning_it.rst:block-0004",
-          "content_sha256": "9570fa0ea9c66c1223e325542bd579d0d2fd10e0fe0a52c0a6013952c6b4c108",
+          "content_sha256": "bc06ea404147374224edbd1a13467febab27bdf452c5a75df42bbc02e2111a24",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -3589,7 +3647,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png"
+                                "source": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
                               },
                               {
                                 "kind": "text",
@@ -3609,7 +3667,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi."
+                                    "text": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3634,7 +3692,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png"
+                                "source": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
                               },
                               {
                                 "kind": "text",
@@ -3688,7 +3746,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png"
+                                "source": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
                               },
                               {
                                 "kind": "text",
@@ -3708,7 +3766,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Prima dell'utilizzo, leggere il manuale d'istruzioni."
+                                    "text": "Prima dell’utilizzo, leggere il manuale d’istruzioni."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3733,7 +3791,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png"
+                                "source": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
                               },
                               {
                                 "kind": "text",
@@ -3753,7 +3811,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente."
+                                    "text": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3787,7 +3845,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png"
+                                "source": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
                               },
                               {
                                 "kind": "text",
@@ -3852,7 +3910,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore."
+                                    "text": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3886,7 +3944,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png"
+                                "source": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
                               },
                               {
                                 "kind": "text",
@@ -3906,7 +3964,7 @@
                                 "children": [
                                   {
                                     "kind": "text",
-                                    "text": "Non fumare né utilizzare fiamme libere."
+                                    "text": "Tenere il prodotto lontano da fiamme."
                                   }
                                 ],
                                 "kind": "paragraph"
@@ -3994,32 +4052,32 @@
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+                  "asset_ref": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+                  "asset_ref": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+                  "asset_ref": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+                  "asset_ref": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+                  "asset_ref": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+                  "asset_ref": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
                   "locale_policy": "shared",
                   "role": "icons"
                 },
@@ -4071,52 +4129,52 @@
                     [
                       {
                         "asset_index": 0,
-                        "icon_alt": "warning_triangle",
-                        "meaning_html": "<p>Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi.</p>",
-                        "meaning_text": "Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi."
+                        "icon_alt": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi.",
+                        "meaning_html": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi.",
+                        "meaning_text": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi."
                       },
                       {
                         "asset_index": 1,
-                        "icon_alt": "read_manual",
-                        "meaning_html": "<p>Prima dell'utilizzo, leggere il manuale d'istruzioni.</p>",
-                        "meaning_text": "Prima dell'utilizzo, leggere il manuale d'istruzioni."
+                        "icon_alt": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+                        "meaning_html": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+                        "meaning_text": "Prima dell’utilizzo, leggere il manuale d’istruzioni."
                       },
                       {
                         "asset_index": 2,
-                        "icon_alt": "do_not_dismantle",
-                        "meaning_html": "<p>Non smontare il prodotto.</p>",
+                        "icon_alt": "Non smontare il prodotto.",
+                        "meaning_html": "Non smontare il prodotto.",
                         "meaning_text": "Non smontare il prodotto."
                       },
                       {
                         "asset_index": 3,
-                        "icon_alt": "no_open_flame",
-                        "meaning_html": "<p>Non fumare né utilizzare fiamme libere.</p>",
-                        "meaning_text": "Non fumare né utilizzare fiamme libere."
+                        "icon_alt": "Tenere il prodotto lontano da fiamme.",
+                        "meaning_html": "Tenere il prodotto lontano da fiamme.",
+                        "meaning_text": "Tenere il prodotto lontano da fiamme."
                       }
                     ],
                     [
                       {
                         "asset_index": 4,
-                        "icon_alt": "keep_away_from_children",
-                        "meaning_html": "<p>Tenere lontano dalla portata dei bambini.</p>",
+                        "icon_alt": "Tenere lontano dalla portata dei bambini.",
+                        "meaning_html": "Tenere lontano dalla portata dei bambini.",
                         "meaning_text": "Tenere lontano dalla portata dei bambini."
                       },
                       {
                         "asset_index": 5,
-                        "icon_alt": "li_ion",
-                        "meaning_html": "<p>Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente.</p>",
-                        "meaning_text": "Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente."
+                        "icon_alt": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+                        "meaning_html": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+                        "meaning_text": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente."
                       },
                       {
                         "asset_index": 6,
-                        "icon_alt": "weee",
-                        "meaning_html": "<p>Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore.</p>",
-                        "meaning_text": "Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore."
+                        "icon_alt": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+                        "meaning_html": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+                        "meaning_text": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore."
                       },
                       {
                         "asset_index": 7,
-                        "icon_alt": "weee2",
-                        "meaning_html": "<p>Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.</p>",
+                        "icon_alt": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+                        "meaning_html": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l&#x27;ambiente e previene potenziali danni alla salute umana e all&#x27;ambiente.",
                         "meaning_text": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente."
                       }
                     ]

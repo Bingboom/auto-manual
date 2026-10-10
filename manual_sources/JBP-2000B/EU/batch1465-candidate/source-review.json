@@ -12,8 +12,17 @@
   "authorization": "确认 候选值不就是来源这个pdf吗",
   "authorization_context": "User confirmed the 45 candidate changes derived from the revised PDF, then asked to continue technical binding and evidence sealing.",
   "exclusions": [
-    "Additional old symbol-caption differences are not approved by this record.",
+    "Spanish PDF warning caption incorrectly uses French; preserve reviewed Spanish.",
     "Merge and online publication are not authorized."
   ],
-  "review_basis_head": "4c3760ef40f23ea3acdc8a44fa96c9c2fb9ea100"
+  "review_basis_head": "4c3760ef40f23ea3acdc8a44fa96c9c2fb9ea100",
+  "additional_symbol_review": {
+    "authorization": "纳入",
+    "scope": "Include the additional 21 literal symbol-caption differences, excluding the Spanish PDF warning caption erroneously using French.",
+    "applied_caption_changes": 20,
+    "printed_word_split_repairs": 2,
+    "changes_file": "symbol-corrections.json",
+    "changes_sha256": "2807eaf881d69f0443787d8a36b78527e1d2582c7e3d2cfbe07a4fda18c0bc32",
+    "preserved_spanish_erratum": "JBP2000B-1465-ES-SYMBOL-WARNING"
+  }
 }
