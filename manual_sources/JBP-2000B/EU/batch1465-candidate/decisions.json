@@ -1,0 +1,1269 @@
+[
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 771,
+    "paragraph": 0,
+    "current": "La visualizzazione dell'icona di collegamento sullo schermo LCD (la power station portatile) indica che il collegamento tra il pacco batteria e la power station portatile è stato effettuato correttamente.",
+    "new": "La visualizzazione dell’icona            sullo schermo LCD (power station portatile) indica che il collegamento tra il pacco batteria e la power station portatile è stato effettuato correttamente.",
+    "original_old": "La visualizzazione dell'icona           sullo schermo LCD (Jackery Explorer 2000 Plus) indica che il collegamento tra il pacco batteria e Jackery Explorer 2000 Plus è stato effettuato correttamente.",
+    "score": 0.951,
+    "status": "preserve_web_connection_icon",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 771,
+    "paragraph": 1,
+    "current": "Durante l'uso del prodotto, non impilare più di tre pacchi batterie in una torre per evitare che cadano e provochino lesioni.",
+    "new": "Durante l'uso del prodotto, non impilare più di tre pacchi batterie in una torre per evitare che cadano e provochino lesioni.",
+    "original_old": "Durante l'uso del prodotto, non impilare più di tre pacchi batterie in una torre per evitare che cadano e provochino lesioni.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 771,
+    "paragraph": 2,
+    "current": "Si prega di non impilare il prodotto sulla parte superiore della power station portatile.",
+    "new": "Non impilare il prodotto sulla power station portatile.",
+    "original_old": "Si prega di non impilare il prodotto sulla parte superiore di Jackery Explorer 2000 Plus.",
+    "score": 0.775,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 772,
+    "paragraph": 0,
+    "current": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile al Jackery Battery Pack 2000.",
+    "new": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile a Jackery Battery Pack 2000.",
+    "original_old": "Assicurarsi che tutti i prodotti siano spenti prima di collegare Jackery Explorer 2000 Plus al Jackery Battery Pack 2000.",
+    "score": 0.996,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 772,
+    "paragraph": 1,
+    "current": "Per garantire il corretto funzionamento del prodotto, assicurarsi che le griglie di aspirazione e scarico dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le griglie di ventilazione e qualsiasi oggetto per consentire un'adeguata dissipazione del calore.",
+    "new": "Per garantire il corretto funzionamento del prodotto, assicurarsi che le griglie di aspirazione e scarico dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le griglie di ventilazione e qualsiasi oggetto per consentire un'adeguata dissipazione del calore.",
+    "original_old": "Per garantire il corretto funzionamento del prodotto, assicurarsi che le griglie di aspirazione e scarico dell'aria su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le griglie di ventilazione e qualsiasi oggetto per consentire un'adeguata dissipazione del calore.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 42,
+    "frame": 773,
+    "paragraph": 0,
+    "current": "Quando viene utilizzato con la power station portatile, Jackery Battery Pack 2000 può essere acceso o spento tramite il pulsante Power principale della power station portatile.",
+    "new": "Quando si utilizza la power station portatile, è possibile controllare l’accensione o lo spegnimento di Jackery Battery Pack 2000 tramite il pulsante POWER principale della power station portatile.",
+    "original_old": "Quando viene utilizzato con Jackery Explorer 2000 Plus, Jackery Battery Pack 2000 può essere acceso o spento tramite il pulsante Power principale di Jackery Explorer 2000 Plus.",
+    "score": 0.79,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 42,
+    "frame": 773,
+    "paragraph": 1,
+    "current": "Se non c'è un'uscita di scarica o un ingresso di carica, il prodotto si spegnerà automaticamente dopo 2 ore.",
+    "new": "Se non c’è un ucita di scarica o un ingresso di carica, il prodotto si spegnerà automaticamente dopo 2 ore.",
+    "original_old": "Se non c’è un ucita di scarica o un ingresso di carica, il prodotto si spegnerà automaticamente dopo 2 ore.",
+    "score": 0.986,
+    "status": "preserve_correct_web_spelling",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 45,
+    "frame": 803,
+    "paragraph": 0,
+    "current": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile al Jackery Battery Pack 2000.",
+    "new": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile a Jackery Battery Pack 2000.",
+    "original_old": "Prima di collegare il Jackery Explorer 2000 Plus a Jackery Battery Pack 2000, assicurarsi che tutti i prodotti siano spenti.",
+    "score": 0.996,
+    "status": "duplicate_web_paragraph",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 45,
+    "frame": 826,
+    "paragraph": 0,
+    "current": "Quando si carica dalla parete, questo prodotto deve essere utilizzato con la power station portatile.",
+    "new": "Per caricare il pacco batteria da una presa a muro CA, collegarlo alla power station portatile.",
+    "original_old": "Quando si carica dalla parete, questo prodotto deve essere utilizzato con Jackery Explorer 2000 Plus.",
+    "score": 0.832,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 45,
+    "frame": 828,
+    "paragraph": 0,
+    "current": "Caricare il prodotto con i pannelli solari e la power station portatile come mostrato nella figura sottostante. Per ulteriori informazioni, consultare il manuale utente della power station portatile.",
+    "new": "Caricare il pacco batteria utilizzando i pannelli solari e la power station portatile, come mostrato nella figura sottostante. Per ulteriori informazioni, consultare il manuale utente della power station portatile.",
+    "original_old": "Caricare il prodotto con i pannelli solari e il Jackery Explorer 2000 Plus come mostrato nella figura sottostante. Per ulteriori informazioni, consultare il manuale utente di Jackery Explorer 2000 Plus.",
+    "score": 0.925,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "it",
+    "pdf_page": 43,
+    "frame": 832,
+    "paragraph": 0,
+    "current": "La power station portatile può essere utilizzato insieme a un massimo di 5 set di questo prodotto per soddisfare esigenze di maggiore capacità.",
+    "new": "È possibile utilizzare fino a cinque pacchi batteria con la power station portatile per aumentare la capacità disponibile.",
+    "original_old": "Jackery Explorer 2000 Plus può essere utilizzato insieme a un massimo di 5 set di questo prodotto per soddisfare esigenze di maggiore capacità.",
+    "score": 0.881,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 0,
+    "current": " на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.",
+    "new": "Відображення піктограми           на РК-дисплеї (портативна електростанція) означає успішне підключення між акумуляторним блоком і портативною електростанцією.",
+    "original_old": "Відображення піктограми           на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.",
+    "score": 0.912,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/2/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/2/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 1,
+    "current": "Будь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.",
+    "new": "Не встановлюйте продукт на портативну електростанцію.",
+    "original_old": "Будь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 2,
+    "current": "Розміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.",
+    "new": "Розміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.",
+    "original_old": "Розміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 3,
+    "current": "Якщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню.",
+    "new": "Якщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню.",
+    "original_old": "Якщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 909,
+    "paragraph": 0,
+    "current": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+    "new": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати портативну електростанцію до Jackery Battery Pack 2000.",
+    "original_old": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 909,
+    "paragraph": 1,
+    "current": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+    "new": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+    "original_old": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 50,
+    "frame": 910,
+    "paragraph": 0,
+    "current": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.",
+    "new": "Під час використання з портативною електростанцією ви можете вмикати або вимикати Jackery Battery Pack 2000 за допомогою основної кнопки POWER портативної електростанції.",
+    "original_old": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 50,
+    "frame": 910,
+    "paragraph": 1,
+    "current": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+    "new": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+    "original_old": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 53,
+    "frame": 940,
+    "paragraph": 0,
+    "current": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+    "new": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати портативну електростанцію до Jackery Battery Pack 2000.",
+    "original_old": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+    "score": 1.0,
+    "status": "duplicate_web_paragraph",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 53,
+    "frame": 963,
+    "paragraph": 0,
+    "current": "Під час заряджання від мережі цей продукт слід використовувати разом із Jackery Explorer 2000 Plus.",
+    "new": "Щоб зарядити акумуляторний блок від розетки змінного струму, підключіть його до портативної електростанції.",
+    "original_old": "Під час заряджання від мережі цей продукт слід використовувати разом із Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 53,
+    "frame": 965,
+    "paragraph": 0,
+    "current": "Заряджайте свій продукт за допомогою сонячних панелей і Jackery Explorer 2000 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 2000 Plus для отримання додаткової інформації.",
+    "new": "Заряджайте акумуляторний блок за допомогою сонячних панелей і портативної електростанції, як показано на рисунку нижче. Для отримання додаткової інформації зверніться до посібника користувача портативної електростанції.",
+    "original_old": "Заряджайте свій продукт за допомогою сонячних панелей і Jackery Explorer 2000 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 2000 Plus для отримання додаткової інформації.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 51,
+    "frame": 969,
+    "paragraph": 0,
+    "current": "До 5 комплектів цих продуктів можна використовувати разом із Jackery Explorer 2000 Plus для задоволення підвищених потреб у ємності.",
+    "new": "З портативною електростанцією можна використовувати до п’яти акумуляторних блоків, щоб збільшити доступну ємність.",
+    "original_old": "До 5 комплектів цих продуктів можна використовувати разом із Jackery Explorer 2000 Plus для задоволення підвищених потреб у ємності.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1064,
+    "paragraph": 0,
+    "current": "La aparición del icono de conexión en la pantalla LCD (la estación de energía portátil) indica que la conexión entre la batería y la estación de energía portátil se ha realizado correctamente.",
+    "new": "La aparición del icono            en la pantalla LCD (la estación de energía portátil) indica que la conexión entre la batería y la estación de energía portátil se ha realizado correctamente.",
+    "original_old": "La aparición del icono            en la pantalla LCD (Jackery Explorer 2000 Plus ) indica que la conexión entre la batería y el Jackery Explorer 2000 Plus se ha realizado correctamente.",
+    "score": 0.968,
+    "status": "preserve_web_connection_icon",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1064,
+    "paragraph": 1,
+    "current": "No coloque el producto encima de la estación de energía portátil.",
+    "new": "No coloque el producto encima de la estación de energía portátil.",
+    "original_old": "No coloque el producto encima del Jackery Explorer 2000 Plus .",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1064,
+    "paragraph": 2,
+    "current": "Coloque las baterías adicionales sobre una superficie plana, estable y con suficiente capacidad de carga. El número máximo predeterminado de baterías adicionales apiladas es de 3.",
+    "new": "Coloque las baterías adicionales sobre una superficie plana, estable y con suficiente capacidad de carga. El número máximo predeterminado de baterías adicionales apiladas es de 3.",
+    "original_old": "Coloque las baterías adicionales sobre una superficie plana, estable y con suficiente capacidad de carga. El número máximo predeterminado de baterías adicionales apiladas es de 3.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1064,
+    "paragraph": 3,
+    "current": "Si se requieren 4 o más baterías adicionales, deben colocarse en una zona estable, apoyadas contra una pared y alejadas de impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.",
+    "new": "Si se requieren 4 o más baterías adicionales, deben colocarse en una zona estable, apoyadas contra una pared y alejadas de impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.",
+    "original_old": "Si se requieren 4 o más baterías adicionales, deben colocarse en una zona estable, apoyadas contra una pared y alejadas de impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1065,
+    "paragraph": 0,
+    "current": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al paquete de Jackery Battery Pack 2000.",
+    "new": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al Jackery Battery Pack 2000.",
+    "original_old": "Asegúrese de que todos los productos estén apagados antes de conectar el Jackery Explorer 2000 Plus al paquete de Jackery Battery Pack 2000.",
+    "score": 0.96,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1065,
+    "paragraph": 1,
+    "current": "Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.",
+    "new": "Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.",
+    "original_old": "Para asegurar el funcionamiento adecuado del producto, asegúrese de que las rejillas de entrada y salida de aire en ambos lados estén despejadas. Deje al menos 0,66 pies (200 mm) de espacio entre las rejillas y cualquier objeto para permitir una disipación de calor adecuada.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 26,
+    "frame": 1066,
+    "paragraph": 0,
+    "current": "Cuando se utiliza con la estación de energía portátil, el estado de encendido del Battery Pack 2000 puede controlarse mediante el botón POWER principal de la estación de energía portátil.",
+    "new": "Cuando se utiliza con la estación de energía portátil, puede controlar el encendido o apagado del Jackery Battery Pack 2000 mediante el botón POWER principal de la estación de energía portátil.",
+    "original_old": "Cuando se usa con el Jackery Explorer 2000 Plus, se puede controlar el encendido o apagado del Jackery Battery Pack 2000 a través del \"Botón de Encendido Principal\" del Jackery Explorer 2000 Plus.",
+    "score": 0.842,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 26,
+    "frame": 1066,
+    "paragraph": 1,
+    "current": "El producto se apaga automáticamente cuando no se está cargando y no hay ninguna carga conectada durante 2 horas.",
+    "new": "El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.",
+    "original_old": "El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.",
+    "score": 0.686,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 29,
+    "frame": 1112,
+    "paragraph": 0,
+    "current": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al paquete de Jackery Battery Pack 2000.",
+    "new": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al Jackery Battery Pack 2000.",
+    "original_old": "Asegúrese de que todos los productos estén apagados antes de conectar el Jackery Explorer 2000 Plus al paquete de Battery Pack 2000. ",
+    "score": 0.96,
+    "status": "duplicate_web_paragraph",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 29,
+    "frame": 1154,
+    "paragraph": 0,
+    "current": "Cuando se carga desde la red, este producto debe utilizarse con la estación de energía portátil.",
+    "new": "Para cargar la batería desde una toma de corriente de pared de CA, conéctela a la estación de energía portátil.",
+    "original_old": "Cuando se carga desde la red, este producto debe utilizarse con Jackery Explorer 2000 Plus.",
+    "score": 0.791,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 29,
+    "frame": 1156,
+    "paragraph": 0,
+    "current": "Cargue su producto con paneles solares y la estación de energía portátil como se muestra en la siguiente figura. Consulte el manual de usuario de la estación de energía portátil para obtener más información.",
+    "new": "Cargue la batería utilizando paneles solares y la estación de energía portátil, como se muestra en la siguiente figura. Para obtener más información, consulte el manual de usuario de la estación de energía portátil.",
+    "original_old": "Cargue su producto con paneles solares y el Jackery Explorer 2000 Plus como se muestra en la siguiente figura.",
+    "score": 0.511,
+    "status": "manual_mapping_required",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "es",
+    "pdf_page": 27,
+    "frame": 1160,
+    "paragraph": 0,
+    "current": "Se pueden usar hasta 5 juegos de estos productos junto con la estación de energía portátil para cubrir las necesidades de mayor capacidad.",
+    "new": "Se pueden utilizar hasta cinco baterías adicionales con la estación de energía portátil para aumentar la capacidad disponible.",
+    "original_old": "Se pueden usar hasta 5 juegos de estos productos junto con el Jackery Explorer 2000 Plus para cubrir las necesidades de mayor capacidad.",
+    "score": 0.854,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1216,
+    "paragraph": 0,
+    "current": "Die Anzeige des Verbindungssymbols auf dem LCD-Bildschirm (tragbare Powerstation) zeigt eine erfolgreiche Verbindung zwischen dem Batteriepack und der tragbaren Powerstation an.",
+    "new": "Die Anzeige des             Symbols auf dem LCD-Bildschirm (tragbare Powerstation) zeigt eine erfolgreiche Verbindung zwischen dem Batteriepack und der tragbaren Powerstation an.",
+    "original_old": "Die Anzeige des             Symbols auf dem LCD-Bildschirm (Jackery Explorer 2000 Plus) zeigt eine erfolgreiche Verbindung zwischen dem Batteriepack und dem Jackery Explorer 2000 Plus an.",
+    "score": 0.962,
+    "status": "preserve_web_connection_icon",
+    "ir_pointer": "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1216,
+    "paragraph": 1,
+    "current": "Stapeln Sie bei der Verwendung des Geräts nicht mehr als drei Batteriepacks übereinander, um ein Umkippen und mögliche Verletzungen zu vermeiden. Stapeln Sie das Gerät nicht auf der tragbaren Powerstation.",
+    "new": "Stapeln Sie das Gerät nicht auf der tragbaren Powerstation.",
+    "original_old": "Stapeln Sie bei der Verwendung des Geräts nicht mehr als drei Batteriepacks übereinander, um ein Umkippen und mögliche Verletzungen zu vermeiden. Stapeln Sie das Gerät nicht auf dem Jackery Explorer 2000 Plus.",
+    "score": 0.879,
+    "status": "preserve_web_three_pack_stacking",
+    "ir_pointer": "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1216,
+    "paragraph": 2,
+    "current": "Stellen Sie die Batteriepacks auf eine ebene, stabile Oberfläche mit ausreichender Tragfähigkeit. Standardmäßig dürfen maximal 3 Batteriepacks gestapelt werden.",
+    "new": "Stellen Sie die Batteriepacks auf eine ebene, stabile Oberfläche mit ausreichender Tragfähigkeit. Standardmäßig dürfen maximal 3 Batteriepacks gestapelt werden.",
+    "original_old": "Stellen Sie die Batteriepacks auf eine ebene, stabile Oberfläche mit ausreichender Tragfähigkeit. Standardmäßig dürfen maximal 3 Batteriepacks gestapelt werden.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1216,
+    "paragraph": 3,
+    "current": "Wenn 4 oder mehr Batteriepacks erforderlich sind, müssen diese an einem stabilen Standort an einer Wand und vor äußeren Einwirkungen geschützt platziert werden. Zudem müssen die erforderlichen Maßnahmen zur Kippsicherung getroffen werden.",
+    "new": "Wenn 4 oder mehr Batteriepacks erforderlich sind, müssen diese an einem stabilen Standort an einer Wand und vor äußeren Einwirkungen geschützt platziert werden. Zudem müssen die erforderlichen Maßnahmen zur Kippsicherung getroffen werden.",
+    "original_old": "Wenn 4 oder mehr Batteriepacks erforderlich sind, müssen diese an einem stabilen Standort an einer Wand und vor äußeren Einwirkungen geschützt platziert werden. Zudem müssen die erforderlichen Maßnahmen zur Kippsicherung getroffen werden.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/7/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/children/3/children/1/children/2/children/0/children/7/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1217,
+    "paragraph": 0,
+    "current": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation an das Jackery Battery Pack 2000 anschließen.",
+    "new": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation mit dem Jackery Battery Pack 2000 verbinden.",
+    "original_old": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie den Jackery Explorer 2000 Plus an das Jackery Battery Pack 2000 anschließen.",
+    "score": 0.916,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1217,
+    "paragraph": 1,
+    "current": "Stellen Sie für einen ordnungsgemäßen Betrieb sicher, dass die Lufteinlass- und Abluftöffnungen auf beiden Seiten nicht blockiert sind. Halten Sie zwischen den Lüftungsöffnungen und anderen Gegenständen einen Abstand von mindestens 200 mm ein, um eine ausreichende Wärmeableitung zu gewährleisten.",
+    "new": "Stellen Sie für einen ordnungsgemäßen Betrieb sicher, dass die Lufteinlass- und Abluftöffnungen auf beiden Seiten nicht blockiert sind. Halten Sie zwischen den Lüftungsöffnungen und anderen Gegenständen einen Abstand von mindestens 200 mm ein, um eine ausreichende Wärmeableitung zu gewährleisten.",
+    "original_old": "Stellen Sie für einen ordnungsgemäßen Betrieb sicher, dass die Lufteinlass- und Abluftöffnungen auf beiden Seiten nicht blockiert sind. Halten Sie zwischen den Lüftungsöffnungen und anderen Gegenständen einen Abstand von mindestens 200 mm ein, um eine ausreichende Wärmeableitung zu gewährleisten.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 34,
+    "frame": 1218,
+    "paragraph": 0,
+    "current": "Wenn Sie es mit der tragbaren Powerstation verwenden, können Sie die Stromversorgung des Jackery Battery Pack 2000 über den Hauptschalter der tragbaren Powerstation steuern.",
+    "new": "Bei Verwendung mit der tragbaren Powerstation können Sie den Jackery Battery Pack 2000 über die Haupt-POWER-Taste der tragbaren Powerstation ein- oder ausschalten.",
+    "original_old": "Wenn Sie es mit dem Jackery Explorer 2000 Plus verwenden, können Sie die Stromversorgung des Jackery Battery Pack 2000 über den \"Hauptschalter\" des Jackery Explorer 2000 Plus steuern.",
+    "score": 0.758,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/children/3/children/1/children/2/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/children/3/children/1/children/2/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 34,
+    "frame": 1218,
+    "paragraph": 1,
+    "current": "Wenn keine Entladung oder Ladung erfolgt, wird das Produkt nach 2 Stunden automatisch heruntergefahren.",
+    "new": "Wenn keine Entladung oder Ladung erfolgt, wird das Produkt nach 2 Stunden automatisch heruntergefahren.",
+    "original_old": "Wenn keine Entladung oder Ladung erfolgt, wird das Produkt nach 2 Stunden automatisch heruntergefahren.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/children/3/children/1/children/2/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/children/3/children/1/children/2/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 37,
+    "frame": 1248,
+    "paragraph": 0,
+    "current": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation an das Jackery Battery Pack 2000 anschließen.",
+    "new": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation mit dem Jackery Battery Pack 2000 verbinden.",
+    "original_old": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie den Jackery Explorer 2000 Plus an das Jackery Battery Pack 2000 anschließen.",
+    "score": 0.916,
+    "status": "duplicate_web_paragraph",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 37,
+    "frame": 1272,
+    "paragraph": 0,
+    "current": "Beim Aufladen über das Hauptstromnetz muss dieses Gerät mit der tragbaren Powerstation verwendet werden.",
+    "new": "Um das Batteriepack über eine AC-Wandsteckdose aufzuladen, verbinden Sie es mit der tragbaren Powerstation.",
+    "original_old": "Beim Aufladen über das Hauptstromnetz muss dieses Gerät mit dem Jackery Explorer 2000 Plus verwendet werden.",
+    "score": 0.802,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 37,
+    "frame": 1274,
+    "paragraph": 0,
+    "current": "Laden Sie das Gerät wie in der unten dargestellten Abbildung mit Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+    "new": "Laden Sie das Batteriepack wie in der folgenden Abbildung dargestellt mithilfe von Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+    "original_old": "Laden Sie das Gerät wie in der unten dargestellten Abbildung mit Solarmodulen und dem Jackery Explorer 2000 Plus auf. Weitere Informationen finden Sie im Benutzerhandbuch des Jackery Explorer 2000 Plus.",
+    "score": 0.867,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "de",
+    "pdf_page": 35,
+    "frame": 1278,
+    "paragraph": 0,
+    "current": "Die tragbare Powerstation kann mit bis zu 5 Sätzen dieses Produkts gleichzeitig verwendet werden, um größere Kapazitätsanforderungen zu erfüllen.",
+    "new": "Bis zu fünf Batteriepacks können zusammen mit der tragbaren Powerstation verwendet werden, um die verfügbare Kapazität zu erhöhen.",
+    "original_old": "Der Jackery Explorer 2000 Plus kann mit bis zu 5 Sätzen dieses Produkts gleichzeitig verwendet werden, um größere Kapazitätsanforderungen zu erfüllen.",
+    "score": 0.847,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1407,
+    "paragraph": 0,
+    "current": "L'apparition de l'icône de connexion sur l'écran LCD (la station d'énergie portable) signifie que la connexion entre l'unité de batterie et la station d'énergie portable est réussie.",
+    "new": "L’apparition de l’icône  sur l’écran LCD (la station d’énergie portable) indique que la connexion entre la batterie d’extension et la station d’énergie portable a réussi.",
+    "original_old": "L’apparition de l’icône sur l’écran LCD (Jackery Explorer 2000 Plus) signifie que la connexion entre l’unité de batterie et le Jackery Explorer 2000 Plus est réussie.",
+    "score": 0.866,
+    "status": "preserve_web_connection_icon",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1407,
+    "paragraph": 1,
+    "current": "Veuillez ne pas empiler le dispositif sur la station d'énergie portable.",
+    "new": "Ne placez pas le produit sur la station d’énergie portable.",
+    "original_old": "Veuillez ne pas empiler le dispositif sur le Jackery Explorer 2000 Plus.",
+    "score": 0.779,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1407,
+    "paragraph": 2,
+    "current": "Placez les batteries d'extension sur une surface plane, stable et suffisamment résistante. Le nombre maximal de batteries d'extension empilées est de 3 par défaut.",
+    "new": "Placez les batteries d’extension sur une surface plane, stable et suffisamment résistante. Le nombre maximal de batteries d’extension empilées est de 3 par défaut.",
+    "original_old": "Placez les batteries d’extension sur une surface plane, stable et suffisamment résistante. Le nombre maximal de batteries d’extension empilées est de 3 par défaut.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1407,
+    "paragraph": 3,
+    "current": "Si 4 batteries d'extension ou plus sont nécessaires, elles doivent être placées dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.",
+    "new": "Si 4 batteries d’extension ou plus sont nécessaires, elles doivent être placées dans une zone stable, contre un mur et à l’abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.",
+    "original_old": "Si 4 batteries d’extension ou plus sont nécessaires, elles doivent être placées dans une zone stable, contre un mur et à l’abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1409,
+    "paragraph": 0,
+    "current": "Assurez-vous que tous les produits sont éteints avant de connecter la station d'énergie portable au(x) Jackery Battery Pack 2000.",
+    "new": "Assurez-vous que tous les produits sont éteints avant de connecter la station d’énergie portable au Jackery Battery Pack 2000.",
+    "original_old": "Assurez-vous que tous les produits sont éteints avant de connecter le Jackery Explorer 2000 Plus au(x) Jackery Battery Pack 2000.",
+    "score": 0.988,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1409,
+    "paragraph": 1,
+    "current": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.",
+    "new": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.",
+    "original_old": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 18,
+    "frame": 1410,
+    "paragraph": 0,
+    "current": "Lorsque le Battery Pack 2000 est utilisé avec la station d'énergie portable, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal de la station d'énergie portable.",
+    "new": "Lors de l’utilisation avec la station d’énergie portable, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 2000 à l’aide du bouton d’alimentation principal de la station d’énergie portable.",
+    "original_old": "Lorsque vous utilisez le Jackery Explorer 2000 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 2000 via le bouton d’alimentation principal du Jackery Explorer 2000 Plus.",
+    "score": 0.618,
+    "status": "manual_mapping_required",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 18,
+    "frame": 1410,
+    "paragraph": 1,
+    "current": "Le produit s'éteint automatiquement lorsqu'il n'est pas en charge et qu'aucune charge n'est connectée pendant 2 heures.",
+    "new": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+    "original_old": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+    "score": 0.867,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1411,
+    "paragraph": 0,
+    "current": "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.",
+    "new": "The display of the            icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.",
+    "original_old": "The display of the            icon on the LCD screen (Jackery Explorer 2000 Plus ) signifies a successful connection between the battery pack and the Jackery Explorer 2000 Plus.",
+    "score": 0.967,
+    "status": "preserve_web_connection_icon",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1411,
+    "paragraph": 1,
+    "current": "Please do not stack the product on the top of the portable power station.",
+    "new": "Please do not stack the product on the top of the portable power station.",
+    "original_old": "Please do not stack the product on the top of the Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1411,
+    "paragraph": 2,
+    "current": "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.",
+    "new": "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.",
+    "original_old": "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/5/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1411,
+    "paragraph": 3,
+    "current": "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.",
+    "new": "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.",
+    "original_old": "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/6/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/7/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1412,
+    "paragraph": 0,
+    "current": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+    "new": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+    "original_old": "Ensure all products are powered off before connecting the Explorer 2000 Plus to the Jackery Battery Pack 2000.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1412,
+    "paragraph": 1,
+    "current": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.",
+    "new": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.",
+    "original_old": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/3/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 10,
+    "frame": 1413,
+    "paragraph": 0,
+    "current": "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.",
+    "new": "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.",
+    "original_old": "When using with Jackery Explorer 2000 Plus, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 10,
+    "frame": 1413,
+    "paragraph": 1,
+    "current": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+    "new": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+    "original_old": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+    "score": 1.0,
+    "status": "unchanged_context",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 21,
+    "frame": 1505,
+    "paragraph": 0,
+    "current": "En cas de charge murale, ce dispositif doit être utilisé avec la station d'énergie portable.",
+    "new": "Pour charger la batterie d’extension depuis une prise murale CA, connectez-la à la station d’énergie portable.",
+    "original_old": "En cas de charge murale, ce dispositif doit être utilisé avec le Jackery Explorer 2000 Plus.",
+    "score": 0.761,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 21,
+    "frame": 1508,
+    "paragraph": 0,
+    "current": "Lorsque le Battery Pack 2000 est utilisé avec la station d'énergie portable, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal de la station d'énergie portable.",
+    "new": "Chargez la batterie d’extension à l’aide de panneaux solaires et de la station d’énergie portable, comme illustré ci-dessous. Pour plus d’informations, consultez le manuel d’utilisation de la station d’énergie portable.",
+    "original_old": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery Explorer 2000 Plus, comme indiqué dans la figure ci-dessous. Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery Explorer 2000 Plus.",
+    "score": 0.55,
+    "status": "manual_mapping_required",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/7/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 21,
+    "frame": 1509,
+    "paragraph": 0,
+    "current": "Assurez-vous que tous les produits sont éteints avant de connecter la station d'énergie portable au(x) Jackery Battery Pack 2000.",
+    "new": "Assurez-vous que tous les produits sont éteints avant de connecter la station d’énergie portable au Jackery Battery Pack 2000.",
+    "original_old": "Assurez-vous que tous les produits sont éteints avant de connecter le Explorer 2000 Plus au(x) Battery Pack 2000.",
+    "score": 0.988,
+    "status": "duplicate_web_paragraph",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 13,
+    "frame": 1511,
+    "paragraph": 0,
+    "current": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+    "new": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+    "original_old": "Ensure all products are powered off before connecting the Jackery Explorer 2000 Plus to the Jackery Battery Pack 2000.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/5/payload/carrier_flow/0/children/0/children/0/children/1/children/0/children/1/children/0/children/0/text",
+      "/pages/10/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "fr",
+    "pdf_page": 19,
+    "frame": 1515,
+    "paragraph": 0,
+    "current": "Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec la station d'énergie portable.",
+    "new": "Jusqu’à cinq batteries d’extension peuvent être utilisées avec la station d’énergie portable afin d’augmenter la capacité disponible.",
+    "original_old": "Pour répondre à des besoins de capacité accrue, jusqu’à 5 dispositifs peuvent être utilisés avec le Jackery Explorer 2000 Plus.",
+    "score": 0.827,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 13,
+    "frame": 1544,
+    "paragraph": 0,
+    "current": "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.",
+    "new": "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.",
+    "original_old": "Charge your product with solar panels and Jackery Explorer 2000 Plus as shown in the figure below. Please refer to the Jackery Explorer 2000 Plus user manual for more information.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 13,
+    "frame": 1547,
+    "paragraph": 0,
+    "current": "To charge the battery pack from an AC wall outlet, connect it to the portable power station.",
+    "new": "To charge the battery pack from an AC wall outlet, connect it to the portable power station.",
+    "original_old": "When charging from the wall, this product must be used with Jackery Explorer 2000 Plus.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "en",
+    "pdf_page": 11,
+    "frame": 1589,
+    "paragraph": 0,
+    "current": "Up to five battery packs can be used with the portable power station to provide additional capacity.",
+    "new": "Up to five battery packs can be used with the portable power station to provide additional capacity.",
+    "original_old": "Up to 5 sets of these products can be used along with Jackery Explorer 2000 Plus to meet the increased capacity needs.",
+    "score": 1.0,
+    "status": "already_fixed",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "pt",
+    "pdf_page": 59,
+    "frame": 452,
+    "paragraph": 0,
+    "current": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+    "new": "Podem ser utilizadas até cinco baterias externas com a estação de energia portátil para aumentar a capacidade disponível.",
+    "original_old": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "pt",
+    "pdf_page": 61,
+    "frame": 417,
+    "paragraph": 0,
+    "current": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+    "new": "Para carregar a bateria externa através de uma tomada de parede CA, ligue-a à estação de energia portátil.",
+    "original_old": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "pt",
+    "pdf_page": 61,
+    "frame": 414,
+    "paragraph": 0,
+    "current": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+    "new": "Carregue a bateria externa utilizando painéis solares e a estação de energia portátil, conforme ilustrado na figura abaixo. Para mais informações, consulte o manual de utilização da estação de energia portátil.",
+    "original_old": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "nl",
+    "pdf_page": 67,
+    "frame": 284,
+    "paragraph": 0,
+    "current": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met het draagbare energiestation, om aan de toegenomen capaciteitsbehoefte te voldoen.",
+    "new": "Er kunnen maximaal vijf batterijpakketten met het draagbare energiestation worden gebruikt om extra capaciteit te bieden.",
+    "original_old": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met het draagbare energiestation, om aan de toegenomen capaciteitsbehoefte te voldoen.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "nl",
+    "pdf_page": 69,
+    "frame": 249,
+    "paragraph": 0,
+    "current": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met het draagbare energiestation.",
+    "new": "Sluit het batterijpakket aan op het draagbare energiestation om het via een stopcontact op wisselstroom op te laden.",
+    "original_old": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met het draagbare energiestation.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "nl",
+    "pdf_page": 69,
+    "frame": 246,
+    "paragraph": 0,
+    "current": "Laad uw product op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de onderstaande afbeelding. Raadpleeg de gebruikershandleiding van het draagbare energiestation voor meer informatie.",
+    "new": "Laad het batterijpakket op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de onderstaande afbeelding. Raadpleeg voor meer informatie de gebruikershandleiding van het draagbare energiestation.",
+    "original_old": "Laad uw product op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de onderstaande afbeelding. Raadpleeg de gebruikershandleiding van het draagbare energiestation voor meer informatie.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "pl",
+    "pdf_page": 75,
+    "frame": 116,
+    "paragraph": 0,
+    "current": "Przy większym zapotrzebowaniu na pojemność energetyczną z przenośną stacją zasilania można używać 5 zestawów tych produktów.",
+    "new": "Z przenośną stacją zasilania można używać do pięciu pakietów akumulatorów, aby zwiększyć dostępną pojemność.",
+    "original_old": "Przy większym zapotrzebowaniu na pojemność energetyczną z przenośną stacją zasilania można używać 5 zestawów tych produktów.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/8/blocks/1/payload/children/0/text",
+    "matching_pointers": [
+      "/pages/8/blocks/1/payload/children/0/text"
+    ]
+  },
+  {
+    "language": "pl",
+    "pdf_page": 77,
+    "frame": 81,
+    "paragraph": 0,
+    "current": "Podczas ładowania z gniazdka ściennego ten produkt musi być używany razem z przenośną stacją zasilania.",
+    "new": "Aby naładować pakiet akumulatorów z gniazdka sieciowego AC, podłącz go do przenośnej stacji zasilania.",
+    "original_old": "Podczas ładowania z gniazdka ściennego ten produkt musi być używany razem z przenośną stacją zasilania.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/1/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/1/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "pl",
+    "pdf_page": 77,
+    "frame": 78,
+    "paragraph": 0,
+    "current": "Produkt można naładować z paneli słonecznych i przenośnej stacji zasilania, jak pokazano na poniższym rysunku. Więcej informacji można znaleźć w instrukcji obsługi przenośnej stacji zasilania.",
+    "new": "Ładuj pakiet akumulatorów za pomocą paneli słonecznych i przenośnej stacji zasilania, jak pokazano na poniższym rysunku. Więcej informacji można znaleźć w instrukcji obsługi przenośnej stacji zasilania.",
+    "original_old": "Produkt można naładować z paneli słonecznych i przenośnej stacji zasilania, jak pokazano na poniższym rysunku. Więcej informacji można znaleźć w instrukcji obsługi przenośnej stacji zasilania.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/10/blocks/3/payload/children/3/children/0/text",
+    "matching_pointers": [
+      "/pages/10/blocks/3/payload/children/3/children/0/text"
+    ]
+  },
+  {
+    "language": "pt",
+    "pdf_page": 58,
+    "frame": 378,
+    "paragraph": 0,
+    "current": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+    "new": "Quando utilizado com a estação de energia portátil, o Jackery Battery Pack 2000 pode ser ligado ou desligado através do botão POWER principal da estação de energia portátil.",
+    "original_old": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/0/children/0/text"
+    ]
+  },
+  {
+    "language": "pt",
+    "pdf_page": 58,
+    "frame": 378,
+    "paragraph": 1,
+    "current": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+    "new": "O produto desliga-se automaticamente se não for carregado ou se não houver nenhuma carga ligada durante 2 horas.",
+    "original_old": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text",
+    "matching_pointers": [
+      "/pages/7/blocks/1/payload/children/5/carrier_flow/0/children/0/children/0/children/1/children/2/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 55,
+    "frame": 877,
+    "paragraph": 0,
+    "current": "Umtausch",
+    "new": "Обмін",
+    "original_old": "Umtausch",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/13/blocks/7/payload/children/1/children/0/text",
+    "matching_pointers": [
+      "/pages/13/blocks/7/payload/children/1/children/0/text"
+    ]
+  },
+  {
+    "language": "uk",
+    "pdf_page": 55,
+    "frame": 880,
+    "paragraph": 0,
+    "current": "Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.",
+    "new": "Jackery замінить (за рахунок Jackery) будь-який продукт Jackery, який не працює протягом відповідного гарантійного періоду через дефект матеріалів або виготовлення. Заміна отримує залишок гарантійного терміну оригінального продукту.",
+    "original_old": "Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.",
+    "score": 1.0,
+    "status": "candidate",
+    "ir_pointer": "/pages/13/blocks/7/payload/children/3/carrier_flow/0/children/0/text",
+    "matching_pointers": [
+      "/pages/13/blocks/7/payload/children/3/carrier_flow/0/children/0/text",
+      "/pages/13/blocks/7/payload/children/3/component_spec/slots/2/content/0/text"
+    ]
+  }
+]
