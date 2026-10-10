@@ -2616,6 +2616,8 @@ For source-bound illustration labels, `img.hb-source-reference` with `data-refer
 
 Figure coverage checks resolve source-declared reference artwork hashes from the frozen page ComponentSpec before falling back to a global profile entry. Missing, duplicate or invalid declared evidence still fails; the measured hash must match the packaged artwork.
 
+Frozen symbol-caption admission folds printed line-end word splits while retaining inline hyphens. A known wrong-language source caption requires an operator-approved entry in `docs/renderers/contracts/symbol_caption_errata.json`, bound to the source PDF SHA-256, target/language, physical page, caption pixel SHA-256, actual source text and reviewed caption. Candidate manifests cannot approve their own errata. The gate still verifies the original caption pixels, source glyph and unchanged shared-symbol bytes; duplicate, changed or unmatched bindings fail. Rebuild and reseal each affected language after source-copy or symbol changes.
+
 ### FridgeGuard US native FR/ES local candidate
 
 French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.

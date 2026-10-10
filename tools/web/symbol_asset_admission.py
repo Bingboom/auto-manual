@@ -6,6 +6,7 @@ actual ComponentSpecs; metadata cannot opt a symbol component out of admission.
 from __future__ import annotations
 
 import hashlib
+import json
 from io import BytesIO
 from pathlib import Path
 import re
@@ -15,7 +16,7 @@ from PIL import Image, ImageChops, ImageStat
 
 from tools.manual_ir import read_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
-from tools.utils.path_utils import PathSegments
+from tools.utils.path_utils import PathSegments, get_paths
 from tools.web.language_release_evidence import _safe_relative, _sha256
 from tools.asset_pipeline.native_svg import native_symbol_svg
 from tools.web.shared_symbol_assets import require_shared_symbol_binding, require_usable_symbol_file
@@ -79,10 +80,46 @@ def compare_symbol(candidate: bytes, suffix: str, reference: bytes) -> dict:
 
 
 def _text(value: str) -> str:
+    # Printed line-end word breaks are layout, not Web copy. Inline hyphens
+    # remain significant, and all other caption words must still match.
+    value = re.sub(r'(?<=\w)-[ \t]*\r?\n[ \t]*(?=\w)', '', value)
     return re.sub(r'\s+', '', value).casefold()
 
 
-def _reference(page, row: dict, meaning: str) -> bytes:
+def _caption_errata(source_sha: str, model: str, region: str, language: str) -> list[dict]:
+    path = get_paths().renderer_contracts_dir / 'symbol_caption_errata.json'
+    if not path.is_file():
+        return []
+    ledger = json.loads(path.read_text(encoding='utf-8'))
+    if ledger.get('schema_version') != 'auto-manual-symbol-caption-errata/v1':
+        raise ValueError('unsupported trusted symbol caption errata')
+    return [row for row in ledger['entries']
+            if (row['source_sha256'], row['model'], row['region'], row['language'])
+            == (source_sha, model, region, language)]
+
+
+def _erratum_source_caption(erratum: dict | None, row: dict, meaning: str) -> str:
+    if erratum is None:
+        return meaning
+    if (erratum.get('status') != 'operator-approved'
+            or not erratum.get('operator_decision')
+            or erratum['physical_page'] != row['physical_page']
+            or erratum['caption_sha256'] != row['caption_sha256']
+            or _text(erratum['reviewed_caption']) != _text(meaning)):
+        raise ValueError('symbol caption erratum differs from reviewed source binding')
+    return erratum['source_caption']
+
+
+def _matching_erratum(errata: list[dict], row: dict) -> dict | None:
+    matches = [entry for entry in errata
+               if (entry['physical_page'], entry['caption_sha256'])
+               == (row['physical_page'], row['caption_sha256'])]
+    if len(matches) > 1:
+        raise ValueError('duplicate trusted symbol caption erratum')
+    return matches[0] if matches else None
+
+
+def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> bytes:
     glyph, caption, band = (fitz.Rect(row[key]) for key in
                             ('glyph_bbox', 'caption_bbox', 'row_bbox'))
     if (band.is_empty or not page.rect.contains(band) or not band.contains(glyph)
@@ -93,10 +130,13 @@ def _reference(page, row: dict, meaning: str) -> bytes:
     source_text = page.get_text('text', clip=caption)
     if _text(row['caption_text']) != _text(meaning):
         raise ValueError('symbol meaning differs from bound source caption')
+    expected_source = _erratum_source_caption(erratum, row, meaning)
     if source_text.strip():
-        if _text(source_text) != _text(meaning):
+        if _text(source_text) != _text(expected_source):
             raise ValueError('symbol meaning differs from source PDF row text')
     else:
+        if erratum is not None:
+            raise ValueError('symbol caption erratum requires actual source PDF row text')
         # Outlined captions have no extractable text. Bind the reviewed
         # transcription to actual source pixels; never pretend a hash is OCR.
         if not any(caption.contains(d['rect']) for d in page.get_drawings()):
@@ -137,6 +177,7 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
             raise ValueError('symbol admission must cover every actual component row in order')
         source = manifest['original_source']
         pdf = _file(source_root, source['filename'], source['sha256'])
+        errata = _caption_errata(source['sha256'], ir.model, ir.region, language)
         report = []
         with fitz.open(pdf) as doc:
             for row, (ref, meaning) in zip(rows, expected, strict=True):
@@ -146,9 +187,14 @@ def require_symbol_asset_admission(markdown_dir: Path, source_root: Path,
                 page_number = row['physical_page']
                 if not isinstance(page_number, int) or not 1 <= page_number <= len(doc):
                     raise ValueError('symbol physical page outside authoritative PDF')
-                reference = _reference(doc[page_number - 1], row, meaning)
-                report.append({'asset_ref': ref, 'physical_page': page_number,
-                               **compare_symbol(candidate.read_bytes(), candidate.suffix, reference)})
+                erratum = _matching_erratum(errata, row)
+                reference = _reference(doc[page_number - 1], row, meaning,
+                                       erratum)
+                result = {'asset_ref': ref, 'physical_page': page_number,
+                          **compare_symbol(candidate.read_bytes(), candidate.suffix, reference)}
+                if erratum:
+                    result['caption_erratum'] = erratum['id']
+                report.append(result)
         return report
     except (ValueError, KeyError, TypeError, OSError, StopIteration) as exc:
         raise RuntimeError('symbol asset admission failed: ' + str(exc)) from exc

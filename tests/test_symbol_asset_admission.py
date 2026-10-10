@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 
 from tools.asset_pipeline.native_svg import native_symbol_svg
 from tools.manual_ir import ManualSource, SourcePage, V2_SCHEMA_VERSION, build_manual_ir_from_source, write_manual_ir
-from tools.web.symbol_asset_admission import SCHEMA, _render, compare_symbol, require_symbol_asset_admission
+from tools.web.symbol_asset_admission import SCHEMA, _render, _text, compare_symbol, require_symbol_asset_admission
 
 PACKAGE = Path(__file__).resolve().parents[1] / 'data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692'
 
@@ -86,6 +86,60 @@ class SymbolAdmissionTests(unittest.TestCase):
 
     def check(self):
         return require_symbol_asset_admission(self.md, self.root, self.manifest, 'en')
+
+    def reviewed_caption(self):
+        from tools.manual_ir.hashing import value_sha256
+
+        meaning = 'Read the user manual.'
+        path = self.md / 'manual.ir.json'
+        raw = json.loads(path.read_text())
+        block = raw['pages'][0]['blocks'][0]
+        slots = block['payload']['component_spec']['slots']
+        item = next(s['content'] for s in slots if s['role'] == 'panels')[0][0]
+        item.update(meaning_text=meaning, meaning_html=meaning, icon_alt=meaning)
+        block['content_sha256'] = value_sha256({'kind': block['kind'], 'payload': block['payload']})
+        raw['content_sha256'] = value_sha256({
+            'page_ids': [p['page_id'] for p in raw['pages']],
+            'block_hashes': [block['content_sha256']],
+        })
+        path.write_text(json.dumps(raw))
+        self.rows[0]['caption_text'] = meaning
+        return {'id': 'reviewed-caption', 'physical_page': 1,
+                'caption_sha256': self.rows[0]['caption_sha256'],
+                'source_caption': 'Read the manual.', 'reviewed_caption': meaning,
+                'status': 'operator-approved', 'operator_decision': 'Use reviewed wording.'}
+
+    def test_candidate_cannot_approve_its_own_caption_erratum(self):
+        erratum = self.reviewed_caption()
+        self.manifest['symbol_caption_errata'] = [erratum]
+        with self.assertRaisesRegex(RuntimeError, 'source PDF row text'):
+            self.check()
+
+    def test_trusted_caption_erratum_keeps_real_source_and_glyph_checks(self):
+        erratum = self.reviewed_caption()
+        with patch('tools.web.symbol_asset_admission._caption_errata', return_value=[erratum]):
+            self.assertEqual(self.check()[0]['caption_erratum'], 'reviewed-caption')
+            self.replace((self.md / self.rows[1]['asset_ref']).read_bytes())
+            with self.assertRaisesRegex(RuntimeError, 'glyph/background differs'):
+                self.check()
+
+    def test_trusted_caption_erratum_rejects_changed_approval_or_source_text(self):
+        erratum = self.reviewed_caption()
+        for field, value, error in [
+            ('operator_decision', '', 'reviewed source binding'),
+            ('reviewed_caption', 'Ignore the manual.', 'reviewed source binding'),
+            ('caption_sha256', '0' * 64, 'source PDF row text'),
+            ('source_caption', 'Electric shock.', 'source PDF row text'),
+        ]:
+            with self.subTest(field=field), patch(
+                'tools.web.symbol_asset_admission._caption_errata',
+                return_value=[{**erratum, field: value}],
+            ), self.assertRaisesRegex(RuntimeError, error):
+                self.check()
+
+    def test_printed_word_split_folds_without_ignoring_inline_hyphens(self):
+        self.assertEqual(_text('recyclingcen-\ntrum'), _text('recyclingcentrum'))
+        self.assertNotEqual(_text('Li-ion'), _text('Liion'))
 
     def replace(self, data, suffix='.svg'):
         row = self.rows[0]

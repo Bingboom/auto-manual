@@ -1,0 +1,172 @@
+{
+  "status": "fresh_admitted_not_deployed",
+  "original_batch_changes": 45,
+  "included_symbol_caption_changes": 20,
+  "printed_word_split_repairs": 2,
+  "symbol_admission_rows": 64,
+  "spanish_reference_error_excluded": true,
+  "ir_validation": [
+    {
+      "language": "fr",
+      "changed_paragraphs": 12,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "es",
+      "changed_paragraphs": 11,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "de",
+      "changed_paragraphs": 10,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "it",
+      "changed_paragraphs": 11,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "uk",
+      "changed_paragraphs": 10,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "pt",
+      "changed_paragraphs": 5,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "nl",
+      "changed_paragraphs": 5,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    },
+    {
+      "language": "pl",
+      "changed_paragraphs": 3,
+      "publication_eligible": true,
+      "strict_sphinx_html": "passed"
+    }
+  ],
+  "browser_checks": [
+    {
+      "language": "fr",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "es",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "de",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "it",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "uk",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pt",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "nl",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pl",
+      "width": 420,
+      "scrollWidth": 420,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "fr",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "es",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "de",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "it",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "uk",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pt",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "nl",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    },
+    {
+      "language": "pl",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": 20,
+      "broken": 0
+    }
+  ]
+}
