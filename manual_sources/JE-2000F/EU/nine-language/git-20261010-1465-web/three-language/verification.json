@@ -1,0 +1,32 @@
+{
+  "pt": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "9a1045b28978f8adb0ef612a1beab71be5e1e92d31b1548f88af983e96f07084"
+  },
+  "nl": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "45ffeb8891a20e50b9d3c33eee18abff37d0da2160d209fd2ab3e103f510afb5"
+  },
+  "pl": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "483e89806cdf4edfb793bc4e794e066072fb278adc4cad6baf89f04f6cdccc5c"
+  }
+}
