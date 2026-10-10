@@ -1,0 +1,264 @@
+{
+  "schema_version": "auto-manual-symbol-asset-admission/v1",
+  "locales": {
+    "it": [
+      {
+        "asset_ref": "assets/symbol_warning_triangle.svg",
+        "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+        "shared_symbol_key": "warning/outline-triangle-tinted",
+        "physical_page": 77,
+        "drawing_indices": [
+          708,
+          709,
+          710
+        ],
+        "glyph_bbox": [
+          36.51890182495117,
+          47.091087341308594,
+          60.29790115356445,
+          68.3670883178711
+        ],
+        "caption_bbox": [
+          73.02439880371094,
+          47.41870880126953,
+          168.25955200195312,
+          68.63871002197266
+        ],
+        "row_bbox": [
+          36.26890182495117,
+          46.841087341308594,
+          168.50955200195312,
+          68.88871002197266
+        ],
+        "caption_text": "Simboli di avvertenza e cautela. Da leggere assolutamente per avvisare le persone di potenziali pericoli o rischi.",
+        "caption_sha256": "5c7a751c807903e0ce4553bb77486abb3b139c206fcb35cfc6514f2385ed2627"
+      },
+      {
+        "asset_ref": "assets/symbol_read_manual.svg",
+        "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+        "shared_symbol_key": "read-manual/book-information",
+        "physical_page": 77,
+        "drawing_indices": [
+          730,
+          731,
+          732
+        ],
+        "glyph_bbox": [
+          36.89480209350586,
+          81.71520233154297,
+          60.21580123901367,
+          99.7781982421875
+        ],
+        "caption_bbox": [
+          71.3125,
+          83.44599151611328,
+          166.5359649658203,
+          97.6659927368164
+        ],
+        "row_bbox": [
+          36.64480209350586,
+          81.46520233154297,
+          166.7859649658203,
+          100.0281982421875
+        ],
+        "caption_text": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+        "caption_sha256": "3a584ebef90045218317cef89b737e03222675f1c07ec2588d111decfa3fb4ae"
+      },
+      {
+        "asset_ref": "assets/symbol_do_not_dismantle.svg",
+        "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "physical_page": 77,
+        "drawing_indices": [
+          715,
+          716,
+          717
+        ],
+        "glyph_bbox": [
+          37.508399963378906,
+          112.61898803710938,
+          57.65439987182617,
+          132.75299072265625
+        ],
+        "caption_bbox": [
+          71.3125,
+          118.7092056274414,
+          136.5753936767578,
+          125.92920684814453
+        ],
+        "row_bbox": [
+          37.258399963378906,
+          112.36898803710938,
+          136.8253936767578,
+          133.00299072265625
+        ],
+        "caption_text": "Non smontare il prodotto.",
+        "caption_sha256": "b168ca279ef269f0815e351223969eb49f8123c92fde6c5d48796fa6b4a3170f"
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame.svg",
+        "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+        "physical_page": 77,
+        "drawing_indices": [
+          733,
+          734,
+          735,
+          736,
+          737,
+          738
+        ],
+        "glyph_bbox": [
+          37.5077018737793,
+          141.4206085205078,
+          58.77170181274414,
+          162.68260192871094
+        ],
+        "caption_bbox": [
+          71.3125,
+          149.32998657226562,
+          168.01434326171875,
+          156.54998779296875
+        ],
+        "row_bbox": [
+          37.2577018737793,
+          141.1706085205078,
+          168.26434326171875,
+          162.93260192871094
+        ],
+        "caption_text": "Tenere il prodotto lontano da fiamme.",
+        "caption_sha256": "18d45fea1dc130794448dbc14e1f7da1bc8a58b6eefbd1693791bdfcb9bcf62b"
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children.svg",
+        "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+        "physical_page": 77,
+        "drawing_indices": [
+          739,
+          740,
+          741,
+          742
+        ],
+        "glyph_bbox": [
+          37.50809860229492,
+          170.05999755859375,
+          58.77109909057617,
+          191.322998046875
+        ],
+        "caption_bbox": [
+          71.3125,
+          177.73410034179688,
+          178.4303436279297,
+          184.9541015625
+        ],
+        "row_bbox": [
+          37.25809860229492,
+          169.80999755859375,
+          178.6803436279297,
+          191.572998046875
+        ],
+        "caption_text": "Tenere lontano dalla portata dei bambini.",
+        "caption_sha256": "e180962c08d46580548a37e54b34f7de7078b1084ec213c28ee19206b889762f"
+      },
+      {
+        "asset_ref": "assets/symbol_li_ion.svg",
+        "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+        "shared_symbol_key": "li-ion/recycle-li-ion",
+        "physical_page": 77,
+        "drawing_indices": [
+          718,
+          719,
+          720,
+          721,
+          722,
+          723,
+          724,
+          725,
+          726
+        ],
+        "glyph_bbox": [
+          38.439002990722656,
+          200.965087890625,
+          58.582603454589844,
+          223.28941345214844
+        ],
+        "caption_bbox": [
+          71.3125,
+          198.1796875,
+          178.74951171875,
+          226.39968872070312
+        ],
+        "row_bbox": [
+          38.189002990722656,
+          197.9296875,
+          178.99951171875,
+          226.64968872070312
+        ],
+        "caption_text": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+        "caption_sha256": "2ff9e6eeb98e84028982531c45b8b699cffc44698712fa9f2c5267386cd6337f"
+      },
+      {
+        "asset_ref": "assets/symbol_battery_weee.png",
+        "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+        "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+        "physical_page": 77,
+        "drawing_indices": [
+          743,
+          744
+        ],
+        "glyph_bbox": [
+          193.88400268554688,
+          82.64000701904297,
+          218.08799743652344,
+          108.21200561523438
+        ],
+        "caption_bbox": [
+          226.83590698242188,
+          47.34540557861328,
+          338.58819580078125,
+          149.74301147460938
+        ],
+        "row_bbox": [
+          193.63400268554688,
+          47.09540557861328,
+          338.83819580078125,
+          149.99301147460938
+        ],
+        "caption_text": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici. Come consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose. Per favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+        "caption_sha256": "8d151bf7a58672348e0468fcf1141759e4f489b50f6d2b8947a9e6d71601f375"
+      },
+      {
+        "asset_ref": "assets/symbol_weee.png",
+        "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+        "shared_symbol_key": "weee/crossed-bin-bar",
+        "physical_page": 77,
+        "drawing_indices": [
+          727,
+          728,
+          729
+        ],
+        "glyph_bbox": [
+          197.63320922851562,
+          175.88189697265625,
+          215.06520080566406,
+          200.66598510742188
+        ],
+        "caption_bbox": [
+          226.76849365234375,
+          156.07327270507812,
+          335.7509460449219,
+          224.4788818359375
+        ],
+        "row_bbox": [
+          197.38320922851562,
+          155.82327270507812,
+          336.0009460449219,
+          224.7288818359375
+        ],
+        "caption_text": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+        "caption_sha256": "83e6cd81c9647b7e10fc5b5b38f8afba6188d3535843c302e9a1139f3e624d26"
+      }
+    ]
+  }
+}
