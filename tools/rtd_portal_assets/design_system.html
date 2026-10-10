@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="设计系统：说明书网页版的颜色、字体与组件，数值与预览在构建时读自仓库当前的样式表。">
+  <title>设计系统</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/design-system.css', 1) }}">
+  <script defer src="{{ pathto('_static/design-system.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app design-system">
+{{ site_sidebar('design-system', site_nav) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '设计系统') }}
+
+  <main id="top">
+    <section class="page-head">
+      <h1>设计系统<span>.</span></h1>
+      <p>{{ lead|e }}</p>
+    </section>
+
+    <div class="kpi-row">
+      <div class="kpi"><span>颜色</span><strong>{{ colors|length }}</strong><em>读自样式表的声明</em></div>
+      <div class="kpi"><span>字体样式</span><strong>{{ type_styles|length }}</strong><em>桌面与 760px 以下</em></div>
+      <div class="kpi"><span>组件</span><strong>{{ component_count }}</strong><em>用线上样式实时预览</em></div>
+      <div class="kpi"><span>样式表版本</span><strong class="ds-hash">{{ stylesheet_sha256[:8]|e }}</strong><em>web_manual.css 的 SHA-256</em></div>
+    </div>
+
+    <nav class="page-tabs" role="tablist" aria-label="设计系统分区">
+      <a role="tab" href="#overview" data-tab="overview" aria-selected="true">概览</a>
+      <a role="tab" href="#colors" data-tab="colors">颜色</a>
+      <a role="tab" href="#type" data-tab="type">字体</a>
+      <a role="tab" href="#components" data-tab="components">组件</a>
+    </nav>
+
+    <div class="tab-panel" id="overview" role="tabpanel" aria-label="概览">
+      {%- for section in overview %}
+      <section class="ds-section" id="overview-{{ section.id|e }}">
+        <h2>{{ section.title|e }}</h2>
+        {%- for paragraph in section.paragraphs %}
+        <p>{{ paragraph }}</p>
+        {%- endfor %}
+        {%- if section['items'] %}
+        <ul class="ds-list">
+          {%- for item in section['items'] %}
+          <li>{{ item }}</li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </section>
+      {%- endfor %}
+    </div>
+
+    <div class="tab-panel" id="colors" role="tabpanel" aria-label="颜色">
+      <section class="ds-section">
+        <h2>颜色</h2>
+        <p class="ds-hint">取值读自仓库当前的 <code>web_manual.css</code>；对比度是与纸面 <code>{{ paper|e }}</code> 的 WCAG 对比度。</p>
+        <div class="ds-swatches">
+          {%- for color in colors %}
+          <article class="ds-swatch" id="color-{{ loop.index }}">
+            <div class="ds-chip" style="background:{{ color.value|e }}" role="img" aria-label="{{ color.name|e }} {{ color.value|e }}"></div>
+            <div class="ds-swatch-body">
+              <h3>{{ color.name|e }}</h3>
+              <code>{{ color.token|e }}</code>
+              <dl>
+                <div><dt>取值</dt><dd><code>{{ color.value|e }}</code></dd></div>
+                <div><dt>对比度</dt><dd>{% if color.contrast %}{{ color.contrast }}:1{% else %}半透明{% endif %}</dd></div>
+              </dl>
+              <p>{{ color.note }}</p>
+              {%- if color.selector != ':root' %}
+              <p class="ds-source">声明位置：<code>{{ color.selector|e }}</code></p>
+              {%- endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-panel" id="type" role="tabpanel" aria-label="字体">
+      <section class="ds-section">
+        <h2>字体</h2>
+        <p class="ds-hint">字体栈 <code>{{ font_family|e }}</code>。示例按样式表声明的数值渲染；没有声明的属性继承正文。</p>
+        <div class="ds-type-list">
+          {%- for style in type_styles %}
+          <article class="ds-type" id="type-{{ style.name|e }}">
+            <div class="ds-type-sample" style="font-family:{{ font_family|e }};{{ style.sample_style|e }}">{{ style.sample|e }}</div>
+            <div class="ds-type-meta">
+              <h3>{{ style.label|e }}</h3>
+              <code>{{ style.name|e }}</code>
+              <dl>
+                <div><dt>字号</dt><dd>{{ (style.desktop['font-size'] or '继承')|e }}</dd></div>
+                <div><dt>行高</dt><dd>{{ (style.desktop['line-height'] or '继承')|e }}</dd></div>
+                <div><dt>字重</dt><dd>{{ (style.desktop['font-weight'] or '继承')|e }}</dd></div>
+                {%- if style.desktop['text-transform'] %}
+                <div><dt>大小写</dt><dd>{{ style.desktop['text-transform']|e }}</dd></div>
+                {%- endif %}
+                {%- if style.mobile %}
+                <div><dt>760px 以下</dt><dd>{% for prop, value in style.mobile.items() %}{{ prop|e }} {{ value|e }}{% if not loop.last %}；{% endif %}{% endfor %}</dd></div>
+                {%- endif %}
+              </dl>
+              <p>{{ style.note }}</p>
+              <p class="ds-source"><code>{{ style.selector|e }}</code></p>
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-panel" id="components" role="tabpanel" aria-label="组件">
+      <nav class="ds-toc" aria-label="组件分组">
+        {%- for group in component_groups %}
+        <a href="#group-{{ group.id|e }}">{{ group.title|e }}<em>{{ group['items']|length }}</em></a>
+        {%- endfor %}
+      </nav>
+      {%- for group in component_groups %}
+      <section class="ds-section" id="group-{{ group.id|e }}">
+        <h2>{{ group.title|e }}</h2>
+        {%- for item in group['items'] %}
+        <article class="ds-component" id="component-{{ item.id|e }}">
+          <header><h3>{{ item.title|e }}</h3><code>{{ item.style_id|e }}</code></header>
+          <p class="ds-summary">{{ item.summary }}</p>
+          <div class="ds-frame"><iframe class="ds-preview" src="{{ item.preview|e }}" title="{{ item.title|e }} 预览" loading="lazy" height="{{ item.height }}"></iframe></div>
+          {%- if item.notes %}
+          <dl class="ds-notes">
+            {%- for label, text in item.notes %}
+            <div><dt>{{ label|e }}</dt><dd>{{ text }}</dd></div>
+            {%- endfor %}
+          </dl>
+          {%- endif %}
+        </article>
+        {%- endfor %}
+      </section>
+      {%- endfor %}
+    </div>
+
+    <footer class="ds-footer">数值和预览在每次构建时由仓库当前的 <code>web_manual.css</code> 生成；说明文字维护在 <code>tools/rtd_portal_assets/design_system/</code>。</footer>
+  </main>
+</div>
+{{ site_script() }}
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* 设计系统 page. Owns only what sits inside .app-content (see site-shell.css). */
+.design-system main {padding-bottom:32px}
+.design-system code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  padding:1px 5px;border-radius:5px;background:#eef0f3;color:#3a3d44;overflow-wrap:anywhere}
+
+.ds-section {margin:0 0 36px}
+.ds-section > h2 {margin:0 0 12px;font-size:20px;font-weight:650;line-height:1.4}
+.ds-section > p {margin:0 0 12px;font-size:15px;line-height:1.85;color:var(--app-ink)}
+.ds-list {display:grid;gap:10px;margin:0;padding-left:20px;font-size:15px;line-height:1.85}
+.ds-hint {color:var(--app-muted)!important;font-size:14px!important}
+.ds-hash {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:0}
+
+/* Colours */
+.ds-swatches {display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.ds-swatch {display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-chip {height:88px;border-bottom:1px solid var(--app-line)}
+.ds-swatch-body {padding:14px 16px 16px}
+.ds-swatch h3,.ds-type h3,.ds-component h3 {margin:0 0 4px;font-size:16px;font-weight:650;line-height:1.4}
+.ds-swatch dl,.ds-type dl {display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0;font-size:13px}
+.ds-swatch dl > div,.ds-type dl > div {display:flex;gap:6px}
+.ds-swatch dt,.ds-type dt {color:var(--app-faint)}
+.ds-swatch dd,.ds-type dd {margin:0;color:#3a3d44}
+.ds-swatch p,.ds-type p {margin:6px 0 0;font-size:13.5px;line-height:1.75;color:#50545c}
+.ds-source {font-size:12.5px!important;color:var(--app-faint)!important}
+
+/* Type */
+.ds-type-list {display:grid;gap:12px}
+.ds-type {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center;
+  padding:18px 20px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-type-sample {color:#343031;overflow-wrap:anywhere}
+
+/* Components */
+.ds-toc {display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.ds-toc a {padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--app-line);font-size:13.5px;color:var(--app-muted)}
+.ds-toc a:hover {color:var(--app-ink);border-color:#d3d6db}
+.ds-toc em {margin-left:6px;font-style:normal;color:var(--app-faint)}
+.ds-component {margin:0 0 18px;padding:18px 20px 20px;background:#fff;border:1px solid var(--app-line);border-radius:14px}
+.ds-component header {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.ds-summary {margin:6px 0 14px;font-size:14.5px;line-height:1.75;color:#50545c}
+.ds-frame {overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:10px}
+.ds-preview {display:block;width:100%;border:0}
+.ds-notes {display:grid;gap:8px;margin:14px 0 0;font-size:14px;line-height:1.75}
+.ds-notes > div {display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px}
+.ds-notes dt {font-weight:600;color:var(--app-faint)}
+.ds-notes dd {margin:0;color:#3a3d44}
+.ds-footer {display:block;margin:12px 0 0;padding:18px 0;border-top:1px solid var(--app-line);font-size:13px;color:var(--app-faint)}
+
+@media (max-width:760px) {
+  .ds-type {grid-template-columns:1fr;gap:12px}
+  .ds-notes > div {grid-template-columns:1fr;gap:2px}
+  .ds-component {padding:14px 14px 16px}
+}

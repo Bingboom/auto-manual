@@ -47,16 +47,16 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台)
+Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
-知识库 group (产品知识, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台,
+知识库 group (产品知识, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
 最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
-with the sharing package, 系统建设 only when its context builds (computed once
-per build and shared with the root sidebar). Page stylesheets style only what
+with the sharing package, 系统建设 and 设计系统 only when their context builds (each computed once
+per build and shared with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
@@ -626,6 +626,34 @@ fails the export instead of silently dropping a format.
   `check` warns about it.
 - The page always renders. The workspace and system pages link to it from their
   sidebars, and the workspace's 最近更新 list links to it too.
+
+## Design system page
+
+`/workspace/design/index.html` (设计系统) shows the Web manual's visual rules in
+four tabs: 概览, 颜色, 字体 and 组件. It is an internal 知识库 page; the public
+manual library does not link to it.
+
+- **Values are live.** At build time `tools/rtd/design_system.py` reads the
+  stylesheet that `tools/web/stylesheets.py` assembles
+  (`tools/rtd/design_system_css.py`). Colours, contrast ratios, type sizes and
+  the 760px overrides come from the declarations of named selectors, and the
+  KPI row shows the stylesheet's SHA-256. A stylesheet change appears on the
+  next RTD build without editing the page.
+- **Previews are live.** Each component preview is an iframe document that
+  loads that same stylesheet, copied to `/workspace/design/web_manual.css`, and
+  wraps its markup in `#furo-main-content`. Art is copied from the repository's
+  shared asset folders, and per-target art is a labelled placeholder SVG. Frames
+  size themselves to their content (`_static/design-system.js`); without
+  JavaScript they keep their declared height.
+- **Notes are data.** The Chinese text, the selectors each value comes from and
+  the preview markup live in `tools/rtd_portal_assets/design_system/`
+  (`content.yaml`, `previews/<id>.html`). Previews may use only
+  `asset:<group>/<file>` art and `slot:<w>:<h>:<label>` placeholders: no remote,
+  data or absolute URLs.
+- **Drift fails closed.** If a selector, a component's `requires` class or an
+  asset no longer exists, `tests/test_rtd_design_system.py` fails. If such a
+  change still reaches a build, the page is skipped with a Sphinx warning and
+  its sidebar entry disappears, rather than showing stale rules.
 
 ## Maintenance surface
 

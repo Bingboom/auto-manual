@@ -14,6 +14,7 @@ from unittest.mock import patch
 from tools.rtd import portal as rtd_portal
 from tools.rtd.alias_entry import alias_head_markup, forward_markers
 from tools.readthedocs_source import assemble_rtd_source
+from tools.rtd.design_system_css import live_stylesheet_text
 
 
 class RtdPortalTests(unittest.TestCase):
@@ -170,6 +171,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn('class="brand" href="#" aria-label="Jackery', page)
         for internal_path in ("workspace/", "products/knowledge.html", "market/policy.html", "ai-share/"):
             self.assertNotIn(f'href="{internal_path}', page)
+        self.assertNotIn("workspace/design", page)
         self.assertNotIn("先学最少必要的产品知识", page)
         self.assertNotIn('class="app-switch"', page)
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
@@ -188,6 +190,16 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn("内部版", workspace)
         self.assertNotIn("对外版", workspace)
         self.assertNotIn("Jackery", workspace)
+        self.assertIn('href="design/index.html"', workspace)
+        design_root = self.root / "after" / "workspace" / "design"
+        design = (design_root / "index.html").read_text()
+        for tab in ('data-tab="overview"', 'data-tab="colors"', 'data-tab="type"', 'data-tab="components"'):
+            self.assertIn(tab, design)
+        self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计系统</span>', design)
+        self.assertIn('src="previews/title-l1.html"', design)
+        self.assertNotIn("Jackery", design)
+        self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
+        self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())
         knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
         self.assertIn('href="../index.html"', knowledge_page)
         self.assertIn("返回说明书资料库", knowledge_page)
