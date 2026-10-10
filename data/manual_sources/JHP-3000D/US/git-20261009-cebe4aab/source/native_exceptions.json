@@ -1,0 +1,111 @@
+{
+  "source_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+  "review_policy": "Source issues are preserved, not silently translated or corrected.",
+  "items": [
+    {
+      "languages": [
+        "fr",
+        "es"
+      ],
+      "pages": [
+        27,
+        45
+      ],
+      "chapter": "lcd",
+      "native_difference": "TOU and Discharge Timer remain English in these glossary labels.",
+      "action": "Retain native wording."
+    },
+    {
+      "languages": [
+        "fr"
+      ],
+      "pages": [
+        30
+      ],
+      "chapter": "operations",
+      "native_difference": "Main Power Button and AC Power Button are English labels in French energy-mode art.",
+      "action": "Retain as editable figure text."
+    },
+    {
+      "languages": [
+        "fr"
+      ],
+      "pages": [
+        36
+      ],
+      "chapter": "specifications",
+      "native_difference": "Several output values remain English; both USB labels say 2 × Sortie, and charge-temperature label is Température de charg.",
+      "action": "Retain source cell text without filling presumed missing words."
+    },
+    {
+      "languages": [
+        "es"
+      ],
+      "pages": [
+        50
+      ],
+      "chapter": "charging",
+      "native_difference": "The first-use charging sentence is French.",
+      "action": "Retain original language residue."
+    },
+    {
+      "languages": [
+        "es"
+      ],
+      "pages": [
+        54
+      ],
+      "chapter": "specifications",
+      "native_difference": "Output section title is PORTS DE SORTIE and both USB row labels say 2 × Salida.",
+      "action": "Retain original title and labels."
+    },
+    {
+      "languages": [
+        "es"
+      ],
+      "pages": [
+        55
+      ],
+      "chapter": "warranty",
+      "native_difference": "Both year units visibly say ÑOS, not AÑOS.",
+      "action": "Retain original printed unit; source pixel review confirmed it is not extraction loss."
+    },
+    {
+      "languages": [
+        "fr"
+      ],
+      "pages": [
+        38
+      ],
+      "chapter": "app",
+      "native_difference": "Step 2.2 says hold the buttons, while EN says press.",
+      "action": "Keep locale-specific original instruction."
+    },
+    {
+      "languages": [
+        "es"
+      ],
+      "pages": [
+        49
+      ],
+      "chapter": "ups",
+      "native_difference": "UPS body lacks the EN/FR 10ms sentence, though the LCD UPS description retains 10ms.",
+      "action": "Do not supplement Spanish body from another locale."
+    },
+    {
+      "languages": [
+        "en",
+        "fr",
+        "es"
+      ],
+      "pages": [
+        18,
+        36,
+        54
+      ],
+      "chapter": "specifications",
+      "native_difference": "The low-voltage DC input says Double to 8A Max.",
+      "action": "Retain source value; no mathematical normalization."
+    }
+  ]
+}

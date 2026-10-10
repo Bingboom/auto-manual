@@ -31,6 +31,44 @@ from tools.asset_pipeline.models import (
     AssetIntakeError,
     SourceValidationError,
 )
+
+
+class NativeAxisClosureTests(unittest.TestCase):
+    def test_axis_closures_preserve_original_fill_and_stroke_paths(self):
+        import xml.etree.ElementTree as ET
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg, SVG
+
+        for fill, stroke in [
+            ('M10 10H60V60H40V10Z', 'M10 10H60V60H40V10H10Z'),
+            ('M10 10V60H60V40H10Z', 'M10 10V60H60V40H10V10Z'),
+        ]:
+            raw = (f'<svg xmlns="http://www.w3.org/2000/svg"><g opacity=".7">'
+                   f'<path d="{fill}" fill="#aaa"/>'
+                   f'<path d="{stroke}" fill="none" stroke="#222"/></g></svg>')
+            page = SimpleNamespace(
+                rect=fitz.Rect(0, 0, 100, 100),
+                get_drawings=lambda: [{'type': 'fs'}],
+                get_svg_image=lambda **kwargs: raw,
+            )
+            selected = ET.fromstring(native_art_svg(page, [0], [5, 5, 65, 65]))
+            self.assertEqual([p.get('d') for p in selected.iter(SVG + 'path')],
+                             [fill, stroke])
+            self.assertEqual(next(selected.iter(SVG + 'g')).get('opacity'), '.7')
+
+    def test_nonclosing_axis_segment_is_rejected(self):
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg
+
+        raw = ('<svg xmlns="http://www.w3.org/2000/svg">'
+               '<path d="M10 10H60V60H40V10Z" fill="#aaa"/>'
+               '<path d="M10 10H60V60H40V10H20Z" fill="none" stroke="#222"/>'
+               '</svg>')
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'fs'}],
+                               get_svg_image=lambda **kwargs: raw)
+        with self.assertRaisesRegex(ValueError, 'fill/stroke SVG mapping'):
+            native_art_svg(page, [0], [5, 5, 65, 65])
 from tools.asset_pipeline.package import result_summary, run_intake
 from tools.asset_pipeline.recipe import load_recipe
 
@@ -59,6 +97,32 @@ class TestAssetIntake(unittest.TestCase):
             self.assertEqual(list(original.iter(ns + 'image'))[0].attrib, images[0].attrib)
             transforms = [n.get('transform') for n in selected.iter(ns + 'g')]
             self.assertIn('matrix(10,0,0,10,20,30)', transforms)
+    def test_native_panel_preserves_referenced_images_and_crop_clipping(self):
+        import xml.etree.ElementTree as ET
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg, SVG
+
+        raw = ('<svg xmlns="http://www.w3.org/2000/svg" '
+               'xmlns:xlink="http://www.w3.org/1999/xlink">'
+               '<defs><image id="grid" width="2" height="2" xlink:href="data:image/png;base64,AA=="/>'
+               '<clipPath id="panel"><path d="M10 10H60V60H10Z"/></clipPath></defs>'
+               '<path d="M5 5H95V95H5Z" fill="#aaa"/>'
+               '<g clip-path="url(#panel)" opacity=".8"><g transform="matrix(10,0,0,10,20,30)">'
+               '<use xlink:href="#grid" x="0" y="0"/></g>'
+               '<g transform="matrix(10,0,0,10,70,70)"><use xlink:href="#grid"/></g></g></svg>')
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'f'}],
+                               get_svg_image=lambda **kwargs: raw)
+        selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 60, 60]))
+        uses = list(selected.iter(SVG + 'use'))
+        self.assertEqual(1, len(uses))
+        self.assertEqual('#grid', uses[0].get('{http://www.w3.org/1999/xlink}href'))
+        self.assertEqual('2', next(selected.iter(SVG + 'image')).get('width'))
+        groups = list(selected.iter(SVG + 'g'))
+        self.assertEqual('url(#panel)', groups[0].get('clip-path'))
+        self.assertEqual('.8', groups[0].get('opacity'))
+        self.assertEqual('matrix(10,0,0,10,20,30)', groups[1].get('transform'))
+
     def test_native_compound_fill_stroke_keeps_every_original_subpath(self):
         from tools.asset_pipeline.native_svg import native_art_svg
         import xml.etree.ElementTree as ET

@@ -1,0 +1,93 @@
+[
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/inbox-main.pdf",
+    "source_sha256": "315b45c8b8b0831b959bd879bbcf9b0e6cff8aab5cc5b89f99eefdc48a41241a",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/inbox-main.svg",
+    "sha256": "35cec3a529f6655b0e93a2085a0ef82d0ac8e7ad54f4e3e7233c2ec8a59170aa",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/overview.pdf",
+    "source_sha256": "3a8c4c13d0dfe68e040be39139c563d5f93cdb6c61c23b6c369739c488f3fe4e",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/overview.svg",
+    "sha256": "9b244f4f6ceb3a2c9e0210cf7247f808e8d2af00e23ec0a46544284e00e4124d",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/lcd-map.pdf",
+    "source_sha256": "fff3eb1806a257a7d99252f27136a537dc1ef9e18ef693683c5c63b9ba23fc51",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-map.svg",
+    "sha256": "c1d7bae1f750ef71cd2c20ed30254a3467a4b0a0bc185ae4a38404eb477bd402",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/power.pdf",
+    "source_sha256": "c8c294b407dfdc79e1f7d60affcb14b881f7e527bc0115d7488e40dc8e8b11dc",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/power.svg",
+    "sha256": "6ebb0b28a8fc426f4d892a76837c420c471dc5af7dccf03eabb388b84f9bcba9",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ac-output.pdf",
+    "source_sha256": "d590e3f93ecf143df89dca5fbcd978e07e33db5c120f9f421e15239c2f3e80fa",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/ac-output.svg",
+    "sha256": "20d2bb74dffe1cb42a4429dbb830412ed6b32cba48f32794aa9bc6217302cb3e",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/dc-output.pdf",
+    "source_sha256": "2a6c0cab0c3cc81417de77cbbaa1997e66a3a3e0aaedf29e543baba9314eaf6a",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/dc-output.svg",
+    "sha256": "4fbb0e3fbece7f53f02ab7f6dbb4c1554f63738c0dee38ac6aecf44b1254fbc7",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/energy.pdf",
+    "source_sha256": "33cd530dd58ff28411c6d167dcfeb110541561b50e144878507bae1307f1f99e",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/energy.svg",
+    "sha256": "430f615f40588f62aa0ed9bdf8ec401cea95f754ee3c46bcf17a3fd07d1b79e2",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/lcd-button.pdf",
+    "source_sha256": "4aa13826261d44487f50ced0c54ef2d9141662079719b81cfaae9ba707ae605e",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-button.svg",
+    "sha256": "1f4f46895de14c782dc8fa17c4c22f6d7752de5124254bfd79f5d02a249fe179",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ups.pdf",
+    "source_sha256": "6506f718e6681b48021280ac3b0affd6abf2b915423490dae85f5422598dd996",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/ups.svg",
+    "sha256": "87f8ac97678da34f07718a44549ecc46dfa3fb96c78a6dbba04732df5d774edf",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ac-charge.pdf",
+    "source_sha256": "9cd0d073f11e7e654a08a81ccf5aeda5203bb53dc6c942430fd97b781c62a054",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/ac-charge.svg",
+    "sha256": "73e47cbd6f8f8dd02b8be679fe07bc65de78489d112d19ef04d072f2efb11f1a",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/solar.pdf",
+    "source_sha256": "f8170e6a4c685149531313fdaf28fb937d1c9af67680ce1a8a4f49b48211da00",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/solar.svg",
+    "sha256": "190e8e1a3ecba4eafa647c8191f4b17c1dad17888f0ac2b817272a5cb52a0e91",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/car.pdf",
+    "source_sha256": "e609784ea9d55e0b73b10d05821c7a4450e120dd0a2ddb4685d6fa3a7b16da9b",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/car.svg",
+    "sha256": "29a8c72e587c3e4f0192f384710682687a48ce40666e8f6a87c528471efb0a57",
+    "engine": "1.28.0"
+  },
+  {
+    "source_pdf": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/app-control.pdf",
+    "source_sha256": "c163cc3d3fdeb2bbfa3cf4029ed38b90297eef87fcc65d35b20829ee6d3729af",
+    "derived_svg": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app-control.svg",
+    "sha256": "0984323f428bdceabe126955738b46ca71856bc36adcd419cfe663928d61c4fa",
+    "engine": "1.28.0"
+  }
+]

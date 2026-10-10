@@ -1,0 +1,94 @@
+/* JA-AD500A-SIL JP Web-layout edition: page-local presentation following the PDF.
+   Shared components and web_manual.css stay unchanged; these rules only restyle them. */
+
+/* Print bullets are "・" lines, as in the PDF. */
+#furo-main-content ul > li { list-style-type: "・"; }
+#furo-main-content ul { padding-left: 1.2rem; }
+#furo-main-content ul.jpad-tight { margin: .2rem 0 .5rem; }
+#furo-main-content ul.jpad-tight > li > p { margin: 0; }
+#furo-main-content p.jpad-hang { padding-left: 1em; text-indent: -1em; }
+#furo-main-content p.jpad-small { font-size: .88rem; }
+
+/* p.1: the welcome lead opens the Web edition (the printed cover is not part of it). */
+#furo-main-content p.jpad-welcome-lead { margin: 0 0 .3rem; font-size: 1.05rem; }
+
+/* p.5: connection notes keep their print lines; continuation lines are indented. */
+#furo-main-content li > .line-block { margin: 0 0 .4rem; }
+#furo-main-content li > .line-block > .line + .line { padding-left: .9em; }
+#furo-main-content li > .line-block > .line:has(> br:only-child) { height: .45rem; overflow: hidden; }
+
+/* p.5–6: the ご注意 label is large print type; 「例：」 is a bold sub-heading. */
+#furo-main-content .manual-callout-label p { font-size: 1.3rem; }
+#furo-main-content .manual-callout-body > p > strong { font-size: 1.05rem; }
+
+/* p.6: the five car-charging precautions sit in one grey panel. */
+#furo-main-content div.jpad-panel {
+  margin: .4rem 0 1.2rem;
+  padding: .7rem 1rem .7rem .9rem;
+  border-radius: .88rem;
+  background: var(--hb-surface);
+}
+#furo-main-content div.jpad-panel ul { margin: 0; }
+#furo-main-content div.jpad-panel li > p { margin: .1rem 0; }
+
+/* p.7: "170 x 90 x 52" keeps the printed letter x (no contextual × substitution). */
+#furo-main-content .hb-spec-value { font-variant-ligatures: no-contextual; font-feature-settings: "calt" 0; }
+
+/* p.7: the warranty introduction is one grey panel including its last line. */
+#furo-main-content .hb-warranty-intro-panel { border-radius: .88rem .88rem 0 0; padding-bottom: .2rem; }
+#furo-main-content .hb-warranty-local-note {
+  margin: 0;
+  padding: .2rem 1.05rem .9rem;
+  border-radius: 0 0 .88rem .88rem;
+  background: var(--hb-surface);
+  font-size: 1rem;
+}
+#furo-main-content .hb-warranty-intro-panel p + p,
+#furo-main-content .hb-warranty-local-note p { margin-top: .2rem; }
+
+/* p.7–9: notes are grey capsules; 購入チャネルについて keeps its detail line. */
+#furo-main-content .hb-warranty-card p.jpad-note {
+  display: table;
+  margin: .5rem 0 0;
+  padding: .2rem .65rem;
+  border-radius: .45rem;
+  background: var(--hb-surface);
+  font-size: .84rem;
+}
+#furo-main-content .hb-warranty-card li > .line-block { margin: 0; }
+#furo-main-content .hb-warranty-card li > .line-block > .line + .line { padding-left: 0; }
+
+/* p.8–9: 保証内容 numbers and remedy headings are bold, each remedy a separate block. */
+#furo-main-content figure[aria-label="保証内容"] > ol { padding-left: 1.3rem; }
+#furo-main-content figure[aria-label="保証内容"] > ol > li::marker { font-weight: 700; }
+#furo-main-content figure[aria-label="保証内容"] > ol > li + li { margin-top: .9rem; }
+#furo-main-content figure[aria-label="保証内容"] > ol > li > ul { margin-top: .15rem; }
+
+/* p.9: 免責事項 is a grey panel with a plain bold heading. */
+#furo-main-content section:has(> figure[aria-label="免責事項"]) {
+  padding-top: 1rem;
+  border-color: transparent;
+  background: var(--hb-surface);
+}
+#furo-main-content section:has(> figure[aria-label="免責事項"]) > h2:first-child,
+#furo-main-content section:target:has(> figure[aria-label="免責事項"]) > h2:first-child {
+  position: static;
+  margin: 0 0 .55rem;
+  padding: 0;
+  background: transparent !important;
+  color: var(--hb-text);
+  font-size: 1.15rem;
+}
+#furo-main-content section:has(> figure[aria-label="免責事項"]) > h2:first-child .headerlink { color: var(--hb-text-muted); }
+#furo-main-content figure[aria-label="免責事項"] .jpad-closing { margin: 0 0 0 1.3rem; }
+
+/* p.9: the contact lines are bold grey capsules. */
+#furo-main-content .hb-manual-page-end p {
+  width: fit-content;
+  max-width: 100%;
+  margin: .45rem 0 0;
+  padding: .3rem .8rem;
+  border-radius: .45rem;
+  background: var(--hb-surface);
+  font-weight: 700;
+}

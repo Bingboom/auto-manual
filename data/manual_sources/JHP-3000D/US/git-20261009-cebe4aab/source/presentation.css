@@ -1,0 +1,50 @@
+/* Native figure geometry only. Shared Web theme owns headings/tables/callouts. */
+.native-figure { max-width:760px; margin:1rem auto; min-width:0; }
+.native-figure .hb-reference-figure { margin:0; max-width:none; }
+#furo-main-content .native-figure img { width:100% !important; height:auto !important; max-height:none; }
+.native-overview { max-width:780px; }
+.native-lcd-map { max-width:640px; }
+.native-power,.native-ac-output,.native-operation-frame {
+  border:2px solid var(--hb-line-soft); border-radius:var(--hb-panel-radius);
+}
+.native-operation-frame { margin:1rem 0; padding:.75rem; }
+.native-operation-frame > .native-figure { margin:0; }
+.native-operation-frame > p { margin:.65rem .3rem; }
+.native-power .hb-reference-live-pill,.native-ac-output .hb-reference-live-pill {
+  border-radius:var(--hb-panel-radius); text-align:left; justify-content:flex-start;
+}
+.native-power [data-source-line="3"]::before {
+  content:""; position:absolute; left:8%; top:-12px;
+  border-left:12px solid transparent; border-right:12px solid transparent;
+  border-bottom:14px solid #f2f2f3;
+}
+#furo-main-content .native-figure .hb-reference-live-label { font-size:max(12px,1.95cqw); line-height:1.2; }
+#furo-main-content .native-overview .hb-reference-live-label { font-size:max(10px,1.5cqw); align-items:flex-start; line-height:1.12; }
+#furo-main-content .native-overview .hb-reference-live-label strong { font-size:1.4em; }
+#furo-main-content .native-overview .hb-reference-live-label > span { width:100%; white-space:nowrap; }
+#furo-main-content .native-power .hb-reference-live-label:is([data-source-line="0"],[data-source-line="1"]) { align-items:flex-start; }
+#furo-main-content .native-power .hb-reference-live-label:is([data-source-line="0"],[data-source-line="1"]) { font-size:max(11px,1.74cqw); }
+#furo-main-content .native-overview .hb-reference-live-label:is([data-source-line="6"],[data-source-line="7"],[data-source-line="8"],[data-source-line="9"],[data-source-line="12"],[data-source-line="13"]) { text-align:right; }
+#furo-main-content :is(.native-power,.native-ac-output,.native-dc-output) .hb-reference-live-label:is([data-source-line="1"],[data-source-line="2"]) strong { font-size:1.5em; }
+#furo-main-content .native-power :is([data-source-line="0"],[data-source-line="1"]) strong { font-size:1.65em; }
+#furo-main-content .native-lcd-map .hb-reference-live-label { justify-content:center; font-size:max(11px,2cqw); }
+.native-car .hb-reference-art-panel { background:#f2f2f3 !important; border-radius:var(--hb-panel-radius) !important; }
+.native-lcd-panel .hb-lcd-mode-composition { grid-template-columns:minmax(0,1fr); gap:.75rem; margin:0; }
+.native-lcd-panel .hb-lcd-mode-art-panel { width:75%; max-width:590px; margin:0 auto; }
+#furo-main-content .native-lcd-panel .hb-lcd-mode-art { width:100% !important; height:auto !important; max-height:none; }
+#furo-main-content .native-button-icon { display:inline-block; width:2.2rem !important; height:2.2rem !important; vertical-align:middle; margin:.2rem; }
+.native-app-add { margin:1rem 0; }
+.native-inline-plus { display:inline-flex; justify-content:center; align-items:center; width:1.2em; height:1.2em; border-radius:50%; background:#d1d1d1; line-height:1; }
+.native-app-add > .hb-reference-figure { max-width:430px; margin:0 auto .65rem; }
+.native-controls { max-width:700px; }
+#furo-main-content .hb-reference-figure[data-reference-id="app_connect_result_steps"] { max-width:660px; margin:1rem auto; }
+#furo-main-content .hb-table-lcd-icon img { max-height:none; }
+/* Preserve artwork-label relationships at readable size on a contained scroll surface. */
+@media(max-width:760px) {
+  .native-dense,.native-lcd { overflow-x:auto; padding-bottom:.35rem; }
+  .native-dense > .hb-reference-figure { min-width:660px; }
+  .native-lcd > .hb-reference-figure { min-width:530px; }
+  .native-controls { overflow-x:auto; padding-bottom:.35rem; }
+  .native-controls > .hb-reference-figure { min-width:570px; }
+  .native-lcd-panel .hb-lcd-mode-art-panel { width:95%; }
+}
