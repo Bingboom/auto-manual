@@ -447,8 +447,8 @@
     },
     {
       "path": "web/ja/_static/web_manual.css",
-      "size": 123532,
-      "sha256": "8d76845f96d8f361460ae0946fd6fb71e309e1539eb7658e1125d8564c81095b"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/ja/assets/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
@@ -713,7 +713,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 407563,
-      "sha256": "9b65ee2d47fff407edbc4ce674ce608f0723b194c127cea393b1d6895fa308ad"
+      "sha256": "b7384f0db0360588d49d75eb24b0afd030e226ff06f5889678002711a157876f"
     },
     {
       "path": "web/ja/manual_jbp1000bwh_jp_ja.md",

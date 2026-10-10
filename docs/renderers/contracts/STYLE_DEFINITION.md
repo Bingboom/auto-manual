@@ -1125,6 +1125,8 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 按键组合使用 `HB-TABLE-KEY-COMBINATIONS` 的三列表格，不用普通表格仿排。
 原生 carrier 以 `.hb-key-button-pair` 保留两个按钮和各自名称（POWER/USB/AC
 强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
+按键图 3.35rem 见方，组合加号 1.82rem 并与按键同高居中，沿用批准印刷版
+`idml_key_button_size` 22.08pt 对 6pt 功能文字的比例。
 首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
 `usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
 原稿的小标题与另售标签为两个独立胶囊时，使用共享 `h3.hb-heading-label-pair`，仅 `.hb-heading-title` 绘制浅灰底，`.hb-sold-separately` 保持深色底；标题容器透明，窄屏可换行，禁止整行套一个底板。
