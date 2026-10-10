@@ -980,7 +980,7 @@
     },
     {
       "key": "general_warning/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-general_warning.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-general_warning.svg",
       "sha256": "949fa4b358483f531c93ce6dd6f25c3d2964c4b3c1bf43a760e377618c209661",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1006,7 +1006,7 @@
     },
     {
       "key": "read_manual/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-read_manual.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-read_manual.svg",
       "sha256": "6362f59270d725546ac3b20117319193bce10d58950c8aa20c4870ce79320931",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1031,7 +1031,7 @@
     },
     {
       "key": "do_not_dismantle/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-do_not_dismantle.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-do_not_dismantle.svg",
       "sha256": "0d8c33aa24918ce77020239e2659f837648ad94a6dd8ff91db9304caa6fe1dea",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1056,7 +1056,7 @@
     },
     {
       "key": "no_open_flame/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-no_open_flame.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-no_open_flame.svg",
       "sha256": "3073529057ed5709e276e85747cad8532e07939d511bf9b448c8252770dd351d",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1082,7 +1082,7 @@
     },
     {
       "key": "keep_away_from_children/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-keep_away_from_children.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-keep_away_from_children.svg",
       "sha256": "6b403148bbaa42cc77f87100c32b91bf06b00db6c69093c247bff1c5fc2a07bd",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1108,7 +1108,7 @@
     },
     {
       "key": "li_ion/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-li_ion.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-li_ion.svg",
       "sha256": "3c4b2b3413e011c23cfbd259c4d971ed8fa10f37ff011506f95c8018dad18476",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1139,7 +1139,7 @@
     },
     {
       "key": "battery_disposal/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-battery_disposal.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-battery_disposal.svg",
       "sha256": "890aad750886f80abc628c01b22c36ae6c305b91d48a8c441d27bbf9bb11411a",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1164,7 +1164,7 @@
     },
     {
       "key": "weee/je2000e-eu-pt-batch1465-native",
-      "path": "je2000e-eu-batch1465/pt-weee.svg",
+      "path": "native-v1/je2000e-eu-batch1465-pt-weee.svg",
       "sha256": "fbb8f66e93bbefa15b3edcd942ba6ec2950ad5b533ee07e0ec5efd644194e456",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1190,7 +1190,7 @@
     },
     {
       "key": "general_warning/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-general_warning.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-general_warning.svg",
       "sha256": "eaef6a90726af3e60a79e0f248504e49297eb3292b5ae062d38cd128d42e6ea3",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1216,7 +1216,7 @@
     },
     {
       "key": "read_manual/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-read_manual.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-read_manual.svg",
       "sha256": "86b48cf47f0b596dcf2d57ad0e45407d416d5abb34b45e9936d6c9cae0a52933",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1241,7 +1241,7 @@
     },
     {
       "key": "do_not_dismantle/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-do_not_dismantle.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-do_not_dismantle.svg",
       "sha256": "485710ddc8f74a55644647db29fa3c62eaa98d3cfbbea4e7dc98d7d60a7840aa",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1266,7 +1266,7 @@
     },
     {
       "key": "no_open_flame/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-no_open_flame.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-no_open_flame.svg",
       "sha256": "2fb0aebd9051c751a6ecb9ca82ff418d8d5a9449e434639f250e80099527001c",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1292,7 +1292,7 @@
     },
     {
       "key": "keep_away_from_children/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-keep_away_from_children.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-keep_away_from_children.svg",
       "sha256": "dd1fc4a732d593c1c003c30858ac051eb8280468b88fb8bf349873dcc478eac3",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1318,7 +1318,7 @@
     },
     {
       "key": "li_ion/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-li_ion.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-li_ion.svg",
       "sha256": "260b81ab9fb3571e4440250d359264bb7f85973d01db16ed29618efa6ab6faf7",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1349,7 +1349,7 @@
     },
     {
       "key": "battery_disposal/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-battery_disposal.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-battery_disposal.svg",
       "sha256": "be61c6855d5a5268f359fe1b1381423df264bd9d98622c0c67fd54ad611f73c2",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
@@ -1374,7 +1374,7 @@
     },
     {
       "key": "weee/je2000e-eu-nl-batch1465-native",
-      "path": "je2000e-eu-batch1465/nl-weee.svg",
+      "path": "native-v1/je2000e-eu-batch1465-nl-weee.svg",
       "sha256": "0c35a797d48e5e6dc936c3731e395590feafb9aff1b1b2b9447a3af4cc42d510",
       "status": "source-bound native; visual and independent admission verified; publication pending",
       "provenance": {
