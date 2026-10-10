@@ -881,6 +881,102 @@
         ],
         "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
       }
+    },
+    {
+      "key": "read-manual/person-circle-jhp3000d-native",
+      "path": "native-v1/symbol_read_manual_person_jhp3000d.svg",
+      "sha256": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/Jackery HomePower 3000 User Manual.pdf",
+        "source_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+        "physical_page": 5,
+        "retained_path_indices": [
+          53,
+          54,
+          55,
+          56,
+          57
+        ],
+        "repair": "Exact original person-circle glyph and tint after all existing shared variants fail source-bound comparison; pipeline recipe retains native drawings only."
+      }
+    },
+    {
+      "key": "explosive-material/burst-triangle-native-v2-3e3a39",
+      "path": "native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "glyph_bbox": [
+          38.35389938354492,
+          297.3736938476562,
+          61.0109001159668,
+          317.0687194824219
+        ],
+        "derivation": "native source path variant after shared tint-corrected glyph still fails fixed comparison",
+        "prior_shared_sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited-3e3a39",
+      "path": "native-v1/symbol_no_open_flame_3e3a39.svg",
+      "sha256": "ad99d5bda8ad04836ff7903beaec8fff8cd3843bf528a16f88c8be0c5f2a3414",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "glyph_bbox": [
+          198.32979431152344,
+          239.95110168457032,
+          217.7938018798828,
+          259.4131103515625
+        ],
+        "derivation": "shared glyph paths unchanged; match native dark-gray tint only",
+        "prior_shared_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-prohibited-3e3a39",
+      "path": "native-v1/symbol_keep_away_from_children_3e3a39.svg",
+      "sha256": "da3ed4aa5fa4e4ec565d39a1b18d7b657d5b18cd4521be1881f21ac6fbb20c6e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          55,
+          56,
+          57,
+          58
+        ],
+        "glyph_bbox": [
+          198.33069458007813,
+          269.673681640625,
+          217.79369506835937,
+          289.1366821289063
+        ],
+        "derivation": "shared glyph paths unchanged; match native dark-gray tint only",
+        "prior_shared_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      }
     }
   ],
   "withdrawn": [

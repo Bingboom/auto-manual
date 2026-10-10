@@ -88,6 +88,10 @@ for old/new URL and version mapping, release-site evidence and recovery checks.
 These are planning/manual acceptance requirements; no new command, automated
 gate, hosting change or online write is introduced by the documentation update.
 
+Frozen Web source storage is bounded separately from served output and network
+inventories. The [Git-only release contract](dev/web_publish_pipeline.md#22-git-only-transaction)
+sets the 1 GiB source budget and retains the output, per-file and file-count limits.
+
 ## 1. Recommended Entrypoint
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
@@ -2484,6 +2488,8 @@ Web App 编号步骤标题保留源文大小写，隐藏圆点并与步骤正文
 
 通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
 
+原稿 SVG 的填充／描边校验允许等价的绝对 H/V 闭合线段参与路径比较；导出仍保留原始路径、变换、透明度与裁切，并保留裁切范围内通过 `use` 引用的原稿嵌入图像；无法对应的路径继续拒绝。
+
 中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。
 
 ### Native RST notices in Web output
@@ -2645,3 +2651,5 @@ JBP-3600A EU 九语产品概览复用已审图稿，正视图和左视图分别�
 SlimPower H1（JE-1000E-WH / JP / ja）使用[批准的日文冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)，保留原候选与原稿文字、图框和安全符号。按操作者“封面 不要放进去网页版里面啊”，新 Web 版本从安全说明开始，印刷封面仅保留在原稿与来源存档；其余 16 章逐字节保持。`approval.json` 绑定原稿哈希、已审候选及独立章节/组件要求；回放前先验证批准身份，再通过共享 Manual IR / ComponentSpec 输出。日规沿用现有区域准入，不登记 phase2 或提升全局资产。正式发布仍按 Git-only 单语凭据、Hello-Docs 生成式发布 PR、RTD 回执/资源和桌面手机逐段核验，打印版本未知时保持未知。
 
 JBP-1000B-WH / JP / ja 的 [Web 版式版本](../manual_sources/JBP-1000B-WH/JP/ja/git-20261009-3aa6c003-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准原生包机械派生，原生包与其发布凭据保持不变。按操作者“全部修，一次做完”“封面和目录 不用体现在web版面上”并参照 JE-1000F 日文 Web：导航与印刷目录 12 章一致，二级内容不再升为章，原稿并排的安装步骤合为整行图（跨面板插图完整），标签字号按原稿 pt 与面板宽度生成；日文措辞与 `*_text` 字段不变，由单元测试比对可见文字。操作者于 2026-10-09 审阅对比图后指示“上线提交发布”，`approval.json` 绑定全部 `source/` 输入哈希；工程 PR 由操作者审核合入，合入后在实际 main 提交上封存 Git-only 发布证据并提交 Hello-Docs 发布 PR。
+
+JA-AD500A-SIL / JP / ja（Jackery DC Input Module）的 [Web 版式候选](../manual_sources/JA-AD500A-SIL/JP/ja/git-20261009-ac3a1f82-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准包 `git-20261008-ac3a1f82-reviewed`（MA-272）机械派生，已批准包与其发布凭据保持不变。沿用 JBP-1000B-WH JP 的规则：印刷封面标识行不进入 Web，页面从「お買い上げありがとうございます。」开始，导航即印刷的五个章节条；粗体、原稿换行、灰色面板与胶囊由页面局部 `source/presentation.css`（IR `source_stylesheet`）和 RST 标记实现，共享组件与共享 CSS 不改；同梱品说明书插图由共享资产管线重裁补全右边框，其余插图逐字节不变。日文措辞不变，由单元测试证明可见文字（含顺序）= 批准文字 − 封面行。操作者确认以仓库这份 PDF 为准、欢迎语保留、不加图标，审阅逐页对照后于 2026-10-09 指示“上线提交发布”；`approval.json` 绑定全部 `source/` 与 `assets/` 输入哈希。工程 PR 由操作者审核合入，合入后在实际 main 提交上封存 Git-only 发布证据并提交 Hello-Docs 发布 PR。
