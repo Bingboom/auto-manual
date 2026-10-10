@@ -47,15 +47,15 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统)
+Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统, 系统数据)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
 知识库 group (产品知识, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
-最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
-with the sharing package, 系统建设 and 设计系统 only when their context builds (each computed once
+系统数据, 最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
+with the sharing package, 系统建设, 设计系统 and 系统数据 only when their context builds (each computed once
 per build and shared with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
@@ -679,6 +679,42 @@ page; the public manual library does not link to it.
   disappears, rather than showing stale rules. Additions, such as a new symbol
   or a new CSV row, do not fail; they appear in the gallery, or wait for a
   label in `content.yaml`.
+
+## System data page
+
+`/workspace/data/index.html` (系统数据) counts what the repository holds about
+the manuals and lets a reader narrow every card by region and model. It is an
+internal 知识库 page; the public manual library does not link to it.
+
+- **Rows are read at build time.** `tools/rtd/system_data.py` reads
+  `docs/publish/publish_manifest.json` (one row per published Web route, as the
+  deliverables page reads it), `data/model_capabilities.csv`,
+  `data/model_languages.csv`, the RST page count under
+  `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
+  status without its leading mark, model, region). Nothing is snapshotted or
+  committed for the page; a data change appears on the next RTD build.
+- **Cards:** headline counts (published Web manuals, models, languages, targets
+  with review pages, assets and their 成品 share); 发布 (a model × language
+  matrix, per-language and per-region bars and the sortable, searchable
+  publication table); 机型能力 (the target × capability matrix and each
+  capability's coverage); 素材 (assets by status, category and model).
+- **Filters are client-side.** The rows travel as one JSON block
+  (`<` escaped) and `_static/system-data.js` filters and counts them. A region
+  dropdown, a model dropdown and clicks on a model (matrix rows, capability
+  rows, asset bars, table rows) or a region bar narrow every card; clicking the
+  same item again clears it. The selection is kept in the URL query
+  (`?region=EU&model=JE-1000F`). An asset whose model or region is `ALL` counts
+  under every model or region. Git history (branches, commits) is not shown:
+  RTD clones shallowly, so it is not reliable at build time.
+- **Without JavaScript** the whole-repository counts and the publication table
+  still render; the charts show a note instead.
+- **Failure:** without a readable publish manifest the 发布 cards show 无数据
+  and the other cards still render. A CSV missing a column, a capability value
+  other than `TRUE`/`FALSE`, a target key that is not `<model>_<region>`, or an
+  asset row without status, model or region skips the page with a Sphinx
+  warning and hides its sidebar entry; `tests/test_rtd_system_data.py` fails
+  first. The counting functions have Node tests in
+  `tests/system_data_ui.test.mjs`.
 
 ## Maintenance surface
 

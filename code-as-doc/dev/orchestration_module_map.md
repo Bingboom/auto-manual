@@ -115,6 +115,12 @@ notes loader and the shared error. `rtd_portal` only registers the page and the
 writer. Nothing here writes a stylesheet, an asset, a manifest or the token
 table. See [design system page](rtd_manual_portal.md#design-system-page).
 
+[`tools/rtd/system_data.py`](../../tools/rtd/system_data.py) owns the read-only
+系统数据 page context: it reads the publish manifest, the capability, language
+and asset CSVs and the review page counts, and hands the rows to the page as
+JSON for `_static/system-data.js` to filter. `rtd_portal` only registers the
+page. See [system data page](rtd_manual_portal.md#system-data-page).
+
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.

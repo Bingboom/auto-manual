@@ -22,6 +22,8 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 设计系统 `/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](dev/rtd_manual_portal.md#design-system-page)。
 
+系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力和素材注册情况，页面内可按区域和机型筛选；见 [RTD portal](dev/rtd_manual_portal.md#system-data-page)。
+
 说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。首页采用结论优先布局：常用工作入口、生产规模及交付入口条形图、三类资产关系图、投入与回流简况；完整列表、工作地图和统计证据折叠展示，锚点导航自动展开目标；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](dev/workspace_production_evidence.md)。
 
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
