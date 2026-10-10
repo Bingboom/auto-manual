@@ -22,6 +22,7 @@ from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
+from tools.rtd.system_data import PAGE as DATA_PAGE, TEMPLATE as DATA_TEMPLATE, system_data_page_context
 from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.safe_copy import copytree_replace_no_symlinks
 
@@ -142,6 +143,7 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_portal_data = None
     app._rtd_system_context = _UNSET
     app._rtd_design_context = _UNSET
+    app._rtd_data_context = _UNSET
 
 
 def page_context(app, pagename, templatename, context, doctree):
@@ -269,6 +271,15 @@ def cached_design_context(app):
     return cached
 
 
+def cached_data_context(app):
+    """Build the system-data context once per build; the sidebar and the page share it."""
+    cached = getattr(app, "_rtd_data_context", _UNSET)
+    if cached is _UNSET:
+        cached = system_data_page_context(app, portal_data(app)[0])
+        app._rtd_data_context = cached
+    return cached
+
+
 def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     return {
@@ -276,11 +287,12 @@ def site_nav(app) -> dict:
         "system": cached_system_context(app) is not None,
         "deliverables": True,
         "design": cached_design_context(app) is not None,
+        "data": cached_data_context(app) is not None,
     }
 
 
 def collect_workspace_pages(app):
-    """Add the workspace entry, its system page and its deliverables page, leaving the manual-center root alone.
+    """Add the workspace entry and its system, deliverables, design and data pages, leaving the manual-center root alone.
 
     The workspace exists as a separate entry, with the system and deliverables
     pages inside it. Public manual navigation does not link into it.
@@ -292,6 +304,7 @@ def collect_workspace_pages(app):
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = cached_system_context(app)
     design = cached_design_context(app)
+    data = cached_data_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
@@ -306,17 +319,20 @@ def collect_workspace_pages(app):
         "system_entry": system is not None,
         "deliverables_entry": True,
         "design_entry": design is not None,
+        "data_entry": data is not None,
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
         yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
-                            "design_entry": design is not None,
+                            "design_entry": design is not None, "data_entry": data is not None,
                             "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
     yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None,
-                              "design_entry": design is not None}, DELIVERABLES_TEMPLATE
+                              "design_entry": design is not None, "data_entry": data is not None}, DELIVERABLES_TEMPLATE
     if design is not None:
         yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
+    if data is not None:
+        yield DATA_PAGE, {**data, "site_nav": site_nav(app)}, DATA_TEMPLATE
 
 
 def write_design_pages(app, exception) -> None:
