@@ -32,7 +32,7 @@ registry (~109K), and this log had reached ~52K. Following CQ-7.5/7.6 (#1321):
 - `build_doc_guide.md` and `hello_auto-doc.md` are indexes (54 and 40 lines) over
   20 and 17 topic pages of at most ~7.7K tokens. Content moved verbatim and was
   regrouped by topic; links were rebased and the four deep links repointed.
-- `dev/merge_authorizations.md` keeps the protocol and the 42 live grants; the
+- `dev/merge_authorizations.md` keeps the protocol and the 43 live grants; the
   239 expired rows and the addenda moved to `merge_authorizations_archive.md`,
   and `next_registry_id` counts both files.
 - This log keeps its recent records; older ones moved to
