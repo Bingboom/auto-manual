@@ -1,0 +1,426 @@
+[
+  {
+    "language": "pt",
+    "operation": "remove_duplicate",
+    "old_blocks": [
+      {
+        "asset_refs": [],
+        "block_id": "ups:block-0004",
+        "content_sha256": "74ac8fe49c16ba30cebb6b0a15dd5257a07af609016ba2905ab8eaf714bae98c",
+        "kind": "flow",
+        "payload": {
+          "children": [
+            {
+              "kind": "text",
+              "text": "Uma fonte de alimentação ininterrupta (UPS) é um tipo de sistema de energia contínua que fornece energia elétrica de backup automaticamente a uma carga quando a rede elétrica falha. Em caso de queda repentina de energia da rede, o Jackery Explorer 2000 alternará automaticamente para a energia armazenada em até 10 ms para manter seus aparelhos funcionando. No modo UPS, a potência de pico da unidade atinge 10 A antes de quedas de energia. Como o carregamento e o descarregamento simultâneos estão habilitados no Modo de bypass, a potência de saída real é menor que a potência nominal neste modo, mas retorna à potência nominal durante quedas de energia."
+            }
+          ],
+          "kind": "paragraph",
+          "schema_version": "manual-flow/v2"
+        },
+        "source_ref": "pt/ups#block-4"
+      },
+      {
+        "asset_refs": [],
+        "block_id": "ups:block-0005",
+        "content_sha256": "e3364452729aa143ec06cd048c7b08f5d1cbbba9316aff08fa6f240a957d421a",
+        "kind": "flow",
+        "payload": {
+          "carrier_flow": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "CUIDADO"
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam fonte de alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Antes do uso, teste a compatibilidade com seu dispositivo várias vezes."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção contra sobrecarga será acionada."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                }
+                              ],
+                              "kind": "list",
+                              "ordered": false
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "kind": "table_row"
+                    }
+                  ],
+                  "kind": "table_body"
+                }
+              ],
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              }
+            }
+          ],
+          "component_spec": {
+            "assets": [],
+            "component_id": "HB-CALLOUT-STRIP",
+            "language": "pt",
+            "metadata": {},
+            "schema_version": "component-spec/v1",
+            "slots": [
+              {
+                "content": "CUIDADO",
+                "content_kind": "inline_text",
+                "role": "label"
+              },
+              {
+                "content": "Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam fonte de alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.\nAntes do uso, teste a compatibilidade com seu dispositivo várias vezes.\nNão conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção contra sobrecarga será acionada.",
+                "content_kind": "rich_text",
+                "role": "body"
+              },
+              {
+                "content": [
+                  "Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam fonte de alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.",
+                  "Antes do uso, teste a compatibilidade com seu dispositivo várias vezes.",
+                  "Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção contra sobrecarga será acionada."
+                ],
+                "content_kind": "list_items",
+                "role": "items"
+              }
+            ],
+            "source_ref": "pt/page-124/notice-24",
+            "token_roles": [
+              "component.callout"
+            ],
+            "variant": "caution"
+          },
+          "kind": "component",
+          "schema_version": "manual-flow/v2"
+        },
+        "source_ref": "pt/ups#block-5"
+      }
+    ],
+    "new": null
+  },
+  {
+    "language": "pt",
+    "operation": "add_energy_warning",
+    "old": null,
+    "new": {
+      "id": "1465-F-energy-pt-PT",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "pt-PT",
+      "source_text": "When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.",
+      "target_text": "Quando o Modo de economia de energia está ativado, o produto desliga automaticamente a saída CA se o consumo de energia do dispositivo ligado se mantiver baixo durante o período configurado. Ao alimentar dispositivos que necessitam de alimentação contínua, como frigoríficos, routers, câmaras de segurança ou bombas de ar para aquários, recomendamos que desative o Modo de economia de energia para evitar que uma interrupção inesperada da alimentação afete o seu funcionamento.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 16,
+      "target_pdf_page": 124,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "DingTalk pt-BR localized to pt-PT"
+    }
+  },
+  {
+    "language": "pt",
+    "operation": "append_ups_caution",
+    "old": null,
+    "new": {
+      "id": "1465-F-cascade-pt-PT",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "pt-PT",
+      "source_text": "The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down.",
+      "target_text": "A função UPS só funciona quando uma única unidade está ligada diretamente a uma tomada de parede. Não ligue várias estações de energia portáteis em série (ligação em cascata). Numa configuração em cascata, a função UPS não funciona: a unidade poderá não efetuar a comutação durante uma falha de energia, provocando a desativação dos dispositivos ligados.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 17,
+      "target_pdf_page": 125,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "DingTalk pt-BR localized to pt-PT"
+    }
+  },
+  {
+    "language": "nl",
+    "operation": "remove_duplicate",
+    "old_blocks": [
+      {
+        "asset_refs": [],
+        "block_id": "ups:block-0004",
+        "content_sha256": "8c885a3fc54ee00c1114fb1f1900c0178f8e411a37b4d78749d926279b7a9ed5",
+        "kind": "flow",
+        "payload": {
+          "children": [
+            {
+              "kind": "text",
+              "text": "Een ononderbroken stroomvoorziening (UPS) is een type voortdurend stroomvoorzieningssysteem dat automatisch back-upstroom levert aan een belasting wanneer de netstroom uitvalt. Bij een plotseling verlies van stroomnet schakelt de Jackery Explorer 2000 automatisch binnen 10 ms over op opgeslagen stroom om uw apparaten draaiende te houden. In de UPS-modus bedraagt de piekuitgang van het apparaat 10 A zonder stroomuitval. Omdat gelijktijdig opladen/ontladen in de Bypass-modus is ingeschakeld, is het werkelijke uitgangsvermogen in deze modus lager dan het nominale uitgangsvermogen. Tijdens stroomuitval keert het echter terug naar het nominale uitgangsvermogen."
+            }
+          ],
+          "kind": "paragraph",
+          "schema_version": "manual-flow/v2"
+        },
+        "source_ref": "nl/ups#block-4"
+      },
+      {
+        "asset_refs": [],
+        "block_id": "ups:block-0005",
+        "content_sha256": "a5696fc4acb0b2809250d9e5b88f543508c5d594a169b46025a0e35af99fad33",
+        "kind": "flow",
+        "payload": {
+          "carrier_flow": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "OPGELET"
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op apparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of werkstations."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "Sluit geen belastingen aan die het maximale uitgangsvermogen van het product overschrijden. Anders wordt de overbelastingsbeveiliging geactiveerd."
+                                    }
+                                  ],
+                                  "kind": "list_item"
+                                }
+                              ],
+                              "kind": "list",
+                              "ordered": false
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell",
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "kind": "table_row"
+                    }
+                  ],
+                  "kind": "table_body"
+                }
+              ],
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              }
+            }
+          ],
+          "component_spec": {
+            "assets": [],
+            "component_id": "HB-CALLOUT-STRIP",
+            "language": "nl",
+            "metadata": {},
+            "schema_version": "component-spec/v1",
+            "slots": [
+              {
+                "content": "OPGELET",
+                "content_kind": "inline_text",
+                "role": "label"
+              },
+              {
+                "content": "Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op apparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of werkstations.\nTest vóór gebruik meerdere keren of het product compatibel is met uw apparaat.\nSluit geen belastingen aan die het maximale uitgangsvermogen van het product overschrijden. Anders wordt de overbelastingsbeveiliging geactiveerd.",
+                "content_kind": "rich_text",
+                "role": "body"
+              },
+              {
+                "content": [
+                  "Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op apparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of werkstations.",
+                  "Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat.",
+                  "Sluit geen belastingen aan die het maximale uitgangsvermogen van het product overschrijden. Anders wordt de overbelastingsbeveiliging geactiveerd."
+                ],
+                "content_kind": "list_items",
+                "role": "items"
+              }
+            ],
+            "source_ref": "nl/page-142/notice-23",
+            "token_roles": [
+              "component.callout"
+            ],
+            "variant": "caution"
+          },
+          "kind": "component",
+          "schema_version": "manual-flow/v2"
+        },
+        "source_ref": "nl/ups#block-5"
+      }
+    ],
+    "new": null
+  },
+  {
+    "language": "nl",
+    "operation": "add_energy_warning",
+    "old": null,
+    "new": {
+      "id": "1465-F-energy-nl",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "nl",
+      "source_text": "When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.",
+      "target_text": "Wanneer de Energiebesparingsmodus is ingeschakeld, schakelt het product de AC-uitgang automatisch uit als het stroomverbruik van het aangesloten apparaat gedurende de ingestelde periode laag blijft. Wanneer u apparaten van stroom voorziet die een continue stroomvoorziening nodig hebben, zoals koelkasten, routers, beveiligingscamera's of luchtpompen voor aquaria, raden wij aan de Energiebesparingsmodus uit te schakelen om te voorkomen dat onverwacht stroomverlies hun werking onderbreekt.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 16,
+      "target_pdf_page": 142,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "New translation aligned to supplied English and existing manual style"
+    }
+  },
+  {
+    "language": "nl",
+    "operation": "append_ups_caution",
+    "old": null,
+    "new": {
+      "id": "1465-F-cascade-nl",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "nl",
+      "source_text": "The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down.",
+      "target_text": "De UPS-functie werkt alleen wanneer één enkele eenheid rechtstreeks op een wandstopcontact is aangesloten. Sluit niet meerdere draagbare energiestations in serie aan (cascadeschakeling). Bij een cascadeschakeling werkt de UPS-functie niet: de eenheid schakelt bij een stroomstoring mogelijk niet over, waardoor aangesloten apparaten worden uitgeschakeld.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 17,
+      "target_pdf_page": 143,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "New translation aligned to supplied English and existing manual style"
+    }
+  },
+  {
+    "language": "pl",
+    "operation": "add_energy_warning",
+    "old": null,
+    "new": {
+      "id": "1465-F-energy-pl",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "pl",
+      "source_text": "When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.",
+      "target_text": "Gdy Tryb oszczędzania energii jest włączony, produkt automatycznie wyłącza wyjście AC, jeśli pobór mocy podłączonego urządzenia pozostaje niski przez ustawiony czas. Podczas zasilania urządzeń wymagających ciągłego zasilania, takich jak lodówki, routery, kamery bezpieczeństwa lub pompki napowietrzające do akwariów, zalecamy wyłączenie Trybu oszczędzania energii, aby zapobiec przerwaniu ich pracy wskutek nieoczekiwanej utraty zasilania.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 16,
+      "target_pdf_page": 160,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "New translation aligned to supplied English and existing manual style"
+    }
+  },
+  {
+    "language": "pl",
+    "operation": "append_ups_caution",
+    "old": null,
+    "new": {
+      "id": "1465-F-cascade-pl",
+      "model": "JE-2000F",
+      "region": "EU",
+      "source_lang": "en",
+      "target_lang": "pl",
+      "source_text": "The UPS function works only when a single unit is connected directly to a wall outlet. Do not connect multiple portable power stations in series (cascade connection). In a cascaded setup, the UPS function will not operate: the unit may fail to switch over during a power outage, causing connected devices to shut down.",
+      "target_text": "Funkcja UPS działa tylko wtedy, gdy pojedyncza jednostka jest podłączona bezpośrednio do gniazdka ściennego. Nie należy łączyć szeregowo wielu przenośnych stacji zasilania (połączenie kaskadowe). W konfiguracji kaskadowej funkcja UPS nie działa: jednostka może nie przełączyć się podczas awarii zasilania, powodując wyłączenie podłączonych urządzeń.",
+      "source_reference": "https://alidocs.dingtalk.com/i/nodes/vy20BglGWOeZP0b0fg5Xp5qeJA7depqY",
+      "english_pdf_page": 17,
+      "target_pdf_page": 161,
+      "status": "Draft - pending linguistic review and TM upsert",
+      "translation_origin": "New translation aligned to supplied English and existing manual style"
+    }
+  }
+]

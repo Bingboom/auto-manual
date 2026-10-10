@@ -1,0 +1,983 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-2000F",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ],
+    "technical_version": "git-20261010-1465-web",
+    "printed_manual_version": null
+  },
+  "original_source": {
+    "filename": "je2000f-eu-nine-languages.ai",
+    "sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+    "size_bytes": 42495585,
+    "physical_page_count": 170
+  },
+  "recipe_source": {
+    "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language",
+    "manifest_sha256": "070273d88cf6ee81c5284c828b9cc1c8cc3ac0f3874ac50cc0b7d3624166e784"
+  },
+  "web_roots": {
+    "pt": "web/pt",
+    "nl": "web/nl",
+    "pl": "web/pl"
+  },
+  "validation_boundary": "Six PDF notice texts matched; strict IR and deterministic cold replay. Pending operator content approval, engineering merge, generated release PR and RTD readback.",
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 950,
+      "sha256": "2f781a460720b1dbd0023c4326e5b8f01ea5d930309b16be257dc8eec4001a08"
+    },
+    {
+      "path": "batch_1465_changes.json",
+      "size": 22234,
+      "sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571"
+    },
+    {
+      "path": "verification.json",
+      "size": 816,
+      "sha256": "b67a7136703316e1521f7c194340699776d26601c62afa8c8b406b52d041e67a"
+    },
+    {
+      "path": "web/nl/_static/web_manual.css",
+      "size": 81376,
+      "sha256": "3700ecd2bbb804484de7abb0b098381af83d503f5bd1a561daeade6fd261ecac"
+    },
+    {
+      "path": "web/nl/assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "size": 7645,
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
+    },
+    {
+      "path": "web/nl/assets/18aa7ea899c1_p149_app-qr.png",
+      "size": 20709,
+      "sha256": "18aa7ea899c14797d99dd5772e3b1f5adf49d0c38a4bce1787c62f9c9113d82f"
+    },
+    {
+      "path": "web/nl/assets/21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "web/nl/assets/287650f3a89a_ac_charging_cable.png",
+      "size": 4023,
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef"
+    },
+    {
+      "path": "web/nl/assets/28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "web/nl/assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "size": 7367,
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7"
+    },
+    {
+      "path": "web/nl/assets/37a8cbb38296_p149_app_qr_and_badges.png",
+      "size": 34496,
+      "sha256": "37a8cbb38296ee73ed5cae856652f9f8727de4a4b0b3623fa2f7bb0de15781f5"
+    },
+    {
+      "path": "web/nl/assets/46a995285260_p144_ac_wall_charging.png",
+      "size": 47901,
+      "sha256": "46a995285260ff2ab2c17798e0cd8562ceb2d2b6a2b1a76fa4fec13b9e53e099"
+    },
+    {
+      "path": "web/nl/assets/4e30a7129dad_operation-dc-usb-output-geometry-v2.png",
+      "size": 57088,
+      "sha256": "4e30a7129daded263cf580d421e8ef41d5e96eab9ce701596b831427cfd0da35"
+    },
+    {
+      "path": "web/nl/assets/527e8c590931_app-control.png",
+      "size": 10075,
+      "sha256": "527e8c590931fe1b6e42cf31f3ccebc70a199efdacfe868d472bd51d4b96421f"
+    },
+    {
+      "path": "web/nl/assets/5577802589c0_p137_lcd_display.png",
+      "size": 69535,
+      "sha256": "5577802589c0725f4d8f19840d97bbfe84e9196cef3fbfa4ad1f273f6751b774"
+    },
+    {
+      "path": "web/nl/assets/58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "web/nl/assets/6110b5b23e5b_p141_lcd_mode_art.png",
+      "size": 27649,
+      "sha256": "6110b5b23e5bdcabc3d810005c9d447fa2dffc19c2d6845b1814e874434d211c"
+    },
+    {
+      "path": "web/nl/assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "size": 4482,
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67"
+    },
+    {
+      "path": "web/nl/assets/6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "web/nl/assets/6bafdd3a9f9d_operation-ac-output-geometry-v2.png",
+      "size": 52640,
+      "sha256": "6bafdd3a9f9df66ef56d76191e35b9688e8e97f602a2154f630a6ea946d78d7c"
+    },
+    {
+      "path": "web/nl/assets/71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "web/nl/assets/73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "web/nl/assets/747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "web/nl/assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "size": 6737,
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b"
+    },
+    {
+      "path": "web/nl/assets/7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "web/nl/assets/76709a587df0_overview-front-dc-glyph.png",
+      "size": 82010,
+      "sha256": "76709a587df0363ed7a4a4522977953f95e83edbfbe44305bbf9ff662ddd1756"
+    },
+    {
+      "path": "web/nl/assets/7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "web/nl/assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "web/nl/assets/7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "web/nl/assets/85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "web/nl/assets/87ac44e52863_manual_icon1.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "web/nl/assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "size": 3794,
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a"
+    },
+    {
+      "path": "web/nl/assets/8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "web/nl/assets/91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "web/nl/assets/92c65c7d6755_p142_ups_connection.png",
+      "size": 49697,
+      "sha256": "92c65c7d67554a0cdf192215eff102e47de9d9a4dbfdcb546a42a57a1fdaeb2b"
+    },
+    {
+      "path": "web/nl/assets/9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "web/nl/assets/9d50533db979_english-charging_solar_adapter.png",
+      "size": 1143091,
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142"
+    },
+    {
+      "path": "web/nl/assets/9f983f1577fc_p149_app-store.png",
+      "size": 9956,
+      "sha256": "9f983f1577fce4711348bc16321d0928cfe8fc4b40077ea79ccf67fd6e18625a"
+    },
+    {
+      "path": "web/nl/assets/a210e855db00_operation-main-power-geometry-v2.png",
+      "size": 37616,
+      "sha256": "a210e855db007daebc4e6ee7a1327a7572faf71b58d9c30799aba8827b372ab2"
+    },
+    {
+      "path": "web/nl/assets/a2c8d8807acf_english-charging_solar_direct.png",
+      "size": 569506,
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2"
+    },
+    {
+      "path": "web/nl/assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "size": 8901,
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a"
+    },
+    {
+      "path": "web/nl/assets/a9c6dc9112c7_app-phone.png",
+      "size": 63461,
+      "sha256": "a9c6dc9112c7bde9454d4163da5e69ff0533286a34576993793948ee74f85463"
+    },
+    {
+      "path": "web/nl/assets/b072e823617c_p135_inbox-main.png",
+      "size": 9392,
+      "sha256": "b072e823617c21ee8b3a0f111e195fb4184bee777a59c8ab3166ab81c4939e0c"
+    },
+    {
+      "path": "web/nl/assets/b688edc6129a_operation-led-light-geometry-v2.png",
+      "size": 34394,
+      "sha256": "b688edc6129a2373143a5790e11bc01c02dc0e78ac521f93645c7421c1817cee"
+    },
+    {
+      "path": "web/nl/assets/bbfd27da8457_app-result.png",
+      "size": 53890,
+      "sha256": "bbfd27da8457189dc0efc6f6eac5e6e1ac11620ff194ac1f6de95a5bdeaefc00"
+    },
+    {
+      "path": "web/nl/assets/bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "web/nl/assets/c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "web/nl/assets/c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "web/nl/assets/ca42758ae993_overview-right-approved.png",
+      "size": 37659,
+      "sha256": "ca42758ae993299999c3a96329ebb6845f0a403451cd6941f77eb9ef28d6ef67"
+    },
+    {
+      "path": "web/nl/assets/ce913ebfc775_25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "web/nl/assets/cf04ff00bdeb_weee2.png",
+      "size": 19806,
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    {
+      "path": "web/nl/assets/cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "web/nl/assets/d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "web/nl/assets/e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "web/nl/assets/e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "web/nl/assets/eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "web/nl/assets/f2f97ff0a870_english-charging_car.png",
+      "size": 426950,
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca"
+    },
+    {
+      "path": "web/nl/assets/f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "web/nl/assets/f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "web/nl/assets/f92b727d8a70_operation-energy-saving-geometry-v2.png",
+      "size": 38452,
+      "sha256": "f92b727d8a70d64e56298af3c1759eac375b0ad66dbe3625bf2ff7dd9029de6b"
+    },
+    {
+      "path": "web/nl/assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "web/nl/conf.py",
+      "size": 823,
+      "sha256": "df511e00139c376f507ad84cdbd52dc9171457ec2d1f9c5621e60cf881cb9a19"
+    },
+    {
+      "path": "web/nl/index.md",
+      "size": 84,
+      "sha256": "6236192efb2366c5f29e0286bf823a0443f371c26695303862a12fa7fdee561c"
+    },
+    {
+      "path": "web/nl/manual.ir.json",
+      "size": 564793,
+      "sha256": "a6d12d51287d658dcf6db9ac30d42be5602af8f1bbc54d845dc8817dc19f350f"
+    },
+    {
+      "path": "web/nl/manual_je2000f_eu_nl.md",
+      "size": 77262,
+      "sha256": "45ffeb8891a20e50b9d3c33eee18abff37d0da2160d209fd2ab3e103f510afb5"
+    },
+    {
+      "path": "web/pl/_static/web_manual.css",
+      "size": 81376,
+      "sha256": "3700ecd2bbb804484de7abb0b098381af83d503f5bd1a561daeade6fd261ecac"
+    },
+    {
+      "path": "web/pl/assets/05095e9ebb06_p162_ac_wall_charging.png",
+      "size": 49065,
+      "sha256": "05095e9ebb06921068259334c1db23ec8b539432e8de4c7c24facfd8c2771a83"
+    },
+    {
+      "path": "web/pl/assets/1011ac47b874_operation-dc-usb-output-geometry-v2.png",
+      "size": 57013,
+      "sha256": "1011ac47b8742bbf023809b1dc0bc8f91232b9e5d57ad94992f4e579b8070720"
+    },
+    {
+      "path": "web/pl/assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "size": 7645,
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
+    },
+    {
+      "path": "web/pl/assets/21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "web/pl/assets/287650f3a89a_ac_charging_cable.png",
+      "size": 4023,
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef"
+    },
+    {
+      "path": "web/pl/assets/28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "web/pl/assets/29fd90fdeddb_app-result.png",
+      "size": 53925,
+      "sha256": "29fd90fdeddb4086abe9d2132e188d46cb56d7760a939c23a1a6454ca03588ad"
+    },
+    {
+      "path": "web/pl/assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "size": 7367,
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7"
+    },
+    {
+      "path": "web/pl/assets/2dc67f362d1e_overview-right-approved.png",
+      "size": 40357,
+      "sha256": "2dc67f362d1e76fe3a2c6dc862ce0483a15f87ad6334c04b3662cf39480fd941"
+    },
+    {
+      "path": "web/pl/assets/30c686505990_p167_app-qr.png",
+      "size": 20712,
+      "sha256": "30c686505990f4e2007567950f2d45e416165a5325e2c2d8eb26f5fb77e04007"
+    },
+    {
+      "path": "web/pl/assets/393892f97662_p160_ups_connection.png",
+      "size": 49789,
+      "sha256": "393892f97662ede90c525f3866c730ac477a8846f3e8152b27b047a270b99286"
+    },
+    {
+      "path": "web/pl/assets/415f05321b4e_p155_lcd_display.png",
+      "size": 69476,
+      "sha256": "415f05321b4e301a8a4949ee048e806eb89ddf7a480a89fffa5667ac21ef724f"
+    },
+    {
+      "path": "web/pl/assets/4c77e71ca8e0_p167_app-store.png",
+      "size": 9970,
+      "sha256": "4c77e71ca8e0f41a5efd17c653ae5229656ae4476d3502a31ee375f6151344dc"
+    },
+    {
+      "path": "web/pl/assets/4cc273350725_operation-ac-output-geometry-v2.png",
+      "size": 52927,
+      "sha256": "4cc273350725c8fd8c86a762d9182f6f5b20ccbbc269e74d3c6e7b42e37e9bee"
+    },
+    {
+      "path": "web/pl/assets/4f3ac2123475_p153_inbox-main.png",
+      "size": 9410,
+      "sha256": "4f3ac2123475eb25a7b4e1f25b8af6456f2323ce31fce0951b117568d8e9f4b5"
+    },
+    {
+      "path": "web/pl/assets/58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "web/pl/assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "size": 4482,
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67"
+    },
+    {
+      "path": "web/pl/assets/690866a86f49_p154_front_view.png",
+      "size": 84765,
+      "sha256": "690866a86f49c9f92b02a2bb8b37d0394aa60bab9155199c81a5061cd18ec597"
+    },
+    {
+      "path": "web/pl/assets/6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "web/pl/assets/71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "web/pl/assets/7281ea3e7034_app-phone.png",
+      "size": 63436,
+      "sha256": "7281ea3e7034ffe39b38598ecf681a0344f85f747de9d3a29f7f6c5800a74cb1"
+    },
+    {
+      "path": "web/pl/assets/73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "web/pl/assets/747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "web/pl/assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "size": 6737,
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b"
+    },
+    {
+      "path": "web/pl/assets/7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "web/pl/assets/7963f6ec89f5_operation-main-power-geometry-v2.png",
+      "size": 37606,
+      "sha256": "7963f6ec89f5c0c70277ddafc9839c3ae8a6537995ee5b7821b33eacaa8ab421"
+    },
+    {
+      "path": "web/pl/assets/7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "web/pl/assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "web/pl/assets/7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "web/pl/assets/85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "web/pl/assets/87ac44e52863_manual_icon1.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "web/pl/assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "size": 3794,
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a"
+    },
+    {
+      "path": "web/pl/assets/8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "web/pl/assets/91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "web/pl/assets/9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "web/pl/assets/9d50533db979_english-charging_solar_adapter.png",
+      "size": 1143091,
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142"
+    },
+    {
+      "path": "web/pl/assets/a2c8d8807acf_english-charging_solar_direct.png",
+      "size": 569506,
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2"
+    },
+    {
+      "path": "web/pl/assets/a50c27a852a5_app-control.png",
+      "size": 10087,
+      "sha256": "a50c27a852a50df8c46ef058e15a8cef81a26c87fe3a815c5ba34ecd1f1cb126"
+    },
+    {
+      "path": "web/pl/assets/a6c3ca72ce30_p167_app_qr_and_badges.png",
+      "size": 34516,
+      "sha256": "a6c3ca72ce30a48c03e753318ad8de2d0c023c194eecf8d837092d2e702759ff"
+    },
+    {
+      "path": "web/pl/assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "size": 8901,
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a"
+    },
+    {
+      "path": "web/pl/assets/bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "web/pl/assets/be11625d32de_operation-led-light-geometry-v2.png",
+      "size": 34453,
+      "sha256": "be11625d32dec37ce37a16297c46ee2238ee274e3b9900de962ff9a8fc222b07"
+    },
+    {
+      "path": "web/pl/assets/c2e2726d5b67_p159_lcd_mode_art.png",
+      "size": 27623,
+      "sha256": "c2e2726d5b67d9e79107372099a15ef0123a715dbe0de687bdae87dbb90f03da"
+    },
+    {
+      "path": "web/pl/assets/c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "web/pl/assets/c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "web/pl/assets/ce913ebfc775_25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "web/pl/assets/cf04ff00bdeb_weee2.png",
+      "size": 19806,
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    {
+      "path": "web/pl/assets/cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "web/pl/assets/d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "web/pl/assets/e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "web/pl/assets/e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "web/pl/assets/eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "web/pl/assets/f2f97ff0a870_english-charging_car.png",
+      "size": 426950,
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca"
+    },
+    {
+      "path": "web/pl/assets/f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "web/pl/assets/f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "web/pl/assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "web/pl/assets/fcca6ba0f606_operation-energy-saving-geometry-v2.png",
+      "size": 38434,
+      "sha256": "fcca6ba0f606290c2a361bc33f5bd5c5d84a46606d230494782449792e77901d"
+    },
+    {
+      "path": "web/pl/conf.py",
+      "size": 823,
+      "sha256": "3abf20eb9a519c3ab914a731678e4e9c1ed414122b35b34d934bad850c69a335"
+    },
+    {
+      "path": "web/pl/index.md",
+      "size": 84,
+      "sha256": "036a1d5f05fcd80d138c85ecdd3328971ee2e5719d22bb6f746da95c11c74777"
+    },
+    {
+      "path": "web/pl/manual.ir.json",
+      "size": 566560,
+      "sha256": "fbb3a78ef86131ca9e72794ed0eac464fee31fed3e21c4b8789ed6ff6a5072d6"
+    },
+    {
+      "path": "web/pl/manual_je2000f_eu_pl.md",
+      "size": 80015,
+      "sha256": "483e89806cdf4edfb793bc4e794e066072fb278adc4cad6baf89f04f6cdccc5c"
+    },
+    {
+      "path": "web/pt/_static/web_manual.css",
+      "size": 81376,
+      "sha256": "3700ecd2bbb804484de7abb0b098381af83d503f5bd1a561daeade6fd261ecac"
+    },
+    {
+      "path": "web/pt/assets/0c3a6eec7483_p131_app-store.png",
+      "size": 9964,
+      "sha256": "0c3a6eec7483936d3f93d62a933a3f4494f73bc82334c61de1de80cf1d8e8e2d"
+    },
+    {
+      "path": "web/pt/assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "size": 7645,
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
+    },
+    {
+      "path": "web/pt/assets/21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "web/pt/assets/263f051d7643_p131_app-qr.png",
+      "size": 20711,
+      "sha256": "263f051d76434ebb6619ea11b4c8585e890334a78adda1a90530547373665bb4"
+    },
+    {
+      "path": "web/pt/assets/287650f3a89a_ac_charging_cable.png",
+      "size": 4023,
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef"
+    },
+    {
+      "path": "web/pt/assets/28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "web/pt/assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "size": 7367,
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7"
+    },
+    {
+      "path": "web/pt/assets/404088c6a9d1_operation-dc-usb-output-geometry-v2.png",
+      "size": 57005,
+      "sha256": "404088c6a9d1482f684671a4ce4057820fb01ef3b8ee73a142d13027e1fb2eac"
+    },
+    {
+      "path": "web/pt/assets/58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "web/pt/assets/60ba28891ba9_p117_inbox-main.png",
+      "size": 9397,
+      "sha256": "60ba28891ba9f64b1fa6a8f3e5f2212e327fb8437baef091163764421c974d80"
+    },
+    {
+      "path": "web/pt/assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "size": 4482,
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67"
+    },
+    {
+      "path": "web/pt/assets/6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "web/pt/assets/71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "web/pt/assets/73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "web/pt/assets/747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "web/pt/assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "size": 6737,
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b"
+    },
+    {
+      "path": "web/pt/assets/7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "web/pt/assets/785adfbd8fc4_operation-ac-output-geometry-v2.png",
+      "size": 52670,
+      "sha256": "785adfbd8fc4b999f7a7f5e8155a115540b4446b0bee0992c6a5d094a9d244f5"
+    },
+    {
+      "path": "web/pt/assets/7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "web/pt/assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "web/pt/assets/7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "web/pt/assets/8003f5bf02fa_operation-main-power-geometry-v2.png",
+      "size": 37604,
+      "sha256": "8003f5bf02faec702f34d4827fe88710624f893ef3c5ef4d10511101b96c36b2"
+    },
+    {
+      "path": "web/pt/assets/85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "web/pt/assets/87ac44e52863_manual_icon1.png",
+      "size": 1614,
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a"
+    },
+    {
+      "path": "web/pt/assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "size": 3794,
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a"
+    },
+    {
+      "path": "web/pt/assets/8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "web/pt/assets/907349515343_overview-right-approved.png",
+      "size": 35368,
+      "sha256": "9073495153430cc6c43051f8a010729e27c2b722b66303893542f21633ea454b"
+    },
+    {
+      "path": "web/pt/assets/91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "web/pt/assets/9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "web/pt/assets/9d50533db979_english-charging_solar_adapter.png",
+      "size": 1143091,
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142"
+    },
+    {
+      "path": "web/pt/assets/a2c8d8807acf_english-charging_solar_direct.png",
+      "size": 569506,
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2"
+    },
+    {
+      "path": "web/pt/assets/a416242e7231_operation-led-light-geometry-v2.png",
+      "size": 34364,
+      "sha256": "a416242e7231c56704dfe0cf68b16e9d882ed9736fc7936a731136d40ec06f4f"
+    },
+    {
+      "path": "web/pt/assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "size": 8901,
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a"
+    },
+    {
+      "path": "web/pt/assets/abb73a035a60_p131_app_qr_and_badges.png",
+      "size": 34503,
+      "sha256": "abb73a035a60c289a26dcdf16bfc1f6d15ba131ef3130391a7667d55f9f4567e"
+    },
+    {
+      "path": "web/pt/assets/ac837f8db637_app-control.png",
+      "size": 10072,
+      "sha256": "ac837f8db6379a520ebbfb1fe169426f4bca9c684dd49d05508777a21c35797e"
+    },
+    {
+      "path": "web/pt/assets/af942b8e2ac9_p126_ac_wall_charging.png",
+      "size": 48419,
+      "sha256": "af942b8e2ac970a05f75417659fdf506d299180567ca856de1707d16544f0a15"
+    },
+    {
+      "path": "web/pt/assets/b04860fab4eb_app-result.png",
+      "size": 53929,
+      "sha256": "b04860fab4eb8227d5037f3c025b36e85ada42d2a290096ca897984346a951fe"
+    },
+    {
+      "path": "web/pt/assets/b9d605844d1e_app-phone.png",
+      "size": 63444,
+      "sha256": "b9d605844d1e7471f391095c583c145e03655c54b75f9f2d30ae1bab2f17dc67"
+    },
+    {
+      "path": "web/pt/assets/bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "web/pt/assets/bedf5f6bb06e_p123_lcd_mode_art.png",
+      "size": 27707,
+      "sha256": "bedf5f6bb06e02f39b55b201287971a232f549c8199fa0294e442931352ab64e"
+    },
+    {
+      "path": "web/pt/assets/c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "web/pt/assets/c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "web/pt/assets/cda223b100cf_operation-energy-saving-geometry-v2.png",
+      "size": 38467,
+      "sha256": "cda223b100cfed6a652cb68ba15cb7f23be3a52eb22b301951c2e5d2ab10132e"
+    },
+    {
+      "path": "web/pt/assets/ce913ebfc775_25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "web/pt/assets/cf04ff00bdeb_weee2.png",
+      "size": 19806,
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    {
+      "path": "web/pt/assets/cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "web/pt/assets/d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "web/pt/assets/e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "web/pt/assets/e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "web/pt/assets/ee9322f347aa_p118_front_view.png",
+      "size": 77369,
+      "sha256": "ee9322f347aa83dc3e2fe3287dd80b56f675508264744a9ff641f1c68b9eaf56"
+    },
+    {
+      "path": "web/pt/assets/eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "web/pt/assets/f2f97ff0a870_english-charging_car.png",
+      "size": 426950,
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca"
+    },
+    {
+      "path": "web/pt/assets/f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "web/pt/assets/f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "web/pt/assets/f8d4d39f70a2_p124_ups_connection.png",
+      "size": 49705,
+      "sha256": "f8d4d39f70a272fa94100666cb2e9c8b129c8defffbfd979cbffd39a3212a22d"
+    },
+    {
+      "path": "web/pt/assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "web/pt/assets/fe028ecebcff_p119_lcd_display.png",
+      "size": 69520,
+      "sha256": "fe028ecebcff40142dadaeab65f53198460934addc3a084c72772908bd950335"
+    },
+    {
+      "path": "web/pt/conf.py",
+      "size": 823,
+      "sha256": "bca8f538eb8ca88c1fd95902bd3dda462699662ad40b8e7f3ab3969a1daed556"
+    },
+    {
+      "path": "web/pt/index.md",
+      "size": 84,
+      "sha256": "d4b6d0f7f6a184e1f3e573e44044e7e16b603410dffad7eef65145db4f28f7d8"
+    },
+    {
+      "path": "web/pt/manual.ir.json",
+      "size": 563864,
+      "sha256": "410e246990393cb019d26099b7de10d43784346d45e6c90bf35e40acb03725a5"
+    },
+    {
+      "path": "web/pt/manual_je2000f_eu_pt.md",
+      "size": 77594,
+      "sha256": "9a1045b28978f8adb0ef612a1beab71be5e1e92d31b1548f88af983e96f07084"
+    }
+  ],
+  "supersedes": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language",
+  "revision_source": {
+    "pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
+    "batch": "1465",
+    "status": "candidate-awaiting-review"
+  }
+}
