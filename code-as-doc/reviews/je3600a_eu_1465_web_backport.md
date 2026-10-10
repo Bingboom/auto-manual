@@ -47,10 +47,12 @@ The Spanish battery-disposal caption contains the printed split `independiente-\
 ## Verification and release boundary
 
 - 14 symbol-admission unit tests pass, including the real-PDF linebreak regression and existing glyph/caption/source/shared-catalog tamper rejection tests.
-- Full repository unittest, lint, maintainability guardrails and documentation links: results will be recorded before draft PR creation.
+- Full repository `TMPDIR=/private/tmp python -m unittest`: 5272 tests pass, 37 skipped (569.112s). Ruff, maintainability guardrails and documentation links/lifecycle pass.
 - Spanish and Italian strict Sphinx `-W` builds pass; fresh shared-component and sixteen symbol-row admissions pass.
-- Both packages cold-replay deterministically, seal successfully, and verify their sealed source/Markdown/HTML evidence. Initial local receipts identify an uncommitted candidate and will be resealed against the source commit before review.
+- Both packages cold-replay deterministically, seal successfully, and verify their sealed source/Markdown/HTML evidence. Final candidate receipts bind source commit `653aaffd9bcf601fd7d993439aa166ac3ca69893`; both receipts and frozen inventories are committed below `je3600a_eu_1465_web_evidence/`.
 - Desktop 1280px and mobile 390px: no broken images or document overflow; eight symbol rows preserved. The narrow troubleshooting table retains the existing horizontally scrollable, keyboard-focusable semantic component. Screenshots inspect shared symbols and Italian troubleshooting. Local evidence remains below `/private/tmp/1465-web-backport/JE-3600A-evidence/`.
 - Historical `build.py check --config configs/config.eu-en.yaml --model JE-3600A --region EU --data-root manual_sources/JE-3600A/EU/en/2026-05-25/phase2` passed. This regression does not validate revised native language prose.
 
 These source packages and local previews are release candidates. Human engineering PR review/merge, mirror sync, controlled generated `publish → main` release PR, human publication merge and RTD receipt/live readback are still required. The task does not self-merge or claim that the website is corrected.
+
+[Symbol before/after comparison](je3600a_eu_1465_web_evidence/symbol-reuse-comparison.png) · [Spanish desktop](je3600a_eu_1465_web_evidence/es-1280-symbols.png) · [Italian desktop](je3600a_eu_1465_web_evidence/it-1280-troubleshooting.png) · [Browser checks](je3600a_eu_1465_web_evidence/browser-checks.json) · [Symbol admission results](je3600a_eu_1465_web_evidence/symbol-admission-pass.json)
