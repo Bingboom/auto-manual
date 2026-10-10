@@ -70,7 +70,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 
 ## 文档入口
 
-JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)。
+JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
 
 | 想了解什么 | 从这里开始 |
 | --- | --- |

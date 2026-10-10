@@ -613,7 +613,7 @@ contract, and every page-level visual check to pass. The latest parity report
 must say `accepted=true`. This guide describes that acceptance contract; it
 does not claim the current IDML/INDD/PDF has already passed. Copyable commands
 are in the
-[`Approved-PDF native InDesign replica` section](../code-as-doc/build_doc_guide.md#approved-pdf-native-indesign-replica-option-2).
+[`Approved-PDF native InDesign replica` section](../code-as-doc/build_doc_guide/idml-reference-layouts.md#approved-pdf-native-indesign-replica-option-2).
 
 Write the finalize and parity artifacts **next to the production IDML**, in
 `docs/_build/<model>/<region>[/<lang>]/idml/` — `<stem>.indd`,
@@ -2102,7 +2102,7 @@ PDF 对照修正时，表头、圈号、图标、提示标签和说明文字都�
 
 JE-100C/EU 的 Web 本地源现支持英文及新增法、西、德、意、乌、葡、荷、波，共九语。
 按语种选择 `configs/config.eu-<lang>.yaml`，复用英文冻结包中的产品身份数据，
-正文和插图由各自语言的原稿及修订记录绑定；[示例命令与来源边界](../code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)。
+正文和插图由各自语言的原稿及修订记录绑定；[示例命令与来源边界](../code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
 乌、葡、荷、波的旧版 AC 充电等差异已按操作者指示对齐新版英文，原始来源和修订依据均保留。
 葡语代码为 `pt`，区别于巴西葡语 `pt-BR`。本地构建通过不等于线上发布；
 正式发布仍走既有审核、冻结快照、Hello-Docs 和 RTD 流程。
