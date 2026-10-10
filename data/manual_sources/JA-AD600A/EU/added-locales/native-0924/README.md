@@ -14,7 +14,7 @@ From the repository root, run python3 data/manual_sources/JA-AD600A/EU/added-loc
 
 Eight-language publication is pending a separate operator instruction. These packages are not deployed by the English release.
 
-FAQ correction: all eight locales now preserve the approved English question/answer structure: eight fully bold questions followed by separate answers with bold native answer labels. Q2 retains all three numbered maintenance instructions in one answer paragraph as in English. Original wording, including Spanish numbering, is unchanged. The Portuguese source visibly omits P1 before its first question; German F4 visibly contains an English answer, both preserved. Renewed FAQ browser acceptance covers 1280 and 390 pixels.
+FAQ correction: all eight locales now preserve the approved English question/answer structure: eight fully bold questions followed by separate answers with bold native answer labels. Q2 retains all three numbered maintenance instructions in one answer paragraph as in English. Original wording is retained except the documented batch 1465 corrections below. The Portuguese source visibly omits P1 before its first question; German F4 originally contained an English answer; the approved batch 1465 replacement is now native German. The original capture remains evidence. Renewed FAQ browser acceptance covers 1280 and 390 pixels.
 
 Localized reflow follow-up hides redundant specification subheadings that repeated the section title. Status-table column widths reserve room for native light-state/color wording, and lamp labels wrap within their own cells. Source values and the shared English renderer remain unchanged.
 
@@ -25,3 +25,9 @@ Publication admission under MA-267 declares each native RST page/slot through th
 The reviewed source-local presentation.css now travels inside each generated MyST document as well as its hash-pinned IR metadata. Portal assembly uses global CSS and does not consume per-target conf.py CSS lists; embedding the source-local rules prevents native status widths, lamp wrapping and diagram caption placement from being lost. The shared exporter body is preserved verbatim; no generated HTML is edited.
 
 Packaging label blocks are constrained to card width and allow long native words to wrap. This source-local presentation fix does not change any source wording, illustration, numbering, or the published English.
+
+## Batch 1465 Web correction (2026-10-10)
+
+The delivered JA-AD600A revised AI/PDF and its operator-accepted correction ledger authorize six native-text substitutions across five ledger rows: Spanish FAQ Q2 punctuation and Q7 numbering; German FAQ Q4 answer; Italian overview, 7.1 installation diagram and 7.6 product installation headings. Physical PDF pages 36/50/61/65/69 map to printed 34/48/59/63/67. Review colors are excluded from Web copy. The unchanged original capture remains provenance; corrected RST carriers regenerate MyST, HTML and Manual IR, then refresh the source inventory. All artwork, tables, engineering values and the other five native locale bodies remain unchanged.
+
+Exact substitutions and delivered-source SHA-256 are recorded in `batch_1465_corrections.json`. Local verification and an engineering draft PR do not establish publication. The release must use this approved Git source commit through the frozen Web release lane, then a generated `docs/publish/**` candidate in Hello-Docs and operator merge plus RTD verification. No live source-table or synthetic build-row write is required.
