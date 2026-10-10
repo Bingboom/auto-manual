@@ -3,14 +3,16 @@
 
 Parallel windows take numbers from the same two tables:
 
-- ``ma``: the merge-authorization registry, ``code-as-doc/dev/merge_authorizations.md``;
+- ``ma``: the merge-authorization registry, ``code-as-doc/dev/merge_authorizations.md``,
+  plus its archive of expired rows, ``code-as-doc/dev/merge_authorizations_archive.md``;
 - ``rev``: the execution ledger, ``code-as-doc/dev/manual_revitalization_execution.md``.
 
 Taking "the next one after main" collided three times on one day, because an
 open PR had already reserved it. This tool counts a number as used when it is
 on ``origin/main``, in this checkout's copy of the file, or new in the added
 lines of any open pull request that touches the file. A row an open PR only
-edits (a status flip, say) is already on main and reserves nothing new.
+edits (a status flip, say) or moves to the archive is already on main and
+reserves nothing new. An archive that main does not have yet counts as empty.
 
 Run it right before pushing, and again if the push races another window
 (REV-45 decision 16.10):
@@ -36,10 +38,12 @@ class Table(NamedTuple):
     row: re.Pattern[str]
     prefix: str
     width: int
+    archive: str = ""
 
 
 TABLES = {
-    "ma": Table("code-as-doc/dev/merge_authorizations.md", re.compile(r"^\+?\| (MA-(\d+)) \|"), "MA", 3),
+    "ma": Table("code-as-doc/dev/merge_authorizations.md", re.compile(r"^\+?\| (MA-(\d+)) \|"), "MA", 3,
+                archive="code-as-doc/dev/merge_authorizations_archive.md"),
     "rev": Table("code-as-doc/dev/manual_revitalization_execution.md",
                  re.compile(r'^\+?\| <a id="rev-\d+"></a>(REV-(\d+)) \|'), "REV", 2),
 }
@@ -59,6 +63,11 @@ def numbers(lines: list[str], table: Table, *, added_only: bool = False) -> set[
     return found
 
 
+def paths(table: Table) -> tuple[str, ...]:
+    """The files that hold the table's rows: the live file, then its archive."""
+    return (table.path, table.archive) if table.archive else (table.path,)
+
+
 def label(table: Table, number: int) -> str:
     return f"{table.prefix}-{number:0{table.width}d}"
 
@@ -68,12 +77,22 @@ def reservations(table: Table, *, run: Run, on_main: set[int]) -> dict[int, list
     listing = json.loads(run(["gh", "pr", "list", "--state", "open", "--limit", "200", "--json", "number,files"]))
     reserved: dict[int, list[int]] = {}
     for pr in listing:
-        if not any(item.get("path") == table.path for item in pr.get("files") or []):
+        if not any(item.get("path") in paths(table) for item in pr.get("files") or []):
             continue
         diff = run(["gh", "pr", "diff", str(pr["number"])])
         for number in numbers(diff.splitlines(), table, added_only=True) - on_main:
             reserved.setdefault(number, []).append(int(pr["number"]))
     return reserved
+
+
+def main_text(path: str, *, run: Run, root: Path, optional: bool = False) -> str:
+    """``path`` as it is on ``origin/main``; an optional file main lacks reads as empty."""
+    try:
+        return run(["git", "-C", str(root), "show", f"origin/main:{path}"])
+    except subprocess.CalledProcessError:
+        if optional:
+            return ""
+        raise
 
 
 def next_free(used: set[int]) -> int:
@@ -85,9 +104,13 @@ def report(kind: str, *, run: Run, root: Path, fetch: bool = True) -> tuple[str,
     table = TABLES[kind]
     if fetch:
         run(["git", "-C", str(root), "fetch", "-q", "origin", "main"])
-    on_main = numbers(run(["git", "-C", str(root), "show", f"origin/main:{table.path}"]).splitlines(), table)
-    local_path = root / table.path
-    local = numbers(local_path.read_text(encoding="utf-8").splitlines(), table) if local_path.is_file() else set()
+    on_main: set[int] = set()
+    local: set[int] = set()
+    for path in paths(table):
+        on_main |= numbers(main_text(path, run=run, root=root, optional=path != table.path).splitlines(), table)
+        local_path = root / path
+        if local_path.is_file():
+            local |= numbers(local_path.read_text(encoding="utf-8").splitlines(), table)
     reserved = reservations(table, run=run, on_main=on_main)
     nxt = next_free(on_main | local | set(reserved))
     parts = [f"main has up to {label(table, max(on_main))}" if on_main else "main has none"]
