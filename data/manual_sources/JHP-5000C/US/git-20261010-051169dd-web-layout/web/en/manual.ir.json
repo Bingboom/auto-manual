@@ -81,8 +81,8 @@
     "assets/contact-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "71cd52ed845acc1fc4b6ad0fe0fa5effe4a51951ac838890a11eef40dcdb358c",
-  "content_sha256": "c6a935f010bd0f4b79848a7359af2652a54d4cab3a8cb604ab7e1077fb60ce60",
+  "bundle_sha256": "da61bc43d2ca6f82e741674fac1f4475b330aba2d14da001a6330d28416c23db",
+  "content_sha256": "f010105e4da134cf6262818aa0d4507528cf65ac5a986454abf55c8f06778e93",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -168,9 +168,9 @@
       "assets/warning_triangle_dark.svg": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
       "assets/warning_triangle_white.svg": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15"
     },
-    "block_count": 175,
+    "block_count": 173,
     "component_inventory": {
-      "HB-CALLOUT-STRIP": 18,
+      "HB-CALLOUT-STRIP": 17,
       "HB-SPECIAL-APP": 1,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
@@ -2015,7 +2015,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "eda75dc10d23bfccfeec2acf24359aa838adfcf5b06e1cce1c63b1abb539ccd8"
+      "sha256": "9d301afca35a84fd2d3bb9928e6c2b8ea101330c5a5b45bfaec15db750ece592"
     },
     "title": "Jackery HomePower 5000 Plus · JHP-5000C",
     "web_contract": {
@@ -2305,54 +2305,37 @@
             "assets/warning_triangle_dark.svg"
           ],
           "block_id": "safety:block-0002",
-          "content_sha256": "04798e97fdc299ceade71d068caebe63efd8f0eb81f79868f218fb81929b2383",
+          "content_sha256": "892460647f23cdde6d3f8532cd5d16b28d7e857a5952b26e81abba0157b071eb",
           "kind": "flow",
           "payload": {
             "children": [
-              {
-                "alt": "",
-                "kind": "image",
-                "source": "assets/warning_triangle_dark.svg"
-              },
               {
                 "children": [
                   {
                     "children": [
                       {
-                        "kind": "text",
-                        "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+                        "kind": "column",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width:7%"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width:93%"
+                            }
+                          }
+                        }
                       }
                     ],
-                    "kind": "strong"
-                  }
-                ],
-                "kind": "paragraph"
-              }
-            ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "hb-source-safety-heading"
-                }
-              }
-            },
-            "role": "container",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/safety#block-2"
-        },
-        {
-          "asset_refs": [
-            "assets/warning_triangle_white.svg"
-          ],
-          "block_id": "safety:block-0003",
-          "content_sha256": "709591c3ad1efb904735c6425c6e7601c1aba07b4ddbafca40cba2b64e1f7dca",
-          "kind": "flow",
-          "payload": {
-            "carrier_flow": [
-              {
-                "children": [
+                    "kind": "column_group"
+                  },
                   {
                     "children": [
                       {
@@ -2360,36 +2343,21 @@
                           {
                             "children": [
                               {
-                                "children": [
-                                  {
-                                    "alt": "",
-                                    "kind": "image",
-                                    "source": "assets/warning_triangle_white.svg"
-                                  },
-                                  {
-                                    "kind": "text",
-                                    "text": "WARNING"
-                                  }
-                                ],
-                                "kind": "inline_group",
+                                "alt": "",
+                                "kind": "image",
                                 "presentation": {
                                   "html": {
                                     "attributes": {
-                                      "class": "hb-warning-lockup"
+                                      "style": "width:30px;height:auto",
+                                      "width": "30"
                                     }
                                   }
-                                }
+                                },
+                                "source": "assets/warning_triangle_dark.svg"
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-label"
-                                }
-                              }
-                            }
+                            "kind": "table_cell"
                           },
                           {
                             "children": [
@@ -2399,7 +2367,7 @@
                                     "children": [
                                       {
                                         "kind": "text",
-                                        "text": "Always follow these basic precautions when using this product."
+                                        "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
                                       }
                                     ],
                                     "kind": "strong"
@@ -2409,14 +2377,7 @@
                               }
                             ],
                             "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-body"
-                                }
-                              }
-                            }
+                            "kind": "table_cell"
                           }
                         ],
                         "kind": "table_row"
@@ -2429,37 +2390,371 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "manual-callout-table manual-callout-table hb-source-warning-lockup native-lockup-inverse"
+                      "class": [
+                        "hb-symbol-signal-table"
+                      ]
                     }
                   }
                 }
               }
             ],
-            "component_spec": {
-              "assets": [],
-              "component_id": "HB-CALLOUT-STRIP",
-              "language": "en",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "WARNING",
-                  "content_kind": "inline_text",
-                  "role": "label"
-                },
-                {
-                  "content": "Always follow these basic precautions when using this product.",
-                  "content_kind": "rich_text",
-                  "role": "body"
+            "kind": "figure",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "hb-symbol-signal-composition",
+                    "hb-safety-instruction"
+                  ]
                 }
-              ],
-              "source_ref": "native-pdf/page-4/warning",
-              "token_roles": [
-                "component.callout"
-              ],
-              "variant": "warning"
+              }
             },
-            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/safety#block-2"
+        },
+        {
+          "asset_refs": [
+            "assets/warning_triangle_white.svg"
+          ],
+          "block_id": "safety:block-0003",
+          "content_sha256": "2f0cf33db02ba17a5d4aa74172467b27f242c096dbb9dc4ecd359b9ad50d64ac",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "column",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "style": "width: 50%"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "column",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "style": "width: 50%"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "column_group"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "column",
+                                        "presentation": {
+                                          "html": {
+                                            "attributes": {
+                                              "style": "width:20%"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "kind": "column",
+                                        "presentation": {
+                                          "html": {
+                                            "attributes": {
+                                              "style": "width:80%"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "kind": "column_group"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "children": [
+                                          {
+                                            "children": [
+                                              {
+                                                "children": [
+                                                  {
+                                                    "alt": "",
+                                                    "kind": "image",
+                                                    "presentation": {
+                                                      "html": {
+                                                        "attributes": {
+                                                          "style": "width:48px;height:auto",
+                                                          "width": "48"
+                                                        }
+                                                      }
+                                                    },
+                                                    "source": "assets/warning_triangle_white.svg"
+                                                  }
+                                                ],
+                                                "kind": "inline_group",
+                                                "presentation": {
+                                                  "html": {
+                                                    "attributes": {
+                                                      "class": [
+                                                        "hb-signal-badge"
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "header": false,
+                                            "kind": "table_cell",
+                                            "presentation": {
+                                              "html": {
+                                                "attributes": {
+                                                  "class": [
+                                                    "hb-symbol-signal-label-cell"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "children": [
+                                              {
+                                                "children": [
+                                                  {
+                                                    "children": [
+                                                      {
+                                                        "kind": "text",
+                                                        "text": "WARNING"
+                                                      }
+                                                    ],
+                                                    "kind": "strong"
+                                                  }
+                                                ],
+                                                "kind": "paragraph"
+                                              },
+                                              {
+                                                "children": [
+                                                  {
+                                                    "children": [
+                                                      {
+                                                        "kind": "text",
+                                                        "text": "Always follow these basic precautions when using this product."
+                                                      }
+                                                    ],
+                                                    "kind": "strong"
+                                                  }
+                                                ],
+                                                "kind": "paragraph"
+                                              }
+                                            ],
+                                            "header": false,
+                                            "kind": "table_cell",
+                                            "presentation": {
+                                              "html": {
+                                                "attributes": {
+                                                  "class": [
+                                                    "hb-symbol-signal-meaning-cell"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        "kind": "table_row"
+                                      }
+                                    ],
+                                    "kind": "table_body"
+                                  }
+                                ],
+                                "kind": "table",
+                                "presentation": {
+                                  "html": {
+                                    "attributes": {
+                                      "class": [
+                                        "hb-symbol-signal-table"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            ],
+                            "kind": "figure",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": [
+                                    "hb-symbol-signal-composition",
+                                    "hb-safety-lead"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Read all the instructions before using the product."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Avoid placing hands or fingers inside the product."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              }
+                            ],
+                            "kind": "list",
+                            "ordered": false
+                          }
+                        ],
+                        "header": false,
+                        "kind": "table_cell",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width: 50%; border: none; padding: 0 8px 0 0; vertical-align: top"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              }
+                            ],
+                            "kind": "list",
+                            "ordered": false
+                          }
+                        ],
+                        "header": false,
+                        "kind": "table_cell",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width: 50%; border: none; padding: 0 0 0 8px; vertical-align: top"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "table_row"
+                  }
+                ],
+                "kind": "table_body"
+              }
+            ],
+            "kind": "table",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-two-col-table"
+                  ],
+                  "style": "width:100%; border-collapse:separate; border-spacing:12px 0; margin:0 0 16px 0;"
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-3"
@@ -2467,119 +2762,6 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0004",
-          "content_sha256": "21996c33cdffdbbbaad739e28b4a37edc729edae5c2a17640c1898988834dbe9",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Read all the instructions before using the product."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not allow children to play on the product. Close supervision of children is necessary when the product is used near children."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Avoid placing hands or fingers inside the product."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Stop using the product immediately if it has been physically damaged or modified. Improper use of the product may cause unpredictable behavior, leading to fire, explosion, or injury."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "If any of the following are observed, including but not limited to overheats, emits unusual odors or smoking, leaks, or burns, stop using the product immediately and contact the dealer or our Customer Support."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Never attempt to open, repair, or modify the product. Any tampering, reassembly, or modification of the product can result in electric shock, fire, or battery damage."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Be aware that liquid ejected from the product may cause irritation or burns. Inappropriate or abusive use may lead to battery leakage. Avoid direct contact with leaking liquid. If the liquid contacts your eyes, seek medical help immediately. If it contacts other body parts, flush with running water and consult a medical professional without delay."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not expose the product to fire or excessive temperatures. Doing so may result in an explosion if the temperature exceeds 130°C (265°F)."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Any use of unrecommended or non-supplied materials or parts with the product may result in a risk of fire, electric shock, or personal injury."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not leave the battery charging unattended for long periods. Always monitor the charging process to ensure safe operation."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "To reduce the risk of electric shock, unplug the product from any power source before attempting any technical service or troubleshooting."
-                  }
-                ],
-                "kind": "list_item"
-              }
-            ],
-            "kind": "list",
-            "ordered": false,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/safety#block-4"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "safety:block-0005",
           "content_sha256": "f7014e12f4123e4b8acd0edbf881f68d5b8dfbaa53432df8dbaa5230c924d2c2",
           "kind": "flow",
           "payload": {
@@ -2605,223 +2787,297 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
+          "source_ref": "native-pdf/safety#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "safety:block-0005",
+          "content_sha256": "712448646401008912a401de311aa360043c3426d4230e55db8a7789c6f1261d",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "column",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "style": "width: 50%"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "column",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "style": "width: 50%"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "column_group"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "SAVE THESE INSTRUCTIONS"
+                                  }
+                                ],
+                                "kind": "strong"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges："
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "Charging temperature: 32°F to 113°F (0°C to 45°C);"
+                                          }
+                                        ],
+                                        "kind": "list_item"
+                                      },
+                                      {
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "Discharging temperature: 5°F to 113°F (-15°C to 45°C);"
+                                          }
+                                        ],
+                                        "kind": "list_item"
+                                      }
+                                    ],
+                                    "kind": "list",
+                                    "ordered": false
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "Charging in damp or poorly ventilated spaces may cause safety hazards."
+                                          }
+                                        ],
+                                        "kind": "list_item"
+                                      },
+                                      {
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "Water can cause short circuits or damage to the charger, leading to safety risks."
+                                          }
+                                        ],
+                                        "kind": "list_item"
+                                      }
+                                    ],
+                                    "kind": "list",
+                                    "ordered": false
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Unplug the power cord from a power outlet during a storm."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              }
+                            ],
+                            "kind": "list",
+                            "ordered": false
+                          }
+                        ],
+                        "header": false,
+                        "kind": "table_cell",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width: 50%; border: none; padding: 0 8px 0 0; vertical-align: top"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Ensure the device(s) are powered off before connecting it to the product."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not charge the product using a damaged or broken charging cord or plug."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DO NOT place the unit upside down or on its side during use or storage."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "DO NOT use the product's accessories with other devices or equipment."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Solar charge time depends on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
+                                  }
+                                ],
+                                "kind": "list_item"
+                              }
+                            ],
+                            "kind": "list",
+                            "ordered": false
+                          }
+                        ],
+                        "header": false,
+                        "kind": "table_cell",
+                        "presentation": {
+                          "html": {
+                            "attributes": {
+                              "style": "width: 50%; border: none; padding: 0 0 0 8px; vertical-align: top"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "kind": "table_row"
+                  }
+                ],
+                "kind": "table_body"
+              }
+            ],
+            "kind": "table",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": [
+                    "manual-two-col-table"
+                  ],
+                  "style": "width:100%; border-collapse:separate; border-spacing:12px 0; margin:0 0 16px 0;"
+                }
+              }
+            },
+            "schema_version": "manual-flow/v2"
+          },
           "source_ref": "native-pdf/safety#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "safety:block-0006",
-          "content_sha256": "726f9051e88cffe360eb90ef3f3891393cff43fa758010063a2e21ac3441ccad",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "SAVE THESE INSTRUCTIONS"
-                  }
-                ],
-                "kind": "strong"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/safety#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "safety:block-0007",
-          "content_sha256": "b256d29aa936f66f0c369144da1cda22a3606502bb9cbb1756f710e851274ace",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Stop using the product immediately if it shows signs of damage. Discontinue use and contact customer support for assistance."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not charge the battery in extremely hot or cold environments and strictly adhere to the product's specified operating temperature ranges："
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "Charging temperature: 32°F to 113°F (0°C to 45°C);"
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "Discharging temperature: 5°F to 113°F (-15°C to 45°C);"
-                          }
-                        ],
-                        "kind": "list_item"
-                      }
-                    ],
-                    "kind": "list",
-                    "ordered": false
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating."
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "Charging in damp or poorly ventilated spaces may cause safety hazards."
-                          }
-                        ],
-                        "kind": "list_item"
-                      },
-                      {
-                        "children": [
-                          {
-                            "kind": "text",
-                            "text": "Water can cause short circuits or damage to the charger, leading to safety risks."
-                          }
-                        ],
-                        "kind": "list_item"
-                      }
-                    ],
-                    "kind": "list",
-                    "ordered": false
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Unplug the power cord from a power outlet during a storm."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Immediately turn off the product by pressing the power button if it has fallen, been dropped, or exposed to vibrations."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Ensure the device(s) are powered off before connecting it to the product."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not charge the product using a damaged or broken charging cord or plug."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Do not use the product to charge any device with a damaged or broken cable or plug."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Always unplug the charging cord by pulling the plug, not the cord, to reduce the risk of damage."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Ensure the product is properly secured when transporting it in a moving vehicle."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "DO NOT place the unit upside down or on its side during use or storage."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "DO NOT place the product on the floor or at a height less than 18 inches (457 mm) above the floor during operation in a workshop or repair facility."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "DO NOT use the product's accessories with other devices or equipment."
-                  }
-                ],
-                "kind": "list_item"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "Solar charge time depends on weather conditions, place your solar panel where it will get as much direct sunlight as possible."
-                  }
-                ],
-                "kind": "list_item"
-              }
-            ],
-            "kind": "list",
-            "ordered": false,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/safety#block-7"
         },
         {
           "asset_refs": [
             "assets/warning_triangle_dark.svg"
           ],
-          "block_id": "safety:block-0008",
+          "block_id": "safety:block-0006",
           "content_sha256": "9b4538741dcebf6c96df1eb6562e716d4170ea026f267d25c04f887085bb83bc",
           "kind": "flow",
           "payload": {
@@ -2949,7 +3205,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/safety#block-8"
+          "source_ref": "native-pdf/safety#block-6"
         }
       ],
       "language": "en",
@@ -2957,7 +3213,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#safety",
       "source_ref": "native-pdf/safety",
-      "source_sha256": "a8bb2e644cc2477852f864f287499f5b3c742880b27f8dd1a1ebb1db16160133"
+      "source_sha256": "c891f42d90ef6c8edd74827e43049020c96b4aca95d50dd67e4f28ae763c5bc7"
     },
     {
       "blocks": [

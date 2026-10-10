@@ -101,11 +101,6 @@
   },
   {
    "chapter": "safety",
-   "action": "risk-banner",
-   "title": "INSTRUCCIONES RELATIVAS AL RIESGO DE INCENDIO, DESCARGA ELÉCTRICA O LESIONES PERSONALES"
-  },
-  {
-   "chapter": "safety",
    "action": "print-pill-title",
    "title": "INSTRUCCIONES DE USO"
   },
@@ -122,12 +117,6 @@
   {
    "chapter": "safety",
    "action": "danger-callout-lines",
-   "bold_body": true
-  },
-  {
-   "chapter": "safety",
-   "action": "warning-lockup",
-   "label": "ADVERTENCIA",
    "bold_body": true
   },
   {
@@ -427,6 +416,22 @@
   {
    "chapter": "app",
    "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 52,
+   "label": "ADVERTENCIA",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ]
   },
   {
    "chapter": "contact",

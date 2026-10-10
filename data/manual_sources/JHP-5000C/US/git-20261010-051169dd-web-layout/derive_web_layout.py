@@ -52,7 +52,7 @@ from tools.component_specs.model import ComponentSpec  # noqa: E402
 from tools.component_specs.spec_table import spec_table_component_spec  # noqa: E402
 from tools.component_specs.reference_figure_adapters import web_reference_figure_projection  # noqa: E402
 from tools.manual_ir.components import component_flow_node  # noqa: E402
-from tools.manual_ir.flow import flow_nodes_to_html  # noqa: E402
+from tools.manual_ir.flow import flow_nodes_to_html, html_to_flow_nodes  # noqa: E402
 from tools.web.composite_presentation import WebCompositeContext  # noqa: E402
 from tools.web.presentation import _transform_reference_figure  # noqa: E402
 from tools.web.reference_figure_component import _component_contract, _validate_carrier  # noqa: E402
@@ -218,6 +218,11 @@ def with_class(item: dict, value: str) -> dict:
 
 def flow_root(item: dict) -> dict:
     return {"schema_version": FLOW, **{k: v for k, v in item.items() if k != "schema_version"}}
+
+
+def markup(fragment: str) -> list[dict]:
+    """Flow nodes of a published HTML fragment, without root schema stamps."""
+    return [{k: v for k, v in item.items() if k != "schema_version"} for item in html_to_flow_nodes(fragment)]
 
 
 def strong(value: str) -> dict:
@@ -639,17 +644,11 @@ class Derivation:
         return component_flow_node(spec, carrier_flow=carrier, root=True)
 
     def safety_lockups(self) -> None:
-        """WARNING (inverse) and DANGER (outlined) carry the print's triangle and bold body."""
+        """DANGER (outlined) carries the print's triangle; WARNING is the shared safety lead."""
         items = self.nodes("safety")
         for index, item in self.callouts("safety"):
             label, body, variant, ref = self._callout_parts(item)
-            if variant == "warning":
-                bold = self._print_bold(body)
-                if bold:
-                    item = self._rebuild_callout(label, [node("paragraph", [strong(squash(body))])], variant, ref)
-                items[index] = self._lockup(item, "warning_triangle_white.svg", "native-lockup-inverse")
-                self.note("safety", "warning-lockup", label=label, bold_body=bold)
-            elif variant == "danger":
+            if variant == "danger":
                 items[index] = self._lockup(item, "warning_triangle_dark.svg", "native-lockup-outlined")
                 self.note("safety", "danger-lockup", label=label)
 
@@ -1170,7 +1169,7 @@ class Derivation:
                 index += 1
 
     def safety_bands(self) -> None:
-        """Safety sub-titles: white-on-dark pills, except the outlined risk banner."""
+        """Safety sub-titles: white-on-dark pills (the outlined risk banner is the shared one)."""
         for chapter in ("safety", "maintenance", "symbols"):
             items = self.nodes(chapter)
             for index, item in enumerate(items):
@@ -1181,12 +1180,6 @@ class Derivation:
                 if line and line["white"]:
                     item["children"] = [span(title, "native-band")]
                     self.note(chapter, "print-pill-title", title=title)
-                elif chapter == "safety" and index == 1:
-                    items[index] = flow_root(group([
-                        node("image", source="assets/warning_triangle_dark.svg", alt=""),
-                        node("paragraph", [strong(title)]),
-                    ], "hb-source-safety-heading"))
-                    self.note(chapter, "risk-banner", title=title)
 
     def model_bands(self) -> None:
         """Model identities sit at the right of their print bands, not as headings below."""
@@ -1506,6 +1499,70 @@ class Derivation:
                     continue
                 index += 1
 
+    def safety_two_columns(self) -> None:
+        """Print p4 sets both safety lists in two columns, the WARNING lead heading the left one.
+
+        The markup is the two-column safety section the published template manuals use
+        (JE-1000E-SIL): the hb-safety-instruction risk banner, manual-two-col-table rows and
+        the hb-safety-lead panel, all styled by the shared web_safety_components.css. Each
+        item stays in the print column it starts in.
+        """
+        items = self.nodes("safety")
+        flow = [component_id(item) or item.get("kind") for item in items]
+        if flow != ["heading", "heading", "HB-CALLOUT-STRIP", "list", "heading", "paragraph", "list",
+                    "HB-CALLOUT-STRIP"]:
+            raise ValueError(f"{self.language}: unexpected safety flow {flow}")
+        page = page_of(self.language, 4)
+        title = squash(text_of(items[1]))
+        label, body = self._callout_parts(items[2])[:2]
+        banner = markup(
+            '<figure class="hb-symbol-signal-composition hb-safety-instruction"><table class="hb-symbol-signal-table">'
+            '<colgroup><col style="width:7%"/><col style="width:93%"/></colgroup><tbody><tr>'
+            '<td><img alt="" src="assets/warning_triangle_dark.svg" style="width:30px;height:auto" width="30"/></td>'
+            f'<td><p><strong>{html.escape(title)}</strong></p></td></tr></tbody></table></figure>')
+        lead = markup(
+            '<figure class="hb-symbol-signal-composition hb-safety-lead"><table class="hb-symbol-signal-table">'
+            '<colgroup><col style="width:20%"/><col style="width:80%"/></colgroup><tbody><tr>'
+            '<td class="hb-symbol-signal-label-cell"><span class="hb-signal-badge"><img alt="" '
+            'src="assets/warning_triangle_white.svg" style="width:48px;height:auto" width="48"/></span></td>'
+            f'<td class="hb-symbol-signal-meaning-cell"><p><strong>{html.escape(label)}</strong></p>'
+            f'<p><strong>{html.escape(squash(body))}</strong></p></td></tr></tbody></table></figure>')
+        warning, warning_split = self._two_column_table(page, lead, items[3])
+        operating, operating_split = self._two_column_table(page, [flow_root(items[5])], items[6])
+        items[:] = [items[0], flow_root(banner[0]), warning, items[4], operating, items[7]]
+        self.note("safety", "shared-safety-two-columns", page=page, label=label,
+                  items_left_right=[warning_split, operating_split])
+
+    def _two_column_table(self, page: int, head: list[dict], listing: dict) -> tuple[dict, list[int]]:
+        """One manual-two-col-table row: head + the left-column items | the right-column items."""
+        middle = self.pdf.document[page - 1].rect.width / 2
+        lines = self.pdf.lines(page)
+        sides = []
+        for item in listing["children"]:
+            # The item's first print line: a bullet line whose words begin the item.
+            value = key(text_of(item))
+            starts = [line for line in lines if line["text"].lstrip()[:1] in BULLETS
+                      and len(key(line["text"])) >= 10 and value.startswith(key(line["text"]))]
+            if len(starts) != 1:
+                raise ValueError(f"{self.language}: p{page} item not found once: {text_of(item)[:40]!r}")
+            sides.append(starts[0]["bbox"][0] < middle)
+        split = sides.index(False)
+        if not all(sides[:split]) or any(sides[split:]):
+            raise ValueError(f"{self.language}: p{page} list does not read left column, then right")
+        bare = {key_: value for key_, value in listing.items() if key_ != "schema_version"}
+        table = markup(
+            '<table class="manual-two-col-table" style="width:100%; border-collapse:separate; '
+            'border-spacing:12px 0; margin:0 0 16px 0;"><colgroup><col style="width: 50%"/>'
+            '<col style="width: 50%"/></colgroup><tbody><tr>'
+            '<td style="width: 50%; border: none; padding: 0 8px 0 0; vertical-align: top"></td>'
+            '<td style="width: 50%; border: none; padding: 0 0 0 8px; vertical-align: top"></td>'
+            '</tr></tbody></table>')[0]
+        left, right = [inner for _, _, inner in walk([table]) if inner.get("kind") == "table_cell"]
+        left["children"] = [*({k: v for k, v in n.items() if k != "schema_version"} for n in head),
+                            {**bare, "children": listing["children"][:split]}]
+        right["children"] = [{**bare, "children": listing["children"][split:]}]
+        return flow_root(table), [split, len(sides) - split]
+
     def contact_card(self) -> None:
         """Back cover (p76): company, address and one contact panel; no invented title."""
         items = self.nodes("contact")
@@ -1696,6 +1753,7 @@ def derive(language: str, document: fitz.Document, art: dict[str, str]) -> Deriv
     work.ingestion_notes()
     work.print_emphasis()
     work.merge_adjacent_lists()
+    work.safety_two_columns()
     work.contact_card()
     work.overview_frames()
     work.locale_art()

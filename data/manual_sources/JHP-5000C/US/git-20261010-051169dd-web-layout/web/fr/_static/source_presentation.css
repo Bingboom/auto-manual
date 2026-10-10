@@ -805,21 +805,7 @@ html[lang="es"] .native-package-sts [data-source-line="47"] {font-size:1.6015cqw
 #furo-main-content h2:has(> .native-band)::before { display: none; }
 #furo-main-content h2:has(> .native-band) .headerlink { color: rgba(255, 255, 255, 0.7); }
 
-/* The risk banner is one outlined box with the filled warning triangle. */
-#furo-main-content .hb-source-safety-heading {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  max-width: var(--hb-component-band-max);
-  margin: 1.1rem 0 0.9rem;
-  padding: 0.55rem 0.85rem;
-  border: 2px solid var(--hb-brand-dark);
-  border-radius: var(--hb-panel-radius);
-}
-#furo-main-content .hb-source-safety-heading > img { flex: 0 0 auto; width: 2.4rem !important; height: auto; margin: 0 !important; }
-#furo-main-content .hb-source-safety-heading > p { margin: 0; line-height: 1.3; }
-
-/* WARNING: icon panel in reverse; DANGER: outlined white panel. Both bodies print bold. */
+/* DANGER: outlined white panel with the print's dark triangle; its body prints bold. */
 #furo-main-content table.hb-source-warning-lockup { border-color: var(--hb-brand-dark) !important; background: var(--hb-paper); }
 #furo-main-content .hb-source-warning-lockup .manual-callout-label { width: 30% !important; }
 #furo-main-content .hb-source-warning-lockup .manual-callout-body {
@@ -838,10 +824,6 @@ html[lang="es"] .native-package-sts [data-source-line="47"] {font-size:1.6015cqw
   width: 2.5rem !important;
   height: auto;
   margin: 0 !important;
-}
-#furo-main-content table.native-lockup-inverse .manual-callout-label {
-  background: var(--hb-brand-dark) !important;
-  color: var(--hb-paper);
 }
 @media (max-width: 40rem) {
   #furo-main-content .hb-source-warning-lockup :is(.manual-callout-label, .manual-callout-body) { width: 100% !important; }

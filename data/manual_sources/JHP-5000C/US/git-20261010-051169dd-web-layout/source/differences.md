@@ -4,6 +4,8 @@
 
 Operator request: 「继续调一下 这个的版面」 for the published JHP-5000C US manual, with the PDF from the Feishu record. Scope chosen: 「英法西一起改」 (EN, FR and ES together). Standing instructions: 「全部修，一次做完」 and 「封面和目录 不用体现在web版面上」. The reviewed JE-1000F Web manual is the layout reference.
 
+Review correction on 2026-10-10, with the print p4 and the published JE-1000E-SIL page as references: 「不对 这个你要改两列的啊」「线上有很多现成的 都是双栏的啊」「不需要你重新另写」. The safety lists therefore reuse the existing two-column safety section instead of new styles.
+
 Wording rule: the visible copy stays the approved copy. The only text edits restore the PDF where the approved intake disagreed with it; they are listed one by one under [Copy restorations](#copy-restorations). Every other change is structure, weight, line breaks or artwork.
 
 Base: the approved edition `git-20261009-051169dd` (MA-279), same PDF (SHA-256 `051169dd…c26a`). It stays immutable. `derive_web_layout.py` regenerates this edition from it; each edit is logged in `source/<language>/web_layout.json` (`changes`, `copy_restorations`).
@@ -18,8 +20,8 @@ Page numbers are physical PDF pages of the English block. French is +24 and Span
 | 4–6 | User maintenance, Meaning of symbols and the FCC statement are sub-sections of IMPORTANT SAFETY INFORMATION, as printed. | `nested-under-print-chapter` |
 | 24–27 | The HomePower, Battery Pack, Smart Transfer Switch and Package List sections are sub-sections of the AC ESS installation guide. | `nested-under-print-chapter` |
 | 2 | Each language block keeps its outlined region badge (US, FR, ES). | `print-badge` restoration (EN) |
-| 4 | The risk statement is the outlined banner with the dark triangle; safety sub-titles are white-on-dark pills. | `risk-banner`, `print-pill-title` |
-| 4 | WARNING is an inverse lockup with the white triangle; DANGER an outlined lockup with the dark triangle. Their bodies are bold, and `※` starts its own print line. | `warning-lockup`, `danger-lockup`, `danger-callout-lines` |
+| 4 | Both safety lists run in two columns, as printed. The page reuses the two-column safety section of the published template manuals (JE-1000E-SIL): the `hb-safety-instruction` risk banner, the `hb-safety-lead` WARNING panel heading the left column and two `manual-two-col-table` rows, styled by the shared `web_safety_components.css`. Each item stays in the print column it starts in (6 + 5 and 5 + 9 items); phones get one column. | `shared-safety-two-columns` |
+| 4 | Safety sub-titles are white-on-dark pills. DANGER is an outlined lockup with the dark triangle; its body is bold, and `※` starts its own print line. | `print-pill-title`, `danger-lockup`, `danger-callout-lines` |
 | 5 | The signal-word table has the print's three rows. | `signal-word-meanings` restoration |
 | 5 | The FCC statement is a panel without a title; the print has none. | `unprinted-title-removed` |
 | 6–7 | The front, left and right views are framed so the approved paths are whole: handle-button inset, wheels and panel edge. Edge labels align to the panel edge. Labels render at 95% so none collide at tablet and phone widths. | `full-frame` |

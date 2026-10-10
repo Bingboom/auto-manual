@@ -13,7 +13,9 @@ The full table, with the PDF page and log action for each change, is `source/dif
 - **Cover and TOC:** not part of the Web edition. Navigation has exactly the 14 chapters of the print TOC (p3), under each chapter's own page heading.
 - **Chapters:** user maintenance, symbols and FCC are sub-sections of the safety chapter; the HomePower, Battery Pack, Smart Transfer Switch and package sections are sub-sections of the AC ESS guide.
 - **Rich-text structure in shared components:**
-  - the safety risk banner, pills and WARNING/DANGER lockups with the shared triangles;
+  - the safety page in the two-column safety section the published template manuals already use
+    (risk banner, WARNING lead heading the left column, each item in its print column);
+  - pills and the DANGER lockup with the shared triangles;
   - the print's three signal-word rows;
   - circled LCD numbers, with shared number cells where the print shares them;
   - the LCD SCREEN table rebuilt from the print geometry;

@@ -91,11 +91,6 @@
   },
   {
    "chapter": "safety",
-   "action": "risk-banner",
-   "title": "INSTRUCTIONS RELATIVES AUX RISQUES D'INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURE CORPORELLE"
-  },
-  {
-   "chapter": "safety",
    "action": "print-pill-title",
    "title": "NOTICE D’UTILISATION"
   },
@@ -112,12 +107,6 @@
   {
    "chapter": "safety",
    "action": "danger-callout-lines",
-   "bold_body": true
-  },
-  {
-   "chapter": "safety",
-   "action": "warning-lockup",
-   "label": "ATTENTION",
    "bold_body": true
   },
   {
@@ -404,6 +393,22 @@
   {
    "chapter": "storage",
    "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 28,
+   "label": "ATTENTION",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ]
   },
   {
    "chapter": "contact",

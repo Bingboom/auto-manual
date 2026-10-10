@@ -151,11 +151,6 @@
   },
   {
    "chapter": "safety",
-   "action": "risk-banner",
-   "title": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
-  },
-  {
-   "chapter": "safety",
    "action": "print-pill-title",
    "title": "OPERATING INSTRUCTIONS"
   },
@@ -172,12 +167,6 @@
   {
    "chapter": "safety",
    "action": "danger-callout-lines",
-   "bold_body": true
-  },
-  {
-   "chapter": "safety",
-   "action": "warning-lockup",
-   "label": "WARNING",
    "bold_body": true
   },
   {
@@ -443,6 +432,22 @@
   {
    "chapter": "app",
    "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 4,
+   "label": "WARNING",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ]
   },
   {
    "chapter": "contact",

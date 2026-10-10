@@ -2096,8 +2096,8 @@
     },
     {
       "path": "README.md",
-      "size": 6544,
-      "sha256": "df935ece088a1b43e82507197e0aa0cf09708024d17540e1c67d7935058e53e7"
+      "size": 6699,
+      "sha256": "daeb890c1b927b038d5de5473ddf01b6bf3a515d4d7865639733b278f676eb31"
     },
     {
       "path": "assets/ac-charge-es.svg",
@@ -2691,8 +2691,8 @@
     },
     {
       "path": "derive_web_layout.py",
-      "size": 99605,
-      "sha256": "5d2d11779f3fbcf7cf8ddf0a34dce869357fdb96867bba383657b3f821decba9"
+      "size": 103655,
+      "sha256": "bf6ded539f2383e13b52f3fb9ab945831268af5c9478e68e16ba9e4d34cfcdd0"
     },
     {
       "path": "rebuild.py",
@@ -2711,8 +2711,8 @@
     },
     {
       "path": "source/differences.md",
-      "size": 12667,
-      "sha256": "94ab46607dc9673a7a54d6728820a55ff482c426175dcf0b19a07ae71d3c478a"
+      "size": 13290,
+      "sha256": "6302a327d0efb54857e6cbb7072e53533c6ebadd39a9a50fbee73094d811e10d"
     },
     {
       "path": "source/duration_provenance.json",
@@ -2721,8 +2721,8 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 823957,
-      "sha256": "e8a0c1e69cb08a2481d3ef204da697ad91549ebff3fcfa8b40d0e0d39e5ccf55"
+      "size": 839861,
+      "sha256": "585cea5f0d242d03fca0b623bdfa020ab61730565f0ee5c09eb0f10759b63197"
     },
     {
       "path": "source/en/coverage.json",
@@ -2731,13 +2731,13 @@
     },
     {
       "path": "source/en/web_layout.json",
-      "size": 14498,
-      "sha256": "78aeee37bcf95fbb23c141af43cff272e012d2359d6d157518992d7099a2be42"
+      "size": 14434,
+      "sha256": "b69d98987b926864e6b28688c601a7d02e62057b73ee6273c5ae322f79f5ae96"
     },
     {
       "path": "source/es/content.json",
-      "size": 862444,
-      "sha256": "caa86f825c4e505f476c2151f4062030189d12ebea7c9e3393cbe42aedc4fdac"
+      "size": 878304,
+      "sha256": "e24d66d636653b076daf2912c879e04a66f88a2d8ed9e5c079c8d87701bd72de"
     },
     {
       "path": "source/es/coverage.json",
@@ -2746,8 +2746,8 @@
     },
     {
       "path": "source/es/web_layout.json",
-      "size": 19637,
-      "sha256": "8edccd2f0bcce20ffc2aa7c08efe573ec483f696f972cb936cee6ff3cc37b9c1"
+      "size": 19563,
+      "sha256": "f92d8f807e0a2b7c484cba16b51433c44445381f7787657cb4187466e92d44fd"
     },
     {
       "path": "source/figures.json",
@@ -2756,8 +2756,8 @@
     },
     {
       "path": "source/fr/content.json",
-      "size": 858245,
-      "sha256": "8be0744a777e3338859d484a2b73f3032f5f4c8a5708f908a5229cdeb60dba99"
+      "size": 874111,
+      "sha256": "3b404e29d26a6814bc7981e599c6ac290cf5f4f55ee32e457a23529be961ecdf"
     },
     {
       "path": "source/fr/coverage.json",
@@ -2766,8 +2766,8 @@
     },
     {
       "path": "source/fr/web_layout.json",
-      "size": 16928,
-      "sha256": "c208266f00903cf0fb8a2afb7ed98cabf8ae2136452e1dcd4eab04352b65a6ff"
+      "size": 16850,
+      "sha256": "38e5ed849aa2756f4044b2ac4b6d53dae48379774d65e8012f7d19a59e09ff70"
     },
     {
       "path": "source/layout_adjustments.json",
@@ -2796,8 +2796,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 82744,
-      "sha256": "eda75dc10d23bfccfeec2acf24359aa838adfcf5b06e1cce1c63b1abb539ccd8"
+      "size": 82018,
+      "sha256": "9d301afca35a84fd2d3bb9928e6c2b8ea101330c5a5b45bfaec15db750ece592"
     },
     {
       "path": "source/refresh_manifest.py",
@@ -2841,8 +2841,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 82744,
-      "sha256": "eda75dc10d23bfccfeec2acf24359aa838adfcf5b06e1cce1c63b1abb539ccd8"
+      "size": 82018,
+      "sha256": "9d301afca35a84fd2d3bb9928e6c2b8ea101330c5a5b45bfaec15db750ece592"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -3261,18 +3261,18 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 991171,
-      "sha256": "43b64f93d4a421b0d924607adcc706297fc362b8d987c81d8447e3a5a0b4d6a3"
+      "size": 1007061,
+      "sha256": "3ed9d499abb04a16bf9f106f2af949bedc425ee4a3bd85ef869978565ca6e68f"
     },
     {
       "path": "web/en/manual_jhp5000c_us_en.md",
-      "size": 216286,
-      "sha256": "50e66c1164c5b87a2a9c4d3c7ca57e33ec67e62dd9d1ab3e8291bb7b7e9e7ec7"
+      "size": 216743,
+      "sha256": "0b5be59878bc2f0eebf9fd2cd02960ada74ca2c369c46f64f6e2e19960bfb3c3"
     },
     {
       "path": "web/es/_static/source_presentation.css",
-      "size": 82744,
-      "sha256": "eda75dc10d23bfccfeec2acf24359aa838adfcf5b06e1cce1c63b1abb539ccd8"
+      "size": 82018,
+      "sha256": "9d301afca35a84fd2d3bb9928e6c2b8ea101330c5a5b45bfaec15db750ece592"
     },
     {
       "path": "web/es/_static/web_manual.css",
@@ -3691,18 +3691,18 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 1031016,
-      "sha256": "9cb731f8350009b710db97c8099680f367823b22c902bc8129c8cd56ab9d3379"
+      "size": 1046862,
+      "sha256": "1011172c669d3bc14600ab8c374342600e30b81a6cf27833b1ae5bf511ecfab1"
     },
     {
       "path": "web/es/manual_jhp5000c_us_es.md",
-      "size": 225359,
-      "sha256": "f3ba6121b1a1c18b52a3c05a9679fbe2332c6def5353326e9160b241520f7321"
+      "size": 225816,
+      "sha256": "4935c0627a5f1164cdfd1d566369882c01a701201105dd95e624e9178588b218"
     },
     {
       "path": "web/fr/_static/source_presentation.css",
-      "size": 82744,
-      "sha256": "eda75dc10d23bfccfeec2acf24359aa838adfcf5b06e1cce1c63b1abb539ccd8"
+      "size": 82018,
+      "sha256": "9d301afca35a84fd2d3bb9928e6c2b8ea101330c5a5b45bfaec15db750ece592"
     },
     {
       "path": "web/fr/_static/web_manual.css",
@@ -4121,13 +4121,13 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 1026698,
-      "sha256": "1ac0e4616d9fede67a27eb89dc0e5ce3a35c5a57dd2bb87865577b1b8c8362e6"
+      "size": 1042550,
+      "sha256": "de3f3534010b8c129e4280ac96f6d00c415c2f3f991134b90e618fec7b6bba05"
     },
     {
       "path": "web/fr/manual_jhp5000c_us_fr.md",
-      "size": 226226,
-      "sha256": "01e901c3d6671a1f4da6b20c4774a5b96e61beada22ab0e4f98b3f5e2af76b92"
+      "size": 226683,
+      "sha256": "9005773ad63756fc7467ab770f378866719c1dd54dfd30446eb980f299b8e373"
     }
   ]
 }
