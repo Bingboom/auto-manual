@@ -21,8 +21,8 @@
     "assets/ir/e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f/jbp2000b_eu_ac_charging.png",
     "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png"
   ],
-  "bundle_root": "/private/tmp/jbp2000b-release-validation/es/docs/_build/JBP-2000B/EU/es/rst",
-  "bundle_sha256": "3ce6836bd512dc22b2b202bc7524fd6b24493415b5a72ca5051a95d543a17880",
+  "bundle_root": "web/es",
+  "bundle_sha256": "78145e3438fc99c7ad8fbbb2989c10b2260b37b5efd2cea8f3b66f8eef750c6e",
   "content_sha256": "38a50b4e8075d7f5f0874c36a0450e8043ca1be4530d2c0e414d6fe09e0f78ab",
   "language": "es",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -48,6 +48,11 @@
       "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
       "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
       "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8"
+    },
+    "baseline_source_provenance": {
+      "bundle_root": "/private/tmp/jbp2000b-release-validation/es/docs/_build/JBP-2000B/EU/es/rst",
+      "bundle_sha256": "3ce6836bd512dc22b2b202bc7524fd6b24493415b5a72ca5051a95d543a17880",
+      "snapshot_sha256": null
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
@@ -1862,13 +1867,103 @@
       "troubleshooting_es.rst": "troubleshooting_es",
       "warranty_es.rst": "warranty_es"
     },
-    "pending_source_review": [
-      "Batch 1465 corrected copy; packaging and fresh release admission pending"
+    "pending_release_admission": [
+      "source-bound symbol coverage for all languages",
+      "trusted component profile enrollment for revised source",
+      "fresh admission and language evidence sealing"
     ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
+    "revision_source_binding": {
+      "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
+      "baseline_source_ref": "e267ff15b3d20b0309ce9ad88e589882683c34e8",
+      "original_source": {
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      },
+      "review_record": {
+        "path": "source-review.json",
+        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+      },
+      "reviewed_changes": [
+        {
+          "current": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al paquete de Jackery Battery Pack 2000.",
+          "frame": 1065,
+          "language": "es",
+          "new": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al Jackery Battery Pack 2000.",
+          "occurrences": 3,
+          "paragraph": 0,
+          "pdf_page": 27,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Cuando se utiliza con la estación de energía portátil, el estado de encendido del Battery Pack 2000 puede controlarse mediante el botón POWER principal de la estación de energía portátil.",
+          "frame": 1066,
+          "language": "es",
+          "new": "Cuando se utiliza con la estación de energía portátil, puede controlar el encendido o apagado del Jackery Battery Pack 2000 mediante el botón POWER principal de la estación de energía portátil.",
+          "occurrences": 2,
+          "paragraph": 0,
+          "pdf_page": 26,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "El producto se apaga automáticamente cuando no se está cargando y no hay ninguna carga conectada durante 2 horas.",
+          "frame": 1066,
+          "language": "es",
+          "new": "El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.",
+          "occurrences": 2,
+          "paragraph": 1,
+          "pdf_page": 26,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Cuando se carga desde la red, este producto debe utilizarse con la estación de energía portátil.",
+          "frame": 1154,
+          "language": "es",
+          "new": "Para cargar la batería desde una toma de corriente de pared de CA, conéctela a la estación de energía portátil.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 29,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Cargue su producto con paneles solares y la estación de energía portátil como se muestra en la siguiente figura. Consulte el manual de usuario de la estación de energía portátil para obtener más información.",
+          "frame": 1156,
+          "language": "es",
+          "new": "Cargue la batería utilizando paneles solares y la estación de energía portátil, como se muestra en la siguiente figura. Para obtener más información, consulte el manual de usuario de la estación de energía portátil.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 29,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Se pueden usar hasta 5 juegos de estos productos junto con la estación de energía portátil para cubrir las necesidades de mayor capacidad.",
+          "frame": 1160,
+          "language": "es",
+          "new": "Se pueden utilizar hasta cinco baterías adicionales con la estación de energía portátil para aumentar la capacidad disponible.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 27,
+          "reason": "Delivered approved copy"
+        }
+      ],
+      "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "target": {
+        "language": "es",
+        "model": "JBP-2000B",
+        "region": "EU"
+      },
+      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+    },
     "skipped_raw": 0,
-    "source_review_status": "pending-1465-validation",
+    "source_review_record": {
+      "path": "source-review.json",
+      "scope": "45 batch1465 copy corrections only",
+      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "status": "approved"
+    },
+    "source_review_status": "approved-batch1465-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {

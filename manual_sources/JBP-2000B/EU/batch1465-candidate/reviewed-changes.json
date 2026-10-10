@@ -1,0 +1,452 @@
+[
+  {
+    "language": "it",
+    "current": "Si prega di non impilare il prodotto sulla parte superiore della power station portatile.",
+    "new": "Non impilare il prodotto sulla power station portatile.",
+    "pdf_page": 43,
+    "frame": 771,
+    "paragraph": 2,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "it",
+    "current": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile al Jackery Battery Pack 2000.",
+    "new": "Assicurarsi che tutti i prodotti siano spenti prima di collegare la power station portatile a Jackery Battery Pack 2000.",
+    "pdf_page": 43,
+    "frame": 772,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "it",
+    "current": "Quando viene utilizzato con la power station portatile, Jackery Battery Pack 2000 può essere acceso o spento tramite il pulsante Power principale della power station portatile.",
+    "new": "Quando si utilizza la power station portatile, è possibile controllare l’accensione o lo spegnimento di Jackery Battery Pack 2000 tramite il pulsante POWER principale della power station portatile.",
+    "pdf_page": 42,
+    "frame": 773,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "it",
+    "current": "Quando si carica dalla parete, questo prodotto deve essere utilizzato con la power station portatile.",
+    "new": "Per caricare il pacco batteria da una presa a muro CA, collegarlo alla power station portatile.",
+    "pdf_page": 45,
+    "frame": 826,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "it",
+    "current": "Caricare il prodotto con i pannelli solari e la power station portatile come mostrato nella figura sottostante. Per ulteriori informazioni, consultare il manuale utente della power station portatile.",
+    "new": "Caricare il pacco batteria utilizzando i pannelli solari e la power station portatile, come mostrato nella figura sottostante. Per ulteriori informazioni, consultare il manuale utente della power station portatile.",
+    "pdf_page": 45,
+    "frame": 828,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "it",
+    "current": "La power station portatile può essere utilizzato insieme a un massimo di 5 set di questo prodotto per soddisfare esigenze di maggiore capacità.",
+    "new": "È possibile utilizzare fino a cinque pacchi batteria con la power station portatile per aumentare la capacità disponibile.",
+    "pdf_page": 43,
+    "frame": 832,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "uk",
+    "current": " на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.",
+    "new": " на РК-дисплеї (портативна електростанція) означає успішне підключення між акумуляторним блоком і портативною електростанцією.",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 0,
+    "reason": "Preserve existing inline connection icon and prefix; replace host suffix only",
+    "occurrences": 2
+  },
+  {
+    "language": "uk",
+    "current": "Будь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.",
+    "new": "Не встановлюйте продукт на портативну електростанцію.",
+    "pdf_page": 51,
+    "frame": 908,
+    "paragraph": 1,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "uk",
+    "current": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+    "new": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати портативну електростанцію до Jackery Battery Pack 2000.",
+    "pdf_page": 51,
+    "frame": 909,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 5
+  },
+  {
+    "language": "uk",
+    "current": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.",
+    "new": "Під час використання з портативною електростанцією ви можете вмикати або вимикати Jackery Battery Pack 2000 за допомогою основної кнопки POWER портативної електростанції.",
+    "pdf_page": 50,
+    "frame": 910,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "uk",
+    "current": "Під час заряджання від мережі цей продукт слід використовувати разом із Jackery Explorer 2000 Plus.",
+    "new": "Щоб зарядити акумуляторний блок від розетки змінного струму, підключіть його до портативної електростанції.",
+    "pdf_page": 53,
+    "frame": 963,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "uk",
+    "current": "Заряджайте свій продукт за допомогою сонячних панелей і Jackery Explorer 2000 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 2000 Plus для отримання додаткової інформації.",
+    "new": "Заряджайте акумуляторний блок за допомогою сонячних панелей і портативної електростанції, як показано на рисунку нижче. Для отримання додаткової інформації зверніться до посібника користувача портативної електростанції.",
+    "pdf_page": 53,
+    "frame": 965,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "uk",
+    "current": "До 5 комплектів цих продуктів можна використовувати разом із Jackery Explorer 2000 Plus для задоволення підвищених потреб у ємності.",
+    "new": "З портативною електростанцією можна використовувати до п’яти акумуляторних блоків, щоб збільшити доступну ємність.",
+    "pdf_page": 51,
+    "frame": 969,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "es",
+    "current": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al paquete de Jackery Battery Pack 2000.",
+    "new": "Asegúrese de que todos los productos estén apagados antes de conectar la estación de energía portátil al Jackery Battery Pack 2000.",
+    "pdf_page": 27,
+    "frame": 1065,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "es",
+    "current": "Cuando se utiliza con la estación de energía portátil, el estado de encendido del Battery Pack 2000 puede controlarse mediante el botón POWER principal de la estación de energía portátil.",
+    "new": "Cuando se utiliza con la estación de energía portátil, puede controlar el encendido o apagado del Jackery Battery Pack 2000 mediante el botón POWER principal de la estación de energía portátil.",
+    "pdf_page": 26,
+    "frame": 1066,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "es",
+    "current": "El producto se apaga automáticamente cuando no se está cargando y no hay ninguna carga conectada durante 2 horas.",
+    "new": "El producto se apagará automáticamente si no se carga o no se conectan cargos durante 2 horas.",
+    "pdf_page": 26,
+    "frame": 1066,
+    "paragraph": 1,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "es",
+    "current": "Cuando se carga desde la red, este producto debe utilizarse con la estación de energía portátil.",
+    "new": "Para cargar la batería desde una toma de corriente de pared de CA, conéctela a la estación de energía portátil.",
+    "pdf_page": 29,
+    "frame": 1154,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "es",
+    "current": "Cargue su producto con paneles solares y la estación de energía portátil como se muestra en la siguiente figura. Consulte el manual de usuario de la estación de energía portátil para obtener más información.",
+    "new": "Cargue la batería utilizando paneles solares y la estación de energía portátil, como se muestra en la siguiente figura. Para obtener más información, consulte el manual de usuario de la estación de energía portátil.",
+    "pdf_page": 29,
+    "frame": 1156,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "es",
+    "current": "Se pueden usar hasta 5 juegos de estos productos junto con la estación de energía portátil para cubrir las necesidades de mayor capacidad.",
+    "new": "Se pueden utilizar hasta cinco baterías adicionales con la estación de energía portátil para aumentar la capacidad disponible.",
+    "pdf_page": 27,
+    "frame": 1160,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "de",
+    "current": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation an das Jackery Battery Pack 2000 anschließen.",
+    "new": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation mit dem Jackery Battery Pack 2000 verbinden.",
+    "pdf_page": 35,
+    "frame": 1217,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 5
+  },
+  {
+    "language": "de",
+    "current": "Wenn Sie es mit der tragbaren Powerstation verwenden, können Sie die Stromversorgung des Jackery Battery Pack 2000 über den Hauptschalter der tragbaren Powerstation steuern.",
+    "new": "Bei Verwendung mit der tragbaren Powerstation können Sie den Jackery Battery Pack 2000 über die Haupt-POWER-Taste der tragbaren Powerstation ein- oder ausschalten.",
+    "pdf_page": 34,
+    "frame": 1218,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "de",
+    "current": "Beim Aufladen über das Hauptstromnetz muss dieses Gerät mit der tragbaren Powerstation verwendet werden.",
+    "new": "Um das Batteriepack über eine AC-Wandsteckdose aufzuladen, verbinden Sie es mit der tragbaren Powerstation.",
+    "pdf_page": 37,
+    "frame": 1272,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "de",
+    "current": "Laden Sie das Gerät wie in der unten dargestellten Abbildung mit Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+    "new": "Laden Sie das Batteriepack wie in der folgenden Abbildung dargestellt mithilfe von Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+    "pdf_page": 37,
+    "frame": 1274,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "de",
+    "current": "Die tragbare Powerstation kann mit bis zu 5 Sätzen dieses Produkts gleichzeitig verwendet werden, um größere Kapazitätsanforderungen zu erfüllen.",
+    "new": "Bis zu fünf Batteriepacks können zusammen mit der tragbaren Powerstation verwendet werden, um die verfügbare Kapazität zu erhöhen.",
+    "pdf_page": 35,
+    "frame": 1278,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "fr",
+    "current": "Veuillez ne pas empiler le dispositif sur la station d'énergie portable.",
+    "new": "Ne placez pas le produit sur la station d’énergie portable.",
+    "pdf_page": 19,
+    "frame": 1407,
+    "paragraph": 1,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "fr",
+    "current": "Assurez-vous que tous les produits sont éteints avant de connecter la station d'énergie portable au(x) Jackery Battery Pack 2000.",
+    "new": "Assurez-vous que tous les produits sont éteints avant de connecter la station d’énergie portable au Jackery Battery Pack 2000.",
+    "pdf_page": 19,
+    "frame": 1409,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "fr",
+    "current": "Lorsque le Battery Pack 2000 est utilisé avec la station d'énergie portable, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal de la station d'énergie portable.",
+    "new": "Lors de l’utilisation avec la station d’énergie portable, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 2000 à l’aide du bouton d’alimentation principal de la station d’énergie portable.",
+    "pdf_page": 18,
+    "frame": 1410,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "fr",
+    "current": "Le produit s'éteint automatiquement lorsqu'il n'est pas en charge et qu'aucune charge n'est connectée pendant 2 heures.",
+    "new": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+    "pdf_page": 18,
+    "frame": 1410,
+    "paragraph": 1,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "fr",
+    "current": "En cas de charge murale, ce dispositif doit être utilisé avec la station d'énergie portable.",
+    "new": "Pour charger la batterie d’extension depuis une prise murale CA, connectez-la à la station d’énergie portable.",
+    "pdf_page": 21,
+    "frame": 1505,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "fr",
+    "current": "Rechargez votre dispositif à l'aide de panneaux solaires et de la station d'énergie portable, comme indiqué dans la figure ci-dessous. Pour plus d'informations, veuillez vous reporter au manuel d'utilisation de la station d'énergie portable.",
+    "new": "Chargez la batterie d’extension à l’aide de panneaux solaires et de la station d’énergie portable, comme illustré ci-dessous. Pour plus d’informations, consultez le manuel d’utilisation de la station d’énergie portable.",
+    "pdf_page": 21,
+    "frame": 1508,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "fr",
+    "current": "Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec la station d'énergie portable.",
+    "new": "Jusqu’à cinq batteries d’extension peuvent être utilisées avec la station d’énergie portable afin d’augmenter la capacité disponible.",
+    "pdf_page": 19,
+    "frame": 1515,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pt",
+    "current": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+    "new": "Podem ser utilizadas até cinco baterias externas com a estação de energia portátil para aumentar a capacidade disponível.",
+    "pdf_page": 59,
+    "frame": 452,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pt",
+    "current": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+    "new": "Para carregar a bateria externa através de uma tomada de parede CA, ligue-a à estação de energia portátil.",
+    "pdf_page": 61,
+    "frame": 417,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pt",
+    "current": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+    "new": "Carregue a bateria externa utilizando painéis solares e a estação de energia portátil, conforme ilustrado na figura abaixo. Para mais informações, consulte o manual de utilização da estação de energia portátil.",
+    "pdf_page": 61,
+    "frame": 414,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "nl",
+    "current": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met het draagbare energiestation, om aan de toegenomen capaciteitsbehoefte te voldoen.",
+    "new": "Er kunnen maximaal vijf batterijpakketten met het draagbare energiestation worden gebruikt om extra capaciteit te bieden.",
+    "pdf_page": 67,
+    "frame": 284,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "nl",
+    "current": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met het draagbare energiestation.",
+    "new": "Sluit het batterijpakket aan op het draagbare energiestation om het via een stopcontact op wisselstroom op te laden.",
+    "pdf_page": 69,
+    "frame": 249,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "nl",
+    "current": "Laad uw product op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de onderstaande afbeelding. Raadpleeg de gebruikershandleiding van het draagbare energiestation voor meer informatie.",
+    "new": "Laad het batterijpakket op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de onderstaande afbeelding. Raadpleeg voor meer informatie de gebruikershandleiding van het draagbare energiestation.",
+    "pdf_page": 69,
+    "frame": 246,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pl",
+    "current": "Przy większym zapotrzebowaniu na pojemność energetyczną z przenośną stacją zasilania można używać 5 zestawów tych produktów.",
+    "new": "Z przenośną stacją zasilania można używać do pięciu pakietów akumulatorów, aby zwiększyć dostępną pojemność.",
+    "pdf_page": 75,
+    "frame": 116,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pl",
+    "current": "Podczas ładowania z gniazdka ściennego ten produkt musi być używany razem z przenośną stacją zasilania.",
+    "new": "Aby naładować pakiet akumulatorów z gniazdka sieciowego AC, podłącz go do przenośnej stacji zasilania.",
+    "pdf_page": 77,
+    "frame": 81,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pl",
+    "current": "Produkt można naładować z paneli słonecznych i przenośnej stacji zasilania, jak pokazano na poniższym rysunku. Więcej informacji można znaleźć w instrukcji obsługi przenośnej stacji zasilania.",
+    "new": "Ładuj pakiet akumulatorów za pomocą paneli słonecznych i przenośnej stacji zasilania, jak pokazano na poniższym rysunku. Więcej informacji można znaleźć w instrukcji obsługi przenośnej stacji zasilania.",
+    "pdf_page": 77,
+    "frame": 78,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 1
+  },
+  {
+    "language": "pt",
+    "current": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+    "new": "Quando utilizado com a estação de energia portátil, o Jackery Battery Pack 2000 pode ser ligado ou desligado através do botão POWER principal da estação de energia portátil.",
+    "pdf_page": 58,
+    "frame": 378,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "pt",
+    "current": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+    "new": "O produto desliga-se automaticamente se não for carregado ou se não houver nenhuma carga ligada durante 2 horas.",
+    "pdf_page": 58,
+    "frame": 378,
+    "paragraph": 1,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "uk",
+    "current": "Umtausch",
+    "new": "Обмін",
+    "pdf_page": 55,
+    "frame": 877,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 2
+  },
+  {
+    "language": "uk",
+    "current": "Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.",
+    "new": "Jackery замінить (за рахунок Jackery) будь-який продукт Jackery, який не працює протягом відповідного гарантійного періоду через дефект матеріалів або виготовлення. Заміна отримує залишок гарантійного терміну оригінального продукту.",
+    "pdf_page": 55,
+    "frame": 880,
+    "paragraph": 0,
+    "reason": "Delivered approved copy",
+    "occurrences": 3
+  },
+  {
+    "language": "uk",
+    "current": "",
+    "new": "Цей акумуляторний блок сумісний із Jackery E2000 Plus V2 та Jackery E1000 Plus V2. У цьому посібнику термін «портативна електростанція» означає будь-яку з цих моделей, якщо не зазначено інше.",
+    "pdf_page": 3,
+    "frame": "compatibility",
+    "paragraph": 0,
+    "occurrences": 1,
+    "reason": "Delivered Ukrainian compatibility note"
+  }
+]

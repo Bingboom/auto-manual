@@ -1,0 +1,19 @@
+{
+  "schema_version": "auto-manual-batch-source-review/v1",
+  "model": "JBP-2000B",
+  "region": "EU",
+  "source": {
+    "filename": "JBP-2000B_修正版_竖版.pdf",
+    "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+  },
+  "reviewed_changes": 45,
+  "reviewed_changes_sha256": "977b0d27e7bfd495aacd0b3fcdaa7a036b1d2de5a1b1b1c09136316f15e62479",
+  "decision": "approved",
+  "authorization": "确认 候选值不就是来源这个pdf吗",
+  "authorization_context": "User confirmed the 45 candidate changes derived from the revised PDF, then asked to continue technical binding and evidence sealing.",
+  "exclusions": [
+    "Additional old symbol-caption differences are not approved by this record.",
+    "Merge and online publication are not authorized."
+  ],
+  "review_basis_head": "4c3760ef40f23ea3acdc8a44fa96c9c2fb9ea100"
+}

@@ -21,8 +21,8 @@
     "assets/ir/e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f/jbp2000b_eu_ac_charging.png",
     "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png"
   ],
-  "bundle_root": "/private/tmp/jbp2000b-release-validation/de/docs/_build/JBP-2000B/EU/de/rst",
-  "bundle_sha256": "fb2c4c0db05cb91ed0adf748e6efb9004243747930f9c1b6d250b76c708ea504",
+  "bundle_root": "web/de",
+  "bundle_sha256": "f3cabad0b2a8390ebcedca2dd1b713fcf6aaa0da60fd9110f20c6afda89f915c",
   "content_sha256": "622f8b597be1d3d0bfd9590e6cbee5027010d333dbdb3f10f291ad164fa7eb39",
   "language": "de",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -48,6 +48,11 @@
       "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
       "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
       "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8"
+    },
+    "baseline_source_provenance": {
+      "bundle_root": "/private/tmp/jbp2000b-release-validation/de/docs/_build/JBP-2000B/EU/de/rst",
+      "bundle_sha256": "fb2c4c0db05cb91ed0adf748e6efb9004243747930f9c1b6d250b76c708ea504",
+      "snapshot_sha256": null
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
@@ -1862,13 +1867,93 @@
       "troubleshooting_de.rst": "troubleshooting_de",
       "warranty_de.rst": "warranty_de"
     },
-    "pending_source_review": [
-      "Batch 1465 corrected copy; packaging and fresh release admission pending"
+    "pending_release_admission": [
+      "source-bound symbol coverage for all languages",
+      "trusted component profile enrollment for revised source",
+      "fresh admission and language evidence sealing"
     ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
+    "revision_source_binding": {
+      "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
+      "baseline_source_ref": "e267ff15b3d20b0309ce9ad88e589882683c34e8",
+      "original_source": {
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      },
+      "review_record": {
+        "path": "source-review.json",
+        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+      },
+      "reviewed_changes": [
+        {
+          "current": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation an das Jackery Battery Pack 2000 anschließen.",
+          "frame": 1217,
+          "language": "de",
+          "new": "Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bevor Sie die tragbare Powerstation mit dem Jackery Battery Pack 2000 verbinden.",
+          "occurrences": 5,
+          "paragraph": 0,
+          "pdf_page": 35,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Wenn Sie es mit der tragbaren Powerstation verwenden, können Sie die Stromversorgung des Jackery Battery Pack 2000 über den Hauptschalter der tragbaren Powerstation steuern.",
+          "frame": 1218,
+          "language": "de",
+          "new": "Bei Verwendung mit der tragbaren Powerstation können Sie den Jackery Battery Pack 2000 über die Haupt-POWER-Taste der tragbaren Powerstation ein- oder ausschalten.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 34,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Beim Aufladen über das Hauptstromnetz muss dieses Gerät mit der tragbaren Powerstation verwendet werden.",
+          "frame": 1272,
+          "language": "de",
+          "new": "Um das Batteriepack über eine AC-Wandsteckdose aufzuladen, verbinden Sie es mit der tragbaren Powerstation.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 37,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Laden Sie das Gerät wie in der unten dargestellten Abbildung mit Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+          "frame": 1274,
+          "language": "de",
+          "new": "Laden Sie das Batteriepack wie in der folgenden Abbildung dargestellt mithilfe von Solarmodulen und der tragbaren Powerstation auf. Weitere Informationen finden Sie im Benutzerhandbuch der tragbaren Powerstation.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 37,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Die tragbare Powerstation kann mit bis zu 5 Sätzen dieses Produkts gleichzeitig verwendet werden, um größere Kapazitätsanforderungen zu erfüllen.",
+          "frame": 1278,
+          "language": "de",
+          "new": "Bis zu fünf Batteriepacks können zusammen mit der tragbaren Powerstation verwendet werden, um die verfügbare Kapazität zu erhöhen.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 35,
+          "reason": "Delivered approved copy"
+        }
+      ],
+      "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "target": {
+        "language": "de",
+        "model": "JBP-2000B",
+        "region": "EU"
+      },
+      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+    },
     "skipped_raw": 0,
-    "source_review_status": "pending-1465-validation",
+    "source_review_record": {
+      "path": "source-review.json",
+      "scope": "45 batch1465 copy corrections only",
+      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "status": "approved"
+    },
+    "source_review_status": "approved-batch1465-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {

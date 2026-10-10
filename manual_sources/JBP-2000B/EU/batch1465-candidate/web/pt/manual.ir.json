@@ -21,8 +21,8 @@
     "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png",
     "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
   ],
-  "bundle_root": "frozen-source",
-  "bundle_sha256": "8255bfe772d15e0802a75f8d0796ce5baa3e24f14212822e2517969224200e44",
+  "bundle_root": "web/pt",
+  "bundle_sha256": "17be11bedcb4217c0b56ec09930ac689a6ca7eebb17bc844b4553be0e7097ebc",
   "content_sha256": "62ae6a52b68c02001e8d599fc3facbee4821f9dd43770dc24371333f1e5e14ff",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -48,6 +48,48 @@
       "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png": "c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41",
       "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
       "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png": "f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239"
+    },
+    "baseline_source_provenance": {
+      "bundle_root": "frozen-source",
+      "bundle_sha256": "8255bfe772d15e0802a75f8d0796ce5baa3e24f14212822e2517969224200e44",
+      "frozen_source_manifest": {
+        "english_reference": {
+          "commit": "e267ff15b3d20b0309ce9ad88e589882683c34e8",
+          "ir_sha256": "becf7081771ba619eb4fd6e0380c930e4fb2b79871da2f3e750910f4d93464e3"
+        },
+        "frontmatter_pages": [
+          4
+        ],
+        "native_copy_sha256": "ceddd464bc910113e57b47bcdf00a8de044f1e89e3f5732b154f659ac7c0b59a",
+        "original_source": {
+          "filename": "HTP017-EU-9国说明书-0924.ai",
+          "sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3"
+        },
+        "physical_pages": [
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "schema_version": "auto-manual-frozen-web-source/v1",
+        "shared_regulatory_page": 80,
+        "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+        "target": {
+          "languages": [
+            "pt"
+          ],
+          "model": "JBP-2000B",
+          "region": "EU",
+          "technical_version": "HTP017-0924"
+        }
+      },
+      "native_copy_evidence_sha256": "2192d81efda30120403755b763b389ca1c04d762338adb891faef7861aa1ccab",
+      "native_source_exceptions_sha256": "eb003511b704a94022d4ac9cfff830dec718dfbda2a1459ba8bc270fe5f2f9b7",
+      "snapshot_sha256": null
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
@@ -1458,10 +1500,9 @@
       "frontmatter_pages": [
         4
       ],
-      "native_copy_sha256": "ceddd464bc910113e57b47bcdf00a8de044f1e89e3f5732b154f659ac7c0b59a",
       "original_source": {
-        "filename": "HTP017-EU-9国说明书-0924.ai",
-        "sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3"
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
       },
       "physical_pages": [
         56,
@@ -1475,14 +1516,14 @@
       ],
       "schema_version": "auto-manual-frozen-web-source/v1",
       "shared_regulatory_page": 80,
-      "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+      "source_sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
       "target": {
         "languages": [
           "pt"
         ],
         "model": "JBP-2000B",
         "region": "EU",
-        "technical_version": "HTP017-0924"
+        "technical_version": "batch1465-candidate"
       }
     },
     "frozen_stylesheet_sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b",
@@ -3788,9 +3829,11 @@
         }
       }
     ],
+    "native_copy_evidence_scope": "Retained baseline evidence only; current corrected copy is covered by revision_source_binding.",
     "native_source_exceptions": [
       "Native power state labels ON and Apagado retained."
     ],
+    "native_source_exceptions_scope": "Retained baseline evidence only; current corrected copy is covered by revision_source_binding.",
     "page_count": 15,
     "page_declarations": {
       "lcd_display_en.rst": "lcd_icons",
@@ -3813,13 +3856,93 @@
       "troubleshooting_en.rst": "troubleshooting_en",
       "warranty_en.rst": "warranty_en"
     },
-    "pending_source_review": [
-      "Batch 1465 corrected copy; packaging and fresh release admission pending"
+    "pending_release_admission": [
+      "source-bound symbol coverage for all languages",
+      "trusted component profile enrollment for revised source",
+      "fresh admission and language evidence sealing"
     ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
+    "revision_source_binding": {
+      "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
+      "baseline_source_ref": "c0c82cc5b038fccb7d15322f82253d35cf429bd8",
+      "original_source": {
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      },
+      "review_record": {
+        "path": "source-review.json",
+        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+      },
+      "reviewed_changes": [
+        {
+          "current": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+          "frame": 452,
+          "language": "pt",
+          "new": "Podem ser utilizadas até cinco baterias externas com a estação de energia portátil para aumentar a capacidade disponível.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 59,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+          "frame": 417,
+          "language": "pt",
+          "new": "Para carregar a bateria externa através de uma tomada de parede CA, ligue-a à estação de energia portátil.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 61,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+          "frame": 414,
+          "language": "pt",
+          "new": "Carregue a bateria externa utilizando painéis solares e a estação de energia portátil, conforme ilustrado na figura abaixo. Para mais informações, consulte o manual de utilização da estação de energia portátil.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 61,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+          "frame": 378,
+          "language": "pt",
+          "new": "Quando utilizado com a estação de energia portátil, o Jackery Battery Pack 2000 pode ser ligado ou desligado através do botão POWER principal da estação de energia portátil.",
+          "occurrences": 2,
+          "paragraph": 0,
+          "pdf_page": 58,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+          "frame": 378,
+          "language": "pt",
+          "new": "O produto desliga-se automaticamente se não for carregado ou se não houver nenhuma carga ligada durante 2 horas.",
+          "occurrences": 2,
+          "paragraph": 1,
+          "pdf_page": 58,
+          "reason": "Delivered approved copy"
+        }
+      ],
+      "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "target": {
+        "language": "pt",
+        "model": "JBP-2000B",
+        "region": "EU"
+      },
+      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+    },
     "skipped_raw": 0,
-    "source_review_status": "pending-1465-validation",
+    "source_review_record": {
+      "path": "source-review.json",
+      "scope": "45 batch1465 copy corrections only",
+      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "status": "approved"
+    },
+    "source_review_status": "approved-batch1465-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {

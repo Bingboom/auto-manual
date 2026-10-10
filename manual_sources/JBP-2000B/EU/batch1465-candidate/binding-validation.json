@@ -1,0 +1,330 @@
+{
+  "fr": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "blocked",
+      "error": "symbol asset admission failed: symbol admission must cover every actual component row in order"
+    },
+    "caption_frame_admission": [],
+    "publication_eligible": false
+  },
+  "es": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "blocked",
+      "error": "symbol asset admission failed: symbol admission must cover every actual component row in order"
+    },
+    "caption_frame_admission": [],
+    "publication_eligible": false
+  },
+  "de": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "blocked",
+      "error": "symbol asset admission failed: symbol admission must cover every actual component row in order"
+    },
+    "caption_frame_admission": [],
+    "publication_eligible": false
+  },
+  "it": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "blocked",
+      "error": "symbol asset admission failed: symbol admission must cover every actual component row in order"
+    },
+    "caption_frame_admission": [],
+    "publication_eligible": false
+  },
+  "uk": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "passed",
+      "details": [
+        {
+          "asset_ref": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.010933
+        },
+        {
+          "asset_ref": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.018764
+        },
+        {
+          "asset_ref": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.019996
+        },
+        {
+          "asset_ref": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.00282
+        },
+        {
+          "asset_ref": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.002833
+        },
+        {
+          "asset_ref": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.000439
+        },
+        {
+          "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.0122
+        },
+        {
+          "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+          "physical_page": 48,
+          "max_mean_channel_error": 0.011646
+        }
+      ]
+    },
+    "caption_frame_admission": [
+      {
+        "source_ref": "connections_uk.json#reference-locking",
+        "asset_ref": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png",
+        "labels": [
+          {
+            "line": 0,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          },
+          {
+            "line": 1,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "publication_eligible": false
+  },
+  "pt": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "passed",
+      "details": [
+        {
+          "asset_ref": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.010933
+        },
+        {
+          "asset_ref": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.018764
+        },
+        {
+          "asset_ref": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.019996
+        },
+        {
+          "asset_ref": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.002823
+        },
+        {
+          "asset_ref": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.002832
+        },
+        {
+          "asset_ref": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.000451
+        },
+        {
+          "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.012139
+        },
+        {
+          "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+          "physical_page": 56,
+          "max_mean_channel_error": 0.011799
+        }
+      ]
+    },
+    "caption_frame_admission": [
+      {
+        "source_ref": "connections_pt.json#reference-locking",
+        "asset_ref": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png",
+        "labels": [
+          {
+            "line": 0,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          },
+          {
+            "line": 1,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "publication_eligible": false
+  },
+  "nl": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "passed",
+      "details": [
+        {
+          "asset_ref": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.010933
+        },
+        {
+          "asset_ref": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.018764
+        },
+        {
+          "asset_ref": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.019996
+        },
+        {
+          "asset_ref": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.002823
+        },
+        {
+          "asset_ref": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.002832
+        },
+        {
+          "asset_ref": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.000451
+        },
+        {
+          "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.012139
+        },
+        {
+          "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+          "physical_page": 64,
+          "max_mean_channel_error": 0.011799
+        }
+      ]
+    },
+    "caption_frame_admission": [
+      {
+        "source_ref": "connections_nl.json#reference-locking",
+        "asset_ref": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png",
+        "labels": [
+          {
+            "line": 0,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          },
+          {
+            "line": 1,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "publication_eligible": false
+  },
+  "pl": {
+    "ir_validation": "passed",
+    "render_replay": "passed",
+    "proposed_component_policy_audit": "passed",
+    "trusted_policy_applied": false,
+    "symbol_admission": {
+      "status": "passed",
+      "details": [
+        {
+          "asset_ref": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.010933
+        },
+        {
+          "asset_ref": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.018764
+        },
+        {
+          "asset_ref": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.019996
+        },
+        {
+          "asset_ref": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.002823
+        },
+        {
+          "asset_ref": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.002832
+        },
+        {
+          "asset_ref": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.000451
+        },
+        {
+          "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.012139
+        },
+        {
+          "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+          "physical_page": 72,
+          "max_mean_channel_error": 0.011799
+        }
+      ]
+    },
+    "caption_frame_admission": [
+      {
+        "source_ref": "connections_pl.json#reference-locking",
+        "asset_ref": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png",
+        "labels": [
+          {
+            "line": 0,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          },
+          {
+            "line": 1,
+            "status": "passed",
+            "baked_fill_fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "publication_eligible": false
+  }
+}

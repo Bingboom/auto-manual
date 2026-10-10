@@ -21,8 +21,8 @@
     "assets/ir/e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f/jbp2000b_eu_ac_charging.png",
     "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png"
   ],
-  "bundle_root": "/private/tmp/jbp2000b-release-validation/fr/docs/_build/JBP-2000B/EU/fr/rst",
-  "bundle_sha256": "dd136452735728c1c5d636bb1a4f1596eadadfde8f9fbad025b79167f8bc7ce9",
+  "bundle_root": "web/fr",
+  "bundle_sha256": "8569acfab08a303509251185d24643a674d316ad1cbfc6d40ed787c1be69d0f4",
   "content_sha256": "bda5fbc2fb805767f5d7b7b91c4c25ab473727d92de0ab286e7f21db73984f27",
   "language": "fr",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -48,6 +48,11 @@
       "assets/ir/e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef/jbp2000b_eu_solar_charging.png": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
       "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
       "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8"
+    },
+    "baseline_source_provenance": {
+      "bundle_root": "/private/tmp/jbp2000b-release-validation/fr/docs/_build/JBP-2000B/EU/fr/rst",
+      "bundle_sha256": "dd136452735728c1c5d636bb1a4f1596eadadfde8f9fbad025b79167f8bc7ce9",
+      "snapshot_sha256": null
     },
     "batch1465_revision": {
       "baseline_hello_docs_main": "3036ab31557e49cf467550b624ddbfce59ac1382",
@@ -1862,13 +1867,113 @@
       "troubleshooting_fr.rst": "troubleshooting_fr",
       "warranty_fr.rst": "warranty_fr"
     },
-    "pending_source_review": [
-      "Batch 1465 corrected copy; packaging and fresh release admission pending"
+    "pending_release_admission": [
+      "source-bound symbol coverage for all languages",
+      "trusted component profile enrollment for revised source",
+      "fresh admission and language evidence sealing"
     ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
     "publication_eligible": false,
+    "revision_source_binding": {
+      "asset_policy": "Unchanged artwork retains its baseline illustration provenance; corrected copy is bound to the revised PDF.",
+      "baseline_source_ref": "e267ff15b3d20b0309ce9ad88e589882683c34e8",
+      "original_source": {
+        "filename": "JBP-2000B_修正版_竖版.pdf",
+        "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+      },
+      "review_record": {
+        "path": "source-review.json",
+        "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc"
+      },
+      "reviewed_changes": [
+        {
+          "current": "Veuillez ne pas empiler le dispositif sur la station d'énergie portable.",
+          "frame": 1407,
+          "language": "fr",
+          "new": "Ne placez pas le produit sur la station d’énergie portable.",
+          "occurrences": 3,
+          "paragraph": 1,
+          "pdf_page": 19,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Assurez-vous que tous les produits sont éteints avant de connecter la station d'énergie portable au(x) Jackery Battery Pack 2000.",
+          "frame": 1409,
+          "language": "fr",
+          "new": "Assurez-vous que tous les produits sont éteints avant de connecter la station d’énergie portable au Jackery Battery Pack 2000.",
+          "occurrences": 3,
+          "paragraph": 0,
+          "pdf_page": 19,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Lorsque le Battery Pack 2000 est utilisé avec la station d'énergie portable, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal de la station d'énergie portable.",
+          "frame": 1410,
+          "language": "fr",
+          "new": "Lors de l’utilisation avec la station d’énergie portable, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 2000 à l’aide du bouton d’alimentation principal de la station d’énergie portable.",
+          "occurrences": 2,
+          "paragraph": 0,
+          "pdf_page": 18,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Le produit s'éteint automatiquement lorsqu'il n'est pas en charge et qu'aucune charge n'est connectée pendant 2 heures.",
+          "frame": 1410,
+          "language": "fr",
+          "new": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+          "occurrences": 2,
+          "paragraph": 1,
+          "pdf_page": 18,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "En cas de charge murale, ce dispositif doit être utilisé avec la station d'énergie portable.",
+          "frame": 1505,
+          "language": "fr",
+          "new": "Pour charger la batterie d’extension depuis une prise murale CA, connectez-la à la station d’énergie portable.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 21,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Rechargez votre dispositif à l'aide de panneaux solaires et de la station d'énergie portable, comme indiqué dans la figure ci-dessous. Pour plus d'informations, veuillez vous reporter au manuel d'utilisation de la station d'énergie portable.",
+          "frame": 1508,
+          "language": "fr",
+          "new": "Chargez la batterie d’extension à l’aide de panneaux solaires et de la station d’énergie portable, comme illustré ci-dessous. Pour plus d’informations, consultez le manuel d’utilisation de la station d’énergie portable.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 21,
+          "reason": "Delivered approved copy"
+        },
+        {
+          "current": "Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec la station d'énergie portable.",
+          "frame": 1515,
+          "language": "fr",
+          "new": "Jusqu’à cinq batteries d’extension peuvent être utilisées avec la station d’énergie portable afin d’augmenter la capacité disponible.",
+          "occurrences": 1,
+          "paragraph": 0,
+          "pdf_page": 19,
+          "reason": "Delivered approved copy"
+        }
+      ],
+      "schema_version": "auto-manual-batch-revision-provenance/v1",
+      "target": {
+        "language": "fr",
+        "model": "JBP-2000B",
+        "region": "EU"
+      },
+      "unreviewed_scope": "Additional pre-existing symbol-caption differences."
+    },
     "skipped_raw": 0,
-    "source_review_status": "pending-1465-validation",
+    "source_review_record": {
+      "path": "source-review.json",
+      "scope": "45 batch1465 copy corrections only",
+      "sha256": "b6578126176dac3413c6da9ba383c77b7479aef8eba890c8a3a767c1622046cc",
+      "status": "approved"
+    },
+    "source_review_status": "approved-batch1465-copy",
     "title": "Jackery Battery Pack 2000 User Manual",
     "web_contract": {
       "app_download": {

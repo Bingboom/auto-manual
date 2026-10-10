@@ -1,0 +1,514 @@
+[
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 1,
+    "asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+    "web_caption": "Mise en garde. Le non-respect des messages d'avertissement peut entraîner des blessures.",
+    "pdf_caption": "Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      323.3737487792969,
+      173.75804138183594,
+      348.9937744140625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 2,
+    "asset_ref": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+    "web_caption": "Lisez le manuel d'utilisation avant toute opération.",
+    "pdf_caption": "Lire le manuel de l'opérateur.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      361.6833801269531,
+      141.99261474609375,
+      368.40338134765625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 3,
+    "asset_ref": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+    "web_caption": "Ne démontez pas le produit.",
+    "pdf_caption": "Ne démontez pas le produit.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      391.223388671875,
+      141.40347290039062,
+      397.9433898925781
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 4,
+    "asset_ref": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+    "web_caption": "Ne pas fumer ni utiliser de flamme nue.",
+    "pdf_caption": "Tenir le produit à l’écart du feu.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      420.2481994628906,
+      147.64747619628906,
+      426.96820068359375
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 5,
+    "asset_ref": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+    "web_caption": "Les enfants ne sont pas admis.",
+    "pdf_caption": "Les enfants ne sont pas admis.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      449.03106689453125,
+      147.51809692382812,
+      455.7510681152344
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 6,
+    "asset_ref": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+    "web_caption": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+    "pdf_caption": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      467.0462646484375,
+      173.33241271972656,
+      492.666259765625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 7,
+    "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+    "web_caption": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères et qu'il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l'environnement. Pour plus d'informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+    "pdf_caption": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié.Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.50289916992188,
+      429.7838439941406,
+      335.9243469238281,
+      493.203857421875
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 8,
+    "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+    "web_caption": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.\nEn tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.\nVeuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+    "pdf_caption": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumula- teurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.50289916992188,
+      328.7634582519531,
+      337.7510986328125,
+      423.68353271484375
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 1,
+    "asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+    "web_caption": "Precaución. El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+    "pdf_caption": "Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      322.6579895019531,
+      173.75804138183594,
+      348.27801513671875
+    ],
+    "known_reference_error": true
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 2,
+    "asset_ref": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+    "web_caption": "Lea el manual del usuario antes de operar el producto.",
+    "pdf_caption": "Lea el manual del operador.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      360.96759033203125,
+      140.80429077148438,
+      367.6875915527344
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 3,
+    "asset_ref": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+    "web_caption": "No desarme el producto.",
+    "pdf_caption": "No desarme el producto.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      390.5075988769531,
+      132.15171813964844,
+      397.22760009765625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 4,
+    "asset_ref": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+    "web_caption": "No fumar ni utilizar llamas abiertas.",
+    "pdf_caption": "Mantenga el producto alejado del fuego",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      419.5323791503906,
+      173.6757049560547,
+      426.25238037109375
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 5,
+    "asset_ref": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+    "web_caption": "No se permite el acceso a niños.",
+    "pdf_caption": "No se permiten niños.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      448.315185546875,
+      123.55908203125,
+      455.0351867675781
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 6,
+    "asset_ref": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+    "web_caption": "Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.",
+    "pdf_caption": "Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      466.33038330078125,
+      165.9980926513672,
+      491.95037841796875
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 7,
+    "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+    "web_caption": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos, sino entregarse en un punto de recogida designado para su reciclaje. La eliminación y el reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su comunidad local, el servicio de gestión de residuos o el distribuidor del producto.",
+    "pdf_caption": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.50289916992188,
+      429.0679931640625,
+      335.7569274902344,
+      492.4880065917969
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 8,
+    "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+    "web_caption": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos.\nComo consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas.\nDevuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+    "pdf_caption": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independiente- mente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.50289916992188,
+      322.6579895019531,
+      334.7142639160156,
+      425.3396301269531
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 1,
+    "asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+    "web_caption": "Warn- und Vorsichtssymbole. Lesen Sie diese Hinweise, um auf mögliche Gefahren oder Risiken aufmerksam gemacht zu werden.",
+    "pdf_caption": "Warn- und Hinweissymbole. Weisen Personen auf Informationen hin, die gelesen werden müssen, um potenzielle Gefahren oder Risiken zu vermeiden.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      325.7126770019531,
+      171.2604217529297,
+      351.33270263671875
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 2,
+    "asset_ref": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+    "web_caption": "Lesen Sie vor der Anwendung die Benutzeranleitung.",
+    "pdf_caption": "Lesen Sie vor der Anwendung die Benutzeranleitung.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      364.0223083496094,
+      154.82666015625,
+      377.7423095703125
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 3,
+    "asset_ref": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+    "web_caption": "Demontieren Sie das Produkt nicht.",
+    "pdf_caption": "Vermeiden Sie Hitze.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      393.56231689453125,
+      120.57540130615234,
+      400.2823181152344
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 4,
+    "asset_ref": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+    "web_caption": "Rauchen Sie nicht und verwenden Sie keine offenen Flammen.",
+    "pdf_caption": "Demontieren Sie das Produkt nicht.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      422.5871276855469,
+      158.7024383544922,
+      429.30712890625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 5,
+    "asset_ref": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+    "web_caption": "Halten Sie das Produkt fern von Kindern.",
+    "pdf_caption": "Halten Sie das Produkt fern von Kindern.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.095703125,
+      451.3699035644531,
+      170.96141052246094,
+      458.08990478515625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 6,
+    "asset_ref": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+    "web_caption": "Dieses Symbol weist darauf hin, dass sich im Produkt ein Lithium-Ionen-Akku (Li-Ion) befindet, der ordnungsgemäß entsorgt oder recycelt werden muss.",
+    "pdf_caption": "Dieses Symbol zeigt an, dass sich ein Lithium-Ionen-Akku (Li-Ion) im Produkt befindet und ordnungsgemäß entsorgt oder recycelt werden sollte.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.095703125,
+      469.3851013183594,
+      169.5759735107422,
+      495.0050964355469
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 7,
+    "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+    "web_caption": "Dieses Symbol weist darauf hin, dass das Produkt nicht über den Hausmüll entsorgt werden darf, sondern einer ausgewiesenen Sammelstelle zum Recycling zugeführt werden muss. Eine ordnungsgemäße Entsorgung und Wiederverwertung trägt zum Schutz der Umwelt bei. Weitere Informationen zur Entsorgung und zum Recycling dieses Produkts erhalten Sie bei Ihrer Gemeinde, Ihrem Entsorgungsdienst oder Ihrem Händler.",
+    "pdf_caption": "Dieses Symbol zeigt an, dass das Produkt nicht als Haushaltsabfall entsorgt werden soll und an eine dafür vorgesehene Sammelstelle zur Entsorgung und Recycling gebracht werden sollte. Eine ordnungsgemäße Entsorgung und Recycling kann dazu beitragen, die Umwelt zu schützen. Für weitere Informationen zur Entsorgung und Recycling dieses Produkts wenden Sie sich an Ihre örtliche Gemeinde, Entsorgungs- dienstleistungen oder Ihren Händler.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.50289916992188,
+      424.0362854003906,
+      336.59063720703125,
+      496.7298583984375
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 8,
+    "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+    "web_caption": "Batterien und Akkumulatoren dürfen nicht über den Hausmüll entsorgt werden.\nAls Verbraucher sind Sie gesetzlich verpflichtet, alle Batterien und Akkumulatoren an dafür vorgesehenen Sammelstellen zu entsorgen, unabhängig davon, ob sie Schadstoffe enthalten.\nBitte geben Sie gebrauchte Batterien und Akkumulatoren an einer örtlichen Sammelstelle, einem Recyclingzentrum oder beim Händler zurück, bei dem sie gekauft wurden. Die ordnungsgemäße Entsorgung gewährleistet eine umweltgerechte Wiederverwertung und verhindert mögliche Schäden für die menschliche Gesundheit und die Umwelt.",
+    "pdf_caption": "Batterien und Akkumulatoren dürfen nicht über den Hausmüll entsorgt werden. Als Verbraucher sind Sie gesetzlich verpflichtet, alle Batterien und Akkumulatoren an dafür vorgesehenen Sammelstellen zu entsorgen, unabhängig davon, ob sie Schadstoffe enthalten. Bitte geben Sie gebrauchte Batterien und Akkumulatoren an einer örtlichen Sammelstelle, einem Recyclingzentrum oder beim Händler zurück, bei dem sie gekauft wurden. Die ordnungsgemäße Entsorgung gewährleistet eine umweltgerechte Wiederverwertung und verhindert mögliche Schäden für die menschliche Gesundheit und die Umwelt.",
+    "exact_match": true,
+    "caption_bbox": [
+      227.50289916992188,
+      325.7126770019531,
+      335.4752502441406,
+      422.396728515625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 1,
+    "asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png",
+    "web_caption": "Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi.",
+    "pdf_caption": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.39749908447266,
+      325.5809020996094,
+      169.54229736328125,
+      351.2008972167969
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 2,
+    "asset_ref": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+    "web_caption": "Prima dell'utilizzo, leggere il manuale d'istruzioni.",
+    "pdf_caption": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.39749908447266,
+      361.89129638671875,
+      164.12095642089844,
+      375.6112976074219
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 3,
+    "asset_ref": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+    "web_caption": "Non smontare il prodotto.",
+    "pdf_caption": "Non smontare il prodotto.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.39749908447266,
+      393.4305114746094,
+      134.16038513183594,
+      400.1505126953125
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 4,
+    "asset_ref": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+    "web_caption": "Non fumare né utilizzare fiamme libere.",
+    "pdf_caption": "Tenere il prodotto lontano da fiamme.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.39749908447266,
+      422.4552917480469,
+      165.59933471679688,
+      429.17529296875
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 5,
+    "asset_ref": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+    "web_caption": "Tenere lontano dalla portata dei bambini.",
+    "pdf_caption": "Tenere lontano dalla portata dei bambini.",
+    "exact_match": true,
+    "caption_bbox": [
+      69.39749908447266,
+      451.23809814453125,
+      176.0153350830078,
+      457.9580993652344
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 6,
+    "asset_ref": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+    "web_caption": "Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente.",
+    "pdf_caption": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+    "exact_match": false,
+    "caption_bbox": [
+      69.39749908447266,
+      469.2532958984375,
+      176.33395385742188,
+      494.873291015625
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 7,
+    "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+    "web_caption": "Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore.",
+    "pdf_caption": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+    "exact_match": false,
+    "caption_bbox": [
+      227.8046875,
+      429.6164855957031,
+      336.287109375,
+      493.0364990234375
+    ],
+    "known_reference_error": false
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 8,
+    "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+    "web_caption": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+    "pdf_caption": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici. Come consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose. Per favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+    "exact_match": true,
+    "caption_bbox": [
+      227.80470275878906,
+      325.5809020996094,
+      338.0460510253906,
+      420.50091552734375
+    ],
+    "known_reference_error": false
+  }
+]
