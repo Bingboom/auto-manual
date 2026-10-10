@@ -1,0 +1,89 @@
+/* 设计系统 page. Owns only what sits inside .app-content (see site-shell.css). */
+.design-system main {padding-bottom:32px}
+.design-system code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  padding:1px 5px;border-radius:5px;background:#eef0f3;color:#3a3d44;overflow-wrap:anywhere}
+
+.ds-section {margin:0 0 36px}
+.ds-section > h2 {margin:0 0 12px;font-size:20px;font-weight:650;line-height:1.4}
+.ds-section > p {margin:0 0 12px;font-size:15px;line-height:1.85;color:var(--app-ink)}
+.ds-list {display:grid;gap:10px;margin:0;padding-left:20px;font-size:15px;line-height:1.85}
+.ds-hint {color:var(--app-muted)!important;font-size:14px!important}
+.ds-versions {margin:4px 0 18px;font-size:12.5px;line-height:1.7;color:var(--app-faint)}
+.ds-versions code {font-size:.92em}
+
+/* Colours */
+.ds-swatches {display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.ds-swatch {display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-chip {height:88px;border-bottom:1px solid var(--app-line)}
+.ds-swatch-body {padding:14px 16px 16px}
+.ds-swatch h3,.ds-type h3,.ds-component h3 {margin:0 0 4px;font-size:16px;font-weight:650;line-height:1.4}
+.ds-swatch dl,.ds-type dl {display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0;font-size:13px}
+.ds-swatch dl > div,.ds-type dl > div {display:flex;gap:6px}
+.ds-swatch dt,.ds-type dt {color:var(--app-faint)}
+.ds-swatch dd,.ds-type dd {margin:0;color:#3a3d44}
+.ds-swatch p,.ds-type p {margin:6px 0 0;font-size:13.5px;line-height:1.75;color:#50545c}
+.ds-source {font-size:12.5px!important;color:var(--app-faint)!important}
+
+/* Type */
+.ds-type-list {display:grid;gap:12px}
+.ds-type {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center;
+  padding:18px 20px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-type-sample {color:#343031;overflow-wrap:anywhere}
+
+/* Components */
+.ds-toc {display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.ds-toc a {padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--app-line);font-size:13.5px;color:var(--app-muted)}
+.ds-toc a:hover {color:var(--app-ink);border-color:#d3d6db}
+.ds-toc em {margin-left:6px;font-style:normal;color:var(--app-faint)}
+.ds-component {margin:0 0 18px;padding:18px 20px 20px;background:#fff;border:1px solid var(--app-line);border-radius:14px}
+.ds-component header {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.ds-summary {margin:6px 0 14px;font-size:14.5px;line-height:1.75;color:#50545c}
+.ds-frame {overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:10px}
+.ds-preview {display:block;width:100%;border:0}
+.ds-notes {display:grid;gap:8px;margin:14px 0 0;font-size:14px;line-height:1.75}
+.ds-notes > div {display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px}
+.ds-notes dt {font-weight:600;color:var(--app-faint)}
+.ds-notes dd {margin:0;color:#3a3d44}
+.ds-footer {display:block;margin:12px 0 0;padding:18px 0;border-top:1px solid var(--app-line);font-size:13px;color:var(--app-faint)}
+
+/* Assets: tile grounds come inline from the live stylesheet colours. */
+.ds-steps {display:grid;gap:8px;margin:12px 0 0;padding-left:22px;font-size:15px;line-height:1.85}
+.ds-assets {display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.ds-asset {display:flex;flex-direction:column;margin:0;overflow:hidden;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-asset-art {box-sizing:content-box;display:flex;align-items:center;justify-content:center;height:104px;padding:14px;border-bottom:1px solid var(--app-line)}
+.ds-asset-art img {display:block;max-width:100%;max-height:104px}
+.ds-asset-art img.ds-art-svg {width:100%;height:104px;object-fit:contain}
+.ds-asset figcaption {display:grid;gap:4px;align-content:start;padding:10px 12px 12px;font-size:13px;line-height:1.6;color:#50545c}
+.ds-asset figcaption strong {font-size:13.5px;font-weight:600;color:var(--app-ink);overflow-wrap:anywhere}
+.ds-asset figcaption code {justify-self:start}
+.ds-asset figcaption em {font-style:normal;font-size:12px;color:var(--app-faint)}
+
+/* Print */
+.ds-table-wrap {overflow-x:auto;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-table {width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.6}
+.ds-table th,.ds-table td {padding:9px 14px;border-bottom:1px solid var(--app-line);text-align:left;vertical-align:middle}
+.ds-table thead th {font-weight:600;color:var(--app-faint);background:#fafbfc;white-space:nowrap}
+.ds-table tbody tr:last-child td {border-bottom:0}
+.ds-table td:nth-child(2) {white-space:nowrap;font-variant-numeric:tabular-nums}
+/* Wide tables keep their columns and scroll inside the frame, like the manual's own wide tables. */
+.ds-table-wide th,.ds-table-wide td {white-space:nowrap}
+.ds-table-wide code {overflow-wrap:normal}
+.ds-print-sample {color:#343031;white-space:nowrap}
+.ds-print-page {display:grid;grid-template-columns:minmax(240px,1fr) minmax(0,560px);gap:20px;align-items:start;margin:0 0 12px}
+.ds-geometry {display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ds-geometry-card {padding:14px 16px 8px;background:#fff;border:1px solid var(--app-line);border-radius:12px}
+.ds-geometry-card h3 {margin:0 0 4px;font-size:16px;font-weight:650;line-height:1.4}
+.ds-table-compact td {padding:7px 10px 7px 0;border-bottom-color:#f0f1f3}
+.ds-table-compact td code {display:block;width:fit-content;max-width:100%;margin-top:3px;font-size:.78em}
+.ds-table-compact td:last-child {padding-right:0;text-align:right}
+
+@media (max-width:1100px) {
+  .ds-print-page {grid-template-columns:1fr}
+}
+
+@media (max-width:760px) {
+  .ds-type {grid-template-columns:1fr;gap:12px}
+  .ds-assets {grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .ds-notes > div {grid-template-columns:1fr;gap:2px}
+  .ds-component {padding:14px 14px 16px}
+}
