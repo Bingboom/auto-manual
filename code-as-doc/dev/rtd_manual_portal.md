@@ -629,9 +629,9 @@ fails the export instead of silently dropping a format.
 
 ## Design system page
 
-`/workspace/design/index.html` (设计系统) shows the Web manual's visual rules in
-four tabs: 概览, 颜色, 字体 and 组件. It is an internal 知识库 page; the public
-manual library does not link to it.
+`/workspace/design/index.html` (设计系统) shows the manual's visual rules in six
+tabs: 概览, 颜色, 字体, 组件, 图标与素材 and 印刷规格. It is an internal 知识库
+page; the public manual library does not link to it.
 
 - **Values are live.** At build time `tools/rtd/design_system.py` reads the
   stylesheet that `tools/web/stylesheets.py` assembles
@@ -645,15 +645,39 @@ manual library does not link to it.
   shared asset folders, and per-target art is a labelled placeholder SVG. Frames
   size themselves to their content (`_static/design-system.js`); without
   JavaScript they keep their declared height.
-- **Notes are data.** The Chinese text, the selectors each value comes from and
-  the preview markup live in `tools/rtd_portal_assets/design_system/`
-  (`content.yaml`, `previews/<id>.html`). Previews may use only
-  `asset:<group>/<file>` art and `slot:<w>:<h>:<label>` placeholders: no remote,
-  data or absolute URLs.
-- **Drift fails closed.** If a selector, a component's `requires` class or an
-  asset no longer exists, `tests/test_rtd_design_system.py` fails. If such a
-  change still reaches a build, the page is skipped with a Sphinx warning and
-  its sidebar entry disappears, rather than showing stale rules.
+- **The asset library is live.** `tools/rtd/design_assets.py` lists the 图标与素材
+  groups from the shared symbol and button manifests
+  (`docs/renderers/web/assets/shared/{symbols,buttons}/manifest.json`), the
+  shared LCD folder, and named files from the Word and LaTeX asset folders. The
+  files are copied to `/workspace/design/assets/<group>/`; each tile shows the
+  file's format, size, PNG dimensions and alpha channel, or the colours an SVG
+  uses.
+- **Print values are live.** `tools/rtd/design_print.py` reads
+  `data/layout_params.csv` through `tools.render_contract.load_layout_tokens`:
+  page geometry, type sizes and leading, CMYK swatches and component geometry.
+  It shows base values only: `lang_*` density overrides and the IDML overlay
+  tables a config may add are not applied. The base tokens are also written as
+  CSS custom properties to `/workspace/design/print/tokens.css` for an
+  actual-size odd-page preview (`print/page.html`). Weights are not in the
+  table; the LaTeX modules and IDML styles own them.
+- **Notes are data.** The Chinese text, the selectors and keys each value comes
+  from and the preview markup live in `tools/rtd_portal_assets/design_system/`
+  (`content.yaml`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
+  Previews may use only `asset:<group>/<file>` art and `slot:<w>:<h>:<label>`
+  placeholders: no remote, data or absolute URLs. The print preview may use only
+  tokens the table defines.
+- **Drift fails closed.** The build fails the page, and
+  `tests/test_rtd_design_system.py` fails first, when any of these happen:
+  - a selector, a component's `requires` class or an asset no longer exists;
+  - an asset note names a file or key that no longer exists;
+  - a shown or copied file carries a hash the symbol manifest has withdrawn;
+  - a print key, a print colour's screen token, or a token the print preview
+    uses is gone.
+
+  A failed page is skipped with a Sphinx warning and its sidebar entry
+  disappears, rather than showing stale rules. Additions, such as a new symbol
+  or a new CSV row, do not fail; they appear in the gallery, or wait for a
+  label in `content.yaml`.
 
 ## Maintenance surface
 

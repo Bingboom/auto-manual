@@ -1,10 +1,13 @@
-"""Read-only 设计系统 page: colours, type and component previews from the live Web stylesheet.
+"""Read-only 设计系统 page: the live Web stylesheet, asset library and print tokens.
 
-Values are read from the web_manual.css that tools/web/stylesheets.py assembles,
-at build time; only the Chinese notes and the preview markup are committed data
-(tools/rtd_portal_assets/design_system/). A selector, class or asset the page
-relies on that no longer exists is an authoring error: the page is skipped with
-a warning rather than showing stale rules, and the unit tests fail first.
+Colours, type and component previews are read from the web_manual.css that
+tools/web/stylesheets.py assembles, the 图标与素材 gallery from the shared asset
+folders and manifests (design_assets.py), and the 印刷规格 tab from
+data/layout_params.csv (design_print.py), all at build time; only the Chinese
+notes and the preview markup are committed data
+(tools/rtd_portal_assets/design_system/). A selector, class, asset or token the
+page relies on that no longer exists is an authoring error: the page is skipped
+with a warning rather than showing stale rules, and the unit tests fail first.
 """
 from __future__ import annotations
 
@@ -15,55 +18,26 @@ import re
 import shutil
 from typing import Any
 
-from markupsafe import Markup
 import yaml
 
+from tools.rtd.design_assets import GROUNDS, asset_gallery, asset_source, check_not_withdrawn, withdrawn_hashes
+from tools.rtd.design_content import CONTENT_DIR, DesignSystemError, inline, load_content
+from tools.rtd.design_print import print_page_document, print_spec
 from tools.rtd.design_system_css import class_names, declared, live_stylesheet_text, parse_css
 from tools.utils.path_utils import repo_root
 
 PAGE = "workspace/design/index"
 TEMPLATE = "design_system.html"
-CONTENT_DIR = "design_system"
 OUTPUT_DIR = "workspace/design"
 MOBILE = "@media (max-width: 760px)"
 TYPE_PROPERTIES = ("font-size", "line-height", "font-weight", "text-transform", "letter-spacing")
-# Repository folders a preview may take art from; `asset:<group>/<file>` in the markup.
-ASSET_ROOTS = {
-    "symbols": "docs/renderers/web/assets/shared/symbols/native-v1",
-    "buttons": "docs/renderers/web/assets/shared/buttons",
-    "lcd": "docs/renderers/web/assets/shared/lcd",
-    "inbox": "docs/templates/word_template/common_assets/in_the_box",
-    "marks": "docs/templates/word_template/common_assets/symbols",
-}
 # Portal stylesheets (tools/rtd_portal_assets/_static) a preview may add.
 PORTAL_STYLESHEETS = frozenset({"manual-locales.css"})
 
 _ASSET = re.compile(r'src="asset:([a-z]+)/([A-Za-z0-9][A-Za-z0-9._-]*)"')
 _SLOT = re.compile(r'src="slot:(\d{2,4}):(\d{2,4}):([^"<>&]+)"')
 _HEX = re.compile(r"#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b")
-_INLINE = re.compile(r"`([^`]+)`|\*\*([^*]+)\*\*|\*([^*\s][^*]*)\*")
 _ID = re.compile(r"[a-z][a-z0-9-]*")
-
-
-class DesignSystemError(ValueError):
-    """The committed design-system data no longer matches the live stylesheet."""
-
-
-def inline(text: str) -> Markup:
-    """Escape text, then allow only `code`, **strong** and *em*."""
-    parts, position = [], 0
-    for match in _INLINE.finditer(text):
-        parts.append(escape(text[position:match.start()]))
-        code, strong, emphasis = match.groups()
-        if code is not None:
-            parts.append(f"<code>{escape(code)}</code>")
-        elif strong is not None:
-            parts.append(f"<strong>{escape(strong)}</strong>")
-        else:
-            parts.append(f"<em>{escape(emphasis)}</em>")
-        position = match.end()
-    parts.append(escape(text[position:]))
-    return Markup("".join(parts))
 
 
 def _luminance(hex_color: str) -> float:
@@ -83,11 +57,11 @@ def contrast_ratio(color: str, ground: str) -> float | None:
     return round((lighter + 0.05) / (darker + 0.05), 2)
 
 
-def load_content(assets: Path) -> dict[str, Any]:
-    data = yaml.safe_load((assets / CONTENT_DIR / "content.yaml").read_text(encoding="utf-8"))
-    if not isinstance(data, dict) or data.get("schema_version") != 1:
-        raise DesignSystemError("design_system/content.yaml needs schema_version 1")
-    return data
+def _root_color(rules: list, token: str) -> str:
+    match = _HEX.search(declared(rules, ":root", token) or "")
+    if match is None:
+        raise DesignSystemError(f"the live stylesheet no longer declares {token}")
+    return match.group(0).lower()
 
 
 def _colors(content: dict, rules: list, paper: str) -> list[dict]:
@@ -141,12 +115,7 @@ def _slot_svg(width: int, height: int, label: str) -> str:
 def _resolve_markup(fragment: str, root: Path, used_assets: dict, slots: dict) -> str:
     def asset(match: re.Match) -> str:
         group, name = match.groups()
-        if group not in ASSET_ROOTS:
-            raise DesignSystemError(f"unknown asset group {group}")
-        source = root / ASSET_ROOTS[group] / name
-        if not source.is_file() or source.is_symlink():
-            raise DesignSystemError(f"missing preview asset {group}/{name}")
-        used_assets[f"{group}/{name}"] = source
+        used_assets[f"{group}/{name}"] = asset_source(root, group, name)
         return f'src="../assets/{group}/{name}"'
 
     def slot(match: re.Match) -> str:
@@ -195,7 +164,7 @@ def _components(content: dict, assets: Path, root: Path, styled: set[str], selec
 
 
 def design_system_context(assets: Path) -> dict[str, Any]:
-    """Build the page context from committed notes and the live stylesheet."""
+    """Build the page context from committed notes and the live repository files."""
     content = load_content(assets)
     root = repo_root()
     css = live_stylesheet_text()
@@ -203,32 +172,37 @@ def design_system_context(assets: Path) -> dict[str, Any]:
     portal_rules = parse_css((assets / "_static" / "manual-locales.css").read_text(encoding="utf-8"))
     styled = class_names(rules) | class_names(portal_rules)
     selectors = {selector for rule in rules + portal_rules for selector in rule.selectors}
-    paper = (_HEX.search(declared(rules, ":root", "--hb-paper") or "") or [None])[0]
-    if paper is None:
-        raise DesignSystemError("the live stylesheet no longer declares --hb-paper")
+    grounds = {name: _root_color(rules, token) for name, token in GROUNDS.items()}
+    paper = grounds["paper"]
     used_assets: dict[str, Path] = {}
     slots: dict[str, str] = {}
     groups = _components(content, assets, root, styled, selectors, used_assets, slots)
-    colors = _colors(content, rules, paper.lower())
+    library = asset_gallery(content, root, used_assets)
+    check_not_withdrawn(used_assets, withdrawn_hashes(root))
+    colors = _colors(content, rules, paper)
     type_styles = _type_styles(content, rules)
+    font_family = declared(rules, ":root", "--hb-font-family") or ""
+    screen_tokens = {prop for rule in rules if ":root" in rule.selectors for prop in rule.declarations}
     return {
         "lead": content["lead"],
         "overview": [{"id": section["id"], "title": section["title"],
                       "paragraphs": [inline(text) for text in section.get("paragraphs", [])],
                       "items": [inline(text) for text in section.get("items", [])]}
                      for section in content["overview"]],
-        "colors": colors, "type_styles": type_styles, "component_groups": groups, "paper": paper.lower(),
+        "colors": colors, "type_styles": type_styles, "component_groups": groups, "paper": paper, "grounds": grounds,
         "component_count": sum(len(group["items"]) for group in groups),
-        "font_family": declared(rules, ":root", "--hb-font-family") or "",
+        "font_family": font_family, "asset_library": library,
+        "print": print_spec(content, assets, root, font_family=font_family, screen_tokens=screen_tokens),
         "stylesheet": {"sha256": hashlib.sha256(css.encode("utf-8")).hexdigest(), "text": css},
         "assets": used_assets, "slots": slots,
     }
 
 
 def template_context(context: dict[str, Any]) -> dict[str, Any]:
-    """What the page template reads: no file paths, no stylesheet text."""
+    """What the page template reads: no file paths, no stylesheet or preview text."""
     page = {key: value for key, value in context.items() if key not in {"assets", "slots", "stylesheet"}}
     page["stylesheet_sha256"] = context["stylesheet"]["sha256"]
+    page["print"] = {key: value for key, value in context["print"].items() if key not in {"tokens_css", "preview"}}
     return page
 
 
@@ -236,9 +210,10 @@ def design_page_context(app, assets: Path) -> dict[str, Any] | None:
     """Context for PAGE, or None (with a warning) when the data has drifted."""
     from sphinx.util import logging as sphinx_logging
 
+    # DesignSystemError is a ValueError; the others are malformed notes or unreadable files.
     try:
         return design_system_context(assets)
-    except (DesignSystemError, OSError, KeyError, TypeError, yaml.YAMLError) as exc:
+    except (ValueError, OSError, KeyError, TypeError, AttributeError, yaml.YAMLError) as exc:
         sphinx_logging.getLogger(__name__).warning("Design system page skipped: %s", exc)
         return None
 
@@ -259,7 +234,7 @@ def preview_document(item: dict) -> str:
 
 
 def write_design_system(output_root: Path, assets: Path, context: dict[str, Any]) -> Path:
-    """Write the previews, the live stylesheet and the art they use beside the page."""
+    """Write the previews, the live stylesheet, the print preview and the art beside the page."""
     target = output_root / OUTPUT_DIR
     (target / "previews").mkdir(parents=True, exist_ok=True)
     (target / "web_manual.css").write_text(context["stylesheet"]["text"], encoding="utf-8")
@@ -275,6 +250,11 @@ def write_design_system(output_root: Path, assets: Path, context: dict[str, Any]
         (target / "slots").mkdir(exist_ok=True)
         for name, svg in context["slots"].items():
             (target / "slots" / name).write_text(svg, encoding="utf-8")
+    printed, preview = target / "print", context["print"]["preview"]
+    printed.mkdir(exist_ok=True)
+    (printed / "tokens.css").write_text(context["print"]["tokens_css"], encoding="utf-8")
+    (printed / "page.css").write_text(preview["css"], encoding="utf-8")
+    (printed / "page.html").write_text(print_page_document(preview["markup"]), encoding="utf-8")
     return target
 
 

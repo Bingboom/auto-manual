@@ -3,9 +3,7 @@
 # 存在，否则单元测试失败，页面不会展示过期的规则。
 # 行内格式只有两种：`代码` 与 **加粗**。
 schema_version: 1
-lead: >-
-  说明书网页版的视觉规则：颜色、字体与组件。每次构建都读取仓库当前的网页样式表，
-  并用它渲染下面所有数值和预览，所以这里看到的就是线上说明书正在用的规则。
+lead: 说明书的视觉规则：网页版的颜色、字体与组件，共享的图标素材，以及印刷版的版式参数。每次构建都读取仓库当前的网页样式表、素材目录和印刷参数表，并用它们渲染下面所有数值和预览，所以这里看到的就是说明书正在用的规则。
 
 overview:
   - id: identity
@@ -453,3 +451,230 @@ components:
     height: 330
     summary: 保修期卡片：每种保修期是一个品牌深色圆里的大号数字，旁边是单位和保修名称，下面是说明，桌面版两栏并排。
     use: 用于保修期条款。数字、单位和名称从每格第一段粗体文字解析（如 “3 YEARS”），来源必须保持这个格式，否则直接失败。
+
+# “图标与素材”分页。每组从共享素材清单（registry）、素材目录（folder）或指定文件（files）
+# 在构建时列出；文件必须在已知素材目录里、确实存在，且不是清单已撤回的字节。
+# notes 的键可以是文件名、语义键，或语义键 “/” 之前的含义部分（同一含义的各变体共用）；
+# 不再对应任何文件的说明会让测试失败。
+assets:
+  intro:
+    - 说明书网页版用到的共享素材，每次构建时从仓库的共享素材目录和素材清单列出，图块显示的就是仓库里的文件本身。只用这里登记的文件：按语义键和字形变体选择，原样复用字节。
+  steps:
+    - "**先盘点。** 按图的功能或槽位列出需求，先查目标已有的资产清单、同型号同区域其他语言的资产、共享素材与模板附件，再打开候选图核对。"
+    - "**核对身份。** 核对型号、区域、接口、功能、参数、App 界面版本和图内文字的语言。文件名相似不等于可以复用。"
+    - "**直接复用。** 内容一致就直接绑定既有素材；冻结包需要复制文件时保持字节不变，并记录原路径与 SHA-256。不要重新截图、重裁、缩放或去底后当作复用。"
+    - "**必要时处理文字。** 只有外部标签需要翻译时，复用底图，修改原生文字和锚点；含本地化文字的成品图必须与目标语言一致。"
+    - "**最后才提取。** 只有查无可用素材、清晰度确实不够，或外观、接口、内容确实不同时，才提取新素材，并先在审查记录里写明理由。完整规则见 `docs/renderers/contracts/STYLE_DEFINITION.md` 的“共用图标优先”一节。"
+  groups:
+    - id: symbols
+      title: 通用符号
+      registry: symbols
+      exclude: ["h1-jp-", "_gray_jp"]
+      paragraphs:
+        - 安全、废弃处理与合规符号，用于符号页表格、安全面板和 FCC 面板。按语义键**和**字形变体选择，然后原样使用：不要为新型号、新页面或新语言重画、改色、裁切或重新提取已收录的变体；来源字形确实不同，就在清单里新增一个具名变体。
+        - SVG 都是单色，通过 `<img>` 渲染，不能继承 `currentColor`，所以只放在 `hb-paper` 或 `hb-surface` 上；每个图块标出了文件里实际用到的颜色。两个 WEEE 标志是透明 PNG。显示尺寸由使用它的组件决定，见“组件”分页。
+    - id: symbols-jp
+      title: 日本市场符号
+      registry: symbols
+      include: ["h1-jp-", "_gray_jp"]
+      paragraphs:
+        - 日本市场的字形变体，只在日文来源说明书画的正是这些字形时使用：灰色的 `_gray_jp` 系列和 Li-ion32 标志来自日文来源 PDF，`h1-jp-` 系列来自 H1 日文原稿。它们和通用符号是不同的原稿，不是通用符号的配色主题。
+        - 部分字形内有浅灰底色；同样通过 `<img>` 渲染，只放在 `hb-paper` 或 `hb-surface` 上。
+    - id: buttons
+      title: 按键
+      registry: buttons
+      paragraphs:
+        - 与语言无关的按键插图，用于操作面板、按键组合表格和 App 控制面板。每个文件保留白色圆形按键面、开关符号、指示点和产品丝印，按键面以外透明。丝印已转为轮廓，不需要字体；它是固定的产品标记，不要翻译或重新输入。本地化的名称、组合用的“+”和长按时长放在插图旁边的网页文字里。
+        - 上方丝印和下方丝印是不同的原稿，USB 也不是 DC/USB：按产品实物选择变体，不要只按功能替换。
+    - id: lcd
+      title: 显示屏图标
+      folder: lcd
+      ground: surface
+      paragraphs:
+        - 显示屏图标表（`HB-TABLE-LCD-ICON`）用的共用图标，透明 PNG，放在 `hb-surface` 上。灰底、白底或低分辨率的副本不能作为主素材；图标里画的数字（例如电池数量）是图标身份的一部分。
+    - id: inbox
+      title: 装箱线稿
+      files: [inbox/ac_charging_cable.png, inbox/manual_icon1.png]
+      paragraphs:
+        - 装箱卡片和包装卡片用的线稿，与语言无关：单一线宽的深色轮廓。产品本身的图按机型提供，不属于这一组。
+    - id: glyphs
+      title: 小图形
+      files:
+        - {file: marks/warning_triangle_white.svg, ground: dark}
+        - marks/warning_triangle_dark.svg
+        - latex/warning_lockup.png
+        - latex/icon_clock_3s.png
+        - cover/support_icon.png
+      paragraphs:
+        - 安全和操作面板共用的小标记。注意各自的使用范围：有的只用于印刷版，网页用原生文字或 CSS 代替。
+  notes:
+    warning: 警告与注意符号：提醒读者注意潜在的危险或风险。
+    warning-triangle: 警告。
+    read-manual: 使用前请阅读用户手册。
+    electric-shock: 有触电危险。
+    battery-charging: 电池充电。
+    explosive-material: 爆炸性物质。
+    heavy-object: 重物。
+    do-not-dismantle: 请勿拆解本产品。
+    no-open-flame: 请勿吸烟或使用明火。
+    keep-away-from-children: 远离儿童。
+    li-ion: 产品内含锂离子电池，须按规定处置或回收。
+    weee: 本产品不得作为生活垃圾处理，须交到指定的回收点回收。
+    battery-weee: 电池和蓄电池不得与生活垃圾一起处理。
+    fcc: FCC 合规标志，用于 FCC 面板。
+    mandatory: 必须遵守的指示。
+    prohibited: 禁止。
+    unplug: 拔下电源插头。
+    no-wet-hands: 请勿用湿手触摸。
+    keep-dry: 保持干燥，请勿沾水。
+    battery-recycle: 电池须回收。
+    button/power: 电源键，丝印 POWER。
+    button/ac: 交流输出键，丝印 AC。
+    button/dc_usb: 直流／USB 输出键，丝印 DC/USB。
+    button/led: 照明键，丝印 LIGHT。
+    button/power-bottom: 电源键，丝印 POWER 在开关下方。
+    button/usb-bottom: USB 键，丝印 USB 在开关下方。
+    button/ac-bottom: 交流输出键，丝印 AC 在开关下方。
+    lcd_transfer-switch.png: 转换开关指示：亮表示已连接转换开关（ATS）；灭表示未连接。
+    lcd_parallel.png: 并机：亮表示已建立并机连接；闪烁表示正在设置；灭表示未设置。
+    lcd_ev-charging.png: 电动车充电：已连接接地适配器（另售）。
+    lcd_ac-expansion-out.png: 交流扩展指示（放电）：产品通过已连接的 ATS 为家庭负载供电。
+    lcd_ac-expansion-in.png: 交流扩展指示（充电）：产品通过 ATS 从电网充电。
+    lcd_connected-batteries.png: 已连接电池：显示已连接的电池包数量。
+    lcd_smart-meter.png: 智能电表指示：亮表示智能电表在线；灭表示未添加或已离线。
+    lcd_fault-code.png: 故障代码：产品出现故障，请查看故障排除。
+    ac_charging_cable.png: 交流充电线。
+    manual_icon1.png: 文件／用户手册。
+    warning_triangle_white.svg: 白色警告三角（标记为深色 `#333`），放在安全引导面板的深色标签格里。
+    warning_triangle_dark.svg: 深色警告三角，用于安全说明横幅。
+    warning_lockup.png: 印刷版安全警告面板的 WARNING 组合标识（三角加文字）。素材登记表把它记为“临时替代”（裁切产物，是否成品待确认）；英文单词画在图里，只用于英文来源，不要重新上字。
+    icon_clock_3s.png: IDML 操作面板放在“长按”时长旁边的时钟。网页用 CSS 画同一个时钟（`[data-duration-icon="clock"]`），不用这张图。
+    support_icon.png: 封面素材 `cover/support_icon`：实心的“!”圆形，与语言无关。
+
+# “印刷规格”分页。数值在构建时读自 data/layout_params.csv（PDF 与 IDML 共用，网页不读）；
+# 这里只有中文名称。列出的参数不在表里时测试失败；表里新增的参数不会自动出现。
+print:
+  intro:
+    - 印刷版（PDF 与 IDML）的版式参数集中在 `data/layout_params.csv`，LaTeX 和 IDML 两个渲染器读同一份数值，网页不读。下面的数值在每次构建时读自仓库当前的这份表。
+    - 页码、页脚和分页只属于印刷版。这里列的是基础值：`lang_fr_*`、`lang_es_*` 等语言密度覆盖只在对应语言生效，IDML 覆盖表（例如 `data/layout_params.idml-compact.csv`）只在引用它的配置里生效，这两类都以表为准。
+  page:
+    page_paperwidth: 成品宽度
+    page_paperheight: 成品高度
+    page_margin_top: 上边距
+    page_margin_right: 右边距
+    page_margin_bottom: 下边距
+    page_margin_left: 左边距
+    page_footskip: 正文区到页脚基线
+    page_footer_raise: 页码上移
+  type:
+    - {prefix: type_h1, label: 一级标题（深色条）, sample: Charging methods}
+    - {prefix: type_title_l2, label: 二级标题, sample: Output ports}
+    - {prefix: type_title_l3, label: 三级标题, sample: Charging via a car outlet}
+    - {prefix: type_subbar, label: 安全小标题条, sample: Operating instructions}
+    - {prefix: type_rubric, label: 栏目标题, sample: Save these instructions}
+    - {prefix: type_body, label: 正文, sample: "Store the product in a dry, clean place."}
+    - {prefix: type_list, label: 列表, sample: Use the same model of solar panels.}
+    - {prefix: type_safety_lead, label: 安全章节引导语, sample: SAVE THESE INSTRUCTIONS}
+    - {prefix: type_warning_lead_label, label: 安全引导卡标签, sample: WARNING}
+    - {prefix: type_warning_lead_body, label: 安全引导卡正文, sample: Read all instructions before use.}
+    - {prefix: type_warning_text, label: 安全警示正文, sample: Keep the product away from children.}
+    - {prefix: type_tip_label, label: 提示框标签, sample: CAUTION}
+    - {prefix: type_tip_body, label: 提示框正文, sample: Start the vehicle before charging.}
+    - {prefix: type_spec_section, label: 规格分组标题, sample: General info}
+    - {prefix: type_spec_label, label: 规格标签, sample: Cell Chemistry}
+    - {prefix: type_spec_value, label: 规格数值, sample: LiFePO4}
+    - {prefix: type_spec_note, label: 规格注释, sample: "① Tested at 25 °C."}
+    - {prefix: type_data_table_header, label: 数据表表头, sample: Fault code}
+    - {prefix: type_data_table, label: 数据表正文, sample: Restart the product.}
+    - {prefix: type_trouble_code, label: 故障代码, sample: F4}
+    - {prefix: type_trouble_body, label: 故障排除正文, sample: Restart the product.}
+    - {prefix: type_symbol_signal, label: 警示词, sample: WARNING}
+    - {prefix: type_symbol_header, label: 符号表表头, sample: Symbol}
+    - {prefix: type_symbol_body, label: 符号表正文, sample: Risk of electric shock.}
+    - {prefix: type_lcd_no, label: 显示屏编号, sample: "1"}
+    - {prefix: type_lcd_label, label: 显示屏名称, sample: Battery level}
+    - {prefix: type_lcd_body, label: 显示屏说明, sample: Shows the remaining battery.}
+    - {prefix: type_fcc, label: FCC 声明, sample: This device complies with part 15.}
+    - {prefix: type_inbox_label, label: 装箱名称, sample: AC Charging Cable}
+    - {prefix: type_warranty_lead, label: 保修引言, sample: Limited warranty}
+    - {prefix: type_warranty_title, label: 保修标题, sample: Warranty period}
+    - {prefix: type_warranty_body, label: 保修正文, sample: Keep your proof of purchase.}
+    - {prefix: type_warranty_year_number, label: 保修年限数字, sample: "3"}
+    - {prefix: page_footer, label: 页码, sample: "07"}
+  colors:
+    brand_color_branddark:
+      name: 品牌深色
+      swatch: BrandDark
+      screen: "--hb-brand-dark"
+      note: H1 深色条、CAUTION 提醒框、安全与符号组件、保修标题等处的品牌深色。
+    brand_color_textgray:
+      name: 正文灰
+      swatch: TextGray
+      screen: "--hb-text"
+      note: 正文、列表、安全警示正文、二三级标题和页码的文字色。
+    brand_color_textk90:
+      name: 深色文字
+      swatch: TextK90
+      screen: "--hb-text"
+      note: 栏目标题、数据表文字和 NOTICE、NOTE 提醒框的标签。
+    brand_color_linek40:
+      name: 线条灰
+      swatch: LineK40
+      screen: "--hb-line"
+      note: NOTICE、NOTE 提醒框和显示屏表格的外框线。色板名是 LineK40，取值以表为准。
+    brand_color_bgk05:
+      name: 浅灰底
+      swatch: BgK05
+      screen: "--hb-surface"
+      note: 提醒框、数据表、显示屏表格和保修组件的浅灰底。
+    brand_color_accentblue:
+      name: 强调蓝
+      swatch: AccentBlue
+      note: 只在 `\HBNoticeBlock` 的 TIP 变体里与黑色混合使用；取值为 0（不着墨），所以印刷版实际上没有彩色强调色。
+  geometry:
+    - title: 一级标题深色条
+      keys:
+        comp_h1_pill_height: 高度
+        comp_h1_pill_arc: 下方圆角半径（上边切平）
+        comp_h1_pill_pad_lr: 左右内边距
+        comp_h1_pill_pad_tb: 上下内边距
+    - title: 二级与三级标题
+      keys:
+        comp_title_l2_bullet_radius: 二级标题圆点半径
+        comp_title_l2_gap: 二级标题圆点与文字间距
+        comp_title_l3_bullet_radius: 三级标题圆点半径
+        comp_title_l3_gap: 三级标题圆点与文字间距
+    - title: 安全小标题条
+      keys:
+        comp_subbar_height: 高度
+        comp_subbar_arc: 圆角半径（高度的一半，两端全圆）
+        comp_subbar_pad_lr: 左右内边距
+    - title: 警示框与提示框
+      keys:
+        comp_callout_rule: 外框线宽
+        comp_callout_label_inset: 白色标签格内缩
+        comp_callout_body_inset: 正文与标签格的间距
+        comp_tip_label_width: 标签格宽度
+        comp_tip_arc: 圆角半径
+    - title: 表格
+      keys:
+        comp_table_outer_rule: 外框线宽
+        comp_table_outer_arc: 外框圆角半径
+        comp_table_inner_rule: 内线线宽
+        comp_table_tabcolsep: 单元格左右内边距
+        comp_spec_table_left_ratio: 规格表标签列占正文宽度
+    - title: 警示词、FCC 与装箱
+      keys:
+        comp_symbol_signal_width: 警示词色块宽度
+        comp_symbol_signal_height: 警示词色块高度
+        comp_fcc_arc: FCC 面板圆角半径
+        comp_fcc_pad_lr: FCC 面板左右内边距
+        comp_inbox_card_arc: 装箱卡片圆角半径
+        comp_inbox_card_height: 装箱卡片高度
+    - title: 保修
+      keys:
+        comp_warranty_lead_arc: 保修引言框圆角半径
+        comp_warranty_section_arc: 条款卡圆角半径
+        comp_warranty_section_rule: 条款卡外框线宽
+        comp_warranty_title_arc: 条款标题标签圆角半径
+        comp_warranty_year_badge_size: 年限圆直径

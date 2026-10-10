@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="设计系统：说明书网页版的颜色、字体与组件，数值与预览在构建时读自仓库当前的样式表。">
+  <meta name="description" content="设计系统：说明书网页版的颜色、字体与组件，共享图标素材和印刷规格；数值与预览在构建时读自仓库。">
   <title>设计系统</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
@@ -27,7 +27,9 @@
       <div class="kpi"><span>颜色</span><strong>{{ colors|length }}</strong><em>读自样式表的声明</em></div>
       <div class="kpi"><span>字体样式</span><strong>{{ type_styles|length }}</strong><em>桌面与 760px 以下</em></div>
       <div class="kpi"><span>组件</span><strong>{{ component_count }}</strong><em>用线上样式实时预览</em></div>
+      <div class="kpi"><span>素材</span><strong>{{ asset_library.count }}</strong><em>共享素材目录与清单</em></div>
       <div class="kpi"><span>样式表版本</span><strong class="ds-hash">{{ stylesheet_sha256[:8]|e }}</strong><em>web_manual.css 的 SHA-256</em></div>
+      <div class="kpi"><span>印刷参数版本</span><strong class="ds-hash">{{ print.sha256[:8]|e }}</strong><em>layout_params.csv</em></div>
     </div>
 
     <nav class="page-tabs" role="tablist" aria-label="设计系统分区">
@@ -35,6 +37,8 @@
       <a role="tab" href="#colors" data-tab="colors">颜色</a>
       <a role="tab" href="#type" data-tab="type">字体</a>
       <a role="tab" href="#components" data-tab="components">组件</a>
+      <a role="tab" href="#assets" data-tab="assets">图标与素材</a>
+      <a role="tab" href="#print" data-tab="print">印刷规格</a>
     </nav>
 
     <div class="tab-panel" id="overview" role="tabpanel" aria-label="概览">
@@ -139,7 +143,146 @@
       {%- endfor %}
     </div>
 
-    <footer class="ds-footer">数值和预览在每次构建时由仓库当前的 <code>web_manual.css</code> 生成；说明文字维护在 <code>tools/rtd_portal_assets/design_system/</code>。</footer>
+    <div class="tab-panel" id="assets" role="tabpanel" aria-label="图标与素材">
+      <section class="ds-section" id="assets-reuse">
+        <h2>图标与素材</h2>
+        {%- for paragraph in asset_library.intro %}
+        <p>{{ paragraph }}</p>
+        {%- endfor %}
+        {%- if asset_library.steps %}
+        <ol class="ds-steps">
+          {%- for step in asset_library.steps %}
+          <li>{{ step }}</li>
+          {%- endfor %}
+        </ol>
+        {%- endif %}
+      </section>
+      <nav class="ds-toc" aria-label="素材分组">
+        {%- for group in asset_library.groups %}
+        <a href="#assets-{{ group.id|e }}">{{ group.title|e }}<em>{{ group['items']|length }}</em></a>
+        {%- endfor %}
+      </nav>
+      {%- for group in asset_library.groups %}
+      <section class="ds-section" id="assets-{{ group.id|e }}">
+        <h2>{{ group.title|e }}</h2>
+        <p class="ds-hint">{{ group['items']|length }} 个文件，来自 {% for source in group.sources %}<code>{{ source|e }}</code>{% if not loop.last %}、{% endif %}{% endfor %}</p>
+        {%- for paragraph in group.paragraphs %}
+        <p>{{ paragraph }}</p>
+        {%- endfor %}
+        <div class="ds-assets">
+          {%- for item in group['items'] %}
+          <figure class="ds-asset">
+            <div class="ds-asset-art" style="background:{{ grounds[item.ground]|e }}"><img class="ds-art-{{ item.facts[0]|lower|e }}" src="assets/{{ item.ref|e }}" alt="{{ item.name|e }}" loading="lazy"></div>
+            <figcaption>
+              <strong>{{ item.name|e }}</strong>
+              {%- if item.key %}
+              <code>{{ item.key|e }}</code>
+              {%- endif %}
+              {%- if item.note %}
+              <span>{{ item.note }}</span>
+              {%- endif %}
+              <em>{{ item.facts|join(' · ')|e }}</em>
+            </figcaption>
+          </figure>
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endfor %}
+    </div>
+
+    <div class="tab-panel" id="print" role="tabpanel" aria-label="印刷规格">
+      <section class="ds-section" id="print-intro">
+        <h2>印刷规格</h2>
+        {%- for paragraph in print.intro %}
+        <p>{{ paragraph }}</p>
+        {%- endfor %}
+        <p class="ds-hint">参数表版本 <code>{{ print.sha256[:12]|e }}</code>，共 {{ print.token_count }} 项基础参数。</p>
+      </section>
+
+      <section class="ds-section" id="print-page">
+        <h2>页面</h2>
+        <div class="ds-print-page">
+          <div class="ds-table-wrap">
+            <table class="ds-table ds-table-wide">
+              <thead><tr><th>项目</th><th>取值</th><th>参数</th></tr></thead>
+              <tbody>
+                {%- for row in print.page %}
+                <tr><td>{{ row.label|e }}</td><td>{{ row.value|e }}</td><td><code>{{ row.key|e }}</code></td></tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="ds-frame"><iframe class="ds-preview" src="print/page.html" title="印刷页实际尺寸预览" loading="lazy" height="760"></iframe></div>
+        </div>
+        <p class="ds-hint">预览画的是一张奇数页的实际尺寸，长度、字号和颜色都取自参数表；颜色是 CMYK 的屏幕近似值，块间距是近似值。真正的页面由 LaTeX 模块和 IDML 排版器生成，它们决定精确的基线与间距。</p>
+      </section>
+
+      <section class="ds-section" id="print-type">
+        <h2>字号与行距</h2>
+        <p class="ds-hint">示例按印刷字号渲染，屏幕上的实际大小取决于缩放。字重由 LaTeX 模块（<code>docs/renderers/latex/</code>）和 IDML 段落样式决定，不在参数表里。</p>
+        <div class="ds-table-wrap">
+          <table class="ds-table ds-table-wide">
+            <thead><tr><th>样式</th><th>字号</th><th>行距</th><th>大写</th><th>示例</th><th>参数</th></tr></thead>
+            <tbody>
+              {%- for row in print.type %}
+              <tr>
+                <td>{{ row.label|e }}</td><td>{{ row.size|e }}</td><td>{{ (row.leading or '—')|e }}</td>
+                <td>{% if row.upper is none %}—{% elif row.upper %}是{% else %}否{% endif %}</td>
+                <td><span class="ds-print-sample" style="font-family:{{ font_family|e }};{{ row.sample_style|e }}">{{ row.sample|e }}</span></td>
+                <td><code>{{ row.prefix|e }}_*</code></td>
+              </tr>
+              {%- endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ds-section" id="print-colors">
+        <h2>印刷色</h2>
+        <p class="ds-hint">色块是 CMYK 取值的屏幕近似（未做色彩管理），只用来辨认；网页用色见“颜色”分页。</p>
+        <div class="ds-swatches">
+          {%- for color in print.colors %}
+          <article class="ds-swatch" id="print-color-{{ loop.index }}">
+            <div class="ds-chip" style="background:{{ color.chip|e }}" role="img" aria-label="{{ color.name|e }} {{ color.value|e }}"></div>
+            <div class="ds-swatch-body">
+              <h3>{{ color.name|e }}</h3>
+              <code>{{ color.key|e }}</code>
+              <dl>
+                <div><dt>色板</dt><dd>{{ color.swatch|e }}</dd></div>
+                <div><dt>取值</dt><dd>{{ color.value|e }}</dd></div>
+                {%- if color.screen %}
+                <div><dt>网页对应</dt><dd><code>{{ color.screen|e }}</code></dd></div>
+                {%- endif %}
+              </dl>
+              {%- if color.note %}
+              <p>{{ color.note }}</p>
+              {%- endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </section>
+
+      <section class="ds-section" id="print-geometry">
+        <h2>组件几何</h2>
+        <div class="ds-geometry">
+          {%- for group in print.geometry %}
+          <article class="ds-geometry-card">
+            <h3>{{ group.title|e }}</h3>
+            <table class="ds-table ds-table-compact">
+              <tbody>
+                {%- for row in group.rows %}
+                <tr><td>{{ row.label|e }}<code>{{ row.key|e }}</code></td><td>{{ row.value|e }}</td></tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          </article>
+          {%- endfor %}
+        </div>
+      </section>
+    </div>
+
+    <footer class="ds-footer">数值和预览在每次构建时由仓库当前的 <code>web_manual.css</code>、共享素材和 <code>data/layout_params.csv</code> 生成；说明文字维护在 <code>tools/rtd_portal_assets/design_system/</code>。</footer>
   </main>
 </div>
 {{ site_script() }}

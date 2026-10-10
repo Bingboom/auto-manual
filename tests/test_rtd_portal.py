@@ -193,13 +193,17 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('href="design/index.html"', workspace)
         design_root = self.root / "after" / "workspace" / "design"
         design = (design_root / "index.html").read_text()
-        for tab in ('data-tab="overview"', 'data-tab="colors"', 'data-tab="type"', 'data-tab="components"'):
-            self.assertIn(tab, design)
+        for tab in ("overview", "colors", "type", "components", "assets", "print"):
+            self.assertIn(f'data-tab="{tab}"', design)
         self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计系统</span>', design)
         self.assertIn('src="previews/title-l1.html"', design)
+        self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
+        self.assertIn('src="print/page.html"', design)
         self.assertNotIn("Jackery", design)
         self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())
+        self.assertIn("--page_paperwidth:", (design_root / "print" / "tokens.css").read_text())
+        self.assertTrue((design_root / "assets" / "symbols" / "symbol_warning_triangle.svg").is_file())
         knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
         self.assertIn('href="../index.html"', knowledge_page)
         self.assertIn("返回说明书资料库", knowledge_page)
