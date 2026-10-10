@@ -1,0 +1,48 @@
+{
+  "model": "JE-3600A",
+  "region": "EU",
+  "candidate_languages": [
+    "es",
+    "it"
+  ],
+  "version": "1465-20261010-r1",
+  "source_commit": "653aaffd9bcf601fd7d993439aa166ac3ca69893",
+  "full_unittest": {
+    "command": "TMPDIR=/private/tmp python -m unittest",
+    "tests": 5272,
+    "skipped": 37,
+    "seconds": 569.112,
+    "status": "PASS"
+  },
+  "symbol_unittest": {
+    "tests": 14,
+    "status": "PASS"
+  },
+  "ruff": "PASS",
+  "maintainability_guardrails": "PASS",
+  "doc_links_lifecycle": "PASS",
+  "strict_sphinx_languages": [
+    "es",
+    "it"
+  ],
+  "cold_replay": "PASS",
+  "source_commit_seal_readback": "PASS",
+  "native_symbol_rows": 16,
+  "browser_viewports": [
+    1280,
+    390
+  ],
+  "broken_images": 0,
+  "document_overflow": false,
+  "native_fault_table_keyboard_horizontal_scroll": "PASS",
+  "historical_eu_check": "PASS",
+  "us_fixture_check": "PASS",
+  "remaining_gates": [
+    "engineering human review/merge",
+    "mirror sync",
+    "generated publish -> main release PR",
+    "human publication merge",
+    "RTD receipt and live readback"
+  ],
+  "deployment_status": "NOT PUBLISHED"
+}

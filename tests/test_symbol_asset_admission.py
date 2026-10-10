@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 
 from tools.asset_pipeline.native_svg import native_symbol_svg
 from tools.manual_ir import ManualSource, SourcePage, V2_SCHEMA_VERSION, build_manual_ir_from_source, write_manual_ir
-from tools.web.symbol_asset_admission import SCHEMA, _render, compare_symbol, require_symbol_asset_admission
+from tools.web.symbol_asset_admission import SCHEMA, _reference, _render, compare_symbol, require_symbol_asset_admission
 
 PACKAGE = Path(__file__).resolve().parents[1] / 'data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692'
 
@@ -113,6 +113,35 @@ class SymbolAdmissionTests(unittest.TestCase):
 
     def test_native_transparent_assets_pass(self):
         self.assertEqual(len(self.check()), 2)
+
+    def test_source_bound_linebreak_join_preserves_native_caption(self):
+        with fitz.open(self.pdf) as doc:
+            page = doc[0]
+            row = deepcopy(self.rows[0])
+            page.add_redact_annot(fitz.Rect(row['caption_bbox']))
+            page.apply_redactions(images=0, graphics=0)
+            page.insert_text((65, 24), 'Read the man-', fontsize=10)
+            page.insert_text((65, 36), 'ual.', fontsize=10)
+            row['caption_sha256'] = hashlib.sha256(page.get_pixmap(
+                matrix=fitz.Matrix(4, 4), clip=fitz.Rect(row['caption_bbox']),
+                alpha=False).tobytes('png')).hexdigest()
+            with self.assertRaisesRegex(ValueError, 'meaning differs'):
+                _reference(page, row, 'Read the manual.')
+            row['caption_linebreak_joins'] = ['man-\nual']
+            reference = _reference(page, row, 'Read the manual.')
+            compare_symbol((self.md / row['asset_ref']).read_bytes(), '.svg', reference)
+            for joins in (['man-ual'], ['wrong-\nword'], ['man-\nual', 'man-\nual'], 'man-\nual'):
+                row['caption_linebreak_joins'] = joins
+                with self.subTest(joins=joins), self.assertRaisesRegex(ValueError, 'caption'):
+                    _reference(page, row, 'Read the manual.')
+            row['caption_linebreak_joins'] = ['man-\nual']
+            row['caption_text'] = 'Read the wrong manual.'
+            with self.assertRaisesRegex(ValueError, 'meaning differs'):
+                _reference(page, row, 'Read the wrong manual.')
+            row['caption_text'] = 'Read the manual.'
+            row['caption_sha256'] = 'a' * 64
+            with self.assertRaisesRegex(ValueError, 'caption pixels'):
+                _reference(page, row, 'Read the manual.')
 
     def test_missing_or_incomplete_admission_is_rejected(self):
         self.manifest.pop('symbol_asset_admission')
