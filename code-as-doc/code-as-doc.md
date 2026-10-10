@@ -54,9 +54,9 @@ Examples:
 
 Must update:
 
-- [`README.md`](../README.md)
-- [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
-- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+- [`README.md`](../README.md) when a navigation pointer or the workflow topology changes
+- the owning topic page of [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
+- the owning topic page of [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 - [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md) if an example workflow changed
 
 ### 3.2 Architecture or Maintainability Rules
@@ -86,7 +86,7 @@ Examples:
 Must update:
 
 - [`code-as-doc/spec_master_user_guide.md`](spec_master_user_guide.md)
-- [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+- the owning topic page of [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md) (usually its data-layer or spec page)
 - [`user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md) if the workflow changed
 
 ### 3.4 Title or Layout Behavior Changes
@@ -157,6 +157,14 @@ Every plan, discovery, review, or runbook doc under [`dev/`](dev) or [`reviews/`
 Update the keyword when the doc's state changes (for example `active` → `done`).
 `python -m tools.check_doc_link_integrity` enforces this for new docs via [`../tools/check_doc_lifecycle.py`](../tools/check_doc_lifecycle.py);
 docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](../data/doc_lifecycle_baseline.txt) until they are fixed — then remove them with `python -m tools.check_doc_lifecycle update`.
+
+Rule 7:
+Hub guides are indexes. [`build_doc_guide.md`](build_doc_guide.md) and
+[`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md) list their topic pages
+with a one-line "read it when"; behavior notes go to the owning page, and a page past
+~400 lines is split. Logs and registries keep recent or live entries in the main file and
+move older ones to their `*_archive.md` file. `python -m tools.check_maintainability_guardrails`
+caps the line counts of these hubs and live files.
 
 ## 5. Minimal Verification Before Commit
 

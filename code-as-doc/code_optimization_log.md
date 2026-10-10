@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-10-03
+Updated: 2026-10-10
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -21,6 +21,25 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-10-10: Agent-facing docs split for on-demand reading
+
+Parallel agent rounds (the Workstream Y lanes, #1350–#1423) paid for the same
+documents once per agent: AGENTS.md sent every agent to `build_doc_guide.md`
+(~76K tokens) and `hello_auto-doc.md` (~70K), merge grants lived in a 360 KB
+registry (~109K), and this log had reached ~52K. Following CQ-7.5/7.6 (#1321):
+
+- `build_doc_guide.md` and `hello_auto-doc.md` are indexes (54 and 40 lines) over
+  20 and 17 topic pages of at most ~7.7K tokens. Content moved verbatim and was
+  regrouped by topic; links were rebased and the four deep links repointed.
+- `dev/merge_authorizations.md` keeps the protocol and the 42 live grants; the
+  239 expired rows and the addenda moved to `merge_authorizations_archive.md`,
+  and `next_registry_id` counts both files.
+- This log keeps its recent records; older ones moved to
+  [`code_optimization_log_archive.md`](code_optimization_log_archive.md).
+- AGENTS.md §10 sets on-demand reading and sub-agent briefing; §5 and
+  `code-as-doc.md` Rule 7 send new notes to the owning page; the maintainability
+  guardrails cap the five hub and live files.
 
 ## 2026-10-03: CQ-3.4 complexity cleanup and CQ-2.3 test decoupling done
 
