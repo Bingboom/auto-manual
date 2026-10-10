@@ -14,6 +14,9 @@ from tools.rtd.portal_navigation import navigation_view
 from tools.rtd.analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd.alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 from tools.rtd.deliverables import DELIVERABLES_PAGE, DELIVERABLES_TEMPLATE, deliverables_page_context
+from tools.rtd.design_system import (
+    PAGE as DESIGN_PAGE, TEMPLATE as DESIGN_TEMPLATE, design_page_context, template_context, write_design_system,
+)
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.page_metadata import (
@@ -138,6 +141,7 @@ def clear_catalog_cache(app, exception) -> None:
     # A later build in the same process must validate its own frozen inputs again.
     app._rtd_portal_data = None
     app._rtd_system_context = _UNSET
+    app._rtd_design_context = _UNSET
 
 
 def page_context(app, pagename, templatename, context, doctree):
@@ -256,12 +260,22 @@ def cached_system_context(app):
     return cached
 
 
+def cached_design_context(app):
+    """Build the design-system context once per build; the sidebar and the page share it."""
+    cached = getattr(app, "_rtd_design_context", _UNSET)
+    if cached is _UNSET:
+        cached = design_page_context(app, ASSETS)
+        app._rtd_design_context = cached
+    return cached
+
+
 def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     return {
         "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
         "system": cached_system_context(app) is not None,
         "deliverables": True,
+        "design": cached_design_context(app) is not None,
     }
 
 
@@ -277,6 +291,7 @@ def collect_workspace_pages(app):
     """
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = cached_system_context(app)
+    design = cached_design_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
@@ -290,14 +305,27 @@ def collect_workspace_pages(app):
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
         "deliverables_entry": True,
+        "design_entry": design is not None,
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
         yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
+                            "design_entry": design is not None,
                             "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
-    yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None}, \
-        DELIVERABLES_TEMPLATE
+    yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None,
+                              "design_entry": design is not None}, DELIVERABLES_TEMPLATE
+    if design is not None:
+        yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
+
+
+def write_design_pages(app, exception) -> None:
+    """Write the design-system previews, live stylesheet and art beside its page."""
+    if exception is not None or getattr(app.builder, "format", None) != "html":
+        return
+    design = cached_design_context(app)
+    if design is not None:
+        write_design_system(Path(app.outdir), ASSETS, design)
 
 
 def copy_workspace_content(app, exception) -> None:
@@ -329,6 +357,7 @@ def setup(app):
     app.connect("html-collect-pages", collect_workspace_pages)
     # Generated conf.py copies manual assets at the default priority (500).
     app.connect("build-finished", copy_workspace_content, priority=800)
+    app.connect("build-finished", write_design_pages, priority=850)
     app.connect("build-finished", write_search_index, priority=900)
     app.connect("build-finished", write_knowledge, priority=925)
     app.connect("build-finished", write_workspace_revision, priority=950)

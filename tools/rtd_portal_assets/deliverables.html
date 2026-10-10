@@ -20,7 +20,7 @@
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
 {%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
 {%- macro feishu_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip is-feishu" href="{{ item.url|e }}" title="{{ item.title|e }}（飞书，需登录）" target="_blank" rel="noopener"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
-{{ site_sidebar('deliverables', {'share': has_share, 'system': system_entry, 'deliverables': True}) }}
+{{ site_sidebar('deliverables', {'share': has_share, 'system': system_entry, 'deliverables': True, 'design': design_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '说明书工作台') }}
 

@@ -1,0 +1,89 @@
+/* 印刷规格 preview: one odd page of the printed booklet at actual size.
+   Page geometry, component geometry, type sizes and colours are tokens from
+   data/layout_params.csv (tokens.css, generated at build time; colours are naive
+   CMYK conversions). Weights follow docs/renderers/latex/type_system.tex and
+   components_base.tex, which own them, and the gaps between blocks are
+   approximations: the real pages come from the LaTeX modules and the IDML
+   composers, which own exact baselines and spacing. */
+html, body { margin: 0; background: var(--brand_color_bgk05); }
+/* Centred while it fits; a narrower frame scrolls instead of clipping the left edge. */
+.pp-stage { padding: 24px 16px; }
+
+.pp-page {
+  position: relative; box-sizing: border-box; margin: 0 auto;
+  width: var(--page_paperwidth); height: var(--page_paperheight);
+  padding: var(--page_margin_top) var(--page_margin_right) var(--page_margin_bottom) var(--page_margin_left);
+  background: #fff; color: var(--brand_color_textgray); font-family: var(--print-font-family);
+  font-size: var(--type_body_font_size); line-height: var(--type_body_font_leading);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 18%);
+}
+
+/* H1: square top, rounded south corners; the 2.5 mm visual gap below it is the
+   one the comp_h1_pill_after comment names. */
+.pp-h1 {
+  box-sizing: border-box; display: flex; align-items: center; height: var(--comp_h1_pill_height);
+  margin: 0 0 2.5mm; padding: var(--comp_h1_pill_pad_tb) var(--comp_h1_pill_pad_lr);
+  border-radius: 0 0 var(--comp_h1_pill_arc) var(--comp_h1_pill_arc);
+  background: var(--brand_color_branddark); color: #fff; font-weight: 700; text-transform: uppercase;
+  font-size: var(--type_h1_font_size); line-height: var(--type_h1_font_leading);
+}
+.pp-h2 {
+  display: flex; align-items: center; gap: var(--comp_title_l2_gap); margin: 3mm 0 var(--comp_title_l2_after);
+  font-weight: 800; text-transform: uppercase;
+  font-size: var(--type_title_l2_font_size); line-height: var(--type_title_l2_font_leading);
+}
+.pp-h2::before {
+  content: ""; flex: none; border-radius: 50%; background: var(--brand_color_branddark);
+  width: calc(2 * var(--comp_title_l2_bullet_radius)); height: calc(2 * var(--comp_title_l2_bullet_radius));
+}
+.pp-p { margin: 0 0 1.2mm; }
+.pp-ul {
+  margin: 0 0 1.2mm; padding-left: 3mm;
+  font-size: var(--type_list_font_size); line-height: var(--type_list_font_leading);
+}
+
+/* The shared inline callout: a Bg K05 shell holding a white label panel. */
+.pp-callout {
+  display: flex; align-items: stretch; margin: 1.2mm 0; overflow: hidden;
+  border: var(--comp_callout_rule) solid var(--brand_color_bgk05); border-radius: var(--comp_tip_arc);
+  background: var(--brand_color_bgk05);
+}
+.pp-callout-label {
+  flex: none; display: grid; place-items: center; width: var(--comp_tip_label_width);
+  margin: var(--comp_callout_label_inset); background: #fff; font-weight: 700;
+  font-size: var(--type_tip_label_font_size); line-height: var(--type_tip_label_font_leading);
+}
+.pp-callout-body {
+  padding: 1.2mm 1.15mm 1.2mm var(--comp_callout_body_inset); font-weight: 500;
+  font-size: var(--type_tip_body_font_size); line-height: var(--type_tip_body_font_leading);
+}
+.pp-subbar {
+  box-sizing: border-box; display: flex; align-items: center; height: var(--comp_subbar_height);
+  margin: 3mm 0 1.4mm; padding: 0 var(--comp_subbar_pad_lr); border-radius: var(--comp_subbar_arc);
+  background: var(--brand_color_branddark); color: #fff; font-weight: 700; text-transform: uppercase;
+  font-size: var(--type_subbar_font_size); line-height: var(--type_subbar_font_leading);
+}
+
+.pp-spec-title { font-size: var(--type_spec_section_font_size); line-height: var(--type_spec_section_font_leading); }
+.pp-spec {
+  width: 100%; margin-top: 1.4mm; border-collapse: separate; border-spacing: 0; overflow: hidden;
+  border: var(--comp_table_outer_rule) solid var(--brand_color_branddark); border-radius: var(--comp_table_outer_arc);
+  font-size: var(--type_spec_value_font_size); line-height: var(--type_spec_value_font_leading);
+}
+.pp-spec td {
+  padding: 1.1mm var(--comp_spec_table_tabcolsep);
+  border-bottom: var(--comp_table_inner_rule) solid var(--brand_color_branddark);
+}
+.pp-spec tr:last-child td { border-bottom: 0; }
+.pp-spec td:first-child {
+  width: calc(var(--comp_spec_table_left_ratio) * 100%); background: var(--brand_color_bgk05);
+  border-right: var(--comp_table_inner_rule) solid var(--brand_color_branddark);
+  font-size: var(--type_spec_label_font_size); line-height: var(--type_spec_label_font_leading);
+}
+
+/* Folio: two digits, bottom-left on odd pages. */
+.pp-footer {
+  position: absolute; left: var(--page_margin_left);
+  bottom: calc(var(--page_margin_bottom) - var(--page_footskip) + var(--page_footer_raise));
+  font-size: var(--page_footer_font_size); line-height: var(--page_footer_font_leading);
+}

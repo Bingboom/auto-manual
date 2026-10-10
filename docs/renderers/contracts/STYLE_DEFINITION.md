@@ -763,19 +763,17 @@ Web 投影没有页的概念，这三条不参与。
 | 断点 | 改动 |
 |---|---|
 | `min-width: 82rem` | 加宽阅读区，组件取值不变 |
-| `max-width: 760px` | H1 缩号缩圆角；H2 圆点顶对齐、字号锁 `1rem`；语言胶囊在组件内部横向滚动；符号双栏转单列；LCD 模式转单列 |
+| `max-width: 760px` | H1 缩号缩圆角；H2 圆点顶对齐、字号锁 `1rem`；符号双栏转单列；LCD 模式转单列 |
 | `max-width: 520px` | 警示框标签/正文上下堆叠 |
-| `print` | 隐藏 Web 语言跳转；H1/H2/H3 统一避免跨页断裂 |
+| `print` | H1/H2/H3 统一避免跨页断裂 |
 
 所有通栏组件共享一条外宽契约：`box-sizing: border-box; width: 100%; max-width: var(--hb-component-band-max)`（= 阅读宽 58rem），成员包括 `h1`、docutils 表格容器、符号 / 故障排查 / 规格 / FCC / LCD / 对比六类 composition。新增通栏组件必须加进这条 `:is()` 列表，否则宽度会和邻居差一截。
 
-整本语言跳转条是 Web-only 导航 affordance，不伪装成四端 ComponentSpec，也不登记
-虚假的跨端 `HB-*` 语义。整本 IR 重放器只在 `declared_languages` 至少有两项时生成一次导航，
-并按最终 page language 给每种语言的首个片段插入稳定锚点；本地名称来自
-`lang_registry.LanguageSpec.native_name`。未知、重复、越界或没有页面边界的语言均
-fail-closed。Pandoc 前后通过受检占位符原样保护 `<nav>` 和空锚点，避免 MyST 重放时
-丢失链接。样式只在共享 `web_language_navigation.css` 定义；目标 overlay 不复制
-导航 HTML/CSS，移动端溢出由组件自身承接，打印时整体隐藏。
+整本 Web 文档不再生成文内语言跳转条和 `#hb-lang-*` 锚点；语言切换由手册中心的
+[语言下拉框](../../../code-as-doc/dev/rtd_locale_navigation.md)承担。`declared_languages`
+至少有两项时，整本 IR 重放器仍校验语言：未知、重复、越界或没有页面的语言均 fail-closed；
+首个片段开头与声明语言一致的合并语言清单行（英文名或本地名，以 ` / ` 分隔）照旧删除。
+目标 overlay 不得另造语言导航 HTML/CSS。
 
 字体：`Gilroy` 是商业授权，不随站分发；回退 `Avenir Next → Avenir → Segoe UI → Helvetica → Arial`，字形与印刷稿不完全一致。
 
@@ -1127,6 +1125,8 @@ POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
 按键组合使用 `HB-TABLE-KEY-COMBINATIONS` 的三列表格，不用普通表格仿排。
 原生 carrier 以 `.hb-key-button-pair` 保留两个按钮和各自名称（POWER/USB/AC
 强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
+按键图 3.35rem 见方，组合加号 1.82rem 并与按键同高居中，沿用批准印刷版
+`idml_key_button_size` 22.08pt 对 6pt 功能文字的比例。
 首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
 `usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
 原稿的小标题与另售标签为两个独立胶囊时，使用共享 `h3.hb-heading-label-pair`，仅 `.hb-heading-title` 绘制浅灰底，`.hb-sold-separately` 保持深色底；标题容器透明，窄屏可换行，禁止整行套一个底板。

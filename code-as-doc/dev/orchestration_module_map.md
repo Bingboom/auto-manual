@@ -99,6 +99,22 @@ from the architecture history registered in `source_registry.yaml`;
 shell owns tab navigation. It neither writes history nor infers execution status.
 See [system workspace](rtd_manual_portal.md#system-workspace-page).
 
+[`tools/rtd/design_system.py`](../../tools/rtd/design_system.py) owns the
+read-only 设计系统 page context and its build-finished writer. Each reader
+covers one source:
+
+- [`design_system_css.py`](../../tools/rtd/design_system_css.py) reads the live
+  `web_manual.css`, assembled exactly as `tools/web/stylesheets.py` does.
+- [`design_assets.py`](../../tools/rtd/design_assets.py) lists the shared asset
+  manifests and folders.
+- [`design_print.py`](../../tools/rtd/design_print.py) reads
+  `data/layout_params.csv` through `tools.render_contract`.
+
+[`design_content.py`](../../tools/rtd/design_content.py) holds the committed
+notes loader and the shared error. `rtd_portal` only registers the page and the
+writer. Nothing here writes a stylesheet, an asset, a manifest or the token
+table. See [design system page](rtd_manual_portal.md#design-system-page).
+
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.

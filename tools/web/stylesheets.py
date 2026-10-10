@@ -10,7 +10,6 @@ WEB_STYLESHEET_NAME = "web_manual.css"
 WEB_STYLESHEET_PARTS = (
     WEB_STYLESHEET_NAME,
     "web_battery_pack_components.css",
-    "web_language_navigation.css",
     "web_fcc_components.css", "web_fcc_statement.css",
     "web_inbox_components.css",
     "web_safety_components.css", "web_symbols_fcc_components.css",
