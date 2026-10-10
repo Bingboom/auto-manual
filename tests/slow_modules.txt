@@ -3,6 +3,7 @@
 # (python -m unittest --durations, Python 3.12 + requirements.lock, 2026-09-30).
 # CI always runs every module: python -m unittest. Core queue tests
 # (test_process_build_queue) stay in the fast tier even though they cross 4s.
+test_jhp5000c_us_web_layout                        # 112s (cold replay, admissions, derivation)
 test_web_presentation                              # 21.6s
 test_idml_rst_comments                             # 21.4s
 test_export_idml_golden                            # 18.7s
