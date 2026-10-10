@@ -72,8 +72,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 39120,
-      "sha256": "2551bcf2388e35a002a93a0a0098926b7a52a95bb700779745b9ca9542448a33"
+      "size": 39132,
+      "sha256": "59a642fdcfa10b4a646270d8dd847a8f6fcca64994897d50f6f299d2ff7634ce"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -246,11 +246,56 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "9cf5bfa3acca843a32cd31805216bca93b135eacf28b6b54a3353e87e2a222ea",
+  "files_inventory_sha256": "fbe30931ee6365f4d8818c742b46ad705117b091e4db6032d353fa6e0da80d7a",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
     "rule": "*.csv text eol=lf",
     "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  },
+  "batch_1465_revision": {
+    "scope": "JE-1000H/EU",
+    "label_changes": [
+      {
+        "row": "4",
+        "field": "icon_de",
+        "old": "Ladeplan Plan",
+        "new": "Ladeplan"
+      },
+      {
+        "row": "11",
+        "field": "icon_it",
+        "old": "Verbleibende Aufladezeit",
+        "new": "Tempo di carica rimanente"
+      }
+    ],
+    "source": "1465 final AI/PDF correction records; exact labels verified against live business LCD rows",
+    "semantic_changes": [
+      {
+        "row": "12",
+        "field": "icon_it",
+        "old": "Indicatore di ricarica da auto",
+        "new": "Indicatore di ricarica CA a parete"
+      },
+      {
+        "row": "12",
+        "field": "icon_desc_it",
+        "old": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V DC (ricarica da auto).",
+        "new": "Il prodotto viene caricato tramite l'ingresso CA utilizzando l'alimentazione della rete elettrica."
+      },
+      {
+        "row": "13",
+        "field": "icon_it",
+        "old": "Autoladeanzeige",
+        "new": "Indicatore di ricarica da auto"
+      },
+      {
+        "row": "13",
+        "field": "icon_desc_it",
+        "old": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari.",
+        "new": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V CC (ricarica da auto)."
+      }
+    ],
+    "semantic_resolution": "Operator confirmed 2026-10-10: callout 12 AC wall, callout 13 car, callout 14 solar; matches English icons and live source rows. Callout 14 unchanged."
   }
 }

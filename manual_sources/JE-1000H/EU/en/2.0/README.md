@@ -96,3 +96,19 @@ explicit quality debt; no invented or newly cropped icon is approved here.
 German status emphasis retains the authored `Blinkt:` wording. The target's
 status dictionary includes it alongside `Blinken`, without rewriting the
 released descriptions or changing the live translation-memory table.
+
+Batch 1465 label backport (2026-10-10): the frozen German LCD callout 4 now
+reads `Ladeplan`, and the Italian callout 11 reads `Tempo di carica rimanente`.
+These exact labels match the delivered AI/PDF correction records and the live
+business LCD rows `recvhBxMIMFPLf.icon_de` / `recvhBxNA2r0u7.icon_it`; no live
+source table was written. `source_manifest.json` re-locks the target-local CSV.
+The Spanish UPS heading already has its initial `F` in the published Web copy.
+The print's Italian callout 13 solar wording is not applied: this Web callout
+binds the car-charging icon, while callout 14 already names solar charging.
+The operator confirmed the semantic repair on 2026-10-10: callout 12 uses
+`Indicatore di ricarica CA a parete` and the AC-grid description from live row
+`recvhBxNA2Y2s0`; callout 13 uses `Indicatore di ricarica da auto` and the DC
+12 V car description from `recvhBxNA2WNYW`. Callout 14 remains solar charging.
+Only target-local Italian copy changes; existing icon assets, numbers, English
+and other languages are unchanged. This source correction and its candidate
+are not publication.
