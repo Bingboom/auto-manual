@@ -1,5 +1,5 @@
-4. VISÃO GERAL DO PRODUTO
-=========================
+4. PANORAMICA DEL PRODOTTO
+==========================
 
 .. image:: renderers/web/assets/ja_ad600a_eu_en/product_overview.png
    :alt: product_overview
