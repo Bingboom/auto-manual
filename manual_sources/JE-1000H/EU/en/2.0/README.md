@@ -112,3 +112,21 @@ The operator confirmed the semantic repair on 2026-10-10: callout 12 uses
 Only target-local Italian copy changes; existing icon assets, numbers, English
 and other languages are unchanged. This source correction and its candidate
 are not publication.
+
+Batch 1465 charging-plan repair and retained provenance (2026-10-10): the
+operator authorized localized German and Italian descriptions for LCD callout 4.
+The original German PDF already says `Ladeplan Plan`; the original Italian PDF
+already contains German `Verbleibende Aufladezeit` and `Autoladeanzeige`. Its
+car/solar descriptions are shifted upward by one row, and the frozen Web input
+copied those errors. Both original German/Italian charging-plan descriptions
+are incorrectly French. Their frozen Web `icon_desc_de` / `icon_desc_it` fields
+were empty, causing English fallback; these two fields are now populated with
+the corresponding language. These are distinct source and fallback defects.
+
+The four live Approved Translation_Memory sentence pairs were read back:
+`reczz28Hh8Sl9HVP`, `recvgEwErzyqjN`, `recvgEwErzUDnl`, and
+`recvgEwErzAb3w`. Only the first sentence's model changes from Explorer 2000 Plus
+to Explorer 1000 Plus. Existing paragraph separation is retained. Italian uses
+the independent sentence pair's correct `mantenuta`, avoiding the shared LCD
+row's `antenuta` typo. Original values, replacement text and cause are retained
+in `source_manifest.json`; neither the original PDF nor live tables are edited.

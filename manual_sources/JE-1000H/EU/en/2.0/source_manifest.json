@@ -72,8 +72,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 39132,
-      "sha256": "59a642fdcfa10b4a646270d8dd847a8f6fcca64994897d50f6f299d2ff7634ce"
+      "size": 39899,
+      "sha256": "a909fca81e61e1e02fd2a69da364a9ea08e7a2ae2eb4b74c348a4e51b115c0e1"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -246,7 +246,7 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "fbe30931ee6365f4d8818c742b46ad705117b091e4db6032d353fa6e0da80d7a",
+  "files_inventory_sha256": "c21ec82813544646a6009ce2f3b57e5035877007dbf6cb133747415ed69ec5e0",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
@@ -296,6 +296,33 @@
         "new": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V CC (ricarica da auto)."
       }
     ],
-    "semantic_resolution": "Operator confirmed 2026-10-10: callout 12 AC wall, callout 13 car, callout 14 solar; matches English icons and live source rows. Callout 14 unchanged."
+    "semantic_resolution": "Operator confirmed 2026-10-10: callout 12 AC wall, callout 13 car, callout 14 solar; matches English icons and live source rows. Callout 14 unchanged.",
+    "charging_plan_changes": [
+      {
+        "row": "4",
+        "field": "icon_desc_de",
+        "old": "",
+        "new": "Ermöglicht die Anpassung der Ladezeiten des Jackery Explorer 1000 Plus. Geeignet für Situationen mit schwankenden Strompreisen, ermöglicht Ladepläne auf der Grundlage von Spitzen- und Niedrigstromzeiten und reduziert so die Stromkosten.\\nAktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten."
+      },
+      {
+        "row": "4",
+        "field": "icon_desc_it",
+        "old": "",
+        "new": "Personalizza il tempo di ricarica del Jackery Explorer 1000 Plus. Adatto a situazioni con prezzi dell’elettricità variabili, consente di impostare piani di ricarica basati sulle fasce orarie di picco e di minor consumo, riducendo i costi dell’elettricità.\\nAbilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento."
+      }
+    ],
+    "translation_memory_records": [
+      "reczz28Hh8Sl9HVP",
+      "recvgEwErzyqjN",
+      "recvgEwErzUDnl",
+      "recvgEwErzAb3w"
+    ],
+    "charging_plan_resolution": "Operator authorized 2026-10-10. Live Approved sentence pairs reused; first sentence model adapted from Explorer 2000 Plus to Explorer 1000 Plus. Target-local fields only; no live write.",
+    "original_defect_provenance": [
+      "German original PDF already contains Ladeplan Plan.",
+      "Italian original PDF already contains German Verbleibende Aufladezeit and Autoladeanzeige.",
+      "Italian original PDF shifts car and solar descriptions upward by one row; frozen Web source copied these errors.",
+      "German and Italian original PDF charging-plan descriptions are incorrectly French; their frozen Web source fields were empty, causing English fallback."
+    ]
   }
 }
