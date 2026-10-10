@@ -13,7 +13,7 @@
       "nl",
       "pl"
     ],
-    "technical_version": "native-0924-65297e68"
+    "technical_version": "native-0924-batch1465"
   },
   "original_source": {
     "filename": "HTO814-EU-9国语言-0924 (1).ai",
@@ -73,8 +73,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 5418,
-      "sha256": "f21d0ca6ec4f82ad0db16da335edf28810a024b07e092adf00681e8f66e586dc"
+      "size": 6643,
+      "sha256": "d8dd4246119d5119343998db7e1f60c5fdbf6f9993a6a2aba384f001848c8458"
     },
     {
       "path": "acceptance.json",
@@ -207,6 +207,11 @@
       "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
     },
     {
+      "path": "batch_1465_corrections.json",
+      "size": 1855,
+      "sha256": "70f1c9f58cd3edc668906e3a3da085d13a1c7aa145a980bd3f405345cda19ed4"
+    },
+    {
       "path": "illustrations_de.json",
       "size": 41564,
       "sha256": "5c001604cea3b4ed6b43f51df98d846ec0bc17323923ab8f21a56b533c0e90b1"
@@ -283,8 +288,8 @@
     },
     {
       "path": "source/de/faq_de.rst",
-      "size": 2896,
-      "sha256": "c04b6d45bfc7f83a58644872da1b24b17d8650073a38a68e4c58ee0178992fe5"
+      "size": 2939,
+      "sha256": "f5100922c5e79a2ce64130623fdfa698d58c803dd0685caa201279c06830ea50"
     },
     {
       "path": "source/de/important_safety_de.rst",
@@ -333,8 +338,8 @@
     },
     {
       "path": "source/es/faq_es.rst",
-      "size": 3156,
-      "sha256": "44b9541ce33fda1f7129762f447b807d742731b5859affdea05648aa1ff9004c"
+      "size": 3157,
+      "sha256": "10c079e8bfbba660b00765649fa7f7a728e6ca975b058f6e435f72eaa6d77265"
     },
     {
       "path": "source/es/important_safety_es.rst",
@@ -443,13 +448,13 @@
     },
     {
       "path": "source/it/installation_it.rst",
-      "size": 16185,
-      "sha256": "eecda42c8fce26bb1a171f572bd596e000f987c4df04fb3e99917396d82690c9"
+      "size": 16191,
+      "sha256": "27213aa34f9810ed4e29171a2f37d4f05fe6b9722ea9859ed6586dbd36613b6e"
     },
     {
       "path": "source/it/product_overview_it.rst",
-      "size": 281,
-      "sha256": "0030874bceed52204d9f959cb84c6bbd9ed12939325a890980451953bfc8f38f"
+      "size": 282,
+      "sha256": "8fac167309c1ab25a056cd787729ac65ae50616093042df1577e3841fb9d4c82"
     },
     {
       "path": "source/it/specifications_it.rst",
@@ -718,8 +723,8 @@
     },
     {
       "path": "web/de/_static/web_manual.css",
-      "size": 124859,
-      "sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/de/assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png",
@@ -858,18 +863,18 @@
     },
     {
       "path": "web/de/manual.ir.json",
-      "size": 517525,
-      "sha256": "573a3c57b116198b7cc424e139c7f17500505b0c90f1ee81794d1cabaae85729"
+      "size": 517269,
+      "sha256": "e9e0ecd829b4f45f8d437cabd9fca81e99fdc29bcb815d99c16172ee1cd2ac1e"
     },
     {
       "path": "web/de/manual_bundle.html",
-      "size": 57910,
-      "sha256": "566a25c0a1d0a566ae791957b383520352d116a223ccfa64f449bd964babede2"
+      "size": 57023,
+      "sha256": "f650c7038cc621d91f5ff41d06588558e848304ca28ba032b9819646a9ff431f"
     },
     {
       "path": "web/de/manual_jaad600a_eu_de.md",
-      "size": 53226,
-      "sha256": "a56d7921e104c7d5dbcceea02c2ec645aafa97356434175c747faf26668fb1ec"
+      "size": 53227,
+      "sha256": "b2f18c040da5188698f304d786f7268a88eb0f39954e01289546bb6781efe6d5"
     },
     {
       "path": "web/es/_static/dcdc_source_local.css",
@@ -878,8 +883,8 @@
     },
     {
       "path": "web/es/_static/web_manual.css",
-      "size": 124859,
-      "sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/es/assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png",
@@ -1023,18 +1028,18 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 518769,
-      "sha256": "f11234f6a24082f50b1dfe1acd81e913cc7140832c8b72780cb2354413d7b51c"
+      "size": 518471,
+      "sha256": "8d032ce8fee4c0110b8a81011576f3312084f4c3a916aebef76bf5e30c26f62b"
     },
     {
       "path": "web/es/manual_bundle.html",
-      "size": 58181,
-      "sha256": "a035cd0ef0f2e257fd376fcf8069b7b54960b16e64407c699f413a6812b6068c"
+      "size": 57219,
+      "sha256": "7980260b380f796158de7b61c4b48a2a7c7b87ed0ceee25455a40fe6d6fdca2c"
     },
     {
       "path": "web/es/manual_jaad600a_eu_es.md",
-      "size": 53354,
-      "sha256": "cbc504529894b4c7c8e81a5372fe1991a620469693f68d32e015dea4e5c540ac"
+      "size": 53317,
+      "sha256": "96958076e5cb4021b0ce00950bbead30cf5e89cb5f0b35a3bbadbec5890461f7"
     },
     {
       "path": "web/fr/_static/dcdc_source_local.css",
@@ -1208,8 +1213,8 @@
     },
     {
       "path": "web/it/_static/web_manual.css",
-      "size": 124859,
-      "sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/it/assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png",
@@ -1348,18 +1353,18 @@
     },
     {
       "path": "web/it/manual.ir.json",
-      "size": 516770,
-      "sha256": "7f59f4c2658919cc09f47219a31741801c8a6b1650b170e54d144cf6e929fe1f"
+      "size": 516477,
+      "sha256": "e212d8a9bd919bf2fcfa3fe58fe00a3d26c08e851a068b4df666e3456d7f073f"
     },
     {
       "path": "web/it/manual_bundle.html",
-      "size": 57259,
-      "sha256": "3d89ab83c5168107545cf09e544be6f1e0572dc768db5183ea9624ace7b287ab"
+      "size": 56335,
+      "sha256": "3af3f3153a7db758c6233fe674a0279124c05da04b849697702a622cf1ff0c54"
     },
     {
       "path": "web/it/manual_jaad600a_eu_it.md",
-      "size": 52541,
-      "sha256": "fc15438162dc03954223b8c69b93ec3f1573a2ecf3e59b93d184c1db49e5043c"
+      "size": 52505,
+      "sha256": "45f7b8fe73a9b8e16e817e7036419541d5d5ba625aa1724017bd4a605d3b14bd"
     },
     {
       "path": "web/nl/_static/dcdc_source_local.css",
@@ -2020,16 +2025,23 @@
   "repo_inputs": [
     {
       "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
-      "sha256": "6fd2a6f1579394be1b812b263901ed081c500777df867bb92575b2ee9d289cb4"
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d",
+      "size": 52438
     },
     {
       "path": "docs/renderers/web/charger_eu_en_JA-AD600A_illustrations.json",
-      "sha256": "8b616a6e9cbc04df9d8c918fe37aa8461fb40fdd0ee0f300addb14099c25adb1"
+      "sha256": "8b616a6e9cbc04df9d8c918fe37aa8461fb40fdd0ee0f300addb14099c25adb1",
+      "size": 41564
     },
     {
       "path": "docs/renderers/contracts/prepared_component_admission.json",
-      "size": 288643,
-      "sha256": "63f7b5196a7037885a1ae384e05fb3e803a426ae624f31cca46d91a712d8785f"
+      "size": 300542,
+      "sha256": "d4136ca6377d1b2b7ceb7cb178be8e66b4bc12e7c2b38f6f7607ee28c3ff21cf"
     }
-  ]
+  ],
+  "approved_corrections": {
+    "path": "batch_1465_corrections.json",
+    "source_pdf_sha256": "700122b00fe5227a7321051aa3c06c9005529e89e47589739da5bda1bdf5fab3"
+  },
+  "batch1465_engineering_base": "1ceb8021621124b9d2b274706bd7ed8f2a1b2bab"
 }

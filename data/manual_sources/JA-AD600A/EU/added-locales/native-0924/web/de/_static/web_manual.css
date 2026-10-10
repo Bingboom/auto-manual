@@ -124,7 +124,7 @@ body {
 
 /* Match Furo's navigation-collapse breakpoint; clear the header and back-to-top. */
 @media (max-width: 63em) {
-  #furo-main-content :is(section[id], .hb-language-anchor, :target) {
+  #furo-main-content :is(section[id], :target) {
     scroll-margin-top: calc(var(--header-height, 3rem) + 3rem);
   }
 }
@@ -2140,97 +2140,6 @@ body {
   background: var(--hb-paper);
 }
 
-/* Shared top-of-manual navigation for merged multilingual Web documents. */
-
-#furo-main-content .hb-language-nav {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0 0 1.35rem;
-  padding: 0.82rem;
-  overflow: hidden;
-  border: 1px solid var(--hb-line-soft);
-  border-radius: var(--hb-panel-radius);
-  background: var(--hb-surface-strong);
-}
-
-#furo-main-content .hb-language-list {
-  display: flex;
-  gap: 0.72rem;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  overflow-x: auto;
-  list-style: none;
-  scrollbar-width: thin;
-  scroll-snap-type: x proximity;
-}
-
-#furo-main-content .hb-language-list > li {
-  flex: 0 0 auto;
-  margin: 0;
-  scroll-snap-align: start;
-}
-
-#furo-main-content a.hb-language-link {
-  display: flex;
-  min-height: 3rem;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 0.58rem 1.25rem;
-  border: 1px solid var(--hb-line-soft);
-  border-radius: 999px;
-  background: var(--hb-paper);
-  box-shadow: 0 0.12rem 0.32rem rgba(52, 48, 49, 0.08);
-  color: var(--hb-brand-dark);
-  font-size: clamp(1rem, 1.7vw, 1.12rem);
-  font-weight: 700;
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-#furo-main-content a.hb-language-link:hover {
-  border-color: var(--hb-line);
-  background: var(--hb-surface);
-}
-
-#furo-main-content a.hb-language-link:focus-visible {
-  outline: 0.18rem solid var(--hb-brand-dark);
-  outline-offset: 0.14rem;
-}
-
-#furo-main-content .hb-language-anchor {
-  display: block;
-  height: 0;
-  scroll-margin-top: 1.5rem;
-}
-
-@media (max-width: 760px) {
-  #furo-main-content .hb-language-nav {
-    margin-bottom: 1.1rem;
-    padding: 0.68rem;
-  }
-
-  #furo-main-content .hb-language-list {
-    gap: 0.58rem;
-    padding-bottom: 0.18rem;
-  }
-
-  #furo-main-content a.hb-language-link {
-    min-height: 2.72rem;
-    padding: 0.52rem 1rem;
-    font-size: 0.98rem;
-  }
-}
-
-@media print {
-  #furo-main-content .hb-language-nav,
-  #furo-main-content .hb-language-anchor {
-    display: none;
-  }
-}
-
 /* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
 #furo-main-content section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child {
   position: absolute !important;
@@ -3732,16 +3641,17 @@ body {
   justify-items: center;
   gap: 0.45rem;
 }
+/* Button art keeps the approved print ratio: 22.08pt art beside 6pt function copy. */
 #furo-main-content .hb-key-button img {
-  width: 4.4rem !important;
-  height: 4.4rem !important;
+  width: 3.35rem !important;
+  height: 3.35rem !important;
   margin: 0 !important;
 }
 #furo-main-content .hb-key-button-plus {
   display: grid;
-  height: 4.4rem;
+  height: 3.35rem;
   align-items: center;
-  font-size: 2.3rem;
+  font-size: 1.82rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -4395,3 +4305,26 @@ figure:has(> img.hb-readable-diagram) {
   padding: 0 .31cqw;
   border-radius: 2cqw;
 }
+
+/* Native preface headings use a region badge, rather than a chapter bar. */
+#furo-main-content h1.hb-preface-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--hb-text);
+}
+#furo-main-content .hb-preface-region {
+  display: inline-block;
+  padding: 0.03em 0.2em;
+  border-radius: 0.1em;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 0.72em;
+  line-height: 1.1;
+}
+#furo-main-content .hb-preface-heading .headerlink { color: var(--hb-text-muted); }
+#furo-main-content .hb-preface-prose p { margin: 0.45rem 0; line-height: 1.45; }
