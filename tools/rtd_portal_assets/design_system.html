@@ -28,9 +28,8 @@
       <div class="kpi"><span>字体样式</span><strong>{{ type_styles|length }}</strong><em>桌面与 760px 以下</em></div>
       <div class="kpi"><span>组件</span><strong>{{ component_count }}</strong><em>用线上样式实时预览</em></div>
       <div class="kpi"><span>素材</span><strong>{{ asset_library.count }}</strong><em>共享素材目录与清单</em></div>
-      <div class="kpi"><span>样式表版本</span><strong class="ds-hash">{{ stylesheet_sha256[:8]|e }}</strong><em>web_manual.css 的 SHA-256</em></div>
-      <div class="kpi"><span>印刷参数版本</span><strong class="ds-hash">{{ print.sha256[:8]|e }}</strong><em>layout_params.csv</em></div>
     </div>
+    <p class="ds-versions">样式表版本 <code>{{ stylesheet_sha256[:8]|e }}</code>（web_manual.css 的 SHA-256）· 印刷参数版本 <code>{{ print.sha256[:8]|e }}</code>（data/layout_params.csv）</p>
 
     <nav class="page-tabs" role="tablist" aria-label="设计系统分区">
       <a role="tab" href="#overview" data-tab="overview" aria-selected="true">概览</a>

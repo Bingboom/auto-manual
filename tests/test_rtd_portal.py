@@ -199,6 +199,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
         self.assertIn('src="print/page.html"', design)
+        # Versions are a line of small text under the counts, not KPI tiles.
+        self.assertIn('class="ds-versions"', design)
+        self.assertEqual(design.split('class="ds-versions"', 1)[0].count('class="kpi"'), 4)
         self.assertNotIn("Jackery", design)
         self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())

@@ -636,9 +636,10 @@ page; the public manual library does not link to it.
 - **Values are live.** At build time `tools/rtd/design_system.py` reads the
   stylesheet that `tools/web/stylesheets.py` assembles
   (`tools/rtd/design_system_css.py`). Colours, contrast ratios, type sizes and
-  the 760px overrides come from the declarations of named selectors, and the
-  KPI row shows the stylesheet's SHA-256. A stylesheet change appears on the
-  next RTD build without editing the page.
+  the 760px overrides come from the declarations of named selectors. A small
+  line under the counts gives the versions in use: the stylesheet's SHA-256 and
+  the print table's token hash. A stylesheet change appears on the next RTD
+  build without editing the page.
 - **Previews are live.** Each component preview is an iframe document that
   loads that same stylesheet, copied to `/workspace/design/web_manual.css`, and
   wraps its markup in `#furo-main-content`. Art is copied from the repository's
