@@ -60,7 +60,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "0c9ef66ab7278d678f2ad5748520fea2b6dfd87f792bef00db2333c1c9058e67",
-  "content_sha256": "26db95bd23d862a08e9273167ea5177e947d8e064ac0b8a0f5f58cc32553adda",
+  "content_sha256": "97e7edea6cd19fdd018f5e5ce90f086befa174d202fffc4797aaea287350a5de",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -129,7 +129,7 @@
         125
       ],
       "source_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
-      "status": "candidate-awaiting-review"
+      "status": "operator-approved-git-only-release"
     },
     "block_count": 146,
     "component_inventory": {
@@ -2004,6 +2004,37 @@
     },
     "manual_theme_sha256": "65e756b33e1a70be684c192c6cda3209dcdcfd130bd2a5da67f77b12b9ac0833",
     "markdown_filename": "manual_je2000f_eu_pt.md",
+    "operator_release_approval": {
+      "date": "2026-10-10",
+      "decisions": {
+        "translations": "the six supplied batch-1465 notices are published as delivered (pt-PT localized from pt-BR, nl, pl); linguistic review/TM upsert is not a release gate",
+        "ups_callout_order": "pt and nl follow the Polish UPS chapter: CAUTION callout before WARNING callout (block order only)"
+      },
+      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+      "operator_decisions": [
+        "按波兰语的顺序调，译文直接用，上线提交发布"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "reviewed_candidate": {
+        "batch_1465_changes_sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571",
+        "engineering_pr": "Bingboom/auto-manual#1475",
+        "merged_commit": "735de9a",
+        "source_manifest_sha256": "3525990ada94228e2ba36efc07e021ff1c94123697828124521b6dec5d5d8fbd"
+      },
+      "revision_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only pt/nl/pl Web release of git-20261010-1465-web; en/fr/es/de/it/uk and the superseded package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+      "target": {
+        "languages": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "model": "JE-2000F",
+        "region": "EU"
+      }
+    },
     "page_count": 15,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -6534,7 +6565,7 @@
     },
     "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 7,
     "skipped_raw": 0,
     "source_errata": {
@@ -11190,146 +11221,6 @@
         },
         {
           "asset_refs": [],
-          "block_id": "ups:block-0007",
-          "content_sha256": "35024a001f8259a14f508459e0246401885f820d837577eb38dc1cc5aaa64c03",
-          "kind": "flow",
-          "payload": {
-            "carrier_flow": [
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "AVISO"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-label"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "Não utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que um mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos. Para os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode causar sérios danos à segurança pessoal ou danos materiais:"
-                                  }
-                                ],
-                                "kind": "paragraph"
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  },
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  },
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Equipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  }
-                                ],
-                                "kind": "list",
-                                "ordered": false
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-body"
-                                }
-                              }
-                            }
-                          }
-                        ],
-                        "kind": "table_row"
-                      }
-                    ],
-                    "kind": "table_body"
-                  }
-                ],
-                "kind": "table",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "manual-callout-table manual-callout-table"
-                    }
-                  }
-                }
-              }
-            ],
-            "component_spec": {
-              "assets": [],
-              "component_id": "HB-CALLOUT-STRIP",
-              "language": "pt",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "AVISO",
-                  "content_kind": "inline_text",
-                  "role": "label"
-                },
-                {
-                  "content": "Não utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que um mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos. Para os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode causar sérios danos à segurança pessoal ou danos materiais:\nDispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.\nEquipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.\nEquipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto.",
-                  "content_kind": "rich_text",
-                  "role": "body"
-                },
-                {
-                  "content": [
-                    "Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.",
-                    "Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.",
-                    "Equipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto."
-                  ],
-                  "content_kind": "list_items",
-                  "role": "items"
-                }
-              ],
-              "source_ref": "pt/page-125/notice-2",
-              "token_roles": [
-                "component.callout"
-              ],
-              "variant": "warning"
-            },
-            "kind": "component",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "pt/ups#block-7"
-        },
-        {
-          "asset_refs": [],
           "block_id": "ups:block-0008",
           "content_sha256": "7dfc14e809a314ecf28bbd07c9f5cfeae1253fb9bf92e05e56e6f049c3117ed0",
           "kind": "flow",
@@ -11468,6 +11359,146 @@
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "pt/ups#block-8"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0007",
+          "content_sha256": "35024a001f8259a14f508459e0246401885f820d837577eb38dc1cc5aaa64c03",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "AVISO"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-label"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Não utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que um mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos. Para os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode causar sérios danos à segurança pessoal ou danos materiais:"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Equipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  }
+                                ],
+                                "kind": "list",
+                                "ordered": false
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-callout-table manual-callout-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-CALLOUT-STRIP",
+              "language": "pt",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "AVISO",
+                  "content_kind": "inline_text",
+                  "role": "label"
+                },
+                {
+                  "content": "Não utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que um mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos. Para os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode causar sérios danos à segurança pessoal ou danos materiais:\nDispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.\nEquipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.\nEquipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto.",
+                  "content_kind": "rich_text",
+                  "role": "body"
+                },
+                {
+                  "content": [
+                    "Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.",
+                    "Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.",
+                    "Equipamentos empresariais críticos para o negócio, etc. Indivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem usar este produto."
+                  ],
+                  "content_kind": "list_items",
+                  "role": "items"
+                }
+              ],
+              "source_ref": "pt/page-125/notice-2",
+              "token_roles": [
+                "component.callout"
+              ],
+              "variant": "warning"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "pt/ups#block-7"
         }
       ],
       "language": "pt",

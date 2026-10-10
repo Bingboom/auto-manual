@@ -26,12 +26,17 @@
     "nl": "web/nl",
     "pl": "web/pl"
   },
-  "validation_boundary": "Six PDF notice texts matched; strict IR and deterministic cold replay. Pending operator content approval, engineering merge, generated release PR and RTD readback.",
+  "validation_boundary": "Six PDF notice texts matched; strict IR and deterministic cold replay. Operator approved the translations as delivered and the Polish UPS callout order for pt/nl (approval.json); pending engineering merge, generated release PR and RTD readback.",
   "inputs": [
     {
       "path": "README.md",
-      "size": 950,
-      "sha256": "2f781a460720b1dbd0023c4326e5b8f01ea5d930309b16be257dc8eec4001a08"
+      "size": 1702,
+      "sha256": "9a5d90ca089abb4a476baf7a5862eee7a1088e61f02aa21f2ec45d25d796b69a"
+    },
+    {
+      "path": "approval.json",
+      "size": 1484,
+      "sha256": "4e66d6bfe118daa4f584ad20a356ace0b4c974039f31dc2f3fb1510761ee927a"
     },
     {
       "path": "batch_1465_changes.json",
@@ -39,9 +44,14 @@
       "sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571"
     },
     {
+      "path": "finalize_release.py",
+      "size": 5864,
+      "sha256": "216ce06a9eb9e24dd71c23ced49dac881e3040c57784c74c58fca04b647a245a"
+    },
+    {
       "path": "verification.json",
-      "size": 816,
-      "sha256": "b67a7136703316e1521f7c194340699776d26601c62afa8c8b406b52d041e67a"
+      "size": 1130,
+      "sha256": "ca6c820561600457082f0978fedb7c8bd2665090bdcd85146fd2aa74ddd5e048"
     },
     {
       "path": "web/nl/_static/web_manual.css",
@@ -345,13 +355,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 564793,
-      "sha256": "a6d12d51287d658dcf6db9ac30d42be5602af8f1bbc54d845dc8817dc19f350f"
+      "size": 566439,
+      "sha256": "92a7c5b9dc701c0360d5444723db70c234f25d28e497945b20f872ae889b153d"
     },
     {
       "path": "web/nl/manual_je2000f_eu_nl.md",
       "size": 77262,
-      "sha256": "45ffeb8891a20e50b9d3c33eee18abff37d0da2160d209fd2ab3e103f510afb5"
+      "sha256": "e194ae1635582f9d7aa4a91a4336a61090413d260236f8c2430770da3e3ee98c"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -655,8 +665,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 566560,
-      "sha256": "fbb3a78ef86131ca9e72794ed0eac464fee31fed3e21c4b8789ed6ff6a5072d6"
+      "size": 568206,
+      "sha256": "d822fd1bdebe1f66c267587e6cfccecef5e889d5469489425cffc37fcf97cf72"
     },
     {
       "path": "web/pl/manual_je2000f_eu_pl.md",
@@ -965,19 +975,20 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 563864,
-      "sha256": "410e246990393cb019d26099b7de10d43784346d45e6c90bf35e40acb03725a5"
+      "size": 565510,
+      "sha256": "3ff8cfef07a3ed1de3ef007ba50c642f296a92fd98544a7c2ee69b65fe36bef5"
     },
     {
       "path": "web/pt/manual_je2000f_eu_pt.md",
       "size": 77594,
-      "sha256": "9a1045b28978f8adb0ef612a1beab71be5e1e92d31b1548f88af983e96f07084"
+      "sha256": "fb4d26b32f23d60e551eafd305ee97ea6cecbf81c0d2f44f6350b65080b4d00f"
     }
   ],
   "supersedes": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language",
   "revision_source": {
     "pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
     "batch": "1465",
-    "status": "candidate-awaiting-review"
-  }
+    "status": "operator-approved-git-only-release"
+  },
+  "publication_status": "operator-approved-git-only-release"
 }

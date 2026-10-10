@@ -129,7 +129,7 @@
         161
       ],
       "source_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
-      "status": "candidate-awaiting-review"
+      "status": "operator-approved-git-only-release"
     },
     "block_count": 145,
     "component_inventory": {
@@ -2004,6 +2004,37 @@
     },
     "manual_theme_sha256": "65e756b33e1a70be684c192c6cda3209dcdcfd130bd2a5da67f77b12b9ac0833",
     "markdown_filename": "manual_je2000f_eu_pl.md",
+    "operator_release_approval": {
+      "date": "2026-10-10",
+      "decisions": {
+        "translations": "the six supplied batch-1465 notices are published as delivered (pt-PT localized from pt-BR, nl, pl); linguistic review/TM upsert is not a release gate",
+        "ups_callout_order": "pt and nl follow the Polish UPS chapter: CAUTION callout before WARNING callout (block order only)"
+      },
+      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+      "operator_decisions": [
+        "按波兰语的顺序调，译文直接用，上线提交发布"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "reviewed_candidate": {
+        "batch_1465_changes_sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571",
+        "engineering_pr": "Bingboom/auto-manual#1475",
+        "merged_commit": "735de9a",
+        "source_manifest_sha256": "3525990ada94228e2ba36efc07e021ff1c94123697828124521b6dec5d5d8fbd"
+      },
+      "revision_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only pt/nl/pl Web release of git-20261010-1465-web; en/fr/es/de/it/uk and the superseded package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+      "target": {
+        "languages": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "model": "JE-2000F",
+        "region": "EU"
+      }
+    },
     "page_count": 15,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -6455,7 +6486,7 @@
     },
     "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 7,
     "skipped_raw": 0,
     "source_errata": {

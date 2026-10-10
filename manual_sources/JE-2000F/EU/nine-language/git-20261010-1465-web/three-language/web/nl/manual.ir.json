@@ -60,7 +60,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "adb52ecbfc78d6918dc4972722112f79490acdbff691a796668ec88af87f77fb",
-  "content_sha256": "de897ac7071b9a818c745581577ea3b7c595ff80263cdf03c1478cd4810956ce",
+  "content_sha256": "abf6378cd06db581b5ac8122632ff9880cc53cf065f8b448855954ea31efcd18",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -129,7 +129,7 @@
         143
       ],
       "source_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
-      "status": "candidate-awaiting-review"
+      "status": "operator-approved-git-only-release"
     },
     "block_count": 148,
     "component_inventory": {
@@ -2017,6 +2017,37 @@
     },
     "manual_theme_sha256": "65e756b33e1a70be684c192c6cda3209dcdcfd130bd2a5da67f77b12b9ac0833",
     "markdown_filename": "manual_je2000f_eu_nl.md",
+    "operator_release_approval": {
+      "date": "2026-10-10",
+      "decisions": {
+        "translations": "the six supplied batch-1465 notices are published as delivered (pt-PT localized from pt-BR, nl, pl); linguistic review/TM upsert is not a release gate",
+        "ups_callout_order": "pt and nl follow the Polish UPS chapter: CAUTION callout before WARNING callout (block order only)"
+      },
+      "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+      "operator_decisions": [
+        "按波兰语的顺序调，译文直接用，上线提交发布"
+      ],
+      "operator_quote": "上线提交发布",
+      "original_source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "reviewed_candidate": {
+        "batch_1465_changes_sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571",
+        "engineering_pr": "Bingboom/auto-manual#1475",
+        "merged_commit": "735de9a",
+        "source_manifest_sha256": "3525990ada94228e2ba36efc07e021ff1c94123697828124521b6dec5d5d8fbd"
+      },
+      "revision_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only pt/nl/pl Web release of git-20261010-1465-web; en/fr/es/de/it/uk and the superseded package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes.",
+      "target": {
+        "languages": [
+          "pt",
+          "nl",
+          "pl"
+        ],
+        "model": "JE-2000F",
+        "region": "EU"
+      }
+    },
     "page_count": 15,
     "page_declarations": {},
     "pdf_intake_provenance": {
@@ -6497,7 +6528,7 @@
     },
     "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 7,
     "skipped_raw": 0,
     "source_errata": {
@@ -11221,146 +11252,6 @@
         },
         {
           "asset_refs": [],
-          "block_id": "ups:block-0007",
-          "content_sha256": "e727bad7ddc7a20be825a4a6f83b7d90e4950f0fc75c3a952eb5e3974ba6ae84",
-          "kind": "flow",
-          "payload": {
-            "carrier_flow": [
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "WAARSCHUWING"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-label"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "Gebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij een storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken. Voor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige schade aan de persoonlijke veiligheid of eigendommen veroorzaken:"
-                                  }
-                                ],
-                                "kind": "paragraph"
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  },
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  },
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "Bedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken."
-                                      }
-                                    ],
-                                    "kind": "list_item"
-                                  }
-                                ],
-                                "kind": "list",
-                                "ordered": false
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "manual-callout-body"
-                                }
-                              }
-                            }
-                          }
-                        ],
-                        "kind": "table_row"
-                      }
-                    ],
-                    "kind": "table_body"
-                  }
-                ],
-                "kind": "table",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "manual-callout-table manual-callout-table"
-                    }
-                  }
-                }
-              }
-            ],
-            "component_spec": {
-              "assets": [],
-              "component_id": "HB-CALLOUT-STRIP",
-              "language": "nl",
-              "metadata": {},
-              "schema_version": "component-spec/v1",
-              "slots": [
-                {
-                  "content": "WAARSCHUWING",
-                  "content_kind": "inline_text",
-                  "role": "label"
-                },
-                {
-                  "content": "Gebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij een storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken. Voor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige schade aan de persoonlijke veiligheid of eigendommen veroorzaken:\nMedische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.\nKritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.\nBedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken.",
-                  "content_kind": "rich_text",
-                  "role": "body"
-                },
-                {
-                  "content": [
-                    "Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.",
-                    "Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.",
-                    "Bedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken."
-                  ],
-                  "content_kind": "list_items",
-                  "role": "items"
-                }
-              ],
-              "source_ref": "nl/page-143/notice-2",
-              "token_roles": [
-                "component.callout"
-              ],
-              "variant": "warning"
-            },
-            "kind": "component",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "nl/ups#block-7"
-        },
-        {
-          "asset_refs": [],
           "block_id": "ups:block-0008",
           "content_sha256": "e6c5dbeeb31448a33a4598b9dcd6ac35b1158aa2481fbcae5b4a1760afd3af5c",
           "kind": "flow",
@@ -11499,6 +11390,146 @@
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "nl/ups#block-8"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "ups:block-0007",
+          "content_sha256": "e727bad7ddc7a20be825a4a6f83b7d90e4950f0fc75c3a952eb5e3974ba6ae84",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "WAARSCHUWING"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-label"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Gebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij een storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken. Voor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige schade aan de persoonlijke veiligheid of eigendommen veroorzaken:"
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  },
+                                  {
+                                    "children": [
+                                      {
+                                        "kind": "text",
+                                        "text": "Bedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken."
+                                      }
+                                    ],
+                                    "kind": "list_item"
+                                  }
+                                ],
+                                "kind": "list",
+                                "ordered": false
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-callout-table manual-callout-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-CALLOUT-STRIP",
+              "language": "nl",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "WAARSCHUWING",
+                  "content_kind": "inline_text",
+                  "role": "label"
+                },
+                {
+                  "content": "Gebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij een storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken. Voor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige schade aan de persoonlijke veiligheid of eigendommen veroorzaken:\nMedische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.\nKritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.\nBedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken.",
+                  "content_kind": "rich_text",
+                  "role": "body"
+                },
+                {
+                  "content": [
+                    "Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.",
+                    "Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.",
+                    "Bedrijfskritieke ondernemingsapparatuur, enz. Personen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit product niet gebruiken."
+                  ],
+                  "content_kind": "list_items",
+                  "role": "items"
+                }
+              ],
+              "source_ref": "nl/page-143/notice-2",
+              "token_roles": [
+                "component.callout"
+              ],
+              "variant": "warning"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "nl/ups#block-7"
         }
       ],
       "language": "nl",
