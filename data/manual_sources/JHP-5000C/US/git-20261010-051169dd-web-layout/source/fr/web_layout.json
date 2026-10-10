@@ -1,0 +1,679 @@
+{
+ "schema_version": "jhp5000c-web-layout-changes/v1",
+ "language": "fr",
+ "approved_source": "../git-20261009-051169dd/source/fr/content.json",
+ "changes": [
+  {
+   "chapter": "maintenance",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "symbols",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "fcc",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-sts",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-package",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "*",
+   "action": "regular-state-words",
+   "removed": [
+    {
+     "chapter": "overview",
+     "word": "marche",
+     "context": "Mettre l'interrupteur sur marche/arrêt pour"
+    },
+    {
+     "chapter": "overview",
+     "word": "arrêt",
+     "context": "Mettre l'interrupteur sur marche/arrêt pour"
+    },
+    {
+     "chapter": "overview",
+     "word": "marche",
+     "context": "Mettre l'interrupteur sur marche/arrêt pour"
+    },
+    {
+     "chapter": "overview",
+     "word": "arrêt",
+     "context": "Mettre l'interrupteur sur marche/arrêt pour"
+    },
+    {
+     "chapter": "lcd",
+     "word": "activé",
+     "context": "Mode de charge silencieusePeut être activé / désactivé via l’application Jackery."
+    },
+    {
+     "chapter": "lcd",
+     "word": "activé",
+     "context": "Mode économie de batteriePeut être activé / désactivé via l’application Jackery."
+    },
+    {
+     "chapter": "charging",
+     "word": "OFF",
+     "context": "l'interrupteur revient en position « OFF »."
+    },
+    {
+     "chapter": "charging",
+     "word": "OFF",
+     "context": "l'interrupteur revient en position « OFF »."
+    }
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "action": "unprinted-title-removed",
+   "title": "FCC"
+  },
+  {
+   "chapter": "safety",
+   "action": "risk-banner",
+   "title": "INSTRUCTIONS RELATIVES AUX RISQUES D'INCENDIE, DE CHOC ÉLECTRIQUE OU DE BLESSURE CORPORELLE"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "NOTICE D’UTILISATION"
+  },
+  {
+   "chapter": "maintenance",
+   "action": "print-pill-title",
+   "title": "INSTRUCTIONS D'ENTRETIEN POUR L'UTILISATEUR"
+  },
+  {
+   "chapter": "symbols",
+   "action": "print-pill-title",
+   "title": "SIGNIFICATION DES SYMBOLES"
+  },
+  {
+   "chapter": "safety",
+   "action": "danger-callout-lines",
+   "bold_body": true
+  },
+  {
+   "chapter": "safety",
+   "action": "warning-lockup",
+   "label": "ATTENTION",
+   "bold_body": true
+  },
+  {
+   "chapter": "safety",
+   "action": "danger-lockup",
+   "label": "DANGER"
+  },
+  {
+   "chapter": "charging",
+   "action": "caution-item-2-unnested",
+   "label": "Mise en garde"
+  },
+  {
+   "chapter": "ups",
+   "action": "callout-numbered-items",
+   "label": "Remarque",
+   "items": 3
+  },
+  {
+   "chapter": "connections",
+   "action": "callout-numbered-items",
+   "label": "Mise en garde",
+   "items": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Remarque",
+   "items": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Mise en garde",
+   "items": 3
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Mise en garde",
+   "items": 3
+  },
+  {
+   "chapter": "ups",
+   "action": "paragraph-numbered-steps",
+   "items": 2
+  },
+  {
+   "chapter": "ess",
+   "action": "callout-print-lines",
+   "label": "Mise en garde",
+   "lines": 8
+  },
+  {
+   "chapter": "charging",
+   "action": "inline-label-callout",
+   "label": "Mise en garde"
+  },
+  {
+   "chapter": "charging",
+   "action": "split-label-callout",
+   "label": "Remarque"
+  },
+  {
+   "chapter": "operations",
+   "action": "lcd-screen-table",
+   "states": [
+    "Écran LCD",
+    "Mode d’affichage permanent (en charge ou décharge)"
+   ],
+   "approved_paragraphs": 14
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-icon-print-structure",
+   "state_lines": 10
+  },
+  {
+   "chapter": "troubleshooting",
+   "action": "codes-names-bold-cause-lines",
+   "line_breaks": 5
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-YEARS"
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "connections",
+   "action": "sold-separately-capsule",
+   "title": "CONNEXION À LA BATTERIE"
+  },
+  {
+   "chapter": "connections",
+   "action": "sold-separately-capsule",
+   "title": "CONNEXION AU COMMUTATEUR DE TRANSFERT INTELLIGENT"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "model-in-band",
+   "model": "Modèle: JHP-5000C"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "model-in-band",
+   "model": "Modèle: JBP-5000A"
+  },
+  {
+   "chapter": "ess-sts",
+   "action": "model-in-band",
+   "model": "Modèle: JA-TS02A"
+  },
+  {
+   "chapter": "ess",
+   "action": "system-model-in-band",
+   "model": "Modèle du système HB5000C-TS02A"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "plain-title",
+   "title": "SPÉCIFICATIONS"
+  },
+  {
+   "chapter": "specifications",
+   "action": "hazard-note-below-table"
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "PORTS D’ENTRÉE",
+   "values": [
+    "120V~60Hz, 12A max (Durée < 3h lorsque le courant dépasse 12A) 240V~60Hz, 16,7A max",
+    "2 x ports 8mm CC ; 16V-60V⎓10,5A max, double à 21A/1200W max 11V-16V (tension de fonctionnement)⎓8A max, double à 8A max"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "TEMPÉRATURE DE FONCTIONNEMENT AMBIANTE",
+   "values": [
+    "-15°C~45°C (5°F~113°F) -15°C~-10°C (5°F~14°F) Puissance de sortie : 3600 W"
+   ]
+  },
+  {
+   "chapter": "ess-host",
+   "action": "spec-value-print-lines",
+   "table": "PORTS D’ENTRÉE",
+   "values": [
+    "120V~60Hz, 12A max (Durée < 3h lorsque le courant dépasse 12A) 240V~60Hz, 16,7A max",
+    "2 x ports 8mm CC ; 16V-60V⎓10,5A max, double à 21A/1200W max 11V-16V (tension de fonctionnement)⎓8A max, double à 8A max"
+   ]
+  },
+  {
+   "chapter": "ess-host",
+   "action": "spec-value-print-lines",
+   "table": "TEMPÉRATURE DE FONCTIONNEMENT AMBIANTE",
+   "values": [
+    "-15°C~45°C (5°F~113°F) -15°C~-10°C (5°F~14°F) Puissance de sortie : 3600 W"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "trademark-note",
+   "split_hazard": false
+  },
+  {
+   "chapter": "ess-host",
+   "action": "trademark-note",
+   "split_hazard": false
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "Conservez le produit dans un endroit propre et sec avec une ventilation adéquate"
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batteri"
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batteri"
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batteri"
+  },
+  {
+   "chapter": "ess-sts",
+   "action": "soft-wrap-joined",
+   "text": "* Lorsque vous utilisez le produit, assurez-vous de vous connecter à une tension"
+  },
+  {
+   "chapter": "ups",
+   "action": "print-paragraph-break",
+   "paragraphs": 2
+  },
+  {
+   "chapter": "ups",
+   "action": "print-paragraph-break",
+   "paragraphs": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "paragraphs": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "Connecter au port d'entrée PV faible"
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "Connecter au port d'entrée PV élevée"
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "Entrée PV élevée + PV faible"
+  },
+  {
+   "chapter": "charging",
+   "action": "prose-pill",
+   "text": "CHARGEZ L'APPAREIL ENTIÈREMENT AVANT SA PREMIÈRE UTILISATION"
+  },
+  {
+   "chapter": "specifications",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "*",
+   "action": "print-emphasis",
+   "items": [
+    {
+     "chapter": "app",
+     "text": "4.1 Pour activer le Wi-Fi et le Bluetooth :",
+     "bold": [
+      "4.1 Pour activer le Wi-Fi et le Bluetooth :"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "4.2 Pour désactiver le Wi-Fi et le Bluetooth:",
+     "bold": [
+      "4.2 Pour désactiver le Wi-Fi et le Bluetooth:"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "4.3 Pour réinitialiser le Wi-Fi et le Bluetooth：",
+     "bold": [
+      "4.3 Pour réinitialiser le Wi-Fi et le Bluetooth："
+     ]
+    }
+   ]
+  },
+  {
+   "chapter": "storage",
+   "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "storage",
+   "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "contact",
+   "action": "back-cover-card",
+   "removed_title": "CONTACTEZ-NOUS"
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-front",
+   "top": 266.0,
+   "bottom": 495.0,
+   "right_aligned_lines": [
+    1,
+    3,
+    5,
+    6,
+    7,
+    9,
+    11,
+    13,
+    14,
+    16,
+    17,
+    19,
+    20,
+    22,
+    24,
+    26
+   ]
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-left",
+   "top": 39.0,
+   "bottom": 253.0,
+   "right_aligned_lines": []
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-right",
+   "top": 238.0,
+   "bottom": 504.0,
+   "right_aligned_lines": []
+  },
+  {
+   "chapter": "overview",
+   "action": "locale-art",
+   "figure": "overview-front",
+   "art": "assets/overview-front-fr.svg",
+   "replaced": "assets/overview-front.svg"
+  },
+  {
+   "chapter": "overview",
+   "action": "locale-art",
+   "figure": "overview-left",
+   "art": "assets/overview-left-fr.svg",
+   "replaced": "assets/overview-left.svg"
+  },
+  {
+   "chapter": "operations",
+   "action": "locale-art",
+   "figure": "ac-output",
+   "art": "assets/ac-output-fr.svg",
+   "replaced": "assets/ac-output.svg"
+  },
+  {
+   "chapter": "operations",
+   "action": "locale-art",
+   "figure": "usb-output",
+   "art": "assets/usb-output-fr.svg",
+   "replaced": "assets/usb-output.svg"
+  },
+  {
+   "chapter": "operations",
+   "action": "locale-art",
+   "figure": "dc-output",
+   "art": "assets/dc-output-fr.svg",
+   "replaced": "assets/dc-output.svg"
+  },
+  {
+   "chapter": "connections",
+   "action": "locale-art",
+   "figure": "battery-packs",
+   "art": "assets/battery-packs-fr.svg",
+   "replaced": "assets/battery-packs.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "ac-charge",
+   "art": "assets/ac-charge-fr.svg",
+   "replaced": "assets/ac-charge.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "sts-charge",
+   "art": "assets/sts-charge-fr.svg",
+   "replaced": "assets/sts-charge.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "low-pv-500",
+   "art": "assets/low-pv-500-fr.svg",
+   "replaced": "assets/low-pv-500.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "low-pv-200",
+   "art": "assets/low-pv-200-fr.svg",
+   "replaced": "assets/low-pv-200.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "high-pv",
+   "art": "assets/high-pv-fr.svg",
+   "replaced": "assets/high-pv.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "high-pv-lock",
+   "art": "assets/high-pv-lock-fr.svg",
+   "replaced": "assets/high-pv-lock.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "dual-pv",
+   "art": "assets/dual-pv-fr.svg",
+   "replaced": "assets/dual-pv.svg"
+  },
+  {
+   "chapter": "charging",
+   "action": "locale-art",
+   "figure": "car",
+   "art": "assets/car-fr.svg",
+   "replaced": "assets/car-fr.svg"
+  },
+  {
+   "chapter": "app",
+   "action": "locale-art",
+   "figure": "app-control",
+   "art": "assets/app-control-fr.svg",
+   "replaced": "assets/app-control.svg"
+  },
+  {
+   "chapter": "ess",
+   "action": "locale-art",
+   "figure": "ess",
+   "art": "assets/ess-fr.svg",
+   "replaced": "assets/ess.svg"
+  },
+  {
+   "chapter": "ess-package",
+   "action": "locale-art",
+   "figure": "package-sts",
+   "art": "assets/package-sts-fr.svg",
+   "replaced": "assets/package-sts.svg"
+  },
+  {
+   "chapter": "*",
+   "action": "reference-captions-rebound",
+   "figures": [
+    "native-pdf/page-30/overview-front",
+    "native-pdf/page-31/overview-right",
+    "native-pdf/page-41/high-pv-lock"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "symbols",
+   "kind": "signal-word-meanings",
+   "approved": [
+    [
+     "AVERTISSEMENT",
+     "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels."
+    ],
+    [
+     "ATTENTION",
+     "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus."
+    ]
+   ],
+   "pdf": [
+    [
+     "MISE EN GARDE",
+     "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels."
+    ],
+    [
+     "AVERTISSEMENT",
+     "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels."
+    ],
+    [
+     "Remarque",
+     "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus."
+    ]
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "kind": "unprinted-title",
+   "approved": "FCC",
+   "pdf": null
+  },
+  {
+   "chapter": "safety",
+   "kind": "duplicated-callout-label",
+   "approved": "Este dispositivo está diseñado únicamente para uso en interiores (si se utiliza en exteriores, colóquelo en un entorno similar a un interior, por ejemplo: casas rodantes, tiendas de campaña, cabañas, etc.). ※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante su uso. DANGER",
+   "pdf": "Este dispositivo está diseñado únicamente para uso en interiores (si se utiliza en exteriores, colóquelo en un entorno similar a un interior, por ejemplo: casas rodantes, tiendas de campaña, cabañas, etc.). ※ Este dispositivo no es resistente al agua ni al polvo. Manténgalo alejado de la lluvia y de ambientes húmedos durante su uso."
+  },
+  {
+   "chapter": "charging",
+   "kind": "misplaced-callout-label",
+   "approved": "Lorsque les panneaux solaires sont connectés en série, assurez-vous que la sortie de tension Mise en garde maximale est comprise entre 16 V - 60 V pour le port d'entrée PV faible, et entre 135 V - 450 V pour le port d'entrée PV élevé.",
+   "pdf": "Mise en garde | Lorsque les panneaux solaires sont connectés en série, assurez-vous que la sortie de tension maximale est comprise entre 16 V - 60 V pour le port d'entrée PV faible, et entre 135 V - 450 V pour le port d'entrée PV élevé."
+  },
+  {
+   "chapter": "lcd",
+   "kind": "lcd-name-word-boundary",
+   "approved": [
+    "Indicateur d'entrée PV",
+    "élevée Indicateur d'entrée PV faible"
+   ],
+   "pdf": [
+    "Indicateur d'entrée PV élevée",
+    "Indicateur d'entrée PV faible"
+   ]
+  },
+  {
+   "chapter": "warranty",
+   "kind": "warranty-title-body-boundary",
+   "approved": [
+    "La période de garantie standard du Jackery HomePower 5000 Garantie standard",
+    "Plus est de 60 mois. Dans tous les cas, la période de garant"
+   ],
+   "pdf": [
+    "Garantie standard",
+    "La période de garantie standard du Jackery HomePower 5000 Pl"
+   ]
+  },
+  {
+   "chapter": "ess-battery",
+   "kind": "model-label-placement",
+   "approved": "ess-sts: Modèle: JBP-5000A",
+   "pdf": "ess-battery band: Modèle: JBP-5000A"
+  },
+  {
+   "chapter": "specifications",
+   "kind": "hazard-note-out-of-spec-row",
+   "approved": [
+    "RISQUE D’INGESTION : Température de décharge",
+    "Ce dispositif contient une pile bouton. -15°C~45°C (5°F~113°F) -15°C~-10°C (5°F~14°F) Puissance de sortie : 3600 W"
+   ],
+   "pdf": [
+    "Température de décharge",
+    "RISQUE D’INGESTION : Ce dispositif contient une pile bouton."
+   ]
+  },
+  {
+   "chapter": "contact",
+   "kind": "unprinted-title",
+   "approved": "CONTACTEZ-NOUS",
+   "pdf": null
+  }
+ ]
+}

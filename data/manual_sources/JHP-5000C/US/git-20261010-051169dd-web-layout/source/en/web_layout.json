@@ -1,0 +1,584 @@
+{
+ "schema_version": "jhp5000c-web-layout-changes/v1",
+ "language": "en",
+ "approved_source": "../git-20261009-051169dd/source/en/content.json",
+ "changes": [
+  {
+   "chapter": "maintenance",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "symbols",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "fcc",
+   "action": "nested-under-print-chapter",
+   "parent": "safety"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-sts",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "ess-package",
+   "action": "nested-under-print-chapter",
+   "parent": "ess"
+  },
+  {
+   "chapter": "*",
+   "action": "regular-state-words",
+   "removed": [
+    {
+     "chapter": "overview",
+     "word": "on",
+     "context": "Press the button on the retractable handle and pull up to extend."
+    },
+    {
+     "chapter": "overview",
+     "word": "on",
+     "context": "Turns on/off the switch to enable/disable high"
+    },
+    {
+     "chapter": "overview",
+     "word": "off",
+     "context": "Turns on/off the switch to enable/disable high"
+    },
+    {
+     "chapter": "overview",
+     "word": "on",
+     "context": "Press the button on the retractable handle and pull up to extend."
+    },
+    {
+     "chapter": "overview",
+     "word": "on",
+     "context": "Turns on/off the switch to enable/disable high"
+    },
+    {
+     "chapter": "overview",
+     "word": "off",
+     "context": "Turns on/off the switch to enable/disable high"
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "operations",
+     "word": "on",
+     "context": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+     "chapter": "troubleshooting",
+     "word": "on",
+     "context": "PV input overvoltage; DC charging module overtemperature protection on/triggered; Output overcurrent protection of the D"
+    },
+    {
+     "chapter": "troubleshooting",
+     "word": "on",
+     "context": "PV input overvoltage; DC charging module overtemperature protection on/triggered; Output overcurrent protection of the D"
+    },
+    {
+     "chapter": "troubleshooting",
+     "word": "on",
+     "context": "BMS overcurrent / short circuit protection on/triggered"
+    },
+    {
+     "chapter": "troubleshooting",
+     "word": "on",
+     "context": "USB short circuit protection on/triggered"
+    },
+    {
+     "chapter": "connections",
+     "word": "on",
+     "context": "Jackery HomePower 5000 Plus can power your home loads via the Smart Transfer Switch. For details on how to use it, pleas"
+    },
+    {
+     "chapter": "connections",
+     "word": "on",
+     "context": "Jackery HomePower 5000 Plus can power your home loadsvia the Smart Transfer Switch. For details on how to use it,please "
+    },
+    {
+     "chapter": "ess-package",
+     "word": "off",
+     "context": "Marking-off Template"
+    },
+    {
+     "chapter": "ess-package",
+     "word": "off",
+     "context": "Marking-off Template"
+    }
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "action": "unprinted-title-removed",
+   "title": "FCC"
+  },
+  {
+   "chapter": "safety",
+   "action": "risk-banner",
+   "title": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "OPERATING INSTRUCTIONS"
+  },
+  {
+   "chapter": "maintenance",
+   "action": "print-pill-title",
+   "title": "USER MAINTENANCE INSTRUCTIONS"
+  },
+  {
+   "chapter": "symbols",
+   "action": "print-pill-title",
+   "title": "MEANING OF SYMBOLS"
+  },
+  {
+   "chapter": "safety",
+   "action": "danger-callout-lines",
+   "bold_body": true
+  },
+  {
+   "chapter": "safety",
+   "action": "warning-lockup",
+   "label": "WARNING",
+   "bold_body": true
+  },
+  {
+   "chapter": "safety",
+   "action": "danger-lockup",
+   "label": "DANGER"
+  },
+  {
+   "chapter": "charging",
+   "action": "caution-item-2-unnested",
+   "label": "Caution"
+  },
+  {
+   "chapter": "ups",
+   "action": "callout-numbered-items",
+   "label": "Note",
+   "items": 3
+  },
+  {
+   "chapter": "connections",
+   "action": "callout-numbered-items",
+   "label": "Caution",
+   "items": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Note",
+   "items": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Caution",
+   "items": 3
+  },
+  {
+   "chapter": "charging",
+   "action": "callout-numbered-items",
+   "label": "Caution",
+   "items": 3
+  },
+  {
+   "chapter": "ups",
+   "action": "paragraph-numbered-steps",
+   "items": 2
+  },
+  {
+   "chapter": "ess",
+   "action": "callout-print-lines",
+   "label": "Caution",
+   "lines": 9
+  },
+  {
+   "chapter": "charging",
+   "action": "inline-label-callout",
+   "label": "Caution"
+  },
+  {
+   "chapter": "app",
+   "action": "glued-label-callout",
+   "label": "Remarks"
+  },
+  {
+   "chapter": "operations",
+   "action": "lcd-screen-table",
+   "states": [
+    "LCD Screen",
+    "Always-on Display Mode (under charging or discharging state)"
+   ],
+   "approved_paragraphs": 14
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-icon-print-structure",
+   "state_lines": 10
+  },
+  {
+   "chapter": "troubleshooting",
+   "action": "codes-names-bold-cause-lines",
+   "line_breaks": 5
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "connections",
+   "action": "sold-separately-capsule",
+   "title": "CONNECT TO BATTERY PACK(S)"
+  },
+  {
+   "chapter": "connections",
+   "action": "sold-separately-capsule",
+   "title": "CONNECT TO A SMART TRANSFER SWITCH"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "model-in-band",
+   "model": "Model: JHP-5000C"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "model-in-band",
+   "model": "Model: JBP-5000A"
+  },
+  {
+   "chapter": "ess-sts",
+   "action": "model-in-band",
+   "model": "Model: JA-TS02A"
+  },
+  {
+   "chapter": "ess",
+   "action": "system-model-in-band",
+   "model": "System Model HB5000C-TS02A"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "plain-title",
+   "title": "SPECIFICATIONS"
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "INPUT PORTS",
+   "values": [
+    "120V~60Hz, 12A Max (Duration time < 3h when current exceeds 12A) 240V~60Hz, 16.7A Max",
+    "2 x DC 8mm Ports; 16V-60V⎓10.5A Max, Double to 21A/1200W Max 11V-16V (Working Voltage)⎓8A Max, Double to 8A Max"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "ENVIRONMENTAL OPERATING TEMPERATURE",
+   "values": [
+    "-15°C~45°C (5°F~113°F) -15°C~-10°C (5°F~14°F) Output Power: 3600W"
+   ]
+  },
+  {
+   "chapter": "ess-host",
+   "action": "spec-value-print-lines",
+   "table": "INPUT PORTS",
+   "values": [
+    "120V~60Hz, 12A Max (Duration time < 3h when current exceeds 12A) 240V~60Hz, 16.7A Max",
+    "2 x DC 8mm Ports; 16V-60V⎓10.5A Max, Double to 21A/1200W Max 11V-16V (Working Voltage)⎓8A Max, Double to 8A Max"
+   ]
+  },
+  {
+   "chapter": "ess-host",
+   "action": "spec-value-print-lines",
+   "table": "ENVIRONMENTAL OPERATING TEMPERATURE",
+   "values": [
+    "-15°C~45°C (5°F~113°F) -15°C~-10°C (5°F~14°F) Output Power: 3600W"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "trademark-note",
+   "split_hazard": true
+  },
+  {
+   "chapter": "ess-host",
+   "action": "trademark-note",
+   "split_hazard": false
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "If this product is stored for a long period of time (3 months - 6 months) with t"
+  },
+  {
+   "chapter": "storage",
+   "action": "soft-wrap-joined",
+   "text": "If this product is stored for a long period of time (3 months - 6 months) with t"
+  },
+  {
+   "chapter": "ess",
+   "action": "soft-wrap-joined",
+   "text": "To connect the Jackery HomePower 5000 Plus to the battery pack, use the expansio"
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "paragraphs": 2
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "Connect to Low-PV Input Port"
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "Connect to High-PV Input Port"
+  },
+  {
+   "chapter": "charging",
+   "action": "bullet-subhead",
+   "text": "High-PV + Low-PV Input"
+  },
+  {
+   "chapter": "charging",
+   "action": "prose-pill",
+   "text": "Fully charge the product before its first use."
+  },
+  {
+   "chapter": "specifications",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "ess-host",
+   "action": "ingestion-before-trademark"
+  },
+  {
+   "chapter": "ess-battery",
+   "action": "ingestion-note"
+  },
+  {
+   "chapter": "*",
+   "action": "print-emphasis",
+   "items": [
+    {
+     "chapter": "app",
+     "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+     "bold": [
+      "4.1 To turn on Wi-Fi & Bluetooth:"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+     "bold": [
+      "4.2 To turn off Wi-Fi & Bluetooth:"
+     ]
+    },
+    {
+     "chapter": "app",
+     "text": "4.3 To reset Wi-Fi & Bluetooth：",
+     "bold": [
+      "4.3 To reset Wi-Fi & Bluetooth："
+     ]
+    }
+   ]
+  },
+  {
+   "chapter": "storage",
+   "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "storage",
+   "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "app",
+   "action": "adjacent-lists-merged"
+  },
+  {
+   "chapter": "contact",
+   "action": "back-cover-card",
+   "removed_title": "CONTACT US"
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-front",
+   "top": 266.0,
+   "bottom": 495.0,
+   "right_aligned_lines": [
+    1,
+    2,
+    4,
+    5,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    18,
+    20,
+    22
+   ]
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-left",
+   "top": 39.0,
+   "bottom": 253.0,
+   "right_aligned_lines": []
+  },
+  {
+   "chapter": "overview",
+   "action": "full-frame",
+   "figure": "overview-right",
+   "top": 238.0,
+   "bottom": 504.0,
+   "right_aligned_lines": []
+  },
+  {
+   "chapter": "*",
+   "action": "reference-captions-rebound",
+   "figures": [
+    "native-pdf/page-6/overview-front",
+    "native-pdf/page-7/overview-right",
+    "native-pdf/page-10/ac-output",
+    "native-pdf/page-11/usb-output",
+    "native-pdf/page-11/dc-output",
+    "native-pdf/page-14/sts-connect",
+    "native-pdf/page-27/package-sts"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "preface",
+   "kind": "print-badge",
+   "approved": "EN",
+   "pdf": "US"
+  },
+  {
+   "chapter": "symbols",
+   "kind": "signal-word-meanings",
+   "approved": [
+    [
+     "WARNING",
+     "Hazardous practices that may result in personal injury and/or property damage."
+    ],
+    [
+     "CAUTION",
+     "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+    ]
+   ],
+   "pdf": [
+    [
+     "WARNING",
+     "Hazardous practices that may result in severe injury, death, and/or property damage."
+    ],
+    [
+     "CAUTION",
+     "Hazardous practices that may result in personal injury and/or property damage."
+    ],
+    [
+     "Note",
+     "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+    ]
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "kind": "unprinted-title",
+   "approved": "FCC",
+   "pdf": null
+  },
+  {
+   "chapter": "safety",
+   "kind": "duplicated-callout-label",
+   "approved": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors，e.g. Home RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use. DANGER",
+   "pdf": "This device is intended for indoor use only (Please place this device in a similar indoor environment when using it outdoors，e.g. Home RVs, tents, cabins, etc.). ※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+  },
+  {
+   "chapter": "charging",
+   "kind": "misplaced-callout-label",
+   "approved": "When connecting solar panels in series, ensure that the maximum voltage output of all panels is Caution within 16V-60V for the low-PV input port, and 135V-450V for the high-PV input port.",
+   "pdf": "Caution | When connecting solar panels in series, ensure that the maximum voltage output of all panels is within 16V-60V for the low-PV input port, and 135V-450V for the high-PV input port."
+  },
+  {
+   "chapter": "ess-battery",
+   "kind": "model-label-placement",
+   "approved": "ess-sts: Model: JBP-5000A",
+   "pdf": "ess-battery band: Model: JBP-5000A"
+  },
+  {
+   "chapter": "specifications",
+   "kind": "registered-mark-position",
+   "approved": "INGESTION HAZARD: This product contains a button cell or coin battery. ® ® ※ USB Type-C and USB-C are registered trademarks of USB Implementers Forum.",
+   "pdf": "INGESTION HAZARD: This product contains a button cell or coin battery. | ※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+  },
+  {
+   "chapter": "ess-host",
+   "kind": "registered-mark-position",
+   "approved": "® ® ※ USB Type-C and USB-C are registered trademarks of USB Implementers Forum.",
+   "pdf": "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+  },
+  {
+   "chapter": "contact",
+   "kind": "unprinted-title",
+   "approved": "CONTACT US",
+   "pdf": null
+  }
+ ]
+}
