@@ -94,6 +94,18 @@ def _reference(page, row: dict, meaning: str) -> bytes:
     if _text(row['caption_text']) != _text(meaning):
         raise ValueError('symbol meaning differs from bound source caption')
     if source_text.strip():
+        # Native intake may join a printed line-end hyphen. Each join must
+        # identify one exact word split in this hash-bound source rectangle;
+        # inline hyphens and unspecified source text remain significant.
+        joins = row.get('caption_linebreak_joins', [])
+        if not isinstance(joins, list):
+            raise ValueError('symbol caption linebreak joins must be a list')
+        for fragment in joins:
+            match = (re.fullmatch(r'([^\W\d_]+)-[ \t]*\r?\n[ \t]*([^\W\d_]+)', fragment)
+                     if isinstance(fragment, str) else None)
+            if match is None or source_text.count(fragment) != 1:
+                raise ValueError('symbol caption join must bind one exact source linebreak')
+            source_text = source_text.replace(fragment, ''.join(match.groups()), 1)
         if _text(source_text) != _text(meaning):
             raise ValueError('symbol meaning differs from source PDF row text')
     else:

@@ -579,4 +579,4 @@ Row MA-248 is still live: see the [live registry](merge_authorizations.md#regist
 
 Rows MA-260, MA-259 are still live: see the [live registry](merge_authorizations.md#registry).
 
-Row MA-280 is still live: see the [live registry](merge_authorizations.md#registry).
+Rows MA-280, MA-281 are still live: see the [live registry](merge_authorizations.md#registry).
