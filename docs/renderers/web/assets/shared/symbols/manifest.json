@@ -1397,6 +1397,84 @@
         ],
         "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
       }
+    },
+    {
+      "key": "read-manual/person-reading-circle-tw-477dfbd7",
+      "path": "native-v1/person-reading-circle-tw-477dfbd7.svg",
+      "sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          44,
+          45,
+          46,
+          47,
+          48
+        ],
+        "glyph_bbox": [
+          31.213700103759766,
+          233.70081787109376,
+          55.789702606201175,
+          258.27479858398436
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+      "path": "native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          31,
+          32,
+          33
+        ],
+        "glyph_bbox": [
+          189.15220336914064,
+          205.9471862792969,
+          208.6981994628906,
+          225.48118896484374
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
+    },
+    {
+      "key": "recycle/taiwan-restricted-battery-477dfbd7",
+      "path": "native-v1/taiwan-restricted-battery-477dfbd7.svg",
+      "sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "glyph_bbox": [
+          191.00069885253907,
+          266.96461181640626,
+          207.518603515625,
+          287.0682861328125
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
     }
   ],
   "withdrawn": [
