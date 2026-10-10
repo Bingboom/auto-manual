@@ -1098,14 +1098,9 @@
       "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
     },
     {
-      "path": "docs/renderers/contracts/web_language_navigation.css",
-      "size": 1976,
-      "sha256": "c64c840c21ccf11abe3ea0f1baa54f64b263e0e1ae6eec8410070025c4ac7489"
-    },
-    {
       "path": "docs/renderers/contracts/web_manual.css",
-      "size": 47754,
-      "sha256": "59672a89a81fb8ec2dc7c5885505982d7b4dc1898344569871560f26bc7cf096"
+      "size": 47733,
+      "sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a"
     },
     {
       "path": "docs/renderers/contracts/web_manual.json",
@@ -1164,8 +1159,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_source_panels.css",
-      "size": 24700,
-      "sha256": "b33255db10726aa17df4aa6d546d068dddfe528d0feacb48b77c0309d7f98536"
+      "size": 24791,
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719"
     },
     {
       "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
@@ -1649,8 +1644,8 @@
     },
     {
       "path": "tools/markdown_bundle.py",
-      "size": 10729,
-      "sha256": "c7e1ccb3c4cb6c9ae46a1e7eb44acf0a0dbcf62e269c395ee2a4a6b6062bfd13"
+      "size": 10075,
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90"
     },
     {
       "path": "tools/utils/__init__.py",
@@ -1824,8 +1819,8 @@
     },
     {
       "path": "tools/web/document_ir.py",
-      "size": 7706,
-      "sha256": "7b2e36b360cca00b2d8390d9d9d47467f17aa0b0912b4a2a1d0ea346683c497f"
+      "size": 7707,
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d"
     },
     {
       "path": "tools/web/document_link_actions.py",
@@ -1983,9 +1978,9 @@
       "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
     },
     {
-      "path": "tools/web/language_navigation.py",
-      "size": 6872,
-      "sha256": "e391660c0db0f0095e3a66a9c179ce6921b1243c56ece4ddb5d308e9d7415f47"
+      "path": "tools/web/language_inventory.py",
+      "size": 3984,
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb"
     },
     {
       "path": "tools/web/language_release_evidence.py",
@@ -2054,8 +2049,8 @@
     },
     {
       "path": "tools/web/stylesheets.py",
-      "size": 1571,
-      "sha256": "82efb634e2d340698d42a092139bfe1429240d8c37b9531ac899581b12955082"
+      "size": 1536,
+      "sha256": "216e1c2ecf96e497f00a45c445c87307b9a9a86e9533fbe7c9fcc562a223c623"
     },
     {
       "path": "tools/web/symbol_asset_admission.py",
@@ -2852,8 +2847,8 @@
     },
     {
       "path": "web/en/_static/web_manual.css",
-      "size": 125530,
-      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/en/assets/ac-charge.svg",
@@ -3268,7 +3263,7 @@
     {
       "path": "web/en/manual.ir.json",
       "size": 1035649,
-      "sha256": "3dc01cf8ef4241733cd79a6450dd7dfea7bb74ed596ce94a9f62b52097ab25f2"
+      "sha256": "639d9412f090a8a057a802cf222d00b876925ea8a8351257949742b901fa0576"
     },
     {
       "path": "web/en/manual_jhp5000c_us_en.md",
@@ -3282,8 +3277,8 @@
     },
     {
       "path": "web/es/_static/web_manual.css",
-      "size": 125530,
-      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/es/assets/ac-charge-es.svg",
@@ -3698,7 +3693,7 @@
     {
       "path": "web/es/manual.ir.json",
       "size": 1075450,
-      "sha256": "0dcad58e6dc1d1f9b3e5e3b5e4554014ab95494095dde19dd5578e2f6e720779"
+      "sha256": "20ce7015967927b4dc34f14b24a13ca6f4c773847876aadd2940cf5fc450b6e3"
     },
     {
       "path": "web/es/manual_jhp5000c_us_es.md",
@@ -3712,8 +3707,8 @@
     },
     {
       "path": "web/fr/_static/web_manual.css",
-      "size": 125530,
-      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
     },
     {
       "path": "web/fr/assets/ac-charge-fr.svg",
@@ -4128,7 +4123,7 @@
     {
       "path": "web/fr/manual.ir.json",
       "size": 1071138,
-      "sha256": "da169179f53960d0d049b755173fd544ab2920bccc4426a1f6004651d09f7ae2"
+      "sha256": "2b32415eca7497f50d2f97c4262f9f335a9105073521004fcd7bdbc7359aa018"
     },
     {
       "path": "web/fr/manual_jhp5000c_us_fr.md",
