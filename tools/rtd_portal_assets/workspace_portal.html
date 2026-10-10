@@ -11,7 +11,7 @@
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app">
-{{ site_sidebar('overview', {'share': share_entry, 'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry}) }}
+{{ site_sidebar('overview', {'share': share_entry, 'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'data': data_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '概览') }}
 
@@ -64,6 +64,7 @@
             {% if share_entry %}<a href="{{ share_entry|e }}"><span class="update-icon">✦</span><span><strong>AI 使用知识分享</strong><small>已加入分享稿与配套示例</small></span><em>分享资料</em><b>→</b></a>{% endif %}
             {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}"><span class="update-icon">▦</span><span><strong>说明书工作台</strong><small>数据与模板入口、构建指引和多格式交付物矩阵</small></span><em>交付</em><b>→</b></a>{% endif %}
             {% if design_entry %}<a href="{{ pathto('workspace/design/index') }}"><span class="update-icon">◐</span><span><strong>设计系统</strong><small>说明书网页版的颜色、字体与组件，取自当前样式表</small></span><em>规范</em><b>→</b></a>{% endif %}
+            {% if data_entry %}<a href="{{ pathto('workspace/data/index') }}"><span class="update-icon">▥</span><span><strong>系统数据</strong><small>已发布手册、机型能力与素材注册的统计，可按区域和机型筛选</small></span><em>数据</em><b>→</b></a>{% endif %}
             <a href="{{ pathto('index') }}"><span class="update-icon">▤</span><span><strong>工作资料</strong><small>查看产品说明书等已交付资料</small></span><em>交付</em><b>→</b></a>
           </div>
         </section>
