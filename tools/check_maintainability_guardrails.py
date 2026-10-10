@@ -148,6 +148,18 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/idml/stories.py": 259,
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
+    # Agent-facing docs (2026-10-10 split). Every agent loads AGENTS.md and is
+    # pointed at the rest; the guides had grown to ~76K/~70K tokens because notes
+    # were appended to the hub. The hubs are now indexes over topic pages: put new
+    # content on the owning page, add an index row only for a new page. The live
+    # files shrink by moving entries out: expired grants to
+    # dev/merge_authorizations_archive.md, oldest log records to
+    # code_optimization_log_archive.md.
+    "AGENTS.md": 210,
+    "code-as-doc/build_doc_guide.md": 80,
+    "user-guide/hello_auto-doc.md": 65,
+    "code-as-doc/dev/merge_authorizations.md": 150,
+    "code-as-doc/code_optimization_log.md": 250,
 }
 
 

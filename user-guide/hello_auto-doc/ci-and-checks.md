@@ -11,6 +11,7 @@ GitHub note:
 - `Manual Validation` now includes smoke checks for `diff-report` and `release-manifest` in addition to the existing validation jobs
 - the shared GitHub-hosted Feishu worker setup now installs `pandoc` from the official release action instead of `apt-get`, and it reuses pip/npm download caches, so remote queue runs are less likely to spend 10+ minutes waiting on slow dependency downloads before the actual build starts
 - `Manual Validation` now also runs `python -m tools.check_maintainability_guardrails` as a low-noise guard against the main orchestration and validation hotspots growing back into giant files
+- the same guard caps the agent-facing hubs (`AGENTS.md`, the build and workflow guide indexes, the live merge-authorization registry, the recent optimization log); move content to the owning topic page or archive rather than raising a cap
 - that guard also applies a reviewed language-literal ratchet: language tables may shrink, but new literal tables must be explicitly reviewed in the baseline diff
 - the same guard applies a per-function complexity ratchet (`data/complexity_baseline.tsv`): new functions stay at complexity 20 or below, recorded ones may only get simpler, and a simplification is locked in by rerunning `python -m tools.check_complexity_ratchet update`
 - the same guard counts test patches on facade modules (`data/facade_patch_baseline.tsv`): tests should patch the module that looks a name up, so the count may only fall; a drop is locked in with `python -m tools.check_facade_patch_ratchet update`
