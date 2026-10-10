@@ -100,8 +100,8 @@
     },
     {
       "path": "symbol-caption-deltas.md",
-      "size": 10097,
-      "sha256": "9acc3b82f2c44aaf9197f46e4145af0d512defea6765936fe115cb66ef6b4f48"
+      "size": 10096,
+      "sha256": "9f9cf7cf08579f2db3bc632d97583acf1ca164aacd0e46dc4bece6bd30975ae7"
     },
     {
       "path": "validation.json",

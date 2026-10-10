@@ -173,4 +173,3 @@ Web：Questo simbolo indica che il prodotto non deve essere smaltito insieme ai 
 PDF：Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.
 
 处理：需要独立核对，未自动替换。
-
