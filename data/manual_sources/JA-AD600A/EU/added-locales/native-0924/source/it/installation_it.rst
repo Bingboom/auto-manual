@@ -1,8 +1,8 @@
 7. INSTALLAZIONE DEL PRODOTTO
 =============================
 
-7.1 INSTALLAZIONE DEL PRODOTTO
-------------------------------
+7.1 Schema di installazione
+---------------------------
 
 .. container:: hb-source-operation hb-installation-overview
 
@@ -158,8 +158,8 @@
       | Cavo ACC del veicolo
 
 
-7.6 Cavo ACC del veicolo
-------------------------
+7.6 Installazione del prodotto
+------------------------------
 
 .. container:: hb-source-operation hb-source-note hb-source-installation-note
 
