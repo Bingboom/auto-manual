@@ -15,7 +15,7 @@
 
 **F4: Warum funktioniert das Produkt nicht?**
 
-**A:** Some older or specific vehicle models may have a lower system voltage that does not match the product's operating voltage. If the product's operating voltage is higher than the vehicle's system voltage (12 V/24 V) and the product fails to operate after being switched on, please contact Jackery customer service for assistance.
+**A:** Einige ältere oder bestimmte Fahrzeugmodelle haben möglicherweise eine niedrigere Systemspannung, die nicht mit der Betriebsspannung des Produkts übereinstimmt. Wenn die Betriebsspannung des Produkts höher als die Systemspannung des Fahrzeugs (12 V/24 V) ist und das Produkt nach dem Einschalten nicht funktioniert, wenden Sie sich bitte an den Jackery-Kundendienst.
 
 **F5: Erhöht dieses Produkt den Kraftstoffverbrauch?**
 

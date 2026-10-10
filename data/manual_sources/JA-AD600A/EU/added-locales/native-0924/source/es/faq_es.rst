@@ -5,7 +5,7 @@
 
 **Respuesta:** Para garantizar la seguridad y un cableado ordenado, se recomienda que la instalación la realice un taller de modificación profesional. Los no profesionales no deben intentar instalarlo por sí mismos.
 
-**PREGUNTA #2 ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del producto?**
+**PREGUNTA #2: ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del producto?**
 
 **Respuesta:** 1. Limpie la superficie del producto con un paño seco. Para las manchas difíciles, utilice un detergente neutro diluido. 2. Revise los conectores, el cableado, los tornillos y los fusibles en busca de daños o envejecimiento. Si necesita ayuda, póngase en contacto con el servicio de atención al cliente de Jackery. 3. Asegúrese de que el producto esté instalado de forma segura y evite la luz solar directa y los entornos de alta temperatura.
 
@@ -25,7 +25,7 @@
 
 **Respuesta:** Este producto incluye protección contra sobretensión, subtensión, sobrecorriente, sobrecarga, cortocircuito y alta/baja temperatura para garantizar una carga segura y fiable. Además, la función inteligente de detección de tensión evita la descarga excesiva de la batería, garantizando que el vehículo arranque con normalidad.
 
-**PREGUNTA 7#: ¿Por qué es inestable la potencia de carga?**
+**PREGUNTA #7: ¿Por qué es inestable la potencia de carga?**
 
 **Respuesta:** La potencia de carga se ajusta dinámicamente según las condiciones de conducción del vehículo y las condiciones de la carretera. Esto ayuda a proteger la batería del vehículo al tiempo que logra la máxima eficiencia de carga. Las fluctuaciones de energía son normales.
 

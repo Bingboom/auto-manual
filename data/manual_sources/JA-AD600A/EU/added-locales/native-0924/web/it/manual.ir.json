@@ -26,9 +26,9 @@
     "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png",
     "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
   ],
-  "bundle_root": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it",
-  "bundle_sha256": "e89796ec5d1bdc9a5bf08ff183595b49216ecc72c8779db81b395177bf3afbdc",
-  "content_sha256": "559dce5820c078563e4d62925b3049eaca3d2a6b1301f3096eff0b108d89af63",
+  "bundle_root": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it",
+  "bundle_sha256": "ae4aa2984940e439ca3b413373b18506c2c9b8ec8f0bf19ec852fa88cd7713a5",
+  "content_sha256": "aa7b750014a872b9e2fcc6f04f9a9ad052492e8156e01076d307c269df003e6c",
   "language": "it",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1267,7 +1267,7 @@
     "declared_languages": [
       "it"
     ],
-    "frozen_stylesheet_sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1",
+    "frozen_stylesheet_sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434",
     "illustration_provenance": {
       "illustrations": [
         {
@@ -4259,7 +4259,7 @@
             "path": "assets/ir/bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207/wiring_fuse_base.svg",
             "sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+          "asset_ref": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
           "locale": "it",
           "page_id": "installation_it.rst",
           "section": "operation",
@@ -4274,7 +4274,7 @@
             "path": "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png",
             "sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+          "asset_ref": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
           "locale": "it",
           "page_id": "installation_it.rst",
           "section": "operation",
@@ -4289,7 +4289,7 @@
             "path": "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png",
             "sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427"
           },
-          "asset_ref": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+          "asset_ref": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
           "locale": "it",
           "page_id": "installation_it.rst",
           "section": "operation",
@@ -4740,7 +4740,7 @@
       "language": "it",
       "page_id": "disclaimer_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/disclaimer_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/disclaimer_it.rst",
       "source_ref": "disclaimer_it.rst",
       "source_sha256": "a7f8952d52099c7b111ccb7761e20649deddca4645d9646707e61e0268af0b93"
     },
@@ -4788,7 +4788,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications_it.rst:block-0003",
-          "content_sha256": "83ccb3428f4633eb36411a79839b00bed104aea509c1f601dde007db3c5e0ea5",
+          "content_sha256": "1b9a06acd51f74572b7721893df4bb946feca953a3bde5d1513e5bc08a0a1e38",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5579,7 +5579,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/specifications_it.rst#specification-1",
+              "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/specifications_it.rst#specification-1",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5606,7 +5606,7 @@
       "language": "it",
       "page_id": "specifications_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/specifications_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/specifications_it.rst",
       "source_ref": "specifications_it.rst",
       "source_sha256": "99f8bd62ee46e7fc6aa2093bb91f37375be352789d2dcac72670d7ef6049b18d"
     },
@@ -5643,7 +5643,7 @@
       "language": "it",
       "page_id": "dimensions_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/dimensions_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/dimensions_it.rst",
       "source_ref": "dimensions_it.rst",
       "source_sha256": "f9551aba3a1fa6ecec310e63b80aa3161714ecfae8ba02aed9479d0c91850e17"
     },
@@ -5680,7 +5680,7 @@
             "assets/ir/f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac/inbox_user_guide.png"
           ],
           "block_id": "box_contents_it.rst:block-0002",
-          "content_sha256": "ca1b44209d54e7efd93eba580128d960a89ce842708d806ca6898b2e318ef6fd",
+          "content_sha256": "3170b7ee69361e3440c0797cd4ee3e41fe481001cba410bcf14dfc58facf7ee9",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -6720,7 +6720,7 @@
                   "role": "tip_body"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/box_contents_it.rst",
+              "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/box_contents_it.rst",
               "token_roles": [
                 "component.special.inbox"
               ],
@@ -6735,7 +6735,7 @@
       "language": "it",
       "page_id": "box_contents_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/box_contents_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/box_contents_it.rst",
       "source_ref": "box_contents_it.rst",
       "source_sha256": "15464acd122168acf50997a2437b11a8d7883cf332c87561f42b45f1df88f550"
     },
@@ -6744,13 +6744,13 @@
         {
           "asset_refs": [],
           "block_id": "product_overview_it.rst:block-0001",
-          "content_sha256": "21825605c6a96815f8232bfd01342177e013fb5b7f68e7dda84333dd3c1e1029",
+          "content_sha256": "e635b766c4f15db53898450259eb244f21bead407149fe46d49ad4febbb334d3",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "4. VISÃO GERAL DO PRODUTO"
+                "text": "4. PANORAMICA DEL PRODOTTO"
               }
             ],
             "kind": "heading",
@@ -6764,7 +6764,7 @@
             "assets/ir/c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca/product_overview_base.png"
           ],
           "block_id": "product_overview_it.rst:block-0002",
-          "content_sha256": "c39219233d0cc819325e36e20952f18a55eef664187fe9018fbc9a95bc342301",
+          "content_sha256": "9227b65bc87c73a134b166310d99e9bfe56a2ee4280f1e8e52d1ebb85d23be6f",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7080,7 +7080,7 @@
                   "role": "captions"
                 }
               ],
-              "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/product_overview_it.rst#reference-product-overview",
+              "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/product_overview_it.rst#reference-product-overview",
               "token_roles": [
                 "component.special.reference-figure"
               ],
@@ -7107,9 +7107,9 @@
       "language": "it",
       "page_id": "product_overview_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/product_overview_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/product_overview_it.rst",
       "source_ref": "product_overview_it.rst",
-      "source_sha256": "0030874bceed52204d9f959cb84c6bbd9ed12939325a890980451953bfc8f38f"
+      "source_sha256": "8fac167309c1ab25a056cd787729ac65ae50616093042df1577e3841fb9d4c82"
     },
     {
       "blocks": [
@@ -9134,7 +9134,7 @@
       "language": "it",
       "page_id": "important_safety_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/important_safety_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/important_safety_it.rst",
       "source_ref": "important_safety_it.rst",
       "source_sha256": "c83c83a4f4a74c3d8142930de3a7ecccefcddc5c954b1142c67b66236ebf2bae"
     },
@@ -9726,7 +9726,7 @@
       "language": "it",
       "page_id": "faq_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/faq_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/faq_it.rst",
       "source_ref": "faq_it.rst",
       "source_sha256": "ee0953b86c4bdf41d5886b95c171848baa5af8dfdb64064416b9e543446624f8"
     },
@@ -9755,10 +9755,10 @@
             "assets/ir/0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f/installation_diagram_base.png"
           ],
           "block_id": "installation_it.rst:block-0002",
-          "content_sha256": "eb4a8271beb9699523225615ba20b3e71339133990a89f6fe05a6b8a6c22b04e",
+          "content_sha256": "cbe5436393441d8455861c818d4d2c8445375fbd6433bb489bc1658a04f59cd8",
           "kind": "flow",
           "payload": {
-            "anchor": "installazione-del-prodotto-1",
+            "anchor": "schema-di-installazione",
             "children": [
               {
                 "kind": "text",
@@ -9768,7 +9768,7 @@
                 "children": [
                   {
                     "kind": "text",
-                    "text": "7.1 INSTALLAZIONE DEL PRODOTTO"
+                    "text": "7.1 Schema di installazione"
                   }
                 ],
                 "kind": "heading",
@@ -10171,7 +10171,7 @@
                           "role": "captions"
                         }
                       ],
-                      "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-installation-diagram",
+                      "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-installation-diagram",
                       "token_roles": [
                         "component.special.reference-figure"
                       ],
@@ -11076,7 +11076,7 @@
             "assets/ir/3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b/wiring_acc_base.png"
           ],
           "block_id": "installation_it.rst:block-0010",
-          "content_sha256": "35d4caf5b4e44bcc4b723cdc8f484a7c0d59beb3ad8eb6e19ee25472ed7b2eca",
+          "content_sha256": "a123fdda1a9b3d85d9187437ea015f5612c2c4d65d8107dd95e90141f52418f5",
           "kind": "flow",
           "payload": {
             "anchor": "fasi-di-cablaggio",
@@ -11580,9 +11580,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 7,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
+                            "image_key": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_fuse_base.svg",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "fc2ac49796efd2c7879c3ad2793a7bc070e6d53b2d06155f1b72ab3856a8b5bb",
+                            "source_fragment_sha256": "37f1b705c15b9bd179a689b1b504b3c8935c7a8114629351186b6d087eb87831",
                             "web_replace_key": "reference.wiring-fuse"
                           },
                           "schema_version": "component-spec/v1",
@@ -11642,7 +11642,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-wiring-fuse",
+                          "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-wiring-fuse",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -12040,9 +12040,9 @@
                             "captions_origin": "carrier",
                             "capture_following_lines": 2,
                             "composite_locale": "",
-                            "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
+                            "image_key": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/wiring_acc_base.png",
                             "presentation_mode": "base-art-live-copy",
-                            "source_fragment_sha256": "cf59a5a159e35328e00c2f29839b66308baf10aedf54b0fadd607b88149192be",
+                            "source_fragment_sha256": "eb148035397f76d08ee09172d92f879138f53c24217a2795884bffe830c1d7ad",
                             "web_replace_key": "reference.wiring-acc"
                           },
                           "schema_version": "component-spec/v1",
@@ -12082,7 +12082,7 @@
                               "role": "captions"
                             }
                           ],
-                          "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-wiring-acc",
+                          "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-wiring-acc",
                           "token_roles": [
                             "component.special.reference-figure"
                           ],
@@ -12162,10 +12162,10 @@
             "assets/ir/312076a28c1795730ae867c3660075da10d04118b0abf628ced67df10c2cb4ff/panel_secure.png"
           ],
           "block_id": "installation_it.rst:block-0012",
-          "content_sha256": "e939444027e8cb77119bbb05c72beaa7dbcc4cc883652690e387e62a9aec50c3",
+          "content_sha256": "57f7c792393d559b2ffe589cc4d50fdbd60f213849634d7c362a5cee0a1cf00d",
           "kind": "flow",
           "payload": {
-            "anchor": "cavo-acc-del-veicolo",
+            "anchor": "installazione-del-prodotto-1",
             "children": [
               {
                 "kind": "text",
@@ -12175,7 +12175,7 @@
                 "children": [
                   {
                     "kind": "text",
-                    "text": "7.6 Cavo ACC del veicolo"
+                    "text": "7.6 Installazione del prodotto"
                   }
                 ],
                 "kind": "heading",
@@ -13198,7 +13198,7 @@
             "assets/ir/8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427/connection_base.png"
           ],
           "block_id": "installation_it.rst:block-0014",
-          "content_sha256": "9ae56dd4654336555bf4b40831d4ae8f6a7f9e02a1dd4359b4b4ac36dd320bb0",
+          "content_sha256": "d6675f2c5bcea97bc13649371b465e4ac0d275b76793bfab001d0eb97f1e4610",
           "kind": "flow",
           "payload": {
             "anchor": "collegamento-del-prodotto-a-una-centrale-elettrica-portatile",
@@ -13479,9 +13479,9 @@
                     "captions_origin": "carrier",
                     "capture_following_lines": 3,
                     "composite_locale": "",
-                    "image_key": "file:///Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
+                    "image_key": "file:///Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/assets/ja_ad600a_eu_shared/connection_base.png",
                     "presentation_mode": "base-art-live-copy",
-                    "source_fragment_sha256": "88d5ed9cbd345068c91fdd413ca3ab5a8b7badb08e1a74da995d3c4e9196fc41",
+                    "source_fragment_sha256": "c9957e10243d6292f549f0279218eb58553da5930e627cdf8704e945f9120d33",
                     "web_replace_key": "reference.charger-connection"
                   },
                   "schema_version": "component-spec/v1",
@@ -13525,7 +13525,7 @@
                       "role": "captions"
                     }
                   ],
-                  "source_ref": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-charger-connection",
+                  "source_ref": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst#reference-charger-connection",
                   "token_roles": [
                     "component.special.reference-figure"
                   ],
@@ -13862,9 +13862,9 @@
       "language": "it",
       "page_id": "installation_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/installation_it.rst",
       "source_ref": "installation_it.rst",
-      "source_sha256": "eecda42c8fce26bb1a171f572bd596e000f987c4df04fb3e99917396d82690c9"
+      "source_sha256": "27213aa34f9810ed4e29171a2f37d4f05fe6b9722ea9859ed6586dbd36613b6e"
     },
     {
       "blocks": [
@@ -14604,7 +14604,7 @@
       "language": "it",
       "page_id": "warranty_it.rst",
       "skipped_raw": 0,
-      "source_path": "/Users/pika/Documents/Codex/2026-10-07/kan-x/work/dcdc-release/inbox-wrap-fix/project/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/warranty_it.rst",
+      "source_path": "/Users/hello-tech-team/.codex/worktrees/1465-ja-ad600a/auto-manual-codex/data/manual_sources/JA-AD600A/EU/added-locales/native-0924/source/it/warranty_it.rst",
       "source_ref": "warranty_it.rst",
       "source_sha256": "c152caa67164bdd2060a1937bcd9061383c21a54d44974a6396b9ef4208e47a9"
     }
