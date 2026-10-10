@@ -1,13 +1,13 @@
 {
   "asset_refs": [
-    "assets/fa4d258d0597_symbol-general_warning.png",
-    "assets/8cce9f1db0b3_symbol-read_manual.png",
-    "assets/be98e8b4f78d_symbol-do_not_dismantle.png",
-    "assets/82033df7a883_symbol-no_open_flame.png",
-    "assets/811da4e858e0_symbol-keep_away_from_children.png",
-    "assets/8e21de9bee6e_symbol-li_ion.png",
-    "assets/cf04ff00bdeb_weee2.png",
-    "assets/065ca0976dba_symbol-weee.png",
+    "assets/symbol-general_warning-batch1465.svg",
+    "assets/symbol-read_manual-batch1465.svg",
+    "assets/symbol-do_not_dismantle-batch1465.svg",
+    "assets/symbol-no_open_flame-batch1465.svg",
+    "assets/symbol-keep_away_from_children-batch1465.svg",
+    "assets/symbol-li_ion-batch1465.svg",
+    "assets/symbol-battery_disposal-batch1465.svg",
+    "assets/symbol-weee-batch1465.svg",
     "assets/8b31a2c50e29_inbox-main.png",
     "assets/287650f3a89a_ac_charging_cable.png",
     "assets/87ac44e52863_manual_icon1.png",
@@ -63,7 +63,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "33336e87649891ea32bb8ac7c19570970760b32467cd991f6ca9c772a04b3ad4",
-  "content_sha256": "d0f3fc4d2c6706aa34ee44aa394bdf4c766c8843eddb621c7acb74666105a869",
+  "content_sha256": "9af18ecc34780abbd6699e9e1c8dcf67a589bbad6a63e0a65f740c04bac35b15",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -130,7 +130,15 @@
       "assets/f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
       "assets/fa436f75c7c7_app-control.png": "fa436f75c7c7afa2371b17e6436f2f715758edc7ba4e3d4f5fb3e70e0e5def79",
       "assets/fa4d258d0597_symbol-general_warning.png": "fa4d258d0597a8df85f6770b9140e9c053d0ec60658d749c6c3b00699b08d446",
-      "assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+      "assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+      "assets/symbol-general_warning-batch1465.svg": "eaef6a90726af3e60a79e0f248504e49297eb3292b5ae062d38cd128d42e6ea3",
+      "assets/symbol-read_manual-batch1465.svg": "86b48cf47f0b596dcf2d57ad0e45407d416d5abb34b45e9936d6c9cae0a52933",
+      "assets/symbol-do_not_dismantle-batch1465.svg": "485710ddc8f74a55644647db29fa3c62eaa98d3cfbbea4e7dc98d7d60a7840aa",
+      "assets/symbol-no_open_flame-batch1465.svg": "2fb0aebd9051c751a6ecb9ca82ff418d8d5a9449e434639f250e80099527001c",
+      "assets/symbol-keep_away_from_children-batch1465.svg": "dd1fc4a732d593c1c003c30858ac051eb8280468b88fb8bf349873dcc478eac3",
+      "assets/symbol-li_ion-batch1465.svg": "260b81ab9fb3571e4440250d359264bb7f85973d01db16ed29618efa6ab6faf7",
+      "assets/symbol-battery_disposal-batch1465.svg": "be61c6855d5a5268f359fe1b1381423df264bd9d98622c0c67fd54ad611f73c2",
+      "assets/symbol-weee-batch1465.svg": "0c35a797d48e5e6dc936c3731e395590feafb9aff1b1b2b9447a3af4cc42d510"
     },
     "block_count": 152,
     "component_inventory": {
@@ -7909,6 +7917,11 @@
         "path": "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language",
         "manifest_sha256": "b3566417fedfed4bf4d81853a8d7d84584e4610ff6fb8e0f1f5d1cd6e1e6069e"
       }
+    },
+    "symbol_source_binding": {
+      "source_pdf_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+      "physical_page": 142,
+      "shared_symbols": true
     }
   },
   "model": "JE-2000E",
@@ -8416,58 +8429,58 @@
         },
         {
           "asset_refs": [
-            "assets/fa4d258d0597_symbol-general_warning.png",
-            "assets/8cce9f1db0b3_symbol-read_manual.png",
-            "assets/be98e8b4f78d_symbol-do_not_dismantle.png",
-            "assets/82033df7a883_symbol-no_open_flame.png",
-            "assets/811da4e858e0_symbol-keep_away_from_children.png",
-            "assets/8e21de9bee6e_symbol-li_ion.png",
-            "assets/cf04ff00bdeb_weee2.png",
-            "assets/065ca0976dba_symbol-weee.png"
+            "assets/symbol-general_warning-batch1465.svg",
+            "assets/symbol-read_manual-batch1465.svg",
+            "assets/symbol-do_not_dismantle-batch1465.svg",
+            "assets/symbol-no_open_flame-batch1465.svg",
+            "assets/symbol-keep_away_from_children-batch1465.svg",
+            "assets/symbol-li_ion-batch1465.svg",
+            "assets/symbol-battery_disposal-batch1465.svg",
+            "assets/symbol-weee-batch1465.svg"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "89f37062db06fb39a90a1f5619801392e4ffd17c0e9501fdcb341428e1456de5",
+          "content_sha256": "24018a30ae866af111a1e23f9e2c0ccf2954102bf9e3a6aac0a0efc4fdacf05b",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/fa4d258d0597_symbol-general_warning.png",
+                  "asset_ref": "assets/symbol-general_warning-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/8cce9f1db0b3_symbol-read_manual.png",
+                  "asset_ref": "assets/symbol-read_manual-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/be98e8b4f78d_symbol-do_not_dismantle.png",
+                  "asset_ref": "assets/symbol-do_not_dismantle-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/82033df7a883_symbol-no_open_flame.png",
+                  "asset_ref": "assets/symbol-no_open_flame-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/811da4e858e0_symbol-keep_away_from_children.png",
+                  "asset_ref": "assets/symbol-keep_away_from_children-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/8e21de9bee6e_symbol-li_ion.png",
+                  "asset_ref": "assets/symbol-li_ion-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/cf04ff00bdeb_weee2.png",
+                  "asset_ref": "assets/symbol-battery_disposal-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/065ca0976dba_symbol-weee.png",
+                  "asset_ref": "assets/symbol-weee-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 }

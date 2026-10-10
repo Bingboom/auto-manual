@@ -11,10 +11,11 @@
     "printed_manual_version": null
   },
   "original_source": {
-    "filename": "HTE152-EU-9国语言-0924.ai",
-    "sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
-    "size_bytes": 48125378,
-    "physical_page_count": 179
+    "filename": "JE-2000E_修正版_竖版.pdf",
+    "sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+    "size_bytes": 10263002,
+    "physical_page_count": 179,
+    "role": "operator-provided batch1465 authority PDF; earlier body intake provenance remains pinned in each native IR"
   },
   "recipe_source": {
     "path": "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language",
@@ -27,14 +28,24 @@
   "validation_boundary": "Operator-confirmed batch 1465 preface copy; EU legal subject Jackery. Later native pages and artwork unchanged. Fresh release evidence, human PR merge and RTD readback remain required.",
   "inputs": [
     {
+      "path": "JE-2000E_修正版_竖版.pdf",
+      "size": 10263002,
+      "sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3"
+    },
+    {
       "path": "README.md",
-      "size": 1665,
-      "sha256": "9a2b16f7725d93dc8d6c1ddefb4d158b59f3a7efa82e7504bbc8b8aeaf178275"
+      "size": 2265,
+      "sha256": "bbcc57787a41c1d9bb3ebaf826bab8cca7d996716689b84c8c3c64d03653f41a"
     },
     {
       "path": "approved_copy_corrections.json",
       "size": 6119,
       "sha256": "ea2c7cb0dfdc928666568fa5ee7399cac167f43aa7622f86de4a7b73fea6158d"
+    },
+    {
+      "path": "symbol_caption_recovery.json",
+      "size": 723,
+      "sha256": "3b8e852f7f6d0486dde56ecaa4c2b3367f1a131459e2fca6b078ab8288c2ed5b"
     },
     {
       "path": "web/nl/_static/web_manual.css",
@@ -357,6 +368,46 @@
       "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
     },
     {
+      "path": "web/nl/assets/symbol-battery_disposal-batch1465.svg",
+      "size": 3327,
+      "sha256": "be61c6855d5a5268f359fe1b1381423df264bd9d98622c0c67fd54ad611f73c2"
+    },
+    {
+      "path": "web/nl/assets/symbol-do_not_dismantle-batch1465.svg",
+      "size": 3993,
+      "sha256": "485710ddc8f74a55644647db29fa3c62eaa98d3cfbbea4e7dc98d7d60a7840aa"
+    },
+    {
+      "path": "web/nl/assets/symbol-general_warning-batch1465.svg",
+      "size": 3344,
+      "sha256": "eaef6a90726af3e60a79e0f248504e49297eb3292b5ae062d38cd128d42e6ea3"
+    },
+    {
+      "path": "web/nl/assets/symbol-keep_away_from_children-batch1465.svg",
+      "size": 4116,
+      "sha256": "dd1fc4a732d593c1c003c30858ac051eb8280468b88fb8bf349873dcc478eac3"
+    },
+    {
+      "path": "web/nl/assets/symbol-li_ion-batch1465.svg",
+      "size": 4934,
+      "sha256": "260b81ab9fb3571e4440250d359264bb7f85973d01db16ed29618efa6ab6faf7"
+    },
+    {
+      "path": "web/nl/assets/symbol-no_open_flame-batch1465.svg",
+      "size": 2340,
+      "sha256": "2fb0aebd9051c751a6ecb9ca82ff418d8d5a9449e434639f250e80099527001c"
+    },
+    {
+      "path": "web/nl/assets/symbol-read_manual-batch1465.svg",
+      "size": 2317,
+      "sha256": "86b48cf47f0b596dcf2d57ad0e45407d416d5abb34b45e9936d6c9cae0a52933"
+    },
+    {
+      "path": "web/nl/assets/symbol-weee-batch1465.svg",
+      "size": 3389,
+      "sha256": "0c35a797d48e5e6dc936c3731e395590feafb9aff1b1b2b9447a3af4cc42d510"
+    },
+    {
       "path": "web/nl/conf.py",
       "size": 828,
       "sha256": "be57cee70041442541ca8e991f6c302a8b840abab78c5b86d3f8a447c1cc93a4"
@@ -368,13 +419,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 590066,
-      "sha256": "e7d8c01215bfd2ba00856375548cedf7048b5cea6991f6415bed1cd9addf1504"
+      "size": 591190,
+      "sha256": "7db45651e7858701c500ca7f87573c8320128bb7eb83bf966f00ec55f3376c0d"
     },
     {
       "path": "web/nl/manual_je2000e_eu_nl.md",
-      "size": 79090,
-      "sha256": "bd0d039fe55860be4c8f50475e40480d8fc3aa995813f647b61e9aa97cb151f3"
+      "size": 79084,
+      "sha256": "470cbf8b61eee7ab50e26251c32599f8a416ee461eb1a34ca710611a33f67d87"
     },
     {
       "path": "web/pt/_static/web_manual.css",
@@ -697,6 +748,46 @@
       "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
     },
     {
+      "path": "web/pt/assets/symbol-battery_disposal-batch1465.svg",
+      "size": 4494,
+      "sha256": "890aad750886f80abc628c01b22c36ae6c305b91d48a8c441d27bbf9bb11411a"
+    },
+    {
+      "path": "web/pt/assets/symbol-do_not_dismantle-batch1465.svg",
+      "size": 5275,
+      "sha256": "0d8c33aa24918ce77020239e2659f837648ad94a6dd8ff91db9304caa6fe1dea"
+    },
+    {
+      "path": "web/pt/assets/symbol-general_warning-batch1465.svg",
+      "size": 4567,
+      "sha256": "949fa4b358483f531c93ce6dd6f25c3d2964c4b3c1bf43a760e377618c209661"
+    },
+    {
+      "path": "web/pt/assets/symbol-keep_away_from_children-batch1465.svg",
+      "size": 5398,
+      "sha256": "6b403148bbaa42cc77f87100c32b91bf06b00db6c69093c247bff1c5fc2a07bd"
+    },
+    {
+      "path": "web/pt/assets/symbol-li_ion-batch1465.svg",
+      "size": 6100,
+      "sha256": "3c4b2b3413e011c23cfbd259c4d971ed8fa10f37ff011506f95c8018dad18476"
+    },
+    {
+      "path": "web/pt/assets/symbol-no_open_flame-batch1465.svg",
+      "size": 3680,
+      "sha256": "3073529057ed5709e276e85747cad8532e07939d511bf9b448c8252770dd351d"
+    },
+    {
+      "path": "web/pt/assets/symbol-read_manual-batch1465.svg",
+      "size": 3483,
+      "sha256": "6362f59270d725546ac3b20117319193bce10d58950c8aa20c4870ce79320931"
+    },
+    {
+      "path": "web/pt/assets/symbol-weee-batch1465.svg",
+      "size": 4555,
+      "sha256": "fbb8f66e93bbefa15b3edcd942ba6ec2950ad5b533ee07e0ec5efd644194e456"
+    },
+    {
       "path": "web/pt/conf.py",
       "size": 828,
       "sha256": "7654bcee13cb753caba3d4ef81c22447618b81ca2cc88422657a37cb5fb61999"
@@ -708,17 +799,532 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 589773,
-      "sha256": "1fc496278d3caccd94aaddc9d62928eb6e024c8d300d5b5166f1e88345aaa411"
+      "size": 590903,
+      "sha256": "f3388a16c47d67d66d60c688d878d56f55f6794a199a43382a14847681b0698a"
     },
     {
       "path": "web/pt/manual_je2000e_eu_pt.md",
-      "size": 79623,
-      "sha256": "33045808cddf2987c2b3f8a528621381ce7e1b0e232399b1052ab98e3ed44233"
+      "size": 79621,
+      "sha256": "cfff6d27c2585c443103074e51c2550a1e6e7c69764ff867b8b491ac16c164de"
     }
   ],
   "approved_copy_corrections": {
     "path": "approved_copy_corrections.json",
     "sha256": "ea2c7cb0dfdc928666568fa5ee7399cac167f43aa7622f86de4a7b73fea6158d"
+  },
+  "baseline_original_source": {
+    "filename": "HTE152-EU-9国语言-0924.ai",
+    "sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+    "size_bytes": 48125378,
+    "physical_page_count": 179
+  },
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "pt": [
+        {
+          "asset_ref": "assets/symbol-general_warning-batch1465.svg",
+          "asset_sha256": "949fa4b358483f531c93ce6dd6f25c3d2964c4b3c1bf43a760e377618c209661",
+          "shared_symbol_key": "general_warning/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            31,
+            47,
+            68,
+            71
+          ],
+          "drawing_indices": [
+            80,
+            81,
+            82
+          ],
+          "caption_bbox": [
+            70,
+            43,
+            181,
+            76
+          ],
+          "caption_text": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+          "caption_sha256": "5952a0c7bddb31272588c96fef74dcb92a8e66add27320f4cbf74cbd575af633",
+          "row_bbox": [
+            30,
+            42,
+            182,
+            77
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-read_manual-batch1465.svg",
+          "asset_sha256": "6362f59270d725546ac3b20117319193bce10d58950c8aa20c4870ce79320931",
+          "shared_symbol_key": "read_manual/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            32,
+            81,
+            66,
+            97
+          ],
+          "drawing_indices": [
+            103,
+            104
+          ],
+          "caption_bbox": [
+            70,
+            78,
+            181,
+            100
+          ],
+          "caption_text": "Leia o manual do usuário antes de operar.",
+          "caption_sha256": "76ee915c22a32c31da05d171be01e47ead575be7b5bf70c3398d045709d3fb32",
+          "row_bbox": [
+            31,
+            77,
+            182,
+            101
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-do_not_dismantle-batch1465.svg",
+          "asset_sha256": "0d8c33aa24918ce77020239e2659f837648ad94a6dd8ff91db9304caa6fe1dea",
+          "shared_symbol_key": "do_not_dismantle/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            32,
+            107,
+            66,
+            127
+          ],
+          "drawing_indices": [
+            87,
+            88
+          ],
+          "caption_bbox": [
+            70,
+            105,
+            181,
+            132
+          ],
+          "caption_text": "Não desmonte o produto.",
+          "caption_sha256": "a4a1cd8c3c28d4fc4212f903d1083ad98bf22fa50bfadd79eac1a428d2b21a39",
+          "row_bbox": [
+            31,
+            104,
+            182,
+            133
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-no_open_flame-batch1465.svg",
+          "asset_sha256": "3073529057ed5709e276e85747cad8532e07939d511bf9b448c8252770dd351d",
+          "shared_symbol_key": "no_open_flame/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            32,
+            136,
+            66,
+            154
+          ],
+          "drawing_indices": [
+            107,
+            108,
+            109
+          ],
+          "caption_bbox": [
+            70,
+            132,
+            181,
+            156
+          ],
+          "caption_text": "Mantenha o produto longe de fogo.",
+          "caption_sha256": "ad4bca3dbfda69c64f6701c90bcd946f0deb38930948ae960de5be82b4b9e3f7",
+          "row_bbox": [
+            31,
+            131,
+            182,
+            157
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-keep_away_from_children-batch1465.svg",
+          "asset_sha256": "6b403148bbaa42cc77f87100c32b91bf06b00db6c69093c247bff1c5fc2a07bd",
+          "shared_symbol_key": "keep_away_from_children/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            32,
+            160,
+            66,
+            181
+          ],
+          "drawing_indices": [
+            111,
+            112,
+            113
+          ],
+          "caption_bbox": [
+            70,
+            157,
+            181,
+            181
+          ],
+          "caption_text": "Mantenha fora do alcance de crianças.",
+          "caption_sha256": "533c4c1f85d068cd8f2e9c4a9045e8f4f13311ed8cc38716f2265bff5490a987",
+          "row_bbox": [
+            31,
+            156,
+            182,
+            182
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-li_ion-batch1465.svg",
+          "asset_sha256": "3c4b2b3413e011c23cfbd259c4d971ed8fa10f37ff011506f95c8018dad18476",
+          "shared_symbol_key": "li_ion/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            32,
+            185,
+            66,
+            206
+          ],
+          "drawing_indices": [
+            90,
+            91,
+            92,
+            93,
+            95,
+            96,
+            97,
+            98
+          ],
+          "caption_bbox": [
+            70,
+            182,
+            181,
+            215
+          ],
+          "caption_text": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente.",
+          "caption_sha256": "7458e47959dbcf610c1829e48b132d423925733cebb5a5e707d5b87e0f3a58f2",
+          "row_bbox": [
+            31,
+            181,
+            182,
+            216
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-battery_disposal-batch1465.svg",
+          "asset_sha256": "890aad750886f80abc628c01b22c36ae6c305b91d48a8c441d27bbf9bb11411a",
+          "shared_symbol_key": "battery_disposal/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            188,
+            60,
+            224,
+            133
+          ],
+          "drawing_indices": [
+            115,
+            116
+          ],
+          "caption_bbox": [
+            225,
+            43,
+            360,
+            144
+          ],
+          "caption_text": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente.",
+          "caption_sha256": "272905550738e415efa2df18815321e93255d63609edf34b5fd44b18f894926d",
+          "row_bbox": [
+            187,
+            42,
+            361,
+            145
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-weee-batch1465.svg",
+          "asset_sha256": "fbb8f66e93bbefa15b3edcd942ba6ec2950ad5b533ee07e0ec5efd644194e456",
+          "shared_symbol_key": "weee/je2000e-eu-pt-batch1465-native",
+          "physical_page": 123,
+          "glyph_bbox": [
+            188,
+            155,
+            224,
+            196
+          ],
+          "drawing_indices": [
+            99,
+            100,
+            101
+          ],
+          "caption_bbox": [
+            225,
+            145,
+            360,
+            212
+          ],
+          "caption_text": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+          "caption_sha256": "e746ef4249fc6db5a5f6def919e724cee5d383d3019c0bd201846de871529858",
+          "row_bbox": [
+            187,
+            144,
+            361,
+            213
+          ]
+        }
+      ],
+      "nl": [
+        {
+          "asset_ref": "assets/symbol-general_warning-batch1465.svg",
+          "asset_sha256": "eaef6a90726af3e60a79e0f248504e49297eb3292b5ae062d38cd128d42e6ea3",
+          "shared_symbol_key": "general_warning/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            31,
+            47,
+            68,
+            71
+          ],
+          "drawing_indices": [
+            93,
+            94,
+            95
+          ],
+          "caption_bbox": [
+            70,
+            43,
+            181,
+            76
+          ],
+          "caption_text": "Waarschuwings- en voorzorgssymbolen. Waarschuwt personen voor informatie die moet worden gelezen om mogelijke gevaren of risico’s te voorkomen.",
+          "caption_sha256": "dd925ff1c14e7ab98214a84c8332d4f4f250f7086d91ef112f2c569475733c1c",
+          "row_bbox": [
+            30,
+            42,
+            182,
+            77
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-read_manual-batch1465.svg",
+          "asset_sha256": "86b48cf47f0b596dcf2d57ad0e45407d416d5abb34b45e9936d6c9cae0a52933",
+          "shared_symbol_key": "read_manual/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            32,
+            81,
+            66,
+            97
+          ],
+          "drawing_indices": [
+            129,
+            130
+          ],
+          "caption_bbox": [
+            70,
+            78,
+            181,
+            100
+          ],
+          "caption_text": "Lees de gebruikershandleiding voor gebruik.",
+          "caption_sha256": "6cc8ae92c806ef43eb92eceb51fa7e53e51917cbb50e9c6bc3954e8c81f422c6",
+          "row_bbox": [
+            31,
+            77,
+            182,
+            101
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-do_not_dismantle-batch1465.svg",
+          "asset_sha256": "485710ddc8f74a55644647db29fa3c62eaa98d3cfbbea4e7dc98d7d60a7840aa",
+          "shared_symbol_key": "do_not_dismantle/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            32,
+            107,
+            66,
+            127
+          ],
+          "drawing_indices": [
+            113,
+            114
+          ],
+          "caption_bbox": [
+            70,
+            105,
+            181,
+            132
+          ],
+          "caption_text": "Demonteer het product niet.",
+          "caption_sha256": "a23a07268d6fbb8fedd291224203d89ec5a4f5387cf72983bc56838ba9bb0c91",
+          "row_bbox": [
+            31,
+            104,
+            182,
+            133
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-no_open_flame-batch1465.svg",
+          "asset_sha256": "2fb0aebd9051c751a6ecb9ca82ff418d8d5a9449e434639f250e80099527001c",
+          "shared_symbol_key": "no_open_flame/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            32,
+            136,
+            66,
+            154
+          ],
+          "drawing_indices": [
+            133,
+            134,
+            135
+          ],
+          "caption_bbox": [
+            70,
+            132,
+            181,
+            156
+          ],
+          "caption_text": "Houd het product uit de buurt van vuur.",
+          "caption_sha256": "ea132f30067ecc1072e7bcc36f816bd4d95fe68772e88bbb3d51d4ac0548ae79",
+          "row_bbox": [
+            31,
+            131,
+            182,
+            157
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-keep_away_from_children-batch1465.svg",
+          "asset_sha256": "dd1fc4a732d593c1c003c30858ac051eb8280468b88fb8bf349873dcc478eac3",
+          "shared_symbol_key": "keep_away_from_children/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            32,
+            160,
+            66,
+            181
+          ],
+          "drawing_indices": [
+            137,
+            138,
+            139
+          ],
+          "caption_bbox": [
+            70,
+            157,
+            181,
+            181
+          ],
+          "caption_text": "Houd het product buiten het bereik van kinderen.",
+          "caption_sha256": "93d16cd8372ec0fe403d57167f60c55d75faabfaa3d3462e73d0e0447880aa36",
+          "row_bbox": [
+            31,
+            156,
+            182,
+            182
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-li_ion-batch1465.svg",
+          "asset_sha256": "260b81ab9fb3571e4440250d359264bb7f85973d01db16ed29618efa6ab6faf7",
+          "shared_symbol_key": "li_ion/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            32,
+            185,
+            66,
+            206
+          ],
+          "drawing_indices": [
+            116,
+            117,
+            118,
+            119,
+            121,
+            122,
+            123,
+            124
+          ],
+          "caption_bbox": [
+            70,
+            182,
+            181,
+            215
+          ],
+          "caption_text": "Dit symbool geeft aan dat er een lithium-ion (Li-ion) accu in het product zit en dat deze op de juiste wijze moet worden afgevoerd of gerecycled.",
+          "caption_sha256": "4e1144d48d46fb4e212529a573c0f59fb36b3a4d9d04bfae441a6909703a98d6",
+          "row_bbox": [
+            31,
+            181,
+            182,
+            216
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-battery_disposal-batch1465.svg",
+          "asset_sha256": "be61c6855d5a5268f359fe1b1381423df264bd9d98622c0c67fd54ad611f73c2",
+          "shared_symbol_key": "battery_disposal/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            188,
+            60,
+            224,
+            133
+          ],
+          "drawing_indices": [
+            141,
+            142
+          ],
+          "caption_bbox": [
+            225,
+            43,
+            360,
+            144
+          ],
+          "caption_text": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcen- trum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+          "caption_sha256": "28f05690df76830c4e1fb7979e8e19dcca35bf33c93b73b812cfcf71312cfee8",
+          "row_bbox": [
+            187,
+            42,
+            361,
+            145
+          ]
+        },
+        {
+          "asset_ref": "assets/symbol-weee-batch1465.svg",
+          "asset_sha256": "0c35a797d48e5e6dc936c3731e395590feafb9aff1b1b2b9447a3af4cc42d510",
+          "shared_symbol_key": "weee/je2000e-eu-nl-batch1465-native",
+          "physical_page": 142,
+          "glyph_bbox": [
+            188,
+            155,
+            224,
+            196
+          ],
+          "drawing_indices": [
+            125,
+            126,
+            127
+          ],
+          "caption_bbox": [
+            225,
+            145,
+            360,
+            212
+          ],
+          "caption_text": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+          "caption_sha256": "f97bb435af9cfc35f3edcd542ae672ff1e53120b16bbd8118847eed3fb7bbcbb",
+          "row_bbox": [
+            187,
+            144,
+            361,
+            213
+          ]
+        }
+      ]
+    }
   }
 }

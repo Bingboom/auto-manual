@@ -1,13 +1,13 @@
 {
   "asset_refs": [
-    "assets/8f4bc216841c_symbol-general_warning.png",
-    "assets/5b6084824bd3_symbol-read_manual.png",
-    "assets/1052d4ed2fd9_symbol-do_not_dismantle.png",
-    "assets/f99a124f9436_symbol-no_open_flame.png",
-    "assets/af2528e787e5_symbol-keep_away_from_children.png",
-    "assets/fb7212443b32_symbol-li_ion.png",
-    "assets/cf04ff00bdeb_weee2.png",
-    "assets/12c2fb83fc20_symbol-weee.png",
+    "assets/symbol-general_warning-batch1465.svg",
+    "assets/symbol-read_manual-batch1465.svg",
+    "assets/symbol-do_not_dismantle-batch1465.svg",
+    "assets/symbol-no_open_flame-batch1465.svg",
+    "assets/symbol-keep_away_from_children-batch1465.svg",
+    "assets/symbol-li_ion-batch1465.svg",
+    "assets/symbol-battery_disposal-batch1465.svg",
+    "assets/symbol-weee-batch1465.svg",
     "assets/618923f97bd0_inbox-main.png",
     "assets/287650f3a89a_ac_charging_cable.png",
     "assets/87ac44e52863_manual_icon1.png",
@@ -63,7 +63,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "5413e90a02a454b82e244def0196a2ab9d4344f7e449273e8fc7458abc1d950d",
-  "content_sha256": "c2b983a86437abf08a39ca19ab83ee3f891285e94af0ebf1bfe8493aad1b46f2",
+  "content_sha256": "a80ef790dd28c41a1ba70b531b442d14f85f3950d7ab058e063ca2927fc68d0f",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -130,7 +130,15 @@
       "assets/f5633d528aed_app-download.png": "f5633d528aed56418bf46d5e2b083267eb8859f6e87fd68b24fba70f604b9295",
       "assets/f99a124f9436_symbol-no_open_flame.png": "f99a124f94361fa18dbc7b987bc71041ab80df619e75636a90c5fe3ddb7eb60a",
       "assets/fb7212443b32_symbol-li_ion.png": "fb7212443b32b67eff3509aabdb23a128dc720541322d2116cccfdb8036d09bd",
-      "assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+      "assets/fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+      "assets/symbol-general_warning-batch1465.svg": "949fa4b358483f531c93ce6dd6f25c3d2964c4b3c1bf43a760e377618c209661",
+      "assets/symbol-read_manual-batch1465.svg": "6362f59270d725546ac3b20117319193bce10d58950c8aa20c4870ce79320931",
+      "assets/symbol-do_not_dismantle-batch1465.svg": "0d8c33aa24918ce77020239e2659f837648ad94a6dd8ff91db9304caa6fe1dea",
+      "assets/symbol-no_open_flame-batch1465.svg": "3073529057ed5709e276e85747cad8532e07939d511bf9b448c8252770dd351d",
+      "assets/symbol-keep_away_from_children-batch1465.svg": "6b403148bbaa42cc77f87100c32b91bf06b00db6c69093c247bff1c5fc2a07bd",
+      "assets/symbol-li_ion-batch1465.svg": "3c4b2b3413e011c23cfbd259c4d971ed8fa10f37ff011506f95c8018dad18476",
+      "assets/symbol-battery_disposal-batch1465.svg": "890aad750886f80abc628c01b22c36ae6c305b91d48a8c441d27bbf9bb11411a",
+      "assets/symbol-weee-batch1465.svg": "fbb8f66e93bbefa15b3edcd942ba6ec2950ad5b533ee07e0ec5efd644194e456"
     },
     "block_count": 147,
     "component_inventory": {
@@ -7909,6 +7917,11 @@
         "path": "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language",
         "manifest_sha256": "b3566417fedfed4bf4d81853a8d7d84584e4610ff6fb8e0f1f5d1cd6e1e6069e"
       }
+    },
+    "symbol_source_binding": {
+      "source_pdf_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+      "physical_page": 123,
+      "shared_symbols": true
     }
   },
   "model": "JE-2000E",
@@ -8416,58 +8429,58 @@
         },
         {
           "asset_refs": [
-            "assets/8f4bc216841c_symbol-general_warning.png",
-            "assets/5b6084824bd3_symbol-read_manual.png",
-            "assets/1052d4ed2fd9_symbol-do_not_dismantle.png",
-            "assets/f99a124f9436_symbol-no_open_flame.png",
-            "assets/af2528e787e5_symbol-keep_away_from_children.png",
-            "assets/fb7212443b32_symbol-li_ion.png",
-            "assets/cf04ff00bdeb_weee2.png",
-            "assets/12c2fb83fc20_symbol-weee.png"
+            "assets/symbol-general_warning-batch1465.svg",
+            "assets/symbol-read_manual-batch1465.svg",
+            "assets/symbol-do_not_dismantle-batch1465.svg",
+            "assets/symbol-no_open_flame-batch1465.svg",
+            "assets/symbol-keep_away_from_children-batch1465.svg",
+            "assets/symbol-li_ion-batch1465.svg",
+            "assets/symbol-battery_disposal-batch1465.svg",
+            "assets/symbol-weee-batch1465.svg"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "f4ae617c10c2ac381d28c72ac84d610e9a24457405968ea7e1da5f3c943217f3",
+          "content_sha256": "b3d5957e0956fa7d9f9f484f6d5e0a90df0ab9262593d132f63d83598bfeb8c6",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/8f4bc216841c_symbol-general_warning.png",
+                  "asset_ref": "assets/symbol-general_warning-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/5b6084824bd3_symbol-read_manual.png",
+                  "asset_ref": "assets/symbol-read_manual-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/1052d4ed2fd9_symbol-do_not_dismantle.png",
+                  "asset_ref": "assets/symbol-do_not_dismantle-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/f99a124f9436_symbol-no_open_flame.png",
+                  "asset_ref": "assets/symbol-no_open_flame-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/af2528e787e5_symbol-keep_away_from_children.png",
+                  "asset_ref": "assets/symbol-keep_away_from_children-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/fb7212443b32_symbol-li_ion.png",
+                  "asset_ref": "assets/symbol-li_ion-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/cf04ff00bdeb_weee2.png",
+                  "asset_ref": "assets/symbol-battery_disposal-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/12c2fb83fc20_symbol-weee.png",
+                  "asset_ref": "assets/symbol-weee-batch1465.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 }
@@ -8515,9 +8528,9 @@
                       },
                       {
                         "asset_index": 1,
-                        "icon_alt": "Leia o manual do usuário antes de operar",
-                        "meaning_html": "Leia o manual do usuário antes de operar",
-                        "meaning_text": "Leia o manual do usuário antes de operar"
+                        "icon_alt": "Leia o manual do usuário antes de operar.",
+                        "meaning_html": "Leia o manual do usuário antes de operar.",
+                        "meaning_text": "Leia o manual do usuário antes de operar."
                       },
                       {
                         "asset_index": 2,
@@ -8539,9 +8552,9 @@
                       },
                       {
                         "asset_index": 5,
-                        "icon_alt": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion e que esta deve ser descartada ou reciclada adequadamente.",
-                        "meaning_html": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion e que esta deve ser descartada ou reciclada adequadamente.",
-                        "meaning_text": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion e que esta deve ser descartada ou reciclada adequadamente."
+                        "icon_alt": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente.",
+                        "meaning_html": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente.",
+                        "meaning_text": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente."
                       }
                     ],
                     [

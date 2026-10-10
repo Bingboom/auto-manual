@@ -8,4 +8,8 @@ This is a prepared native source candidate, not an online deployment. Replay wit
 
 ## Current validation and remaining gate
 
-PT/NL native IR validation, fresh component admission, byte-identical cold replay and Sphinx warnings-as-errors builds pass. The 22 existing frozen component/evidence regression tests pass. Release sealing is blocked by `symbol asset admission failed: symbol table requires source-bound asset admission`; the unchanged historical PT/NL baseline reproduces the same failure. Source-bound symbol admission evidence must be supplied before release. No PR or publication has been created.
+PT/NL native IR validation, fresh component admission, cold replay and Sphinx warnings-as-errors builds pass. The 40 existing frozen component/evidence, symbol admission and caption-frame tests pass. Source-bound symbol admission and release sealing pass for both languages.
+
+The operator-provided `JE-2000E_修正版_竖版.pdf` is the authority witness for physical pages 123 (PT) and 142 (NL). Sixteen native SVG variants preserve source drawing paths, have real transparent margins, reuse explicitly registered shared variants and match independently reconstructed source glyphs with zero normalized pixel error. `symbol_caption_recovery.json` records the Portuguese period and closing-parenthesis recovery from source text. This witness does not replace the earlier body intake provenance: the historical authority identity is retained in `baseline_original_source`, and the prior recipe remains pinned.
+
+Engineering PR review/merge, business-plane sync, generated publish PR and live RTD acceptance remain pending. No merge or deployment is represented by this source candidate.
