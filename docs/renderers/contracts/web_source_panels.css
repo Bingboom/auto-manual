@@ -72,16 +72,17 @@
   justify-items: center;
   gap: 0.45rem;
 }
+/* Button art keeps the approved print ratio: 22.08pt art beside 6pt function copy. */
 #furo-main-content .hb-key-button img {
-  width: 4.4rem !important;
-  height: 4.4rem !important;
+  width: 3.35rem !important;
+  height: 3.35rem !important;
   margin: 0 !important;
 }
 #furo-main-content .hb-key-button-plus {
   display: grid;
-  height: 4.4rem;
+  height: 3.35rem;
   align-items: center;
-  font-size: 2.3rem;
+  font-size: 1.82rem;
   font-weight: 700;
   line-height: 1;
 }

@@ -281,8 +281,8 @@
     },
     {
       "path": "web/ja/_static/web_manual.css",
-      "size": 125530,
-      "sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090"
+      "size": 125621,
+      "sha256": "0128e0ff7eb345a59b7b7134c30725c8dae6b6b2446358d35ab86a169fdb97c2"
     },
     {
       "path": "web/ja/assets/ir/29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb/car.png",
@@ -327,7 +327,7 @@
     {
       "path": "web/ja/manual.ir.json",
       "size": 267589,
-      "sha256": "d2aad82bcfb8cff67c8a08769108611640deed8948c0a42ce4afffd12c4ab9ca"
+      "sha256": "f9bdaa0e36aa9346114f32356eaadbbcef8ca5645542b361471fbfc9dd80010c"
     },
     {
       "path": "web/ja/manual_bundle.html",
