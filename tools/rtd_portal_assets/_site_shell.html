@@ -1,7 +1,7 @@
 {#- Shared site shell: one sidebar and one top bar for every portal page.
     Import with context so pathto() resolves relative to the calling page:
       {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool), design (bool).
+    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool), design (bool), data (bool).
     Public manual pages pass internal=false to omit internal knowledge links. -#}
 {%- macro nav_link(href, icon, label, is_active, count='') -%}
 <a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
@@ -24,6 +24,7 @@
     {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
     {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
     {% if nav.design %}{{ nav_link(pathto('workspace/design/index'), '◐', '设计系统', active == 'design-system') }}{% endif %}
+    {% if nav.data %}{{ nav_link(pathto('workspace/data/index'), '▥', '系统数据', active == 'system-data') }}{% endif %}
     {{ nav_link(('' if on_home else home) ~ '#updates', '◷', '最近更新', active == 'updates') }}
     {% endif %}
   </nav>
