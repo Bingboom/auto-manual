@@ -51,6 +51,19 @@ class Batch1465ReleaseTests(unittest.TestCase):
                 labels = ups_labels(read(PACKAGE / 'web' / language / 'manual.ir.json'))
                 self.assertEqual(labels, UPS_ORDER[language])
 
+    def test_symbol_rows_are_admitted_against_the_authority_source(self):
+        from tools.web.symbol_asset_admission import require_symbol_asset_admission
+        manifest = read(PACKAGE / 'source_manifest.json')
+        self.assertEqual(manifest['original_source']['filename'], 'source/JE-2000F_修正版.ai')
+        self.assertEqual(file_sha256(PACKAGE / manifest['original_source']['filename']),
+                         manifest['original_source']['sha256'])
+        for language in LANGUAGES:
+            with self.subTest(language=language):
+                report = require_symbol_asset_admission(PACKAGE / 'web' / language, PACKAGE, manifest, language)
+                self.assertEqual(len(report), 8)
+                keys = [row['shared_symbol_key'] for row in manifest['symbol_asset_admission']['locales'][language]]
+                self.assertIn('no-open-flame/crossed-fire-je2000f', keys)
+
     def test_manifest_inventories_every_package_file(self):
         manifest = read(PACKAGE / 'source_manifest.json')
         files = sorted(p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob('*')

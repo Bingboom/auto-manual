@@ -977,6 +977,33 @@
         "derivation": "shared glyph paths unchanged; match native dark-gray tint only",
         "prior_shared_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
       }
+    },
+    {
+      "key": "no-open-flame/crossed-fire-je2000f",
+      "path": "native-v1/symbol_no_open_flame_crossed_fire_je2000f.svg",
+      "sha256": "c12c973a3e11088562734c6b4b9f55bf4a1b6d140be05f1d3cdcc7b9a5f4852e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language/source/JE-2000F_修正版.ai",
+        "source_sha256": "b6587afd053f92578c49eb7acff0dccabe10dc04a70bd178d60996419c9c82d7",
+        "physical_page": 117,
+        "drawing_indices": [
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ],
+        "glyph_bbox": [
+          39.92,
+          141.75,
+          58.34,
+          158.94
+        ],
+        "decision": "no existing no-open-flame variant passes native glyph comparison for the X-over-flames glyph; retain original PDF SVG paths with real transparent margins; identical on pp. 117/135/153"
+      }
     }
   ],
   "withdrawn": [

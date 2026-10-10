@@ -1,13 +1,13 @@
 {
   "asset_refs": [
-    "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
-    "assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
-    "assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
-    "assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
-    "assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
-    "assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
-    "assets/cf04ff00bdeb_weee2.png",
-    "assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+    "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
+    "assets/1d2087064f92_symbol_read_manual.svg",
+    "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
+    "assets/c12c973a3e11_symbol_no_open_flame_crossed_fire_je2000f.svg",
+    "assets/e6bd4396d072_h1-jp-keep_away_from_children.svg",
+    "assets/b98301d1742f_symbol_li_ion_htp017.svg",
+    "assets/cf04ff00bdeb_symbol_battery_weee.png",
+    "assets/6883f899f43a_symbol_weee.png",
     "assets/4f3ac2123475_p153_inbox-main.png",
     "assets/287650f3a89a_ac_charging_cable.png",
     "assets/87ac44e52863_manual_icon1.png",
@@ -60,19 +60,19 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "a53bc0bd3d73bb011adad590cdc3ae66a276fbf9c44d65bd54d2a79ad70ca7c7",
-  "content_sha256": "35f044e5a2ae008e66d80308c40f7345784fc6651259be4a8cb8f9dadc2562c0",
+  "content_sha256": "ba5140b4781019603292cfc1216c9aa5dfc0b1dd6d6a3a6c2a0b100265dcdbc4",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
     "asset_sha256": {
       "assets/05095e9ebb06_p162_ac_wall_charging.png": "05095e9ebb06921068259334c1db23ec8b539432e8de4c7c24facfd8c2771a83",
+      "assets/0f41fe5ea49f_symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
       "assets/1011ac47b874_operation-dc-usb-output-geometry-v2.png": "1011ac47b8742bbf023809b1dc0bc8f91232b9e5d57ad94992f4e579b8070720",
-      "assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "assets/1d2087064f92_symbol_read_manual.svg": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
       "assets/21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
       "assets/287650f3a89a_ac_charging_cable.png": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
       "assets/28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
       "assets/29fd90fdeddb_app-result.png": "29fd90fdeddb4086abe9d2132e188d46cb56d7760a939c23a1a6454ca03588ad",
-      "assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
       "assets/2dc67f362d1e_overview-right-approved.png": "2dc67f362d1e76fe3a2c6dc862ce0483a15f87ad6334c04b3662cf39480fd941",
       "assets/30c686505990_p167_app-qr.png": "30c686505990f4e2007567950f2d45e416165a5325e2c2d8eb26f5fb77e04007",
       "assets/393892f97662_p160_ups_connection.png": "393892f97662ede90c525f3866c730ac477a8846f3e8152b27b047a270b99286",
@@ -81,22 +81,20 @@
       "assets/4cc273350725_operation-ac-output-geometry-v2.png": "4cc273350725c8fd8c86a762d9182f6f5b20ccbbc269e74d3c6e7b42e37e9bee",
       "assets/4f3ac2123475_p153_inbox-main.png": "4f3ac2123475eb25a7b4e1f25b8af6456f2323ce31fce0951b117568d8e9f4b5",
       "assets/58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
-      "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "assets/6883f899f43a_symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/690866a86f49_p154_front_view.png": "690866a86f49c9f92b02a2bb8b37d0394aa60bab9155199c81a5061cd18ec597",
       "assets/6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
       "assets/71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
       "assets/7281ea3e7034_app-phone.png": "7281ea3e7034ffe39b38598ecf681a0344f85f747de9d3a29f7f6c5800a74cb1",
       "assets/73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
       "assets/747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
-      "assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
       "assets/7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
       "assets/7963f6ec89f5_operation-main-power-geometry-v2.png": "7963f6ec89f5c0c70277ddafc9839c3ae8a6537995ee5b7821b33eacaa8ab421",
       "assets/7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
-      "assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
       "assets/7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
       "assets/85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
       "assets/87ac44e52863_manual_icon1.png": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
-      "assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
       "assets/8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
       "assets/91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
       "assets/9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
@@ -104,18 +102,20 @@
       "assets/a2c8d8807acf_english-charging_solar_direct.png": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2",
       "assets/a50c27a852a5_app-control.png": "a50c27a852a50df8c46ef058e15a8cef81a26c87fe3a815c5ba34ecd1f1cb126",
       "assets/a6c3ca72ce30_p167_app_qr_and_badges.png": "a6c3ca72ce30a48c03e753318ad8de2d0c023c194eecf8d837092d2e702759ff",
-      "assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "assets/b98301d1742f_symbol_li_ion_htp017.svg": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
       "assets/bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
       "assets/be11625d32de_operation-led-light-geometry-v2.png": "be11625d32dec37ce37a16297c46ee2238ee274e3b9900de962ff9a8fc222b07",
+      "assets/c12c973a3e11_symbol_no_open_flame_crossed_fire_je2000f.svg": "c12c973a3e11088562734c6b4b9f55bf4a1b6d140be05f1d3cdcc7b9a5f4852e",
       "assets/c2e2726d5b67_p159_lcd_mode_art.png": "c2e2726d5b67d9e79107372099a15ef0123a715dbe0de687bdae87dbb90f03da",
       "assets/c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
       "assets/c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
       "assets/ce913ebfc775_25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
-      "assets/cf04ff00bdeb_weee2.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "assets/cf04ff00bdeb_symbol_battery_weee.png": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
       "assets/cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
       "assets/d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
       "assets/e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
       "assets/e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+      "assets/e6bd4396d072_h1-jp-keep_away_from_children.svg": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
       "assets/eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
       "assets/f2f97ff0a870_english-charging_car.png": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
       "assets/f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
@@ -133,7 +133,7 @@
     },
     "block_count": 145,
     "component_inventory": {
-      "HB-CALLOUT-STRIP": 14,
+      "HB-CALLOUT-STRIP": 15,
       "HB-SPECIAL-APP": 3,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-OPERATION": 5,
@@ -7159,10 +7159,10 @@
         },
         {
           "asset_refs": [
-            "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png"
+            "assets/0f41fe5ea49f_symbol_warning_triangle.svg"
           ],
           "block_id": "safety:block-0002",
-          "content_sha256": "c9dd8aa7a25fe33658ad3bca0311356e374dfe8c4cfe846fd3519371af9f7d60",
+          "content_sha256": "ac78e9883dbb759dc7da5362e4025dde7ac9383a16086daeea8ce067b6fc174e",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7201,7 +7201,7 @@
                                     }
                                   }
                                 },
-                                "source": "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png"
+                                "source": "assets/0f41fe5ea49f_symbol_warning_triangle.svg"
                               }
                             ],
                             "header": false,
@@ -7589,58 +7589,58 @@
         },
         {
           "asset_refs": [
-            "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
-            "assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
-            "assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
-            "assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
-            "assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
-            "assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
-            "assets/cf04ff00bdeb_weee2.png",
-            "assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png"
+            "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
+            "assets/1d2087064f92_symbol_read_manual.svg",
+            "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
+            "assets/c12c973a3e11_symbol_no_open_flame_crossed_fire_je2000f.svg",
+            "assets/e6bd4396d072_h1-jp-keep_away_from_children.svg",
+            "assets/b98301d1742f_symbol_li_ion_htp017.svg",
+            "assets/cf04ff00bdeb_symbol_battery_weee.png",
+            "assets/6883f899f43a_symbol_weee.png"
           ],
           "block_id": "symbols:block-0003",
-          "content_sha256": "3d9ece052ec10e561d125988df673fc16646a8808b59ce5c4e8bd9def1c497f4",
+          "content_sha256": "692d881e164541d6d5d4c8ad257705151e40147382ce973a2ea10ba946fdd6a9",
           "kind": "flow",
           "payload": {
             "component_spec": {
               "assets": [
                 {
-                  "asset_ref": "assets/6749bd38fdd0_1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+                  "asset_ref": "assets/0f41fe5ea49f_symbol_warning_triangle.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/89dae4b809de_2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+                  "asset_ref": "assets/1d2087064f92_symbol_read_manual.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/76085a1e7008_7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+                  "asset_ref": "assets/5ad4fa830a5b_symbol_do_not_dismantle.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/a8a846e9767a_8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+                  "asset_ref": "assets/c12c973a3e11_symbol_no_open_flame_crossed_fire_je2000f.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/114690be6f4d_9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+                  "asset_ref": "assets/e6bd4396d072_h1-jp-keep_away_from_children.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/2a61fc0919cf_10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+                  "asset_ref": "assets/b98301d1742f_symbol_li_ion_htp017.svg",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/cf04ff00bdeb_weee2.png",
+                  "asset_ref": "assets/cf04ff00bdeb_symbol_battery_weee.png",
                   "locale_policy": "exact",
                   "role": "icons"
                 },
                 {
-                  "asset_ref": "assets/7e4de290ea13_11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+                  "asset_ref": "assets/6883f899f43a_symbol_weee.png",
                   "locale_policy": "exact",
                   "role": "icons"
                 }
