@@ -3954,5 +3954,23 @@
       "size": 210123,
       "sha256": "257151b4244a8e9420d9f0f68514e3551854609df678666523ca7ce69ffdcf57"
     }
-  ]
+  ],
+  "publication_authorization": {
+    "registry_id": "MA-279",
+    "registry_path": "code-as-doc/dev/merge_authorizations.md",
+    "operator_request": "合入上线",
+    "granted_on": "2026-10-09",
+    "reviewed_content_git_ref": "4ef67a20ffdb9516f5ea3644594ea90a3e87bc9d",
+    "scope": {
+      "model": "JHP-5000C",
+      "region": "US",
+      "languages": [
+        "en",
+        "fr",
+        "es"
+      ]
+    },
+    "mode": "git-only",
+    "online_table_writes": false
+  }
 }
