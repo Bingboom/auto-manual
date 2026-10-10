@@ -1,0 +1,3879 @@
+[
+  {
+    "slot": "symbol_warning_triangle.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "symbol_electric_shock.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_electric_shock.svg",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "symbol_battery_charging.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_battery_charging.svg",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "symbol_explosive_material.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "native source path variant after shared tint-corrected glyph still fails fixed comparison",
+    "new_extraction_reason": "Existing shared burst glyph still fails fixed alpha comparison after matching tint; preserve the native source shape once.",
+    "final_path": "assets/symbol_explosive_material.svg",
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+        "status": "superseded-do-not-reuse-for-this-source",
+        "reason": "fixed native glyph/tint comparison failed; old shared variant remains valid for its own source"
+      }
+    ]
+  },
+  {
+    "slot": "symbol_heavy_object.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_heavy_object.svg",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "symbol_no_open_flame.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_3e3a39.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "shared glyph paths unchanged; match native dark-gray tint only",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_no_open_flame.svg",
+    "sha256": "ad99d5bda8ad04836ff7903beaec8fff8cd3843bf528a16f88c8be0c5f2a3414",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+        "status": "superseded-do-not-reuse-for-this-source",
+        "reason": "fixed native glyph/tint comparison failed; old shared variant remains valid for its own source"
+      }
+    ]
+  },
+  {
+    "slot": "symbol_keep_away_from_children.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_3e3a39.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "shared glyph paths unchanged; match native dark-gray tint only",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_keep_away_from_children.svg",
+    "sha256": "da3ed4aa5fa4e4ec565d39a1b18d7b657d5b18cd4521be1881f21ac6fbb20c6e",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+        "status": "superseded-do-not-reuse-for-this-source",
+        "reason": "fixed native glyph/tint comparison failed; old shared variant remains valid for its own source"
+      }
+    ]
+  },
+  {
+    "slot": "symbol_read_manual.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "identity_check": "Native p5 glyph shape and native group opacity match this shared variant; source admission will independently compare every locale.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "fcc-mark.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "identity_check": "Native FCC nested-C mark on p5 matches shared variant.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/fcc-mark.svg",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "background_policy": "native complete artwork"
+  },
+  {
+    "slot": "button-power-bottom.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/power-bottom.svg",
+    "identity_check": "p12 button product marking is below its oval switch, matched to shared bottom-marking variant.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/button-power-bottom.svg",
+    "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "button-usb-bottom.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/usb-bottom.svg",
+    "identity_check": "p12 button product marking is below its oval switch, matched to shared bottom-marking variant.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/button-usb-bottom.svg",
+    "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "button-ac-bottom.svg",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/ac-bottom.svg",
+    "identity_check": "p12 button product marking is below its oval switch, matched to shared bottom-marking variant.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/button-ac-bottom.svg",
+    "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-01.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-01.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-01.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-02.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-02.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-02.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-03.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-03.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-03.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-04.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-04.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-04.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-05.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-05.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-05.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-06.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-09.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-06.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-07.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-10.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-07.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-08.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-11.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-08.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-09.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-12.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-09.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-10.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-13.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-10.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-11.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-14.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-11.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-12.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-15.png",
+    "identity_check": "PV-only symbol omits HIGH-PV / LOW-PV fixed markings; rejected after original-glyph inspection.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-12.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-13.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-15.png",
+    "identity_check": "PV-only symbol omits HIGH-PV / LOW-PV fixed markings; rejected after original-glyph inspection.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-13.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-14.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_ac-expansion-in.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-14.png",
+    "sha256": "5651765e549c201fe8afe43c3358a6de619cc034d1af10451aecff647be0e93e",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-15.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_ac-expansion-out.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-15.png",
+    "sha256": "435f17477214a56e10fe0039aeb7799ab958f1dcdab4f0314829842028937397",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-17.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-16.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-17.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-18.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-17.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-18.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-19.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-18.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-19.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-20.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-23.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-20.png",
+    "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-21.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-21.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-21.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-22.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-22.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-22.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-23.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-20.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-23.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-24.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-25.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-24.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-25.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-26.png",
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-25.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "app_store_badges.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_store_badges.png",
+    "identity_check": "App badge/QR/cable artwork matches the native delivery; preserve original complete edges and bytes.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_store_badges.png",
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "background_policy": "native complete artwork"
+  },
+  {
+    "slot": "app_download_qr.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_download_qr.png",
+    "identity_check": "App badge/QR/cable artwork matches the native delivery; preserve original complete edges and bytes.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_download_qr.png",
+    "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "background_policy": "native complete artwork"
+  },
+  {
+    "slot": "inbox-cable.png",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/inbox-cable.png",
+    "identity_check": "App badge/QR/cable artwork matches the native delivery; preserve original complete edges and bytes.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/inbox-cable.png",
+    "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
+    "background_policy": "native complete artwork"
+  },
+  {
+    "slot": "inbox-main",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/inbox-main.svg",
+    "source_page": 6,
+    "bbox": [
+      41,
+      87,
+      95,
+      154
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "287ea211ce237617634f257e1cae3a05ec85f1ffce9558fbcfa8b49af66fa94e"
+  },
+  {
+    "slot": "inbox-mc4",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/inbox-mc4.svg",
+    "source_page": 6,
+    "bbox": [
+      207,
+      91,
+      243,
+      152
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "6722c03f08dd596a277c52d073d94dbf30787d3c38a2ce3ff09c1fd998d9f660"
+  },
+  {
+    "slot": "inbox-manual",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native picture with exact physical printing; exterior card label is live",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/inbox-manual.svg",
+    "source_page": 6,
+    "bbox": [
+      282,
+      88,
+      326,
+      151
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "c8c56efc0554fb1f194080b986a6864548ecb3f0affb9730796a5a299853759b",
+    "extraction_sha256": "056433b4de82d11efa8244afb024effb9aaef46b366f275e152ea8f549bd82b8",
+    "derivation": "source/restore_markings.py retains native outlined physical book printing"
+  },
+  {
+    "slot": "overview-front",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/overview-front.svg",
+    "source_page": 6,
+    "bbox": [
+      27,
+      266.0,
+      344,
+      495.0
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "8a3d610573fc4c4bb4f52bf9fc59163846d9b3c488725ca1dc934fb66fd0c3e1",
+    "web_layout_reframe": "Frame grown from y 266-490 to 266-495 so the approved paths are whole (handle-button inset, wheels, panel edge); only the SVG viewBox changed."
+  },
+  {
+    "slot": "overview-left",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/overview-left.svg",
+    "source_page": 7,
+    "bbox": [
+      27,
+      39.0,
+      344,
+      253.0
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "18db1919a5ada0aa6edbaab1e20f61b790ff25582bda0cc4b4e731de9d200c50",
+    "web_layout_reframe": "Frame grown from y 39-248 to 39-253 so the approved paths are whole (handle-button inset, wheels, panel edge); only the SVG viewBox changed."
+  },
+  {
+    "slot": "overview-right",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/overview-right.svg",
+    "source_page": 7,
+    "bbox": [
+      27,
+      238.0,
+      344,
+      504.0
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "8516b84308655ea95d83be2d3500e2026107d283dc6ca30f596e95a1ed8dc234",
+    "web_layout_reframe": "Frame grown from y 275-492 to 238-504 so the approved paths are whole (handle-button inset, wheels, panel edge); only the SVG viewBox changed."
+  },
+  {
+    "slot": "lcd-map",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/lcd-map.svg",
+    "source_page": 8,
+    "bbox": [
+      28,
+      53,
+      344,
+      234
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "cc23da005498283c37f702c0eeaebfc1b3e647e1ca2638a4d978a5eba61beb9f"
+  },
+  {
+    "slot": "power",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/power.svg",
+    "source_page": 10,
+    "bbox": [
+      27.5,
+      113,
+      341.5,
+      270.5
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      0,
+      765
+    ],
+    "sha256": "adaab00db42c0fcc31dcc89382b80b4096c58740c7a93d25d4dc53955b383cbe"
+  },
+  {
+    "slot": "ac-output",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/ac-output.svg",
+    "source_page": 10,
+    "bbox": [
+      27.5,
+      297.4,
+      341.5,
+      482
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      742,
+      875
+    ],
+    "sha256": "ec31ede3f1ba17a030cd8f84a028b22be634d637660c4b37bc214c7a86d90f0d"
+  },
+  {
+    "slot": "usb-output",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/usb-output.svg",
+    "source_page": 11,
+    "bbox": [
+      27.5,
+      43,
+      341.5,
+      154.8
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      2,
+      1642
+    ],
+    "sha256": "1bea6b6dd7099b3e3845e8ad31fceea2b4dacb37514c41695ec4a1b55b09e246"
+  },
+  {
+    "slot": "dc-output",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/dc-output.svg",
+    "source_page": 11,
+    "bbox": [
+      27.5,
+      170,
+      341.5,
+      277.5
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      3,
+      1643
+    ],
+    "sha256": "aa0d707754e508c91da40fcc432affc3be07e6497c6d40a2fbae8968932aa762"
+  },
+  {
+    "slot": "lcd-button",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/lcd-button.svg",
+    "source_page": 11,
+    "bbox": [
+      40,
+      377,
+      178,
+      490
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "4090272e4fa1145c09656459db2801c9a4478d2a06a8133bdf9374fc57593127"
+  },
+  {
+    "slot": "ups",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/ups.svg",
+    "source_page": 13,
+    "bbox": [
+      28.4,
+      154,
+      342.4,
+      349.4
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      1,
+      4038,
+      4039
+    ],
+    "sha256": "566eed6ba71eb8b55115f9890162d230b8ec575f725ebe8bb59638c4f40ca15c"
+  },
+  {
+    "slot": "battery-packs",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/battery-packs.svg",
+    "source_page": 14,
+    "bbox": [
+      28,
+      90.8,
+      342,
+      245
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      68
+    ],
+    "sha256": "5861a29e10b8c7acb46940eb52e900d7cad7b4d1979cfceaf209333f4b9372ac"
+  },
+  {
+    "slot": "sts-connect",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/sts-connect.svg",
+    "source_page": 14,
+    "bbox": [
+      30,
+      322.8,
+      344.2,
+      490.2
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      3,
+      59,
+      60
+    ],
+    "sha256": "1652057c4d8854a0f79a628a82e6566be26d14446497c4dfd1060b5a3aeaff1e"
+  },
+  {
+    "slot": "ac-charge",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/ac-charge.svg",
+    "source_page": 15,
+    "bbox": [
+      26.7,
+      166.7,
+      340.8,
+      275.2
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      743
+    ],
+    "sha256": "55790a67d5466b090af60dc13e135267594b8de9140c4a614f86b908825851db"
+  },
+  {
+    "slot": "sts-charge",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/sts-charge.svg",
+    "source_page": 15,
+    "bbox": [
+      26.5,
+      291.8,
+      340.8,
+      466.6
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      1
+    ],
+    "sha256": "65cc4e5c62763aa02a37272fc1a06421a62851ac28fb2c773730e38a592179b3"
+  },
+  {
+    "slot": "low-pv-500",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/low-pv-500.svg",
+    "source_page": 16,
+    "bbox": [
+      28.5,
+      127.8,
+      342.6,
+      262.2
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "63d26e0ced3b97046e5d9411658ea997837d42fd23570e369b74df0fe6f28412"
+  },
+  {
+    "slot": "low-pv-200",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/low-pv-200.svg",
+    "source_page": 16,
+    "bbox": [
+      28.5,
+      265.7,
+      342.6,
+      414.9
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "7e501502a8587cf9fafa8caaed3fdd8453d13bb85630ee3fbc0d9be9df413812"
+  },
+  {
+    "slot": "high-pv",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/high-pv.svg",
+    "source_page": 17,
+    "bbox": [
+      26.7,
+      119.5,
+      340.8,
+      342.4
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "f6aba8843fbefba3b92e99763501d4b3a821f2fb952244b45b0e1ac6a03efe74"
+  },
+  {
+    "slot": "high-pv-lock",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/high-pv-lock.svg",
+    "source_page": 17,
+    "bbox": [
+      26.1,
+      352.1,
+      338.7,
+      488.9
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "d902a00b38f69e2a6c2f01842d4f26187646abc42d39aaead3f99ba4782cd43a"
+  },
+  {
+    "slot": "dual-pv",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/dual-pv.svg",
+    "source_page": 18,
+    "bbox": [
+      24.9,
+      63.8,
+      339,
+      227.8
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "1b82b4c16f3af731c50f67f52162a8c610c991d375a1a341f90f2a1f560d108b"
+  },
+  {
+    "slot": "car",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/car.svg",
+    "source_page": 18,
+    "bbox": [
+      24.9,
+      271,
+      339,
+      419.5
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "ee0b3ec3235dedaf10ff18be01a93ffd1f5d260b7324cea629780b55b09316c1",
+    "superseded-do-not-reuse": [
+      {
+        "sha256": "02d4f9a1266b437364f0f4a30d14a2be0bcada247c7cbdb2a4e2001e5bfce701",
+        "reason": "independent blank white footnote capsule still baked into base art"
+      }
+    ],
+    "removed_caption_indices": [
+      15435
+    ]
+  },
+  {
+    "slot": "app-add",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/app-add.svg",
+    "source_page": 20,
+    "bbox": [
+      107,
+      213.5,
+      268,
+      376
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "1d72e09a75d3badad3aa10c0fe0d0c001aac1c39447d84d0248386fb75bf7583"
+  },
+  {
+    "slot": "app-control",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/app-control.svg",
+    "source_page": 20,
+    "bbox": [
+      40.2,
+      385.8,
+      341.9,
+      463.2
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "2777f51cfbd0045b4e14610f66e57469df29dd0f2bada8fde219a20c57b4bf16"
+  },
+  {
+    "slot": "app-results",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/app-results.svg",
+    "source_page": 21,
+    "bbox": [
+      48,
+      161,
+      308,
+      316
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [],
+    "sha256": "e8bea8a066cee5d5f7282517d6fa213d8aae5ea2892bda6482ee481b5b1b0c10"
+  },
+  {
+    "slot": "ess",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/ess.svg",
+    "source_page": 24,
+    "bbox": [
+      30.3,
+      111.6,
+      340,
+      387.6
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      3
+    ],
+    "sha256": "f9187f635a3876f38c29af02f70b2d88829a33687ad8fae71cae8646844d2194"
+  },
+  {
+    "slot": "package-host",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/package-host.svg",
+    "source_page": 27,
+    "bbox": [
+      26,
+      164.7,
+      338.2,
+      274.7
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      694
+    ],
+    "sha256": "0a16d3ef1dd9d2bfd8a57701340449283bd4836537a5911488a08002e396d69c"
+  },
+  {
+    "slot": "package-battery",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/package-battery.svg",
+    "source_page": 27,
+    "bbox": [
+      26,
+      276.9,
+      338.2,
+      359.1
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      695,
+      697
+    ],
+    "sha256": "4d4a9e75ed0b2c40d82c019232143e15abf308358a41639f965a45484cd1607e"
+  },
+  {
+    "slot": "package-sts",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "JHP-5000C US: native split-phase NEMA outlets, high/low PV, STS/battery hardware and controls differ from existing JHP-3000D/JHP-3600C panels. One EN art set will be shared by all locales. App screenshots are complete native phone frames; existing candidates contain external step numbers and cannot be reused as a text-free base.",
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching complete text-free target panel; source-specific interface or geometry differs.",
+    "final_path": "assets/package-sts.svg",
+    "source_page": 27,
+    "bbox": [
+      26,
+      361.3,
+      338.2,
+      497.1
+    ],
+    "background_policy": "complete source group; native shading/leaders/phone edges preserved; independent caption frames omitted and CSS-drawn",
+    "removed_drawing_indices": [
+      696,
+      703
+    ],
+    "sha256": "c021aea7b816fbe98129ae3d6aabbf3f4c1cb20653e8274d365abe39e6158b2c"
+  },
+  {
+    "slot": "lcd-high-pv.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/buttons",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/latex/assets",
+      "data/phase2/lcd_icons_blocks.csv"
+    ],
+    "candidate": null,
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": "No matching shared glyph after actual graphic/marking comparison.",
+    "final_path": "assets/lcd-high-pv.svg",
+    "source_page": 9,
+    "bbox": [
+      89.26000366210937,
+      55.44600830078125,
+      109.24800720214844,
+      69.32901611328126
+    ],
+    "drawing_indices": [
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191
+    ],
+    "background_policy": "standalone-transparent; original source paths and opacity; no cell/background paths",
+    "sha256": "29d819eeeeeefe512bb1d67caa6ccc41a8309ac71a2e640ec3b5b947bde34466"
+  },
+  {
+    "slot": "lcd-low-pv.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/buttons",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/latex/assets",
+      "data/phase2/lcd_icons_blocks.csv"
+    ],
+    "candidate": null,
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": "No matching shared glyph after actual graphic/marking comparison.",
+    "final_path": "assets/lcd-low-pv.svg",
+    "source_page": 9,
+    "bbox": [
+      89.26000366210937,
+      77.54198608398437,
+      109.24800720214844,
+      91.42499389648438
+    ],
+    "drawing_indices": [
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "background_policy": "standalone-transparent; original source paths and opacity; no cell/background paths",
+    "sha256": "ed72a11c4ad6368e1e2d10f2246ac441a3b9d9b056f807ce94f22594603b7bcd"
+  },
+  {
+    "slot": "button-dc-bottom.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/buttons",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/latex/assets",
+      "data/phase2/lcd_icons_blocks.csv"
+    ],
+    "candidate": null,
+    "identity_check": "Fixed native HIGH-PV/LOW-PV label or distinct DC 12V/10A button; generic PV or USB icon does not match.",
+    "decision": "native transparent glyph",
+    "new_extraction_reason": "No matching shared glyph after actual graphic/marking comparison.",
+    "final_path": "assets/button-dc-bottom.svg",
+    "source_page": 12,
+    "bbox": [
+      50.70879898071289,
+      183.14791259765624,
+      74.90579833984376,
+      207.34390869140626
+    ],
+    "drawing_indices": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "background_policy": "standalone-transparent; original source paths and opacity; no cell/background paths",
+    "sha256": "7520845c04547a6bf4b4302b3e15e27182ca3263416eeb86af7ab972dc33e660"
+  },
+  {
+    "slot": "lcd-transfer-switch.png",
+    "candidate": "docs/renderers/web/assets/shared/lcd/lcd_transfer-switch.png",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd"
+    ],
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-transfer-switch.png",
+    "sha256": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-connected-batteries.png",
+    "candidate": "docs/renderers/web/assets/shared/lcd/lcd_connected-batteries.png",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd"
+    ],
+    "identity_check": "Actual native outline/stroke/tint comparison failed; this file remains valid for other manuals but cannot satisfy JHP-5000C.",
+    "decision": "rejected glyph for this source",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-connected-batteries.png",
+    "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "app-add-fr",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Native localized App UI differs from English screenshot; full source phone frame preserved.",
+    "decision": "native localized UI art; exterior counters remain live",
+    "new_extraction_reason": "localized screenshot labels and screen state differ",
+    "final_path": "assets/app-add-fr.svg",
+    "sha256": "ad1c2d71d67ca028c04c77082959e68573d0944e9079f4c63e4a6d2a7450981f",
+    "background_policy": "complete-native-phone-frames",
+    "physical_page": 44
+  },
+  {
+    "slot": "app-results-fr",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Native localized App UI differs from English screenshot; full source phone frame preserved.",
+    "decision": "native localized UI art; exterior counters remain live",
+    "new_extraction_reason": "localized screenshot labels and screen state differ",
+    "final_path": "assets/app-results-fr.svg",
+    "sha256": "dc424e3f4d20fba30cf6fa7643cf3082438f8d852bb0cc4c35f3003ddd900b51",
+    "background_policy": "complete-native-phone-frames",
+    "physical_page": 45
+  },
+  {
+    "slot": "app-add-es",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Native localized App UI differs from English screenshot; full source phone frame preserved.",
+    "decision": "native localized UI art; exterior counters remain live",
+    "new_extraction_reason": "localized screenshot labels and screen state differ",
+    "final_path": "assets/app-add-es.svg",
+    "sha256": "56bf927ff74cd83d2f090691f452994e48b356291654e175eb973538f901a8d3",
+    "background_policy": "complete-native-phone-frames",
+    "physical_page": 68
+  },
+  {
+    "slot": "app-results-es",
+    "searched": [
+      "data/manual_sources/JHP-5000C",
+      "data/manual_sources/JHP-3000D",
+      "docs/renderers/web/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Native localized App UI differs from English screenshot; full source phone frame preserved.",
+    "decision": "native localized UI art; exterior counters remain live",
+    "new_extraction_reason": "localized screenshot labels and screen state differ",
+    "final_path": "assets/app-results-es.svg",
+    "sha256": "893cc30fdacc9a00dc73283edeca974b0ed50858317674e84da7f483e00f4fec",
+    "background_policy": "complete-native-phone-frames",
+    "physical_page": 69
+  },
+  {
+    "slot": "sold-separately-cart",
+    "searched": [
+      "docs/renderers/web/assets/shared",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C"
+    ],
+    "candidate": null,
+    "identity_check": "No existing cart/sold/shopping variant matches the source; same native transparent glyph is used by both accessory groups and three locales.",
+    "decision": "native transparent glyph reused across locales",
+    "new_extraction_reason": "missing matching shared glyph",
+    "final_path": "assets/sold-separately-cart.svg",
+    "source_page": 27,
+    "bbox": [
+      275,
+      306,
+      298,
+      330
+    ],
+    "drawing_indices": [
+      698,
+      699,
+      700,
+      701,
+      702
+    ],
+    "sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-native-01.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.123973",
+    "final_path": "assets/lcd-native-01.svg",
+    "source_page": 8,
+    "bbox": [
+      56.151998901367186,
+      247.639990234375,
+      73.63599548339843,
+      261.048974609375
+    ],
+    "drawing_indices": [
+      83,
+      84
+    ],
+    "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-01.png",
+        "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-02.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.111212",
+    "final_path": "assets/lcd-native-02.svg",
+    "source_page": 8,
+    "bbox": [
+      58.56500091552734,
+      273.6559814453125,
+      71.26600036621093,
+      288.7409912109375
+    ],
+    "drawing_indices": [
+      85,
+      86
+    ],
+    "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-02.png",
+        "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-03.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.31788",
+    "final_path": "assets/lcd-native-03.svg",
+    "source_page": 8,
+    "bbox": [
+      58.7865966796875,
+      307.3757080078125,
+      71.00129852294921,
+      319.914697265625
+    ],
+    "drawing_indices": [
+      49,
+      50
+    ],
+    "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-03.png",
+        "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-04.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.249733",
+    "final_path": "assets/lcd-native-04.svg",
+    "source_page": 8,
+    "bbox": [
+      60.31210174560547,
+      336.1872924804687,
+      69.4750991821289,
+      348.7263122558594
+    ],
+    "drawing_indices": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56
+    ],
+    "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-04.png",
+        "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-05.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.153094",
+    "final_path": "assets/lcd-native-05.svg",
+    "source_page": 8,
+    "bbox": [
+      56.364401245117186,
+      364.08798828125,
+      72.98129425048828,
+      378.8987976074219
+    ],
+    "drawing_indices": [
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-05.png",
+        "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-06.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.219669",
+    "final_path": "assets/lcd-native-06.svg",
+    "source_page": 8,
+    "bbox": [
+      57.47400131225586,
+      389.6340087890625,
+      72.31400451660156,
+      404.4460083007813
+    ],
+    "drawing_indices": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+    ],
+    "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-06.png",
+        "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-07.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.066628",
+    "final_path": "assets/lcd-native-07.svg",
+    "source_page": 8,
+    "bbox": [
+      56.357000732421874,
+      408.6250061035156,
+      73.43100128173828,
+      423.4309936523438
+    ],
+    "drawing_indices": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-07.png",
+        "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-08.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.055041",
+    "final_path": "assets/lcd-native-08.svg",
+    "source_page": 8,
+    "bbox": [
+      51.122999572753905,
+      430.22199096679685,
+      78.66500244140624,
+      444.5240112304688
+    ],
+    "drawing_indices": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-08.png",
+        "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-09.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.144257",
+    "final_path": "assets/lcd-native-09.svg",
+    "source_page": 8,
+    "bbox": [
+      54.01800003051758,
+      455.0780090332031,
+      75.7699981689453,
+      465.3000122070313
+    ],
+    "drawing_indices": [
+      22,
+      23,
+      24,
+      25
+    ],
+    "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-09.png",
+        "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-10.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.186118",
+    "final_path": "assets/lcd-native-10.svg",
+    "source_page": 8,
+    "bbox": [
+      58.62460174560547,
+      476.7361206054687,
+      71.1625991821289,
+      489.2751098632813
+    ],
+    "drawing_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-10.png",
+        "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-11.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.192123",
+    "final_path": "assets/lcd-native-11.svg",
+    "source_page": 9,
+    "bbox": [
+      59.92159881591797,
+      36.19460906982422,
+      72.4595962524414,
+      48.73360977172852
+    ],
+    "drawing_indices": [
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243
+    ],
+    "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-11.png",
+        "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-12.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.198028",
+    "final_path": "assets/lcd-native-12.svg",
+    "source_page": 9,
+    "bbox": [
+      89.06000366210938,
+      55.24600830078125,
+      109.44800720214843,
+      69.52901611328124
+    ],
+    "drawing_indices": [
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191
+    ],
+    "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-high-pv.svg",
+        "sha256": "29d819eeeeeefe512bb1d67caa6ccc41a8309ac71a2e640ec3b5b947bde34466",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-13.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.198323",
+    "final_path": "assets/lcd-native-13.svg",
+    "source_page": 9,
+    "bbox": [
+      89.06000366210938,
+      77.34198608398438,
+      109.44800720214843,
+      91.62499389648437
+    ],
+    "drawing_indices": [
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-low-pv.svg",
+        "sha256": "ed72a11c4ad6368e1e2d10f2246ac441a3b9d9b056f807ce94f22594603b7bcd",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-14.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.18473",
+    "final_path": "assets/lcd-native-14.svg",
+    "source_page": 9,
+    "bbox": [
+      89.06000366210938,
+      99.40698852539063,
+      109.44800720214843,
+      113.68999633789062
+    ],
+    "drawing_indices": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "sha256": "e470726a943e24f8cf917a64711b1882cce55187a93d21fe93f8fa59bd56a115",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-14.png",
+        "sha256": "5651765e549c201fe8afe43c3358a6de619cc034d1af10451aecff647be0e93e",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-15.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.182313",
+    "final_path": "assets/lcd-native-15.svg",
+    "source_page": 9,
+    "bbox": [
+      89.93219604492188,
+      143.09668579101563,
+      108.5761962890625,
+      155.63569030761718
+    ],
+    "drawing_indices": [
+      51,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "sha256": "2df3dc64035343b2d8f8b7de42cbc31c87eccea01e5beaf4e9e8771088ac50cb",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-15.png",
+        "sha256": "435f17477214a56e10fe0039aeb7799ab958f1dcdab4f0314829842028937397",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-16.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.221986",
+    "final_path": "assets/lcd-native-16.svg",
+    "source_page": 9,
+    "bbox": [
+      59.92159881591797,
+      186.21977844238282,
+      72.4595962524414,
+      198.75878295898437
+    ],
+    "drawing_indices": [
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164
+    ],
+    "sha256": "1a9d3f3710052777bdc2d290878a81a32a30f018f0c7e454a194a4a340ecea88",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-transfer-switch.png",
+        "sha256": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-17.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.061534",
+    "final_path": "assets/lcd-native-17.svg",
+    "source_page": 9,
+    "bbox": [
+      56.91720428466797,
+      207.99561157226563,
+      75.46420440673828,
+      226.53661499023437
+    ],
+    "drawing_indices": [
+      20
+    ],
+    "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-17.png",
+        "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-18.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.168096",
+    "final_path": "assets/lcd-native-18.svg",
+    "source_page": 9,
+    "bbox": [
+      56.4598030090332,
+      244.5431884765625,
+      75.92180023193359,
+      255.66419372558593
+    ],
+    "drawing_indices": [
+      21
+    ],
+    "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-18.png",
+        "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-19.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.054547",
+    "final_path": "assets/lcd-native-19.svg",
+    "source_page": 9,
+    "bbox": [
+      52.80800094604492,
+      271.5839904785156,
+      79.5729995727539,
+      285.0779968261719
+    ],
+    "drawing_indices": [
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+    ],
+    "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-19.png",
+        "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-20.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.177873",
+    "final_path": "assets/lcd-native-20.svg",
+    "source_page": 9,
+    "bbox": [
+      55.11900177001953,
+      296.2209838867187,
+      77.26300201416015,
+      310.5039916992188
+    ],
+    "drawing_indices": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-connected-batteries.png",
+        "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-21.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.0901",
+    "final_path": "assets/lcd-native-21.svg",
+    "source_page": 9,
+    "bbox": [
+      57.895800018310545,
+      322.1576293945312,
+      74.48279724121093,
+      337.5326171875
+    ],
+    "drawing_indices": [
+      31,
+      32,
+      33
+    ],
+    "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-20.png",
+        "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-22.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.145761",
+    "final_path": "assets/lcd-native-22.svg",
+    "source_page": 9,
+    "bbox": [
+      89.92099609375,
+      343.6784729003906,
+      106.975,
+      359.496484375
+    ],
+    "drawing_indices": [
+      34,
+      35
+    ],
+    "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-21.png",
+        "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-23.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.134803",
+    "final_path": "assets/lcd-native-23.svg",
+    "source_page": 9,
+    "bbox": [
+      89.92099609375,
+      371.96820678710935,
+      106.975,
+      387.7862182617188
+    ],
+    "drawing_indices": [
+      36,
+      37
+    ],
+    "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-22.png",
+        "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-24.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.162207",
+    "final_path": "assets/lcd-native-24.svg",
+    "source_page": 9,
+    "bbox": [
+      57.653395080566405,
+      418.878515625,
+      74.7273956298828,
+      431.4175048828125
+    ],
+    "drawing_indices": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-23.png",
+        "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-25.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.066086",
+    "final_path": "assets/lcd-native-25.svg",
+    "source_page": 9,
+    "bbox": [
+      50.511000061035155,
+      458.9020141601562,
+      81.87099609375,
+      474.14299926757815
+    ],
+    "drawing_indices": [
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      82,
+      85,
+      88,
+      90,
+      92,
+      94,
+      95,
+      96,
+      97
+    ],
+    "sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-24.png",
+        "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "lcd-native-26.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/je1000e_sil_us_en",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Original native LCD glyph checked in browser with transparent alpha; shared glyph mismatch in outline/stroke/tint.",
+    "decision": "native transparent glyph shared by all three locales",
+    "new_extraction_reason": "No matching glyph among 59 unique transparent candidates; closest mean channel error 0.114588",
+    "final_path": "assets/lcd-native-26.svg",
+    "source_page": 9,
+    "bbox": [
+      50.916998291015624,
+      481.0629943847656,
+      81.46399841308593,
+      491.9670043945313
+    ],
+    "drawing_indices": [
+      98,
+      99,
+      100,
+      101
+    ],
+    "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+    "background_policy": "standalone-transparent; retain native clipping and complete glyph",
+    "rejected_candidates": [
+      {
+        "path": "assets/lcd-25.png",
+        "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+        "status": "superseded-do-not-reuse-for-JHP-5000C-US",
+        "reason": "source graphic differs"
+      }
+    ]
+  },
+  {
+    "slot": "power-fr",
+    "searched": [
+      "assets/power.svg"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/power.svg",
+    "decision": "reuse artwork and translate existing clock paths only",
+    "identity_check": "Native long-press paragraph has two lines; native clock placement differs. All other SVG objects remain unchanged.",
+    "new_extraction_reason": null,
+    "final_path": "assets/power-fr.svg",
+    "sha256": "ee5038a0fb7b80d03b55971dbd9367131758f2233731acc8b2a0c303604b22d6",
+    "background_policy": "complete panel; captions and independent frames remain CSS",
+    "derivation": "source/relocate_duration.py",
+    "provenance": "source/duration_provenance.json"
+  },
+  {
+    "slot": "power-es",
+    "searched": [
+      "assets/power.svg"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/power.svg",
+    "decision": "reuse artwork and translate existing clock paths only",
+    "identity_check": "Native long-press paragraph has two lines; native clock placement differs. All other SVG objects remain unchanged.",
+    "new_extraction_reason": null,
+    "final_path": "assets/power-es.svg",
+    "sha256": "0a8aae1f356be47c4730ffad91db9a661a0bc4a581886119e25f0bdccad58c21",
+    "background_policy": "complete panel; captions and independent frames remain CSS",
+    "derivation": "source/relocate_duration.py",
+    "provenance": "source/duration_provenance.json"
+  },
+  {
+    "slot": "car-fr",
+    "searched": [
+      "assets/car.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Native device/vehicle group and panel height/footnote capsule position differ from English; complete native four edges retained.",
+    "new_extraction_reason": "Verified native diagram geometry differs; no crop based only on language.",
+    "source_page": 42,
+    "source_bbox": [
+      24.88740234375,
+      266.58753662109376,
+      339.0224182128906,
+      415.0795166015625
+    ],
+    "removed_caption_indices": [
+      15435
+    ],
+    "final_path": "assets/car-fr.svg",
+    "sha256": "76e225202779d1b2c290057c0bdee602c54831c0c738b0db23797833a16bd4b3",
+    "background_policy": "complete panel; independent white caption capsule removed and drawn by CSS",
+    "superseded_by_web_layout": "re-acquired with the panel's full drawing set; see the later record"
+  },
+  {
+    "slot": "car-es",
+    "searched": [
+      "assets/car.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Native device/vehicle group and panel height/footnote capsule position differ from English; complete native four edges retained.",
+    "new_extraction_reason": "Verified native diagram geometry differs; no crop based only on language.",
+    "source_page": 66,
+    "source_bbox": [
+      24.88740234375,
+      264.3791931152344,
+      339.0224182128906,
+      404.4951965332031
+    ],
+    "removed_caption_indices": [
+      15435
+    ],
+    "final_path": "assets/car-es.svg",
+    "sha256": "3def8fc5a5fb11ab12a4ac9aea952ae32335d10ebb570c17a0f8c6c9f5dd5a77",
+    "background_policy": "complete panel; independent white caption capsule removed and drawn by CSS",
+    "superseded_by_web_layout": "re-acquired with the panel's full drawing set; see the later record"
+  },
+  {
+    "slot": "warning_triangle_dark.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "identity_check": "Filled dark triangle with white exclamation: print p4 risk banner and DANGER lockup.",
+    "final_path": "assets/warning_triangle_dark.svg",
+    "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+    "background_policy": "preserve SVG transparency"
+  },
+  {
+    "slot": "warning_triangle_white.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/symbols/warning_triangle_white.svg",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "identity_check": "White triangle with dark exclamation: print p4 WARNING lockup on its dark panel.",
+    "final_path": "assets/warning_triangle_white.svg",
+    "sha256": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15",
+    "background_policy": "preserve SVG transparency"
+  },
+  {
+    "slot": "symbol_ingestion_hazard.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols",
+      "data/manual_sources/JHP-3600C",
+      "data/manual_sources/JHP-3000D"
+    ],
+    "candidate": null,
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "No coin-battery ingestion hazard glyph exists in the shared libraries.",
+    "identity_check": "Warning triangle above a button cell, left of the INGESTION HAZARD note (print p23/p25/p26; same drawing in FR/ES).",
+    "final_path": "assets/symbol_ingestion_hazard.svg",
+    "source_page": 23,
+    "drawing_indices": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "bbox": [
+      30.0,
+      452.5,
+      47.5,
+      473.6
+    ],
+    "sha256": "1b2a6b580716110eaaea507f6d9a0834d62024312174edad328218597c63d476",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "contact-phone.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": null,
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "No matching contact glyph or this manual's QR code exists in the shared libraries.",
+    "identity_check": "Telephone glyph left of the phone number.",
+    "final_path": "assets/contact-phone.svg",
+    "source_page": 76,
+    "drawing_indices": [
+      2,
+      3
+    ],
+    "bbox": [
+      36.0,
+      469.0,
+      54.0,
+      487.2
+    ],
+    "sha256": "86f136f59ab177125cc6aa9d1d720af0e881e8f23483c48d3f3f1cb9df2f2592",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "contact-mail.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": null,
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "No matching contact glyph or this manual's QR code exists in the shared libraries.",
+    "identity_check": "Envelope glyph left of the e-mail address.",
+    "final_path": "assets/contact-mail.svg",
+    "source_page": 76,
+    "drawing_indices": [
+      4,
+      5
+    ],
+    "bbox": [
+      208.8,
+      469.7,
+      218.1,
+      476.1
+    ],
+    "sha256": "212029188a9099c55269ead4d0efbe4c12cfaf767f56d9108beaec4e583e914d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "contact-web.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": null,
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "No matching contact glyph or this manual's QR code exists in the shared libraries.",
+    "identity_check": "Globe glyph left of the website.",
+    "final_path": "assets/contact-web.svg",
+    "source_page": 76,
+    "drawing_indices": [
+      6,
+      7,
+      8
+    ],
+    "bbox": [
+      208.3,
+      479.0,
+      219.1,
+      487.8
+    ],
+    "sha256": "b69b985b83286edc306ffaec853b83f0fd006b5efac37ca80811cbd72272ec14",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "contact-qr.svg",
+    "searched": [
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols"
+    ],
+    "candidate": null,
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "No matching contact glyph or this manual's QR code exists in the shared libraries.",
+    "identity_check": "QR code at the right of the contact panel.",
+    "final_path": "assets/contact-qr.svg",
+    "source_page": 76,
+    "drawing_indices": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "bbox": [
+      309.2,
+      463.7,
+      337.9,
+      492.5
+    ],
+    "sha256": "5eadb67da3397c6281605ffe5314f38758468d0f6ed8db30939225c49b324c5a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "ac-output-fr",
+    "searched": [
+      "assets/ac-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 34,
+    "source_bbox": [
+      27.5,
+      286,
+      341.5,
+      487.2
+    ],
+    "removed_caption_indices": [
+      1483,
+      1618
+    ],
+    "final_path": "assets/ac-output-fr.svg",
+    "sha256": "af61cc7c4383d4d25be10948ec10b01575fda293f1d5e1ea3b1b06eafb1868f9",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "ac-output-es",
+    "searched": [
+      "assets/ac-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 58,
+    "source_bbox": [
+      27.5,
+      287.5,
+      341.5,
+      485.8
+    ],
+    "removed_caption_indices": [
+      1482,
+      1618
+    ],
+    "final_path": "assets/ac-output-es.svg",
+    "sha256": "233532bf35baaaf5cd6705bb16757be798191c2302a3325a8f406f6c4f61ea2a",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "usb-output-fr",
+    "searched": [
+      "assets/usb-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 35,
+    "source_bbox": [
+      27.5,
+      39,
+      341.5,
+      150.8
+    ],
+    "removed_caption_indices": [
+      799,
+      1626
+    ],
+    "final_path": "assets/usb-output-fr.svg",
+    "sha256": "14aef3914c0f8ddc3ee2620e0fa9dbc4076fffeaa1e8db4d3f287bdd1c914e48",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "usb-output-es",
+    "searched": [
+      "assets/usb-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 59,
+    "source_bbox": [
+      27.5,
+      38,
+      341.5,
+      149.8
+    ],
+    "removed_caption_indices": [
+      799,
+      1626
+    ],
+    "final_path": "assets/usb-output-es.svg",
+    "sha256": "2c83c88dac33bc2fcb4539f5f4dde43c4b99876d19fdb76c7d3a8378b8df0ca0",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "dc-output-fr",
+    "searched": [
+      "assets/dc-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 35,
+    "source_bbox": [
+      27.5,
+      166,
+      341.5,
+      276.8
+    ],
+    "removed_caption_indices": [
+      1627,
+      1628
+    ],
+    "final_path": "assets/dc-output-fr.svg",
+    "sha256": "415ad29ac8fd85e7c5b59f73cb11e70ec2077b497e7794fe9c28cba3853c2330",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "dc-output-es",
+    "searched": [
+      "assets/dc-output.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 59,
+    "source_bbox": [
+      26.7,
+      163.8,
+      340.7,
+      274.6
+    ],
+    "removed_caption_indices": [
+      1627,
+      1628
+    ],
+    "final_path": "assets/dc-output-es.svg",
+    "sha256": "6b09e211f01276820d29a521ae805415ee4a898b02c9753740b02b9f0ac4a613",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "sts-charge-fr",
+    "searched": [
+      "assets/sts-charge.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions, localized App screens).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 39,
+    "source_bbox": [
+      27.4,
+      300.2,
+      341.5,
+      467.3
+    ],
+    "removed_caption_indices": [
+      1
+    ],
+    "final_path": "assets/sts-charge-fr.svg",
+    "sha256": "a4db4d89ee2a10cd4ee227944a3e84b4a2cea3397e576220cd2662beed184663",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "sts-charge-es",
+    "searched": [
+      "assets/sts-charge.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions, localized App screens).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 63,
+    "source_bbox": [
+      27.4,
+      294.4,
+      341.5,
+      469.3
+    ],
+    "removed_caption_indices": [
+      1
+    ],
+    "final_path": "assets/sts-charge-es.svg",
+    "sha256": "a3bf6c0ddb9a8e927369c97f6245c3d874e027726a7a6368ed714c393a13d8ba",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "car-fr",
+    "searched": [
+      "assets/car.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions, plug cable restored).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 42,
+    "source_bbox": [
+      24.88740234375,
+      266.58753662109376,
+      339.0224182128906,
+      415.0795166015625
+    ],
+    "removed_caption_indices": [
+      15435
+    ],
+    "final_path": "assets/car-fr.svg",
+    "sha256": "57a39bd8fb6024c81923587e86eca5a1fcbc63fc2548f200e56b4846862b3d9e",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "car-es",
+    "searched": [
+      "assets/car.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions, plug cable restored).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 66,
+    "source_bbox": [
+      24.88740234375,
+      264.3791931152344,
+      339.0224182128906,
+      404.4951965332031
+    ],
+    "removed_caption_indices": [
+      15435
+    ],
+    "final_path": "assets/car-es.svg",
+    "sha256": "eab297a817f3fd2c215313c21bc445f65854de0437310af545b0d0a0adb1a242",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "low-pv-500-fr",
+    "searched": [
+      "assets/low-pv-500.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 40,
+    "source_bbox": [
+      28.5,
+      119.8,
+      342.6,
+      254.2
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/low-pv-500-fr.svg",
+    "sha256": "787fd25a68f7fb82d5136a6e0f8d4cf88102910a783ae9ef76e9b11a23f6d1e5",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "low-pv-500-es",
+    "searched": [
+      "assets/low-pv-500.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 64,
+    "source_bbox": [
+      28.5,
+      120.2,
+      342.6,
+      254.6
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/low-pv-500-es.svg",
+    "sha256": "d63172b02a25821410fb738375f11242787b5d18534c4cc5a87a3a96f53f4e11",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "low-pv-200-fr",
+    "searched": [
+      "assets/low-pv-200.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 40,
+    "source_bbox": [
+      28.5,
+      257.7,
+      342.6,
+      406.9
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/low-pv-200-fr.svg",
+    "sha256": "a051bde37010f7cc83decc4520d5d953aec9e98c8a6237f3dd0fc82a2414efa2",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "low-pv-200-es",
+    "searched": [
+      "assets/low-pv-200.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 64,
+    "source_bbox": [
+      28.5,
+      258.1,
+      342.6,
+      407.3
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/low-pv-200-es.svg",
+    "sha256": "c8abb94beb1b3bded7636ab0d6cb65be30fdddc20018252fd9970e704252a0d8",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "ac-charge-fr",
+    "searched": [
+      "assets/ac-charge.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 39,
+    "source_bbox": [
+      28.7,
+      172,
+      342.9,
+      284.9
+    ],
+    "removed_caption_indices": [
+      743
+    ],
+    "final_path": "assets/ac-charge-fr.svg",
+    "sha256": "987555ccf21f1efea7346cd80ad46afe0f050b302eace6393685a1d324a2f161",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "ac-charge-es",
+    "searched": [
+      "assets/ac-charge.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 63,
+    "source_bbox": [
+      27.4,
+      166.3,
+      341.5,
+      279.3
+    ],
+    "removed_caption_indices": [
+      3
+    ],
+    "final_path": "assets/ac-charge-es.svg",
+    "sha256": "7e15dfb5c9f2f25ffe026d3db99c7dfdacb67a92fbd0b005cb0244d0d0214530",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "high-pv-fr",
+    "searched": [
+      "assets/high-pv.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 41,
+    "source_bbox": [
+      26.7,
+      122.5,
+      340.8,
+      345.4
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/high-pv-fr.svg",
+    "sha256": "14e051a0cb0183d51016fde3599ae05fc28f04a351a9612829827d6ff60848af",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "high-pv-es",
+    "searched": [
+      "assets/high-pv.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 65,
+    "source_bbox": [
+      26.7,
+      124.4,
+      340.8,
+      345.4
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/high-pv-es.svg",
+    "sha256": "9a1bc6a932ab06a8ba0ebe093a3b4bb3fcd97f1d6b70a2055a9ea6b17cda6170",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "high-pv-lock-fr",
+    "searched": [
+      "assets/high-pv-lock.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 41,
+    "source_bbox": [
+      26.1,
+      352.1,
+      338.7,
+      488.9
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/high-pv-lock-fr.svg",
+    "sha256": "4db66380bc26999780e98ac49eabd78dceef94b0667992cb0ebf4c9241d861e1",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "high-pv-lock-es",
+    "searched": [
+      "assets/high-pv-lock.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 65,
+    "source_bbox": [
+      26.1,
+      352.1,
+      338.7,
+      488.9
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/high-pv-lock-es.svg",
+    "sha256": "cc9a813d47acaa1e6b6447dfa29457fca33847e7182f12c772deae89d303c2f4",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "dual-pv-fr",
+    "searched": [
+      "assets/dual-pv.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 42,
+    "source_bbox": [
+      24.9,
+      69.3,
+      339,
+      233.3
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/dual-pv-fr.svg",
+    "sha256": "9e0cc885cfa1730bd5d50835cedad8afb0fd652cae0034f9c6799d15681b70c7",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "dual-pv-es",
+    "searched": [
+      "assets/dual-pv.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 66,
+    "source_bbox": [
+      24.9,
+      65.3,
+      339,
+      229.3
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/dual-pv-es.svg",
+    "sha256": "ba4052c9682ca8f5c93482c0600fc515b62a3e3eb65bb7bb99f41b86c05d512d",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "ess-fr",
+    "searched": [
+      "assets/ess.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 48,
+    "source_bbox": [
+      30.3,
+      122.6,
+      340,
+      387.7
+    ],
+    "removed_caption_indices": [
+      101
+    ],
+    "final_path": "assets/ess-fr.svg",
+    "sha256": "f7556833fe7d6cfdcc47372a5bcf68b3306e7bd9d2d0a8d49af9569c53699151",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "ess-es",
+    "searched": [
+      "assets/ess.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 72,
+    "source_bbox": [
+      30.3,
+      128.1,
+      340,
+      393.2
+    ],
+    "removed_caption_indices": [
+      100
+    ],
+    "final_path": "assets/ess-es.svg",
+    "sha256": "60d5e47f892fde4c2c4fdb55922f9b9b9d613fd393e3460e2f6efeb3b5560056",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "battery-packs-fr",
+    "searched": [
+      "assets/battery-packs.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 38,
+    "source_bbox": [
+      26.8,
+      97,
+      340.8,
+      251
+    ],
+    "removed_caption_indices": [
+      18
+    ],
+    "final_path": "assets/battery-packs-fr.svg",
+    "sha256": "e635812b909be0b0e26adedcb6aebfd6f6f03c8fd555f70072232876625ddb06",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "battery-packs-es",
+    "searched": [
+      "assets/battery-packs.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 62,
+    "source_bbox": [
+      26.8,
+      90,
+      340.8,
+      244
+    ],
+    "removed_caption_indices": [
+      18
+    ],
+    "final_path": "assets/battery-packs-es.svg",
+    "sha256": "359d2e27dfcd60c61fb1d36cf0d0cd1af313a733fa84e3d9d07b41f0a8bd3136",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "package-sts-fr",
+    "searched": [
+      "assets/package-sts.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 51,
+    "source_bbox": [
+      26,
+      361.3,
+      338.2,
+      497.1
+    ],
+    "removed_caption_indices": [
+      349,
+      356
+    ],
+    "final_path": "assets/package-sts-fr.svg",
+    "sha256": "88d075aa9cfcf6a41dda4579a991e182cac1c90245f716c815ed5de52fccab7f",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "overview-left-fr",
+    "searched": [
+      "assets/overview-left.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 31,
+    "source_bbox": [
+      27,
+      39,
+      344,
+      248
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/overview-left-fr.svg",
+    "sha256": "806a64af45097675ab4071bd1fd060e7306eb0c7032474f4ec94d98fbcde85f5",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "overview-left-es",
+    "searched": [
+      "assets/overview-left.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 55,
+    "source_bbox": [
+      27,
+      39,
+      344,
+      248
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/overview-left-es.svg",
+    "sha256": "aaec2263b0035802b252a1564841d00c11f399d7c40c2b2a0a89023a41c64f41",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "overview-front-fr",
+    "searched": [
+      "assets/overview-front.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 30,
+    "source_bbox": [
+      27,
+      266,
+      344,
+      490
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/overview-front-fr.svg",
+    "sha256": "f151eefd85a17437343fc18f74015624f6e74586b8dd4c78bf8c2b3b5589a003",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "app-control-fr",
+    "searched": [
+      "assets/app-control.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 44,
+    "source_bbox": [
+      40.2,
+      385.8,
+      341.9,
+      463.2
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/app-control-fr.svg",
+    "sha256": "b1c254601b34c7b5d1bfb5d62eb8e57551bccba63ac432d04ddf6c15538844ae",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  },
+  {
+    "slot": "app-control-es",
+    "searched": [
+      "assets/app-control.svg"
+    ],
+    "candidate": null,
+    "decision": "acquire native locale variant after artwork comparison",
+    "identity_check": "Locale print geometry differs from English (device scale, zoom circles, bracket and caption plate positions).",
+    "new_extraction_reason": "The shared English panel cannot carry the locale's print label geometry.",
+    "source_page": 68,
+    "source_bbox": [
+      40.2,
+      385.8,
+      341.9,
+      463.2
+    ],
+    "removed_caption_indices": [],
+    "final_path": "assets/app-control-es.svg",
+    "sha256": "1f153813fe6777fee9e97fa854f91cb68e49080035a2010e885cd4fc1a54c44e",
+    "background_policy": "complete panel; caption plates and panel stroke drawn by CSS"
+  }
+]
