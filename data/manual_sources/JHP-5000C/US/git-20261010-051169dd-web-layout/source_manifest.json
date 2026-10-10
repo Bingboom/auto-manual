@@ -2088,6 +2088,7 @@
       "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
     }
   ],
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "Jackery HomePower 5000 Plus.pdf",
@@ -2096,8 +2097,8 @@
     },
     {
       "path": "README.md",
-      "size": 6699,
-      "sha256": "daeb890c1b927b038d5de5473ddf01b6bf3a515d4d7865639733b278f676eb31"
+      "size": 7167,
+      "sha256": "2fbab91ac577d253c8f1ba441cc3bf8c6f0549c42efc7990044848d2bae8fb67"
     },
     {
       "path": "assets/ac-charge-es.svg",
@@ -2700,6 +2701,11 @@
       "sha256": "6571eaac73e05980cba6197b474186e778452dfeccacbde89a5365f41f1befc9"
     },
     {
+      "path": "source/approval.json",
+      "size": 25535,
+      "sha256": "c47d42e0fd2222ae3d70c88db663e257fc50e2eb05a91a9d6520bd2c276a9275"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 152374,
       "sha256": "68edaa9a2379965137d2eaec01d58e3ed53a44d75a173f47312073c0939c0844"
@@ -3261,8 +3267,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 1007061,
-      "sha256": "3ed9d499abb04a16bf9f106f2af949bedc425ee4a3bd85ef869978565ca6e68f"
+      "size": 1035649,
+      "sha256": "3dc01cf8ef4241733cd79a6450dd7dfea7bb74ed596ce94a9f62b52097ab25f2"
     },
     {
       "path": "web/en/manual_jhp5000c_us_en.md",
@@ -3691,8 +3697,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 1046862,
-      "sha256": "1011172c669d3bc14600ab8c374342600e30b81a6cf27833b1ae5bf511ecfab1"
+      "size": 1075450,
+      "sha256": "0dcad58e6dc1d1f9b3e5e3b5e4554014ab95494095dde19dd5578e2f6e720779"
     },
     {
       "path": "web/es/manual_jhp5000c_us_es.md",
@@ -4121,8 +4127,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 1042550,
-      "sha256": "de3f3534010b8c129e4280ac96f6d00c415c2f3f991134b90e618fec7b6bba05"
+      "size": 1071138,
+      "sha256": "da169179f53960d0d049b755173fd544ab2920bccc4426a1f6004651d09f7ae2"
     },
     {
       "path": "web/fr/manual_jhp5000c_us_fr.md",

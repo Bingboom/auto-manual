@@ -241,7 +241,9 @@ class WebLayoutEditionTests(unittest.TestCase):
     def test_acceptance_covers_exactly_the_reviewed_source(self):
         self.require_pinned_shared_inputs()
         source = self.fixture()
+        (source / 'source/approval.json').unlink(missing_ok=True)  # start from the unaccepted sources
         manifest = read(source / 'source_manifest.json')
+        manifest['inputs'] = [row for row in manifest['inputs'] if row['path'] != 'source/approval.json']
         manifest['publication_status'] = APPROVED_STATUS
         write(source / 'source_manifest.json', manifest)
         with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):

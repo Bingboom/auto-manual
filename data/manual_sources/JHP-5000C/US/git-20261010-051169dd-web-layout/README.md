@@ -4,7 +4,11 @@ Operator instructions, 2026-10-10: 「继续调一下 这个的版面」 for the
 
 This edition fixes the Web layout of the [approved edition](../git-20261009-051169dd/README.md) (MA-279) against the same PDF: `Jackery HomePower 5000 Plus.pdf`, SHA-256 `051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a`. English uses physical pages 4–27, French 28–51 and Spanish 52–75; p2 holds the three prefaces and p76 the shared back cover. The approved edition, its PDF and its release evidence remain immutable.
 
-**Status: review candidate.** The manifest carries no `publication_status`, there is no `source/approval.json`, and the rebuilt IR is not publication-eligible, so sealing refuses it. After the operator accepts the reviewed candidate (「上线提交发布」), `source/approval.json` binds every reviewed input hash and `source_manifest.json` gets `publication_status: operator-approved-git-only-release`. Any later input change then invalidates that acceptance.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `79797bb` with its chapter-by-chapter comparison sheets (print PDF beside the desktop and phone Web, all three languages). On 2026-10-10 they instructed 「上线提交发布」 with one correction, applied in `7728246`: the safety lists use the existing two-column layout (「不对 这个你要改两列的啊」「线上有很多现成的 都是双栏的啊」「不需要你重新另写」). After reviewing the rendered safety pages (print beside desktop and phone Web), they confirmed 「提交发布」.
+- `source/approval.json` binds the hash of every package input except `web/` and itself.
+- The rebuilt IR is publication-eligible.
+- The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant.
+- Any later input change invalidates the acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
 
 ## What changed
 
