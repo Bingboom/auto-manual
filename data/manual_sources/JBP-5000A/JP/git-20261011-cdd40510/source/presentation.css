@@ -90,3 +90,6 @@
 @media(max-width:520px){
 #furo-main-content .native-stacking-notice .manual-callout-label{width:100%!important;}
 }
+
+/* Native safety bullets use shared item spacing, without paragraph tail gaps. */
+#furo-main-content .native-safety-list p{margin:0;}

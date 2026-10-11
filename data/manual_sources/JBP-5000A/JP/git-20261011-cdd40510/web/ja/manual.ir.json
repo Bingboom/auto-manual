@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "fb5d8e6913244e8a3b0ef6fcb48dcae8e26e6aef0fc7977c4195aeef389ca1ab",
-  "content_sha256": "d03fd8ec741315d1b6d9ce0c9112066efa56fa123874a57fd96d1a46ee818989",
+  "bundle_sha256": "aa271a8e3391371b25e8b0f501c42725b4b6e16c831782bca1a325a2b340ccf2",
+  "content_sha256": "9ea8094560114968fdf970e2240bd41b3ac9c6e90ceb9d9ad6185acf30d0e0cf",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "deac702d7ea933ad2ae4b603f00322247640093d2e7dd0fc31642308b9873544"
+      "sha256": "fa0afd7a9320cdf115159142d03232f89e28600eb47baf2380594de1f8bc23d2"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -7053,7 +7053,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0003",
-          "content_sha256": "839168162296d0bc18739c1a0fb27b5f3a07a0090d1c1f6018e0c29050ddc46f",
+          "content_sha256": "c682a665e569f98bae31d86fe39f6f7e383034ba005bfb8997d250672fe2f48b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7230,6 +7230,13 @@
             ],
             "kind": "list",
             "ordered": false,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "native-safety-list"
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/safety#block-3"
@@ -7436,7 +7443,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#safety",
       "source_ref": "native-pdf/safety",
-      "source_sha256": "994dfdaa82a7722fcdd83c7facbef293dc16fef65dfdcffd8ebab23bdd0d12ff"
+      "source_sha256": "655c02f2e70c9556bed44bd0670b2aa1662ec333724e36a26c1b857ba0e11c28"
     }
   ],
   "region": "JP",

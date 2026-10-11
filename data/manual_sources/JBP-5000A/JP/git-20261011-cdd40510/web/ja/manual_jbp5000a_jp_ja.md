@@ -92,6 +92,9 @@
 #furo-main-content .native-stacking-notice .manual-callout-label{width:100%!important;}
 }
 
+/* Native safety bullets use shared item spacing, without paragraph tail gaps. */
+#furo-main-content .native-safety-list p{margin:0;}
+
 </style>
 
 <span id="native-specifications"></span>
@@ -204,6 +207,6 @@
 
 <p><strong>本製品を使用する際、以下の注意事項を守ってください。</strong></p>
 
-<ul><li><p>本製品を使用する前に取扱説明書をよくお読みください。</p></li><li><p>危険防止のため、お子様の近くで本製品を使用する時は、お子様から目を離さないようにしてください。</p></li><li><p>メーカーが保証していない推奨外の付属品を使用すると、感電の恐れがあります。</p></li><li><p>製品を使用しない場合は、プラグを抜いてください。</p></li><li><p>火災、爆発、感電などの予測できない危険が発生する恐れがありますので、本製品を解体しないでください。</p></li><li><p>感電の危険があるため、破損したコードやプラグ、またはケーブルを使用しないでください。</p></li><li><p>製品の充電は風通しの良い場所で行い、風通しの悪い場所での充電はおやめください。</p></li><li><p>雨に濡れないよう、風通しのよい乾燥した場所に保管してください。本製品は濡れると感電の危険があります。</p></li><li><p>火災、爆発などの事故の原因となるため、本製品を火気に近づけないでください。</p></li><li><p>高温の下（直射日光や猛暑の車内）で使用したり放置しないでください。内蔵のバッテリーが過熱して発火したり、機能しなくなったり、寿命が短くなる可能性があります。</p></li><li><p>本製品を初めてご使用になる時は、十分に充電してからご使用ください。本製品を電池が切れた状態で長期間（3ヶ月～6ヶ月）放置すると、性能が低下し、過放電により充電ができなくなる場合があります。</p></li></ul>
+<ul class="native-safety-list"><li><p>本製品を使用する前に取扱説明書をよくお読みください。</p></li><li><p>危険防止のため、お子様の近くで本製品を使用する時は、お子様から目を離さないようにしてください。</p></li><li><p>メーカーが保証していない推奨外の付属品を使用すると、感電の恐れがあります。</p></li><li><p>製品を使用しない場合は、プラグを抜いてください。</p></li><li><p>火災、爆発、感電などの予測できない危険が発生する恐れがありますので、本製品を解体しないでください。</p></li><li><p>感電の危険があるため、破損したコードやプラグ、またはケーブルを使用しないでください。</p></li><li><p>製品の充電は風通しの良い場所で行い、風通しの悪い場所での充電はおやめください。</p></li><li><p>雨に濡れないよう、風通しのよい乾燥した場所に保管してください。本製品は濡れると感電の危険があります。</p></li><li><p>火災、爆発などの事故の原因となるため、本製品を火気に近づけないでください。</p></li><li><p>高温の下（直射日光や猛暑の車内）で使用したり放置しないでください。内蔵のバッテリーが過熱して発火したり、機能しなくなったり、寿命が短くなる可能性があります。</p></li><li><p>本製品を初めてご使用になる時は、十分に充電してからご使用ください。本製品を電池が切れた状態で長期間（3ヶ月～6ヶ月）放置すると、性能が低下し、過放電により充電ができなくなる場合があります。</p></li></ul>
 
 <div class="native-app-download-row"><div><p>本製品はJackeryアプリケーションによるスマートコントロールに対応しています。</p><p>ご利用いただくには、下記のアプリストアより「Jackery」で検索して「Jackery アプリ」をダウンロードしてください。</p><div class="native-figure native-app-download"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="app-download" data-source-fragment-sha256="a3179ffeb93e642d99fdb499785db82c7c7502fe8845c0d89ca551d41bfef2b7"><div class="hb-reference-semantic" data-reference-id="app-download.semantic"><img alt="app-download" class="hb-reference-art hb-composite-art" src="assets/app-download.svg"/></div></figure></div></div><div class="native-figure native-app-qr"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="app-qr" data-source-fragment-sha256="5eb43642300c375dc4eec76824daccd3cad4d079b319cc9ab3b03081bd37e22a"><div class="hb-reference-semantic" data-reference-id="app-qr.semantic"><img alt="app-qr" class="hb-reference-art hb-composite-art" src="assets/app-qr.svg"/></div></figure></div></div>

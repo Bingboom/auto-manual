@@ -1065,8 +1065,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "6f9105e62b3d1e4d8af63f7c835481b8c8b37e302e36f8ade819e33670faf93b",
-      "size": 5544
+      "sha256": "17165926ed08b29f6266eae5da5ba1195299eff7ad2a6b6eef3cef91580b6d13",
+      "size": 5673
     },
     {
       "path": "assets/ac-charge.svg",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "sha256": "2ed9feb37e9531fdc8a5ddf3a20f2f67a633191256c086253df35d97dc80604f",
-      "size": 181847
+      "sha256": "cb06ceebe721f034e8081809824c1c72692fda2a095be2fb30bff26344bfbdb6",
+      "size": 182016
     },
     {
       "path": "source/ja/coverage.json",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "source/presentation.css",
-      "sha256": "deac702d7ea933ad2ae4b603f00322247640093d2e7dd0fc31642308b9873544",
-      "size": 7083
+      "sha256": "fa0afd7a9320cdf115159142d03232f89e28600eb47baf2380594de1f8bc23d2",
+      "size": 7218
     },
     {
       "path": "source/print-cover.json",
@@ -1235,8 +1235,8 @@
     },
     {
       "path": "web/ja/_static/source_presentation.css",
-      "sha256": "deac702d7ea933ad2ae4b603f00322247640093d2e7dd0fc31642308b9873544",
-      "size": 7083
+      "sha256": "fa0afd7a9320cdf115159142d03232f89e28600eb47baf2380594de1f8bc23d2",
+      "size": 7218
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -1350,13 +1350,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "sha256": "0d433668a5a4972cdefdf9fe24e7f3dac7308c9fc58036a2ae1b4ebe40e5e79a",
-      "size": 263464
+      "sha256": "686443d16bbfc7b55b5e2004f9562cc67879eaec8db8824e8f2061af17510b72",
+      "size": 263647
     },
     {
       "path": "web/ja/manual_jbp5000a_jp_ja.md",
-      "sha256": "ba02d2222aab4434e7c81495fca11a6ff8c39762d01276ffe6a289084f1e963d",
-      "size": 38831
+      "sha256": "ed533649dc65a1bc953987c5340a1a1d8e52e6e704dc7603283922691c9cab63",
+      "size": 38993
     }
   ]
 }

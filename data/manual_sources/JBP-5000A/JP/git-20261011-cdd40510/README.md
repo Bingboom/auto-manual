@@ -30,6 +30,8 @@ The native recycling notice uses a single shared bordered panel: the existing
 transparent Li-ion symbol has a fixed column, with its heading and three real
 bullet statements beside it. The preceding bold specification notice retains
 its square CSS marker. All source copy and symbol artwork are unchanged.
+The safety list removes paragraph tail gaps inside its 11 original bullets;
+shared typography and item spacing remain in effect.
 The accessory-support notice below the inbox cards retains its native single
 disc bullet through the shared unordered-list style.
 The LCD table numbers 1/2 use paragraph carriers for the existing shared
