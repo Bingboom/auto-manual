@@ -9,9 +9,9 @@ a change to the item's own label or text replaces it, so an earlier artifact's
 item turns stale exactly when its content changed. Machine output only carries
 ``extracted`` / ``candidate`` status; review decisions belong to Phase 3.
 
-``carriers`` decides which blocks are warning, safety or compliance items and
-``topics`` classifies them against the controlled vocabulary; comparison
-relations arrive with P2-3.
+``carriers`` decides which blocks are warning, safety or compliance items,
+``topics`` classifies them against the controlled vocabulary and ``relations``
+compares them across products and across languages.
 Plan: ``code-as-doc/dev/machine_readable_knowledge_observation.md``.
 """
 from __future__ import annotations
@@ -28,12 +28,13 @@ import unicodedata
 from tools.check.docs_capability import CAPABILITIES_CSV, load_capabilities
 from tools.manual_knowledge.carriers import Carrier, carriers, legislation
 from tools.manual_knowledge.manifest import MANIFEST, check_freshness, deployment_reader
+from tools.manual_knowledge.relations import build_relations, summarize_relations
 from tools.manual_knowledge.topics import classify
 from tools.utils.path_utils import PathSegments, knowledge_observation_reports_of, repo_root
 
 ARTIFACT = "manual-observations.json"
 SCHEMA = "auto-manual-knowledge-observations/v1"
-GENERATOR_VERSION = "manual-observations/0.2"
+GENERATOR_VERSION = "manual-observations/0.3"
 FEATURE_SOURCE = f"{PathSegments.DATA}/{CAPABILITIES_CSV}"
 # Line-leading list glyphs only; signs, asterisks and numbering are content.
 _BULLETS = re.compile(r"^[ \t]*[•●▪◦‧·][ \t]*", re.MULTILINE)
@@ -114,14 +115,14 @@ def summarize(corpus: dict, items: list[dict], relations: list[dict]) -> dict:
             "topic_undetermined": {category: undetermined.get(category, 0) for category in categories},
             "review_flags": dict(Counter(flag for item in items for flag in item["review_flags"])),
             "unknown_labels": dict(Counter(item["label"] for item in items if item["severity"] == "unknown")),
-            "relations": len(relations),
+            **summarize_relations(relations),
             "images_without_alt": sum(document["coverage"]["images"] - document["coverage"]["images_with_alt"]
                                       for document in corpus["documents"])}
 
 
 def build_observations(corpus: dict, corpus_bytes: bytes, features: dict[str, dict[str, bool]]) -> dict:
     items = build_items(corpus, features)
-    relations: list[dict] = []  # comparison relations arrive with P2-3
+    relations = build_relations(corpus, items, GENERATOR_VERSION)
     return {"schema": SCHEMA, "generator_version": GENERATOR_VERSION, "region": corpus["region"],
             "source_sha256": corpus["source_sha256"], "published_at": corpus["published_at"],
             "corpus_sha256": hashlib.sha256(corpus_bytes).hexdigest(), "feature_source": FEATURE_SOURCE,
