@@ -1,0 +1,240 @@
+[
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      325.9018249511719,
+      277.156494140625,
+      345.4668273925781,
+      297.1344909667969
+    ],
+    "raw": " 輸出",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      304.90179443359375,
+      235.34547424316406,
+      345.4668273925781,
+      255.32347106933594
+    ],
+    "raw": "USB-C 輸出",
+    "glyph": "U+F6BF",
+    "recovered": "1",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      301.5278015136719,
+      367.73651123046875,
+      348.7148132324219,
+      387.7145080566406
+    ],
+    "raw": "AC 輸出（ 個）",
+    "glyph": "U+F6C1",
+    "recovered": "3",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      22.724822998046875,
+      288.76251220703125,
+      71.57781982421875,
+      308.7405090332031
+    ],
+    "raw": "DC V 連接埠  ",
+    "glyph": "U+F6BF",
+    "recovered": "1",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      22.724822998046875,
+      288.76251220703125,
+      71.57781982421875,
+      308.7405090332031
+    ],
+    "raw": "DC V 連接埠  ",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      19.770822525024414,
+      356.85150146484375,
+      95.35682678222656,
+      376.8294982910156
+    ],
+    "raw": "（ × DC 連接埠）",
+    "glyph": "U+F6BE",
+    "recovered": "0",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      19.770822525024414,
+      356.85150146484375,
+      95.35682678222656,
+      376.8294982910156
+    ],
+    "raw": "（ × DC 連接埠）",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 5,
+    "font": "SourceHanSansSC-Medium",
+    "bbox": [
+      19.770822525024414,
+      356.85150146484375,
+      95.35682678222656,
+      376.8294982910156
+    ],
+    "raw": "（ × DC 連接埠）",
+    "glyph": "U+F6C6",
+    "recovered": "8",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 9,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      50.464599609375,
+      15.231809616088867,
+      167.95458984375,
+      43.751808166503906
+    ],
+    "raw": "V / USB 輸出開啟 / 關閉",
+    "glyph": "U+F6BF",
+    "recovered": "1",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 9,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      50.464599609375,
+      15.231809616088867,
+      167.95458984375,
+      43.751808166503906
+    ],
+    "raw": "V / USB 輸出開啟 / 關閉",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 10,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      242.3488006591797,
+      128.25241088867188,
+      269.06781005859375,
+      148.21641540527344
+    ],
+    "raw": " 秒以上",
+    "glyph": "U+F6C1",
+    "recovered": "3",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 17,
+    "font": "SourceHanSansSC-Heavy",
+    "bbox": [
+      36.42380142211914,
+      172.49490356445312,
+      49.821800231933594,
+      235.1949005126953
+    ],
+    "raw": "",
+    "glyph": "U+F6C1",
+    "recovered": "3",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 17,
+    "font": "SourceHanSansSC-Heavy",
+    "bbox": [
+      218.93359375,
+      172.19119262695312,
+      242.40757751464844,
+      234.8911895751953
+    ],
+    "raw": "  ",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 18,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      37.99610137939453,
+      153.75820922851562,
+      73.99010467529297,
+      173.7222137451172
+    ],
+    "raw": ". 新增裝置",
+    "glyph": "U+F6C0",
+    "recovered": "2",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 18,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      37.03010177612305,
+      47.435211181640625,
+      96.70510864257812,
+      67.39920806884766
+    ],
+    "raw": ". 下載 App 並登入",
+    "glyph": "U+F6BF",
+    "recovered": "1",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 19,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      33.61869812011719,
+      356.82989501953125,
+      83.61270141601562,
+      376.79388427734375
+    ],
+    "raw": ". 解除裝置綁定",
+    "glyph": "U+F6C1",
+    "recovered": "3",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  },
+  {
+    "physical_page": 19,
+    "font": "SourceHanSansSC-Bold",
+    "bbox": [
+      33.61869812011719,
+      392.4878845214844,
+      69.61270141601562,
+      412.4518737792969
+    ],
+    "raw": ". 注意事項",
+    "glyph": "U+F6C2",
+    "recovered": "4",
+    "method": "native visible glyph; corroborated p5 interface labels, p10 duration, p17 warranty and p18 step headings"
+  }
+]
