@@ -112,10 +112,10 @@ _TOPICS: dict[str, tuple[str, ...]] = {
     ),
     "disposal": (
         r"\bdisposal\b", r"\bdispos(?:e|ed|ing) of\b", r"recycl", r"\bwaste\b", r"\bentsorg", r"hausmüll",
-        r"\babfall", r"\bélimin", r"\bdéchet", r"ordures ménagères", r"\bdesech", r"\brecicl", r"\bresiduos?\b",
-        r"\bbasura", r"\bsmalt", r"\bricicl", r"\brifiut", r"\bafval", r"\bafvoer", r"\bafgevoerd", r"\butyliz",
-        r"\bodpad", r"\brecykl", r"\bdescart", r"\bresíduos?\b", r"\blixo\b", r"утиліз", r"відход", r"переробк",
-        r"сміття",
+        r"\babfall", r"\bélimin", r"\bdéchet", r"\beliminaci[óo]n\b", r"\beliminaç[ãa]o\b", r"ordures ménagères",
+        r"\bdesech", r"\brecicl", r"\bresiduos?\b", r"\bbasura", r"\bsmalt", r"\bricicl", r"\brifiut", r"\bafval",
+        r"\bafvoer", r"\bafgevoerd", r"\butyliz", r"\bodpad", r"\brecykl", r"\bdescart", r"\bresíduos?\b",
+        r"\blixo\b", r"утиліз", r"відход", r"переробк", r"сміття",
     ),
     "children": (
         r"\bchild(?:ren)?\b", r"\bkids?\b", r"\binfants?\b", r"(?-i:\bKind\b)", r"\bkinder(?:n|en)?\b",
