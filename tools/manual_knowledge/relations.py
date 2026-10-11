@@ -152,8 +152,8 @@ def _cross_product(items: list[dict], documents: list[dict], region: str) -> Ite
 
 def _features(item: dict) -> dict:
     topics = frozenset(item["topic"])
-    return {"numbers": numbers(item["text"]), "topics": topics, "severity": item["severity"],
-            "context": topics | frozenset(classify(item["source"]["section_title"]))}
+    return {"numbers": numbers(item["text"]), "topics": topics, "severity": item["severity"], "key": loose(item["text"]),
+            "category": item["category"], "context": topics | frozenset(classify(item["source"]["section_title"]))}
 
 
 def _overlap(left: frozenset, right: frozenset, *, scale: int, offset: int, one_sided: int, cap: int) -> int:
@@ -169,8 +169,11 @@ def _score(left: dict, right: dict) -> int:
     """Evidence that two items of one category state the same thing in two languages.
 
     One number may be spelled out in a translation; several numbers on one side only mean different items.
+    Text left untranslated (an address, a URL, an English declaration) is the same item outright. Reading
+    order alone pairs warnings and safety items, but not compliance lines, whose order differs by lineage.
     """
-    score = 10 + _overlap(left["numbers"], right["numbers"], scale=60, offset=20, one_sided=15, cap=45)
+    score = 70 if left["key"] == right["key"] else 0 if left["category"] == "compliance" else 10
+    score += _overlap(left["numbers"], right["numbers"], scale=60, offset=20, one_sided=15, cap=45)
     score += _overlap(left["topics"], right["topics"], scale=40, offset=10, one_sided=5, cap=5)
     severities = {left["severity"], right["severity"]}
     if not severities & {None, "unknown"}:
@@ -249,8 +252,15 @@ def _blocks(document: dict) -> Iterator[dict]:
         yield from section["blocks"]
 
 
+def _plain_blocks(document: dict, carried: set[str]) -> list[tuple[dict, frozenset[str]]]:
+    """Prose no item came from, each block with its topics and its section's: where a moved item may sit."""
+    return [(block, frozenset(classify(block["text"])) | frozenset(classify(section["title"])))
+            for section in document["sections"] for block in section["blocks"]
+            if block["type"] in {"paragraph", "list"} and block["block_id"] not in carried]
+
+
 def _absent(document: dict, reference: dict, evidence: tuple[frozenset, frozenset], candidates: list[dict],
-            features: dict[str, dict]) -> dict:
+            features: dict[str, dict], plain: list[tuple[dict, frozenset[str]]]) -> dict:
     anchors, context = evidence
     entry = _searched(document, "aligned_items", revision_alignment(reference["observed_context"], document))
     hits: list[dict] = []
@@ -262,6 +272,12 @@ def _absent(document: dict, reference: dict, evidence: tuple[frozenset, frozense
         entry["searched"] = "topic_items"
         hits = [{"knowledge_id": item["knowledge_id"], "source_ref": item["source"]["source_ref"]}
                 for item in candidates if context <= features[item["knowledge_id"]]["context"]]
+        if len(context) > 1:
+            # Two or more topics recognise the item as prose elsewhere; a block spanning more topics
+            # than one beyond them is a broader passage, not the item.
+            entry["searched"] = "topic_document"
+            hits += [{"block_id": block["block_id"], "source_ref": block["source_ref"]}
+                     for block, topics in plain if context <= topics and len(topics) <= len(context) + 1]
     strength = "weak" if hits or not (anchors or context) else "strong" if anchors else "moderate"
     # Text in an image without alt is invisible here (no OCR), so it can always hide the counterpart.
     blind = document["coverage"]["images"] - document["coverage"]["images_with_alt"]
@@ -306,12 +322,14 @@ def _anchors(cluster: list[dict], features: dict[str, dict]) -> frozenset[str]:
 
 
 def _parity_relation(cluster: list[dict], editions: list[dict], candidates: dict[str, list[dict]],
-                     features: dict[str, dict], scope: dict, moved: bool) -> dict:
+                     features: dict[str, dict], plain: dict[str, list[tuple[dict, frozenset[str]]]], scope: dict,
+                     moved: bool) -> dict:
     anchors = _anchors(cluster, features)
     context = frozenset.intersection(*(features[item["knowledge_id"]]["context"] for item in cluster))
     strength = "strong" if anchors else "moderate" if context else "weak"
     present = {item["variant_key"] for item in cluster}
-    absent = [_absent(document, cluster[0], (anchors, context), candidates[document["variant_key"]], features)
+    absent = [_absent(document, cluster[0], (anchors, context), candidates[document["variant_key"]], features,
+                      plain[document["variant_key"]])
               for document in editions if document["variant_key"] not in present]
     differences, confidences = _member_claims(cluster, features, strength)
     if moved:
@@ -363,9 +381,12 @@ def _parity(items: list[dict], documents: list[dict], region: str) -> Iterator[d
                     for category in CATEGORIES}
         moved = {category: _merge_crossings(clusters[category], features, rank) for category in CATEGORIES}
         candidates = _candidates(order, clusters, sequences, features)
+        plain = {document["variant_key"]: _plain_blocks(document, {
+            item["source"]["block_id"] for category in CATEGORIES for item in sequences[document["variant_key"], category]})
+            for document in order}
         for category in CATEGORIES:
             for cluster, was_moved in zip(clusters[category], moved[category], strict=True):
-                yield _parity_relation(cluster, order, candidates, features, {"model": model, "region": region},
+                yield _parity_relation(cluster, order, candidates, features, plain, {"model": model, "region": region},
                                        was_moved)
 
 

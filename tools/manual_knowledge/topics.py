@@ -6,7 +6,8 @@ language almost never fires on unrelated text, and keeping the lists flat
 avoids per-language tables. Stems are anchored where a bare form would collide
 with another meaning: *luz solar* (sunlight) is not PV input, *descarga
 eléctrica* (electric shock) is not charging, French *prendre en charge* (to
-support) is not charging, and English *kind* is not German *Kind*.
+support) and German *Laden … herunter* (to download) are not charging, and
+English *kind* is not German *Kind*.
 
 Patterns match case-insensitively unless scoped ``(?-i:...)``, on NFKC text with
 Unicode word boundaries. An item that matches nothing keeps ``topic: []`` and the
@@ -96,7 +97,7 @@ _TOPICS: dict[str, tuple[str, ...]] = {
     ),
     "charging": (
         r"(?<!en )\bcharg(?:e|es|ed|ing|er|ers|ez|ement|eur|eurs)\b", r"\brecharg",
-        r"\blade(?:n|gerät|zeit|vorgang|strom|kabel|leistung)?\b", r"\bladung\b",
+        r"\blade(?:n|gerät|zeit|vorgang|strom|kabel|leistung)?\b(?![^.]{0,60}\bherunter)", r"\bladung\b",
         r"lade(?:kabel|gerät|zeit|vorgang|strom|leistung|anschluss)", r"\baufla(?:den|dung)", r"\baufgeladen",
         r"aufzuladen", r"\blaad(?:t)?\b", r"\b(?:op)?geladen\b", r"\bcarg(?:a|ar|ando|ue|ador|adores)\b",
         r"\brecarg", r"\bricaric", r"\bcaric(?:a|are|amento|atore)\b", r"\bopla(?:den|ad|der)", r"\blader\b",
