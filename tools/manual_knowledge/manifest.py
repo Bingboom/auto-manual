@@ -9,22 +9,32 @@ manifest's recorded hashes with a deployment receipt:
 - ``stale``: the published HTML changed since this surface was generated;
 - ``failed``: the corpus is missing the document or its bytes differ;
 - ``unavailable``: the publication is no longer in the deployment.
+
+Each variant also lists the source labels of callouts whose severity is
+``unknown``. The command compares them with the reviewed exceptions in
+``data/machine_surface_known_callout_labels.csv`` so a new unrecognized label is
+reported instead of accumulating silently; the report never changes the
+freshness exit code and never fails a build.
 """
 from __future__ import annotations
 
 import argparse
 from collections import Counter
 from collections.abc import Callable
+import csv
 import hashlib
 import json
 from pathlib import Path
 import sys
 
 from tools.manual_knowledge.identity import GENERATOR_VERSION
+from tools.utils.path_utils import PathSegments, repo_root
 
 MANIFEST = "machine_surface_manifest.json"
 MANIFEST_SCHEMA = "auto-manual-machine-surface-manifest/v1"
 STATUSES = ("fresh", "stale", "failed", "unavailable")
+KNOWN_CALLOUT_LABELS_CSV = "machine_surface_known_callout_labels.csv"
+LABEL_DISPOSITIONS = ("icon_only", "source_defect", "pending_style_guide")
 
 
 def canonical(value) -> bytes:
@@ -37,11 +47,13 @@ def surface_sha256(document: dict) -> str:
 
 def _counts(document: dict) -> dict:
     blocks = [block for section in document["sections"] for block in section["blocks"]]
+    callouts = [block for block in blocks if block["type"] == "callout"]
     coverage = document.get("coverage", {})
     return {"sections": len(document["sections"]), "blocks": len(blocks),
             "blocks_by_type": dict(sorted(Counter(b["type"] for b in blocks).items())),
-            "callouts_by_severity": dict(sorted(Counter(b.get("severity", "unknown") for b in blocks
-                                                        if b["type"] == "callout").items())),
+            "callouts_by_severity": dict(sorted(Counter(b.get("severity", "unknown") for b in callouts).items())),
+            "unknown_callout_labels": dict(sorted(Counter(b.get("label", "") for b in callouts
+                                                          if b.get("severity", "unknown") == "unknown").items())),
             "images": coverage.get("images", 0),
             "images_without_alt": coverage.get("images", 0) - coverage.get("images_with_alt", 0)}
 
@@ -61,6 +73,9 @@ def build_manifest(corpus: dict, corpus_bytes: bytes, *, artifact: str) -> dict:
             "html_sha256": document["html_sha256"], "surface_sha256": surface_sha256(document),
             "status": "fresh", "counts": _counts(document),
         })
+    unknown_labels: Counter[str] = Counter()
+    for variant in variants:
+        unknown_labels.update(variant["counts"]["unknown_callout_labels"])
     return {"schema": MANIFEST_SCHEMA, "generator_version": GENERATOR_VERSION,
             "source_sha256": corpus["source_sha256"], "published_at": corpus["published_at"],
             "region": corpus["region"],
@@ -70,8 +85,39 @@ def build_manifest(corpus: dict, corpus_bytes: bytes, *, artifact: str) -> dict:
                        "status": dict(Counter(v["status"] for v in variants)),
                        "generation_mode": dict(Counter(v["generation_mode"] for v in variants)),
                        "revision_kind": dict(sorted(Counter(v["revision_kind"] for v in variants).items())),
-                       "language_status": dict(sorted(Counter(v["language_status"] for v in variants).items()))},
+                       "language_status": dict(sorted(Counter(v["language_status"] for v in variants).items())),
+                       "unknown_callout_labels": dict(sorted(unknown_labels.items()))},
             "variants": variants}
+
+
+def load_known_callout_labels(data_dir: Path) -> set[tuple[str, str]]:
+    """Reviewed (variant_key, label) pairs whose ``unknown`` severity is explained."""
+    path = data_dir / KNOWN_CALLOUT_LABELS_CSV
+    if not path.is_file():
+        return set()
+    known: set[tuple[str, str]] = set()
+    with path.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            key, label = (row.get("variant_key") or "").strip(), (row.get("label") or "").strip()
+            if not key and not label:
+                continue
+            if not key or not label or (row.get("disposition") or "").strip() not in LABEL_DISPOSITIONS:
+                raise ValueError(f"Invalid known callout label row: {row}")
+            known.add((key, label))
+    return known
+
+
+def check_callout_labels(manifest: dict, known: set[tuple[str, str]]) -> dict | None:
+    """New and no-longer-present ``unknown`` labels; ``None`` when the manifest predates the inventory."""
+    variants = manifest["variants"]
+    if not all("unknown_callout_labels" in variant.get("counts", {}) for variant in variants):
+        return None
+    current = {(variant["variant_key"], label): count for variant in variants
+               for label, count in variant["counts"]["unknown_callout_labels"].items()}
+    return {"known": sum(key in known for key in current),
+            "new": [{"variant_key": key, "label": label, "count": count}
+                    for (key, label), count in sorted(current.items()) if (key, label) not in known],
+            "stale": [{"variant_key": key, "label": label} for key, label in sorted(known - current.keys())]}
 
 
 def check_freshness(read: Callable[[str], bytes], *, receipt_name: str,
@@ -146,10 +192,21 @@ def main(argv: list[str] | None = None) -> int:
 
         def read(path: str) -> bytes:
             return session.fetch(publication_url(args.base_url, path))
+    fetched: dict[str, bytes] = {}
+
+    def read_once(path: str) -> bytes:
+        # The label report must describe the same manifest the freshness check judged.
+        if path not in fetched:
+            fetched[path] = read(path)
+        return fetched[path]
+
     cached = json.loads(args.manifest.read_text(encoding="utf-8")) if args.manifest else None
-    report = check_freshness(read, receipt_name=RECEIPT, manifest=cached)
+    report = check_freshness(read_once, receipt_name=RECEIPT, manifest=cached)
     summary = {key: report[key] for key in ("status", "problems", "totals")}
     summary["not_fresh"] = [v for v in report["variants"] if v["status"] != "fresh"]
+    summary["callout_labels"] = check_callout_labels(
+        cached if cached is not None else json.loads(read_once(MANIFEST)),
+        load_known_callout_labels(repo_root() / PathSegments.DATA))
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0 if report["status"] == "fresh" else 1
 

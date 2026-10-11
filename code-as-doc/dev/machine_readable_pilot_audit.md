@@ -60,7 +60,7 @@ JE-1000F 与 JE-2000F 的 nl / pl / pt / uk Git 原生版本里，安全须知�
 | JE-1000H / EU / nl | 警示标签显示为 `WAARSCHU`，正文末尾多出 `UWING`：单词 WAARSCHUWING 被拆到两个单元格 |
 | JE-1000H / EU / pl | 警示标签为 `OSTRZE`，同类拆词（OSTRZEŻENIE） |
 | JE-2000E / EU / nl | 警示标签为 `OK-knop. OPMERKING`：上一步骤的"OK-knop."被并入标签；正文也在句中截断 |
-| JBP-3600A / EU / fr | 警示标签为 `Important`（英文，未翻译） |
+| JBP-3600A / EU / fr | 警示标签为 `Important`，位置对应英文版 CAUTION（2026-10-11 更正：原记为"英文，未翻译"；实为词表外的法语等级词，是否映射待 Style Guide 裁定，见 [Phase 2 立项](machine_readable_knowledge_observation.md) D13） |
 
 这 4 处在机读面中均为 `severity: unknown`，不会被误判成正确级别。
 
@@ -75,7 +75,8 @@ JE-1000F 与 JE-2000F 的 nl / pl / pt / uk Git 原生版本里，安全须知�
   机读面推断。
 - **警示演化（JE-2000F）**：线上只有每个版本的当前一版，无法在 Phase 1 验证
   跨修订的警示演化。JE-2000F 各语言之间的差异（en 为 WARNING，nl / pl 为图标
-  标签）是不同发布路径的呈现差异，不是修订演化。跨修订比较归 Phase 2。
+  标签）是不同发布路径的呈现差异，不是修订演化。跨修订比较归 Phase 3
+  （2026-10-11 按 Phase 2 立项 D12 更正，原写 Phase 2）。
 
 ## 4. 结论
 

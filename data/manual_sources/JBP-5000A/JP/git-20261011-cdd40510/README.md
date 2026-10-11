@@ -24,6 +24,8 @@ ordinary H2 circle. Its font, size, weight and spacing still use shared styles;
 the source stylesheet only suppresses the generic uppercase/marker treatment.
 The two live LCD map numerals are centered inside the complete circle bounds
 from native page 4 drawings 2032/2034, rather than positioned by text metrics.
+The four lock/unlock step numbers likewise use the full circle bounds from
+native page 5 drawings 3793/3794/3791/3792; original artwork is unchanged.
 Warranty preserves the physical pages 8–9 grouping: a shared gray introduction,
 bordered clause groups 1–7 and 8–11, thin row separators, seven exclusions
 within clause 5, and the second paragraph within clause 2. Shared panels own

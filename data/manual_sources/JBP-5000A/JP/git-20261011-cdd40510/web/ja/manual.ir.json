@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "39dcd4fbd894853b24a7bb14dd19a9bdc23c230fb5568ecf98e7da891876e574",
-  "content_sha256": "d058a4525d91916e7bbfd26bb84ffdfd0d3cc371617b2280672b23401ae80941",
+  "bundle_sha256": "726ad83520cff9028c6813103532bb8f3dd675f23abfb916533fa89f60f140f8",
+  "content_sha256": "d1f9951e8915a17c48eb1aeb2cbace17f4c609b83481d812383f57ad7b198608",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "6fda92a66f4d7d408d26fab41d34fbc1a983140d0456f0161141c74ad183adc3"
+      "sha256": "bfb1e962f17fc756bf8e325ce7d009acfa354a712d3cf34eb3bee7071a33d4fb"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -4612,7 +4612,7 @@
             "assets/locking-connection.svg"
           ],
           "block_id": "battery-packs:block-0005",
-          "content_sha256": "e63397a4ddc2a5b6c060c074ae58db21a78c38a133da6378bd04b1e3c52a2a9e",
+          "content_sha256": "ffef098e31c0ac373bc4c3ce9fb7658e4a4c4366e685e54ef65d1db1ff338c08",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4920,37 +4920,37 @@
                         {
                           "line": 2,
                           "rect": [
-                            5.217658417134345,
-                            11.808253785838252,
-                            1.1686482006990457,
-                            3.4655999308047134
+                            4.624873776979084,
+                            11.95999808933424,
+                            1.8281646921664854,
+                            2.5121804942255435
                           ]
                         },
                         {
                           "line": 3,
                           "rect": [
-                            27.28753150263919,
-                            11.808253785838252,
-                            1.4601526381094245,
-                            3.4655999308047134
+                            26.694587514370305,
+                            11.95999808933424,
+                            1.8281646921664854,
+                            2.5121804942255435
                           ]
                         },
                         {
                           "line": 4,
                           "rect": [
-                            57.964271835134,
-                            11.796256770258365,
-                            1.1986261681665349,
-                            3.6351826709249697
+                            57.34012458897843,
+                            11.964005180027174,
+                            1.9303816783277294,
+                            2.652163298233696
                           ]
                         },
                         {
                           "line": 5,
                           "rect": [
-                            78.63921153394482,
-                            11.796256770258365,
-                            1.5064384363874603,
-                            3.6351826709249697
+                            78.01483733744561,
+                            11.964005180027174,
+                            1.9303816783277294,
+                            2.652163298233696
                           ]
                         },
                         {
@@ -5312,7 +5312,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#battery-packs",
       "source_ref": "native-pdf/battery-packs",
-      "source_sha256": "e04a7f2e50a49ea714ea58b1037e44da1419232c9a1a76d5be2067153ac607f0"
+      "source_sha256": "1a57a34921c99e8c9fe0a95e707f169c21e8d9eeb20a157865532df53e68a9b8"
     },
     {
       "blocks": [

@@ -301,6 +301,11 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 试点样本建议：JE-3000C（谱系差异、UPS）、JE-1000H（拆词标签、batch 1465）、JE-3600A
 （较新、语言混入、等级词不统一）、JBP-2000B（呈现差异、配件）、JS-100I（功能简单、太阳能板）。
 
+实现（P2-0）：词表补 `ПОРАДА`（tip），生成器升为 `manual-knowledge/1.2`。Style Guide 尚未裁定
+`Important` / `IMPORTANT` / `Importante`，按 D13 暂不映射；它们与 `⚠` 图标标签、P1-4 记录的源缺陷一起
+登记在 [`machine_surface_known_callout_labels.csv`](../../data/machine_surface_known_callout_labels.csv)。
+清单逐版本记录 `unknown` 标签，`manifest` 命令报告新增与已不再出现的标签（上位计划 §5.5–§5.6）。
+
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加
 `mypy tools/utils`。

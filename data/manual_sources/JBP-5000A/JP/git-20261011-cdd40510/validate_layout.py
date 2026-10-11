@@ -30,6 +30,14 @@ with fitz.open(next(PACKAGE.glob('*.pdf'))) as native_pdf:
          'y': ((drawings[index]['rect'].y0 + drawings[index]['rect'].y1) / 2 - 54) / 62}
         for number, index in [(1, 2032), (2, 2034)]
     ]
+    lock_drawings = native_pdf[4].get_drawings()
+    LOCK_CIRCLES = [
+        {'line': line, 'number': number,
+         'x': ((lock_drawings[index]['rect'].x0 + lock_drawings[index]['rect'].x1) / 2 - 27) / 316,
+         'y': ((lock_drawings[index]['rect'].y0 + lock_drawings[index]['rect'].y1) / 2 - 270) / 230,
+         'radius': lock_drawings[index]['rect'].width / 2 / 316}
+        for line, number, index in [(2, 1, 3793), (3, 2, 3794), (4, 1, 3791), (5, 2, 3792)]
+    ]
 CHECK = r"""() => {
  const root=document.querySelector('[role=main]');
  const labels=[...root.querySelectorAll('.hb-reference-live-label')];
@@ -191,6 +199,31 @@ def lcd_numeral_centers(png: bytes) -> list[dict]:
     return records
 
 
+def lock_numeral_center(png: bytes, circle: dict) -> dict:
+    """Measure one visible digit; locator screenshots also reveal scrolled circles."""
+    image = Image.open(BytesIO(png)).convert('RGB')
+    width, height = image.size
+    pixels = image.load()
+    dark = [(x, y) for y in range(height) for x in range(width) if max(pixels[x, y]) < 120]
+    if not dark:
+        return {'line': circle['line'], 'centered': False, 'reason': 'circle missing'}
+    x0, x1 = min(x for x, _ in dark), max(x for x, _ in dark)
+    y0, y1 = min(y for _, y in dark), max(y for _, y in dark)
+    cx, cy, radius = (x0+x1)/2, (y0+y1)/2, min(x1-x0, y1-y0)/2
+    # At 14px, the white 1 stem can rasterize at 140–154 over a 41-gray circle.
+    # Include this visible antialiased ink while excluding the circle and rim.
+    white = [(x, y) for y in range(height) for x in range(width)
+             if (x-cx)**2+(y-cy)**2 < (radius*.82)**2 and min(pixels[x, y]) > 100]
+    if not white:
+        return {'line': circle['line'], 'centered': False, 'reason': 'digit missing'}
+    dx = (min(x for x, _ in white)+max(x for x, _ in white))/2-cx
+    dy = (min(y for _, y in white)+max(y for _, y in white))/2-cy
+    tolerance = max(1, radius*.18)
+    return {'line': circle['line'], 'number': circle['number'],
+            'offset_x_px': dx, 'offset_y_px': dy, 'tolerance_px': tolerance,
+            'centered': max(abs(dx), abs(dy)) <= tolerance}
+
+
 async def validate(base_url, languages, evidence_dir):
     evidence_dir.mkdir(parents=True, exist_ok=False)
     records = []
@@ -232,6 +265,25 @@ async def validate(base_url, languages, evidence_dir):
                 lcd_png = await lcd.screenshot()
                 (evidence_dir / f'{language}-{width}-lcd-numerals.png').write_bytes(lcd_png)
                 info['lcdNumeralCenters'] = lcd_numeral_centers(lcd_png)
+                lock = page.locator('figure[data-reference-id="locking-connection"]')
+                info['lockLabelCenters'] = await lock.evaluate("""(e,circles)=>{
+                    const image=e.querySelector('img').getBoundingClientRect();
+                    return circles.map(source=>{
+                        const label=e.querySelector(`[data-source-line="${source.line}"]`);
+                        const r=label.getBoundingClientRect();
+                        const dx=r.left+r.width/2-image.left-source.x*image.width;
+                        const dy=r.top+r.height/2-image.top-source.y*image.height;
+                        return {line:source.line,number:Number(label.innerText),offset_x_px:dx,offset_y_px:dy,
+                            centered:Number(label.innerText)===source.number&&Math.max(Math.abs(dx),Math.abs(dy))<=0.5};
+                    });
+                }""", LOCK_CIRCLES)
+                lock_png = await lock.screenshot()
+                (evidence_dir / f'{language}-{width}-lock-numerals.png').write_bytes(lock_png)
+                info['lockNumeralCenters'] = []
+                for circle in LOCK_CIRCLES:
+                    digit_png = await lock.locator(f'[data-source-line="{circle["line"]}"]').screenshot()
+                    (evidence_dir / f'{language}-{width}-lock-digit-{circle["line"]}.png').write_bytes(digit_png)
+                    info['lockNumeralCenters'].append(lock_numeral_center(digit_png, circle))
                 coverage=json.loads((PACKAGE/'source/ja/coverage.json').read_text())
                 normalize=lambda s: ''.join(s.split())
                 body=normalize(info.pop('bodyText'))
@@ -265,11 +317,13 @@ async def validate(base_url, languages, evidence_dir):
     )
     for row in records:
         print(json.dumps({k: row[k] for k in (
-            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "warranty", "broken",
+            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "lockLabelCenters", "lockNumeralCenters", "warranty", "broken",
             "outside", "overlaps", "occluded", "clippedCards", "clippedCells", "emptyArtwork", "duplicateIds", "visibleCopyCoverage", "errors", "resourceErrors",
         )}, ensure_ascii=False))
     if any(not row["warranty"]["passed"] or not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
            or not all(n['centered'] for n in row['lcdLabelCenters'])
+           or not all(n['centered'] for n in row['lockLabelCenters'])
+           or not all(n['centered'] for n in row['lockNumeralCenters'])
            or row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
            or row["emptyArtwork"] or row["clippedCells"] or row["duplicateIds"] or row["visibleCopyCoverage"]["missing"] or row["overlaps"] or row["occluded"] or row["clippedCards"] or row["errors"] or row["resourceErrors"] for row in records):
         raise ValueError("browser layout admission failed; inspect browser_report.json")
