@@ -69,3 +69,17 @@ id = "generic-api-key"
   regexes = [
     '''^\s*"run_key": "(?:b8fbd5a3f7b1e86a31ba883e729c4a578012cebc|e2d2071104b374b5e9efe937b2e13b8f855824a7)",?\s*$''',
   ]
+
+  # These two exact SHA-256 values are verified PNG content identities.
+  # Restrict the exemption to the JE-1500C frozen IR, field and digest together.
+  [[rules.allowlists]]
+  description = "JE-1500C reviewed button image content digests"
+  condition = "AND"
+  regexTarget = "line"
+  paths = [
+    '''^data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7(?:-reviewed)?/web/zh-TW/manual\.ir\.json$''',
+    '''^docs/publish/(?:sources/web|web)/JE-1500C/TW/zh-TW/md/manual\.ir\.json$''',
+  ]
+  regexes = [
+    '''^\s*"assets/key-(?:ac\.png": "ef294bfb3d07e47d38b0e58fb37456224d7a0f69fccb67a7fe605a4c97d163ea|power\.png": "04baf206fe8fdf1e1dc7e24bfbdab4ab98867edf96af6f5f1b7d10be518e2189)",?\s*$''',
+  ]

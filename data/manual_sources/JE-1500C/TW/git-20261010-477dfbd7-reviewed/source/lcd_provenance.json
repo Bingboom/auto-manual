@@ -1,0 +1,527 @@
+[
+  {
+    "physical_page": 6,
+    "table_row": 0,
+    "drawing_indices": [
+      22,
+      23
+    ],
+    "glyph_bbox": [
+      51.31200103759765,
+      256.19199829101564,
+      68.99600524902344,
+      269.80101318359374
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-01.svg",
+    "best_error": 0.02555168334694989,
+    "asset_ref": "assets/lcd-01.svg"
+  },
+  {
+    "physical_page": 6,
+    "table_row": 1,
+    "drawing_indices": [
+      24,
+      25
+    ],
+    "glyph_bbox": [
+      53.724999237060544,
+      290.49400024414064,
+      66.62600250244141,
+      305.7789794921875
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-02.svg",
+    "best_error": 0.026938976545479304,
+    "asset_ref": "assets/lcd-02.svg"
+  },
+  {
+    "physical_page": 6,
+    "table_row": 2,
+    "drawing_indices": [
+      14,
+      15
+    ],
+    "glyph_bbox": [
+      53.94690017700195,
+      329.21339111328126,
+      66.36169738769532,
+      341.95238037109374
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+    "best_error": 0.0185825588916122,
+    "asset_ref": "assets/lcd-03.svg"
+  },
+  {
+    "physical_page": 6,
+    "table_row": 3,
+    "drawing_indices": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "glyph_bbox": [
+      55.47250061035156,
+      373.65467529296876,
+      64.835498046875,
+      386.39369506835936
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+    "best_error": 0.015261820874183006,
+    "asset_ref": "assets/lcd-04.svg"
+  },
+  {
+    "physical_page": 6,
+    "table_row": 4,
+    "drawing_indices": [
+      29,
+      30,
+      31,
+      32
+    ],
+    "glyph_bbox": [
+      53.37019805908203,
+      414.02219848632814,
+      65.50819702148438,
+      427.3282043457031
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-05.svg",
+    "best_error": 0.16728132659313724,
+    "asset_ref": "assets/lcd-05.svg"
+  },
+  {
+    "physical_page": 6,
+    "table_row": 5,
+    "drawing_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "glyph_bbox": [
+      49.164799499511716,
+      454.7469909667969,
+      69.24219818115235,
+      470.6859924316406
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-01.svg",
+    "best_error": 0.1539975234885621,
+    "asset_ref": "assets/lcd-06.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 0,
+    "drawing_indices": [
+      169,
+      170,
+      171,
+      172,
+      173,
+      174
+    ],
+    "glyph_bbox": [
+      54.94519882202148,
+      52.60170440673828,
+      74.65719909667969,
+      62.13770599365235
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-map.svg",
+    "best_error": 0.1765290968818083,
+    "asset_ref": "assets/lcd-07.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 1,
+    "drawing_indices": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "glyph_bbox": [
+      57.349999237060544,
+      93.66801147460937,
+      74.62399597167969,
+      108.6739990234375
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-07.svg",
+    "best_error": 0.02617474724264706,
+    "asset_ref": "assets/lcd-08.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 2,
+    "drawing_indices": [
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184
+    ],
+    "glyph_bbox": [
+      48.49900131225586,
+      119.94300537109375,
+      82.5709945678711,
+      127.42100830078125
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-24.png",
+    "best_error": 0.10077752672249456,
+    "asset_ref": "assets/lcd-09.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 3,
+    "drawing_indices": [
+      163,
+      164,
+      165,
+      166,
+      167,
+      168
+    ],
+    "glyph_bbox": [
+      53.82700042724609,
+      140.09998779296876,
+      81.56900329589844,
+      154.6020080566406
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+    "best_error": 0.01181981038943355,
+    "asset_ref": "assets/lcd-10.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 4,
+    "drawing_indices": [
+      159,
+      160,
+      161,
+      162
+    ],
+    "glyph_bbox": [
+      56.72300033569336,
+      164.56800537109376,
+      78.6739990234375,
+      174.99000854492186
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+    "best_error": 0.011853532645697168,
+    "asset_ref": "assets/lcd-11.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 5,
+    "drawing_indices": [
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134
+    ],
+    "glyph_bbox": [
+      60.31399993896484,
+      186.6791961669922,
+      73.05199737548828,
+      199.41820068359374
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-10.svg",
+    "best_error": 0.02130150888480392,
+    "asset_ref": "assets/lcd-12.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 6,
+    "drawing_indices": [
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151
+    ],
+    "glyph_bbox": [
+      60.31399993896484,
+      211.29168395996095,
+      73.05199737548828,
+      224.0306884765625
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-11.svg",
+    "best_error": 0.02099822133714597,
+    "asset_ref": "assets/lcd-13.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 7,
+    "drawing_indices": [
+      116,
+      117,
+      118,
+      119,
+      120,
+      121
+    ],
+    "glyph_bbox": [
+      60.188900756835935,
+      235.61788635253907,
+      73.11190338134766,
+      248.54088134765624
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "best_error": 0.1632681653390523,
+    "asset_ref": "assets/lcd-14.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 8,
+    "drawing_indices": [
+      54
+    ],
+    "glyph_bbox": [
+      57.820004272460935,
+      261.62928466796876,
+      76.56700439453125,
+      280.3702880859375
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "best_error": 0.007240817333877996,
+    "asset_ref": "assets/lcd-15.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 9,
+    "drawing_indices": [
+      55
+    ],
+    "glyph_bbox": [
+      57.362702178955075,
+      299.6059997558594,
+      77.02469940185547,
+      310.92698974609374
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+    "best_error": 0.01535777505446623,
+    "asset_ref": "assets/lcd-16.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 10,
+    "drawing_indices": [
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101
+    ],
+    "glyph_bbox": [
+      53.7109992980957,
+      330.92799072265626,
+      80.67599792480469,
+      344.6219970703125
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+    "best_error": 0.010741336465141612,
+    "asset_ref": "assets/lcd-17.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 11,
+    "drawing_indices": [
+      65,
+      66,
+      67
+    ],
+    "glyph_bbox": [
+      58.79869918823242,
+      352.20740966796876,
+      75.58569641113282,
+      367.7823974609375
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+    "best_error": 0.010010084763071896,
+    "asset_ref": "assets/lcd-18.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 12,
+    "drawing_indices": [
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158
+    ],
+    "glyph_bbox": [
+      57.15409927368164,
+      391.46058349609376,
+      73.64210052490235,
+      407.03358764648436
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-05.svg",
+    "best_error": 0.2716227745438453,
+    "asset_ref": "assets/lcd-19.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 13,
+    "drawing_indices": [
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+    ],
+    "glyph_bbox": [
+      58.55630187988281,
+      427.9331787109375,
+      75.83030242919922,
+      440.67216796875
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-24.svg",
+    "best_error": 0.02236615349264706,
+    "asset_ref": "assets/lcd-20.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 14,
+    "drawing_indices": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "glyph_bbox": [
+      51.94500045776367,
+      451.34800415039064,
+      83.50500030517578,
+      467.74901123046874
+    ],
+    "candidate": null,
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+    "best_error": 0.02884763497412854,
+    "asset_ref": "assets/lcd-21.svg"
+  },
+  {
+    "physical_page": 7,
+    "table_row": 15,
+    "drawing_indices": [
+      50,
+      51,
+      52,
+      53
+    ],
+    "glyph_bbox": [
+      51.902001190185544,
+      475.66599731445314,
+      82.64999694824219,
+      486.77000732421874
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+    "best_candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+    "best_error": 0.010783143552559913,
+    "asset_ref": "assets/lcd-22.svg"
+  }
+]

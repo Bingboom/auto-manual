@@ -202,7 +202,7 @@ class LanguageRegistryTest(unittest.TestCase):
                     )
 
     def test_offline_output_languages_do_not_expand_live_sync_columns(self) -> None:
-        for code in ("pt", "nl", "pl"):
+        for code in ("pt", "nl", "pl", "zh-TW"):
             with self.subTest(language=code):
                 self.assertEqual(lang_registry.canonical_language(code), code)
                 self.assertFalse(lang_registry.language_spec(code).sync_enabled)
@@ -222,6 +222,13 @@ class LanguageRegistryTest(unittest.TestCase):
         self.assertFalse({"pt", "nl", "pl"}.intersection(SUPPORTED_LANGS))
         self.assertEqual(lang_registry.canonical_language("pt-BR"), "pt-BR")
         self.assertTrue(lang_registry.language_spec("pt-BR").sync_enabled)
+
+    def test_traditional_chinese_is_distinct_from_simplified_chinese(self) -> None:
+        for alias in ("zh-TW", "zh_tw", "zh-Hant", "ZH-tw"):
+            self.assertEqual(lang_registry.canonical_language(alias), "zh-TW")
+        self.assertEqual(lang_registry.canonical_language("zh"), "zh")
+        self.assertEqual(lang_registry.language_spec("zh-TW").native_name, "繁體中文")
+        self.assertTrue(lang_registry.language_spec("zh").sync_enabled)
 
     def test_alias_resolution_is_explicit_and_non_mutating(self) -> None:
         for spec in lang_registry.LANGUAGE_REGISTRY:

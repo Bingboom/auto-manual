@@ -70,15 +70,16 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertEqual(cards[0]["edition"], "EUUK")
         available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
         self.assertEqual(available, ["en", "fr"])
-        self.assertEqual(len(cards[0]["language_options"]), 15)
+        self.assertEqual(len(cards[0]["language_options"]), 16)
         self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
 
     def test_cn_and_jp_publications_keep_market_and_language_identity(self):
         self.publication("zh", region="CN")
         self.publication("ja", region="JP")
+        self.publication("zh-TW", region="TW")
         cards = {card["region"]: card for card in catalog(self.root, self.settings)}
-        self.assertEqual(set(cards), {"CN", "JP"})
-        for region, language, label in (("CN", "zh", "简体中文"), ("JP", "ja", "日本語")):
+        self.assertEqual(set(cards), {"CN", "JP", "TW"})
+        for region, language, label in (("CN", "zh", "简体中文"), ("JP", "ja", "日本語"), ("TW", "zh-TW", "繁體中文")):
             with self.subTest(region=region):
                 available = [option for option in cards[region]["language_options"] if option["url"]]
                 self.assertEqual([(option["code"], option["label"]) for option in available], [(language, label)])
