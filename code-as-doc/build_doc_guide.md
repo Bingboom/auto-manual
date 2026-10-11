@@ -52,3 +52,5 @@ Use the [hosting convergence review](dev/web_publish_pipeline.md#31-hosting-conv
 for old/new URL and version mapping, release-site evidence and recovery checks.
 These are planning/manual acceptance requirements; no new command, automated
 gate, hosting change or online write is introduced by the documentation update.
+
+Git-only frozen Web releases keep a separate 1152 MiB source-storage budget; served output and network verification remain limited to 512 MiB. Per-file and file-count limits are unchanged. See the [Git-only transaction contract](dev/web_publish_pipeline.md#22-git-only-transaction).
