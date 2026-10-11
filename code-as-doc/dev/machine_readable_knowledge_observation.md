@@ -184,7 +184,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 ## 6. 契约
 
-§6.1、§6.2 已由 P2-1 实现，§6.3 由 P2-2 实现；§6.4 随 P2-3 落地。
+§6.1、§6.2 由 P2-1 实现，§6.3 由 P2-2 实现，§6.4、§6.5 由 P2-3 实现。
 
 ### 6.1 产物
 
@@ -229,7 +229,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   "content_sha256": "5c1f…",
   "status": "extracted",
   "review_flags": [],
-  "method": {"generator": "manual-observations/0.2", "rules": ["extract.callout", "topic.ups"]}
+  "method": {"generator": "manual-observations/0.3", "rules": ["extract.callout", "topic.ups"]}
 }
 ```
 
@@ -283,38 +283,65 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 ### 6.4 关系与比较记录
 
+比较在 `tools/manual_knowledge/relations.py`。
+
 ```json
 {
   "observation_id": "obs:language_parity:JE-3000C/EU:…",
   "kind": "language_parity",
+  "category": "warning",
   "scope": {"model": "JE-3000C", "region": "EU"},
   "members": [
-    {"knowledge_id": "…", "manual_variant_id": "JE-3000C/EU/en@2.10",
-     "source_ref": "…", "severity": "warning"}
+    {"knowledge_id": "…", "variant_key": "JE-3000C/EU/en", "manual_variant_id": "JE-3000C/EU/en@2.10",
+     "source_ref": "…", "severity": "warning", "block_type": "callout"}
   ],
   "absent_in": [
     {"variant_key": "JE-3000C/EU/nl", "manual_variant_id": "JE-3000C/EU/nl@git-20261002-45219a6e-pv-web",
-     "searched": "whole_document", "revision_alignment": "unknown", "html_sha256": "…"}
+     "searched": "topic_items", "revision_alignment": "unknown", "html_sha256": "…",
+     "hits": [], "images_without_alt": 9, "confidence": "medium"}
   ],
-  "anchors": ["UPS"],
+  "anchors": [],
+  "context_topics": ["ups"],
+  "differences": ["absent"],
   "confidence": "medium",
-  "status": "candidate"
+  "status": "candidate",
+  "method": {"generator": "manual-observations/0.3", "rules": ["compare.language_parity", "search.topic_items"]}
 }
 ```
 
-- `kind` 取值：`exact_reuse`、`near_reuse`、`language_parity`、`product_specific`、`unknown`。
-  上位计划 §9 中的 `semantic_variant` 在 2a 不自动判定；`region_specific` 属于 2b。
-- 成员保留完整身份与来源，禁止把多条合并成一句而丢失来源。
-- `absent_in` 只表示"在所述范围内没有找到对应条目"，不等于错误，必须写明搜索范围与
-  `revision_alignment`。`revision_alignment` 为 `unknown` 时，置信度不高于 `medium`。
-- 跨语言对齐：先按同型号、同主题、同等级分组，再用锚点（数字加单位、型号、接口名、`UPS`
-  等拉丁术语）匹配。块类型不同（警示框 / 表格 / 段落）不影响对齐；没有锚点的条目只给 `low`。
-- 三类比较分开输出，不共用一种相似度（上位计划 §9）。
+- `kind` 取值：同区域跨产品的 `exact_reuse`、`near_reuse`、`product_specific`，同产品同区域
+  跨语言的 `language_parity`；两类比较各用各的规则，不共用一种相似度（上位计划 §9）。
+  `semantic_variant` 在 2a 不自动判定，`region_specific` 属于 2b，契约保留的 `unknown` 目前不产出。
+- 成员保留完整身份与来源，禁止把多条合并成一句而丢失来源。`observation_id` 由类型、类别、
+  成员的 `knowledge_id` 与 `absent_in` 的版本内容寻址。
+- **跨产品**（同语言、同类别）：`exact_reuse` 是标签与正文完全相同、出现在两个及以上型号的
+  条目；`near_reuse` 是正文只在空白、大小写、引号或破折号写法、列表符号上不同，或只有标签
+  不同的条目，`differences` 写明 `text_form`、`label`（警示等级词）、`symbol_name`（符号行的
+  图标名）、`severity`。二者都是 `high`。`product_specific` 只对警示给出：正文不与同语言的
+  其他型号共用，`absent_in` 列出搜索过的其他型号版本（`searched: same_category_items`、
+  `revision_alignment: not_applicable`）；换了措辞的同义表述在 2a 不判定，所以有主题时为
+  `medium`，没有主题时为 `low`。
+- **跨语言**（同型号的单语版本；多语合订版不参与，D3）：每个类别以英文版为基准，其他语言
+  依次按阅读顺序对齐（动态规划，只接受正分配对）。配对分数来自共同数字（小数逗号按小数点
+  读）、条目主题和警示等级；块类型不计分，呈现差异只记为 `presentation`。此前所有语言都没有
+  的条目自成一簇，因此英文版缺少的提示仍会在其他语言之间聚到一起。谱系把条目挪到别处时，
+  语言集合互补、首条仍能配对的两簇合并，记为 `order`。
+- **缺失**：`absent_in` 只表示"在所述范围内没有找到对应条目"，不等于错误，并写明搜索范围与
+  `revision_alignment`。成员共有的数字（`anchors`）在缺失版本的整份文档（全部块）中搜索
+  （`whole_document`）；没有共有数字时，用成员共有的主题（条目主题加所在章节标题的主题，
+  `context_topics`）在缺失版本里没有被数字牢固配对的条目中搜索（`topic_items`）；两者都
+  没有时只依据对齐结果（`aligned_items`）。搜到的块或条目写入 `hits`（最多 3 个），提示内容
+  可能只是换了呈现方式。
+- **置信度逐条差异主张给出**（缺失，或成员之间等级、数字不一致）：`high` 要求成员共有数字、
+  缺失版本整份文档中没有这些数字且全部图片都有 alt、两版是相同的印刷修订号；只有主题证据时
+  最高 `medium`；`revision_alignment` 不是 `same` 时最高 `medium`；没有证据或证据在别处被
+  搜到时为 `low`。关系的 `confidence` 取其最强的主张；没有差异的关系取对齐本身的强度
+  （有共有数字为 `high`，只有共有主题为 `medium`，都没有为 `low`）。
 
 ### 6.5 运行摘要
 
 每次运行输出：各版本条目数、主题未判定率、`unknown` 等级标签清单、无 alt 图片数（盲区）、
-各类候选的数量与置信度分布。
+各类候选的数量与置信度分布（`relations_by_kind`）以及各类差异的数量（`relation_differences`）。
 
 ## 7. 计划（PR 切分）
 
@@ -353,6 +380,29 @@ fresh，两次运行字节一致，产物约 5.7 MB。覆盖：105 个版本识�
 pt 91%、uk 92%，余下差异多为译文本身增删了信息。已知缺口：葡语 `Observação`（note）不在
 等级词表中，JA-AD600A/EU/pt 的两段注记没有记为警示（安全章节里的一段记为安全条目，另一段
 未抽取）；补词表要升级语料生成器，留待 D13 的 Style Guide 裁定时一并处理。
+
+实现（P2-3）：`relations.py` 实现 §6.4、§6.5，生成器升为 `manual-observations/0.3`；词表补西语
+`eliminación`、葡语 `eliminação`（废弃处理，只影响 1 条，P2-2 的统计不变）。10-11 本地重建上
+共 1,393 条关系：`exact_reuse` 504、`near_reuse` 122（均为 `high`），`product_specific` 361
+（`medium` 342、`low` 19），`language_parity` 406（11 个九语型号；`high` 88、`medium` 202、
+`low` 116）；`observation_id` 全部唯一，两次运行字节一致，产物约 9.7 MB，比较本身约 0.8 秒。
+齐套关系中 290 条完整且一致，16 条是谱系挪位后合并的（`order`），108 条带缺失、等级或数字
+差异：警示 `medium` 19、`low` 8，安全 `medium` 8、`low` 14，合规 `high` 8、`medium` 15、
+`low` 36。逐条核对过的例子：JE-3000C、JE-1000H、JE-2000E 的 nl/pl/pt 缺少"不得用于数据服务器、
+医疗设备"的 WARNING（`medium`，附录 B 第 1、2 条的计数差异由此逐条对上），JE-1000F 的同一条在
+nl/pl/pt/uk 换了位置（`order`）；JE-3000C 的 nl/pl/pt 缺少节能模式自动关闭 AC 输出的 WARNING，
+另有一条"恢复之前状态"的 NOTE；JBP-2000B/EU/uk 少一条兼容性 NOTE；JE-2000E、JE-2000F 的
+de/es/fr/it/uk 与英文版同为印刷修订号 2.10、2.6，却没有 EU 法规章节（8 条 `high` 全属此类）；
+JE-100C、JE-3600A 的等级词不一致（CAUTION 对 NOTE、NOTE 对 TIP），D13 的标签（`IMPORTANT`、
+`WAARSCHU` 等）以 `severity` 差异出现；JA-AD600A/EU/it 兼容表的两行分别写作约 3.7 小时和 8 A
+（英文版为 5.6 小时和 12 A），JE-2000E/EU/nl 的 Wi-Fi 提示被截断，nl/pl/pt 的 RED 声明少了
+两项 RoHS 法规；JBP-3600A/EU/de 的符号表把"勿拆解""避免受热"的说明配到了别的图标上。
+JS-100I/EU/en 的两条提示是普通段落，数字在全文中被搜到，判为 `low`（呈现差异）。已知误报来源：同一段在部分语言
+里合并（JE-100C 的电池段落）且该语言主题漏判时，缺失会给到 `medium`；同一条在某语言里出现
+两次（JE-2000F nl、pt 的 0 ms 提示）会拆成两簇。§6.4 原稿把 `UPS` 一类拉丁术语当锚点，但各语言
+写法不一（法语 `ASI`、乌克兰语 `ДБЖ`），实现只把数字当跨语言锚点，主题证据另记为
+`context_topics`，最高 `medium`。按 D14，"高置信度齐套候选"在 10-11 只有上述 8 条（只在印刷
+修订号相同的版本之间可能出现），P2-4 需要同时抽查 `medium` 候选并分开报告精度。
 
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加
