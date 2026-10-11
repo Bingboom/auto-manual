@@ -15,6 +15,11 @@ from playwright.async_api import async_playwright
 PACKAGE = Path(__file__).resolve().parent
 CHAPTERS = tuple('native-'+c["id"] for c in json.loads((PACKAGE/"source/ja/content.json").read_text())["chapters"])
 FIGURES = tuple(g["id"] for g in json.loads((PACKAGE/"source/figures.json").read_text()) if not g["id"].startswith("inbox"))
+SPECIFICATION_TITLE = next(
+    slot["content"]
+    for slot in json.loads((PACKAGE / "source/ja/content.json").read_text())["chapters"][0]["nodes"][1]["component_spec"]["slots"]
+    if slot["role"] == "section_title"
+)
 CHECK = r"""() => {
  const root=document.querySelector('[role=main]');
  const labels=[...root.querySelectorAll('.hb-reference-live-label')];
@@ -77,6 +82,12 @@ CHECK = r"""() => {
  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);
  const duplicateIds=[...new Set(ids.filter((id,i)=>ids.indexOf(id)!==i))];
  return {
+  specHeading:(()=>{
+   const heading=root.querySelector('h2.hb-spec-group');
+   return heading?{text:heading.innerText,raw:heading.textContent,
+    transform:getComputedStyle(heading).textTransform,
+    marker:getComputedStyle(heading,'::before').content}:null;
+  })(),
   emptyArtwork,duplicateIds,clippedCells,bodyText:(()=>{
    const tree=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),parts=[];
    while(tree.nextNode()){
@@ -120,6 +131,11 @@ async def validate(base_url, languages, evidence_dir):
                 await page.evaluate("document.fonts.ready")
                 await page.wait_for_function("[...document.images].every(i=>i.complete&&i.naturalWidth>0)")
                 info = await page.evaluate(CHECK)
+                title = info['specHeading']
+                info['specHeadingMatchesSource'] = bool(
+                    title and title['text'] == title['raw'] == SPECIFICATION_TITLE
+                    and title['transform'] == 'none' and title['marker'] == 'none'
+                )
                 coverage=json.loads((PACKAGE/'source/ja/coverage.json').read_text())
                 normalize=lambda s: ''.join(s.split())
                 body=normalize(info.pop('bodyText'))
@@ -151,10 +167,10 @@ async def validate(base_url, languages, evidence_dir):
     )
     for row in records:
         print(json.dumps({k: row[k] for k in (
-            "language", "width", "pageWidth", "imageCount", "liveLabels", "broken",
+            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "broken",
             "outside", "overlaps", "occluded", "clippedCards", "clippedCells", "emptyArtwork", "duplicateIds", "visibleCopyCoverage", "errors", "resourceErrors",
         )}, ensure_ascii=False))
-    if any(row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
+    if any(not row["specHeadingMatchesSource"] or row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
            or row["emptyArtwork"] or row["clippedCells"] or row["duplicateIds"] or row["visibleCopyCoverage"]["missing"] or row["overlaps"] or row["occluded"] or row["clippedCards"] or row["errors"] or row["resourceErrors"] for row in records):
         raise ValueError("browser layout admission failed; inspect browser_report.json")
 

@@ -229,7 +229,8 @@ RTD 工作台把手册、语言版本、语料、生产入口和证据放到同�
 #1434 合入身份与来源；#1435 合入逐版本清单与新鲜度校验；
 #1436 合入工作台覆盖面板；#1437 的[代表试点验收](../dev/machine_readable_pilot_audit.md)
 及 #1439 的线上核验记录确认 EU Phase 1 已完成。工程合入、人工抽查和线上核验
-各有独立证据，验收范围限于 EU 机读语料；知识观察与回流 Phase 2／3 尚未立项。
+各有独立证据，验收范围限于 EU 机读语料。10-11 的[知识观察方案](../dev/machine_readable_knowledge_observation.md)
+为 Phase 2 立项（先做 EU，跨区域另立），回流 Phase 3 尚未立项。
 **不变量**：机读面只能由正式内容派生；当前明确标为 `html_compatibility`，
 图片仅消费 alt、不冒充 OCR；机器结论保留版本、章节、块和来源，
 并在使用前核验当前部署。它是新的消费面，尚不是知识回流闭环。
@@ -629,9 +630,9 @@ stages:
     metaphor: 查到具体内容，也能找到原文出处
     summary: 把网页手册的文字和表格按章节整理，供程序和 AI 查询。例如，查找某型号的充电说明时，可以找到对应原文、章节和手册版本，并附上网页出处。
     flow: [已发布的网页手册, 按章节整理内容, 记录版本与出处, 提供给程序和 AI 查询]
-    detail: 从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、版本清单与更新检查（#1435）、工作台覆盖情况（#1436）、代表手册人工抽查（#1437）及线上核验（#1439）已有证据，EU Phase 1 于 10 月验收完成。知识观察与回流 Phase 2／3 尚未立项。图片只保留已有的文字说明，不识别图片中的文字。
+    detail: 从已发布的网页整理数据，记录手册版本、章节和原文位置，使用前检查数据是否与当前网页一致。记录版本与出处（#1434）、版本清单与更新检查（#1435）、工作台覆盖情况（#1436）、代表手册人工抽查（#1437）及线上核验（#1439）已有证据，EU Phase 1 于 10 月验收完成。知识观察 Phase 2 已于 10 月立项，回流 Phase 3 尚未立项。图片只保留已有的文字说明，不识别图片中的文字。
     invariant: 查询内容来自正式发布的手册；修改仍回到原有文档、模板或数据，再重新生成。
-    evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "pr:auto-manual#1437", "pr:auto-manual#1439", "file:auto-manual:code-as-doc/dev/machine_readable_pilot_audit.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
+    evidence: ["pr:auto-manual#1434", "pr:auto-manual#1435", "pr:auto-manual#1436", "pr:auto-manual#1437", "pr:auto-manual#1439", "file:auto-manual:code-as-doc/dev/machine_readable_pilot_audit.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md", "file:auto-manual:code-as-doc/dev/machine_readable_knowledge_observation.md"]
   - id: shared_ir
     start: "2026-09"
     period: 2026-09 起 · 每录入一本手册继续完善
@@ -680,9 +681,9 @@ stages:
     metaphor: 保存确认过的措辞、修改理由和适用条件
     summary: 逐步把经过确认的译文、术语和修改经验记录下来，保留出处与适用条件，供后续说明书参考。具体范围、试点和执行安排仍需确定。
     flow: [记录确认过的修改, 保留出处与适用条件, 编写时参考, 审核后采用]
-    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 2／3，开工前需要另行立项；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于 Shared IR（共享底稿）建设。
+    detail: 译文和术语的复用已有台账任务（REV-18、REV-37）。更广泛的经验积累与知识反馈属于机读方案的 Phase 3，开工前需要另行立项（作为其基础的 Phase 2 知识观察已于 10 月立项）；尚未形成覆盖全部审核修改的具体执行方案。这项工作独立于 Shared IR（共享底稿）建设。
     invariant: 参考已有经验时核对出处与适用条件，经人工审核后再采用。
-    evidence: ["file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md"]
+    evidence: ["file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md", "file:auto-manual:code-as-doc/dev/machine_readable_manual_corpus.md", "file:auto-manual:code-as-doc/dev/machine_readable_knowledge_observation.md"]
 feedback:
   title: 让这次审核的成果，帮助下一次编写
   steps: [编写与生成说明书, 积累已发布内容, 程序查询原文, 找出需要补充或修改的内容, 人工审核, 更新原有文档或数据, 用于后续编写与维护]

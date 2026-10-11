@@ -1,4 +1,6 @@
-/* Native geometry only; shared styles own headings/tables/cards. */
+/* Shared styles own components; native geometry and authored title case follow the PDF. */
+#furo-main-content h2.hb-spec-group{text-transform:none;}
+#furo-main-content h2.hb-spec-group::before{content:none;}
 .native-figure{max-width:680px;margin:1rem auto;min-width:0;}
 .native-figure .hb-reference-figure{max-width:none;margin:0;}
 #furo-main-content .native-figure img{width:100%!important;height:auto!important;max-height:none;}
