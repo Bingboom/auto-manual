@@ -99,6 +99,21 @@ CHECK = r"""() => {
  }
  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);
  const duplicateIds=[...new Set(ids.filter((id,i)=>ids.indexOf(id)!==i))];
+ const recycling=(()=>{
+  const panel=root.querySelector('.native-recycle'),heading=panel?.querySelector('h2,h3');
+  const icon=panel?.querySelector('img'),items=panel?[...panel.querySelectorAll('li')]:[];
+  const s=panel?getComputedStyle(panel):null,r=panel?.getBoundingClientRect();
+  const iconWidth=icon?.getBoundingClientRect().width||0;
+  const clipped=panel?textRects(panel).some(q=>q.left<r.left-1||q.right>r.right+1||q.top<r.top-1||q.bottom>r.bottom+1):true;
+  const bordered=s&&['Top','Right','Bottom','Left'].every(side=>parseFloat(s['border'+side+'Width'])>0&&s['border'+side+'Style']==='solid')&&parseFloat(s.borderTopLeftRadius)>0;
+  const liveBullets=items.length===3&&items.every(e=>getComputedStyle(e).display==='list-item'&&getComputedStyle(e).listStyleType==='disc');
+  const square=root.querySelector('.native-spec-change-notice');
+  const squareStyle=square?getComputedStyle(square,'::before'):null;
+  const squareMarker=squareStyle&&parseFloat(squareStyle.width)>0&&squareStyle.width===squareStyle.height&&squareStyle.backgroundColor!=='rgba(0, 0, 0, 0)';
+  const titleInside=heading&&getComputedStyle(heading,'::before').content==='none';
+  return {bordered,liveBullets,titleInside:!!titleInside,iconWidth,squareMarker,clipped,
+   passed:!!(bordered&&liveBullets&&titleInside&&iconWidth>=50&&squareMarker&&!clipped)};
+ })();
  const warranty=(()=>{
   const intro=root.querySelector('.native-warranty-intro');
   const note=root.querySelector('.native-warranty-note');
@@ -144,7 +159,7 @@ CHECK = r"""() => {
     transform:getComputedStyle(heading).textTransform,
     marker:getComputedStyle(heading,'::before').content}:null;
   })(),
-  warranty,emptyArtwork,duplicateIds,clippedCells,bodyText:(()=>{
+  recycling,warranty,emptyArtwork,duplicateIds,clippedCells,bodyText:(()=>{
    const tree=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),parts=[];
    while(tree.nextNode()){
     const parent=tree.currentNode.parentElement,style=getComputedStyle(parent);
@@ -301,6 +316,7 @@ async def validate(base_url, languages, evidence_dir):
                         await page.screenshot(path=str(evidence_dir / f"{language}-{width}-{anchor}.png"))
                 for index, panel in enumerate(await page.locator('.native-warranty-terms').all(), 1):
                     await panel.screenshot(path=str(evidence_dir/f'{language}-{width}-warranty-terms-{index}.png'))
+                await page.locator('.native-recycle').screenshot(path=str(evidence_dir/f'{language}-{width}-recycling.png'))
                 for name,selector in [('lcd-controls','.native-lcd-controls'),('key-combinations','.hb-key-combination-composition'),('spec-table','.hb-spec-table-composition'),('faults','.hb-reference-table-composition')]:
                     locator=page.locator(selector)
                     if await locator.count():
@@ -317,10 +333,10 @@ async def validate(base_url, languages, evidence_dir):
     )
     for row in records:
         print(json.dumps({k: row[k] for k in (
-            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "lockLabelCenters", "lockNumeralCenters", "warranty", "broken",
+            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "lockLabelCenters", "lockNumeralCenters", "recycling", "warranty", "broken",
             "outside", "overlaps", "occluded", "clippedCards", "clippedCells", "emptyArtwork", "duplicateIds", "visibleCopyCoverage", "errors", "resourceErrors",
         )}, ensure_ascii=False))
-    if any(not row["warranty"]["passed"] or not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
+    if any(not row["recycling"]["passed"] or not row["warranty"]["passed"] or not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
            or not all(n['centered'] for n in row['lcdLabelCenters'])
            or not all(n['centered'] for n in row['lockLabelCenters'])
            or not all(n['centered'] for n in row['lockNumeralCenters'])

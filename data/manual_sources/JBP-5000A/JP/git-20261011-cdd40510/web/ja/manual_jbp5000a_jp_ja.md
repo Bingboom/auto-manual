@@ -15,8 +15,19 @@
 #furo-main-content .native-locking-connection :is([data-source-line="2"],[data-source-line="3"],[data-source-line="4"],[data-source-line="5"]){align-items:center;justify-content:center;text-align:center;line-height:1;}
 .native-overview [data-source-line="1"]>span{text-align:right;}
 .native-locking-connection [data-source-line="2"] span,.native-locking-connection [data-source-line="3"] span,.native-locking-connection [data-source-line="4"] span,.native-locking-connection [data-source-line="5"] span{color:#fff!important;}
-.native-recycle{display:flex;align-items:center;gap:1rem;}
-.native-recycle>img{width:65px!important;}
+/* Native recycling has one shared bordered panel, fixed symbol and three bullets. */
+#furo-main-content .native-spec-change-notice{position:relative;padding-left:1.1em;}
+#furo-main-content .native-spec-change-notice::before{content:"";position:absolute;left:0;top:.45em;width:.75em;height:.75em;background:var(--hb-text);}
+#furo-main-content .native-recycle{display:grid;grid-template-columns:5rem minmax(0,1fr);align-items:center;gap:1rem;}
+#furo-main-content .native-recycle>img{width:65px!important;height:auto;justify-self:center;}
+#furo-main-content .native-recycle :is(h2,h3){margin:0 0 .3rem;font-size:1.15rem;line-height:1.3;text-transform:none;}
+#furo-main-content .native-recycle :is(h2,h3)::before{content:none;}
+#furo-main-content .native-recycle ul{margin:0;padding-left:1.15em;}
+#furo-main-content .native-recycle li p{margin:0;}
+@media(max-width:40rem){
+#furo-main-content .native-recycle{grid-template-columns:4rem minmax(0,1fr);gap:.6rem;padding:.8rem;}
+#furo-main-content .native-recycle>img{width:56px!important;}
+}
 /* Native pages 8–9 keep their shared panels and original clause grouping. */
 #furo-main-content .native-warranty-intro{margin:1rem 0 1.4rem;font-size:.9rem;line-height:1.5;}
 #furo-main-content .native-warranty-terms{margin:1rem 0;padding:0;border-width:1px;font-size:.9rem;line-height:1.5;}
@@ -85,11 +96,9 @@
 
 <p>本製品はJackery ポータブル電源 5000 Plus専用となります。他の機器には接続しないでください。</p>
 
-<p><strong>本機の仕様および外観は、改善のため予告なく変更することがあります。</strong></p>
+<p class="native-spec-change-notice"><strong>本機の仕様および外観は、改善のため予告なく変更することがあります。</strong></p>
 
-### 充電式電池のリサイクルについて
-
-<div class="native-recycle"><img alt="Li-ion" src="assets/symbol-li-ion.svg"/><p>本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。</p></div>
+<div class="hb-source-operation native-recycle"><img alt="Li-ion" src="assets/symbol-li-ion.svg"/><div class="native-recycle-copy"><h3 id="native-recycling">充電式電池のリサイクルについて</h3><ul><li><p>本機はリサイクル可能な充電池を内蔵しています。</p></li><li><p>この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。</p></li><li><p>充電池の取りはずしはお客様自身では行わないでください。</p></li></ul></div></div>
 
 <span id="native-inbox"></span>
 

@@ -13,6 +13,8 @@ docs/generated/
 
 # Runtime release output is delivered through Feishu / GitHub Actions, not Git.
 /reports/releases/
+# Offline knowledge observations are regenerable derivatives (Phase 2 decision D7a).
+/reports/knowledge_observations/
 
 # Delivery outbox: the hand-off drop that the DingTalk delivery agent consumes
 # (tools/delivery_outbox.py, AUTO_MANUAL_DELIVERY_OUTBOX_ROOT). Runtime payloads

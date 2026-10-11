@@ -546,18 +546,14 @@
               ]
             }
           ],
-          "schema_version": "manual-flow/v2"
-        },
-        {
-          "kind": "heading",
-          "level": 3,
-          "children": [
-            {
-              "kind": "text",
-              "text": "充電式電池のリサイクルについて"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-spec-change-notice"
+              }
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          }
         },
         {
           "kind": "group",
@@ -565,7 +561,7 @@
           "presentation": {
             "html": {
               "attributes": {
-                "class": "native-recycle"
+                "class": "hb-source-operation native-recycle"
               }
             }
           },
@@ -576,19 +572,74 @@
               "alt": "Li-ion"
             },
             {
-              "kind": "paragraph",
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-recycle-copy"
+                  }
+                }
+              },
               "children": [
                 {
-                  "kind": "text",
-                  "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                  "kind": "heading",
+                  "level": 3,
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "充電式電池のリサイクルについて"
+                    }
+                  ],
+                  "anchor": "native-recycling"
                 },
                 {
-                  "kind": "text",
-                  "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
-                },
-                {
-                  "kind": "text",
-                  "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                  "kind": "list",
+                  "ordered": false,
+                  "children": [
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "paragraph",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

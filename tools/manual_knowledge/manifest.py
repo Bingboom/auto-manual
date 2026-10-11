@@ -167,6 +167,39 @@ def check_freshness(read: Callable[[str], bytes], *, receipt_name: str,
             "variants": variants}
 
 
+def deployment_reader(*, site: Path | None = None, base_url: str | None = None) -> Callable[[str], bytes]:
+    """Read one deployment (a built site or the served one), each file once.
+
+    Callers judge and then use the same bytes, so a deployment that changes
+    mid-run cannot mix two snapshots.
+    """
+    if site is not None:
+        root = site.resolve()
+
+        def fetch(path: str) -> bytes:
+            target = (root / path).resolve()
+            if not target.is_relative_to(root):
+                raise ValueError(f"Unsafe path: {path}")
+            return target.read_bytes()
+    elif base_url is not None:
+        from tools.manual_operations_online_health import publication_url
+        from tools.rtd.deployment_receipt import FetchSession
+
+        session = FetchSession()
+
+        def fetch(path: str) -> bytes:
+            return session.fetch(publication_url(base_url, path))
+    else:
+        raise ValueError("A deployment needs a site directory or a base URL")
+    fetched: dict[str, bytes] = {}
+
+    def read(path: str) -> bytes:
+        if path not in fetched:
+            fetched[path] = fetch(path)
+        return fetched[path]
+    return read
+
+
 def main(argv: list[str] | None = None) -> int:
     from tools.rtd.deployment_receipt import RECEIPT
 
@@ -176,36 +209,13 @@ def main(argv: list[str] | None = None) -> int:
     where.add_argument("--base-url", help="deployed site, e.g. https://ht-doc.readthedocs.io")
     parser.add_argument("--manifest", type=Path, help="cached manifest to judge instead of the deployed one")
     args = parser.parse_args(argv)
-    if args.site is not None:
-        root = args.site.resolve()
-
-        def read(path: str) -> bytes:
-            target = (root / path).resolve()
-            if not target.is_relative_to(root):
-                raise ValueError(f"Unsafe path: {path}")
-            return target.read_bytes()
-    else:
-        from tools.manual_operations_online_health import publication_url
-        from tools.rtd.deployment_receipt import FetchSession
-
-        session = FetchSession()
-
-        def read(path: str) -> bytes:
-            return session.fetch(publication_url(args.base_url, path))
-    fetched: dict[str, bytes] = {}
-
-    def read_once(path: str) -> bytes:
-        # The label report must describe the same manifest the freshness check judged.
-        if path not in fetched:
-            fetched[path] = read(path)
-        return fetched[path]
-
+    read = deployment_reader(site=args.site, base_url=args.base_url)
     cached = json.loads(args.manifest.read_text(encoding="utf-8")) if args.manifest else None
-    report = check_freshness(read_once, receipt_name=RECEIPT, manifest=cached)
+    report = check_freshness(read, receipt_name=RECEIPT, manifest=cached)
     summary = {key: report[key] for key in ("status", "problems", "totals")}
     summary["not_fresh"] = [v for v in report["variants"] if v["status"] != "fresh"]
     summary["callout_labels"] = check_callout_labels(
-        cached if cached is not None else json.loads(read_once(MANIFEST)),
+        cached if cached is not None else json.loads(read(MANIFEST)),
         load_known_callout_labels(repo_root() / PathSegments.DATA))
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0 if report["status"] == "fresh" else 1

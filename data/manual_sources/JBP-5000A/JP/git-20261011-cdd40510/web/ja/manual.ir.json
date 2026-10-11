@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "726ad83520cff9028c6813103532bb8f3dd675f23abfb916533fa89f60f140f8",
-  "content_sha256": "d1f9951e8915a17c48eb1aeb2cbace17f4c609b83481d812383f57ad7b198608",
+  "bundle_sha256": "4ee367f50da48e4501a3092dfd91020949a3ebe25f0f4f1624ee9cac34c71c46",
+  "content_sha256": "aad565984750818a40bde6979960b0fc0a5d91be41093a64d6505aa273db3d0f",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -47,7 +47,7 @@
       "assets/stack-limits.svg": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1",
       "assets/symbol-li-ion.svg": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
     },
-    "block_count": 48,
+    "block_count": 47,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-INBOX": 1,
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "bfb1e962f17fc756bf8e325ce7d009acfa354a712d3cf34eb3bee7071a33d4fb"
+      "sha256": "665b4df8b5eb62323e18beb5b88f8eadcf4ebab62b86d7be347b13111a154b79"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -2585,7 +2585,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "32b66ed427d1a9c8249f9a4829697c153dc46142a0258870428ada3de661a61a",
+          "content_sha256": "886f67963af0206454f195e44ad63ea68808833db5698afa1bd6373e8d4b363a",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2600,34 +2600,23 @@
               }
             ],
             "kind": "paragraph",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "native-spec-change-notice"
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/specifications#block-4"
         },
         {
-          "asset_refs": [],
-          "block_id": "specifications:block-0005",
-          "content_sha256": "19a60d5da0dbe8b55108e126c3ff508663557ac51c9639d9c725afb5bdb8be6d",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "充電式電池のリサイクルについて"
-              }
-            ],
-            "kind": "heading",
-            "level": 3,
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/specifications#block-5"
-        },
-        {
           "asset_refs": [
             "assets/symbol-li-ion.svg"
           ],
-          "block_id": "specifications:block-0006",
-          "content_sha256": "a74dc8d3ef81ee25e353866696360c134b705786c398a8d3bdf267e7e8996684",
+          "block_id": "specifications:block-0005",
+          "content_sha256": "7776dd31d439a9280db1d16797ee4963343b10bf90a9e0583afe23519aeaf9d1",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2639,33 +2628,88 @@
               {
                 "children": [
                   {
-                    "kind": "text",
-                    "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                    "anchor": "native-recycling",
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "充電式電池のリサイクルについて"
+                      }
+                    ],
+                    "kind": "heading",
+                    "level": 3
                   },
                   {
-                    "kind": "text",
-                    "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
-                  },
-                  {
-                    "kind": "text",
-                    "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                              }
+                            ],
+                            "kind": "paragraph"
+                          }
+                        ],
+                        "kind": "list_item"
+                      }
+                    ],
+                    "kind": "list",
+                    "ordered": false
                   }
                 ],
-                "kind": "paragraph"
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-recycle-copy"
+                    }
+                  }
+                },
+                "role": "container"
               }
             ],
             "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-recycle"
+                  "class": "hb-source-operation native-recycle"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/specifications#block-6"
+          "source_ref": "native-pdf/specifications#block-5"
         }
       ],
       "language": "ja",
@@ -2673,7 +2717,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#specifications",
       "source_ref": "native-pdf/specifications",
-      "source_sha256": "bbbf4b3bfd63291c5b31c407bf9e645ac40c4890d9ac3db797fb524b7a4c3bcb"
+      "source_sha256": "ab1f1aadb611c17f86d16627d1e933799b26d7ffb5dd82ed6d24c9c3b27b5de1"
     },
     {
       "blocks": [

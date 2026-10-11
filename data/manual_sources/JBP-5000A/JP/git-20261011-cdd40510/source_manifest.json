@@ -643,8 +643,8 @@
     },
     {
       "path": "tools/utils/path_utils.py",
-      "sha256": "d5692ca4d662e3b278d7f9e62016268c1963cb12497418fc3b06a56e0baff744",
-      "size": 14471
+      "sha256": "aa584ea39d79ee6e3e0577f107931698f904a2b23bc985ae19833bb3b86215ab",
+      "size": 14672
     },
     {
       "path": "tools/utils/process_utils.py",
@@ -1065,8 +1065,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "a92b4674f9bc162b97a24a8c0ab720191cf5b8cc6000a80215069779775059e7",
-      "size": 4679
+      "sha256": "86c909d28962325cf6899453f136722266c1177c7ceb356cf7a5fac2f98d606b",
+      "size": 4985
     },
     {
       "path": "assets/ac-charge.svg",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "sha256": "4bfe68cc420f820d86f7aaa14e5c46aff6a7c24263bc44b7e3aa756ca0ab4bcc",
-      "size": 178236
+      "sha256": "109655d8f0cc390dfa37eee3602d8a68b00d92f95e88126dfa567ec2b1b0e7a8",
+      "size": 179987
     },
     {
       "path": "source/ja/coverage.json",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "source/presentation.css",
-      "sha256": "bfb1e962f17fc756bf8e325ce7d009acfa354a712d3cf34eb3bee7071a33d4fb",
-      "size": 5669
+      "sha256": "665b4df8b5eb62323e18beb5b88f8eadcf4ebab62b86d7be347b13111a154b79",
+      "size": 6603
     },
     {
       "path": "source/print-cover.json",
@@ -1225,8 +1225,8 @@
     },
     {
       "path": "validate_layout.py",
-      "sha256": "ed04d915867f38777eacb433a2a756996672248ae01178a88619aff58187a25d",
-      "size": 20829
+      "sha256": "173f76dc296384cad776a4780d905e7e201ef61f6aabc076012808a6d40aaa07",
+      "size": 22359
     },
     {
       "path": "validate_source.py",
@@ -1235,8 +1235,8 @@
     },
     {
       "path": "web/ja/_static/source_presentation.css",
-      "sha256": "bfb1e962f17fc756bf8e325ce7d009acfa354a712d3cf34eb3bee7071a33d4fb",
-      "size": 5669
+      "sha256": "665b4df8b5eb62323e18beb5b88f8eadcf4ebab62b86d7be347b13111a154b79",
+      "size": 6603
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -1350,13 +1350,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "sha256": "49288e5c7009782377c16f79b65ad202eaf95866a47ca16ed000dcf487bf0ce2",
-      "size": 259982
+      "sha256": "666eef24611faf27574c35fe383a29277d2ae1a51153c9d52de463ed818d653b",
+      "size": 261542
     },
     {
       "path": "web/ja/manual_jbp5000a_jp_ja.md",
-      "sha256": "1ce9ddd1e5c3089443df1d772f3794661929b6880f2c3f30d2a71559b02582f4",
-      "size": 37169
+      "sha256": "dd7abfeb266f4b780c75f68c880ff6d0b4d4697f0dd9b7aab90db2d4a7335acf",
+      "size": 38271
     }
   ]
 }
