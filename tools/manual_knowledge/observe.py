@@ -9,9 +9,9 @@ a change to the item's own label or text replaces it, so an earlier artifact's
 item turns stale exactly when its content changed. Machine output only carries
 ``extracted`` / ``candidate`` status; review decisions belong to Phase 3.
 
-P2-1 records every callout as a ``warning`` item. Topic classification, the
-other carriers (signal-word table rows, safety sections, compliance statements)
-and comparison relations arrive with P2-2 and P2-3.
+``carriers`` decides which blocks are warning, safety or compliance items and
+``topics`` classifies them against the controlled vocabulary; comparison
+relations arrive with P2-3.
 Plan: ``code-as-doc/dev/machine_readable_knowledge_observation.md``.
 """
 from __future__ import annotations
@@ -26,12 +26,14 @@ import sys
 import unicodedata
 
 from tools.check.docs_capability import CAPABILITIES_CSV, load_capabilities
+from tools.manual_knowledge.carriers import Carrier, carriers, legislation
 from tools.manual_knowledge.manifest import MANIFEST, check_freshness, deployment_reader
+from tools.manual_knowledge.topics import classify
 from tools.utils.path_utils import PathSegments, knowledge_observation_reports_of, repo_root
 
 ARTIFACT = "manual-observations.json"
 SCHEMA = "auto-manual-knowledge-observations/v1"
-GENERATOR_VERSION = "manual-observations/0.1"
+GENERATOR_VERSION = "manual-observations/0.2"
 FEATURE_SOURCE = f"{PathSegments.DATA}/{CAPABILITIES_CSV}"
 # Line-leading list glyphs only; signs, asterisks and numbering are content.
 _BULLETS = re.compile(r"^[ \t]*[•●▪◦‧·][ \t]*", re.MULTILINE)
@@ -55,22 +57,30 @@ def _context(document: dict, features: dict[str, dict[str, bool]]) -> dict:
             "authority": source.get("authority"), "feature": dict(feature) if feature is not None else "unknown"}
 
 
-def _callout_item(document: dict, section: dict, block: dict, context: dict) -> dict:
-    severity = block.get("severity", "unknown")
-    flags = ["topic_unknown"]  # topic classification arrives with P2-2
-    if severity == "unknown":
+def _flags(carrier: Carrier, topics: list[str], document: dict) -> list[str]:
+    flags = [] if topics else ["topic_unknown"]
+    if carrier.category == "warning" and carrier.severity == "unknown":
         flags.append("severity_unknown")
     if document["language"] == "multi":
         flags.append("language_multi")
-    return {"category": "warning", "topic": [], "severity": severity, "label": block["label"],
-            "text": block["body"], "content_sha256": content_sha256(block["label"], block["body"]),
+    return sorted(flags)
+
+
+def _item(document: dict, section: dict, block: dict, carrier: Carrier, context: dict) -> dict:
+    topics = classify(f"{carrier.label or ''}\n{carrier.text}")
+    item = {"category": carrier.category, "topic": topics, "severity": carrier.severity, "label": carrier.label,
+            "text": carrier.text, "content_sha256": content_sha256(carrier.label or "", carrier.text),
             "variant_key": document["variant_key"], "manual_variant_id": document["manual_variant_id"],
             "observed_context": dict(context),
             "source": {"section_id": section["id"], "section_title": section["title"],
-                       "block_id": block["block_id"], "block_type": block["type"], "item_index": None,
+                       "block_id": block["block_id"], "block_type": block["type"], "item_index": carrier.item_index,
                        "source_ref": block["source_ref"], "html_sha256": document["html_sha256"]},
-            "status": "extracted", "review_flags": sorted(flags),
-            "method": {"generator": GENERATOR_VERSION, "rules": ["extract.callout"]}}
+            "status": "extracted", "review_flags": _flags(carrier, topics, document),
+            "method": {"generator": GENERATOR_VERSION, "rules": [carrier.rule] + [f"topic.{t}" for t in topics]}}
+    if carrier.category == "compliance":
+        # A statement is recorded as found; whether the legislation applies is never inferred.
+        item.update(applicability="unknown", legislation=legislation(carrier.text))
+    return item
 
 
 def _assign_ids(items: list[dict]) -> None:
@@ -87,8 +97,7 @@ def build_items(corpus: dict, features: dict[str, dict[str, bool]]) -> list[dict
     for document in corpus["documents"]:
         context = _context(document, features)
         for section in document["sections"]:
-            items.extend(_callout_item(document, section, block, context)
-                         for block in section["blocks"] if block["type"] == "callout")
+            items.extend(_item(document, section, block, carrier, context) for block, carrier in carriers(section))
     _assign_ids(items)
     return items
 
@@ -96,9 +105,13 @@ def build_items(corpus: dict, features: dict[str, dict[str, bool]]) -> list[dict
 def summarize(corpus: dict, items: list[dict], relations: list[dict]) -> dict:
     per_variant = {document["variant_key"]: 0 for document in corpus["documents"]}
     per_variant.update(Counter(item["variant_key"] for item in items))
+    categories = Counter(item["category"] for item in items)
+    undetermined = Counter(item["category"] for item in items if not item["topic"])
     return {"variants": len(corpus["documents"]), "items": len(items), "items_by_variant": per_variant,
-            "items_by_category": dict(Counter(item["category"] for item in items)),
-            "items_by_severity": dict(Counter(item["severity"] for item in items)),
+            "items_by_category": dict(categories),
+            "items_by_severity": dict(Counter(item["severity"] for item in items if item["category"] == "warning")),
+            "items_by_topic": dict(Counter(topic for item in items for topic in item["topic"])),
+            "topic_undetermined": {category: undetermined.get(category, 0) for category in categories},
             "review_flags": dict(Counter(flag for item in items for flag in item["review_flags"])),
             "unknown_labels": dict(Counter(item["label"] for item in items if item["severity"] == "unknown")),
             "relations": len(relations),
@@ -151,7 +164,8 @@ def _write_atomic(destination: Path, data: bytes) -> None:
 def main(argv: list[str] | None = None) -> int:
     from tools.rtd.deployment_receipt import RECEIPT
 
-    parser = argparse.ArgumentParser(description="Observe warning knowledge in the sealed EU machine corpus")
+    parser = argparse.ArgumentParser(description="Observe warning, safety and compliance knowledge in the sealed "
+                                                 "EU machine corpus")
     where = parser.add_mutually_exclusive_group(required=True)
     where.add_argument("--site", type=Path, help="built HTML output directory")
     where.add_argument("--base-url", help="deployed site, e.g. https://ht-doc.readthedocs.io")
