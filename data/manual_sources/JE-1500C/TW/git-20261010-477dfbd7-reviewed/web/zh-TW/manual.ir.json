@@ -1351,8 +1351,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "5f59edda59daf3d6c34d0befe0e7d822d27ddeddb68407d36df8b4aa7a7f6b2e",
-          "size": 4119
+          "sha256": "6a843605b0d903b54091571411588a48107fdaa63b10f62a0d3a40511acd4fdf",
+          "size": 4296
         },
         {
           "path": "assets/ac-charge.svg",
@@ -1636,8 +1636,8 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "f82bc8d2d4597a7587eb5015ab08ba6e19ee9bda0ada1f9612ffc9781545be60",
-          "size": 24991
+          "sha256": "cba966ae3906c9e503d0110cf8476f5e4cc81931b2f3d8b75ec232405804ce52",
+          "size": 24848
         },
         {
           "path": "source/asset_decisions.json",
@@ -3687,8 +3687,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "5f59edda59daf3d6c34d0befe0e7d822d27ddeddb68407d36df8b4aa7a7f6b2e",
-          "size": 4119
+          "sha256": "6a843605b0d903b54091571411588a48107fdaa63b10f62a0d3a40511acd4fdf",
+          "size": 4296
         },
         {
           "path": "assets/ac-charge.svg",
@@ -4089,11 +4089,6 @@
           "path": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
           "sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
           "size": 12514476
-        },
-        {
-          "path": "README.md",
-          "sha256": "5f59edda59daf3d6c34d0befe0e7d822d27ddeddb68407d36df8b4aa7a7f6b2e",
-          "size": 4119
         },
         {
           "path": "assets/ac-charge.svg",

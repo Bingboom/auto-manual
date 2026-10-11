@@ -1,6 +1,6 @@
-# JE-1500C / TW / zh-TW — native PDF Web candidate
+# JE-1500C / TW / zh-TW — approved native PDF Web source
 
-This Git-only package converts the supplied Traditional Chinese manual into selectable HTML through the shared Manual IR, ComponentSpec, Web theme and Sphinx pipeline. It is an engineering candidate; merge and publication require separate operator authorization.
+This Git-only package converts the supplied Traditional Chinese manual into selectable HTML through the shared Manual IR, ComponentSpec, Web theme and Sphinx pipeline. The operator accepted the original single-column layout and authorized Git-only publication under MA-284. The original engineering candidate and its evidence remain unchanged in the adjacent git-20261010-477dfbd7 package.
 
 ## Source and boundary
 
@@ -30,7 +30,7 @@ There are 17 native chapters, 115 editable figure labels, 22 LCD entries, four s
 Run from the repository root with unused output/evidence directories. `web/zh-TW/` is generated output; change the reviewed source inputs and regenerate instead of editing it.
 
 ```sh
-PKG=data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7
+PKG=data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed
 python3 "$PKG/rebuild.py" --output /private/tmp/je1500c-tw-replay
 python3 -m sphinx -b html -n -W --keep-going \
   /private/tmp/je1500c-tw-replay /private/tmp/je1500c-tw-html
@@ -45,4 +45,4 @@ Serve the strict HTML output for browser validation. The browser gate checks 128
 
 After intentional source changes, run `source/seal_inputs.py` before rebuilding. The manifest binds package inputs and shared implementation/styles; `evidence/` is verification output and is excluded from input binding. Cold replay must match the frozen package byte for byte and reject changed copy, artwork, source/shared CSS, theme and language registration.
 
-See [acceptance evidence](evidence/acceptance.md). Local rendering and engineering checks do not prove RTD deployment or production visual acceptance.
+See [candidate acceptance evidence](../git-20261010-477dfbd7/evidence/acceptance.md). Local rendering and engineering checks do not prove RTD deployment or production visual acceptance.
