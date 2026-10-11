@@ -1586,7 +1586,7 @@
                 "content_kind": "ordered_rows",
                 "content": [
                   {
-                    "number_html": "1",
+                    "number_html": "<p>1</p>",
                     "number_text": "1",
                     "name_html": "バッテリー残量(%)／エラーコード",
                     "name_text": "バッテリー残量(%)／エラーコード",
@@ -1596,7 +1596,7 @@
                     "asset_index": 0
                   },
                   {
-                    "number_html": "2",
+                    "number_html": "<p>2</p>",
                     "number_text": "2",
                     "name_html": "充電マーク",
                     "name_text": "充電マーク",

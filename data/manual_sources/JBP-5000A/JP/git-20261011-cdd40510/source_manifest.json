@@ -1065,8 +1065,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "d4b564e085c591c250a8a4d4249a405fa92e1b2a22676256c157e5832f933259",
-      "size": 5115
+      "sha256": "e4a8403128e0cab2a7c05f0f7f723269e7f8b6a5663afa0590004f245bf509e2",
+      "size": 5269
     },
     {
       "path": "assets/ac-charge.svg",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "sha256": "9d55d122b186153b7a113101aeae79e13ac92ceb22e7b43d4c283acda6ef5848",
-      "size": 180446
+      "sha256": "41c533bcaedf272964544f1cdeda914defdff99c7b9a77e3c4adae56961058f1",
+      "size": 180460
     },
     {
       "path": "source/ja/coverage.json",
@@ -1350,13 +1350,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "sha256": "11fb744c918a42c820a302ca40bedb843995f006cc76f7f09a79ea61e02f1484",
-      "size": 262037
+      "sha256": "a152322f6aa0dc572e055d59dd35b97dea358405be6fcb46612bcc6239f1ff08",
+      "size": 262051
     },
     {
       "path": "web/ja/manual_jbp5000a_jp_ja.md",
-      "sha256": "4c52b874f70e864e2fbf657e7eb904129d01eeeb08f62ac2930af76e7c46aa75",
-      "size": 38317
+      "sha256": "0252eda8542f540bc198ec93f482703691c1f4d32b434b2a4f7b632a6c3fa761",
+      "size": 38331
     }
   ]
 }

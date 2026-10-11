@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "fb83c1aef1f479505adbe6bcb8098eb9ef6f849d8e1838587a1ab7d3bec7ef4b",
-  "content_sha256": "394b7ebdb7b3fad1c37912a76a876aa590942bd1cd7ee765894e9865a107790d",
+  "bundle_sha256": "ef6dcf7dab1d55b1d71cf87ffddf22e6189382089e9760ea9f945054b55095cf",
+  "content_sha256": "140cf7d5f0b0d4eac8490b00f9ffacf9daffdc369a8c12943556a6518bb537db",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -3707,7 +3707,7 @@
             "assets/lcd-charge.svg"
           ],
           "block_id": "lcd:block-0003",
-          "content_sha256": "b4537f95eec276c2fa101f74ed75bb03ec23333b5f66fccd52ed6a88ae1c1151",
+          "content_sha256": "f69f372e1c42c59527f5231fe17b73df2eff4458c1479a688d05a3f387a129b7",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -3742,7 +3742,7 @@
                       "icon_alt": "1",
                       "name_html": "バッテリー残量(%)／エラーコード",
                       "name_text": "バッテリー残量(%)／エラーコード",
-                      "number_html": "1",
+                      "number_html": "<p>1</p>",
                       "number_text": "1"
                     },
                     {
@@ -3752,7 +3752,7 @@
                       "icon_alt": "2",
                       "name_html": "充電マーク",
                       "name_text": "充電マーク",
-                      "number_html": "2",
+                      "number_html": "<p>2</p>",
                       "number_text": "2"
                     }
                   ],
@@ -3777,7 +3777,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#lcd",
       "source_ref": "native-pdf/lcd",
-      "source_sha256": "3f2383d85a1b3d0a2882d931ec0c71ef752776eda834a7557bfe456717d48575"
+      "source_sha256": "1e85618e7d550cac94dcba99faf8737bc8732a92d447cba471591df0504498d2"
     },
     {
       "blocks": [
