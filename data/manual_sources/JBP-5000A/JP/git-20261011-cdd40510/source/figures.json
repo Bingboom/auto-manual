@@ -28011,7 +28011,7 @@
       27,
       28,
       343,
-      157
+      162
     ],
     "drawing_indices": [
       5717,
@@ -30097,7 +30097,7 @@
     "embedded_regions": [],
     "reused": false,
     "fixed_native_glyphs": 0,
-    "sha256": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1"
+    "sha256": "d03b4f3801abb3ab6b35ca6364e530d8c9b6fa2629bf2195fd35a921c4dce8f0"
   },
   {
     "id": "ac-charge",

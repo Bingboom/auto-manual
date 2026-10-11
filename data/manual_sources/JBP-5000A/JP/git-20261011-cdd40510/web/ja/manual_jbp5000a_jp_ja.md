@@ -84,6 +84,14 @@
 /* Native Japanese font metrics: keep display label inside source right edge. */
 .native-overview [data-source-line="1"]{font-size:2.10cqw!important;}
 
+/* Source stacking notice reuses shared shaded-label callout and disc list. */
+#furo-main-content .native-stacking-notice .manual-callout-label{width:17%!important;font-size:1.25rem;line-height:1.4;}
+#furo-main-content .native-stacking-notice .manual-callout-label-sizer{display:none;}
+#furo-main-content .native-stacking-notice .manual-callout-body ul{margin:0;}
+@media(max-width:520px){
+#furo-main-content .native-stacking-notice .manual-callout-label{width:100%!important;}
+}
+
 </style>
 
 <span id="native-specifications"></span>
@@ -152,7 +160,7 @@
 
 <div class="native-figure native-stack-limits native-dense"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="stack-limits" data-source-fragment-sha256="a8553cde7b43cdc66e2de2dbc5d7d2149572c7f857b3336020e6d750acc04aab"><div class="hb-reference-semantic" data-reference-id="stack-limits.semantic"><img alt="stack-limits" class="hb-reference-art hb-composite-art" src="assets/stack-limits.svg"/></div></figure></div>
 
-<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">使用上のご注意</td><td class="manual-callout-body"><p><strong>バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源</strong><br/><strong>が</strong><strong>オフ</strong><strong>になっていることを確認してください。 </strong></p><p>LCD 画面(Jackery ポータブル電源 5000 Plus)に<img alt="接続バッテリー数" src="assets/connected-batteries.svg"/>アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。</p><p>本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。  </p><p>Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。</p></td></tr></tbody></table>
+<table class="manual-callout-table hb-callout-label-shaded native-stacking-notice"><tbody><tr><td class="manual-callout-label">使用上<br/>のご注意</td><td class="manual-callout-body"><ul><li><p><strong>バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。 </strong></p></li><li><p>LCD 画面(Jackery ポータブル電源 5000 Plus)に<img alt="接続バッテリー数" src="assets/connected-batteries.svg"/>アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。</p></li><li><p>本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。  </p></li><li><p>Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。</p></li></ul></td></tr></tbody></table>
 
 <span id="native-charging"></span>
 

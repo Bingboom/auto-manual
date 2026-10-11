@@ -43,7 +43,10 @@ containment at all three widths. Every word and original artwork is retained.
 
 The 12 ReferenceFigures use complete native artwork and 27 editable labels.
 Lock/unlock stages plus the hookup remain one original panel; the two stacking
-examples remain one original row. Dense figures scroll within their own mobile
+examples remain one original row. The stacking SVG keeps every existing vector
+object and expands its viewport to contain the complete original bottom borders.
+The stacking notice uses the shared shaded-label/white-body treatment with four
+real bullets, the original two-line label and natural body wrapping. Dense figures scroll within their own mobile
 container. Their letters are not reduced to unreadable dimensions or split
 into new cards. The original horizontal App Store/Google Play badges and full
 vector QR frame remain together in the final download block.

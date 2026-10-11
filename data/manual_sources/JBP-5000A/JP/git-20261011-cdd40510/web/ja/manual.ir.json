@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "ef6dcf7dab1d55b1d71cf87ffddf22e6189382089e9760ea9f945054b55095cf",
-  "content_sha256": "140cf7d5f0b0d4eac8490b00f9ffacf9daffdc369a8c12943556a6518bb537db",
+  "bundle_sha256": "fb5d8e6913244e8a3b0ef6fcb48dcae8e26e6aef0fc7977c4195aeef389ca1ab",
+  "content_sha256": "d03fd8ec741315d1b6d9ce0c9112066efa56fa123874a57fd96d1a46ee818989",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -44,7 +44,7 @@
       "assets/service-logo.svg": "00889b66437ecd87e2c6ba008a202edcd1e352e07bb7fd3ec07713c946e8635c",
       "assets/solar-house.svg": "ad5c6265c1bc7b0ddc4ae96e3c9312a1d249d909b4bab3695fa24aa008799969",
       "assets/solar-portable.svg": "76caf021d16116ff166b7b72841ab215e3f61c44ab6ec9f658d97ed1a8a6f1c3",
-      "assets/stack-limits.svg": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1",
+      "assets/stack-limits.svg": "d03b4f3801abb3ab6b35ca6364e530d8c9b6fa2629bf2195fd35a921c4dce8f0",
       "assets/symbol-li-ion.svg": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
     },
     "block_count": 47,
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "665b4df8b5eb62323e18beb5b88f8eadcf4ebab62b86d7be347b13111a154b79"
+      "sha256": "deac702d7ea933ad2ae4b603f00322247640093d2e7dd0fc31642308b9873544"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -5198,7 +5198,7 @@
             "assets/connected-batteries.svg"
           ],
           "block_id": "battery-packs:block-0007",
-          "content_sha256": "b2d05b4c4e6eaea06afb8bdac2e909b63f087270e0bab7c6962b4de1ee124c72",
+          "content_sha256": "27cccdb0f11df423b43c377437b4df4744ec58858046491afec02feb895abc7b",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5212,7 +5212,14 @@
                             "children": [
                               {
                                 "kind": "text",
-                                "text": "使用上のご注意"
+                                "text": "使用上"
+                              },
+                              {
+                                "kind": "line_break"
+                              },
+                              {
+                                "kind": "text",
+                                "text": "のご注意"
                               }
                             ],
                             "header": false,
@@ -5232,84 +5239,80 @@
                                   {
                                     "children": [
                                       {
-                                        "kind": "text",
-                                        "text": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源"
+                                        "children": [
+                                          {
+                                            "children": [
+                                              {
+                                                "kind": "text",
+                                                "text": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。 "
+                                              }
+                                            ],
+                                            "kind": "strong"
+                                          }
+                                        ],
+                                        "kind": "paragraph"
                                       }
                                     ],
-                                    "kind": "strong"
-                                  },
-                                  {
-                                    "kind": "line_break"
+                                    "kind": "list_item"
                                   },
                                   {
                                     "children": [
                                       {
-                                        "kind": "text",
-                                        "text": "が"
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "LCD 画面(Jackery ポータブル電源 5000 Plus)に"
+                                          },
+                                          {
+                                            "alt": "接続バッテリー数",
+                                            "kind": "image",
+                                            "source": "assets/connected-batteries.svg"
+                                          },
+                                          {
+                                            "kind": "text",
+                                            "text": "アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。"
+                                          }
+                                        ],
+                                        "kind": "paragraph"
                                       }
                                     ],
-                                    "kind": "strong"
+                                    "kind": "list_item"
                                   },
                                   {
                                     "children": [
                                       {
-                                        "kind": "text",
-                                        "text": "オフ"
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリ"
+                                          },
+                                          {
+                                            "kind": "text",
+                                            "text": "ーパックを3つ以上重ねないでください。  "
+                                          }
+                                        ],
+                                        "kind": "paragraph"
                                       }
                                     ],
-                                    "kind": "strong"
+                                    "kind": "list_item"
                                   },
                                   {
                                     "children": [
                                       {
-                                        "kind": "text",
-                                        "text": "になっていることを確認してください。 "
+                                        "children": [
+                                          {
+                                            "kind": "text",
+                                            "text": "Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。"
+                                          }
+                                        ],
+                                        "kind": "paragraph"
                                       }
                                     ],
-                                    "kind": "strong"
+                                    "kind": "list_item"
                                   }
                                 ],
-                                "kind": "paragraph"
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "LCD 画面(Jackery ポータブル電源 5000 Plus)に"
-                                  },
-                                  {
-                                    "alt": "接続バッテリー数",
-                                    "kind": "image",
-                                    "source": "assets/connected-batteries.svg"
-                                  },
-                                  {
-                                    "kind": "text",
-                                    "text": "アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。"
-                                  }
-                                ],
-                                "kind": "paragraph"
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリ"
-                                  },
-                                  {
-                                    "kind": "text",
-                                    "text": "ーパックを3つ以上重ねないでください。  "
-                                  }
-                                ],
-                                "kind": "paragraph"
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。"
-                                  }
-                                ],
-                                "kind": "paragraph"
+                                "kind": "list",
+                                "ordered": false
                               }
                             ],
                             "header": false,
@@ -5333,7 +5336,7 @@
                 "presentation": {
                   "html": {
                     "attributes": {
-                      "class": "manual-callout-table manual-callout-table"
+                      "class": "manual-callout-table hb-callout-label-shaded native-stacking-notice"
                     }
                   }
                 }
@@ -5347,14 +5350,24 @@
               "schema_version": "component-spec/v1",
               "slots": [
                 {
-                  "content": "使用上のご注意",
+                  "content": "使用上 のご注意",
                   "content_kind": "inline_text",
                   "role": "label"
                 },
                 {
-                  "content": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源\nが\nオフ\nになっていることを確認してください。\nLCD 画面(Jackery ポータブル電源 5000 Plus)に\nアイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。\n本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。\nJackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。",
+                  "content": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。\nLCD 画面(Jackery ポータブル電源 5000 Plus)に\nアイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。\n本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。\nJackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。",
                   "content_kind": "rich_text",
                   "role": "body"
+                },
+                {
+                  "content": [
+                    "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。",
+                    "LCD 画面(Jackery ポータブル電源 5000 Plus)に アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。",
+                    "本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。",
+                    "Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。"
+                  ],
+                  "content_kind": "list_items",
+                  "role": "items"
                 }
               ],
               "source_ref": "native-pdf/page-6/stacking-notice",
@@ -5374,7 +5387,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#battery-packs",
       "source_ref": "native-pdf/battery-packs",
-      "source_sha256": "1a57a34921c99e8c9fe0a95e707f169c21e8d9eeb20a157865532df53e68a9b8"
+      "source_sha256": "cfa904e326bafabf679be8bf0f2d7ae638e22e07c8d6cdbe0a46296497da4227"
     },
     {
       "blocks": [

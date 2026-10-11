@@ -18239,7 +18239,7 @@
       27,
       28,
       343,
-      157
+      162
     ],
     "drawing_indices": [
       5717,
@@ -20322,13 +20322,37 @@
     ],
     "final_path": "assets/stack-limits.svg",
     "background_policy": "Preserve full original panels, product white surfaces, leaders and structural borders; external text becomes editable HTML. No independent caption frames found in these panels.",
-    "sha256": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1",
+    "sha256": "d03b4f3801abb3ab6b35ca6364e530d8c9b6fa2629bf2195fd35a921c4dce8f0",
     "visual_review": {
-      "bare_art": "reviewed",
-      "native_edges": "reviewed at 12x for complete panels",
-      "transparent_glyphs": "Chromium checkerboard; percentage and battery/bolt contours checked",
-      "editable_labels": "1280/768/390; complete panels retain original grouping"
-    }
+      "bare_art": "reviewed against physical page 6; every SVG child and ancestor unchanged",
+      "native_edges": "all four edges inspected at 12x; original bottom strokes 5718/6222 fully inside y=162 crop",
+      "editable_labels": "no external labels in stacking art; original two-panel row retained at 1280/768/390"
+    },
+    "correction": {
+      "prior_candidate_sha256": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1",
+      "prior_status": "superseded-do-not-reuse",
+      "reason": "Original border paths 5718/6222 extend to y=160.8613; y=157 crop clipped both bottom edges.",
+      "decision": "reuse existing native vector objects unchanged; expand viewport only",
+      "old_bbox": [
+        27,
+        28,
+        343,
+        157
+      ],
+      "bbox": [
+        27,
+        28,
+        343,
+        162
+      ],
+      "source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+      "source_page": 6,
+      "border_drawing_indices": [
+        5718,
+        6222
+      ]
+    },
+    "prior_candidate_sha256": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1"
   },
   {
     "slot": "ac-charge",

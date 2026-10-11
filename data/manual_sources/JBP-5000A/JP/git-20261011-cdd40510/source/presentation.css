@@ -82,3 +82,11 @@
 
 /* Native Japanese font metrics: keep display label inside source right edge. */
 .native-overview [data-source-line="1"]{font-size:2.10cqw!important;}
+
+/* Source stacking notice reuses shared shaded-label callout and disc list. */
+#furo-main-content .native-stacking-notice .manual-callout-label{width:17%!important;font-size:1.25rem;line-height:1.4;}
+#furo-main-content .native-stacking-notice .manual-callout-label-sizer{display:none;}
+#furo-main-content .native-stacking-notice .manual-callout-body ul{margin:0;}
+@media(max-width:520px){
+#furo-main-content .native-stacking-notice .manual-callout-label{width:100%!important;}
+}
