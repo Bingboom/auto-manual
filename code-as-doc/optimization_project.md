@@ -142,7 +142,7 @@ As of 2026-05-07, the repo has working baselines for:
 ## 4. Recently Completed
 
 Completed milestones before 2026-07-31 now live in
-[`code_optimization_log.md`](code_optimization_log.md#archived-roadmap-sections-2026-10-02),
+[`code_optimization_log_archive.md`](code_optimization_log_archive.md#archived-roadmap-sections-2026-10-02),
 together with the finished workstreams listed under §6.
 
 ## 5. Open Gaps
@@ -163,7 +163,7 @@ Keep this section short and current.
 ## 6. Active Workstreams
 
 Finished workstreams moved to
-[`code_optimization_log.md`](code_optimization_log.md#archived-roadmap-sections-2026-10-02) on 2026-10-02:
+[`code_optimization_log_archive.md`](code_optimization_log_archive.md#archived-roadmap-sections-2026-10-02) on 2026-10-02:
 A (Entrypoint And Tooling Parity), B (Core File Decomposition), C (Quality Gate Hardening), D (Diff And Traceability Hardening), E (CI Expansion), F (Feishu IM Ingress Hardening), G (Contract And Queue Baseline Hardening), H (Content Assembly Pilot), J (Release Snapshot Freezing And Traceability), R (Business Closed-Loop — Revision Reflow, TM Corpus Lifecycle, PDF Annotation), W (Product-Line Scaling Execution (模版+数据 → InDesign)), X (Four-Renderer Style Component Contract v2).
 
 

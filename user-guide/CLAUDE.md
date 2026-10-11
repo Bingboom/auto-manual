@@ -4,14 +4,14 @@
 
 ## Map
 
-- `hello_auto-doc.md`: current human workflow guide.
+- `hello_auto-doc.md`: index of the current human workflow guide; its topic pages live in `hello_auto-doc/`.
 - `quick_start_guide.md`: happy-path onboarding and sample commands.
 - `closed_loop_ops_guide.md`: operator playbook for the closed-loop machinery (revision ledger, TM harvest, sentinels, annotated PDFs).
 - `two_plane_map.md`: authoritative map of the two git repos + two Feishu base sets (who runs where, sync channels, naming discipline).
 
 ## Local Rules
 
-- If a code change affects current workflow, editing surface, environment setup, or release flow, update `hello_auto-doc.md`.
+- If a code change affects current workflow, editing surface, environment setup, or release flow, update the owning page under `hello_auto-doc/` (the index only when a page is added, renamed or re-scoped).
 - If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update `quick_start_guide.md`.
 - Keep commands copy-pasteable and aligned with `build.py`.
 

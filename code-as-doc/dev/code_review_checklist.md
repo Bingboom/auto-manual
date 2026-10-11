@@ -15,7 +15,7 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 ## 2. Build and Release Flow
 
 - [ ] Does the change preserve the current [`build.py`](../../build.py) entrypoint?
-- [ ] If command behavior changed, were [`README.md`](../../README.md), [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md), and the user guides under [`user-guide/`](../../user-guide) updated?
+- [ ] If command behavior changed, were the owning topic pages of [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) and the user guides under [`user-guide/`](../../user-guide) updated (and [`README.md`](../../README.md) if a navigation pointer changed)?
 - [ ] If publish behavior changed, was `python build.py publish ...` kept or updated intentionally?
 - [ ] If diff-report behavior changed, were the report docs updated too?
 - [ ] If `preview`, `fast`, or `release-manifest` behavior changed, were their examples and output paths updated in docs?
