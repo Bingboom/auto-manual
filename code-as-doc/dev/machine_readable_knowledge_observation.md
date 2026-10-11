@@ -182,18 +182,23 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 | D13 | 警示级别词表 | 补 `ПОРАДА`；`Important` / `IMPORTANT` / `Importante` 按 Style Guide 等级词条款处理：允许则映射为 caution，不允许则作为源缺陷交内容负责人；加 §7 P2-0 的 `unknown` 标签护栏 |
 | D14 | 试点验收门槛 | 高置信度齐套候选的人工确认率 ≥ 80%（确认为真实差异，或差异有可解释的原因）；全部误报记录原因 |
 
-## 6. 契约草案
+## 6. 契约
+
+§6.1、§6.2 已由 P2-1 实现；§6.3、§6.4 随 P2-2、P2-3 落地。
 
 ### 6.1 产物
 
-- 新命令（暂名）：`python -m tools.manual_knowledge.observe --site <构建输出目录>` 或
-  `--base-url <站点>`。先按 `manual-deployment.json` 校验语料与清单（与 `manifest` 命令相同），
-  再生成观察产物。
-- 产物（暂名）：`manual-observations.json`，schema `auto-manual-knowledge-observations/v1`。
-  头部记录 `corpus_sha256`、`source_sha256`、`generator_version`。
-- 输出目录放在 `reports/` 下的新子目录，路径常量与 `*_of(base)` 辅助函数加到
-  [`path_utils.py`](../../tools/utils/path_utils.py)，不硬编码。
-- 代码放在 `tools/manual_knowledge/` 包内，不新增 `tools/` 顶层模块。
+- 命令：`python -m tools.manual_knowledge.observe --site <构建输出目录>` 或
+  `--base-url <站点>`，可选 `--output <文件>`、`--previous <旧产物>`。先按
+  `manual-deployment.json` 校验语料与清单（与 `manifest` 命令共用同一读取器），不一致则拒绝
+  生成并以退出码 1 结束；给出 `--previous` 时报告旧产物中已 stale 的条目与比较记录。
+- 产物：`manual-observations.json`，schema `auto-manual-knowledge-observations/v1`。
+  头部记录 `corpus_sha256`、`source_sha256`、`generator_version`、`feature_source`；同一语料
+  两次运行字节一致。
+- 默认写到 `reports/knowledge_observations/<source_sha256 前 12 位>/`，路径由
+  [`path_utils.py`](../../tools/utils/path_utils.py) 的 `knowledge_observation_reports_of` 给出；
+  该目录已列入 `.gitignore`（D7a）。
+- 代码在 `tools/manual_knowledge/observe.py`，不新增 `tools/` 顶层模块。
 - 产物不进入 `docs/publish/**`，也不进入 RTD 部署。
 
 ### 6.2 Knowledge Item
@@ -204,13 +209,15 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   "category": "warning",
   "topic": ["ups"],
   "severity": "warning",
+  "label": "WARNING",
   "text": "Do not use this product for applications such as data servers or medical devices, …",
+  "variant_key": "JE-3000C/EU/en",
   "manual_variant_id": "JE-3000C/EU/en@2.10",
   "observed_context": {
     "model": "JE-3000C", "region": "EU", "language": "en", "language_status": "verified",
     "revision": "2.10", "revision_kind": "printed",
     "release_path": "unclassified", "authority": "unknown",
-    "feature": {"ups": true, "source": "data/model_capabilities.csv"}
+    "feature": {"UPS功能": true, "TOU/计划充电": true, "LED照明灯": false}
   },
   "source": {
     "section_id": "b5fe50b9efaf9d57ced0396a",
@@ -219,16 +226,21 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
     "source_ref": "JE-3000C/EU/en/md/manual_je3000c_eu_en.html#uninterruptible-power-supply-ups",
     "html_sha256": "…"
   },
-  "text_sha256": "5c1f…",
+  "content_sha256": "5c1f…",
   "status": "extracted",
   "review_flags": [],
-  "method": {"generator": "manual-observations/0.1", "rules": ["topic.ups"]}
+  "method": {"generator": "manual-observations/0.1", "rules": ["extract.callout", "topic.ups"]}
 }
 ```
 
-- `knowledge_id`：`kn:` + `variant_key` + `category` + `text_sha256`（规范化文本的 SHA-256，
-  统一空白、全半角、项目符号）前缀 + 同一键下的出现序号。原地改字会得到新 ID（内容变了）；
-  插入或删除其他块、换路由都不改变 ID，`block_id` 与 `source_ref` 每次运行重新解析。
+- `knowledge_id`：`kn:` + `variant_key` + `category` + `content_sha256` 前 16 位 + 同一键下的
+  出现序号。`content_sha256` 是规范化内容的 SHA-256：NFKC 统一全半角、去掉行首列表符号、
+  合并空白，负号、星号和编号照原样保留。警示框的内容包括原文标签和正文，改标签
+  （如 WARNING → CAUTION）或改正文都会得到新 ID；插入或删除其他块、换路由不改变 ID，
+  `block_id` 与 `source_ref` 每次运行重新解析。
+- `label` 保留原文标签，`severity` 取自语料；级别未知的条目带 `severity_unknown`。
+- `observed_context.feature` 是 `model_capabilities.csv` 中该型号与区域的全部功能开关；
+  没有对应行时写 `"unknown"`，来源写在产物头部 `feature_source`，不从说明书正文推断。
 - 条目新鲜度：旧产物中的条目，若其 `knowledge_id` 在当前语料的抽取结果中已不存在，判为
   `stale`；其余条目不受整份网页变化的影响。
 - 比较记录新鲜度：任一成员为 `stale`，或任一 `absent_in` 版本的 `html_sha256` 已变化
@@ -264,7 +276,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
      "source_ref": "…", "severity": "warning"}
   ],
   "absent_in": [
-    {"manual_variant_id": "JE-3000C/EU/nl@git-20261002-45219a6e-pv-web",
+    {"variant_key": "JE-3000C/EU/nl", "manual_variant_id": "JE-3000C/EU/nl@git-20261002-45219a6e-pv-web",
      "searched": "whole_document", "revision_alignment": "unknown", "html_sha256": "…"}
   ],
   "anchors": ["UPS"],
@@ -306,13 +318,19 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 登记在 [`machine_surface_known_callout_labels.csv`](../../data/machine_surface_known_callout_labels.csv)。
 清单逐版本记录 `unknown` 标签，`manifest` 命令报告新增与已不再出现的标签（上位计划 §5.5–§5.6）。
 
+实现（P2-1）：`tools/manual_knowledge/observe.py` 实现 §6.1 的命令与产物和 §6.2 的条目契约，
+与 `manifest` 命令共用部署读取器。P2-1 只把全部警示框记为 `warning` 条目（`topic` 为空并标
+`topic_unknown`）；其余载体和主题分类随 P2-2，比较记录随 P2-3。10-11 本地重建上共 985 条，
+`knowledge_id` 全部唯一（JE-2000F nl、pt 各有一条警示在同一手册里出现两次，出现序号为 1），
+两次运行字节一致，产物约 1.8 MB。
+
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加
 `mypy tools/utils`。
 
 ## 8. 验收标准
 
-- **身份**：每条知识条目都能恢复 `manual_variant_id`、`source_ref`、`text_sha256`；关系记录中
+- **身份**：每条知识条目都能恢复 `manual_variant_id`、`source_ref`、`content_sha256`；关系记录中
   每个成员保留完整身份。
 - **证据**：每条候选至少有一个能回到线上锚点的 `source_ref`；`absent_in` 写明搜索范围与修订
   对齐状态。
