@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "ce1575c3dbe028dde3594238e3f45e39651a541332b417f82a85106d49b74d10",
-  "content_sha256": "256954177a106d71869d4a2603f085462dfe279536f1421796c9530f5779bc14",
+  "bundle_sha256": "86d57a0d959d74edb1eb5825de4dbcfd1a2b3aa7773003f7326eaac4dacf9f12",
+  "content_sha256": "c6542637c34a969e92063da01bb49067c91da7e263b6d2f5ed4ebd3b7d18a637",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "bb049f362c01f5b6dfc2537a43ec9b0b906fbd9a867f2d84e9f55be464313bd8"
+      "sha256": "fa527bef085427db3abc491e27d15d117e710298fa229098c3398c00a58329d0"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -3443,7 +3443,7 @@
             "assets/lcd-map.svg"
           ],
           "block_id": "lcd:block-0002",
-          "content_sha256": "7ad463efcb4e496f81c60eb61efed692fdf675f9c81a74032f6eb662a6b3655c",
+          "content_sha256": "1543aeace16b36371aa7a01c32a6200e16470689150d1039d12a4707f51dae53",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3553,19 +3553,19 @@
                         {
                           "line": 0,
                           "rect": [
-                            3.930421633141063,
-                            67.50178260187948,
-                            2.0388629948981456,
-                            17.307580671002786
+                            2.4664976886499708,
+                            67.68870199880293,
+                            4.1303723771995475,
+                            14.25805860950101
                           ]
                         },
                         {
                           "line": 1,
                           "rect": [
-                            94.68316764475028,
-                            68.84706635628977,
-                            2.6397277261609227,
-                            17.307580671002786
+                            93.51828031450789,
+                            69.03969549363659,
+                            4.130368812061916,
+                            14.25805860950101
                           ]
                         }
                       ],
@@ -3715,7 +3715,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#lcd",
       "source_ref": "native-pdf/lcd",
-      "source_sha256": "9f45282d1971800f46dfefa81658c687068455a63eb3c1303f34ed4eda22483c"
+      "source_sha256": "3f2383d85a1b3d0a2882d931ec0c71ef752776eda834a7557bfe456717d48575"
     },
     {
       "blocks": [

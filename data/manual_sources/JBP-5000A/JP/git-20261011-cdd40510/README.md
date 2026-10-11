@@ -22,6 +22,8 @@ stacking wording. This conversion does not correct technical source copy.
 The specification group title retains the printed mixed case and has no
 ordinary H2 circle. Its font, size, weight and spacing still use shared styles;
 the source stylesheet only suppresses the generic uppercase/marker treatment.
+The two live LCD map numerals are centered inside the complete circle bounds
+from native page 4 drawings 2032/2034, rather than positioned by text metrics.
 
 The 12 ReferenceFigures use complete native artwork and 27 editable labels.
 Lock/unlock stages plus the hookup remain one original panel; the two stacking

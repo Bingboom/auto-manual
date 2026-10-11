@@ -8,6 +8,8 @@
 .native-figure .hb-reference-live-label>span{width:100%;}
 .native-figure .hb-reference-live-label strong{font-weight:700;}
 .native-lcd-map{max-width:480px;}
+/* Full native circle bounds center the live LCD numerals at every scale. */
+#furo-main-content .native-lcd-map .hb-reference-live-label{align-items:center;justify-content:center;text-align:center;line-height:1;}
 .native-overview [data-source-line="1"]>span{text-align:right;}
 .native-locking-connection [data-source-line="2"] span,.native-locking-connection [data-source-line="3"] span,.native-locking-connection [data-source-line="4"] span,.native-locking-connection [data-source-line="5"] span{color:#fff!important;}
 .native-recycle{display:flex;align-items:center;gap:1rem;}

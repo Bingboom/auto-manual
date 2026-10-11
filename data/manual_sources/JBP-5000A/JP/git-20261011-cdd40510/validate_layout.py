@@ -7,9 +7,12 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from io import BytesIO
 import json
 from pathlib import Path
 
+import fitz
+from PIL import Image
 from playwright.async_api import async_playwright
 
 PACKAGE = Path(__file__).resolve().parent
@@ -20,6 +23,13 @@ SPECIFICATION_TITLE = next(
     for slot in json.loads((PACKAGE / "source/ja/content.json").read_text())["chapters"][0]["nodes"][1]["component_spec"]["slots"]
     if slot["role"] == "section_title"
 )
+with fitz.open(next(PACKAGE.glob('*.pdf'))) as native_pdf:
+    drawings = native_pdf[3].get_drawings()
+    LCD_CIRCLE_CENTERS = [
+        {'number': number, 'x': ((drawings[index]['rect'].x0 + drawings[index]['rect'].x1) / 2 - 70) / 214,
+         'y': ((drawings[index]['rect'].y0 + drawings[index]['rect'].y1) / 2 - 54) / 62}
+        for number, index in [(1, 2032), (2, 2034)]
+    ]
 CHECK = r"""() => {
  const root=document.querySelector('[role=main]');
  const labels=[...root.querySelectorAll('.hb-reference-live-label')];
@@ -109,6 +119,40 @@ CHECK = r"""() => {
 } """
 
 
+def lcd_numeral_centers(png: bytes) -> list[dict]:
+    """Measure rendered white digit ink against the unchanged dark circles."""
+    image = Image.open(BytesIO(png)).convert("RGB")
+    width, height = image.size
+    pixels = image.load()
+    records = []
+    # The two circles are isolated at the bottom outer edges of the native art.
+    for number, left, right in [(1, 0, 0.2), (2, 0.8, 1)]:
+        dark = [(x, y) for y in range(int(height * 0.66), height)
+                for x in range(int(width * left), int(width * right))
+                if max(pixels[x, y]) < 120]
+        if not dark:
+            records.append({"number": number, "centered": False, "reason": "circle missing"})
+            continue
+        x0, x1 = min(x for x, _ in dark), max(x for x, _ in dark)
+        y0, y1 = min(y for _, y in dark), max(y for _, y in dark)
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        radius = min(x1 - x0, y1 - y0) / 2
+        white = [(x, y) for y in range(y0, y1 + 1) for x in range(x0, x1 + 1)
+                 if (x - cx) ** 2 + (y - cy) ** 2 < (radius * 0.9) ** 2
+                 and min(pixels[x, y]) > 160]
+        if not white:
+            records.append({"number": number, "centered": False, "reason": "digit missing"})
+            continue
+        ink_x = (min(x for x, _ in white) + max(x for x, _ in white)) / 2
+        ink_y = (min(y for _, y in white) + max(y for _, y in white)) / 2
+        tolerance = max(1, radius * 0.12)
+        records.append({"number": number, "offset_x_px": round(ink_x - cx, 2),
+                        "offset_y_px": round(ink_y - cy, 2),
+                        "tolerance_px": round(tolerance, 2),
+                        "centered": max(abs(ink_x - cx), abs(ink_y - cy)) <= tolerance})
+    return records
+
+
 async def validate(base_url, languages, evidence_dir):
     evidence_dir.mkdir(parents=True, exist_ok=False)
     records = []
@@ -136,6 +180,20 @@ async def validate(base_url, languages, evidence_dir):
                     title and title['text'] == title['raw'] == SPECIFICATION_TITLE
                     and title['transform'] == 'none' and title['marker'] == 'none'
                 )
+                lcd = page.locator('figure[data-reference-id="lcd-map"]')
+                info['lcdLabelCenters'] = await lcd.evaluate("""(e,centers)=>{
+                    const image=e.querySelector('img').getBoundingClientRect();
+                    return [...e.querySelectorAll('.hb-reference-live-label')].map(label=>{
+                        const r=label.getBoundingClientRect();
+                        const number=Number(label.innerText),source=centers.find(c=>c.number===number);
+                        const dx=r.left+r.width/2-image.left-source.x*image.width;
+                        const dy=r.top+r.height/2-image.top-source.y*image.height;
+                        return {number,offset_x_px:dx,offset_y_px:dy,centered:Math.max(Math.abs(dx),Math.abs(dy))<=0.5};
+                    });
+                }""", LCD_CIRCLE_CENTERS)
+                lcd_png = await lcd.screenshot()
+                (evidence_dir / f'{language}-{width}-lcd-numerals.png').write_bytes(lcd_png)
+                info['lcdNumeralCenters'] = lcd_numeral_centers(lcd_png)
                 coverage=json.loads((PACKAGE/'source/ja/coverage.json').read_text())
                 normalize=lambda s: ''.join(s.split())
                 body=normalize(info.pop('bodyText'))
@@ -167,10 +225,12 @@ async def validate(base_url, languages, evidence_dir):
     )
     for row in records:
         print(json.dumps({k: row[k] for k in (
-            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "broken",
+            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "broken",
             "outside", "overlaps", "occluded", "clippedCards", "clippedCells", "emptyArtwork", "duplicateIds", "visibleCopyCoverage", "errors", "resourceErrors",
         )}, ensure_ascii=False))
-    if any(not row["specHeadingMatchesSource"] or row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
+    if any(not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
+           or not all(n['centered'] for n in row['lcdLabelCenters'])
+           or row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
            or row["emptyArtwork"] or row["clippedCells"] or row["duplicateIds"] or row["visibleCopyCoverage"]["missing"] or row["overlaps"] or row["occluded"] or row["clippedCards"] or row["errors"] or row["resourceErrors"] for row in records):
         raise ValueError("browser layout admission failed; inspect browser_report.json")
 

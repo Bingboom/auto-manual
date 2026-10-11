@@ -1065,8 +1065,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "436e2dae0ab680661e8303f40370b6513e28cafbc0960d984f287d4c98d51e18",
-      "size": 3904
+      "sha256": "ed7e9d15f5f29827efceacfa65ae339f63a9292fd5daf13b8cefdd6e539e5d75",
+      "size": 4060
     },
     {
       "path": "assets/ac-charge.svg",
@@ -1190,8 +1190,8 @@
     },
     {
       "path": "source/ja/content.json",
-      "sha256": "d8fabde211c1b70911936448af30ac74bb6dc469af771265fa6b061a1e46703b",
-      "size": 170683
+      "sha256": "0ab17c03332f5fc6b3e48d5f5f11aa9cf0ffc48d4d385345ea326a2981a933a7",
+      "size": 170681
     },
     {
       "path": "source/ja/coverage.json",
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "source/presentation.css",
-      "sha256": "bb049f362c01f5b6dfc2537a43ec9b0b906fbd9a867f2d84e9f55be464313bd8",
-      "size": 4378
+      "sha256": "fa527bef085427db3abc491e27d15d117e710298fa229098c3398c00a58329d0",
+      "size": 4591
     },
     {
       "path": "source/print-cover.json",
@@ -1225,8 +1225,8 @@
     },
     {
       "path": "validate_layout.py",
-      "sha256": "b5f681f5ddb7034a563d85bcd1b641f153470c5210bfd4c52fb236c051573935",
-      "size": 11323
+      "sha256": "67b4b14e8823d594f6a65d650d8e13610a80f4dad39fc8d0e8f6a4c46dc73cd9",
+      "size": 14770
     },
     {
       "path": "validate_source.py",
@@ -1235,8 +1235,8 @@
     },
     {
       "path": "web/ja/_static/source_presentation.css",
-      "sha256": "bb049f362c01f5b6dfc2537a43ec9b0b906fbd9a867f2d84e9f55be464313bd8",
-      "size": 4378
+      "sha256": "fa527bef085427db3abc491e27d15d117e710298fa229098c3398c00a58329d0",
+      "size": 4591
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -1350,13 +1350,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "sha256": "931cc75d94bba8a92ca5e181a464ed16f44e355bacbfc1c7f6d9c07658a2eaec",
-      "size": 256498
+      "sha256": "cb2321fa93b0f5aecdf9bd594d2cecfcd4445838ed04f6d08c65d07c035eca7b",
+      "size": 256496
     },
     {
       "path": "web/ja/manual_jbp5000a_jp_ja.md",
-      "sha256": "23ffbfd2253c097b80651813b08f4e87273b08b9cfef10e712f1f3d98caa7ef9",
-      "size": 35024
+      "sha256": "981ccc346480afc55cc1f30fcd30d0eddb1bc791b249ce20e759451503540c07",
+      "size": 35237
     }
   ]
 }
