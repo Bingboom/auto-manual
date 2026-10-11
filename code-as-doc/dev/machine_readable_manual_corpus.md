@@ -2,7 +2,7 @@
 
 Status: done · Owner: Auto-Manual maintainer · Created: 2026-10-04
 
-Phase 1 已完成：P1-1 #1434、P1-2 #1435、P1-3 #1436、P1-4 验收见 [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。Phase 2 / 3 未立项。
+Phase 1 已完成：P1-1 #1434、P1-2 #1435、P1-3 #1436、P1-4 验收见 [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。Phase 2 已于 2026-10-11 立项，见 [`machine_readable_knowledge_observation.md`](machine_readable_knowledge_observation.md)；Phase 3 未立项。
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
