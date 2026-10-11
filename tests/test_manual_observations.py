@@ -95,7 +95,7 @@ class KnowledgeIdentityTests(unittest.TestCase):
                              ('MODEL/EU/en@2.6', 'extracted', 'warning', 'WARNING'))
             self.assertEqual(first['observed_context']['feature'], {'UPS功能': True})
             self.assertEqual(first['source']['source_ref'], 'MODEL/EU/en/md/manual.html#safety')
-            self.assertEqual(first['review_flags'], ['topic_unknown'])
+            self.assertEqual((first['topic'], first['review_flags']), (['temperature'], []))
             self.assertEqual(items[2]['review_flags'], ['severity_unknown', 'topic_unknown'])
             self.assertEqual(build_items(corpus, {})[0]['observed_context']['feature'], 'unknown')
 

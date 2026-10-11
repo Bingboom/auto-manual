@@ -184,7 +184,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 ## 6. 契约
 
-§6.1、§6.2 已由 P2-1 实现；§6.3、§6.4 随 P2-2、P2-3 落地。
+§6.1、§6.2 已由 P2-1 实现，§6.3 由 P2-2 实现；§6.4 随 P2-3 落地。
 
 ### 6.1 产物
 
@@ -229,7 +229,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   "content_sha256": "5c1f…",
   "status": "extracted",
   "review_flags": [],
-  "method": {"generator": "manual-observations/0.1", "rules": ["extract.callout", "topic.ups"]}
+  "method": {"generator": "manual-observations/0.2", "rules": ["extract.callout", "topic.ups"]}
 }
 ```
 
@@ -253,16 +253,33 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 ### 6.3 抽取范围与分类
 
+载体判定在 `tools/manual_knowledge/carriers.py`，主题词表在 `topics.py`。一个块只记一类：
+警示优先于合规，合规优先于安全；只有警示框本身优先于其中引用的法规。
+
 - **Warning**：全部 `callout` 块；外加首格为警示等级词的表格行（如 JBP-2000B/EU/de 的
-  `HINWEISE`）和以等级词开头的段落。每本手册里解释等级词含义的说明表要排除。
-- **Safety**：章节标题命中多语安全章节词表（SAFETY、SICHERHEIT、SÉCURITÉ 等）的块，按 §6.2
-  的颗粒度拆分。子类沿用上位计划 §9：通用、电气、电池、充电、存储运输、废弃处理。
-- **Compliance**：只记录说明书里实际存在的表述（符合性声明、WEEE、标志说明等），
-  `applicability` 一律为 `unknown`，不预设任何法规适用于某个产品。
-- **主题受控词表（初版）**：`ups`、`energy_saving`、`ac_output`、`dc_usb_car`、`pv_input`、
-  `grounding`、`temperature`、`battery`、`app_wireless`、`connection`。九种语言各自维护词条，
-  优先使用数字、单位、接口名这类跨语言不变量；未命中写 `[]` 并标 `topic_unknown`。
-  试探结果：10 条简单的英文规则即可覆盖 51 种英文警示正文中的 48 种。
+  `HINWEISE`）和以「等级词：」开头的段落，引用法规的除外（以 `NOTE:` 开头的 FCC 声明记为
+  合规）。首列出现两个及以上不同等级词的表格是等级词说明表（每本手册的 WARNING / CAUTION /
+  NOTE / TIP 说明，含 `⚠ WARNING` 写法），属于定义，不产出条目。
+- **Safety**：章节标题命中多语安全章节词表（SAFETY、SICHERHEIT、SÉCURITÉ、SEGURIDAD、
+  SICUREZZA、VEILIGHEID、BEZPIECZEŃSTWO、SEGURANÇA、БЕЗПЕКА 及 PRECAUTION 一类）的段落、
+  顶层列表项（子项并入父项）和表格行；符号说明表（标题含 SYMBOL / SÍMBOLO / СИМВОЛ）中说明
+  产品图标的行。子类不另设字段：上位计划 §9 的电气、电池、充电、存储运输、废弃处理用同名
+  主题表示，不落在这些主题上的即为通用类。
+- **Compliance**：只记录说明书里实际存在的表述：含欧盟法规编号（`2014/53/EU`、
+  `(EU) 2015/863`）或照原样书写的标志（CE、UKCA、WEEE、RoHS、FCC）的文本，法规、符合性声明、
+  授权代表章节中的全部陈述，以及符号说明表中的标志行（CE / UKCA / WEEE 图标；图标 alt 只是
+  复述含义时，按九种语言的 WEEE「不得随生活垃圾丢弃」声明识别）。合规条目另带
+  `applicability`（一律为 `unknown`，不预设任何法规适用于某个产品）和 `legislation`（原文出现
+  的法规编号与标志）。
+- 符号行的 `label` 是图标自身的名称（如 `li_ion`）；alt 只复述含义时为 `null`；首格没有图标
+  的行整行记一条。
+- **主题受控词表**：初版 10 个（`ups`、`energy_saving`、`ac_output`、`dc_usb_car`、
+  `pv_input`、`grounding`、`temperature`、`battery`、`app_wireless`、`connection`），加上安全
+  子类 `electrical`、`charging`、`storage_transport`、`disposal` 和通用危害 `children`、`fire`、
+  `water`、`disassembly`，共 18 个。每个主题一张扁平词条表：优先使用数字、单位、接口名这类
+  跨语言不变量，九种语言的词干并列；易混词加锚定（西语 *luz solar* 不是光伏输入，
+  *descarga eléctrica* 不是充电，法语 *prendre en charge* 不是充电，英文 *kind* 不是德文
+  *Kind*）。分类文本为 `label` 加正文；未命中写 `[]` 并标 `topic_unknown`。
 
 ### 6.4 关系与比较记录
 
@@ -323,6 +340,19 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 `topic_unknown`）；其余载体和主题分类随 P2-2，比较记录随 P2-3。10-11 本地重建上共 985 条，
 `knowledge_id` 全部唯一（JE-2000F nl、pt 各有一条警示在同一手册里出现两次，出现序号为 1），
 两次运行字节一致，产物约 1.8 MB。
+
+实现（P2-2）：`carriers.py` 与 `topics.py` 实现 §6.3，生成器升为 `manual-observations/0.2`。
+10-11 本地重建（109 个版本）上共 3,333 条：警示 1,004（警示框 985、等级词段落 17、表格行 2）、
+安全 1,804、合规 525（标志行 147）；`knowledge_id` 全部唯一，P2-1 产物的 985 条全部仍为
+fresh，两次运行字节一致，产物约 5.7 MB。覆盖：105 个版本识别到安全章节，其余 4 个是没有
+安全章节的多语配件说明书；安全与合规章节里的段落、列表、表格全部产出条目，只有标题与图片
+不产出；83 个版本各排除一张等级词说明表。主题未判定率（`summary.topic_undetermined` 除以
+`items_by_category`）：警示 5.3%、安全 24.6%、合规 49.5%（多为制造商名称、地址、电话、网址
+与声明引导句，合规另由 `legislation` 识别）。词表用跨语言一致率检验：同型号、同章节序号、同类别且条数相同时，
+各语言条目与英文版主题完全一致的比例为 de 94%、fr 90%、es 97%、it 92%、nl 91%、pl 87%、
+pt 91%、uk 92%，余下差异多为译文本身增删了信息。已知缺口：葡语 `Observação`（note）不在
+等级词表中，JA-AD600A/EU/pt 的两段注记没有记为警示（安全章节里的一段记为安全条目，另一段
+未抽取）；补词表要升级语料生成器，留待 D13 的 Style Guide 裁定时一并处理。
 
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加
