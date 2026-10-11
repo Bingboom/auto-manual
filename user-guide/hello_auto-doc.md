@@ -38,3 +38,5 @@ small enough to read whole. When a workflow changes, update the owning topic pag
 | [`checklists-and-pitfalls.md`](hello_auto-doc/checklists-and-pitfalls.md) | you need page contracts, common pitfalls, the verification checklist or the one-sentence rule |
 | [`eu-web-components.md`](hello_auto-doc/eu-web-components.md) | you add an EU language or maintain shared Web components (LCD, tables, notices, errata) without regressions |
 | [`web-target-notes.md`](hello_auto-doc/web-target-notes.md) | you work on a Web target listed there (JBP-3600A, JBP-2000B, FridgeGuard US, JA-AD600A, SlimPower H1, JBP-1000B-WH, JA-AD500A-SIL …) |
+
+Git-only 发布的冻结源库上限为 1152 MiB，网页输出与线上取回仍限 512 MiB；单文件 32 MiB、文件数 10,000 和全部资源哈希校验保持不变。操作细节见 [Web 发布](hello_auto-doc/web-publication.md)。
