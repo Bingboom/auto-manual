@@ -1,0 +1,1752 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-1500C",
+    "region": "TW",
+    "technical_version": "git-20261010-477dfbd7-reviewed",
+    "languages": [
+      "zh-TW"
+    ]
+  },
+  "original_source": {
+    "filename": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+    "sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+    "page_count": 20,
+    "printed_version": "unknown",
+    "metadata_title": "16-0102-000487 HTE1181500A-TW-JAK 竖版说明书 A0"
+  },
+  "physical_page_map": {
+    "zh-TW": [
+      2,
+      20
+    ],
+    "print_cover": 1
+  },
+  "web_roots": {
+    "zh-TW": "web/zh-TW"
+  },
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "publication_status": "operator-approved-git-only-release",
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "zh-TW": [
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            14,
+            15,
+            16
+          ],
+          "glyph_bbox": [
+            31.23210029602051,
+            204.7936981201172,
+            54.411101531982425,
+            225.46969909667968
+          ],
+          "caption_bbox": [
+            63.46050033569336,
+            200.37670288085937,
+            175.26309814453126,
+            229.8873046875
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+          "best_error": 0.0174941916870915,
+          "asset_ref": "assets/symbol-01.svg",
+          "shared_symbol_key": "warning/outline-triangle-tinted",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "caption_text": "警告及注意符號。請務必閱讀，以注意潛在的危險或風險。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "6adcc06758d2a550616805fdba1a214591469e78f65401e0f38bd57adc403158",
+          "row_bbox": [
+            30.23210029602051,
+            199.37670288085937,
+            176.26309814453126,
+            230.8873046875
+          ]
+        },
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "glyph_bbox": [
+            31.213700103759766,
+            233.70081787109376,
+            55.789702606201175,
+            258.27479858398436
+          ],
+          "caption_bbox": [
+            63.46050033569336,
+            231.0873046875,
+            175.26309814453126,
+            260.5979064941406
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/person-reading-circle-tw-477dfbd7.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_person_jhp3000d.svg",
+          "best_error": 0.10077029292619827,
+          "asset_ref": "assets/symbol-02.svg",
+          "shared_symbol_key": "read-manual/person-reading-circle-tw-477dfbd7",
+          "asset_sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5",
+          "caption_text": "操作前請閱讀說明書。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "ad0d4f66b88468281ae17684ba846e778b5ac588edf3f9a2ba22682fa62dda62",
+          "row_bbox": [
+            30.213700103759766,
+            230.0873046875,
+            176.26309814453126,
+            261.5979064941406
+          ]
+        },
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "glyph_bbox": [
+            32.130699920654294,
+            266.68720703125,
+            54.67869873046875,
+            288.6342041015625
+          ],
+          "caption_bbox": [
+            63.46050033569336,
+            261.79790649414065,
+            175.26309814453126,
+            293.2170104980469
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+          "best_error": 0.01974826388888889,
+          "asset_ref": "assets/symbol-03.svg",
+          "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray",
+          "asset_sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+          "caption_text": "請放置在兒童無法接觸的地方。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "faff4134188e9f2534a71508a6d966d414f8370b2b8ce6166603bcc45d09e71c",
+          "row_bbox": [
+            31.130699920654294,
+            260.79790649414065,
+            176.26309814453126,
+            294.2170104980469
+          ]
+        },
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            31,
+            32,
+            33
+          ],
+          "glyph_bbox": [
+            189.15220336914064,
+            205.9471862792969,
+            208.6981994628906,
+            225.48118896484374
+          ],
+          "caption_bbox": [
+            217.74484405517578,
+            200.37670288085937,
+            333.4649719238281,
+            229.8873046875
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_dark.svg",
+          "best_error": 0.023063682938453157,
+          "asset_ref": "assets/symbol-04.svg",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+          "asset_sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+          "caption_text": "請勿拆解本產品。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "99650a6a663907bdd7c5d27cd63a2e89df8ae6fe75ae271066c5b691d99afe49",
+          "row_bbox": [
+            188.15220336914064,
+            199.37670288085937,
+            334.4649719238281,
+            230.8873046875
+          ]
+        },
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "glyph_bbox": [
+            186.85549621582032,
+            234.42278747558595,
+            211.9890930175781,
+            258.22099609375
+          ],
+          "caption_bbox": [
+            217.74484405517578,
+            231.0873046875,
+            333.4649719238281,
+            260.5979064941406
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+          "best_error": 0.013551666326252725,
+          "asset_ref": "assets/symbol-05.svg",
+          "shared_symbol_key": "no-open-flame/fire-match-crossed-gray",
+          "asset_sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+          "caption_text": "請使產品遠離火源。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "b09b54fcabe42d48e1a09f4066ff9c20ff6f27fe93170b518027d08dc252cc34",
+          "row_bbox": [
+            185.85549621582032,
+            230.0873046875,
+            334.4649719238281,
+            261.5979064941406
+          ]
+        },
+        {
+          "physical_page": 4,
+          "drawing_indices": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "glyph_bbox": [
+            191.00069885253907,
+            266.96461181640626,
+            207.518603515625,
+            287.0682861328125
+          ],
+          "caption_bbox": [
+            217.74484405517578,
+            261.79790649414065,
+            333.4649719238281,
+            293.2170104980469
+          ],
+          "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/taiwan-restricted-battery-477dfbd7.svg",
+          "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+          "best_error": 0.40333860974945535,
+          "asset_ref": "assets/symbol-06.svg",
+          "shared_symbol_key": "recycle/taiwan-restricted-battery-477dfbd7",
+          "asset_sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564",
+          "caption_text": "此符號表示產品內含鋰離子（Li-ion） 電池，應妥善廢棄或回收處理。",
+          "caption_mode": "native-extractable-text",
+          "caption_sha256": "c9dbc5fd4f708db9344e3e128ab988c553668821f1a713b3f3f6a937c9ced732",
+          "row_bbox": [
+            190.00069885253907,
+            260.79790649414065,
+            334.4649719238281,
+            294.2170104980469
+          ]
+        }
+      ]
+    }
+  },
+  "repo_inputs": [
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+      "size": 95792,
+      "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+      "size": 96746,
+      "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+      "size": 99046,
+      "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+      "size": 96544,
+      "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+      "size": 47580,
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+      "size": 46621,
+      "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+      "size": 53348,
+      "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+      "size": 48598,
+      "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0"
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+      "size": 48483,
+      "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e"
+    },
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "size": 15821,
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "size": 54018,
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "size": 8700,
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537"
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "size": 19981,
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "size": 300542,
+      "sha256": "d4136ca6377d1b2b7ceb7cb178be8e66b4bc12e7c2b38f6f7607ee28c3ff21cf"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
+      "size": 26001,
+      "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "size": 587,
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json",
+      "size": 35709,
+      "sha256": "0a5ca273a27a13fd8e1f6f3ebeaab693f05b65b54f34fbcbbab6ccc97910361e"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json",
+      "size": 5961,
+      "sha256": "1d0d6e803802085fe6603e3cdad106adb96d3b2643d76ee1e15f00e644a7dcf2"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json",
+      "size": 16745,
+      "sha256": "4c61eb8384dd63859560a19e8d8b50a829c3452baacda5b620d8e7f449278f48"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "size": 11030,
+      "sha256": "9a349b53da9e6a4c8ff634cef9157c11d230dfde0d5dfefa793015b6a314c390"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3442,
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "size": 20333,
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "size": 10570,
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "size": 3224,
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "size": 960,
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "size": 4296,
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47733,
+      "sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "size": 603,
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280"
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "size": 649,
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "size": 110,
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "size": 307,
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "size": 2844,
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "size": 9656,
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "size": 3643,
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "size": 305,
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "size": 52438,
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "size": 916,
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 3803,
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "size": 24791,
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 54769,
+      "sha256": "0d86fbcf31b2e3650a5a8dd2e3c0b74a25f9e54647294775c2a83ef470604bdd"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/person-reading-circle-tw-477dfbd7.svg",
+      "size": 4052,
+      "sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+      "size": 4769,
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+      "size": 4074,
+      "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+      "size": 2815,
+      "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/taiwan-restricted-battery-477dfbd7.svg",
+      "size": 10923,
+      "sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564"
+    },
+    {
+      "path": "tools/asset_pipeline/__init__.py",
+      "size": 545,
+      "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
+    },
+    {
+      "path": "tools/asset_pipeline/leaders.py",
+      "size": 7437,
+      "sha256": "cdcafbad09e13c4dbafd582110af1f86a7fc0ea4043212ec6eb86a38fc316c5d"
+    },
+    {
+      "path": "tools/asset_pipeline/models.py",
+      "size": 7552,
+      "sha256": "76c0df2a039bb68ce57acefd11da4cda59b402438ac61864b3d3665fa128729a"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 9216,
+      "sha256": "a99ee031a8ef796f562ebb82c542715daf34096df60a3c5cec143f8685a56785"
+    },
+    {
+      "path": "tools/asset_pipeline/package.py",
+      "size": 11252,
+      "sha256": "2adba7bdadc21f0a182699c968cc95a2a82f68a67cea3b79c8ae95ce2a01ea68"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
+    },
+    {
+      "path": "tools/build_paths.py",
+      "size": 14639,
+      "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5"
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "size": 2388,
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e"
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "size": 3434,
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81"
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "size": 13511,
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e"
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "size": 2078,
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "size": 3347,
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37"
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "size": 1399,
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395"
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "size": 4900,
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917"
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "size": 2444,
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4"
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "size": 8691,
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e"
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "size": 8688,
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0"
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "size": 2837,
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "size": 6970,
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a"
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "size": 7291,
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7"
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "size": 2610,
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752"
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "size": 3732,
+      "sha256": "825274eeec31587ba7eac69055336acda5f3787997e8d7f1207523acf0eda242"
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "size": 2407,
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "size": 4570,
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "size": 2398,
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "size": 3371,
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "size": 1640,
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576"
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "size": 5386,
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7"
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "size": 6606,
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e"
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "size": 10395,
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172"
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "size": 3840,
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7"
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "size": 7060,
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840"
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "size": 5423,
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e"
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "size": 9879,
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80"
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "size": 3505,
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32"
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "size": 12564,
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423"
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "size": 6489,
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda"
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "size": 7944,
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1"
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "size": 18192,
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b"
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "size": 2356,
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3"
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "size": 2092,
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330"
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "size": 6354,
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1"
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "size": 10264,
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "size": 2029,
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "size": 10115,
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da"
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "size": 3677,
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad"
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "size": 21154,
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f"
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "size": 5651,
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1"
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "size": 10359,
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a"
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "size": 8641,
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec"
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "size": 4980,
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed"
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "size": 6881,
+      "sha256": "da903303a8371344ceea35abfab3c5a80c16025e8304b6d82acad82d2371df51"
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "size": 5434,
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e"
+    },
+    {
+      "path": "tools/lang_registry.py",
+      "size": 19889,
+      "sha256": "fe54a9b8c2a15f9d6bb1ba18267607d7b5fabd0becd55e2e0d9b30c754564814"
+    },
+    {
+      "path": "tools/language_aliases.py",
+      "size": 1172,
+      "sha256": "306327df772b177a5d2d4c5a4fd02ae285450460f097d402e42353b6f18301da"
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "size": 953,
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b"
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "size": 5647,
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0"
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "size": 5841,
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25"
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "size": 8707,
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d"
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "size": 1830,
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e"
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "size": 21944,
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8"
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "size": 4662,
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb"
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "size": 1439,
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f"
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "size": 7405,
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2"
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "size": 2798,
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4"
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "size": 1606,
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e"
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "size": 17941,
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289"
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "size": 4057,
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861"
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "size": 5885,
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510"
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "size": 3512,
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42"
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "size": 3785,
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8"
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "size": 3939,
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84"
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "size": 1616,
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a"
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "size": 5459,
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba"
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "size": 10860,
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db"
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "size": 8938,
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "size": 10075,
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90"
+    },
+    {
+      "path": "tools/rtd/deployment_receipt.py",
+      "size": 24218,
+      "sha256": "15524236290d196b0a0c0ed37a6c9c9deded2ca939b48b7f838e2616c438cddb"
+    },
+    {
+      "path": "tools/utils/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/utils/csv_fields.py",
+      "size": 2865,
+      "sha256": "28b60075372d9eaa1a7772d85729106c9f24bd0daf6850f3035ab091c7fbc82d"
+    },
+    {
+      "path": "tools/utils/korean_josa.py",
+      "size": 4325,
+      "sha256": "411394837b70a77d3c89b032f61858d9aaa2fe77e4f824dd8fcdcc32c8900237"
+    },
+    {
+      "path": "tools/utils/log.py",
+      "size": 4459,
+      "sha256": "e57ae5f03005967ed95b8683cc6b1622fe1e50cf17824b699c952c9a23d15916"
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "size": 14471,
+      "sha256": "d5692ca4d662e3b278d7f9e62016268c1963cb12497418fc3b06a56e0baff744"
+    },
+    {
+      "path": "tools/utils/process_utils.py",
+      "size": 1545,
+      "sha256": "aec1f17a102f14aa300189ed5d8a18eb4ced93458d6f87b6b9a326ad33ca820b"
+    },
+    {
+      "path": "tools/utils/spec_footnotes.py",
+      "size": 1060,
+      "sha256": "58039fbb71b169d80082834355c6ffb806b8a447d0484f7ff6dbdd783ed90997"
+    },
+    {
+      "path": "tools/utils/spec_master.py",
+      "size": 3458,
+      "sha256": "bd2683108e211fec7e95f4115c211e718eec171c8558f12a8868935b27c3d783"
+    },
+    {
+      "path": "tools/utils/spec_master_auditing.py",
+      "size": 10749,
+      "sha256": "4f130be99357d930a7aaf6b5d65b92e689bb8732afd823dd4075876284f60966"
+    },
+    {
+      "path": "tools/utils/spec_master_lookup.py",
+      "size": 10483,
+      "sha256": "0e39e10e93e492804e4db916bdf81526b3d17f5ad9b93cc8038af194fdc3c6fa"
+    },
+    {
+      "path": "tools/utils/spec_master_mapping.py",
+      "size": 8771,
+      "sha256": "d7ebc39ea5921cd422565aa6020837e138b19dcdf9b3196fd4631cee8e11e31d"
+    },
+    {
+      "path": "tools/utils/spec_master_repairs.py",
+      "size": 6356,
+      "sha256": "65167e86b03a6791b5031be62c68ebb1b8e3e2d69c1f5f519f38833e3e0f8a0a"
+    },
+    {
+      "path": "tools/utils/spec_master_row_helpers.py",
+      "size": 27168,
+      "sha256": "f0967465f156bf4f975abb3fc4d7ea2b4c5da9d9404d3273616094196c1d0480"
+    },
+    {
+      "path": "tools/utils/spec_master_shared.py",
+      "size": 13658,
+      "sha256": "233164e720ed5d39003fdf3c165a9723d1a43bea91d9bbec8c7754529afea85a"
+    },
+    {
+      "path": "tools/utils/targets.py",
+      "size": 4889,
+      "sha256": "a495084aa2ed5fa758c7d26dc6ab9b7fe762868ab6e873cbc243e382dfbdf99f"
+    },
+    {
+      "path": "tools/utils/tex_utils.py",
+      "size": 531,
+      "sha256": "93dac4769a8b9117d276f9f45bccee5d2803549eef9b6c98fc970ca6c8f99e9b"
+    },
+    {
+      "path": "tools/utils/variable_resolver.py",
+      "size": 6454,
+      "sha256": "7042f3c7a8ad2aacb6d87b5028b68d60acefbd3c25a4a1f66223dbcf21c0260d"
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "size": 34,
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94"
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "size": 9601,
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8"
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "size": 1496,
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0"
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "size": 3257,
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903"
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "size": 1202,
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006"
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "size": 1147,
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a"
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "size": 15862,
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8"
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "size": 6582,
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "size": 2554,
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a"
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "size": 3739,
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "size": 3214,
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "size": 5563,
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f"
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "size": 1676,
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4"
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "size": 12260,
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72"
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "size": 8035,
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9"
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "size": 2398,
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1"
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "size": 7707,
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d"
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "size": 4247,
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf"
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "size": 20325,
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513"
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "size": 19186,
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21"
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "size": 8140,
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540"
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "size": 3728,
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f"
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "size": 2001,
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0"
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "size": 968,
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3"
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "size": 30995,
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9"
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "size": 8918,
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326"
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "size": 4100,
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2"
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "size": 8154,
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a"
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "size": 16785,
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f"
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "size": 12143,
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b"
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "size": 10527,
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff"
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "size": 15401,
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924"
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "size": 15633,
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773"
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "size": 2024,
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f"
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "size": 4284,
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916"
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "size": 4773,
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61"
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "size": 9385,
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7"
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "size": 29164,
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c"
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "size": 5441,
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "size": 17942,
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc"
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "size": 6185,
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585"
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "size": 15285,
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "size": 1637,
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd"
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "size": 5724,
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5"
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "size": 4985,
+      "sha256": "e3c900bea7dca4ceaf05c91e752e757345a42cbec33a917aac38f3d2d79bfa55"
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "size": 2102,
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3"
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "size": 14683,
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
+    },
+    {
+      "path": "tools/web/language_inventory.py",
+      "size": 3984,
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb"
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "size": 23128,
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "size": 739,
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20"
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "size": 3528,
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e"
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "size": 10484,
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805"
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "size": 3647,
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0"
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "size": 5730,
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "size": 65114,
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "size": 41571,
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "size": 5500,
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0"
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "size": 6340,
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "size": 1682,
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 1835,
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "size": 7162,
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1536,
+      "sha256": "216e1c2ecf96e497f00a45c445c87307b9a9a86e9533fbe7c9fcc562a223c623"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 8649,
+      "sha256": "d3bf5c77e7e70f9c7261e7e025102cee52b2a28fe0fd420286092cd6bc9bbc38"
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "size": 3757,
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668"
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "size": 4036,
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2"
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "size": 6446,
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076"
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "size": 770,
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a"
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "size": 3977,
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+      "size": 12514476,
+      "sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0"
+    },
+    {
+      "path": "README.md",
+      "size": 4119,
+      "sha256": "5f59edda59daf3d6c34d0befe0e7d822d27ddeddb68407d36df8b4aa7a7f6b2e"
+    },
+    {
+      "path": "assets/ac-charge.svg",
+      "size": 3597063,
+      "sha256": "e1a348352e284ab4885af65b0f731a960a4bd74d04f8e1a23aafaf271f805864"
+    },
+    {
+      "path": "assets/ac-output.svg",
+      "size": 1781804,
+      "sha256": "e706dee79decec1c49781791507f7fc32925ff54dee152889f462942bf8fcd52"
+    },
+    {
+      "path": "assets/app-add.svg",
+      "size": 623644,
+      "sha256": "8fc4969ffe3e497131f79d01a915d797c64d660746d2c534802ba16020044381"
+    },
+    {
+      "path": "assets/app-download.svg",
+      "size": 108032,
+      "sha256": "03352840ce2e03e46d757a7b12015724e7344a5bc557ae72a9468f59aba144d8"
+    },
+    {
+      "path": "assets/app-network.svg",
+      "size": 70432,
+      "sha256": "a3d2b302a4c01d7e39f7dafac9f395127f973745462f8c8fdd64f17e24b3cba9"
+    },
+    {
+      "path": "assets/app-qr.png",
+      "size": 27624,
+      "sha256": "8037f72bdbd2b1480e73261a22011e85eceb442e61217b8657764bf220e1f9c1"
+    },
+    {
+      "path": "assets/app-result.svg",
+      "size": 869832,
+      "sha256": "885e8e0004f10f0c165807754a4a51503779c32ec50c685244a1d22dbb5eac91"
+    },
+    {
+      "path": "assets/app-store.svg",
+      "size": 70429,
+      "sha256": "1c5aa03f03bebdeb4ff3e1260efc43c7e2a02e2d0363cdd05652070473ed6d5c"
+    },
+    {
+      "path": "assets/bottom-cleaning.svg",
+      "size": 5885103,
+      "sha256": "4f8896b2d4b81a96e41a7bf55132d025b184b70b24e79e7ffcf1ef5a36b286e0"
+    },
+    {
+      "path": "assets/car-charge.svg",
+      "size": 2243143,
+      "sha256": "67c9bcce905e5da120558616861e576e093e0e6bd07a846e215a59c5111e6e37"
+    },
+    {
+      "path": "assets/dc-usb.svg",
+      "size": 961629,
+      "sha256": "1c2ce39d76ed6d7e4ec18856502b0059e5726d3e051adaa5f627a6b8063d8396"
+    },
+    {
+      "path": "assets/energy-buttons.svg",
+      "size": 1800101,
+      "sha256": "dd55b8da70717b585244f8cef5158a3ad064fe8644c7f67605f65df3f7b6b408"
+    },
+    {
+      "path": "assets/inbox-ac.svg",
+      "size": 828806,
+      "sha256": "3b69577e5459e9b7dc6fc4f19873066d0bfe180bc27688d9d995adf5ff3233be"
+    },
+    {
+      "path": "assets/inbox-main.svg",
+      "size": 828805,
+      "sha256": "cd6d3ca35bbab772a3a05c70baf624b574b27082b509b17be2e21164423bfb4d"
+    },
+    {
+      "path": "assets/inbox-manual.svg",
+      "size": 828806,
+      "sha256": "6ef9f8a14ea2790372c6a93069426405bfdbe8b72140e125d7b9c9b5e4014354"
+    },
+    {
+      "path": "assets/inbox-usbc.svg",
+      "size": 828806,
+      "sha256": "60eacaf552dcdff311b3b963c55dc7f030d6ee6b840f7787f0999ff20fbbe68e"
+    },
+    {
+      "path": "assets/key-ac.png",
+      "size": 13195,
+      "sha256": "ef294bfb3d07e47d38b0e58fb37456224d7a0f69fccb67a7fe605a4c97d163ea"
+    },
+    {
+      "path": "assets/key-power.png",
+      "size": 13527,
+      "sha256": "04baf206fe8fdf1e1dc7e24bfbdab4ab98867edf96af6f5f1b7d10be518e2189"
+    },
+    {
+      "path": "assets/lcd-01.svg",
+      "size": 74003,
+      "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5"
+    },
+    {
+      "path": "assets/lcd-02.svg",
+      "size": 74124,
+      "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a"
+    },
+    {
+      "path": "assets/lcd-03.svg",
+      "size": 95792,
+      "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9"
+    },
+    {
+      "path": "assets/lcd-04.svg",
+      "size": 96746,
+      "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb"
+    },
+    {
+      "path": "assets/lcd-05.svg",
+      "size": 76025,
+      "sha256": "ae2167d3e18827a575ec2d49ccbd168014dc35517dc2dd01a04e499774477e24"
+    },
+    {
+      "path": "assets/lcd-06.svg",
+      "size": 76313,
+      "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4"
+    },
+    {
+      "path": "assets/lcd-07.svg",
+      "size": 40869,
+      "sha256": "ae1ef49a52ffe8f9022edb4f8c5929c26609a48276a3e8eef6476412829701d7"
+    },
+    {
+      "path": "assets/lcd-08.svg",
+      "size": 40265,
+      "sha256": "3f94c9fd8da2838f7045a9fa6bf8d4323e49c89f2e902568090cdee45af4b54a"
+    },
+    {
+      "path": "assets/lcd-09.svg",
+      "size": 42492,
+      "sha256": "997e2759c6817ed17033e107f1fb6853419f002ca85e913f040c1bb560c2cc23"
+    },
+    {
+      "path": "assets/lcd-10.svg",
+      "size": 99046,
+      "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660"
+    },
+    {
+      "path": "assets/lcd-11.svg",
+      "size": 96544,
+      "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd"
+    },
+    {
+      "path": "assets/lcd-12.svg",
+      "size": 41689,
+      "sha256": "0fe2c971cd3f076b937fc814afed2c5b9c67c52d1e2f118b89fb3ea76e08d3e2"
+    },
+    {
+      "path": "assets/lcd-13.svg",
+      "size": 42028,
+      "sha256": "f1d7a2845814596b5a40f8f498806db9bf49fbb21b43b488dad4b6543f8c32a8"
+    },
+    {
+      "path": "assets/lcd-14.svg",
+      "size": 41121,
+      "sha256": "f2112155f6db2fdb111aef456be2f67e28855f1821f59a46eb562cd726c67f3f"
+    },
+    {
+      "path": "assets/lcd-15.svg",
+      "size": 47580,
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+    },
+    {
+      "path": "assets/lcd-16.svg",
+      "size": 46621,
+      "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22"
+    },
+    {
+      "path": "assets/lcd-17.svg",
+      "size": 53348,
+      "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7"
+    },
+    {
+      "path": "assets/lcd-18.svg",
+      "size": 48598,
+      "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0"
+    },
+    {
+      "path": "assets/lcd-19.svg",
+      "size": 41059,
+      "sha256": "342c647f9bd551c21d0662f1d7d839361284c7e68667bd7dc2435f6ddd0f4fe1"
+    },
+    {
+      "path": "assets/lcd-20.svg",
+      "size": 42382,
+      "sha256": "12223fddf58a3ffe6ed44f9677c824fc2b1e2e0414c7bf7b79e6b5f7d67e86b8"
+    },
+    {
+      "path": "assets/lcd-21.svg",
+      "size": 45321,
+      "sha256": "d7610ab6fac80a2cfc25560f23a0f7e991dc80c9d7b8be8d995f379a69c23e9e"
+    },
+    {
+      "path": "assets/lcd-22.svg",
+      "size": 48483,
+      "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e"
+    },
+    {
+      "path": "assets/lcd-button.svg",
+      "size": 1800103,
+      "sha256": "76905746f37d3255d1c47b76c73cebc192f17c39c72ae4ce0c644fb6804d73d3"
+    },
+    {
+      "path": "assets/lcd-map.svg",
+      "size": 165922,
+      "sha256": "8af8fe45226e01bdbf8e3e403f277c0c7ab286fa23bb553610966d4e7b123cfb"
+    },
+    {
+      "path": "assets/overview-front.svg",
+      "size": 828810,
+      "sha256": "628435ee8ff623a6b106675b8404c612ee493f58785ed190b629692dacd187eb"
+    },
+    {
+      "path": "assets/power.svg",
+      "size": 1781382,
+      "sha256": "0d3ac94f8ac8696be89368aa42ade69920cebd32aa4bc005fb9f7a76ed1cbee4"
+    },
+    {
+      "path": "assets/reporting-qr.png",
+      "size": 3882,
+      "sha256": "116467aa683a0758608f641534cd87c29a960fa85703fb603308cd4b6bdc7df1"
+    },
+    {
+      "path": "assets/solar-connectors.svg",
+      "size": 3597064,
+      "sha256": "1f0b3cc9713e25df595ba33b2ed7dfa524dac2a1b0b43ad3c50bd2873dff0462"
+    },
+    {
+      "path": "assets/solar-direct.svg",
+      "size": 3597064,
+      "sha256": "06b344621128c8755a34a5b72cf13df25466c8f4bdbbb0953db6a01dd8614d2b"
+    },
+    {
+      "path": "assets/solar-incorrect.svg",
+      "size": 2243417,
+      "sha256": "cd62d184d881aff931470f439cf597c2d20b027613830ca3a89bb18717c89ae7"
+    },
+    {
+      "path": "assets/symbol-01.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "assets/symbol-02.svg",
+      "size": 4052,
+      "sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5"
+    },
+    {
+      "path": "assets/symbol-03.svg",
+      "size": 4074,
+      "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817"
+    },
+    {
+      "path": "assets/symbol-04.svg",
+      "size": 4769,
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+    },
+    {
+      "path": "assets/symbol-05.svg",
+      "size": 2815,
+      "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee"
+    },
+    {
+      "path": "assets/symbol-06.svg",
+      "size": 10923,
+      "sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564"
+    },
+    {
+      "path": "assets/ups.svg",
+      "size": 1014116,
+      "sha256": "26d6ee7935d9f3bca4ef661b96ddc80aeebc096ffef6e4711af8af2c758631cd"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 7760,
+      "sha256": "a8bc1bd8926777ad3b84b9d2c383b348e73d4926a38e6bb892c70d66aa936418"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 24991,
+      "sha256": "f82bc8d2d4597a7587eb5015ab08ba6e19ee9bda0ada1f9612ffc9781545be60"
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "size": 57049,
+      "sha256": "ce0ca1c4779dbb8fd163e1c1cd16c98f4ef67743b4e4336202612517ce8b65df"
+    },
+    {
+      "path": "source/caption_frames.json",
+      "size": 2988,
+      "sha256": "c0ba55f2ff5874d54b6d4cef8b9096e39748d5bdddb6a9f70e6ed5626af8c9ed"
+    },
+    {
+      "path": "source/export_art.py",
+      "size": 4963,
+      "sha256": "4ca9b9f60ca27c3bd417279e49fdc3339e8179512073dabe286655d58f77ccd9"
+    },
+    {
+      "path": "source/figure_labels.json",
+      "size": 43400,
+      "sha256": "5474a344ca2caaef39deae06cecb6366501f4096273ec49acb7d93190d0c8089"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 1869491,
+      "sha256": "ea6f88fe889c9faeb752afb6894f6d090482c4e2f11643ff93a73461f97517b2"
+    },
+    {
+      "path": "source/fixed_markings.json",
+      "size": 4162,
+      "sha256": "7d3826851128dbd2a271ae24b32ba869aa3d6f2d4a54f1f79461d07861499437"
+    },
+    {
+      "path": "source/glyph_recoveries.json",
+      "size": 6708,
+      "sha256": "7a8411872725376c1537a89b99dc4bcc8683b8e7043d0f622af8d7d421d1f07d"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 24413,
+      "sha256": "f9b710c833d6046acf7d91d7bb0f08eb439e1d0dc66ef0324556b4204b288ea4"
+    },
+    {
+      "path": "source/label_geometry.css",
+      "size": 11400,
+      "sha256": "a020d863f9092268fcd00e70a6f6339224cda41c1fcdf5c3903e6669659f5328"
+    },
+    {
+      "path": "source/lcd_provenance.json",
+      "size": 11623,
+      "sha256": "0fec09a6443c10068f1db74e7547013eab86e6373b5677bd85be7a1b01375927"
+    },
+    {
+      "path": "source/native.py",
+      "size": 19366,
+      "sha256": "d9e9ecf36932be6d7b62049ac874440844c67a56b39e7b5902fb4f05176a2e8e"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 14383,
+      "sha256": "6869dcdea831e41549fdeec704fcce8f4aeaed640f0ac3359c64a4d64192ee23"
+    },
+    {
+      "path": "source/print-cover.json",
+      "size": 308,
+      "sha256": "6926db6355585c1d8ff07a52409835fdac8c4ff7d1322496923aab3ad5536135"
+    },
+    {
+      "path": "source/seal_inputs.py",
+      "size": 8760,
+      "sha256": "6b3c53cdeac918bdb071ef6ec9ca6fe20f0c1ef996208a1f2496932daaadb765"
+    },
+    {
+      "path": "source/source_anomalies.json",
+      "size": 432,
+      "sha256": "d6b1929b5801af9f2a8b60abd0454d3dc62342353894ecf7481e8788969cf7a5"
+    },
+    {
+      "path": "source/symbol_provenance.json",
+      "size": 4494,
+      "sha256": "e3b04b6e913f268b59d7e9d939f873e5236a3e30f71e5d380245a751b0f5d4f1"
+    },
+    {
+      "path": "source/zh-TW/content.json",
+      "size": 411766,
+      "sha256": "137aa3408d26f71c26af93562303a105fae336a4bdec412aa3ead21a2b5e7a3f"
+    },
+    {
+      "path": "source/zh-TW/coverage.json",
+      "size": 131280,
+      "sha256": "149ffd9edab444358b700e9fed86ec3c43dd13477c41a3f301a47e495742cd97"
+    },
+    {
+      "path": "validate_layout.py",
+      "size": 8504,
+      "sha256": "750ec1e93cddf6888f1f05bf98099ba52f4f2eef2d5d762ce47d1d1b6423541a"
+    },
+    {
+      "path": "validate_replay.py",
+      "size": 3852,
+      "sha256": "4f66834cb7552cef13684430c616a7d425654902aef61dcd4dbbdf04663134e0"
+    },
+    {
+      "path": "validate_source.py",
+      "size": 8493,
+      "sha256": "1316609c6556637185275cdc38652c8f0b3d69c7e105861c3d098f8acd98535e"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+[
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      14,
+      15,
+      16
+    ],
+    "glyph_bbox": [
+      31.23210029602051,
+      204.7936981201172,
+      54.411101531982425,
+      225.46969909667968
+    ],
+    "caption_bbox": [
+      63.46050033569336,
+      200.37670288085937,
+      175.26309814453126,
+      229.8873046875
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "best_error": 0.0174941916870915,
+    "asset_ref": "assets/symbol-01.svg",
+    "shared_symbol_key": "warning/outline-triangle-tinted"
+  },
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "glyph_bbox": [
+      31.213700103759766,
+      233.70081787109376,
+      55.789702606201175,
+      258.27479858398436
+    ],
+    "caption_bbox": [
+      63.46050033569336,
+      231.0873046875,
+      175.26309814453126,
+      260.5979064941406
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/person-reading-circle-tw-477dfbd7.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_person_jhp3000d.svg",
+    "best_error": 0.10077029292619827,
+    "asset_ref": "assets/symbol-02.svg",
+    "shared_symbol_key": "read-manual/person-reading-circle-tw-477dfbd7"
+  },
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58
+    ],
+    "glyph_bbox": [
+      32.130699920654294,
+      266.68720703125,
+      54.67869873046875,
+      288.6342041015625
+    ],
+    "caption_bbox": [
+      63.46050033569336,
+      261.79790649414065,
+      175.26309814453126,
+      293.2170104980469
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "best_error": 0.01974826388888889,
+    "asset_ref": "assets/symbol-03.svg",
+    "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray"
+  },
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      31,
+      32,
+      33
+    ],
+    "glyph_bbox": [
+      189.15220336914064,
+      205.9471862792969,
+      208.6981994628906,
+      225.48118896484374
+    ],
+    "caption_bbox": [
+      217.74484405517578,
+      200.37670288085937,
+      333.4649719238281,
+      229.8873046875
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_dark.svg",
+    "best_error": 0.023063682938453157,
+    "asset_ref": "assets/symbol-04.svg",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7"
+  },
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "glyph_bbox": [
+      186.85549621582032,
+      234.42278747558595,
+      211.9890930175781,
+      258.22099609375
+    ],
+    "caption_bbox": [
+      217.74484405517578,
+      231.0873046875,
+      333.4649719238281,
+      260.5979064941406
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "best_error": 0.013551666326252725,
+    "asset_ref": "assets/symbol-05.svg",
+    "shared_symbol_key": "no-open-flame/fire-match-crossed-gray"
+  },
+  {
+    "physical_page": 4,
+    "drawing_indices": [
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "glyph_bbox": [
+      191.00069885253907,
+      266.96461181640626,
+      207.518603515625,
+      287.0682861328125
+    ],
+    "caption_bbox": [
+      217.74484405517578,
+      261.79790649414065,
+      333.4649719238281,
+      293.2170104980469
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/taiwan-restricted-battery-477dfbd7.svg",
+    "best_candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "best_error": 0.40333860974945535,
+    "asset_ref": "assets/symbol-06.svg",
+    "shared_symbol_key": "recycle/taiwan-restricted-battery-477dfbd7"
+  }
+]
