@@ -142,6 +142,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 启用配置、更新与撤下行为及图片文字边界见[欧规说明书查询](../dev/eu_manual_query.md)。
 同轮还写出 `machine_surface_manifest.json`（逐版本哈希、计数与未识别的警示标签）；新鲜度和
 标签报告用 `python -m tools.manual_knowledge.manifest`，见[机读语料方案](../dev/machine_readable_manual_corpus.md) §5.5–§5.6。
+知识观察不在构建中运行：`python -m tools.manual_knowledge.observe --site <构建输出>`（或 `--base-url`）
+离线读取已封存的语料，写出不入库的 `manual-observations.json`，见[知识观察方案](../dev/machine_readable_knowledge_observation.md) §6。
 
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
