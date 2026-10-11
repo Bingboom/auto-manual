@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "4ee367f50da48e4501a3092dfd91020949a3ebe25f0f4f1624ee9cac34c71c46",
-  "content_sha256": "aad565984750818a40bde6979960b0fc0a5d91be41093a64d6505aa273db3d0f",
+  "bundle_sha256": "fb83c1aef1f479505adbe6bcb8098eb9ef6f849d8e1838587a1ab7d3bec7ef4b",
+  "content_sha256": "394b7ebdb7b3fad1c37912a76a876aa590942bd1cd7ee765894e9865a107790d",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -2911,16 +2911,34 @@
         {
           "asset_refs": [],
           "block_id": "inbox:block-0003",
-          "content_sha256": "4f135cdd6152d2f81f1818284ac26e69ff8db783e8017e753598a1dfac74f8e1",
+          "content_sha256": "564e116526cb1cd4ef30978ae69a3e279e8348a79d1f9f6ae819552c2e74f05f",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "list_item"
               }
             ],
-            "kind": "paragraph",
+            "kind": "list",
+            "ordered": false,
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "native-inbox-notice"
+                }
+              }
+            },
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/inbox#block-3"
@@ -2931,7 +2949,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#inbox",
       "source_ref": "native-pdf/inbox",
-      "source_sha256": "dad101a521845e4b7df56afe6edb9ff00a86b541ea5bf48b6dd65892a7ad61d8"
+      "source_sha256": "e58efb1651aa17183af62b0f66d08f2425e3ee90c622cd6ac61feb96d7e218b1"
     },
     {
       "blocks": [

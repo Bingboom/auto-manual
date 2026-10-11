@@ -106,7 +106,7 @@
 
 <figure aria-label="同梱品" class="hb-inbox-composition" data-card-count="3" data-component-id="HB-SPECIAL-INBOX" data-inbox-variant="three-card-responsive"><ol class="hb-inbox-grid"><li class="hb-inbox-card" data-item-number="1"><img alt="本体" class="hb-inbox-art" src="assets/inbox-main.svg"/><div class="hb-inbox-label"><p>本体</p></div></li><li class="hb-inbox-card" data-item-number="2"><img alt="拡張ケーブル" class="hb-inbox-art" src="assets/inbox-cable.png"/><div class="hb-inbox-label"><p>拡張ケーブル</p></div></li><li class="hb-inbox-card" data-item-number="3"><img alt="取扱説明書" class="hb-inbox-art" src="assets/inbox-manual.svg"/><div class="hb-inbox-label"><p>取扱説明書</p></div></li></ol></figure>
 
-<p>付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。</p>
+<ul class="native-inbox-notice"><li><p>付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。</p></li></ul>
 
 <span id="native-overview"></span>
 

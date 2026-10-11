@@ -822,14 +822,32 @@
           ]
         },
         {
-          "kind": "paragraph",
+          "kind": "list",
+          "ordered": false,
           "children": [
             {
-              "kind": "text",
-              "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+                    }
+                  ]
+                }
+              ]
             }
           ],
-          "schema_version": "manual-flow/v2"
+          "schema_version": "manual-flow/v2",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-inbox-notice"
+              }
+            }
+          }
         }
       ]
     },

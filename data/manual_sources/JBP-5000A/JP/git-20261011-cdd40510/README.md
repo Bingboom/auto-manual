@@ -30,6 +30,8 @@ The native recycling notice uses a single shared bordered panel: the existing
 transparent Li-ion symbol has a fixed column, with its heading and three real
 bullet statements beside it. The preceding bold specification notice retains
 its square CSS marker. All source copy and symbol artwork are unchanged.
+The accessory-support notice below the inbox cards retains its native single
+disc bullet through the shared unordered-list style.
 Warranty preserves the physical pages 8–9 grouping: a shared gray introduction,
 bordered clause groups 1–7 and 8–11, thin row separators, seven exclusions
 within clause 5, and the second paragraph within clause 2. Shared panels own
