@@ -91,6 +91,44 @@ CHECK = r"""() => {
  }
  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);
  const duplicateIds=[...new Set(ids.filter((id,i)=>ids.indexOf(id)!==i))];
+ const warranty=(()=>{
+  const intro=root.querySelector('.native-warranty-intro');
+  const note=root.querySelector('.native-warranty-note');
+  const panels=[...root.querySelectorAll('.native-warranty-terms')];
+  const rows=panels.flatMap(p=>[...p.children]);
+  const filledRounded=e=>{
+   if(!e)return false;
+   const s=getComputedStyle(e),rgb=s.backgroundColor.match(/[\d.]+/g)?.map(Number);
+   return rgb?.length>=3&&Math.max(...rgb.slice(0,3))<250&&
+    Math.max(...rgb.slice(0,3))-Math.min(...rgb.slice(0,3))<8&&parseFloat(s.borderTopLeftRadius)>0;
+  };
+  const bounded=e=>{
+   const r=e.getBoundingClientRect();
+   return textRects(e).every(q=>q.left>=r.left-1&&q.right<=r.right+1&&q.top>=r.top-1&&q.bottom<=r.bottom+1);
+  };
+  const groups=panels.map(p=>[...p.children].map(c=>Number(c.innerText.match(/^\d+/)?.[0])));
+  const exclusions=[...root.querySelectorAll('.native-warranty-exclusion')];
+  const exclusionOrder=exclusions.map(e=>Number(e.innerText.match(/^\((\d+)\)/)?.[1]));
+  const panelBorders=panels.map(e=>{
+   const s=getComputedStyle(e);
+   return ['Top','Right','Bottom','Left'].every(side=>parseFloat(s['border'+side+'Width'])>0&&s['border'+side+'Style']==='solid')&&parseFloat(s.borderTopLeftRadius)>0;
+  });
+  const separators=panels.map(p=>[...p.children].slice(1).every(e=>{
+   const s=getComputedStyle(e);return parseFloat(s.borderTopWidth)>0&&s.borderTopStyle==='solid';
+  }));
+  const clause2=rows[1]?.querySelectorAll(':scope > p');
+  const secondParagraph=clause2?.length===2&&parseFloat(getComputedStyle(clause2[1]).marginTop)>0;
+  const clipped=rows.filter(e=>!bounded(e)).map(e=>e.innerText);
+  if(intro&&!bounded(intro))clipped.push(intro.innerText);
+  if(note&&!bounded(note))clipped.push(note.innerText);
+  const passed=JSON.stringify(groups)==='[[1,2,3,4,5,6,7],[8,9,10,11]]'&&
+   JSON.stringify(exclusionOrder)==='[1,2,3,4,5,6,7]'&&
+   exclusions.every(e=>e.closest('.native-warranty-clause')===rows[4])&&
+   panelBorders.every(Boolean)&&separators.every(Boolean)&&secondParagraph&&
+   filledRounded(intro)&&filledRounded(note)&&!clipped.length;
+  return {groups,exclusionOrder,panelBorders,separators,secondParagraph,
+   introGray:filledRounded(intro),noteGray:filledRounded(note),clipped,passed};
+ })();
  return {
   specHeading:(()=>{
    const heading=root.querySelector('h2.hb-spec-group');
@@ -98,7 +136,7 @@ CHECK = r"""() => {
     transform:getComputedStyle(heading).textTransform,
     marker:getComputedStyle(heading,'::before').content}:null;
   })(),
-  emptyArtwork,duplicateIds,clippedCells,bodyText:(()=>{
+  warranty,emptyArtwork,duplicateIds,clippedCells,bodyText:(()=>{
    const tree=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),parts=[];
    while(tree.nextNode()){
     const parent=tree.currentNode.parentElement,style=getComputedStyle(parent);
@@ -209,6 +247,8 @@ async def validate(base_url, languages, evidence_dir):
                           window.scrollTo({top:Math.max(0,document.getElementById(id).getBoundingClientRect().top+window.scrollY-80),behavior:'instant'});
                         }""", anchor)
                         await page.screenshot(path=str(evidence_dir / f"{language}-{width}-{anchor}.png"))
+                for index, panel in enumerate(await page.locator('.native-warranty-terms').all(), 1):
+                    await panel.screenshot(path=str(evidence_dir/f'{language}-{width}-warranty-terms-{index}.png'))
                 for name,selector in [('lcd-controls','.native-lcd-controls'),('key-combinations','.hb-key-combination-composition'),('spec-table','.hb-spec-table-composition'),('faults','.hb-reference-table-composition')]:
                     locator=page.locator(selector)
                     if await locator.count():
@@ -225,10 +265,10 @@ async def validate(base_url, languages, evidence_dir):
     )
     for row in records:
         print(json.dumps({k: row[k] for k in (
-            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "broken",
+            "language", "width", "pageWidth", "imageCount", "liveLabels", "specHeading", "specHeadingMatchesSource", "lcdLabelCenters", "lcdNumeralCenters", "warranty", "broken",
             "outside", "overlaps", "occluded", "clippedCards", "clippedCells", "emptyArtwork", "duplicateIds", "visibleCopyCoverage", "errors", "resourceErrors",
         )}, ensure_ascii=False))
-    if any(not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
+    if any(not row["warranty"]["passed"] or not row["specHeadingMatchesSource"] or not all(n["centered"] for n in row['lcdNumeralCenters'])
            or not all(n['centered'] for n in row['lcdLabelCenters'])
            or row["pageWidth"] > row["width"] or row["broken"] or row["outside"]
            or row["emptyArtwork"] or row["clippedCells"] or row["duplicateIds"] or row["visibleCopyCoverage"]["missing"] or row["overlaps"] or row["occluded"] or row["clippedCards"] or row["errors"] or row["resourceErrors"] for row in records):

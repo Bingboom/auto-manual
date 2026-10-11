@@ -15,7 +15,17 @@
 .native-locking-connection [data-source-line="2"] span,.native-locking-connection [data-source-line="3"] span,.native-locking-connection [data-source-line="4"] span,.native-locking-connection [data-source-line="5"] span{color:#fff!important;}
 .native-recycle{display:flex;align-items:center;gap:1rem;}
 .native-recycle>img{width:65px!important;}
+/* Native pages 8–9 keep their shared panels and original clause grouping. */
+#furo-main-content .native-warranty-intro{margin:1rem 0 1.4rem;font-size:.9rem;line-height:1.5;}
+#furo-main-content .native-warranty-terms{margin:1rem 0;padding:0;border-width:1px;font-size:.9rem;line-height:1.5;}
+#furo-main-content .native-warranty-clause{padding:.55rem .75rem;}
+#furo-main-content .native-warranty-clause+.native-warranty-clause{border-top:1px solid var(--hb-line-soft);}
+#furo-main-content .native-warranty-clause p{margin:0;}
+#furo-main-content .native-warranty-clause p+p{margin-top:.75rem;}
 .native-warranty-note{background:var(--hb-fill-soft,#e7e7e8);border-radius:var(--hb-panel-radius);padding:1rem;margin:1rem 0;}
+#furo-main-content .native-warranty-note{font-size:.9rem;line-height:1.5;}
+#furo-main-content .native-warranty-note p{margin:0;}
+#furo-main-content .native-warranty-note p+p{margin-top:.6rem;}
 .native-service{max-width:180px;margin-left:auto;}
 .native-service p{font-size:.75rem;line-height:1.45;margin:.25rem 0;}
 .native-service .native-figure{width:100%;margin:0 0 .5rem;}
@@ -159,43 +169,11 @@
 
 ## 保証サービス
 
-<p>本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内容を説明するものです。</p>
+<div class="hb-warranty-intro-panel native-warranty-intro"><p>本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内容を説明するものです。</p></div>
 
-<p>1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保証期間中に、当社が定める条件に従って保証サービスを提供しております。</p>
+<div class="hb-source-warranty native-warranty-terms"><div class="native-warranty-clause"><p>1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保証期間中に、当社が定める条件に従って保証サービスを提供しております。</p></div><div class="native-warranty-clause"><p>2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修理するものとします。</p><p>保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から30 日以上5 年間以内の製品を対象といたします。</p></div><div class="native-warranty-clause"><p>3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場合のみ無償交換· 無償修理をさせていただきます。</p></div><div class="native-warranty-clause"><p>4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サービスを提供いたします。</p></div><div class="native-warranty-clause"><p>5. 保証期間内でも次の場合には保証対象外となります。</p><p class="native-warranty-exclusion">(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合</p><p class="native-warranty-exclusion">(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場合を含む) による故障· 損傷</p><p class="native-warranty-exclusion">(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷</p><p class="native-warranty-exclusion">(4) お買上げ後の移設、輸送、落下などによる故障· 損傷</p><p class="native-warranty-exclusion">(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷</p><p class="native-warranty-exclusion">(6) 業務用など一般家庭用以外での使用による故障損傷</p><p class="native-warranty-exclusion">(7) 消耗· 摩耗した部品の交換、汚損した部分の交換</p></div><div class="native-warranty-clause"><p>6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することがあります。</p></div><div class="native-warranty-clause"><p>7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日間のどちらか長い期間で保証されます。</p></div></div>
 
-<p>2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修理するものとします。保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から30 日以上5 年間以内の製品を対象といたします。</p>
-
-<p>3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場合のみ無償交換· 無償修理をさせていただきます。</p>
-
-<p>4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サービスを提供いたします。</p>
-
-<p>5. 保証期間内でも次の場合には保証対象外となります。</p>
-
-<p>(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合</p>
-
-<p>(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場合を含む) による故障· 損傷</p>
-
-<p>(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷</p>
-
-<p>(4) お買上げ後の移設、輸送、落下などによる故障· 損傷</p>
-
-<p>(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷</p>
-
-<p>(6) 業務用など一般家庭用以外での使用による故障損傷</p>
-
-<p>(7) 消耗· 摩耗した部品の交換、汚損した部分の交換</p>
-
-<p>6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することがあります。</p>
-
-<p>7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日間のどちらか長い期間で保証されます。</p>
-
-<p>8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼品との交換をさせていただく場合がございます。</p>
-
-<p>9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合は、ご希望により有償修理にて承ります。　</p>
-
-<p>10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わないものとします。</p>
-
-<p>11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。</p>
+<div class="hb-source-warranty native-warranty-terms"><div class="native-warranty-clause"><p>8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼品との交換をさせていただく場合がございます。</p></div><div class="native-warranty-clause"><p>9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合は、ご希望により有償修理にて承ります。　</p></div><div class="native-warranty-clause"><p>10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わないものとします。</p></div><div class="native-warranty-clause"><p>11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。</p></div></div>
 
 <div class="native-warranty-note"><p>※保証期間はお買い上げ日より5 年間となります。</p><p>※本書は、本書記載内容（上記記載）で無償製品交換・無償修理を行うことをお約束するものです。故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショップでの購入が証明できるもの（インターネットでの購入は注文番号、それ以外はレシートや領収書など）をお手元にご用意の上、JackeryJapan カスタマーサービス、もしくは販売店へお問い合わせください。</p><p>※故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショップでの購入が証明できるもの（インターネットでの購入は注文番号、それ以外はレシートや領収書など）が必須となりますのでご注意ください。当社製品正規取扱店につきましては、当社公式HP をご確認ください。</p><p>※本書によって保証責任者、及びそれ以外の事業者に対するお客様の法律上の権利を制限するものではありません。</p><p>※保証内容は都合により予告なく変更する場合がございますのでご了承ください。</p></div>
 

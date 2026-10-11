@@ -21,8 +21,8 @@
     "assets/app-qr.svg"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "86d57a0d959d74edb1eb5825de4dbcfd1a2b3aa7773003f7326eaac4dacf9f12",
-  "content_sha256": "c6542637c34a969e92063da01bb49067c91da7e263b6d2f5ed4ebd3b7d18a637",
+  "bundle_sha256": "39dcd4fbd894853b24a7bb14dd19a9bdc23c230fb5568ecf98e7da891876e574",
+  "content_sha256": "d058a4525d91916e7bbfd26bb84ffdfd0d3cc371617b2280672b23401ae80941",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -47,7 +47,7 @@
       "assets/stack-limits.svg": "7a0d4d0009ed19df51a65a48fcc7ad96c9fa7ef8fc621296d7bd6272bac7c9d1",
       "assets/symbol-li-ion.svg": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
     },
-    "block_count": 64,
+    "block_count": 48,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 5,
       "HB-SPECIAL-INBOX": 1,
@@ -1871,7 +1871,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "fa527bef085427db3abc491e27d15d117e710298fa229098c3398c00a58329d0"
+      "sha256": "6fda92a66f4d7d408d26fab41d34fbc1a983140d0456f0161141c74ad183adc3"
     },
     "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
     "web_contract": {
@@ -6193,20 +6193,33 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0002",
-          "content_sha256": "508148acca155842bfd2000e2023624222a6ed4da3ed2e956b307673fe21c4ac",
+          "content_sha256": "3039ef2ae9d41e3fe38cdf1f40e64b10ad49318feb488c31225f027c3a899d84",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内"
-              },
-              {
-                "kind": "text",
-                "text": "容を説明するものです。"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "容を説明するものです。"
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-warranty-intro-panel native-warranty-intro"
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-2"
@@ -6214,24 +6227,335 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0003",
-          "content_sha256": "4a50a8c343ec6266af6c22bf35c4355a84e66e8c567827c71ae98d8713102d43",
+          "content_sha256": "efa5ea4da92c9ef8fad7de932340f1dda7f11ee438063fd8874aeabee634a913",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "証期間中に、当社が定める条件に従って保証サービスを提供しております。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               },
               {
-                "kind": "text",
-                "text": "が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "理するものとします。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "30 日以上5 年間以内の製品を対象といたします。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               },
               {
-                "kind": "text",
-                "text": "証期間中に、当社が定める条件に従って保証サービスを提供しております。"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "合のみ無償交換· 無償修理をさせていただきます。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サー"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "ビスを提供いたします。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "5. 保証期間内でも次の場合には保証対象外となります。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "合を含む) による故障· 損傷"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(4) お買上げ後の移設、輸送、落下などによる故障· 損傷"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(6) 業務用など一般家庭用以外での使用による故障損傷"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "(7) 消耗· 摩耗した部品の交換、汚損した部分の交換"
+                      }
+                    ],
+                    "kind": "paragraph",
+                    "presentation": {
+                      "html": {
+                        "attributes": {
+                          "class": "native-warranty-exclusion"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することが"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "あります。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "間のどちらか長い期間で保証されます。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               }
             ],
-            "kind": "paragraph",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-source-warranty native-warranty-terms"
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-3"
@@ -6239,32 +6563,132 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0004",
-          "content_sha256": "3306042dbf5fcb6cfcc84f0a4fc896da3f79a3406398e42ed1033049e4f56564",
+          "content_sha256": "88d857052f122c9396c4f2ab4ebde0dad0cf10e4138176b595bd27735e7c9e29",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "品との交換をさせていただく場合がございます。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               },
               {
-                "kind": "text",
-                "text": "理するものとします。"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "は、ご希望により有償修理にて承ります。　"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               },
               {
-                "kind": "text",
-                "text": "保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わな"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "いものとします。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               },
               {
-                "kind": "text",
-                "text": "等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から"
-              },
-              {
-                "kind": "text",
-                "text": "30 日以上5 年間以内の製品を対象といたします。"
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。"
+                      }
+                    ],
+                    "kind": "paragraph"
+                  }
+                ],
+                "kind": "group",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "native-warranty-clause"
+                    }
+                  }
+                },
+                "role": "container"
               }
             ],
-            "kind": "paragraph",
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "hb-source-warranty native-warranty-terms"
+                }
+              }
+            },
+            "role": "container",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/warranty#block-4"
@@ -6272,322 +6696,6 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0005",
-          "content_sha256": "0065a89b0981af9b6723ecad6372296a498da597071f4e981bf3cf4dcc85c827",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場"
-              },
-              {
-                "kind": "text",
-                "text": "合のみ無償交換· 無償修理をさせていただきます。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-5"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0006",
-          "content_sha256": "0fa09366f33af269eeee18fe954bb9cf64258c188b7dfedfd2a4422f8a195e1a",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サー"
-              },
-              {
-                "kind": "text",
-                "text": "ビスを提供いたします。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-6"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0007",
-          "content_sha256": "2c9558bda64ab22d0163d6cb4b3fd9462dc89843c34bcecc9e09fb0321df4348",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "5. 保証期間内でも次の場合には保証対象外となります。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-7"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0008",
-          "content_sha256": "5ffb954abb96aabdfa35ad672b3ee81894693a85283e3ec3d102db7d33f1f8e0",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-8"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0009",
-          "content_sha256": "92a6f9074a7f940115a9ffbbe9aa919a58205a59f49e660d8fbc7e4f27188d75",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場"
-              },
-              {
-                "kind": "text",
-                "text": "合を含む) による故障· 損傷"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-9"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0010",
-          "content_sha256": "531aee974d2539c8347a3de249e93f385613b59f1d6c181761e46f46f34f03e9",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-10"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0011",
-          "content_sha256": "d20316d54da81a117f0e1482362cd7fc64b6bccfaf5d6ea6e142bd6bd029da2b",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(4) お買上げ後の移設、輸送、落下などによる故障· 損傷"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-11"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0012",
-          "content_sha256": "c77c624f9b30ac5e69a3e228876f958373043fc6f80947dd9aaf0dc0e6676c13",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-12"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0013",
-          "content_sha256": "341db10b2e63c40f831ec9d40760e78a74d4142c2d9c8626b18221e662755891",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(6) 業務用など一般家庭用以外での使用による故障損傷"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-13"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0014",
-          "content_sha256": "9302b9a890d5f1e5360502a573c97d8bf6f614ab2e2deda936710b677a828220",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "(7) 消耗· 摩耗した部品の交換、汚損した部分の交換"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-14"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0015",
-          "content_sha256": "59b507d43a92f76db866e52bccad26bcf52e191bc9bbfc58345d0de7e24082ae",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することが"
-              },
-              {
-                "kind": "text",
-                "text": "あります。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-15"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0016",
-          "content_sha256": "bff143db67685f65a363786e001a09c7c675382ef076f511c2d20786a907e6ed",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日"
-              },
-              {
-                "kind": "text",
-                "text": "間のどちらか長い期間で保証されます。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-16"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0017",
-          "content_sha256": "829f001bf3f3dbfcec5b29d48c7dcdfcc9985a9056ab0bcd0b7a368813736842",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、"
-              },
-              {
-                "kind": "text",
-                "text": "困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する"
-              },
-              {
-                "kind": "text",
-                "text": "同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼"
-              },
-              {
-                "kind": "text",
-                "text": "品との交換をさせていただく場合がございます。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-17"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0018",
-          "content_sha256": "ed92c26399574e87109bd952adb7d8fe6fc83ce04a89d47d0f35218cddd779a4",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合"
-              },
-              {
-                "kind": "text",
-                "text": "は、ご希望により有償修理にて承ります。　"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-18"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0019",
-          "content_sha256": "ad40e29585fc2a6bc12458e7f047a1542ba165f103cc1215ca0b81297e1a55b5",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に"
-              },
-              {
-                "kind": "text",
-                "text": "発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わな"
-              },
-              {
-                "kind": "text",
-                "text": "いものとします。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-19"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0020",
-          "content_sha256": "e5c49de2325b802430281156d1abfa86eb2ed84b5d3f07eea602b3d064d58044",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。"
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "native-pdf/warranty#block-20"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0021",
           "content_sha256": "92d770178b004b41261881c3e796e82e7ac4a84a653e65144f237d412592e83c",
           "kind": "flow",
           "payload": {
@@ -6681,13 +6789,13 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/warranty#block-21"
+          "source_ref": "native-pdf/warranty#block-5"
         },
         {
           "asset_refs": [
             "assets/service-logo.svg"
           ],
-          "block_id": "warranty:block-0022",
+          "block_id": "warranty:block-0006",
           "content_sha256": "4e660949fd01ef8a3dcfffa4228ad6addae76ea74208b9f0aa3acf3dd2ebd1ba",
           "kind": "flow",
           "payload": {
@@ -6814,7 +6922,7 @@
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/warranty#block-22"
+          "source_ref": "native-pdf/warranty#block-6"
         }
       ],
       "language": "ja",
@@ -6822,7 +6930,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#warranty",
       "source_ref": "native-pdf/warranty",
-      "source_sha256": "97cf0d4c49e0179ddd8b915760a4582274c29b04380ac75c5821a397be194900"
+      "source_sha256": "a224e7d4ebbd11533ce48666331ff6a56f5aeb61a224c0085ae9c41ffcc0a742"
     },
     {
       "blocks": [

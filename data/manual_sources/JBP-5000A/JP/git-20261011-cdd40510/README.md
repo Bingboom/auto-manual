@@ -24,6 +24,12 @@ ordinary H2 circle. Its font, size, weight and spacing still use shared styles;
 the source stylesheet only suppresses the generic uppercase/marker treatment.
 The two live LCD map numerals are centered inside the complete circle bounds
 from native page 4 drawings 2032/2034, rather than positioned by text metrics.
+Warranty preserves the physical pages 8–9 grouping: a shared gray introduction,
+bordered clause groups 1–7 and 8–11, thin row separators, seven exclusions
+within clause 5, and the second paragraph within clause 2. Shared panels own
+the fill, border and radius; source-local styles set row padding and spacing.
+Browser admission verifies these boundaries, clause order and visible text
+containment at all three widths. Every word and original artwork is retained.
 
 The 12 ReferenceFigures use complete native artwork and 27 editable labels.
 Lock/unlock stages plus the hookup remain one original panel; the two stacking
