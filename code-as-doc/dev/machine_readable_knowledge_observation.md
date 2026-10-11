@@ -1,14 +1,16 @@
 # 欧规说明书知识观察立项（机读 Phase 2）
 
-Status: active · Owner: Auto-Manual maintainer · Created: 2026-10-11
+Status: done · Owner: Auto-Manual maintainer · Created: 2026-10-11
 
 上位计划：[`machine_readable_manual_corpus.md`](machine_readable_manual_corpus.md)（§4 路线、§9 Phase 2 目标）。
 Phase 1 验收记录：[`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。
+Phase 2a 验收记录：[`machine_readable_knowledge_pilot_audit.md`](machine_readable_knowledge_pilot_audit.md)。
 
 本文件是 Phase 2（Knowledge Observation）的立项文件，包括立项依据、范围、决策、契约草案、
 PR 切分与验收标准。§5 的决策已于 2026-10-11 按建议确认，Phase 2a 的实施以本文件为准；
 各实施 PR 仍按 §10 另行登记授权。Phase 1 已上线的行为（`manual-knowledge.json` v1、
-机读面清单、查询插件）不因本文件改变。
+机读面清单、查询插件）不因本文件改变。Phase 2a 已于 2026-10-11 完成（P2-0 #1488 至 P2-3 #1491，
+P2-4 试点验收）；Phase 2b 与 Phase 3 需另行立项。
 
 ## 1. 立项依据
 
@@ -229,7 +231,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   "content_sha256": "5c1f…",
   "status": "extracted",
   "review_flags": [],
-  "method": {"generator": "manual-observations/0.3", "rules": ["extract.callout", "topic.ups"]}
+  "method": {"generator": "manual-observations/0.4", "rules": ["extract.callout", "topic.ups"]}
 }
 ```
 
@@ -257,9 +259,10 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 警示优先于合规，合规优先于安全；只有警示框本身优先于其中引用的法规。
 
 - **Warning**：全部 `callout` 块；外加首格为警示等级词的表格行（如 JBP-2000B/EU/de 的
-  `HINWEISE`）和以「等级词：」开头的段落，引用法规的除外（以 `NOTE:` 开头的 FCC 声明记为
-  合规）。首列出现两个及以上不同等级词的表格是等级词说明表（每本手册的 WARNING / CAUTION /
-  NOTE / TIP 说明，含 `⚠ WARNING` 写法），属于定义，不产出条目。
+  `HINWEISE`）和以「等级词：」开头的段落（渲染丢了冒号时，开头全为大写的等级词也算），引用法规
+  的除外（以 `NOTE:` 开头的 FCC 声明记为合规）。首列出现两个及以上不同等级词的表格是等级词
+  说明表（每本手册的 WARNING / CAUTION / NOTE / TIP 说明，含 `⚠ WARNING` 写法），属于定义，
+  不产出条目。
 - **Safety**：章节标题命中多语安全章节词表（SAFETY、SICHERHEIT、SÉCURITÉ、SEGURIDAD、
   SICUREZZA、VEILIGHEID、BEZPIECZEŃSTWO、SEGURANÇA、БЕЗПЕКА 及 PRECAUTION 一类）的段落、
   顶层列表项（子项并入父项）和表格行；符号说明表（标题含 SYMBOL / SÍMBOLO / СИМВОЛ）中说明
@@ -305,7 +308,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   "differences": ["absent"],
   "confidence": "medium",
   "status": "candidate",
-  "method": {"generator": "manual-observations/0.3", "rules": ["compare.language_parity", "search.topic_items"]}
+  "method": {"generator": "manual-observations/0.4", "rules": ["compare.language_parity", "search.topic_items"]}
 }
 ```
 
@@ -323,15 +326,17 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
   `medium`，没有主题时为 `low`。
 - **跨语言**（同型号的单语版本；多语合订版不参与，D3）：每个类别以英文版为基准，其他语言
   依次按阅读顺序对齐（动态规划，只接受正分配对）。配对分数来自共同数字（小数逗号按小数点
-  读）、条目主题和警示等级；块类型不计分，呈现差异只记为 `presentation`。此前所有语言都没有
-  的条目自成一簇，因此英文版缺少的提示仍会在其他语言之间聚到一起。谱系把条目挪到别处时，
-  语言集合互补、首条仍能配对的两簇合并，记为 `order`。
+  读）、条目主题和警示等级，规范化文本相同（地址、网址、未翻译的声明）另加分；合规条目的顺序
+  随谱系变化，文本不同时不按位置配对，只靠数字与主题。块类型不计分，呈现差异只记为
+  `presentation`。此前所有语言都没有的条目自成一簇，因此英文版缺少的提示仍会在其他语言之间
+  聚到一起。谱系把条目挪到别处时，语言集合互补、首条仍能配对的两簇合并，记为 `order`。
 - **缺失**：`absent_in` 只表示"在所述范围内没有找到对应条目"，不等于错误，并写明搜索范围与
   `revision_alignment`。成员共有的数字（`anchors`）在缺失版本的整份文档（全部块）中搜索
   （`whole_document`）；没有共有数字时，用成员共有的主题（条目主题加所在章节标题的主题，
-  `context_topics`）在缺失版本里没有被数字牢固配对的条目中搜索（`topic_items`）；两者都
-  没有时只依据对齐结果（`aligned_items`）。搜到的块或条目写入 `hits`（最多 3 个），提示内容
-  可能只是换了呈现方式。
+  `context_topics`）在缺失版本里没有被数字牢固配对的条目中搜索（`topic_items`）；共有主题
+  不少于两个时，另搜不承载条目的段落和列表（`topic_document`），只接受主题包含全部共有主题、
+  且最多多出一个主题的块；两者都没有时只依据对齐结果（`aligned_items`）。搜到的块或条目写入
+  `hits`（最多 3 个），提示内容可能只是换了呈现方式。
 - **置信度逐条差异主张给出**（缺失，或成员之间等级、数字不一致）：`high` 要求成员共有数字、
   缺失版本整份文档中没有这些数字且全部图片都有 alt、两版是相同的印刷修订号；只有主题证据时
   最高 `medium`；`revision_alignment` 不是 `same` 时最高 `medium`；没有证据或证据在别处被
@@ -404,6 +409,14 @@ JS-100I/EU/en 的两条提示是普通段落，数字在全文中被搜到，判
 `context_topics`，最高 `medium`。按 D14，"高置信度齐套候选"在 10-11 只有上述 8 条（只在印刷
 修订号相同的版本之间可能出现），P2-4 需要同时抽查 `medium` 候选并分开报告精度。
 
+实现（P2-4）：试点验收见 [`machine_readable_knowledge_pilot_audit.md`](machine_readable_knowledge_pilot_audit.md)。
+核对中修正了四处规则，生成器升为 `manual-observations/0.4`：段落开头全为大写的等级词没有冒号也视为
+标签；共有主题不少于两个时，缺失也在不承载条目的段落和列表中搜索（`topic_document`）；规范化文本
+相同的配对加分，文本不同的合规条目不再按位置配对；德语 *Laden … herunter*（下载）不归入
+`charging`。10-11 本地重建上共 3,336 条条目、1,410 条关系，`medium` 齐套差异主张从 42 条降到 33 条。
+`high` 8/8 确认，D14 门槛通过；`medium` 试点 21/21、全量 32/33 确认，建议交内容负责人的候选取
+`high` 与 `medium`。已知召回缺口：条目内部少了一句、又没有数字可比时发现不了。
+
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加
 `mypy tools/utils`。
@@ -441,7 +454,7 @@ JS-100I/EU/en 的两条提示是普通段落，数字在全文中被搜到，判
 - 每个 PR 按 [`AGENTS.md`](../../AGENTS.md) §8 与 [`merge_authorizations.md`](merge_authorizations.md)
   执行。已归档的 MA-251 明确不含 Phase 2，实施 PR 需要新的登记，取号用
   `python -m tools.next_registry_id ma`。
-- §5 于 2026-10-11 确认后本文件转为 `active`；
+- §5 于 2026-10-11 确认后本文件转为 `active`，P2-4 验收后转为 `done`；
   [`system_evolution_history.md`](../architecture/system_evolution_history.md) 环 14 中
   "Phase 2／3 尚未立项"的表述在立项 PR 中同步更新。
 - 观察发现的源内容问题只交内容负责人，在该版本声明的权威源修改后重新发布；不在机读面或
@@ -462,6 +475,10 @@ JS-100I/EU/en 的两条提示是普通段落，数字在全文中被搜到，判
 | 产品功能覆盖 | 8 / 21 个 EU 型号 |
 
 ## 附录 B：试探性候选（未经人工复核）
+
+P2-4 已逐条核对（[验收记录](machine_readable_knowledge_pilot_audit.md) §3.2）：第 1、2 条见第 7 条，第 3 条见
+第 22 条，第 5、6 条见第 15 条，第 8 条见第 13、14 条，第 9 条见 §3.3；第 7 条已由 P2-0 修正；第 4 条
+（RED 声明的语言）不在比较范围内，仍由合规负责人判断。
 
 | # | 类型 | 版本 | 现象 | 证据 |
 | --- | --- | --- | --- | --- |

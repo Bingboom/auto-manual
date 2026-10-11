@@ -4,7 +4,8 @@ Precedence is warning > compliance > safety, so one block is never two items;
 only callout markup outranks cited legislation.
 
 - **warning**: every callout; table rows whose first cell is a recognized signal
-  word and paragraphs that open with ``<signal word>:``, unless they cite
+  word and paragraphs that open with ``<signal word>:`` (or with the signal word
+  in capitals when the colon was lost in rendering), unless they cite
   legislation (a ``NOTE:``-prefixed FCC statement is compliance). Signal-word
   legend tables (two or more distinct signal words in the first column, e.g.
   each manual's WARNING / CAUTION / NOTE / TIP key) are definitions and carry
@@ -45,6 +46,8 @@ HOUSEHOLD_WASTE = re.compile(r"household waste|hausmüll|haushaltsabfall|ordures
                              r"rifiut\w* domestic|huishoudelijk afval|odpad\w* domow|lixo doméstico|"
                              r"побутов\w* відход", re.IGNORECASE)
 _SIGNAL_PREFIX = re.compile(r"^\W*([^\W\d_]+)\s*[:：]\s*")
+# A label that lost its colon in rendering ("OPMERKING De …") still reads as one when written in capitals.
+_BARE_SIGNAL = re.compile(r"^\W*([^\W\d_]+)\s+(?=\S)")
 
 
 @dataclass(frozen=True)
@@ -99,8 +102,15 @@ def _plain(text: str, kind: str | None, index: int | None) -> Iterator[Carrier]:
         yield Carrier("safety", None, text, index, "extract.safety_section")
 
 
+def _signal_prefix(text: str) -> re.Match[str] | None:
+    match = _SIGNAL_PREFIX.match(text)
+    if match is None and (bare := _BARE_SIGNAL.match(text)) and bare.group(1).isupper():
+        return bare
+    return match
+
+
 def _paragraph(block: dict, kind: str | None) -> Iterator[Carrier]:
-    match = _SIGNAL_PREFIX.match(block["text"])
+    match = _signal_prefix(block["text"])
     if legislation(block["text"]):
         yield from _plain(block["text"], kind, None)
     elif match and (severity := _signal(match.group(1))) and block["text"][match.end():].strip():

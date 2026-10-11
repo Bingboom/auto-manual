@@ -119,6 +119,35 @@ class LanguageParityTests(unittest.TestCase):
         self.assertEqual(([m['severity'] for m in found['severity',]['members']], found['severity',]['confidence']),
                          (['caution', 'note'], 'high'))
 
+    def test_a_moved_paragraph_is_found_by_its_topics_but_a_broader_passage_is_not(self):
+        storage = 'Battery capacity drops with every charge cycle and during long storage.'
+        moved = '<p>De batterijcapaciteit neemt af bij het laden en bij lange opslag.</p>'
+        broad = '<p>Laad, bewaar en vervoer de batterij niet bij vuur, water of kinderen.</p>'
+        for nl, expected in ((moved + broad, ('topic_document', 1, 'low')), (broad, ('topic_document', 0, 'medium'))):
+            with TemporaryDirectory() as tmp:
+                _, _, relations = observe(Path(tmp), {
+                    ('M', 'en'): (section('s', 'SAFETY', f'<p>{storage}</p>'), '2.6'),
+                    # A maintenance section is no safety section: its prose carries no item.
+                    ('M', 'nl'): (section('o', 'ONDERHOUD', nl), SNAPSHOT)})
+            [absent] = parity(relations, 'M')[0]['absent_in']
+            self.assertEqual((absent['searched'], len(absent['hits']), absent['confidence']), expected)
+
+    def test_compliance_lines_pair_on_identical_text_never_on_position(self):
+        en = section('eu', 'EU Regulations', '<p>sales@hello-tech.com</p>',
+                     '<p>The full text of the declaration is available online.</p>', '<p>www.hello-tech.com</p>')
+        nl = section('eu', 'EU declaration', '<p>Download de app.</p>', '<p>www.hello-tech.com</p>',
+                     '<p>sales@hello-tech.com</p>')
+        with TemporaryDirectory() as tmp:
+            _, items, relations = observe(Path(tmp), {('M', 'en'): (en, '2.6'), ('M', 'nl'): (nl, '2.6')})
+        text = {item['knowledge_id']: item['text'] for item in items}
+        groups = sorted((sorted(text[m['knowledge_id']] for m in r['members']), r['differences'])
+                        for r in parity(relations, 'M'))
+        self.assertEqual(groups, [
+            (['Download de app.'], ['absent']),
+            (['The full text of the declaration is available online.'], ['absent']),
+            (['sales@hello-tech.com', 'sales@hello-tech.com'], ['order']),
+            (['www.hello-tech.com', 'www.hello-tech.com'], [])])
+
     def test_previous_relations_go_stale_only_where_their_evidence_changed(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

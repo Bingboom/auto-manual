@@ -32,10 +32,13 @@ class CarrierTests(unittest.TestCase):
         found = extracted('<h1 id="ops">Operations</h1>' + LEGEND
                           + table(('HINWEISE', 'Schalten Sie das Gerät aus.'), ('Gewicht', '10 kg'), header=None)
                           + '<p>Note: Tighten terminals 1 and 2.</p><p>Note:</p><p>Plain text.</p>'
+                          # A capitalised label that lost its colon still opens a note; ordinary prose does not.
+                          + '<p>OPMERKING De modus hervat de vorige status.</p><p>Note that the fan runs.</p>'
                           + '<p>NOTE: This device complies with part 15 of the FCC Rules.</p>')
         self.assertEqual([row[1:] for row in found], [
             ('extract.signal_row', 'warning', 'HINWEISE', 'Schalten Sie das Gerät aus.', 0),
             ('extract.signal_paragraph', 'warning', 'Note', 'Tighten terminals 1 and 2.', None),
+            ('extract.signal_paragraph', 'warning', 'OPMERKING', 'De modus hervat de vorige status.', None),
             # Cited legislation outranks the signal-word prefix.
             ('extract.compliance_legislation', 'compliance', None,
              'NOTE: This device complies with part 15 of the FCC Rules.', None)])
@@ -115,6 +118,7 @@ class TopicTests(unittest.TestCase):
                  'Не залишайте в салоні припаркованого автомобіля.']  # a parked car, not car charging
         self.assertEqual({text: classify(text) for text in texts}, {text: [] for text in texts})
         self.assertEqual(classify('Riesgo de descarga eléctrica.'), ['electrical'])
+        self.assertEqual(classify('Laden Sie sich die Jackery-App herunter.'), ['app_wireless'])  # "download"
 
 
 class ObservationScopeTests(unittest.TestCase):
