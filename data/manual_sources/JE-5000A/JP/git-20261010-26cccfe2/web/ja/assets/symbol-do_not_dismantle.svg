@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="20.0" height="20.0" viewBox="38.0 298.0 20.0 20.0"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,524.692)" d="M0 524.692H368.787V0H0Z" />
+</clipPath>
+</defs>
+<g><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_4)"><path transform="matrix(1,0,0,-1,46.443,302.6643)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0H3.051" />
+<path transform="matrix(1,0,0,-1,45.4967,312.9505)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0H4.945" />
+<path transform="matrix(1,0,0,-1,47.8497,298.88453)" d="M0 0C-4.848 0-8.778-3.93-8.778-8.777-8.778-13.625-4.848-17.555 0-17.555 4.847-17.555 8.777-13.625 8.777-8.777 8.777-3.93 4.847 0 0 0" fill="#dcddde" />
+<path transform="matrix(1,0,0,-1,49.4941,307.9655)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V.666C-.354 .666-.372 1.111-.372 1.111-.372 1.111-.391 1.553 0 1.553V5.218C0 5.218 .074 6.254-1.413 6.254H-1.639C-3.125 6.254-3.051 5.218-3.051 5.218V1.553C-2.66 1.553-2.679 1.111-2.679 1.111-2.679 1.111-2.697 .666-3.051 .666V0H0Z" />
+<path transform="matrix(1,0,0,-1,46.443,306.41114)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0H3.051" />
+<path transform="matrix(1,0,0,-1,46.443,307.3221)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0H3.051" />
+<path transform="matrix(1,0,0,-1,47.3335,302.6364)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-3.774" />
+<path transform="matrix(1,0,0,-1,47.3335,307.3169)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-.648" />
+<path transform="matrix(1,0,0,-1,48.5876,302.6364)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-3.774" />
+<path transform="matrix(1,0,0,-1,48.5876,307.3169)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-.648" />
+<path transform="matrix(1,0,0,-1,47.713,312.3263)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-.62" />
+<path transform="matrix(1,0,0,-1,48.2072,312.3263)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0V-.62" />
+<path transform="matrix(1,0,0,-1,47.713,311.8128)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0-.127 .491V3.844" />
+<path transform="matrix(1,0,0,-1,48.2072,311.8128)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0 .128 .491V3.844" />
+<path transform="matrix(1,0,0,-1,48.7184,312.28504)" stroke-width=".585" stroke-linecap="butt" stroke-miterlimit="4" stroke-linejoin="miter" fill="none" stroke="#454546" d="M0 0C0 .289-.341 .524-.762 .524-1.183 .524-1.523 .289-1.523 0H0Z" />
+<path transform="matrix(1,0,0,-1,53.8087,312.6283)" d="M0 0-.993-.994-12.06 10.071-11.066 11.065Z" fill="#454546" />
+<path transform="matrix(1,0,0,-1,47.8497,314.68855)" d="M0 0C-3.88 0-7.027 3.146-7.027 7.027-7.027 10.907-3.88 14.053 0 14.053 3.881 14.053 7.027 10.907 7.027 7.027 7.027 3.146 3.881 0 0 0M0 15.804C-4.848 15.804-8.778 11.874-8.778 7.027-8.778 2.179-4.848-1.751 0-1.751 4.847-1.751 8.777 2.179 8.777 7.027 8.777 11.874 4.847 15.804 0 15.804" fill="#454546" />
+</g></g></g></svg>

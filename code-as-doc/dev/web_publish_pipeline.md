@@ -370,12 +370,13 @@ create synthetic queue rows or write `HTML_link`.
    the query corpus and seals the deployment receipt, including the bounded
    frozen-source inventory. A plain Sphinx build without the extension cannot
    validate those production callbacks.
-   The frozen-input inventory is bounded at 1 GiB: it includes both the
-   self-contained source packages and their assembled Web copies. JHP-3000D US
-   brings the reviewed library from about 748 MiB to 775 MiB, exceeding the
-   previous 768 MiB input budget. Served-output and network inventories retain
-   their separate 512 MiB budget; the 32 MiB per-file and 10,000-file limits
-   remain enforced. Do not remove reviewed artwork to fit the input budget.
+   The frozen-input inventory is bounded at 1152 MiB: it includes both the
+   self-contained source packages and their assembled Web copies. JE-5000A JP
+   brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
+   exceeding the previous 1 GiB source budget. Served-output and network
+   inventories retain their separate 512 MiB budget; the 32 MiB per-file and
+   10,000-file limits remain enforced. Do not remove reviewed artwork to fit
+   the input budget.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
    branches, print artifacts, or unrelated targets.
