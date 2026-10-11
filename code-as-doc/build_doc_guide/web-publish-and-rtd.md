@@ -140,6 +140,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 导出按章节保留表格坐标、步骤和警告，去除样式及导航；现有 BlockClaw 插件通过
 `manual_search` / `manual_section` 只读查询，引用原文并绑定同一发布快照。
 启用配置、更新与撤下行为及图片文字边界见[欧规说明书查询](../dev/eu_manual_query.md)。
+同轮还写出 `machine_surface_manifest.json`（逐版本哈希、计数与未识别的警示标签）；新鲜度和
+标签报告用 `python -m tools.manual_knowledge.manifest`，见[机读语料方案](../dev/machine_readable_manual_corpus.md) §5.5–§5.6。
 
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到

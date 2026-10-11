@@ -1,5 +1,7 @@
 """Safety and semantic preservation at the rendered-manual query boundary."""
+from contextlib import redirect_stdout
 import hashlib
+import io
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -10,10 +12,12 @@ from unittest.mock import patch
 from tools.manual_knowledge.export import ARTIFACT, make_corpus, write_knowledge
 from tools.manual_knowledge.html import extract_sections
 from tools.manual_knowledge.identity import callout_severity, variant_identity
-from tools.manual_knowledge.manifest import MANIFEST, check_freshness, main as freshness_main
+from tools.manual_knowledge.manifest import (KNOWN_CALLOUT_LABELS_CSV, MANIFEST, check_callout_labels,
+                                             check_freshness, load_known_callout_labels, main as freshness_main)
 from tools.rtd.publication_catalog import _provenance, publication_identity
 from tools.rtd.deployment_receipt import write_deployment_receipt
 from tools.rtd.portal import setup
+from tools.utils.path_utils import PathSegments, repo_root
 
 
 def extract(body):
@@ -205,9 +209,10 @@ class KnowledgeExportTests(unittest.TestCase):
 class IdentityProvenanceTests(unittest.TestCase):
     def test_localized_callout_labels_map_to_fixed_severity_and_never_guess(self):
         for label, severity in [('WARNUNG', 'warning'), ('*Vorsicht:', 'caution'), ('Opmerkingen', 'note'),
-                                ('WSKAZÓWKI', 'tip'), ('ПОПЕРЕДЖЕННЯ', 'warning')]:
+                                ('WSKAZÓWKI', 'tip'), ('ПОПЕРЕДЖЕННЯ', 'warning'), ('ПОРАДА', 'tip')]:
             self.assertEqual(callout_severity(label), severity)
-        for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', 'Important']:
+        # Important / Importante wait for a Style Guide ruling (Phase 2 D13); never guess a level.
+        for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', 'Important', 'IMPORTANT', 'Importante']:
             self.assertEqual(callout_severity(label), 'unknown')
 
     def test_icon_only_callout_label_keeps_alt_text_without_guessing_severity(self):
@@ -363,3 +368,37 @@ class ManifestFreshnessTests(unittest.TestCase):
             (out / MANIFEST).write_text(json.dumps(manifest))
             self.assertIn('manifest bytes differ from the deployment receipt',
                           check_freshness(self.reader(out), receipt_name='manual-deployment.json')['problems'])
+
+    def test_unknown_callout_labels_are_inventoried_and_reported_without_changing_the_exit_code(self):
+        with TemporaryDirectory() as tmp:
+            out, _ = self.build(Path(tmp), body='<main><h1 id="specs">Specs</h1><div class="admonition">'
+                                                '<p class="admonition-title">WAARSCHU</p><p>Hot.</p></div></main>')
+            manifest = json.loads((out / MANIFEST).read_text())
+            self.assertEqual(manifest['variants'][0]['counts']['unknown_callout_labels'], {'WAARSCHU': 1})
+            self.assertEqual(manifest['totals']['unknown_callout_labels'], {'WAARSCHU': 1})
+            self.assertEqual(check_callout_labels(manifest, set()), {
+                'known': 0, 'new': [{'variant_key': 'MODEL/EU/en', 'label': 'WAARSCHU', 'count': 1}], 'stale': []})
+            known = {('MODEL/EU/en', 'WAARSCHU'), ('MODEL/EU/nl', 'GONE')}
+            self.assertEqual(check_callout_labels(manifest, known), {
+                'known': 1, 'new': [], 'stale': [{'variant_key': 'MODEL/EU/nl', 'label': 'GONE'}]})
+            del manifest['variants'][0]['counts']['unknown_callout_labels']
+            self.assertIsNone(check_callout_labels(manifest, known))
+            output = io.StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(freshness_main(['--site', str(out)]), 0)
+            self.assertIn({'variant_key': 'MODEL/EU/en', 'label': 'WAARSCHU', 'count': 1},
+                          json.loads(output.getvalue())['callout_labels']['new'])
+
+    def test_known_callout_label_table_rejects_unexplained_rows(self):
+        header = 'variant_key,label,disposition,note\n'
+        with TemporaryDirectory() as tmp:
+            data = Path(tmp)
+            self.assertEqual(load_known_callout_labels(data), set())
+            (data / KNOWN_CALLOUT_LABELS_CSV).write_text(header + 'M/EU/nl,⚠,icon_only,icon\n,,,\n', encoding='utf-8')
+            self.assertEqual(load_known_callout_labels(data), {('M/EU/nl', '⚠')})
+            for row in ['M/EU/nl,⚠,guess,\n', ',WAARSCHU,source_defect,\n']:
+                (data / KNOWN_CALLOUT_LABELS_CSV).write_text(header + row, encoding='utf-8')
+                with self.assertRaises(ValueError):
+                    load_known_callout_labels(data)
+        # The shipped table must stay loadable: every row names its variant, label and disposition.
+        self.assertIsInstance(load_known_callout_labels(repo_root() / PathSegments.DATA), set)
