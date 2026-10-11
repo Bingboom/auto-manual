@@ -9,9 +9,10 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from tools.component_specs.callout import variant_for_label
 from tools.manual_knowledge.export import ARTIFACT, make_corpus, write_knowledge
 from tools.manual_knowledge.html import extract_sections
-from tools.manual_knowledge.identity import callout_severity, variant_identity
+from tools.manual_knowledge.identity import SEVERITY, callout_severity, variant_identity
 from tools.manual_knowledge.manifest import (KNOWN_CALLOUT_LABELS_CSV, MANIFEST, check_callout_labels,
                                              check_freshness, load_known_callout_labels, main as freshness_main)
 from tools.rtd.publication_catalog import _provenance, publication_identity
@@ -209,11 +210,19 @@ class KnowledgeExportTests(unittest.TestCase):
 class IdentityProvenanceTests(unittest.TestCase):
     def test_localized_callout_labels_map_to_fixed_severity_and_never_guess(self):
         for label, severity in [('WARNUNG', 'warning'), ('*Vorsicht:', 'caution'), ('Opmerkingen', 'note'),
-                                ('WSKAZÓWKI', 'tip'), ('ПОПЕРЕДЖЕННЯ', 'warning'), ('ПОРАДА', 'tip')]:
+                                ('WSKAZÓWKI', 'tip'), ('ПОПЕРЕДЖЕННЯ', 'warning'), ('ПОРАДА', 'tip'),
+                                # Phase 2 D13: IMPORTANT is note-level, as the renderers have it.
+                                ('IMPORTANT', 'note'), ('Important', 'note'), ('Importante:', 'note'),
+                                ('Observação', 'note')]:
             self.assertEqual(callout_severity(label), severity)
-        # Important / Importante wait for a Style Guide ruling (Phase 2 D13); never guess a level.
-        for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', 'Important', 'IMPORTANT', 'Importante']:
+        for label in ['', 'WAARSCHU', 'OK-knop. OPMERKING', '⚠']:
             self.assertEqual(callout_severity(label), 'unknown')
+
+    def test_callout_levels_agree_with_the_renderers_wherever_both_know_the_label(self):
+        for label, severity in SEVERITY.items():
+            variant = variant_for_label(label)
+            if variant is not None:
+                self.assertEqual(severity, 'warning' if variant == 'danger' else variant, label)
 
     def test_icon_only_callout_label_keeps_alt_text_without_guessing_severity(self):
         sections, _ = extract('<table class="manual-callout-table"><tr><td class="manual-callout-label">'
@@ -400,5 +409,6 @@ class ManifestFreshnessTests(unittest.TestCase):
                 (data / KNOWN_CALLOUT_LABELS_CSV).write_text(header + row, encoding='utf-8')
                 with self.assertRaises(ValueError):
                     load_known_callout_labels(data)
-        # The shipped table must stay loadable: every row names its variant, label and disposition.
-        self.assertIsInstance(load_known_callout_labels(repo_root() / PathSegments.DATA), set)
+        # The shipped table stays loadable, and a label the vocabulary now maps is no exception any more.
+        for variant_key, label in load_known_callout_labels(repo_root() / PathSegments.DATA):
+            self.assertEqual(callout_severity(label), 'unknown', variant_key)
