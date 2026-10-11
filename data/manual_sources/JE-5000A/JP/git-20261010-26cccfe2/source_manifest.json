@@ -1,0 +1,1999 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-5000A",
+    "region": "JP",
+    "technical_version": "git-20261010-26cccfe2",
+    "languages": [
+      "ja"
+    ]
+  },
+  "original_source": {
+    "filename": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf",
+    "sha256": "26cccfe203b43a346743a0db7bf1757bb8f9c1e10aa716fe5aa5dbe1b58a48f8",
+    "page_count": 24,
+    "printed_version": "unknown"
+  },
+  "physical_page_map": {
+    "ja": [
+      3,
+      23
+    ],
+    "archived_print_cover": 1,
+    "archived_print_contents": 2,
+    "archived_back_cover": 24
+  },
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "publication_eligible": false,
+  "review_status": "candidate",
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "build_py_check_scope": "Shared JP family regression only; native JE-5000A body validated against source/ja/coverage.json and pinned source PDF.",
+  "normalizations": [
+    "Printed cover, Contents and back cover archived outside Web body.",
+    "Japanese print wraps joined without added spaces; source wording preserved.",
+    "Native independent caption boxes removed from art and reconstructed in CSS.",
+    "Shared transparent glyphs copied byte-identically; only concrete JP differences extracted."
+  ],
+  "repo_inputs": [
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/inbox-mc4.svg",
+      "sha256": "6722c03f08dd596a277c52d073d94dbf30787d3c38a2ce3ff09c1fd998d9f660",
+      "size": 101303
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-01.svg",
+      "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+      "size": 95567
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-02.svg",
+      "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+      "size": 95682
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+      "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+      "size": 95792
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+      "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+      "size": 96746
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-05.svg",
+      "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+      "size": 98187
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-06.svg",
+      "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+      "size": 98297
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-07.svg",
+      "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+      "size": 96474
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+      "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+      "size": 99046
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+      "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+      "size": 96544
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-10.svg",
+      "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+      "size": 97866
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-11.svg",
+      "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+      "size": 49700
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-12.svg",
+      "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+      "size": 50383
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-13.svg",
+      "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+      "size": 49836
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+      "size": 47580
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+      "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+      "size": 46621
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+      "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+      "size": 53348
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-20.svg",
+      "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+      "size": 48784
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+      "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+      "size": 48598
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-22.svg",
+      "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+      "size": 49086
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-23.svg",
+      "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+      "size": 49046
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-24.svg",
+      "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+      "size": 50052
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-25.svg",
+      "sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+      "size": 51941
+    },
+    {
+      "path": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+      "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+      "size": 48483
+    },
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795",
+      "size": 15821
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818",
+      "size": 54018
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537",
+      "size": 8700
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3",
+      "size": 19981
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "sha256": "d4136ca6377d1b2b7ceb7cb178be8e66b4bc12e7c2b38f6f7607ee28c3ff21cf",
+      "size": 300542
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
+      "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f",
+      "size": 26001
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44",
+      "size": 587
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json",
+      "sha256": "0a5ca273a27a13fd8e1f6f3ebeaab693f05b65b54f34fbcbbab6ccc97910361e",
+      "size": 35709
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json",
+      "sha256": "1d0d6e803802085fe6603e3cdad106adb96d3b2643d76ee1e15f00e644a7dcf2",
+      "size": 5961
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json",
+      "sha256": "4c61eb8384dd63859560a19e8d8b50a829c3452baacda5b620d8e7f449278f48",
+      "size": 16745
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "sha256": "9a349b53da9e6a4c8ff634cef9157c11d230dfde0d5dfefa793015b6a314c390",
+      "size": 11030
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d",
+      "size": 3442
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d",
+      "size": 20333
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3",
+      "size": 10570
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f",
+      "size": 3224
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c",
+      "size": 960
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1",
+      "size": 4296
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a",
+      "size": 47733
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280",
+      "size": 603
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd",
+      "size": 649
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4",
+      "size": 110
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0",
+      "size": 307
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5",
+      "size": 2844
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2",
+      "size": 9656
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298",
+      "size": 3643
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f",
+      "size": 305
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d",
+      "size": 52438
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c",
+      "size": 916
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025",
+      "size": 3803
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719",
+      "size": 24791
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9",
+      "size": 2895
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/buttons/ac-bottom.svg",
+      "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+      "size": 5659
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/buttons/manifest.json",
+      "sha256": "55cba1604da5707b4c40d946f7abc0fee59f568c73290b1b3ccafc9f7a60d58f",
+      "size": 5802
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/buttons/power-bottom.svg",
+      "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+      "size": 6321
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/buttons/usb-bottom.svg",
+      "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+      "size": 6266
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "sha256": "0d86fbcf31b2e3650a5a8dd2e3c0b74a25f9e54647294775c2a83ef470604bdd",
+      "size": 54769
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "size": 4358
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "size": 5105
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "size": 1292
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "size": 2148
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "size": 3972
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "size": 1452
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "size": 2569
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "size": 1363
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "size": 6007
+    },
+    {
+      "path": "tools/asset_pipeline/__init__.py",
+      "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331",
+      "size": 545
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e",
+      "size": 33576
+    },
+    {
+      "path": "tools/asset_pipeline/leaders.py",
+      "sha256": "cdcafbad09e13c4dbafd582110af1f86a7fc0ea4043212ec6eb86a38fc316c5d",
+      "size": 7437
+    },
+    {
+      "path": "tools/asset_pipeline/models.py",
+      "sha256": "76c0df2a039bb68ce57acefd11da4cda59b402438ac61864b3d3665fa128729a",
+      "size": 7552
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "sha256": "a99ee031a8ef796f562ebb82c542715daf34096df60a3c5cec143f8685a56785",
+      "size": 9216
+    },
+    {
+      "path": "tools/asset_pipeline/package.py",
+      "sha256": "2adba7bdadc21f0a182699c968cc95a2a82f68a67cea3b79c8ae95ce2a01ea68",
+      "size": 11252
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2",
+      "size": 33788
+    },
+    {
+      "path": "tools/build_paths.py",
+      "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5",
+      "size": 14639
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e",
+      "size": 2388
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81",
+      "size": 3434
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e",
+      "size": 13511
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183",
+      "size": 2078
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2",
+      "size": 9082
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37",
+      "size": 3347
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395",
+      "size": 1399
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917",
+      "size": 4900
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4",
+      "size": 2444
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e",
+      "size": 8691
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0",
+      "size": 8688
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e",
+      "size": 2837
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582",
+      "size": 2329
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a",
+      "size": 6970
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7",
+      "size": 7291
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752",
+      "size": 2610
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "sha256": "825274eeec31587ba7eac69055336acda5f3787997e8d7f1207523acf0eda242",
+      "size": 3732
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61",
+      "size": 2407
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5",
+      "size": 4570
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce",
+      "size": 2398
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd",
+      "size": 3371
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576",
+      "size": 1640
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7",
+      "size": 5386
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e",
+      "size": 6606
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172",
+      "size": 10395
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7",
+      "size": 3840
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840",
+      "size": 7060
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e",
+      "size": 5423
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80",
+      "size": 9879
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32",
+      "size": 3505
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423",
+      "size": 12564
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda",
+      "size": 6489
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1",
+      "size": 7944
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b",
+      "size": 18192
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3",
+      "size": 2356
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330",
+      "size": 2092
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1",
+      "size": 6354
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2",
+      "size": 10264
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe",
+      "size": 2029
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da",
+      "size": 10115
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad",
+      "size": 3677
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f",
+      "size": 21154
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1",
+      "size": 5651
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a",
+      "size": 10359
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec",
+      "size": 8641
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed",
+      "size": 4980
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "sha256": "da903303a8371344ceea35abfab3c5a80c16025e8304b6d82acad82d2371df51",
+      "size": 6881
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e",
+      "size": 5434
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b",
+      "size": 953
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0",
+      "size": 5647
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25",
+      "size": 5841
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d",
+      "size": 8707
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e",
+      "size": 1830
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8",
+      "size": 21944
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb",
+      "size": 4662
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f",
+      "size": 1439
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2",
+      "size": 7405
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4",
+      "size": 2798
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e",
+      "size": 1606
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289",
+      "size": 17941
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861",
+      "size": 4057
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510",
+      "size": 5885
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42",
+      "size": 3512
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8",
+      "size": 3785
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84",
+      "size": 3939
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a",
+      "size": 1616
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba",
+      "size": 5459
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db",
+      "size": 10860
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402",
+      "size": 8938
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2",
+      "size": 37373
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90",
+      "size": 10075
+    },
+    {
+      "path": "tools/utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "tools/utils/csv_fields.py",
+      "sha256": "28b60075372d9eaa1a7772d85729106c9f24bd0daf6850f3035ab091c7fbc82d",
+      "size": 2865
+    },
+    {
+      "path": "tools/utils/korean_josa.py",
+      "sha256": "411394837b70a77d3c89b032f61858d9aaa2fe77e4f824dd8fcdcc32c8900237",
+      "size": 4325
+    },
+    {
+      "path": "tools/utils/log.py",
+      "sha256": "e57ae5f03005967ed95b8683cc6b1622fe1e50cf17824b699c952c9a23d15916",
+      "size": 4459
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "sha256": "d5692ca4d662e3b278d7f9e62016268c1963cb12497418fc3b06a56e0baff744",
+      "size": 14471
+    },
+    {
+      "path": "tools/utils/process_utils.py",
+      "sha256": "aec1f17a102f14aa300189ed5d8a18eb4ced93458d6f87b6b9a326ad33ca820b",
+      "size": 1545
+    },
+    {
+      "path": "tools/utils/spec_footnotes.py",
+      "sha256": "58039fbb71b169d80082834355c6ffb806b8a447d0484f7ff6dbdd783ed90997",
+      "size": 1060
+    },
+    {
+      "path": "tools/utils/spec_master.py",
+      "sha256": "bd2683108e211fec7e95f4115c211e718eec171c8558f12a8868935b27c3d783",
+      "size": 3458
+    },
+    {
+      "path": "tools/utils/spec_master_auditing.py",
+      "sha256": "4f130be99357d930a7aaf6b5d65b92e689bb8732afd823dd4075876284f60966",
+      "size": 10749
+    },
+    {
+      "path": "tools/utils/spec_master_lookup.py",
+      "sha256": "0e39e10e93e492804e4db916bdf81526b3d17f5ad9b93cc8038af194fdc3c6fa",
+      "size": 10483
+    },
+    {
+      "path": "tools/utils/spec_master_mapping.py",
+      "sha256": "d7ebc39ea5921cd422565aa6020837e138b19dcdf9b3196fd4631cee8e11e31d",
+      "size": 8771
+    },
+    {
+      "path": "tools/utils/spec_master_repairs.py",
+      "sha256": "65167e86b03a6791b5031be62c68ebb1b8e3e2d69c1f5f519f38833e3e0f8a0a",
+      "size": 6356
+    },
+    {
+      "path": "tools/utils/spec_master_row_helpers.py",
+      "sha256": "f0967465f156bf4f975abb3fc4d7ea2b4c5da9d9404d3273616094196c1d0480",
+      "size": 27168
+    },
+    {
+      "path": "tools/utils/spec_master_shared.py",
+      "sha256": "233164e720ed5d39003fdf3c165a9723d1a43bea91d9bbec8c7754529afea85a",
+      "size": 13658
+    },
+    {
+      "path": "tools/utils/targets.py",
+      "sha256": "a495084aa2ed5fa758c7d26dc6ab9b7fe762868ab6e873cbc243e382dfbdf99f",
+      "size": 4889
+    },
+    {
+      "path": "tools/utils/tex_utils.py",
+      "sha256": "93dac4769a8b9117d276f9f45bccee5d2803549eef9b6c98fc970ca6c8f99e9b",
+      "size": 531
+    },
+    {
+      "path": "tools/utils/variable_resolver.py",
+      "sha256": "7042f3c7a8ad2aacb6d87b5028b68d60acefbd3c25a4a1f66223dbcf21c0260d",
+      "size": 6454
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94",
+      "size": 34
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8",
+      "size": 9601
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0",
+      "size": 1496
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903",
+      "size": 3257
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006",
+      "size": 1202
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a",
+      "size": 1147
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8",
+      "size": 15862
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8",
+      "size": 6582
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a",
+      "size": 2554
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39",
+      "size": 3739
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088",
+      "size": 4872
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24",
+      "size": 3214
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f",
+      "size": 5563
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4",
+      "size": 1676
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72",
+      "size": 12260
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9",
+      "size": 8035
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1",
+      "size": 2398
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d",
+      "size": 7707
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf",
+      "size": 4247
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513",
+      "size": 20325
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21",
+      "size": 19186
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540",
+      "size": 8140
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f",
+      "size": 3728
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0",
+      "size": 2001
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3",
+      "size": 968
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9",
+      "size": 30995
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326",
+      "size": 8918
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2",
+      "size": 4100
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a",
+      "size": 8154
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f",
+      "size": 16785
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b",
+      "size": 12143
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff",
+      "size": 10527
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924",
+      "size": 15401
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773",
+      "size": 15633
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f",
+      "size": 2024
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916",
+      "size": 4284
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61",
+      "size": 4773
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7",
+      "size": 9385
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c",
+      "size": 29164
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70",
+      "size": 5441
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc",
+      "size": 17942
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585",
+      "size": 6185
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70",
+      "size": 15285
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd",
+      "size": 1637
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4",
+      "size": 10498
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5",
+      "size": 5724
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "sha256": "e3c900bea7dca4ceaf05c91e752e757345a42cbec33a917aac38f3d2d79bfa55",
+      "size": 4985
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3",
+      "size": 2102
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f",
+      "size": 14683
+    },
+    {
+      "path": "tools/web/language_inventory.py",
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb",
+      "size": 3984
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6",
+      "size": 23128
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20",
+      "size": 739
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e",
+      "size": 3528
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805",
+      "size": 10484
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0",
+      "size": 3647
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288",
+      "size": 5730
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8",
+      "size": 65114
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51",
+      "size": 41571
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0",
+      "size": 5500
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b",
+      "size": 6340
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827",
+      "size": 1682
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6",
+      "size": 1835
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895",
+      "size": 7162
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "sha256": "216e1c2ecf96e497f00a45c445c87307b9a9a86e9533fbe7c9fcc562a223c623",
+      "size": 1536
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "sha256": "d3bf5c77e7e70f9c7261e7e025102cee52b2a28fe0fd420286092cd6bc9bbc38",
+      "size": 8649
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668",
+      "size": 3757
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2",
+      "size": 4036
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076",
+      "size": 6446
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a",
+      "size": 770
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a",
+      "size": 3977
+    }
+  ],
+  "inputs": [
+    {
+      "path": "Jackery ポータブル電源 5000 Plus 取扱説明書.pdf",
+      "sha256": "26cccfe203b43a346743a0db7bf1757bb8f9c1e10aa716fe5aa5dbe1b58a48f8",
+      "size": 11774270
+    },
+    {
+      "path": "README.md",
+      "sha256": "aa341396c2a0f2f2da7f0e6fb7eb2b4cb175e0b22455b37fed4e05e0a9d651b9",
+      "size": 5717
+    },
+    {
+      "path": "assets/ac-charge.svg",
+      "sha256": "e8b206685bd151f7b9db3e3c3f44f8e1810bb22c3617314643d65181268528d4",
+      "size": 1224759
+    },
+    {
+      "path": "assets/ac-output.svg",
+      "sha256": "ce7185afe740892298ebc9b8936ab3a09d11d79b51d5c60d3731fa452053a583",
+      "size": 198853
+    },
+    {
+      "path": "assets/app-add.svg",
+      "sha256": "d3c95c74c18a4c77d2200ddbc8b6524f59bb26a3b2c1c0c8fbe27e4493b093d8",
+      "size": 442809
+    },
+    {
+      "path": "assets/app-control.svg",
+      "sha256": "20bf04164ee6998ca5ffaae86fd9fb8a0a5e8b5f54b8150a60e2d200d471be00",
+      "size": 35706
+    },
+    {
+      "path": "assets/app-download.svg",
+      "sha256": "f05131f7a4244365728bcf17c8b10553c2c3ddd4769dfd78e945219be2a4530f",
+      "size": 21480
+    },
+    {
+      "path": "assets/app-qr.svg",
+      "sha256": "4d7fa0f90cfd9bc536bf56cdaccac8e2a31d74eb9935bd0118635c6caa217a2b",
+      "size": 42272
+    },
+    {
+      "path": "assets/app-results.svg",
+      "sha256": "b8d1b7ebcf1a74268f46c22da4ace6a292691365e0282e8bf5f32a64a35c873e",
+      "size": 1218928
+    },
+    {
+      "path": "assets/battery-packs.svg",
+      "sha256": "81af55ff98f81ada561b90c77deefb99b1c99bc668dcefa232725fdba0e08278",
+      "size": 2180260
+    },
+    {
+      "path": "assets/button-ac-bottom.svg",
+      "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+      "size": 5659
+    },
+    {
+      "path": "assets/button-dc.svg",
+      "sha256": "387228b19111429291080e3283df27790c6a57e972bc182178ebaf999d014c67",
+      "size": 4061
+    },
+    {
+      "path": "assets/button-power-bottom.svg",
+      "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+      "size": 6321
+    },
+    {
+      "path": "assets/button-usb-bottom.svg",
+      "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+      "size": 6266
+    },
+    {
+      "path": "assets/car-charge.svg",
+      "sha256": "2ed15a3b589a229cf20ba78211ca00b1d88fcbbf2f0d30515127b6461916a948",
+      "size": 1470047
+    },
+    {
+      "path": "assets/dc-output.svg",
+      "sha256": "3990abf260ec3ec792a37547ee627a0a71b79bed7101200d62e60eafbbfb99f9",
+      "size": 158151
+    },
+    {
+      "path": "assets/dual-pv.svg",
+      "sha256": "afe654d73507189df8f11ac4421bdb780eeee615ebd3944d65a743d49a732aff",
+      "size": 2218217
+    },
+    {
+      "path": "assets/high-pv-lock.svg",
+      "sha256": "cd1b0901eac9150c7bc4b34e0f8054d38a1348d250bf6de32ee056d97d3a9f21",
+      "size": 417480
+    },
+    {
+      "path": "assets/high-pv.svg",
+      "sha256": "88a1c2d8b6700fa62ae22bd4ae27960652564f065471280f59e20ccc76ec92fb",
+      "size": 2199906
+    },
+    {
+      "path": "assets/inbox-cable.svg",
+      "sha256": "42bf189f5027693e966ec923aeec74968f7a5d0ee33570e8155e3cba94c916d0",
+      "size": 33810
+    },
+    {
+      "path": "assets/inbox-main.svg",
+      "sha256": "fb33a782e600f7648ed378a56f3d8b00e218f9cb26beaaf192e698b31961f1e3",
+      "size": 123140
+    },
+    {
+      "path": "assets/inbox-manual.svg",
+      "sha256": "1c20e77a3e7de057b55aa064d706660c389f9911b9726d1443a7aa50c29a2569",
+      "size": 287326
+    },
+    {
+      "path": "assets/inbox-mc4.svg",
+      "sha256": "6722c03f08dd596a277c52d073d94dbf30787d3c38a2ce3ff09c1fd998d9f660",
+      "size": 101303
+    },
+    {
+      "path": "assets/lcd-01.svg",
+      "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+      "size": 95567
+    },
+    {
+      "path": "assets/lcd-02.svg",
+      "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+      "size": 95682
+    },
+    {
+      "path": "assets/lcd-03.svg",
+      "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+      "size": 95792
+    },
+    {
+      "path": "assets/lcd-04.svg",
+      "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+      "size": 96746
+    },
+    {
+      "path": "assets/lcd-05.svg",
+      "sha256": "b812158a271b6568fbc60a5a2c1a892e4d036dcc019898fbd4ba1664a8e38909",
+      "size": 82264
+    },
+    {
+      "path": "assets/lcd-06.svg",
+      "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+      "size": 98187
+    },
+    {
+      "path": "assets/lcd-07.svg",
+      "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+      "size": 98297
+    },
+    {
+      "path": "assets/lcd-08.svg",
+      "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+      "size": 96474
+    },
+    {
+      "path": "assets/lcd-09.svg",
+      "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+      "size": 99046
+    },
+    {
+      "path": "assets/lcd-10.svg",
+      "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+      "size": 96544
+    },
+    {
+      "path": "assets/lcd-11.svg",
+      "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+      "size": 97866
+    },
+    {
+      "path": "assets/lcd-12.svg",
+      "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+      "size": 49700
+    },
+    {
+      "path": "assets/lcd-13.svg",
+      "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+      "size": 50383
+    },
+    {
+      "path": "assets/lcd-14.svg",
+      "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+      "size": 49836
+    },
+    {
+      "path": "assets/lcd-15.svg",
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+      "size": 47580
+    },
+    {
+      "path": "assets/lcd-16.svg",
+      "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+      "size": 46621
+    },
+    {
+      "path": "assets/lcd-17.svg",
+      "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+      "size": 53348
+    },
+    {
+      "path": "assets/lcd-18.svg",
+      "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+      "size": 48784
+    },
+    {
+      "path": "assets/lcd-19.svg",
+      "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+      "size": 48598
+    },
+    {
+      "path": "assets/lcd-20.svg",
+      "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+      "size": 49086
+    },
+    {
+      "path": "assets/lcd-21.svg",
+      "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+      "size": 49046
+    },
+    {
+      "path": "assets/lcd-22.svg",
+      "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+      "size": 50052
+    },
+    {
+      "path": "assets/lcd-23.svg",
+      "sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+      "size": 51941
+    },
+    {
+      "path": "assets/lcd-24.svg",
+      "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+      "size": 48483
+    },
+    {
+      "path": "assets/lcd-button.svg",
+      "sha256": "393924fdba24b2a3e896cc03827a8e33892d0b11b25024a651b84bf7367ab3a8",
+      "size": 177435
+    },
+    {
+      "path": "assets/lcd-map.svg",
+      "sha256": "53f8a3df73520af0d091153046e04ce0df0630e5301d76f2face77360d9e5e01",
+      "size": 161129
+    },
+    {
+      "path": "assets/low-pv.svg",
+      "sha256": "5e5eb666170ec68844576b37756718c3187ca48a4c906ad2b92571a27fee3a08",
+      "size": 1948643
+    },
+    {
+      "path": "assets/overview-front.svg",
+      "sha256": "2fc5967073188a8484a48dbabb86f814061b39d498df8e54e03b0321f58e564d",
+      "size": 97852
+    },
+    {
+      "path": "assets/overview-left.svg",
+      "sha256": "bd0c529fae6d093fcea8a2f3c7d81c1a0ec8bfdcdf75b88e820d5eb4c74f3cbb",
+      "size": 90734
+    },
+    {
+      "path": "assets/overview-right.svg",
+      "sha256": "57b5e0f1a4923a37c5858a7d9977ee3c821c6fe6d24c99e5e56a5f437c3c5edb",
+      "size": 231810
+    },
+    {
+      "path": "assets/power.svg",
+      "sha256": "d9b23cfcda28eba027b6769afe8eb27794a449fac9e351326e9af1397ea16d45",
+      "size": 170802
+    },
+    {
+      "path": "assets/service-logo.svg",
+      "sha256": "00889b66437ecd87e2c6ba008a202edcd1e352e07bb7fd3ec07713c946e8635c",
+      "size": 7802
+    },
+    {
+      "path": "assets/symbol-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "size": 4358
+    },
+    {
+      "path": "assets/symbol-ground.svg",
+      "sha256": "29105915e90dc077fcf4a8b7d19f0de037db4e859e6d6c0191f776c1aafdff63",
+      "size": 2797
+    },
+    {
+      "path": "assets/symbol-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "size": 5105
+    },
+    {
+      "path": "assets/symbol-li-ion.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "size": 6007
+    },
+    {
+      "path": "assets/symbol-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "size": 1292
+    },
+    {
+      "path": "assets/symbol-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "size": 2148
+    },
+    {
+      "path": "assets/symbol-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "size": 3972
+    },
+    {
+      "path": "assets/symbol-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "size": 1452
+    },
+    {
+      "path": "assets/symbol-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "size": 2569
+    },
+    {
+      "path": "assets/symbol-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "size": 1363
+    },
+    {
+      "path": "assets/ups.svg",
+      "sha256": "5678654e7bde444f154810fd7bf101dda3d2f4bdf1876c8b919e19a1798c1719",
+      "size": 963832
+    },
+    {
+      "path": "assets/usb-output.svg",
+      "sha256": "626cd8d01400ae59b7f3de978942788dcef3a8cbe4d38b149a0a349b6b56eff9",
+      "size": 121603
+    },
+    {
+      "path": "rebuild.py",
+      "sha256": "279c30f3a756782f2b99c92e2623cf8623764dd29831f061234fa8c23d355496",
+      "size": 6323
+    },
+    {
+      "path": "refresh_manifest.py",
+      "sha256": "67588f544142dcd138224da3de3ceb78d3cc923b1ca8d2853691d24f60ac6a46",
+      "size": 2206
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "sha256": "7e820b1375a5475e462963822d100d185c084ea693e0c614a402c2494ab37a97",
+      "size": 58572
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "sha256": "df097529b5764fb9ccb79d4031af48702e399468e88fdee9792fa2cac9f94b4b",
+      "size": 1154783
+    },
+    {
+      "path": "source/figures.json",
+      "sha256": "51358a8eefdf894769597e81d686412814bed7aa18b7abb761f757ec30606f3b",
+      "size": 760134
+    },
+    {
+      "path": "source/ja/acceptance.json",
+      "sha256": "228b29653df65d16674e9c4c14e9f842777d60a7641176c879e3bb69d3d3e6cf",
+      "size": 1650
+    },
+    {
+      "path": "source/ja/content.json",
+      "sha256": "58dadb9f51a96fa7752ec015162c311c61bbee65fd546df088c50bed2636f066",
+      "size": 577720
+    },
+    {
+      "path": "source/ja/coverage.json",
+      "sha256": "7ea2df38201d53ab8373fcb6cd6ce5bfc5268b514f7c9ceaf4ec0d925bfa76c4",
+      "size": 118853
+    },
+    {
+      "path": "source/lcd_refs.json",
+      "sha256": "4c2fc006411f33d4ef45436a56785f604874adfd9038ea9c095ee63fd5f51394",
+      "size": 555
+    },
+    {
+      "path": "source/native_pages.json",
+      "sha256": "707fe9c55dee6f704fb130cc9363038b05cec1ed5ccf0e7c0cbf2cb794ab5759",
+      "size": 804070
+    },
+    {
+      "path": "source/page_map.json",
+      "sha256": "2c9844c61d8f54bc2956cbd4bb315596d7d76eb8c9ae3361787544a6d57dacb0",
+      "size": 1999
+    },
+    {
+      "path": "source/presentation.css",
+      "sha256": "d2f5c7da777a4c3fe478e79c8e15e3a84938d8ee5ab0b5a98f1594b63be693aa",
+      "size": 12474
+    },
+    {
+      "path": "source/qa/browser_report.json",
+      "sha256": "e37c679b56812c677286c1797a2160fb48f0199449d0859dd09d078cd4c4baba",
+      "size": 27377
+    },
+    {
+      "path": "source/qa/replay_report.json",
+      "sha256": "c9d58eee08e7687f9954af76c675215ffa888bb69a0b1bd82b8af1f7174b6358",
+      "size": 791
+    },
+    {
+      "path": "source/qa/source_report.json",
+      "sha256": "831398535d3528db7e8572455980c613f6206d0054665da525f4349fff58f9e4",
+      "size": 248
+    },
+    {
+      "path": "validate_layout.py",
+      "sha256": "ae41a7d00ab5f38fb46ad27a86583714e8863649f4a33f7fd3c1536428c08829",
+      "size": 10464
+    },
+    {
+      "path": "validate_replay.py",
+      "sha256": "bb3802c860e8f6d3ca7fa5f4b683ddc88a481e73eb25f3da5129d8a3bcd654f4",
+      "size": 3585
+    },
+    {
+      "path": "validate_source.py",
+      "sha256": "a0e80b154583622e78c0825d8314d1e5d620b9231affc8ddcbec282140efe1c0",
+      "size": 4979
+    },
+    {
+      "path": "web/ja/_static/source_presentation.css",
+      "sha256": "d2f5c7da777a4c3fe478e79c8e15e3a84938d8ee5ab0b5a98f1594b63be693aa",
+      "size": 12474
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434",
+      "size": 123623
+    },
+    {
+      "path": "web/ja/assets/ac-charge.svg",
+      "sha256": "e8b206685bd151f7b9db3e3c3f44f8e1810bb22c3617314643d65181268528d4",
+      "size": 1224759
+    },
+    {
+      "path": "web/ja/assets/ac-output.svg",
+      "sha256": "ce7185afe740892298ebc9b8936ab3a09d11d79b51d5c60d3731fa452053a583",
+      "size": 198853
+    },
+    {
+      "path": "web/ja/assets/app-add.svg",
+      "sha256": "d3c95c74c18a4c77d2200ddbc8b6524f59bb26a3b2c1c0c8fbe27e4493b093d8",
+      "size": 442809
+    },
+    {
+      "path": "web/ja/assets/app-control.svg",
+      "sha256": "20bf04164ee6998ca5ffaae86fd9fb8a0a5e8b5f54b8150a60e2d200d471be00",
+      "size": 35706
+    },
+    {
+      "path": "web/ja/assets/app-download.svg",
+      "sha256": "f05131f7a4244365728bcf17c8b10553c2c3ddd4769dfd78e945219be2a4530f",
+      "size": 21480
+    },
+    {
+      "path": "web/ja/assets/app-qr.svg",
+      "sha256": "4d7fa0f90cfd9bc536bf56cdaccac8e2a31d74eb9935bd0118635c6caa217a2b",
+      "size": 42272
+    },
+    {
+      "path": "web/ja/assets/app-results.svg",
+      "sha256": "b8d1b7ebcf1a74268f46c22da4ace6a292691365e0282e8bf5f32a64a35c873e",
+      "size": 1218928
+    },
+    {
+      "path": "web/ja/assets/battery-packs.svg",
+      "sha256": "81af55ff98f81ada561b90c77deefb99b1c99bc668dcefa232725fdba0e08278",
+      "size": 2180260
+    },
+    {
+      "path": "web/ja/assets/button-ac-bottom.svg",
+      "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+      "size": 5659
+    },
+    {
+      "path": "web/ja/assets/button-dc.svg",
+      "sha256": "387228b19111429291080e3283df27790c6a57e972bc182178ebaf999d014c67",
+      "size": 4061
+    },
+    {
+      "path": "web/ja/assets/button-power-bottom.svg",
+      "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+      "size": 6321
+    },
+    {
+      "path": "web/ja/assets/button-usb-bottom.svg",
+      "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+      "size": 6266
+    },
+    {
+      "path": "web/ja/assets/car-charge.svg",
+      "sha256": "2ed15a3b589a229cf20ba78211ca00b1d88fcbbf2f0d30515127b6461916a948",
+      "size": 1470047
+    },
+    {
+      "path": "web/ja/assets/dc-output.svg",
+      "sha256": "3990abf260ec3ec792a37547ee627a0a71b79bed7101200d62e60eafbbfb99f9",
+      "size": 158151
+    },
+    {
+      "path": "web/ja/assets/dual-pv.svg",
+      "sha256": "afe654d73507189df8f11ac4421bdb780eeee615ebd3944d65a743d49a732aff",
+      "size": 2218217
+    },
+    {
+      "path": "web/ja/assets/high-pv-lock.svg",
+      "sha256": "cd1b0901eac9150c7bc4b34e0f8054d38a1348d250bf6de32ee056d97d3a9f21",
+      "size": 417480
+    },
+    {
+      "path": "web/ja/assets/high-pv.svg",
+      "sha256": "88a1c2d8b6700fa62ae22bd4ae27960652564f065471280f59e20ccc76ec92fb",
+      "size": 2199906
+    },
+    {
+      "path": "web/ja/assets/inbox-cable.svg",
+      "sha256": "42bf189f5027693e966ec923aeec74968f7a5d0ee33570e8155e3cba94c916d0",
+      "size": 33810
+    },
+    {
+      "path": "web/ja/assets/inbox-main.svg",
+      "sha256": "fb33a782e600f7648ed378a56f3d8b00e218f9cb26beaaf192e698b31961f1e3",
+      "size": 123140
+    },
+    {
+      "path": "web/ja/assets/inbox-manual.svg",
+      "sha256": "1c20e77a3e7de057b55aa064d706660c389f9911b9726d1443a7aa50c29a2569",
+      "size": 287326
+    },
+    {
+      "path": "web/ja/assets/inbox-mc4.svg",
+      "sha256": "6722c03f08dd596a277c52d073d94dbf30787d3c38a2ce3ff09c1fd998d9f660",
+      "size": 101303
+    },
+    {
+      "path": "web/ja/assets/lcd-01.svg",
+      "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+      "size": 95567
+    },
+    {
+      "path": "web/ja/assets/lcd-02.svg",
+      "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+      "size": 95682
+    },
+    {
+      "path": "web/ja/assets/lcd-03.svg",
+      "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+      "size": 95792
+    },
+    {
+      "path": "web/ja/assets/lcd-04.svg",
+      "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+      "size": 96746
+    },
+    {
+      "path": "web/ja/assets/lcd-05.svg",
+      "sha256": "b812158a271b6568fbc60a5a2c1a892e4d036dcc019898fbd4ba1664a8e38909",
+      "size": 82264
+    },
+    {
+      "path": "web/ja/assets/lcd-06.svg",
+      "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+      "size": 98187
+    },
+    {
+      "path": "web/ja/assets/lcd-07.svg",
+      "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+      "size": 98297
+    },
+    {
+      "path": "web/ja/assets/lcd-08.svg",
+      "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+      "size": 96474
+    },
+    {
+      "path": "web/ja/assets/lcd-09.svg",
+      "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+      "size": 99046
+    },
+    {
+      "path": "web/ja/assets/lcd-10.svg",
+      "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+      "size": 96544
+    },
+    {
+      "path": "web/ja/assets/lcd-11.svg",
+      "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+      "size": 97866
+    },
+    {
+      "path": "web/ja/assets/lcd-12.svg",
+      "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+      "size": 49700
+    },
+    {
+      "path": "web/ja/assets/lcd-13.svg",
+      "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+      "size": 50383
+    },
+    {
+      "path": "web/ja/assets/lcd-14.svg",
+      "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+      "size": 49836
+    },
+    {
+      "path": "web/ja/assets/lcd-15.svg",
+      "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+      "size": 47580
+    },
+    {
+      "path": "web/ja/assets/lcd-16.svg",
+      "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+      "size": 46621
+    },
+    {
+      "path": "web/ja/assets/lcd-17.svg",
+      "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+      "size": 53348
+    },
+    {
+      "path": "web/ja/assets/lcd-18.svg",
+      "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+      "size": 48784
+    },
+    {
+      "path": "web/ja/assets/lcd-19.svg",
+      "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+      "size": 48598
+    },
+    {
+      "path": "web/ja/assets/lcd-20.svg",
+      "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+      "size": 49086
+    },
+    {
+      "path": "web/ja/assets/lcd-21.svg",
+      "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+      "size": 49046
+    },
+    {
+      "path": "web/ja/assets/lcd-22.svg",
+      "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+      "size": 50052
+    },
+    {
+      "path": "web/ja/assets/lcd-23.svg",
+      "sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+      "size": 51941
+    },
+    {
+      "path": "web/ja/assets/lcd-24.svg",
+      "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+      "size": 48483
+    },
+    {
+      "path": "web/ja/assets/lcd-button.svg",
+      "sha256": "393924fdba24b2a3e896cc03827a8e33892d0b11b25024a651b84bf7367ab3a8",
+      "size": 177435
+    },
+    {
+      "path": "web/ja/assets/lcd-map.svg",
+      "sha256": "53f8a3df73520af0d091153046e04ce0df0630e5301d76f2face77360d9e5e01",
+      "size": 161129
+    },
+    {
+      "path": "web/ja/assets/low-pv.svg",
+      "sha256": "5e5eb666170ec68844576b37756718c3187ca48a4c906ad2b92571a27fee3a08",
+      "size": 1948643
+    },
+    {
+      "path": "web/ja/assets/overview-front.svg",
+      "sha256": "2fc5967073188a8484a48dbabb86f814061b39d498df8e54e03b0321f58e564d",
+      "size": 97852
+    },
+    {
+      "path": "web/ja/assets/overview-left.svg",
+      "sha256": "bd0c529fae6d093fcea8a2f3c7d81c1a0ec8bfdcdf75b88e820d5eb4c74f3cbb",
+      "size": 90734
+    },
+    {
+      "path": "web/ja/assets/overview-right.svg",
+      "sha256": "57b5e0f1a4923a37c5858a7d9977ee3c821c6fe6d24c99e5e56a5f437c3c5edb",
+      "size": 231810
+    },
+    {
+      "path": "web/ja/assets/power.svg",
+      "sha256": "d9b23cfcda28eba027b6769afe8eb27794a449fac9e351326e9af1397ea16d45",
+      "size": 170802
+    },
+    {
+      "path": "web/ja/assets/service-logo.svg",
+      "sha256": "00889b66437ecd87e2c6ba008a202edcd1e352e07bb7fd3ec07713c946e8635c",
+      "size": 7802
+    },
+    {
+      "path": "web/ja/assets/symbol-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "size": 4358
+    },
+    {
+      "path": "web/ja/assets/symbol-ground.svg",
+      "sha256": "29105915e90dc077fcf4a8b7d19f0de037db4e859e6d6c0191f776c1aafdff63",
+      "size": 2797
+    },
+    {
+      "path": "web/ja/assets/symbol-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "size": 5105
+    },
+    {
+      "path": "web/ja/assets/symbol-li-ion.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "size": 6007
+    },
+    {
+      "path": "web/ja/assets/symbol-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "size": 1292
+    },
+    {
+      "path": "web/ja/assets/symbol-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "size": 2148
+    },
+    {
+      "path": "web/ja/assets/symbol-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "size": 3972
+    },
+    {
+      "path": "web/ja/assets/symbol-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "size": 1452
+    },
+    {
+      "path": "web/ja/assets/symbol-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "size": 2569
+    },
+    {
+      "path": "web/ja/assets/symbol-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "size": 1363
+    },
+    {
+      "path": "web/ja/assets/ups.svg",
+      "sha256": "5678654e7bde444f154810fd7bf101dda3d2f4bdf1876c8b919e19a1798c1719",
+      "size": 963832
+    },
+    {
+      "path": "web/ja/assets/usb-output.svg",
+      "sha256": "626cd8d01400ae59b7f3de978942788dcef3a8cbe4d38b149a0a349b6b56eff9",
+      "size": 121603
+    },
+    {
+      "path": "web/ja/conf.py",
+      "sha256": "f6e89b705995643e73bca784223d1f26b0986df32434458d7623c4be4c666e93",
+      "size": 847
+    },
+    {
+      "path": "web/ja/index.md",
+      "sha256": "eb0691bcfc1642e419524b35e65b1f04d0c2e8fffce1ad83cd9ade5cc33fbeac",
+      "size": 107
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "sha256": "6f08832d30e145ec73cdb03a9a2320808d92f916967b85902819f0410410d5ef",
+      "size": 727638
+    },
+    {
+      "path": "web/ja/manual_je5000a_jp_ja.md",
+      "sha256": "0fee3b0cb825c3bd38ca232959643d41899503f912555a63e564783b90b6be9b",
+      "size": 111360
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "physical_page": 1,
+    "role": "print-cover",
+    "printed_page": null
+  },
+  {
+    "physical_page": 2,
+    "role": "printed-contents",
+    "printed_page": null
+  },
+  {
+    "physical_page": 3,
+    "role": "web-body",
+    "printed_page": "01"
+  },
+  {
+    "physical_page": 4,
+    "role": "web-body",
+    "printed_page": "02"
+  },
+  {
+    "physical_page": 5,
+    "role": "web-body",
+    "printed_page": "03"
+  },
+  {
+    "physical_page": 6,
+    "role": "web-body",
+    "printed_page": "04"
+  },
+  {
+    "physical_page": 7,
+    "role": "web-body",
+    "printed_page": "05"
+  },
+  {
+    "physical_page": 8,
+    "role": "web-body",
+    "printed_page": "06"
+  },
+  {
+    "physical_page": 9,
+    "role": "web-body",
+    "printed_page": "07"
+  },
+  {
+    "physical_page": 10,
+    "role": "web-body",
+    "printed_page": "08"
+  },
+  {
+    "physical_page": 11,
+    "role": "web-body",
+    "printed_page": "09"
+  },
+  {
+    "physical_page": 12,
+    "role": "web-body",
+    "printed_page": "10"
+  },
+  {
+    "physical_page": 13,
+    "role": "web-body",
+    "printed_page": "11"
+  },
+  {
+    "physical_page": 14,
+    "role": "web-body",
+    "printed_page": "12"
+  },
+  {
+    "physical_page": 15,
+    "role": "web-body",
+    "printed_page": "13"
+  },
+  {
+    "physical_page": 16,
+    "role": "web-body",
+    "printed_page": "14"
+  },
+  {
+    "physical_page": 17,
+    "role": "web-body",
+    "printed_page": "15"
+  },
+  {
+    "physical_page": 18,
+    "role": "web-body",
+    "printed_page": "16"
+  },
+  {
+    "physical_page": 19,
+    "role": "web-body",
+    "printed_page": "17"
+  },
+  {
+    "physical_page": 20,
+    "role": "web-body",
+    "printed_page": "18"
+  },
+  {
+    "physical_page": 21,
+    "role": "web-body",
+    "printed_page": "19"
+  },
+  {
+    "physical_page": 22,
+    "role": "web-body",
+    "printed_page": "20"
+  },
+  {
+    "physical_page": 23,
+    "role": "web-body",
+    "printed_page": "21"
+  },
+  {
+    "physical_page": 24,
+    "role": "back-cover",
+    "printed_page": null
+  }
+]
