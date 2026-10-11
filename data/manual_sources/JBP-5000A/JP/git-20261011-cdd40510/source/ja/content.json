@@ -1,0 +1,4711 @@
+{
+  "title": "Jackery Battery Pack 5000 Plus · JBP-5000A",
+  "model": "JBP-5000A",
+  "region": "JP",
+  "language": "ja",
+  "source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "chapters": [
+    {
+      "id": "specifications",
+      "title": "主な仕様",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-specifications",
+          "children": [
+            {
+              "kind": "text",
+              "text": "主な仕様"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "native-pdf/specifications/1",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "【Jackery Battery Pack 5000 Plus】"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "製品の名称",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "Jackery Battery Pack 5000 Plus",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "型番",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "JBP-5000A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "定格容量",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "45Ah/112Vdc (5040Wh)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "バッテリータイプ",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "LiFePO4（リン酸鉄リチウムイオン電池）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "サイズ＆重量",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "約418 x 344 x 336 mm (約37kg）",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "DC拡張ポート（入力）",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "80.5V-126V⎓41A Max,電流制限41A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "DC拡張ポート（出力）",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "80.5V-126V⎓98A Max,電流制限98A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "充電温度",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "0°C~45°C (32°F~113°F)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "動作温度",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-15°C~45°C (5°F~113°F)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "保存温度",
+                    "label_rowspan": 2,
+                    "values": [
+                      {
+                        "text": "1年間 0~25℃ (32~77℉)；3ヶ月 0~45℃ (32~113℉)",
+                        "references": []
+                      },
+                      {
+                        "text": "1ヶ月 -20~45℃ (-4~113℉)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "認証",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "UN38.3",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-spec-section hb-spec-group"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-spec-section-text"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "【Jackery Battery Pack 5000 Plus】"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "製品の名称"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Jackery Battery Pack 5000 Plus"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "型番"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "JBP-5000A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "定格容量"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "45Ah/112Vdc (5040Wh)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "バッテリータイプ"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "LiFePO4（リン酸鉄リチウムイオン電池）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "サイズ＆重量"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "約418 x 344 x 336 mm (約37kg）"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "DC拡張ポート（入力）"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "80.5V-126V⎓41A Max,電流制限41A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "DC拡張ポート（出力）"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "80.5V-126V⎓98A Max,電流制限98A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "充電温度"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "0°C~45°C (32°F~113°F)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "動作温度"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-15°C~45°C (5°F~113°F)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "保存温度"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1年間 0~25℃ (32~77℉)；3ヶ月 0~45℃ (32~113℉)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": ""
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1ヶ月 -20~45℃ (-4~113℉)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "認証"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "UN38.3"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "本製品はJackery ポータブル電源 5000 Plus専用となります。他の機器には接続しないでください。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "本機の仕様および外観は、改善のため予告なく変更することがあります。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "充電式電池のリサイクルについて"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-recycle"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "image",
+              "source": "assets/symbol-li-ion.svg",
+              "alt": "Li-ion"
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "本機はリサイクル可能な充電池を内蔵しています。"
+                },
+                {
+                  "kind": "text",
+                  "text": "この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。"
+                },
+                {
+                  "kind": "text",
+                  "text": "充電池の取りはずしはお客様自身では行わないでください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "inbox",
+      "title": "同梱品",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-inbox",
+          "children": [
+            {
+              "kind": "text",
+              "text": "同梱品"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-INBOX",
+            "variant": "three-card-responsive",
+            "source_ref": "native-pdf/inbox/2",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "同梱品"
+              },
+              {
+                "role": "cards",
+                "content_kind": "ordered_cards",
+                "content": [
+                  {
+                    "number": 1,
+                    "image_asset_role": "card_1_art",
+                    "alt": "本体",
+                    "label": "本体"
+                  },
+                  {
+                    "number": 2,
+                    "image_asset_role": "card_2_art",
+                    "alt": "拡張ケーブル",
+                    "label": "拡張ケーブル"
+                  },
+                  {
+                    "number": 3,
+                    "image_asset_role": "card_3_art",
+                    "alt": "取扱説明書",
+                    "label": "取扱説明書"
+                  }
+                ]
+              },
+              {
+                "role": "tip_label",
+                "content_kind": "inline_text",
+                "content": ""
+              },
+              {
+                "role": "tip_body",
+                "content_kind": "rich_text",
+                "content": ""
+              }
+            ],
+            "assets": [
+              {
+                "role": "card_1_art",
+                "asset_ref": "assets/inbox-main.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_2_art",
+                "asset_ref": "assets/inbox-cable.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_3_art",
+                "asset_ref": "assets/inbox-manual.svg",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-main.svg",
+                              "alt": "本体"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "本体"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-cable.png",
+                              "alt": "拡張ケーブル"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "拡張ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/inbox-manual.svg",
+                              "alt": "取扱説明書"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "取扱説明書"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "title": "各部の名称",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-overview",
+          "children": [
+            {
+              "kind": "text",
+              "text": "各部の名称"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-overview native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-3/overview",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "overview"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "overview"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>ハンドル</strong></span></span>",
+                        "text": "ハンドル"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>ディスプレイ</strong></span></span>",
+                        "text": "ディスプレイ"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>DC 拡張ポート B</strong></span></span>",
+                        "text": "DC 拡張ポート B"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">バッテリーパック接続ケーブル</span><br/><span style=\"font-size:1.000000em;color:#404041\">のプラグBに接続</span></span>",
+                        "text": "バッテリーパック接続ケーブル のプラグBに接続"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>DC 拡張ポート A</strong></span></span>",
+                        "text": "DC 拡張ポート A"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">バッテリーパック接続ケーブル</span><br/><span style=\"font-size:1.000000em;color:#404041\">のプラグAに接続</span></span>",
+                        "text": "バッテリーパック接続ケーブル のプラグAに接続"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>主電源ボタン</strong></span></span>",
+                        "text": "主電源ボタン"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/overview.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "d2cfb9e6a142b099fb8073971082b0123fc1477ca6a9b3bae3a10ad5245970e7",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          0.3828483291819126,
+                          4.294197514372052,
+                          8.973101120960864,
+                          5.094339622641515
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          87.2426576252225,
+                          4.845615602889151,
+                          12.758626817147942,
+                          5.094339622641515
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          0.4825060880636867,
+                          37.76046465028007,
+                          16.775222971469542,
+                          5.094339622641515
+                        ]
+                      },
+                      {
+                        "line": 3,
+                        "rect": [
+                          0.44810138171232194,
+                          42.77494898382223,
+                          26.923358289501337,
+                          8.538441208173655
+                        ]
+                      },
+                      {
+                        "line": 4,
+                        "rect": [
+                          0.39835459069360657,
+                          75.53240218252506,
+                          16.68661455564861,
+                          5.094339622641515
+                        ]
+                      },
+                      {
+                        "line": 5,
+                        "rect": [
+                          0.37199394612372677,
+                          80.45962351673055,
+                          26.923357685909995,
+                          8.538426813089634
+                        ]
+                      },
+                      {
+                        "line": 6,
+                        "rect": [
+                          85.55243769778481,
+                          84.55480899450913,
+                          13.600641564477847,
+                          5.094339622641515
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "overview",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "5cdc93745a922ff0b6c0755834701a3545cc685c06a005d91395d534a619f393",
+                  "capture_following_lines": 7
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/overview.svg",
+                  "alt": "overview"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "ハンドル"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "ディスプレイ"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "DC 拡張ポート B"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "バッテリーパック接続ケーブル"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "のプラグBに接続"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "DC 拡張ポート A"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "バッテリーパック接続ケーブル"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "line_break"
+                            },
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "のプラグAに接続"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "主電源ボタン"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "lcd",
+      "title": "液晶画面",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-lcd",
+          "children": [
+            {
+              "kind": "text",
+              "text": "液晶画面"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-lcd-map"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-4/lcd-map",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "lcd-map"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "lcd-map"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#ffffff\">1</span></span>",
+                        "text": "1"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#ffffff\">2</span></span>",
+                        "text": "2"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/lcd-map.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "55f3c68fcf37bc58acbe5ba99e32b9867adb47e636c0c904287ab36beb851f8e",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          3.930421633141063,
+                          67.50178260187948,
+                          2.0388629948981456,
+                          17.307580671002786
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          94.68316764475028,
+                          68.84706635628977,
+                          2.6397277261609227,
+                          17.307580671002786
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "lcd-map",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "228699c172c82197f1850966411f16b68b4fc9ff1063059df5c41fc297e3dc23",
+                  "capture_following_lines": 2
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/lcd-map.svg",
+                  "alt": "lcd-map"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#ffffff"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#ffffff"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "2"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-LCD-ICON",
+            "variant": "icon-catalog",
+            "source_ref": "native-pdf/lcd/3",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "液晶画面の表示"
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "content": [
+                  {
+                    "number_html": "1",
+                    "number_text": "1",
+                    "name_html": "バッテリー残量(%)／エラーコード",
+                    "name_text": "バッテリー残量(%)／エラーコード",
+                    "description_html": "バッテリー残量(%)のところに現在の電力値が表示されますが、システム障害が発生した場合、エラーコードの「F0-FF」と表示されます。しばらく本製品を放置した後、自動的に回復することができますが、回復しない場合は、カスタマーサービスにご連絡ください。他のエラーコードが表示された場合はカスタマーサービスにご連絡ください。",
+                    "description_text": "バッテリー残量(%)のところに現在の電力値が表示されますが、システム障害が発生した場合、エラーコードの「F0-FF」と表示されます。しばらく本製品を放置した後、自動的に回復することができますが、回復しない場合は、カスタマーサービスにご連絡ください。他のエラーコードが表示された場合はカスタマーサービスにご連絡ください。",
+                    "icon_alt": "1",
+                    "asset_index": 0
+                  },
+                  {
+                    "number_html": "2",
+                    "number_text": "2",
+                    "name_html": "充電マーク",
+                    "name_text": "充電マーク",
+                    "description_html": "充電のための接続が行われると、このマークが表示され、満充電になると消えます。",
+                    "description_text": "充電のための接続が行われると、このマークが表示され、満充電になると消えます。",
+                    "icon_alt": "2",
+                    "asset_index": 1
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "icons",
+                "asset_ref": "assets/lcd-percentage.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/lcd-charge.svg",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.table.lcd-icon"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "製品の使用方法について",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-operations",
+          "children": [
+            {
+              "kind": "text",
+              "text": "製品の使用方法について"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "オン/オフ"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "「主電源ボタン」を短く押し、製品の電源を入れ、LCDを点灯させます。"
+            },
+            {
+              "kind": "text",
+              "text": "「主電源ボタン」を3秒間長押"
+            },
+            {
+              "kind": "text",
+              "text": "しして電源を切ります。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-power native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-4/power",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "power"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "power"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>オン</strong></span></span>",
+                        "text": "オン"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">1回押す</span></span>",
+                        "text": "1回押す"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>オフ</strong></span></span>",
+                        "text": "オフ"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">3秒</span></span>",
+                        "text": "3秒"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/power.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "9ffade3f6f4f7679e046d56764cc532798ff9acc746c80343a4d9422a587b47f",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          85.4265237156349,
+                          12.352415892454955,
+                          5.483545230913766,
+                          10.990990990990982
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          85.56386247465882,
+                          22.07322679124437,
+                          8.388297165496441,
+                          9.72972972972974
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          85.3328559972063,
+                          35.89837701471002,
+                          5.443041837668117,
+                          10.990990990990982
+                        ]
+                      },
+                      {
+                        "line": 3,
+                        "rect": [
+                          89.7524387021608,
+                          47.56854632953266,
+                          4.077534735957278,
+                          9.72972972972974
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "power",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "6b9a9b2122e3d3021cc5b3d62ea65feeb8f05bcb5f8dafcf3d9d17db2cbb7c29",
+                  "capture_following_lines": 4
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/power.svg",
+                  "alt": "power"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "オン"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "1回押す"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "オフ"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "3秒"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "native-pdf/page-4/note",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "注釈"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "Jackery ポータブル電源 5000 Plusと併用する場合、Jackery ポータブル電源 5000 Plusの「主電源ボタン」からJackery Battery Pack 5000 Plusの電源の\nオン\n/\nオフ\nを制御できます。\n充電されていないか、負荷が2時間接続されていないと、製品は自動的にシャットダウンします。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "注釈"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Jackery ポータブル電源 5000 Plusと併用する場合、Jackery ポータブル電源 5000 Plusの「主"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "電源ボタン」からJackery Battery Pack 5000 Plusの電源の"
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "オン"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "/"
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "オフ"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "を制御できます。"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "充電されていないか、負荷が2時間接続されていないと、製品は自動的にシャットダウンします。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "LCDディスプレイのオン/オフ"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "「主電源ボタン」を押した時や充電中はLCDディスプレイが点灯し、もう一度押すとLCDディスプレイが消灯します。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "battery-packs",
+      "title": "ポータブル電源との併用",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-battery-packs",
+          "children": [
+            {
+              "kind": "text",
+              "text": "ポータブル電源との併用"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "これらの製品は、Jackery ポータブル電源 5000 Plusとともに最大5セットまで使用することができ、容量"
+            },
+            {
+              "kind": "text",
+              "text": "の増加に対応することができます。  "
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-battery-packs native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-5/battery-packs",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "battery-packs"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "battery-packs"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">≥20cm</span></span>",
+                        "text": "≥20cm"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">≥20cm</span></span>",
+                        "text": "≥20cm"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/battery-packs.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "81af55ff98f81ada561b90c77deefb99b1c99bc668dcefa232725fdba0e08278",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          32.59864034531992,
+                          89.7545398809971,
+                          6.5468365633035015,
+                          6.095102750338045
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          59.097468702098986,
+                          89.78179051325871,
+                          6.5468365633035015,
+                          6.095102750338045
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "battery-packs",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "a0e467e4d4f123729e0000803843e327f8f16c0d3877f3466c09cedad5d1ba51",
+                  "capture_following_lines": 2
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/battery-packs.svg",
+                  "alt": "battery-packs"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "≥20cm"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "≥20cm"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "native-pdf/page-5/notice-4",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "注釈"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "製品が適切に動作するよう、両側の吸気口と排気口が遮られていないことを確認してください。適切な放熱を確保するため、通気口と物との間に少なくとも20cmの空間を空けてください。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "注釈"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "製品が適切に動作するよう、両側の吸気口と排気口が遮られていないことを確認してください。適切な放熱を確保するため、通気口と物との間に少なくとも20cmの空間を空けてください。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-locking-connection native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-5/locking-connection",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "locking-connection"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "locking-connection"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>ロック</strong></span></span>",
+                        "text": "ロック"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\"><strong>ロック解除</strong></span></span>",
+                        "text": "ロック解除"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">1</span></span>",
+                        "text": "1"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">2</span></span>",
+                        "text": "2"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">1</span></span>",
+                        "text": "1"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">2</span></span>",
+                        "text": "2"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">拡張ケーブル</span></span>",
+                        "text": "拡張ケーブル"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/locking-connection.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "098fc8ad4c29e0cdd5ada28e03edd83bdd549016e5a8b849ff21f8e8f99f950f",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          4.390822784810126,
+                          4.457901664402174,
+                          7.792657538305354,
+                          5.304347826086952
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          56.727532495426225,
+                          4.457901664402174,
+                          12.66606970678402,
+                          5.304347826086952
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          5.217658417134345,
+                          11.808253785838252,
+                          1.1686482006990457,
+                          3.4655999308047134
+                        ]
+                      },
+                      {
+                        "line": 3,
+                        "rect": [
+                          27.28753150263919,
+                          11.808253785838252,
+                          1.4601526381094245,
+                          3.4655999308047134
+                        ]
+                      },
+                      {
+                        "line": 4,
+                        "rect": [
+                          57.964271835134,
+                          11.796256770258365,
+                          1.1986261681665349,
+                          3.6351826709249697
+                        ]
+                      },
+                      {
+                        "line": 5,
+                        "rect": [
+                          78.63921153394482,
+                          11.796256770258365,
+                          1.5064384363874603,
+                          3.6351826709249697
+                        ]
+                      },
+                      {
+                        "line": 6,
+                        "rect": [
+                          47.475158111958564,
+                          78.608775968137,
+                          10.956641088558149,
+                          3.925226170083756
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "locking-connection",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "5cd0f0d942bf6e950c59b7bfb2b9a74d6fb0a332ede3021d0df17e14c299dd7b",
+                  "capture_following_lines": 7
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/locking-connection.svg",
+                  "alt": "locking-connection"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "ロック"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "ロック解除"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "2"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "2"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "拡張ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-stack-limits native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-6/stack-limits",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "stack-limits"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "stack-limits"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "none"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/stack-limits.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "stack-limits",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "a8553cde7b43cdc66e2de2dbc5d7d2149572c7f857b3336020e6d750acc04aab",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/stack-limits.svg",
+                  "alt": "stack-limits"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "native-pdf/page-6/stacking-notice",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "使用上のご注意"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源\nが\nオフ\nになっていることを確認してください。\nLCD 画面(Jackery ポータブル電源 5000 Plus)に\nアイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。\n本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリーパックを3つ以上重ねないでください。\nJackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "使用上のご注意"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "line_break"
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "が"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "オフ"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kind": "strong",
+                                  "children": [
+                                    {
+                                      "kind": "text",
+                                      "text": "になっていることを確認してください。 "
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "LCD 画面(Jackery ポータブル電源 5000 Plus)に"
+                                },
+                                {
+                                  "kind": "image",
+                                  "source": "assets/connected-batteries.svg",
+                                  "alt": "接続バッテリー数"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "アイコンが表示されたら、バッテリーパックと Jackery ポータブル電源 5000 Plus の接続が成功したことを示します。"
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "本製品を使用する際は、バッテリーパックが落下して怪我をするのを防ぐため、バッテリ"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "ーパックを3つ以上重ねないでください。  "
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Jackery ポータブル電源 5000 Plusの上に本製品を積み重ねないでください。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "charging",
+      "title": "充電方法",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-charging",
+          "children": [
+            {
+              "kind": "text",
+              "text": "充電方法"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "AC充電"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "AC充電の場合、本製品はJackery ポータブル電源 5000 Plusと一緒にお使いください。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-ac-charge native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-6/ac-charge",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "ac-charge"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "ac-charge"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">ACケーブル</span></span>",
+                        "text": "ACケーブル"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">拡張ケーブル</span></span>",
+                        "text": "拡張ケーブル"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/ac-charge.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "2e631ef75388c58af6259a947645a4e3aa4537d082d77ea347003a683997f5d7",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          61.4647710890997,
+                          33.15307725995979,
+                          9.596814352368552,
+                          6.059073953820563
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          44.341968354724706,
+                          91.00408266054704,
+                          10.991060771639386,
+                          6.059073953820563
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "ac-charge",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "6c355bde99738f06744477312d027edbae6646efc33311fac1001aca8ddfe8ed",
+                  "capture_following_lines": 2
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/ac-charge.svg",
+                  "alt": "ac-charge"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "ACケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "拡張ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "warning",
+            "source_ref": "native-pdf/page-6/notice-5",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "警告"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "警告"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "バッテリーパックをJackery ポータブル電源 5000 Plusに接続する前に、両方の電源がオフになっていることを確認してください。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "ソーラー充電"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "下図のように、ソーラーパネルとJackery ポータブル電源 5000 Plusを使って製品を充電します。"
+            },
+            {
+              "kind": "text",
+              "text": "詳細については、Jackery ポータブル電源 5000 Plusの取扱説明書を参照してください。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-solar-portable native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-7/solar-portable",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "solar-portable"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "solar-portable"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">拡張ケーブル</span></span>",
+                        "text": "拡張ケーブル"
+                      },
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">SolarSaga 200</span></span>",
+                        "text": "SolarSaga 200"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/solar-portable.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "76caf021d16116ff166b7b72841ab215e3f61c44ab6ec9f658d97ed1a8a6f1c3",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          65.85307060917721,
+                          80.85324198007584,
+                          10.95665074601958,
+                          5.642512619495399
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          17.82286438760878,
+                          81.84241205453873,
+                          12.60761550710171,
+                          5.642512619495399
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "solar-portable",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "e000f0afd55444076cbf672859209b8a3b861c79c9d3cd0587f1084e15e0f103",
+                  "capture_following_lines": 2
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/solar-portable.svg",
+                  "alt": "solar-portable"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "拡張ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "SolarSaga 200"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-solar-house native-dense"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-7/solar-house",
+                "language": "ja",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "solar-house"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "solar-house"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "live"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<span><span style=\"font-size:1.000000em;color:#404041\">拡張ケーブル</span></span>",
+                        "text": "拡張ケーブル"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/solar-house.svg",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "ad5c6265c1bc7b0ddc4ae96e3c9312a1d249d909b4bab3695fa24aa008799969",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "mobile_labels": "overlay",
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          32.506279689656445,
+                          91.24413973379345,
+                          10.922077552001182,
+                          3.9423668957173095
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "solar-house",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "892af8b2a3239f9fd8922645e842bac9a6818cd8f6ab7b6828dd07723a3193aa",
+                  "capture_following_lines": 1
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/solar-house.svg",
+                  "alt": "solar-house"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "inline_group",
+                          "children": [
+                            {
+                              "kind": "inline_group",
+                              "presentation": {
+                                "html": {
+                                  "attributes": {
+                                    "style": "font-size:1.000000em;color:#404041"
+                                  }
+                                }
+                              },
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "拡張ケーブル"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "warning",
+            "source_ref": "native-pdf/page-7/notice-6",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "警告"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "バッテリーパックを本体に接続する前に、High-PV入力を外すか、High-PVスイッチをOFFにする必要があります。"
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "警告"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "バッテリーパックを本体に接続する前に、High-PV入力を外すか、High-PVスイッチをOFFにする必要があります。"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "保証サービス",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-warranty",
+          "children": [
+            {
+              "kind": "text",
+              "text": "保証サービス"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内"
+            },
+            {
+              "kind": "text",
+              "text": "容を説明するものです。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店"
+            },
+            {
+              "kind": "text",
+              "text": "が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保"
+            },
+            {
+              "kind": "text",
+              "text": "証期間中に、当社が定める条件に従って保証サービスを提供しております。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修"
+            },
+            {
+              "kind": "text",
+              "text": "理するものとします。"
+            },
+            {
+              "kind": "text",
+              "text": "保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の"
+            },
+            {
+              "kind": "text",
+              "text": "等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から"
+            },
+            {
+              "kind": "text",
+              "text": "30 日以上5 年間以内の製品を対象といたします。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場"
+            },
+            {
+              "kind": "text",
+              "text": "合のみ無償交換· 無償修理をさせていただきます。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サー"
+            },
+            {
+              "kind": "text",
+              "text": "ビスを提供いたします。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "5. 保証期間内でも次の場合には保証対象外となります。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場"
+            },
+            {
+              "kind": "text",
+              "text": "合を含む) による故障· 損傷"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(4) お買上げ後の移設、輸送、落下などによる故障· 損傷"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(6) 業務用など一般家庭用以外での使用による故障損傷"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "(7) 消耗· 摩耗した部品の交換、汚損した部分の交換"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することが"
+            },
+            {
+              "kind": "text",
+              "text": "あります。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日"
+            },
+            {
+              "kind": "text",
+              "text": "間のどちらか長い期間で保証されます。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、"
+            },
+            {
+              "kind": "text",
+              "text": "困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する"
+            },
+            {
+              "kind": "text",
+              "text": "同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼"
+            },
+            {
+              "kind": "text",
+              "text": "品との交換をさせていただく場合がございます。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合"
+            },
+            {
+              "kind": "text",
+              "text": "は、ご希望により有償修理にて承ります。　"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に"
+            },
+            {
+              "kind": "text",
+              "text": "発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わな"
+            },
+            {
+              "kind": "text",
+              "text": "いものとします。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-warranty-note"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "※保証期間はお買い上げ日より5 年間となります。"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "※本書は、本書記載内容（上記記載）で無償製品交換・無償修理を行うことをお約束するもので"
+                },
+                {
+                  "kind": "text",
+                  "text": "す。故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショッ"
+                },
+                {
+                  "kind": "text",
+                  "text": "プでの購入が証明できるもの（インターネットでの購入は注文"
+                },
+                {
+                  "kind": "text",
+                  "text": "番号、それ以外はレシートや領収書など）をお手元にご用意の上、JackeryJapan カスタマーサー"
+                },
+                {
+                  "kind": "text",
+                  "text": "ビス、もしくは販売店へお問い合わせください。"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "※故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショッ"
+                },
+                {
+                  "kind": "text",
+                  "text": "プでの購入が証明できるもの（インターネットでの購入は注文番号、それ以外はレシートや領収"
+                },
+                {
+                  "kind": "text",
+                  "text": "書など）が必須となりますのでご注意ください。当社製品正規取"
+                },
+                {
+                  "kind": "text",
+                  "text": "扱店につきましては、当社公式HP をご確認ください。"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "※本書によって保証責任者、及びそれ以外の事業者に対するお客様の法律上の権利を制限する"
+                },
+                {
+                  "kind": "text",
+                  "text": "ものではありません。"
+                }
+              ]
+            },
+            {
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "※保証内容は都合により予告なく変更する場合がございますのでご了承ください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-service"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-figure native-service-logo"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "native-pdf/page-9/service-logo",
+                    "language": "ja",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "service-logo"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "service-logo"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "none"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/service-logo.svg",
+                        "locale_policy": "exact"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "image_key": "service-logo",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "65f796594cc68c86dea0fcfc0e2810ec79cf1ee2d28d94270162f6e3f315a8e8",
+                      "capture_following_lines": 0
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/service-logo.svg",
+                      "alt": "service-logo"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "公式サイト"
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "http://www.jackery.jp"
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "カスタマーサービス"
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "jackery.jp@jackery.com "
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "使用上のご注意",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-safety",
+          "children": [
+            {
+              "kind": "text",
+              "text": "使用上のご注意"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "本製品を使用する際、以下の注意事項を守ってください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品を使用する前に取扱説明書をよくお読みください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "危険防止のため、お子様の近くで本製品を使用する時は、お子様から目を離さないようにしてください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "メーカーが保証していない推奨外の付属品を使用すると、感電の恐れがあります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "製品を使用しない場合は、プラグを抜いてください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "火災、爆発、感電などの予測できない危険が発生する恐れがありますので、本製品を解体しないでくださ"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "い。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "感電の危険があるため、破損したコードやプラグ、またはケーブルを使用しないでください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "製品の充電は風通しの良い場所で行い、風通しの悪い場所での充電はおやめください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "雨に濡れないよう、風通しのよい乾燥した場所に保管してください。本製品は濡れると感電の危険があ"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "ります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "火災、爆発などの事故の原因となるため、本製品を火気に近づけないでください。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "高温の下（直射日光や猛暑の車内）で使用したり放置しないでください。内蔵のバッテリーが過熱して発"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "火したり、機能しなくなったり、寿命が短くなる可能性があります。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品を初めてご使用になる時は、十分に充電してからご使用ください。本製品を電池が切れた状態で"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "長期間（3ヶ月～6ヶ月）放置すると、性能が低下し、過放電により充電ができなくなる場合があります。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-app-download-row"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "group",
+              "role": "container",
+              "children": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "本製品はJackeryアプリケーションによるスマ"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "ートコントロールに対応しています。"
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "ご利用いただくには、下記のアプリストアより"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "「Jackery」で検索して「Jackery アプリ」を"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "ダウンロードしてください。"
+                    }
+                  ]
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "native-figure native-app-download"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "component",
+                      "component_spec": {
+                        "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                        "variant": "semantic-fallback",
+                        "source_ref": "native-pdf/page-10/app-download",
+                        "language": "ja",
+                        "slots": [
+                          {
+                            "role": "reference_id",
+                            "content_kind": "inline_text",
+                            "content": "app-download"
+                          },
+                          {
+                            "role": "accessibility_label",
+                            "content_kind": "inline_text",
+                            "content": "app-download"
+                          },
+                          {
+                            "role": "caption_mode",
+                            "content_kind": "inline_text",
+                            "content": "none"
+                          },
+                          {
+                            "role": "caption_layout",
+                            "content_kind": "inline_text",
+                            "content": "equal"
+                          }
+                        ],
+                        "assets": [
+                          {
+                            "role": "source_art",
+                            "asset_ref": "assets/app-download.svg",
+                            "locale_policy": "exact"
+                          }
+                        ],
+                        "token_roles": [
+                          "component.special.reference-figure"
+                        ],
+                        "metadata": {
+                          "image_key": "app-download",
+                          "web_replace_key": "",
+                          "source_fragment_sha256": "a3179ffeb93e642d99fdb499785db82c7c7502fe8845c0d89ca551d41bfef2b7",
+                          "capture_following_lines": 0
+                        },
+                        "schema_version": "component-spec/v1"
+                      },
+                      "carrier_flow": [
+                        {
+                          "kind": "image",
+                          "source": "assets/app-download.svg",
+                          "alt": "app-download"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "group",
+              "role": "container",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-figure native-app-qr"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "component",
+                  "component_spec": {
+                    "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                    "variant": "semantic-fallback",
+                    "source_ref": "native-pdf/page-10/app-qr",
+                    "language": "ja",
+                    "slots": [
+                      {
+                        "role": "reference_id",
+                        "content_kind": "inline_text",
+                        "content": "app-qr"
+                      },
+                      {
+                        "role": "accessibility_label",
+                        "content_kind": "inline_text",
+                        "content": "app-qr"
+                      },
+                      {
+                        "role": "caption_mode",
+                        "content_kind": "inline_text",
+                        "content": "none"
+                      },
+                      {
+                        "role": "caption_layout",
+                        "content_kind": "inline_text",
+                        "content": "equal"
+                      }
+                    ],
+                    "assets": [
+                      {
+                        "role": "source_art",
+                        "asset_ref": "assets/app-qr.svg",
+                        "locale_policy": "exact"
+                      }
+                    ],
+                    "token_roles": [
+                      "component.special.reference-figure"
+                    ],
+                    "metadata": {
+                      "image_key": "app-qr",
+                      "web_replace_key": "",
+                      "source_fragment_sha256": "5eb43642300c375dc4eec76824daccd3cad4d079b319cc9ab3b03081bd37e22a",
+                      "capture_following_lines": 0
+                    },
+                    "schema_version": "component-spec/v1"
+                  },
+                  "carrier_flow": [
+                    {
+                      "kind": "image",
+                      "source": "assets/app-qr.svg",
+                      "alt": "app-qr"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+/* Native geometry only; shared styles own headings/tables/cards. */
+.native-figure{max-width:680px;margin:1rem auto;min-width:0;}
+.native-figure .hb-reference-figure{max-width:none;margin:0;}
+#furo-main-content .native-figure img{width:100%!important;height:auto!important;max-height:none;}
+.native-figure .hb-reference-live-label{font-family:Arial,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.25;align-items:flex-start;justify-content:flex-start;text-align:left;padding:0;white-space:nowrap;overflow:visible!important;}
+.native-figure .hb-reference-live-label>span{width:100%;}
+.native-figure .hb-reference-live-label strong{font-weight:700;}
+.native-lcd-map{max-width:480px;}
+.native-overview [data-source-line="1"]>span{text-align:right;}
+.native-locking-connection [data-source-line="2"] span,.native-locking-connection [data-source-line="3"] span,.native-locking-connection [data-source-line="4"] span,.native-locking-connection [data-source-line="5"] span{color:#fff!important;}
+.native-recycle{display:flex;align-items:center;gap:1rem;}
+.native-recycle>img{width:65px!important;}
+.native-warranty-note{background:var(--hb-fill-soft,#e7e7e8);border-radius:var(--hb-panel-radius);padding:1rem;margin:1rem 0;}
+.native-service{max-width:180px;margin-left:auto;}
+.native-service p{font-size:.75rem;line-height:1.45;margin:.25rem 0;}
+.native-service .native-figure{width:100%;margin:0 0 .5rem;}
+.native-app-download-row{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;max-width:680px;margin:1.5rem auto;}
+.native-app-download-row>div:first-child{max-width:350px;}
+.native-app-download-row p{font-size:.85rem;line-height:1.5;}
+.native-app-download{max-width:300px;margin:0;}
+.native-app-qr{width:86px;margin:0;flex:none;}
+.hb-callout img{width:2.5em!important;height:auto;display:inline-block;vertical-align:middle;}
+@media(max-width:760px){
+.native-dense{overflow-x:auto;padding-bottom:.5rem;}
+.native-dense>.hb-reference-figure{min-width:620px;}
+.native-app-download-row>div:first-child{max-width:calc(100% - 102px);}
+}
+.native-overview [data-source-line="0"]{font-size:2.2152cqw!important;}
+.native-overview [data-source-line="1"]{font-size:2.2152cqw!important;}
+.native-overview [data-source-line="2"]{font-size:2.2152cqw!important;}
+.native-overview [data-source-line="3"]{font-size:2.0570cqw!important;}
+.native-overview [data-source-line="4"]{font-size:2.2152cqw!important;}
+.native-overview [data-source-line="5"]{font-size:2.0570cqw!important;}
+.native-overview [data-source-line="6"]{font-size:2.2152cqw!important;}
+.native-lcd-map [data-source-line="0"]{font-size:3.2479cqw!important;}
+.native-lcd-map [data-source-line="1"]{font-size:3.2479cqw!important;}
+.native-power [data-source-line="0"]{font-size:2.5316cqw!important;}
+.native-power [data-source-line="1"]{font-size:2.2152cqw!important;}
+.native-power [data-source-line="2"]{font-size:2.5316cqw!important;}
+.native-power [data-source-line="3"]{font-size:2.2152cqw!important;}
+.native-battery-packs [data-source-line="0"]{font-size:1.9232cqw!important;}
+.native-battery-packs [data-source-line="1"]{font-size:1.9232cqw!important;}
+.native-locking-connection [data-source-line="0"]{font-size:2.5316cqw!important;}
+.native-locking-connection [data-source-line="1"]{font-size:2.5316cqw!important;}
+.native-locking-connection [data-source-line="2"]{font-size:1.5757cqw!important;}
+.native-locking-connection [data-source-line="3"]{font-size:1.5757cqw!important;}
+.native-locking-connection [data-source-line="4"]{font-size:1.6639cqw!important;}
+.native-locking-connection [data-source-line="5"]{font-size:1.6639cqw!important;}
+.native-locking-connection [data-source-line="6"]{font-size:1.8147cqw!important;}
+.native-ac-charge [data-source-line="0"]{font-size:1.8204cqw!important;}
+.native-ac-charge [data-source-line="1"]{font-size:1.8204cqw!important;}
+.native-solar-portable [data-source-line="0"]{font-size:1.8147cqw!important;}
+.native-solar-portable [data-source-line="1"]{font-size:1.8147cqw!important;}
+.native-solar-house [data-source-line="0"]{font-size:1.8089cqw!important;}
+
+/* Native Japanese font metrics: keep display label inside source right edge. */
+.native-overview [data-source-line="1"]{font-size:2.10cqw!important;}
