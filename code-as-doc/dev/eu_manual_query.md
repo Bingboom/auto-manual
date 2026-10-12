@@ -95,6 +95,9 @@ after a refresh failure.
   returns `needs_model` (with a hint), so one product is never answered from
   another. Background: on 2026-10-11 the bot named JE-2000F (2048 Wh) the
   largest, because a top-ranked chapter per model hid JE-3000C and JE-3600A.
+  It also cited the Feishu spec source table, which holds only JE-1000F; the
+  BlockClaw chat rules ([`agent/BOOTSTRAP.md`](../../agent/BOOTSTRAP.md) §5) now
+  take product facts only from these two tools, never from spec source tables.
 - Search previews are navigation only. `manual_section` requires document,
   chapter and `publication.snapshot_id` from search. It returns whole blocks,
   up to 30 per page / 60,000 bytes. Read all `next_offset` pages before giving a
