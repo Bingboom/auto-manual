@@ -1,0 +1,178 @@
+[
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 1,
+    "current": "Mise en garde. Le non-respect des messages d'avertissement peut entraîner des blessures.",
+    "new": "Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 2,
+    "current": "Lisez le manuel d'utilisation avant toute opération.",
+    "new": "Lire le manuel de l'opérateur.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 4,
+    "current": "Ne pas fumer ni utiliser de flamme nue.",
+    "new": "Tenir le produit à l’écart du feu.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 7,
+    "current": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères et qu'il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l'environnement. Pour plus d'informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+    "new": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié.Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "row": 8,
+    "current": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.\nEn tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.\nVeuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+    "new": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 2,
+    "current": "Lea el manual del usuario antes de operar el producto.",
+    "new": "Lea el manual del operador.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 4,
+    "current": "No fumar ni utilizar llamas abiertas.",
+    "new": "Mantenga el producto alejado del fuego",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 5,
+    "current": "No se permite el acceso a niños.",
+    "new": "No se permiten niños.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 7,
+    "current": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos, sino entregarse en un punto de recogida designado para su reciclaje. La eliminación y el reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su comunidad local, el servicio de gestión de residuos o el distribuidor del producto.",
+    "new": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "row": 8,
+    "current": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos.\nComo consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas.\nDevuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+    "new": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 1,
+    "current": "Warn- und Vorsichtssymbole. Lesen Sie diese Hinweise, um auf mögliche Gefahren oder Risiken aufmerksam gemacht zu werden.",
+    "new": "Warn- und Hinweissymbole. Weisen Personen auf Informationen hin, die gelesen werden müssen, um potenzielle Gefahren oder Risiken zu vermeiden.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 3,
+    "current": "Demontieren Sie das Produkt nicht.",
+    "new": "Vermeiden Sie Hitze.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 4,
+    "current": "Rauchen Sie nicht und verwenden Sie keine offenen Flammen.",
+    "new": "Demontieren Sie das Produkt nicht.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 6,
+    "current": "Dieses Symbol weist darauf hin, dass sich im Produkt ein Lithium-Ionen-Akku (Li-Ion) befindet, der ordnungsgemäß entsorgt oder recycelt werden muss.",
+    "new": "Dieses Symbol zeigt an, dass sich ein Lithium-Ionen-Akku (Li-Ion) im Produkt befindet und ordnungsgemäß entsorgt oder recycelt werden sollte.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "de",
+    "physical_page": 32,
+    "row": 7,
+    "current": "Dieses Symbol weist darauf hin, dass das Produkt nicht über den Hausmüll entsorgt werden darf, sondern einer ausgewiesenen Sammelstelle zum Recycling zugeführt werden muss. Eine ordnungsgemäße Entsorgung und Wiederverwertung trägt zum Schutz der Umwelt bei. Weitere Informationen zur Entsorgung und zum Recycling dieses Produkts erhalten Sie bei Ihrer Gemeinde, Ihrem Entsorgungsdienst oder Ihrem Händler.",
+    "new": "Dieses Symbol zeigt an, dass das Produkt nicht als Haushaltsabfall entsorgt werden soll und an eine dafür vorgesehene Sammelstelle zur Entsorgung und Recycling gebracht werden sollte. Eine ordnungsgemäße Entsorgung und Recycling kann dazu beitragen, die Umwelt zu schützen. Für weitere Informationen zur Entsorgung und Recycling dieses Produkts wenden Sie sich an Ihre örtliche Gemeinde, Entsorgungsdienstleistungen oder Ihren Händler.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 1,
+    "current": "Simboli di avvertenza e attenzione. Leggere per essere informati su possibili pericoli o rischi.",
+    "new": "Simboli di avvertenza e cautela. Segnalano alle persone le informazioni che devono essere lette per evitare potenziali pericoli o rischi.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 2,
+    "current": "Prima dell'utilizzo, leggere il manuale d'istruzioni.",
+    "new": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 4,
+    "current": "Non fumare né utilizzare fiamme libere.",
+    "new": "Tenere il prodotto lontano da fiamme.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 6,
+    "current": "Questo simbolo indica che nel prodotto è presente una batteria agli ioni di litio (Li-ion), che deve essere smaltita o riciclata correttamente.",
+    "new": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "it",
+    "physical_page": 40,
+    "row": 7,
+    "current": "Questo simbolo indica che il prodotto non deve essere smaltito insieme ai rifiuti domestici, ma deve essere conferito a un centro di raccolta designato per il riciclo. Lo smaltimento e il riciclo corretti contribuiscono a proteggere l'ambiente. Per ulteriori informazioni sullo smaltimento e sul riciclo di questo prodotto, contattare la comunità locale, il servizio di smaltimento o il rivenditore.",
+    "new": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+    "reason": "Operator included the additional symbol-caption differences; printed line breaks folded."
+  },
+  {
+    "language": "nl",
+    "physical_page": 64,
+    "asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png",
+    "current": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcen- trum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+    "new": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+    "reason": "Fold printed line-end word splits into intact Web words; no semantic change."
+  },
+  {
+    "language": "nl",
+    "physical_page": 64,
+    "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+    "current": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkings- dienst of leverancier.",
+    "new": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+    "reason": "Fold printed line-end word splits into intact Web words; no semantic change."
+  }
+]

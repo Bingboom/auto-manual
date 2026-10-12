@@ -234,7 +234,7 @@ MAIN_IDML_BLOCKS_SHA256 = {
 UNTOUCHED_SHA256 = {
     "docs/templates/page_shared/ko/06_ups_mode.rst": "0fb720f9f4a37a3d6ed55fba53ffe7ead1d3aad7e4676c09b871299797cf0c8a",
     "docs/templates/page_shared/pt-BR/06_ups_mode.rst": "640c072659fdc20b24448cae4fbe9666b160ecae06f6963e26d3ce8a0269219e",
-    "docs/templates/page_jp/06_ups_mode.rst": "6a27b689763361e948add7d0fe2564b7a68856f63aca054b43ab5a52671f4413",
+    "docs/templates/page_jp/06_ups_mode.rst": "a93cfa6d115004b79bee8d20b9aae41cd39b34ea2cc2e966c480b2dbdb152768",
     "docs/templates/page_zh/06_ups_mode.rst": "88ccfbf022124a2d37c883bb3106df6d457db16f69d20a8b3783f4f4b1f8c006",
     "docs/_review/JE-1000F/US/page/06_ups_mode.rst": "eb87f4fa77ac5ab17ef230ca16569ddb9ca199eafeac76137e7d82677052dc53",
     "docs/_review/JE-1000F/US/page/p27_06_ups_mode.rst": "e9de192a5e93aec9df5c3e9312355908372150022b71cfe63b418418b638d73a",

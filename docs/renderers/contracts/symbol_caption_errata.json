@@ -1,0 +1,19 @@
+{
+  "schema_version": "auto-manual-symbol-caption-errata/v1",
+  "entries": [
+    {
+      "id": "JBP2000B-1465-ES-SYMBOL-WARNING",
+      "source_sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3",
+      "model": "JBP-2000B",
+      "region": "EU",
+      "language": "es",
+      "physical_page": 24,
+      "caption_sha256": "d65c8b79ae4e871bf90da7f6b26590194bf737b84d998f1bf0d982e8916e7bf0",
+      "source_caption": "Symboles d’avertissement et de mise en \ngarde. Signalent aux personnes des \ninformations qui doivent être lues afin \nd’éviter les dangers ou risques potentiels.\n",
+      "reviewed_caption": "Precaución. El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+      "status": "operator-approved",
+      "operator_decision": "User included the additional symbol-caption changes after the stated exclusion of the Spanish PDF row mistakenly using French. Preserve existing correct Spanish.",
+      "reason": "Source Spanish warning-caption row contains French."
+    }
+  ]
+}

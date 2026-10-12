@@ -90,8 +90,9 @@ def build_manifest(corpus: dict, corpus_bytes: bytes, *, artifact: str) -> dict:
             "variants": variants}
 
 
-def load_known_callout_labels(data_dir: Path) -> set[tuple[str, str]]:
-    """Reviewed (variant_key, label) pairs whose ``unknown`` severity is explained."""
+def load_known_callout_labels(data_dir: Path,
+                              dispositions: tuple[str, ...] = LABEL_DISPOSITIONS) -> set[tuple[str, str]]:
+    """Reviewed (variant_key, label) pairs whose ``unknown`` severity is explained, of the given dispositions."""
     path = data_dir / KNOWN_CALLOUT_LABELS_CSV
     if not path.is_file():
         return set()
@@ -101,9 +102,11 @@ def load_known_callout_labels(data_dir: Path) -> set[tuple[str, str]]:
             key, label = (row.get("variant_key") or "").strip(), (row.get("label") or "").strip()
             if not key and not label:
                 continue
-            if not key or not label or (row.get("disposition") or "").strip() not in LABEL_DISPOSITIONS:
+            disposition = (row.get("disposition") or "").strip()
+            if not key or not label or disposition not in LABEL_DISPOSITIONS:
                 raise ValueError(f"Invalid known callout label row: {row}")
-            known.add((key, label))
+            if disposition in dispositions:
+                known.add((key, label))
     return known
 
 
