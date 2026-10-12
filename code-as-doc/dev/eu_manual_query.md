@@ -88,6 +88,17 @@ after a refresh failure.
   Terms of up to three characters match whole words, and unit symbols count
   only after a number (`3584 Wh`, not the "wh" of "what"). Comparison and
   question words (最大, 哪个, largest, which …) are not search terms.
+- Compatibility and untranslated words (2026-10-12): 兼容 / 适用 / 适配 /
+  搭配, 支持哪些主机 and "compatibility" search for "compatib…". Host words
+  (主机, 储能电源, "host") are not search terms: within one product's manual
+  they add nothing, and “储能电源容量” must still open the specification
+  table. 电池包 means "battery pack". A plural keyword also finds the singular. A
+  Chinese word the map does not translate cannot occur in a European-language
+  manual, so it is left out of matching and named in `guidance`; if nothing
+  else remains the result is `no_evidence` with a request for English
+  keywords. Before this, one such word excluded every chapter: “JBP-2000B
+  适用主机是哪些” returned `no_evidence`, and the bot said the manual names no
+  host, although its introduction does (E1000 Plus V2, E2000 Plus V2).
 - Questions across products (哪款容量最大, A 与 B 对比) use `compare: true` with
   the parameter as query: every published model, or the models the query names,
   each with its best chapter and the matching source lines; models without
