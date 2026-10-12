@@ -11,9 +11,9 @@ Approved wording is referenced as a TM-B record, never copied (D19); a finding t
 machine can compare is ``closed`` only after verification found the difference gone (D21).
 
 ``python -m tools.manual_knowledge.findings check`` validates a ledger and reports
-its totals; it never writes. ``verify`` and ``propose`` read an observation artifact
-(``governance``): the first judges the ledger's compared claims, the second lists
-candidate findings the ledger does not cover yet.
+its totals; it never writes. ``verify``, ``propose`` and ``coverage`` read an observation
+artifact (``governance``): the first judges the ledger's compared claims, the second lists
+candidate findings the ledger does not cover yet, the third reports knowledge × edition coverage.
 Plan: ``code-as-doc/dev/machine_readable_knowledge_governance.md`` §6.
 """
 from __future__ import annotations
@@ -365,10 +365,12 @@ def main(argv: list[str] | None = None) -> int:
                                                   "registers nothing")
     propose.add_argument("--min-confidence", choices=("high", "medium", "low"), default="medium",
                          help="lowest confidence of a difference to propose (default: medium)")
-    for command in (check, verify, propose):
+    coverage = commands.add_parser("coverage", help="lay every language-parity cluster against every edition "
+                                                     "of its model, with the ledger's conclusions")
+    for command in (check, verify, propose, coverage):
         command.add_argument("--ledger", type=Path, default=default_ledger(repo_root()),
                              help="ledger file (default: docs/knowledge/governance/findings.json in this checkout)")
-    for command in (verify, propose):
+    for command in (verify, propose, coverage):
         command.add_argument("--observations", type=Path, required=True, help="manual-observations.json to read")
         command.add_argument("--output", type=Path, help="report file (default: next to the artifact)")
     args = parser.parse_args(argv)

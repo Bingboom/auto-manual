@@ -1,6 +1,7 @@
-"""Ledger verification and candidate proposals against an observation artifact (machine-readable Phase 3a, P3-1).
+"""Ledger verification, candidate proposals and the coverage matrix against an observation artifact
+(machine-readable Phase 3a, P3-1 and P3-2).
 
-Both read one ``manual-observations.json`` and a valid findings ledger. Neither touches an authority source,
+All read one ``manual-observations.json`` and a valid findings ledger. None touches an authority source,
 and only ``verify --write`` changes the ledger, in its machine-owned ``verification`` fields (D17).
 
 ``verify_ledger`` judges every compared claim (plan §6.2): each claimed edition against each reference item
@@ -19,12 +20,19 @@ same kind, or a manual claim, lists it with a reference among the relation's mem
 reviewed label explains (an icon, a pending style ruling) is not a difference. Each proposal follows the
 ledger contract; a person names it, sets its priority and registers it through a Hello-Docs content PR.
 
+``coverage_matrix`` lays every language-parity cluster of a model against every edition of that model (plan
+§6.3). A member is ``present``. An edition the cluster lists as absent is ``absent`` once a person confirmed a
+finding that claims it, ``not_applicable`` after that verdict, ``present`` when a person rejected the claim,
+and ``needs_review`` until then. An edition the comparison left out is ``unknown``. Every edition is a
+column, also for models without a second single-language edition, which have no rows. An absence is a
+candidate, never an error.
+
 Outputs depend only on the ledger and the artifact, so two runs give identical bytes.
 """
 from __future__ import annotations
 
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict
 import copy
 from datetime import date
 import hashlib
@@ -35,13 +43,19 @@ import re
 from tools.manual_knowledge.findings import CLAIM_KINDS, RESULTS, check_finding
 from tools.manual_knowledge.manifest import load_known_callout_labels
 from tools.manual_knowledge.observe import SCHEMA as OBSERVATIONS_SCHEMA
-from tools.manual_knowledge.relations import numbers
+from tools.manual_knowledge.relations import PIVOT_LANGUAGE, numbers
 from tools.utils.path_utils import PathSegments, repo_root
 
 VERIFICATION = "findings-verification.json"
 PROPOSALS = "findings-proposals.json"
+COVERAGE = "knowledge-coverage.json"
 VERIFICATION_SCHEMA = "auto-manual-knowledge-findings-verification/v1"
 PROPOSALS_SCHEMA = "auto-manual-knowledge-findings-proposals/v1"
+COVERAGE_SCHEMA = "auto-manual-knowledge-coverage/v1"
+STATES = ("present", "absent", "not_applicable", "needs_review", "unknown")
+# A person's conclusion on an absence, strongest first; a superseded finding is history.
+_CONCLUSIONS = (("not_applicable", {"not_applicable"}),
+                ("absent", {"confirmed", "change_approved", "applied", "closed"}), ("present", {"rejected"}))
 COMPARED = tuple(kind for kind in CLAIM_KINDS if kind != "manual")
 # An icon carries no severity and a pending style ruling has none yet: neither is a content difference.
 EXPLAINED_LABELS = ("icon_only", "pending_style_guide")
@@ -166,6 +180,11 @@ def _coverage(ledger: dict) -> tuple[set[str], set[tuple[str, str, str]]]:
     return cited, covered
 
 
+def _excerpt(text: str) -> str:
+    text = " ".join(text.split())
+    return text if len(text) <= _EXCERPT else f"{text[:_EXCERPT - 1]}…"
+
+
 def _label(member: dict, items: dict[str, dict]) -> tuple[str, str]:
     return member["variant_key"], items[member["knowledge_id"]]["label"]
 
@@ -195,10 +214,8 @@ def _summary(model: str, claims: dict[str, list[str]], reference: dict, count: i
     """Generated description; the person who registers the finding rewrites it."""
     parts = "；".join(f"{'、'.join(variant.rsplit('/', 1)[1] for variant in variants)} 版{_KIND_TEXT[kind]}"
                      for kind, variants in claims.items())
-    text = " ".join(reference["text"].split())
-    excerpt = text if len(text) <= _EXCERPT else f"{text[:_EXCERPT - 1]}…"
     where = f"{reference['variant_key'].rsplit('/', 1)[1]} 版「{reference['source']['section_title']}」"
-    return f"{model}：{parts}。参照 {where}{f'的 {count} 条，首条' if count > 1 else ''}：{excerpt}"
+    return f"{model}：{parts}。参照 {where}{f'的 {count} 条，首条' if count > 1 else ''}：{_excerpt(reference['text'])}"
 
 
 def _proposal(group: list[tuple[dict, dict]], items: dict[str, dict], release: dict[str, str | None],
@@ -268,6 +285,87 @@ def propose_findings(ledger: dict, observations: dict, explained: set[tuple[str,
             "findings": proposals}
 
 
+def _column_order(variant: str) -> tuple[bool, bool, str]:
+    """The pivot language first, combined multi-language editions last."""
+    language = variant.rsplit("/", 1)[1]
+    return language == "multi", language != PIVOT_LANGUAGE, language
+
+
+def _links(ledger: dict) -> dict[tuple[str, str], list[tuple[dict, str]]]:
+    """Findings with the kind of their claim, by (claimed edition, referenced item)."""
+    links: dict[tuple[str, str], list[tuple[dict, str]]] = defaultdict(list)
+    for finding in ledger["findings"]:
+        if finding["status"] == "superseded":
+            continue
+        for claim in finding["claims"]:
+            for variant in claim["variants"]:
+                for reference in claim["references"]:
+                    if reference["knowledge_id"]:
+                        links[variant, reference["knowledge_id"]].append((finding, claim["kind"]))
+    return links
+
+
+def _coverage_row(relation: dict, editions: list[str], links: dict, specific: set[str], items: dict[str, dict]) -> dict:
+    """One cluster against every edition of its model, with the findings that name each edition."""
+    members = {member["variant_key"]: member["knowledge_id"] for member in relation["members"]}
+    absent = {entry["variant_key"]: entry["confidence"] for entry in relation["absent_in"]}
+    cells: dict[str, str] = {}
+    findings: dict[str, list[str]] = {}
+    for variant in editions:
+        linked = [pair for knowledge_id in members.values() for pair in links.get((variant, knowledge_id), ())]
+        if linked:
+            findings[variant] = sorted({finding["finding_id"] for finding, _ in linked})
+        statuses = {finding["status"] for finding, kind in linked if kind in ("absent", "manual")}
+        cells[variant] = ("present" if variant in members else "unknown" if variant not in absent
+                          else next((state for state, accepted in _CONCLUSIONS if statuses & accepted), "needs_review"))
+    pivot = relation["members"][0]
+    item = items[pivot["knowledge_id"]]
+    return {"observation_id": relation["observation_id"], "category": relation["category"],
+            "product_specific": pivot["knowledge_id"] in specific,
+            "reference": {"knowledge_id": pivot["knowledge_id"], "source_ref": pivot["source_ref"],
+                          "section_title": item["source"]["section_title"], "excerpt": _excerpt(item["text"])},
+            "cells": cells, "confidence": {variant: absent[variant] for variant in editions if variant in absent},
+            "findings": findings}
+
+
+def _coverage_model(model: str, columns: list[str], relations: list[dict], links: dict, specific: set[str],
+                    items: dict[str, dict]) -> dict:
+    columns = sorted(columns, key=_column_order)
+    rows = [_coverage_row(relation, columns, links, specific, items) for relation in relations]
+    counts = {variant: Counter(row["cells"][variant] for row in rows) for variant in columns}
+    return {"model": model, "editions": columns, "compared": bool(rows),
+            "by_edition": {variant: {state: count[state] for state in STATES if count[state]}
+                           for variant, count in counts.items()},
+            "rows": rows}
+
+
+def coverage_matrix(ledger: dict, observations: dict) -> dict:
+    """Plan §6.3: every language-parity cluster of a model against every edition of that model."""
+    header = _observed(observations, ledger["region"])
+    items, _ = _index(observations)
+    links = _links(ledger)
+    # A warning whose text no other model of that language uses is marked on the cluster it belongs to.
+    specific = {member["knowledge_id"] for relation in observations["relations"]
+                if relation["kind"] == "product_specific" for member in relation["members"]}
+    clusters: dict[str, list[dict]] = defaultdict(list)
+    for relation in observations["relations"]:
+        if relation["kind"] == "language_parity":
+            clusters[relation["scope"]["model"]].append(relation)
+    # The artifact's edition list also names editions without any item.
+    editions: dict[str, list[str]] = defaultdict(list)
+    for variant in observations["summary"]["items_by_variant"]:
+        editions[variant.rsplit("/", 2)[0]].append(variant)
+    models = [_coverage_model(model, columns, clusters[model], links, specific, items)
+              for model, columns in sorted(editions.items())]
+    cells = Counter(state for model in models for row in model["rows"] for state in row["cells"].values())
+    return {"schema": COVERAGE_SCHEMA, "region": ledger["region"], "observations": header, "states": list(STATES),
+            "totals": {"models": len(models), "compared_models": sum(model["compared"] for model in models),
+                       "editions": sum(len(model["editions"]) for model in models),
+                       "rows": sum(len(model["rows"]) for model in models),
+                       "cells": {state: cells[state] for state in STATES}},
+            "models": models}
+
+
 def serialize(value: dict) -> bytes:
     """The ledger's own layout, so a written ledger differs only where it changed."""
     return (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
@@ -281,18 +379,21 @@ def _write(path: Path, data: bytes) -> None:
 
 
 def run(args: argparse.Namespace, ledger: dict) -> int:
-    """The ``verify`` and ``propose`` commands of ``python -m tools.manual_knowledge.findings``."""
+    """The ``verify``, ``propose`` and ``coverage`` commands of ``python -m tools.manual_knowledge.findings``."""
     try:
         observations = json.loads(args.observations.read_text(encoding="utf-8"))
         if args.command == "verify":
             report = verify_ledger(ledger, observations)
+        elif args.command == "coverage":
+            report = coverage_matrix(ledger, observations)
         else:
             explained = load_known_callout_labels(repo_root() / PathSegments.DATA, EXPLAINED_LABELS)
             report = propose_findings(ledger, observations, explained, args.min_confidence)
     except (OSError, ValueError) as error:
         print(json.dumps({"status": "refused", "problems": [str(error)]}, ensure_ascii=False, indent=2))
         return 1
-    output = args.output or args.observations.parent / (VERIFICATION if args.command == "verify" else PROPOSALS)
+    output = args.output or args.observations.parent / {"verify": VERIFICATION, "propose": PROPOSALS,
+                                                         "coverage": COVERAGE}[args.command]
     _write(output, serialize(report))
     result: dict = {"status": "written", "path": str(output), "totals": report["totals"]}
     if args.command == "verify" and args.write:
