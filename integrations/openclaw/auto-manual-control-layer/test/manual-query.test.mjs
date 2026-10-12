@@ -301,3 +301,46 @@ test("the search tool declares the comparison switch", () => {
   assert.equal(tools[0].parameters.properties.compare.type, "boolean");
   assert.match(tools[0].description, /compare 为 true/);
 });
+
+// A battery pack names its hosts once, in a note before the first heading; the chapters say "the portable power station".
+const pack = () => manual("JBP-TEST", [
+  ["intro", "Manual introduction", "NOTE: This battery pack is compatible with both the Jackery E1000 Plus V2 and the "
+    + "Jackery E2000 Plus V2. Throughout this manual, \"the portable power station\" refers to either model."],
+  ["charge", "Charging", "Connect the battery pack to the portable power station.",
+    "The portable power station charges the battery pack.", "Turn on the portable power station."],
+  ["connect", "Connections", "Connect the cable to the portable power station.", "Lock the connector in place."],
+  ["spec", "Specifications", "Capacity | 2048 Wh\nWeight | About 18.5 kg"],
+]);
+
+test("compatibility questions find the note that names the host models", () => {
+  const f = catalog(pack());
+  for (const query of ["JBP-TEST 适用主机是哪些", "JBP-TEST 兼容哪些主机", "JBP-TEST 支持哪些主机", "JBP-TEST 可以配哪些主机",
+    "JBP-TEST 搭配哪些储能电源", "JBP-TEST compatibility", "JBP-TEST compatible host", "JBP-TEST supported power stations",
+    "JBP-TEST works with"]) {
+    const result = searchManuals(f, { query });
+    assert.equal(result.results[0]?.section_id, "intro", query);
+  }
+  assert.equal(searchManuals(f, { query: "JBP-TEST 电池包 连接" }).results[0].section_id, "charge");
+});
+
+test("Chinese words no alias translates are left out of matching and reported", () => {
+  const f = catalog(pack());
+  const partial = searchManuals(f, { query: "JBP-TEST 适配哪些电源" });
+  assert.equal(partial.results[0].section_id, "intro", "an untranslated word no longer excludes every chapter");
+  assert.match(partial.guidance, /未用于检索：电源/);
+  const none = searchManuals(f, { query: "JBP-TEST 防水等级" });
+  assert.equal(none.status, "no_evidence");
+  assert.match(none.guidance, /防水等级.*英文关键词/);
+  assert.equal(searchManuals(f, { query: "JBP-TEST 介绍一下" }).status, "manuals", "a question with no terms lists the manual");
+  const compared = searchManuals(f, { query: "防水等级最高的是哪个", compare: true });
+  assert.equal(compared.status, "needs_parameter");
+  assert.match(compared.guidance, /防水等级/);
+});
+
+test("host words neither narrow a parameter question nor a comparison", () => {
+  const f = catalog(station("JE-T1", "1024 Wh (20 Ah / 51.2 V DC)"), station("JE-T2", "80 Ah / 44.8 V DC (3584 Wh)"));
+  assert.equal(searchManuals(f, { query: "JE-T1 主机重量" }).results[0].section_id, "a-spec");
+  const compared = searchManuals(f, { query: "容量最大的储能电源是哪个", compare: true });
+  assert.deepEqual(compared.results.map((row) => row.section_id), ["a-spec", "a-spec"]);
+  assert.equal(searchManuals(f, { query: "JE-T1 host" }).status, "manuals", "a host word alone is no search term");
+});

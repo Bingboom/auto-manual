@@ -68,6 +68,13 @@ for (const model of ["JE-1000F", "JE-1000H", "JE-100C", "JE-2000E", "JE-2000F", 
     assert.match(result.results[0]?.title || "", /SPECIFICATIONS/, query);
   }
 }
+// Compatibility questions open the text that names the hosts, wherever the manual puts it.
+for (const [query, title] of [["JBP-2000B 适用主机是哪些", /MANUAL INTRODUCTION/],
+  ["JA-AD600A 适用哪些储能电源", /IMPORTANT SAFETY INSTRUCTIONS/]]) {
+  const result = searchManuals(snapshot, { query });
+  assert.match((result.results[0]?.title || "").toUpperCase(), title, query);
+  queries.push({ query, status: result.status, titles: result.results.map((row) => row.title) });
+}
 const comparison = searchManuals(snapshot, { query: "容量最大的产品是哪个", compare: true });
 assert.equal(comparison.status, "comparison");
 assert.equal(comparison.compared_models.length, corpus.counts.models);
