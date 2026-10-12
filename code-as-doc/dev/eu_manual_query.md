@@ -98,6 +98,9 @@ after a refresh failure.
   It also cited the Feishu spec source table, which holds only JE-1000F; the
   BlockClaw chat rules ([`agent/BOOTSTRAP.md`](../../agent/BOOTSTRAP.md) §5) now
   take product facts only from these two tools, never from spec source tables.
+  On 2026-10-12, after the fix, the bot repeated JE-2000F in the same chat
+  until told to use the current data, so the rules also require a new lookup
+  for every product-fact question instead of an earlier answer or memory.
 - Search previews are navigation only. `manual_section` requires document,
   chapter and `publication.snapshot_id` from search. It returns whole blocks,
   up to 30 per page / 60,000 bytes. Read all `next_offset` pages before giving a
@@ -171,6 +174,8 @@ to a valid earlier website deployment intentionally follows that deployed versio
 5. In the already connected bot, check `/manual-query JE-2000F USB-C输出`, then
    ask “JE-2000F 欧规 USB-C 输出功率是多少？”, “JE-2000F 节能模式怎么关闭？” and
    “目前容量最大的产品是哪个？” (the answer should name the compared models).
+   Ask the last one again in the same chat: the bot should search again, not
+   repeat its earlier answer.
    Verify the answer's values and complete conditions against the linked source.
    Also try a missing model, a US question and an unsupported concept; it should
    clarify or report no evidence, without inventing product facts. Confirm one
