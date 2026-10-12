@@ -49,6 +49,9 @@ def cell_text(value: Any) -> str:
     if isinstance(value, float) and value.is_integer():
         return str(int(value))
     if isinstance(value, list):
+        if value and all(isinstance(item, dict) and "text" in item for item in value):
+            # Rich-text segments concatenate, as sync-data reads them.
+            return "".join(str(item.get("text") or "") for item in value).strip()
         parts = (cell_text(item) for item in value)
         return ",".join(part for part in parts if part)
     if isinstance(value, dict):

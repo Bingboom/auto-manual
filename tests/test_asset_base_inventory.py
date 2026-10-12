@@ -354,6 +354,9 @@ class FixtureInventoryTests(unittest.TestCase):
                            "content_sha256": "1" * 64}),
                 ("recE4", {"export_key": "source/x::artifacts/weee.png", "artifact_kind": ["semantic-export"],
                            "repo_path": weee, "asset_key": "symbols/weee", "content_sha256": "2" * 64}),
+                ("recE5", {"export_key": "registry::docs/renderers/web/assets/je2000e_eu_nl/stray_copy.png",
+                           "repo_path": "docs/renderers/web/assets/je2000e_eu_nl/stray_copy.png",
+                           "asset_key": "web/base/stray", "content_sha256": _sha(PNG_1x1 + b"w")}),
             ],
         })
 
@@ -375,6 +378,12 @@ class FixtureInventoryTests(unittest.TestCase):
         self.assertNotIn("web/je2000e/eu/nl/battery_pack", definitions)
         self.assertEqual(definitions["placeholder/slot"]["action"], "create")
         self.assertEqual(definitions["lcd/shared/parallel"]["action"], "propose")
+        # A Base row's key without a Base definition is taken, but stays a proposal.
+        stray = exports["docs/renderers/web/assets/je2000e_eu_nl/stray_copy.png"]
+        self.assertEqual((stray["asset_key"], stray["gate_status"], stray["needs_review"]),
+                         ("web/base/stray", "pending", "TRUE"))
+        self.assertEqual((definitions["web/base/stray"]["key_origin"], definitions["web/base/stray"]["action"]),
+                         ("derived", "propose"))
         self.assertEqual(inventory.sources["source/je2000e_nl_master"]["action"], "keep")
         self.assertEqual(inventory.sources["source/je2000e_nl_master"]["archive_status"], "")
         kinds = {(item["kind"], item["subject"]) for item in inventory.findings}
@@ -401,6 +410,8 @@ class FixtureInventoryTests(unittest.TestCase):
             load_snapshot(snapshot)
         self.assertEqual(cell_text([{"id": "recX"}, {"id": "recY"}]), "recX,recY")
         self.assertEqual(cell_text(["按语言"]), "按语言")
+        self.assertEqual(cell_text([{"type": "text", "text": "a, "}, {"type": "text", "text": "b"}]), "a, b")
+        self.assertEqual(cell_text(11484.0), "11484")
 
     def test_output_must_be_new_or_empty(self):
         with TemporaryDirectory() as temp:

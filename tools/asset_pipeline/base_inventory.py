@@ -550,21 +550,21 @@ def adopt_live_key(art: ArtFile, identity: Identity, ctx: Context, inventory: In
     """A key the dry run could only propose yields to the one the Base already uses for this file.
 
     The Base row for the file names the key; a Base definition with the proposed
-    key confirms it. Either way the Base definition's status then decides the gate.
+    key confirms it. Only a Base definition makes the identity the Base's own, with
+    its status deciding the gate; a Base row's key without one stays a proposal.
     """
     if ctx.live is None or identity.origin not in {"illustrations", "derived"}:
         return identity
     row = ctx.live.git_exports.get(art.repo_path)
     key = (row.text("asset_key") if row is not None else "") or identity.asset_key
-    definition = ctx.live.definitions.get(key)
-    if definition is None and key == identity.asset_key:
-        return identity
     if key != identity.asset_key:
         inventory.find("live-key", art.repo_path,
                        f"the Base uses {key}; the dry run would propose {identity.asset_key}")
-    status = definition.text("status") if definition is not None else ""
+    definition = ctx.live.definitions.get(key)
+    if definition is None:
+        return replace(identity, asset_key=key)
     return replace(identity, asset_key=key, origin=BASE_ORIGIN, registered_in=(BASE_ORIGIN, *identity.registered_in),
-                   status=status)
+                   status=definition.text("status"))
 
 
 def _gate(identity: Identity) -> str:
@@ -706,7 +706,7 @@ def _add_definition(inventory: Inventory, art: ArtFile, identity: Identity, expo
         definition = inventory.definitions[identity.asset_key] = _new_definition(art, identity, export, ctx)
     definition["git_exports"] += 1
     definition["registered_in"].update(identity.registered_in)
-    definition["replaces"].update(replace for use in identity.uses for replace in use.replaces)
+    definition["replaces"].update(name for use in identity.uses for name in use.replaces)
     definition["languages"].update(use.language.lower() for use in identity.uses if use.language)
     if export["locale"] not in ("", SHARED):
         definition["languages"].add(export["locale"])
