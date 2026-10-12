@@ -134,8 +134,8 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 
 ## 6. 契约
 
-§6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2 已随 P3-1 定稿，
-由同一命令的 `verify` 与 `propose` 实现；§6.3 仍是草案，随 P3-2 定稿。
+§6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2、§6.3 分别随
+P3-1、P3-2 定稿，由同一命令的 `verify`、`propose` 与 `coverage` 实现。
 
 ### 6.1 台账条目
 
@@ -234,10 +234,22 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 
 ### 6.3 覆盖矩阵
 
-- 行是一个簇（跨语言齐套关系或产品专属警示），列是该型号的各版本。
-- 单元格：成员为 `present`；`absent_in` 且有已确认条目为 `absent`；有 `not_applicable` 结论为
-  `not_applicable`；未参与比较（多语合订版）为 `unknown`；`absent_in` 但尚无人工结论为 `needs_review`。
-- 离线生成，确定性，不进 RTD 构建。
+`python -m tools.manual_knowledge.findings coverage --observations <manual-observations.json> --ledger <台账>`
+在产物旁写出 `knowledge-coverage.json`：
+
+- 行是型号的跨语言齐套关系（`language_parity` 簇），列是该型号在产物中的全部版本：参照语言（英文）在前，
+  多语合订版在后，没有条目的版本也有列。只有一个单语版本的型号没有可比较的行，只列出版本，标
+  `compared: false`。产品专属警示（同语言没有其他型号用相同文字）本身就是本型号某个簇的成员，不另成行，
+  在该行标 `product_specific`。
+- 单元格：簇成员为 `present`。簇列为缺失（`absent_in`）的版本：有人工确认的条目（`confirmed` /
+  `change_approved` / `applied` / `closed`）为 `absent`；认证负责人判定不适用为 `not_applicable`；
+  主张被否决（`rejected`，内容其实在）为 `present`；尚无条目或条目仍为 `candidate` 为 `needs_review`。
+  未参与比较的版本（多语合订版）为 `unknown`。同一单元格有多条结论时取最强的：`not_applicable` >
+  `absent` > `present`；`superseded` 条目不计。
+- 只有缺失主张和人工主张（`absent` / `manual`）在该版本、且引用该簇成员时，才决定单元格；等级、数字
+  主张只列在行的 `findings` 中。每行另给参照条目（`knowledge_id`、`source_ref`、章节、摘要）和缺失版本
+  的置信度；每个型号按版本汇总各状态的数量。
+- 离线生成，确定性，不进 RTD 构建。`absent` 与 `needs_review` 不是错误，只标出需要人看的位置。
 
 ## 7. 计划（PR 切分）
 
@@ -283,6 +295,16 @@ JE-100C fr、nl 的缺失，也就是 P2-4 记录的 `medium` 唯一误报（[�
 
 `tests/test_knowledge_governance.py` 用小型产物覆盖已修复、部分修复、仍存在、参照变化、版本撤下、
 等级与数字、跨型号、人工主张与 `superseded`、写回与 `reopened`、候选去重、门槛、已知标签、合并与确定性。
+
+实现（P3-2）：`governance.py` 的 `coverage_matrix` 实现 §6.3，命令为 `findings coverage`。用线上产物与
+Hello-Docs main 的台账运行：21 个型号的 109 个版本全部成列；11 个型号有可比较的行，共 423 行、3,807 个
+单元格，其中 `present` 3,213、`needs_review` 594（`high` 40、`medium` 75、`low` 479）。台账 23 条都还是
+`candidate`，所以没有 `absent` 和 `not_applicable`；没有型号同时有单语版和合订版，所以 `unknown` 为 0。
+另 10 个型号只有一个版本（8 个多语合订、JE-300D 与 JE-500A 只有英文），没有行。两次运行字节一致。
+在台账副本上模拟两条人工结论（第 7 条由内容负责人确认，第 6 条由认证负责人判定不适用）后，
+JE-1000H、JE-3000C、JE-2000E 的 nl/pl/pt 共 9 个单元格变为 `absent`，JA-AD600A 的 3 个变为
+`not_applicable`，`needs_review` 降为 582。测试覆盖各状态、结论优先级、`superseded`、列顺序、没有行的型号、
+等级主张只列不判、产品专属标记与确定性。
 
 ## 8. 验收标准
 

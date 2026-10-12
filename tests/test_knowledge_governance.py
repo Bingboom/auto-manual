@@ -1,4 +1,5 @@
-"""Ledger verification and candidate proposals (machine-readable Phase 3a, P3-1)."""
+"""Ledger verification, candidate proposals and the coverage matrix (machine-readable Phase 3a, P3-1, P3-2)."""
+from collections import Counter
 from contextlib import redirect_stdout
 import copy
 import io
@@ -8,8 +9,8 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from tools.manual_knowledge.findings import SCHEMA, check_finding, check_ledger, main
-from tools.manual_knowledge.governance import (PROPOSALS, VERIFICATION, apply_verification, propose_findings,
-                                               serialize, verify_ledger)
+from tools.manual_knowledge.governance import (COVERAGE, PROPOSALS, VERIFICATION, apply_verification,
+                                               coverage_matrix, propose_findings, serialize, verify_ledger)
 from tools.manual_knowledge.observe import SCHEMA as OBSERVATIONS
 
 MODEL, OTHER = 'JE-3000C', 'JE-1000H'
@@ -35,14 +36,20 @@ def parity(members, absent=(), confidence='medium', number='1', differences=None
             'confidence': confidence}
 
 
-def artifact(items, relations, region='EU', bare=()):
-    """Every edition a relation names carries items, as each published manual does, unless it is ``bare``."""
+def artifact(items, relations, region='EU', bare=(), editions=()):
+    """Every edition a relation names carries items, as each published manual does, unless it is ``bare``.
+
+    The summary lists every edition, as the observation command does, also ``editions`` without items.
+    """
     named = {entry['variant_key'] for relation in relations for entry in relation['absent_in']}
     items = items + [item(variant, text='Store the product dry.', digest='f' * 16, anchor='storage')
                      for variant in sorted(named - {i['variant_key'] for i in items} - set(bare))]
+    counts = Counter(i['variant_key'] for i in items)
     return {'schema': OBSERVATIONS, 'region': region, 'generator_version': GENERATOR,
             'published_at': '2026-10-25T08:00:00+00:00', 'source_sha256': 'a' * 64, 'corpus_sha256': 'b' * 64,
-            'items': items, 'relations': relations}
+            'items': items, 'relations': relations,
+            'summary': {'items_by_variant': {variant: counts[variant]
+                                             for variant in sorted({*counts, *bare, *editions})}}}
 
 
 def reference(record):
@@ -289,6 +296,94 @@ class ProposeTest(unittest.TestCase):
                          serialize(propose_findings(ledger(), copy.deepcopy(observations), set())))
 
 
+MULTI = f'{MODEL}/EU/multi'
+NOT_APPLICABLE = {'status': 'not_applicable', 'by': 'Cert B', 'role': 'certification_owner', 'date': '2026-10-13',
+                  'note': 'not sold with UPS use in these markets'}
+REJECTED = {'status': 'rejected', 'by': 'Owner A', 'role': 'content_owner', 'date': '2026-10-13',
+            'note': 'the warning is printed in the UPS illustration'}
+
+
+class CoverageTest(unittest.TestCase):
+    def observations(self, editions=(MULTI,), **fields):
+        """en and de carry the UPS warning; nl and pl lack it; the combined edition takes no part."""
+        items = [REFERENCE, item(DE)]
+        return artifact(items, [parity(items, [NL, PL])], editions=editions, **fields)
+
+    def row(self, *records, observations=None):
+        report = coverage_matrix(ledger(*records), observations or self.observations())
+        [model] = [entry for entry in report['models'] if entry['model'] == MODEL]
+        [row] = model['rows']
+        return row
+
+    def states(self, row):
+        return {variant.rsplit('/', 1)[1]: state for variant, state in row['cells'].items()}
+
+    def test_membership_and_human_conclusions_decide_each_cell(self):
+        self.assertEqual(self.states(self.row()),
+                         {'en': 'present', 'de': 'present', 'nl': 'needs_review', 'pl': 'needs_review',
+                          'multi': 'unknown'})
+        for record, state in ((finding(), 'needs_review'), (finding(status='confirmed', decisions=[CONFIRMED]), 'absent'),
+                              (finding(status='applied', decisions=[CONFIRMED, APPROVED, APPLIED], changes=[CHANGE]),
+                               'absent'),
+                              (finding(status='not_applicable', decisions=[NOT_APPLICABLE]), 'not_applicable'),
+                              (finding(status='rejected', decisions=[REJECTED]), 'present'),
+                              (finding(status='superseded', decisions=[{**CONFIRMED, 'status': 'superseded',
+                                                                        'note': 'split'}]), 'needs_review')):
+            row = self.row(record)
+            self.assertEqual((row['cells'][NL], row['cells'][PL]), (state, state), record['status'])
+            self.assertEqual(row['cells'][EN], 'present')
+            self.assertEqual(bool(row['findings']), record['status'] != 'superseded', 'superseded findings are history')
+        row = self.row(finding(finding_id='fd-applies', status='confirmed', decisions=[CONFIRMED]),
+                       finding(finding_id='fd-exempt', status='not_applicable', decisions=[NOT_APPLICABLE]))
+        self.assertEqual(row['cells'][NL], 'not_applicable', "the certification owner's verdict outranks a confirmation")
+        row = self.row(finding(), finding(finding_id='fd-second', status='confirmed', decisions=[CONFIRMED]))
+        self.assertEqual(row['cells'][NL], 'absent', 'the strongest conclusion decides')
+        self.assertEqual(row['findings'][NL], ['fd-je3000c-ups-warning', 'fd-second'])
+        self.assertEqual(row['confidence'], {NL: 'medium', PL: 'medium'})
+
+    def test_every_edition_is_a_column_in_a_fixed_order(self):
+        observations = self.observations(bare=[PL], editions=[MULTI, f'{OTHER}/EU/multi'])
+        report = coverage_matrix(ledger(), observations)
+        [model, other] = report['models'][::-1] if report['models'][0]['model'] == OTHER else report['models']
+        self.assertEqual(model['editions'], [EN, DE, NL, PL, MULTI], 'pivot first, combined editions last')
+        self.assertEqual(model['rows'][0]['cells'][PL], 'needs_review', 'an edition without items is still a column')
+        self.assertEqual((other['model'], other['editions'], other['compared'], other['rows']),
+                         (OTHER, [f'{OTHER}/EU/multi'], False, []))
+        self.assertEqual(model['by_edition'][NL], {'needs_review': 1})
+        self.assertEqual(report['totals'], {'models': 2, 'compared_models': 1, 'editions': 6, 'rows': 1,
+                                            'cells': {'present': 2, 'absent': 0, 'not_applicable': 0,
+                                                      'needs_review': 2, 'unknown': 1}})
+
+    def test_other_claims_link_to_present_cells_without_changing_them(self):
+        member = item(NL, severity='unknown', label='WAARSCHU')
+        observations = artifact([REFERENCE, member], [parity([REFERENCE, member], [PL])])
+        severity = finding(claims=[{'kind': 'severity', 'variants': [NL, PL], 'references': [reference(REFERENCE)]}],
+                           status='confirmed', decisions=[CONFIRMED])
+        row = self.row(severity, observations=observations)
+        self.assertEqual(row['cells'][NL], 'present')
+        self.assertEqual(row['findings'], {NL: ['fd-je3000c-ups-warning'], PL: ['fd-je3000c-ups-warning']})
+        self.assertEqual(row['cells'][PL], 'needs_review', 'a severity claim is no conclusion on an absence')
+
+    def test_rows_carry_their_reference_and_the_product_specific_mark(self):
+        observations = self.observations()
+        observations['relations'].append({'observation_id': f'obs:product_specific:EU/en:{"9" * 16}',
+                                          'kind': 'product_specific', 'members': [{'knowledge_id': EN_ID}],
+                                          'absent_in': []})
+        row = self.row(observations=observations)
+        self.assertTrue(row['product_specific'])
+        self.assertEqual(row['reference'], {'knowledge_id': EN_ID, 'source_ref': REFERENCE['source']['source_ref'],
+                                            'section_title': 'UPS', 'excerpt': UPS})
+        self.assertFalse(self.row()['product_specific'])
+
+    def test_the_same_artifact_gives_identical_bytes(self):
+        records = ledger(finding(status='confirmed', decisions=[CONFIRMED]))
+        self.assertEqual(serialize(coverage_matrix(records, self.observations())),
+                         serialize(coverage_matrix(copy.deepcopy(records), copy.deepcopy(self.observations()))))
+
+
+EN_ID = REFERENCE['knowledge_id']
+
+
 class CommandTest(unittest.TestCase):
     def run_main(self, *argv):
         out = io.StringIO()
@@ -316,6 +411,10 @@ class CommandTest(unittest.TestCase):
             code, result = self.run_main('propose', '--ledger', str(path), '--observations', str(observations))
             self.assertEqual((code, result['path'], result['totals']['proposals']),
                              (0, str(observations.parent / PROPOSALS), 0))
+            code, result = self.run_main('coverage', '--ledger', str(path), '--observations', str(observations))
+            self.assertEqual((code, result['path'], result['totals']['rows']), (0, str(observations.parent / COVERAGE), 1))
+            self.assertEqual(json.loads((observations.parent / COVERAGE).read_text(encoding='utf-8'))['states'],
+                             ['present', 'absent', 'not_applicable', 'needs_review', 'unknown'])
 
     def test_an_invalid_ledger_or_unreadable_artifact_is_refused(self):
         with TemporaryDirectory() as tmp:
