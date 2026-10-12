@@ -215,6 +215,7 @@ analytics is configured; unknown alias shapes pass through unchanged.
 - [`tools/asset_registry.py`](../../tools/asset_registry.py)
   - canonical asset-registry validation and target-scoped approved-export resolution
   - immutable CSV-byte parsing plus approved/temporary/missing/quarantined status contract
+  - the export files each row names (`registered_exports`), resolved exactly as `asset-check` verifies them
 - [`tools/asset_usage.py`](../../tools/asset_usage.py)
   - target-bound `asset:` resolution, safe-format selection, frozen-byte staging, and legacy-path accounting
   - deterministic `asset_usage_manifest.json` plus exact `asset_registry_snapshot.csv` emission
@@ -232,6 +233,9 @@ analytics is configured; unknown alias shapes pass through unchanged.
   - private source snapshot, manifest/CSV assembly, deterministic ZIP, and atomic publication
 - [`tools/asset_pipeline/models.py`](../../tools/asset_pipeline/models.py)
   - immutable recipe, artifact, inspection, and intake-result contracts
+- [`tools/asset_pipeline/base_inventory.py`](../../tools/asset_pipeline/base_inventory.py)
+  - read-only dry run staging the four Git production-art folders as `04_资产*` rows; never calls Feishu ([design](asset_base_inventory.md))
+  - identity from the shared manifests, registry paths and Web illustration manifests, plus a preview of the `sync-data` registry merge
 
 ## 3. Build Bundle And Export Modules
 
