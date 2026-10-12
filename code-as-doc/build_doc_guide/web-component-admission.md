@@ -71,3 +71,7 @@ replace shaped backgrounds with a generic CSS gray rectangle. A finished
 illustration manifest can explicitly set `allow_reuse: true` for one
 hash-verified shared icon used in several source notices; repeated source
 identities without that opt-in still fail.
+
+## Reviewed symbol-caption errata
+
+Frozen symbol-caption admission joins printed line-end word splits only through exact source-bound `caption_linebreak_joins`; inline hyphens remain significant. A known wrong-language source caption requires an operator-approved entry in `docs/renderers/contracts/symbol_caption_errata.json`, bound to the source PDF SHA-256, target/language, physical page, caption pixel SHA-256, actual source text and reviewed caption. Candidate manifests cannot approve their own errata. The gate still verifies the original caption pixels, source glyph and unchanged shared-symbol bytes; duplicate, changed or unmatched bindings fail. Rebuild and reseal each affected language after source-copy or symbol-binding changes.
