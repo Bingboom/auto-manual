@@ -55,6 +55,7 @@ focus:
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
     - "ack:夏冰 2026-09-26「按这个顺序 当下的系统建设布局 做一下 更清晰的布局版面的调整」"
+    - "ack:操作者 2026-10-12「好，写成 REV-41 决定记录开 PR」"
   lanes:
     - id: web
       horizon: now
@@ -88,10 +89,10 @@ focus:
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
     - id: skeletons
-      horizon: later
-      title: 骨架与覆盖扩展
-      goal: 在生产和维护方式稳定后，减少新型号接入时复制模板的工作
-      action: 复用已经验证的生产方式，按产品线逐步扩展骨架和覆盖
+      horizon: deferred
+      title: 骨架扩展 · 按条件再启动
+      goal: 保留并维护已建成的骨架；网页覆盖不再以扩展骨架为前提
+      action: 新一轮拓展暂缓（REV-41 决定）；新品没有定稿印刷稿、需要由管线出印刷稿、1.0 之后同一修正反复跨多本，或原生接入新线成本过高时再复评
       card: content_foundation
       items: [content_foundation.skeletons]
       metrics: [skeletons]
@@ -279,13 +280,14 @@ capabilities:
       - id: skeletons
         label: 产品骨架
         status: in_progress
-        note: 电池包、太阳能板、充电器已由骨架生成清单；便携电源仍用区域家族清单；骨架库设计待批
+        note: 电池包、太阳能板、充电器已由骨架生成清单；便携电源仍用区域家族清单；骨架库设计已裁决：保留维护，新一轮拓展暂缓
         evidence:
           - "pr:auto-manual#936"
           - "pr:auto-manual#983"
           - "file:auto-manual:docs/manifests/skeletons"
           - "file:auto-manual:docs/manifests/family/index.yaml"
           - "file:auto-manual:code-as-doc/architecture/Product_Skeleton_Library_Design.md"
+          - "file:auto-manual:code-as-doc/dev/revitalization/rev41_skeleton_decision.md"
       - id: reusable_blocks
         label: 可复用内容组件
         status: in_progress

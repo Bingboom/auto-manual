@@ -228,7 +228,9 @@ Exit criteria:
 
 ### Workstream M: Page Registry As Single Composition Authority
 
-Status: next
+Status: deferred — REV-41 decision (2026-10-12): new skeleton expansion, including this
+step (Milestone M R6), waits for a restart condition in
+[`dev/revitalization/rev41_skeleton_decision.md`](dev/revitalization/rev41_skeleton_decision.md) §4
 
 Why now:
 
@@ -523,7 +525,7 @@ Re-evaluate this order whenever a workstream closes.
 2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".
 3. Execute Workstream X in its strict serial PR order. Do not parallelize style-contract, ComponentSpec, PagePlan, or target-geometry migrations; keep the approved Web asset manifest and reference layout frozen while each adapter proves parity.
 4. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
-5. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
+5. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M, deferred by REV-41 since 2026-10-12).
 6. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
 7. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
 8. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
