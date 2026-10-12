@@ -106,6 +106,8 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 
 Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
 
+Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明书知识问题的台账（人工结论、修改与核验），经只含 `docs/knowledge/**` 的内容 PR 维护；契约与校验命令在 auto-manual，见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6.1。
+
 ## 3. 谁在哪跑
 
 | 东西 | 跑在哪 | 对着哪组 base |
