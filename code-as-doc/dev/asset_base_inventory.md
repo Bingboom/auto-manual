@@ -256,10 +256,11 @@ dry-run 用同一个合并函数做了两次预演，结果写在 `summary.json`
   - 原因：建导出物用的是定义写入之后的 dry-run。这 8 个文件的建议 key 与刚写进 Base 的注册表定义同名，dry-run 就沿用了那几条定义的 ✅成品。
   - 但那几行注册表批准的是 `je2000f_eu_en_full_frames/` 里的另一份字节。规则已在 §6 修正，加了测试。
   - 这 8 行已改回计划里的值：`gate_status` 为 `pending`，`build_eligible` 取消，`visual_review_required` 勾选。回读核对过，其他行都没变。
-  - 现在线上 1274 个 `registry::` 行的门禁和 `asset_key`，与批准的计划逐行一致：approved 566、pending 698、quarantine 6、temporary 4。
+  - 改完后，线上 1274 个 `registry::` 行的门禁和 `asset_key`，与批准的计划逐行一致：approved 566、pending 698、quarantine 6、temporary 4。
 - 同一目录下还有 2 个太阳能裁图：`charging_solar_adapter.png` 和 `charging_solar_direct.png`。
   - 它们的建议 key 与上传前就在 Base 里的定义同名，所以计划里本来就是 `approved`。
-  - 按修正后的规则，它们应为 `pending`。要不要改线上这两行，等操作者决定。
+  - 按修正后的规则，它们应为 `pending`。操作者确认后，这两行也已同样改为 `pending`，回读核对过，其他行都没变。
+- 现在线上 1274 个 `registry::` 行的门禁，与修正后的 dry-run 逐行一致：approved 564、pending 700、quarantine 6、temporary 4。
 
 **第 3 步：同步命令（Base → 仓库）。** 这是日常流程的核心，参照 `sync_web_composites` 实现：
 - 只取 `approved`、`build_eligible`、恰好一个附件，且附件 SHA-256 等于 `content_sha256` 的行。
@@ -366,11 +367,9 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 
 第一批写入后，用修正后的规则（§6）在写后快照上重跑：
 - 母版都是 `keep`，定义只剩 688 个待晋级。
-- 导出物 1272 个 `keep`，2 个 `fill`。
-  - 这 2 个是 §9 末尾的太阳能裁图。线上还是 `approved`，暂存已是 `pending`。
-  - dry-run 对已有行只补空字段，不改门禁，所以只报出要勾上 `visual_review_required`。
-  - 改不改等操作者决定。
-- 新增 `registry-key-elsewhere` 10 个，所以需要复核的导出物是 705 个。暂存的门禁是 approved 564、pending 700、quarantine 6、temporary 4；线上比它多 2 个 approved，就是这两张裁图。
+- 导出物 1274 个全部 `keep`。
+- 新增 `registry-key-elsewhere` 10 个，所以需要复核的导出物是 705 个。
+- 暂存的门禁是 approved 564、pending 700、quarantine 6、temporary 4，与线上逐行一致。
 - 其余问题的数量都没有变。
 
 **总量**
