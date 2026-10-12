@@ -55,6 +55,7 @@ SKIP_REPO_RELATIVE_PREFIXES = (
 # Skip them rather than rewrite history.
 SKIP_DOC_FILES = (
     "code-as-doc/code_optimization_log.md",
+    "code-as-doc/code_optimization_log_archive.md",
     "code-as-doc/maintainability_refactor_tracker.md",
     "code-as-doc/phase2_lark_setup_and_parity_plan.md",
 )

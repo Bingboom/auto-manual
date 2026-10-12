@@ -46,6 +46,7 @@ class PathSegments:
     WEB_COMPOSITES = "web_composites"
     KNOWLEDGE = "knowledge"
     WORKSPACE_DATA = "workspace-data"
+    GOVERNANCE = "governance"
     PUBLISH = "publish"
     WEB = "web"
     SOURCE = "source"
@@ -76,6 +77,7 @@ class PathSegments:
     TM_HIT_RATE = "tm_hit_rate"
     PDF_ANNOTATE = "pdf_annotate"
     FLOW_DASHBOARD = "flow_dashboard"
+    KNOWLEDGE_OBSERVATIONS = "knowledge_observations"
 
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
@@ -282,6 +284,10 @@ def pdf_annotate_reports_of(base_root: Path) -> Path:
 
 def flow_dashboard_reports_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.FLOW_DASHBOARD
+
+
+def knowledge_observation_reports_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.KNOWLEDGE_OBSERVATIONS
 
 
 @dataclass(frozen=True)

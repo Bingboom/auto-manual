@@ -1,0 +1,1253 @@
+[
+  {
+    "pageWidth": 1280,
+    "viewport": 1280,
+    "broken": [],
+    "imageCount": 56,
+    "liveLabels": 115,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "重要提示",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全注意事項",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用說明",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "危險",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用者維護說明",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "限用物質含有情況標示聲明書",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "圖示含義",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "包裝清單",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品外觀",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "正視圖",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "顯示螢幕介面",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品使用",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "電源開機 / 關機",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC 輸出開啟 / 關閉",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC 12V / USB 輸出開啟 / 關閉",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "節能模式",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "螢幕顯示",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "按鍵組合",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "不斷電系統（UPS）",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方式",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用 AC 插座充電",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用太陽能電池板充電（另售）",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用車用充電器充電（另售）",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "底部清潔",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "儲存",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "故障處理",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "技術參數",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "基本規格",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸入",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸出",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "工作環境溫度",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保固",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "有限保固",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "保固期限",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "維修或更換",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "僅限原始購買者",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "不適用保固的情形",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "解釋權",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "APP 設定",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. 下載 App 並登入",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. 新增裝置",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. 解除裝置綁定",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. 注意事項",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.1 開啟 Wi-Fi 與藍牙",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.2 關閉 Wi-Fi 與藍牙",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.3 重設 Wi-Fi 與藍牙",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "報驗義務人資訊：",
+        "font": "25.28px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 657.21875,
+        "height": 550.3125
+      },
+      {
+        "id": "lcd-map",
+        "width": 657.21875,
+        "height": 339.140625
+      },
+      {
+        "id": "power",
+        "width": 657.21875,
+        "height": 418.609375
+      },
+      {
+        "id": "ac-output",
+        "width": 657.21875,
+        "height": 389.296875
+      },
+      {
+        "id": "dc-usb",
+        "width": 657.21875,
+        "height": 915.921875
+      },
+      {
+        "id": "energy-buttons",
+        "width": 657.21875,
+        "height": 188.9375
+      },
+      {
+        "id": "ups",
+        "width": 657.21875,
+        "height": 278.75
+      },
+      {
+        "id": "ac-charge",
+        "width": 657.21875,
+        "height": 215.015625
+      },
+      {
+        "id": "solar-direct",
+        "width": 657.21875,
+        "height": 219.0625
+      },
+      {
+        "id": "solar-connectors",
+        "width": 657.21875,
+        "height": 257.609375
+      },
+      {
+        "id": "solar-incorrect",
+        "width": 657.21875,
+        "height": 223.125
+      },
+      {
+        "id": "car-charge",
+        "width": 657.21875,
+        "height": 249.484375
+      },
+      {
+        "id": "bottom-cleaning",
+        "width": 657.21875,
+        "height": 870.03125
+      },
+      {
+        "id": "app-add",
+        "width": 410,
+        "height": 417.53125
+      },
+      {
+        "id": "app-network",
+        "width": 650,
+        "height": 166.265625
+      },
+      {
+        "id": "app-result",
+        "width": 657.21875,
+        "height": 415.078125
+      },
+      {
+        "id": "reporting-qr",
+        "width": 96,
+        "height": 96
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [
+      "native-figure native-overview-front native-dense"
+    ],
+    "language": "zh-TW",
+    "width": 1280,
+    "height": 900,
+    "errors": [],
+    "resourceErrors": []
+  },
+  {
+    "pageWidth": 768,
+    "viewport": 768,
+    "broken": [],
+    "imageCount": 56,
+    "liveLabels": 115,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "重要提示",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全注意事項",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用說明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "危險",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用者維護說明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "限用物質含有情況標示聲明書",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "圖示含義",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "包裝清單",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品外觀",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "正視圖",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "顯示螢幕介面",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品使用",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "電源開機 / 關機",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC 輸出開啟 / 關閉",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC 12V / USB 輸出開啟 / 關閉",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "節能模式",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "螢幕顯示",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "按鍵組合",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "不斷電系統（UPS）",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方式",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用 AC 插座充電",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用太陽能電池板充電（另售）",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用車用充電器充電（另售）",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "底部清潔",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "儲存",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "故障處理",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "技術參數",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "基本規格",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸入",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸出",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "工作環境溫度",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保固",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "有限保固",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "保固期限",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "維修或更換",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "僅限原始購買者",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "不適用保固的情形",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "解釋權",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "APP 設定",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. 下載 App 並登入",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. 新增裝置",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. 解除裝置綁定",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. 注意事項",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.1 開啟 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.2 關閉 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.3 重設 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "報驗義務人資訊：",
+        "font": "20.48px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 687.9375,
+        "height": 576.03125
+      },
+      {
+        "id": "lcd-map",
+        "width": 660,
+        "height": 340.5625
+      },
+      {
+        "id": "power",
+        "width": 687.9375,
+        "height": 438.171875
+      },
+      {
+        "id": "ac-output",
+        "width": 687.9375,
+        "height": 407.5
+      },
+      {
+        "id": "dc-usb",
+        "width": 687.9375,
+        "height": 958.734375
+      },
+      {
+        "id": "energy-buttons",
+        "width": 687.9375,
+        "height": 197.78125
+      },
+      {
+        "id": "ups",
+        "width": 687.9375,
+        "height": 291.78125
+      },
+      {
+        "id": "ac-charge",
+        "width": 687.9375,
+        "height": 225.0625
+      },
+      {
+        "id": "solar-direct",
+        "width": 687.9375,
+        "height": 229.3125
+      },
+      {
+        "id": "solar-connectors",
+        "width": 687.9375,
+        "height": 269.640625
+      },
+      {
+        "id": "solar-incorrect",
+        "width": 687.9375,
+        "height": 233.546875
+      },
+      {
+        "id": "car-charge",
+        "width": 687.9375,
+        "height": 261.15625
+      },
+      {
+        "id": "bottom-cleaning",
+        "width": 687.9375,
+        "height": 910.6875
+      },
+      {
+        "id": "app-add",
+        "width": 410,
+        "height": 417.53125
+      },
+      {
+        "id": "app-network",
+        "width": 650,
+        "height": 166.265625
+      },
+      {
+        "id": "app-result",
+        "width": 680,
+        "height": 429.46875
+      },
+      {
+        "id": "reporting-qr",
+        "width": 96,
+        "height": 96
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [
+      "native-figure native-overview-front native-dense"
+    ],
+    "language": "zh-TW",
+    "width": 768,
+    "height": 1024,
+    "errors": [],
+    "resourceErrors": []
+  },
+  {
+    "pageWidth": 390,
+    "viewport": 390,
+    "broken": [],
+    "imageCount": 56,
+    "liveLabels": 115,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "重要提示",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全注意事項",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用說明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "危險",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用者維護說明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "限用物質含有情況標示聲明書",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "圖示含義",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "包裝清單",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品外觀",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "正視圖",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "顯示螢幕介面",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "產品使用",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "電源開機 / 關機",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC 輸出開啟 / 關閉",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC 12V / USB 輸出開啟 / 關閉",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "節能模式",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "螢幕顯示",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "按鍵組合",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "不斷電系統（UPS）",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方式",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用 AC 插座充電",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用太陽能電池板充電（另售）",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "使用車用充電器充電（另售）",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "底部清潔",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "儲存",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "故障處理",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "技術參數",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "基本規格",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸入",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "輸出",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "工作環境溫度",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保固",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "有限保固",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "保固期限",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "維修或更換",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "僅限原始購買者",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "不適用保固的情形",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "解釋權",
+        "font": "15.68px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "APP 設定",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. 下載 App 並登入",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. 新增裝置",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. 解除裝置綁定",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. 注意事項",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.1 開啟 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.2 關閉 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4.3 重設 Wi-Fi 與藍牙",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "報驗義務人資訊：",
+        "font": "21.44px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 680,
+        "height": 569.390625
+      },
+      {
+        "id": "lcd-map",
+        "width": 358,
+        "height": 184.734375
+      },
+      {
+        "id": "power",
+        "width": 680,
+        "height": 433.109375
+      },
+      {
+        "id": "ac-output",
+        "width": 680,
+        "height": 402.796875
+      },
+      {
+        "id": "dc-usb",
+        "width": 680,
+        "height": 947.671875
+      },
+      {
+        "id": "energy-buttons",
+        "width": 680,
+        "height": 195.5
+      },
+      {
+        "id": "ups",
+        "width": 358,
+        "height": 151.84375
+      },
+      {
+        "id": "ac-charge",
+        "width": 358,
+        "height": 117.109375
+      },
+      {
+        "id": "solar-direct",
+        "width": 358,
+        "height": 119.328125
+      },
+      {
+        "id": "solar-connectors",
+        "width": 358,
+        "height": 140.3125
+      },
+      {
+        "id": "solar-incorrect",
+        "width": 358,
+        "height": 121.53125
+      },
+      {
+        "id": "car-charge",
+        "width": 358,
+        "height": 135.90625
+      },
+      {
+        "id": "bottom-cleaning",
+        "width": 680,
+        "height": 900.1875
+      },
+      {
+        "id": "app-add",
+        "width": 358,
+        "height": 364.578125
+      },
+      {
+        "id": "app-network",
+        "width": 358,
+        "height": 91.578125
+      },
+      {
+        "id": "app-result",
+        "width": 680,
+        "height": 429.46875
+      },
+      {
+        "id": "reporting-qr",
+        "width": 96,
+        "height": 96
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [
+      "native-figure native-overview-front native-dense",
+      "native-figure native-power native-dense",
+      "native-figure native-ac-output native-dense",
+      "native-figure native-dc-usb native-dense",
+      "native-figure native-energy-buttons native-dense",
+      "native-figure native-bottom-cleaning native-dense",
+      "native-figure native-app-result native-dense"
+    ],
+    "language": "zh-TW",
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "resourceErrors": []
+  }
+]

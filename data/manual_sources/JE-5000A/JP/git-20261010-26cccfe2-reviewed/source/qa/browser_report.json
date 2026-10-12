@@ -1,0 +1,1342 @@
+[
+  {
+    "emptyArtwork": [],
+    "duplicateIds": [],
+    "clippedCells": [],
+    "pageWidth": 1280,
+    "viewport": 1280,
+    "broken": [],
+    "imageCount": 84,
+    "liveLabels": 105,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "主な仕様",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "【JACKERY ポータブル電源 5000 PLUS】",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "充電式電池のリサイクルについて",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "同梱品",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "各部の名称",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "前面",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "左側面",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "右側面",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "液晶画面",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使い方",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "出力オン/オフ",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC出力のオン/オフ",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "USB出力オン/オフ",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC出力オン/オフ",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "LCDスクリーン",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "キーの組み合わせ",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "トラブルシューティング",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "UPS機能",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "バックアップUPS",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "オンラインUPS",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "バッテリーパック（別売）に接続",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方法",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC充電ケーブル",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "ソーラー充電",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "低電圧入力ポートに接続",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧入力ポートに接続",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧＋低電圧入力",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "車載シガーソケットからの充電について",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全上のご注意",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示について",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示の説明",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "注意",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使用上のご注意",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "免 責 事 項",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "JACKERYアプリ ユーザーマニュアル",
+        "font": "25.28px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. アプリをダウンロードしてログインするには",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. デバイスを追加するには",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. デバイスのバインドを解除するには",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. ご確認",
+        "font": "17.92px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保証サービス",
+        "font": "25.28px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 657.21875,
+        "height": 480.984375
+      },
+      {
+        "id": "overview-left",
+        "width": 657.21875,
+        "height": 456.0625
+      },
+      {
+        "id": "overview-right",
+        "width": 657.21875,
+        "height": 527.859375
+      },
+      {
+        "id": "lcd-map",
+        "width": 657.21875,
+        "height": 365.34375
+      },
+      {
+        "id": "power",
+        "width": 657.21875,
+        "height": 371.375
+      },
+      {
+        "id": "ac-output",
+        "width": 657.21875,
+        "height": 394.328125
+      },
+      {
+        "id": "usb-output",
+        "width": 657.21875,
+        "height": 277.484375
+      },
+      {
+        "id": "dc-output",
+        "width": 657.21875,
+        "height": 277.484375
+      },
+      {
+        "id": "lcd-button",
+        "width": 289.171875,
+        "height": 253.015625
+      },
+      {
+        "id": "ups",
+        "width": 657.21875,
+        "height": 417.28125
+      },
+      {
+        "id": "battery-packs",
+        "width": 657.21875,
+        "height": 324.4375
+      },
+      {
+        "id": "ac-charge",
+        "width": 657.21875,
+        "height": 277.484375
+      },
+      {
+        "id": "low-pv",
+        "width": 657.21875,
+        "height": 332.765625
+      },
+      {
+        "id": "high-pv",
+        "width": 657.21875,
+        "height": 465.265625
+      },
+      {
+        "id": "high-pv-lock",
+        "width": 657.21875,
+        "height": 244.875
+      },
+      {
+        "id": "dual-pv",
+        "width": 657.21875,
+        "height": 310.859375
+      },
+      {
+        "id": "car-charge",
+        "width": 657.21875,
+        "height": 227.40625
+      },
+      {
+        "id": "app-download",
+        "width": 66,
+        "height": 41
+      },
+      {
+        "id": "app-qr",
+        "width": 100,
+        "height": 101.953125
+      },
+      {
+        "id": "app-add",
+        "width": 390,
+        "height": 373.546875
+      },
+      {
+        "id": "app-control",
+        "width": 580,
+        "height": 223.28125
+      },
+      {
+        "id": "app-results",
+        "width": 657.21875,
+        "height": 409.078125
+      },
+      {
+        "id": "service-logo",
+        "width": 180,
+        "height": 35
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [],
+    "visibleCopyCoverage": {
+      "live_selections": 481,
+      "missing": []
+    },
+    "language": "ja",
+    "width": 1280,
+    "height": 900,
+    "errors": [],
+    "resourceErrors": []
+  },
+  {
+    "emptyArtwork": [],
+    "duplicateIds": [],
+    "clippedCells": [],
+    "pageWidth": 768,
+    "viewport": 768,
+    "broken": [],
+    "imageCount": 84,
+    "liveLabels": 105,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "主な仕様",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "【JACKERY ポータブル電源 5000 PLUS】",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "充電式電池のリサイクルについて",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "同梱品",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "各部の名称",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "前面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "左側面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "右側面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "液晶画面",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使い方",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC出力のオン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "USB出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "LCDスクリーン",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "キーの組み合わせ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "トラブルシューティング",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "UPS機能",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "バックアップUPS",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "オンラインUPS",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "バッテリーパック（別売）に接続",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方法",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC充電ケーブル",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "ソーラー充電",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "低電圧入力ポートに接続",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧入力ポートに接続",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧＋低電圧入力",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "車載シガーソケットからの充電について",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全上のご注意",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示について",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示の説明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "注意",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使用上のご注意",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "免 責 事 項",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "JACKERYアプリ ユーザーマニュアル",
+        "font": "20.48px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. アプリをダウンロードしてログインするには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. デバイスを追加するには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. デバイスのバインドを解除するには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. ご確認",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保証サービス",
+        "font": "20.48px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 687.9375,
+        "height": 503.46875
+      },
+      {
+        "id": "overview-left",
+        "width": 687.9375,
+        "height": 477.390625
+      },
+      {
+        "id": "overview-right",
+        "width": 687.9375,
+        "height": 552.53125
+      },
+      {
+        "id": "lcd-map",
+        "width": 660,
+        "height": 366.890625
+      },
+      {
+        "id": "power",
+        "width": 687.9375,
+        "height": 388.734375
+      },
+      {
+        "id": "ac-output",
+        "width": 687.9375,
+        "height": 412.75
+      },
+      {
+        "id": "usb-output",
+        "width": 687.9375,
+        "height": 290.453125
+      },
+      {
+        "id": "dc-output",
+        "width": 687.9375,
+        "height": 290.453125
+      },
+      {
+        "id": "lcd-button",
+        "width": 302.6875,
+        "height": 264.84375
+      },
+      {
+        "id": "ups",
+        "width": 687.9375,
+        "height": 436.78125
+      },
+      {
+        "id": "battery-packs",
+        "width": 687.9375,
+        "height": 339.609375
+      },
+      {
+        "id": "ac-charge",
+        "width": 687.9375,
+        "height": 290.453125
+      },
+      {
+        "id": "low-pv",
+        "width": 687.9375,
+        "height": 348.3125
+      },
+      {
+        "id": "high-pv",
+        "width": 687.9375,
+        "height": 487.015625
+      },
+      {
+        "id": "high-pv-lock",
+        "width": 687.9375,
+        "height": 256.328125
+      },
+      {
+        "id": "dual-pv",
+        "width": 687.9375,
+        "height": 325.390625
+      },
+      {
+        "id": "car-charge",
+        "width": 687.9375,
+        "height": 238.046875
+      },
+      {
+        "id": "app-download",
+        "width": 66,
+        "height": 41
+      },
+      {
+        "id": "app-qr",
+        "width": 100,
+        "height": 101.953125
+      },
+      {
+        "id": "app-add",
+        "width": 390,
+        "height": 373.546875
+      },
+      {
+        "id": "app-control",
+        "width": 580,
+        "height": 223.28125
+      },
+      {
+        "id": "app-results",
+        "width": 680,
+        "height": 423.25
+      },
+      {
+        "id": "service-logo",
+        "width": 180,
+        "height": 35
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [],
+    "visibleCopyCoverage": {
+      "live_selections": 481,
+      "missing": []
+    },
+    "language": "ja",
+    "width": 768,
+    "height": 1024,
+    "errors": [],
+    "resourceErrors": []
+  },
+  {
+    "emptyArtwork": [],
+    "duplicateIds": [],
+    "clippedCells": [],
+    "pageWidth": 390,
+    "viewport": 390,
+    "broken": [],
+    "imageCount": 84,
+    "liveLabels": 105,
+    "outside": [],
+    "overlaps": [],
+    "occluded": [],
+    "clippedCards": [],
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "主な仕様",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "【JACKERY ポータブル電源 5000 PLUS】",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "充電式電池のリサイクルについて",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "同梱品",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "各部の名称",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "前面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "左側面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "右側面",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "液晶画面",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使い方",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC出力のオン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "USB出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "DC出力オン/オフ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "LCDスクリーン",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "キーの組み合わせ",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "トラブルシューティング",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "UPS機能",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "バックアップUPS",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "オンラインUPS",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "バッテリーパック（別売）に接続",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "充電方法",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "AC充電ケーブル",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "ソーラー充電",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "低電圧入力ポートに接続",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧入力ポートに接続",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "高電圧＋低電圧入力",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "車載シガーソケットからの充電について",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "安全上のご注意",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示について",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "絵表示の説明",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "警告",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "注意",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "使用上のご注意",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "免 責 事 項",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "JACKERYアプリ ユーザーマニュアル",
+        "font": "21.44px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "1. アプリをダウンロードしてログインするには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "2. デバイスを追加するには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "3. デバイスのバインドを解除するには",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H2",
+        "text": "4. ご確認",
+        "font": "16px",
+        "weight": "700"
+      },
+      {
+        "tag": "H1",
+        "text": "保証サービス",
+        "font": "21.44px",
+        "weight": "700"
+      }
+    ],
+    "figures": [
+      {
+        "id": "overview-front",
+        "width": 660,
+        "height": 483.015625
+      },
+      {
+        "id": "overview-left",
+        "width": 660,
+        "height": 458
+      },
+      {
+        "id": "overview-right",
+        "width": 660,
+        "height": 530.09375
+      },
+      {
+        "id": "lcd-map",
+        "width": 358,
+        "height": 199.015625
+      },
+      {
+        "id": "power",
+        "width": 660,
+        "height": 372.9375
+      },
+      {
+        "id": "ac-output",
+        "width": 660,
+        "height": 396
+      },
+      {
+        "id": "usb-output",
+        "width": 660,
+        "height": 278.65625
+      },
+      {
+        "id": "dc-output",
+        "width": 660,
+        "height": 278.65625
+      },
+      {
+        "id": "lcd-button",
+        "width": 290.390625,
+        "height": 254.078125
+      },
+      {
+        "id": "ups",
+        "width": 660,
+        "height": 419.046875
+      },
+      {
+        "id": "battery-packs",
+        "width": 660,
+        "height": 325.8125
+      },
+      {
+        "id": "ac-charge",
+        "width": 660,
+        "height": 278.65625
+      },
+      {
+        "id": "low-pv",
+        "width": 660,
+        "height": 334.171875
+      },
+      {
+        "id": "high-pv",
+        "width": 660,
+        "height": 467.234375
+      },
+      {
+        "id": "high-pv-lock",
+        "width": 660,
+        "height": 245.921875
+      },
+      {
+        "id": "dual-pv",
+        "width": 660,
+        "height": 312.1875
+      },
+      {
+        "id": "car-charge",
+        "width": 660,
+        "height": 228.375
+      },
+      {
+        "id": "app-download",
+        "width": 66,
+        "height": 41
+      },
+      {
+        "id": "app-qr",
+        "width": 100,
+        "height": 101.953125
+      },
+      {
+        "id": "app-add",
+        "width": 358,
+        "height": 342.890625
+      },
+      {
+        "id": "app-control",
+        "width": 660,
+        "height": 254.078125
+      },
+      {
+        "id": "app-results",
+        "width": 358,
+        "height": 222.828125
+      },
+      {
+        "id": "service-logo",
+        "width": 180,
+        "height": 35
+      }
+    ],
+    "boldWeights": [
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700",
+      "700"
+    ],
+    "scrollSurfaces": [
+      "native-figure native-overview-front native-dense",
+      "native-figure native-overview-left native-dense",
+      "native-figure native-overview-right native-dense",
+      "native-figure native-power native-dense",
+      "native-figure native-ac-output native-dense",
+      "native-figure native-usb-output native-dense",
+      "native-figure native-dc-output native-dense",
+      "native-figure native-ups native-dense",
+      "native-figure native-battery-packs native-dense",
+      "native-figure native-ac-charge native-dense",
+      "native-figure native-low-pv native-dense",
+      "native-figure native-high-pv native-dense",
+      "native-figure native-high-pv-lock native-dense",
+      "native-figure native-dual-pv native-dense",
+      "native-figure native-car-charge native-dense",
+      "native-figure native-app-control native-dense"
+    ],
+    "visibleCopyCoverage": {
+      "live_selections": 481,
+      "missing": []
+    },
+    "language": "ja",
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "resourceErrors": []
+  }
+]

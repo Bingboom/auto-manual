@@ -2,7 +2,7 @@
 
 Status: done · Owner: Auto-Manual maintainer · Created: 2026-10-04
 
-Phase 1 已完成：P1-1 #1434、P1-2 #1435、P1-3 #1436、P1-4 验收见 [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。Phase 2 / 3 未立项。
+Phase 1 已完成：P1-1 #1434、P1-2 #1435、P1-3 #1436、P1-4 验收见 [`machine_readable_pilot_audit.md`](machine_readable_pilot_audit.md)。Phase 2 已于 2026-10-11 立项，见 [`machine_readable_knowledge_observation.md`](machine_readable_knowledge_observation.md)；其中 Phase 2a（EU 知识观察）已完成，验收见 [`machine_readable_knowledge_pilot_audit.md`](machine_readable_knowledge_pilot_audit.md)；Phase 2b 未立项。Phase 3 已于 2026-10-12 立项，见 [`machine_readable_knowledge_governance.md`](machine_readable_knowledge_governance.md)。
 
 本文件是需求与分阶段计划。第一阶段（Machine Corpus）的实施以本文件为准；
 第二、三阶段只记录目标与边界，开工前各自再立项。现有查询链路的运行约定仍以
@@ -185,7 +185,7 @@ Native Machine Surface。工作台「工作入口」图已标注
 | generation_mode | 架构路径 |
 | html_sha256 / surface_sha256 | 来源与产物哈希 |
 | status | `fresh` / `stale` / `failed` / `unavailable` |
-| counts | 章节、块、警示框（按 severity）、无 alt 图片 |
+| counts | 章节、块、警示框（按 severity）、无 alt 图片；P2-0 起含 `unknown` 警示标签 |
 
 状态与生成模式分开记录。
 
@@ -193,6 +193,10 @@ Native Machine Surface。工作台「工作入口」图已标注
 `write_knowledge` 里紧随语料写出，早于部署回执，因此回执的 `files` 自动包含
 清单与语料的哈希，回执代码无需改动。`surface_sha256` 是该版本文档对象规范
 JSON 的哈希；构建时所有版本均为 `fresh`。
+
+P2-0 起（生成器 `manual-knowledge/1.2`），`counts` 增加 `unknown_callout_labels`
+（级别为 `unknown` 的警示框原文标签及次数），`totals` 增加同名汇总；只增字段，
+既有字段语义不变。
 
 ### 5.6 新鲜度
 
@@ -213,6 +217,13 @@ python -m tools.manual_knowledge.manifest --site <构建输出目录> [--manifes
 `failed`；网页已不在部署中 → `unavailable`。清单或语料本身与回执不符记为
 problems。全部 fresh 时退出码 0，否则 1。Agent 默认不得把 stale 内容当作当前正式
 内容回答（现有插件已在回执不一致时拒绝回答）。
+
+输出另含 `callout_labels`（P2-0）：把清单中的 `unknown` 标签与
+[`machine_surface_known_callout_labels.csv`](../../data/machine_surface_known_callout_labels.csv)
+登记的例外对照，列出新增（`new`）和已不再出现（`stale`，源已修正，应删除该行）的
+标签。每行写明 `disposition`：`icon_only`（图标标签，按设计不猜）、`source_defect`
+（在权威源修正）、`pending_style_guide`（待 Style Guide 裁定）。该报告只提示，
+不改变退出码，也不在构建中失败；清单早于 P2-0 时为 `null`。
 
 ### 5.7 Workspace
 

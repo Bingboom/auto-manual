@@ -163,7 +163,7 @@ class LanguageLongTailParityTest(unittest.TestCase):
         for spec in lang_registry.LANGUAGE_REGISTRY:
             if not spec.sync_enabled:
                 with self.subTest(offline_language=spec.code):
-                    self.assertIn(spec.code, expected_labels)
+                    self.assertIn(spec.code.casefold(), expected_labels)
                     self.assertIsNone(lang_registry.idml_language_pack(spec.code))
                     self.assertNotIn(spec.code, lang_registry.governed_languages())
 
@@ -179,7 +179,7 @@ class LanguageLongTailParityTest(unittest.TestCase):
             for alias in spec.aliases
         }
         self.assertEqual(set(TM_LANGUAGE_FIELDS), sync_aliases)
-        self.assertEqual(aliases - sync_aliases, {"pt", "nl", "pl"})
+        self.assertEqual(aliases - sync_aliases, {"pt", "nl", "pl", "zh-tw", "zh_tw", "zh-hant"})
         self.assertEqual(signal_words._SUPPORTED_LANGS, aliases)
         self.assertEqual(
             set(localized_copy._LANG_TEXT_COLUMNS),
