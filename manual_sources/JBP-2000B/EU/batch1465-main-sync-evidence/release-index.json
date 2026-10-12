@@ -1,0 +1,63 @@
+{
+  "source_git_ref": "d4249eec2ff796bc46c2252bc4127773cca9f49b",
+  "model": "JBP-2000B",
+  "region": "EU",
+  "technical_version": "batch1465-reviewed",
+  "source_manifest_sha256": "715762a38d6052cc3e9d710e216eea67b3c497ef0e5703d4ec77352199dbba34",
+  "original_source": {
+    "filename": "JBP-2000B_修正版_竖版.pdf",
+    "sha256": "09e0fb4ece44e62040abcf104be6099b88458e2c3357bc3ce0ae5a98e10687b3"
+  },
+  "languages": [
+    {
+      "language": "fr",
+      "receipt": "evidence/fr/language_projection_receipt.json",
+      "receipt_sha256": "7f4ed7f04ea5d07cd8cbe3ac5418769ff44041d19ef53e8f94f139a11f2878cd",
+      "verification": "passed"
+    },
+    {
+      "language": "es",
+      "receipt": "evidence/es/language_projection_receipt.json",
+      "receipt_sha256": "412605d2fa8c882918ddd62909dcb38f15a2cf2c9f42efe2478a409215706293",
+      "verification": "passed"
+    },
+    {
+      "language": "de",
+      "receipt": "evidence/de/language_projection_receipt.json",
+      "receipt_sha256": "c40623d3e22efedcc5961a73141cf056c108e38d62cae880eb4c009d066a4c2c",
+      "verification": "passed"
+    },
+    {
+      "language": "it",
+      "receipt": "evidence/it/language_projection_receipt.json",
+      "receipt_sha256": "8dcfa5e65b85a0ccd3515ebccb61419eb3a5d64716089e2d308b93e20a373401",
+      "verification": "passed"
+    },
+    {
+      "language": "uk",
+      "receipt": "evidence/uk/language_projection_receipt.json",
+      "receipt_sha256": "a62fabfc53dab8e6e7292702b9afc3ce033f05ab8c87e3d601a2e53f33157782",
+      "verification": "passed"
+    },
+    {
+      "language": "pt",
+      "receipt": "evidence/pt/language_projection_receipt.json",
+      "receipt_sha256": "11b7023389b05c09aca71cb051c5f04520cdbc6af3a1acd5da8e63761694b089",
+      "verification": "passed"
+    },
+    {
+      "language": "nl",
+      "receipt": "evidence/nl/language_projection_receipt.json",
+      "receipt_sha256": "08ed60dc2d91545a5f3adf6ba5471bcef332bd836559d3de5f39c4823f52dcb6",
+      "verification": "passed"
+    },
+    {
+      "language": "pl",
+      "receipt": "evidence/pl/language_projection_receipt.json",
+      "receipt_sha256": "e884c5a370fadd49531355467af3e8dd6b4a09530ecb4e0f8c2b66e28c71dbc9",
+      "verification": "passed"
+    }
+  ],
+  "deployed": false,
+  "engineering_merged": false
+}
