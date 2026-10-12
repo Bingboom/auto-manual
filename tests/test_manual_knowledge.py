@@ -403,8 +403,10 @@ class ManifestFreshnessTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             data = Path(tmp)
             self.assertEqual(load_known_callout_labels(data), set())
-            (data / KNOWN_CALLOUT_LABELS_CSV).write_text(header + 'M/EU/nl,⚠,icon_only,icon\n,,,\n', encoding='utf-8')
-            self.assertEqual(load_known_callout_labels(data), {('M/EU/nl', '⚠')})
+            (data / KNOWN_CALLOUT_LABELS_CSV).write_text(
+                header + 'M/EU/nl,⚠,icon_only,icon\n,,,\nM/EU/pl,OSTRZE,source_defect,split\n', encoding='utf-8')
+            self.assertEqual(load_known_callout_labels(data), {('M/EU/nl', '⚠'), ('M/EU/pl', 'OSTRZE')})
+            self.assertEqual(load_known_callout_labels(data, ('icon_only',)), {('M/EU/nl', '⚠')})
             for row in ['M/EU/nl,⚠,guess,\n', ',WAARSCHU,source_defect,\n']:
                 (data / KNOWN_CALLOUT_LABELS_CSV).write_text(header + row, encoding='utf-8')
                 with self.assertRaises(ValueError):

@@ -21,7 +21,8 @@ P2-4 试点验收）；Phase 2b 与 Phase 3 需另行立项。
   [`merge_authorizations_archive.md`](merge_authorizations_archive.md)）。此后 main 没有再改动
   `tools/manual_knowledge/`。
 - 2026-10-11 复核：在 Hello-Docs main `5c0a76ef`（冻结目录 `built_at` 2026-10-11T01:57Z）上，
-  用与 RTD 相同的构建命令本地重建（RTD 线上地址在本次复核环境中无法访问，线上复核待补）：
+  用与 RTD 相同的构建命令本地重建（RTD 线上地址在本次复核环境中无法访问；线上复核于 2026-10-12 补做，
+  见 [P2-4 验收记录](machine_readable_knowledge_pilot_audit.md) §3.4）：
 
 | 指标 | 10-04 验收 | 10-11 本地重建 |
 | --- | --- | --- |

@@ -134,8 +134,8 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 
 ## 6. 契约
 
-§6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2、§6.3 仍是草案，
-分别随 P3-1、P3-2 定稿。
+§6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2 已随 P3-1 定稿，
+由同一命令的 `verify` 与 `propose` 实现；§6.3 仍是草案，随 P3-2 定稿。
 
 ### 6.1 台账条目
 
@@ -194,12 +194,43 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 所以 `claim` / `reference` 改为 `claims` / `references` 列表，`change` 改为 `changes` 列表，并逐版本
 记录发布版本；另补了 `registered`、`priority`、决定的 `role` 和类别 `other`。
 
-### 6.2 核验结果
+### 6.2 核验与候选条目
 
-- `closed`：每条主张的每个版本都已成为同型号参照条目所在簇的成员，或等级、数字已与参照一致。
-- `still_open`：差异仍在。
-- `not_comparable`：参照条目已不在产物中，或该版本不再参与比较。
-- 同一观察产物上运行两次，结果字节一致；结果只写入核验报告，台账的状态改动走 Hello-Docs 内容 PR。
+`python -m tools.manual_knowledge.findings verify --observations <manual-observations.json> --ledger <台账>`
+读取一份观察产物与通过 `check` 的台账，在产物旁写出 `findings-verification.json`：
+
+- 对象：含机器比较主张（`absent` / `severity` / `numbers`）的条目，`superseded` 除外；只有 `manual`
+  主张的条目由人核验，列在报告的 `not_verified` 里。
+- 逐对比较：每条主张的每个版本与同型号的每个参照条目各比一次，经产物中包含该参照条目的
+  `language_parity` 簇判断。`absent`：该版本已是簇的成员为 `closed`，仍在 `absent_in` 为
+  `still_open`。`severity` / `numbers`：该版本成员的等级与参照相同、或含参照的全部数字为 `closed`，
+  否则为 `still_open`。
+- `not_comparable` 写明原因：参照条目已不在产物中（`reference_missing`，标签或文字变了）、参照条目
+  不在任何齐套簇中（`reference_uncompared`）、该版本没有参与比较（`edition_uncompared`，例如撤下或
+  改为多语合订）、等级或数字主张的版本已没有对应成员（`counterpart_missing`）。
+- 条目结果：任一对 `still_open` 即 `still_open`；否则任一对 `not_comparable` 即 `not_comparable`；
+  否则 `closed`。有 `not_comparable` 的对时 `needs_recheck` 为真，由人重新锚定参照或版本，条目不自动作废。
+- `observed_at` 取产物所描述发布的日期（`published_at`），`generator` 取产物的生成器版本；报告不含
+  运行时间，同一产物与台账运行两次，报告字节一致。
+- 默认只写报告。`--write` 只替换台账中各条目的 `verification`，不动状态、决定与修改记录；`closed`
+  条目保留关闭时的核验，差异重现时在报告的 `reopened` 中列出。写回的台账仍经 Hello-Docs 内容 PR
+  合入，状态由人改（D17、D21）。
+
+`propose` 用相同的输入写出 `findings-proposals.json`，只列候选，不登记：
+
+- 来源：`language_parity` 关系中置信度不低于门槛（默认 `medium`，`--min-confidence` 可调）的缺失、
+  等级与数字差异。缺失按各版本自己的置信度筛选，成员之间的差异取关系的置信度；参照是簇的第一个
+  成员（有英文版时即英文条目）。
+- 去重：台账任一条目（任何状态）在证据中引用过的关系视为已审；其余关系中，已有同类主张（或
+  `manual` 主张）列出该版本、并引用该簇任一成员的，视为已覆盖，只提出未覆盖的版本。
+- 已知标签：[已知标签例外表](../../data/machine_surface_known_callout_labels.csv)中 `icon_only` 与
+  `pending_style_guide` 的标签本身不表示等级，不构成等级差异；`source_defect` 与未登记的标签照常提出。
+- 合并：同一型号、同一类别、参照位于同一章节锚点且主张相同的关系合为一条候选。候选按 §6.1 生成并
+  通过同一校验：`status` 为 `candidate`，`finding_id` 为 `fd-<型号>-<主张>-<8 位哈希>`，`registered`
+  与 `evidence` 取自产物，`pilot_check` 为 `null`，`authority` 取各版本条目的发布路径（版本在产物中
+  没有条目时留空，报告在 `problems` 中列出），摘要由机器生成。
+- 报告按关系汇总：已审（`reviewed`）、筛选后无主张（`no_claim`）、已覆盖（`covered`）、提出（`proposed`）。
+  登记时由人改名、改写摘要、给优先级，经内容 PR 加入台账；误报登记为 `rejected` 并写理由，之后不再提出。
 
 ### 6.3 覆盖矩阵
 
@@ -231,6 +262,27 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 （第 8、21、22、23 条）不参与比较。
 `tests/test_knowledge_findings.py` 在含台账的检出里还会校验真实台账，所以 Hello-Docs 的台账内容 PR
 由 Manual Validation 的单元测试把关；auto-manual 没有该文件，此用例跳过。
+
+实现（P3-1）：`tools/manual_knowledge/governance.py` 实现 §6.2，命令入口仍是
+`python -m tools.manual_knowledge.findings`（`verify`、`propose`）。用线上产物（`ht-doc.readthedocs.io`
+10-11 发布，`manual-observations/0.5`）与 Hello-Docs main 的台账运行：`verify` 核验 19 条、142 对，
+全部 `still_open`，与 P3-0 的试算一致；只有人工主张的 4 条不核验；两次运行报告字节一致；`--write`
+只改动 19 个 `verification` 字段，台账仍通过 `check`。`propose` 面对 41 条 `high` / `medium` 差异关系：
+38 条已被台账引用，2 条是 `icon_only` 标签造成的等级差异（JE-1000F、JE-2000F），只提出 1 条，即
+JE-100C fr、nl 的缺失，也就是 P2-4 记录的 `medium` 唯一误报（[验收记录](machine_readable_knowledge_pilot_audit.md)
+§3.3），登记时应记为 `rejected`。
+
+在线上语料的副本上模拟四种情形，重算产物后核验同一台账：
+
+| 情形 | 核验 | 候选 |
+| --- | --- | --- |
+| 把 JE-1000F nl/pl/pt 的 UPS 警告补进 JE-1000H、JE-3000C、JE-2000E 的 nl/pl/pt | 第 7 条的 9 对为 `closed`，条目 `closed`；其余 18 条不变 | 不变 |
+| 只补 JE-3000C | 3 对 `closed`，条目仍为 `still_open` | 不变 |
+| 改写 JE-3000C 英文版的 UPS 警告 | 3 对 `not_comparable`（`reference_missing`），`needs_recheck` | 新参照下的缺失作为候选提出，供人重新锚定 |
+| 撤下 JE-3000C pt | 第 7、9 条中该版本为 `not_comparable`（`edition_uncompared`），`needs_recheck` | 6 条关系重算后编号已变，仍按主张判为已覆盖，不重复提出 |
+
+`tests/test_knowledge_governance.py` 用小型产物覆盖已修复、部分修复、仍存在、参照变化、版本撤下、
+等级与数字、跨型号、人工主张与 `superseded`、写回与 `reopened`、候选去重、门槛、已知标签、合并与确定性。
 
 ## 8. 验收标准
 
