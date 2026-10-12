@@ -60,8 +60,24 @@ const queries = questions.map(([query, title]) => {
   assert.ok(result.results.some((row) => title.test(row.title.toUpperCase())), query);
   return { query, status: result.status, titles: result.results.map((row) => row.title) };
 });
+// Parameter questions open each power station's and battery pack's specification table first.
+for (const model of ["JE-1000F", "JE-1000H", "JE-100C", "JE-2000E", "JE-2000F", "JE-3000C", "JE-300D", "JE-3600A", "JE-500A",
+  "JBP-2000B", "JBP-3600A"]) {
+  for (const query of [`${model} 容量`, `${model} capacity`, `${model} 最大容量`]) {
+    const result = searchManuals(snapshot, { query });
+    assert.match(result.results[0]?.title || "", /SPECIFICATIONS/, query);
+  }
+}
+const comparison = searchManuals(snapshot, { query: "容量最大的产品是哪个", compare: true });
+assert.equal(comparison.status, "comparison");
+assert.equal(comparison.compared_models.length, corpus.counts.models);
+assert.ok(comparison.results.every((row) => row.matched_lines.length), "every compared model shows its matching source lines");
+queries.push({ query: "容量最大的产品是哪个", compare: true, status: comparison.status,
+  compared: comparison.compared_models.length, with_evidence: comparison.results.length });
 for (const [params, expected] of [
   [{ query: "USB-C功率" }, "needs_model"],
+  [{ query: "Jackery 3600 Plus 容量" }, "needs_model"],
+  [{ query: "JE-1000F JE-9999 capacity", compare: true }, "model_not_found"],
   [{ query: "JE-9999 output" }, "model_not_found"],
   [{ query: "JE-1000F JE-2000F output" }, "needs_model"],
   [{ query: "JE-2000F 美规输出" }, "outside_scope"],

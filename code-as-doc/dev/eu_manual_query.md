@@ -80,6 +80,21 @@ after a refresh failure.
   verified English; other published languages can be requested explicitly. The
   gateway can translate a Chinese question to source-language keywords. This
   first version has a small Chinese terminology map, not vector/semantic search.
+- Ranking (2026-10): every keyword group must match; a chapter-title match
+  weighs more than a body match. A parameter question (capacity, weight,
+  voltage, power …) puts the specification table first. Equal scores go to the
+  chapter where more blocks mention the terms, then to the manual's own chapter
+  order, never to section-id hashes, so a republished manual keeps its ranking.
+  Terms of up to three characters match whole words, and unit symbols count
+  only after a number (`3584 Wh`, not the "wh" of "what"). Comparison and
+  question words (最大, 哪个, largest, which …) are not search terms.
+- Questions across products (哪款容量最大, A 与 B 对比) use `compare: true` with
+  the parameter as query: every published model, or the models the query names,
+  each with its best chapter and the matching source lines; models without
+  evidence are listed separately. Without `compare` a model-less question still
+  returns `needs_model` (with a hint), so one product is never answered from
+  another. Background: on 2026-10-11 the bot named JE-2000F (2048 Wh) the
+  largest, because a top-ranked chapter per model hid JE-3000C and JE-3600A.
 - Search previews are navigation only. `manual_section` requires document,
   chapter and `publication.snapshot_id` from search. It returns whole blocks,
   up to 30 per page / 60,000 bytes. Read all `next_offset` pages before giving a
@@ -151,7 +166,8 @@ to a valid earlier website deployment intentionally follows that deployed versio
    and check that these two tools and `/manual-query` are registered. Older
    gateways without `registerTool` retain only the deterministic query command.
 5. In the already connected bot, check `/manual-query JE-2000F USB-C输出`, then
-   ask “JE-2000F 欧规 USB-C 输出功率是多少？” and “JE-2000F 节能模式怎么关闭？”.
+   ask “JE-2000F 欧规 USB-C 输出功率是多少？”, “JE-2000F 节能模式怎么关闭？” and
+   “目前容量最大的产品是哪个？” (the answer should name the compared models).
    Verify the answer's values and complete conditions against the linked source.
    Also try a missing model, a US question and an unsupported concept; it should
    clarify or report no evidence, without inventing product facts. Confirm one

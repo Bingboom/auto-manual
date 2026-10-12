@@ -47,6 +47,9 @@ BlockClaw currently handles bounded manual operations: queue lookup, Start Revie
 
 `manual_search` locates the exact model, source language and chapters;
 `manual_section` returns whole semantic blocks with version/source links.
+With `compare: true`, `manual_search` answers questions across products
+(largest capacity, A versus B): one best chapter and its matching source lines
+per published model, or per model named in the query.
 The latter requires the search result's `publication.snapshot_id` on every page,
 so a release change requires a new search. Follow `next_offset` to read all
 conditions and warnings before answering. No workflow is dispatched by either
