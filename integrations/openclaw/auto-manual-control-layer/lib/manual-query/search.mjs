@@ -27,28 +27,48 @@ const ALIASES = [
   [/保修|质保/g, ["warranty"]], [/存储|存放/g, ["storage", "storing"]],
   [/连接/g, ["connect", "connection"]], [/警告|警示/g, ["warning", "caution"]],
   [/参数|规格/g, ["specifications", "specification", "technical parameters"]], [/包装|装箱/g, ["box", "packing"]],
+  [/电池包|扩展电池|扩容电池/g, ["battery pack"]],
+  // Compatibility: manuals write "compatible with" ("支持哪些主机" asks the same).
+  [/兼容|适用|适配|配套|搭配|匹配|(?:支持|可以配|可配|能配|配用|用于)(?:哪些|哪个|哪款|什么)?(?=主机|储能电源|户外电源|便携电源|电源站)|\b(?:in)?compatib\w*/g,
+    ["compatib"]],
+  [/\bworks? with\b|\bsupported\b/g, ["compatib", "support"]],
 ];
+// The host unit adds nothing to a search within one product's manual: a compatibility question carries its meaning
+// in the words above, and a parameter question ("储能电源容量") must still open the specification table.
+const HOST_WORDS = /主机|储能电源|户外电源|便携电源|电源站|\bhost(?: units?)?\b|\bmain units?\b/g;
 
-export function queryGroups(query, models = []) {
+// Query terms as groups of alternatives, and the Chinese words no alias translates: a European-language manual
+// cannot contain them, so they are left out of matching instead of excluding every chapter.
+function parseQuery(query, models = []) {
   const keys = [].concat(models).filter(Boolean).map(modelKey);
   let value = normal(query);
   const groups = [];
+  const untranslated = [];
   for (const [pattern, alternatives] of ALIASES) {
     if (value.match(pattern)) { groups.push(alternatives); value = value.replace(pattern, " "); }
   }
+  value = value.replace(HOST_WORDS, " ");
   if (keys.length) value = value.replace(MODEL_PATTERN, (match) => keys.includes(modelKey(match)) ? " " : match);
   // Model-free Chinese glue, question and comparison words have no retrieval meaning. The gateway can
   // supply translated keywords for concepts beyond this small deterministic lexicon.
   value = value.replace(/请问|请|帮我|查一下|查询|查|这个|这款|产品|说明书|欧规|欧版|英国|如何|怎么|怎样|多少|是什么|是多少|可以|是否|支持|模式|英文|介绍一下|介绍|一下|目前|当前|现在|哪一款|哪个|哪款|哪些|哪种|对比|比较|相比|最\p{Script=Han}|是|的|吗|有|能|和|及/gu, " ");
   const tokens = value.match(/[\p{L}\p{N}]+(?:[-.][\p{L}\p{N}]+)*/gu) || [];
   for (const token of tokens) {
-    if (!STOP.has(token) && !keys.includes(modelKey(token))) {
-      groups.push(["specs", "specification", "specifications"].includes(token)
-        ? ["specifications", "specification", "specs", "technical parameters"] : [UNITS.has(token) ? unit(token) : token]);
-    }
+    if (STOP.has(token) || keys.includes(modelKey(token))) continue;
+    if (/\p{Script=Han}/u.test(token)) { untranslated.push(token); continue; }
+    // A plural keyword also finds the singular ("stations" -> "station", "batteries" -> "battery").
+    const term = token.length > 4 && /ies$/.test(token) ? token.slice(0, -3) + "y"
+      : token.length > 4 && /[^s]s$/.test(token) ? token.slice(0, -1) : token;
+    groups.push(["specs", "specification", "specifications"].includes(token)
+      ? ["specifications", "specification", "specs", "technical parameters"] : [UNITS.has(token) ? unit(token) : term]);
   }
-  return groups;
+  return { groups, untranslated };
 }
+
+export const queryGroups = (query, models = []) => parseQuery(query, models).groups;
+
+const untranslatedGuidance = (words) => `这些中文词无法直接匹配英文说明书，未用于检索：${words.join("、")}；`
+  + "请换成英文关键词（如 compatible、capacity、warranty）再检索。";
 
 export function provenance(doc, origin) {
   return { document_id: doc.id, model: doc.model, region: doc.region, language: doc.lang,
@@ -138,8 +158,11 @@ function compareManuals(snapshot, { query, model, language }, base) {
       message: "比较的型号中有不在已发布欧规说明书里的型号；不能根据相似名称代用其他产品。" };
   }
   const models = named.length ? known.filter((item) => named.some((name) => modelKey(name) === modelKey(item))) : known;
-  const groups = queryGroups(query, models);
-  if (!groups.length) return { ...base, status: "needs_parameter", message: "请给出要比较的参数关键词，如 capacity、weight。" };
+  const { groups, untranslated } = parseQuery(query, models);
+  if (!groups.length) {
+    return { ...base, status: "needs_parameter", message: "请给出要比较的参数关键词，如 capacity、weight。",
+      ...(untranslated.length ? { guidance: untranslatedGuidance(untranslated) } : {}) };
+  }
   const results = [];
   const missing = [];
   for (const name of models) {
@@ -180,11 +203,15 @@ export function searchManuals(snapshot, { query = "", model = "", language = "",
   const docs = editions(corpus.documents.filter((doc) => doc.model === models[0]), language);
   if (!docs.length) return { ...base, status: "language_not_found", message: "没有该型号已验证的指定语言版本。" };
   if (docs.length > 1) return { ...base, status: "needs_language", manuals: docs.map((d) => provenance(d, origin)) };
-  const groups = queryGroups(query, models);
+  const { groups, untranslated } = parseQuery(query, models);
+  if (!groups.length && untranslated.length) {
+    return { ...base, status: "no_evidence", matched_count: 0, guidance: untranslatedGuidance(untranslated) };
+  }
   if (!groups.length) return { ...base, status: "manuals", manuals: docs.map((d) => provenance(d, origin)) };
   const results = rank(docs, groups);
   return { ...base, status: results.length ? "matches" : "no_evidence", matched_count: results.length,
-    guidance: "先用 manual_section 读取完整章节和全部分页，再按原文回答并引用链接。检索未命中不代表产品不支持。",
+    guidance: "先用 manual_section 读取完整章节和全部分页，再按原文回答并引用链接。检索未命中不代表产品不支持。"
+      + (untranslated.length ? untranslatedGuidance(untranslated) : ""),
     results: results.slice(0, limit).map(({ doc, section }) => ({ ...provenance(doc, origin), section_id: section.id,
       title: section.title, url: sectionUrl(doc, section, origin),
       preview: section.blocks.filter((b) => b.text).slice(0, 2).map((b) => b.text).join("\n").slice(0, 500) })) };
