@@ -9,11 +9,15 @@ every other status is a decision by a named person in a role, with a date (D17).
 ``not_applicable`` and compliance verdicts belong to the certification owner (D18).
 Approved wording is referenced as a TM-B record, never copied (D19); a finding the
 machine can compare is ``closed`` only after verification found the difference gone (D21).
+An edition whose publication declares no authority (``unclassified``, ``legacy``) is bound
+by a person to the sources to edit before the change is approved (D20).
 
 ``python -m tools.manual_knowledge.findings check`` validates a ledger and reports
 its totals; it never writes. ``verify``, ``propose`` and ``coverage`` read an observation
 artifact (``governance``): the first judges the ledger's compared claims, the second lists
 candidate findings the ledger does not cover yet, the third reports knowledge × edition coverage.
+``bindings`` reads the corpus instead (module ``bindings``): where each claimed edition is edited, and
+which editions still wait for a bound source.
 Plan: ``code-as-doc/dev/machine_readable_knowledge_governance.md`` §6.
 """
 from __future__ import annotations
@@ -48,6 +52,11 @@ PILOT_CHECKS = ("real", "partly", "explainable", "false_positive")
 ROLES = ("content_owner", "certification_owner", "operator")
 # Release paths as tools/rtd/publication_catalog.py classifies each published edition.
 RELEASE_PATHS = ("git_only_frozen", "unclassified", "queue", "legacy")
+# Release paths whose publication declares no authority: a person binds the sources to edit (D20).
+UNDECLARED = ("unclassified", "legacy")
+# Where a bound source may sit: the editing entries of plan §4.2.
+SOURCE_SURFACES = (f"{PathSegments.DOCS}/{PathSegments.TEMPLATES}", f"{PathSegments.DOCS}/{PathSegments.REVIEW}",
+                   f"{PathSegments.DATA}/{PathSegments.PHASE2}", PathSegments.MANUAL_SOURCES)
 RESULTS = ("closed", "still_open", "not_comparable")
 _REASONED = ("rejected", "not_applicable", "superseded")
 _UNCHANGED = ("candidate", "confirmed", "rejected", "not_applicable")
@@ -55,7 +64,7 @@ _CHANGED = ("change_approved", "applied", "closed")
 _PUBLISHED = ("applied", "closed")
 _FIELDS = {
     "finding": ({"finding_id", "status", "category", "summary", "registered", "claims", "evidence", "authority",
-                 "decisions", "changes", "verification"}, {"priority"}),
+                 "decisions", "changes", "verification"}, {"priority", "bindings"}),
     "registered": ({"date", "source"}, set()),
     "claim": ({"kind", "variants", "references"}, set()),
     "reference": ({"knowledge_id", "source_ref"}, set()),
@@ -63,6 +72,7 @@ _FIELDS = {
     "decision": ({"status", "by", "role", "date"}, {"note"}),
     "change": ({"variants", "wording", "pr", "published"}, set()),
     "verification": ({"result", "observed_at", "generator", "needs_recheck"}, set()),
+    "binding": ({"sources", "by", "role", "date"}, {"note"}),
 }
 _FINDING_ID = re.compile(r"fd-[a-z0-9]+(?:-[a-z0-9]+)*")
 _VARIANT = re.compile(r"[A-Z0-9][A-Z0-9-]*/[A-Z]{2}/[a-z]+(?:-[a-z]+)?")
@@ -209,6 +219,46 @@ def _authority(finding: dict, claimed: set[str], at: str, problems: list[str]) -
         problems.append(f"{at}: release path must be one of {RELEASE_PATHS} for {unknown}")
 
 
+def _source(value: object) -> bool:
+    """A repository path inside one of the editing entries of plan §4.2."""
+    if not isinstance(value, str):
+        return False
+    parts = value.removesuffix("/").split("/")
+    return all(part not in ("", ".", "..") for part in parts) and any(
+        parts[:surface.count("/") + 1] == surface.split("/") for surface in SOURCE_SURFACES)
+
+
+def _binding(binding: dict, registered: date | None, at: str, problems: list[str]) -> None:
+    sources = binding["sources"]
+    if not isinstance(sources, list) or not sources or not all(_source(source) for source in sources) \
+            or len(set(sources)) != len(sources):
+        problems.append(f"{at}: sources must be distinct repository paths under {SOURCE_SURFACES}")
+    when = _date(binding["date"])
+    if not _text(binding["by"]) or binding["role"] not in ROLES or when is None \
+            or (registered is not None and when < registered) or not isinstance(binding.get("note"), str | None):
+        problems.append(f"{at}: a binding needs the person (by), a role in {ROLES}, a YYYY-MM-DD date "
+                        "not before the registration and, if given, a text note")
+
+
+def _bindings(finding: dict, registered: date | None, at: str, problems: list[str]) -> None:
+    """Sources a person bound to the claimed editions whose publication declares no authority (D20)."""
+    authority = finding["authority"] if isinstance(finding["authority"], dict) else {}
+    undeclared = {variant for variant, path in authority.items() if path in UNDECLARED}
+    bindings = finding.get("bindings", {})
+    if not isinstance(bindings, dict):
+        problems.append(f"{at}: bindings must map claimed editions to the sources bound to them")
+        return
+    for variant, binding in sorted(bindings.items()):
+        here = f"{at} bindings[{variant}]"
+        if variant not in undeclared:
+            problems.append(f"{here}: only a claimed edition published as {UNDECLARED} takes a binding")
+        if _fields(binding, "binding", here, problems):
+            _binding(binding, registered, here, problems)
+    missing = sorted(undeclared - bindings.keys())
+    if finding["status"] in _CHANGED and missing:
+        problems.append(f"{at}: {finding['status']} needs the sources bound for {missing}")
+
+
 def _decider(decision: dict, category: str, at: str, problems: list[str]) -> None:
     """A named person in a role; applicability and compliance verdicts are the certification owner's (D18)."""
     status, role, note = decision["status"], decision["role"], decision.get("note")
@@ -318,6 +368,7 @@ def check_finding(finding: object, region: str) -> list[str]:
     claimed = _claims(finding, region, at, problems)
     _evidence(finding, at, problems)
     _authority(finding, claimed, at, problems)
+    _bindings(finding, registered, at, problems)
     _decisions(finding, registered, at, problems)
     _changes(finding, claimed, at, problems)
     _verification(finding, at, problems)
@@ -367,11 +418,15 @@ def main(argv: list[str] | None = None) -> int:
                          help="lowest confidence of a difference to propose (default: medium)")
     coverage = commands.add_parser("coverage", help="lay every language-parity cluster against every edition "
                                                      "of its model, with the ledger's conclusions")
-    for command in (check, verify, propose, coverage):
+    bindings = commands.add_parser("bindings", help="list where each claimed edition is edited and flag the "
+                                                    "editions without bound sources; never writes the ledger")
+    bindings.add_argument("--corpus", type=Path, required=True, help="manual-knowledge.json to read")
+    for command in (check, verify, propose, coverage, bindings):
         command.add_argument("--ledger", type=Path, default=default_ledger(repo_root()),
                              help="ledger file (default: docs/knowledge/governance/findings.json in this checkout)")
     for command in (verify, propose, coverage):
         command.add_argument("--observations", type=Path, required=True, help="manual-observations.json to read")
+    for command in (verify, propose, coverage, bindings):
         command.add_argument("--output", type=Path, help="report file (default: next to the artifact)")
     args = parser.parse_args(argv)
     if not args.ledger.is_file():
@@ -383,6 +438,10 @@ def main(argv: list[str] | None = None) -> int:
         ledger, problems = None, [f"ledger: not JSON ({error})"]
     else:
         problems = check_ledger(ledger)
+    if args.command == "bindings" and not problems:
+        from tools.manual_knowledge.bindings import report_bindings
+
+        return report_bindings(args, ledger)
     if args.command != "check" and not problems:
         from tools.manual_knowledge.governance import run
 

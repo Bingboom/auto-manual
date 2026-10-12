@@ -374,8 +374,13 @@ create synthetic queue rows or write `HTML_link`.
    self-contained source packages and their assembled Web copies. JE-5000A JP
    brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
    exceeding the previous 1 GiB source budget. Served-output and network
-   inventories retain their separate 512 MiB budget; the 32 MiB per-file and
-   10,000-file limits remain enforced. Do not remove reviewed artwork to fit
+   inventories retain their separate 512 MiB budget. Frozen source permits
+   20,000 files; served output, selected routes, receipt inventories and online
+   dependency traversal retain the 10,000-file limit. Every inventory retains
+   the 32 MiB per-file limit. The source count budget is separate because
+   stored packages and assembled copies coexist: batch-1465 reaches 10,043
+   source files, and the operator authorized doubling the source allowance
+   from 10,000 to 20,000. Do not remove reviewed artwork or evidence to fit
    the input budget.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review

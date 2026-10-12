@@ -24,6 +24,8 @@ class PathSegments:
     TOOLS = "tools"
     REPORTS = "reports"
     CONFIGS = "configs"
+    MANUAL_SOURCES = "manual_sources"
+    PHASE2 = "phase2"
 
     BUILD = "_build"
     REVIEW = "_review"

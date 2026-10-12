@@ -110,10 +110,15 @@ it as `throttled` and exits 75 (sysexits `EX_TEMPFAIL`), reserving exit 1 for
 real mismatches; a mismatch anywhere in the catalog outranks throttling in the
 overall verdict.
 
-Frozen source includes self-contained release packages and the assembled Web tree. Its separate storage budget accommodates both copies without changing the served-output or network verification budget. The 96-target catalog after the approved JBP-3600A EU additions occupies 686,644,486 bytes (654.8 MiB) across 6,740 files; original assets stay byte-identical. This exceeded the previous 640 MiB source cap, so the bounded source allowance is now 768 MiB. The RTD portal callbacks must run in the aggregate preflight: plain Sphinx without `tools.rtd.portal` does not exercise this source inventory or receipt emission.
+Frozen source includes self-contained release packages and the assembled Web tree. Its separate storage budget accommodates both copies without changing the served-output or network verification budget. The 96-target catalog after the approved JBP-3600A EU additions occupies 686,644,486 bytes (654.8 MiB) across 6,740 files; original assets stay byte-identical. This exceeded the previous 640 MiB source cap, so that release raised the bounded source allowance to 768 MiB; current budgets are listed below. The RTD portal callbacks must run in the aggregate preflight: plain Sphinx without `tools.rtd.portal` does not exercise this source inventory or receipt emission.
 
-Limits: 10,000 files, 32 MiB per file, 768 MiB per frozen-source inventory, 512 MiB per served-output inventory and
-per verification traversal. Each network request has an I/O timeout of at most
+Limits: frozen source allows 20,000 files and 1152 MiB, counting both preserved
+packages and assembled Web copies. Served-output inventories, selected routes,
+receipt inventories and online dependency traversals retain the 10,000-file
+limit and 512 MiB output/traversal budgets. Every inventory retains 32 MiB per
+file. Source and output counts are deliberately independent; increasing source
+capacity does not enlarge online verification or relax path, symlink, hash or
+provenance checks. Each network request has an I/O timeout of at most
 15 seconds. A file read has at most three attempts and a 45-second elapsed budget,
 checked before requests and before/after each bounded read; an already blocking
 socket operation can take its remaining I/O timeout before that budget is checked.

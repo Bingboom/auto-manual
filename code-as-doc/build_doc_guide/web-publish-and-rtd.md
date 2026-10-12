@@ -73,7 +73,8 @@ by evidence verification; print artifacts and symlinks remain prohibited.
 
 Frozen Web source storage is bounded separately from served output and network
 inventories. The [Git-only release contract](../dev/web_publish_pipeline.md#22-git-only-transaction)
-sets the 1 GiB source budget and retains the output, per-file and file-count limits.
+sets the 1152 MiB / 20,000-file source budgets. Served output and online verification
+retain 512 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file limit.
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal <frozen-web-source> <html-output>`.
@@ -144,7 +145,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 标签报告用 `python -m tools.manual_knowledge.manifest`，见[机读语料方案](../dev/machine_readable_manual_corpus.md) §5.5–§5.6。
 知识观察不在构建中运行：`python -m tools.manual_knowledge.observe --site <构建输出>`（或 `--base-url`）
 离线读取已封存的语料，写出不入库的 `manual-observations.json`（警示、安全、合规条目及其主题，以及跨产品、跨语言的比较），见[知识观察方案](../dev/machine_readable_knowledge_observation.md) §6。
-知识发现台账是 Hello-Docs 的业务内容 `docs/knowledge/governance/findings.json`，经内容 PR 维护；`python -m tools.manual_knowledge.findings check --ledger <文件>` 只读校验并汇总。重新发布并重跑观察后，同一命令的 `verify --observations <产物>` 核验台账，`propose` 列出台账尚未覆盖的候选条目，`coverage` 给出知识 × 版本的覆盖矩阵；三者都在产物旁写报告，只有 `verify --write` 回写核验字段，见[知识治理方案](../dev/machine_readable_knowledge_governance.md) §6。
+知识发现台账是 Hello-Docs 的业务内容 `docs/knowledge/governance/findings.json`，经内容 PR 维护；`python -m tools.manual_knowledge.findings check --ledger <文件>` 只读校验并汇总。重新发布并重跑观察后，同一命令的 `verify --observations <产物>` 核验台账，`propose` 列出台账尚未覆盖的候选条目，`coverage` 给出知识 × 版本的覆盖矩阵；三者都在产物旁写报告，只有 `verify --write` 回写核验字段。`bindings --corpus <manual-knowledge.json>` 列出台账各版本的编辑入口，标出尚未写明绑定的 `unclassified` 版本。见[知识治理方案](../dev/machine_readable_knowledge_governance.md) §6。
 
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
