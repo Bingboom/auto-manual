@@ -46,6 +46,7 @@ class PathSegments:
     WEB_COMPOSITES = "web_composites"
     KNOWLEDGE = "knowledge"
     WORKSPACE_DATA = "workspace-data"
+    GOVERNANCE = "governance"
     PUBLISH = "publish"
     WEB = "web"
     SOURCE = "source"

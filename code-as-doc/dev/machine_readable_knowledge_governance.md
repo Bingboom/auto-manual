@@ -6,7 +6,7 @@ Status: active · Owner: Auto-Manual maintainer · Created: 2026-10-12
 Phase 2 立项：[`machine_readable_knowledge_observation.md`](machine_readable_knowledge_observation.md)；
 Phase 2a 验收：[`machine_readable_knowledge_pilot_audit.md`](machine_readable_knowledge_pilot_audit.md)。
 
-本文件是 Phase 3（Knowledge Governance）的立项文件，包括立项依据、范围、决策、契约草案、
+本文件是 Phase 3（Knowledge Governance）的立项文件，包括立项依据、范围、决策、契约、
 PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phase 3a 的实施以本文件为准；各实施 PR
 仍按 §10 另行登记授权。Phase 1、2 已上线的行为不因本文件改变。
 仓库里另有两处"Phase 3"（平台演进路线、Backport 渲染基线），与本文件无关；本文件只指机读方案的
@@ -132,39 +132,71 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 | D21 | 闭环核验 | 重新发布后用观察产物核验台账，给出 `closed` / `still_open` / `not_comparable`；台账状态仍由人工改 |
 | D22 | 试点门槛 | 23 条全部登记并有人工结论；高优先级 7 条中至少 3 条走完闭环并核验为 `closed`；机器写权威源 0 次 |
 
-## 6. 契约（草案）
+## 6. 契约
+
+§6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2、§6.3 仍是草案，
+分别随 P3-1、P3-2 定稿。
 
 ### 6.1 台账条目
 
+台账文件为 `{"schema": "auto-manual-knowledge-findings/v1", "region": "EU", "findings": [...]}`，
+其中一条条目如下（`…` 为省略）：
+
 ```json
 {
-  "finding_id": "fd-je3000c-eu-ups-warning",
+  "finding_id": "fd-ups-critical-load-warning-nl-pl-pt",
   "status": "confirmed",
+  "priority": "high",
   "category": "warning",
-  "claim": {"kind": "absent", "variants": ["JE-3000C/EU/nl", "JE-3000C/EU/pl", "JE-3000C/EU/pt"]},
-  "reference": {"knowledge_id": "kn:JE-3000C/EU/en:warning:…:0",
-                "source_ref": "JE-3000C/EU/en/md/manual_je3000c_eu_en.html#uninterruptible-power-supply-ups"},
-  "evidence": {"observation_id": "obs:language_parity:JE-3000C/EU:…", "generator": "manual-observations/0.5",
-               "pilot_check": "real"},
-  "authority": {"JE-3000C/EU/nl": "git_only_frozen"},
-  "decisions": [{"status": "confirmed", "by": "内容负责人", "date": "2026-10-13", "note": "…"}],
-  "change": {"wording": "tm:<record id>", "pr": null, "published_version": null},
-  "verification": {"result": null, "observed_at": null, "generator": null}
+  "summary": "JE-1000H、JE-3000C、JE-2000E 的 nl、pl、pt 版 UPS 章节缺少整条 WARNING：…",
+  "registered": {"date": "2026-10-12", "source": "P2-4 验收记录 §3.2 第 7 条"},
+  "claims": [{"kind": "absent",
+              "variants": ["JE-1000H/EU/nl", "JE-1000H/EU/pl", "…", "JE-2000E/EU/pt"],
+              "references": [{"knowledge_id": "kn:JE-1000H/EU/en:warning:823e5e18a1e9a174:0",
+                              "source_ref": "JE-1000H/EU/en/md/manual_je1000h_eu_en.html#uninterruptible-power-supply-ups"},
+                             "…"]}],
+  "evidence": {"tier": "medium", "observation_ids": ["obs:language_parity:JE-1000H/EU:e4d4f3f299c51d8d", "…"],
+               "generator": "manual-observations/0.5", "pilot_check": "real"},
+  "authority": {"JE-1000H/EU/nl": "git_only_frozen", "…": "…"},
+  "decisions": [{"status": "confirmed", "by": "<姓名>", "role": "content_owner", "date": "2026-10-13"}],
+  "changes": [],
+  "verification": null
 }
 ```
 
-- `finding_id` 由人工在登记时命名，之后不变；条目不随观察产物重算。
-- `reference.knowledge_id` 是核验的锚：参照条目（通常是英文版）的文字不变，核验就能找到同一簇。
-  参照条目变了，核验给 `not_comparable` 并标 `needs_recheck`，不自动作废。
-- `claim` 只写一种差异：缺失（`absent`）、等级不一致（`severity`）、数字不一致（`numbers`）或人工
-  发现（`manual`，附说明）。
-- 状态迁移：`candidate` → `confirmed` / `rejected` / `not_applicable`；`confirmed` →
-  `change_approved` → `applied` → `closed`；任一状态 → `superseded`。每次迁移在 `decisions` 里追加
-  一条，带人、日期与理由。
+- `finding_id`：`fd-` 加小写词，登记时由人命名，之后不变；条目不随观察产物重算。
+- `category`：观察产物的 `warning` / `safety` / `compliance`；不对应知识条目的问题（例如混入的外语
+  句子）记为 `other`。`priority`（`high` / `medium` / `low`）可选，由人给出。
+- `claims`：一条或多条主张，每条只写一种差异：缺失（`absent`）、等级不一致（`severity`）、数字不一致
+  （`numbers`）或人工发现（`manual`）。`variants` 是有差异的版本，`references` 是参照条目
+  （`knowledge_id` 加 `source_ref`）。前三种主张由机器比较，必须给参照的 `knowledge_id`，其类别与
+  条目一致；参照版本不能同时被主张，每个被主张的版本都要有同型号的参照。`manual` 主张可以只给页面锚点。
+- 核验以参照的 `knowledge_id` 为锚：参照条目（通常是英文版）的文字不变，核验就能找到同一簇；参照
+  条目变了，核验给 `not_comparable` 并标 `needs_recheck`，不自动作废。
+- `evidence`：档位 `tier`（`high` / `medium` / `low`，人工发现为 `manual`）。机器报出的条目列出
+  支持它的 `observation_ids` 与生成器版本；`pilot_check` 是登记前的人工核对结论（`real` /
+  `partly` / `explainable` / `false_positive`），未核对为 `null`。
+- `authority`：每个被主张版本的发布路径（`git_only_frozen` / `unclassified` / `queue` / `legacy`，
+  见 §4.2）；编辑入口由 P3-3 补上。
+- `decisions`：按顺序重放状态迁移：`candidate` → `confirmed` / `rejected` / `not_applicable`；
+  `confirmed` → `change_approved` → `applied` → `closed`；任一状态 → `superseded`。每条带人
+  （`by`）、角色（`content_owner` / `certification_owner` / `operator`，即 §3.2 的内容负责人、
+  产品 / 认证负责人、操作者）与日期，日期不早于登记日和上一条；`rejected` / `not_applicable` /
+  `superseded` 必须在 `note` 里写理由。`not_applicable` 和合规类条目的 `confirmed` / `rejected`
+  只能由 `certification_owner` 给出（D18），`change_approved` 由 `operator` 给出。
+- `changes`：从 `change_approved` 起记录。每条写所改版本、批准措辞（只写 `tm:<记录 ID>`，不写原文，
+  D19）、权威源 PR 与发布后的 `manual_variant_id`；`applied` / `closed` 要求每个被主张的版本都有
+  PR 与新版本。
+- `verification`：机器写入的核验字段（`result`、`observed_at`、`generator`、`needs_recheck`，见 §6.2）。
+  含机器比较主张的条目，只有核验结果为 `closed` 才能关闭（D21）；只有 `manual` 主张的条目由人核验。
+
+与立项时的草案相比：一条发现可能跨多个型号、多处内容（问题清单第 1 条涉及两个型号的四类条目），
+所以 `claim` / `reference` 改为 `claims` / `references` 列表，`change` 改为 `changes` 列表，并逐版本
+记录发布版本；另补了 `registered`、`priority`、决定的 `role` 和类别 `other`。
 
 ### 6.2 核验结果
 
-- `closed`：`claim.variants` 中的每个版本都已成为同一簇的成员，或等级、数字已与参照一致。
+- `closed`：每条主张的每个版本都已成为同型号参照条目所在簇的成员，或等级、数字已与参照一致。
 - `still_open`：差异仍在。
 - `not_comparable`：参照条目已不在产物中，或该版本不再参与比较。
 - 同一观察产物上运行两次，结果字节一致；结果只写入核验报告，台账的状态改动走 Hello-Docs 内容 PR。
@@ -189,6 +221,16 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5。Hello-Docs 的内容 PR 只含
 `docs/knowledge/**`，与工程 PR 分开。
+
+实现（P3-0）：`tools/manual_knowledge/findings.py` 实现 §6.1 的校验，`check` 子命令只读，报告问题
+与按状态、档位、类别的汇总。台账经 Hello-Docs 内容 PR 登记：[验收记录](machine_readable_knowledge_pilot_audit.md)
+§3.2 的 23 条全部为 `candidate`，`pilot_check` 为 `real`，优先级沿用交给内容负责人的问题清单（高 7 条、
+中 11 条、低 5 条），共主张 53 个版本；引用的 `knowledge_id` 与 `observation_id` 都取自 10-11 本地重建的
+`manual-observations/0.5` 产物。在同一产物上按 §6.2 的规则试算，19 条可比较条目的 21 条主张全部为
+`still_open`（142 个版本与参照的组合，没有 `closed` 或 `not_comparable`）；只有人工主张的 4 条
+（第 8、21、22、23 条）不参与比较。
+`tests/test_knowledge_findings.py` 在含台账的检出里还会校验真实台账，所以 Hello-Docs 的台账内容 PR
+由 Manual Validation 的单元测试把关；auto-manual 没有该文件，此用例跳过。
 
 ## 8. 验收标准
 
