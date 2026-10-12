@@ -51,7 +51,7 @@ SIGNIFICADO DE LOS SÍMBOLOS
      - Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.
      - .. image:: renderers/web/assets/je100c_eu_shared/symbol_children.png
           :alt: children
-     - Les enfants ne sont pas admis.
+     - Mantener fuera del alcance de los niños.
    * - .. image:: renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png
           :alt: battery_weee
      - Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.

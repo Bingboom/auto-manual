@@ -1,0 +1,32 @@
+{
+  "target": {
+    "model": "JBP-5000A",
+    "region": "JP",
+    "language": "ja"
+  },
+  "source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "physical_body_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "archived_print_cover": 1,
+  "printed_version": "unknown",
+  "printed_pages": {
+    "2": "01",
+    "3": "02",
+    "4": "03",
+    "5": "04",
+    "6": "05",
+    "7": "06",
+    "8": "07",
+    "9": "08",
+    "10": "not printed"
+  }
+}

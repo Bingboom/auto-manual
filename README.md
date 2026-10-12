@@ -20,8 +20,8 @@ Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/w
 外部原稿按源文件哈希登记章节准入，见 [Git-only 发布流程](code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)。冻结源库与输出预算边界也由该契约维护。
 FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
 SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)。
-封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide.md)。
-Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide.md)。
+封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
+Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
 JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。
@@ -29,9 +29,9 @@ JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four
 
 Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
 `check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。
-JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide.md)。
+JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide/config-and-manifests.md)。
 这项本地构建能力不代表已接通独立语言发布。
-审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide.md)。
+审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide/quality-gates.md)。
 Web 队列支持显式语言的单语配置，约束与未释放的发布门禁见[队列契约](code-as-doc/dev/web_publish_locale_queue.md)。
 
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
@@ -71,7 +71,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 
 ## 文档入口
 
-JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide.md#je-100ceu-nine-language-web-source)。
+JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
 
 | 想了解什么 | 从这里开始 |
 | --- | --- |
@@ -111,7 +111,7 @@ README 只保留路线图、视频位和最短入口；详细机制由上表中�
 
 Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
 
-中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide.md)。
+中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide/web-component-admission.md)。
 
 旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
 

@@ -80,9 +80,6 @@ def compare_symbol(candidate: bytes, suffix: str, reference: bytes) -> dict:
 
 
 def _text(value: str) -> str:
-    # Printed line-end word breaks are layout, not Web copy. Inline hyphens
-    # remain significant, and all other caption words must still match.
-    value = re.sub(r'(?<=\w)-[ \t]*\r?\n[ \t]*(?=\w)', '', value)
     return re.sub(r'\s+', '', value).casefold()
 
 
@@ -119,6 +116,22 @@ def _matching_erratum(errata: list[dict], row: dict) -> dict | None:
     return matches[0] if matches else None
 
 
+def _join_declared_linebreaks(source_text: str, row: dict) -> str:
+    # Native intake may join a printed line-end hyphen. Each join must
+    # identify one exact word split in this hash-bound source rectangle;
+    # inline hyphens and unspecified source text remain significant.
+    joins = row.get('caption_linebreak_joins', [])
+    if not isinstance(joins, list):
+        raise ValueError('symbol caption linebreak joins must be a list')
+    for fragment in joins:
+        match = (re.fullmatch(r'([^\W\d_]+)-[ \t]*\r?\n[ \t]*([^\W\d_]+)', fragment)
+                 if isinstance(fragment, str) else None)
+        if match is None or source_text.count(fragment) != 1:
+            raise ValueError('symbol caption join must bind one exact source linebreak')
+        source_text = source_text.replace(fragment, ''.join(match.groups()), 1)
+    return source_text
+
+
 def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> bytes:
     glyph, caption, band = (fitz.Rect(row[key]) for key in
                             ('glyph_bbox', 'caption_bbox', 'row_bbox'))
@@ -132,6 +145,7 @@ def _reference(page, row: dict, meaning: str, erratum: dict | None = None) -> by
         raise ValueError('symbol meaning differs from bound source caption')
     expected_source = _erratum_source_caption(erratum, row, meaning)
     if source_text.strip():
+        source_text = _join_declared_linebreaks(source_text, row)
         if _text(source_text) != _text(expected_source):
             raise ValueError('symbol meaning differs from source PDF row text')
     else:

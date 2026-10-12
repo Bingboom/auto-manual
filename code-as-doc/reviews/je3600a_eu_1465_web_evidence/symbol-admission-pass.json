@@ -1,0 +1,92 @@
+[
+  {
+    "language": "es",
+    "rows": [
+      {
+        "asset_ref": "assets/symbol_warning_triangle.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.012382
+      },
+      {
+        "asset_ref": "assets/symbol_read_manual.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.006937
+      },
+      {
+        "asset_ref": "assets/symbol_do_not_dismantle.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.013557
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.01603
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.010243
+      },
+      {
+        "asset_ref": "assets/symbol_li_ion.svg",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.012581
+      },
+      {
+        "asset_ref": "assets/symbol_battery_weee.png",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.013243
+      },
+      {
+        "asset_ref": "assets/symbol_weee.png",
+        "physical_page": 43,
+        "max_mean_channel_error": 0.016949
+      }
+    ]
+  },
+  {
+    "language": "it",
+    "rows": [
+      {
+        "asset_ref": "assets/symbol_warning_triangle.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 0.014021
+      },
+      {
+        "asset_ref": "assets/symbol_read_manual.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 0.013588
+      },
+      {
+        "asset_ref": "assets/symbol_do_not_dismantle.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 1.8e-05
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 1e-05
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 3.3e-05
+      },
+      {
+        "asset_ref": "assets/symbol_li_ion.svg",
+        "physical_page": 77,
+        "max_mean_channel_error": 4.1e-05
+      },
+      {
+        "asset_ref": "assets/symbol_battery_weee.png",
+        "physical_page": 77,
+        "max_mean_channel_error": 0.01073
+      },
+      {
+        "asset_ref": "assets/symbol_weee.png",
+        "physical_page": 77,
+        "max_mean_channel_error": 0.016951
+      }
+    ]
+  }
+]

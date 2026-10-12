@@ -2047,7 +2047,10 @@
           "caption_sha256": "18225b106d2be8eec51e9f09bd4396ebd119366fd14a12ed6ea282c8e4a6d1e0",
           "comparison": {
             "max_mean_channel_error": 0.012139
-          }
+          },
+          "caption_linebreak_joins": [
+            "recyclingcen-\ntrum"
+          ]
         },
         {
           "asset_ref": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
@@ -2081,7 +2084,10 @@
           "caption_sha256": "d4bcc8e68e8dfdfd903d13f6b1bd9d90b42b69d98ff65d8959e1f5911f285260",
           "comparison": {
             "max_mean_channel_error": 0.011799
-          }
+          },
+          "caption_linebreak_joins": [
+            "afvalverwerkings-\ndienst"
+          ]
         }
       ],
       "pl": [
@@ -2623,7 +2629,10 @@
             424.68353271484375
           ],
           "caption_text": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
-          "caption_sha256": "dcd299029e46eae03f7cc7d608a17b652e7f596428c0a08ac4f2e09c4033f66c"
+          "caption_sha256": "dcd299029e46eae03f7cc7d608a17b652e7f596428c0a08ac4f2e09c4033f66c",
+          "caption_linebreak_joins": [
+            "accumula-\nteurs"
+          ]
         }
       ],
       "es": [
@@ -2882,7 +2891,10 @@
             426.3396301269531
           ],
           "caption_text": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
-          "caption_sha256": "c1409e2f0038d5d272792b53de9a8b7ff345867cea10a59a4dc24edd0a7a0db7"
+          "caption_sha256": "c1409e2f0038d5d272792b53de9a8b7ff345867cea10a59a4dc24edd0a7a0db7",
+          "caption_linebreak_joins": [
+            "independiente-\nmente"
+          ]
         }
       ],
       "de": [
@@ -3111,7 +3123,10 @@
             497.7298583984375
           ],
           "caption_text": "Dieses Symbol zeigt an, dass das Produkt nicht als Haushaltsabfall entsorgt werden soll und an eine dafür vorgesehene Sammelstelle zur Entsorgung und Recycling gebracht werden sollte. Eine ordnungsgemäße Entsorgung und Recycling kann dazu beitragen, die Umwelt zu schützen. Für weitere Informationen zur Entsorgung und Recycling dieses Produkts wenden Sie sich an Ihre örtliche Gemeinde, Entsorgungsdienstleistungen oder Ihren Händler.",
-          "caption_sha256": "a4a367eac247254abfdfef4ac8209228bffe931256e0d8ac3f370a51ac898652"
+          "caption_sha256": "a4a367eac247254abfdfef4ac8209228bffe931256e0d8ac3f370a51ac898652",
+          "caption_linebreak_joins": [
+            "Entsorgungs-\ndienstleistungen"
+          ]
         },
         {
           "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
