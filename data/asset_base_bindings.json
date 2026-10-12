@@ -66,7 +66,10 @@
         "source_crop": "fldU6aRaRW",
         "source_record": "fldCZgaR8F",
         "source_page": "fld79TpbgP",
-        "model_scope": "fldh37CrVv"
+        "model_scope": "fldh37CrVv",
+        "override_for": "fldJp29f3p",
+        "preview": "fldGtEpu8Y",
+        "中文说明": "flddo4JMAj"
       }
     },
     "asset_exports": {
@@ -100,7 +103,10 @@
         "artifact_kind": "fldbEDyEYw",
         "asset_record": "fldA2vhgTZ",
         "repo_path": "fldJ9JFlab",
-        "size_bytes": "fldm7EQ9p2"
+        "size_bytes": "fldm7EQ9p2",
+        "像素尺寸": "fldg6efQBd",
+        "透明通道": "fldu9VGDQJ",
+        "对账结果": "fldNqYriGQ"
       }
     }
   }

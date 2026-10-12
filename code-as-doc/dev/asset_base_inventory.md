@@ -4,7 +4,9 @@ Status: proposed
 
 Updated: 2026-10-12
 
-方案待操作者确认。dry-run 已实现：[`tools/asset_pipeline/base_inventory.py`](../../tools/asset_pipeline/base_inventory.py) 负责盘点，[`base_reconcile.py`](../../tools/asset_pipeline/base_reconcile.py) 负责和线上表对账。两者都只读工作区和事先保存的线上快照，不调用飞书。Base 结构变更和线上写入，都要等操作者确认后才做。
+2026-10-12 已执行：§4 的表结构变更，以及 205 个已有导出物行的补字段，都已回读核对（见 §9）。新建行要等操作者说「入库」。
+
+dry-run 已实现：[`tools/asset_pipeline/base_inventory.py`](../../tools/asset_pipeline/base_inventory.py) 负责盘点，[`base_reconcile.py`](../../tools/asset_pipeline/base_reconcile.py) 负责和线上表对账。两者都只读工作区和事先保存的线上快照，不调用飞书。Base 结构变更和线上写入，都要等操作者确认后才做。
 
 ## 1. 目标
 
@@ -49,7 +51,7 @@ Updated: 2026-10-12
 
 **`04_资产导出物`**：一个实际文件一行，`export_file` 附件里只放这一份文件。线上已有 461 行。
 - 仓库文件的行，`export_key` 统一写成 `registry::<仓库路径>`。这是线上已有的写法，与入库行（`<source_key>::artifacts/...`）、网页组合图行（`web-composite/...`）各占一个命名空间。
-- 205 个仓库文件 2026-09-08 已经传过，附件齐全，字节与仓库完全一致；只是 `artifact_kind`、`gate_status` 和 `size_bytes` 空着，要补这些字段。
+- 205 个仓库文件 2026-09-08 已经传过，附件齐全，字节与仓库完全一致。它们空着的 `artifact_kind`、`gate_status`、`size_bytes` 等字段，2026-10-12 已经补齐（见 §9）。
 - 其余 1069 个要新建。
 
 暂存 CSV 的列按以下顺序排：
@@ -57,16 +59,25 @@ Updated: 2026-10-12
 2. 建议新增的字段；
 3. 只供审阅、不上传的列，如 `registered_in`、`key_origin`、`needs_review`、`action`。
 
-## 4. 需要确认的结构变更
+## 4. 表结构变更
 
-对照线上字段核过。
+操作者 2026-10-12 同意后已在线上执行，每个字段都回读核对过。新字段的 ID：
+
+| 表 | 字段 | 类型 | ID |
+|---|---|---|---|
+| `04_资产导出物` | `像素尺寸` | 文本 | `fldg6efQBd` |
+| `04_资产导出物` | `透明通道` | 复选框 | `fldu9VGDQJ` |
+| `04_资产导出物` | `对账结果` | 文本 | `fldNqYriGQ` |
+| `04_资产定义` | `中文说明` | 文本 | `flddo4JMAj` |
+
+单选字段只追加选项，原有选项和颜色都保留；字段 ID 不变，改前改后各选项的行数完全一致。逐项如下：
 
 `04_资产导出物`：
 - `artifact_kind` 加四个选项：`web-shared`、`web-target`、`print`、`word`，分别对应四个目录。现有的 `archive-page`、`preview`、`semantic-export`、`web-composite` 不动。
-- `gate_status` 现有 `approved`、`archive`、`quarantine`，要加 `temporary` 和 `pending`：
+- `gate_status` 原有 `approved`、`archive`、`quarantine`，加了 `temporary` 和 `pending`：
   - `temporary` 沿用定义表现成的值，给 🔧临时替代 的文件用；
   - `pending` 给还没人定状态的文件用。
-- `format` 现有 pdf、png、jpg、jpeg、svg，要加 `webp`，有 24 个文件是 WebP。
+- `format` 原有 pdf、png、jpg、jpeg、svg，加了 `webp`，有 24 个文件是 WebP。
 - 新增三个字段：
   - `像素尺寸`：文本，如 `2131x491`；SVG 填 viewBox 尺寸，PDF 不填；
   - `透明通道`：复选框；
@@ -76,11 +87,11 @@ Updated: 2026-10-12
 `04_资产定义`：
 - 新增 `中文说明`（文本，写含义和用法）。由操作者逐步补，dry-run 不填。
 - `gate_status` 已有 `approved`、`temporary`、`missing`、`quarantine`、`archive`，够用。
-- 线上已有 `override_for` 和 `preview` 两个字段，但 [`data/asset_base_bindings.json`](../../data/asset_base_bindings.json) 还没冻结它们的字段 ID。dry-run 会原样带上注册表的 `override_for`。
+- 线上已有 `override_for` 和 `preview` 两个字段；它们的 ID 现在也冻结进了 [`data/asset_base_bindings.json`](../../data/asset_base_bindings.json)。dry-run 会原样带上注册表的 `override_for`。`preview` 是供画廊视图浏览的预览图，不是构建输入。
 
 `04_资产源文件`：不改。新建的元数据行，`archive_status` 填现有的「待校验」。
 
-确认后先在线上改结构，再用一个单独的 PR 把新字段 ID 冻结进 `data/asset_base_bindings.json`。
+新字段 ID，连同线上已有、但之前没冻结的 `override_for`（`fldJp29f3p`）和 `preview`（`fldGtEpu8Y`），已经写进 `data/asset_base_bindings.json`。业务 Base 结构清单 [`bitable_schema/business_base_manifest.json`](../../bitable_schema/business_base_manifest.json) 里，三张资产表也已同步；其他表的结构漂移见 §13。
 
 与最初方案相比有三处改动：
 - **不加 `withdrawn` 门禁选项。** 符号清单撤回的 11 张旧位图都在 Word 目录里，只是网页不再用；改用撤回门禁，会把 Word 和印刷也一起挡住。它们按各自的注册表行定门禁（目前都是 `approved`），备注里写明「网页符号清单已撤回这份位图」。
@@ -184,19 +195,30 @@ dry-run 用同一个合并函数做了两次预演，结果写在 `summary.json`
 
 **第 0 步：dry-run 和线上快照（本 PR）。** 先只读保存线上快照（§11），再带上 `--live-snapshot` 跑 dry-run。每行都会得到一个动作，交操作者核对，重点看 §12。
 
-**第 1 步：结构变更。** 操作者确认 §4 和 §8 后，在线上改结构，并把新字段 ID 冻结进 `data/asset_base_bindings.json`。
+**第 1 步：结构变更（2026-10-12 已完成）。** 见 §4。
 
 **第 2 步：第一批写入。** 只在操作者明确说「入库」后才做。
 - 写之前重新保存一次快照、重跑 dry-run，确保动作是按最新线上状态算的。
 - 按动作执行：
   - `create`：新建 53 个母版元数据行、281 个注册表定义、1069 个导出物行；导出物的附件取自 `repo_path`。
-  - `fill`：只补 205 个已有导出物行里空着的字段，列在 `fill_fields` 里。这是改现有行，要操作者单独同意。
+  - `fill`：只补已有导出物行里空着的字段，列在 `fill_fields` 里。这是改现有行，要操作者单独同意。2026-10-12 已对 205 行执行，见下方记录。
   - `keep`：不动。
   - `propose`：等第 3 步晋级。
 - 导出物能关联到定义的就关联；定义还在建议阶段的，先只填 `asset_key` 文本，晋级后再关联。
 - 每写一行都回读，核对 `record_id`、`export_key`、`content_sha256`，并确认附件的 `file_token` 不为空。
 - 写完后把附件全部下载下来比对 SHA-256，结果写进 `对账结果`。下载要用到 `internal-api-drive-stream.feishu.cn`，云环境的网络设置需要放行它。
 - 不删行；已有的定义、入库行和网页组合图行一律不改。
+
+2026-10-12 补字段记录：
+- 操作者同意后，按当天的快照和 dry-run，逐行 PATCH 了 205 个 `registry::` 行。只写 `fill_fields` 列出的字段，共 1005 个值：
+  - `artifact_kind`：print 133、word 54、web-target 18；
+  - `gate_status`：approved 201、temporary 4；
+  - 另有 `size_bytes`、`build_eligible`、`visual_review_required`、`source_key`、`source_page`、`像素尺寸`、`透明通道`。
+- 写完重新保存快照，逐行核对：
+  - 1005 个值全部与计划一致；
+  - 这 205 行的其他字段一个没变，附件都在；
+  - 计划外的 256 行没有任何变化，总行数仍是 461。
+- 用写后的快照重跑 dry-run，这 205 行都变成 `keep`。
 
 **第 3 步：同步命令（Base → 仓库）。** 这是日常流程的核心，参照 `sync_web_composites` 实现：
 - 只取 `approved`、`build_eligible`、恰好一个附件，且附件 SHA-256 等于 `content_sha256` 的行。
@@ -310,7 +332,7 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 - 定义：新建 281，保留 218，待晋级 688。
 - 导出物：
   - 新建 1069；
-  - 补字段 205，其中 `artifact_kind`、`gate_status`、`size_bytes` 每行都要补；
+  - 补字段 205，其中 `artifact_kind`、`gate_status`、`size_bytes` 每行都要补。2026-10-12 补完后，这 205 行变为 `keep`；
   - 没有附件过时的行，也没有孤儿行。
 
 **线上已有的问题**
@@ -340,3 +362,5 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 2. 同步命令上线后，加一项 CI 检查：仓库里每个生产素材文件，都要在 Base 里有字节一致的 `approved` 行。这样直接改仓库的图会被拦下。
 3. 按 §8 分批晋级建议定义，先从没有登记的文件最多的目录开始。
 4. 如果需要按文件标出渲染面，先对模板和渲染器做一次引用普查。
+5. 业务 Base 结构清单要整库重导一次。2026-10-12 的整库导出显示，7 月 20 日以来其他表也有结构变化，例如 KO 列、钉钉字段、`Workflow_action` 的 `Web Publish` 选项。lark-cli 1.0.49 导出的公式明细改成按字段名书写，很多表的字段顺序也变了。这些不属于本次范围，本次只更新了三张资产表。
+6. 上传附件要用 lark-cli 1.0.69 或更新版本的 `+record-upload-attachment`（见 [`lark-cli-bitable-ops`](../../.agents/skills/lark-cli-bitable-ops/SKILL.md)）；CI 现在固定的是 1.0.49。

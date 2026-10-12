@@ -2312,7 +2312,9 @@
             "textless",
             "numeric-only",
             "fixed-product-markings",
-            "localized-full-page"
+            "localized-full-page",
+            "localized-composite",
+            "shared-composite"
           ]
         },
         {
@@ -2346,6 +2348,25 @@
         {
           "name": "source_page",
           "type": "number"
+        },
+        {
+          "name": "中文说明",
+          "type": "text"
+        },
+        {
+          "name": "preview",
+          "type": "attachment",
+          "detail": {
+            "description": "该资产的预览图（≤600px PNG），由 04_资产导出物 的实际用图生成，仅供画廊视图浏览与识别；不是构建输入，构建仍读 04_资产导出物 的 export_file。"
+          }
+        },
+        {
+          "name": "override_for",
+          "type": "text"
+        },
+        {
+          "name": "web_replace_key",
+          "type": "text"
         }
       ]
     },
@@ -2367,7 +2388,12 @@
           "options": [
             "archive-page",
             "preview",
-            "semantic-export"
+            "semantic-export",
+            "web-composite",
+            "web-shared",
+            "web-target",
+            "print",
+            "word"
           ]
         },
         {
@@ -2383,7 +2409,8 @@
             "png",
             "jpg",
             "jpeg",
-            "svg"
+            "svg",
+            "webp"
           ]
         },
         {
@@ -2421,7 +2448,9 @@
           "options": [
             "approved",
             "archive",
-            "quarantine"
+            "quarantine",
+            "temporary",
+            "pending"
           ]
         },
         {
@@ -2479,6 +2508,33 @@
         {
           "name": "build_eligible",
           "type": "checkbox"
+        },
+        {
+          "name": "web_locale",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            "en",
+            "fr",
+            "es",
+            "shared"
+          ]
+        },
+        {
+          "name": "对账结果",
+          "type": "text"
+        },
+        {
+          "name": "透明通道",
+          "type": "checkbox"
+        },
+        {
+          "name": "像素尺寸",
+          "type": "text"
+        },
+        {
+          "name": "source_fragment_sha256",
+          "type": "text"
         }
       ]
     },
