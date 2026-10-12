@@ -96,6 +96,9 @@ recipe schema；任何失败都不产生可发布结果。PDF 保存参数固定
 逐字节与完整 SHA-256 校验，`data/asset_sources.csv.source_pointer` 已指向该记录。
 Base 暂时不可写时，后续新修订仍必须让 Git 指针保持空值，不能复用旧指针或回退旧表。
 
+仓库里现存的生产素材（网页、LaTeX、Word 目录）怎么进这三张表，方案和只读 dry-run 见
+[生产素材入飞书多维表](asset_base_inventory.md)。
+
 ### Phase C：构建消费
 
 模板或 bundle 使用稳定的 `asset:<asset_key>` 引用。构建先冻结本次使用的资产快照，

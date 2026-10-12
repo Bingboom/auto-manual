@@ -462,6 +462,15 @@ def _artifact_path(
     return path
 
 
+def registered_exports(record: AssetRecord, *, repo_root: Path) -> list[tuple[Path, str, str]]:
+    """(path, format, declared digest) for each export a registry row names.
+
+    These are the files ``asset-check`` verifies for the row, so a caller that
+    maps files back to registry rows uses this instead of re-deriving names.
+    """
+    return _matching_artifacts(record, repo_root=repo_root, format_name=None, language=None)
+
+
 def _scope_matches(scope_values: tuple[str, ...], requested: str | None) -> bool:
     if requested is None:
         return "ALL" in {value.upper() for value in scope_values}
