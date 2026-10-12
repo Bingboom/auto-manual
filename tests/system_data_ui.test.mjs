@@ -80,3 +80,14 @@ test('coverage is the supported share of the filtered targets', () => {
 test('counts are ordered by size, then label', () => {
   assert.deepEqual(plain(load().countBy(data.assets, 'status').map(c => [c.label, c.n])), [['成品', 2], ['缺失', 1]]);
 });
+
+test('code size is grouped by directory, largest first, in file-type order', () => {
+  const rows = [
+    {area: 'docs', type: 'Markdown 文档', files: 2, lines: 50},
+    {area: 'tools', type: 'Python', files: 3, lines: 80},
+    {area: 'docs', type: 'Python', files: 1, lines: 40},
+  ];
+  const areas = load().codeAreas(rows, ['Python', 'Markdown 文档']);
+  assert.deepEqual(plain(areas.map(a => [a.area, a.files, a.lines])), [['docs', 3, 90], ['tools', 3, 80]]);
+  assert.deepEqual(plain(areas[0].parts.map(p => [p.type, p.lines])), [['Python', 40], ['Markdown 文档', 50]]);
+});
