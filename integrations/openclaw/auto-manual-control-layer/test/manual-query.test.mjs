@@ -226,3 +226,78 @@ test("unconfigured or disconnected gateway reports unavailable, never a guessed 
   assert.equal(result.details.status, "unavailable"); assert.equal(result.isError, true);
   assert.match(result.details.guidance, /请勿使用缓存或记忆补答/);
 });
+
+function catalog(...documents) {
+  const corpus = { schema: "auto-manual-knowledge/v1", source_sha256: "a".repeat(64), region: "EU",
+    published_at: "2026-10-01T00:00:00Z", documents, counts: { models: documents.length, editions: documents.length,
+      sections: documents.reduce((total, doc) => total + doc.sections.length, 0) } };
+  return { corpus, origin, checkedAt: 1000, digest: "snapshot" };
+}
+
+function manual(model, sections) {
+  return { id: "doc-" + model, model, name: "Product", region: "EU", lang: "en", language_scope: "single",
+    version: "2.0", url: `${model}/EU/en/md/manual.html`, html_sha256: "b".repeat(64),
+    coverage: { image_text_coverage: "alt_only_no_ocr" },
+    sections: sections.map(([id, title, ...texts]) => ({ id, title, anchor: id,
+      blocks: texts.map((text) => ({ type: "paragraph", text })) })) };
+}
+
+// Chapter ids sort opposite to chapter order, so an id tie-break would surface the wrong chapter.
+const station = (model, capacity) => manual(model, [
+  ["z-box", "What's in the box", "Portable power station; charging cable."],
+  ["y-lcd", "LCD Display", "Battery Saving Mode limits the usable battery capacity. USB output icon: On / Off."],
+  ["w-ops", "Operations", "USB OUTPUT ON/OFF", "Press the USB button once to turn the output on.", "Press it again to turn it off."],
+  ["x-charge", "Charging", "Charge the battery to full capacity before storage. Open the cover on the back."],
+  ["a-spec", "Specifications", `Capacity | ${capacity}\nWeight | About 35 kg`],
+]);
+
+test("parameter questions open the specification table, not chapters that only mention the word", () => {
+  const f = catalog(station("JE-TEST", "80 Ah / 44.8 V DC (3584 Wh)"));
+  for (const query of ["JE-TEST 容量", "JE-TEST capacity", "JE-TEST capacity Wh", "JE-TEST 最大容量",
+    "JE-TEST largest capacity", "JE-TEST 容量最大的产品是哪个 介绍一下", "JE-TEST 重量"]) {
+    const result = searchManuals(f, { query });
+    assert.equal(result.status, "matches", query);
+    assert.equal(result.results[0].section_id, "a-spec", query);
+  }
+  assert.ok(!searchManuals(f, { query: "JE-TEST 容量" }).results.some((row) => row.section_id === "z-box"),
+    "the unit Wh must not match the word what");
+  assert.deepEqual(searchManuals(f, { query: "JE-TEST battery" }).results.map((row) => row.section_id), ["y-lcd", "x-charge"],
+    "equal scores keep chapter order");
+  assert.equal(searchManuals(f, { query: "JE-TEST ac" }).status, "no_evidence", "short words match whole words only");
+  const glued = catalog(manual("JE-SMALL", [["spec", "Specifications", "Battery | 96Wh (5Ah/19.2V DC)"],
+    ["warranty", "Garantía", "Garantía de 2 años."]]));
+  assert.equal(searchManuals(glued, { query: "JE-SMALL 电流" }).status, "no_evidence", "2 años is not 2 A");
+  assert.equal(searchManuals(glued, { query: "JE-SMALL 容量" }).results[0]?.section_id, "spec", "a unit glued to its number counts");
+  assert.equal(searchManuals(f, { query: "JE-TEST 开启 USB 输出" }).results[0].section_id, "w-ops",
+    "on equal scores the chapter that explains the procedure beats a passing mention");
+});
+
+test("comparisons list one chapter per model with the matching source lines", () => {
+  const f = catalog(station("JE-T1", "1024 Wh (20 Ah / 51.2 V DC)"), station("JE-T2", "80 Ah / 44.8 V DC (3584 Wh)"),
+    manual("JS-T3", [["spec", "Specifications", "Rated power | 100 W"]]));
+  const all = searchManuals(f, { query: "容量最大的产品是哪个", compare: true });
+  assert.equal(all.status, "comparison");
+  assert.deepEqual(all.compared_models, ["JE-T1", "JE-T2", "JS-T3"]);
+  assert.deepEqual(all.results.map((row) => [row.model, row.section_id]), [["JE-T1", "a-spec"], ["JE-T2", "a-spec"]]);
+  assert.deepEqual(all.results[1].matched_lines, ["Capacity | 80 Ah / 44.8 V DC (3584 Wh)"]);
+  assert.match(all.results[1].url, /JE-T2\/EU\/en\/md\/manual\.html#a-spec$/);
+  assert.deepEqual(all.models_without_evidence, [{ model: "JS-T3", reason: "no_evidence" }]);
+  assert.match(all.guidance, /写明比较了哪些型号/);
+  assert.deepEqual(searchManuals(f, { query: "JE-T1 和 JE-T2 容量对比", compare: true }).compared_models, ["JE-T1", "JE-T2"]);
+  assert.equal(searchManuals(f, { query: "Which Jackery has the largest capacity", compare: true }).status, "comparison");
+  assert.equal(searchManuals(f, { query: "JE-T1 JE-T9 capacity", compare: true }).status, "model_not_found");
+  assert.equal(searchManuals(f, { query: "哪个最好", compare: true }).status, "needs_parameter");
+  assert.equal(searchManuals(f, { query: "JE-T1 capacity", compare: true, model: "JE-T2" }).compared_models.length, 2);
+  const single = searchManuals(f, { query: "容量最大的产品是哪个" });
+  assert.equal(single.status, "needs_model");
+  assert.match(single.guidance, /compare: true/);
+  assert.equal(searchManuals(f, { query: "Jackery 容量" }).status, "needs_model", "the brand is not a model name");
+  assert.throws(() => searchManuals(f, { query: "capacity", compare: "yes" }), /Invalid/);
+});
+
+test("the search tool declares the comparison switch", () => {
+  const tools = [];
+  registerManualQuery({ registerTool: (tool) => tools.push(tool), registerCommand() {} });
+  assert.equal(tools[0].parameters.properties.compare.type, "boolean");
+  assert.match(tools[0].description, /compare 为 true/);
+});

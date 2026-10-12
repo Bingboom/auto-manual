@@ -28,12 +28,15 @@ export function registerManualQuery(api, { clientFactory = createKnowledgeClient
     {
       name: TOOL_NAMES[0], label: "Search published EU manuals",
       description: evidenceRules + " 输入型号和2–5个检索关键词，中文问题可转换为英文关键词以检索英文手册。"
-        + "型号不明时先请求候选列表；搜索结果只是导航，回答前必须调用 manual_section。",
+        + "型号不明时先请求候选列表；搜索结果只是导航，回答前必须调用 manual_section。"
+        + "在多个产品之间比较（哪款容量最大、A 与 B 对比）时设 compare 为 true，query 写参数关键词："
+        + "每个型号返回一个章节和匹配的原文行；只能在返回的型号之间下结论，并写明比较了哪些型号。",
       parameters: { type: "object", additionalProperties: false, properties: {
         query: string("关键词或原始问题；空串列出可查询的型号。"),
         model: string("确切产品型号，如 JE-2000F；不根据相似产品猜测。"),
         language: string("仅在用户指定来源语言时填写；省略时优先英文，否则明确标记旧版语言范围未验证。"),
         limit: { type: "integer", minimum: 1, maximum: 10 },
+        compare: { type: "boolean", description: "比较多个产品时为 true：query 中写了型号就只比较这些型号，否则比较全部已发布型号。" },
       } },
       execute: async (_id, params) => perform(searchManuals, params),
     },
