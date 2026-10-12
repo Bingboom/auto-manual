@@ -11,6 +11,7 @@
 - `optimization_project.md`: repo-level optimization roadmap.
 - `code_optimization_log.md`: recent maintenance records for completed roadmap workstreams, newest first; older records are in `code_optimization_log_archive.md`.
 - `build_doc_guide.md`: index of the maintainer build guide; its topic pages live in `build_doc_guide/`.
+- `next_optimization_checklist.md`: active optimization checklist; shared update rules plus an index of one page per milestone in `next_optimization_checklist/`.
 - `dev/merge_authorizations.md`: gate-on-green protocol and live grants; expired rows are in `dev/merge_authorizations_archive.md`.
 
 ## Local Rules
@@ -18,7 +19,7 @@
 - Use `architecture/System Evolution Strategy.md` for long-term architecture boundaries.
 - Use `optimization_project.md` for current optimization priorities.
 - When completing a phase or workstream from `optimization_project.md`, add a matching record at the top of `code_optimization_log.md`.
-- Put new build-guide content on the owning `build_doc_guide/` page, not in the index; grep archives and logs instead of reading them whole.
+- Put new build-guide content on the owning `build_doc_guide/` page and checklist items on their milestone page, not in the index; grep archives and logs instead of reading them whole.
 - Keep user-facing workflow changes synchronized with `user-guide/` when operators are affected.
 
 ## Validation

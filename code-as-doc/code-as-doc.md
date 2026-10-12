@@ -159,10 +159,12 @@ Update the keyword when the doc's state changes (for example `active` → `done`
 docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](../data/doc_lifecycle_baseline.txt) until they are fixed — then remove them with `python -m tools.check_doc_lifecycle update`.
 
 Rule 7:
-Hub guides are indexes. [`build_doc_guide.md`](build_doc_guide.md) and
-[`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md) list their topic pages
-with a one-line "read it when"; behavior notes go to the owning page, and a page past
-~400 lines is split. Logs and registries keep recent or live entries in the main file and
+Hub guides are indexes. [`build_doc_guide.md`](build_doc_guide.md),
+[`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md),
+[`next_optimization_checklist.md`](next_optimization_checklist.md) (one page per milestone) and
+[`STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md) (which keeps the §1 binding
+table and §8 that tests read) list their pages with a one-line "read it when"; behavior
+notes go to the owning page, and a page past ~400 lines is split. Logs and registries keep recent or live entries in the main file and
 move older ones to their `*_archive.md` file. `python -m tools.check_maintainability_guardrails`
 caps the line counts of these hubs and live files.
 
